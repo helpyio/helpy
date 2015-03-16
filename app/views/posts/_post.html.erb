@@ -1,0 +1,33 @@
+<tr class="posted-by">
+	<td width="35px">
+		<%= image_tag(post.user.gravatar_url(:size => 30), :size => '30X30') %>
+	</td>
+	<td class="bottom-border" valign="bottom">
+	    <%= h post.user.login -%>
+	</td>
+	<td class="bottom-border" valign="bottom">
+  		<br/><span class="posted-at">Posted <%= distance_of_time_in_words_to_now(post.created_at) %> ago</span>
+	</td>
+</tr>
+
+<tr>
+  <td></td>
+  <td class="post" colspan="2">
+  	<%= simple_format(post.body) -%>
+  	<br/><br/><br/>
+
+  </td>
+</tr>
+
+<% if user_signed_in? and current_user.admin? -%>
+<tr>
+	<td colspan="2">
+      <br />
+      <small>
+        <%= link_to 'Edit', edit_topic_post_path(@topic, post) -%>
+        <%= link_to 'Delete', topic_post_path(@topic, post), :method => :delete,
+              :confirm => 'Are you sure you wish to delete this post?' -%>
+      </small>
+	</td>
+</tr>
+<% end -%>

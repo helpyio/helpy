@@ -1,0 +1,13 @@
+<div id="header-wrapper">
+	<div id="above-header" class="span-24 last">
+	<%#= render :partial => 'layouts/above_header' %>
+    </div>
+    <div id="header" class="span-24 last">
+    	<div id="header-logo" class="span-8">
+    		<h2><%= APP_CONFIG[:product_name] + " " if APP_CONFIG[:product_name] %><%= APP_CONFIG[:site_name] %></h2>
+		</div>
+    	<div id="header-nav" class="span-16 last">
+    		<%#= tabnav :main %>
+		</div>
+    </div>
+</div>

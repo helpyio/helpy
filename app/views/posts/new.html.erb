@@ -1,0 +1,12 @@
+<div id="breadcrumbs">
+  <%= link_to 'Forums', forums_path -%> >
+  <%= link_to @topic.forum.name, forum_path(@topic.forum) -%> >
+</div>
+<h1>New Reply</h1>
+<%= error_messages_for :post -%>
+
+<% form_for @post, :url => topic_posts_path(@topic) do |f| -%>
+  <p>Message:<br /><%= f.text_area :body, :rows => 8, :cols => 60 -%></p>
+  <%= submit_tag 'Save' -%> or 
+  <%= link_to 'Cancel', topics_path(:id => @topic, :forum_id => @topic.forum) -%>
+<% end -%>

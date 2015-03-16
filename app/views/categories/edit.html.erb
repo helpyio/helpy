@@ -1,0 +1,36 @@
+<h1>Editing category</h1>
+
+<% form_for(@category) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :section %><br />
+    <%= f.text_field :section %>
+  </p>
+
+
+
+  <p>
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </p>  
+  <p>
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </p>  
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @category %> |
+<%= link_to 'Back', categories_path %>

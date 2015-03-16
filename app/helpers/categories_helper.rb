@@ -1,0 +1,2 @@
+module CategoriesHelper
+end

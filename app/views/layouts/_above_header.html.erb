@@ -1,0 +1,5 @@
+<% unless user_signed_in? %>
+<%= link_to 'Login', new_user_session %> | <%= link_to 'Register', new_user_registration %>
+<% else %>
+Welcome Back <%= current_user.login %> | <%= link_to 'Logout', destroy_user_session %>
+<% end %>

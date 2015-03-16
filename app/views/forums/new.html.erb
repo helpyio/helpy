@@ -1,0 +1,9 @@
+<h1>New forum</h1>
+
+<%= error_messages_for :forum %>
+
+<% form_for(:forum, :url => forums_path) do |f| %>
+  	<%= render :partial => 'form', :locals => {:f => f} -%>
+	
+    <%= submit_tag "Create" %>
+<% end %>

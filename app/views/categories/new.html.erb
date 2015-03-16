@@ -1,0 +1,31 @@
+<h1>New category</h1>
+
+<% form_for(@category) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :section %><br />
+    <%= f.text_field :section %>
+  </p>  
+  <p>
+    <%= f.label :active %><br />
+    <%= check_box_tag :active %>
+  </p>
+  <p>
+    <%= f.label :rank %><br />
+    <%= check_box_tag :rank %>
+  </p> 
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', categories_path %>

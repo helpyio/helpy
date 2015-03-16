@@ -1,0 +1,29 @@
+
+<div id="breadcrumbs">
+  <%= link_to 'Forums', forums_path -%> > <strong>Tagged with <%= h params[:id] -%></strong>
+</div>
+
+<div class="Paginator" align="right">
+	<%#= will_paginate @topics %>
+</div>
+
+<table id="topics">
+	
+  <col width="55%">
+  <col width="5%">
+  <col width="10%">
+  <col width="5%">	
+  <col width="20%">		
+	
+  <tr>
+    <th colspan="2">Topic</th>
+    <th>Status</th>
+    <th>Replies</th>
+	<th>Last Post</th>	
+  </tr>
+  <%= render :partial => 'topic', :collection => @topics %>
+</table>
+
+<div class="Paginator" align="right">
+	<%#= will_paginate @topics %>
+</div>

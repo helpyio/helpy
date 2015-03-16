@@ -1,0 +1,60 @@
+<h1>Rated Most Helpful</h1>
+
+<div id="topics" class="span-16">
+  <table>
+  <% @topics.each do |topic| %>
+    <tr>
+      <td width="50px">
+        <div class="topic-points">
+          <%= topic.points %>
+        </div>
+      </td>
+      <td><%= link_to topic.name, topic_posts_path(topic) %></td>
+    </tr>
+    <% div_for(topic) do %>
+
+    <div class="topic-message">
+
+    </div>
+    <% end %>
+  <% end %>
+  </table>
+</div>
+
+<!--<div id="docs" class="span-8">
+  <% @docs.each do |doc| %>
+    <%= doc.points %> - <%= doc.title %>
+  <% end %>
+</div> -->
+<div id="buttons" class="span-8 last">
+  <ul class="buttons">
+    <li><%= image_tag('icons/001_50.png') %><%= link_to 'View Forums', forums_path %></li>
+    <li><%= image_tag('icons/001_37.png') %> <%= link_to 'Knowledgebase', categories_path %></li>
+    <li><%= image_tag('icons/001_11.png') %> <%= link_to 'Ask a Question', new_topic_path, :class => 'ss_sprite ss_accept' %></li>
+  </ul>
+</div>
+
+<% if user_signed_in? && @private_topics.count > 0 %>
+<div id="private-topics" class="span-24 last">
+
+  <h1>Your Private Topics:</h1>
+
+  <table id="topics">
+
+    <col width="55%">
+    <col width="5%">
+    <col width="10%">
+    <col width="5%">
+    <col width="20%">
+
+    <tr>
+      <th colspan="2">Topic</th>
+      <th>Status</th>
+      <th>Replies</th>
+    <th>Last Post</th>
+    </tr>
+    <%= render :partial => 'topics/topic', :collection => @private_topics %>
+  </table>
+
+</div>
+<% end %>

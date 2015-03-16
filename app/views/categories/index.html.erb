@@ -1,0 +1,20 @@
+<div id="breadcrumbs">
+	<ul>
+		<li><%= link_to 'Your Account', root_path %> ></li>
+	</ul>
+</div>
+
+<h1>Get help!</h1>
+
+<% @categories.each do |category| %>
+
+<h4><%= link_to category.name.titleize, category_path(category.link)  %></h4>
+<ul>
+	<% category.docs.ordered.active.each do |doc| %>
+		<li><%= link_to doc.title.titleize, category_doc_path(category.link, doc) %></li>
+	<% end %>
+</ul>
+
+<%
+end
+%>

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  body: MyText
+  keywords: MyString
+  category_id: 1
+  active: false
+  rank: 1
+  permalink: MyString
+  version: 1
+  front_page: false
+  cheatsheet: false
+  points: 1
+
+two:
+  title: MyString
+  body: MyText
+  keywords: MyString
+  category_id: 1
+  active: false
+  rank: 1
+  permalink: MyString
+  version: 1
+  front_page: false
+  cheatsheet: false
+  points: 1

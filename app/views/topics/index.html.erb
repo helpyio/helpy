@@ -1,0 +1,43 @@
+
+<div id="breadcrumbs">
+  <%= link_to 'Forums', forums_path -%> > <%= @forum.name -%>
+  <h1><%= h @forum.name -%></h1>
+</div>
+
+<div class="Paginator" align="right">
+	<%= will_paginate @topics %>
+</div>
+
+<table id="topics">
+
+  <col width="55%">
+  <col width="5%">
+  <col width="10%">
+  <col width="5%">	
+  <col width="20%">		
+	
+  <tr>
+    <th colspan="2">Topic</th>
+    <th>Status</th>
+    <th>Replies</th>
+	<th>Last Post</th>	
+  </tr>
+  <%= render :partial => 'topic', :collection => @topics %>
+</table>
+
+<div class="Paginator" align="right">
+	<%= will_paginate @topics %>
+</div>
+
+<% if user_signed_in? %>
+<div class="add-form">
+<h4>Start a New Topic</h4>
+	<% form_for :topic, :url => forum_topics_path(:id => @forum), :method => 'post' do |f| -%>
+		<p>Subject:<br /><%= f.text_field :name, :size => 40 -%></p>
+		<p>First Post:<br /><%= text_area :post, :body, :rows => 8, :cols => 120 -%></p>
+		<label>Tags:</label><br/>
+		<%= text_field_tag :tags %>
+		<%= submit_tag 'Start Topic', :class => 'submit' %>  
+	<% end -%>
+</div>
+<% end %>

@@ -1,0 +1,19 @@
+    <tr class="<%= cycle('even', 'odd') %>">
+      <td>
+      	<div class="topic-points right-space">
+			<%= topic.points %>
+		</div>
+		
+        <%= link_to h(topic.name), topic_posts_path(topic) -%><br/><span class="author">Started By <%= h topic.user.login %></span>
+      	<% if user_signed_in? and current_user.admin? -%>
+        <small>
+          <%= link_to 'delete', topic_path(:forum_id => @forum, :id => topic), :method => :delete, :confirm => 'Are you sure? This will delete this entire topic.' -%>
+          <%= link_to 'edit', edit_topic_path(:forum_id => @forum, :id => topic) -%>
+        </small>
+      	<% end -%>
+      </td>
+	  <td><%= image_tag("icons/001_42.png", :class => 'icon') if topic.private? %></td>
+	  <td><%= topic.status %></td>
+      <td><%= topic.posts_count - 1 %></td>
+	  <td><%= topic.last_post_date.nil? ? "Not Lately" : distance_of_time_in_words_to_now(topic.last_post_date) + " ago" %></td>
+	</tr>

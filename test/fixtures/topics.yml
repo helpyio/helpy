@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  forum_id: 1
+  user_id: 1
+  name: MyString
+  posts_count: 1
+  last_post_date: 2015-03-13 12:10:22
+  last_post_id: 1
+  status: MyString
+  private: false
+  cheatsheet: false
+  points: 1
+
+two:
+  forum_id: 1
+  user_id: 1
+  name: MyString
+  posts_count: 1
+  last_post_date: 2015-03-13 12:10:22
+  last_post_id: 1
+  status: MyString
+  private: false
+  cheatsheet: false
+  points: 1

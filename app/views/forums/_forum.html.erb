@@ -1,0 +1,23 @@
+  <tr>
+    <td class="name">
+      <div>
+        <%= link_to h(forum.name), forum_topics_path(:forum_id => forum) -%> <%= '(private)' if forum.private? %>
+      </div>
+
+      <div>
+        <%= h(forum.description) -%>
+      </div>
+
+      <% if user_signed_in? and current_user.admin? -%>
+        <br />
+        <small>
+          <%#= link_to 'edit', edit_forum_path(forum) %>
+          <%#= link_to 'delete', forum_path(forum), :method => :delete,
+                :confirm => 'Are you sure? This will delete this entire forum.' -%>
+        </small>
+      <% end -%>
+    </td>
+    <td></td>
+	<td></td>
+	<td class="last_post"><%= distance_of_time_in_words_to_now(forum.last_post_date) + " ago" unless forum.last_post_date.blank? %></td>
+  </tr>

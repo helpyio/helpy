@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 1
+  rank: 1
+  active: false
+  link: MyString
+  section: MyString
+
+two:
+  name: 1
+  rank: 1
+  active: false
+  link: MyString
+  section: MyString

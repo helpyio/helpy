@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  points: 1
+  voteable_type: MyString
+  voteable_id: 1
+  user_id: 1
+
+two:
+  points: 1
+  voteable_type: MyString
+  voteable_id: 1
+  user_id: 1

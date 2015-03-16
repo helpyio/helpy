@@ -1,0 +1,21 @@
+<h1>Content Categories</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+	<th colspan="3"></th>
+  </tr>
+
+<% for cat in @categories %>
+  <tr>
+    <td><%=h cat.name %> (<%= cat.id.to_s %>)</td>
+    <td><%= cat.section %></td>
+    <td><%= link_to 'Edit', edit_category_path(cat.id) %></td>
+    <td><%= link_to 'Destroy', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Category', new_category_path %>
