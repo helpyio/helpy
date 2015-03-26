@@ -1,24 +1,36 @@
-/* @override 
-	http://localhost:3004/stylesheets/base.css?1238554754
-	http://localhost:3004/stylesheets/base.css?1238594177
-	http://localhost:3004/stylesheets/base.css?1238601594
-	http://localhost:3004/stylesheets/base.css?1238602276
-	http://localhost:3004/stylesheets/base.css?1238602715
-	http://localhost:3004/stylesheets/base.css?1238603018
-	http://localhost:3004/stylesheets/base.css?1238606727
-	http://localhost:3004/stylesheets/base.css?1238626538
-	http://localhost:3004/stylesheets/base.css?1238626934
-	http://localhost:3004/stylesheets/base.css?1238628384
-	http://localhost:3004/stylesheets/base.css?1238629520
-	http://localhost:3004/stylesheets/base.css?1238630077
-	http://localhost:3004/stylesheets/base.css?1238630412
-	http://localhost:3004/stylesheets/base.css?1238685661
-	http://localhost:3004/stylesheets/base.css?1238959890
-	http://localhost:3004/stylesheets/base.css?1238959973
-	http://localhost:3004/stylesheets/base.css?1239040573
+/* @override
+	http://localhost:3000/assets/base-7fe741cebb8cffc06f7a29714486864e.css?body=1
+	http://localhost:3000/assets/base-3a0ac4752dcb93b5c394278f1ebbd64c.css?body=1
+	http://localhost:3000/assets/base-82818843037ecf54016b863b3d495fb7.css?body=1
 */
 
+/* === BOOTSTRAP OVERRIDES == */
+
+/*
+.navbar-default{background-color:#fff;border-color:#fff}.navbar-default .navbar-brand{color:#777}.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus{color:#5e5e5e;background-color:transparent}.navbar-default .navbar-text{color:#777}.navbar-default .navbar-nav>li>a{color:#777}.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav>.disabled>a,.navbar-default .navbar-nav>.disabled>a:hover,.navbar-default .navbar-nav>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-toggle{border-color:#ddd}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:#ddd}.navbar-default .navbar-toggle .icon-bar{background-color:#888}.navbar-default .navbar-collapse,.navbar-default .navbar-form{border-color:#e7e7e7}.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{background-color:#e7e7e7;color:#555}.navbar-default .navbar-nav .open .dropdown-menu>li>a{color:#777}.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-link{color:#777}.navbar-default .navbar-link:hover{color:#333}.navbar-default .btn-link{color:#777}.navbar-default .btn-link:hover,.navbar-default .btn-link:focus{color:#333}.navbar-default .btn-link[disabled]:hover,fieldset[disabled] .navbar-default .btn-link:hover,.navbar-default .btn-link[disabled]:focus,fieldset[disabled] .navbar-default .btn-link:focus{color:#ccc}
+*/
+
+.jumbotron {
+	background-color: #fff;
+}
+
+.navbar-brand {
+	font-family: 'Shadows Into Light', sans-serif;
+	padding:0px;
+	font-size:180%;
+}
+
+.form-group {
+	width:100%;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+		background-color: #3cceff;
+		border-color: #3cceff;
+}
+
 /* === FLASH MESSAGES === */
+
 
 li.feed-item {
 	list-style-image: url(../images/16/1.png);
@@ -30,70 +42,72 @@ li.feed-item {
 
 thead th {
   background-color: #eee;
-  border-bottom: 1px solid #ddd;	
+  border-bottom: 1px solid #ddd;
 }
 
 div#flash-notice {
-	
+
 }
 
 div#flash-warning {
-	
+
 }
 
 div#flash-error {
-	
+
 }
 
 /* === ERROR MESSAGES === */
 div#errorExplanation {
-	
+
 }
 
 div#errorExplanation h2 {
-	
+
 }
 
 div#errorExplanation p {
-	
+
 }
 
 div#errorExplanation ul {
-	
+
 }
 
 div#errorExplanation ul li {
-	
+
 }
 
 /* === FORMS === */
 div.fieldWithErrors {
-	
+
 }
 
 div.fieldWithErrors label {
-	
+
 }
 
 tr.table-header {
 	padding-bottom: 20px;
 }
 
-div.fieldWithErrors input, div.fieldWithErrors select, 
+div.fieldWithErrors input, div.fieldWithErrors select,
 div.fieldWithErrors textarea
 {
-	
+
 }
 
 /* === GLOBAL STYLES === */
-
+/*
 h2 {
 	font-family: Georgia, "Times New Roman", Times, serif;
 }
-
+*/
 body {
-	font: 70% "Lucida Grande", Lucida, Verdana, sans-serif;
-	background: url(/images/cheatsheet-bg.png) repeat-x;
+	/*font-family: 'Droid Sans', sans-serif;*/
+	position: relative;
+	/*font: 120% "Lucida Grande", Lucida, Verdana, sans-serif;
+	background: url(/assets/cheatsheet-bg.png) repeat-x;*/
 }
 
 /*
@@ -106,12 +120,15 @@ body.sub {
 }
 */
 
-.container {
-	
-}
-
 #wrapper {
 	margin-bottom: 30px;
+	padding: 0px;
+	background-color: #fff;
+
+	-webkit-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
+	-moz-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
+	box-shadow: 0px 0px 12px 0px rgba(196,196,196,1);
+
 }
 
 #footer a {
@@ -125,7 +142,7 @@ div.add-form {
 }
 
 tbody {
-	border: 1px solid #333;
+	border: 0px solid #333;
 }
 
 a {
@@ -133,22 +150,51 @@ a {
 	text-decoration: none;
 }
 
+h1#how_help {
+	padding-top:50px;
+	padding-bottom:70px;
+}
+
+#home_search {
+	background-color: #feffe9;
+	padding-bottom: 100px;
+}
+
+#home_options {
+	padding-top:10%;
+	padding-bottom:10%;
+	padding-right:20px;
+	padding-left:20px;
+}
+
+
+.search_field {
+	width: 80%;
+}
+
+.search_button {
+	width: 100px;
+}
+
 h1 {
-	font-size: 190%;
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-family: 'Droid Serif', serif;
 	padding-bottom: 40px;
 	padding-left: 5px;
 	padding-right: 5px;
 	padding-top: 5px;
 	background-color: #feffe9;
 }
-
+/*
 h3 {
 	color: #ab2a30;
 }
-
+*/
 h4 {
-	font-weight: bold;
+	border-bottom: 1px solid #666;
+}
+
+h4 a {
+	color: #666;
 }
 
 textarea {
@@ -199,10 +245,12 @@ div.admin-tools {
 tr.even td {
 	border-top: 1px #ddd solid;
 	background-color: #fff;
+	padding-top:5px;
 }
 
 tr.odd td {
 	border-top: 1px #ddd solid;
+	padding-top:5px;
 }
 
 th {
@@ -319,9 +367,9 @@ div.status {
 	margin-top: 17px;
 }
 
-#header-nav {
+/* #header-nav {
 	text-align: right;
-}
+} */
 
 #header-nav ul li a {
 	font-weight: normal;
@@ -364,7 +412,7 @@ div.topic {
 }
 
 div.topic-points {
-	color: #00843B;	
+	color: #00843B;
 	margin-right: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -400,12 +448,13 @@ ul.buttons li {
 
 /* === FORUM === */
 
-table#forums {
+table#forums, table#topics, table#posts {
+	width:  100%;
 }
 
 #forums tbody tr td {
 	border-bottom: 1px solid #eee;
-	
+	padding-top: 15px
 }
 
 #forums tbody tr {
@@ -415,7 +464,7 @@ table#forums {
 /* === DISCUSSION === */
 
 .bottom-border {
-	border-bottom: 1px solid #eee;	
+	border-bottom: 1px solid #eee;
 }
 
 div.topic-status {
@@ -449,7 +498,7 @@ div.topic-status {
 /* === MAIN PANEL === */
 
 #main-content {
-	font-size: 110%;
+	/*font-size: 110%;*/
 	background-color: #fff;
 }
 
@@ -476,6 +525,7 @@ div.topic-status {
 #footer-wrapper {
 	width: 100%;
 	background-color: #333;
+	margin-top:10%;
 }
 
 #footer {
@@ -483,6 +533,3 @@ div.topic-status {
 	background-color: #333;
 	padding-top: 20px;
 }
-
-
-

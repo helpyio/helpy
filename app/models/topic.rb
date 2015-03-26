@@ -1,9 +1,31 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id             :integer          not null, primary key
+#  forum_id       :integer
+#  user_id        :integer
+#  name           :string
+#  posts_count    :integer          default(0), not null
+#  last_post_date :datetime
+#  last_post_id   :integer
+#  status         :string           default("Open")
+#  private        :boolean          default(FALSE)
+#  cheatsheet     :boolean          default(FALSE)
+#  points         :integer          default(0)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Topic < ActiveRecord::Base
 
   belongs_to :forum, :counter_cache => true
   belongs_to :user
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
+
+  include PgSearch
+  multisearchable :against => [:name, :post_cache]
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
@@ -48,8 +70,8 @@ class Topic < ActiveRecord::Base
     self.private = true if self.forum.private?
   end
 
-  def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
-  end
+  #def to_param
+  #  "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+  #end
 
 end

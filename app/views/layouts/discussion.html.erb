@@ -6,21 +6,21 @@
 		<meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="distribution" content="all" />
-		<meta name="robots" content="all" />	
+		<meta name="robots" content="all" />
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 
-		<%= stylesheet_link_tag "blueprint/screen" %>		
+		<%= stylesheet_link_tag "blueprint/screen" %>
 		<%= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
-		
+
 		<%= stylesheet_link_tag 'base' %>
 		<!--[if IE]>
-		<%= stylesheet_link_tag 'blueprint/ie' %>		
+		<%= stylesheet_link_tag 'blueprint/ie' %>
 		<![endif]-->
 
 		<%= javascript_include_tag :defaults %>
-		<%= @feed_link %>
-		
+		<%= @feed_link.html_safe %>
+
 	</head>
 
 <body class="sub">

@@ -12,5 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+
+  // Sets up autoscroll for any link with class autoscroll
+  // requires data-target param containing class or ID of target
+
+  $(".autoscroll").each(function(){
+      $(this).click(function(){
+        var scrollTarget=$(this).data("target");
+        $('html,body').animate({
+          scrollTop: $(scrollTarget).offset().top},'slow');
+        });
+  });
+});

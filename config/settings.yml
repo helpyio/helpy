@@ -1,6 +1,9 @@
 development: &non_production_settings
-  site_url: http://localhost:3004
-  site_name: Cheatsheet
+  parent_site: /parent-redirect.html
+  parent_company: Main Site
+
+  site_url: http://localhost:3000
+  site_name: CheatSheet Support
   product_name:
   admin_email: inbound.support@vertster.com
   send_email: false
@@ -33,9 +36,11 @@ staging:
   ssl: yes
 
 production:
+  parent_site: /parent-redirect.html
+  parent_company: Main Site
   site_url: http://cheatsheet.vertster.com
   site_name: Cheatsheet
-  product_name:   
+  product_name:
   admin_email: inbound.support@vertster.com
   send_email: true
 

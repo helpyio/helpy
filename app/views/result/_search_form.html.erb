@@ -1,0 +1,4 @@
+<%= form_tag result_path, method: :get do %>
+  <%= text_field_tag('q', nil, placeholder: 'Enter a keyword, topic, or question', class: 'search_field', value: params[:q]) %>
+  <%= submit_tag "Search", name: nil, class: 'search_button' %>
+<% end %>

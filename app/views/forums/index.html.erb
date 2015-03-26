@@ -1,17 +1,42 @@
-<% if user_signed_in? and current_user.admin? %>
-  <p><%= link_to 'Create New Forum', new_forum_path -%></p>
-<% end %>
-<h1>Forum Topics</h1>
-<table id="forums">
-  <thead>
-	  <tr>
-	    <th class="name">Forum name</th>
-	    <th class="topic"></th>
-		<th class="fposts"></th>
-		<th class="last_post">Last Activity</th>
-	  </tr>
-  </thead>
-  <tbody>
-	<%= render :partial => 'forum', :collection => @forums %>
-  </tbody>
-</table>
+  <% if user_signed_in? and current_user.admin? %>
+    <p><%= link_to 'Create New Forum', new_forum_path -%></p>
+  <% end %>
+  <h1>Forum Topics</h1>
+  <table id="forums">
+    <thead>
+  	  <tr>
+  	    <th class="name">Forum name</th>
+  	    <th class="topic"></th>
+  		<th class="fposts"></th>
+  		<th class="last_post">Last Activity</th>
+  	  </tr>
+    </thead>
+    <tbody>
+  	<%= render :partial => 'forum', :collection => @forums %>
+    </tbody>
+  </table>
+
+  <% if user_signed_in? && @private_topics.count > 0 %>
+  <div id="private-topics" class="span-24 last">
+
+    <h1>Your Private Topics:</h1>
+
+    <table id="topics">
+
+      <col width="55%">
+      <col width="5%">
+      <col width="10%">
+      <col width="5%">
+      <col width="20%">
+
+      <tr>
+        <th colspan="2">Topic</th>
+        <th>Status</th>
+        <th>Replies</th>
+      <th>Last Post</th>
+      </tr>
+      <%= render :partial => 'topics/topic', :collection => @private_topics %>
+    </table>
+
+  </div>
+  <% end %>

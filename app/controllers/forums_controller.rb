@@ -6,6 +6,7 @@ class ForumsController < ApplicationController
   def index
     @forums = Forum.order('name ASC')
     @meta_title = "Forums"
+    @private_topics = current_user.topics.isprivate if user_signed_in?
 
 
     respond_to do |format|

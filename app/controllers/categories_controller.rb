@@ -1,10 +1,9 @@
 class CategoriesController < ApplicationController
   before_filter :get_tags
 
-  before_filter :login_required, :except => ['index', 'show']
+  before_filter :authenticate!, :except => ['index', 'show']
   #before_filter :authenticate_master?, :except => 'index'
 
-  layout 'knowledgebase'
 
   # GET /categories
   # GET /categories.xml
@@ -31,8 +30,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @category = Category.active.find_by_link(params[:link])
-    @doc = Doc.find_by_category_id_and_front_page(@category.id, true)
+    @category = Category.active.where(link: params[:id]).first
+    @doc = Doc.where(category_id: @category.id, front_page: true).first
     @related = Doc.in_category(@doc.category_id) if @doc
 
     respond_to do |format|

@@ -1,30 +1,29 @@
-<div class="container">
-	<div id="footer" class="span-24 last">
-		<div id="footer-left" class="span-6">
-			<h3>Recent Discussions:</h3>
-			<ul>
+<div id="footer" class="row">
+	<div id="footer-left" class="col-md-3">
+		<h3>Recent Discussions:</h3>
+		<ul class="unstyled">
 			<% Topic.ispublic.recent.all.each do |topic| %>
-				<li><%= link_to topic.name, topic_posts_path(topic.id) %></li>
+			<li><%= link_to topic.name, topic_posts_path(topic.id) %></li>
 			<% end %>
-			</ul>
+		</ul>
 
-		</div>
-		<!--<div id="footer-center" class="span-8">
-
-		</div>-->
-		<div id="footer-right" class="span-18 last">
-			<h3>Socially Optimized Support</h3>
-			<p>
-				Cheatsheet is a "socially optimized" support application.  It combines support and social voting (aka Digg.com) to help users quickly find answers to their questions.
-			</p>
-			<h3>Topics</h3>
-			<p id="tag-cloud">
-			  <%# tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-			    <%#= link_to tag.name, { :controller => 'topics', :action => :tag, :id => tag.name }, :class => css_class %>
-			  <%# end %>
-			</p>
-
-		</div>
 	</div>
+	<div id="footer-right" class="col-md-9">
+		<h3>Socially Optimized Support</h3>
+		<p>
+			Cheatsheet is a "socially optimized" support application.  It combines support and social voting (aka Digg.com) to help users quickly find answers to their questions.
+		</p>
+		<h3>Topics</h3>
+		<p id="tag-cloud">
+			<%# tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+			<%#= link_to tag.name, { :controller => 'topics', :action => :tag, :id => tag.name }, :class => css_class %>
+			<%# end %>
+		</p>
 
+	</div>
+	<div class="row">
+		<div class="col-md-12 text-center">
+			Powered by CheatSheet Support.  Get your own Cheatsheet FREE!
+		</div>
+	<div>
 </div>

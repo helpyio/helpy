@@ -8,7 +8,7 @@
 </div>
 
 <% if user_signed_in? %>
-<h3>Vote it Up? <%= link_to_remote(image_tag('icons/001_18.png'), :url => {:controller => 'topics', :action => 'up_vote', :id => @topic.id}, :class => 'button positive') %></h3>
+<h3>Vote it Up? <%= link_to(image_tag('icons/001_18.png'), :url => {:controller => 'topics', :action => 'up_vote', :id => @topic.id}, :class => 'button positive', :remote => true) %></h3>
 <% end %>
 
 <% if user_signed_in? && current_user.admin? %>
@@ -17,7 +17,7 @@
 
 			<%= link_to 'Edit', edit_topic_path(@topic) %><br/>
 			Change Status:
-			<% remote_form_for(:topic, :url => forum_topic_path(@topic.forum, @topic.id), :method => 'put') do |f| %>
+			<% form_for(:topic, :url => forum_topic_path(@topic.forum, @topic.id), :method => 'put', :remote => true) do |f| %>
 				<%= f.select(:status, [['Open'],['Resolved'],['Spam']], {}, :onchange => 'this.form.onsubmit();') %>
 				<%#= f.submit 'Save' -%>
 			<% end -%>

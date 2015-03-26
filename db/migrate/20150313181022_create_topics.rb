@@ -11,6 +11,7 @@ class CreateTopics < ActiveRecord::Migration
       t.boolean :private, :default => false
       t.boolean :cheatsheet, :default => false
       t.integer :points, :default => 0
+      t.text :post_cache
 
       t.timestamps null: false
     end

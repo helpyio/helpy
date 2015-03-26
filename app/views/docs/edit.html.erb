@@ -1,2 +1,6 @@
-<h1>Docs#edit</h1>
-<p>Find me in app/views/docs/edit.html.erb</p>
+<h1>Edit Content</h1>
+<% form_for(@doc) do |f| %>
+<%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+<% end %>
+<%= link_to 'Show', @doc %> |
+<%= link_to 'Back', docs_path %>

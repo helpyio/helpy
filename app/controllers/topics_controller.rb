@@ -1,6 +1,8 @@
 class TopicsController < ApplicationController
 
-  before_filter :login_required, :except => ['show','index','tag','make_private']
+  before_filter :authenticate_user!, :except => ['show','index','tag','make_private']
+  add_breadcrumb 'Home', :root_path
+
 
   # GET /topics
   # GET /topics.xml
@@ -8,9 +10,9 @@ class TopicsController < ApplicationController
     @forum = Forum.find(params[:forum_id])
 
     if user_signed_in? && current_user.admin?
-      @topics = @forum.topics.active.chronologic.paginate(:page => params[:page], :per_page => 10)
+      @topics = @forum.topics.active.chronologic.page params[:page]
     else
-      @topics = @forum.topics.ispublic.chronologic.paginate(:page => params[:page], :per_page => 10)
+      @topics = @forum.topics.ispublic.chronologic.page params[:page]
     end
 
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
@@ -30,6 +32,9 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
+
+    add_breadcrumb 'Forums', :forums_path
+
     @forums = Forum.alpha.all
     @topic = Topic.new
     @post = Post.new

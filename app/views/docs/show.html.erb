@@ -1,2 +1,9 @@
-<h1>Docs#show</h1>
-<p>Find me in app/views/docs/show.html.erb</p>
+<div class="col-md-2">
+</div>
+<div class="col-md-10">
+  <h2><%= @doc.title %></h2>
+  <%= @doc.content.html_safe %>
+  <br/>
+  <br/>
+  <hr>
+</div>

@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
-  layout 'discussion'
+
 
   #after_filter :view_causes_vote, :only => 'index'
 
   def index
     @topic = Topic.where(id: params[:topic_id]).first#.includes(:forum)
     @posts = @topic.posts
+    #@post = @topic.posts.new
 
     @related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
 
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id], :include => {:topic => :forum})
+    @post = Post.where(id: params[:id]).first
   end
 
   def create

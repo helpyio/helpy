@@ -1,12 +1,37 @@
-<h1>Rated Most Helpful</h1>
+<div class="jumbotron text-center" id="home_search">
 
-<div id="topics" class="span-16">
+  <h1 id="how_help" class="text-center">How can we help?</h1>
+
+  <%= render 'result/search_form' %>
+
+
+</div>
+
+
+<h2></h2>
+<div class="row" id="home_options">
+  <div class="col-md-4">
+    <h3><%= image_tag('icons/001_50.png') %> View Forums</h3>
+    <p>Browse for your solution in our user powered forums</p>
+  </div>
+  <div class="col-md-4">
+    <h3><%= image_tag('icons/001_37.png') %> Knowledgebase</h3>
+    <p>Browse our knowledgebase with answers to many common questions!</p>
+  </div>
+  <div class="col-md-4">
+    <h3><%= image_tag('icons/001_11.png') %> Ask a Question</h3>
+    <p>Start a new discussion with our support staff and user community</p>
+  </div>
+</div>
+
+<!--
+<div id="topics" class="col-md-8">
   <table>
   <% @topics.each do |topic| %>
     <tr>
       <td width="50px">
         <div class="topic-points">
-          <%= topic.points %>
+          <%#= topic.points %>
         </div>
       </td>
       <td><%= link_to topic.name, topic_posts_path(topic) %></td>
@@ -20,41 +45,44 @@
   <% end %>
   </table>
 </div>
-
+-->
 <!--<div id="docs" class="span-8">
   <% @docs.each do |doc| %>
     <%= doc.points %> - <%= doc.title %>
   <% end %>
-</div> -->
-<div id="buttons" class="span-8 last">
+
+<div id="buttons" class="col-md-4">
   <ul class="buttons">
     <li><%= image_tag('icons/001_50.png') %><%= link_to 'View Forums', forums_path %></li>
     <li><%= image_tag('icons/001_37.png') %> <%= link_to 'Knowledgebase', categories_path %></li>
     <li><%= image_tag('icons/001_11.png') %> <%= link_to 'Ask a Question', new_topic_path, :class => 'ss_sprite ss_accept' %></li>
   </ul>
 </div>
+</div> -->
 
-<% if user_signed_in? && @private_topics.count > 0 %>
-<div id="private-topics" class="span-24 last">
+<div class="row" id="kb">
+  <div class="col-md-12">
+    <h3>Knowledgebase</h3>
+  </div>
 
-  <h1>Your Private Topics:</h1>
+<% @categories.each do |category| %>
+  <div class="col-md-6">
+    <h4><%= link_to category.name.titleize, category_path(category.link)  %></h4>
+    <ul class='list-unstyled'>
+      <% category.docs.ordered.active.each do |doc| %>
+        <li><%= link_to doc.title.titleize, category_doc_path(category.link, doc) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% next %>
+  <!--<div class="col-md-6">
+    <h4><%= link_to category.name.titleize, category_path(category.link)  %></h4>
+    <ul>
+      <% category.docs.ordered.active.each do |doc| %>
+        <li><%= link_to doc.title.titleize, category_doc_path(category.link, doc) %></li>
+      <% end %>
+    </ul>
+  </div>-->
 
-  <table id="topics">
-
-    <col width="55%">
-    <col width="5%">
-    <col width="10%">
-    <col width="5%">
-    <col width="20%">
-
-    <tr>
-      <th colspan="2">Topic</th>
-      <th>Status</th>
-      <th>Replies</th>
-    <th>Last Post</th>
-    </tr>
-    <%= render :partial => 'topics/topic', :collection => @private_topics %>
-  </table>
-
-</div>
 <% end %>
+</div>

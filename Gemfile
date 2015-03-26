@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'pg_search'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -27,15 +28,18 @@ gem 'devise'
 
 gem 'permalink_fu'
 
-gem 'simple_column_search'
-
 gem 'acts-as-taggable-on', '~>3.5'
 
-gem 'will_paginate'
+gem 'kaminari'
 
 gem 'gravtastic'
 
+gem 'less-rails'
+gem 'font-awesome-less'
+gem 'therubyracer'
+gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
+gem 'rdiscount'
 
 #gem 'rails-widgets'
 
@@ -57,4 +61,8 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'faker'
+  gem 'populator'
+  gem 'annotate'
 end

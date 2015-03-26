@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314002614) do
+ActiveRecord::Schema.define(version: 20150320203432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,12 +53,30 @@ ActiveRecord::Schema.define(version: 20150314002614) do
     t.datetime "updated_at",                     null: false
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "name"
+    t.text     "body"
+    t.string   "search_type"
+    t.integer  "search_id"
+    t.datetime "last_updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -92,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150314002614) do
     t.boolean  "private",        default: false
     t.boolean  "cheatsheet",     default: false
     t.integer  "points",         default: 0
+    t.text     "post_cache"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
@@ -100,14 +119,15 @@ ActiveRecord::Schema.define(version: 20150314002614) do
     t.string   "login"
     t.string   "identity_url"
     t.string   "name"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.boolean  "admin",                  default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
