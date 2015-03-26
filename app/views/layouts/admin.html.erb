@@ -6,16 +6,16 @@
 		<meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="distribution" content="all" />
-		<meta name="robots" content="all" />	
+		<meta name="robots" content="all" />
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 
-		<%= stylesheet_link_tag 'blueprint/screen' %>		
+		<%= stylesheet_link_tag 'blueprint/screen' %>
 		<%= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
-		
+
 		<%= stylesheet_link_tag 'base' %>
 		<!--[if IE]>
-		<%= stylesheet_link_tag 'blueprint/ie' %>		
+		<%= stylesheet_link_tag 'blueprint/ie' %>
 		<![endif]-->
 
 		<%= javascript_include_tag :defaults %>
@@ -31,20 +31,20 @@
 	<%= render :partial => 'layouts/above_header' %>
     </div>
     <div id="header" class="span-24 last">
-    	<div id="header-logo" class="span-4"><h2><%= APP_CONFIG[:site_name] %></h2>
+    	<div id="header-logo" class="span-4"><h2><%= Settings.site_name %></h2>
 </div>
     <div id="header-nav" class="span-20 last">
-    	<%= tabnav :admin %>    
+    	<%= tabnav :admin %>
 </div>
 
     </div>
-    
+
 	<div id="main-body" class="span-24">
 
-	    
+
 	    <div id="main-content" class="span-24 last">
 			<%= yield %>
-	
+
 	    </div>
 	</div>
 </div>

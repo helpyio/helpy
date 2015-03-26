@@ -1,61 +1,26 @@
-development: &non_production_settings
-  parent_site: /parent-redirect.html
-  parent_company: Main Site
+tickets: false
+forums: true
+knowledgebase: true
+parent_site: /parent-redirect.html
+parent_company: Main Site
 
-  site_url: http://localhost:3000
-  site_name: CheatSheet Support
-  product_name:
-  admin_email: inbound.support@vertster.com
-  send_email: false
+# Site Settings
 
-  #Mail specific settings:
-  type: imap
-  server: "imap.gmail.com"
-  username: "inbound.support@vertster.com"
-  password: "QTwjx0aQuUgIzHkPlK9s"
-  port: 993
-  use_login: yes
-  ssl: yes
+site_url: http://cheatsheet.vertster.com
+site_name: Cheatsheet
+product_name:
 
-test:
-  <<: *non_production_settings
+# Analytics and Tracking
+google_analytics_id:
+send_usage_data: true
+admin_email: inbound.support@vertster.com
 
-staging:
-  site_name: Cheatsheet
-  product_name:
-  admin_email: inbound.support@vertster.com
-  send_email: false
 
-  #Mail specific settings:
-  type: imap
-  server: "imap.gmail.com"
-  username: "inbound.support@vertster.com"
-  password: "QTwjx0aQuUgIzHkPlK9s"
-  port: 993
-  use_login: yes
-  ssl: yes
-
-production:
-
-  # Site Settings
-  parent_site: /parent-redirect.html
-  parent_company: Main Site
-  site_url: http://cheatsheet.vertster.com
-  site_name: Cheatsheet
-  product_name:
-
-  # Analytics and Tracking
-  google_analytics_id:
-  send_usage_data: true
-
-  admin_email: inbound.support@vertster.com
-  send_email: true
-
-  #Mail specific settings:
-  type: imap
-  server: "imap.gmail.com"
-  username: "inbound.support@vertster.com"
-  password: "QTwjx0aQuUgIzHkPlK9s"
-  port: 993
-  use_login: yes
-  ssl: yes
+#Mail specific settings:
+type: imap
+server: "imap.gmail.com"
+username: "inbound.support@vertster.com"
+password: "QTwjx0aQuUgIzHkPlK9s"
+port: 993
+use_login: yes
+ssl: yes

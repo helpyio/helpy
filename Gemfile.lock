@@ -135,6 +135,8 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
+    rails_config (0.4.2)
+      activesupport (>= 3.0)
     railties (4.2.0)
       actionpack (= 4.2.0)
       activesupport (= 4.2.0)
@@ -215,6 +217,7 @@ DEPENDENCIES
   pg_search
   populator
   rails (= 4.2.0)
+  rails_config
   rdiscount
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
