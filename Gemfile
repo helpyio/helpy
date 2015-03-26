@@ -36,6 +36,7 @@ gem 'gravtastic'
 
 gem 'less-rails'
 gem 'font-awesome-less'
+gem 'font-awesome-rails'
 gem 'therubyracer'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'

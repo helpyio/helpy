@@ -1,23 +1,24 @@
 @import "twitter/bootstrap/bootstrap";
 
 // Set the correct sprite paths
-//@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
-//@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+@iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
-@fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
-@fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
-@fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
-@fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
-@fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
+//@fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
+//@fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
+//@fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
+//@fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
+//@fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
 
 // Font Awesome
-@import "fontawesome/font-awesome";
+//@import "fontawesome/font-awesome";
+//@fa-font-path: "/assets";
 //@import "font-awesome-sprockets";
 //@import "font-awesome";
 
 // Glyphicons
-// @import "twitter/bootstrap/glyphicons.less";
+@import "twitter/bootstrap/glyphicons.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -899,3 +900,9 @@
 @dl-horizontal-offset:        @component-offset-horizontal;
 //** Horizontal line color.
 @hr-border:                   @gray-lighter;
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('/assets/glyphicons-halflings-regular.eot');
+    src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
