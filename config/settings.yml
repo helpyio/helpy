@@ -36,11 +36,18 @@ staging:
   ssl: yes
 
 production:
+
+  # Site Settings
   parent_site: /parent-redirect.html
   parent_company: Main Site
   site_url: http://cheatsheet.vertster.com
   site_name: Cheatsheet
   product_name:
+
+  # Analytics and Tracking
+  google_analytics_id:
+  send_usage_data: true
+
   admin_email: inbound.support@vertster.com
   send_email: true
 

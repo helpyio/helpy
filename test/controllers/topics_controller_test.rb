@@ -56,4 +56,10 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  #test "new private ticket should appear in search" do
+  #end
+
+  #test "new private ticket should" do
+  #end
+
 end

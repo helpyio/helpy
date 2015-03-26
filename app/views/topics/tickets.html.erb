@@ -1,0 +1,23 @@
+<h1>
+  Private Tickets
+</h1>
+<table id="topics">
+
+  <col width="55%">
+  <col width="5%">
+  <col width="10%">
+  <col width="5%">
+  <col width="20%">
+
+  <tr>
+    <th colspan="2">Topic</th>
+    <th>Status</th>
+    <th>Replies</th>
+  <th>Last Post</th>
+  </tr>
+  <%= render :partial => 'topics/topic', :collection => @topics %>
+</table>
+
+<div class="text-right">
+  <%= paginate @topics %>
+</div>

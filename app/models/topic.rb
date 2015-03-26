@@ -25,7 +25,8 @@ class Topic < ActiveRecord::Base
   has_many :votes, :as => :voteable
 
   include PgSearch
-  multisearchable :against => [:name, :post_cache]
+  multisearchable :against => [:name, :post_cache],
+                  :if => lambda { |record| record.private = false}
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
