@@ -13,6 +13,7 @@
 #  private        :boolean          default(FALSE)
 #  cheatsheet     :boolean          default(FALSE)
 #  points         :integer          default(0)
+#  post_cache     :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
@@ -42,10 +43,14 @@ class Topic < ActiveRecord::Base
   scope :ispublic, -> { where("status <> 'Spam'").where(private: false)}
 
   before_save :check_for_private
-  acts_as_taggable
+  #acts_as_taggable
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
+
+  def to_param
+    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+  end
 
   def self.fetch_email
 
@@ -71,8 +76,5 @@ class Topic < ActiveRecord::Base
     self.private = true if self.forum.private?
   end
 
-  #def to_param
-  #  "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
-  #end
 
 end

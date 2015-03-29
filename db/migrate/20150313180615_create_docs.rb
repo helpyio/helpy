@@ -4,6 +4,8 @@ class CreateDocs < ActiveRecord::Migration
       t.string :title
       t.text :body
       t.string :keywords
+      t.string :title_tag
+      t.string :meta_description
       t.integer :category_id
       t.boolean :active, :default => true
       t.integer :rank

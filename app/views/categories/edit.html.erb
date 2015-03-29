@@ -1,7 +1,9 @@
 <h1>Editing category</h1>
 
-<% form_for(@category) do |f| %>
-  <%= f.error_messages %>
+<%#= form_for :category, :url => category_path, method: 'patch' do |f| %>
+<%= form_for @category do |f| %>
+
+  <%#= error_messages_for :category %>
 
   <p>
     <%= f.label :name %><br />
@@ -21,16 +23,16 @@
   <p>
     <%= f.label :active %><br />
     <%= f.check_box :active %>
-  </p>  
+  </p>
   <p>
     <%= f.label :rank %><br />
     <%= f.text_field :rank %>
-  </p>  
+  </p>
 
   <p>
     <%= f.submit "Update" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @category %> |
+<%= link_to 'Show', category_path(id: @category.id) %> |
 <%= link_to 'Back', categories_path %>

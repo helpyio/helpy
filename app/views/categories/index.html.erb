@@ -14,11 +14,12 @@
 		<% @categories.each do |category| %>
 		<div class="row">
 			<div class="col-md-9">
-				<h4><%= link_to category.name.titleize, category_path(category.link), id: "category-#{category.id}"  %></h4>
+				<h4><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %></h4>
 				<ul class='list-unstyled'>
-					<% category.docs.ordered.active.each do |doc| %>
-						<li><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><%= link_to doc.title.titleize, category_doc_path(category.link, doc) %></li>
+					<% category.docs.ordered.active.limit(15).each_with_index do |doc| %>
+						<li><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><%= link_to doc.title.titleize, category_doc_path(category, doc) %></li>
 					<% end %>
+					<li><%= link_to "More Documents", category_path(category) if category.docs.ordered.active.count > 15 %></li>
 				</ul>
 			</div>
 		</div>

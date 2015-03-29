@@ -1,8 +1,8 @@
 class DocsController < ApplicationController
 
-  before_filter :authenticate!, :except => ['show', 'home']
+  before_filter :authenticate_user!, :except => ['show', 'home']
   #before_filter :authenticate_master?, :except => 'show'
-  before_filter :get_tags
+  #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
   after_filter :view_causes_vote, :only => 'show'
 
@@ -19,8 +19,10 @@ class DocsController < ApplicationController
   # GET /docs/1
   # GET /docs/1.xml
   def show
-    @doc = Doc.find(params[:id])
-
+    @doc = Doc.where(id: params[:id]).first
+    @title_tag = @doc.title_tag
+    @meta_desc = @doc.meta_description
+    @keywords = @doc.keywords
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,10 +44,11 @@ class DocsController < ApplicationController
 
   # GET /docs/1/edit
   def edit
-    @doc = Doc.find(params[:id])
+    @doc = Doc.where(id: params[:id]).first
+    @category = Category.where(id: params[:category_id]).first
     @categories = Category.alpha
 
-    render :layout => 'admin'
+    #render :layout => 'admin'
   end
 
   # POST /docs
@@ -56,7 +59,7 @@ class DocsController < ApplicationController
     respond_to do |format|
       if @doc.save
 
-        @doc.tag_list = params[:tags]
+        #@doc.tag_list = params[:tags]
         @doc.save
         flash[:notice] = 'Doc was successfully created.'
         format.html { redirect_to(docs_path) }
@@ -71,13 +74,10 @@ class DocsController < ApplicationController
   # PUT /docs/1
   # PUT /docs/1.xml
   def update
-    @doc = Doc.find(params[:id])
+    @doc = Doc.where(id: params[:id]).first
 
     respond_to do |format|
-      if @doc.update_attributes(params[:doc])
-
-        @doc.tag_list = params[:tags]
-        @doc.save
+      if @doc.update_attributes!(doc_params)
         flash[:notice] = 'Doc was successfully updated.'
         format.html { redirect_to(docs_path) }
 
@@ -117,9 +117,9 @@ class DocsController < ApplicationController
   protected
 
 
-  def get_tags
-    @tags = Doc.tag_counts
-  end
+  #def get_tags
+  #  @tags = Doc.tag_counts
+  #end
 
   def view_causes_vote
     if user_signed_in?
@@ -127,6 +127,28 @@ class DocsController < ApplicationController
     else
       @doc.votes.create
     end
+  end
+
+  private
+
+  #  id          :integer          not null, primary key
+  #  title       :string
+  #  body        :text
+  #  keywords    :string
+  #  category_id :integer
+  #  active      :boolean          default(TRUE)
+  #  rank        :integer
+  #  permalink   :string
+  #  version     :integer
+  #  front_page  :boolean          default(FALSE)
+  #  cheatsheet  :boolean          default(FALSE)
+  #  points      :integer          default(0)
+  #  created_at  :datetime         not null
+  #  updated_at  :datetime         not null
+
+
+  def doc_params
+    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page)
   end
 
 end

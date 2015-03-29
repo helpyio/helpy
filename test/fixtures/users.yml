@@ -6,7 +6,7 @@
 #  login                  :string
 #  identity_url           :string
 #  name                   :string
-#  admin                  :boolean          default(TRUE)
+#  admin                  :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null

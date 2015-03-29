@@ -18,28 +18,34 @@ ActiveRecord::Schema.define(version: 20150320203432) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
+    t.string   "keywords"
+    t.string   "title_tag"
+    t.string   "meta_description"
     t.integer  "rank"
-    t.boolean  "active",     default: true
-    t.string   "link"
+    t.boolean  "front_page",       default: false
+    t.boolean  "active",           default: true
+    t.string   "permalink"
     t.string   "section"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "docs", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
     t.string   "keywords"
+    t.string   "title_tag"
+    t.string   "meta_description"
     t.integer  "category_id"
-    t.boolean  "active",      default: true
+    t.boolean  "active",           default: true
     t.integer  "rank"
     t.string   "permalink"
     t.integer  "version"
-    t.boolean  "front_page",  default: false
-    t.boolean  "cheatsheet",  default: false
-    t.integer  "points",      default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "front_page",       default: false
+    t.boolean  "cheatsheet",       default: false
+    t.integer  "points",           default: 0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "forums", force: :cascade do |t|

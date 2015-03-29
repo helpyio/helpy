@@ -9,7 +9,7 @@ class HomeController < ApplicationController
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{root_url}index.rss' />"
     @categories = Category.alpha
 
-    @topics = Topic.ispublic.tag_counts_on(:tags)
+    #@topics = Topic.ispublic.tag_counts_on(:tags)
 
     respond_to do |format|
       format.html # index.rhtml
@@ -17,8 +17,8 @@ class HomeController < ApplicationController
     end
   end
 
-  def tag
-    @topics = Topic.ispublic.tag_counts_on(:tags)
-  end
+  #def tag
+  #  @topics = Topic.ispublic.tag_counts_on(:tags)
+  #end
 
 end

@@ -1,7 +1,32 @@
-<% if @doc %>
-<h2><%= @doc.title %></h2>
-<%= @doc.content %>
-<br/>
-<br/>
-<hr>
-<% end %>
+<h1><%= @category.name %></h1>
+<div class="row">
+  <div id="left-col" class="col-md-3">
+    <h4>Categories</h4>
+    <div class="list-group">
+    <% @categories.each do |category| %>
+      <%= link_to category.name.titleize, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
+    <% end %>
+    </div>
+  </div>
+
+  <div id="category-col" class="col-md-9">
+    <div class="row">
+      <div class="col-md-9">
+        <ul class='list-unstyled'>
+          <% @docs.each do |doc| %>
+            <li>
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <%= link_to doc.title.titleize, category_doc_path(@category, doc) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-right">
+      <%= paginate @docs %>
+    </div>
+
+  </div>
+
+</div>

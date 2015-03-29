@@ -60,29 +60,5 @@
 </div>
 </div> -->
 
-<div class="row" id="kb">
-  <div class="col-md-12">
-    <h3>Knowledgebase</h3>
-  </div>
 
-<% @categories.each do |category| %>
-  <div class="col-md-6">
-    <h4><%= link_to category.name.titleize, category_path(category.link)  %></h4>
-    <ul class='list-unstyled'>
-      <% category.docs.ordered.active.each do |doc| %>
-        <li><%= link_to doc.title.titleize, category_doc_path(category.link, doc) %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% next %>
-  <!--<div class="col-md-6">
-    <h4><%= link_to category.name.titleize, category_path(category.link)  %></h4>
-    <ul>
-      <% category.docs.ordered.active.each do |doc| %>
-        <li><%= link_to doc.title.titleize, category_doc_path(category.link, doc) %></li>
-      <% end %>
-    </ul>
-  </div>-->
-
-<% end %>
 </div>

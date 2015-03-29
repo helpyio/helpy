@@ -1,7 +1,7 @@
 
 <h1>Start a New Discussion</h1>
 <div class="add-form">
-<%= form_for(@topic, url: topics_path(@topic), method: 'post') do |f| -%>
+<%= form_for(@topic) do |f| -%>
   <p>Category:<br /><%= collection_select(:topic, :forum_id, Forum.all, :id, :name) %>
   <% if Settings.tickets %>
   <%= f.check_box(:private, {}, "TRUE", "FALSE") %> Open Private Ticket?</p>
@@ -9,8 +9,8 @@
   <p>Subject:<br /><%= f.text_field :name, :size => 40 -%></p>
   <p>Post:<br /><%= text_area :post, :body, :rows => 8, :cols => 60 -%></p>
 
-  <label>Tags:</label><br/>
-  <%= text_field_tag :tags %>
+  <!--<label>Tags:</label><br/>-->
+  <%#= text_field_tag :tags %>
 
   <%= submit_tag 'Start Topic', :class => 'submit' %>
 <% end -%>

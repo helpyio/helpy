@@ -2,20 +2,22 @@
 #
 # Table name: docs
 #
-#  id          :integer          not null, primary key
-#  title       :string
-#  body        :text
-#  keywords    :string
-#  category_id :integer
-#  active      :boolean          default(TRUE)
-#  rank        :integer
-#  permalink   :string
-#  version     :integer
-#  front_page  :boolean          default(FALSE)
-#  cheatsheet  :boolean          default(FALSE)
-#  points      :integer          default(0)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id               :integer          not null, primary key
+#  title            :string
+#  body             :text
+#  keywords         :string
+#  title_tag        :string(70)
+#  meta_description :string(160)
+#  category_id      :integer
+#  active           :boolean          default(TRUE)
+#  rank             :integer
+#  permalink        :string
+#  version          :integer
+#  front_page       :boolean          default(FALSE)
+#  cheatsheet       :boolean          default(FALSE)
+#  points           :integer          default(0)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 class Doc < ActiveRecord::Base
@@ -25,6 +27,8 @@ class Doc < ActiveRecord::Base
 
   include PgSearch
   multisearchable :against => [:title, :body, :keywords]
+
+  paginates_per 25
 
   acts_as_taggable
   before_create :build_permalink

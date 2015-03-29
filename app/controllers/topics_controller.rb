@@ -54,11 +54,11 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
 
-    add_breadcrumb 'Forums', :forums_path
+    #add_breadcrumb 'Forums', :forums_path
 
-    @forums = Forum.alpha.all
+    #@forums = Forum.alpha.all
     @topic = Topic.new
-    @post = Post.new
+    #@post = Post.new
   end
 
   # GET /topics/1;edit
@@ -75,8 +75,8 @@ class TopicsController < ApplicationController
     @topic = @forum.topics.new(:name => params[:topic][:name], :user_id => current_user.id, :private => params[:topic][:private])
     @topic.save
 
-    @topic.tag_list = params[:tags]
-    @topic.save
+#    @topic.tag_list = params[:tags]
+#    @topic.save
 
     @post = @topic.posts.new(:body => params[:post][:body], :user_id => current_user.id)
 

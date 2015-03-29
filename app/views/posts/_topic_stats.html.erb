@@ -37,12 +37,14 @@
 	<% end %>
 <% end %>
 
-<% unless @topic.tag_list.blank? %>
+<!--
+<%# unless @topic.tag_list.blank? %>
 <h3>Tags:</h3>
 <div id="tagged-with">
-	<p><%= @topic.tag_list %></p>
+	<p><%#= @topic.tag_list %></p>
 </div>
-<% end %>
+<%# end %>
+-->
 
 <% unless @related.blank? %>
 <h3>Related Topics:</h3>

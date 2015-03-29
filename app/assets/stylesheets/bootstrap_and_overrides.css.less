@@ -906,3 +906,107 @@
     src: url('/assets/glyphicons-halflings-regular.eot');
     src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
+
+// These changes are per http://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box
+// They move the search incon to the left side of the input box
+
+//recreate local variables
+@input-height-base: 34px;
+@input-height-small: 30px;
+@input-height-large: 46px;
+@padding-base-horizontal: 12px;
+@grid-gutter-width: 30px;
+@screen-sm-min: 768px;
+
+
+.has-feedback {
+  // Right Icon Input Padding improvements
+  // when the padding mirrors the input height, it makes the icon look like it
+  // occupies a square on the side of the control
+  .form-control{
+    padding-right: @input-height-base;
+  }
+  .form-control.input-sm,
+  &.form-group-sm .form-control{
+    padding-right: @input-height-small;
+  }
+  .form-control.input-lg,
+  &.form-group-lg .form-control {
+    padding-right: @input-height-large;
+  }
+}
+.has-feedback-left {
+  // Left Icon Input Padding
+  .form-control {
+    //reset changes to right
+    padding-right: @padding-base-horizontal;
+    padding-left: @input-height-base;
+  }
+  .form-control.input-sm,
+  &.form-group-sm .form-control{
+    padding-left: @input-height-small;
+  }
+  .form-control.input-lg,
+  &.form-group-lg .form-control {
+    padding-left: @input-height-large;
+  }
+}
+
+// Left Align Icon
+.has-feedback-left .form-control-feedback {
+    left: 0;
+}
+
+// Set Icon Line Height for vertical centering
+// If using font awesome, library is likely to come after bootstrap library and
+// override line-height set here.  I'm inclined to use !important to make it
+// easier for these line heights to persist in the case the icons are being
+// used explicitly within an input box.
+.form-control-feedback {
+    line-height: @input-height-base !important;
+}
+.input-sm + .form-control-feedback,
+.form-horizontal .form-group-sm .form-control-feedback {
+    width: @input-height-small;
+    height: @input-height-small;
+    line-height: @input-height-small !important;
+}
+.input-lg + .form-control-feedback,
+.form-horizontal .form-group-lg .form-control-feedback {
+  width: @input-height-large;
+  height: @input-height-large;
+  line-height: @input-height-large !important;
+}
+
+
+// Move Icon to top
+// Added to first selector.  If the form-control-feedback is not a sibling,
+// but a child of a sibling, we want to move it up when there is no label.
+.has-feedback label {
+  &.sr-only ~ .form-control-feedback,
+  &.sr-only ~ div .form-control-feedback {
+    top: 0;
+  }
+}
+
+.form-inline {
+  @media (min-width: @screen-sm-min) {
+    // Allow left aligned icon in inline form
+    .inline-feedback {
+      // enable absolute positioning
+      position: relative;
+      display: inline-block;
+    }
+
+    // Re-override the feedback icon.
+    .has-feedback .form-control-feedback {
+      top: 0;
+    }
+  }
+}
+
+.form-horizontal {
+  .has-feedback-left .form-control-feedback {
+    left: (@grid-gutter-width / 2);
+  }
+}

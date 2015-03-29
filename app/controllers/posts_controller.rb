@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @posts = @topic.posts
     #@post = @topic.posts.new
 
-    @related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
+    #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
 
     @meta_title = @topic.name
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"

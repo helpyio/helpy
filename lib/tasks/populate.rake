@@ -3,9 +3,12 @@ namespace :db do
   task :populate => :environment do
   require 'faker'
 
-
-    anon_user = User.create!(name: 'Anonymous', login:'Anon', email: 'anon@test.com', password: '12345678')
-    admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
+    unless User.where(email: 'anon@test.com')
+      anon_user = User.create!(name: 'Anonymous', login:'Anon', email: 'anon@test.com', password: '12345678')
+    end
+    unless User.where(email: 'admin@test.com')
+      admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
+    end
 
     # Create top level forums
     Forum.create(name: "Getting Started", description: "How to get started")
@@ -16,13 +19,23 @@ namespace :db do
     # Create 10 Categories and 5 Docs per category
     rand(10..15).times do
       category = Category.new
-      category.name = Faker::Hacker.adjective + " " + Faker::Hacker.noun
-      category.save
-      rand(3..15).times do
+      name = Faker::Hacker.adjective + " " + Faker::Hacker.noun
+      category.name = name
+      puts "Creating #{name}"
+      category.title_tag = "CheatSheet Support: #{name}"
+      category.meta_description = Faker::Lorem.sentences(1)
+      if category.save
+        puts "Category: #{category.name} saved"
+      end
+      rand(10..50).times do
         doc = category.docs.new
-        doc.title = Faker::Lorem.sentence
+        title = Faker::Lorem.sentence
+        doc.title_tag = "CheatSheet Support: #{title}"
+        doc.title = title
         doc.body = Faker::Lorem.paragraphs(rand(1..5)).join('<br/><br/>')
+        doc.meta_description = Faker::Lorem.sentences(1)
         doc.save
+        puts " Doc: #{doc.title}"
       end
     end
 

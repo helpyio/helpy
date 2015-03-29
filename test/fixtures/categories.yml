@@ -2,14 +2,18 @@
 #
 # Table name: categories
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  rank       :integer
-#  active     :boolean          default(TRUE)
-#  link       :string
-#  section    :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :integer          not null, primary key
+#  name             :string
+#  keywords         :string
+#  title_tag        :string(70)
+#  meta_description :string(160)
+#  rank             :integer
+#  front_page       :boolean          default(FALSE)
+#  active           :boolean          default(TRUE)
+#  permalink        :string
+#  section          :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

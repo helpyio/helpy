@@ -3,7 +3,7 @@
 		<h3>Recent Discussions:</h3>
 		<ul class="unstyled">
 			<% Topic.ispublic.recent.all.each do |topic| %>
-			<li><%= link_to topic.name, topic_posts_path(topic.id) %></li>
+			<li><%= link_to topic.name, topic_posts_path(topic) %></li>
 			<% end %>
 		</ul>
 

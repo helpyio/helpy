@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_filter :get_tags
 
-  before_filter :authenticate!, :except => ['index', 'show']
+  before_filter :authenticate_user!, :except => ['index', 'show']
   #before_filter :authenticate_master?, :except => 'index'
 
 
@@ -30,9 +30,15 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.xml
   def show
-    @category = Category.active.where(link: params[:id]).first
-    @doc = Doc.where(category_id: @category.id, front_page: true).first
+    @category = Category.active.where(id: params[:id]).first
+    @docs = @category.docs.ordered.active.page params[:page]
+    @categories = Category.alpha
     @related = Doc.in_category(@doc.category_id) if @doc
+
+    @title_tag = @category.title_tag
+    @meta_desc = @category.meta_description
+    @keywords = @category.keywords
+
 
     respond_to do |format|
       format.html
@@ -46,20 +52,20 @@ class CategoriesController < ApplicationController
     @category = Category.new
 
     respond_to do |format|
-      format.html { render :layout => 'admin'}
+      format.html #{ render :layout => 'admin'}
 
     end
   end
 
   # GET /categories/1/edit
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.where(id: params[:id]).first
   end
 
   # POST /categories
   # POST /categories.xml
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(params[:id])
 
     respond_to do |format|
       if @category.save

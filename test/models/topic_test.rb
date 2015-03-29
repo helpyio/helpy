@@ -13,6 +13,7 @@
 #  private        :boolean          default(FALSE)
 #  cheatsheet     :boolean          default(FALSE)
 #  points         :integer          default(0)
+#  post_cache     :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
