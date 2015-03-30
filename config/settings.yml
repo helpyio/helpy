@@ -1,4 +1,4 @@
-tickets: false
+tickets: true
 forums: true
 knowledgebase: true
 parent_site: /parent-redirect.html

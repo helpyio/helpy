@@ -1,0 +1,13 @@
+<div id="header-wrapper">
+      <div id="above-header">
+        <%= render :partial => 'layouts/above_header' %>
+      </div>
+      <%= nav_bar brand: "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
+          <%= menu_group pull: :right do %>
+              <%#= menu_item "Home", root_path %>
+              <%= menu_item "Admin Users" %>
+              <%= menu_item "Edit Categories", categories_path, class:'kblink' if Settings.knowledgebase %>
+              <%= menu_item "Edit Docs", forums_path if Settings.forums %>
+          <% end %>
+      <% end %>
+</div>

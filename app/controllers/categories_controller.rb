@@ -83,15 +83,37 @@ class CategoriesController < ApplicationController
     end
   end
 
+  #  id               :integer          not null, primary key
+  #  name             :string
+  #  keywords         :string
+  #  title_tag        :string(70)
+  #  meta_description :string(160)
+  #  rank             :integer
+  #  front_page       :boolean          default(FALSE)
+  #  active           :boolean          default(TRUE)
+  #  permalink        :string
+  #  section          :string
+  #  created_at       :datetime         not null
+  #  updated_at       :datetime         not null
+
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
-    @category = Category.find(params[:id])
+    @category = Category.where(id: params[:id]).first
+
+    @category.name = params[:category][:name]
+    @category.keywords = params[:category][:keywords]
+    @category.title_tag = params[:category][:title_tag]
+    @category.meta_description = params[:category][:meta_description]
+    @category.front_page = params[:category][:front_page]
+    @category.active = params[:category][:active]
+    @category.section = params[:category][:section]
+    @category.rank = params[:category][:rank]
 
     respond_to do |format|
-      if @category.update_attributes(params[:category])
+      if @category.save!
         flash[:notice] = 'Category was successfully updated.'
-        format.html { redirect_to(admin_help_path) }
+        format.html { redirect_to(admin_categories_path) }
 
       else
         format.html { render :action => "edit" }
@@ -122,4 +144,12 @@ class CategoriesController < ApplicationController
   def get_tags
     @tags = Doc.tag_counts
   end
+
+  private
+
+  def category_params
+    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page)
+  end
+
+
 end
