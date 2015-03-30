@@ -10,10 +10,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :categories do
+  resources :knowledgebase, :as => 'categories', :controller => "categories" do
+    collection do
+      get 'admin'
+    end
     resources :docs
   end
-  resources :forums do
+  resources :community, :as => 'forums', :controller => "forums" do
     resources :topics
   end
   resources :topics do

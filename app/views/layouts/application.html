@@ -9,17 +9,12 @@
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="distribution" content="all" />
 		<meta name="robots" content="all" />
+		<meta name="description" content="<%= @meta_description %>" />
+		<meta name="keywords" content="<%= @keywords %>" />
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<%#= stylesheet_link_tag "blueprint/screen" %>
-		<%#= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
-
-		<%#= stylesheet_link_tag 'base' %>
-		<!--[if IE]>
-		<%#= stylesheet_link_tag 'blueprint/ie' %>
-		<![endif]-->
 		<%= stylesheet_link_tag 'application' %>
 		<%= javascript_include_tag "application" %>
 
@@ -52,28 +47,9 @@
 	</div>
 </div>
 </div>
-<% if @home %>
-<!--<div class="jumbotron text-center">
-	<div class='container'>
-		<div class="row">
-			<div class="col-md-12">
-
-
-				<h1 id="how_help" class="text-center">How can we help?</h1>
-
-				<%= form_tag result_path, method: :get do %>
-					<%= text_field_tag('q', nil, placeholder: 'Search for your answer', class: 'search_field') %>
-					<%= submit_tag "Search", name: nil, class: 'search_button' %>
-				<% end %>
-			</div>
-		</div>
-	</div>
-</div>-->
-<% end %>
 <div id="body-wrapper" class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<%#= render :partial => 'layouts/header' %>
 			<div id="main-body" >
 				<%= bootstrap_flash %>
 				<div id="main-content">

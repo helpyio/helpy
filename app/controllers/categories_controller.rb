@@ -10,6 +10,10 @@ class CategoriesController < ApplicationController
   def index
     @categories = Category.alpha
 
+    @title_tag = "#{Settings.site_name} Support: Knowledgebase"
+    @meta_desc = "Knowledgebase for #{Settings.site_name}"
+    @keywords = "Knowledgebase, Knowledge base, support, articles, documentation, how-to, faq, frequently asked questions"
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
