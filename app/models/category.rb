@@ -33,6 +33,7 @@ class Category < ActiveRecord::Base
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
   end
 
+
   validates_presence_of :name
 
   protected

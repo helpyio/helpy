@@ -115,6 +115,50 @@ h1#how-help {
 	width: 100%;
 }
 
+div#community-forums-block > span.glyphicon {
+	font-size: 400%;
+}
+
+div#community-forums-block > h3 {
+	padding-top: 15px;
+}
+
+/* === KNOWLEDGEBASE === */
+
+ul.articles {
+	padding-bottom: 20px;
+}
+
+li.article {
+	padding-top: 5px;
+}
+li.article-more {
+	padding-left: 12px;
+}
+
+li.article > span {
+	font-size: 70%;
+}
+
+h5.category-header {
+	font-size: 105%;
+	font-weight: 500;
+}
+
+h5.category-header > a {
+	color: #333;
+}
+
+a.list-group-item {
+	border: 0px;
+	padding-left: 2px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+/* === SEARCH FORM === */
+
+
 
 /* === FLASH MESSAGES === */
 
@@ -252,13 +296,6 @@ h3 {
 	color: #ab2a30;
 }
 */
-h4 {
-	border-bottom: 1px solid #666;
-}
-
-h4 a {
-	color: #666;
-}
 
 textarea {
   width:98%;

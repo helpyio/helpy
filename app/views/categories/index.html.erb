@@ -1,7 +1,7 @@
 
 <h1>Knowledgebase</h1>
 <div class="row">
-	<div id="left-col" class="col-md-3">
+	<div id="left-col" class="col-md-3 hidden-sm hidden-xs">
 		<h4>Categories</h4>
 		<div class="list-group">
 		<% @categories.each do |category| %>
@@ -14,12 +14,14 @@
 		<% @categories.each do |category| %>
 		<div class="row">
 			<div class="col-md-9">
-				<h4><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %></h4>
-				<ul class='list-unstyled'>
-					<% category.docs.ordered.active.limit(15).each_with_index do |doc| %>
-						<li><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><%= link_to doc.title.titleize, category_doc_path(category, doc) %></li>
-					<% end %>
-					<li><%= link_to "More Documents", category_path(category) if category.docs.ordered.active.count > 15 %></li>
+				<h5 class="category-header"><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %></h5>
+				<ul class='list-unstyled articles'>
+					<% category.docs.ordered.active.limit(15).each_with_index do |doc| -%>
+						<%= render ("docs/doc"), doc: doc -%>
+					<% end -%>
+					<li class="article article-more">
+						<%= link_to "More Documents", category_path(category) if category.docs.ordered.active.count > 15 -%>
+					</li>
 				</ul>
 			</div>
 		</div>

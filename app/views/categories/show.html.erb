@@ -15,8 +15,7 @@
         <ul class='list-unstyled'>
           <% @docs.each do |doc| %>
             <li>
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <%= link_to doc.title.titleize, category_doc_path(@category, doc) %>
+              <%= render ("docs/doc"), doc: doc %>
             </li>
           <% end %>
         </ul>
