@@ -1,64 +1,54 @@
-<div class="jumbotron text-center" id="home_search">
 
-  <h1 id="how_help" class="text-center">How can we help?</h1>
-
+<div class="jumbotron text-center" id="home-search">
+  <h1 id="how-help" class="text-center">How can we help?</h1>
   <%= render 'result/search_form' %>
+</div>
 
+<script>
+$(document).ready(function(){
+  $('.home-option').mouseover(function(){
+    var activeBlock = $(this);
+    activeBlock.addClass("active");
+    activeBlock.css('cursor','pointer');
+    activeBlock.find("span").css('font-size','400%');
+    activeBlock.find("h3").css('padding-top','16px');
+  });
+  $('.home-option').mouseout(function(){
+    var activeBlock = $(this);
+    $(this).removeClass("active");
+    $(this).css('cursor','auto');
+    activeBlock.find("span").css('font-size','300%');
+    activeBlock.find("h3").css('padding-top','30px');
+  });
+  $('.home-option').click(function(){
+    document.location.href = $(this).data("link");
+  });
+});
+</script>
 
+<div class="row text-center" id="home-options">
+  <div class="col-md-4 home-option" id="community-forums-block" data-link="<%= forums_path %>">
+    <span class="glyphicon glyphicon-comment"></span><h3>Community Forums</h3>
+  </div>
+  <div class="col-md-4 home-option" id="kb-block" data-link="<%= categories_path %>">
+    <span class="glyphicon glyphicon-flash"></span><h3>Knowledge Base</h3>
+  </div>
+  <div class="col-md-4 home-option" id="discussion-block" data-link="<%= new_topic_path %>">
+    <span class="glyphicon glyphicon-question-sign"></span><h3>Ask a Question</h3>
+  </div>
 </div>
 
 
-<h2></h2>
-<div class="row" id="home_options">
+<div id="featured-categories" class="row">
+  <% @categories.each do |category| %>
   <div class="col-md-4">
-    <h3><%= image_tag('icons/001_50.png') %> View Forums</h3>
-    <p>Browse for your solution in our user powered forums</p>
+    <h4><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %></h4>
+    <ul class='list-unstyled'>
+      <% category.docs.ordered.active.limit(15).each_with_index do |doc| %>
+        <li><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><%= link_to doc.title.titleize, category_doc_path(category, doc) %></li>
+      <% end %>
+      <li><%= link_to "More Documents", category_path(category) if category.docs.ordered.active.count > 15 %></li>
+    </ul>
   </div>
-  <div class="col-md-4">
-    <h3><%= image_tag('icons/001_37.png') %> Knowledgebase</h3>
-    <p>Browse our knowledgebase with answers to many common questions!</p>
-  </div>
-  <div class="col-md-4">
-    <h3><%= image_tag('icons/001_11.png') %> Ask a Question</h3>
-    <p>Start a new discussion with our support staff and user community</p>
-  </div>
-</div>
-
-<!--
-<div id="topics" class="col-md-8">
-  <table>
-  <% @topics.each do |topic| %>
-    <tr>
-      <td width="50px">
-        <div class="topic-points">
-          <%#= topic.points %>
-        </div>
-      </td>
-      <td><%= link_to topic.name, topic_posts_path(topic) %></td>
-    </tr>
-    <% div_for(topic) do %>
-
-    <div class="topic-message">
-
-    </div>
-    <% end %>
   <% end %>
-  </table>
-</div>
--->
-<!--<div id="docs" class="span-8">
-  <% @docs.each do |doc| %>
-    <%= doc.points %> - <%= doc.title %>
-  <% end %>
-
-<div id="buttons" class="col-md-4">
-  <ul class="buttons">
-    <li><%= image_tag('icons/001_50.png') %><%= link_to 'View Forums', forums_path %></li>
-    <li><%= image_tag('icons/001_37.png') %> <%= link_to 'Knowledgebase', categories_path %></li>
-    <li><%= image_tag('icons/001_11.png') %> <%= link_to 'Ask a Question', new_topic_path, :class => 'ss_sprite ss_accept' %></li>
-  </ul>
-</div>
-</div> -->
-
-
 </div>

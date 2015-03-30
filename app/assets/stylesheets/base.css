@@ -1,7 +1,8 @@
-/* @override
+/* @override 
 	http://localhost:3000/assets/base-7fe741cebb8cffc06f7a29714486864e.css?body=1
 	http://localhost:3000/assets/base-3a0ac4752dcb93b5c394278f1ebbd64c.css?body=1
 	http://localhost:3000/assets/base-82818843037ecf54016b863b3d495fb7.css?body=1
+	http://localhost:3000/assets/base-2755db70ac659b39f2c573dddd98b033.css?body=1
 */
 
 /* === BOOTSTRAP OVERRIDES == */
@@ -12,6 +13,7 @@
 
 .jumbotron {
 	background-color: #fff;
+	margin-bottom: 0px;
 }
 
 .navbar-brand {
@@ -28,6 +30,91 @@
 		background-color: #3cceff;
 		border-color: #3cceff;
 }
+
+/* === HOME PAGE === */
+/*
+div.topic {
+	font-size: 150%;
+	margin-bottom: 20px;
+}
+
+div.topic-points {
+	color: #00843B;
+	margin-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #EAFFCA;
+	float: left;
+	text-align: center;
+	min-width: 30px;
+}
+
+div#topic-vote {
+	margin-top: 35px;
+}
+
+div.topic-message {
+	text-align: left;
+	margin-left: 40px;
+}
+
+ul.buttons {
+	list-style-type: none;
+}
+
+ul.buttons li {
+	margin: 15px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	font-size: 120%;
+	display: block;
+	background-color: #eee;
+}
+*/
+
+h1#how-help {
+	padding-top:50px;
+	padding-bottom:70px;
+}
+
+#home-search {
+	background-color: #feffe9;
+	padding-bottom: 100px;
+}
+
+#home-options {
+	padding-top:2%;
+	padding-bottom:2%;
+	padding-right:10%;
+	padding-left:10%;
+	margin-bottom: 5%;
+}
+
+.home-option {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.home-option > h3 {
+	padding-top: 30px;
+}
+
+#home-options span.glyphicon {
+	font-size: 300%;
+}
+
+#featured-categories {
+	padding-left: 5%;
+	padding-right: 5%;
+
+}
+
+.search-field {
+	width: 100%;
+}
+
 
 /* === FLASH MESSAGES === */
 
@@ -121,7 +208,7 @@ body.sub {
 */
 
 #wrapper {
-	margin-bottom: 30px;
+	margin-bottom: 5px;
 	padding: 0px;
 	background-color: #fff;
 
@@ -150,31 +237,6 @@ a {
 	text-decoration: none;
 }
 
-h1#how_help {
-	padding-top:50px;
-	padding-bottom:70px;
-}
-
-#home_search {
-	background-color: #feffe9;
-	padding-bottom: 100px;
-}
-
-#home_options {
-	padding-top:10%;
-	padding-bottom:10%;
-	padding-right:20px;
-	padding-left:20px;
-}
-
-
-.search_field {
-	width: 100%;
-}
-
-.search_button {
-	width: 100px;
-}
 
 h1 {
 	font-family: 'Droid Serif', serif;
@@ -182,6 +244,7 @@ h1 {
 	padding-left: 5px;
 	padding-right: 5px;
 	padding-top: 5px;
+	margin-top: 0px;
 	background-color: #feffe9;
 }
 /*
@@ -351,7 +414,7 @@ th {
 }
 
 #main-body {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #buttons ul.buttons li img {
@@ -404,47 +467,6 @@ div.status {
 
 }
 
-/* === HOME PAGE === */
-
-div.topic {
-	font-size: 150%;
-	margin-bottom: 20px;
-}
-
-div.topic-points {
-	color: #00843B;
-	margin-right: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	background-color: #EAFFCA;
-	float: left;
-	text-align: center;
-	min-width: 30px;
-}
-
-div#topic-vote {
-	margin-top: 35px;
-}
-
-div.topic-message {
-	text-align: left;
-	margin-left: 40px;
-}
-
-ul.buttons {
-	list-style-type: none;
-}
-
-ul.buttons li {
-	margin: 15px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 120%;
-	display: block;
-	background-color: #eee;
-}
 
 /* === FORUM === */
 

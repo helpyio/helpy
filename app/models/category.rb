@@ -27,11 +27,13 @@ class Category < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :main, -> { where(section: 'main') }
   scope :ranked, -> { order('rank ASC') }
+  scope :featured, -> {where(front_page: true) }
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
   end
 
+  validates_presence_of :name
 
   protected
 

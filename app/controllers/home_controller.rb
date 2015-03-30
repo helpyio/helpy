@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     @rss = Topic.chronologic.active
     @docs = Doc.all_public_popular
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{root_url}index.rss' />"
-    @categories = Category.alpha
+    @categories = Category.featured.active
 
     #@topics = Topic.ispublic.tag_counts_on(:tags)
 
