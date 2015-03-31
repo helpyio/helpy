@@ -6,8 +6,9 @@
           <%= menu_group pull: :right do %>
               <%#= menu_item "Home", root_path %>
               <%= menu_item "Admin Users" %>
-              <%= menu_item "Edit Categories", categories_path, class:'kblink' if Settings.knowledgebase %>
-              <%= menu_item "Edit Docs", forums_path if Settings.forums %>
+              <%= menu_item "Knowledgebase", admin_knowledgebase_path, class:'kblink' if Settings.knowledgebase %>
+              <%= menu_item "Tickets", admin_tickets_path(:status => 'new') if Settings.tickets %>
+              <%= menu_item "Community", admin_community_path if Settings.forums %>
           <% end %>
       <% end %>
 </div>

@@ -20,17 +20,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET /categories
-  # GET /categories.xml
-  def admin
-    @categories = Category.alpha
-
-    respond_to do |format|
-      format.html { render :action => "admin", :layout => 'admin' }
-    end
-  end
-
-
   # GET /categories/1
   # GET /categories/1.xml
   def show

@@ -52,6 +52,10 @@ namespace :db do
           topic = f.topics.new
           topic.name = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
           topic.user_id = rand(2..12)
+          i = rand(1..15)
+          if i == 1
+            topic.private = true
+          end
           topic.save
           rand(2..7).times do
             post = topic.posts.new

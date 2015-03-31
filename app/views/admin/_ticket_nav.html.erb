@@ -1,0 +1,27 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge"><%= @new %></span>
+    <%= link_to "New", admin_tickets_path(:status => 'new'), :remote => true %>
+  </li>
+  <li class="list-group-item">
+    <span class="badge"><%= @open %></span>
+    <%= link_to "Active", admin_tickets_path(:status => 'open'), :remote => true %>
+  </li>
+  <li class="list-group-item">
+    <span class="badge"><%= @open %></span>
+    <%= link_to "Open", admin_tickets_path(:status => 'open'), :remote => true %>
+  </li>
+  <li class="list-group-item">
+    <span class="badge">0</span>
+    <%= link_to "Assigned to Me", admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true %>
+  </li>
+  <li class="list-group-item">
+    <span class="badge"><%= @closed %></span>
+    <%= link_to "Closed", admin_tickets_path(:status => 'closed'), :remote => true %>
+  </li>
+  <li class="list-group-item">
+    <span class="badge"><%= @spam %></span>
+    <%= link_to "Spam", admin_tickets_path(:status => 'spam'), :remote => true %>
+  </li>
+  <%#= link_to "Create New", admin_tickets_path, class: 'list-group-item' %>
+</ul>

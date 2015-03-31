@@ -109,16 +109,17 @@ ActiveRecord::Schema.define(version: 20150320203432) do
     t.integer  "forum_id"
     t.integer  "user_id"
     t.string   "name"
-    t.integer  "posts_count",    default: 0,      null: false
+    t.integer  "posts_count",      default: 0,     null: false
     t.datetime "last_post_date"
     t.integer  "last_post_id"
-    t.string   "status",         default: "Open"
-    t.boolean  "private",        default: false
-    t.boolean  "cheatsheet",     default: false
-    t.integer  "points",         default: 0
+    t.string   "status",           default: "new"
+    t.boolean  "private",          default: false
+    t.integer  "assigned_user_id", default: 2
+    t.boolean  "cheatsheet",       default: false
+    t.integer  "points",           default: 0
     t.text     "post_cache"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "users", force: :cascade do |t|

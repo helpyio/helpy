@@ -1,0 +1,22 @@
+<div class="btn-group left-col-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Change Ticket Status <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><%= link_to 'Mark Closed', update_ticket_path(@topic, status: 'closed'), :remote => true unless @topic.status == "closed" %></li>
+    <li><%= link_to 'Reopen', update_ticket_path(@topic, status: 'open'), :remote => true unless @topic.status == "open" %></li>
+    <li><%= link_to 'Mark New', update_ticket_path(@topic, status: 'new'), :remote => true unless @topic.status == "new" %></li>
+    <li><%= link_to 'Mark Spam', update_ticket_path(@topic, status: 'spam'), :remote => true unless @topic.status == "spam" %></li>
+  </ul>
+</div>
+<div></div>
+<div class="btn-group left-col-dropdown">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Assign to User <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <% @admins.each do |admin| %>
+    <li><%= link_to admin.name, update_ticket_path(@topic, assigned_user_id: admin.id), :remote => true unless @topic.status == "closed" %></li>
+    <% end %>
+  </ul>
+</div>

@@ -2,7 +2,7 @@
 <h1>Knowledgebase</h1>
 <div class="row">
 	<div id="left-col" class="col-md-3 hidden-sm hidden-xs">
-		<h4>Categories</h4>
+		<h5>Categories</h5>
 		<div class="list-group">
 		<% @categories.each do |category| %>
 			<%= link_to category.name.titleize, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>

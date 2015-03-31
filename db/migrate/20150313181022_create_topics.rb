@@ -7,8 +7,9 @@ class CreateTopics < ActiveRecord::Migration
       t.integer :posts_count, :default => 0, :null => false
       t.datetime :last_post_date
       t.integer :last_post_id
-      t.string :status, :default => "Open"
+      t.string :status, :default => "new"
       t.boolean :private, :default => false
+      t.integer :assigned_user_id, :default => 2
       t.boolean :cheatsheet, :default => false
       t.integer :points, :default => 0
       t.text :post_cache

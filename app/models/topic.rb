@@ -63,7 +63,16 @@ class Topic < ActiveRecord::Base
   end
 
   def open?
-    self.status == "Open"
+    self.status == "open"
+  end
+
+  def open
+    self.status = "open"
+    self.save
+  end
+
+  def close
+    self.status = "closed"
   end
 
   #updates the last post date, called when a post is made

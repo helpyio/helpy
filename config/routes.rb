@@ -27,6 +27,14 @@ Rails.application.routes.draw do
   get 'result' => 'result#index', as: :result
   get 'tickets' => 'topics#tickets', as: :tickets
 
+  # Admin Routes
+  get 'admin' => 'admin#index'
+  get 'admin/knowledgebase'
+  get 'admin/tickets/:status' => 'admin#tickets', as: :admin_tickets
+  get 'admin/tickets/ticket/:id' => 'admin#ticket', as: :admin_ticket
+  get 'admin/tickets/update/:id' => 'admin#update_ticket', as: :update_ticket
+  get 'admin/community'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
