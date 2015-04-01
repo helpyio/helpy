@@ -6,21 +6,21 @@ parent_company: Main Site
 
 # Site Settings
 
-site_url: http://cheatsheet.vertster.com
+site_url: http://support.yourdomain.com
 site_name: Cheatsheet
 product_name:
 
 # Analytics and Tracking
 google_analytics_id:
 send_usage_data: true
-admin_email: inbound.support@vertster.com
+admin_email: inbound.support@yourdomain.com
 
 
 #Mail specific settings:
 type: imap
 server: "imap.gmail.com"
-username: "inbound.support@vertster.com"
-password: "QTwjx0aQuUgIzHkPlK9s"
+username: "inbound.support@yourdomain.com"
+password: "somethingsecret"
 port: 993
 use_login: yes
 ssl: yes
