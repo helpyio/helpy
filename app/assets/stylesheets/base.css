@@ -31,6 +31,15 @@
 		border-color: #3cceff;
 }
 
+.breadcrumb > li + li:before {
+  content: ">\00a0";
+  padding: 0 5px;
+  color: #999;
+}
+.breadcrumb > .active {
+  color: #777777;
+}
+
 /* === HOME PAGE === */
 /*
 div.topic {
@@ -156,9 +165,12 @@ a.list-group-item {
 	padding-bottom: 4px;
 }
 
-/* === SEARCH FORM === */
+/* === SEARCH  === */
 
-
+div#results-found {
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
 
 /* === FLASH MESSAGES === */
 
@@ -251,6 +263,29 @@ body.sub {
 }
 */
 
+#page-title {
+	padding-top: 30px;
+	background-color: #feffe9;
+	padding-bottom: 10px;
+	margin-bottom: 15px;
+
+}
+
+#page-title.row {
+	padding-top: 10px;
+}
+
+#page-title-right > div > form {
+	margin-top: 20px;
+}
+
+ul.breadcrumb {
+	background-color: #feffe9;
+	margin-bottom: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;;
+}
+
 #wrapper {
 	margin-bottom: 5px;
 	padding: 0px;
@@ -284,8 +319,8 @@ a {
 
 h1 {
 	font-family: 'Droid Serif', serif;
-	padding-bottom: 40px;
-	padding-left: 5px;
+	padding-bottom: 0px;
+	padding-left: 0px;
 	padding-right: 5px;
 	padding-top: 5px;
 	margin-top: 0px;

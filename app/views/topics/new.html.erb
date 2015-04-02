@@ -1,5 +1,3 @@
-
-<h1>Start a New Discussion</h1>
 <div class="add-form">
 <%= form_for(@topic) do |f| -%>
   <p>Category:<br /><%= collection_select(:topic, :forum_id, Forum.all, :id, :name) %>

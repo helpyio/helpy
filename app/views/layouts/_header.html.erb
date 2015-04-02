@@ -1,7 +1,22 @@
+<script>
+$(document).ready(function(){
+
+	function getCookie(key) {
+		var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+		return keyValue ? keyValue[2] : null;
+	}
+
+	if (getCookie("signed_in") == 1) {
+		$('#above-header').html("Welcome Back " + getCookie("name") + " | <%= escape_javascript(link_to 'Your Tickets', tickets_path) if Settings.tickets %> | <%= escape_javascript(link_to 'Logout', destroy_user_session_path) %>");
+	}
+});
+</script>
+
 <div id="header-wrapper">
 			<div id="above-header">
-				<%= render :partial => 'layouts/above_header' %>
-	    </div>
+				<%#= render :partial => 'layouts/above_header' %>
+				<%= link_to 'Login', new_user_session_path %> | <%= link_to 'Register', new_user_registration_path %>
+			</div>
 			<%= nav_bar brand: "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
 					<%= menu_group pull: :right do %>
 							<%#= menu_item "Home", root_path %>
@@ -11,7 +26,6 @@
 							<%= menu_item "Knowledgebase", categories_path, class:'kblink' if Settings.knowledgebase %>
 							<%= menu_item "Forums", forums_path if Settings.forums %>
 							<%= menu_item "Ask a Question", new_topic_path %>
-							<%= menu_item "Search", result_path %>
 					<% end %>
 			<% end %>
 </div>

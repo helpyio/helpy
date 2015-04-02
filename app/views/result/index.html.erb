@@ -2,37 +2,16 @@
 
 <% if params[:q] %>
 
-<%= render 'result/search_form' %>
+<%#= render 'result/search_form' %>
 
-
-<h1>
-  <%= @results.size %> results found for your search <strong>"<%= params[:q] %>"</strong>
-</h1>
-<% else %>
-<h1>
-  What are you looking for?
-</h1>
-
-<%= render 'result/search_form' %>
+<div id="results-found">
+  <h4>
+    <span id="results-total-count"><%= @results.total_count %></span> results found for your search <strong>"<%= params[:q] %>"</strong>
+  </h4>
+</div>
 <% end %>
 
 
-
-<ul class="list-unstyled">
-<% @results.each do |result| %>
-  <% if result.searchable_type == "Topic" %>
-  <li>
-    <%= link_to result.searchable.name, result.searchable, class: 'lead' %><br/>
-    <%= result.searchable.post_cache.truncate_words(20) %><br/><br/>
-  </li>
-  <% else %>
-  <li>
-    <%= link_to result.searchable.title, category_doc_path(result.searchable.category_id, result.searchable_id, class: 'lead') %><br/>
-    <%= result.searchable.body.truncate_words(20) %><br/><br/>
-  </li>
-  <% end %>
-<% end %>
-</ul>
-<div class="text-right">
-  <%= paginate @results %>
+<div id="search-results">
+  <%= render 'search_results' %>
 </div>

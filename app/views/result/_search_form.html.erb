@@ -1,13 +1,19 @@
 <script>
 $(document).ready(function(){
   $('#q').focus();
+  <% if params[:controller] == 'result' %>
+  $('#search-field').keyup(function(){
+      $('#search-form').submit();
+  });
+  $('#search-form').data("remote",true);
+  <% end %>
 });
 </script>
 
 <div class="form-group has-feedback has-feedback-left">
-<%= form_tag result_path, method: :get do %>
+<%= form_tag result_path, method: :get, :id=> 'search-form' do %>
   <!--<label class="control-label">Search</label>-->
-  <%= text_field_tag('q', nil, placeholder: 'Enter a keyword, topic, or question', class: 'form-control', value: params[:q]) %>
+  <%= text_field_tag('q', nil, placeholder: 'Enter a keyword, topic, or question', id: 'search-field', class: 'form-control', value: params[:q]) %>
   <i class="form-control-feedback glyphicon glyphicon-search"></i>
 <% end %>
 </div>

@@ -6,16 +6,6 @@
 	</div>
 
 	<div id="main-content" class="col-md-10">
-
-		<div id="breadcrumbs">
-		  <%= link_to 'Forums', forums_path -%> >
-		  <%= link_to h(@topic.forum.name), forum_topics_path(@topic.forum) -%> >
-		</div>
-		<h1>
-			<div class="status">(<%= @topic.status %>)</div> <%= h @topic.name -%>
-		</h1>
-
-
 		<table id="posts">
 			<%= render :partial => 'post', :collection => @posts %>
 		</table>

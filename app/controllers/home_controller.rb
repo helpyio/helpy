@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
 
   def index
-    @home = true
 
     @topics = Topic.by_popularity.ispublic.front
     @rss = Topic.chronologic.active

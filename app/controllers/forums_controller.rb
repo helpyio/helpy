@@ -1,5 +1,6 @@
 class ForumsController < ApplicationController
   #cache_sweeper :forum_sweeper, :only => [:update, :create, :destroy]
+  add_breadcrumb 'Home', :root_path
 
   # GET /forums
   # GET /forums.xml
@@ -8,6 +9,8 @@ class ForumsController < ApplicationController
     @meta_title = "Forums"
     @private_topics = current_user.topics.isprivate if user_signed_in?
 
+    @page_title = "Community"
+    add_breadcrumb 'Community'
     @title_tag = "#{Settings.site_name} Support: Community"
     @meta_desc = "Community discussion for #{Settings.site_name}"
     @keywords = "support, articles, documentation, how-to, faq, frequently asked questions, forum, discussion"

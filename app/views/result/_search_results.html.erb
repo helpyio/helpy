@@ -1,0 +1,21 @@
+<ul class="list-unstyled">
+<% @results.each do |result| %>
+  <% if result.searchable_type == "Topic" %>
+  <li>
+    <%= link_to result.searchable.name, result.searchable, class: 'lead' %><br/>
+    <%= result.searchable.post_cache.truncate_words(20) %><br/><br/>
+  </li>
+  <% else %>
+  <li>
+    <%= link_to result.searchable.title, category_doc_path(result.searchable.category_id, result.searchable_id, class: 'lead') %><br/>
+    <%= result.searchable.body.truncate_words(20) %><br/><br/>
+  </li>
+  <% end %>
+<% end %>
+<% if @results.total_count == 0 %>
+  <li class="text-center">No Results Found, Please try your search again!</li>
+<% end %>
+</ul>
+<div class="text-right">
+  <%= paginate @results, :remote => true %>
+</div>

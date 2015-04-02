@@ -5,6 +5,7 @@ class DocsController < ApplicationController
   #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
   after_filter :view_causes_vote, :only => 'show'
+  add_breadcrumb 'Home', :root_path
 
   # GET /docs.xml
   def index
@@ -20,9 +21,16 @@ class DocsController < ApplicationController
   # GET /docs/1.xml
   def show
     @doc = Doc.where(id: params[:id]).first
+
     @title_tag = @doc.title_tag
     @meta_desc = @doc.meta_description
     @keywords = @doc.keywords
+
+    @page_title = @doc.title.titleize
+
+    add_breadcrumb "Knowledgebase", categories_path
+    add_breadcrumb @doc.category.name.titleize, category_path(@doc.category)
+    add_breadcrumb @doc.title.titleize
 
     respond_to do |format|
       format.html # show.html.erb

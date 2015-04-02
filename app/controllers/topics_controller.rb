@@ -17,6 +17,10 @@ class TopicsController < ApplicationController
 
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
+    @page_title = @forum.name.titleize
+    add_breadcrumb 'Community', forums_path
+    add_breadcrumb @forum.name.titleize
+
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @topics.to_xml }
@@ -34,7 +38,9 @@ class TopicsController < ApplicationController
     #end
 
     @topics = current_user.topics.isprivate.chronologic.page params[:page]
-
+    @page_title = "Tickets"
+    add_breadcrumb 'Tickets'
+    
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
     respond_to do |format|
@@ -54,7 +60,8 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
 
-    #add_breadcrumb 'Forums', :forums_path
+    add_breadcrumb 'Start a New Discussion'
+    @page_title = 'Start a New Discussion'
 
     #@forums = Forum.alpha.all
     @topic = Topic.new
