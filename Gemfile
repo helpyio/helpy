@@ -44,6 +44,11 @@ gem 'rdiscount'
 
 gem 'rails_config'
 
+gem 'daemons'
+#gem 'mailman-rails'
+gem 'mailman'#, require: false
+gem 'mail_extract'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
