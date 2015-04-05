@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <p>
+    Make sure your reply appears above this line<br/>
+    =================================================================<br/>
+    Message ID:<%= @topic.id %></br>
+  </p>
+  <p>
+    Hello <%= @topic.user.login %>,
+  </p>
+  <p>
+    The following message has been posted in response to your question:
+  </p>
+  <p>
+    <%= simple_format(@topic.posts.last.body) %>
+  </p>
+  <p>
+    View this online: <%= Settings.site_url + topic_posts_path(@topic) %>
+  </p><br/>
+    <p>
+    <strong>Powered by Cheatsheet Helpdesk</strong><br/>
+    Get a Free CheatSheet Support System for your Site at https://github.com/scott/cheatsheet/tree/master
+  </p>
+  </body>
+</html>

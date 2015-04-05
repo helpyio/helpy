@@ -54,12 +54,25 @@ class Topic < ActiveRecord::Base
 
   def self.fetch_email
 
-    @config = YAML.load_file("#{RAILS_ROOT}/config/settings.yml")
-    @config = @config[RAILS_ENV].to_options
+    Mailman.config.pop3 = {
+      server: Settings.server,
+      port: 995, # you usually don't need to set this, but it's there if you need to
+      ssl: true,
+      username: Settings.username,
+      password: Settings.password
+    }
 
-    @fetcher = Fetcher.create({:receiver => MailProcessor}.merge(@config))
-    @fetcher.fetch
+    Mailman::Application.run do
+      default do
 
+        puts "From: #{message.from}"
+        puts "Subject: #{message.subject}"
+        puts "Body: #{message.body}"
+
+
+        MailProcessor.receive(message)
+      end
+    end
   end
 
   def open?

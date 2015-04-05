@@ -1,0 +1,14 @@
+// Make sure your reply appears above this line
+// =================================================================
+// Message ID:<%= @topic.id %>
+
+Hello <%= @topic.user.login %>,
+
+The following message has been posted in response to your question:
+
+<%= simple_format(@topic.posts.last.body) %>
+
+View this online: <%= Settings.site_url + topic_posts_path(@topic) %>
+-----------
+Powered by Cheatsheet Helpdesk
+Get a Free CheatSheet Support System for your Site at https://github.com/scott/cheatsheet/tree/master
