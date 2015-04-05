@@ -1,26 +1,36 @@
+# Toggle functionality
 tickets: true
 forums: true
 knowledgebase: true
-parent_site: /parent-redirect.html
-parent_company: Main Site
 
 # Site Settings
-
+parent_site: /parent-redirect.html
+parent_company: Main Site
 site_url: http://support.yourdomain.com
-site_name: Cheatsheet
+site_name: Cheatsheet Helpdesk
 product_name:
-
+support_phone:
+  
 # Analytics and Tracking
 google_analytics_id:
 send_usage_data: true
 admin_email: inbound.support@yourdomain.com
 
-
-#Mail specific settings:
-type: imap
-server: "imap.gmail.com"
-username: "inbound.support@yourdomain.com"
+#Inbound Mail Settings:
+type: pop3 #pop3 or imap
+server:  "pop.gmail.com"
+username: "support@yourdomain.com"
 password: "somethingsecret"
 port: 993
 use_login: yes
 ssl: yes
+
+#SMTP Settings
+send_email: false
+address: 'smtp.gmail.com'
+port: 587
+domain: 'gmail.com'
+user_name: 'support@yourdomain.com'
+password: 'somethingsecret'
+authentication: 'plain'
+enable_starttls_auto: true
