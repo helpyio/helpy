@@ -12,7 +12,7 @@
     <%= link_to "Open", admin_tickets_path(:status => 'open'), :remote => true %>
   </li>
   <li class="list-group-item">
-    <span class="badge">0</span>
+    <span class="badge"><%= @mine %></span>
     <%= link_to "Assigned to Me", admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true %>
   </li>
   <li class="list-group-item">

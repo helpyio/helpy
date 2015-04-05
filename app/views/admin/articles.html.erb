@@ -1,0 +1,29 @@
+<h1><%= "#{@category.name} Articles" %></h1>
+<div class="row">
+  <div class="col-md-12">
+    <table id="forums">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+        <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for doc in @docs %>
+          <tr class="data<%= ' paused' if doc.active == false %>">
+            <td><%=h doc.title %> <%= ' - Featured' if doc.front_page == true %></td>
+            <td></td>
+            <td><%#= link_to 'Show', page_path(doc.category.link, doc.permalink) if doc.category %></td>
+            <td><%= link_to 'Edit', edit_category_doc_path(doc.category.id, doc.id) %></td>
+            <td><%= link_to 'Destroy', category_doc_path(doc.category.id, doc.id), :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br />
+
+    <%#= link_to 'New doc', new_doc_path %>
+  </div>
+</div>

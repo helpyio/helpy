@@ -17,8 +17,8 @@ class AdminController < ApplicationController
   end
 
   def articles
-    @category = Category.active.where(id: params[:id]).first
-    @docs = @category.docs.ordered.active.page params[:page]
+    @category = Category.active.where(id: params[:category_id]).first
+    @docs = @category.docs.ordered.active
 
     respond_to do |format|
       format.html
@@ -61,6 +61,17 @@ class AdminController < ApplicationController
 
     @topic.status = params[:status]
     @topic.save!
+
+    case params[:status]
+    when 'closed'
+      message = "This ticket has been closed by the support staff."
+    when 'reopen'
+      message = "This ticket has been reopened by the support staff."
+    end
+
+    #Add post indicating status change
+    @topic.posts.create!(:user_id => current_user.id, :body => message) unless message.nil?
+
     @posts = @topic.posts
 
 
@@ -79,17 +90,5 @@ class AdminController < ApplicationController
   def users
 
   end
-
-  private
-
-  def fetch_counts
-    @new = Topic.where(status: 'new').isprivate.count
-    @open = Topic.where(status: 'open').isprivate.count
-    @closed = Topic.where(status: 'closed').isprivate.count
-    @spam = Topic.where(status: 'spam').isprivate.count
-
-    @admins = User.admins
-  end
-
 
 end

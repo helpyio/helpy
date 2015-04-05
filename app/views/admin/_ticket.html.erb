@@ -10,7 +10,8 @@
 <div class="add-form">
 <h4>Reply to this Topic:</h4>
 <%#= error_messages_for :post -%>
-<%= form_for :post, :url => topic_posts_path(@topic) do |f| -%>
+<%= form_for :post, :url => topic_posts_path(@topic), :remote => true do |f| -%>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
   <p>Message:<br /><%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
   <%= submit_tag 'Post Reply', :class => 'submit' -%>
 <% end -%>

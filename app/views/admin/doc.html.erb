@@ -1,0 +1,61 @@
+<h1>Edit Document: <%= @doc.title %></h1>
+<%= form_for :doc, url: category_doc_path(@category,@doc), method: 'patch' do |f| %>
+
+  <%#= error_messages_for :doc %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+
+  <%= f.text_area(:body, :width => '100%', :height => '400px') %>
+  </p>
+
+  <p>
+    <%= f.label :meta_description %><br />
+    <%= f.text_field :meta_description %>
+  </p>
+
+  <p>
+    <%= f.label :title_tag %><br />
+    <%= f.text_field :title_tag %>
+  </p>
+
+  <p>
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords %>
+  </p>
+
+  <!--
+  <p>
+    <%#= f.label :tags %><br />
+    <%#= text_field_tag :tags, @doc.tag_list %>
+  </p>
+  -->
+  <p>
+    <%= f.label :category %><br />
+    <%= collection_select(:doc, :category_id, @categories, :id, :name) %> <%#= link_to 'Edit Categories', :controller => 'categories', :action => 'admin' %>
+  </p>
+
+  <p>
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </p>
+
+  <p>
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </p>
+  <p>
+    <%= f.label :front_page %><br />
+    <%= f.check_box :front_page %>
+  </p>
+
+  <p>
+    <%= f.submit "Update", :class => 'submit' %>
+  </p>
+
+<% end %>
+<%#= link_to 'Show', :doc %> |
+<%#= link_to 'Back', category_path(category) %>

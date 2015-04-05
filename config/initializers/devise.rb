@@ -2,6 +2,9 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
+
+  #This sets up a cookie to generate the above_header with javascript
+
   Warden::Manager.after_set_user do |user,auth,opts|
     auth.cookies[:signed_in] = 1
     auth.cookies[:name] = user.name
@@ -9,6 +12,7 @@ Devise.setup do |config|
 
   Warden::Manager.before_logout do |user,auth,opts|
     auth.cookies.delete :signed_in
+    auth.cookies.delete :name
   end
 
 

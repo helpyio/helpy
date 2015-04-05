@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   add_breadcrumb 'Home', :root_path
-
+  before_filter :fetch_counts, :only => 'create'
   #after_filter :view_causes_vote, :only => 'index'
 
   def index
@@ -52,8 +52,15 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        flash[:notice] = 'Post was successfully created.'
         format.html { redirect_to topic_posts_path(@topic) }
+        format.js {
+          if current_user.admin?
+            @posts = @topic.posts
+            @admins = User.admins
+            @post = Post.new
+            render 'admin/ticket'
+          end
+        }
       else
         format.html { render :action => "new" }
       end

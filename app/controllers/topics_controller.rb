@@ -40,7 +40,7 @@ class TopicsController < ApplicationController
     @topics = current_user.topics.isprivate.chronologic.page params[:page]
     @page_title = "Tickets"
     add_breadcrumb 'Tickets'
-    
+
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
     respond_to do |format|
@@ -63,9 +63,8 @@ class TopicsController < ApplicationController
     add_breadcrumb 'Start a New Discussion'
     @page_title = 'Start a New Discussion'
 
-    #@forums = Forum.alpha.all
     @topic = Topic.new
-    #@post = Post.new
+
   end
 
   # GET /topics/1;edit
