@@ -19,7 +19,12 @@
 .navbar-brand {
 	font-family: 'Shadows Into Light', sans-serif;
 	padding:0px;
-	font-size:180%;
+	font-size:220%;
+	padding-top: 10px;
+}
+
+a.navbar-brand {
+	color:  #666;
 }
 
 .form-group {
@@ -113,6 +118,7 @@ h1#how-help {
 #home-options span.glyphicon {
 	font-size: 300%;
 }
+
 
 #featured-categories {
 	padding-left: 5%;
@@ -370,6 +376,13 @@ div.admin-tools {
   padding: 5px;
 }
 
+.border-bottom {
+	border-bottom: 1px solid #eee;
+}
+
+.border-right {
+	border-right: 1px solid #eee;
+}
 
 /* === GLOBAL CLASSES === */
 
