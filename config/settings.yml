@@ -7,10 +7,11 @@ knowledgebase: true
 parent_site: /parent-redirect.html
 parent_company: Main Site
 site_url: http://support.yourdomain.com
-site_name: Cheatsheet Helpdesk
+site_name: Helpy.io 
+site_tagline: Support and Helpdesk Software
 product_name:
 support_phone:
-  
+
 # Analytics and Tracking
 google_analytics_id:
 send_usage_data: true
