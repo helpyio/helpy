@@ -7,25 +7,28 @@ $(document).ready(function(){
 	}
 
 	if (getCookie("signed_in") == 1) {
-		$('#above-header').html("Welcome Back " + getCookie("name") + " | <%= escape_javascript(link_to 'Your Tickets', tickets_path) if Settings.tickets %> | <%= escape_javascript(link_to 'Logout', destroy_user_session_path) %>");
+		$('#above-header').html("<%= escape_javascript(link_to("Back to #{Settings.parent_company}", Settings.parent_site)) unless Settings.parent_company.blank? %> | <%= escape_javascript(link_to 'Your Tickets', tickets_path) if Settings.tickets %> | <%= escape_javascript(link_to 'Sign Out', destroy_user_session_path) %>");
+
+		$('.header-login').html("<%= escape_javascript(link_to 'Your Tickets', tickets_path) if Settings.tickets %>").addClass('hidden-lg hidden-md hidden-sm');
+		$('.header-logout').html("<%= escape_javascript(link_to 'Sign Out', destroy_user_session_path) %>").addClass('hidden-lg hidden-md hidden-sm');
 	}
 });
 </script>
 
 <div id="header-wrapper">
-			<div id="above-header">
+			<div id="above-header" class="hidden-xs small">
 				<%#= render :partial => 'layouts/above_header' %>
-				<%= link_to 'Login', new_user_session_path %> | <%= link_to 'Register', new_user_registration_path %>
+				<%= link_to "Back to #{Settings.parent_company}", Settings.parent_site %> | <%= link_to 'Login', new_user_session_path %> | <%= link_to 'Register', new_user_registration_path %>
 			</div>
 			<%= nav_bar brand: "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
 					<%= menu_group pull: :right do %>
-							<%#= menu_item "Home", root_path %>
-							<% unless Settings.parent_company.blank? %>
-							<%= menu_item "Back to #{Settings.parent_company}", "#{Settings.parent_site}" %>
-							<% end %>
 							<%= menu_item "Knowledgebase", categories_path, class:'kblink' if Settings.knowledgebase %>
 							<%= menu_item "Forums", forums_path if Settings.forums %>
 							<%= menu_item "Ask a Question", new_topic_path %>
+							<%= menu_item "Back to #{Settings.parent_company}", Settings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
+							<%= menu_divider %>
+							<%= menu_item "Login", new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+							<%= menu_item "Register", new_user_registration_path, :class => 'header-logout hidden-lg hidden-md hidden-sm' %>
 					<% end %>
 			<% end %>
 </div>

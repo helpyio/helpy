@@ -1,6 +1,6 @@
 <small>
 <% unless user_signed_in? %>
-  <%= link_to 'Login', new_user_session_path %> | <%= link_to 'Register', new_user_registration_path %>
+  <%= link_to "Back to #{Settings.parent_company}", Settings.parent_site %> | <%= link_to 'Login', new_user_session_path %> | <%= link_to 'Register', new_user_registration_path %>
 <% else %>
   Welcome Back <%= current_user.name %> | <%= link_to "Your Tickets", tickets_path if Settings.tickets %> | <%= link_to 'Logout', destroy_user_session_path %>
 <% end %>
