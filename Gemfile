@@ -37,7 +37,6 @@ gem 'gravtastic'
 gem 'less-rails'
 gem 'font-awesome-less'
 gem 'font-awesome-rails'
-gem 'therubyracer'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
 gem 'rdiscount'
@@ -71,10 +70,14 @@ group :development, :test do
   gem 'faker'
   gem 'populator'
   gem 'annotate'
+
+  gem 'therubyracer'
 end
 
 group :production do
   gem 'rails_12factor'
+  gem 'faker'
+  gem 'populator'
 end
 
 ruby "2.2.0"
