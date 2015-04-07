@@ -26,10 +26,8 @@
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		<% if Settings.send_usage_data %>
-		ga('create', 'UA-50151-23', 'auto');
+		ga('create', '<%= Settings.google_analytics_id %>', 'auto');
 		ga('send', 'pageview');
-		<% end %>
 
 		</script>
 
@@ -63,13 +61,6 @@
 <div id="footer-wrapper">
 	<div class="container">
 			<%= render :partial => 'layouts/footer' %>
-	</div>
-</div>
-<div id="credits" class='container'>
-	<div class="row">
-		<div class="col-md-12">
-			Powered By <strong>Cheat</strong>Sheet Support
-		</div>
 	</div>
 </div>
 

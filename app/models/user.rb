@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
 
   include Gravtastic
 
+  include PgSearch
+  multisearchable :against => [:name, :login, :email]
+
+  paginates_per 15
 
   # Relationships
   has_and_belongs_to_many :roles
@@ -38,6 +42,10 @@ class User < ActiveRecord::Base
 
   is_gravtastic
 
-  scope :admins, -> { where(admin: true) }
+  scope :admins, -> { where(admin: true).order('name asc') }
+
+  def active_assigned_count
+    Topic.where(assigned_user_id: self.id).active.isprivate.count
+  end
 
 end

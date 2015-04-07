@@ -1,9 +1,9 @@
-<tr class="posted-by">
+<tr class="posted-by <%= "first-post" if post.id == post.topic.posts.first.id %>">
 	<td width="35px">
 		<%= image_tag(post.user.gravatar_url(:size => 30), :size => '30X30') %>
 	</td>
 	<td class="bottom-border" valign="bottom">
-	    <%= h post.user.login -%>
+	    <strong><%= h post.user.login -%></strong>
 	</td>
 	<td class="bottom-border text-right" valign="bottom">
   		<br/><span class="posted-at">Posted <%= distance_of_time_in_words_to_now(post.created_at) %> ago</span>
@@ -12,7 +12,7 @@
 
 <tr>
   <td></td>
-  <td class="post" colspan="2">
+  <td class="post <%= "first-post" if post.id == post.topic.posts.first.id %>" colspan="2">
   	<%= simple_format(post.body) -%>
   	<br/><br/><br/>
 

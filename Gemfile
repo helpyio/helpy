@@ -49,6 +49,10 @@ gem 'daemons'
 gem 'mailman'#, require: false
 gem 'mail_extract'
 
+# Mandrill Integration
+gem 'mandrill_mailer'
+gem 'mandrill-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

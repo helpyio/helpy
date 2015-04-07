@@ -13,15 +13,9 @@
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<%#= stylesheet_link_tag "blueprint/screen" %>
-		<%#= stylesheet_link_tag 'blueprint/print', :media => 'print' %>
-
-		<%#= stylesheet_link_tag 'base' %>
-		<!--[if IE]>
-		<%#= stylesheet_link_tag 'blueprint/ie' %>
-		<![endif]-->
 		<%= stylesheet_link_tag 'application' %>
 		<%= javascript_include_tag "application" %>
+		<%= stylesheet_link_tag 'admin' %>
 
 		<%= @feed_link.html_safe if @feed_link %>
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700|Shadows+Into+Light' rel='stylesheet' type='text/css'>
@@ -70,13 +64,6 @@
 <div id="footer-wrapper">
 	<div class="container">
 			<%= render :partial => 'layouts/footer' %>
-	</div>
-</div>
-<div id="credits" class='container'>
-	<div class="row">
-		<div class="col-md-12">
-			Powered By <strong>Cheat</strong>Sheet Support
-		</div>
 	</div>
 </div>
 

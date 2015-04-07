@@ -1,0 +1,9 @@
+<% user = user.searchable if params[:q] %>
+
+<tr class="user">
+  <td><%= image_tag(user.gravatar_url(:size => 30), :size => '30X30') %> <%= user.name %> (<%= user.login %>)</td>
+  <td></td>
+  <td></td>
+  <td><%= link_to 'Edit', admin_user_path(user) %></td>
+  <td><%#= link_to 'Destroy', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

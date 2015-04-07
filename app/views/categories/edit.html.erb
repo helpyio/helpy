@@ -1,50 +1,18 @@
-<h1>Editing category</h1>
+<h1>Edit Category: Troubleshooting</h1>
 
 <%#= form_for :category, :url => category_path, method: 'patch' do |f| %>
-<%= form_for @category do |f| %>
+<%= bootstrap_form_for @category, label_errors: true do |f| %>
 
+  <%= f.alert_message "Please fix the errors below." %>
   <%#= error_messages_for :category %>
 
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label :section %><br />
-    <%= f.text_field :section %>
-  </p>
-
-  <p>
-    <%= f.label :keywords %><br />
-    <%= f.text_field :keywords %>
-  </p>
-  <p>
-    <%= f.label :title_tag %><br />
-    <%= f.text_field :title_tag %>
-  </p>
-  <p>
-    <%= f.label :meta_description %><br />
-    <%= f.text_field :meta_description %>
-  </p>
-
-  <p>
-    <%= f.label :front_page %><br />
-    <%= f.check_box :front_page %>
-  </p>
-  <p>
-    <%= f.label :active %><br />
-    <%= f.check_box :active %>
-  </p>
-  <p>
-    <%= f.label :rank %><br />
-    <%= f.text_field :rank %>
-  </p>
-
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+  <%= f.text_field :name %>
+  <%= f.text_field :section %>
+  <%= f.text_field :keywords %>
+  <%= f.text_field :title_tag %>
+  <%= f.text_field :meta_description %>
+  <%= f.check_box :front_page %>
+  <%= f.check_box :active %>
+  <%= f.text_field :rank %>
+  <%= f.submit "Update" %>
 <% end %>
-
-<%= link_to 'Show', category_path(id: @category.id) %> |
-<%= link_to 'Back', categories_path %>

@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :knowledgebase, :as => 'categories', :controller => "categories" do
-    collection do
-      get 'admin'
-    end
+    #collection do
+    #  get 'admin'
+    #end
     resources :docs
   end
   resources :community, :as => 'forums', :controller => "forums" do
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :topics do
     resources :posts
   end
+
+  resources :users
 
   get 'topics/:id/make_private' => 'topics#make_private', as: :make_private
   get 'result' => 'result#index', as: :result
@@ -35,6 +37,9 @@ Rails.application.routes.draw do
   get 'admin/tickets/ticket/:id' => 'admin#ticket', as: :admin_ticket
   get 'admin/tickets/update/:id' => 'admin#update_ticket', as: :update_ticket
   get 'admin/community'
+  get 'admin/users'
+  get 'admin/user/:id/edit' => 'admin#user', as: :admin_user
+  get 'admin/users/search' => 'admin#user_search', as: :admin_search
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

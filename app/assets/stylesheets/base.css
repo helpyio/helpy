@@ -1,8 +1,10 @@
-/* @override
+/* @override 
 	http://localhost:3000/assets/base-7fe741cebb8cffc06f7a29714486864e.css?body=1
 	http://localhost:3000/assets/base-3a0ac4752dcb93b5c394278f1ebbd64c.css?body=1
 	http://localhost:3000/assets/base-82818843037ecf54016b863b3d495fb7.css?body=1
 	http://localhost:3000/assets/base-2755db70ac659b39f2c573dddd98b033.css?body=1
+	http://localhost:3000/assets/base-e1d9fb5acbd2c79b2c9c9050921da0ae.css?body=1
+	http://localhost:3000/assets/base-b957d3e7fd66075ac888a665ba2a0f2e.css?body=1
 */
 
 /* === BOOTSTRAP OVERRIDES == */
@@ -303,11 +305,6 @@ ul.breadcrumb {
 
 }
 
-#footer a {
-	color: #fff;
-	text-decoration: underline;
-}
-
 div.add-form {
 	background-color: rgba(192,255,193,0.25);
 	padding: 10px
@@ -470,7 +467,7 @@ th {
 /* === HEADER STYLES === */
 
 #above-header {
-	font-size: 100%;
+	font-size: 85%;
 	padding-top: 0px;
 	margin-bottom: 5px;
 	margin-top: 5px;
@@ -631,26 +628,18 @@ div.topic-status {
 
 #footer-wrapper {
 	width: 100%;
-	background-color: #333;
+	background-color: #222;
 	margin-top:10%;
 }
 
 #footer {
-	color: #fff;
-	background-color: #333;
+	color: #777;
+	background-color: #222;
 	padding-top: 20px;
-}
-/*== ADMIN == */
-
-div.left-col-dropdown {
-	width: 100%;
+	padding-bottom: 20px;
 }
 
-div.left-col-dropdown > .btn-default {
-	width: 100%;
-	text-align: left;
-}
-
-ul.dropdown-menu {
-	width: 100%;
+#footer a {
+	color: #888;
+	text-decoration: underline;
 }

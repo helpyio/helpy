@@ -1,0 +1,51 @@
+/* @override http://localhost:3000/assets/admin-582387c7981232c694243fbe9087f154.css?body=1 */
+
+/*== ADMIN == */
+
+div.left-col-dropdown {
+  width: 100%;
+}
+
+div.left-col-dropdown > .btn-default {
+  width: 100%;
+  text-align: left;
+}
+
+ul.dropdown-menu {
+  width: 100%;
+}
+
+h1{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 30px;
+}
+
+h2 {
+	margin-top: 0px;	
+}
+
+table#posts {
+	margin-top: 20px;
+}
+
+tr {
+	height: 50px;
+}
+
+td, th {
+	padding-left: 10px;
+}
+
+td > img {
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+
+.status {
+	font-size: 120%;
+}
+
+.first-post {
+	background-color: #eee;
+}

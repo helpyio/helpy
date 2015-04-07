@@ -91,8 +91,6 @@ class MailProcessor < ActionMailer::Base
     @user.email = mail.from
     @user.name = mail.from.split('@')[0]
     @user.login = mail.from.split('@')[0]
-    @user.state = 'active'
-    @user.activated_at = Time.now
     @user.password = password
     @user.password_confirmation = password
     @user.save

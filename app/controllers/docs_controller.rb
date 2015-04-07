@@ -56,7 +56,7 @@ class DocsController < ApplicationController
     @category = Category.where(id: params[:category_id]).first
     @categories = Category.alpha
 
-    #render :layout => 'admin'
+    render :layout => 'admin'
   end
 
   # POST /docs
@@ -85,13 +85,11 @@ class DocsController < ApplicationController
     @doc = Doc.where(id: params[:id]).first
 
     respond_to do |format|
-      if @doc.update_attributes!(doc_params)
-        flash[:notice] = 'Doc was successfully updated.'
-        format.html { redirect_to(docs_path) }
+      if @doc.update_attributes(doc_params)
+        format.html { redirect_to(admin_knowledgebase_path) }
 
       else
-        format.html { render :action => "edit" }
-
+        format.html { render :action => "edit", layout: 'admin' }
       end
     end
   end

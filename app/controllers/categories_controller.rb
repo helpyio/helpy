@@ -59,6 +59,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = Category.where(id: params[:id]).first
+    render layout: 'admin'
   end
 
   # POST /categories
@@ -106,12 +107,12 @@ class CategoriesController < ApplicationController
     @category.rank = params[:category][:rank]
 
     respond_to do |format|
-      if @category.save!
+      if @category.save
         flash[:notice] = 'Category was successfully updated.'
         format.html { redirect_to(admin_categories_path) }
 
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "edit", layout: 'admin' }
 
       end
     end

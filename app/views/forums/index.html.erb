@@ -12,6 +12,3 @@
   	<%= render :partial => 'forum', :collection => @forums %>
     </tbody>
   </table>
-  <% if user_signed_in? and current_user.admin? %>
-    <p><%= link_to 'Create New Forum', new_forum_path -%></p>
-  <% end %>

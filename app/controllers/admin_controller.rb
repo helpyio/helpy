@@ -2,6 +2,8 @@ class AdminController < ApplicationController
 
   layout 'admin'
 
+  before_filter :authenticate_user!
+  before_filter :verify_admin
   before_filter :fetch_counts, :only => ['tickets','ticket']
 
   def index
@@ -59,7 +61,8 @@ class AdminController < ApplicationController
   def update_ticket
     @topic = Topic.where(id: params[:id]).first
 
-    @topic.status = params[:status]
+    @topic.status = params[:status] unless params[:status].blank?
+    @topic.assigned_user_id = params[:assigned_user_id] unless params[:assigned_user_id].blank?
     @topic.save!
 
     case params[:status]
@@ -88,7 +91,30 @@ class AdminController < ApplicationController
   end
 
   def users
+    @users = User.all.page params[:page]
+    @user = User.new
+  end
 
+  def user
+    @user = User.where(id: params[:id]).first
+  end
+
+  def user_search
+    @users = PgSearch.multisearch(params[:q]).page params[:page]
+
+    respond_to do |format|
+      format.js
+      format.html {
+        render admin_users_path
+      }
+    end
+
+  end
+
+  private
+
+  def verify_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
   end
 
 end

@@ -1,0 +1,17 @@
+<script>
+$(document).ready(function(){
+  $('#invite-user-button').click(function(){
+    $('.add-form').removeClass('hidden');
+  })
+})
+
+</script>
+<h1>Users</h1>
+
+<%= render 'user_search_form' %>
+
+<div class="row">
+  <div class="col-md-12" id="users">
+    <%= render 'users' %>
+  </div>
+</div>

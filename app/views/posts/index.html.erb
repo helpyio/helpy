@@ -1,11 +1,7 @@
 <div class="row">
-	<div id="main-left" class="col-md-2">
-		<div id="topic-stats">
-			<%= render :partial => 'topic_stats' %>
-		</div>
-	</div>
 
-	<div id="main-content" class="col-md-10">
+
+	<div id="main-content" class="col-md-8">
 		<table id="posts">
 			<%= render :partial => 'post', :collection => @posts %>
 		</table>
@@ -22,4 +18,11 @@
 		<% end -%>
 
 	</div>
+
+	<div id="main-left" class="col-md-4 hidden-sm hidden-xs">
+		<div id="topic-stats">
+			<%= render :partial => 'topic_stats' %>
+		</div>
+	</div>
+
 </div>

@@ -71,6 +71,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
+    excon (0.45.1)
     execjs (2.4.0)
     faker (1.4.3)
       i18n (~> 0.5)
@@ -118,6 +119,15 @@ GEM
       listen (~> 2.2)
       mail (>= 2.0.3)
       maildir (>= 0.5.0)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
+    mandrill-rails (1.1.1)
+      activesupport (>= 3.0.3)
+    mandrill_mailer (0.5.1)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -245,6 +255,8 @@ DEPENDENCIES
   less-rails
   mail_extract
   mailman
+  mandrill-rails
+  mandrill_mailer
   permalink_fu
   pg
   pg_search

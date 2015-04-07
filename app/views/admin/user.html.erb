@@ -1,0 +1,17 @@
+<h1><%= image_tag(@user.gravatar_url(:size => 60), :size => '30X30') %> <%= @user.name %></h1>
+<div class="row">
+  <div class="col-md-6">
+    <%= bootstrap_form_for(@user) do |f| %>
+      <%= f.text_field :name %>
+      <%= f.email_field :email %>
+      <%= f.check_box :admin %>
+      <%= f.submit "Save" %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h4>Support Tickets:</h4>
+    <% @user.topics.each do |topic| %>
+
+    <% end %>
+  </div>
+</div>

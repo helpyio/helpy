@@ -1,0 +1,11 @@
+<table id="forums">
+  <tr>
+    <th>Name</th>
+  <th colspan="4"></th>
+  </tr>
+  <%= render partial: 'user', collection: @users %>
+</table>
+
+<div class="text-right">
+  <%= paginate @users %>
+</div>

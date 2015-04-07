@@ -1,19 +1,21 @@
-<h1>
-  <div class="status">(<%= @topic.status %>)</div> <%= h @topic.name -%>
-</h1>
-
+<h2>
+  <%= @topic.name -%>
+</h2>
+<div>
+  <div class="status label label-success"><%= @topic.status %></div>
+  <div class="assigned-to">Assigned to: <%= @topic.assigned_user.name %></div>
+</div>
 <table id="posts">
   <%= render :partial => 'posts/post', :collection => @posts %>
 </table>
-
 <% if user_signed_in? && @topic.open? %>
 <div class="add-form">
 <h4>Reply to this Topic:</h4>
 <%#= error_messages_for :post -%>
-<%= form_for :post, :url => topic_posts_path(@topic), :remote => true do |f| -%>
+<%= bootstrap_form_for :post, :url => topic_posts_path(@topic), :remote => true do |f| -%>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-  <p>Message:<br /><%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
-  <%= submit_tag 'Post Reply', :class => 'submit' -%>
+  <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
+  <%= f.submit 'Post Reply', :class => 'submit' -%>
 <% end -%>
 </div>
 <% end -%>

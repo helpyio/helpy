@@ -10,6 +10,31 @@ namespace :db do
       admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
     end
 
+    # Add agents
+    8.times do
+      agent = User.new
+      agent.name = Faker::Name.name
+      agent.email = Faker::Internet.email
+      agent.login = Faker::Internet.user_name
+      agent.password = '12345678'
+      agent.admin = true
+      agent.save
+
+      puts "Created Agent: #{agent.name}"
+    end
+
+    # Create 100 users
+    100.times do
+      user = User.new
+      user.name = Faker::Name.name
+      user.email = Faker::Internet.email
+      user.login = Faker::Internet.user_name
+      user.password = '12345678'
+      user.save
+
+      puts "Created User: #{user.name}"
+    end
+
     # Create top level forums
     Forum.create(name: "Getting Started", description: "How to get started")
     Forum.create(name: "Common Questions", description: "Frequently asked questions")
@@ -35,24 +60,14 @@ namespace :db do
         doc.body = Faker::Lorem.paragraphs(rand(1..5)).join('<br/><br/>')
         doc.meta_description = Faker::Lorem.sentences(1)
         doc.save
-        puts " Doc: #{doc.title}"
+        puts "Created Doc: #{doc.title}"
       end
-    end
-
-    # Create 10 users, 2 topics and 2 posts each
-    10.times do
-      user = User.new
-      user.name = Faker::Name.name
-      user.email = Faker::Internet.email
-      user.login = Faker::Internet.user_name
-      user.password = '12345678'
-      user.save
     end
 
     # Create forum threads for our users
 
     Forum.all.each do |f|
-      rand(2..5).times do
+      rand(10..20).times do
         topic = f.topics.new
         topic.name = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
         topic.user_id = rand(2..12)
