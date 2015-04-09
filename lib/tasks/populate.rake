@@ -3,10 +3,10 @@ namespace :db do
   task :populate => :environment do
   require 'faker'
 
-    #unless User.where(email: 'admin@test.com')
+    unless User.where(email: 'admin@test.com')
       admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
       puts "Created Admin: #{admin_user.name}"
-    #end
+    end
 
     # Add agents
     8.times do
