@@ -1,19 +1,3 @@
-/* @override 
-	http://localhost:3000/assets/base-7fe741cebb8cffc06f7a29714486864e.css?body=1
-	http://localhost:3000/assets/base-3a0ac4752dcb93b5c394278f1ebbd64c.css?body=1
-	http://localhost:3000/assets/base-82818843037ecf54016b863b3d495fb7.css?body=1
-	http://localhost:3000/assets/base-2755db70ac659b39f2c573dddd98b033.css?body=1
-	http://localhost:3000/assets/base-e1d9fb5acbd2c79b2c9c9050921da0ae.css?body=1
-	http://localhost:3000/assets/base-b957d3e7fd66075ac888a665ba2a0f2e.css?body=1
-	http://localhost:3000/assets/base-22ae096ceb1295ce6f1437fcb516ab64.css?body=1
-	http://localhost:3000/assets/base-99312c9e364088ce8243cfa5886ed159.css?body=1
-	http://localhost:3000/assets/base-19e0b646230481d8ba5b6bb0e4be262d.css?body=1
-	http://localhost:3000/assets/base-bfb3c68c3330c8ad0f12360ab3d0c94f.css?body=1
-	http://localhost:3000/assets/base-80dbd4346f5efe20a240ecc77d3d34ce.css?body=1
-	http://localhost:3000/assets/base-ec1e4de8e8594f6814cd01598c0567f0.css?body=1
-	http://localhost:3000/assets/base-ba1f5929bc438843d394cca9225f4f40.css?body=1
-	http://localhost:3000/assets/base-e50e7d75b3b431ffda5bc030faa4c22f.css?body=1
-*/
 
 /* === BASE STYLES === */
 a {
@@ -472,7 +456,7 @@ span.more-important a:link {
 }
 
 input.wide-field {
-	100%;
+	width: 100%;
 }
 
 /* === LAYOUT === */
@@ -619,7 +603,7 @@ div.status {
 /* === FORUM === */
 
 table#forums, table#topics, table#posts {
-	width:  100%;
+	width: 100%;
 	margin-bottom: 20px;
 }
 
