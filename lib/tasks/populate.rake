@@ -3,12 +3,10 @@ namespace :db do
   task :populate => :environment do
   require 'faker'
 
-    unless User.where(email: 'anon@test.com')
-      anon_user = User.create!(name: 'Anonymous', login:'Anon', email: 'anon@test.com', password: '12345678')
-    end
-    unless User.where(email: 'admin@test.com')
+    #unless User.where(email: 'admin@test.com')
       admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
-    end
+      puts "Created Admin: #{admin_user.name}"
+    #end
 
     # Add agents
     8.times do
@@ -42,13 +40,15 @@ namespace :db do
     Forum.create(name: "Bugs and Issues", description: "Report Bugs here!")
 
     # Create top level KB categories
-    Category.create(name:'Getting Started',title_tag: 'Getting Started',meta_description:'Learn how to get started with our solution')
-    Category.create(name:'Top Issues',title_tag: 'Solutions to Top Issues',meta_description:'Answers to our most frequent issues', front_page: true)
-    Category.create(name:'General Questions',title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here')
-    Category.create(name:'Troubleshooting',title_tag: 'Troubleshooting',meta_description:'Got a problem? Start here to learn more about solving it')
-    Category.create(name:'How do I...',title_tag: 'How to Accomplish specific things',meta_description:'Learn how to accomplish many common things with our solution')
-    Category.create(name:'FAQ',title_tag: 'Frequently asked questions',meta_description:'Answers to all of our FAQs', front_page: true)
-    Category.create(name:'Billing',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions')
+    Category.create(name:'Getting Started',icon: 'eye-open', title_tag: 'Getting Started',meta_description:'Learn how to get started with our solution')
+    Category.create(name:'Top Issues',icon: 'exclamation-sign', title_tag: 'Solutions to Top Issues',meta_description:'Answers to our most frequent issues', front_page: true)
+    Category.create(name:'General Questions', icon: 'question-sign', title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here')
+    Category.create(name:'Troubleshooting', icon: 'ok-circle', title_tag: 'Troubleshooting',meta_description:'Got a problem? Start here to learn more about solving it')
+    Category.create(name:'How do I...', icon: 'send', title_tag: 'How to Accomplish specific things',meta_description:'Learn how to accomplish many common things with our solution')
+    Category.create(name:'FAQ', icon: 'list',title_tag: 'Frequently asked questions',meta_description:'Answers to all of our FAQs', front_page: true)
+    Category.create(name:'Billing', icon: 'credit-card',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions')
+    Category.create(name:'Expert Tips', icon: 'road',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions')
+
 
     # Create 10-50 Docs per category
     Category.all.each do |category|
@@ -74,6 +74,9 @@ namespace :db do
         i = rand(1..15)
         if i == 1
           topic.private = true
+          puts "Private Ticket Created!"
+        else
+          puts "Discussion #{topic.name} Added"
         end
         topic.save
         rand(2..7).times do
@@ -81,6 +84,7 @@ namespace :db do
           post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
           post.user_id = rand(2..12)
           post.save
+          puts "Post added to topic"
         end
       end
     end

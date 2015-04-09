@@ -79,19 +79,6 @@ class CategoriesController < ApplicationController
       end
   end
 
-  #  id               :integer          not null, primary key
-  #  name             :string
-  #  keywords         :string
-  #  title_tag        :string(70)
-  #  meta_description :string(160)
-  #  rank             :integer
-  #  front_page       :boolean          default(FALSE)
-  #  active           :boolean          default(TRUE)
-  #  permalink        :string
-  #  section          :string
-  #  created_at       :datetime         not null
-  #  updated_at       :datetime         not null
-
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
@@ -108,10 +95,10 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { render :action => "edit", layout: 'admin' }#{ redirect_to(admin_categories_path) }
+        format.html { redirect_to admin_knowledgebase_path }
         #format.js
       else
-        format.html { render :controller => 'admin', :action => "knowledgebase", layout: 'admin' }
+        format.html { render action: 'edit', layout: 'admin' }
       end
     end
   end

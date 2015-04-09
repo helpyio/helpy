@@ -4,9 +4,10 @@
 #
 #  id               :integer          not null, primary key
 #  name             :string
+#  icon             :string
 #  keywords         :string
-#  title_tag        :string(70)
-#  meta_description :string(160)
+#  title_tag        :string
+#  meta_description :string
 #  rank             :integer
 #  front_page       :boolean          default(FALSE)
 #  active           :boolean          default(TRUE)

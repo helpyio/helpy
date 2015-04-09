@@ -1,3 +1,7 @@
+/* @override 
+	http://localhost:3000/assets/base-a2b071a5f40768f3217aa05a6fbb4f20.css?body=1
+	http://localhost:3000/assets/base-a8e24c2fa257fd3af2843d679c9bfed9.css?body=1
+*/
 
 /* === BASE STYLES === */
 a {
@@ -18,10 +22,11 @@ a {
 	margin-bottom: 0px;
 }
 
+
 .navbar-brand {
 	font-family: 'Shadows Into Light', sans-serif;
 	padding:0px;
-	font-size:220%;
+	font-size:230%;
 	padding-top: 10px;
 }
 
@@ -345,7 +350,8 @@ tbody {
 }
 
 h1 {
-	font-family: 'Droid Serif', serif;
+	font-family: 'Droid Sans', serif;
+	font-size: 220%;
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 5px;
@@ -459,6 +465,12 @@ input.wide-field {
 	width: 100%;
 }
 
+span.category-icon {
+	color: #666;
+	margin-bottom: 15px;
+	font-size: 120%;
+}
+
 /* === LAYOUT === */
 
 #breadcrumbs {
@@ -543,6 +555,14 @@ input.wide-field {
 
 #header-logo {
 	margin-top: -10px;
+}
+
+#wrapper {
+	background-color: #eee;
+}
+
+#header-wrapper {
+	background-color: #eee;
 }
 
 #main-body {

@@ -6,8 +6,8 @@
 #  title            :string
 #  body             :text
 #  keywords         :string
-#  title_tag        :string(70)
-#  meta_description :string(160)
+#  title_tag        :string
+#  meta_description :string
 #  category_id      :integer
 #  active           :boolean          default(TRUE)
 #  rank             :integer

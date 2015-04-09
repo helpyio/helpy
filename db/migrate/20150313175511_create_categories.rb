@@ -2,6 +2,7 @@ class CreateCategories < ActiveRecord::Migration
   def change
     create_table :categories do |t|
       t.string :name
+      t.string :icon
       t.string :keywords
       t.string :title_tag
       t.string :meta_description

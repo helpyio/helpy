@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20150320203432) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
+    t.string   "icon"
     t.string   "keywords"
     t.string   "title_tag"
     t.string   "meta_description"
