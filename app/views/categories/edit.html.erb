@@ -1,10 +1,8 @@
 <h1>Edit Category: Troubleshooting</h1>
 
-<%#= form_for :category, :url => category_path, method: 'patch' do |f| %>
 <%= bootstrap_form_for @category, label_errors: true do |f| %>
 
   <%= f.alert_message "Please fix the errors below." %>
-  <%#= error_messages_for :category %>
 
   <%= f.text_field :name %>
   <%= f.text_field :section %>

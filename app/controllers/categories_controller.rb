@@ -65,18 +65,18 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.xml
   def create
-    @category = Category.new(params[:id])
+    @category = Category.new
 
-    respond_to do |format|
-      if @category.save
-        flash[:notice] = 'Category was successfully created.'
-        format.html { redirect_to(admin_help_path) }
+      @category.name = params[:category][:name]
 
-      else
-        format.html { render :action => "new" }
-
+      respond_to do |format|
+        if @category.save
+          format.html { render :action => "edit", layout: 'admin' }#{ redirect_to(admin_categories_path) }
+          #format.js
+        else
+          format.html { render controller: 'admin', action: "knowledgebase" }
+        end
       end
-    end
   end
 
   #  id               :integer          not null, primary key
@@ -108,12 +108,10 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        flash[:notice] = 'Category was successfully updated.'
-        format.html { redirect_to(admin_categories_path) }
-
+        format.html { render :action => "edit", layout: 'admin' }#{ redirect_to(admin_categories_path) }
+        #format.js
       else
-        format.html { render :action => "edit", layout: 'admin' }
-
+        format.html { render :controller => 'admin', :action => "knowledgebase", layout: 'admin' }
       end
     end
   end

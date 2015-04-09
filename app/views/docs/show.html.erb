@@ -1,10 +1,7 @@
-<div class="col-md-2">
+
+<div class="col-md-9">
+  <p class="less-important"><%= @doc.content.html_safe %></p>
 </div>
-<div class="col-md-10">
-  <h2><%= @doc.title %></h2>
-  <%= @doc.content.html_safe %>
-  <br/>
-  <br/>
-  <hr>
+<div class="col-md-3">
+  <%= render 'layouts/did_this_help' %>
 </div>
-<%= render 'layouts/did_this_help' %>

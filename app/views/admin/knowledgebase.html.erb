@@ -2,39 +2,23 @@
 <div class="row">
   <div class="col-md-12">
     <table id="forums">
-      <tr>
-        <th>Name</th>
-      <th colspan="4"></th>
-      </tr>
 
-    <% for cat in @categories %>
-      <tr>
-        <td><%=h cat.name %></td>
-        <td><%= cat.section %></td>
-        <td><%= link_to 'Articles', admin_articles_path(cat.id) %></td>
-        <td><%= link_to 'Edit', edit_category_path(cat.id) %></td>
-        <td><%= link_to 'Destroy', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete %></td>
-      </tr>
-    <% end %>
+      <col width="85%">
+      <col width="15%">
+      <tbody id="categories">
+      <%= render partial: 'cat', collection: @categories %>
+      </tbody>
     </table>
+
+    <%= bootstrap_form_for(Category.new, layout: :inline, label_errors: true) do |f| %>
+      <div class="col-md-10 col-sm-7">
+      <%= f.text_field :name, skip_label: true, placeholder:'Enter a name to start creating a new category', class: 'wide-field' %>
+      </div>
+      <div class="col-md-2 col-sm-2 text-right">
+      <%= f.submit "Add" %>
+      </div>
+    <% end %>
+
   </div>
 </div>
 <br/>
-<div class="row">
-  <div class="col-md-12 add-form">
-    <h4>Add a New Category:</h4>
-
-    <%= bootstrap_form_for(Category.new) do |f| %>
-      <%#= f.error_messages %>
-
-      <%= f.text_field :name %>
-      <%= f.text_field :title_tag %>
-      <%= f.text_field :meta_description %>
-      <%= f.text_field :keywords %>
-      <%= f.check_box :active %>
-      <%= f.submit "Add Category" %>
-
-    <% end %>
-
-  </div>
-</div>

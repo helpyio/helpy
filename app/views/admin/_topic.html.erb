@@ -1,7 +1,10 @@
 <tr class="<%= cycle('even', 'odd') %>">
   <td>
-    <%= link_to h(topic.name), admin_ticket_path(topic), :remote => true -%><br/><span class="author">Started By <%= h topic.user.name %></span>
+    <span class="more-important">
+      <%= link_to topic.name.titleize, admin_ticket_path(topic), :remote => true -%>
+    </span>
+    <br/><span class="less-important">Started By <%= h topic.user.name %></span>
   </td>
-  <td><%= topic.status.titleize %><%= " assigned to #{topic.assigned_user.name}" if topic.status == 'open' %></td>
-  <td><%= topic.last_post_date.nil? ? "Not Lately" : distance_of_time_in_words_to_now(topic.last_post_date) + " ago" %></td>
+  <td class="less-important"><%= topic.status.titleize %> and <%= " assigned to #{topic.assigned_user.name}" if topic.status == 'open' %></td>
+  <td class="less-important"><%= topic.last_post_date.nil? ? "Not Lately" : distance_of_time_in_words_to_now(topic.last_post_date) + " ago" %></td>
 </tr>

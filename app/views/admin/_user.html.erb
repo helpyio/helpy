@@ -1,8 +1,12 @@
 <% user = user.searchable if params[:q] %>
 
 <tr class="user">
-  <td><%= image_tag(user.gravatar_url(:size => 30), :size => '30X30') %> <%= user.name %> (<%= user.login %>)</td>
-  <td></td>
+  <td><%= image_tag(user.gravatar_url(:size => 30), :size => '30X30', class: 'user-thumbnail') %></td>
+  <td>
+    <span class="more-important"><%= user.name %></span><br/>
+    <span class="less-important">Last Seen: <%= user.last_sign_in_at.nil? ? "Not Lately" : distance_of_time_in_words_to_now(user.last_sign_in_at) + " ago" %></span>
+  </td>
+
   <td></td>
   <td><%= link_to 'Edit', admin_user_path(user) %></td>
   <td><%#= link_to 'Destroy', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete %></td>

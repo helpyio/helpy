@@ -1,1 +1,77 @@
+<script>
+$(document).ready(function(){
+//  $('.home-option').mouseover(function(){
+//    var activeBlock = $(this);
+//    activeBlock.addClass("active");
+//    activeBlock.css('cursor','pointer');
+//    activeBlock.find("span").css('font-size','400%');
+//    activeBlock.find("h3").css('padding-top','16px');
+//  });
+//  $('.home-option').mouseout(function(){
+//    var activeBlock = $(this);
+//    $(this).removeClass("active");
+//    $(this).css('cursor','auto');
+//    activeBlock.find("span").css('font-size','300%');
+//    activeBlock.find("h3").css('padding-top','30px');
+//  });
+  $('.home-option, .home-option-xs, .topic-box').click(function(){
+    document.location.href = $(this).data("link");
+  });
+  $('.thumbnail').mouseover(function(){
+    $(this).css('cursor','pointer');
+    $(this).css('border','1px solid #666');
+    $(this).css('box-shadow', '0px 0px 10px #eee');
+  });
+  $('.thumbnail').mouseout(function(){
+    $(this).css('cursor','auto');
+    $(this).css('border','1px solid #eee');
+    $(this).css('box-shadow', '');
+  });
+
+
+});
+</script>
+
+
 <h1>Admin Dashboard</h1>
+
+<div class="row">
+  <div class="col-md-3">
+    Tickets Open:
+    <h2>55</h2>
+
+    Assigned to you:
+    <h2>20</h2>
+
+  </div>
+  <div class="col-md-9">
+    <div class="topic-box col-md-3 col-sm-4 col-xs-6" data-link="<%= admin_users_path %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='admin-icon glyphicon glyphicon-user'></span><br/><%= link_to 'Admin Users', admin_users_path  %><br/></h5>
+        <p class="text-center less-important hidden-xs">See reports on individual users.</p>
+      </div>
+    </div>
+    <div class="topic-box col-md-3 col-sm-4 col-xs-6" data-link="<%= admin_knowledgebase_path %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='admin-icon glyphicon glyphicon-book'></span><br/><%= link_to "Knowledgebase", admin_knowledgebase_path %><br/></h5>
+        <p class="text-center less-important hidden-xs">Add to or Edit your Knowledgebase</p>
+      </div>
+    </div>
+    <div class="topic-box col-md-3 col-sm-4 col-xs-6" data-link="<%= admin_tickets_path(:status => 'new') %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='admin-icon glyphicon glyphicon-envelope'></span><br/><%= link_to "Tickets", admin_tickets_path(:status => 'new') %><br/></h5>
+        <p class="text-center less-important hidden-xs">Manage Support Tickets</p>
+      </div>
+    </div>
+    <div class="topic-box col-md-3 col-sm-4 col-xs-6" data-link="<%= admin_tickets_path(:status => 'new') %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='admin-icon glyphicon glyphicon-comment'></span><br/><%= link_to "Tickets", admin_tickets_path(:status => 'new') %><br/></h5>
+        <p class="text-center less-important hidden-xs">Community</p>
+      </div>
+    </div>
+  </div>
+</div>

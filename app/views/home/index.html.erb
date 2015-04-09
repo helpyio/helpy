@@ -6,26 +6,39 @@
 
 <script>
 $(document).ready(function(){
-  $('.home-option').mouseover(function(){
-    var activeBlock = $(this);
-    activeBlock.addClass("active");
-    activeBlock.css('cursor','pointer');
-    activeBlock.find("span").css('font-size','400%');
-    activeBlock.find("h3").css('padding-top','16px');
-  });
-  $('.home-option').mouseout(function(){
-    var activeBlock = $(this);
-    $(this).removeClass("active");
-    $(this).css('cursor','auto');
-    activeBlock.find("span").css('font-size','300%');
-    activeBlock.find("h3").css('padding-top','30px');
-  });
-  $('.home-option, .home-option-xs').click(function(){
+//  $('.home-option').mouseover(function(){
+//    var activeBlock = $(this);
+//    activeBlock.addClass("active");
+//    activeBlock.css('cursor','pointer');
+//    activeBlock.find("span").css('font-size','400%');
+//    activeBlock.find("h3").css('padding-top','16px');
+//  });
+//  $('.home-option').mouseout(function(){
+//    var activeBlock = $(this);
+//    $(this).removeClass("active");
+//    $(this).css('cursor','auto');
+//    activeBlock.find("span").css('font-size','300%');
+//    activeBlock.find("h3").css('padding-top','30px');
+//  });
+  $('.home-option, .home-option-xs, .topic-box').click(function(){
     document.location.href = $(this).data("link");
   });
+  $('.thumbnail').mouseover(function(){
+    $(this).css('cursor','pointer');
+    $(this).css('border','1px solid #666');
+    $(this).css('box-shadow', '0px 0px 10px #eee');
+  });
+  $('.thumbnail').mouseout(function(){
+    $(this).css('cursor','auto');
+    $(this).css('border','1px solid #eee');
+    $(this).css('box-shadow', '');
+  });
+
+
 });
 </script>
 
+<!--
 <div class="row hidden-xs hidden-sm text-center" id="home-options">
   <div class="col-md-4 home-option border-right" id="community-forums-block" data-link="<%= forums_path %>">
     <span class="glyphicon glyphicon-comment"></span><h3>Community Forums</h3>
@@ -37,8 +50,9 @@ $(document).ready(function(){
     <span class="glyphicon glyphicon-question-sign"></span><h3>Ask a Question</h3>
   </div>
 </div>
-
-<div class="row text-center visible-xs visible-sm" id="home-options-xs">
+-->
+<!--
+<div class="row text-center" id="home-options-xs">
   <div class="col-md-12">
     <ul class='list-unstyled home-option-xs border-bottom' data-link="<%= forums_path %>">
       <h3><span class="glyphicon glyphicon-comment"></span> Community Forums</h3>
@@ -51,21 +65,25 @@ $(document).ready(function(){
     </ul>
   </div>
 </div>
-
-
+-->
 
 <div id="featured-categories" class="row">
+
+  <h2 class="text-center">Browse Topics:</h2>
+
+  <div id="home-topics" class="col-md-12">
   <% @categories.each do |category| %>
-  <div class="col-md-4">
-    <h5 class=category-header"><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %></h5>
-    <ul class="list-unstyled articles hidden-xs">
-      <% category.docs.ordered.active.limit(15).each_with_index do |doc| %>
-      <%= render ("docs/doc"), doc: doc %>
-      <% end %>
-      <% if category.docs.ordered.active.count > 15 %>
-      <li class="article article-more"><%= link_to "More Documents", category_path(category) %><span class="glyphicon glyphicon-arrow-right"></span></li>
-      <% end %>
-    </ul>
+  <!--<div class="home-square col-md-3 col-sm-4">
+    <h5 class="category-header text-center"><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %></h5>
+    <p class="text-center"><%= category.meta_description %></p>
+  </div>-->
+  <div class="topic-box col-md-3 col-sm-4 col-xs-6" data-link="<%= category_path(category) %>">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+      <h5 class="category-header text-center"><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %><br/></h5>
+      <p class="text-center less-important hidden-xs"><%= category.meta_description %></p>
+    </div>
   </div>
   <% end %>
+  </div>
 </div>

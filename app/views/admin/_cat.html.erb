@@ -1,0 +1,4 @@
+<tr>
+  <td><strong class="more-important"><%= cat.name %></strong><br/><%= link_to "#{cat.docs.count} articles ", admin_articles_path(cat.id), class: 'less-important' %></td>
+  <td class="text-right"><%= link_to '', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete, :class => 'glyphicon glyphicon-remove less-important' %></td>
+</tr>
