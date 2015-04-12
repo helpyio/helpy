@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   get 'tickets' => 'topics#tickets', as: :tickets
 
   # Admin Routes
-  get 'admin' => 'admin#index'
+  get 'admin' => 'admin#dashboard', as: :admin
+  get 'admin/dashboard' => 'admin#dashboard', as: :admin_dashboard
   get 'admin/knowledgebase' => 'admin#knowledgebase'
   get 'admin/knowledgebase/:category_id/articles' => 'admin#articles', as: :admin_articles
   get 'admin/tickets/:status' => 'admin#tickets', as: :admin_tickets

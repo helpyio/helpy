@@ -1,0 +1,35 @@
+<div id="user-info" class='border-right' class="row">
+    <div class='col-md-2' id='user-info-image'>
+      <%= image_tag(@topic.user.medium_image, width: '60px', class: 'img-circle') %>
+    </div>
+    <div class='col-md-10' id='user-info-info'>
+      <h4>
+        <%= @topic.user.name.titleize %><br/>
+        <span class="small">
+          <%= @topic.user.company.titleize %><br/>
+          <%= @topic.user.city.titleize %>, <%= @topic.user.state.titleize %>
+          <%#= @topic.user.country.titleize %>
+        </span>
+      </h4>
+
+      <div id="user-contact-info" class="user-info">
+        <div class="tiny-header">Contact:</div>
+        work: <%= @topic.user.work_phone.titleize %><br/>
+        cell: <%= @topic.user.cell_phone.titleize %><br/>
+        <%= @topic.user.email %><br/>
+      </div>
+
+
+      <div id="user-tickets" class="user-info">
+        <div class="tiny-header">Tickets:</div>
+        <ul class='list-unstyled'>
+        <% @topic.user.topics.isprivate.each do |ticket| %>
+          <li><%= link_to(ticket.name.titleize, admin_ticket_path(ticket)) %><span class="status pull-right"><%= badge_for_status(@topic.status).html_safe %></span>
+        <% end %>
+        </ul>
+      </div>
+
+    </div>
+
+
+</div>

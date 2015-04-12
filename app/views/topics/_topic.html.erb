@@ -1,7 +1,7 @@
 <tr class="<%= cycle('even', 'odd') %>">
   <td>
-    <span class="more-important"><%= link_to h(topic.name), topic_posts_path(topic) -%></span>
-    <br/><span class="less-important">Started By <%= h topic.user.login %></span>
+    <span class="more-important"><%= link_to h(topic.name.titleize), topic_posts_path(topic) -%></span>
+    <br/><span class="less-important">Started By <%= h topic.user.name.titleize %></span>
   </td>
   <td><%#= image_tag("icons/001_42.png", :class => 'icon') if topic.private? %></td>
   <td><%#= topic.status %></td>

@@ -5,7 +5,20 @@ class CreateUsers < ActiveRecord::Migration
       t.string :identity_url
       t.string :name
       t.boolean :admin, :default => false
-
+      t.string :home_phone
+      t.string :work_phone
+      t.string :cell_phone
+      t.string :company
+      t.string :street
+      t.string :city
+      t.string :state
+      t.string :zip
+      t.string :title
+      t.string :twitter
+      t.string :linkedin
+      t.string :thumbnail
+      t.string :medium_image
+      t.string :large_image
 
       t.timestamps null: false
     end

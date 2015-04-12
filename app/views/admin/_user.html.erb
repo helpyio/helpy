@@ -1,9 +1,13 @@
 <% user = user.searchable if params[:q] %>
 
 <tr class="user">
-  <td><%= image_tag(user.gravatar_url(:size => 30), :size => '30X30', class: 'user-thumbnail') %></td>
   <td>
-    <span class="more-important"><%= user.name %></span><br/>
+    <div class="user-thumbnail pull-left">
+      <%= image_tag(user.thumbnail_url, class: 'img-circle', width: '40px') %>
+    </div>
+  </td>
+  <td>
+    <span class="more-important"><%= user.name.titleize %></span><br/>
     <span class="less-important">Last Seen: <%= user.last_sign_in_at.nil? ? "Not Lately" : distance_of_time_in_words_to_now(user.last_sign_in_at) + " ago" %></span>
   </td>
 

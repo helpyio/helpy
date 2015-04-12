@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   private
 
   def fetch_counts
-    @new = Topic.where(status: 'new').isprivate.count
+    @new = Topic.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).isprivate.count
     @open = Topic.where(status: 'open').isprivate.count
-    @mine = Topic.where(status: 'open', assigned_user_id: current_user.id).isprivate.count
+    @mine = Topic.where(assigned_user_id: current_user.id).isprivate.count
     @closed = Topic.where(status: 'closed').isprivate.count
     @spam = Topic.where(status: 'spam').isprivate.count
 

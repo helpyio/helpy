@@ -4,9 +4,10 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :verify_admin
-  before_filter :fetch_counts, :only => ['tickets','ticket']
+  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket']
 
-  def index
+  def dashboard
+    #@users = PgSearch.multisearch(params[:q]).page params[:page]
 
   end
 
@@ -29,11 +30,22 @@ class AdminController < ApplicationController
   end
 
   def tickets
-    unless params[:status] == 'active'
-      @topics = Topic.where(status: params[:status]).isprivate.page params[:page]
+
+    case params[:status]
+
+    when 'new'
+      @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).isprivate.page params[:page]
+    when 'assigned'
+      @topics = Topic.where(assigned_user_id: current_user.id).isprivate.page params[:page]
     else
-      @topics = Topic.where(status: 'open').isprivate.page params[:page]
+      @topics = Topic.where(status: params[:status]).isprivate.page params[:page]
     end
+
+    #unless params[:status] == 'active'
+    #  @topics = Topic.where(status: params[:status]).isprivate.page params[:page]
+    #else
+    #  @topics = Topic.where(status: 'open').isprivate.page params[:page]
+    #end
 
     respond_to do |format|
       format.html
@@ -80,7 +92,7 @@ class AdminController < ApplicationController
 
     fetch_counts
     respond_to do |format|
-      format.html
+      format.html #render action: 'ticket', id: @topic.id
       format.js
     end
 

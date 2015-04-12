@@ -37,11 +37,14 @@ $(document).ready(function(){
 
 <div class="row">
   <div class="col-md-3">
+    New Unassigned Tickets:
+    <h2><%= @new %></h2>
+
     Tickets Open:
-    <h2>55</h2>
+    <h2><%= @open %></h2>
 
     Assigned to you:
-    <h2>20</h2>
+    <h2><%= @mine %></h2>
 
   </div>
   <div class="col-md-9">
@@ -72,6 +75,11 @@ $(document).ready(function(){
         <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-comment'></span><br/><%= link_to "Community", admin_tickets_path(:status => 'new') %><br/></h5>
         <p class="text-center less-important hidden-xs">Moderate user community</p>
       </div>
+    </div>
+    <h4>Jump to User:</h4>
+    <%= render 'user_search_form' %>
+    <div id="users">
+      <%= render 'users' %>
     </div>
   </div>
 </div>

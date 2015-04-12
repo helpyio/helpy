@@ -1,10 +1,13 @@
-<tr class="<%= cycle('even', 'odd') %>">
+<tr class="border-bottom <%#= cycle('even', 'odd') %>">
   <td>
+    <div class="user-thumbnail pull-left">
+      <%= image_tag(topic.user.medium_image, width: '40px', class: 'img-circle') %>
+    </div>
     <span class="more-important">
-      <%= link_to topic.name.titleize, admin_ticket_path(topic), :remote => true -%>
+      <%= link_to topic.name.titleize, admin_ticket_path(topic) -%><%= badge_for_status(topic.status).html_safe %>
     </span>
-    <br/><span class="less-important">Started By <%= h topic.user.name %></span>
+    <br/><span class="less-important">Started By <%= h topic.user.name.titleize %></span>
   </td>
-  <td class="less-important"><%= topic.status.titleize %> and <%= " assigned to #{topic.assigned_user.name}" if topic.status == 'open' %></td>
+  <td class="less-important"><%#= " and assigned to #{topic.assigned_user.name}" if topic.status == 'open' && topic.assigned_user != nil %></td>
   <td class="less-important"><%= topic.last_post_date.nil? ? "Not Lately" : distance_of_time_in_words_to_now(topic.last_post_date) + " ago" %></td>
 </tr>

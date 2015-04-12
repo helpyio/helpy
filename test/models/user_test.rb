@@ -7,6 +7,20 @@
 #  identity_url           :string
 #  name                   :string
 #  admin                  :boolean          default(FALSE)
+#  home_phone             :string
+#  work_phone             :string
+#  cell_phone             :string
+#  company                :string
+#  street                 :string
+#  city                   :string
+#  state                  :string
+#  zip                    :string
+#  title                  :string
+#  twitter                :string
+#  linkedin               :string
+#  thumbnail              :string
+#  medium_image           :string
+#  large_image            :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null

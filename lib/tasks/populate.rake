@@ -8,47 +8,60 @@ namespace :db do
       puts "Created Admin: #{admin_user.name}"
     end
 
-    # Add agents
-    8.times do
-      agent = User.new
-      agent.name = Faker::Name.name
-      agent.email = Faker::Internet.email
-      agent.login = Faker::Internet.user_name
-      agent.password = '12345678'
-      agent.admin = true
-      agent.save
+    # Add Support Team
+    4.times do
+      user = RUser.new.first
+      u = User.new
+      u.name = "#{user.name.first_name} #{user.name.last_name}"
+      u.email = user.email
+      u.login = user.username
+      u.password = '12345678'
+      u.admin = true
+      u.thumbnail = user.picture.thumbnail
+      u.medium_image = user.picture.medium
+      u.large_image = user.picture.large
+      u.save
 
-      puts "Created Agent: #{agent.name}"
+      puts "Created Agent: #{u.name}"
     end
 
     # Create 100 users
-    100.times do
-      user = User.new
-      user.name = Faker::Name.name
-      user.email = Faker::Internet.email
-      user.login = Faker::Internet.user_name
-      user.password = '12345678'
-      user.save
+    50.times do
+
+      company_seed = rand(1..5)
+      case company_seed
+      when 1
+        companytype = "Inc."
+      when 2
+        companytype = "LLC."
+      when 3
+        companytype = "Partners"
+      when 4
+        companytype = ".com"
+      when 5
+        companytype = "Company"
+      end
+
+      user = RUser.new.first
+      u = User.new
+      u.name = "#{user.name.first_name} #{user.name.last_name}"
+      u.email = user.email
+      u.login = user.username
+      u.password = '12345678'
+      u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{companytype}"
+      u.street = user.location.street
+      u.city = user.location.city
+      u.state = user.location.state
+      u.zip = user.location.zip
+      u.work_phone = user.phone
+      u.cell_phone = user.cell
+      u.thumbnail = user.picture.thumbnail
+      u.medium_image = user.picture.medium
+      u.large_image = user.picture.large
+      u.save
 
       puts "Created User: #{user.name}"
     end
-
-    # Create top level forums
-    Forum.create(name: "Getting Started", description: "How to get started")
-    Forum.create(name: "Common Questions", description: "Frequently asked questions")
-    Forum.create(name: "How To's", description: "Answers to how to do common things")
-    Forum.create(name: "Bugs and Issues", description: "Report Bugs here!")
-
-    # Create top level KB categories
-    Category.create(name:'Getting Started',icon: 'eye-open', title_tag: 'Getting Started',meta_description:'Learn how to get started with our solution')
-    Category.create(name:'Top Issues',icon: 'exclamation-sign', title_tag: 'Solutions to Top Issues',meta_description:'Answers to our most frequent issues', front_page: true)
-    Category.create(name:'General Questions', icon: 'question-sign', title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here')
-    Category.create(name:'Troubleshooting', icon: 'ok-circle', title_tag: 'Troubleshooting',meta_description:'Got a problem? Start here to learn more about solving it')
-    Category.create(name:'How do I...', icon: 'send', title_tag: 'How to Accomplish specific things',meta_description:'Learn how to accomplish many common things with our solution')
-    Category.create(name:'FAQ', icon: 'list',title_tag: 'Frequently asked questions',meta_description:'Answers to all of our FAQs', front_page: true)
-    Category.create(name:'Billing', icon: 'credit-card',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions')
-    Category.create(name:'Expert Tips', icon: 'road',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions')
-
 
     # Create 10-50 Docs per category
     Category.all.each do |category|
@@ -70,8 +83,8 @@ namespace :db do
       rand(10..20).times do
         topic = f.topics.new
         topic.name = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
-        topic.user_id = rand(2..12)
-        i = rand(1..15)
+        topic.user_id = rand(6..50)
+        i = rand(1..5)
         if i == 1
           topic.private = true
           puts "Private Ticket Created!"
@@ -79,7 +92,15 @@ namespace :db do
           puts "Discussion #{topic.name} Added"
         end
         topic.save
-        rand(2..7).times do
+
+        # create first post in thread
+        post = topic.posts.new
+        post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
+        post.user_id = topic.user_id
+        post.save
+        puts "Post added to topic"
+
+        rand(2..5).times do
           post = topic.posts.new
           post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
           post.user_id = rand(2..12)

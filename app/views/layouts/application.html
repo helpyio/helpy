@@ -33,7 +33,7 @@
 
 	</head>
 
-<body class="sub">
+<body>
 
 <div id="top-bar"></div>
 <div id="wrapper" class="jumbotron">
@@ -46,17 +46,17 @@
 </div>
 </div>
 <div id="body-wrapper" class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div id="main-body" >
-				<%#= bootstrap_flash %>
-				<div id="main-content">
-					<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
-					<%= yield %>
+		<div class="row">
+			<div class="col-md-12">
+				<div id="main-body" >
+					<%#= bootstrap_flash %>
+					<div id="main-content">
+						<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
+						<%= yield %>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </div>
 <div id="footer-wrapper">
 	<div class="container">

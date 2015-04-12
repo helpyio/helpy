@@ -1,3 +1,13 @@
+/* @override 
+	http://localhost:3000/assets/admin-30af23e21078c9247141eb4d42db3b17.css?body=1
+	http://localhost:3000/assets/admin-ea49526b293582343e23fb566f59119c.css?body=1
+	http://localhost:3000/assets/admin-a3899fdec5803d146a8d4dd6884cc447.css?body=1
+	http://localhost:3000/assets/admin-80c32ed2c6027dfe19d43357728a4580.css?body=1
+	http://localhost:3000/assets/admin-a0732058619d0545f8429b440d624fa1.css?body=1
+	http://localhost:3000/assets/admin-334a269bbd635d4dcb63f804919bc1a5.css?body=1
+	http://localhost:3000/assets/admin-3ffbd526633f5b3fe27709b22b21f7aa.css?body=1
+*/
+
 /*== ADMIN == */
 
 img.user-thumbnail {
@@ -53,8 +63,35 @@ td > img {
 	background-color: #eee;
 }
 
-span.admin-icon {
+#user-info-image {
+	padding-top: 5px;
+	padding-left: 0px;
+	padding-right: 10px;
+}
+
+#user-info-info {
 	color: #666;
-	margin-bottom: 15px;
-	font-size: 120%;
+}
+
+#ticket-info {
+	margin-bottom: 10px;
+}
+
+#user-tickets ul li {
+	height: 25px;
+	color: #666;
+}
+
+.user-info {
+	padding-top: 20px;
+	padding-bottom: 0px;
+}
+
+#left-col-ticket-nav {
+	margin-top: 50px;
+}
+
+.mailbox {
+	padding-right: 10px;
+	padding-bottom: 8px;
 }

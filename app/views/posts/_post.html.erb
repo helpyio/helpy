@@ -1,21 +1,23 @@
 <tr class="posted-by <%= "first-post" if post.id == post.topic.posts.first.id %>">
-	<td width="35px">
-		<%= image_tag(post.user.gravatar_url(:size => 30), :size => '30X30') %>
+	<td width="60px">
+		<div>
+		<%= image_tag(post.user.medium_image, width: '40px', class: 'img-circle') %>
+		</div>
 	</td>
 	<td class="bottom-border" valign="bottom">
-	    <strong><%= h post.user.login -%></strong>
+	    <span class="more-important"><%= h post.user.name.titleize -%></strong>
 	</td>
 	<td class="bottom-border text-right" valign="bottom">
-  		<br/><span class="posted-at">Posted <%= distance_of_time_in_words_to_now(post.created_at) %> ago</span>
+  		<br/><span class="posted-at less-important">Posted <%= distance_of_time_in_words_to_now(post.created_at) %> ago</span>
 	</td>
 </tr>
 
 <tr>
-  <td></td>
+  <td class="<%= "first-post" if post.id == post.topic.posts.first.id %>"></td>
   <td class="post <%= "first-post" if post.id == post.topic.posts.first.id %>" colspan="2">
-  	<%= simple_format(post.body) -%>
-  	<br/><br/><br/>
-
+  	<p class="less-important">
+			<%= simple_format(post.body) -%>
+		</p>
   </td>
 </tr>
 

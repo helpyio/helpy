@@ -6,9 +6,9 @@
   <tr>
 
   </tr>
-  <%= render partial: 'user', collection: @users %>
+  <%= render partial: 'user', collection: @users if @users %>
 </table>
 
 <div class="text-right">
-  <%= paginate @users %>
+  <%= paginate @users if @users %>
 </div>

@@ -7,6 +7,20 @@
 #  identity_url           :string
 #  name                   :string
 #  admin                  :boolean          default(FALSE)
+#  home_phone             :string
+#  work_phone             :string
+#  cell_phone             :string
+#  company                :string
+#  street                 :string
+#  city                   :string
+#  state                  :string
+#  zip                    :string
+#  title                  :string
+#  twitter                :string
+#  linkedin               :string
+#  thumbnail              :string
+#  medium_image           :string
+#  large_image            :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -46,6 +60,22 @@ class User < ActiveRecord::Base
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.isprivate.count
+  end
+
+  def thumbnail_url
+    if self.thumbnail == ""
+      self.gravatar_url(:size => 60)
+    else
+      self.thumbnail
+    end
+  end
+
+  def image_url
+    if self.medium_image == ""
+      self.gravatar_url(:size => 60)
+    else
+      self.medium_image
+    end
   end
 
 end

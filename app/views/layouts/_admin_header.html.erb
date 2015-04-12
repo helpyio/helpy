@@ -4,8 +4,8 @@
       </div>
       <%= nav_bar brand: "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
           <%= menu_group pull: :right do %>
-              <%#= menu_item "Home", root_path %>
-              <%= menu_item "Admin Users", admin_users_path %>
+              <%= menu_item "Dashboard", admin_dashboard_path %>
+              <%#= menu_item "Admin Users", admin_users_path # switch to team view %>
               <%= menu_item "Knowledgebase", admin_knowledgebase_path, class:'kblink' if Settings.knowledgebase %>
               <%= menu_item "Tickets", admin_tickets_path(:status => 'new') if Settings.tickets %>
               <%= menu_item "Community", admin_community_path if Settings.forums %>
