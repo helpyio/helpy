@@ -34,7 +34,7 @@ class AdminController < ApplicationController
     case params[:status]
 
     when 'new'
-      @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).isprivate.page params[:page]
+      @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).isprivate.page params[:page]
     when 'assigned'
       @topics = Topic.where(assigned_user_id: current_user.id).isprivate.page params[:page]
     else
