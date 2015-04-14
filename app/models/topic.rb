@@ -57,27 +57,8 @@ class Topic < ActiveRecord::Base
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
   end
 
-  def self.fetch_email
-
-    Mailman.config.pop3 = {
-      server: Settings.server,
-      port: 995, # you usually don't need to set this, but it's there if you need to
-      ssl: true,
-      username: Settings.username,
-      password: Settings.password
-    }
-
-    Mailman::Application.run do
-      default do
-
-        puts "From: #{message.from}"
-        puts "Subject: #{message.subject}"
-        puts "Body: #{message.body}"
-
-
-        MailProcessor.receive(message)
-      end
-    end
+  def email_subject
+    "##{self.id} | #{self.name}"
   end
 
   def open?

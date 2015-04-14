@@ -6,6 +6,7 @@
 	http://localhost:3000/assets/admin-a0732058619d0545f8429b440d624fa1.css?body=1
 	http://localhost:3000/assets/admin-334a269bbd635d4dcb63f804919bc1a5.css?body=1
 	http://localhost:3000/assets/admin-3ffbd526633f5b3fe27709b22b21f7aa.css?body=1
+	http://localhost:3000/assets/admin-dc944612123612ecf1369dfd9e833011.css?body=1
 */
 
 /*== ADMIN == */
@@ -42,14 +43,6 @@ table#posts {
 	margin-top: 20px;
 }
 
-tr {
-	height: 50px;
-}
-
-td, th {
-	padding-left: 10px;
-}
-
 td > img {
 	padding-right: 20px;
 	padding-bottom: 10px;
@@ -61,6 +54,7 @@ td > img {
 
 .first-post {
 	background-color: #eee;
+	margin-bottom: 20px;
 }
 
 #user-info-image {

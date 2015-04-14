@@ -20,4 +20,57 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  root: 'Home'
+
+  big_search: "How can we help?"
+  browse: "Browse Topics"
+
+  # Navigation
+  knowledgebase: "Knowledgebase"
+  community: "Community"
+  ask: "Ask a Question"
+  home: "Home"
+  login: "Login"
+  logout: "Logout"
+  register: "Register"
+  back_to: "Back to"
+  welcome_back: "Welcome Back"
+  your_tickets: "Your Tickets"
+
+  # Search
+  search_placeholder: "Enter a keyword, topic, or question"
+
+  # Community
+  forum_name: "Discussion Topics"
+  last_activity: "Last Activity"
+  topic: "Topic"
+  replies: "Replies"
+  last_post: "Last Post"
+  started_by: "Started by"
+  reply: "Reply to this topic"
+  submit_reply: "Post Reply"
+  posted: "Posted"
+  start_discussion: "Start a New Discussion"
+
+  # Tickets
+  tickets: "Tickets"
+
+  # devise/sessions/new
+  sign_in: Sign in
+
+  # devise/shared/links
+  forgot_password: Forgot your password?
+
+  # devise/passwords/new
+  send_instructions: Send me instructions
+
+  # devise/passwords/edit
+  change_password: Change password
+  new_password: New password
+  new_password_confirmation: Confirm new password
+
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Password

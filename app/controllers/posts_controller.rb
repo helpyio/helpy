@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  add_breadcrumb 'Home', :root_path
+  add_breadcrumb I18n.t :home, :root_path
   before_filter :fetch_counts, :only => 'create'
   #after_filter :view_causes_vote, :only => 'index'
 
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
 
     @page_title = @topic.name.titleize
-    add_breadcrumb 'Community', forums_path
+    add_breadcrumb t(:community), forums_path
     add_breadcrumb @topic.forum.name.titleize, forum_topics_path(@topic.forum)
     add_breadcrumb @topic.name.titleize
 

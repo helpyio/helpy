@@ -5,7 +5,7 @@ class DocsController < ApplicationController
   #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
   after_filter :view_causes_vote, :only => 'show'
-  add_breadcrumb 'Home', :root_path
+  add_breadcrumb I18n.t :home, :root_path
 
   # GET /docs.xml
   def index
@@ -28,7 +28,7 @@ class DocsController < ApplicationController
 
     @page_title = @doc.title.titleize
 
-    add_breadcrumb "Knowledgebase", categories_path
+    add_breadcrumb t(:knowledgebase), categories_path
     add_breadcrumb @doc.category.name.titleize, category_path(@doc.category)
     add_breadcrumb @doc.title.titleize
 
@@ -136,22 +136,6 @@ class DocsController < ApplicationController
   end
 
   private
-
-  #  id          :integer          not null, primary key
-  #  title       :string
-  #  body        :text
-  #  keywords    :string
-  #  category_id :integer
-  #  active      :boolean          default(TRUE)
-  #  rank        :integer
-  #  permalink   :string
-  #  version     :integer
-  #  front_page  :boolean          default(FALSE)
-  #  cheatsheet  :boolean          default(FALSE)
-  #  points      :integer          default(0)
-  #  created_at  :datetime         not null
-  #  updated_at  :datetime         not null
-
 
   def doc_params
     params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page)

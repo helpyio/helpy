@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['index', 'show']
   #before_filter :authenticate_master?, :except => 'index'
-  add_breadcrumb 'Home', :root_path
+  add_breadcrumb I18n.t :root, :root_path
 
   # GET /categories
   # GET /categories.xml
@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
 
     @categories = Category.alpha
 
-    @page_title = "Knowledgebase"
+    @page_title = t(:knowledgebase)
     @title_tag = "#{Settings.site_name} Support: Knowledgebase"
     @meta_desc = "Knowledgebase for #{Settings.site_name}"
     @keywords = "Knowledgebase, Knowledge base, support, articles, documentation, how-to, faq, frequently asked questions"
@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
     @meta_desc = @category.meta_description
     @keywords = @category.keywords
 
-    add_breadcrumb "Knowledgebase", categories_path
+    add_breadcrumb t(:knowledgebase), categories_path
     add_breadcrumb @page_title, category_path(@category)
 
     respond_to do |format|

@@ -7,19 +7,20 @@ knowledgebase: true
 parent_site: /parent-redirect.html
 parent_company: Main Site
 site_url: http://support.yourdomain.com
-site_name: Helpy.io
+site_name: Helpy Support
 site_tagline: Support and Helpdesk Software
 product_name:
 support_phone:
 
 # Mandrill Account
-mandrill_username:
-mandrill_api_key:
+mandrill_username: ENV['MANDRILL_USERNAME'] #Do not edit, set by Heroku
+mandrill_api_key: ENV['MANDRILL_API_KEY'] #Do not edit, set by Heroku
 
 # Analytics and Tracking
-google_analytics_id:
+google_analytics_id: #Enter your analytics ID
 send_usage_data: true
 admin_email: inbound.support@yourdomain.com
+from_email: inbound.support@yourdomain.com
 
 #Inbound Mail Settings:
 type: pop3 #pop3 or imap
@@ -29,13 +30,3 @@ password: "somethingsecret"
 port: 993
 use_login: yes
 ssl: yes
-
-#SMTP Settings
-send_email: false
-address: 'smtp.gmail.com'
-port: 587
-domain: 'gmail.com'
-user_name: 'support@yourdomain.com'
-password: 'somethingsecret'
-authentication: 'plain'
-enable_starttls_auto: true

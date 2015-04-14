@@ -6,16 +6,16 @@
       <h4>
         <%= @topic.user.name.titleize %><br/>
         <span class="small">
-          <%= @topic.user.company.titleize %><br/>
-          <%= @topic.user.city.titleize %>, <%= @topic.user.state.titleize %>
-          <%#= @topic.user.country.titleize %>
+          <%= @topic.user.company.titleize unless @topic.user.company.nil? %><br/>
+          <%= @topic.user.city.titleize + ', ' unless @topic.user.city.nil? %> <%= @topic.user.state.titleize unless @topic.user.state.nil? %>
+          <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
         </span>
       </h4>
 
       <div id="user-contact-info" class="user-info">
         <div class="tiny-header">Contact:</div>
-        work: <%= @topic.user.work_phone.titleize %><br/>
-        cell: <%= @topic.user.cell_phone.titleize %><br/>
+        work: <%= @topic.user.work_phone %><br/>
+        cell: <%= @topic.user.cell_phone %><br/>
         <%= @topic.user.email %><br/>
       </div>
 

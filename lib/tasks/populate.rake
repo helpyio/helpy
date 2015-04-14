@@ -77,15 +77,14 @@ namespace :db do
       end
     end
 
-    # Create forum threads for our users
 
+    # Create forum threads for our users
     Forum.all.each do |f|
       rand(10..20).times do
         topic = f.topics.new
         topic.name = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
         topic.user_id = rand(6..50)
-        i = rand(1..5)
-        if i == 1
+        if f.private?
           topic.private = true
           puts "Private Ticket Created!"
         else

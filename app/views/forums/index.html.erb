@@ -1,14 +1,14 @@
 
-  <table id="forums">
-    <col width="80%">
-    <col width="20%">
-    <thead>
-  	  <tr>
-  	    <th class="name">Forum name</th>
-  		  <th class="last_post text-right">Last Activity</th>
-  	  </tr>
-    </thead>
-    <tbody>
-  	<%= render :partial => 'forum', :collection => @forums %>
-    </tbody>
-  </table>
+<table id="forums" class="table-hover">
+  <col width="80%">
+  <col width="20%">
+
+  <tr>
+      <th><%= t(:forum_name) %></th>
+		  <th class="text-right"><%= t(:last_activity) %></th>
+  </tr>
+
+  <tbody>
+	<%= render :partial => 'forum', :collection => @forums %>
+  </tbody>
+</table>

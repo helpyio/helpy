@@ -1,0 +1,13 @@
+<div id="left-col" class="col-md-3 hidden-sm hidden-xs">
+  <ul class="list-unstyled border-right">
+  <% @categories.each do |category| %>
+    <li class="">
+      <% if @category.nil? %>
+      <%= link_to category.name.titleize, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
+      <% else %>
+      <%= link_to category.name.titleize, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+</div>

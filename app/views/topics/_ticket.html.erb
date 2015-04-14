@@ -1,0 +1,9 @@
+<tr class="border-bottom">
+  <td>
+    <span class="more-important">
+      <%= link_to ticket.name.titleize, admin_ticket_path(ticket) -%><%= badge_for_status(ticket.status).html_safe %>
+    </span>
+  </td>
+  <td class="less-important"><%#= " and assigned to #{topic.assigned_user.name}" if topic.status == 'open' && topic.assigned_user != nil %></td>
+  <td class="less-important"><%= ticket.last_post_date.nil? ? "Not Lately" : distance_of_time_in_words_to_now(ticket.last_post_date) + " ago" %></td>
+</tr>

@@ -1,24 +1,19 @@
 class TopicsController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['show','index','tag','make_private']
-  add_breadcrumb 'Home', :root_path
+  add_breadcrumb I18n.t :home, :root_path
 
 
   # GET /topics
   # GET /topics.xml
   def index
     @forum = Forum.find(params[:forum_id])
-
-    if user_signed_in? && current_user.admin?
-      @topics = @forum.topics.active.chronologic.page params[:page]
-    else
-      @topics = @forum.topics.ispublic.chronologic.page params[:page]
-    end
+    @topics = @forum.topics.ispublic.chronologic.page params[:page]
 
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
     @page_title = @forum.name.titleize
-    add_breadcrumb 'Community', forums_path
+    add_breadcrumb t(:community), forums_path
     add_breadcrumb @forum.name.titleize
 
     respond_to do |format|
@@ -38,8 +33,8 @@ class TopicsController < ApplicationController
     #end
 
     @topics = current_user.topics.isprivate.chronologic.page params[:page]
-    @page_title = "Tickets"
-    add_breadcrumb 'Tickets'
+    @page_title = t(:tickets)
+    add_breadcrumb t(:tickets)
 
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
@@ -60,8 +55,8 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
 
-    add_breadcrumb 'Start a New Discussion'
-    @page_title = 'Start a New Discussion'
+    add_breadcrumb t(:start_discussion)
+    @page_title = t(:start_discussion)
 
     @topic = Topic.new
 
@@ -89,9 +84,15 @@ class TopicsController < ApplicationController
     respond_to do |format|
 
       if @post.save
-        format.html { redirect_to topic_posts_path(@topic.id) }
+        format.html {
+          if @topic.private?
+            redirect_to topic_posts_path(@topic)
+          else
+            redirect_to topic_posts_path(@topic)
+          end
+          }
       else
-        redirect_to :back
+        format.html { render action: 'new' }
       end
     end
   end
@@ -103,7 +104,7 @@ class TopicsController < ApplicationController
     @topic.tag_list = params[:tags]
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        flash[:notice] = 'Topic was successfully updated.'
+        #flash[:notice] = 'Topic was successfully updated.'
         format.html { redirect_to topic_posts_path(@topic) }
         format.xml  { head :ok }
       else

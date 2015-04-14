@@ -16,6 +16,7 @@ admin_user = User.create!(
   admin: true)
 
   # Create top level forums
+  Forum.create(name: "Private Tickets", description: "Private Messages to Support", private: true)
   Forum.create(name: "Getting Started", description: "How to get started")
   Forum.create(name: "Common Questions", description: "Frequently asked questions")
   Forum.create(name: "How To's", description: "Answers to how to do common things")

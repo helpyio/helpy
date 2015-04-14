@@ -1,7 +1,19 @@
+<script>
+$(document).ready(function(){
+  $('.toggle-controls').on("click", function(e){
+    //get ID
+    var id = e.target.id.split('-')[1];
+    console.log('ID is ' + id);
+    // reveal corresponding id controls
+    $('#controls-' + id).removeClass('hidden');
+  });
+});
+</script>
+
 <h1>Admin Knowledgebase</h1>
 <div class="row">
   <div class="col-md-12">
-    <table id="forums">
+    <table id="forums" class="table-hover">
 
       <col width="85%">
       <col width="15%">

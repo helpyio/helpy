@@ -42,6 +42,10 @@ Rails.application.routes.draw do
   get 'admin/user/:id/edit' => 'admin#user', as: :admin_user
   get 'admin/users/search' => 'admin#user_search', as: :admin_search
 
+
+  # Receive email from Griddler
+  mount_griddler
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

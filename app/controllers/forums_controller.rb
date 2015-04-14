@@ -1,17 +1,17 @@
 class ForumsController < ApplicationController
   #cache_sweeper :forum_sweeper, :only => [:update, :create, :destroy]
-  add_breadcrumb 'Home', :root_path
+  add_breadcrumb :root, :root_path
 
   # GET /forums
   # GET /forums.xml
   def index
-    @forums = Forum.order('name ASC')
-    @meta_title = "Forums"
-    @private_topics = current_user.topics.isprivate if user_signed_in?
+    @forums = Forum.where(private: false).order('name ASC')
+    @meta_title = t(:community)
+    #@private_topics = current_user.topics.isprivate if user_signed_in?
 
-    @page_title = "Community"
-    add_breadcrumb 'Community'
-    @title_tag = "#{Settings.site_name} Support: Community"
+    @page_title = t(:community)
+    add_breadcrumb t(:community)
+    @title_tag = "#{Settings.site_name} Support: #{@page_title}"
     @meta_desc = "Community discussion for #{Settings.site_name}"
     @keywords = "support, articles, documentation, how-to, faq, frequently asked questions, forum, discussion"
 

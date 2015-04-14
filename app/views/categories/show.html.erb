@@ -1,12 +1,6 @@
 <div class="row">
-  <div id="left-col" class="col-md-3">
-    <h4>Categories</h4>
-    <div class="list-group">
-    <% @categories.each do |category| %>
-      <%= link_to category.name.titleize, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
-    <% end %>
-    </div>
-  </div>
+
+  <%= render 'left_nav' %>
 
   <div id="category-col" class="col-md-9">
     <div class="row">

@@ -1,10 +1,16 @@
+
 <div class="add-form">
 <%= bootstrap_form_for(@topic) do |f| -%>
 
   <%= f.alert_message "Please fix the errors below." %>
 
-  <%= f.collection_select(:forum_id, Forum.all, :id, :name, label: 'Category') %>
-  <%= f.check_box(:private, label: "Open Private Ticket?") if Settings.tickets %>
+  <%= f.form_group :private, label: { text: "Should this message be private?" }, id: 'private-public' do %>
+    <%= f.radio_button :private, true, label: "Support only can respond (creates a private ticket)", inline: false %>
+    <%= f.radio_button :private, false, label: "Responses can come from Support or the Community", inline: false %>
+  <% end %>
+
+  <%= f.collection_select(:forum_id, Forum.where(private: false).all, :id, :name, label: 'Category') %>
+  <%#= f.check_box(:private, label: "Open Private Ticket?") if Settings.tickets %>
   <%= f.text_field :name, :size => 40, label: 'Subject' -%>
   <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
 

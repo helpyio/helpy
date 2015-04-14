@@ -35,10 +35,16 @@ $(document).ready(function(){
     $('#did-this-help').html("<h3>We're sorry this did you help you.  Please open a discussion in our support forums for more help!</h3>");
     //Report to Google
 
-    //Report to Cheatsheet
-
-
   });
 
+  // used by create topic form
+  $('#topic_private_true').click(function(){
+    $("#topic_forum_id").parent().hide();
+    $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>")
+  });
+  $('#topic_private_false').click(function(){
+    $("#topic_forum_id").parent().show();
+    $("#new_topic_forum_id").remove();
+  });
 
 });
