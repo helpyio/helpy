@@ -7,6 +7,7 @@
 	http://localhost:3000/assets/admin-334a269bbd635d4dcb63f804919bc1a5.css?body=1
 	http://localhost:3000/assets/admin-3ffbd526633f5b3fe27709b22b21f7aa.css?body=1
 	http://localhost:3000/assets/admin-dc944612123612ecf1369dfd9e833011.css?body=1
+	http://localhost:3000/assets/admin-79efc0f98fc21b765676dd285005bdbd.css?body=1
 */
 
 /*== ADMIN == */
@@ -88,4 +89,8 @@ td > img {
 .mailbox {
 	padding-right: 10px;
 	padding-bottom: 8px;
+}
+
+.ticket-control {
+	text-transform: uppercase;
 }

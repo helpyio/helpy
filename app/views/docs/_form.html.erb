@@ -1,0 +1,16 @@
+<%= f.text_field :title %>
+<%= f.text_area(:body, :width => '100%', :height => '400px') %>
+<%= f.text_field :meta_description %>
+<%= f.text_field :title_tag %>
+<%= f.text_field :keywords %>
+<%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }) %>
+
+<%= f.text_field :rank %>
+
+<%= f.form_group :active, label: { text: "Article Status: " } do %>
+  <%= f.radio_button :active, true, label: "Published", inline: true %>
+  <%= f.radio_button :active, false, label: "Draft", inline: true %>
+<% end %>
+
+<%= f.check_box :front_page, label: "Feature on front page? ", inline: true %><br/><br/>
+<%= f.submit "Save Changes" %>

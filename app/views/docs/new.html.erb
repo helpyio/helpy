@@ -1,6 +1,7 @@
 <h1>New Content</h1>
-<% form_for(@doc, :url => docs_path) do |f| %>
-<%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+<%#= bootstrap_form_for :doc, url: category_doc_path(@doc.category, @doc.id), :method => 'post' do |f| %>
+<%= bootstrap_form_for(@doc) do |f| %>
+  <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Back', docs_path %>
+<%#= link_to 'Back', docs_path %>

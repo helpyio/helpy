@@ -4,9 +4,10 @@ class HomeController < ApplicationController
 
     @topics = Topic.by_popularity.ispublic.front
     @rss = Topic.chronologic.active
-    @docs = Doc.all_public_popular
+    @articles = Doc.all_public_popular
+    @team = User.admins
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{root_url}index.rss' />"
-    @categories = Category.active.all
+    @categories = Category.active.featured.all
 
     #@topics = Topic.ispublic.tag_counts_on(:tags)
 

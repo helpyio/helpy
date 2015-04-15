@@ -1,11 +1,12 @@
+<div class="tiny-header">Tickets</div>
 <ul class="list-unstyled border-right">
   <li class="mailbox tiny-header">
     <%= link_to "New", admin_tickets_path(:status => 'new'), :remote => true %>
     <span class="tiny-header pull-right"><%= @new %></span>
   </li>
   <li class="mailbox tiny-header">
-    <%= link_to "Active", admin_tickets_path(:status => 'open'), :remote => true %>
-    <span class="tiny-header pull-right"><%= @open %></span>
+    <%= link_to "Unread", admin_tickets_path(:status => 'unread'), :remote => true %>
+    <span class="tiny-header pull-right"><%= @unread %></span>
   </li>
   <li class="mailbox tiny-header">
     <%= link_to "Open", admin_tickets_path(:status => 'open'), :remote => true %>
@@ -25,3 +26,4 @@
   </li>
   <%#= link_to "Create New", admin_tickets_path, class: 'list-group-item' %>
 </ul>
+<div class="tiny-header">Community Discussions</div>

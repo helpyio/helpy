@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   end
 
   def image_url
-    if self.medium_image == ""
+    if self.medium_image.nil?
       self.gravatar_url(:size => 60)
     else
       self.medium_image

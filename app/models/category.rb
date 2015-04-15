@@ -21,6 +21,7 @@ class Category < ActiveRecord::Base
 
   has_many :docs
 
+  has_paper_trail
   #before_create :make_link
   #before_create :build_permalink
 

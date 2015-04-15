@@ -12,7 +12,8 @@ class AdminController < ApplicationController
   end
 
   def knowledgebase
-    @categories = Category.alpha
+    @categories = Category.featured.alpha
+    @nonfeatured = Category.where(front_page: false).alpha
 
     respond_to do |format|
       format.html { render :action => "knowledgebase" }
@@ -31,21 +32,23 @@ class AdminController < ApplicationController
 
   def tickets
 
-    case params[:status]
+    if params[:status].nil?
+      @status = "new"
+    else
+      @status = params[:status]
+    end
+
+    case @status
 
     when 'new'
       @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).isprivate.page params[:page]
+    when 'unread'
+      @topics = Topic.where(status: 'new').isprivate.all.page params[:page]
     when 'assigned'
       @topics = Topic.where(assigned_user_id: current_user.id).isprivate.page params[:page]
     else
-      @topics = Topic.where(status: params[:status]).isprivate.page params[:page]
+      @topics = Topic.where(status: @status).isprivate.page params[:page]
     end
-
-    #unless params[:status] == 'active'
-    #  @topics = Topic.where(status: params[:status]).isprivate.page params[:page]
-    #else
-    #  @topics = Topic.where(status: 'open').isprivate.page params[:page]
-    #end
 
     respond_to do |format|
       format.html

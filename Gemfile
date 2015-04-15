@@ -30,6 +30,7 @@ gem 'devise-bootstrap-views'
 gem 'rails-i18n', '~> 4.0.0'
 
 gem 'permalink_fu'
+gem 'paper_trail'
 
 gem 'acts-as-taggable-on', '~>3.5'
 
@@ -42,6 +43,7 @@ gem 'font-awesome-less'
 gem 'font-awesome-rails'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails-confirm'
 gem 'therubyracer'
 gem 'rdiscount'
 

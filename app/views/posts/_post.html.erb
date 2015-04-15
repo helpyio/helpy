@@ -1,7 +1,7 @@
 <tr class="posted-by <%= "first-post" if post.id == post.topic.posts.first.id %>">
 	<td width="60px">
 		<div>
-		<%= image_tag(post.user.medium_image, width: '40px', class: 'img-circle') %>
+		<%= image_tag(post.user.image_url, width: '40px', class: 'img-circle') %>
 		</div>
 	</td>
 	<td class="bottom-border" valign="bottom">

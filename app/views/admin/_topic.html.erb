@@ -1,10 +1,10 @@
 <tr class="border-bottom">
   <td>
     <div class="user-thumbnail pull-left">
-      <%= image_tag(topic.user.medium_image, width: '40px', class: 'img-circle') %>
+      <%= image_tag(topic.user.image_url, width: '40px', class: 'img-circle') %>
     </div>
     <span class="more-important">
-      <%= link_to topic.name.titleize, admin_ticket_path(topic) -%><%= badge_for_status(topic.status).html_safe %>
+      #<%= topic.id %> <%= link_to topic.name.titleize, admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.status).html_safe %>
     </span>
     <br/><span class="less-important">Started By <%= h topic.user.name.titleize %></span>
   </td>

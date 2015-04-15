@@ -13,3 +13,6 @@
   <%= render :partial => 'topic', :collection => @topics %>
   </tbody>
 </table>
+<div class="text-right">
+  <%= paginate @topics, remote: true %>
+</div>

@@ -110,7 +110,8 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to(admin_help_url) }
+      format.html { redirect_to(admin_knowledgebase_path) }
+      format.js
     end
   end
 

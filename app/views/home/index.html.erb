@@ -67,6 +67,7 @@ $(document).ready(function(){
 </div>
 -->
 
+<% if @categories.count > 0 %>
 <div id="featured-categories" class="row">
 
   <h2 class="text-center">Browse Topics:</h2>
@@ -87,3 +88,12 @@ $(document).ready(function(){
   <% end %>
   </div>
 </div>
+<% end %>
+
+<% if @articles.count > 0 %>
+
+<% end %>
+
+<% if @team.count > 0 %>
+
+<% end %>

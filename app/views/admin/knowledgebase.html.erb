@@ -18,7 +18,17 @@ $(document).ready(function(){
       <col width="85%">
       <col width="15%">
       <tbody id="categories">
+      <tr>
+        <td colspan="2" class='tiny-header'>Front Page Categories</td>
+      </tr>
       <%= render partial: 'cat', collection: @categories %>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      <tr>
+        <td colspan="2" class='tiny-header'>Other Categories</td>
+      </tr>
+      <%= render partial: 'cat', collection: @nonfeatured %>
       </tbody>
     </table>
 

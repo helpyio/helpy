@@ -8,6 +8,9 @@
 	http://localhost:3000/assets/base-cc65244c18c6f1530acba8f718de723c.css?body=1
 	http://localhost:3000/assets/base-b53ed0f9d35199887e19d2dcd4048912.css?body=1
 	http://localhost:3000/assets/base-f158fa15fd2288ba10e646c47aa52292.css?body=1
+	http://localhost:3000/assets/base-21ed3be58e2717e9be06d0d7aa9485fe.css?body=1
+	http://localhost:3000/assets/base-4b49b33cd8d94159f47ee093e01635fe.css?body=1
+	http://localhost:3000/assets/base-3af42fc3ee5a75ce84705eb2ce074a25.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -28,7 +31,9 @@ th {
 }
 
 td, th {
-	padding-left: 10px;
+	padding-left: 0px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
 tbody {
@@ -170,6 +175,11 @@ div.admin-tools {
 	padding-bottom: 5px;
 }
 
+.tiny_header li a {
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
 /* === GLOBAL CLASSES === */
 
 .active {
@@ -293,6 +303,17 @@ span.category-icon {
 }
 
 /* === BOOTSTRAP OVERRIDES == */
+/*
+.dropdown-menu > li > a {
+  display: inline;
+  padding: 3px 10px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+*/
 
 /*
 .navbar-default{background-color:#fff;border-color:#fff}.navbar-default .navbar-brand{color:#777}.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus{color:#5e5e5e;background-color:transparent}.navbar-default .navbar-text{color:#777}.navbar-default .navbar-nav>li>a{color:#777}.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav>.disabled>a,.navbar-default .navbar-nav>.disabled>a:hover,.navbar-default .navbar-nav>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-toggle{border-color:#ddd}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:#ddd}.navbar-default .navbar-toggle .icon-bar{background-color:#888}.navbar-default .navbar-collapse,.navbar-default .navbar-form{border-color:#e7e7e7}.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{background-color:#e7e7e7;color:#555}.navbar-default .navbar-nav .open .dropdown-menu>li>a{color:#777}.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-link{color:#777}.navbar-default .navbar-link:hover{color:#333}.navbar-default .btn-link{color:#777}.navbar-default .btn-link:hover,.navbar-default .btn-link:focus{color:#333}.navbar-default .btn-link[disabled]:hover,fieldset[disabled] .navbar-default .btn-link:hover,.navbar-default .btn-link[disabled]:focus,fieldset[disabled] .navbar-default .btn-link:focus{color:#ccc}
@@ -670,8 +691,6 @@ table#forums, table#topics, table#posts {
 
 #forums tbody tr td {
 	border-bottom: 1px solid #eee;
-	padding-top: 15px;
-	padding-bottom: 15px;
 }
 
 #forums tbody tr {

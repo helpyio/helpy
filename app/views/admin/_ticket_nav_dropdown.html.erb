@@ -5,11 +5,11 @@
   <ul class="list-unstyled dropdown-menu" role="menu">
     <li class="tiny-header">
       <%= link_to "New", admin_tickets_path(:status => 'new'), :remote => true %>
-      <span class="tiny-header pull-right"><%= @new %></span>
+      <div class="tiny-header pull-right"><%= @new %></div>
     </li>
     <li class="tiny-header">
-      <%= link_to "Active", admin_tickets_path(:status => 'open'), :remote => true %>
-      <span class="tiny-header pull-right"><%= @open %></span>
+      <%= link_to "Unread", admin_tickets_path(:status => 'unread'), :remote => true %>
+      <span class="tiny-header pull-right"><%= @unread %></span>
     </li>
     <li class="tiny-header">
       <%= link_to "Open", admin_tickets_path(:status => 'open'), :remote => true %>

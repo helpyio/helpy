@@ -1,13 +1,15 @@
 <h1>
-  Ticket Management
+  Ticket Management: #<%= @topic.id %> <%= @topic.name.titleize -%>
 </h1>
 <div class="row">
 
-  <div class="col-md-4 hidden-xs hidden-sm" id="left-col-user-info">
-    <%= render 'user_info' %>
+  <div class="col-md-3 hidden-xs hidden-sm" id="left-col-ticket-nav">
+    <%= render 'ticket_nav' %>
   </div>
 
-  <div id="right-col-ticket" class="col-md-8">
+  <div id="tickets" class="col-md-9">
     <%= render 'ticket' %>
   </div>
+
+
 </div>

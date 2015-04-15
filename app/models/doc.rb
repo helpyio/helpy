@@ -28,6 +28,8 @@ class Doc < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:title, :body, :keywords]
 
+  has_paper_trail
+
   paginates_per 25
 
   acts_as_taggable

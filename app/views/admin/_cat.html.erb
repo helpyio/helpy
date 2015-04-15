@@ -1,10 +1,20 @@
-<tr>
-  <td><strong class="more-important"><%= cat.name %></strong><br/><%= link_to "#{cat.docs.count} articles ", admin_articles_path(cat.id), class: 'less-important' %></td>
-  <td class="text-right">
-    <span id="controls-<%= cat.id %>" class="row-controls hidden">
-    <%= link_to 'EDIT', edit_category_path(cat) %>
-    <%= link_to '', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete, :class => 'glyphicon glyphicon-remove less-important' %>
+<tr id="category-<%= cat.id %>">
+  <td>
+    <span class="more-important">
+      <%= cat.name %>
     </span>
-    <span id="row-<%= cat.id %>" class='toggle-controls glyphicon glyphicon-align-justify'></span>
+    <br/>
+    <%= link_to "#{cat.docs.count} articles ", admin_articles_path(cat.id), class: 'less-important' %>
+  </td>
+  <td class="text-right">
+    <div class="btn-group">
+      <span id="row-<%= cat.id %>" data-toggle="dropdown" aria-expanded="false" class='dropdown-toggle glyphicon glyphicon-align-justify'></span>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><%= link_to 'Edit', edit_category_path(cat) %></li>
+        <li><%= link_to 'Delete', cat, data: {confirm: 'Please confirm you really want to DELETE this, and all articles'}, method: :delete, remote: true, class: 'glyphicon glyphicon-remove less-important' %></li>
+        <li><%= link_to "View and Edit #{cat.docs.count} articles ", admin_articles_path(cat.id), class: 'less-important' %></li>
+        <li><%= link_to 'New Article', new_category_doc_path(cat) %></li>
+      </ul>
+    </div>
   </td>
 </tr>

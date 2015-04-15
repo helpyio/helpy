@@ -62,15 +62,14 @@ class DocsController < ApplicationController
   # POST /docs
   # POST /docs.xml
   def create
-    @doc = Doc.new(params[:doc])
+    @doc = Doc.new(doc_params)
 
     respond_to do |format|
       if @doc.save
 
         #@doc.tag_list = params[:tags]
         @doc.save
-        flash[:notice] = 'Doc was successfully created.'
-        format.html { redirect_to(docs_path) }
+        format.html { redirect_to(admin_knowledgebase_path) }
 
       else
         format.html { render :action => "new" }
