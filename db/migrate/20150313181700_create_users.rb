@@ -5,6 +5,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :identity_url
       t.string :name
       t.boolean :admin, :default => false
+      t.text :bio
+      t.text :signature
+      t.string :role, :default => 'user'
       t.string :home_phone
       t.string :work_phone
       t.string :cell_phone

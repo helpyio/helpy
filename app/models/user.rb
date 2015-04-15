@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
 
   is_gravtastic
 
+  ROLES = %w[admin agent editor user]
+
   scope :admins, -> { where(admin: true).order('name asc') }
 
   def active_assigned_count

@@ -2,13 +2,13 @@
 <% @results.each do |result| %>
   <% if result.searchable_type == "Topic" %>
   <li>
-    <%= link_to result.searchable.name, result.searchable, class: 'lead' %><br/>
-    <%= result.searchable.post_cache.truncate_words(20) %><br/><br/>
+    <span class="more-important"><%= link_to result.searchable.name, result.searchable, class: 'lead' %></span><br/>
+    <span class="less-important"><%= result.searchable.post_cache.truncate_words(20) %></span><br/><br/>
   </li>
   <% else %>
   <li>
-    <%= link_to result.searchable.title, category_doc_path(result.searchable.category_id, result.searchable_id, class: 'lead') %><br/>
-    <%= result.searchable.body.truncate_words(20) %><br/><br/>
+    <span class="more-important"><%= link_to result.searchable.title, category_doc_path(result.searchable.category_id, result.searchable_id, class: 'lead') %></span><br/>
+    <span class="less-important"><%= result.searchable.body.truncate_words(20) %></span><br/><br/>
   </li>
   <% end %>
 <% end %>

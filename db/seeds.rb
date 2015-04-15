@@ -13,6 +13,7 @@ admin_user = User.create!(
   login:'admin',
   email: 'admin@test.com',
   password:'12345678',
+  role: 'admin',
   admin: true)
 
   # Create top level forums
@@ -23,11 +24,11 @@ admin_user = User.create!(
   Forum.create(name: "Bugs and Issues", description: "Report Bugs here!")
 
   # Create top level KB categories
-  Category.create(name:'Getting Started',icon: 'eye-open', title_tag: 'Getting Started',meta_description:'Learn how to get started with our solution')
+  Category.create(name:'Getting Started',icon: 'eye-open', title_tag: 'Getting Started',meta_description:'Learn how to get started with our solution', front_page: true)
   Category.create(name:'Top Issues',icon: 'exclamation-sign', title_tag: 'Solutions to Top Issues',meta_description:'Answers to our most frequent issues', front_page: true)
-  Category.create(name:'General Questions', icon: 'question-sign', title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here')
-  Category.create(name:'Troubleshooting', icon: 'ok-circle', title_tag: 'Troubleshooting',meta_description:'Got a problem? Start here to learn more about solving it')
-  Category.create(name:'How do I...', icon: 'send', title_tag: 'How to Accomplish specific things',meta_description:'Learn how to accomplish many common things with our solution')
+  Category.create(name:'General Questions', icon: 'question-sign', title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here', front_page: true)
+  Category.create(name:'Troubleshooting', icon: 'ok-circle', title_tag: 'Troubleshooting',meta_description:'Got a problem? Start here to learn more about solving it', front_page: true)
+  Category.create(name:'How do I...', icon: 'send', title_tag: 'How to Accomplish specific things',meta_description:'Learn how to accomplish many common things with our solution', front_page: true)
   Category.create(name:'FAQ', icon: 'list',title_tag: 'Frequently asked questions',meta_description:'Answers to all of our FAQs', front_page: true)
-  Category.create(name:'Billing', icon: 'credit-card',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions')
-  Category.create(name:'Expert Tips', icon: 'road',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions')
+  Category.create(name:'Billing', icon: 'credit-card',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)
+  Category.create(name:'Expert Tips', icon: 'road',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)

@@ -17,6 +17,7 @@ namespace :db do
       u.login = user.username
       u.password = '12345678'
       u.admin = true
+      u.role = 'admin'
       u.thumbnail = user.picture.thumbnail
       u.medium_image = user.picture.medium
       u.large_image = user.picture.large
