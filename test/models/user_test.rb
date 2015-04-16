@@ -7,6 +7,9 @@
 #  identity_url           :string
 #  name                   :string
 #  admin                  :boolean          default(FALSE)
+#  bio                    :text
+#  signature              :text
+#  role                   :string           default("user")
 #  home_phone             :string
 #  work_phone             :string
 #  cell_phone             :string

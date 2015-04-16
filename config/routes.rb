@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  root "home#index"
+  root to: "home#index"
 
-  devise_for :users
+  devise_for :users#, controllers: {
+  #      sessions: 'sessions'
+  #    }
 
   resources :knowledgebase, :as => 'categories', :controller => "categories" do
     #collection do

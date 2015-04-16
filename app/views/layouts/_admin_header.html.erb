@@ -1,5 +1,5 @@
 <div id="header-wrapper">
-      <div id="above-header">
+      <div id="above-header" class="hidden-xs small">
         <%= render :partial => 'layouts/above_header' %>
       </div>
       <%= nav_bar brand: "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>

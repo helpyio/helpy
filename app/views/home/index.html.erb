@@ -70,7 +70,7 @@ $(document).ready(function(){
 <% if @categories.count > 0 %>
 <div id="featured-categories" class="row">
 
-  <h2 class="text-center">Browse Topics:</h2>
+  <h2 class="text-center space-h2"><%= t('browse_header')%></h2>
 
   <div id="home-topics" class="col-md-12">
   <% @categories.each do |category| %>
@@ -95,5 +95,12 @@ $(document).ready(function(){
 <% end %>
 
 <% if @team.count > 0 %>
-
+<div id="featured-team" class="row">
+  <h2 class="text-center space-h2"><%= t('support_team_header')%></h2>
+  <div id='home-team' class= "col-md-12 text-center">
+    <ul class="list-inline">
+    <%= render partial:'team_member', collection: @team %>
+    </ul>
+  </div>
+</div>
 <% end %>

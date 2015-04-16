@@ -11,6 +11,9 @@
 	http://localhost:3000/assets/base-21ed3be58e2717e9be06d0d7aa9485fe.css?body=1
 	http://localhost:3000/assets/base-4b49b33cd8d94159f47ee093e01635fe.css?body=1
 	http://localhost:3000/assets/base-3af42fc3ee5a75ce84705eb2ce074a25.css?body=1
+	http://localhost:3000/assets/base-f07d99c6309beed0a22979047553ec59.css?body=1
+	http://localhost:3000/assets/base-53f030109ee81027ffd8497962080536.css?body=1
+	http://localhost:3000/assets/base-3fa30be6b9ce922fe9c9d9130f3dfbf1.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -246,6 +249,10 @@ span.category-icon {
 	padding-left: 0px;
 	padding-right: 0px;
 }
+
+.space-h2 {
+	margin-bottom: 50px;
+}
 	
 /* === LAYOUT === */
 
@@ -432,7 +439,7 @@ h1#how-help {
 	font-size: 300%;
 }
 
-#featured-categories {
+#featured-categories, #featured-team {
 	margin-top: 40px;
 	background-color: #fff;
 	margin-left: 20px;
@@ -445,10 +452,6 @@ div.home-square {
 	height: 120px;
 	background-color: #fff;
 	margin: 0px;
-}
-
-#home-topics {
-	margin-top: 30px;
 }
 
 .dummy {
@@ -478,7 +481,24 @@ div#community-forums-block > h3 {
 	padding-top: 15px;
 }
 
+li.team-member {
+	padding-left: 10px;
+	padding-right: 10px;	
+}
+
 /* === KNOWLEDGEBASE === */
+
+#left-col.affix-top {
+    position: static;
+    margin-top:30px;
+    width:228px;
+  }
+
+#left-col.affix {
+   position: fixed;
+   top:225px;
+   width:250px;
+}
 
 ul.articles {
 	padding-bottom: 20px;
@@ -755,6 +775,14 @@ div.topic-status {
 
 /* === FOOTER === */
 
+#get-help-wrapper {
+	background-color: #eee;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 40px;
+}
+
+
 #footer-left h3, #footer-right h3 {
 	color: white;
 }
@@ -766,7 +794,7 @@ div.topic-status {
 #footer-wrapper {
 	width: 100%;
 	background-color: #222;
-	margin-top:40px;
+	
 }
 
 #footer {

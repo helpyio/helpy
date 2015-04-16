@@ -23,7 +23,8 @@ en:
   root: 'Home'
 
   big_search: "How can we help?"
-  browse: "Browse Topics"
+  browse_header: "Browse Topics"
+  support_team_header: "Support Team"
 
   # Navigation
   knowledgebase: "Knowledgebase"
@@ -54,6 +55,13 @@ en:
 
   # Tickets
   tickets: "Tickets"
+
+  # Get Help
+  get_help_header: "Still Need Help??"
+  get_help_button: "Start a Discussion with Us"
+
+  # Profile
+  my_profile: 'My Profile'
 
   # devise/sessions/new
   sign_in: Sign in
