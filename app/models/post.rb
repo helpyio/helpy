@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body
   validates_length_of :body, :maximum => 10000
 
-  after_save :update_last_post_date_cache
+  after_create :update_waiting_on_cache
   after_save :update_topic_cache
   after_save :send_message
 
@@ -26,9 +26,23 @@ class Post < ActiveRecord::Base
 
 
   #updates the last post date for both the forum and the topic
-  def update_last_post_date_cache
-    self.topic.update_attribute('last_post_date', Time.now)
-    self.topic.forum.update_attribute('last_post_date', Time.now)
+  #updates the waiting on cache
+  def update_waiting_on_cache
+    #self.topic.update(last_post_id: self.id)
+    if self.topic.private?
+      logger.info('private message, update waiting on cache')
+      if self.user.admin?
+        logger.info('waiting on user')
+        waiting_on = "user"
+      else
+        logger.info('waiting on admin')
+        waiting_on = "admin"
+      end
+    else
+      logger.info("!!!! NOT PRIVATE !!!!")
+    end
+    self.topic.update(last_post_date: Time.now, waiting_on: waiting_on)
+    self.topic.forum.update(last_post_date: Time.now)
   end
 
   #updates cache of post content used in search

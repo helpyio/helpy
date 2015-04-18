@@ -111,7 +111,9 @@ ActiveRecord::Schema.define(version: 20150414210945) do
     t.integer  "user_id"
     t.string   "name"
     t.integer  "posts_count",      default: 0,     null: false
+    t.string   "waiting_on"
     t.datetime "last_post_date"
+    t.datetime "closed_date"
     t.integer  "last_post_id"
     t.string   "status",           default: "new"
     t.boolean  "private",          default: false

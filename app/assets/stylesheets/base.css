@@ -14,9 +14,16 @@
 	http://localhost:3000/assets/base-f07d99c6309beed0a22979047553ec59.css?body=1
 	http://localhost:3000/assets/base-53f030109ee81027ffd8497962080536.css?body=1
 	http://localhost:3000/assets/base-3fa30be6b9ce922fe9c9d9130f3dfbf1.css?body=1
+	http://localhost:3000/assets/base-ef8cbf1911a9ad50f6e32e4f4289809b.css?body=1
 */
 
 /* === BASE STYLES === */
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 a {
 	color: #333;
 	text-decoration: none;

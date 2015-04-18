@@ -6,10 +6,10 @@
         <%= control_for_status(@topic.status).html_safe %>
       </span>
       <ul class="dropdown-menu" role="menu">
-        <li><%= link_to 'Mark Closed', update_ticket_path(@topic, status: 'closed'), :remote => true unless @topic.status == "closed" %></li>
-        <li><%= link_to 'Reopen', update_ticket_path(@topic, status: 'open'), :remote => true unless @topic.status == "open" %></li>
-        <li><%= link_to 'Mark New', update_ticket_path(@topic, status: 'new'), :remote => true unless @topic.status == "new" %></li>
-        <li><%= link_to 'Mark Spam', update_ticket_path(@topic, status: 'spam'), :remote => true unless @topic.status == "spam" %></li>
+        <li><%= link_to 'Mark Closed', update_ticket_path(@topic, change_status: 'closed'), :remote => true unless @topic.status == "closed" %></li>
+        <li><%= link_to 'Reopen', update_ticket_path(@topic, change_status: 'open'), :remote => true unless @topic.status == "open" %></li>
+        <li><%= link_to 'Mark New', update_ticket_path(@topic, change_status: 'new'), :remote => true unless @topic.status == "new" %></li>
+        <li><%= link_to 'Mark Spam', update_ticket_path(@topic, change_status: 'spam'), :remote => true unless @topic.status == "spam" %></li>
       </ul>
     </span>
     <% unless @topic.status == "closed" %>
@@ -44,7 +44,7 @@
   </div>
 
   <div class="col-md-4 hidden-xs hidden-sm" id="left-col-user-info">
-    <%= render 'user_info' %>
+    <%= render 'admin/user_info' %>
   </div>
 
 </div>

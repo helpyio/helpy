@@ -26,6 +26,8 @@ class Topic < ActiveRecord::Base
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
 
+  paginates_per 25
+
   include PgSearch
   multisearchable :against => [:name, :post_cache],
                   :if => lambda { |record| record.private = false}
@@ -66,12 +68,12 @@ class Topic < ActiveRecord::Base
   end
 
   def open
-    self.status = "open"
-    self.save
+    self.update(status: "open")
   end
 
   def close
     self.status = "closed"
+    self.closed_date = Time.now
   end
 
   #updates the last post date, called when a post is made

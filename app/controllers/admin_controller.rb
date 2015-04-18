@@ -76,22 +76,24 @@ class AdminController < ApplicationController
   def update_ticket
     @topic = Topic.where(id: params[:id]).first
 
-    @topic.status = params[:status] unless params[:status].blank?
+    # actions for each status change
+    case params[:change_status]
+    when 'closed'
+      @topic.close
+      message = "This ticket has been closed by the support staff."
+    when 'reopen'
+      @topic.open
+      message = "This ticket has been reopened by the support staff."
+    else
+      @topic.status = params[:change_status] unless params[:change_status].blank?
+    end
+
     @topic.assigned_user_id = params[:assigned_user_id] unless params[:assigned_user_id].blank?
     @topic.save!
 
-    case params[:status]
-    when 'closed'
-      message = "This ticket has been closed by the support staff."
-    when 'reopen'
-      message = "This ticket has been reopened by the support staff."
-    end
-
     #Add post indicating status change
     @topic.posts.create!(:user_id => current_user.id, :body => message) unless message.nil?
-
     @posts = @topic.posts
-
 
     fetch_counts
     respond_to do |format|
