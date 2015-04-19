@@ -48,4 +48,16 @@ $(document).ready(function(){
     $("#new_topic_forum_id").remove();
   });
 
+  // link entire row to child
+  $('.link-row').mouseover(function(){
+    $(this).css('cursor','pointer');
+  });
+  $('.link-row').mouseout(function(){
+    $(this).css('cursor','auto');
+  });  
+  $('.link-row').on('click', function(){
+    document.location.href = $(this).find('a').attr('href');
+  });
+
+
 });

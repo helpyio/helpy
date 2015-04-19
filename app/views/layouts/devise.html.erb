@@ -9,13 +9,14 @@
 		<meta http-equiv="imagetoolbar" content="no" />
 		<meta name="distribution" content="all" />
 		<meta name="robots" content="all" />
+		<meta name="description" content="<%= @meta_description %>" />
+		<meta name="keywords" content="<%= @keywords %>" />
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<%= stylesheet_link_tag 'application' %>
 		<%= javascript_include_tag "application" %>
-		<%= stylesheet_link_tag 'admin' %>
 
 		<%= @feed_link.html_safe if @feed_link %>
 		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700|Lobster' rel='stylesheet' type='text/css'>
@@ -25,10 +26,8 @@
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		<% if Settings.send_usage_data %>
-		ga('create', 'UA-50151-23', 'auto');
+		ga('create', '<%= Settings.google_analytics_id %>', 'auto');
 		ga('send', 'pageview');
-		<% end %>
 
 		</script>
 
@@ -41,24 +40,22 @@
 	<div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<%= render :partial => 'layouts/admin_header' %>
+			<%= render :partial => 'layouts/header' %>
 		</div>
 	</div>
 </div>
 </div>
-
 <div id="body-wrapper" class="container">
-	<div class="row">
-
-		<div class="col-md-12">
-			<div id="main-body" >
-				<%= bootstrap_flash %>
-				<div id="main-content">
-					<%= yield %>
+		<div class="row">
+			<div class="col-md-12">
+				<div id="main-body" >
+					<%#= bootstrap_flash %>
+					<div id="main-content">
+						<%= yield %>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 </div>
 
 <div id="footer-wrapper">

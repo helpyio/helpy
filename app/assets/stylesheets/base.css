@@ -15,6 +15,17 @@
 	http://localhost:3000/assets/base-53f030109ee81027ffd8497962080536.css?body=1
 	http://localhost:3000/assets/base-3fa30be6b9ce922fe9c9d9130f3dfbf1.css?body=1
 	http://localhost:3000/assets/base-ef8cbf1911a9ad50f6e32e4f4289809b.css?body=1
+	http://localhost:3000/assets/base-0296cfb98c7caaea10239018f5b465bf.css?body=1
+	http://localhost:3000/assets/base-e10d8d0f87147385661d6017ddfea12e.css?body=1
+	http://localhost:3000/assets/base-a86d7ebc30510976fbffc3b8b8e6ade4.css?body=1
+	http://localhost:3000/assets/base-127fa92f5f6522c95e04d9b93323170c.css?body=1
+	http://localhost:3000/assets/base-8bcc73776b72f92b74105c337e106d46.css?body=1
+	http://localhost:3000/assets/base-7c742b5db5c3c865fcf6614f6a1fe425.css?body=1
+	http://localhost:3000/assets/base-6e744379746a22cd519bac65d5536f77.css?body=1
+	http://localhost:3000/assets/base-85fe0825621cf2bd900cfccf84c40853.css?body=1
+	http://localhost:3000/assets/base-e660f816c3b2c21c2e85a8d045f6c013.css?body=1
+	http://localhost:3000/assets/base-6f08d9da34b8c95571154252a4611838.css?body=1
+	http://localhost:3000/assets/base-ca22bcdee06ab2352f6361cd10225e8f.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -22,6 +33,10 @@
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+}
+
+body {
+	position: relative;
 }
 
 a {
@@ -40,8 +55,12 @@ th {
 	text-transform: uppercase;
 }
 
+td {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
 td, th {
-	padding-left: 0px;
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -52,7 +71,6 @@ tbody {
 
 h1 {
 	font-family: 'Droid Sans', serif;
-	font-size: 220%;
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 5px;
@@ -60,6 +78,39 @@ h1 {
 	margin-top: 0px;
 	background-color: #feffe9;
 }
+
+@media(max-width:767px){
+	h1 {
+		font-size: 150%;
+	}
+	h1#how-help {
+		font-size: 190%;
+	}
+	h2 {
+		font-size: 150%;
+	}	
+}
+
+@media(min-width:768px){
+	h1 {
+		font-size: 190%;
+	}
+
+}
+
+@media(min-width:992px){
+	h1 {
+		font-size: 220%;
+	}	
+}
+
+@media(min-width:1200px){
+	h1 {
+		font-size: 220%;
+	}	
+}
+
+
 
 textarea {
   width:98%;
@@ -80,12 +131,7 @@ h2 {
 	font-family: Georgia, "Times New Roman", Times, serif;
 }
 */
-body {
-	/*font-family: 'Droid Sans', sans-serif;*/
-	position: relative;
-	/*font: 120% "Lucida Grande", Lucida, Verdana, sans-serif;
-	background: url(/assets/cheatsheet-bg.png) repeat-x;*/
-}
+
 
 /*
 body.home {
@@ -120,15 +166,20 @@ ul.breadcrumb {
 	padding-bottom: 0px;;
 }
 
-#wrapper {
+#upper-wrapper {
 	margin-bottom: 5px;
 	padding: 0px;
-	background-color: #fff;
+	background-color: #eee;
 
 	-webkit-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
 	-moz-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
 	box-shadow: 0px 0px 12px 0px rgba(196,196,196,1);
 
+}
+
+#upper-wrapper > div {
+	padding-top: 10px;
+	padding-bottom: 0px;
 }
 
 div.add-form {
@@ -191,6 +242,15 @@ div.admin-tools {
 }
 
 /* === GLOBAL CLASSES === */
+
+.category-box {
+	width: (20%-10px);
+	height: 200px;
+	border: 1px solid #eee;
+	padding-top: 5%;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
 
 .active {
 	background-color: #eee;
@@ -341,10 +401,15 @@ span.category-icon {
 
 
 .navbar-brand {
-	font-family: 'Shadows Into Light', sans-serif;
+	color: black;
+	font-family: 'Lobster', sans-serif;
 	padding:0px;
-	font-size:230%;
+	font-size:180%;
 	padding-top: 10px;
+}
+
+.navbar {
+	margin-bottom: 0px;
 }
 
 .navbar-brand a {
@@ -646,10 +711,10 @@ div.fieldWithErrors textarea
 	margin-top: -10px;
 }
 
-#wrapper {
+/*#upper-wrapper {
 	background-color: #eee;
 }
-
+*/
 #header-wrapper {
 	background-color: #eee;
 }
@@ -814,4 +879,51 @@ div.topic-status {
 #footer a {
 	color: #888;
 	text-decoration: underline;
+}
+
+/* === OTHER MEDIA QUERIES === */
+
+@media(max-width:767px){
+	.dummy {
+    	margin-top: 110px;
+	}
+	.thumbnail {
+	    position: absolute;
+	    top: 0px;
+	    bottom: 0px;
+	    left: 5px;
+	    right: 5px;
+	    padding-left: 5px;
+	    padding-right: 5px;
+	    text-align:center;
+	    padding-top: 10px;
+	    max-height: 100px;
+	}
+	/*
+	#upper-wrapper {
+		height: 40px;
+	}
+	
+	#upper-wrapper, #upper-wrapper.jumbotron {
+		height: 40px;
+		margin-bottom: 5px;
+		padding: 0px;
+		background-color: #eee;
+
+		-webkit-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
+		-moz-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
+		box-shadow: 0px 0px 12px 0px rgba(196,196,196,1);
+	}*/
+}
+
+@media(min-width:768px){
+
+}
+
+@media(min-width:992px){
+
+}
+
+@media(min-width:1200px){
+
 }

@@ -38,34 +38,6 @@ $(document).ready(function(){
 });
 </script>
 
-<!--
-<div class="row hidden-xs hidden-sm text-center" id="home-options">
-  <div class="col-md-4 home-option border-right" id="community-forums-block" data-link="<%= forums_path %>">
-    <span class="glyphicon glyphicon-comment"></span><h3>Community Forums</h3>
-  </div>
-  <div class="col-md-4 home-option border-right" id="kb-block" data-link="<%= categories_path %>">
-    <span class="glyphicon glyphicon-flash"></span><h3>Knowledge Base</h3>
-  </div>
-  <div class="col-md-4 home-option" id="discussion-block" data-link="<%= new_topic_path %>">
-    <span class="glyphicon glyphicon-question-sign"></span><h3>Ask a Question</h3>
-  </div>
-</div>
--->
-<!--
-<div class="row text-center" id="home-options-xs">
-  <div class="col-md-12">
-    <ul class='list-unstyled home-option-xs border-bottom' data-link="<%= forums_path %>">
-      <h3><span class="glyphicon glyphicon-comment"></span> Community Forums</h3>
-    </ul>
-    <ul class='list-unstyled home-option-xs border-bottom' data-link="<%= categories_path %>">
-      <h3><span class="glyphicon glyphicon-flash"></span> Knowledge Base</h3>
-    </ul>
-    <ul class='list-unstyled home-option-xs' data-link="<%= new_topic_path %>">
-      <h3><span class="glyphicon glyphicon-question-sign"></span> Ask a Question</h3>
-    </ul>
-  </div>
-</div>
--->
 
 <% if @categories.count > 0 %>
 <div id="featured-categories" class="row">
@@ -78,7 +50,7 @@ $(document).ready(function(){
     <h5 class="category-header text-center"><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %></h5>
     <p class="text-center"><%= category.meta_description %></p>
   </div>-->
-  <div class="topic-box col-md-3 col-sm-4 col-xs-6" data-link="<%= category_path(category) %>">
+  <div class="topic-box col-lg-3 col-md-3 col-sm-4 col-xs-12" data-link="<%= category_path(category) %>">
     <div class="dummy"></div>
     <div class="thumbnail">
       <h5 class="category-header text-center"><span class="category-icon glyphicon glyphicon-<%= category.icon %>"></span><br/><%= link_to category.name.titleize, category_path(category), id: "category-#{category.id}"  %><br/></h5>

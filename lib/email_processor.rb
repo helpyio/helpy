@@ -60,7 +60,6 @@ class EmailProcessor
       #clean message
       message = MailExtract.new(message).body
 
-
       #parse_forwarded_message(message)
       topic = Forum.first.topics.create(:name => @subject, :user_id => @parsed_user.id, :private => true)
 
@@ -92,10 +91,14 @@ class EmailProcessor
     @user.email = @email.from[:email]
 #    @user.name = mail.from.split('@')[0]
 #    @user.login = mail.from.split('@')[0]
-    @user.name = @email.from[:token]
+    @user.name = @email.from[:from]
     @user.password = password
 #    @user.password_confirmation = password
     @user.save
+
+    #TODO need to send pasword to user
+
+
   end
 
 

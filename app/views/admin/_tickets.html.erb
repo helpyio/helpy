@@ -1,13 +1,11 @@
 <table id="topics" class="forum table-hover">
 
-  <col width="70%">
-  <col width="10%">
+  <col width="80%">
   <col width="20%">
 
   <tr>
     <th>Subject</th>
-    <th></th>
-    <th>Last Post</th>
+    <th class="text-right">Last Post</th>
   </tr>
   <tbody>
   <%= render :partial => 'topic', :collection => @topics %>

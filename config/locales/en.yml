@@ -64,7 +64,7 @@ en:
   my_profile: 'My Profile'
 
   # devise/sessions/new
-  sign_in: Sign in
+  login: Log in
 
   # devise/shared/links
   forgot_password: Forgot your password?
@@ -76,6 +76,12 @@ en:
   change_password: Change password
   new_password: New password
   new_password_confirmation: Confirm new password
+
+  # devise/confirmations/new
+  resend: Resend confirmation instructions
+
+  # devise/registrations/new
+  sign_up: Sign Up
 
   activerecord:
     attributes:

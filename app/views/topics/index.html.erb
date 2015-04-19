@@ -1,14 +1,12 @@
 
-<table id="topics">
+<table id="forums" class="table-hover">
 
-  <col width="65%">
-  <col width="15%">
+  <col width="80%">
   <col width="20%">
 
   <tbody>
     <tr>
       <th><%= t(:topic) %></th>
-      <th><%= t(:replies) %></th>
   	  <th class="text-right"><%= t(:last_activity) %></th>
     </tr>
     <%= render :partial => 'topic', :collection => @topics %>
