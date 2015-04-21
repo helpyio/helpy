@@ -1,4 +1,4 @@
-/* @override
+/* @override 
 	http://localhost:3000/assets/base-a2b071a5f40768f3217aa05a6fbb4f20.css?body=1
 	http://localhost:3000/assets/base-a8e24c2fa257fd3af2843d679c9bfed9.css?body=1
 	http://localhost:3000/assets/base-63ba3523f3ebba91cac2b2f1cfb42970.css?body=1
@@ -27,6 +27,7 @@
 	http://localhost:3000/assets/base-6f08d9da34b8c95571154252a4611838.css?body=1
 	http://localhost:3000/assets/base-ca22bcdee06ab2352f6361cd10225e8f.css?body=1
 	http://localhost:3000/assets/base-449942332b6934f69c0b47ed81b71324.css?body=1
+	http://localhost:3000/assets/base-334f3a38114c8f66c92182f03cf975ac.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -565,9 +566,13 @@ li.team-member {
 
 /* === KNOWLEDGEBASE === */
 
+#category-col {
+	margin-top: 30px;
+}
+
 #left-col.affix-top {
     position: static;
-    margin-top:30px;
+    margin-top:22px;
     width:228px;
   }
 

@@ -17,11 +17,12 @@
 //= require_tree .
 //= require twitter/bootstrap/rails/confirm
 
-$(document).ready(function(){
+
+
+var ready = function(){
 
   // Sets up autoscroll for any link with class autoscroll
   // requires data-target param containing class or ID of target
-
   $(".autoscroll").each(function(){
       $(this).click(function(){
         var scrollTarget=$(this).data("target");
@@ -54,10 +55,12 @@ $(document).ready(function(){
   });
   $('.link-row').mouseout(function(){
     $(this).css('cursor','auto');
-  });  
+  });
   $('.link-row').on('click', function(){
     document.location.href = $(this).find('a').attr('href');
   });
 
+};
 
-});
+$(document).ready(ready);
+$(document).on('page:load', ready);
