@@ -1,4 +1,4 @@
-/* @override 
+/* @override
 	http://localhost:3000/assets/base-a2b071a5f40768f3217aa05a6fbb4f20.css?body=1
 	http://localhost:3000/assets/base-a8e24c2fa257fd3af2843d679c9bfed9.css?body=1
 	http://localhost:3000/assets/base-63ba3523f3ebba91cac2b2f1cfb42970.css?body=1
@@ -89,7 +89,7 @@ h1 {
 	}
 	h2 {
 		font-size: 150%;
-	}	
+	}
 }
 
 @media(min-width:768px){
@@ -102,13 +102,13 @@ h1 {
 @media(min-width:992px){
 	h1 {
 		font-size: 200%;
-	}	
+	}
 }
 
 @media(min-width:1200px){
 	h1 {
 		font-size: 220%;
-	}	
+	}
 }
 
 
@@ -245,7 +245,7 @@ div.admin-tools {
 /* === GLOBAL CLASSES === */
 
 .category-box {
-	width: (20%-10px);
+	width: calc(20%-10px);
 	height: 200px;
 	border: 1px solid #eee;
 	padding-top: 5%;
@@ -321,7 +321,7 @@ span.category-icon {
 .space-h2 {
 	margin-bottom: 50px;
 }
-	
+
 /* === LAYOUT === */
 
 #breadcrumbs {
@@ -560,7 +560,7 @@ div#community-forums-block > h3 {
 
 li.team-member {
 	padding-left: 10px;
-	padding-right: 10px;	
+	padding-right: 10px;
 }
 
 /* === KNOWLEDGEBASE === */
@@ -870,7 +870,7 @@ div.topic-status {
 #footer-wrapper {
 	width: 100%;
 	background-color: #222;
-	
+
 }
 
 #footer {
@@ -908,7 +908,7 @@ div.topic-status {
 	#upper-wrapper {
 		height: 40px;
 	}
-	
+
 	#upper-wrapper, #upper-wrapper.jumbotron {
 		height: 40px;
 		margin-bottom: 5px;
