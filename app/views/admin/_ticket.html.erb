@@ -34,7 +34,7 @@
     <div class="add-form">
     <h4>Reply to this Topic:</h4>
     <%#= error_messages_for :post -%>
-    <%= bootstrap_form_for :post, :url => topic_posts_path(@topic), :remote => true do |f| -%>
+    <%= bootstrap_form_for @topic.posts.new, :url => topic_posts_path(@topic), :remote => true do |f| -%>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
       <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
       <%= f.submit 'Post Reply' -%>

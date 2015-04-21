@@ -26,6 +26,7 @@
 	http://localhost:3000/assets/base-e660f816c3b2c21c2e85a8d045f6c013.css?body=1
 	http://localhost:3000/assets/base-6f08d9da34b8c95571154252a4611838.css?body=1
 	http://localhost:3000/assets/base-ca22bcdee06ab2352f6361cd10225e8f.css?body=1
+	http://localhost:3000/assets/base-449942332b6934f69c0b47ed81b71324.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -100,7 +101,7 @@ h1 {
 
 @media(min-width:992px){
 	h1 {
-		font-size: 220%;
+		font-size: 200%;
 	}	
 }
 
@@ -374,6 +375,10 @@ span.category-icon {
 	background-color: #fff;
 	list-style-image: none;
 	display: block;
+}
+
+#body-wrapper {
+	margin-bottom: 80px;
 }
 
 /* === BOOTSTRAP OVERRIDES == */
@@ -851,7 +856,6 @@ div.topic-status {
 	background-color: #eee;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	margin-top: 40px;
 }
 
 
@@ -874,11 +878,12 @@ div.topic-status {
 	background-color: #222;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	padding-left: 10px;
 }
 
 #footer a {
 	color: #888;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 /* === OTHER MEDIA QUERIES === */

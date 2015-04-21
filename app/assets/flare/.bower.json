@@ -1,0 +1,37 @@
+{
+  "name": "flare",
+  "version": "1.0.0",
+  "homepage": "https://github.com/toddmotto/flare",
+  "authors": [
+    "Todd Motto"
+  ],
+  "description": "Unobtrusive event emitter API for Google Universal Analytics event tracking",
+  "main": "dist/flare.js",
+  "keywords": [
+    "flare",
+    "google",
+    "universal",
+    "analytics",
+    "event",
+    "emitter",
+    "API"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "59558056c2c8cf7686b776957aa366e5fe063bd8"
+  },
+  "_source": "git://github.com/toddmotto/flare.git",
+  "_target": "~1.0.0",
+  "_originalSource": "flare",
+  "_direct": true
+}

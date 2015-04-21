@@ -26,7 +26,7 @@ class EmailProcessor
 #      message = @email.body.decoded
 #    end
 
-    message = @email.raw_text
+    message = @email.body
 
     #mail.multipart? ? message = mail.parts[-1].body.reverse.split('nO')[-1].reverse : message = mail.body.reverse.split('nO')[-1].reverse
     subject = @email.subject
@@ -39,8 +39,12 @@ class EmailProcessor
 #      message = @email.raw_text
 #      puts message
 
+      complete_subject = subject.split("[#{sitename}]")[1].strip
+      ticket_number = complete_subject.split("-")[0].split('#')[1].strip
 
-      topic = Topic.find_by_name(subject.split("[#{sitename}]")[1].strip)
+      puts "Ticket Number: #{ticket_number}"
+
+      topic = Topic.find(ticket_number)
       if topic
         puts "Subject match, adding to topic: " + subject.split("[#{sitename}]")[1].strip
       else
@@ -86,12 +90,12 @@ class EmailProcessor
     1.upto(8) { password += source_characters[rand(source_characters.length),1] }
 
     # create user
-    puts "creating new user #{@email.from[:email]}"
+    puts "creating new user #{@email.from[:email]} #{@email.from[:name]}"
     @user = User.new
     @user.email = @email.from[:email]
 #    @user.name = mail.from.split('@')[0]
 #    @user.login = mail.from.split('@')[0]
-    @user.name = @email.from[:from]
+    @user.name = @email.from[:name]
     @user.password = password
 #    @user.password_confirmation = password
     @user.save

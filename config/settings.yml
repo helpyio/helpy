@@ -21,12 +21,3 @@ google_analytics_id: #Enter your analytics ID
 send_usage_data: true
 admin_email: inbound.support@yourdomain.com
 from_email: inbound.support@yourdomain.com
-
-#Inbound Mail Settings:
-type: pop3 #pop3 or imap
-server:  "pop.gmail.com"
-username: "support@yourdomain.com"
-password: "somethingsecret"
-port: 993
-use_login: yes
-ssl: yes

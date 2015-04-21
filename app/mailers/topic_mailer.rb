@@ -1,12 +1,13 @@
 class TopicMailer < MandrillMailer::MessageMailer
 
-  default from: Settings.admin_email
+  default from: "#{Settings.admin_email}"
 
   def new_ticket(topic)
 
     mandrill_mail(
-      subject: "[#{Settings.site_name}] #{topic.name}",
+      subject: "[#{Settings.site_name}] ##{topic.id}-#{topic.name}",
       to: topic.user.email,
+      from_name: "#{topic.posts.last.user.name}@#{Settings.site_name}",
       html: "<!DOCTYPE html>
       <html>
         <head>
@@ -14,8 +15,8 @@ class TopicMailer < MandrillMailer::MessageMailer
         </head>
         <body>
         <p>
-          Make sure your reply appears above this line<br/>
-          =================================================================<br/>
+        --- Make sure your reply appears above this line ---
+        <br/>
           Message ID:#{topic.id}</br>
         </p>
         <p>
@@ -28,11 +29,11 @@ class TopicMailer < MandrillMailer::MessageMailer
           #{topic.posts.last.body}
         </p>
         <p>
-          View this online: #{Settings.site_url}
+          View this online: <a href='#{Settings.site_url}/'>#{Settings.site_url}</a>
         </p><br/>
           <p>
-          <strong>Powered by Helpy Helpdesk</strong><br/>
-          Get a Free Helpy Support System for your Site at https://github.com/scott/help/tree/master
+          <strong>Powered by Helpy</strong><br/>
+          Get a Free Helpy Support System for your Site at <a href='http://helpy.io/'>http://helpy.io</a>
         </p>
         </body>
       </html>",

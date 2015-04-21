@@ -14,8 +14,8 @@ class DeviseMailer < Devise::Mailer
 
   def mandrill_send(opts={})
       message = {
-        :subject => "#{opts[:subject]}",
-        :from_name => Settings.parent_site,
+        :subject => "[#{Settings.site_name}] #{opts[:subject]}",
+        :from_name => "Support @#{Settings.site_name}",
         :from_email => Settings.from_email,
         :html => "#{opts[:html]}",
         :text => "#{opts[:email]}",

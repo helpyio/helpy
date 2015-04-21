@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   add_breadcrumb I18n.t :home, :root_path
   before_filter :fetch_counts, :only => 'create'
+  after_filter :send_message, :only => 'create'
   #after_filter :view_causes_vote, :only => 'index'
 
   def index
@@ -57,7 +58,7 @@ class PostsController < ApplicationController
           if current_user.admin?
             @posts = @topic.posts
             @admins = User.admins
-            @post = Post.new
+            #@post = Post.new
             render 'admin/ticket'
           end
         }
@@ -90,6 +91,21 @@ class PostsController < ApplicationController
   end
 
   protected
+
+  def send_message
+    # TODO deliver/create a firstmessage to deliver on the initial post
+    #Should only send when admin posts, not when user replies
+
+    if current_user.admin?
+      logger.info("admin is replying to message, so email")
+      logger.info("Post ID Being sent: #{@post.body}")
+      logger.info("Sending Email: #{Settings.send_email}")
+      logger.info("Private Message: #{@topic.private}")
+      TopicMailer.new_ticket(@post.topic).deliver if Settings.send_email == true && @topic.private == true
+    else
+      logger.info("reply is not from admin, don't email")
+    end
+  end
 
   def view_causes_vote
     if logged_in?
