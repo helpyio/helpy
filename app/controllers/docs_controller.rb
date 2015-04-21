@@ -22,11 +22,11 @@ class DocsController < ApplicationController
   def show
     @doc = Doc.where(id: params[:id]).first
 
-    @title_tag = @doc.title_tag
     @meta_desc = @doc.meta_description
     @keywords = @doc.keywords
 
     @page_title = @doc.title.titleize
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
 
     add_breadcrumb t(:knowledgebase), categories_path
     add_breadcrumb @doc.category.name.titleize, category_path(@doc.category)

@@ -13,6 +13,7 @@ class TopicsController < ApplicationController
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
     @page_title = @forum.name.titleize
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
     add_breadcrumb t(:community), forums_path
     add_breadcrumb @forum.name.titleize
 
@@ -36,6 +37,8 @@ class TopicsController < ApplicationController
     @page_title = t(:tickets)
     add_breadcrumb t(:tickets)
 
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
+
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
     respond_to do |format|
@@ -57,6 +60,7 @@ class TopicsController < ApplicationController
 
     add_breadcrumb t(:start_discussion)
     @page_title = t(:start_discussion)
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
 
     @topic = Topic.new
 

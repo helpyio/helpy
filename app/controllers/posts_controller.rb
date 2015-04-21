@@ -12,10 +12,10 @@ class PostsController < ApplicationController
 
     #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
 
-    @meta_title = @topic.name
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
 
     @page_title = @topic.name.titleize
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
     add_breadcrumb t(:community), forums_path
     add_breadcrumb @topic.forum.name.titleize, forum_topics_path(@topic.forum)
     add_breadcrumb @topic.name.titleize

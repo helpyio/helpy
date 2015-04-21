@@ -11,7 +11,7 @@ class ForumsController < ApplicationController
 
     @page_title = t(:community)
     add_breadcrumb t(:community)
-    @title_tag = "#{Settings.site_name} Support: #{@page_title}"
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
     @meta_desc = "Community discussion for #{Settings.site_name}"
     @keywords = "support, articles, documentation, how-to, faq, frequently asked questions, forum, discussion"
 

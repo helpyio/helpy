@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     @categories = Category.alpha
 
     @page_title = t(:knowledgebase)
-    @title_tag = "#{Settings.site_name} Support: Knowledgebase"
+    @title_tag = "#{Settings.site_name}: Knowledgebase"
     @meta_desc = "Knowledgebase for #{Settings.site_name}"
     @keywords = "Knowledgebase, Knowledge base, support, articles, documentation, how-to, faq, frequently asked questions"
     add_breadcrumb @page_title, categories_path
@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
     @related = Doc.in_category(@doc.category_id) if @doc
 
     @page_title = @category.name.titleize
-    @title_tag = @category.title_tag
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
     @meta_desc = @category.meta_description
     @keywords = @category.keywords
 
