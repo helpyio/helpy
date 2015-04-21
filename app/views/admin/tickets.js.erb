@@ -1,6 +1,6 @@
 $('#tickets').html("<%= escape_javascript(render 'tickets') %>");
 $('#left-col-ticket-nav').html("<%= escape_javascript(render 'ticket_nav') %>");
-$('#ticket-page-title').text("Ticket Management: <%= @status.titleize %>");
+$('#ticket-page-title').html("Ticket Management: <%= @status.titleize %> <%= escape_javascript(render 'ticket_nav_dropdown') %>");
 $(document).prop('title', "Ticket Management: <%= @status.titleize %>");
 window.location.hash = '<%= @status %>';
 ga('send', 'pageview');

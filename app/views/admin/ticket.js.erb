@@ -1,6 +1,6 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/ticket') %>");
 $('#left-col-ticket-nav').html("<%= escape_javascript(render 'admin/ticket_nav') %>");
-$('#ticket-page-title').text("Ticket Management: #<%= @topic.id %> <%= @topic.name.titleize %>");
+$('#ticket-page-title').html("#<%= @topic.id %> <%= @topic.name.titleize %> <%= escape_javascript(render 'ticket_nav_dropdown') %>");
 $(document).prop('title', "Ticket Management: #<%= @topic.id %> <%= @topic.name.titleize %>");
 window.location.hash = '<%= "#{@topic.id} #{@topic.name}" %>';
 ga('send', 'pageview');
