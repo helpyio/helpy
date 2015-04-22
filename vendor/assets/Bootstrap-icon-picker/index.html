@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+  	<link href="css/icon-picker.min.css" media="all" rel="stylesheet" type="text/css" />
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/iconPicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".icon-picker").iconPicker();
+        });
+    </script>
+    <style type="text/css">
+        #wraper{position:absolute;width:400px; left:50%;margin-left: -200px;top:100px;}
+        input{padding-bottom: 30px;}
+    </style>
+  </head>
+  <body>
+	<div id="wraper">
+		<form method="post">
+      <input type="text" name="someName" class="icon-picker" />
+      <input type="text" name="someName2" class="icon-picker" />
+      <input type="text" name="someName3" class="icon-picker" />
+      
+    </form>
+    
+	</div> <!-- wraper -->
+</body>
+</html>
+ 

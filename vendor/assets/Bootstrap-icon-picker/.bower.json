@@ -1,0 +1,14 @@
+{
+  "name": "Bootstrap-icon-picker",
+  "homepage": "https://github.com/scott/Bootstrap-icon-picker",
+  "_release": "60b7adff86",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "60b7adff86bbb36e063663d66fc686559c5762a2"
+  },
+  "_source": "https://github.com/scott/Bootstrap-icon-picker.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/scott/Bootstrap-icon-picker.git",
+  "_direct": true
+}
