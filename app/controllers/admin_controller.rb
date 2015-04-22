@@ -41,13 +41,13 @@ class AdminController < ApplicationController
     case @status
 
     when 'new'
-      @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).isprivate.page params[:page]
+      @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).page params[:page]
     when 'unread'
-      @topics = Topic.where(status: 'new').isprivate.all.page params[:page]
+      @topics = Topic.where(status: 'new').all.page params[:page]
     when 'assigned'
-      @topics = Topic.where(assigned_user_id: current_user.id).isprivate.page params[:page]
+      @topics = Topic.where(assigned_user_id: current_user.id).page params[:page]
     else
-      @topics = Topic.where(status: @status).isprivate.page params[:page]
+      @topics = Topic.where(status: @status).page params[:page]
     end
 
     respond_to do |format|

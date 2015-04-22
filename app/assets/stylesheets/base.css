@@ -28,6 +28,9 @@
 	http://localhost:3000/assets/base-ca22bcdee06ab2352f6361cd10225e8f.css?body=1
 	http://localhost:3000/assets/base-449942332b6934f69c0b47ed81b71324.css?body=1
 	http://localhost:3000/assets/base-334f3a38114c8f66c92182f03cf975ac.css?body=1
+	http://localhost:3000/assets/base-c529c27e8fd3585823754869f3e11ea7.css?body=1
+	http://localhost:3000/assets/base-0de4f4dd8d6f2beb6be677ab77270611.css?body=1
+	http://localhost:3000/assets/base-acf46b759f10d1d804060f4bd6397d46.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -78,6 +81,7 @@ h1 {
 	padding-right: 5px;
 	padding-top: 5px;
 	margin-top: 0px;
+	margin-bottom: 0px;
 	background-color: #feffe9;
 }
 
@@ -245,13 +249,31 @@ div.admin-tools {
 
 /* === GLOBAL CLASSES === */
 
-.category-box {
-	width: calc(20%-10px);
-	height: 200px;
-	border: 1px solid #eee;
-	padding-top: 5%;
-	margin-right: 10px;
-	margin-bottom: 10px;
+.label {
+  	display: inline;
+  	padding: .4em .6em .5em;
+    font-size: 75%;
+  	font-weight: bold;
+  	line-height: 1;
+  	color: #ffffff;
+  	text-align: center;
+  	white-space: nowrap;
+  	vertical-align: baseline;
+  	border-radius: .25em;
+}
+
+.label-private {
+	border: 2px dashed #666;
+	color: #666;
+  	display: inline;
+  	padding: .2em .6em .3em;
+  	font-size: 75%;
+  	font-weight: bold;
+  	line-height: 1;
+  	text-align: center;
+  	white-space: nowrap;
+  	vertical-align: baseline;
+  	border-radius: .25em;
 }
 
 .active {
@@ -307,7 +329,7 @@ span.category-icon {
 }
 
 .user-thumbnail {
-	padding-right:5px;
+	padding-right:10px;
 }
 
 .status-label {
