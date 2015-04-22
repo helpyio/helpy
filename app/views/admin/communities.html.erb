@@ -1,0 +1,29 @@
+<h1>Admin Communities</h1>
+<div class="row">
+  <div class="col-md-12">
+    <table id="forums" class="table-hover">
+
+      <col width="85%">
+      <col width="15%">
+      <tbody id="categories">
+      <tr>
+        <td colspan="2" class='tiny-header'>Community</td>
+      </tr>
+      <%= render partial: 'forum', collection: @forums %>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <%= bootstrap_form_for(Forum.new, layout: :inline, label_errors: true) do |f| %>
+      <div class="col-md-10 col-sm-7">
+      <%= f.text_field :name, skip_label: true, placeholder:'Enter a name to start creating a new category', class: 'wide-field' %>
+      </div>
+      <div class="col-md-2 col-sm-2 text-right">
+      <%= f.submit "Add" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

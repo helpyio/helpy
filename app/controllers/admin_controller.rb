@@ -103,8 +103,8 @@ class AdminController < ApplicationController
 
   end
 
-  def community
-
+  def communities
+    @forums = Forum.where(private: false).order('name ASC')
   end
 
   def users

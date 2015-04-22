@@ -1,11 +1,17 @@
-<h1>Edit Category: Troubleshooting</h1>
+<script type="text/javascript">
+        $(function () {
+            $(".icon-picker").iconPicker();
+        });
+</script>
+
+<h1>Edit Category: <%- @category.name %></h1>
 
 <%= bootstrap_form_for @category, label_errors: true do |f| %>
 
   <%= f.alert_message "Please fix the errors below." %>
 
   <%= f.text_field :name %>
-  <%= f.text_field :icon %>
+  <%= f.text_field :icon, class: 'icon-picker', placeholder: 'Select an icon to associate with this category (optional)' %>
   <%= f.text_field :section %>
   <%= f.text_field :keywords %>
   <%= f.text_field :title_tag %>

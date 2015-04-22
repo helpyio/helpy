@@ -1,5 +1,5 @@
 {
-  "directory": "app/assets/",
+  "directory": "vendor/assets/",
   "analytics": false,
   "timeout": 120000,
   "registry": {
