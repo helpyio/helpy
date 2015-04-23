@@ -1,7 +1,12 @@
 <h1>Edit <%= @doc.title %></h1>
-<%= bootstrap_form_for :doc, url: category_doc_path(@category,@doc), :method => 'patch' do |f| %>
+<div class="col-md-4">
+  <%= bootstrap_form_for :doc, url: category_doc_path(@category,@doc), :method => 'patch' do |f| %>
 
-  <%= f.alert_message "Please fix the errors below." %>
-  <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+    <%= f.alert_message "Please fix the errors below." %>
+    <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
 
-<% end %>
+  <% end %>
+</div>
+<div class="col-md-8">
+  <%= render 'admin/article_editor' %>
+</div>

@@ -22,7 +22,7 @@ class AdminController < ApplicationController
 
   def articles
     @category = Category.active.where(id: params[:category_id]).first
-    @docs = @category.docs.ordered.active
+    @docs = @category.docs.ordered.alpha
 
     respond_to do |format|
       format.html

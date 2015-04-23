@@ -1,0 +1,33 @@
+<div id="article-editor">
+  <div id="toolbar">
+    <select class="ql-size">
+      <option value="10px">Small</option>
+      <option value="13px" selected>Normal</option>
+      <option value="18px">Large</option>
+      <option value="32px">Huge</option>
+    </select>
+    <span class="ql-format-button ql-bold"></span>
+    <span class="ql-format-separator"></span>
+    <span class="ql-format-button ql-italic"></span>
+    <span class="ql-format-separator"></span>
+    <span class="ql-format-button ql-underline"></span>
+    <span class="ql-format-separator"></span>
+    <span class="ql-format-button ql-link"></span>
+
+  </div>
+  <div id="editor"></div>
+</div>
+<script>
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+  quill.addModule('toolbar', {
+    container: '#toolbar'
+  });
+  quill.setHTML('<%= @doc.body.html_safe %>');
+
+  quill.on('text-change', function(delta, source) {
+    //console.log(quill.getHTML());
+    $('#doc_body').val(quill.getHTML());
+  });
+</script>

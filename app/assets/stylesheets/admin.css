@@ -8,6 +8,7 @@
 	http://localhost:3000/assets/admin-3ffbd526633f5b3fe27709b22b21f7aa.css?body=1
 	http://localhost:3000/assets/admin-dc944612123612ecf1369dfd9e833011.css?body=1
 	http://localhost:3000/assets/admin-79efc0f98fc21b765676dd285005bdbd.css?body=1
+	http://localhost:3000/assets/admin-14123779efa2627205c1abd43f429d19.css?body=1
 */
 
 /*== ADMIN == */
@@ -93,4 +94,16 @@ td > img {
 
 .ticket-control {
 	text-transform: uppercase;
+}
+
+#article-editor {
+	border: 1px solid #eee;
+}
+
+#editor {
+	min-height: 500px;
+}
+
+#toolbar {
+	border-bottom: 1px solid #eee;
 }

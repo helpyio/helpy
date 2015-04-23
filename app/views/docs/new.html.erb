@@ -1,7 +1,11 @@
 <h1>New Article</h1>
-<%#= bootstrap_form_for :doc, url: category_doc_path(@doc.category, @doc.id), :method => 'post' do |f| %>
-<%= bootstrap_form_for(@doc) do |f| %>
-  <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
-<% end %>
+<div class="col-md-4">
+  <h4>Meta:</h4>
+  <%= bootstrap_form_for(@doc) do |f| %>
+    <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+  <% end %>
+</div>
 
-<%#= link_to 'Back', docs_path %>
+<div class="col-md-8">
+  <%= render 'admin/article_editor' %>
+</div>
