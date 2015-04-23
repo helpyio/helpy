@@ -11,13 +11,21 @@
               <%= render ("docs/doc"), doc: doc %>
             </li>
           <% end %>
+          <% if @docs.count == 0 %>
+
+            <div class="text-center verticalness">
+              <%= t(:nothing_here) %>
+            </div>
+
+          <% end %>
         </ul>
       </div>
+    </div>
 
-      <div class='paginate-links'>
+    <div class="row">
+      <div class="col-md-9 text-left">
         <%= paginate @docs %>
       </div>
-
     </div>
 
   </div>

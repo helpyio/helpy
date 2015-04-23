@@ -1,7 +1,6 @@
 class TopicsController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['show','index','tag','make_private']
-  add_breadcrumb I18n.t :home, :root_path
 
 
   # GET /topics
@@ -14,7 +13,7 @@ class TopicsController < ApplicationController
 
     @page_title = @forum.name.titleize
     @title_tag = "#{Settings.site_name}: #{@page_title}"
-    add_breadcrumb t(:community), forums_path
+    add_breadcrumb t(:community, default: "Community"), forums_path
     add_breadcrumb @forum.name.titleize
 
     respond_to do |format|
@@ -34,8 +33,8 @@ class TopicsController < ApplicationController
     #end
 
     @topics = current_user.topics.isprivate.chronologic.page params[:page]
-    @page_title = t(:tickets)
-    add_breadcrumb t(:tickets)
+    @page_title = t(:tickets, default: 'Tickets')
+    add_breadcrumb @page_title
 
     @title_tag = "#{Settings.site_name}: #{@page_title}"
 
@@ -58,8 +57,9 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
 
-    add_breadcrumb t(:start_discussion)
-    @page_title = t(:start_discussion)
+
+    @page_title = t(:start_discussion, default: "Start a New Discussion")
+    add_breadcrumb @page_title
     @title_tag = "#{Settings.site_name}: #{@page_title}"
 
     @topic = Topic.new

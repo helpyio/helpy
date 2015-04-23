@@ -1,16 +1,19 @@
 <table id="topics">
 
   <col width="70%">
-  <col width="10%">
-  <col width="20%">
+  <col width="30%">
 
   <tr>
-    <th>Subject</th>
-    <th></th>
-    <th>Last Post</th>
+    <th><%= t(:topic) %></th>
+    <th class="text-right"><%= t(:last_activity) %></th>
   </tr>
   <%= render :partial => 'topics/ticket', :collection => @topics %>
 </table>
+
+<% if @topics.total_count == 0 %>
+  <div class="text-center verticalness"><%= t(:no_tickets) %></div>
+<% end %>
+
 
 <div class="text-right">
   <%= paginate @topics %>

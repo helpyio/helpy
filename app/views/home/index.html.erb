@@ -1,48 +1,13 @@
 
 <div class="jumbotron text-center" id="home-search">
-  <h1 id="how-help" class="text-center">How can we help?</h1>
+  <h1 id="how-help" class="text-center"><%= t(:how_can_we_help) %></h1>
   <%= render 'result/search_form' %>
 </div>
-
-<script>
-$(document).ready(function(){
-//  $('.home-option').mouseover(function(){
-//    var activeBlock = $(this);
-//    activeBlock.addClass("active");
-//    activeBlock.css('cursor','pointer');
-//    activeBlock.find("span").css('font-size','400%');
-//    activeBlock.find("h3").css('padding-top','16px');
-//  });
-//  $('.home-option').mouseout(function(){
-//    var activeBlock = $(this);
-//    $(this).removeClass("active");
-//    $(this).css('cursor','auto');
-//    activeBlock.find("span").css('font-size','300%');
-//    activeBlock.find("h3").css('padding-top','30px');
-//  });
-  $('.home-option, .home-option-xs, .topic-box').click(function(){
-    document.location.href = $(this).data("link");
-  });
-  $('.thumbnail').mouseover(function(){
-    $(this).css('cursor','pointer');
-    $(this).css('border','1px solid #666');
-    $(this).css('box-shadow', '0px 0px 10px #eee');
-  });
-  $('.thumbnail').mouseout(function(){
-    $(this).css('cursor','auto');
-    $(this).css('border','1px solid #eee');
-    $(this).css('box-shadow', '');
-  });
-
-
-});
-</script>
-
 
 <% if @categories.count > 0 %>
 <div id="featured-categories" class="row">
 
-  <h2 class="text-center space-h2"><%= t('browse_header')%></h2>
+  <h2 class="text-center space-h2"><%= t(:browse_topics)%></h2>
 
   <div id="home-topics" class="col-md-12">
   <% @categories.each do |category| %>
@@ -68,7 +33,7 @@ $(document).ready(function(){
 
 <% if @team.count > 0 %>
 <div id="featured-team" class="row">
-  <h2 class="text-center space-h2"><%= t('support_team_header')%></h2>
+  <h2 class="text-center space-h2"><%= t(:support_team)%></h2>
   <div id='home-team' class= "col-md-12 text-center">
     <ul class="list-inline">
     <%= render partial:'team_member', collection: @team %>

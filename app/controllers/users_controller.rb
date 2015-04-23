@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   #before_filter :authenticate!
-  add_breadcrumb I18n.t :home, :root_path
 
   def show
     @user = current_user

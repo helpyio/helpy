@@ -60,6 +60,8 @@ gem 'mandrill_mailer'
 gem 'griddler'
 gem 'griddler-mandrill'
 
+gem 'rails-timeago'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

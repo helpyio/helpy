@@ -5,7 +5,6 @@ class DocsController < ApplicationController
   #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
   after_filter :view_causes_vote, :only => 'show'
-  add_breadcrumb I18n.t :home, :root_path
 
   # GET /docs.xml
   def index
@@ -28,7 +27,7 @@ class DocsController < ApplicationController
     @page_title = @doc.title.titleize
     @title_tag = "#{Settings.site_name}: #{@page_title}"
 
-    add_breadcrumb t(:knowledgebase), categories_path
+    add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
     add_breadcrumb @doc.category.name.titleize, category_path(@doc.category)
     add_breadcrumb @doc.title.titleize
 

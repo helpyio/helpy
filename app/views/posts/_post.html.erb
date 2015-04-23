@@ -8,7 +8,7 @@
 	    <span class="more-important"><%= h post.user.name.titleize -%></strong>
 	</td>
 	<td class="bottom-border text-right" valign="bottom">
-  		<br/><span class="posted-at less-important">Posted <%= distance_of_time_in_words_to_now(post.created_at) %> ago</span>
+  		<br/><span class="posted-at less-important"><%= last_active_time(post.created_at) %></span>
 	</td>
 </tr>
 
@@ -20,16 +20,3 @@
 		</p>
   </td>
 </tr>
-
-<% if user_signed_in? and current_user.admin? -%>
-<!--<tr>
-	<td colspan="2">
-      <br />
-      <small>
-        <%= link_to 'Edit', edit_topic_post_path(@topic, post) -%>
-        <%= link_to 'Delete', topic_post_path(@topic, post), :method => :delete,
-              :confirm => 'Are you sure you wish to delete this post?' -%>
-      </small>
-	</td>
-</tr> -->
-<% end -%>

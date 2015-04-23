@@ -1,14 +1,9 @@
 
 
 <% if params[:q] %>
-
-<%#= render 'result/search_form' %>
-
-<div id="results-found">
-  <h4>
-    <span id="results-total-count"><%= @results.total_count %></span> results found for your search <strong>"<%= params[:q] %>"</strong>
-  </h4>
-</div>
+  <div id="results-found">
+  <%= render 'results_found' %>
+  </div>
 <% end %>
 
 

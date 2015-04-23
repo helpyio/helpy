@@ -7,7 +7,7 @@
 					<%= menu_group pull: :right do %>
 							<%= menu_item t(:knowledgebase), categories_path, class:'kblink' if Settings.knowledgebase %>
 							<%= menu_item t(:community), forums_path if Settings.forums %>
-							<%= menu_item t(:ask), new_topic_path %>
+							<%= menu_item t(:ask_a_question), new_topic_path %>
 							<%= menu_item "#{t(:back_to).titleize} #{Settings.parent_company}", Settings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
 							<%= menu_divider %>
 							<%= menu_item t(:login), new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>

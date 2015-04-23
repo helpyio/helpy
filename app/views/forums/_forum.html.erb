@@ -9,5 +9,7 @@
     </div>
   </td>
 
-  <td class="last_post less-important text-right"><%= distance_of_time_in_words_to_now(forum.last_post_date) + " ago" unless forum.last_post_date.blank? %></td>
+  <td class="last_post less-important text-right">
+    <%= last_active_time(forum.last_post_date) %>
+  </td>
 </tr>

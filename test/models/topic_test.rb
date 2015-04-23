@@ -26,3 +26,6 @@ class TopicTest < ActiveSupport::TestCase
   #   assert true
   # end
 end
+
+#forum 1 should exist and be private
+#private posts should go in forum 1

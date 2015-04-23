@@ -4,9 +4,19 @@
 en:
   breadcrumbs:
     application:
-      root: "Index"
-    pages:
-      pages: "Pages"
+      root: "Home"
+    categories:
+      root: 'Home'
+    docs:
+      root: 'Home'
+    forums:
+      root: 'Home'
+    topics:
+      root: 'Home'
+    posts:
+      root: 'Home'
+    result:
+      root: 'Home'
   helpers:
     actions: "Actions"
     links:

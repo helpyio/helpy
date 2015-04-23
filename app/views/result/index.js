@@ -1,2 +1,3 @@
-$('#results-found').html("<h4><span id='results-total-count'><%= @results.total_count %></span> results found for your search for <strong><%= params[:q] %></strong></h4>")
+$('#results-found').html("<%= escape_javascript(render('results_found')) %>")
 $('#search-results').html("<%= escape_javascript(render('search_results')) %>");
+// Need to report search to google here too

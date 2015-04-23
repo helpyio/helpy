@@ -31,6 +31,7 @@
 	http://localhost:3000/assets/base-c529c27e8fd3585823754869f3e11ea7.css?body=1
 	http://localhost:3000/assets/base-0de4f4dd8d6f2beb6be677ab77270611.css?body=1
 	http://localhost:3000/assets/base-acf46b759f10d1d804060f4bd6397d46.css?body=1
+	http://localhost:3000/assets/base-9cfc40d2854311aa21583703b29c9dca.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -343,6 +344,11 @@ span.category-icon {
 
 .space-h2 {
 	margin-bottom: 50px;
+}
+
+.verticalness {
+	padding-top: 150px;
+	padding-bottom: 150px;
 }
 
 /* === LAYOUT === */

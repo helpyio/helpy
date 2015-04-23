@@ -4,9 +4,9 @@
       <%= image_tag(topic.user.image_url, width: '40px', class: 'img-circle') %>
     </div>
     <span class="more-important">
-      <%= link_to topic.name.titleize, admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.status).html_safe %><%= badge_for_private(topic.private).html_safe %> 
+      <%= link_to topic.name.titleize, admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.status).html_safe %><%= badge_for_private(topic.private).html_safe %>
     </span>
     <br/><span class="less-important">Started By <%= h topic.user.name.titleize %></span>
   </td>
-  <td class="less-important text-right"><%= topic.last_post_date.nil? ? "Not Lately" : distance_of_time_in_words_to_now(topic.last_post_date) + " ago" %></td>
+  <td class="less-important text-right"><%= last_active_time(topic.last_post_date) %></td>
 </tr>

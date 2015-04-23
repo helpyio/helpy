@@ -23,4 +23,9 @@ module ApplicationHelper
     date.strftime(format)
   end
 
+  def last_active_time(last_activity)
+    content_tag(:span, timeago_tag(last_activity, :nojs => true, :limit => 7.days.ago), class: ['hidden-xs']) +
+    content_tag(:span, timeago_tag(last_activity, :nojs => true, :limit => 0.days.ago), class: ['hidden-sm','hidden-md','hidden-lg'])
+  end
+
 end

@@ -13,7 +13,7 @@
   <% end %>
 <% end %>
 <% if @results.total_count == 0 %>
-  <li class="text-center">No Results Found, Please try your search again!</li>
+  <li class="text-center verticalness"><%= t(:no_results) %></li>
 <% end %>
 </ul>
 <div class="text-center paginate-links">

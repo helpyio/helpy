@@ -37,10 +37,10 @@
 	<div class="row">
 		<div class="container">
 			<div class="col-md-6 text-center">
-				<h3><%= t(:get_help_header) %></h3>
+				<h3><%= t(:get_help_header, default: "Still Need Help??") %></h3>
 			</div>
 			<div class="col-md-6 text-center">
-				<%= link_to t(:get_help_button), new_topic_path, class: 'btn btn-primary btn-lg' %>
+				<%= link_to t(:get_help_button, default: "Start a Discussion with Us"), new_topic_path, class: 'btn btn-primary btn-lg' %>
 			</div>
 		</div>
 	</div>
