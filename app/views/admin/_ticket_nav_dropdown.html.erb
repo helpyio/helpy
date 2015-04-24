@@ -4,9 +4,15 @@
   </button>
   <ul class="list-unstyled dropdown-menu" role="menu">
     <li class="tiny-header">
-      <%= link_to admin_tickets_path(:status => 'new'), :remote => true do %>
-      New
-      <span class="tiny-header pull-right"><%= @new %></span>
+      <%= link_to admin_tickets_path(:status => 'pending'), :remote => true do %>
+      Waiting
+      <span class="tiny-header pull-right"><%= @pending %></span>
+      <% end %>
+    </li>
+    <li class="tiny-header">
+      <%= link_to admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true do %>
+      Mine
+      <span class="tiny-header pull-right"><%= @mine %></span>
       <% end %>
     </li>
     <li class="tiny-header">
@@ -21,12 +27,12 @@
       <span class="tiny-header pull-right"><%= @open %></span>
       <% end %>
     </li>
-    <li class="tiny-header">
+    <!--<li class="tiny-header">
       <%= link_to admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true do %>
       Assigned to Me
       <span class="tiny-header pull-right"><%= @mine %></span>
       <% end %>
-    </li>
+    </li> -->
     <li class="tiny-header">
       <%= link_to admin_tickets_path(:status => 'closed'), :remote => true do %>
       Closed
