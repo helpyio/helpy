@@ -1,0 +1,76 @@
+fr:
+  root: "Page d'accueil"
+  how_can_we_help: "Comment pouvons-nous aider?"
+  browse_topics: "Feuilleter"
+  support_team: "équipe De Soutien"
+  nothing_here: "Rien ici encore!"
+
+  # Navigation
+  knowledgebase: "Base de connaissances"
+  community: "Communauté"
+  ask_a_question: "Poser une question"
+  home: "Page d'accueil"
+  login: "Login"
+  logout: "se Déconnecter"
+  register: "Signer"
+  back_to: "Retour à"
+  welcome_back: "Bienvenue à nouveau %{username}"
+  your_tickets: "Vos billets"
+
+  # Voting widget
+  did_this_help: "Cela at-il aidé à résoudre votre problème?"
+  yes: 'Oui'
+  no: 'Non'
+
+  # Search
+  search_placeholder: "Entrez un mot-clé, sujet ou une question"
+  no_results: "Aucun résultat, se il vous plaît essayer de nouveau votre recherche!"
+  results_found:
+    one: "%{count} résultat trouvé pour votre recherche "
+    other: "%{count} résultats trouvés pour votre recherche "
+
+  # Community
+  forum_name: "Sujet"
+  last_activity: "Dernière Activité"
+  topic: "Discussion"
+  replies: "Replies"
+  last_post: "Last Post"
+  started_by: "Démarré par %{username}"
+  reply: "Reply to this topic"
+  submit_reply: "Post Reply"
+  posted: "Posted"
+  start_discussion: "Démarrer une nouvelle discussion"
+  should_message_be_private: "Si ce message est privé?"
+  only_support_can_respond: "Seul le personnel peut répondre (crée un billet privé)"
+  responses_can_come_from_everyone: "Les réponses peuvent venir du personnel ou de la communauté (recommandé)"
+
+  # Tickets
+  tickets: "Billets"
+  no_tickets: "Vous ne avez pas encore créé de billets"
+
+  # Get Help
+  get_help_header: "Encore besoin d'aide?"
+  get_help_button: "Lancer une discussion avec nous"
+
+  # Profile
+  my_profile: 'My Profile'
+
+  # devise/sessions/new
+  login: Log in
+
+  # devise/shared/links
+  forgot_password: Forgot your password?
+
+  # devise/passwords/new
+  send_instructions: Send me instructions
+
+  # devise/passwords/edit
+  change_password: Change password
+  new_password: New password
+  new_password_confirmation: Confirm new password
+
+  # devise/confirmations/new
+  resend: Resend confirmation instructions
+
+  # devise/registrations/new
+  sign_up: Sign Up
