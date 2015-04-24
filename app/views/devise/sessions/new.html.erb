@@ -13,7 +13,7 @@
   <%= f.email_field :email, autofocus: true %>
   <%= f.password_field :password, autocomplete: "off" %>
   <% if devise_mapping.rememberable? -%>
-      <%= f.label :remember_me %>
+      <%= f.check_box :remember_me %>
   <% end -%>
 
   <%= f.submit t(:login, default: "Login") %>

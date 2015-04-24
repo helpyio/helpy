@@ -8,9 +8,9 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  devise_for :users#, controllers: {
-  #      sessions: 'sessions'
-  #    }
+  devise_for :users, controllers: {
+        registrations: 'registrations'
+      }
 
   resources :knowledgebase, :as => 'categories', :controller => "categories" do
     #collection do
