@@ -1,8 +1,8 @@
 <tr class="border-bottom">
   <td>
     <span class="more-important">
-      <%= link_to ticket.name.titleize, admin_ticket_path(ticket) -%><%= badge_for_status(ticket.status).html_safe %>
+      <%= link_to ticket.name.titleize, ticket_path(ticket) -%><%= badge_for_status(ticket.current_status).html_safe %>
     </span>
   </td>
-  <td class="less-important"><%= last_active_time(ticket.last_post_date) %></td>
+  <td class="less-important text-right"><%= last_active_time(ticket.last_post_date) %></td>
 </tr>

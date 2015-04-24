@@ -24,13 +24,6 @@ class TopicsController < ApplicationController
   end
 
   def tickets
-    #@forum = Forum.find(params[:forum_id])
-
-    #if user_signed_in? && current_user.admin?
-    #  @topics = @forum.topics.active.chronologic.page params[:page]
-    #else
-    #  @topics = @forum.topics.ispublic.chronologic.page params[:page]
-    #end
 
     @topics = current_user.topics.isprivate.chronologic.page params[:page]
     @page_title = t(:tickets, default: 'Tickets')
@@ -45,6 +38,27 @@ class TopicsController < ApplicationController
       format.xml  { render :xml => @topics.to_xml }
       format.rss
     end
+  end
+
+
+  def ticket
+
+    @topic = Topic.find(params[:id])
+    @posts = @topic.posts.all
+
+    @page_title = "##{@topic.id} #{@topic.name.titleize}"
+    add_breadcrumb t(:tickets, default: 'Tickets')
+    add_breadcrumb @page_title
+
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
+
+    respond_to do |format|
+      format.html # index.rhtml
+      format.xml  { render :xml => @topics.to_xml }
+      format.rss
+    end
+
+
   end
 
 
@@ -77,7 +91,10 @@ class TopicsController < ApplicationController
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
 
-    @topic = @forum.topics.new(:name => params[:topic][:name], :user_id => current_user.id, :private => params[:topic][:private])
+    @topic = @forum.topics.new(
+      name: params[:topic][:name],
+      user_id: current_user.id,
+      private: params[:topic][:private] )
     @topic.save
 
 #    @topic.tag_list = params[:tags]
@@ -90,7 +107,7 @@ class TopicsController < ApplicationController
       if @post.save
         format.html {
           if @topic.private?
-            redirect_to topic_posts_path(@topic)
+            redirect_to ticket_path(@topic)
           else
             redirect_to topic_posts_path(@topic)
           end

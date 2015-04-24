@@ -4,9 +4,9 @@
       <%= image_tag(topic.user.image_url, width: '40px', class: 'img-circle') %>
     </div>
     <span class="more-important">
-      <%= link_to topic.name.titleize, admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.status).html_safe %><%= badge_for_private(topic.private).html_safe %>
+      <%= link_to topic.name.titleize, admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.current_status).html_safe %><%= badge_for_private(topic.private).html_safe %>
     </span>
-    <br/><span class="less-important">Started By <%= h topic.user.name.titleize %></span>
+    <br/><span class="less-important">Started By <%= topic.user.name? ? topic.user.name.titleize : topic.user.email %></span>
   </td>
   <td class="less-important text-right"><%= last_active_time(topic.last_post_date) %></td>
 </tr>

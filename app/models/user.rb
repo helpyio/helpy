@@ -44,8 +44,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  include Gravtastic
+  validates_presence_of :name, :email
+  validates_uniqueness_of :email
 
+  include Gravtastic
   include PgSearch
   multisearchable :against => [:name, :login, :email]
 

@@ -1,8 +1,10 @@
 <h1>New Article</h1>
 <div class="col-md-4">
-  <h4>Meta:</h4>
   <%= bootstrap_form_for(@doc) do |f| %>
+
+    <%= f.alert_message "Please fix the errors below." %>
     <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+
   <% end %>
 </div>
 

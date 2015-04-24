@@ -33,7 +33,7 @@ class AdminController < ApplicationController
   def tickets
 
     if params[:status].nil?
-      @status = "new"
+      @status = "pending"
     else
       @status = params[:status]
     end
@@ -43,11 +43,13 @@ class AdminController < ApplicationController
     when 'new'
       @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).page params[:page]
     when 'unread'
-      @topics = Topic.where(status: 'new').all.page params[:page]
+      @topics = Topic.unread.all.page params[:page]
     when 'assigned'
-      @topics = Topic.where(assigned_user_id: current_user.id).page params[:page]
+      @topics = Topic.mine(current_user.id).page params[:page]
+    when 'pending'
+      @topics = Topic.pending.mine(current_user.id).page params[:page]
     else
-      @topics = Topic.where(status: @status).page params[:page]
+      @topics = Topic.where(current_status: @status).page params[:page]
     end
 
     respond_to do |format|
@@ -61,7 +63,7 @@ class AdminController < ApplicationController
   def ticket
 
     @topic = Topic.where(id: params[:id]).first
-    @topic.open if @topic.status == 'new'
+    @topic.open if @topic.current_status == 'new'
 
     @posts = @topic.posts
 
@@ -85,11 +87,14 @@ class AdminController < ApplicationController
       @topic.open
       message = "This ticket has been reopened by the support staff."
     else
-      @topic.status = params[:change_status] unless params[:change_status].blank?
+      @topic.current_status = params[:change_status] unless params[:change_status].blank?
     end
 
-    @topic.assigned_user_id = params[:assigned_user_id] unless params[:assigned_user_id].blank?
-    @topic.save!
+    unless params[:assigned_user_id].blank?
+      @topic.assigned_user_id = params[:assigned_user_id]
+      @topic.current_status = 'pending'
+      @topic.save!
+    end
 
     #Add post indicating status change
     @topic.posts.create!(:user_id => current_user.id, :body => message) unless message.nil?

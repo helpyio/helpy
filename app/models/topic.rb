@@ -34,16 +34,21 @@ class Topic < ActiveRecord::Base
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
-  scope :open, -> { where(status: "Open") }
-  scope :resolved, -> { where(status: "Resolved") }
+  scope :open, -> { where(current_status: "open") }
+  scope :unread, -> { where(current_status: "new") }
+  scope :pending, -> { where(current_status: "pending") }
+  scope :mine, -> (user) { where("assigned_user_id = ?", user) }
+  scope :closed, -> { where(current_status: "closed") }
+  scope :spam, -> { where(current_status: "spam")}
+
   scope :chronologic, -> { order('updated_at DESC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where("status <> 'Spam'") }
+  scope :active, -> { where("current_status <> 'spam'") }
   scope :front, -> { limit(6) }
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where("status <> 'Spam'").where(private: true)}
-  scope :ispublic, -> { where("status <> 'Spam'").where(private: false)}
+  scope :isprivate, -> { where("current_status <> 'Spam'").where(private: true)}
+  scope :ispublic, -> { where("current_status <> 'Spam'").where(private: false)}
 
   before_save :check_for_private
   #acts_as_taggable
@@ -64,15 +69,15 @@ class Topic < ActiveRecord::Base
   end
 
   def open?
-    self.status == "open"
+    self.current_status == "open"
   end
 
   def open
-    self.update(status: "open")
+    self.update(current_status: "open")
   end
 
   def close
-    self.status = "closed"
+    self.current_status = "closed"
     self.closed_date = Time.now
   end
 
@@ -85,6 +90,5 @@ class Topic < ActiveRecord::Base
   def check_for_private
     self.private = true if self.forum.private?
   end
-
 
 end

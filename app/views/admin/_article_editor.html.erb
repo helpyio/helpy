@@ -24,7 +24,7 @@
   quill.addModule('toolbar', {
     container: '#toolbar'
   });
-  quill.setHTML('<%= @doc.body.html_safe %>');
+  quill.setHTML('<%= @doc.body.html_safe if @doc.body? %>');
 
   quill.on('text-change', function(delta, source) {
     //console.log(quill.getHTML());

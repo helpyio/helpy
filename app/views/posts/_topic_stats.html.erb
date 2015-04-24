@@ -1,5 +1,5 @@
 <div id="topic-status">
-	<%= @topic.status %>
+	<%= @topic.current_status %>
 </div>
 <div id="topic-vote">
 	<div class="topic-points">
@@ -21,7 +21,7 @@
 			<%= link_to 'Edit', edit_topic_path(@topic) %><br/>
 			Change Status:
 			<% form_for(:topic, :url => forum_topic_path(@topic.forum, @topic.id), :method => 'put', :remote => true) do |f| %>
-				<%= f.select(:status, [['Open'],['Resolved'],['Spam']], {}, :onchange => 'this.form.onsubmit();') %>
+				<%= f.select(:current_status, [['Open'],['Resolved'],['Spam']], {}, :onchange => 'this.form.onsubmit();') %>
 				<%#= f.submit 'Save' -%>
 			<% end -%>
 	</div>

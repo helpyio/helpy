@@ -71,7 +71,7 @@ class DocsController < ApplicationController
         format.html { redirect_to(admin_knowledgebase_path) }
 
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", layout: 'admin' }
 
       end
     end

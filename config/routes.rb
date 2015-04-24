@@ -26,11 +26,12 @@ Rails.application.routes.draw do
     resources :posts
   end
 
-  resources :users
+  #resources :users
 
   get 'topics/:id/make_private' => 'topics#make_private', as: :make_private
   get 'result' => 'result#index', as: :result
   get 'tickets' => 'topics#tickets', as: :tickets
+  get 'ticket/:id/' => 'topics#ticket', as: :ticket
 
   # Admin Routes
   get 'admin' => 'admin#dashboard', as: :admin

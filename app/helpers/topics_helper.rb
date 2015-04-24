@@ -9,6 +9,8 @@ module TopicsHelper
         class_name = 'label-success'
       when 'closed'
         class_name = 'label-default'
+      when 'pending'
+        class_name = 'label-warning'
       when 'spam'
         class_name = 'label-danger'
     end
@@ -38,6 +40,8 @@ module TopicsHelper
         class_name = 'label-success'
       when 'closed'
         class_name = 'label-default'
+      when 'pending'
+        class_name = 'label-warning'
       when 'spam'
         class_name = 'label-danger'
     end
