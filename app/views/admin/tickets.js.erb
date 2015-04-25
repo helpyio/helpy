@@ -3,4 +3,9 @@ $('#left-col-ticket-nav').html("<%= escape_javascript(render 'ticket_nav') %>");
 $('#ticket-page-title').html("Discussion Management: <%= @status.titleize %> <%= escape_javascript(render 'ticket_nav_dropdown') %>");
 $(document).prop('title', "Discussion Management: <%= @status.titleize %>");
 window.location.hash = '<%= @status %>';
+
+// Update timestamps
+$('.last-active time[data-time-ago]').timeago();
+
+// Send ping to GA
 ga('send', 'pageview');

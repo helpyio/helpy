@@ -8,7 +8,7 @@
 	    <span class="more-important"><%= h post.user.name.titleize if post.user.name? -%></strong>
 	</td>
 	<td class="bottom-border text-right" valign="bottom">
-  		<br/><span class="posted-at less-important"><%= last_active_time(post.created_at) %></span>
+  		<br/><span class="last-active posted-at less-important"><%= last_active_time(post.created_at) %></span>
 	</td>
 </tr>
 

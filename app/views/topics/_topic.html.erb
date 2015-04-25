@@ -3,5 +3,5 @@
     <span class="more-important"><%= link_to h(topic.name.titleize), topic_posts_path(topic) -%></span>
     <br/><span class="less-important"><%= t(:started_by, :username => topic.user.name.titleize) %></span>
   </td>
-  <td class="less-important text-right"><%= last_active_time(topic.last_post_date) %></td>
+  <td class="last-active less-important text-right"><%= last_active_time(topic.last_post_date) %></td>
 </tr>

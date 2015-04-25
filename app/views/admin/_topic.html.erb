@@ -8,5 +8,5 @@
     </span>
     <br/><span class="less-important">Started By <%= topic.user.name? ? topic.user.name.titleize : topic.user.email %></span>
   </td>
-  <td class="less-important text-right"><%= last_active_time(topic.last_post_date) %></td>
+  <td class="last-active less-important text-right"><%= last_active_time(topic.last_post_date) %></td>
 </tr>
