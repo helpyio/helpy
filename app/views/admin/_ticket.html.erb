@@ -19,7 +19,7 @@
       </span>
       <ul class="dropdown-menu" role="menu">
         <% @admins.each do |admin| %>
-        <li><%= link_to "#{admin.name} (#{admin.active_assigned_count})", update_ticket_path(@topic, assigned_user_id: admin.id), :remote => true unless @topic.current_status == "closed" %></li>
+        <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", update_ticket_path(@topic, assigned_user_id: admin.id), :remote => true unless @topic.current_status == "closed" %></li>
         <% end %>
       </ul>
     </span>

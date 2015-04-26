@@ -1,6 +1,11 @@
 class ForumsController < ApplicationController
   #cache_sweeper :forum_sweeper, :only => [:update, :create, :destroy]
 
+  before_filter :authenticate_user!, :only => ['new', 'edit', 'update', 'create']
+  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create']
+  layout 'admin', :only => ['new', 'edit', 'update', 'create']
+
+
   # GET /forums
   # GET /forums.xml
   def index

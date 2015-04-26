@@ -1,3 +1,6 @@
-<label>Forum Name:</label><br /><%= f.text_field :name, :size => 40 -%></p>
-<label>Description:</label><br /><%= f.text_area :description, :rows => 4, :cols => 60 -%></p>
-<label>Private?</label><br/><%= f.check_box :private %>
+<%= f.alert_message "Please fix the errors below." %>
+
+<%= f.text_field :name, :size => 40 -%></p>
+<%= f.text_area :description, :rows => 4, :cols => 60 -%></p>
+<%= f.check_box :private %>
+<%= f.submit "Update" %>

@@ -1,8 +1,4 @@
-<h2>Edit forum</h2>
-<%= error_messages_for :forum %>
-<% form_for(:forum, 
-            :url => forum_path(@forum), 
-            :html => { :method => :put }) do |f| %>
+<h1>Edit forum</h1>
+<%= bootstrap_form_for(@forum) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} -%>
-  <%= submit_tag "Update" %>
 <% end %>

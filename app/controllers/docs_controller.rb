@@ -1,6 +1,10 @@
 class DocsController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['show', 'home']
+  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create']
+  layout 'admin', :only => ['new', 'edit', 'update', 'create']
+
+
   #before_filter :authenticate_master?, :except => 'show'
   #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
@@ -44,7 +48,7 @@ class DocsController < ApplicationController
     @categories = Category.alpha
 
     respond_to do |format|
-      format.html { render :layout => 'admin' }
+      format.html
 
     end
   end
@@ -54,8 +58,6 @@ class DocsController < ApplicationController
     @doc = Doc.where(id: params[:id]).first
     @category = Category.where(id: params[:category_id]).first
     @categories = Category.alpha
-
-    render :layout => 'admin'
   end
 
   # POST /docs
@@ -71,7 +73,7 @@ class DocsController < ApplicationController
         format.html { redirect_to(admin_knowledgebase_path) }
 
       else
-        format.html { render :action => "new", layout: 'admin' }
+        format.html { render :action => "new" }
 
       end
     end
@@ -87,7 +89,7 @@ class DocsController < ApplicationController
         format.html { redirect_to(admin_knowledgebase_path) }
 
       else
-        format.html { render :action => "edit", layout: 'admin' }
+        format.html { render :action => "edit" }
       end
     end
   end

@@ -2,6 +2,9 @@ class CategoriesController < ApplicationController
   before_filter :get_tags
 
   before_filter :authenticate_user!, :except => ['index', 'show']
+  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create']
+  layout 'admin', :only => ['new', 'edit', 'update', 'create']
+
   #before_filter :authenticate_master?, :except => 'index'
 
   # GET /categories
@@ -50,7 +53,7 @@ class CategoriesController < ApplicationController
     @category = Category.new
 
     respond_to do |format|
-      format.html #{ render :layout => 'admin'}
+      format.html
 
     end
   end
@@ -58,7 +61,6 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit
     @category = Category.where(id: params[:id]).first
-    render layout: 'admin'
   end
 
   # POST /categories
@@ -70,7 +72,7 @@ class CategoriesController < ApplicationController
 
       respond_to do |format|
         if @category.save
-          format.html { render :action => "edit", layout: 'admin' }#{ redirect_to(admin_categories_path) }
+          format.html { render :action => "edit" }#{ redirect_to(admin_categories_path) }
           #format.js
         else
           format.html { render controller: 'admin', action: "knowledgebase" }
@@ -98,7 +100,7 @@ class CategoriesController < ApplicationController
         format.html { redirect_to admin_knowledgebase_path }
         #format.js
       else
-        format.html { render action: 'edit', layout: 'admin' }
+        format.html { render action: 'edit' }
       end
     end
   end
