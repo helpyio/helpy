@@ -1,4 +1,5 @@
 <h1>Edit forum</h1>
 <%= bootstrap_form_for(@forum) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} -%>
+  <%= link_to 'Delete', @forum, data: {confirm: 'Please confirm you really want to DELETE this forum and all discussions'}, method: :delete, class: 'btn btn-default glyphicon glyphicon-remove less-important' %>
 <% end %>

@@ -20,10 +20,10 @@ class Forum < ActiveRecord::Base
 
   scope :alpha, -> { order('name ASC') }
 
-  validates_presence_of :name
+  validates_presence_of :name, :description
   validates_length_of :name, :maximum => 255
   validates_length_of :description, :maximum => 1000
-    
+
   def total_posts
     self.posts.count
   end

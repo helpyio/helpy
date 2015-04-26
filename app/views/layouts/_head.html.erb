@@ -11,12 +11,14 @@
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<%= stylesheet_link_tag 'application' %>
-<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag 'application', "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= timeago_script_tag %>
 
 <%= @feed_link.html_safe if @feed_link %>
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700|Lobster' rel='stylesheet' type='text/css'>
+
+<%= csrf_meta_tags %>
 
 <script data-turbolinks-eval="false">
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

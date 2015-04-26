@@ -4,7 +4,7 @@
 <%= f.text_field :meta_description %>
 <%= f.text_field :title_tag %>
 <%= f.text_field :keywords %>
-<%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }) %>
+<%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, include_blank: 'Select Category') %>
 
 <%= f.text_field :rank %>
 

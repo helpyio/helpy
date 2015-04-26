@@ -1,0 +1,1 @@
+$('#forum-<%= @forum.id %>').remove();

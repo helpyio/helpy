@@ -42,12 +42,15 @@ class ForumsController < ApplicationController
   # POST /forums
   # POST /forums.xml
   def create
-    @forum = Forum.new(params[:forum])
+    @forum = Forum.new
+    @forum.name = params[:forum][:name]
+    @forum.description = params[:forum][:description]
+    @forum.private = params[:forum][:private]
 
     respond_to do |format|
       if @forum.save
         flash[:notice] = 'Forum was successfully created.'
-        format.html { redirect_to forums_path }
+        format.html { redirect_to admin_communities_path }
         format.xml  { head :created, :location => forum_url(@forum) }
       else
         format.html { render :action => "new" }
@@ -61,10 +64,14 @@ class ForumsController < ApplicationController
   def update
     @forum = Forum.find(params[:id])
 
+    @forum.name = params[:forum][:name]
+    @forum.description = params[:forum][:description]
+    @forum.private = params[:forum][:private]
+
     respond_to do |format|
-      if @forum.update_attributes(params[:forum])
+      if @forum.save
         flash[:notice] = 'Forum was successfully updated.'
-        format.html { redirect_to forum_url(@forum) }
+        format.html { redirect_to admin_communities_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -80,7 +87,8 @@ class ForumsController < ApplicationController
     @forum.destroy
 
     respond_to do |format|
-      format.html { redirect_to forums_url }
+      format.html { redirect_to admin_communities_path }
+      format.js
       format.xml  { head :ok }
     end
   end

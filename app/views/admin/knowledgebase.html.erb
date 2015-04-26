@@ -11,6 +11,8 @@ $(document).ready(function(){
 </script>
 
 <h1>Admin Knowledgebase</h1>
+<%= render '/admin/knowledgebase_admin_options' %>
+
 <div class="row">
   <div class="col-md-12">
     <table id="forums" class="table-hover">
@@ -22,24 +24,18 @@ $(document).ready(function(){
         <td colspan="2" class='tiny-header'>Front Page Categories</td>
       </tr>
       <%= render partial: 'cat', collection: @categories %>
-      <tr>
-        <td colspan="2"></td>
-      </tr>
-      <tr>
-        <td colspan="2" class='tiny-header'>Other Categories</td>
-      </tr>
-      <%= render partial: 'cat', collection: @nonfeatured %>
+
+      <% if @nonfeatured.count > 0 %>
+        <tr>
+          <td colspan="2"></td>
+        </tr>
+        <tr>
+          <td colspan="2" class='tiny-header'>Other Categories</td>
+        </tr>
+        <%= render partial: 'cat', collection: @nonfeatured %>
+      <% end %>
       </tbody>
     </table>
-
-    <%= bootstrap_form_for(Category.new, layout: :inline, label_errors: true) do |f| %>
-      <div class="col-md-10 col-sm-7">
-      <%= f.text_field :name, skip_label: true, placeholder:'Enter a name to start creating a new category', class: 'wide-field' %>
-      </div>
-      <div class="col-md-2 col-sm-2 text-right">
-      <%= f.submit "Add" %>
-      </div>
-    <% end %>
 
   </div>
 </div>
