@@ -13,14 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-// require turbolinks
+//= require turbolinks
 //= require_tree .
 //= require twitter/bootstrap/rails/confirm
 //= require bootstrap-icon-chooser/js/iconPicker
 //= require rails-timeago-all
 //= require quill/dist/quill
 
-var ready = function(){
+var Helpy = Helpy || {};
+
+Helpy.ready = function(){
 
   // jquery hhoks for the home page
   $('.home-option, .home-option-xs, .topic-box').click(function(){
@@ -80,5 +82,5 @@ var ready = function(){
 
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).ready(Helpy.ready);
+$(document).on('page:load', Helpy.ready);

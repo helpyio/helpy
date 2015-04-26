@@ -7,11 +7,13 @@
 #  user_id          :integer
 #  name             :string
 #  posts_count      :integer          default(0), not null
+#  waiting_on       :string           default("admin"), not null
 #  last_post_date   :datetime
+#  closed_date      :datetime
 #  last_post_id     :integer
-#  status           :string           default("new")
+#  current_status   :string           default("new"), not null
 #  private          :boolean          default(FALSE)
-#  assigned_user_id :integer          default(2)
+#  assigned_user_id :integer
 #  cheatsheet       :boolean          default(FALSE)
 #  points           :integer          default(0)
 #  post_cache       :text
