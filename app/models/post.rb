@@ -28,8 +28,11 @@ class Post < ActiveRecord::Base
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache
   def update_waiting_on_cache
-    #self.topic.update(last_post_id: self.id)
-#    if self.topic.private?
+
+    status = self.topic.current_status
+    waiting_on = self.topic.waiting_on
+
+    unless status == 'closed'
       logger.info('private message, update waiting on cache')
       status = self.topic.current_status
       if self.user.admin?
@@ -41,9 +44,8 @@ class Post < ActiveRecord::Base
         waiting_on = "admin"
         status = "pending" unless self.topic.current_status == 'new'
       end
-#    else
-#      logger.info("!!!! NOT PRIVATE !!!!")
-#    end
+    end
+
     self.topic.update(last_post_date: Time.now, waiting_on: waiting_on, current_status: status)
     self.topic.forum.update(last_post_date: Time.now)
   end
