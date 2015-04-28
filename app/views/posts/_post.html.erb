@@ -1,4 +1,4 @@
-<tr class="posted-by <%= "first-post" if post.id == post.topic.posts.first.id %>">
+<!--<tr class="posted-by <%= "first-post" if post.id == post.topic.posts.first.id %> <%= "kind-#{post.kind}" %>">
 	<td width="60px">
 		<div>
 		<%= image_tag(post.user.image_url, width: '40px', class: 'img-circle') %>
@@ -12,11 +12,26 @@
 	</td>
 </tr>
 
-<tr>
+<tr class="<%= "kind-#{post.kind}" %><%= " first-post" if post.id == post.topic.posts.first.id %>">
   <td class="<%= "first-post" if post.id == post.topic.posts.first.id %>"></td>
   <td class="post <%= "first-post" if post.id == post.topic.posts.first.id %>" colspan="2">
   	<p class="less-important">
 			<%= simple_format(post.body) -%>
 		</p>
   </td>
-</tr>
+</tr>-->
+
+
+<div class="media post-container <%= "kind-#{post.kind}" %>">
+	<div class="pull-left">
+		<%= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>
+	</div>
+	<div class="media-body media-right">
+		<span class="more-important"><%= h post.user.name.titleize if post.user.name? -%></strong> <%= post_message(post.kind) %></span>
+		<span class="last-active posted-at less-important pull-right"><%= last_active_time(post.created_at) %></span>
+
+		<p class="post-body less-important">
+			<%= simple_format(post.body) -%>
+		</p>
+	</div>
+</div>

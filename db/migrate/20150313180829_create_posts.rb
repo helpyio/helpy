@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :topic_id
       t.integer :user_id
       t.text :body
+      t.string :kind #reply or first, note
 
       t.timestamps null: false
     end

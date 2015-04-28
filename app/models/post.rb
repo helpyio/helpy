@@ -6,6 +6,7 @@
 #  topic_id   :integer
 #  user_id    :integer
 #  body       :text
+#  kind       :string           default("post")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -15,7 +16,7 @@ class Post < ActiveRecord::Base
   belongs_to :topic, :counter_cache => true
   belongs_to :user
 
-  validates_presence_of :body
+  validates_presence_of :body, :kind
   validates_length_of :body, :maximum => 10000
 
   after_create :update_waiting_on_cache

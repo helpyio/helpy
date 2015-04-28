@@ -48,7 +48,8 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = Post.new(:body => params[:post][:body],
                      :topic_id => @topic.id,
-                     :user_id => current_user.id)
+                     :user_id => current_user.id,
+                     :kind => params[:post][:kind])
 
     respond_to do |format|
       if @post.save

@@ -97,6 +97,7 @@ namespace :db do
       post = topic.posts.new
       post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
       post.user_id = topic.user_id
+      post.kind = 'first'
       post.save
       puts "Post added to topic"
 
@@ -104,6 +105,7 @@ namespace :db do
         post = topic.posts.new
         post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
         post.user_id = rand(2..12)
+        post.kind = 'reply'
         post.save
         puts "Post added to topic"
       end
@@ -140,13 +142,16 @@ namespace :db do
       post = topic.posts.new
       post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
       post.user_id = topic.user_id
+      post.kind = 'first'
       post.save
       puts "Post added to topic"
       rand(1..5).times do |i|
         post = topic.posts.new
         post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
+        post.kind = 'reply'
         if i.even?
           post.user_id = topic.assigned_user_id
+          # could be note
         else
           post.user_id = topic.user_id
         end

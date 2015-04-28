@@ -52,7 +52,7 @@ class EmailProcessor
       end
 
       #insert post to new topic
-      post = topic.posts.create(:body => message, :user_id => @user.id)
+      post = topic.posts.create(:body => message, :user_id => @user.id, :kind => 'reply')
 
       puts "Post #{post.id} Created"
 
@@ -78,7 +78,7 @@ class EmailProcessor
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
 
       #insert post to new topic
-      post = topic.posts.create(:body => message, :user_id => @user.id)
+      post = topic.posts.create(:body => message, :user_id => @user.id, :kind => 'first')
 
     end
   end

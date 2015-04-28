@@ -32,6 +32,12 @@
 	http://localhost:3000/assets/base-0de4f4dd8d6f2beb6be677ab77270611.css?body=1
 	http://localhost:3000/assets/base-acf46b759f10d1d804060f4bd6397d46.css?body=1
 	http://localhost:3000/assets/base-9cfc40d2854311aa21583703b29c9dca.css?body=1
+	http://localhost:3000/assets/base-16c96d8fbed8d6dd2092f34228d48ed6.css?body=1
+	http://localhost:3000/assets/base-f2fd626aa1af46b3903ba664b967d44e.css?body=1
+	http://localhost:3000/assets/base-a1916f86606a7cd2c4d99624e6ea7561.css?body=1
+	http://localhost:3000/assets/base-8b18718b200d343e7cb5fd0a6468bb0e.css?body=1
+	http://localhost:3000/assets/base-cc096ebb93c8eca87b2cd3d0b8e8b405.css?body=1
+	http://localhost:3000/assets/base-fad9afb5319db5be100829e83d6a8f55.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -84,6 +90,7 @@ h1 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	background-color: #feffe9;
+	/*background-color: #ffdf91;*/
 }
 
 @media(max-width:767px){
@@ -176,7 +183,7 @@ ul.breadcrumb {
 #upper-wrapper {
 	margin-bottom: 5px;
 	padding: 0px;
-	background-color: #eee;
+	background-color: #fff;
 
 	-webkit-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
 	-moz-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
@@ -249,6 +256,11 @@ div.admin-tools {
 }
 
 /* === GLOBAL CLASSES === */
+
+.logo {
+	padding-right: 5px;
+	margin-top: -9px;
+}
 
 .label {
   	display: inline;
@@ -444,6 +456,9 @@ span.category-icon {
 
 .navbar {
 	margin-bottom: 0px;
+	background-color: #fff;
+	border: 0px;
+	padding-bottom: 5px;
 }
 
 .navbar-brand a {
@@ -521,6 +536,7 @@ h1#how-help {
 
 #home-search {
 	background-color: #feffe9;
+	/*background-color: #ffdf91;*/
 	padding-bottom: 100px;
 }
 
@@ -724,7 +740,7 @@ div.fieldWithErrors textarea
 	font-size: 85%;
 	padding-top: 0px;
 	margin-bottom: 5px;
-	margin-top: 5px;
+	margin-top: 0px;
 	text-align: right;
 }
 
@@ -754,8 +770,7 @@ div.fieldWithErrors textarea
 }
 */
 #header-wrapper {
-	background-color: #eee;
-}
+	}
 
 #main-body {
 	margin-top: 10px;
@@ -829,6 +844,19 @@ table#forums, table#topics, table#posts {
 
 /* === DISCUSSION === */
 
+.post-container {
+	padding: 5px;
+}
+
+.post-body {
+	padding-top: 15px;
+}
+
+.kind-reply {
+	margin-left: 60px;
+}
+
+
 .posted_by {
 	margin-top: 10px;;
 }
@@ -886,7 +914,7 @@ div.topic-status {
 /* === FOOTER === */
 
 #get-help-wrapper {
-	background-color: #eee;
+	background-color: #FFDF91;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }

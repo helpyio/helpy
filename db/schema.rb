@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150414210945) do
     t.integer  "topic_id"
     t.integer  "user_id"
     t.text     "body"
+    t.string   "kind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

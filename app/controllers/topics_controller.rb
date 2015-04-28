@@ -100,7 +100,7 @@ class TopicsController < ApplicationController
 #    @topic.tag_list = params[:tags]
 #    @topic.save
 
-    @post = @topic.posts.new(:body => params[:post][:body], :user_id => current_user.id)
+    @post = @topic.posts.new(:body => params[:post][:body], :user_id => current_user.id, :kind => 'first')
 
     respond_to do |format|
 

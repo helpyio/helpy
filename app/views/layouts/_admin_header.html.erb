@@ -2,7 +2,7 @@
       <div id="above-header" class="hidden-xs small">
         <%= render :partial => 'layouts/above_header' %>
       </div>
-      <%= nav_bar brand: "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
+      <%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo") + "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
           <%= menu_group pull: :right do %>
               <%= menu_item "Dashboard", admin_dashboard_path %>
               <%#= menu_item "Admin Users", admin_users_path # switch to team view %>

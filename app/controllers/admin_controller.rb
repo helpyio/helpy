@@ -91,9 +91,17 @@ class AdminController < ApplicationController
     end
 
     unless params[:assigned_user_id].blank?
+
+      previous_assigned_id = @topic.assigned_user_id
+
       @topic.assigned_user_id = params[:assigned_user_id]
       @topic.current_status = 'pending'
       @topic.save!
+
+      # Create internal note
+      assigned_user = User.find(params[:assigned_user_id])
+      @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
+
     end
 
     #Add post indicating status change
