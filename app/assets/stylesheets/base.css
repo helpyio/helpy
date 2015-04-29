@@ -38,6 +38,11 @@
 	http://localhost:3000/assets/base-8b18718b200d343e7cb5fd0a6468bb0e.css?body=1
 	http://localhost:3000/assets/base-cc096ebb93c8eca87b2cd3d0b8e8b405.css?body=1
 	http://localhost:3000/assets/base-fad9afb5319db5be100829e83d6a8f55.css?body=1
+	http://localhost:3000/assets/base-e287ae8eacf678d5bac7b169d543cade.css?body=1
+	http://localhost:3000/assets/base-4592de63258216de5b49e51773079a11.css?body=1
+	http://localhost:3000/assets/base-72eb13f6223eb60616c9d133d70fbaf0.css?body=1
+	http://localhost:3000/assets/base-d7cb71dc7608065f99e9bf7cfcbe43db.css?body=1
+	http://localhost:3000/assets/base-a46257fd48214154a0c351deefd09ce5.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -287,6 +292,24 @@ div.admin-tools {
   	white-space: nowrap;
   	vertical-align: baseline;
   	border-radius: .25em;
+}
+
+.label-collapsed {
+	position: relative;
+	top: -0.7em;
+	border: 1px solid #eee;
+	background-color: #fff;
+	color: #999;
+  	display: inline;
+  	padding: .2em .6em .3em;
+  	font-size: 100%;
+  	font-weight: normal;
+  	line-height: 1;
+  	text-align: center;
+  	white-space: nowrap;
+  	vertical-align: baseline;
+  	border-radius: .25em;
+  	cursor: pointer;
 }
 
 .active {
@@ -844,6 +867,13 @@ table#forums, table#topics, table#posts {
 
 /* === DISCUSSION === */
 
+.collapsed-posts {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	height: 1px;
+	background-color: #eee;
+}
+
 .post-container {
 	padding: 5px;
 }
@@ -852,8 +882,12 @@ table#forums, table#topics, table#posts {
 	padding-top: 15px;
 }
 
-.kind-reply {
+.kind-reply, .kind-note {
 	margin-left: 60px;
+}
+
+.kind-note {
+	color: #999;
 }
 
 

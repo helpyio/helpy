@@ -25,10 +25,7 @@
     </span>
     <% end %>
 
-
-    <!--<table id="posts"> -->
-      <%= render :partial => 'posts/post', :collection => @posts %>
-    <!--</table> -->
+    <%= render :partial => 'posts/post', :collection => @posts %>
 
     <% if user_signed_in? %>
     <div class="add-form">

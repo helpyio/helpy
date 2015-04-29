@@ -105,7 +105,7 @@ class AdminController < ApplicationController
     end
 
     #Add post indicating status change
-    @topic.posts.create!(:user_id => current_user.id, :body => message) unless message.nil?
+    @topic.posts.create!(user_id: current_user.id, body: message, kind: "reply") unless message.nil?
     @posts = @topic.posts
 
     fetch_counts

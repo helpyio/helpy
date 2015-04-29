@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get 'admin/knowledgebase' => 'admin#knowledgebase'
   get 'admin/knowledgebase/:category_id/articles' => 'admin#articles', as: :admin_articles
   get 'admin/tickets' => 'admin#tickets', as: :admin_tickets
-  get 'admin/tickets/ticket/:id' => 'admin#ticket', as: :admin_ticket
+  get 'admin/ticket/:id' => 'admin#ticket', as: :admin_ticket
   get 'admin/tickets/update/:id' => 'admin#update_ticket', as: :update_ticket
   get 'admin/communities' => 'admin#communities', as: :admin_communities
   get 'admin/users'
