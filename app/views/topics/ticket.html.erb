@@ -17,20 +17,22 @@
 
   <div id="ticket-controls" class="col-xs-12 col-md-8 col-lg-8">
 
-    <table id="posts">
+    <div id="posts">
       <%= render :partial => 'posts/post', :collection => @posts %>
-    </table>
+    </div>
 
     <% if user_signed_in? %>
-    <div class="add-form">
-    <h4>Reply to this Topic:</h4>
-    <%#= error_messages_for :post -%>
-    <%= bootstrap_form_for @topic.posts.new, :url => topic_posts_path(@topic), :remote => true do |f| -%>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-      <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
-      <%= f.submit 'Post Reply' -%>
-    <% end -%>
-    </div>
+      <div class="add-form">
+      <h4>Reply to this Topic:</h4>
+      <%#= error_messages_for :post -%>
+      <%= bootstrap_form_for @topic.posts.new, :url => topic_posts_path(@topic), :remote => true do |f| -%>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+        <%= f.hidden_field 'kind', value: 'reply' %>
+        <%= hidden_field_tag :client_id %>
+        <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
+        <%= f.submit 'Post Reply' -%>
+      <% end -%>
+      </div>
     <% end -%>
   </div>
 

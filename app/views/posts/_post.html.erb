@@ -1,27 +1,3 @@
-<!--<tr class="posted-by <%= "first-post" if post.id == post.topic.posts.first.id %> <%= "kind-#{post.kind}" %>">
-	<td width="60px">
-		<div>
-		<%= image_tag(post.user.image_url, width: '40px', class: 'img-circle') %>
-		</div>
-	</td>
-	<td class="bottom-border" valign="bottom">
-	    <span class="more-important"><%= h post.user.name.titleize if post.user.name? -%></strong>
-	</td>
-	<td class="bottom-border text-right" valign="bottom">
-  		<br/><span class="last-active posted-at less-important"><%= last_active_time(post.created_at) %></span>
-	</td>
-</tr>
-
-<tr class="<%= "kind-#{post.kind}" %><%= " first-post" if post.id == post.topic.posts.first.id %>">
-  <td class="<%= "first-post" if post.id == post.topic.posts.first.id %>"></td>
-  <td class="post <%= "first-post" if post.id == post.topic.posts.first.id %>" colspan="2">
-  	<p class="less-important">
-			<%= simple_format(post.body) -%>
-		</p>
-  </td>
-</tr>-->
-
-
 <div class="media post-container <%= "kind-#{post.kind}" %>">
 	<div class="pull-left">
 		<%= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>

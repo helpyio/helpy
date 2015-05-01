@@ -20,6 +20,7 @@
 //= require bootstrap-icon-chooser/js/iconPicker
 //= require rails-timeago-all
 //= require quill/dist/quill
+//= require flare/dist/flare
 
 var Helpy = Helpy || {};
 
@@ -78,7 +79,8 @@ Helpy.ready = function(){
     $(this).css('cursor','auto');
   });
   $('.link-row').on('click', function(){
-    document.location.href = $(this).find('a').attr('href');
+//  could be causing over tracking in GA?
+//    document.location.href = $(this).find('a').attr('href');
   });
 
   // compress thread if there are more than 4 messages
@@ -98,9 +100,6 @@ Helpy.ready = function(){
     // hide thread, except for most recent message
     $thread.hide().last().show();
   }
-
-
-
 };
 
 $(document).ready(Helpy.ready);

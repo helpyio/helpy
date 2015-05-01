@@ -53,14 +53,26 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        @posts = @topic.posts
+
         format.html { redirect_to topic_posts_path(@topic) }
         format.js {
           if current_user.admin?
-            @posts = @topic.posts
             @admins = User.admins
             #@post = Post.new
+            case @post.kind
+            when "reply"
+              @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Replied", label: @topic.to_param) #TODO: Need minutes
+            when "note"
+              @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Posted Note", label: @topic.to_param) #TODO: Need minutes
+            end
             render 'admin/ticket'
+
+          else #current_user is a customer
+            agent = User.find(@topic.assigned_user_id)
+            @tracker.event(category: "Agent: #{agent.name}", action: "User Replied", label: @topic.to_param) #TODO: Need minutes
           end
+
         }
       else
         format.html { render :action => "new" }

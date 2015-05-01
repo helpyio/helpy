@@ -63,9 +63,14 @@ class AdminController < ApplicationController
   def ticket
 
     @topic = Topic.where(id: params[:id]).first
-    @topic.open if @topic.current_status == 'new'
+    if @topic.current_status == 'new'
+      @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
+      @topic.open
+    end
 
     @posts = @topic.posts
+
+    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
 
     respond_to do |format|
       format.html
@@ -77,20 +82,25 @@ class AdminController < ApplicationController
 
   def update_ticket
     @topic = Topic.where(id: params[:id]).first
+    @minutes = 0
 
     # actions for each status change
-    case params[:change_status]
-    when 'closed'
-      @topic.close
-      message = "This ticket has been closed by the support staff."
-    when 'reopen'
-      @topic.open
-      message = "This ticket has been reopened by the support staff."
-    else
-      @topic.current_status = params[:change_status] unless params[:change_status].blank?
+    unless params[:change_status].blank?
+      case params[:change_status]
+      when 'closed'
+        @topic.close
+        message = "This ticket has been closed by the support staff."
+      when 'reopen'
+        @topic.open
+        message = "This ticket has been reopened by the support staff."
+      else
+        @topic.current_status = params[:change_status] unless params[:change_status].blank?
+      end
+      @action_performed = "Marked #{params[:change_status].titleize}"
     end
 
     unless params[:assigned_user_id].blank?
+
 
       previous_assigned_id = @topic.assigned_user_id
 
@@ -102,7 +112,12 @@ class AdminController < ApplicationController
       assigned_user = User.find(params[:assigned_user_id])
       @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
 
+      @action_performed = "Assigned to #{assigned_user.name.titleize}"
+
     end
+
+    # Calls to GA for close, reopen, assigned
+    @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
 
     #Add post indicating status change
     @topic.posts.create!(user_id: current_user.id, body: message, kind: "reply") unless message.nil?
@@ -140,6 +155,7 @@ class AdminController < ApplicationController
     end
 
   end
+
 
 
 end

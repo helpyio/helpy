@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['show','index','tag','make_private']
-
+  before_filter :instantiate_tracker
 
   # GET /topics
   # GET /topics.xml
@@ -105,6 +105,10 @@ class TopicsController < ApplicationController
     respond_to do |format|
 
       if @post.save
+        # track event in GA
+        @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
+        @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+
         format.html {
           if @topic.private?
             redirect_to ticket_path(@topic)

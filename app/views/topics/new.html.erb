@@ -13,6 +13,7 @@
   <%#= f.check_box(:private, label: "Open Private Ticket?") if Settings.tickets %>
   <%= f.text_field :name, :size => 40, label: 'Subject' -%>
   <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
+  <%= hidden_field_tag :client_id %>
 
   <!--<label>Tags:</label><br/>-->
   <%#= text_field_tag :tags %>

@@ -1,2 +1,124 @@
 // Globale Event tracking hooks for Helpy/GA
 // leverages flare.js for emiting event data
+
+var Helpy = Helpy || {};
+Helpy.track = function(){
+
+  // Get the GA Universal Analytics ClientID.  This is used for server side tracking
+  ga(function(tracker) {
+    Helpy.clientId = tracker.get('clientId');
+    $("#client_id").val(Helpy.clientId);
+    console.log(Helpy.clientId);
+
+    // Update links to pass the clientID as a QS param
+    $('.ticket-controls > li > a, .topic-link > a').each(function(){
+      var originalLink = $(this).attr("href");
+      var divider = ((originalLink.indexOf("?") == -1) ? "?client_id=" : "&client_id=");
+      $(this).attr("href", originalLink + divider + Helpy.clientId);
+    });
+
+  });
+
+
+  // send search event to google
+//  $('#search-form').unbind().on('submit', function(){
+//    console.log($('#search-field').val())
+//    ga('send', 'event', 'Search','Search', $('#search-field').val())
+//  });
+
+  $('#page-title').find('#search-form').unbind().on('submit', function(){
+    console.log('header search')
+    ga('send', 'event', 'Search','Search', 'Header Search')
+    ga('send', 'event', 'Search','Search', $('#search-field').val())
+  });
+
+  $('#home-search').find('#search-form').unbind().on('submit', function(){
+    console.log('home page search')
+    ga('send', 'event', 'Search','Search', 'Home Page')
+    ga('send', 'event', 'Search','Search', $('#search-field').val())
+  });
+
+
+  $('.search-result > span > a').unbind().on('click', function(){
+    console.log("Search Result Click")
+    ga('send', 'event', 'Search','Result-Click', $('#search-field').val())
+  });
+
+
+  // main navigation events
+
+  $('.navbar-brand').unbind().on('click', function(){
+    console.log("Click Logo")
+    ga('send', 'event', 'Main Nav','Click', 'Logo')
+
+  });
+
+  $('.navbar-nav > li > a, #above-header > small > a').on('click', function(){
+    console.log($(this).text())
+    flare.emit({
+      category: "Main Nav",
+      action: "Click",
+      label: $(this).text()
+    });
+  });
+
+  $('.get-help-button').on('click', function(){
+    console.log($(this).text())
+    flare.emit({
+      category: "Main Nav",
+      action: "Click",
+      label: $(this).text()
+    });
+  });
+
+  $('.breadcrumb > li > a').unbind().on('click', function(){
+    console.log($(this).text())
+    flare.emit({
+      category: "Main Nav",
+      action: "Click",
+      label: $(this).text()
+    });
+  });
+
+  // Inpage events
+  $('.label-collapsed').unbind().on("click", function(){
+    console.log($(this).text())
+    ga('send', 'event', 'In-Page-Nav','Click', 'Show Hidden')
+  })
+
+  $('.topic-box').on("click", function(){
+    console.log($(this).find('h5').text())
+    ga('send', 'event', 'In-Page-Nav','Click', $(this).find('h5').text())
+  });
+
+  // Same page links
+  $('.autoscroll').unbind().on("click", function(){
+    console.log($(this).text())
+    ga('send', 'event', 'Same-Page-Nav','Click', $(this).text())
+  });
+
+
+    // document.location.href = $(this).data("link");
+
+  // User created a new ticket/discussion
+  // Handled on server side with GA MP
+
+
+  // Admin Ticket Functions
+
+
+  // Clicked on discussion to view it.  Does not mean the discussion status changed.
+//  $('.admin-discussion').on('click', function(){
+//    console.log('Viewed Discussion ' + $(this).attr('id').split("-")[1])
+//    ga('send', 'event', 'Admin-Nav','Click', $(this).attr('id').split("-")[1])
+//  });
+
+  $('.mailbox > a').on('click', function(){
+    console.log($(this).text())
+    ga('send', 'event', 'Admin-Nav','Click', $(this).text())
+  });
+
+
+};
+
+$(document).on('page:change', Helpy.track);
