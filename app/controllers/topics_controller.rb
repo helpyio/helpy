@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show','index','tag','make_private']
+  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create']
   before_filter :instantiate_tracker
 
   # GET /topics
@@ -71,12 +71,12 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
 
-
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     add_breadcrumb @page_title
     @title_tag = "#{Settings.site_name}: #{@page_title}"
 
     @topic = Topic.new
+    @user = @topic.build_user unless user_signed_in?
 
   end
 
@@ -88,23 +88,49 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.xml
   def create
+
+    @page_title = t(:start_discussion, default: "Start a New Discussion")
+    add_breadcrumb @page_title
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
+
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
-      user_id: current_user.id,
       private: params[:topic][:private] )
-    @topic.save
 
-#    @topic.tag_list = params[:tags]
-#    @topic.save
+    unless user_signed_in?
 
-    @post = @topic.posts.new(:body => params[:post][:body], :user_id => current_user.id, :kind => 'first')
+      @user = @topic.build_user
+
+      # generate user password
+      source_characters = "0124356789abcdefghijk"
+      password = ""
+      1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+
+      @user.name = params[:topic][:user][:name]
+      @user.login = params[:topic][:user][:email].split("@")[0]
+      @user.email = params[:topic][:user][:email]
+      @user.password = password
+
+    else
+      @user = current_user
+      @topic.user_id = @user.id
+
+    end
 
     respond_to do |format|
 
-      if @post.save
+      if @user.save && @topic.save
+
+        @post = @topic.posts.create(:body => params[:post][:body], :user_id => @user.id, :kind => 'first')
+
+        unless user_signed_in?
+          UserMailer.new_user(@user).deliver #if Settings.send_email == true
+          sign_in(:user, @user)
+        end
+
         # track event in GA
         @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
         @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
@@ -120,6 +146,7 @@ class TopicsController < ApplicationController
         format.html { render action: 'new' }
       end
     end
+
   end
 
   # PUT /topics/1
