@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :verify_admin
-  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket']
+  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket', 'update_ticket']
 
   def dashboard
     #@users = PgSearch.multisearch(params[:q]).page params[:page]
@@ -42,6 +42,8 @@ class AdminController < ApplicationController
 
     when 'new'
       @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).page params[:page]
+    when 'active'
+      @topics = Topic.active.page params[:page]
     when 'unread'
       @topics = Topic.unread.all.page params[:page]
     when 'assigned'
@@ -51,6 +53,8 @@ class AdminController < ApplicationController
     else
       @topics = Topic.where(current_status: @status).page params[:page]
     end
+
+    @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
 
     respond_to do |format|
       format.html
@@ -80,6 +84,7 @@ class AdminController < ApplicationController
 
   end
 
+  # Updates discussion status
   def update_ticket
     @topic = Topic.where(id: params[:id]).first
     @minutes = 0
@@ -99,14 +104,36 @@ class AdminController < ApplicationController
       @action_performed = "Marked #{params[:change_status].titleize}"
     end
 
+    # Calls to GA for close, reopen, assigned
+    @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+
+    #Add post indicating status change
+    @topic.posts.create(user_id: current_user.id, body: message, kind: "reply") unless message.nil?
+
+    @posts = @topic.posts
+
+    fetch_counts
+    respond_to do |format|
+      format.html #render action: 'ticket', id: @topic.id
+      format.js
+    end
+
+  end
+
+  # Assigns a discussion to another agent
+  def assign_agent
+    @topic = Topic.where(id: params[:id]).first
+    @minutes = 0
+
     unless params[:assigned_user_id].blank?
 
-
-      previous_assigned_id = @topic.assigned_user_id
+      # if message was unassigned previously, use the new assignee
+      # this is to give note attribution below
+      previous_assigned_id = @topic.assigned_user_id? ? @topic.assigned_user_id : params[:assigned_user_id]
 
       @topic.assigned_user_id = params[:assigned_user_id]
       @topic.current_status = 'pending'
-      @topic.save!
+      @topic.save
 
       # Create internal note
       assigned_user = User.find(params[:assigned_user_id])
@@ -114,18 +141,53 @@ class AdminController < ApplicationController
 
       @action_performed = "Assigned to #{assigned_user.name.titleize}"
 
+      # Calls to GA
+      @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+
     end
 
-    # Calls to GA for close, reopen, assigned
-    @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
-
-    #Add post indicating status change
-    @topic.posts.create!(user_id: current_user.id, body: message, kind: "reply") unless message.nil?
     @posts = @topic.posts
-
     fetch_counts
+
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
+      format.js {
+        render 'update_ticket', id: @topic.id
+      }
+    end
+
+
+  end
+
+  # Toggle privacy of a topic
+  def toggle_privacy
+    @topic = Topic.find(params[:id])
+    @topic.private = params[:private]
+    @topic.forum_id = params[:forum_id]
+    @topic.save
+
+    @posts = @topic.posts
+    fetch_counts
+
+    respond_to do |format|
+      format.js {
+        render 'update_ticket', id: @topic.id
+      }
+    end
+
+  end
+
+  # "Toggles" post visibility by marking it inactive
+  def toggle_post
+
+    @post = Post.find(params[:id])
+    @topic = @post.topic
+
+    @post.active = params[:active]
+    @post.save
+
+    respond_to do |format|
+      format.html
       format.js
     end
 

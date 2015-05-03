@@ -1,12 +1,18 @@
-<div class="media post-container <%= "kind-#{post.kind}" %>">
+<div id="post-<%= post.id %>" class="media post-container <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %>">
 	<div class="pull-left">
 		<%= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>
 	</div>
 	<div class="media-body media-right">
 		<span class="more-important"><%= h post.user.name.titleize if post.user.name? -%></strong> <%= post_message(post.kind) %></span>
-		<span class="last-active posted-at less-important pull-right"><%= last_active_time(post.created_at) %></span>
+		<span class="last-active posted-at less-important pull-right"><%= last_active_time(post.created_at) %> <% if current_user.admin? %>| <div class="btn-group">
+      <span id="row-<%= post.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle glyphicon glyphicon-align-justify'></span>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><%= link_to 'Edit', edit_post_path(post) %></li>
+        <li><%= link_to 'Delete', post, data: {confirm: 'Please confirm you really want to DELETE this, and all articles'}, method: :delete, remote: true, class: 'glyphicon glyphicon-remove less-important' %></li>
+      </ul>
+    </div><% end %></span>
 
-		<p class="post-body less-important">
+		<p class="post-body less-important text-left">
 			<%= simple_format(post.body) -%>
 		</p>
 	</div>

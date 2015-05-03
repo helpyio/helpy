@@ -6,7 +6,7 @@
           <%= menu_group pull: :right do %>
               <%= menu_item "Dashboard", admin_dashboard_path %>
               <%#= menu_item "Admin Users", admin_users_path # switch to team view %>
-              <%= menu_item "Knowledgebase", admin_knowledgebase_path, class:'kblink' if Settings.knowledgebase %>
+              <%= menu_item "Content", admin_knowledgebase_path, class:'kblink' if Settings.knowledgebase %>
               <%= menu_item "Discussions", admin_tickets_path %>
               <%= menu_item "Communities", admin_communities_path if Settings.forums %>
           <% end %>

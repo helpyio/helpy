@@ -44,7 +44,7 @@ class TopicsController < ApplicationController
   def ticket
 
     @topic = Topic.find(params[:id])
-    @posts = @topic.posts.all
+    @posts = @topic.posts.active.all
 
     @page_title = "##{@topic.id} #{@topic.name.titleize}"
     add_breadcrumb t(:tickets, default: 'Tickets')
@@ -178,15 +178,6 @@ class TopicsController < ApplicationController
     else
       redirect_to topic_posts_path(@topic)
     end
-  end
-
-  def make_private
-    @topic = Topic.find(params[:id])
-    private = params[:private]
-    @topic.update_attribute(:private, private)
-    @topic.save
-
-    redirect_to :back
   end
 
   def tag

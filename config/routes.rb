@@ -25,10 +25,10 @@ Rails.application.routes.draw do
   resources :topics do
     resources :posts
   end
+  resources :posts
 
   #resources :users
 
-  get 'topics/:id/make_private' => 'topics#make_private', as: :make_private
   get 'result' => 'result#index', as: :result
   get 'tickets' => 'topics#tickets', as: :tickets
   get 'ticket/:id/' => 'topics#ticket', as: :ticket
@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   get 'admin/tickets' => 'admin#tickets', as: :admin_tickets
   get 'admin/ticket/:id' => 'admin#ticket', as: :admin_ticket
   get 'admin/tickets/update/:id' => 'admin#update_ticket', as: :update_ticket
+  get 'admin/tickets/assign_agent/:id' => 'admin#assign_agent', as: :assign_agent
+  get 'admin/tickets/:id/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
+  get 'admin/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
   get 'admin/communities' => 'admin#communities', as: :admin_communities
   get 'admin/users'
   get 'admin/user/:id/edit' => 'admin#user', as: :admin_user

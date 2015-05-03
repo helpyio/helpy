@@ -43,6 +43,8 @@
 	http://localhost:3000/assets/base-72eb13f6223eb60616c9d133d70fbaf0.css?body=1
 	http://localhost:3000/assets/base-d7cb71dc7608065f99e9bf7cfcbe43db.css?body=1
 	http://localhost:3000/assets/base-a46257fd48214154a0c351deefd09ce5.css?body=1
+	http://localhost:3000/assets/base-429b04b88ab4fcc8c02894d2933750d1.css?body=1
+	http://localhost:3000/assets/base-789614e22fb2a7f0d8f1e50f42f893a4.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -313,7 +315,7 @@ div.admin-tools {
 }
 
 .active {
-	background-color: #eee;
+	background-color: #fff !important;
 }
 
 tr.even td {
@@ -484,10 +486,14 @@ span.category-icon {
 	padding-bottom: 5px;
 }
 
+.navbar > li > a {
+	background-color: #fff;
+}
+
+
 .navbar-brand a {
 	color:  #666;
 }
-
 
 .form-group {
 	width:100%;

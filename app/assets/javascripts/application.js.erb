@@ -71,6 +71,10 @@ Helpy.ready = function(){
     $("#new_topic_forum_id").remove();
   });
 
+  // Hide/replace last child of breadcrumbs since I don't have time to hack gem right now
+  $("ul.breadcrumb li:last-child").html("")
+
+
   // link entire row to child
   $('.link-row').mouseover(function(){
     $(this).css('cursor','pointer');
@@ -89,7 +93,11 @@ Helpy.ready = function(){
 
     // insert expand thread message
     var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + ($thread.size()-1) + " collapsed messages </span></div>";
-    $(".kind-first").append($hider);
+
+    // check to see if we are already collapsed
+    if ($(".collapsed-posts").size() == 0) {
+      $(".kind-first").append($hider);
+    }
 
     // add listener to expand messages
     $('.collapsed-posts').on('click', function(){

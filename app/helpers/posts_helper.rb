@@ -15,4 +15,9 @@ module PostsHelper
 
   end
 
+
+  def post_admin
+    
+  end
+
 end

@@ -73,8 +73,9 @@ ActiveRecord::Schema.define(version: 20150414210945) do
     t.integer  "user_id"
     t.text     "body"
     t.string   "kind"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "active",     default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "searches", force: :cascade do |t|
@@ -130,10 +131,10 @@ ActiveRecord::Schema.define(version: 20150414210945) do
     t.string   "login"
     t.string   "identity_url"
     t.string   "name"
-    t.boolean  "admin",                  default: false
+    t.boolean  "admin",                   default: false
     t.text     "bio"
     t.text     "signature"
-    t.string   "role",                   default: "user"
+    t.string   "role",                    default: "user"
     t.string   "home_phone"
     t.string   "work_phone"
     t.string   "cell_phone"
@@ -148,14 +149,16 @@ ActiveRecord::Schema.define(version: 20150414210945) do
     t.string   "thumbnail"
     t.string   "medium_image"
     t.string   "large_image"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.string   "email",                  default: "",     null: false
-    t.string   "encrypted_password",     default: "",     null: false
+    t.integer  "active_assigned_tickets", default: 0
+    t.boolean  "active",                  default: true
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "email",                   default: "",     null: false
+    t.string   "encrypted_password",      default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,      null: false
+    t.integer  "sign_in_count",           default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"

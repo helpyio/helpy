@@ -11,7 +11,7 @@ Helpy.track = function(){
     console.log(Helpy.clientId);
 
     // Update links to pass the clientID as a QS param
-    $('.ticket-controls > li > a, .topic-link > a').each(function(){
+    $('.ticket-controls > li > a, .topic-link > a, .mailbox > a').each(function(){
       var originalLink = $(this).attr("href");
       var divider = ((originalLink.indexOf("?") == -1) ? "?client_id=" : "&client_id=");
       $(this).attr("href", originalLink + divider + Helpy.clientId);
@@ -104,19 +104,6 @@ Helpy.track = function(){
   // Handled on server side with GA MP
 
 
-  // Admin Ticket Functions
-
-
-  // Clicked on discussion to view it.  Does not mean the discussion status changed.
-//  $('.admin-discussion').on('click', function(){
-//    console.log('Viewed Discussion ' + $(this).attr('id').split("-")[1])
-//    ga('send', 'event', 'Admin-Nav','Click', $(this).attr('id').split("-")[1])
-//  });
-
-  $('.mailbox > a').on('click', function(){
-    console.log($(this).text())
-    ga('send', 'event', 'Admin-Nav','Click', $(this).text())
-  });
 
 
 };

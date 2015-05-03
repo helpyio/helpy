@@ -1,8 +1,14 @@
 class EmailProcessor
 
+  require 'Staccato'
+
   def initialize(email)
     @email = email
     puts @email
+
+    puts "Tracking GA: #{Settings.google_analytics_id}"
+    @tracker = Staccato.tracker(Settings.google_analytics_id)
+
   end
 
   def process
@@ -56,6 +62,9 @@ class EmailProcessor
 
       puts "Post #{post.id} Created"
 
+      @tracker.event(category: 'Email', action: 'Inbound', label: 'Reply', non_interactive: true)
+      @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: 'User Replied by Email', label: topic.to_param)
+
 
     elsif subject.include?("Fwd: ") # this is a forwarded message
 
@@ -80,6 +89,10 @@ class EmailProcessor
       #insert post to new topic
       post = topic.posts.create(:body => message, :user_id => @user.id, :kind => 'first')
 
+      # Call to GA
+      @tracker.event(category: 'Email', action: 'Inbound', label: 'New Topic', non_interactive: true)
+      @tracker.event(category: 'Agent: Unassigned', action: 'New', label: topic.to_param)
+
     end
   end
 
@@ -93,15 +106,14 @@ class EmailProcessor
     puts "creating new user #{@email.from[:email]} #{@email.from[:name]}"
     @user = User.new
     @user.email = @email.from[:email]
-#    @user.name = mail.from.split('@')[0]
-#    @user.login = mail.from.split('@')[0]
-    @user.name = @email.from[:name]
+    @user.name = @email.from[:name].blank? ? @email.from[:token] : @email.from[:name]
     @user.password = password
-#    @user.password_confirmation = password
-    @user.save
-
-    #TODO need to send pasword to user
-
+    if @user.save
+      puts "user created, now sending mail"
+      UserMailer.new_user(@user).deliver #if Settings.send_email == true
+    else
+      puts "user could not be saved"
+    end
 
   end
 

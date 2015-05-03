@@ -1,11 +1,11 @@
 
 <ul class="list-unstyled border-right">
   <li class="mailbox tiny-header">
-    <%= link_to "Awaiting Response", admin_tickets_path(:status => 'pending'), :remote => true, class: 'admin-discussion-nav' %>
+    <%= link_to "Waiting", admin_tickets_path(:status => 'pending'), :remote => true, class: 'admin-discussion-nav' %>
     <span class="tiny-header pull-right"><%= @pending %></span>
   </li>
   <li class="mailbox tiny-header">
-    <%= link_to "Assigned to Me", admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true, class: 'admin-discussion-nav' %>
+    <%= link_to "Mine", admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true, class: 'admin-discussion-nav' %>
     <span class="tiny-header pull-right"><%= @mine %></span>
   </li>
 </ul>
@@ -20,12 +20,16 @@
     <%= link_to "Unread", admin_tickets_path(:status => 'unread'), :remote => true, class: 'admin-discussion-nav' %>
     <span class="tiny-header pull-right"><%= @unread %></span>
   </li>
-  <li class="mailbox tiny-header">
+  <!--<li class="mailbox tiny-header">
     <%= link_to "Open", admin_tickets_path(:status => 'open'), :remote => true, class: 'admin-discussion-nav' %>
     <span class="tiny-header pull-right"><%= @open %></span>
+  </li> -->
+  <li class="mailbox tiny-header">
+    <%= link_to "Active", admin_tickets_path(:status => 'active'), :remote => true, class: 'admin-discussion-nav' %>
+    <span class="tiny-header pull-right"><%= @active %></span>
   </li>
   <li class="mailbox tiny-header">
-    <%= link_to "Closed", admin_tickets_path(:status => 'closed'), :remote => true, class: 'admin-discussion-nav' %>
+    <%= link_to "Resolved", admin_tickets_path(:status => 'closed'), :remote => true, class: 'admin-discussion-nav' %>
     <span class="tiny-header pull-right"><%= @closed %></span>
   </li>
   <li class="mailbox tiny-header">

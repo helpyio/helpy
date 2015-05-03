@@ -7,7 +7,7 @@ Planned Features
 ========
 
 - **Private Support Discussions (aka tickets):**
-Integrated with inbound email via Mandrill, Mailgun, etc. [90%]
+Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc. [90%]
 - **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum. [90%]
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. [95%]
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [90%]
@@ -26,6 +26,7 @@ Roadmap
 - Improve test coverage.
 - Continue to clean up and remove cruft (this is based on an old rails 2 project)
 - Bring back labels (tag) functionality for discussions.  This is partially there now, but is not in the UI yet.
+- Multiple agent/admin roles
 - Create KB article from discussion
 - Common replies to discussions
 - Some kind of rules capability
@@ -40,6 +41,7 @@ Helpy was designed to run on Heroku, although it should work just about anywhere
 - Ruby 2.2
 - Rails 4.2
 - Postgres
+- Uses Unicorn (right now)
 
 The rest of the instructions are coming soon. The core app is still somewhat unstable so it would be best to hold off right now, unless you just wanna play.
 
@@ -63,4 +65,4 @@ License
 
 Copyright 2015, Scott Miller. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make, even though you don't have to.  
 
-Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  Of course you can remove it if you want.
+Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.

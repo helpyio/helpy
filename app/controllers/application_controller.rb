@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     @unread = Topic.unread.count
     @pending = Topic.mine(current_user.id).pending.count
     @open = Topic.open.count
+    @active = Topic.active.count
     @mine = Topic.mine(current_user.id).count
     @closed = Topic.closed.count
     @spam = Topic.spam.count

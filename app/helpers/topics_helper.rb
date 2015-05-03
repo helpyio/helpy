@@ -49,6 +49,19 @@ module TopicsHelper
     "<span class='btn status-label label #{class_name}'>#{status.upcase} <span class='caret'></span> </span>"
   end
 
+  def control_for_privacy(private)
+
+    case private
+    when true
+        privacy = 'PRIVATE'
+    when false
+        privacy = "PUBLIC"
+    end
+
+    "<span class='btn privacy-label label label-info'>#{privacy} <span class='caret'></span> </span>"
+  end
+
+
   def assigned_badge(topic)
     if topic.assigned_user_id.nil?
       "<span class='btn status-label label label-warning'>UNASSIGNED <span class='caret'></span> </span>"

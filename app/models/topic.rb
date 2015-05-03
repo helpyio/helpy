@@ -31,8 +31,8 @@ class Topic < ActiveRecord::Base
   paginates_per 25
 
   include PgSearch
-  multisearchable :against => [:name, :post_cache],
-                  :if => lambda { |record| record.private = false}
+  multisearchable :against => [:id, :name, :post_cache, :private]#,
+#                  :if => lambda { |record| record.private = false}
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
@@ -45,15 +45,17 @@ class Topic < ActiveRecord::Base
 
   scope :chronologic, -> { order('updated_at DESC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where("current_status <> 'spam'") }
+  scope :active, -> { where("current_status = ? OR current_status = ?", "open", "pending") }
   scope :front, -> { limit(6) }
 
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where("current_status <> 'Spam'").where(private: true)}
   scope :ispublic, -> { where("current_status <> 'Spam'").where(private: false)}
 
-  before_save :check_for_private
-  #acts_as_taggable
+  # may want to get rid of this filter:
+  # before_save :check_for_private
+
+  # acts_as_taggable
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
@@ -90,7 +92,9 @@ class Topic < ActiveRecord::Base
 
   #Callback method to check and see if this topic is in a private forum
   def check_for_private
-    self.private = true if self.forum.private?
+    #association is not working
+    f = Forum.find(self.forum_id)
+    self.private = true if f.private?
   end
 
 end

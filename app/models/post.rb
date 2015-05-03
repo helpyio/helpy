@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
   #after_save :send_message
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
+  scope :active, -> { where("active = true") }
 
 
   #updates the last post date for both the forum and the topic
@@ -36,7 +37,7 @@ class Post < ActiveRecord::Base
     unless status == 'closed'
       logger.info('private message, update waiting on cache')
       status = self.topic.current_status
-      if self.user.admin?
+      if self.user && self.user.admin?
         logger.info('waiting on user')
         waiting_on = "user"
         status = "open"
