@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def index
     @topic = Topic.where(id: params[:topic_id]).first#.includes(:forum)
-    @posts = @topic.posts.active
+    @posts = @topic.posts.active.all
     #@post = @topic.posts.new
 
     #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)

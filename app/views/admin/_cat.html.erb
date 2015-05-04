@@ -1,11 +1,11 @@
 <tr id="category-<%= cat.id %>">
   <td>
     <span class="more-important">
-      <%= cat.name %>
-    </span>
+      <%= link_to cat.name, admin_articles_path(cat.id) %>
+    </span><span class="label label-count pull-right"><%= cat.docs.count %></span>
 
     <br/>
-    <%= cat.meta_description %> -<%= link_to "#{cat.docs.count} articles ", admin_articles_path(cat.id), class: 'less-important' %>
+    <%= cat.meta_description %>
   </td>
   <td class="text-right">
     <div class="btn-group">

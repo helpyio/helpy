@@ -1,8 +1,10 @@
-<tr class="border-bottom">
+<tr class="topic border-bottom">
   <td>
+    <span class="label label-count pull-right"><%= ticket.posts.count %></span>
     <span class="more-important">
       <%= link_to ticket.name.titleize, ticket_path(ticket) -%><%= badge_for_status(ticket.current_status).html_safe %>
-    </span>
+    </span><br/>
+    <span class="less-important">&nbsp;</span>
   </td>
   <td class="last-active less-important text-right"><%= last_active_time(ticket.last_post_date) %></td>
 </tr>

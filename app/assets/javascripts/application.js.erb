@@ -108,6 +108,12 @@ Helpy.ready = function(){
     // hide thread, except for most recent message
     $thread.hide().last().show();
   }
+
+  $('#post_reply_id').on('change', function(){
+    $('post_body').val($('#post_reply_id option:selected').val());
+  });
+
+
 };
 
 $(document).ready(Helpy.ready);

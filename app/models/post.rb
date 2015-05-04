@@ -13,6 +13,8 @@
 
 class Post < ActiveRecord::Base
 
+  attr_accessor :reply_id
+
   belongs_to :topic, :counter_cache => true
   belongs_to :user
 
@@ -24,7 +26,7 @@ class Post < ActiveRecord::Base
   #after_save :send_message
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
-  scope :active, -> { where("active = true") }
+  scope :active, -> { where("active = ?", true) }
 
 
   #updates the last post date for both the forum and the topic

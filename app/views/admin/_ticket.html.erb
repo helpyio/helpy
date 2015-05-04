@@ -2,7 +2,7 @@
 
   <div id="ticket-controls" class="no-side-pad col-md-12 col-xs-12 col-md-12 col-lg-12">
 
-    <%= render :partial => 'admin/topic_options' %> 
+    <%= render :partial => 'admin/topic_options' %>
 
     <%= render :partial => 'posts/post', :collection => @posts %>
 
@@ -14,9 +14,12 @@
       <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
       <%= f.select :kind, ['reply','note'] %>
       <%= hidden_field_tag :client_id %>
-      <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
+      <%= f.text_area :body, :rows => 8, :cols => 160, label: "Type your reply, or select from a common message below" %>
+      <%= f.select('reply_id', Doc.replies.collect {|d| [ d.title, d.body ] }, label: "Insert Common Reply", include_blank: true) %>
+
       <%= f.submit 'Post Reply' -%>
     <% end -%>
+
     </div>
     <% end -%>
   </div>

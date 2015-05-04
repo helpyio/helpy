@@ -78,6 +78,8 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
 
+    render layout: 'clean'
+
   end
 
   # GET /topics/1;edit

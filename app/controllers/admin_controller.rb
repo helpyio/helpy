@@ -21,7 +21,7 @@ class AdminController < ApplicationController
   end
 
   def articles
-    @category = Category.active.where(id: params[:category_id]).first
+    @category = Category.where(id: params[:category_id]).first
     @docs = @category.docs.ordered.alpha
 
     respond_to do |format|
@@ -54,6 +54,8 @@ class AdminController < ApplicationController
       @topics = Topic.where(current_status: @status).page params[:page]
     end
 
+
+    @replies = Doc.replies
     @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
 
     respond_to do |format|

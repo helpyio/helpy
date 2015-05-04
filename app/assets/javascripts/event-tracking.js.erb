@@ -26,6 +26,8 @@ Helpy.track = function(){
 //    ga('send', 'event', 'Search','Search', $('#search-field').val())
 //  });
 
+  // Search Events
+
   $('#page-title').find('#search-form').unbind().on('submit', function(){
     console.log('header search')
     ga('send', 'event', 'Search','Search', 'Header Search')
@@ -76,22 +78,38 @@ Helpy.track = function(){
     flare.emit({
       category: "Main Nav",
       action: "Click",
-      label: $(this).text()
+      label: "Breadcrumb: " + $(this).text()
     });
   });
 
-  // Inpage events
+
+  // Inpage events: Inpage events represent things that happen on the page but
+  // do not involve global navigation
+
   $('.label-collapsed').unbind().on("click", function(){
     console.log($(this).text())
-    ga('send', 'event', 'In-Page-Nav','Click', 'Show Hidden')
+    ga('send', 'event', 'Inpage-Nav','Click', 'Show Hidden')
   })
 
   $('.topic-box').on("click", function(){
     console.log($(this).find('h5').text())
-    ga('send', 'event', 'In-Page-Nav','Click', $(this).find('h5').text())
+    ga('send', 'event', 'Inpage-Nav','Click', $(this).find('h5').text())
   });
 
-  // Same page links
+  // Discussion Click
+  $('tr.forum').find('a').unbind().on('click', function(){
+    console.log("Clicked:" + $(this).text());
+    ga('send', 'event', 'Inpage-nav','Click', "Forum: " + $(this).text());
+  });
+
+  $('tr.topic').find('a').unbind().on('click', function(){
+    console.log("Clicked:" + $(this).text());
+    ga('send', 'event', 'Inpage-nav','Click', "Topic: " + $(this).text());
+  });
+
+
+  // Same page links: links which scroll the page or repesent some other
+  // interaction on the page
   $('.autoscroll').unbind().on("click", function(){
     console.log($(this).text())
     ga('send', 'event', 'Same-Page-Nav','Click', $(this).text())

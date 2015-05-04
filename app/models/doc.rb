@@ -44,6 +44,7 @@ class Doc < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :recent, -> { order('last_updated DESC').limit(5) }
   scope :all_public_popular, -> { where(active: true).order('points DESC').limit(6) }
+  scope :replies, -> { where(category_id: 1) }
 
   #simple_column_search :body, :title, :keywords
 

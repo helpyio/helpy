@@ -45,6 +45,7 @@
 	http://localhost:3000/assets/base-a46257fd48214154a0c351deefd09ce5.css?body=1
 	http://localhost:3000/assets/base-429b04b88ab4fcc8c02894d2933750d1.css?body=1
 	http://localhost:3000/assets/base-789614e22fb2a7f0d8f1e50f42f893a4.css?body=1
+	http://localhost:3000/assets/base-89368db4f0c4a76c8479056d87f122d0.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -312,6 +313,22 @@ div.admin-tools {
   	vertical-align: baseline;
   	border-radius: .25em;
   	cursor: pointer;
+}
+
+.label-count {
+	position: relative;
+	top:  .5em;
+	border: 1px solid #999;
+	background-color: #fff;
+	color: #999;
+  	display: inline;
+  	font-size: 100%;
+  	font-weight: normal;
+  	line-height: 1;
+  	text-align: center;
+  	white-space: nowrap;
+  	vertical-align: baseline;
+  	border-radius: .25em;
 }
 
 .active {

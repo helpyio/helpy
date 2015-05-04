@@ -2,6 +2,6 @@
 <% unless user_signed_in? %>
   <%= link_to "#{t(:back_to, default: "Back to")} #{Settings.parent_company}", Settings.parent_site %> | <%= link_to t(:login), new_user_session_path %>
 <% else %>
-  <%= t(:welcome_back, :username => current_user.name.titleize) %> | <%= link_to 'Admin | ', admin_path if current_user.admin? %> <%= link_to t(:your_tickets), tickets_path if Settings.tickets %> | <%= link_to t(:logout), destroy_user_session_path %>
+  <%= link_to t(:welcome_back, :username => current_user.name.titleize), edit_user_registration_path %> | <%= link_to 'Admin | ', admin_path if current_user.admin? %> <%= link_to t(:your_tickets), tickets_path if Settings.tickets %> | <%= link_to t(:logout), destroy_user_session_path %>
 <% end %>
 </small>
