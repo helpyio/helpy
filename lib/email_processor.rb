@@ -1,7 +1,5 @@
 class EmailProcessor
 
-  require 'Staccato'
-
   def initialize(email)
     @email = email
     puts @email
