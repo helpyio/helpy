@@ -1,0 +1,54 @@
+<div id="discussion-flow" class="hidden-xs">
+  <div class="tiny-header">Recent Discussion Activity:</div>
+
+  <div id="admin-stats" class="row">
+    <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
+      <div class="dummy"></div>
+      <div class="stats">
+        <h2><%= Topic.all.count %></h2>
+        <%= link_to "All", admin_tickets_path(:status => 'all'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+      </div>
+    </div>
+
+    <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
+      <div class="dummy"></div>
+      <div class="stats">
+        <h2><%= @closed %></h2>
+        <%= link_to "Resolved", admin_tickets_path(:status => 'closed'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+      </div>
+    </div>
+
+    <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
+      <div class="dummy"></div>
+      <div class="stats">
+
+      <h2><%= @active %></h2>
+      <%= link_to "Active", admin_tickets_path(:status => 'active'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+      </div>
+    </div>
+    <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
+      <div class="dummy"></div>
+      <div class="stats">
+
+        <h2><%= @open %></h2>
+        <%= link_to "Open", admin_tickets_path(:status => 'open'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+      </div>
+    </div>
+    <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
+      <div class="dummy"></div>
+      <div class="stats">
+
+        <h2><%= @mine %></h2>
+        <%= link_to "Mine", admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+      </div>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+      <div class="dummy"></div>
+      <div class="stats">
+
+        <h2><%= @pending %></h2>
+        <%= link_to "Waiting", admin_tickets_path(:status => 'pending'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+      </div>
+    </div>
+  </div>
+</div>

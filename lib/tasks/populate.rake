@@ -145,7 +145,7 @@ namespace :db do
       post.kind = 'first'
       post.save
       puts "Post added to topic"
-      rand(1..5).times do |i|
+      rand(0..5).times do |i|
         post = topic.posts.new
         post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
         post.kind = 'reply'
@@ -157,7 +157,16 @@ namespace :db do
         end
         post.save
         puts "Post added to topic"
+
       end
+
+      #close message?
+      status = rand(1..5)
+      if status == 5
+        topic.current_status = "closed"
+      end
+      topic.save
+
     end
 
     # Update pg search

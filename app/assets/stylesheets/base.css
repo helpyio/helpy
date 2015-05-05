@@ -46,6 +46,7 @@
 	http://localhost:3000/assets/base-429b04b88ab4fcc8c02894d2933750d1.css?body=1
 	http://localhost:3000/assets/base-789614e22fb2a7f0d8f1e50f42f893a4.css?body=1
 	http://localhost:3000/assets/base-89368db4f0c4a76c8479056d87f122d0.css?body=1
+	http://localhost:3000/assets/base-5a186a4e0042182d078ff901cd3bd122.css?body=1
 */
 
 /* === BASE STYLES === */
@@ -206,7 +207,8 @@ ul.breadcrumb {
 
 div.add-form {
 	background-color: rgba(192,255,193,0.25);
-	padding: 10px
+	padding: 10px;
+	margin-top: 40px
 }
 
 
@@ -403,6 +405,29 @@ span.category-icon {
 .verticalness {
 	padding-top: 150px;
 	padding-bottom: 150px;
+}
+
+.talkbubble {
+   width: 120px;
+   height: 80px;
+   background: white;
+   border: 1px solid #eee;
+   position: relative;
+   -moz-border-radius:    10px;
+   -webkit-border-radius: 10px;
+   border-radius:         10px;
+}
+
+.talkbubble:before {
+   content:"";
+   position: absolute;
+   right: 100%;
+   top: 26px;
+   width: 0;
+   height: 0;
+   border-top: 13px solid transparent;
+   border-right: 26px solid #eee;
+   border-bottom: 13px solid transparent;
 }
 
 /* === LAYOUT === */
@@ -1050,3 +1075,9 @@ div.topic-status {
 @media(min-width:1200px){
 
 }
+
+/* @group My Group */
+
+
+
+/* @end */

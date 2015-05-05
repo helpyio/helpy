@@ -21,20 +21,75 @@ $(document).ready(function(){
 
 <h1>Admin Dashboard</h1>
 
-<div class="row">
-  <div class="col-md-4 text-center">
-    <h2><%= @new %></h2>
-    New Unassigned Discussions
+<div class="tiny-header">Discussion Flow</div>
+
+<div id="admin-stats" class="row">
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @closed %></h2>
+      Resolved
+    </div>
   </div>
-  <div class="col-md-4 text-center">
-    <h2><%= @open %></h2>
-    Open Discussions
+  <div class="topic-box col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+      <h2><%= Topic.all.count %></h2>
+      All
+    </div>
   </div>
-  <div class="col-md-4 text-center">
-    <h2><%= @mine %></h2>
-    Assigned to you
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+    <h2><%= @active %></h2>
+    Active
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @open %></h2>
+      Open
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @mine %></h2>
+      Mine
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @pending %></h2>
+      Waiting
+    </div>
   </div>
 </div>
+
+<table id="topics" class="forum table-hover">
+
+  <col width="70%">
+  <col width="30%">
+
+  <tr>
+    <th>Subject</th>
+    <th class="text-right">Last Post</th>
+  </tr>
+  <tbody>
+  <%= render :partial => 'topic', :collection => @topics %>
+  </tbody>
+</table>
+<div class="text-right">
+  <%= paginate @topics, remote: true %>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_users_path %>">

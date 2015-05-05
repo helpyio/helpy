@@ -1,13 +1,14 @@
 <h1>
-  <%= badge_for_private(@topic.private).html_safe %> #<%= @topic.id %> <%= @topic.name.titleize -%>  <%= render 'admin/ticket_nav_dropdown' %>
+  <%#= badge_for_private(@topic.private).html_safe %> #<%= @topic.id %> <%= @topic.name.titleize -%>  <%= render 'admin/ticket_nav_dropdown' %>
 </h1>
 <div class="row">
 
+<!--
   <div class="col-md-3 hidden-xs hidden-sm" id="left-col-ticket-nav">
     <%= render 'ticket_nav' %>
   </div>
-
-  <div id="tickets" class="col-md-9">
+-->
+  <div id="tickets" class="col-md-12">
     <%= render 'ticket' %>
   </div>
 

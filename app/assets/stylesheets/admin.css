@@ -9,27 +9,24 @@
 	http://localhost:3000/assets/admin-dc944612123612ecf1369dfd9e833011.css?body=1
 	http://localhost:3000/assets/admin-79efc0f98fc21b765676dd285005bdbd.css?body=1
 	http://localhost:3000/assets/admin-14123779efa2627205c1abd43f429d19.css?body=1
+	http://localhost:3000/assets/admin-00738a25ecb4d5b3ff83826cde79c18e.css?body=1
+	http://localhost:3000/assets/admin-6b85c10e6c034a81a1b40d3d1e4bafd8.css?body=1
+	http://localhost:3000/assets/admin-7a80d6c82e10fbdd03290062f05ac1ae.css?body=1
+	http://localhost:3000/assets/admin-d154325cd4fa4b3bf18f035d5a644cdb.css?body=1
+	http://localhost:3000/assets/admin-956ac4b6445bf6b5bdd5db965827b55b.css?body=1
+	http://localhost:3000/assets/admin-14563e616897efd0a474c9222c683dc3.css?body=1
+	http://localhost:3000/assets/admin-27464ed4296590f1a8432637c5869975.css?body=1
+	http://localhost:3000/assets/admin-ca091ce51150c6c7ed4eb56a5919e06f.css?body=1
+	http://localhost:3000/assets/admin-8a51361afa7f0e694d63358737c17352.css?body=1
+	http://localhost:3000/assets/admin-9551695fcd6a5add94ddd36496af1592.css?body=1
+	http://localhost:3000/assets/admin-53eba4dba284b14b9b841c16e4804a1f.css?body=1
+	http://localhost:3000/assets/admin-2553a60f5911c67c53cc7075866bbfa3.css?body=1
+	http://localhost:3000/assets/admin-5584b00d000826ae856df62fa688984b.css?body=1
+	http://localhost:3000/assets/admin-987a360814f6f9131994fa1a6ed0b5b0.css?body=1
 */
 
-/*== ADMIN == */
+/*=== ADMIN GLOBAL OVERRIDES === */
 
-img.user-thumbnail {
-	padding-top: 0px;
-	padding-bottom: 0px;
-}
-
-div.left-col-dropdown {
-  width: 100%;
-}
-
-div.left-col-dropdown > .btn-default {
-  width: 100%;
-  text-align: left;
-}
-
-ul.dropdown-menu {
-  width: 100%;
-}
 
 h1{
 	padding-top: 15px;
@@ -59,6 +56,37 @@ td > img {
 	margin-bottom: 20px;
 }
 
+/*=== ADMIN LAYOUT === */
+
+#ticket-info {
+	margin-top: 30px;
+}
+
+#left-col-user-info {
+	margin-top: 30px;
+}
+
+/*=== ADMIN STYLES === */
+
+img.user-thumbnail {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+div.left-col-dropdown {
+  width: 100%;
+}
+
+div.left-col-dropdown > .btn-default {
+  width: 100%;
+  text-align: left;
+}
+
+ul.dropdown-menu {
+  width: 100%;
+}
+
+
 #user-info-image {
 	padding-top: 5px;
 	padding-left: 0px;
@@ -87,6 +115,14 @@ td > img {
 	margin-top: 50px;
 }
 
+.navbar.navbar-default {
+	background-color: #222;
+}
+
+#upper-wrapper {
+	background-color: #222;
+}
+
 .mailbox {
 	padding-right: 10px;
 	padding-bottom: 8px;
@@ -106,4 +142,154 @@ td > img {
 
 #toolbar {
 	border-bottom: 1px solid #eee;
+}
+
+
+.dummy {
+    margin-top: 110%;
+}
+
+#admin-stats {
+	height:  100px;
+}
+
+.stats {
+  display: block;
+  padding: 4px;
+  margin-bottom: 18px;
+  line-height: 1.42857143;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+a.stats:hover,
+a.stats:focus,
+a.stats.active {
+  border-color: #004084;
+}
+
+.stats {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 5px;
+    right: 5px;
+    height: 100px;
+    max-height: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align:center;
+    /*padding-top:calc(40% - 30px);*/
+}
+
+
+
+.has-arrow {
+	position: relative;
+	border: 0px solid #333;
+	height: 100px;
+}
+
+.has-arrow:after, .has-arrow:before {
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	left: 95%;
+	top:  40%;
+	position: absolute;
+	width: 0;
+}
+
+.has-arrow:after {
+	border-width: 10px;
+	border-left-color: #fff;
+	/*top: 35px;*/
+	top: 40%
+}
+
+.has-arrow:before {
+	border-width: 11px;
+	border-left-color: #ddd;
+	top: calc(40% - 1px);
+	  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+
+}
+
+.has-arrow.over:before {
+	border-width: 11px;
+	border-left-color: #333;
+	top: calc(40% - 1px);
+	  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+
+}
+
+@media(max-width:767px){
+	h1 {
+		font-size: 150%;
+	}
+	h1#how-help {
+		font-size: 190%;
+	}
+	h2 {
+		font-size: 150%;
+		margin-top: 25px;
+	}
+	
+}
+
+@media(min-width:768px){
+	h1 {
+		font-size: 190%;
+	}
+	
+	h2 {
+		margin-top: 45px;
+	}
+	.stats {
+		padding-top: 30%;
+	}
+	.stats h2 {
+		color: #666;
+		font-size: 200%;
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+}
+
+@media(min-width:992px){
+	h1 {
+		font-size: 200%;
+	}
+	.stats {
+		padding-top: 20%;
+	}
+	.stats h2 {
+		color: #666;
+		font-size: 300%;
+		margin-bottom: 0px;
+		margin-top: 0px;
+	}
+}
+
+@media(min-width:1200px){
+	h1 {
+		font-size: 220%;
+	}
+	.stats {
+		padding-top: 10%;
+	}
+	.stats h2 {
+		color: #666;
+		font-size: 350%;
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
 }

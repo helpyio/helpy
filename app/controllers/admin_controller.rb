@@ -8,7 +8,7 @@ class AdminController < ApplicationController
 
   def dashboard
     #@users = PgSearch.multisearch(params[:q]).page params[:page]
-
+    @topics = Topic.mine(current_user.id).pending.page params[:page]
   end
 
   def knowledgebase
@@ -40,6 +40,8 @@ class AdminController < ApplicationController
 
     case @status
 
+    when 'all'
+      @topics = Topic.all.page params[:page]
     when 'new'
       @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).page params[:page]
     when 'active'

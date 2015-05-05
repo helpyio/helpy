@@ -26,19 +26,43 @@ var Helpy = Helpy || {};
 
 Helpy.ready = function(){
 
+  $('.thumbnail, .stats').off();
+
   // jquery hhoks for the home page
   $('.home-option, .home-option-xs, .topic-box').click(function(){
     document.location.href = $(this).data("link");
   });
-  $('.thumbnail').mouseover(function(){
+  $('.thumbnail, .stats').on('mouseover',function(){
     $(this).css('cursor','pointer');
     $(this).css('border','1px solid #666');
     $(this).css('box-shadow', '0px 0px 10px #eee');
+    $(this).closest('.has-arrow').addClass('over');
   });
-  $('.thumbnail').mouseout(function(){
+
+  $('.stats').on('click', function(){
+    var form = $("<form></form>");
+    form.attr(
+    {
+        id     : "formform",
+        // The location given in the link itself
+        action : $(this).find('a').attr('href'),
+        method : "GET",
+        "data-remote" : "true"
+    });
+
+    $("body").append(form);
+    $("#formform").submit();
+    $("#formform").remove();
+
+    // Prevent the link from opening normally
+    return false;
+  });
+
+  $('.thumbnail, .stats').mouseout(function(){
     $(this).css('cursor','auto');
-    $(this).css('border','1px solid #eee');
+    $(this).css('border','1px solid #ddd');
     $(this).css('box-shadow', '');
+    $('.has-arrow').removeClass('over');
   });
 
 

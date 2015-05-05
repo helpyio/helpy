@@ -1,10 +1,13 @@
-<h1 id="ticket-page-title">Discussion Management <%= render 'admin/ticket_nav_dropdown' %></h1>
+
+<%= render 'admin/ticket_stats' %>
+<h2 id="ticket-page-title">Discussion Management <%= render 'admin/ticket_nav_dropdown' %></h2>
+
 <div class="row">
-  <div class="col-md-3 hidden-xs hidden-sm" id="left-col-ticket-nav">
+  <div class="col-md-3 hidden-lg hidden-md hidden-xs hidden-sm" id="left-col-ticket-nav">
     <%= render 'ticket_nav' %>
   </div>
 
-  <div class="col-md-9" id="tickets">
+  <div class="col-md-12" id="tickets">
     <%= render 'tickets' %>
   </div>
 </div>

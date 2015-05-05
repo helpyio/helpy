@@ -1,6 +1,10 @@
 <div id="ticket-info" class="no-side-pad row">
 
-  <div id="ticket-controls" class="no-side-pad col-md-12 col-xs-12 col-md-12 col-lg-12">
+  <div class="col-md-4 hidden-xs hidden-sm" id="left-col-user-info">
+    <%= render 'admin/user_info' %>
+  </div>
+
+  <div id="ticket-controls" class="col-md-8 col-xs-12 col-md-12 col-lg-8">
 
     <%= render :partial => 'admin/topic_options' %>
 
@@ -24,9 +28,5 @@
     <% end -%>
   </div>
 
-<!-- hidden for now
-  <div class="col-md-4 hidden-xs hidden-sm" id="left-col-user-info">
-    <%#= render 'admin/user_info' %>
-  </div>
--->
+
 </div>
