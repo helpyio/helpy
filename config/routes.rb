@@ -36,10 +36,12 @@ Rails.application.routes.draw do
   # Admin Routes
   get 'admin' => 'admin#tickets', as: :admin
   get 'admin/dashboard' => 'admin#dashboard', as: :admin_dashboard
-  get 'admin/knowledgebase' => 'admin#knowledgebase'
-  get 'admin/knowledgebase/:category_id/articles' => 'admin#articles', as: :admin_articles
+  get 'admin/content' => 'admin#knowledgebase', as: :admin_knowledgebase
+  get 'admin/content/:category_id/articles' => 'admin#articles', as: :admin_articles
   get 'admin/tickets' => 'admin#tickets', as: :admin_tickets
   get 'admin/ticket/:id' => 'admin#ticket', as: :admin_ticket
+  get 'admin/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
+  post 'admin/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
   get 'admin/tickets/update/:id' => 'admin#update_ticket', as: :update_ticket
   get 'admin/tickets/assign_agent/:id' => 'admin#assign_agent', as: :assign_agent
   get 'admin/tickets/:id/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
@@ -47,7 +49,8 @@ Rails.application.routes.draw do
   get 'admin/communities' => 'admin#communities', as: :admin_communities
   get 'admin/users'
   get 'admin/user/:id/edit' => 'admin#user', as: :admin_user
-  get 'admin/users/search' => 'admin#user_search', as: :admin_search
+  get 'admin/topic_search' => 'admin#topic_search', as: :admin_search
+  get 'admin/user_search' => 'admin#user_search', as: :user_search
 
 
   # Receive email from Griddler

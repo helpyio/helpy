@@ -1,7 +1,9 @@
-<h1><%= "#{@category.name} Articles" %></h1>
+<h2><%= "#{@category.name} Articles" %></h2>
 
-<%= render '/admin/knowledgebase_admin_options' %>
-
+<div class="admin-options text-right">
+  <%= link_to "New Category", new_category_path, class: 'btn btn-primary' %>
+  <%= link_to "New Article", new_doc_path, class: 'btn btn-primary' %>
+</div>
 <div class="row">
   <div class="col-md-12">
     <table id="forums">
@@ -27,8 +29,5 @@
       <% end %>
     </table>
 
-    <br />
-
-    <%= link_to 'New doc', new_category_doc_path(@category) %>
   </div>
 </div>

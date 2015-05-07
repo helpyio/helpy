@@ -1,55 +1,8 @@
-/* @override 
-	http://localhost:3000/assets/base-a2b071a5f40768f3217aa05a6fbb4f20.css?body=1
-	http://localhost:3000/assets/base-a8e24c2fa257fd3af2843d679c9bfed9.css?body=1
-	http://localhost:3000/assets/base-63ba3523f3ebba91cac2b2f1cfb42970.css?body=1
-	http://localhost:3000/assets/base-46beb40982ba7f5db84ad12cf2238642.css?body=1
-	http://localhost:3000/assets/base-47c4cabee546eeb1c2efe4d3993b54ea.css?body=1
-	http://localhost:3000/assets/base-39acd80214431e6efb55382062df2c87.css?body=1
-	http://localhost:3000/assets/base-cc65244c18c6f1530acba8f718de723c.css?body=1
-	http://localhost:3000/assets/base-b53ed0f9d35199887e19d2dcd4048912.css?body=1
-	http://localhost:3000/assets/base-f158fa15fd2288ba10e646c47aa52292.css?body=1
-	http://localhost:3000/assets/base-21ed3be58e2717e9be06d0d7aa9485fe.css?body=1
-	http://localhost:3000/assets/base-4b49b33cd8d94159f47ee093e01635fe.css?body=1
-	http://localhost:3000/assets/base-3af42fc3ee5a75ce84705eb2ce074a25.css?body=1
-	http://localhost:3000/assets/base-f07d99c6309beed0a22979047553ec59.css?body=1
-	http://localhost:3000/assets/base-53f030109ee81027ffd8497962080536.css?body=1
-	http://localhost:3000/assets/base-3fa30be6b9ce922fe9c9d9130f3dfbf1.css?body=1
-	http://localhost:3000/assets/base-ef8cbf1911a9ad50f6e32e4f4289809b.css?body=1
-	http://localhost:3000/assets/base-0296cfb98c7caaea10239018f5b465bf.css?body=1
-	http://localhost:3000/assets/base-e10d8d0f87147385661d6017ddfea12e.css?body=1
-	http://localhost:3000/assets/base-a86d7ebc30510976fbffc3b8b8e6ade4.css?body=1
-	http://localhost:3000/assets/base-127fa92f5f6522c95e04d9b93323170c.css?body=1
-	http://localhost:3000/assets/base-8bcc73776b72f92b74105c337e106d46.css?body=1
-	http://localhost:3000/assets/base-7c742b5db5c3c865fcf6614f6a1fe425.css?body=1
-	http://localhost:3000/assets/base-6e744379746a22cd519bac65d5536f77.css?body=1
-	http://localhost:3000/assets/base-85fe0825621cf2bd900cfccf84c40853.css?body=1
-	http://localhost:3000/assets/base-e660f816c3b2c21c2e85a8d045f6c013.css?body=1
-	http://localhost:3000/assets/base-6f08d9da34b8c95571154252a4611838.css?body=1
-	http://localhost:3000/assets/base-ca22bcdee06ab2352f6361cd10225e8f.css?body=1
-	http://localhost:3000/assets/base-449942332b6934f69c0b47ed81b71324.css?body=1
-	http://localhost:3000/assets/base-334f3a38114c8f66c92182f03cf975ac.css?body=1
-	http://localhost:3000/assets/base-c529c27e8fd3585823754869f3e11ea7.css?body=1
-	http://localhost:3000/assets/base-0de4f4dd8d6f2beb6be677ab77270611.css?body=1
-	http://localhost:3000/assets/base-acf46b759f10d1d804060f4bd6397d46.css?body=1
-	http://localhost:3000/assets/base-9cfc40d2854311aa21583703b29c9dca.css?body=1
-	http://localhost:3000/assets/base-16c96d8fbed8d6dd2092f34228d48ed6.css?body=1
-	http://localhost:3000/assets/base-f2fd626aa1af46b3903ba664b967d44e.css?body=1
-	http://localhost:3000/assets/base-a1916f86606a7cd2c4d99624e6ea7561.css?body=1
-	http://localhost:3000/assets/base-8b18718b200d343e7cb5fd0a6468bb0e.css?body=1
-	http://localhost:3000/assets/base-cc096ebb93c8eca87b2cd3d0b8e8b405.css?body=1
-	http://localhost:3000/assets/base-fad9afb5319db5be100829e83d6a8f55.css?body=1
-	http://localhost:3000/assets/base-e287ae8eacf678d5bac7b169d543cade.css?body=1
-	http://localhost:3000/assets/base-4592de63258216de5b49e51773079a11.css?body=1
-	http://localhost:3000/assets/base-72eb13f6223eb60616c9d133d70fbaf0.css?body=1
-	http://localhost:3000/assets/base-d7cb71dc7608065f99e9bf7cfcbe43db.css?body=1
-	http://localhost:3000/assets/base-a46257fd48214154a0c351deefd09ce5.css?body=1
-	http://localhost:3000/assets/base-429b04b88ab4fcc8c02894d2933750d1.css?body=1
-	http://localhost:3000/assets/base-789614e22fb2a7f0d8f1e50f42f893a4.css?body=1
-	http://localhost:3000/assets/base-89368db4f0c4a76c8479056d87f122d0.css?body=1
-	http://localhost:3000/assets/base-5a186a4e0042182d078ff901cd3bd122.css?body=1
-*/
 
 /* === BASE STYLES === */
+
+
+
 
 html, body {
     max-width: 100%;
@@ -430,6 +383,11 @@ span.category-icon {
    border-bottom: 13px solid transparent;
 }
 
+.last-active {
+	white-space: nowrap;	
+}
+
+
 /* === LAYOUT === */
 
 #breadcrumbs {
@@ -488,6 +446,8 @@ span.category-icon {
 #body-wrapper {
 	margin-bottom: 80px;
 }
+
+
 
 /* === BOOTSTRAP OVERRIDES == */
 /*
@@ -931,7 +891,7 @@ table#forums, table#topics, table#posts {
 }
 
 .kind-reply, .kind-note {
-	margin-left: 60px;
+	margin-left: 50px;
 }
 
 .kind-note {
@@ -1046,6 +1006,9 @@ div.topic-status {
 	    text-align:center;
 	    padding-top: 10px;
 	    max-height: 100px;
+	}
+	.kind-reply, .kind-note {
+		margin-left: 0;
 	}
 	/*
 	#upper-wrapper {

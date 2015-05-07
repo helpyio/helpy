@@ -11,7 +11,12 @@
     <%= render :partial => 'posts/post', :collection => @posts %>
 
     <% if user_signed_in? %>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation"><%= link_to "Reply", "#" %></li>
+      <li role="presentation"><%= link_to "Note", "#" %></li>
+    </ul>
     <div class="add-form">
+
     <h4>Reply to this Topic:</h4>
     <%#= error_messages_for :post -%>
     <%= bootstrap_form_for @topic.posts.new, :url => topic_posts_path(@topic), :remote => true do |f| -%>

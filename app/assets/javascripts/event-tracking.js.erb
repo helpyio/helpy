@@ -11,7 +11,7 @@ Helpy.track = function(){
     console.log(Helpy.clientId);
 
     // Update links to pass the clientID as a QS param
-    $('.ticket-controls > li > a, .topic-link > a, .mailbox > a').each(function(){
+    $('.ticket-controls > li > a, .topic-link > a, .mailbox > a, .stats > a').each(function(){
       var originalLink = $(this).attr("href");
       var divider = ((originalLink.indexOf("?") == -1) ? "?client_id=" : "&client_id=");
       $(this).attr("href", originalLink + divider + Helpy.clientId);

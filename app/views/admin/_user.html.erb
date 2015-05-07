@@ -1,4 +1,4 @@
-<% user = user.searchable if params[:q] %>
+<%# user = user.searchable if params[:q] %>
 
 <tr class="user">
   <td>
@@ -7,11 +7,13 @@
     </div>
   </td>
   <td>
-    <span class="more-important"><%= user.name.titleize %></span><br/>
-    <span class="less-important">Last Seen: <%= user.last_sign_in_at.nil? ? "Not Lately" : distance_of_time_in_words_to_now(user.last_sign_in_at) + " ago" %></span>
+    <span class="more-important"><%= link_to user.name.titleize, "#", class: 'user-link' %></span><br/>
+    <span class="less-important last-active">Last Seen: <%= last_active_time(user.last_sign_in_at) %></span>
   </td>
 
   <td></td>
-  <td><%= link_to 'Edit', admin_user_path(user) %></td>
+  <td>
+    <%= link_to 'Discussions', admin_search_path(q: user.name) %>
+    <%= link_to 'Edit', admin_user_path(user) %></td>
   <td><%#= link_to 'Destroy', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete %></td>
 </tr>

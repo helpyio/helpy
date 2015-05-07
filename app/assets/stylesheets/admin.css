@@ -1,32 +1,11 @@
-/* @override 
-	http://localhost:3000/assets/admin-30af23e21078c9247141eb4d42db3b17.css?body=1
-	http://localhost:3000/assets/admin-ea49526b293582343e23fb566f59119c.css?body=1
-	http://localhost:3000/assets/admin-a3899fdec5803d146a8d4dd6884cc447.css?body=1
-	http://localhost:3000/assets/admin-80c32ed2c6027dfe19d43357728a4580.css?body=1
-	http://localhost:3000/assets/admin-a0732058619d0545f8429b440d624fa1.css?body=1
-	http://localhost:3000/assets/admin-334a269bbd635d4dcb63f804919bc1a5.css?body=1
-	http://localhost:3000/assets/admin-3ffbd526633f5b3fe27709b22b21f7aa.css?body=1
-	http://localhost:3000/assets/admin-dc944612123612ecf1369dfd9e833011.css?body=1
-	http://localhost:3000/assets/admin-79efc0f98fc21b765676dd285005bdbd.css?body=1
-	http://localhost:3000/assets/admin-14123779efa2627205c1abd43f429d19.css?body=1
-	http://localhost:3000/assets/admin-00738a25ecb4d5b3ff83826cde79c18e.css?body=1
-	http://localhost:3000/assets/admin-6b85c10e6c034a81a1b40d3d1e4bafd8.css?body=1
-	http://localhost:3000/assets/admin-7a80d6c82e10fbdd03290062f05ac1ae.css?body=1
-	http://localhost:3000/assets/admin-d154325cd4fa4b3bf18f035d5a644cdb.css?body=1
-	http://localhost:3000/assets/admin-956ac4b6445bf6b5bdd5db965827b55b.css?body=1
-	http://localhost:3000/assets/admin-14563e616897efd0a474c9222c683dc3.css?body=1
-	http://localhost:3000/assets/admin-27464ed4296590f1a8432637c5869975.css?body=1
-	http://localhost:3000/assets/admin-ca091ce51150c6c7ed4eb56a5919e06f.css?body=1
-	http://localhost:3000/assets/admin-8a51361afa7f0e694d63358737c17352.css?body=1
-	http://localhost:3000/assets/admin-9551695fcd6a5add94ddd36496af1592.css?body=1
-	http://localhost:3000/assets/admin-53eba4dba284b14b9b841c16e4804a1f.css?body=1
-	http://localhost:3000/assets/admin-2553a60f5911c67c53cc7075866bbfa3.css?body=1
-	http://localhost:3000/assets/admin-5584b00d000826ae856df62fa688984b.css?body=1
-	http://localhost:3000/assets/admin-987a360814f6f9131994fa1a6ed0b5b0.css?body=1
-*/
-
 /*=== ADMIN GLOBAL OVERRIDES === */
 
+
+
+
+body {
+	background-color: #fff;
+}
 
 h1{
 	padding-top: 15px;
@@ -38,7 +17,7 @@ h2 {
 	margin-top: 0px;
 }
 
-table#posts {
+table {
 	margin-top: 20px;
 }
 
@@ -58,15 +37,64 @@ td > img {
 
 /*=== ADMIN LAYOUT === */
 
+#upper-wrapper {
+	background-color: #222;
+}
+
+#upper-wrapper > div {
+	padding-top: 0;
+}
+
 #ticket-info {
 	margin-top: 30px;
 }
 
 #left-col-user-info {
 	margin-top: 30px;
+	padding-right: 30px;
+	border-right: 1px solid #eee
 }
 
+#pipeline-wrapper {
+	background-color: #eee;
+	height: 160px;	
+}
+
+#user-info-image {
+	padding-top: 0;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 30px
+}
+
+#user-info-info h4, #user-info-info span, #user-info-info .tiny-header {
+	color: #333;
+}
+
+#ticket-info {
+	margin-bottom: 10px;
+}
+
+#left-col-ticket-nav {
+	margin-top: 50px;
+}
+
+#admin-stats {
+	height:  100px;
+}
+
+#ticket-controls {
+	padding-left: 30px;
+}
+
+#tickets {
+	margin-top: 30px;
+}
 /*=== ADMIN STYLES === */
+
+.white-bg {
+	background-color: white;
+}
 
 img.user-thumbnail {
 	padding-top: 0px;
@@ -86,21 +114,6 @@ ul.dropdown-menu {
   width: 100%;
 }
 
-
-#user-info-image {
-	padding-top: 5px;
-	padding-left: 0px;
-	padding-right: 10px;
-}
-
-#user-info-info {
-	color: #666;
-}
-
-#ticket-info {
-	margin-bottom: 10px;
-}
-
 #user-tickets ul li {
 	height: 25px;
 	color: #666;
@@ -111,16 +124,17 @@ ul.dropdown-menu {
 	padding-bottom: 0px;
 }
 
-#left-col-ticket-nav {
-	margin-top: 50px;
-}
-
 .navbar.navbar-default {
 	background-color: #222;
 }
 
-#upper-wrapper {
-	background-color: #222;
+.navbar-default .navbar-brand {
+	color: white;
+	font-weight: normal;
+}
+
+.navbar-brand {
+	padding-top: 15px;
 }
 
 .mailbox {
@@ -149,9 +163,6 @@ ul.dropdown-menu {
     margin-top: 110%;
 }
 
-#admin-stats {
-	height:  100px;
-}
 
 .stats {
   display: block;
@@ -186,7 +197,18 @@ a.stats.active {
     /*padding-top:calc(40% - 30px);*/
 }
 
+.stats .hover-stats {
+	cursor: pointer;
+    border: '1px solid #666';
+    box-shadow: '0px 0px 10px #eee';
+}
 
+.stats .selected-stats {
+	color:  #000;
+	cursor: pointer;
+    border: '2px solid #666';
+    box-shadow: '0px 0px 10px #eee';
+}
 
 .has-arrow {
 	position: relative;
@@ -241,8 +263,7 @@ a.stats.active {
 	h2 {
 		font-size: 150%;
 		margin-top: 25px;
-	}
-	
+	}	
 }
 
 @media(min-width:768px){
@@ -259,8 +280,12 @@ a.stats.active {
 	.stats h2 {
 		color: #666;
 		font-size: 200%;
-		margin-bottom: 0px;
-		margin-top: 0px;
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+	#pipeline-wrapper {
+		padding-bottom: 20px;
+		padding-top: 10px; 		
 	}
 }
 
@@ -274,9 +299,13 @@ a.stats.active {
 	.stats h2 {
 		color: #666;
 		font-size: 300%;
-		margin-bottom: 0px;
-		margin-top: 0px;
+		margin-bottom: 0;
+		margin-top: 0;
 	}
+	#pipeline-wrapper {
+		padding-bottom: 0;
+		padding-top: 10px;		 
+	}	
 }
 
 @media(min-width:1200px){
@@ -290,6 +319,11 @@ a.stats.active {
 		color: #666;
 		font-size: 350%;
 		margin-top: 0px;
-		margin-bottom: 0px;
+		margin-bottom: 0;
+	}
+	#pipeline-wrapper {
+		padding-bottom: 0;
+		padding-top: 10px; 
+		
 	}
 }

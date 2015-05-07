@@ -1,6 +1,7 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/ticket') %>");
+$('.ticket-stats').html("<%= j render 'admin/ticket_stats' %>");
 //$('#left-col-ticket-nav').html("<%= escape_javascript(render 'admin/ticket_nav') %>");
-$('#ticket-page-title').html("#<%= @topic.id %> <%= @topic.name.titleize %> <%= escape_javascript(render 'admin/ticket_nav_dropdown') %>");
+$('#ticket-page-title').html("#<%= @topic.id %> <%= @topic.name.titleize %> <span class='hidden-xs pull-right'> <%= escape_javascript(render 'admin/ticket_nav_dropdown') %>");
 $(document).prop('title', "Discussion Management: #<%= @topic.id %> <%= @topic.name.titleize %>");
 window.location.hash = '<%= "#{@topic.id} #{@topic.name}" %>';
 

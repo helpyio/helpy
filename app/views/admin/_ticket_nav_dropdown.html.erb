@@ -45,6 +45,8 @@
       <span class="tiny-header pull-right"><%= @spam %></span>
       <% end %>
     </li>
-    <%#= link_to "Create New", admin_tickets_path, class: 'list-group-item' %>
+    <li class="mailbox tiny-header">
+      <%= link_to "Create New Ticket", admin_new_ticket_path, remote: true, class: 'btn btn-default' %>
+    </li>
   </ul>
 </div>

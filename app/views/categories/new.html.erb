@@ -4,7 +4,7 @@
   });
 </script>
 
-<h1>New category</h1>
+<h2>New Category</h2>
 
 <%= bootstrap_form_for @category, label_errors: true do |f| %>
 
@@ -19,8 +19,5 @@
   <%= f.check_box :front_page %>
   <%= f.check_box :active %>
   <%= f.text_field :rank %>
-  <%= f.submit "Update" %>
+  <%= f.submit "Save", class: 'btn btn-warning' %>
 <% end %>
-
-
-<%= link_to 'Back', categories_path %>

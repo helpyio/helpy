@@ -48,8 +48,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   include Gravtastic
-#  include PgSearch
-#  multisearchable :against => [:name, :login, :email]
+  
+  include PgSearch
+  pg_search_scope :user_search,
+                  against: [:name, :login, :email, :company]
 
   paginates_per 15
 

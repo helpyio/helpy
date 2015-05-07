@@ -4,7 +4,9 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :verify_admin
-  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket', 'update_ticket']
+  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket', 'update_ticket', 'topic_search']
+  before_filter :pipeline, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
+  before_filter :remote_search, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
 
   def dashboard
     #@users = PgSearch.multisearch(params[:q]).page params[:page]
@@ -43,7 +45,7 @@ class AdminController < ApplicationController
     when 'all'
       @topics = Topic.all.page params[:page]
     when 'new'
-      @topics = Topic.where(created_at: (Time.now.midnight - 1.day)..(Time.now.midnight + 1.day)).page params[:page]
+      @topics = Topic.unread.page params[:page]
     when 'active'
       @topics = Topic.active.page params[:page]
     when 'unread'
@@ -71,20 +73,107 @@ class AdminController < ApplicationController
   def ticket
 
     @topic = Topic.where(id: params[:id]).first
+
     if @topic.current_status == 'new'
       @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
-      @topic.open
+      @topic.current_status = 'open'
+      @topic.save
     end
 
     @posts = @topic.posts
 
     @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
 
+    fetch_counts
     respond_to do |format|
       format.html
       format.js
     end
 
+
+  end
+
+  def new_ticket
+    @topic = Topic.new
+    @user = User.new
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create_ticket
+
+    @page_title = t(:start_discussion, default: "Start a New Discussion")
+    @title_tag = "#{Settings.site_name}: #{@page_title}"
+
+    @forum = Forum.find(1)
+    @user = User.where(email: params[:topic][:user][:email]).first
+
+    @topic = @forum.topics.new(
+      name: params[:topic][:name],
+      private: true )
+
+    if @user.nil?
+
+      @user = @topic.build_user
+
+      # generate user password
+      source_characters = "0124356789abcdefghijk"
+      password = ""
+      1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+
+      @user.name = params[:topic][:user][:name]
+      @user.login = params[:topic][:user][:email].split("@")[0]
+      @user.email = params[:topic][:user][:email]
+      @user.password = password
+
+    else
+      @topic.user_id = @user.id
+    end
+
+    respond_to do |format|
+
+      if (@user.save || !@user.nil?) && @topic.save
+
+        @post = @topic.posts.create(:body => params[:post][:body], :user_id => @user.id, :kind => 'first')
+
+        # Send email
+        UserMailer.new_user(@user).deliver #if Settings.send_email == true
+
+        # track event in GA
+        @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
+        @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+
+        format.js {
+          @topics = Topic.recent.page params[:page]
+          render action: 'tickets'
+        }
+      else
+        format.html {
+          render action: 'new_ticket'
+        }
+      end
+    end
+  end
+
+  # simple search tickets by # and starter
+  def topic_search
+
+    @topics = Topic.admin_search(params[:q]).page params[:page]
+
+    # search for user, if [one] found, we'll give details on that person
+    @user = User.user_search(params[:q]).first
+    @topic = Topic.where(user_id: @user.id).first unless @user.nil?
+
+    respond_to do |format|
+      format.html {
+        render 'tickets'
+      }
+      format.js {
+        render 'tickets'
+      }
+    end
 
   end
 
@@ -97,16 +186,18 @@ class AdminController < ApplicationController
     unless params[:change_status].blank?
       case params[:change_status]
       when 'closed'
-        @topic.close
+        @topic.current_status = "closed"
         message = "This ticket has been closed by the support staff."
       when 'reopen'
-        @topic.open
+        @topic.current_status = "open"
         message = "This ticket has been reopened by the support staff."
       else
         @topic.current_status = params[:change_status] unless params[:change_status].blank?
       end
       @action_performed = "Marked #{params[:change_status].titleize}"
     end
+
+    @topic.save
 
     # Calls to GA for close, reopen, assigned
     @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
@@ -151,8 +242,8 @@ class AdminController < ApplicationController
     end
 
     @posts = @topic.posts
-    fetch_counts
 
+    fetch_counts
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
       format.js {
@@ -171,8 +262,8 @@ class AdminController < ApplicationController
     @topic.save
 
     @posts = @topic.posts
+    
     fetch_counts
-
     respond_to do |format|
       format.js {
         render 'update_ticket', id: @topic.id
@@ -211,7 +302,7 @@ class AdminController < ApplicationController
   end
 
   def user_search
-    @users = PgSearch.multisearch(params[:q]).page params[:page]
+    @users = User.user_search(params[:q]).page params[:page]
 
     respond_to do |format|
       format.js
@@ -222,6 +313,14 @@ class AdminController < ApplicationController
 
   end
 
+  private
 
+  def pipeline
+    @pipeline = true
+  end
+
+  def remote_search
+    @remote_search = true
+  end
 
 end

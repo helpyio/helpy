@@ -1,0 +1,22 @@
+<div class="add-form">
+<%= bootstrap_form_for(@topic, url: admin_create_ticket_path, remote: true) do |f| -%>
+
+  <%= f.alert_message "Please fix the errors below." %>
+
+  <%= f.fields_for @user do |u| %>
+
+    <%= u.email_field :email, autofocus: true %>
+    <%= u.text_field :name %>
+
+  <% end %>
+
+  <%= f.text_field :name, :size => 40, label: 'Subject' -%>
+  <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
+  <%= hidden_field_tag :client_id %>
+
+  <!--<label>Tags:</label><br/>-->
+  <%#= text_field_tag :tags %>
+
+  <%= f.submit 'Start Discussion', class: 'btn btn-warning' %>
+<% end -%>
+</div>

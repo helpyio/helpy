@@ -69,6 +69,14 @@ class CategoriesController < ApplicationController
     @category = Category.new
 
       @category.name = params[:category][:name]
+      @category.keywords = params[:category][:keywords]
+      @category.title_tag = params[:category][:title_tag]
+      @category.icon = params[:category][:icon]
+      @category.meta_description = params[:category][:meta_description]
+      @category.front_page = params[:category][:front_page]
+      @category.active = params[:category][:active]
+      @category.section = params[:category][:section]
+      @category.rank = params[:category][:rank]
 
       respond_to do |format|
         if @category.save

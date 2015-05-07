@@ -2,19 +2,24 @@
       <div id="above-header" class="hidden-xs small">
         <%#= render :partial => 'layouts/above_header' %>
       </div>
-      <%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo"), responsive: true, inverse: true do %>
+      <%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo") + content_tag(:span, "Helpy Support", class: 'hidden-sm'), responsive: true, inverse: true do %>
           <%= menu_group pull: :right do %>
               <%#= menu_item "Dashboard", admin_dashboard_path %>
               <%= menu_item "Discussions", admin_tickets_path %>
               <%= menu_item "Content", admin_knowledgebase_path, class:'kblink' if Settings.knowledgebase %>
               <%= menu_item "Communities", admin_communities_path if Settings.forums %>
-              <%= menu_item "Users", admin_users_path if Settings.forums %>
               <%= menu_item "App Store", "http://helpy.io/" %>
-
-              <%= form_tag admin_search_path, method: :get, remote: true, class: 'navbar-form navbar-right' do %>
-                <%= text_field_tag('q', nil, placeholder: 'Search by Discussion ID', value: params[:q], class: 'form-control') %>
-                <i class="form-control-feedback glyphicon glyphicon-search"></i>
+              <div class="pull-right">
+              <% if @remote_search == true %>
+                <%= form_tag admin_search_path, method: :get, remote: true, class: 'navbar-form navbar-right' do %>
+                  <%= text_field_tag('q', nil, placeholder: 'Search by Discussion ID', value: params[:q], class: 'form-control') %>
+                <% end %>
+              <% else %>
+                <%= form_tag admin_search_path, method: :get, class: 'navbar-form navbar-right' do %>
+                  <%= text_field_tag('q', nil, placeholder: 'Search by Discussion ID', value: params[:q], class: 'form-control') %>
+                <% end %>
               <% end %>
+              </div>
           <% end %>
       <% end %>
 </div>

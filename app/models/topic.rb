@@ -32,8 +32,14 @@ class Topic < ActiveRecord::Base
   paginates_per 25
 
   include PgSearch
-  multisearchable :against => [:id, :name, :post_cache, :private]#,
-#                  :if => lambda { |record| record.private = false}
+  multisearchable :against => [:id, :name, :post_cache, :private],
+                  :if => lambda { |record| record.private = false}
+
+  pg_search_scope :admin_search,
+                  against: [:id, :name, :current_status, :post_cache],
+                  associated_against: {
+                    user: [:name]
+                  }
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
@@ -78,7 +84,8 @@ class Topic < ActiveRecord::Base
   end
 
   def open
-    self.update(current_status: "open")
+#    self.update(current_status: "open")
+    self.current_status = "open"
   end
 
   def close

@@ -32,6 +32,7 @@ Helpy.ready = function(){
   $('.home-option, .home-option-xs, .topic-box').click(function(){
     document.location.href = $(this).data("link");
   });
+
   $('.thumbnail, .stats').on('mouseover',function(){
     $(this).css('cursor','pointer');
     $(this).css('border','1px solid #666');
@@ -39,7 +40,20 @@ Helpy.ready = function(){
     $(this).closest('.has-arrow').addClass('over');
   });
 
+
   $('.stats').on('click', function(){
+
+
+    $('.stats').css('border','1px solid #ddd');
+    $('.stats').css('box-shadow', '');
+    $('.has-arrow').removeClass("over");
+    $('.stats').removeClass("selected");
+
+    $(this).addClass('selected');
+    $(this).css('border','1px solid #666');
+    $(this).css('box-shadow', '0px 0px 10px #eee');
+    $(this).closest('.has-arrow').addClass('over');
+
     var form = $("<form></form>");
     form.attr(
     {
@@ -58,11 +72,13 @@ Helpy.ready = function(){
     return false;
   });
 
-  $('.thumbnail, .stats').mouseout(function(){
-    $(this).css('cursor','auto');
-    $(this).css('border','1px solid #ddd');
-    $(this).css('box-shadow', '');
-    $('.has-arrow').removeClass('over');
+  $('.thumbnail, .stats').on('mouseout',function(){
+    if ($(this).hasClass('selected') !== true) {
+      $(this).css('cursor','auto');
+      $(this).css('border','1px solid #ddd');
+      $(this).css('box-shadow', '');
+      $(this).closest('.has-arrow').removeClass('over');
+    }
   });
 
 
