@@ -7,11 +7,13 @@
 #  user_id          :integer
 #  name             :string
 #  posts_count      :integer          default(0), not null
+#  waiting_on       :string           default("admin"), not null
 #  last_post_date   :datetime
+#  closed_date      :datetime
 #  last_post_id     :integer
-#  status           :string           default("new")
+#  current_status   :string           default("new"), not null
 #  private          :boolean          default(FALSE)
-#  assigned_user_id :integer          default(2)
+#  assigned_user_id :integer
 #  cheatsheet       :boolean          default(FALSE)
 #  points           :integer          default(0)
 #  post_cache       :text
@@ -21,26 +23,38 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+pending:
+  id: 1
   forum_id: 1
   user_id: 1
-  name: MyString
-  posts_count: 1
-  last_post_date: 2015-03-13 12:10:22
-  last_post_id: 1
-  status: MyString
-  private: false
-  cheatsheet: false
-  points: 1
+  name: "Pending private topic"
+  current_status: pending
+  private: true
+  post_cache: This is a private post, should not be searchable This is a private reply, should not be searchable
 
-two:
+open:
+  id: 2
   forum_id: 1
   user_id: 1
-  name: MyString
-  posts_count: 1
-  last_post_date: 2015-03-13 12:10:22
-  last_post_id: 1
-  status: MyString
+  name: "Open private topic"
+  current_status: open
+  private: true
+  post_cache:
+
+closed:
+  id: 3
+  forum_id: 1
+  user_id: 1
+  name: "Closed private topic"
+  current_status: closed
+  private: true
+  post_cache:
+
+public:
+  id: 4
+  forum_id: 3
+  user_id: 1
+  name: "Public topic"
+  current_status: open
   private: false
-  cheatsheet: false
-  points: 1
+  post_cache: This is a public post, should be searchable

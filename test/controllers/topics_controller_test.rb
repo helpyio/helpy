@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class TopicsControllerTest < ActionController::TestCase
+
   test "should get index" do
     get :index
     assert_response :success
@@ -15,7 +16,7 @@ class TopicsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
-
+=begin
   test "should get edit" do
     get :edit
     assert_response :success
@@ -55,11 +56,14 @@ class TopicsControllerTest < ActionController::TestCase
     get :tag
     assert_response :success
   end
+=end
 
   #test "new private ticket should appear in search" do
   #end
 
   #test "new private ticket should" do
   #end
+
+  #
 
 end

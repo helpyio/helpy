@@ -20,15 +20,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 1
-  rank: 1
-  active: false
-  link: MyString
-  section: MyString
+  id: 1
+  name: active and featured
+  active: true
+  front_page: true
 
 two:
-  name: 1
-  rank: 1
+  id: 2
+  name: active not featured
+  active: true
+  front_page: false
+
+three:
+  id: 3
+  name: not active
   active: false
-  link: MyString
-  section: MyString
+  front_page: false
+
+four:
+  id: 4
+  name: some title
+  active: true
+  front_page: true

@@ -20,7 +20,10 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  should have_many(:docs)
+  should validate_presence_of(:name)
+  should_not allow_value('').for(:name)
+  should_not allow_value('active and featured').for(:name) #duplicate name
+
 end

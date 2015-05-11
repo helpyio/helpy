@@ -23,27 +23,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  body: MyText
-  keywords: MyString
+  id: 1
+  title: Article 1
+  body: article1 text
+  keywords: My article keywords
   category_id: 1
-  active: false
-  rank: 1
-  permalink: MyString
-  version: 1
+  active: true
   front_page: false
-  cheatsheet: false
-  points: 1
 
 two:
-  title: MyString
-  body: MyText
-  keywords: MyString
+  id: 2
+  title: Article 2
+  body: article 2 text
+  keywords: My Article keywords 2
   category_id: 1
   active: false
   rank: 1
-  permalink: MyString
-  version: 1
   front_page: false
-  cheatsheet: false
-  points: 1

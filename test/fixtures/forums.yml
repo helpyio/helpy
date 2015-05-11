@@ -16,17 +16,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
-  topics_count: 1
-  last_post_date: 2015-03-13 12:07:48
-  last_post_id: 1
-  private: false
+  id: 1
+  name: Private Tickets
+  description: Private Messages to Support
+  private: true
 
 two:
-  name: MyString
-  description: MyText
-  topics_count: 1
-  last_post_date: 2015-03-13 12:07:48
-  last_post_id: 1
+  id: 2
+  name: Trash
+  description: Deleted discussions go here
+  private: true
+
+three:
+  id: 3
+  name: Public Forum
+  description: This is a public forum
   private: false
