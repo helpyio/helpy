@@ -149,7 +149,9 @@ ActiveRecord::Schema.define(version: 20150414210945) do
     t.string   "thumbnail"
     t.string   "medium_image"
     t.string   "large_image"
+    t.string   "language",                default: "en"
     t.integer  "active_assigned_tickets", default: 0
+    t.integer  "topic_count",             default: 0
     t.boolean  "active",                  default: true
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false

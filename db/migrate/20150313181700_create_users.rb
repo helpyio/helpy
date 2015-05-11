@@ -22,7 +22,9 @@ class CreateUsers < ActiveRecord::Migration
       t.string :thumbnail
       t.string :medium_image
       t.string :large_image
+      t.string :language, :default => 'en'
       t.integer :active_assigned_tickets, :default => 0
+      t.integer :topic_count, :default => 0
       t.boolean :active, :default => true
 
       t.timestamps null: false

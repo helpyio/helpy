@@ -8,6 +8,10 @@
   <%= f.text_area :bio %>
   <%= f.text_field :company %>
   <%= f.text_field :title %>
+  <%= f.select :language, [['English','en'],['French','fr'],['German','de'],['Spanish','es'],['Russian','ru']] %>
+
+
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
   <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -16,7 +20,7 @@
 
   <%= f.password_field :password_confirmation, autocomplete: "off" %>
   <%= f.password_field :current_password, autocomplete: "off" %>
-  <%= f.submit "Update" %>
+  <%= f.submit "Update", class: 'btn btn-warning' %>
 
 <% end %>
 

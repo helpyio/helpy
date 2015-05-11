@@ -4,9 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_breadcrumb 'Home', :root_path
 
+  before_action :set_locale
   before_filter :instantiate_tracker
 
   private
+
+  def set_locale
+    if user_signed_in?
+      I18n.locale = current_user.language
+    else
+      I18n.locale = I18n.default_locale
+    end
+  end
 
   def fetch_counts
     @new = Topic.unread.count
