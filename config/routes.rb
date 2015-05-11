@@ -42,9 +42,10 @@ Rails.application.routes.draw do
   get 'admin/ticket/:id' => 'admin#ticket', as: :admin_ticket
   get 'admin/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
   post 'admin/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
-  get 'admin/tickets/update/:id' => 'admin#update_ticket', as: :update_ticket
-  get 'admin/tickets/assign_agent/:id' => 'admin#assign_agent', as: :assign_agent
-  get 'admin/tickets/:id/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
+  get 'admin/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
+  get 'admin/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
+  get 'admin/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
+  get 'admin/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
   get 'admin/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
   get 'admin/communities' => 'admin#communities', as: :admin_communities
   get 'admin/users'

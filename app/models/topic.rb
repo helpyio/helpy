@@ -32,8 +32,8 @@ class Topic < ActiveRecord::Base
   paginates_per 25
 
   include PgSearch
-  multisearchable :against => [:id, :name, :post_cache, :private],
-                  :if => lambda { |record| record.private = false}
+  multisearchable :against => [:id, :name, :post_cache],
+                  :if => :public?
 
   pg_search_scope :admin_search,
                   against: [:id, :name, :current_status, :post_cache],
@@ -66,6 +66,8 @@ class Topic < ActiveRecord::Base
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
+
+
 
   def assigned_user
     User.where(id: self.assigned_user_id).first
@@ -103,6 +105,10 @@ class Topic < ActiveRecord::Base
     #association is not working
     f = Forum.find(self.forum_id)
     self.private = true if f.private?
+  end
+
+  def public?
+    true if self.forum_id > 2 && self.private == false
   end
 
 end

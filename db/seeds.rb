@@ -7,8 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Create a user
-#anon_user = User.create!(name: 'Anonymous', login:'Anon', email: 'anon@test.com', password: '12345678')
-admin_user = User.create!(
+  admin_user = User.create!(
   name: 'Admin',
   login:'admin',
   email: 'admin@test.com',

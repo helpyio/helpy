@@ -179,75 +179,105 @@ class AdminController < ApplicationController
 
   # Updates discussion status
   def update_ticket
-    @topic = Topic.where(id: params[:id]).first
-    @minutes = 0
 
-    # actions for each status change
-    unless params[:change_status].blank?
-      case params[:change_status]
-      when 'closed'
-        @topic.current_status = "closed"
-        message = "This ticket has been closed by the support staff."
-      when 'reopen'
-        @topic.current_status = "open"
-        message = "This ticket has been reopened by the support staff."
-      else
-        @topic.current_status = params[:change_status] unless params[:change_status].blank?
+    #handle array of topics
+    params[:topic_ids].each do |id|
+
+      @topic = Topic.where(id: id).first
+      @minutes = 0
+
+      # actions for each status change
+      unless params[:change_status].blank?
+        case params[:change_status]
+        when 'closed'
+          @topic.current_status = "closed"
+          message = "This ticket has been closed by the support staff."
+        when 'reopen'
+          @topic.current_status = "open"
+          message = "This ticket has been reopened by the support staff."
+        else
+          @topic.current_status = params[:change_status] unless params[:change_status].blank?
+        end
+        @action_performed = "Marked #{params[:change_status].titleize}"
       end
-      @action_performed = "Marked #{params[:change_status].titleize}"
+
+      @topic.save
+
+      # Calls to GA for close, reopen, assigned
+      @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+
+      #Add post indicating status change
+      @topic.posts.create(user_id: current_user.id, body: message, kind: "reply") unless message.nil?
+
     end
-
-    @topic.save
-
-    # Calls to GA for close, reopen, assigned
-    @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
-
-    #Add post indicating status change
-    @topic.posts.create(user_id: current_user.id, body: message, kind: "reply") unless message.nil?
-
     @posts = @topic.posts
 
     fetch_counts
     respond_to do |format|
-      format.html #render action: 'ticket', id: @topic.id
-      format.js
+      format.js {
+        if params[:topic_ids].count > 1
+          get_tickets
+          render 'tickets'
+        else
+          render 'update_ticket', id: @topic.id
+        end
+      }
     end
 
   end
 
   # Assigns a discussion to another agent
   def assign_agent
-    @topic = Topic.where(id: params[:id]).first
-    @minutes = 0
 
-    unless params[:assigned_user_id].blank?
+    @count = 0
+    #handle array of topics
+    params[:topic_ids].each do |id|
 
-      # if message was unassigned previously, use the new assignee
-      # this is to give note attribution below
-      previous_assigned_id = @topic.assigned_user_id? ? @topic.assigned_user_id : params[:assigned_user_id]
+      @topic = Topic.where(id: id).first
 
-      @topic.assigned_user_id = params[:assigned_user_id]
-      @topic.current_status = 'pending'
-      @topic.save
+      @minutes = 0
 
-      # Create internal note
-      assigned_user = User.find(params[:assigned_user_id])
-      @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
+      unless params[:assigned_user_id].blank?
 
-      @action_performed = "Assigned to #{assigned_user.name.titleize}"
+        # if message was unassigned previously, use the new assignee
+        # this is to give note attribution below
+        previous_assigned_id = @topic.assigned_user_id? ? @topic.assigned_user_id : params[:assigned_user_id]
 
-      # Calls to GA
-      @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+        @topic.assigned_user_id = params[:assigned_user_id]
+        @topic.current_status = 'pending'
+        @topic.save
 
+        # Create internal note
+        assigned_user = User.find(params[:assigned_user_id])
+        @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
+
+        @action_performed = "Assigned to #{assigned_user.name.titleize}"
+
+        # Calls to GA
+        @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+
+      end
+      @count = @count + 1
     end
 
-    @posts = @topic.posts
+    if params[:topic_ids].count > 1
+      get_tickets
+    else
+      @posts = @topic.posts
+    end
+
+    logger.info("Count: #{params[:topic_ids].count}")
 
     fetch_counts
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
       format.js {
-        render 'update_ticket', id: @topic.id
+        if params[:topic_ids].count > 1
+          get_tickets
+          render 'tickets'
+        else
+          render 'update_ticket', id: @topic.id
+        end
       }
     end
 
@@ -256,17 +286,27 @@ class AdminController < ApplicationController
 
   # Toggle privacy of a topic
   def toggle_privacy
-    @topic = Topic.find(params[:id])
-    @topic.private = params[:private]
-    @topic.forum_id = params[:forum_id]
-    @topic.save
 
+    #handle array of topics
+    params[:topic_ids].each do |id|
+
+      @topic = Topic.where(id: id).first
+      @topic.private = params[:private]
+      @topic.forum_id = params[:forum_id]
+      @topic.save
+
+
+    end
     @posts = @topic.posts
-    
+
     fetch_counts
     respond_to do |format|
       format.js {
-        render 'update_ticket', id: @topic.id
+        if params[:topics_ids].count > 1
+          render 'tickets'
+        else
+          render 'update_ticket', id: @topic.id
+        end
       }
     end
 
@@ -321,6 +361,32 @@ class AdminController < ApplicationController
 
   def remote_search
     @remote_search = true
+  end
+
+  def get_tickets
+    if params[:status].nil?
+      @status = "pending"
+    else
+      @status = params[:status]
+    end
+
+    case @status
+
+    when 'all'
+      @topics = Topic.all.page params[:page]
+    when 'new'
+      @topics = Topic.unread.page params[:page]
+    when 'active'
+      @topics = Topic.active.page params[:page]
+    when 'unread'
+      @topics = Topic.unread.all.page params[:page]
+    when 'assigned'
+      @topics = Topic.mine(current_user.id).page params[:page]
+    when 'pending'
+      @topics = Topic.pending.mine(current_user.id).page params[:page]
+    else
+      @topics = Topic.where(current_status: @status).page params[:page]
+    end
   end
 
 end

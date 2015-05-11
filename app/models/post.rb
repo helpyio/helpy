@@ -6,7 +6,8 @@
 #  topic_id   :integer
 #  user_id    :integer
 #  body       :text
-#  kind       :string           default("post")
+#  kind       :string
+#  active     :boolean          default(TRUE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

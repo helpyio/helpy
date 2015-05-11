@@ -2,7 +2,7 @@
 <% @results.each do |result| %>
   <% if result.searchable_type == "Topic" %>
   <li class="search-result">
-    <span class="more-important"><%= link_to result.searchable.name, result.searchable, class: 'lead' %></span><br/>
+    <span class="more-important"><%= link_to result.searchable.name, topic_posts_path(result.searchable_id), class: 'lead' %></span><br/>
     <span class="less-important"><%= result.searchable.post_cache.truncate_words(20) %></span><br/><br/>
   </li>
   <% else %>

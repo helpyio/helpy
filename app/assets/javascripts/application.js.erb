@@ -153,6 +153,33 @@ Helpy.ready = function(){
     $('post_body').val($('#post_reply_id option:selected').val());
   });
 
+  $('#check-all').off().on('change', function(){
+    if (this.checked) {
+      console.log('checked-all');
+      $('.topic-checkbox').prop('checked', true);
+    } else {
+      console.log('unchecked-all');
+      $('.topic-checkbox').prop('checked', false);
+
+    }
+  });
+
+
+  $('.multiple-update').off().on('click', function(){
+    // collect array of all checked boxes
+    var topic_ids = {};
+    var str = $(this).attr('href');
+    $('.topic-checkbox:checked').each(function(i){
+      topic_ids[i] = $(this).val();
+    });
+    // modify link to include array
+    $.each(topic_ids, function(i){
+      str = str + "&topic_ids[]=" + topic_ids[i]
+    });
+    $(this).attr('href', str);
+    // return true to follow the link
+    return true;
+  });
 
 };
 

@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.active.where(id: params[:id]).first
     @docs = @category.docs.ordered.active.page params[:page]
-    @categories = Category.alpha
+    @categories = Category.active.alpha
     @related = Doc.in_category(@doc.category_id) if @doc
 
     @page_title = @category.name.titleize

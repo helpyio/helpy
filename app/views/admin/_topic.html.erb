@@ -1,5 +1,8 @@
 <tr id="topic-<%= topic.id %>" class="topic border-bottom link-row admin-discussion">
   <td>
+  <%= check_box_tag "topic_ids[]", topic.id, false, class: 'topic-checkbox' %>
+  </td>
+  <td>
     <div class="user-thumbnail pull-left">
       <%= image_tag(topic.user.image_url, width: '40px', class: 'img-circle') %>
     </div>
@@ -7,7 +10,7 @@
       <%= link_to "##{topic.id}- #{topic.name.titleize}", admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.current_status).html_safe %><%= badge_for_private(topic.private).html_safe %>
     </span>
     <span class="label label-count pull-right hidden-xs"><%= topic.posts.count %></span>
-    <br/><span class="less-important">Started By <%= topic.user.name? ? topic.user.name.titleize : topic.user.email %></span>
+    <br/><span class="less-important">Started By <%= topic.user.name? ? topic.user.name.titleize : topic.user.email %> - <%= topic.assigned_user.nil? ? "unassigned" : "assigned to #{topic.assigned_user.name}" %></span>
   </td>
   <td class="last-active less-important text-right hidden-xs">
     <%= last_active_time(topic.last_post_date) %>
