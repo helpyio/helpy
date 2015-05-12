@@ -31,6 +31,7 @@ fr:
 
   # Community
   forum_name: "Sujet"
+  subject: "Sujet"
   last_activity: "Dernière Activité"
   topic: "Discussion"
   replies: "Replies"
@@ -74,3 +75,44 @@ fr:
 
   # devise/registrations/new
   sign_up: Sign Up
+
+  # Admin menu
+  discussions: Discussions
+  content: Le Contenu
+  communities: "Communautés"
+  app_store: l'App Store
+  search: Recherche
+
+  # Admin main/statuses
+  support_pipeline: Soutien Entonnoir
+  new: Nouveaux
+  active: Actifs
+  open: Ouverts
+  mine: Miens
+  pending: En attendant
+  closed: Résolus
+  spam: Spam
+  discussion_management: Gestion de Discussion
+  open_new_discussion: Nouvelle Discussion
+  assigned_to: "assigné à %{agent}"
+  unassigned: non assigné
+  private: confidentiel
+  public: public
+
+  # Multiple Discussion controls
+  status: Statut
+  mark_closed: Marque Résolu
+  reopen: Rouvrir
+  mark_spam: Marque le Spam
+  mark_new: Marque Nouvelle
+  assign_agent:
+
+  # User Admin
+  contact_info: Informations de contact
+  edit_user:
+  work_phone: téléphone au travail
+  cell_phone: portable
+
+  # Discussion View
+  asked_a_question: "%{user_name} a posé une question..."
+  replied: "%{user_name} a répondu..."

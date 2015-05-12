@@ -8,15 +8,24 @@
   <div class="col-md-4" id="page-title-right">
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6">
+  <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= f.email_field :email, autofocus: true %>
+    <%= f.password_field :password, autocomplete: "off" %>
+    <% if devise_mapping.rememberable? -%>
+        <%= f.check_box :remember_me %>
+    <% end -%>
 
-<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <%= f.email_field :email, autofocus: true %>
-  <%= f.password_field :password, autocomplete: "off" %>
-  <% if devise_mapping.rememberable? -%>
-      <%= f.check_box :remember_me %>
-  <% end -%>
+    <%= f.submit t(:login, default: "Login"), class: 'btn btn-warning' %> <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+  <% end %>
 
-  <%= f.submit t(:login, default: "Login") %>
-<% end %>
+  <%= render "devise/shared/links" %>
+  </div>
 
-<%= render "devise/shared/links" %>
+  <div class="col-md-6">
+
+  </div>
+
+
+</div>

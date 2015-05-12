@@ -10,7 +10,10 @@
       <%= link_to "##{topic.id}- #{topic.name.titleize}", admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.current_status).html_safe %><%= badge_for_private(topic.private).html_safe %>
     </span>
     <span class="label label-count pull-right hidden-xs"><%= topic.posts.count %></span>
-    <br/><span class="less-important">Started By <%= topic.user.name? ? topic.user.name.titleize : topic.user.email %> - <%= topic.assigned_user.nil? ? "unassigned" : "assigned to #{topic.assigned_user.name}" %></span>
+    <br/>
+    <span class="less-important">
+      <%= t(:started_by, username: topic.user.name? ? topic.user.name.titleize : topic.user.email, default: "Started by #{topic.user.name? ? topic.user.name.titleize : topic.user.email}") %>
+      - <%= assigned_to(topic) %></span>
   </td>
   <td class="last-active less-important text-right hidden-xs">
     <%= last_active_time(topic.last_post_date) %>

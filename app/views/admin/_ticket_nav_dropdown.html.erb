@@ -4,38 +4,35 @@
   </button>
   <ul class="list-unstyled dropdown-menu" role="menu">
     <li class="mailbox tiny-header">
+      <%= link_to admin_tickets_path(:status => 'unread'), :remote => true do %>
+      <%= t(:new, default: "New") %>
+      <span class="tiny-header pull-right"><%= @unread %></span>
+      <% end %>
+    </li>
+
+    <li class="mailbox tiny-header">
       <%= link_to admin_tickets_path(:status => 'pending'), :remote => true do %>
-      Waiting
+      <%= t(:pending, default:"Pending") %>
       <span class="tiny-header pull-right"><%= @pending %></span>
       <% end %>
     </li>
     <li class="mailbox tiny-header">
       <%= link_to admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true do %>
-      Mine
+      <%= t(:mine, default: "Mine") %>
       <span class="tiny-header pull-right"><%= @mine %></span>
       <% end %>
     </li>
-    <li class="mailbox tiny-header">
-      <%= link_to admin_tickets_path(:status => 'unread'), :remote => true do %>
-      Unread
-      <span class="tiny-header pull-right"><%= @unread %></span>
-      <% end %>
-    </li>
+
     <li class="mailbox tiny-header">
       <%= link_to admin_tickets_path(:status => 'open'), :remote => true do %>
-      Open
+      <%= t(:open, default: "Open") %>
       <span class="tiny-header pull-right"><%= @open %></span>
       <% end %>
     </li>
-    <li class="mailbox tiny-header">
-      <%= link_to admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true do %>
-      Pending
-      <span class="tiny-header pull-right"><%= @mine %></span>
-      <% end %>
-    </li>
+
     <li class="mailbox tiny-header">
       <%= link_to admin_tickets_path(:status => 'closed'), :remote => true do %>
-      Resolved
+      <%= t(:closed, default: "Resolved") %>
       <span class="tiny-header pull-right"><%= @closed %></span>
       <% end %>
     </li>
@@ -46,7 +43,7 @@
       <% end %>
     </li>
     <li class="mailbox tiny-header">
-      <%= link_to "Create New Ticket", admin_new_ticket_path, remote: true, class: 'btn btn-default' %>
+      <%= link_to t(:open_new_discussion, default: "Create New Ticket"), admin_new_ticket_path, remote: true, class: 'btn btn-default' %>
     </li>
   </ul>
 </div>

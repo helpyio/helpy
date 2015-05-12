@@ -31,6 +31,7 @@ en:
 
   # Community
   forum_name: "Topic"
+  subject: "Subject"
   last_activity: "Last Active"
   topic: "Discussion"
   replies: "Replies"
@@ -43,6 +44,10 @@ en:
   should_message_be_private: "Should this message be private?"
   only_support_can_respond: "Only support can respond (creates a private ticket)"
   responses_can_come_from_everyone: "Responses can come from support or the community (recommended)"
+  collapsed_messages:
+      one: "%{number} collapsed message"
+      two: "%{number} collapsed messages"
+      other: "%{number} collapsed messages"
 
   # Tickets
   tickets: "Tickets"
@@ -74,6 +79,47 @@ en:
 
   # devise/registrations/new
   sign_up: Sign Up
+
+  # Admin menu
+  discussions: Discussions
+  content: Content
+  communities: Communities
+  app_store: App Store
+  search: Search
+
+  # Admin main/statuses
+  support_pipeline: Support Pipeline
+  new: New
+  active: Active
+  open: Open
+  mine: Mine
+  pending: Pending
+  closed: Resolved
+  spam: Spam
+  discussion_managment: Discussion Management
+  open_new_discussion: Open Discussion
+  assigned_to: "assigned to %{agent}"
+  unassigned: unassigned
+  private: private
+  public: public
+
+  # Discussion controls
+  status: Status
+  mark_closed: Mark Resolved
+  reopen: Reopen
+  mark_spam: Mark Spam
+  mark_new: Mark New
+  assign_agent: Assign Agent
+
+  # User Admin
+  contact_info: Contact
+  edit_user:
+  work_phone: work
+  cell_phone: cell
+
+  # Discussion View
+  asked_a_question: "%{user_name} asked a question..."
+  replied: "%{user_name} replied..."
 
   activerecord:
     attributes:

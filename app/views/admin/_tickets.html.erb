@@ -8,8 +8,8 @@
 
   <tr>
     <th><%= check_box_tag 'check-all' %></th>
-    <th>Subject</th>
-    <th class="text-right hidden-xs">Last Post</th>
+    <th><%= t(:subject, default: "Subject") %></th>
+    <th class="text-right hidden-xs"><%= t(:last_activity, default: "Last Active") %></th>
   </tr>
   <tbody>
   <%= render :partial => 'topic', :collection => @topics %>

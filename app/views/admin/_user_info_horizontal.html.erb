@@ -13,9 +13,9 @@
     </span>
   </div>
   <div id="user-contact-info" class="col-md-4 col-sm-4 col-xs-4  user-info">
-    <div class="tiny-header">Contact:</div>
-    work: <%= @topic.user.work_phone %><br/>
-    cell: <%= @topic.user.cell_phone %><br/>
+    <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
+    <%= t(:work_phone, default: "work") %>: <%= @topic.user.work_phone %><br/>
+    <%= t(:cell_phone, default: "cell") %>: <%= @topic.user.cell_phone %><br/>
     <%= @topic.user.email %><br/>
   </div>
 

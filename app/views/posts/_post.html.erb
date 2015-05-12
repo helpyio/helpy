@@ -3,7 +3,7 @@
 		<%= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>
 	</div>
 	<div class="media-body media-right">
-		<span class="more-important"><%= h post.user.name.titleize if post.user.name? -%></strong> <%= post_message(post.kind) %></span>
+		<span class="more-important"><%= post_message(post) %></span>
 		<span class="last-active posted-at less-important pull-right"><%= last_active_time(post.created_at) %> <% if user_signed_in? && current_user.admin? %>| <div class="btn-group">
       <span id="row-<%= post.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle glyphicon glyphicon-align-justify'></span>
       <ul class="dropdown-menu dropdown-menu-right" role="menu">

@@ -1,5 +1,5 @@
 <div id="discussion-flow" class="hidden-xs">
-  <div class="tiny-header">Support Pipeline:</div>
+  <div class="tiny-header"><%= t(:support_pipeline, default: "Support Pipeline") %>:</div>
 
   <div id="admin-stats" class="row">
 
@@ -17,7 +17,7 @@
       <div class="dummy"></div>
       <div class="stats">
         <h2><%= @new %></h2>
-        <%= link_to "New", admin_tickets_path(:status => 'new'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+        <%= link_to t(:new, default: "New"), admin_tickets_path(:status => 'new'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <div class="stats">
 
       <h2><%= @active %></h2>
-      <%= link_to "Active", admin_tickets_path(:status => 'active'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+      <%= link_to t(:active, default: "Active"), admin_tickets_path(:status => 'active'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
       </div>
     </div>
 
@@ -35,7 +35,7 @@
       <div class="stats">
 
         <h2><%= @open %></h2>
-        <%= link_to "Open", admin_tickets_path(:status => 'open'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+        <%= link_to t(:open, default: "Open"), admin_tickets_path(:status => 'open'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
       </div>
     </div>
     <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
@@ -43,7 +43,7 @@
       <div class="stats">
 
         <h2><%= @mine %></h2>
-        <%= link_to "Mine", admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+        <%= link_to t(:mine, default: "Mine"), admin_tickets_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true, class: 'tiny-header admin-discussion-nav' %>
       </div>
     </div>
     <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
@@ -51,7 +51,7 @@
       <div class="stats">
 
         <h2><%= @pending %></h2>
-        <%= link_to "Pending", admin_tickets_path(:status => 'pending'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+        <%= link_to t(:pending, default:"Pending"), admin_tickets_path(:status => 'pending'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
       <div class="dummy"></div>
       <div class="stats">
         <h2><%= @closed %></h2>
-        <%= link_to "Resolved", admin_tickets_path(:status => 'closed'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
+        <%= link_to t(:closed, default: "Resolved"), admin_tickets_path(:status => 'closed'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
       </div>
     </div>
 
