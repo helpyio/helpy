@@ -16,13 +16,13 @@
   <%# end %>
 
   <%#= f.collection_select(:forum_id, Forum.where(private: false).all, :id, :name, label: t(:forum_name)) %>
-  <%= f.text_field :name, :size => 40, label: 'Subject' -%>
+  <%= f.text_field :name, :size => 40, label: t(:subject) -%>
   <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
   <%= hidden_field_tag :client_id %>
 
   <!--<label>Tags:</label><br/>-->
   <%#= text_field_tag :tags %>
 
-  <%= f.submit 'Start Discussion', class: 'btn btn-warning' %>
+  <%= f.submit I18n.t :start_discussion, class: 'btn btn-warning' %>
 <% end -%>
 </div>

@@ -7,8 +7,12 @@
   <div id="ticket-controls" class="col-md-8 col-xs-12 col-md-12 col-lg-8">
 
     <%= render :partial => 'admin/topic_options' %>
-
+    <script>
+      Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
+    </script>
+    <div id="posts">
     <%= render :partial => 'posts/post', :collection => @posts %>
+    </div>
 
     <% if user_signed_in? %>
     <ul class="nav nav-tabs" role="tablist">
@@ -17,16 +21,16 @@
     </ul>
     <div class="add-form">
 
-    <h4>Reply to this Topic:</h4>
+    <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>
     <%#= error_messages_for :post -%>
     <%= bootstrap_form_for @topic.posts.new, :url => topic_posts_path(@topic), :remote => true do |f| -%>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
       <%= f.select :kind, ['reply','note'] %>
       <%= hidden_field_tag :client_id %>
-      <%= f.text_area :body, :rows => 8, :cols => 160, label: "Type your reply, or select from a common message below" %>
-      <%= f.select('reply_id', Doc.replies.collect {|d| [ d.title, d.body ] }, label: "Insert Common Reply", include_blank: true) %>
+      <%= f.text_area :body, :rows => 8, :cols => 160, label: t(:type_reply, default: "Type your reply, or select from a common message below") %>
+      <%= f.select('reply_id', Doc.replies.collect {|d| [ d.title, d.body ] }, label: t(:insert_common, default: "Insert Common Reply"), include_blank: true) %>
 
-      <%= f.submit 'Post Reply' -%>
+      <%= f.submit t(:submit_reply) -%>
     <% end -%>
 
     </div>

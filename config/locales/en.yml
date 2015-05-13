@@ -26,7 +26,7 @@ en:
   search_placeholder: "Enter a keyword, topic, or question"
   no_results: "No Results Found, Please try your search again!"
   results_found:
-    one: "%{count} result found for your search "
+    one: "one result found for your search "
     other: "%{count} results found for your search "
 
   # Community
@@ -41,13 +41,14 @@ en:
   submit_reply: "Post Reply"
   posted: "Posted"
   start_discussion: "Start a New Discussion"
+  submit_start_discussion: "Start Discussion"
   should_message_be_private: "Should this message be private?"
   only_support_can_respond: "Only support can respond (creates a private ticket)"
   responses_can_come_from_everyone: "Responses can come from support or the community (recommended)"
   collapsed_messages:
-      one: "%{number} collapsed message"
-      two: "%{number} collapsed messages"
-      other: "%{number} collapsed messages"
+      one: "1 collapsed message"
+      two: "2 collapsed messages"
+      other: "%{count} collapsed messages"
 
   # Tickets
   tickets: "Tickets"
@@ -104,12 +105,17 @@ en:
   public: public
 
   # Discussion controls
+  change_status: Change Status
   status: Status
   mark_closed: Mark Resolved
   reopen: Reopen
   mark_spam: Mark Spam
   mark_new: Mark New
   assign_agent: Assign Agent
+  selected_messages:
+    one: "1 selected message"
+    two: "2 selected messages"
+    other: "%{count} selected messages"
 
   # User Admin
   contact_info: Contact
@@ -120,9 +126,16 @@ en:
   # Discussion View
   asked_a_question: "%{user_name} asked a question..."
   replied: "%{user_name} replied..."
+  posted_note: "%{user_name} posted an internal note..."
+  type_reply:
+  insert_common:
 
   activerecord:
     attributes:
       user:
         email: Email
         password: Password
+        name: Name
+
+      topic:
+        name: Subject

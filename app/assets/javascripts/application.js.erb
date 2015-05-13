@@ -132,7 +132,8 @@ Helpy.ready = function(){
   if ($thread.size() >= 2) {
 
     // insert expand thread message
-    var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + ($thread.size()-1) + " collapsed messages </span></div>";
+//    var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + ($thread.size()-1) + " collapsed messages </span></div>";
+    var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + Helpy.messages + " </span></div>";
 
     // check to see if we are already collapsed
     if ($(".collapsed-posts").size() == 0) {
@@ -153,17 +154,50 @@ Helpy.ready = function(){
     $('post_body').val($('#post_reply_id option:selected').val());
   });
 
+  function updateMessage(){
+    var output;
+    var messages = $('.topic-checkbox:checked').size();
+    
+    switch(messages) {
+      case 1:
+        output = Helpy.selected[1];
+        break;
+      case 2:
+        output = Helpy.selected[2];
+        break;
+      default:
+        output = Helpy.selected[3].replace("9", messages);
+        break;
+    }
+    $('.selected-message').text(output);
+  };
+
   $('#check-all').off().on('change', function(){
     if (this.checked) {
-      console.log('checked-all');
       $('.topic-checkbox').prop('checked', true);
-    } else {
-      console.log('unchecked-all');
-      $('.topic-checkbox').prop('checked', false);
+      $('#multiple-edit').show();
+      updateMessage();
 
+    } else {
+      $('.topic-checkbox').prop('checked', false);
+      $('#multiple-edit').fadeOut();
     }
   });
 
+  $('.topic-checkbox').off().on('change', function(){
+
+    if (this.checked) {
+      $('#multiple-edit').show();
+      updateMessage();
+
+    } else {
+      if ($('.topic-checkbox:checked').size() == 0) {
+        $('#multiple-edit').fadeOut();
+      } else {
+        updateMessage();
+      }
+    }
+  });
 
   $('.multiple-update').off().on('click', function(){
     // collect array of all checked boxes

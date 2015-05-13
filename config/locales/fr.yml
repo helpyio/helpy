@@ -37,13 +37,18 @@ fr:
   replies: "Replies"
   last_post: "Last Post"
   started_by: "Démarré par %{username}"
-  reply: "Reply to this topic"
-  submit_reply: "Post Reply"
+  reply: "Répondre à cette discussion"
+  submit_reply: "Soumettre Réponse"
   posted: "Posted"
   start_discussion: "Démarrer une nouvelle discussion"
+  submit_start_discussion: "Engager le Débat"
   should_message_be_private: "Si ce message est privé?"
   only_support_can_respond: "Seul le personnel peut répondre (crée un billet privé)"
   responses_can_come_from_everyone: "Les réponses peuvent venir du personnel ou de la communauté (recommandé)"
+  collapsed_messages:
+      one: "1 message caché"
+      two: "%{count} messages cachés"
+      other: "%{count} messages cachés"
 
   # Tickets
   tickets: "Billets"
@@ -100,12 +105,18 @@ fr:
   public: public
 
   # Multiple Discussion controls
+  change_status: Changer le Statut
   status: Statut
   mark_closed: Marque Résolu
   reopen: Rouvrir
   mark_spam: Marque le Spam
   mark_new: Marque Nouvelle
-  assign_agent:
+  assign_agent: Assigner l'Agent
+  selected_messages:
+    one: "1 message sélectionné"
+    two: "2 messages sélectionnés"
+    other: "%{count} messages sélectionnés"
+
 
   # User Admin
   contact_info: Informations de contact
@@ -116,3 +127,26 @@ fr:
   # Discussion View
   asked_a_question: "%{user_name} a posé une question..."
   replied: "%{user_name} a répondu..."
+  posted_note: "%{user_name} a affiché une note interne..."
+  type_reply: Saisissez votre réponse, ou sélectionnez un message commun ci-dessous
+  insert_common: Insérer réponse commune
+
+
+
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Password
+        name: Nom
+      topic:
+        name: Sujet
+      post:
+        kind: Genre
+
+    helpers:
+      submit:
+        topic:
+          create: Démarrer le nouvelle discussion
+        post:
+          create:

@@ -4,6 +4,7 @@
 
 
 
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -29,7 +30,7 @@ th {
 	text-transform: uppercase;
 }
 
-td {
+td, th {
 	padding-left: 5px;
 	padding-right: 5px;
 }
