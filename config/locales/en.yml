@@ -103,6 +103,7 @@ en:
   unassigned: unassigned
   private: private
   public: public
+  save_changes: Save Changes
 
   # Discussion controls
   change_status: Change Status
@@ -130,12 +131,56 @@ en:
   type_reply:
   insert_common:
 
+  # Content
+  new_category: New Category
+  new_content: New Content
+  front_page_categories: Front Page Categories
+  other_categories: Other Categories
+  edit: Edit
+  edit_category: Edit Category
+  select_category: Select Category
+  delete: Delete
+  view_and_edit: "View and Edit Content"
+  delete_confirm: "Please confirm you want to DELETE this!"
+  select_icon_helptext: "Select an icon to associate with this category (optional)"
+
+  # Communities
+  new_community: Create New Community
+  create_new_community: Create New Community
+
   activerecord:
     attributes:
       user:
         email: Email
         password: Password
         name: Name
-
       topic:
         name: Subject
+      post:
+        kind: Genre
+      category:
+        name: Name
+        icon: Icon
+        keywords: Keywords
+        title_tag: Title Tag
+        meta_description: Meta Description
+        front_page: Front Page
+        active: Active
+      doc:
+        title: Title
+        meta_description: Meta Description
+        title_tag: Title Tag
+        keywords: Keywords
+        category_id: Category
+        active: Status
+        front_page: Featured on front page?
+      forum:
+        name: Name
+        description: Description
+
+    helpers:
+      submit:
+        topic:
+          create: Démarrer le nouvelle discussion
+        post:
+          create:

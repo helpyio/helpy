@@ -101,7 +101,10 @@ class DocsController < ApplicationController
     @doc.destroy
 
     respond_to do |format|
-      format.html { redirect_to(docs_url) }
+      format.js { render js:"$('#doc-#{@doc.id}').fadeOut();
+
+      Helpy.ready();
+      Helpy.track();" }
 
     end
   end

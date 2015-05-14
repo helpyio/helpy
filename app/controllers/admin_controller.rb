@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :verify_admin
-  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket', 'update_ticket', 'topic_search']
+  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket', 'update_ticket', 'topic_search', 'user_profile']
   before_filter :pipeline, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
   before_filter :remote_search, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
 
@@ -157,14 +157,47 @@ class AdminController < ApplicationController
     end
   end
 
-  # simple search tickets by # and starter
+  # simple search tickets by # and user
   def topic_search
 
-    @topics = Topic.admin_search(params[:q]).page params[:page]
-
     # search for user, if [one] found, we'll give details on that person
-    @user = User.user_search(params[:q]).first
-    @topic = Topic.where(user_id: @user.id).first unless @user.nil?
+    # if more than one found, we'll list them
+    users = User.user_search(params[:q])
+
+    if users.size == 0 # not a user search, so look for topics
+      @topics = Topic.admin_search(params[:q]).page params[:page]
+      template = 'tickets'
+    else
+      if users.size == 1
+        @user = users.first
+        @topics = Topic.admin_search(params[:q]).page params[:page]
+        @topic = Topic.where(user_id: @user.id).first unless @user.nil?
+        template = 'tickets'
+      else
+        @users = users.page params[:page]
+        template = 'users'
+      end
+    end
+
+    respond_to do |format|
+      format.html {
+        render template
+      }
+      format.js {
+        render template
+      }
+    end
+
+  end
+
+  # show user profile and tickets
+  def user_profile
+
+    @user = User.where(id: params[:id]).first
+    @topics = Topic.where(user_id: @user.id).page params[:page]
+
+    # We still have to grab the first topic for the user to use the same user partial
+    @topic = Topic.where(user_id: @user.id).first
 
     respond_to do |format|
       format.html {
@@ -174,6 +207,7 @@ class AdminController < ApplicationController
         render 'tickets'
       }
     end
+
 
   end
 

@@ -80,10 +80,10 @@ class CategoriesController < ApplicationController
 
       respond_to do |format|
         if @category.save
-          format.html { render :action => "edit" }#{ redirect_to(admin_categories_path) }
+          format.html { redirect_to(admin_categories_path) }
           #format.js
         else
-          format.html { render controller: 'admin', action: "knowledgebase" }
+          format.html { render action: "knowledgebase" }
         end
       end
   end

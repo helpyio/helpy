@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get 'admin/communities' => 'admin#communities', as: :admin_communities
   get 'admin/users'
   get 'admin/user/:id/edit' => 'admin#user', as: :admin_user
+  get 'admin/user/:id' => 'admin#user_profile', as: :user_profile
   get 'admin/topic_search' => 'admin#topic_search', as: :admin_search
   get 'admin/user_search' => 'admin#user_search', as: :user_search
 

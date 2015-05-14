@@ -4,7 +4,7 @@
 <%= f.text_field :meta_description %>
 <%= f.text_field :title_tag %>
 <%= f.text_field :keywords %>
-<%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, include_blank: 'Select Category') %>
+<%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, include_blank: t(:select_category, default: 'Select Category')) %>
 
 <%= f.text_field :rank %>
 
@@ -13,4 +13,4 @@
   <%= f.radio_button :active, false, label: "Draft", inline: true %>
 <% end %>
 
-<%= f.check_box :front_page, label: "Feature on front page? ", inline: true %><br/><br/>
+<%= f.check_box :front_page, inline: true %><br/><br/>

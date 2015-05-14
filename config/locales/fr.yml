@@ -103,6 +103,7 @@ fr:
   unassigned: non assigné
   private: confidentiel
   public: public
+  save_changes: Enregistrez les modifications
 
   # Multiple Discussion controls
   change_status: Changer le Statut
@@ -117,7 +118,6 @@ fr:
     two: "2 messages sélectionnés"
     other: "%{count} messages sélectionnés"
 
-
   # User Admin
   contact_info: Informations de contact
   edit_user:
@@ -131,7 +131,23 @@ fr:
   type_reply: Saisissez votre réponse, ou sélectionnez un message commun ci-dessous
   insert_common: Insérer réponse commune
 
+  # Content
+  new_category: Nouvelle Catégorie
+  new_content: Nouveau contenu
+  front_page_categories: Page d'accueil Catégories
+  other_categories: Autres Catégories
+  edit: Modifier
+  edit_category: Modifier cette catégorie
+  select_category: Sélectionnez la catégorie
+  delete: Effacer
+  view_and_edit: "Afficher et modifier le contenu"
+  delete_confirm: "S'il vous plaît confirmer que vous souhaitez supprimer cette!"
+  select_icon_helptext: "Sélectionnez une icône à associer à cette catégorie (facultatif)"
 
+
+  # Communities
+  new_community: Nouvelle Communauté
+  create_new_community: Créer une Nouvelle Communauté
 
   activerecord:
     attributes:
@@ -143,6 +159,26 @@ fr:
         name: Sujet
       post:
         kind: Genre
+      category:
+        name: Nom
+        icon: Icône
+        keywords: Mots-clés
+        title_tag: Balise de titre
+        meta_description: Meta Description
+        front_page: Page d'accueil
+        active: Actif
+      doc:
+        title: Nom
+        meta_description: Meta Description
+        title_tag: Balise de titre
+        keywords: Mots-clés
+        category_id: Catégorie
+        active: Status
+        front_page: Page d'accueil
+      forum:
+        name: Nom
+        description: Description
+        private: Confidential
 
     helpers:
       submit:

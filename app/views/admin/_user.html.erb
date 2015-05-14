@@ -1,9 +1,7 @@
-<%# user = user.searchable if params[:q] %>
-
-<tr class="user">
+<tr id="user-<%= user.id %>" class="user">
   <td>
     <div class="user-thumbnail pull-left">
-      <%= image_tag(user.thumbnail_url, class: 'img-circle', width: '40px') %>
+      <%= link_to image_tag(user.thumbnail_url, class: 'img-circle', width: '40px'), user_profile_path(user.id), remote: true %>
     </div>
   </td>
   <td>

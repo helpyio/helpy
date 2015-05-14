@@ -10,9 +10,9 @@ $(document).ready(function(){
 });
 </script>
 
-<h2>Content <span class="admin-options text-right pull-right">
-  <%= link_to "New Category", new_category_path, class: 'btn btn-primary' %>
-  <%= link_to "New Content", new_doc_path, class: 'btn btn-primary' %>
+<h2><%= t(:content, default: 'Content') %><span class="admin-options text-right pull-right">
+  <%= link_to t(:new_category, default: "New Category"), new_category_path, class: 'btn btn-primary' %>
+  <%= link_to t(:new_content, default: "New Content"), new_doc_path, class: 'btn btn-primary' %>
 </span></h2>
 
 
@@ -25,7 +25,7 @@ $(document).ready(function(){
       <col width="5%">
       <tbody id="categories">
       <tr>
-        <td colspan="2" class='tiny-header'>Front Page Categories</td>
+        <td colspan="2" class='tiny-header'><%= t(:front_page_categories, default: 'Front Page Categories') %></td>
       </tr>
       <%= render partial: 'cat', collection: @categories %>
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
           <td colspan="2"></td>
         </tr>
         <tr>
-          <td colspan="2" class='tiny-header'>Other Categories</td>
+          <td colspan="2" class='tiny-header'><%= t(:other_categories, default: 'Other Categories') %></td>
         </tr>
         <%= render partial: 'cat', collection: @nonfeatured %>
       <% end %>

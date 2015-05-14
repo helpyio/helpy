@@ -57,7 +57,16 @@ user:
   id: 2
   login: scott
   identity_url: MyString
-  name: Scott
-  email: scott@test.com
+  name: Scott Miller
+  email: scott.miller@test.com
+  admin: false
+  role: user
+
+user2:
+  id: 3
+  login: smith
+  identity_url: MyString
+  name: Scott Smith
+  email: scott.smith@test.com
   admin: false
   role: user

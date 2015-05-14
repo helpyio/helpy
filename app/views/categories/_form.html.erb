@@ -1,0 +1,14 @@
+<%= bootstrap_form_for @category, label_errors: true do |f| %>
+  <%= f.alert_message "Please fix the errors below." %>
+
+  <%= f.text_field :name %>
+  <%= f.text_field :icon, class: 'icon-picker', placeholder: t(:select_icon_helptext, default: 'Select an icon to associate with this category (optional)') %>
+  <%#= f.text_field :section %>
+  <%= f.text_field :keywords %>
+  <%= f.text_field :title_tag %>
+  <%= f.text_field :meta_description %>
+  <%= f.check_box :front_page %>
+  <%= f.check_box :active %>
+  <%#= f.text_field :rank %>
+  <%= f.submit class: 'btn btn-warning' %>
+<% end %>

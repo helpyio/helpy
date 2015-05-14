@@ -12,11 +12,11 @@
               <div class="pull-right">
               <% if @remote_search == true %>
                 <%= form_tag admin_search_path, method: :get, remote: true, class: 'navbar-form navbar-right' do %>
-                  <%= text_field_tag('q', nil, placeholder: 'Search by Discussion ID', value: params[:q], class: 'form-control') %>
+                  <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control') %>
                 <% end %>
               <% else %>
                 <%= form_tag admin_search_path, method: :get, class: 'navbar-form navbar-right' do %>
-                  <%= text_field_tag('q', nil, placeholder: 'Search by Discussion ID', value: params[:q], class: 'form-control') %>
+                  <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control') %>
                 <% end %>
               <% end %>
               </div>

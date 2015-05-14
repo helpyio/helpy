@@ -34,6 +34,15 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  ### Testing User Views
+
+  test "should be able to see a user profile" do
+    xhr :get, :user_profile, { id: 2 }
+    assert_response :success
+    assert_equal(3, assigns(:topics).count)
+  end
+
+
   ### Assigning topic tests
 
   test "should be able to assign an unassigned discussion" do
@@ -121,21 +130,55 @@ class AdminControllerTest < ActionController::TestCase
 
   ### Test search function
 
-  test "should be able to search by topic ID" do
+  test "should be able to search by topic ID by ajax" do
     xhr :get, :topic_search, q: '1'
     assert_not_nil assigns(:topics)
     assert_response :success
   end
 
-  test "should be able to search by user name" do
+  test "should be able to search by user name by ajax" do
     xhr :get, :topic_search, q: 'Admin User'
     assert_not_nil assigns(:user)
     assert_response :success
   end
 
-  test "should be able to search by subject" do
+  test "should be able to search by subject by ajax" do
     xhr :get, :topic_search, q: 'Pending private topic'
     assert_not_nil assigns(:topics)
+    assert_response :success
+  end
+
+  test "should be able to search for users with multiple matches via ajax" do
+    xhr :get, :topic_search, q: 'scott'
+    assert_nil assigns(:topics)
+    assert_not_nil assigns(:users)
+    assert_equal(2, assigns(:users).size)
+    assert_response :success
+  end
+
+  test "should be able to search by topic ID" do
+    get :topic_search, q: '1'
+    assert_not_nil assigns(:topics)
+    assert_response :success
+  end
+
+  test "should be able to search by user name" do
+    get :topic_search, q: 'Admin User'
+    assert_not_nil assigns(:user)
+    assert_response :success
+  end
+
+  test "should be able to search by subject" do
+    get :topic_search, q: 'Pending private topic'
+    assert_not_nil assigns(:topics)
+    assert_response :success
+  end
+
+  test "should be able to search for users with multiple matches" do
+    get :topic_search, q: 'scott'
+    assert_nil assigns(:topics)
+    assert_not_nil assigns(:users)
+    assert_equal(2, assigns(:users).size)
     assert_response :success
   end
 
