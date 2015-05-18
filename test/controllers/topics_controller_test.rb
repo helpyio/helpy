@@ -2,18 +2,20 @@ require 'test_helper'
 
 class TopicsControllerTest < ActionController::TestCase
 
-  test "should get index" do
-    get :index
+  test "should get index of topics in a public forum" do
+    get :index, forum_id: 3
     assert_response :success
   end
 
-  test "should get show" do
-    get :show
+  test "should not get index of topics in a private forum" do
+    get :index, forum_id: 1
     assert_response :success
   end
+
 
   test "should get new" do
     get :new
+    assert_nil assigns(:topics)
     assert_response :success
   end
 =begin

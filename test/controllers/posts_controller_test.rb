@@ -2,15 +2,11 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
 
-  test "should get index" do
-    get :index
+  test "should get index of posts for a given topic, if its public" do
+    get :index, topic_id: 1
     assert_response :success
   end
 
-  test "should get show" do
-    get :show
-    assert_response :success
-  end
 
 # Creating a note should not update the topic status
 # making a note inactive should remove it from the post cache

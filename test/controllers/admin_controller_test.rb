@@ -13,24 +13,28 @@ class AdminControllerTest < ActionController::TestCase
   test "should be able to see a list of topics via standard request" do
     get :tickets, { status: 'open' }
     assert_not_nil assigns(:topics)
+    assert_template 'tickets'
     assert_response :success
   end
 
   test "should be able to see a list of topics via ajax" do
     xhr :get, :tickets, { status: 'open' }, format: :js
     assert_not_nil assigns(:topics)
+    assert_template 'tickets'
     assert_response :success
   end
 
   test "should be able to see a specific topic via standard request" do
     get :ticket, { id: 3 }
     assert_not_nil assigns(:topic)
+    assert_template 'ticket'
     assert_response :success
   end
 
   test "should be able to see a specific topic via ajax" do
     xhr :get, :ticket, { id: 3 }
     assert_not_nil assigns(:topic)
+    assert_template 'ticket'
     assert_response :success
   end
 
@@ -61,8 +65,9 @@ class AdminControllerTest < ActionController::TestCase
   end
 
   test "assigning a discussion to a different agent should create a note" do
-
-
+    assert_difference 'Post.count', 1 do
+      xhr :get, :assign_agent, { topic_ids: {"":1} }, { assigned_user_id: 1 }
+    end
   end
 
 
