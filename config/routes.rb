@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
   resources :posts
 
-  #resources :users
+  resources :users
 
   get 'result' => 'result#index', as: :result
   get 'tickets' => 'topics#tickets', as: :tickets
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
   get 'admin/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
   get 'admin/communities' => 'admin#communities', as: :admin_communities
   get 'admin/users'
-  get 'admin/user/:id/edit' => 'admin#user', as: :admin_user
+  get 'admin/user/:id/edit' => 'admin#edit_user', as: :admin_user
   get 'admin/user/:id' => 'admin#user_profile', as: :user_profile
   get 'admin/topic_search' => 'admin#topic_search', as: :admin_search
   get 'admin/user_search' => 'admin#user_search', as: :user_search

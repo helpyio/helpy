@@ -36,10 +36,7 @@ class Topic < ActiveRecord::Base
                   :if => :public?
 
   pg_search_scope :admin_search,
-                  against: [:id, :name, :current_status, :post_cache],
-                  associated_against: {
-                    user: [:name]
-                  }
+                  against: [:id, :name, :user_name, :current_status, :post_cache]
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
@@ -61,6 +58,7 @@ class Topic < ActiveRecord::Base
 
   # may want to get rid of this filter:
   # before_save :check_for_private
+  before_create :cache_user_name
 
   # acts_as_taggable
 
@@ -110,5 +108,12 @@ class Topic < ActiveRecord::Base
   def public?
     true if self.forum_id > 2 && self.private == false
   end
+
+  private
+
+  def cache_user_name
+    self.user_name = self.user.name
+  end
+
 
 end

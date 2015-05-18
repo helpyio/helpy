@@ -150,14 +150,15 @@ Helpy.ready = function(){
     $thread.hide().last().show();
   }
 
+  // Use common reply
   $('#post_reply_id').on('change', function(){
-    $('post_body').val($('#post_reply_id option:selected').val());
+    $('#post_body').val($('#post_reply_id option:selected').val());
   });
 
   function updateMessage(){
     var output;
     var messages = $('.topic-checkbox:checked').size();
-    
+
     switch(messages) {
       case 1:
         output = Helpy.selected[1];
@@ -214,6 +215,12 @@ Helpy.ready = function(){
     // return true to follow the link
     return true;
   });
+
+  $('.post-container').off().on('mouseover', function(){
+    var id = $(this).attr("id").split("-")[1];
+    $(".post-menu-" + id).fadeIn();
+  });
+
 
 };
 

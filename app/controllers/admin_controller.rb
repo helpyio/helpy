@@ -371,8 +371,13 @@ class AdminController < ApplicationController
     @user = User.new
   end
 
-  def user
+  def edit_user
     @user = User.where(id: params[:id]).first
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def user_search

@@ -1,10 +1,13 @@
-$('#tickets').html("<%= escape_javascript(render 'tickets') %>");
-//$('#left-col-ticket-nav').html("<%= escape_javascript(render 'ticket_nav') %>");
+$('#tickets').html("<%= escape_javascript(render 'admin/tickets') %>");
 $('.ticket-stats').html("<%= j render 'admin/ticket_stats' %>");
 $('#user-info').html("<%= j render 'admin/user_info_horizontal' if @user %>");
-$('#ticket-page-title').html("<%= t(:discussion_management, default: 'Discussion Management') %>: <%= status_label(@status) if @status %> <span class='hidden-xs pull-right'><%= j link_to t(:open_new_discussion, default: 'Open Discussion'), admin_new_ticket_path, remote: true, class: 'btn btn-primary' %></span><%= escape_javascript(render 'ticket_nav_dropdown') %>");
+$('#ticket-page-title').html("<%= t(:discussion_management, default: 'Discussion Management') %>: <%= status_label(@status) if @status %> <span class='hidden-xs pull-right'><%= j link_to t(:open_new_discussion, default: 'Open Discussion'), admin_new_ticket_path, remote: true, class: 'btn btn-primary' %></span><%= escape_javascript(render 'admin/ticket_nav_dropdown') %>");
 $(document).prop('title', "Discussion Management: <%= @status.titleize if @status %>");
+<% if @user %>
+window.location.hash = 'user_profile_<%= @user.id %>';
+<% else %>
 window.location.hash = '<%= @status %>';
+<% end %>
 
 // Empty ticket search field
 $('q').val();

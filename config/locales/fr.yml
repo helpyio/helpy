@@ -120,6 +120,7 @@ fr:
 
   # User Admin
   contact_info: Informations de contact
+  social_info: Médias Sociaux
   edit_user:
   work_phone: téléphone au travail
   cell_phone: portable
@@ -129,7 +130,10 @@ fr:
   replied: "%{user_name} a répondu..."
   posted_note: "%{user_name} a affiché une note interne..."
   type_reply: Saisissez votre réponse, ou sélectionnez un message commun ci-dessous
-  insert_common: Insérer réponse commune
+  select_common: Sélectionner une réponse commune
+  reply: Réponse
+  internal_note: Note Interne
+
 
   # Content
   new_category: Nouvelle Catégorie

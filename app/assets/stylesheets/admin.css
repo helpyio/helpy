@@ -3,6 +3,7 @@
 
 
 
+
 body {
 	background-color: #fff;
 }
@@ -90,6 +91,11 @@ td > img {
 #tickets {
 	margin-top: 30px;
 }
+
+#topic-options {
+	margin-bottom: 20px;
+}
+
 /*=== ADMIN STYLES === */
 
 .white-bg {

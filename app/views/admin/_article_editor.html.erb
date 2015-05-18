@@ -47,6 +47,7 @@
 //    container: '#toolbar'
 //  });
   quill.setHTML('<%= @doc.body.html_safe if @doc.body? %>');
+  quill.setHTML('<%= @post.body.html_safe unless @post.nil? %>');
 
   quill.on('text-change', function(delta, source) {
     //console.log(quill.getHTML());

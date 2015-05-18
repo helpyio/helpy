@@ -120,6 +120,7 @@ en:
 
   # User Admin
   contact_info: Contact
+  social_info: Social
   edit_user:
   work_phone: work
   cell_phone: cell
@@ -128,8 +129,11 @@ en:
   asked_a_question: "%{user_name} asked a question..."
   replied: "%{user_name} replied..."
   posted_note: "%{user_name} posted an internal note..."
-  type_reply:
-  insert_common:
+  type_reply: Type your reply, or select from a common message below
+  select_common: Select Common Reply
+  reply: Reply
+  internal_note: Internal Note
+
 
   # Content
   new_category: New Category
@@ -154,6 +158,12 @@ en:
         email: Email
         password: Password
         name: Name
+        company: Company
+        work_phone: Work
+        cell_phone: Cell
+        city: City
+        state: State
+
       topic:
         name: Subject
       post:

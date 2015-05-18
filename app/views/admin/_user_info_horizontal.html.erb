@@ -5,7 +5,7 @@
     <%= image_tag(@user.image_url, width: '150px', class: 'img-circle') %>
   </div>
   <div id="user-contact-info" class="col-md-4 col-sm-4 col-xs-4 user-info">
-    <div class="tiny-header"><%= @user.name? ? @user.name.titleize : @user.email %></div>
+    <div class="tiny-header"><%= @user.name? ? @user.name.titleize : @user.email %> (<%= link_to t(:edit, default: 'Edit'), admin_user_path(@user), remote: true %>)</div>
     <span class="small">
       <%= @user.company.titleize unless @user.company.nil? %><br/>
       <%= @user.city.titleize + ', ' unless @user.city.nil? %> <%= @user.state.titleize unless @user.state.nil? %>
@@ -18,5 +18,16 @@
     <%= t(:cell_phone, default: "cell") %>: <%= @user.cell_phone %><br/>
     <%= @user.email %><br/>
   </div>
+  <div id="user-bio-info" class="col-md-4 col-sm-4 col-xs-4  user-info">
+    <div class="tiny-header"><%= t(:social_info, default: "Bio") %>:</div>
+    <%= @user.bio %><br/>
+  </div>
+
+  <div id="user-social-info" class="col-md-4 col-sm-4 col-xs-4  user-info">
+    <div class="tiny-header"><%= t(:social_info, default: "Social") %>:</div>
+    Twitter: <%= @user.twitter %><br/>
+    Linkedin: <%= @user.linkedin %><br/>
+  </div>
+
 
 </div>

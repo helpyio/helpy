@@ -45,6 +45,7 @@ class DocsController < ApplicationController
   # GET /docs/new.xml
   def new
     @doc = Doc.new
+    @post = Post.where(id: params[:post_id]).first if current_user.admin == true 
     @categories = Category.alpha
 
     respond_to do |format|
