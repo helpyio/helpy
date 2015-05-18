@@ -36,13 +36,21 @@ class ApplicationController < ActionController::Base
 
   def instantiate_tracker
     # instantiate a tracker instance for GA Measurement Protocol pushes
-    # this is used to track events happening on the serverside, like email support ticket creation
-    if params[:client_id]
-      logger.info("initiate tracker with client id")
-      @tracker = Staccato.tracker(Settings.google_analytics_id, params[:client_id])
+    # this is used to track events happening on the server side, like email support ticket creation
+    # this is stored in the session, so first lets check if its in the session
+    if session[:client_id]
+      logger.info("initiate tracker with client id from session")
+      @tracker = Staccato.tracker(Settings.google_analytics_id, session[:client_id])
     else
-      logger.info("!!! initiate tracker without client id !!!")
-      @tracker = Staccato.tracker(Settings.google_analytics_id)
+      # not in the session, so check the url
+      if params[:client_id]
+        logger.info("initiate tracker with client id from params")
+        session[:client_id] = params[:client_id]
+        @tracker = Staccato.tracker(Settings.google_analytics_id, params[:client_id])
+      else
+        logger.info("!!! initiate tracker without client id !!!")
+        @tracker = Staccato.tracker(Settings.google_analytics_id)
+      end
     end
   end
 

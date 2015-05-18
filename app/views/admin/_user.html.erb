@@ -1,17 +1,16 @@
 <tr id="user-<%= user.id %>" class="user">
   <td>
-    <div class="user-thumbnail pull-left">
+    <div class="user-thumbnail pull-left user-link">
       <%= link_to image_tag(user.thumbnail_url, class: 'img-circle', width: '40px'), user_profile_path(user.id), remote: true %>
     </div>
   </td>
-  <td>
-    <span class="more-important"><%= link_to user.name.titleize, "#", class: 'user-link' %></span><br/>
+  <td class="user-link">
+    <span class="more-important"><%= link_to user.name.titleize, user_profile_path(user.id), remote: true, class: 'user-link' %></span><br/>
     <span class="less-important last-active">Last Seen: <%= last_active_time(user.last_sign_in_at) %></span>
   </td>
 
   <td></td>
   <td>
-    <%= link_to 'Discussions', admin_search_path(q: user.name) %>
-    <%= link_to 'Edit', admin_user_path(user) %></td>
-  <td><%#= link_to 'Destroy', cat.id.to_s, :confirm => 'Are you sure?', :method => :delete %></td>
+    <span class="label label-count pull-right"><%= user.topics.count %></span>
+  </td>
 </tr>

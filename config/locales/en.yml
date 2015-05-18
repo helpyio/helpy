@@ -125,6 +125,11 @@ en:
   work_phone: work
   cell_phone: cell
 
+  # User search results
+  users_found:
+    one: "1 user was found named %{query}"
+    other: "%{count} users were found named %{query}"
+
   # Discussion View
   asked_a_question: "%{user_name} asked a question..."
   replied: "%{user_name} replied..."
@@ -133,7 +138,6 @@ en:
   select_common: Select Common Reply
   reply: Reply
   internal_note: Internal Note
-
 
   # Content
   new_category: New Category

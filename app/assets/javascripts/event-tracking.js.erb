@@ -43,7 +43,7 @@ Helpy.track = function(){
 
   $('.search-result > span > a').unbind().on('click', function(){
     console.log("Search Result Click")
-    ga('send', 'event', 'Search','Result-Click', $('#search-field').val())
+    ga('send', 'event', 'Results','Click', $('#search-field').val())
   });
 
 
@@ -102,11 +102,15 @@ Helpy.track = function(){
     ga('send', 'event', 'Inpage-nav','Click', "Forum: " + $(this).text());
   });
 
-  $('tr.topic').find('a').unbind().on('click', function(){
+  $('.topic-link').find('a').unbind().on('click', function(){
     console.log("Clicked:" + $(this).text());
     ga('send', 'event', 'Inpage-nav','Click', "Topic: " + $(this).text());
   });
 
+  $('.user-link').find('a').unbind().on('click', function(){
+    console.log("Clicked:" + $(this).text());
+    ga('send', 'event', 'Inpage-nav','Click', "User: " + $(this).text());
+  });
 
   // Same page links: links which scroll the page or repesent some other
   // interaction on the page

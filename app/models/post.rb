@@ -16,8 +16,8 @@ class Post < ActiveRecord::Base
 
   attr_accessor :reply_id
 
-  belongs_to :topic, :counter_cache => true
-  belongs_to :user
+  belongs_to :topic, counter_cache: true, touch: true
+  belongs_to :user, touch: true
 
   validates_presence_of :body, :kind
   validates_length_of :body, :maximum => 10000

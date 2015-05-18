@@ -1,13 +1,8 @@
-<h4><%= @users.size %> users were found for your search.</h4>
-
 <table id="forums">
   <col width="5%">
   <col width="85%">
   <col width="10%">
 
-  <tr>
-
-  </tr>
   <%= render partial: 'user', collection: @users if @users %>
 </table>
 

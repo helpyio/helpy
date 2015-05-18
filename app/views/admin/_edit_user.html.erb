@@ -1,10 +1,10 @@
 
-<div id="edit-user-info-horizontal" class="row">
+<!-- <div id="edit-user-info-horizontal" class="row">-->
   <%= bootstrap_form_for(@user, remote: true, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
-  <div class='col-md-4 col-sm-6 col-xs-6 text-center' id='user-info-image'>
+  <div class='col-md-4 col-sm-12 col-xs-12 text-center' id='user-info-image'>
     <%= image_tag(@user.image_url, width: '150px', class: 'img-circle') %>
   </div>
-  <div id="user-contact-info" class="col-md-4 col-sm-4 col-xs-4 user-info">
+  <div id="user-contact-info" class="col-md-4 col-sm-6 col-xs-12 user-info">
     <div class="tiny-header"><%= @user.name %></div>
     <span class="small">
       <%= f.text_field :name %>
@@ -16,7 +16,7 @@
 
     </span>
   </div>
-  <div id="user-contact-info" class="col-md-4 col-sm-4 col-xs-4  user-info">
+  <div id="user-contact-info" class="col-md-4 col-sm-6 col-xs-12  user-info">
     <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
     <%= f.text_field :work_phone %>
     <%= f.text_field :cell_phone %>
@@ -24,8 +24,8 @@
     <div class="tiny-header"><%= t(:social_info, default: "Social") %>:</div>
     <%= f.text_field :twitter %>
     <%= f.text_field :linkedin %>
-    <%= f.submit "Save" %>
+    <%= f.submit "Save", class: 'btn btn-warning' %>
   </div>
 
   <% end %>
-</div>
+<!-- </div> -->
