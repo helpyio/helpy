@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150414210945) do
     t.string   "title_tag"
     t.string   "meta_description"
     t.integer  "category_id"
+    t.integer  "user_id"
     t.boolean  "active",           default: true
     t.integer  "rank"
     t.string   "permalink"

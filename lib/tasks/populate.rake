@@ -73,6 +73,7 @@ namespace :db do
         doc.title = title
         doc.body = Faker::Lorem.paragraphs(rand(1..5)).join('<br/><br/>')
         doc.meta_description = Faker::Lorem.sentences(1)
+        doc.user_id = rand(1..5)
         doc.save
         puts "Created Doc: #{doc.title}"
       end
@@ -81,7 +82,7 @@ namespace :db do
 
     # Create community threads for our users
     rand(30..50).times do
-      f = Forum.find(rand(2..5))
+      f = Forum.find(rand(3..6))
       topic = f.topics.new
       topic.name = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
       topic.user_id = rand(6..50)
@@ -95,7 +96,7 @@ namespace :db do
 
       # create first post in thread
       post = topic.posts.new
-      post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
+      post.body = Faker::Lorem.paragraphs(rand(4..8)).join('<br/><br/>')
       post.user_id = topic.user_id
       post.kind = 'first'
       post.save
@@ -103,7 +104,7 @@ namespace :db do
 
       rand(2..5).times do
         post = topic.posts.new
-        post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
+        post.body = Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>')
         post.user_id = rand(2..12)
         post.kind = 'reply'
         post.save

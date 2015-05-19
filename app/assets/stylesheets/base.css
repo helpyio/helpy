@@ -5,6 +5,10 @@
 
 
 
+
+
+
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -448,6 +452,9 @@ span.category-icon {
 	margin-bottom: 80px;
 }
 
+#did-this-help {
+	margin-top: 80px;
+}
 
 
 /* === BOOTSTRAP OVERRIDES == */
@@ -687,6 +694,14 @@ a.list-group-item {
 	padding-left: 2px;
 	padding-top: 4px;
 	padding-bottom: 4px;
+}
+
+#did-this-help h3 {
+	margin-top: 20px;
+}
+
+#did-this-help-buttons {
+	margin-top: 20px;
 }
 
 /* === SEARCH  === */

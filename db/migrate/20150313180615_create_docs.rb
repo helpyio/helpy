@@ -7,6 +7,7 @@ class CreateDocs < ActiveRecord::Migration
       t.string :title_tag
       t.string :meta_description
       t.integer :category_id
+      t.integer :user_id
       t.boolean :active, :default => true
       t.integer :rank
       t.string :permalink

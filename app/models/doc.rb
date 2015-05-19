@@ -23,6 +23,7 @@
 class Doc < ActiveRecord::Base
 
   belongs_to :category
+  belongs_to :user
   has_many :votes, :as => :voteable
 
   validates_presence_of :title, :body, :category_id

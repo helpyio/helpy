@@ -1,7 +1,16 @@
+<div class="row">
+  <div class="col-md-3 hidden-xs hidden-sm">
+    <span class="more-important">Written By:</span><br/>
+    <span class="less-important">
+      <%= image_tag(@doc.user.image_url, width: '40px', class: 'img-circle') %>
+      <%= @doc.user.name.titleize %>
+    </span><br/><br/>
+    <span class="more-important">Last Edit:</span>
+    <span class="less-important"><br/><%= last_active_time(@doc.updated_at) %></span>
+  </div>
+  <div class="col-md-9">
+    <p class="less-important"><%= @doc.content.html_safe %></p>
 
-<div class="col-md-9">
-  <p class="less-important"><%= @doc.content.html_safe %></p>
-</div>
-<div class="col-md-3">
-  <%= render 'layouts/did_this_help' %>
+    <%= render 'layouts/did_this_help' %>
+  </div>
 </div>
