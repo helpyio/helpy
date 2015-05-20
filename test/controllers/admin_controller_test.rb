@@ -50,32 +50,37 @@ class AdminControllerTest < ActionController::TestCase
   ### Assigning topic tests
 
   test "should be able to assign an unassigned discussion" do
-    xhr :get, :assign_agent, { topic_ids: {"":1} }, { assigned_user_id: 1 }
+    assert_difference 'Post.count', 1 do
+      xhr :get, :assign_agent, { topic_ids: [1], assigned_user_id: 1 }
+    end
     assert_response :success
   end
 
   test "should be able to assign a previously assigned discussion" do
-    xhr :get, :assign_agent, { topic_ids: {'':3} }, { assigned_user_id: 1 }
+    assert_difference 'Post.count', 1 do
+      xhr :get, :assign_agent, { topic_ids: [3], assigned_user_id: 1 }
+    end
     assert_response :success
   end
 
   test "should be able to assign multiple tickets" do
-    xhr :get, :assign_agent, { topic_ids: {'':3,'':2} }, { assigned_user_id: 1 }
+    assert_difference 'Post.count', 2 do
+      xhr :get, :assign_agent, { topic_ids: [3,2], assigned_user_id: 1 }
+    end
     assert_response :success
   end
 
   test "assigning a discussion to a different agent should create a note" do
     assert_difference 'Post.count', 1 do
-      xhr :get, :assign_agent, { topic_ids: {"":1} }, { assigned_user_id: 1 }
+      xhr :get, :assign_agent, { assigned_user_id: 1, topic_ids: [1] }
     end
+    assert_response :success
   end
 
 
   ### Replying to tickets
 
-  test "should be able to reply to a ticket" do
 
-  end
 
   test "posting an internal note should not send email" do
 
@@ -89,24 +94,24 @@ class AdminControllerTest < ActionController::TestCase
   end
 
   test "should be able to change an open ticket to closed" do
-    xhr :get, :update_ticket, { topic_ids: {'':2} }, { change_status: 'closed' }
+    xhr :get, :update_ticket, { topic_ids: [2], change_status: 'closed' }
     assert_response :success
   end
 
   test "should be able to change a closed ticket to open" do
-    xhr :get, :update_ticket, { topic_ids: {'':3} }, { change_status: 'open' }
+    xhr :get, :update_ticket, { topic_ids: [3], change_status: 'open' }
     assert_response :success
     assert_template layout: nil
   end
 
   test "should be able to change an open ticket to spam" do
-    xhr :get, :update_ticket, { topic_ids: {'':2} }, { change_status: 'spam' }
+    xhr :get, :update_ticket, { topic_ids: [2], change_status: 'spam' }
     assert_response :success
     assert_template layout: nil
   end
 
   test "should be able to change the status of multiple topics at once" do
-    xhr :get, :update_ticket, { topic_ids: { '':2,'':3 } }, { change_status: 'closed' }
+    xhr :get, :update_ticket, { topic_ids: [2,3], change_status: 'closed' }
     assert_response :success
   end
 

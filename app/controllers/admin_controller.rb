@@ -76,8 +76,7 @@ class AdminController < ApplicationController
 
     if @topic.current_status == 'new'
       @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
-      @topic.current_status = 'open'
-      @topic.save
+      @topic.open
     end
 
     @posts = @topic.posts
@@ -132,6 +131,7 @@ class AdminController < ApplicationController
       @topic.user_id = @user.id
     end
 
+    fetch_counts
     respond_to do |format|
 
       if (@user.save || !@user.nil?) && @topic.save
@@ -224,24 +224,20 @@ class AdminController < ApplicationController
       unless params[:change_status].blank?
         case params[:change_status]
         when 'closed'
-          @topic.current_status = "closed"
-          message = "This ticket has been closed by the support staff."
+          @topic.close(current_user.id)
         when 'reopen'
-          @topic.current_status = "open"
-          message = "This ticket has been reopened by the support staff."
+          @topic.reopen(current_user.id)
+        when 'trash'
+          @topic.trash(current_user.id)
         else
           @topic.current_status = params[:change_status] unless params[:change_status].blank?
+          @topic.save
         end
         @action_performed = "Marked #{params[:change_status].titleize}"
       end
 
-      @topic.save
-
       # Calls to GA for close, reopen, assigned
       @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
-
-      #Add post indicating status change
-      @topic.posts.create(user_id: current_user.id, body: message, kind: "reply") unless message.nil?
 
     end
     @posts = @topic.posts
@@ -270,25 +266,21 @@ class AdminController < ApplicationController
       @topic = Topic.where(id: id).first
 
       @minutes = 0
-
+#      logger.info("inside loop")
+#      logger.info(params[:assigned_user_id])
       unless params[:assigned_user_id].blank?
 
         # if message was unassigned previously, use the new assignee
         # this is to give note attribution below
         previous_assigned_id = @topic.assigned_user_id? ? @topic.assigned_user_id : params[:assigned_user_id]
-
-        @topic.assigned_user_id = params[:assigned_user_id]
-        @topic.current_status = 'pending'
-        @topic.save
+        assigned_user = User.find(params[:assigned_user_id])
+        @topic.assign(previous_assigned_id, assigned_user.id)
 
         # Create internal note
-        assigned_user = User.find(params[:assigned_user_id])
-        @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
-
-        @action_performed = "Assigned to #{assigned_user.name.titleize}"
+#        @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
 
         # Calls to GA
-        @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+        @tracker.event(category: "Agent: #{current_user.name}", action: "Assigned to #{assigned_user.name.titleize}", label: @topic.to_param, value: @minutes)
 
       end
       @count = @count + 1
@@ -336,7 +328,7 @@ class AdminController < ApplicationController
     fetch_counts
     respond_to do |format|
       format.js {
-        if params[:topics_ids].count > 1
+        if params[:topic_ids].count > 1
           render 'tickets'
         else
           render 'update_ticket', id: @topic.id

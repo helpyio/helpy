@@ -7,6 +7,7 @@
     <li><%= link_to t(:reopen, default: 'Reopen'), update_ticket_path(topic_ids: { "":@topic.id }, change_status: 'open'), :remote => true unless @topic.current_status == "open" %></li>
     <li><%= link_to t(:mark_new, default: 'Mark New'), update_ticket_path(topic_ids: { "":@topic.id }, change_status: 'new'), :remote => true unless @topic.current_status == "new" %></li>
     <li><%= link_to t(:mark_spam, default: 'Mark Spam'), update_ticket_path(topic_ids: { "":@topic.id }, change_status: 'spam'), :remote => true unless @topic.current_status == "spam" %></li>
+    <li><%= link_to t(:trash, default: 'Trash'), update_ticket_path(topic_ids: { "":@topic.id }, change_status: 'trash'), :remote => true unless @topic.current_status == "trash" %></li>
   </ul>
 </span>
 
@@ -18,6 +19,7 @@
     <% Forum.where(private: false).alpha.each do |forum| %>
     <li><%= link_to "Move: #{forum.name}", toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'false', forum_id: forum.id), :remote => true %></li>
     <% end %>
+    <li><%= link_to 'Move: Trash', toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 2), :remote => true %></li>
     <li><%= link_to 'Mark: Private', toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 1), :remote => true %></li>
   </ul>
 </span>

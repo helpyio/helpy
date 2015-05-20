@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   scope :admins, -> { where(admin: true).order('name asc') }
 
   def active_assigned_count
-    Topic.where(assigned_user_id: self.id).active.isprivate.count
+    Topic.where(assigned_user_id: self.id).active.count
   end
 
   def thumbnail_url

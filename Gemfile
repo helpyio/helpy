@@ -41,6 +41,7 @@ gem 'paper_trail'
 gem 'acts-as-taggable-on', '~>3.5'
 
 gem 'kaminari'
+gem 'kaminari-i18n'
 
 gem 'gravtastic'
 

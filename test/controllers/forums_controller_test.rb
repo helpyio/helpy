@@ -16,55 +16,89 @@ class ForumsControllerTest < ActionController::TestCase
   end
 
   test "should not get edit" do
-    get :edit
+    get :edit, { id: 3 }
     assert_redirected_to new_user_session_path
   end
 
   test "should not get create" do
-    post :create
+    post :create, forum: {name: "some name", description: "some descrpition"}
     assert_redirected_to new_user_session_path
   end
 
   test "should not get update" do
-    patch :update
+    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
     assert_redirected_to new_user_session_path
   end
 
   test "should not get destroy" do
-    delete :destroy
+    delete :destroy, { id: 3 }
     assert_redirected_to new_user_session_path
   end
 
-  #logged in, should get these pages
+  # logged in as user, should not get these pages
 
-  test "should get new" do
+  test "a user should not get new" do
+    sign_in users(:user)
+    get :new
+    assert_redirected_to root_path
+  end
+
+  test "a user should not get edit" do
+    sign_in users(:user)
+    get :edit, { id: 3 }
+    assert_redirected_to root_path
+  end
+
+  test "a user should not get create" do
+    sign_in users(:user)
+    post :create, forum: {name: "some name", description: "some descrpition"}
+    assert_redirected_to root_path
+  end
+
+  test "a user should not get update" do
+    sign_in users(:user)
+    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
+    assert_redirected_to root_path
+  end
+
+  test "a user should not get destroy" do
+    sign_in users(:user)
+    delete :destroy, { id: 3 }
+    assert_redirected_to root_path
+  end
+
+
+
+  #logged in as admin, should get these pages
+
+  test "admin should get new" do
     sign_in users(:admin)
     get :new
     assert_response :success
   end
 
-  test "should get edit" do
+  test "admin should get edit" do
     sign_in users(:admin)
-    get :edit, forum_id: 3
+    get :edit, id: 3
     assert_response :success
   end
 
-  test "should get create" do
+  test "admin should get create" do
     sign_in users(:admin)
-    post :create
-    assert_response :success
+    post :create, forum: {name: "some name", description: "some descrpition"}
+    assert_redirected_to admin_communities_path
   end
 
-  test "should get update" do
+  test "admin should get update" do
     sign_in users(:admin)
-    patch :update, forum_id: 3
-    assert_response :success
+    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
+    assert_redirected_to admin_communities_path
   end
 
-  test "should get destroy" do
+  test "admin should get destroy" do
     sign_in users(:admin)
-    delete :destroy
-    assert_response :success
+    delete :destroy, id: 3
+    assert_redirected_to admin_communities_path
   end
 
 end

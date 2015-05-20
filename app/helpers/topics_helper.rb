@@ -56,6 +56,8 @@ module TopicsHelper
         t(:pending, default: 'pending')
       when 'spam'
         t(:spam, default: 'spam')
+      when 'trash'
+        t(:trash, default: 'trash')
     end
   end
 
@@ -70,6 +72,8 @@ module TopicsHelper
       when 'pending'
         'label-warning'
       when 'spam'
+        'label-danger'
+      when 'trash'
         'label-danger'
     end
   end

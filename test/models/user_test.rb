@@ -45,7 +45,22 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  should have_many(:topics)
+  should have_many(:posts)
+  should have_many(:docs)
+  should validate_presence_of(:name)
+  should validate_presence_of(:email)
+  should validate_uniqueness_of(:email)
+
+  test "should count number of assigned topics" do
+    @user = User.find(1)
+
+    assert @user.active_assigned_count == 2
+    assert_difference '@user.active_assigned_count', 1 do
+      Topic.find(5).assign(1)
+    end
+  end
+
+
 end

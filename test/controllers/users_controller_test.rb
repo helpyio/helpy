@@ -11,13 +11,13 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should NOT allow unsigned in user to view edit profile page" do
-    get :edit_user_registration_path
+    get :edit
     assert_response :success
   end
 
   test "should allow signed in user to edit their profile" do
     sign_in users(:user)
-    get :edit_user_registration_path
+    get :edit
     assert_response :success
   end
 

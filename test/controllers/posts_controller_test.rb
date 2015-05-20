@@ -7,6 +7,26 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  # logged in user
+
+  test "a user should be able to reply to a topic" do
+    sign_in users(:user)
+    assert_difference 'Post.count', 1 do
+      xhr :post, :create, topic_id: 1, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
+    end
+    assert :success
+  end
+
+  # logged in admin
+
+  test "an admin should be able to reply to a topic" do
+    sign_in users(:admin)
+    assert_difference 'Post.count', 1 do
+      xhr :post, :create, topic_id: 1, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
+    end
+    assert :success
+  end
+
 
 # Creating a note should not update the topic status
 # making a note inactive should remove it from the post cache

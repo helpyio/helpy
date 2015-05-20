@@ -1,24 +1,14 @@
 class DocsController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['show', 'home']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create']
+  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
 
-  #before_filter :authenticate_master?, :except => 'show'
   #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
   after_filter :view_causes_vote, :only => 'show'
 
-  # GET /docs.xml
-  def index
-    @docs = Doc.by_category
-
-    respond_to do |format|
-      format.html { render :layout => 'admin' }
-
-    end
-  end
 
   # GET /docs/1
   # GET /docs/1.xml
@@ -45,7 +35,7 @@ class DocsController < ApplicationController
   # GET /docs/new.xml
   def new
     @doc = Doc.new
-    @post = Post.where(id: params[:post_id]).first if current_user.admin == true 
+    @post = Post.where(id: params[:post_id]).first if current_user.admin == true
     @categories = Category.alpha
 
     respond_to do |format|

@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_filter :get_tags
 
   before_filter :authenticate_user!, :except => ['index', 'show']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create']
+  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
   #before_filter :authenticate_master?, :except => 'index'
@@ -80,7 +80,7 @@ class CategoriesController < ApplicationController
 
       respond_to do |format|
         if @category.save
-          format.html { redirect_to(admin_categories_path) }
+          format.html { redirect_to(admin_knowledgebase_path) }
           #format.js
         else
           format.html { render action: "knowledgebase" }

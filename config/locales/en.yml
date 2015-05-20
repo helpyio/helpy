@@ -97,6 +97,7 @@ en:
   pending: Pending
   closed: Resolved
   spam: Spam
+  trash: Trash
   discussion_managment: Discussion Management
   open_new_discussion: Open Discussion
   assigned_to: "assigned to %{agent}"
@@ -117,6 +118,12 @@ en:
     one: "1 selected message"
     two: "2 selected messages"
     other: "%{count} selected messages"
+
+  # Discussion messages
+  reopen_message: "This message has been reopened by the support staff"
+  close_message: "This ticket has been closed by the support staff."
+  trash_message: "This ticket has been deleted."
+  assigned_message: "Discussion has been transferred to %{assigned_to}."
 
   # User Admin
   contact_info: Contact

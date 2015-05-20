@@ -26,4 +26,8 @@ class CategoryTest < ActiveSupport::TestCase
   should_not allow_value('').for(:name)
   should_not allow_value('active and featured').for(:name) #duplicate name
 
+  test "to_param" do
+    assert Category.find(1).to_param == "1-active-and-featured"
+  end
+
 end

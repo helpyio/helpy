@@ -28,6 +28,7 @@ one:
   body: article1 text
   keywords: My article keywords
   category_id: 1
+  user_id: 1
   active: true
   front_page: false
 
@@ -37,6 +38,18 @@ two:
   body: article 2 text
   keywords: My Article keywords 2
   category_id: 1
+  user_id: 1
+  active: false
+  rank: 1
+  front_page: false
+
+three:
+  id: 3
+  title: Article 3
+  body: "*article 3* text"
+  keywords: My Article keywords 2
+  category_id: 1
+  user_id: 1
   active: false
   rank: 1
   front_page: false

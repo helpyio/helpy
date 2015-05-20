@@ -22,8 +22,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :body, :kind
   validates_length_of :body, :maximum => 10000
 
-  after_create :update_waiting_on_cache
-  after_save :update_topic_cache
+  after_create  :update_topic_cache, :update_waiting_on_cache
   #after_save :send_message
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -37,7 +36,7 @@ class Post < ActiveRecord::Base
     status = self.topic.current_status
     waiting_on = self.topic.waiting_on
 
-    unless status == 'closed'
+    unless status == 'closed' || status == 'trash'
       logger.info('private message, update waiting on cache')
       status = self.topic.current_status
       if self.user && self.user.admin?

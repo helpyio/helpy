@@ -97,6 +97,7 @@ fr:
   pending: En attendant
   closed: Résolus
   spam: Spam
+  trash: Poubelle
   discussion_management: Gestion de Discussion
   open_new_discussion: Nouvelle Discussion
   assigned_to: "assigné à %{agent}"

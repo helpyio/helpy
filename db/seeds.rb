@@ -15,6 +15,15 @@
   role: 'admin',
   admin: true)
 
+  system_user = User.create!(
+  name: 'System',
+  login:'system',
+  email: 'system@test.com',
+  password:'12345678',
+  role: 'user',
+  admin: false)
+
+
   # Create top level forums
   Forum.create(name: "Private Tickets", description: "Private Messages to Support", private: true)
   Forum.create(name: "Trash", description: "Deleted discussions go here", private: true)

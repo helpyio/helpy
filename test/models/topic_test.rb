@@ -32,9 +32,57 @@ class TopicTest < ActiveSupport::TestCase
   should have_many(:posts)
   should validate_presence_of(:name)
 
-end
+
 
 #forum 1 should exist and be private
+#forum 2 should exist and be private
+
 #private posts should go in forum 1
+# trashed posts should go in forum 2
 # a closed topic should have a closed on date
 # a closed topic should be unassigned
+
+  test "to_param" do
+    assert Topic.find(1).to_param == "1-Pending-private-topic"
+  end
+
+
+  test "a new topic should cache the creators name" do
+
+    @user = User.first
+    @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
+
+    assert @topic.user_name = @user.name
+
+  end
+
+  test "trashed messages should be in forum 2, and unassigned" do
+
+    Topic.all.each do |topic|
+
+      topic.trash
+
+      assert topic.assigned_user_id.nil?
+      assert topic.forum_id == 2
+      assert topic.private == true
+      assert topic.current_status == 'trash'
+      assert_not_nil topic.closed_date
+
+    end
+  end
+
+  test "closed messages should be unassigned" do
+
+    Topic.all.each do |topic|
+
+      topic.close
+
+      assert topic.assigned_user_id.nil?
+      assert topic.current_status == 'closed'
+      assert_not_nil topic.closed_date
+
+    end
+  end
+
+
+end

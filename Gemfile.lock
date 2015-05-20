@@ -115,6 +115,9 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-i18n (0.3.2)
+      kaminari
+      rails
     kgio (2.9.3)
     less (2.6.0)
       commonjs (~> 0.2.7)
@@ -328,6 +331,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   kaminari
+  kaminari-i18n
   less-rails
   mail_extract
   mailman

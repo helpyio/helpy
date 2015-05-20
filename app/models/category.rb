@@ -20,10 +20,7 @@
 class Category < ActiveRecord::Base
 
   has_many :docs
-
   has_paper_trail
-  #before_create :make_link
-  #before_create :build_permalink
 
   scope :alpha, -> { order('name ASC') }
   scope :active, -> { where(active: true) }
@@ -37,11 +34,5 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
-
-  protected
-
-  def build_permalink
-    self.permalink = PermalinkFu.escape(self.title)
-  end
 
 end

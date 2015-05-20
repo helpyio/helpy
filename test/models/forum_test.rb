@@ -18,5 +18,18 @@ require 'test_helper'
 class ForumTest < ActiveSupport::TestCase
 
   should have_many(:topics)
-  
+  should have_many(:posts)
+
+  should validate_presence_of(:name)
+  should validate_presence_of(:description)
+
+  test "should count number of posts" do
+    assert Forum.find(1).total_posts == 2
+  end
+
+  test "to_param" do
+    assert Forum.find(1).to_param == "1-Private-Tickets"
+  end
+
+
 end

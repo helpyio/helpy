@@ -66,7 +66,6 @@ class Topic < ActiveRecord::Base
   validates_length_of :name, :maximum => 255
 
 
-
   def assigned_user
     User.where(id: self.assigned_user_id).first
   end
@@ -84,16 +83,43 @@ class Topic < ActiveRecord::Base
   end
 
   def open
-#    self.update(current_status: "open")
     self.current_status = "open"
+    self.save
   end
 
-  def close
+  def reopen(user_id = 2)
+    self.posts.create(body: I18n.t(:reopen_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
+    self.current_status = "open"
+    self.save
+  end
+
+  def close(user_id = 2)
+    self.posts.create(body: I18n.t(:close_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "closed"
     self.closed_date = Time.now
+    self.assigned_user_id = nil
+    self.save
   end
 
-  #updates the last post date, called when a post is made
+  def trash(user_id = 2)
+    self.posts.create(body: I18n.t(:trash_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
+    self.current_status = "trash"
+    self.closed_date = Time.now
+    self.forum_id = 2
+    self.private = true
+    self.assigned_user_id = nil
+    self.save
+  end
+
+  def assign(user_id=2, assigned_to)
+    self.posts.create(body: I18n.t(:assigned_message, assigned_to: User.find(assigned_to).name), kind: 'note', user_id: user_id)
+    self.assigned_user_id = assigned_to
+    self.current_status = 'pending'
+    self.save
+  end
+
+
+  # DEPRECATED updates the last post date, called when a post is made
   def self.last_post
     Topic.post(:first, :order => 'updated_at DESC')
   end
@@ -106,7 +132,7 @@ class Topic < ActiveRecord::Base
   end
 
   def public?
-    true if self.forum_id > 2 && self.private == false
+    true if self.forum_id > 3 && self.private == false
   end
 
   private

@@ -36,7 +36,7 @@ class Doc < ActiveRecord::Base
   paginates_per 25
 
   acts_as_taggable
-  before_create :build_permalink
+  #before_create :build_permalink
 
   scope :alpha, -> { order('title ASC') }
   scope :by_category, -> { order("category_id") }
@@ -58,10 +58,10 @@ class Doc < ActiveRecord::Base
     return c.to_html
   end
 
-  protected
+  #protected
 
-  def build_permalink
-    self.permalink = PermalinkFu.escape(self.title)
-  end
+  #def build_permalink
+  #  self.permalink = PermalinkFu.escape(self.title)
+  #end
 
 end
