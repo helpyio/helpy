@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
     if @topic
-      @posts = @topic.posts.active.all
+      @posts = @topic.posts.ispublic.active.all
       #@post = @topic.posts.new
 
       #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
@@ -59,7 +59,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @posts = @topic.posts.active
+        @posts = @topic.posts.ispublic.active
 
         format.html { redirect_to topic_posts_path(@topic) }
         format.js {

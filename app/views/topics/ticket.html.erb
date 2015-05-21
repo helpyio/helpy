@@ -1,8 +1,34 @@
-<div id="ticket-info" class="no-side-pad row">
+<div id="ticket-info" class="row">
 
-  <div class="col-md-4" id="left-col-user-info">
+  <div class="col-md-3 col-sm-3 hidden-xs" id="left-col-user-info">
+
+
+    <div class="doc-meta">
+      <div class="more-important meta-header">Ticket Number:</div>
+      <div class="less-important"><%= @topic.id %></div>
+    </div>
+
+    <div class="doc-meta">
+      <div class="more-important meta-header">Assigned To:</div>
+      <div class="less-important">
+        <% unless @topic.assigned_user.nil? %>
+          <%= image_tag(@topic.assigned_user.image_url, width: '40px', class: 'img-circle') %>
+          <%= @topic.assigned_user.name.titleize %>
+        <% else %>
+          Unassigned
+        <% end %>
+      </div>
+    </div>
+
+    <div class="doc-meta">
+      <div class="more-important meta-header">Opened On:</div>
+      <div class="less-important"><%= @topic.created_at %></div>
+    </div>
+
+
+
     <%#= render 'admin/user_info' %>
-    <span class="btn-group left-col-dropdown">
+    <!--<span class="btn-group left-col-dropdown">
       <span class="status dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
         Ticket Status: <%= control_for_status(@topic.current_status).html_safe %>
       </span>
@@ -12,10 +38,10 @@
         <li><%= link_to 'Mark New', update_ticket_path(@topic, change_status: 'new'), :remote => true unless @topic.current_status == "new" %></li>
         <li><%= link_to 'Mark Spam', update_ticket_path(@topic, change_status: 'spam'), :remote => true unless @topic.current_status == "spam" %></li>
       </ul>
-    </span>
+    </span> -->
   </div>
 
-  <div id="ticket-controls" class="col-xs-12 col-md-8 col-lg-8">
+  <div id="ticket-controls" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
     <script>
       Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
     </script>
@@ -32,7 +58,7 @@
         <%= f.hidden_field 'kind', value: 'reply' %>
         <%= hidden_field_tag :client_id %>
         <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
-        <%= f.submit 'Post Reply' -%>
+        <%= f.submit 'Post Reply', class: 'btn btn-warning' -%>
       <% end -%>
       </div>
     <% end -%>

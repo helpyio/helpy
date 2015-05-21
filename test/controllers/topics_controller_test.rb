@@ -10,8 +10,8 @@ class TopicsControllerTest < ActionController::TestCase
 
   test "a browsing user should not get index of topics in a private forum" do
     get :index, forum_id: 1
-    assert assigns(:topics).count == 0, "Topics should be zero"
-    assert_response :success
+    assert_nil assigns(:topics)
+    assert_redirected_to root_path
   end
 
   test "a browsing user should get the new topic page" do

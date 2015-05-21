@@ -2,8 +2,8 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
 
-  test "should get index of posts for a given topic, if its public" do
-    get :index, topic_id: 3
+  test "a browsing user should get index of posts for a given topic, if its public" do
+    get :index, topics(:public).id
     assert_response :success
   end
 

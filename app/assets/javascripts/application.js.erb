@@ -116,18 +116,6 @@ Helpy.ready = function(){
   $("ul.breadcrumb li:last-child").html("")
 
 
-  // link entire row to child
-  $('.link-row').mouseover(function(){
-    $(this).css('cursor','pointer');
-  });
-  $('.link-row').mouseout(function(){
-    $(this).css('cursor','auto');
-  });
-  $('.link-row').on('click', function(){
-//  could be causing over tracking in GA?
-//    document.location.href = $(this).find('a').attr('href');
-  });
-
   // compress thread if there are more than 4 messages
   var $thread = $('.post-container.kind-reply, .post-container.kind-note')
   if ($thread.size() >= 2) {
