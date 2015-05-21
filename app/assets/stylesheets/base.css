@@ -2,17 +2,6 @@
 /* === BASE STYLES === */
 
 
-
-
-
-
-
-
-
-
-
-
-
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -523,8 +512,13 @@ span.category-icon {
   padding: 0 5px;
   color: #999;
 }
+
 .breadcrumb > .active {
   color: #777777;
+}
+
+.dropdown-menu {
+	min-width: 300px;
 }
 
 /* === HOME PAGE === */
