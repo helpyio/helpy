@@ -6,20 +6,26 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.xml
   def index
-    @forum = Forum.find(params[:forum_id])
-    @topics = @forum.topics.ispublic.chronologic.page params[:page]
+    @forum = Forum.ispublic.where(id: params[:forum_id]).first
+    if @forum
+      @topics = @forum.topics.ispublic.chronologic.page params[:page]
 
-    #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
+      #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
-    @page_title = @forum.name.titleize
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
-    add_breadcrumb t(:community, default: "Community"), forums_path
-    add_breadcrumb @forum.name.titleize
+      @page_title = @forum.name.titleize
+      @title_tag = "#{Settings.site_name}: #{@page_title}"
+      add_breadcrumb t(:community, default: "Community"), forums_path
+      add_breadcrumb @forum.name.titleize
+    end
 
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @topics.to_xml }
-      format.rss
+      if @forum
+        format.html # index.rhtml
+        format.xml  { render :xml => @topics.to_xml }
+        format.rss
+      else
+        format.html { redirect_to root_path }
+      end
     end
   end
 
@@ -43,7 +49,7 @@ class TopicsController < ApplicationController
 
   def ticket
 
-    @topic = Topic.undeleted.where(id: params[:id]).first
+    @topic = current_user.topics.undeleted.where(id: params[:id]).first
     if @topic
       @posts = @topic.posts.active.all
 
@@ -81,6 +87,7 @@ class TopicsController < ApplicationController
     add_breadcrumb @page_title
     @title_tag = "#{Settings.site_name}: #{@page_title}"
 
+    @forums = Forum.ispublic.all
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
 

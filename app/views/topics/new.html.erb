@@ -18,7 +18,7 @@
     <%= f.radio_button :private, false, label: t(:responses_can_come_from_everyone), inline: false %>
   <% end %>
 
-  <%= f.collection_select(:forum_id, Forum.where(private: false).all, :id, :name, label: t(:forum_name)) %>
+  <%= f.collection_select(:forum_id, @forums, :id, :name, label: t(:forum_name)) %>
   <%= f.text_field :name, :size => 40, label: 'Subject' -%>
   <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
   <%= hidden_field_tag :client_id %>

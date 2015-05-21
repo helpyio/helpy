@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   #after_filter :view_causes_vote, :only => 'index'
 
   def index
-    @topic = Topic.undeleted.where(id: params[:topic_id]).first#.includes(:forum)
+    @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
     if @topic
       @posts = @topic.posts.active.all
       #@post = @topic.posts.new
@@ -75,8 +75,10 @@ class PostsController < ApplicationController
             render 'admin/ticket'
 
           else #current_user is a customer
-            agent = User.find(@topic.assigned_user_id)
-            @tracker.event(category: "Agent: #{agent.name}", action: "User Replied", label: @topic.to_param) #TODO: Need minutes
+            unless @topic.assigned_user_id.nil?
+              agent = User.find(@topic.assigned_user_id)
+              @tracker.event(category: "Agent: #{agent.name}", action: "User Replied", label: @topic.to_param) #TODO: Need minutes
+            end
           end
 
         }
