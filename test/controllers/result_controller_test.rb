@@ -29,7 +29,7 @@ class ResultControllerTest < ActionController::TestCase
   test "searching for a topic should return a result" do
     get(:index, { q: 'This is a public post' })
     assert_not_nil assigns(:results)
-    assert_equal(1, assigns(:results).total_count, "Did not find results for the search")
+    assert_operator assigns(:results).total_count, :>=, 1, "Did not find at least one result"
     assert_response :success
   end
 
@@ -43,11 +43,13 @@ class ResultControllerTest < ActionController::TestCase
   test "adding a public topic should add it to search" do
 
     @topic = Topic.create(forum_id: 3, user_id: 1, name: "My new post")
-    @post = Post.create(topic_id: @topic.id, user_id: 1, body: "This is something amazing", kind: "first")
+    @post = @topic.posts.create(user_id: 1, body: "This is something amazing", kind: "first")
 
     # have to manually rebuild search
     PgSearch::Multisearch.rebuild(Topic)
 
+    assert @topic.public == true, "Topic should be public"
+    assert Topic.last.post_cache == " This is something amazing"
     get(:index, { q: 'This is something amazing' })
     assert_not_nil assigns(:results)
     assert_equal(1, assigns(:results).total_count, "Did not find results for the search")

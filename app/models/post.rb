@@ -60,5 +60,4 @@ class Post < ActiveRecord::Base
     self.topic.update(post_cache: "#{current_cache} #{self.body}")
   end
 
-
 end
