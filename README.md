@@ -24,9 +24,11 @@ Roadmap
 -------
 
 - Improve test coverage.
+- Handle attachments in tickets, images in knowledgebase
+- Insert link to KB articles into reply in admin
 - Continue to clean up and remove cruft (this is based on an old rails 2 project)
 - Bring back labels (tag) functionality for discussions.  This is partially there now, but is not in the UI yet.
-- Multiple agent/admin roles (stubbed in already)
+- Multiple agent/admin roles (basic version stubbed in already)
 - Omniauth login, with import of user avatars
 - Some kind of rules capability linked to tagging, etc.
 - Dynamic/Behavioral Personalization

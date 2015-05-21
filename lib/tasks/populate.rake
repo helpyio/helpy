@@ -9,6 +9,9 @@ namespace :db do
     end
 
     # Add Support Team
+    company = RUser.new.first
+    company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
+
     4.times do
       user = RUser.new.first
       u = User.new
@@ -18,6 +21,13 @@ namespace :db do
       u.password = '12345678'
       u.admin = true
       u.role = 'admin'
+      u.company = company_name
+      u.street = company.location.street
+      u.city = company.location.city
+      u.state = company.location.state
+      u.zip = company.location.zip
+      u.work_phone = company.phone
+      u.cell_phone = user.cell
       u.thumbnail = user.picture.thumbnail
       u.medium_image = user.picture.medium
       u.large_image = user.picture.large
@@ -29,19 +39,6 @@ namespace :db do
     # Create 100 users
     50.times do
 
-      company_seed = rand(1..5)
-      case company_seed
-      when 1
-        companytype = "Inc."
-      when 2
-        companytype = "LLC."
-      when 3
-        companytype = "Partners"
-      when 4
-        companytype = ".com"
-      when 5
-        companytype = "Company"
-      end
 
       user = RUser.new.first
       u = User.new
@@ -49,7 +46,7 @@ namespace :db do
       u.email = user.email
       u.login = user.username
       u.password = '12345678'
-      u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{companytype}"
+      u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
       u.street = user.location.street
       u.city = user.location.city
       u.state = user.location.state
@@ -81,11 +78,16 @@ namespace :db do
 
 
     # Create community threads for our users
+
     rand(30..50).times do
+
+      timeseed = rand(1..30)
+      Timecop.travel(Date.today-timeseed.days)
+
       f = Forum.find(rand(3..6))
       topic = f.topics.new
-      topic.name = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
-      topic.user_id = rand(6..50)
+      topic.name = build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun)
+      topic.user_id = User.where(admin: false).sample.id
       if f.private?
         topic.private = true
         puts "Private Ticket Created!"
@@ -102,41 +104,36 @@ namespace :db do
       post.save
       puts "Post added to topic"
 
+      Timecop.scale(12000)
+
       rand(2..5).times do
         post = topic.posts.new
         post.body = Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>')
-        post.user_id = rand(2..12)
+        post.user_id = rand(3..12)
         post.kind = 'reply'
         post.save
         puts "Post added to topic"
       end
+
+      Timecop.return
+
     end
 
     # Create back and forth private threads with support staff
     f = Forum.find(1)
     rand(30..50).times do
 
+      timeseed = rand(1..30)
+      Timecop.travel(Date.today-timeseed.days)
+
       topic = f.topics.new
       q = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
-
-      question = rand(1..5)
-      case question
-      when 1
-        question = "How do I use #{q}?"
-      when 2
-        question = "#{q} is not working!"
-      when 3
-        question = "Need Help!"
-      when 4
-        question = "Setting up #{q}"
-      when 5
-        question = "#{q} initial questions"
-      end
+      question = build_question(q)
 
       topic.name = question
-      topic.user_id = rand(6..50)
+      topic.user_id = User.where(admin: false).sample.id
       topic.private = true
-      topic.assigned_user_id = rand(1..5)
+      topic.assigned_user_id = User.where(admin: true).sample.id
       topic.save
 
       # create first post in thread
@@ -146,6 +143,8 @@ namespace :db do
       post.kind = 'first'
       post.save
       puts "Post added to topic"
+
+      Timecop.scale(12000)
       rand(0..5).times do |i|
         post = topic.posts.new
         post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
@@ -167,7 +166,7 @@ namespace :db do
         topic.current_status = "closed"
       end
       topic.save
-
+      Timecop.return
     end
 
     # Update pg search
@@ -175,4 +174,37 @@ namespace :db do
 
     puts 'All done'
   end
+
+  def build_question(q="something")
+    question = rand(1..5)
+    case question
+    when 1
+      question = "How do I use #{q}?"
+    when 2
+      question = "#{q} is not working!"
+    when 3
+      question = "Need Help!"
+    when 4
+      question = "Setting up #{q}"
+    when 5
+      question = "#{q} initial questions"
+    end
+  end
+
+  def company_type
+    company_seed = rand(1..5)
+    case company_seed
+    when 1
+      companytype = "Inc."
+    when 2
+      companytype = "LLC."
+    when 3
+      companytype = "Partners"
+    when 4
+      companytype = ".com"
+    when 5
+      companytype = "Company"
+    end
+  end
+
 end

@@ -81,6 +81,8 @@ gem 'rails-timeago'
 gem 'faker'
 gem 'populator'
 gem 'ruser'
+gem 'timecop' #used to populate
+
 
 gem 'newrelic_rpm'
 

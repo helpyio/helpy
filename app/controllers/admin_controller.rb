@@ -43,19 +43,19 @@ class AdminController < ApplicationController
     case @status
 
     when 'all'
-      @topics = Topic.all.page params[:page]
+      @topics = Topic.all.chronologic.page params[:page]
     when 'new'
-      @topics = Topic.unread.page params[:page]
+      @topics = Topic.unread.chronologic.page params[:page]
     when 'active'
-      @topics = Topic.active.page params[:page]
+      @topics = Topic.active.chronologic.page params[:page]
     when 'unread'
-      @topics = Topic.unread.all.page params[:page]
+      @topics = Topic.unread.chronologic.all.page params[:page]
     when 'assigned'
-      @topics = Topic.mine(current_user.id).page params[:page]
+      @topics = Topic.mine(current_user.id).chronologic.page params[:page]
     when 'pending'
-      @topics = Topic.pending.mine(current_user.id).page params[:page]
+      @topics = Topic.pending.mine(current_user.id).chronologic.page params[:page]
     else
-      @topics = Topic.where(current_status: @status).page params[:page]
+      @topics = Topic.where(current_status: @status).chronologic.page params[:page]
     end
 
 
