@@ -3,13 +3,13 @@ require 'test_helper'
 class PostsControllerTest < ActionController::TestCase
 
   test "should get index of posts for a given topic, if its public" do
-    get :index, topic_id: 1
+    get :index, topic_id: 3
     assert_response :success
   end
 
   # logged in user
 
-  test "a user should be able to reply to a topic" do
+  test "a signed in user should be able to reply to a topic" do
     sign_in users(:user)
     assert_difference 'Post.count', 1 do
       xhr :post, :create, topic_id: 1, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }

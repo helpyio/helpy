@@ -16,7 +16,9 @@
   </div>
 
   <div id="ticket-controls" class="col-xs-12 col-md-8 col-lg-8">
-
+    <script>
+      Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
+    </script>
     <div id="posts">
       <%= render :partial => 'posts/post', :collection => @posts %>
     </div>

@@ -50,6 +50,7 @@ class Topic < ActiveRecord::Base
   scope :chronologic, -> { order('updated_at DESC') }
   scope :by_popularity, -> { order('points DESC') }
   scope :active, -> { where("current_status = ? OR current_status = ?", "open", "pending") }
+  scope :undeleted, -> { where("current_status != ?", "trash") }
   scope :front, -> { limit(6) }
 
   # provided both public and private instead of one method, for code readability

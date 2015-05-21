@@ -9,6 +9,10 @@
 
 
 
+
+
+
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -703,6 +707,15 @@ a.list-group-item {
 #did-this-help-buttons {
 	margin-top: 20px;
 }
+
+.doc-meta {
+	margin-bottom: 30px;
+}
+
+.meta-header {
+	margin-bottom: 5px;
+}
+
 
 /* === SEARCH  === */
 

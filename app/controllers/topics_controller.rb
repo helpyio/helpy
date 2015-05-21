@@ -25,7 +25,7 @@ class TopicsController < ApplicationController
 
   def tickets
 
-    @topics = current_user.topics.isprivate.chronologic.page params[:page]
+    @topics = current_user.topics.isprivate.undeleted.chronologic.page params[:page]
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
 
@@ -43,19 +43,25 @@ class TopicsController < ApplicationController
 
   def ticket
 
-    @topic = Topic.find(params[:id])
-    @posts = @topic.posts.active.all
+    @topic = Topic.undeleted.where(id: params[:id]).first
+    if @topic
+      @posts = @topic.posts.active.all
 
-    @page_title = "##{@topic.id} #{@topic.name.titleize}"
-    add_breadcrumb t(:tickets, default: 'Tickets')
-    add_breadcrumb @page_title
+      @page_title = "##{@topic.id} #{@topic.name.titleize}"
+      add_breadcrumb t(:tickets, default: 'Tickets')
+      add_breadcrumb @page_title
 
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+      @title_tag = "#{Settings.site_name}: #{@page_title}"
+    end
 
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @topics.to_xml }
-      format.rss
+      if @topic
+        format.html # index.rhtml
+        format.xml  { render :xml => @topics.to_xml }
+        format.rss
+      else
+        format.html { redirect_to root_path}
+      end
     end
 
 

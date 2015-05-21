@@ -5,24 +5,30 @@ class PostsController < ApplicationController
   #after_filter :view_causes_vote, :only => 'index'
 
   def index
-    @topic = Topic.where(id: params[:topic_id]).first#.includes(:forum)
-    @posts = @topic.posts.active.all
-    #@post = @topic.posts.new
+    @topic = Topic.undeleted.where(id: params[:topic_id]).first#.includes(:forum)
+    if @topic
+      @posts = @topic.posts.active.all
+      #@post = @topic.posts.new
 
-    #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
+      #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
 
-    @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
+      @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
 
-    @page_title = @topic.name.titleize
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
-    add_breadcrumb t(:community, default: "Community"), forums_path
-    add_breadcrumb @topic.forum.name.titleize, forum_topics_path(@topic.forum)
-    add_breadcrumb @topic.name.titleize
+      @page_title = @topic.name.titleize
+      @title_tag = "#{Settings.site_name}: #{@page_title}"
+      add_breadcrumb t(:community, default: "Community"), forums_path
+      add_breadcrumb @topic.forum.name.titleize, forum_topics_path(@topic.forum)
+      add_breadcrumb @topic.name.titleize
+    end
 
     respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @posts.to_xml }
-      format.rss  { render :layout => false}
+      if @topic
+        format.html # index.rhtml
+        format.xml  { render :xml => @posts.to_xml }
+        format.rss  { render :layout => false}
+      else
+        format.html { redirect_to root_path}
+      end
     end
   end
 
