@@ -28,6 +28,7 @@ class Post < ActiveRecord::Base
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
   scope :active, -> { where("active = ?", true) }
   scope :ispublic, -> { where("kind != ?", 'note') }
+  scope :chronologic, -> { order('created_at ASC') }
 
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache

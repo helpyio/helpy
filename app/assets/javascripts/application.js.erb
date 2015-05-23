@@ -165,7 +165,7 @@ Helpy.ready = function(){
   $('#check-all').off().on('change', function(){
     if (this.checked) {
       $('.topic-checkbox').prop('checked', true);
-      $('#multiple-edit').show();
+      $('#multiple-edit').fadeIn();
       updateMessage();
 
     } else {
@@ -177,7 +177,7 @@ Helpy.ready = function(){
   $('.topic-checkbox').off().on('change', function(){
 
     if (this.checked) {
-      $('#multiple-edit').show();
+      $('#multiple-edit').fadeIn();
       updateMessage();
 
     } else {
@@ -205,10 +205,13 @@ Helpy.ready = function(){
     return true;
   });
 
-  $('.post-container').off().on('mouseover', function(){
-    var id = $(this).attr("id").split("-")[1];
-    $(".post-menu-" + id).fadeIn();
-  });
+//  $('.post-container').off().on('mouseover', function(){
+//    var id = $(this).attr("id").split("-")[1];
+//    $(".post-menu-" + id).fadeIn();
+//  });
+
+
+
 
 };
 

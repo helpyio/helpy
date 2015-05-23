@@ -19,7 +19,6 @@
     <% Forum.where(private: false).alpha.each do |forum| %>
     <li><%= link_to "Move: #{forum.name}", toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'false', forum_id: forum.id), :remote => true %></li>
     <% end %>
-    <li><%= link_to 'Move: Trash', toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 2), :remote => true %></li>
     <li><%= link_to 'Mark: Private', toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 1), :remote => true %></li>
   </ul>
 </span>

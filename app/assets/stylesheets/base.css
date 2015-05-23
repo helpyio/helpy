@@ -2,6 +2,17 @@
 /* === BASE STYLES === */
 
 
+
+
+
+
+
+
+
+
+
+
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -116,6 +127,26 @@ body.sub {
 	background-color: white;
 }
 */
+
+.truncate-ellipsis {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+ 
+.truncate-ellipsis > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ellipses {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 
 #page-title {
 	padding-top: 30px;
@@ -316,11 +347,21 @@ span.more-important a {
 	font-color: #444;
 }
 
+a {
+    overflow: hidden;
+}
+
 span.more-important a:link {
 	font-weight: bold;
 	font-size: 105%;
 	font-color: #444;
 }
+
+overflow {}
+
+a {}
+
+a {}
 
 .less-important {
 	color: #666;
@@ -342,6 +383,7 @@ span.category-icon {
 
 .status-label {
 	margin-left: 5px;
+	margin-bottom: -15px;
 }
 
 .no-side-pad {
@@ -385,6 +427,9 @@ span.category-icon {
 	white-space: nowrap;	
 }
 
+.full-width {
+	width: 100%;
+}
 
 /* === LAYOUT === */
 
@@ -450,6 +495,8 @@ span.category-icon {
 }
 
 
+
+
 /* === BOOTSTRAP OVERRIDES == */
 /*
 .dropdown-menu > li > a {
@@ -496,6 +543,14 @@ span.category-icon {
 
 .navbar-brand a {
 	color:  #666;
+}
+
+.navbar-right {
+	margin-right: -45px;
+}
+
+.navbar-toggle {
+	margin-right: 0px;
 }
 
 .form-group {
@@ -828,6 +883,10 @@ div.fieldWithErrors textarea
 
 #main-body {
 	margin-top: 10px;
+}
+
+div#main-body {
+    height: 100%;
 }
 
 #buttons ul.buttons li img {

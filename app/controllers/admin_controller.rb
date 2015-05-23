@@ -79,7 +79,7 @@ class AdminController < ApplicationController
       @topic.open
     end
 
-    @posts = @topic.posts
+    @posts = @topic.posts.chronologic
 
     @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
 
@@ -167,15 +167,23 @@ class AdminController < ApplicationController
     if users.size == 0 # not a user search, so look for topics
       @topics = Topic.admin_search(params[:q]).page params[:page]
       template = 'tickets'
+
+      @tracker.event(category: "Admin Search", action: "Topic Search", label: params[:q])
+
     else
       if users.size == 1
         @user = users.first
         @topics = Topic.admin_search(params[:q]).page params[:page]
         @topic = Topic.where(user_id: @user.id).first unless @user.nil?
         template = 'tickets'
+
+        @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
+        @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
+
       else
         @users = users.page params[:page]
         template = 'users'
+        @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
       end
     end
 
@@ -198,6 +206,7 @@ class AdminController < ApplicationController
 
     # We still have to grab the first topic for the user to use the same user partial
     @topic = Topic.where(user_id: @user.id).first
+    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
 
     respond_to do |format|
       format.html {
@@ -365,6 +374,7 @@ class AdminController < ApplicationController
 
   def edit_user
     @user = User.where(id: params[:id]).first
+    @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
 
     respond_to do |format|
       format.js

@@ -2,7 +2,7 @@
 </div>
 <table id="topics" class="forum table-hover">
 
-  <col width="10px">
+  <col width="80px" class="checkbox-col">
   <col>
   <col width="10%" class="hidden-xs">
 
@@ -16,10 +16,10 @@
   </tbody>
   <tbody id="multiple-edit" style="display:none;">
     <tr>
-      <td></td>
-      <td colspan="2">
-        <span class="selected-message tiny-header"></span>
-          <span class="pull-right">
+
+      <td colspan="3">
+        <span class="selected-message tiny-header hidden-xs"></span>
+          <span>
           <span class="btn btn-group left-col-dropdown">
             <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
               <%= t(:change_status, default: 'Change Status') %> <span class='caret'></span>

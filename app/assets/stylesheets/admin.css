@@ -4,6 +4,11 @@
 
 
 
+
+
+
+
+
 body {
 	background-color: #fff;
 }
@@ -84,9 +89,6 @@ td > img {
 	height:  100px;
 }
 
-#ticket-controls {
-	padding-left: 30px;
-}
 
 #tickets {
 	margin-top: 30px;
@@ -141,6 +143,10 @@ ul.dropdown-menu {
 
 .navbar-brand {
 	padding-top: 15px;
+}
+
+.navbar-right {
+	margin-right: -28px;
 }
 
 .mailbox {
@@ -259,6 +265,10 @@ a.stats.active {
 
 }
 
+.topic-checkbox {
+	margin-top: 13px !important;
+}
+
 @media(max-width:767px){
 	h1 {
 		font-size: 150%;
@@ -269,6 +279,9 @@ a.stats.active {
 	h2 {
 		font-size: 150%;
 		margin-top: 25px;
+	}
+	.checkbox-col {
+		width: 10px;
 	}	
 }
 

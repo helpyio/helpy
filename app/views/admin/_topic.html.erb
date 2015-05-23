@@ -1,19 +1,20 @@
 <tr id="topic-<%= topic.id %>" class="topic border-bottom link-row admin-discussion">
   <td>
-  <%= check_box_tag "topic_ids[]", topic.id, false, class: 'topic-checkbox' %>
+    <%= check_box_tag "topic_ids[]", topic.id, false, class: 'topic-checkbox pull-left' %>
+    <span class="user-thumbnail pull-right hidden-xs">
+      <%= link_to image_tag(topic.user.image_url, width: '40px', class: 'img-circle'), user_profile_path(topic.user.id), remote: true %>
+    </span>
   </td>
   <td>
-    <div class="user-thumbnail pull-left">
-      <%= link_to image_tag(topic.user.image_url, width: '40px', class: 'img-circle'), user_profile_path(topic.user.id), remote: true %>
-    </div>
-    <span class="topic-link more-important">
+
+    <span class="topic-link more-important truncate-ellipsis">
       <%= link_to "##{topic.id}- #{topic.name.titleize}", admin_ticket_path(topic), :remote => true -%><%= badge_for_status(topic.current_status).html_safe %><%= badge_for_private(topic.private).html_safe %>
     </span>
-    <span class="label label-count pull-right hidden-xs"><%= topic.posts.count %></span>
-    <br/>
+    <!--<span class="label label-count hidden-xs"><%= topic.posts.count %></span>-->
     <span class="less-important user-link">
       <%= link_to t(:started_by, username: topic.user.name? ? topic.user.name.titleize : topic.user.email, default: "Started by #{topic.user.name? ? topic.user.name.titleize : topic.user.email}"), user_profile_path(topic.user.id), remote: true %>
-      - <%= assigned_to(topic) %></span>
+      - <%= assigned_to(topic) %>
+    </span>
   </td>
   <td class="last-active less-important text-right hidden-xs">
     <%= last_active_time(topic.updated_at) %>

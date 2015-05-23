@@ -1,10 +1,10 @@
-<div class="btn-group pull-right hidden-md hidden-lg hidden-sm">
+<div class="btn-group hidden-md hidden-lg hidden-sm pull-right">
   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-    <span class="status">Discussions</span><span class="caret"></span>
+    <span class="status"><%#= status_label(@status) if @status %></span><span class="caret"></span>
   </button>
   <ul class="list-unstyled dropdown-menu" role="menu">
     <li class="mailbox tiny-header">
-      <%= link_to admin_tickets_path(:status => 'unread'), :remote => true do %>
+      <%= link_to admin_tickets_path(:status => 'new'), :remote => true do %>
       <%= t(:new, default: "New") %>
       <span class="tiny-header pull-right"><%= @unread %></span>
       <% end %>

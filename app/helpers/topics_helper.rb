@@ -1,14 +1,14 @@
 module TopicsHelper
 
   def badge_for_status(status)
-    "<span class='status-label label #{status_class(status)}'>#{status_label(status).upcase}</span>"
+    "<span class='hidden-xs pull-right status-label label #{status_class(status)}'>#{status_label(status).upcase}</span>"
   end
 
   def badge_for_private(private)
 
     if private
       logger.info private
-      "<span class='status-label label label-private'>#{t(:private, default: 'PRIVATE').upcase}</span>"
+      "<span class='hidden-xs pull-right status-label label label-private'>#{t(:private, default: 'PRIVATE').upcase}</span>"
     else
       ""
     end

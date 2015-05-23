@@ -3,8 +3,14 @@
 		<%= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>
 	</div>
 	<div class="media-body media-right">
+		<span class="hidden-sm hidden-md hidden-lg"><%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %><br/></span>
 		<span class="more-important"><%= post_message(post) %></span>
-		<span class="last-active posted-at less-important pull-right"><%#= last_active_time(post.created_at) %><%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %>
+
+		<span class="last-active posted-at less-important pull-right">
+			<span class="hidden-xs">
+			<%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %>
+			</span>
+
 			<% if user_signed_in? && current_user.admin? %>
 			<div class="post-menu-<%= post.id %> btn-group" style="display:none;">
 	      <span id="row-<%= post.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle glyphicon glyphicon-align-justify'></span>

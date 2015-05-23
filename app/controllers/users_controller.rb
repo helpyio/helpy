@@ -77,6 +77,7 @@ class UsersController < ApplicationController
     if current_user.admin?
       fetch_counts
       @topics = @user.topics.page params[:page]
+      @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
     end
 
     respond_to do |format|

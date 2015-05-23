@@ -8,47 +8,46 @@
 	</head>
 
 <body>
-<script>
-  ga('set', 'location', location.href.split('#')[0]);
-  ga('send', 'pageview', { "title": document.title });
-</script>
-<div id="upper-wrapper" class="jumbotron">
-	<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<%= render :partial => 'layouts/admin_header' %>
-		</div>
-	</div>
-</div>
-</div>
-<% if @pipeline == true %>
-<div id="pipeline-wrapper" class="jumbotron hidden-xs">
-	<div class="container">
+	<script>
+	  ga('set', 'location', location.href.split('#')[0]);
+	  ga('send', 'pageview', { "title": document.title });
+	</script>
+	<div id="upper-wrapper" class="jumbotron">
+		<div class="container">
 		<div class="row">
-			<div class="ticket-stats col-md-12">
-				<%= render partial: 'admin/ticket_stats' %>
+			<div class="col-md-12">
+				<%= render :partial => 'layouts/admin_header' %>
 			</div>
 		</div>
 	</div>
-</div>
-<% end %>
-<div id="body-wrapper" class="container">
-	<div class="row white-bg">
-		<div class="col-md-12">
-			<div id="main-body" >
-				<div id="main-content">
-					<%= yield %>
+	</div>
+	<% if @pipeline == true %>
+	<div id="pipeline-wrapper" class="jumbotron hidden-xs">
+		<div class="container">
+			<div class="row">
+				<div class="ticket-stats col-md-12">
+					<%= render partial: 'admin/ticket_stats' %>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-<div id="footer-wrapper">
-	<div class="container">
-			<%= render :partial => 'layouts/footer' %>
+	<% end %>
+	<div id="body-wrapper" class="container">
+		<div class="row white-bg">
+			<div class="col-md-12">
+				<div id="main-body" >
+					<div id="main-content">
+						<%= yield %>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</div>
 
+	<div id="footer-wrapper">
+		<div class="container">
+				<%= render :partial => 'layouts/footer' %>
+		</div>
+	</div>
 </body>
 </html>
