@@ -9,6 +9,13 @@
 
 
 
+
+
+
+
+
+
+
 body {
 	background-color: #fff;
 }
@@ -52,7 +59,7 @@ td > img {
 }
 
 #ticket-info {
-	margin-top: 30px;
+	/* margin-top: 30px; */
 }
 
 #left-col-user-info {
@@ -91,12 +98,19 @@ td > img {
 
 
 #tickets {
-	margin-top: 30px;
+	/* margin-top: 30px; */
 }
 
 #topic-options {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	margin-top: 20px;
 }
+
+#user-info-horizontal {
+	padding-top: 30px;
+}
+
+
 
 /*=== ADMIN STYLES === */
 
@@ -119,7 +133,7 @@ div.left-col-dropdown > .btn-default {
 }
 
 ul.dropdown-menu {
-  width: 100%;
+  width: 250px;
 }
 
 #user-tickets ul li {
@@ -269,6 +283,12 @@ a.stats.active {
 	margin-top: 13px !important;
 }
 
+.topic span.label-count {
+	margin-top: -11px;
+	margin-right: 10px;
+	margin-left:10px;
+}
+
 @media(max-width:767px){
 	h1 {
 		font-size: 150%;
@@ -282,7 +302,13 @@ a.stats.active {
 	}
 	.checkbox-col {
 		width: 10px;
-	}	
+	}
+	#status-mobile-dropdown {
+		margin-top: -5px
+	}
+	.post-menu {
+		margin-top: -30px;
+	}
 }
 
 @media(min-width:768px){

@@ -4,7 +4,7 @@
 
   <col width="80px" class="checkbox-col">
   <col>
-  <col width="10%" class="hidden-xs">
+  <col width="20%" class="hidden-xs">
 
   <tr>
     <th><%= check_box_tag 'check-all' %></th>
@@ -30,8 +30,6 @@
               <li><%= link_to t(:mark_new, default: 'Mark New'), update_ticket_path(change_status: 'new', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
               <li><%= link_to t(:mark_spam, default: 'Mark Spam'), update_ticket_path(change_status: 'spam', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
               <li><%= link_to t(:trash, default: 'Trash'), update_ticket_path(change_status: 'trash', status: params[:status]), :remote => true, class:'multiple-update' %></li>
-
-
             </ul>
           </span>
 
@@ -57,6 +55,6 @@
     }
   </script>
 </table>
-<div class="text-right">
+<div class="text-center">
   <%= paginate @topics, remote: true %>
 </div>

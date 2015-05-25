@@ -13,6 +13,11 @@
 
 
 
+
+
+
+
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -431,6 +436,10 @@ span.category-icon {
 	width: 100%;
 }
 
+.content-row {
+	margin-top: 40px;
+}
+
 /* === LAYOUT === */
 
 #breadcrumbs {
@@ -557,9 +566,14 @@ span.category-icon {
 	width:100%;
 }
 
+.navbar-nav .form-control {
+	width: 86%;
+	margin-left: 14px
+}
+
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
-		background-color: #3cceff;
-		border-color: #3cceff;
+		background-color: #666;
+		border-color: #666;
 }
 
 .breadcrumb > li + li:before {
@@ -702,9 +716,6 @@ li.team-member {
 
 /* === KNOWLEDGEBASE === */
 
-#category-col {
-	margin-top: 30px;
-}
 
 #left-col.affix-top {
     position: static;

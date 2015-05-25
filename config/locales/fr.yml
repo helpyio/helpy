@@ -15,6 +15,7 @@ fr:
   register: "Signer"
   back_to: "Retour à"
   welcome_back: "Bienvenue à nouveau %{username}"
+  your_profile: "Your Profile"
   your_tickets: "Vos billets"
 
   # Voting widget

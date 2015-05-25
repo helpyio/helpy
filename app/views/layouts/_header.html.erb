@@ -5,15 +5,22 @@
 			</div>
 			<%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo") + "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
 					<%= menu_group pull: :right do %>
+							<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
+							<%= menu_divider %>
+
 							<%= menu_item t(:your_tickets), tickets_path, Settings.tickets if user_signed_in? %>
 							<%= menu_item t(:knowledgebase), categories_path, class:'kblink' if Settings.knowledgebase %>
 							<%= menu_item t(:community), forums_path if Settings.forums %>
 							<%= menu_item t(:ask_a_question), new_topic_path %>
-							<%= menu_item "#{t(:back_to).titleize} #{Settings.parent_company}", Settings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
 							<%= menu_divider %>
-							<%= menu_item t(:login), new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+							<%= menu_item "#{t(:back_to).titleize} #{Settings.parent_company}", Settings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
 
-							<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
+							<% if user_signed_in? %>
+							<%= menu_item t(:your_profile), edit_user_registration_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>							
+							<%= menu_item t(:logout), destroy_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+							<% else %>
+							<%= menu_item t(:login), new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+							<% end %>
 
 					<% end %>
 			<% end %>
