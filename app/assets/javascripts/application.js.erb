@@ -143,6 +143,10 @@ Helpy.ready = function(){
     $('#post_body').val($('#post_reply_id option:selected').val());
   });
 
+  $('.post-menu span').off().on('click', function(){
+    $(this).closest('.post-container').css('z-index','99999');
+  });
+
   function updateMessage(){
     var output;
     var messages = $('.topic-checkbox:checked').size();

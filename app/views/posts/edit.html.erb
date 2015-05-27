@@ -1,11 +1,3 @@
 <h2>Edit Post</h2>
 <%#= error_messages_for :post -%>
 <h3>Topic: <%= @post.topic.name %></h3>
-<%= form_for :fpost, :url => topic_post_path(:id => @post, :topic_id => @post.topic,
-                                     :forum_id => @post.topic.forum),
-                                     :html => {:method => :put} do |f| -%>
-  <p>Message:<br /><%= f.text_area :body, :rows => 8, :cols => 60 -%></p>
-  <%= submit_tag 'Save' -%> or
-  <%= link_to 'Cancel', topics_path(:id => @post.topic,
-                                    :forum_id => @post.topic.forum) -%>
-<% end -%>

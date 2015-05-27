@@ -36,7 +36,7 @@ module TopicsHelper
     if topic.assigned_user_id.nil?
       "<span class='btn status-label label label-warning'>#{t(:unassigned, default: 'UNASSIGNED')}<span class='caret'></span> </span>"
     else
-      "<span class='btn status-label label label-warning'>#{t(:assigned_to, agent: topic.assigned_user.name.upcase)} <span class='caret'></span> </span>"
+      "<span class='btn status-label label label-warning'>#{topic.assigned_user.name.upcase} <span class='caret'></span> </span>"
     end
   end
 

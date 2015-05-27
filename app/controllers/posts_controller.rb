@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
 
-  before_filter :fetch_counts, :only => 'create'
+  before_filter :authenticate_user!, :except => ['index', 'create']
+  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'destroy']
+  before_filter :instantiate_tracker
+
+#  before_filter :fetch_counts, :only => 'create'
   after_filter :send_message, :only => 'create'
-  #after_filter :view_causes_vote, :only => 'index'
+#  after_filter :view_causes_vote, :only => 'index'
 
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
@@ -48,6 +52,10 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.where(id: params[:id]).first
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -90,13 +98,12 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @post.body = params[:post][:body]
+    @post.active = params[:post][:active]
 
     respond_to do |format|
-      if @post.update_attributes(params[:post])
-        flash[:notice] = 'Post was successfully updated.'
-         format.html { redirect_to topic_posts_path(@post.topic) }
-      else
-        format.html { render :action => "edit" }
+      if @post.save
+        format.js
       end
     end
   end
@@ -117,10 +124,6 @@ class PostsController < ApplicationController
     #Should only send when admin posts, not when user replies
 
     if current_user.admin?
-      logger.info("admin is replying to message, so email")
-      logger.info("Post ID Being sent: #{@post.body}")
-      logger.info("Sending Email: #{Settings.send_email}")
-      logger.info("Private Message: #{@topic.private}")
       TopicMailer.new_ticket(@post.topic).deliver if Settings.send_email == true && @topic.private == true
     else
       logger.info("reply is not from admin, don't email")

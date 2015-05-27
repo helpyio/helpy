@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  #before_filter :authenticate!
+  before_filter :authenticate_user!
+
 
   def show
     @user = current_user
@@ -14,37 +15,6 @@ class UsersController < ApplicationController
 
     @user = User.where(id: current_user.id).first
   end
-
-
-  #  login                   :string
-  #  identity_url            :string
-  #  name                    :string
-  #  admin                   :boolean          default(FALSE)
-  #  bio                     :text
-  #  signature               :text
-  #  role                    :string           default("user")
-  #  home_phone              :string
-  #  work_phone              :string
-  #  cell_phone              :string
-  #  company                 :string
-  #  street                  :string
-  #  city                    :string
-  #  state                   :string
-  #  zip                     :string
-  #  title                   :string
-  #  twitter                 :string
-  #  linkedin                :string
-  #  thumbnail               :string
-  #  medium_image            :string
-  #  large_image             :string
-  #  language                :string
-  #  active_assigned_tickets :integer          default(0)
-  #  topic_count             :integer          default(0)
-  #  active                  :boolean          default(TRUE)
-  #  created_at              :datetime         not null
-  #  updated_at              :datetime         not null
-  #  email                   :string           default(""), not null
-
 
   def update
 

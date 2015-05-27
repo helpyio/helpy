@@ -16,6 +16,8 @@
 
 
 
+
+
 body {
 	background-color: #fff;
 }
@@ -304,10 +306,12 @@ a.stats.active {
 		width: 10px;
 	}
 	#status-mobile-dropdown {
-		margin-top: -5px
+		margin-left: 5px;
+		margin-top: -5px;
+
 	}
 	.post-menu {
-		margin-top: -30px;
+		margin-top: 0px;
 	}
 }
 
