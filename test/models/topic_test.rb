@@ -24,9 +24,7 @@
 require 'test_helper'
 
 class TopicTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
   should belong_to(:forum)
   should belong_to(:user)
   should have_many(:posts)
@@ -37,10 +35,7 @@ class TopicTest < ActiveSupport::TestCase
 #forum 1 should exist and be private
 #forum 2 should exist and be private
 
-#private posts should go in forum 1
-# trashed posts should go in forum 2
-# a closed topic should have a closed on date
-# a closed topic should be unassigned
+
 
   test "to_param" do
     assert Topic.find(1).to_param == "1-Pending-private-topic"

@@ -34,9 +34,15 @@ class TopicsControllerTest < ActionController::TestCase
       post :create, topic: { user: {name: 'a user', email: 'anon@test.com'}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: 'this is the body'}
     end
 
-    # TODO: assert email sent to user
-
     assert_redirected_to topic_posts_path(assigns(:topic)), "Did not redirect to new public topic"
+  end
+
+  test "a browsing user should be able to sign up and post a new message at the same time, and receive an email" do
+
+    assert_difference 'MandrillMailer.deliveries.size', 1 do
+      post :create, topic: { user: {name: 'a user', email: 'anon@test.com'}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: 'this is the body'}
+    end
+
   end
 
   test "a signed in user should be able to create a new private topic" do

@@ -46,6 +46,9 @@ class AdminControllerTest < ActionController::TestCase
     assert_equal(3, assigns(:topics).count)
   end
 
+  test "should be able to edit a user profile" do
+
+  end
 
   ### Assigning topic tests
 
@@ -75,15 +78,6 @@ class AdminControllerTest < ActionController::TestCase
       xhr :get, :assign_agent, { assigned_user_id: 1, topic_ids: [1] }
     end
     assert_response :success
-  end
-
-
-  ### Replying to tickets
-
-
-
-  test "posting an internal note should not send email" do
-
   end
 
 

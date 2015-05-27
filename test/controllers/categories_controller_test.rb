@@ -2,39 +2,39 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
 
-  test "should get index" do
+  test "a browser should get index" do
     get :index
     assert_response :success
   end
 
-  test "should get show" do
+  test "a browser should get show" do
     get :show, id: 1
     assert_response :success
   end
 
   # logged out, should not get these pages
 
-  test "should not get new" do
+  test "a browser should not get new" do
     get :new
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get edit" do
+  test "a browser should not get edit" do
     get :edit, { id: 1 }
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get create" do
+  test "a browser should not get create" do
     post :create, category: {name: "some name" }
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get update" do
+  test "a browser should not get update" do
     patch :update, { id: 1, category: { name: "some name" } }
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get destroy" do
+  test "a browser should not get destroy" do
     delete :destroy, { id: 1 }
     assert_redirected_to new_user_session_path
   end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ForumsControllerTest < ActionController::TestCase
 
-  test "should get index" do
+  test "a browser should get index" do
     get :index
     assert_response :success
     assert_equal(1, assigns(:forums).count)
@@ -10,27 +10,27 @@ class ForumsControllerTest < ActionController::TestCase
 
   # logged out, should not get these pages
 
-  test "should not get new" do
+  test "a browser should not get new" do
     get :new
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get edit" do
+  test "a browser should not get edit" do
     get :edit, { id: 3 }
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get create" do
+  test "a browser should not get create" do
     post :create, forum: {name: "some name", description: "some descrpition"}
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get update" do
+  test "a browser should not get update" do
     patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
     assert_redirected_to new_user_session_path
   end
 
-  test "should not get destroy" do
+  test "a browser should not get destroy" do
     delete :destroy, { id: 3 }
     assert_redirected_to new_user_session_path
   end
@@ -71,31 +71,31 @@ class ForumsControllerTest < ActionController::TestCase
 
   #logged in as admin, should get these pages
 
-  test "admin should get new" do
+  test "an admin should get new" do
     sign_in users(:admin)
     get :new
     assert_response :success
   end
 
-  test "admin should get edit" do
+  test "an admin should get edit" do
     sign_in users(:admin)
     get :edit, id: 3
     assert_response :success
   end
 
-  test "admin should get create" do
+  test "an admin should get create" do
     sign_in users(:admin)
     post :create, forum: {name: "some name", description: "some descrpition"}
     assert_redirected_to admin_communities_path
   end
 
-  test "admin should get update" do
+  test "an admin should get update" do
     sign_in users(:admin)
     patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
     assert_redirected_to admin_communities_path
   end
 
-  test "admin should get destroy" do
+  test "an admin should get destroy" do
     sign_in users(:admin)
     delete :destroy, id: 3
     assert_redirected_to admin_communities_path

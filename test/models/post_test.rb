@@ -38,4 +38,33 @@ class PostTest < ActiveSupport::TestCase
 
   end
 
+  test "marking a post inactive should remove it from the topic cache" do
+
+    @user = User.first
+
+    @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
+    @post = @topic.posts.create(body: "this is a reply", kind: "first", user_id: @user.id)
+    assert @topic.post_cache == " #{@post.body}"
+
+    @post.active = false
+    @post.save
+    assert @topic.post_cache != " #{@post.body}"
+
+  end
+
+  test "marking a post active should add it to the topic cache" do
+
+    @post = assigns(:inactive_reply)
+    @post.active = true
+    @post.save
+
+    assert @post.topic.post_cache == " #{@post.body}"
+
+  end
+
+
+
+  # making a note active should add it to the post cache
+
+
 end

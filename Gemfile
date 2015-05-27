@@ -104,7 +104,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'rspec'
   gem 'shoulda'
-
+  gem 'factory_girl_rails'
 end
 
 group :production do
