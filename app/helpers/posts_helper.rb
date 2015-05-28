@@ -10,8 +10,15 @@ module PostsHelper
     when 'note'
       message = t(:posted_note, user_name: post.user.name.titleize, default: "posted an internal note...")
     end
-    content_tag(:span, message)
-
+    if user_signed_in? && current_user.admin? && params[:controller] == 'admin'
+      content_tag(:span, class: 'btn dropdown-toggle more-important', data: { toggle: 'dropdown'}, aria: {expanded: 'false'}) do
+        "#{message} <span class='caret'></span>".html_safe
+      end
+    else
+      content_tag(:span, class: 'more-important') do
+        "#{message}".html_safe
+      end
+    end
   end
 
 

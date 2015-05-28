@@ -67,11 +67,16 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @posts = @topic.posts.ispublic.active
 
-        format.html { redirect_to topic_posts_path(@topic) }
+        format.html {
+          @posts = @topic.posts.ispublic.chronologic.active
+          redirect_to topic_posts_path(@topic)
+          }
         format.js {
           if current_user.admin?
+            fetch_counts
+            
+            @posts = @topic.posts.chronologic
             @admins = User.admins
             #@post = Post.new
             case @post.kind
@@ -83,6 +88,7 @@ class PostsController < ApplicationController
             render 'admin/ticket'
 
           else #current_user is a customer
+            @posts = @topic.posts.ispublic.chronologic.active
             unless @topic.assigned_user_id.nil?
               agent = User.find(@topic.assigned_user_id)
               @tracker.event(category: "Agent: #{agent.name}", action: "User Replied", label: @topic.to_param) #TODO: Need minutes

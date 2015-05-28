@@ -249,7 +249,7 @@ class AdminController < ApplicationController
       @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
 
     end
-    @posts = @topic.posts
+    @posts = @topic.posts.chronologic
 
     fetch_counts
     respond_to do |format|
@@ -298,7 +298,7 @@ class AdminController < ApplicationController
     if params[:topic_ids].count > 1
       get_tickets
     else
-      @posts = @topic.posts
+      @posts = @topic.posts.chronologic
     end
 
     logger.info("Count: #{params[:topic_ids].count}")
@@ -332,7 +332,7 @@ class AdminController < ApplicationController
 
 
     end
-    @posts = @topic.posts
+    @posts = @topic.posts.chronologic
 
     fetch_counts
     respond_to do |format|

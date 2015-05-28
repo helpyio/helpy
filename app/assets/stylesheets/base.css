@@ -18,6 +18,7 @@
 
 
 
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -981,6 +982,7 @@ table#forums, table#topics, table#posts {
 
 .post-body {
 	padding-top: 15px;
+	padding-left: 15px;
 }
 
 .kind-reply, .kind-note {

@@ -84,7 +84,7 @@ class Topic < ActiveRecord::Base
   end
 
   def open
-    self.current_status = "open"
+    self.current_status = "pending"
     self.save
   end
 
