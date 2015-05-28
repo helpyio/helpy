@@ -27,12 +27,6 @@ class EmailProcessor
       ticket_number = complete_subject.split("-")[0].split('#')[1].strip
       topic = Topic.find(ticket_number)
 
-      if topic
-        puts "Subject match, adding to topic: " + subject.split("[#{sitename}]")[1].strip
-      else
-        puts "topic not found"
-      end
-
       #insert post to new topic
       post = topic.posts.create(:body => message, :user_id => @user.id, :kind => 'reply')
 

@@ -11,7 +11,7 @@ FactoryGirl.define do
   factory :email_from_known, class: OpenStruct do
     # Assumes Griddler.configure.to is :hash (default)
     to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
-    from({ token: 'scott', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott@test.com>', name: 'Scott Miller' })
+    from({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' })
     subject 'email subject'
     body 'Hello!'
   end
@@ -19,7 +19,7 @@ FactoryGirl.define do
   factory :reply, class: OpenStruct do
     # Assumes Griddler.configure.to is :hash (default)
     to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
-    from({ token: 'scott', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott@test.com>', name: 'Scott Miller' })
+    from({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' })
     subject "Re: [Helpy Support] #1-Pending private topic"
     body 'Hello!'
   end

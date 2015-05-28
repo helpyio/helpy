@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ForumsControllerTest < ActionController::TestCase
 
-  test "a browser should get index" do
+  test "a browsing user should get index" do
     get :index
     assert_response :success
     assert_equal(1, assigns(:forums).count)
@@ -10,58 +10,58 @@ class ForumsControllerTest < ActionController::TestCase
 
   # logged out, should not get these pages
 
-  test "a browser should not get new" do
+  test "a browsing user should not get new" do
     get :new
     assert_redirected_to new_user_session_path
   end
 
-  test "a browser should not get edit" do
+  test "a browsing user should not get edit" do
     get :edit, { id: 3 }
     assert_redirected_to new_user_session_path
   end
 
-  test "a browser should not get create" do
+  test "a browsing user should not get create" do
     post :create, forum: {name: "some name", description: "some descrpition"}
     assert_redirected_to new_user_session_path
   end
 
-  test "a browser should not get update" do
+  test "a browsing user should not get update" do
     patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
     assert_redirected_to new_user_session_path
   end
 
-  test "a browser should not get destroy" do
+  test "a browsing user should not get destroy" do
     delete :destroy, { id: 3 }
     assert_redirected_to new_user_session_path
   end
 
   # logged in as user, should not get these pages
 
-  test "a user should not get new" do
+  test "a signed in user should not get new" do
     sign_in users(:user)
     get :new
     assert_redirected_to root_path
   end
 
-  test "a user should not get edit" do
+  test "a signed in user should not get edit" do
     sign_in users(:user)
     get :edit, { id: 3 }
     assert_redirected_to root_path
   end
 
-  test "a user should not get create" do
+  test "a signed in user should not get create" do
     sign_in users(:user)
     post :create, forum: {name: "some name", description: "some descrpition"}
     assert_redirected_to root_path
   end
 
-  test "a user should not get update" do
+  test "a signed in user should not get update" do
     sign_in users(:user)
     patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
     assert_redirected_to root_path
   end
 
-  test "a user should not get destroy" do
+  test "a signed in user should not get destroy" do
     sign_in users(:user)
     delete :destroy, { id: 3 }
     assert_redirected_to root_path

@@ -3,9 +3,9 @@ require 'test_helper'
 class EmailProcessorTest < ActiveSupport::TestCase
 
 
-  test "an email to the support address from an unknown user should create a new user and ticket" do
+  test "an email to the support address from an unknown user should create a new user and topic with status new" do
 
-    assert_difference('Topic.count', 1) do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
       assert_difference('Post.count', 1) do
         assert_difference('User.count', 1) do
           assert_difference('MandrillMailer.deliveries.size', 1) do
@@ -31,13 +31,19 @@ class EmailProcessorTest < ActiveSupport::TestCase
 
     assert_no_difference('Topic.count') do
       assert_difference('Post.count', 1) do
-          EmailProcessor.new(FactoryGirl.build(:reply)).process
+        EmailProcessor.new(FactoryGirl.build(:reply)).process
       end
     end
 
   end
 
+  test "a user should be able to reply to a ticket by email and the ticket status should change to pending" do
 
+    assert_difference 'Topic.where(current_status: "pending").count', 1 do
+      EmailProcessor.new(FactoryGirl.build(:reply)).process
+    end
+
+  end
 
 
 end

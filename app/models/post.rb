@@ -58,8 +58,10 @@ class Post < ActiveRecord::Base
 
   #updates cache of post content used in search
   def update_topic_cache
-    current_cache = self.topic.post_cache
-    self.topic.update(post_cache: "#{current_cache} #{self.body}")
+    unless self.kind == 'note'
+      current_cache = self.topic.post_cache
+      self.topic.update(post_cache: "#{current_cache} #{self.body}")
+    end
   end
 
 end

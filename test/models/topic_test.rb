@@ -38,9 +38,13 @@ class TopicTest < ActiveSupport::TestCase
 
 
   test "to_param" do
-    assert Topic.find(1).to_param == "1-Pending-private-topic"
+    assert Topic.find(1).to_param == "1-Private-topic"
   end
 
+  test "a new discussion should have status of NEW" do
+    @topic = Topic.create(forum_id: 1, user_id: 2, name: "A test topic")
+    assert @topic.current_status == "new"
+  end
 
   test "a new topic should cache the creators name" do
 

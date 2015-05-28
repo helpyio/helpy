@@ -54,15 +54,20 @@ class PostTest < ActiveSupport::TestCase
 
   test "marking a post active should add it to the topic cache" do
 
-    @post = assigns(:inactive_reply)
+    @post = Post.find(4)
     @post.active = true
     @post.save
 
-    assert @post.topic.post_cache == " #{@post.body}"
+    assert @post.topic.post_cache.include? @post.body
 
   end
 
+  test "a post of kind internal note should not be added to the topic cache" do
 
+    @post = Post.find(5)
+    refute @post.topic.post_cache.include? @post.body
+
+  end
 
   # making a note active should add it to the post cache
 

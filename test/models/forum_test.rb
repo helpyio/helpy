@@ -24,7 +24,7 @@ class ForumTest < ActiveSupport::TestCase
   should validate_presence_of(:description)
 
   test "should count number of posts" do
-    assert Forum.find(1).total_posts == 2
+    assert Forum.find(1).total_posts == 3
   end
 
   test "to_param" do

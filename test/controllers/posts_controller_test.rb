@@ -38,10 +38,9 @@ class PostsControllerTest < ActionController::TestCase
     assert :success
   end
 
-  test "when a signed in user posts a reply, the topic status should not change" do
+  test "a signed in user should be able to post a reply to an open topic and the topic status should change to pending" do
     sign_in users(:user)
-    @topic = Topic.find(1)
-    assert_no_difference 'Topic.where(current_status: @topic.current_status).count' do
+    assert_difference 'Topic.where(current_status: "pending").count', 1 do
       xhr :post, :create, topic_id: 1, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
     end
   end
@@ -76,7 +75,6 @@ class PostsControllerTest < ActionController::TestCase
     assert :success
   end
 
-
   test "an admin should be able to edit a post" do
     sign_in users(:admin)
     old = Post.find(1).body
@@ -85,5 +83,11 @@ class PostsControllerTest < ActionController::TestCase
     assert :success
   end
 
+  test "an admin should be able to post a reply to a pending ticket, and the topic status should change to open" do
+    sign_in users(:admin)
+    assert_difference 'Topic.where(current_status: "open").count', 1 do
+      xhr :post, :create, topic_id: 2, post: { user_id: User.find(1).id, body: 'new reply', kind: 'reply' }
+    end
+  end
 
 end
