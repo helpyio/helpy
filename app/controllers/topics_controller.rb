@@ -51,10 +51,10 @@ class TopicsController < ApplicationController
 
     @topic = current_user.topics.undeleted.where(id: params[:id]).first
     if @topic
-      @posts = @topic.posts.ispublic.active.all
+      @posts = @topic.posts.ispublic.chronologic.active.all
 
       @page_title = "##{@topic.id} #{@topic.name.titleize}"
-      add_breadcrumb t(:tickets, default: 'Tickets')
+      add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
 
       @title_tag = "#{Settings.site_name}: #{@page_title}"
