@@ -43,12 +43,12 @@
       'link-tooltip': true
     }
   });
-//  quill.addModule('toolbar', {
-//    container: '#toolbar'
-//  });
+  <% if @post.nil? %>
   quill.setHTML('<%= @doc.body.html_safe if @doc.body? %>');
+  <% else %>
   quill.setHTML('<%= @post.body.html_safe unless @post.nil? %>');
-
+  <% end %>
+  
   quill.on('text-change', function(delta, source) {
     //console.log(quill.getHTML());
     $('#doc_body').val(quill.getHTML());
