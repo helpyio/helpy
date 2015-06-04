@@ -17,7 +17,7 @@ class EmailProcessorTest < ActiveSupport::TestCase
 
   end
 
-  test "an email to the support address from a known user should create a new ticket" do
+  test "an email to the support address from a known user should create a new ticket for the user" do
 
     assert_difference('Topic.count', 1) do
       assert_difference('Post.count', 1) do

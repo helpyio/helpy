@@ -153,14 +153,14 @@ class AdminControllerTest < ActionController::TestCase
 
   end
 
-  test "an admin viewing a new discussion should change the status to OPEN" do
+  test "an admin viewing a new discussion should change the status to PENDING" do
     @ticket = Topic.find(6)
 
     xhr :get, :ticket, {id: @ticket.id }
 
     #reload object:
     @ticket = Topic.find(6)
-    assert @ticket.current_status == "open", "ticket status did not change to open"
+    assert @ticket.current_status == "pending", "ticket status did not change to pending"
   end
 
   # User/Admin reply tests are in posts_controller_test
@@ -168,7 +168,7 @@ class AdminControllerTest < ActionController::TestCase
   test "a user replying to a discussion should change the status to PENDING" do
     @ticket = Topic.find(6)
 
-    
+
   end
 
   test "an admin replying to a discussion should change the status to OPEN" do

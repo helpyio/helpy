@@ -61,7 +61,8 @@ user:
   email: scott.miller@test.com
   admin: false
   role: user
-
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+  
 user2:
   id: 3
   login: smith
