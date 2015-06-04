@@ -1,7 +1,7 @@
 Helpy: A Modern Helpdesk Alternative
 ====================================
 
-Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license. It includes the following:
+Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.
 
 ![](http://helpy.io/images/mobile/admin-tickets-assign.png)
 
