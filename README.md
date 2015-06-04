@@ -3,16 +3,16 @@ Helpy: A Modern Helpdesk Alternative
 
 Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license. It includes the following:
 
-Planned Features
+Version 1.0 Features
 ========
 
 - **Private Support Discussions (aka tickets):**
-Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc. [90%]
-- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum. [90%]
-- **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. [95%]
-- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [90%]
-- **Mobile-first:** Support requests come at all times, and Helpy works on all devices, out of the box so you can delight customers with prompt answers, from anywhere and at anytime! [90%]
-- **Multi-lingual:** At launch we will support English, French, Spanish, German and Russian.  [15%]
+Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc. [95%]
+- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum. [100%]
+- **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. [100%]
+- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95%]
+- **Mobile-first:** Support requests come at all times, and Helpy works on all devices, out of the box so you can delight customers with prompt answers, from anywhere and at anytime! [100%]
+- **Multi-lingual:** At launch the app will be ready to translate and include translations for English and French.
 
 Live Demo
 ---------
@@ -23,7 +23,7 @@ http://demo.helpy.io/
 Roadmap
 -------
 
-- Improve test coverage.
+- Enhanced support for other languages (need help with this)
 - Support attachments in tickets, images in knowledgebase
 - Insert link to KB articles into reply in admin
 - Continue to clean up and remove cruft (this is based on an old rails 2 project)
@@ -44,14 +44,12 @@ Helpy was designed to run on Heroku, although it should work just about anywhere
 - Postgres
 - Uses Unicorn (right now)
 
-The rest of the instructions are coming soon. The core app is still somewhat unstable so it would be best to hold off right now, unless you just wanna play.
-
+To get going, install the app and make sure you seed the database 'rake db:seed'
+You can also populate the database with fake data by running 'rake db:populate'
 
 
 Contributing
 ============
-
-The core app is still somewhat unstable so it would be best to hold off right now.
 
 1. Fork
 2. Create a Branch for your contribution
