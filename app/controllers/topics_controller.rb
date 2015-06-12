@@ -142,7 +142,7 @@ class TopicsController < ApplicationController
         @post = @topic.posts.create(:body => params[:post][:body], :user_id => @user.id, :kind => 'first')
 
         unless user_signed_in?
-          UserMailer.new_user(@user).deliver #if Settings.send_email == true
+          UserMailer.new_user(@user).deliver_now
           sign_in(:user, @user)
         end
 

@@ -62,8 +62,8 @@ gem 'mailman'#, require: false
 gem 'mail_extract'
 
 # Mandrill Integration
-gem 'mandrill-api'
-gem 'mandrill_mailer'
+# gem 'mandrill-api'
+# gem 'mandrill_mailer'
 gem 'griddler'
 gem 'griddler-mandrill'
 

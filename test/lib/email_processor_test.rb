@@ -8,7 +8,7 @@ class EmailProcessorTest < ActiveSupport::TestCase
     assert_difference('Topic.where(current_status: "new").count', 1) do
       assert_difference('Post.count', 1) do
         assert_difference('User.count', 1) do
-          assert_difference('MandrillMailer.deliveries.size', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 1) do
             EmailProcessor.new(FactoryGirl.build(:email_from_unknown)).process
           end
         end

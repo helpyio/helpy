@@ -75,7 +75,7 @@ class PostsController < ApplicationController
         format.js {
           if current_user.admin?
             fetch_counts
-            
+
             @posts = @topic.posts.chronologic
             @admins = User.admins
             #@post = Post.new
@@ -130,7 +130,7 @@ class PostsController < ApplicationController
     #Should only send when admin posts, not when user replies
 
     if current_user.admin?
-      TopicMailer.new_ticket(@post.topic).deliver if Settings.send_email == true && @topic.private == true
+      TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private == true
     else
       logger.info("reply is not from admin, don't email")
     end

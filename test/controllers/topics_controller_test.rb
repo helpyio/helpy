@@ -40,7 +40,7 @@ class TopicsControllerTest < ActionController::TestCase
   test "a browsing user should be able to sign up and post a new message at the same time, and receive an email" do
 
     assert_difference 'Topic.count', 1 do
-      assert_difference 'MandrillMailer.deliveries.size', 1 do
+      assert_difference 'ActionMailer::Base.deliveries.size', 1 do
         post :create, topic: { user: {name: 'a user', email: 'anon@test.com'}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: 'this is the body'}
       end
     end

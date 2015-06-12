@@ -71,7 +71,7 @@ class EmailProcessor
     @user.name = @email.from[:name].blank? ? @email.from[:token] : @email.from[:name]
     @user.password = password
     if @user.save
-      UserMailer.new_user(@user).deliver #if Settings.send_email == true
+      UserMailer.new_user(@user).deliver_now
     end
 
   end

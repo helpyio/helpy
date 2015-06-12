@@ -56,7 +56,7 @@ class PostsControllerTest < ActionController::TestCase
   test "an admin should be able to reply to a private topic, and the system should send an email" do
     sign_in users(:admin)
 
-    assert_difference 'MandrillMailer.deliveries.size', 1 do
+    assert_difference 'ActionMailer::Base.deliveries.size', 1 do
       assert_difference 'Post.count', 1 do
         xhr :post, :create, topic_id: 1, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
       end
@@ -67,7 +67,7 @@ class PostsControllerTest < ActionController::TestCase
   test "an admin should be able to reply to a public topic, and the system should NOT send an email" do
     sign_in users(:admin)
 
-    assert_difference 'MandrillMailer.deliveries.size', 0 do
+    assert_difference 'ActionMailer::Base.deliveries.size', 0 do
       assert_difference 'Post.count', 1 do
         xhr :post, :create, topic_id: 4, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
       end

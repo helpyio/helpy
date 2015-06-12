@@ -139,7 +139,7 @@ class AdminController < ApplicationController
         @post = @topic.posts.create(:body => params[:post][:body], :user_id => @user.id, :kind => 'first')
 
         # Send email
-        UserMailer.new_user(@user).deliver #if Settings.send_email == true
+        UserMailer.new_user(@user).deliver_now
 
         # track event in GA
         @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')

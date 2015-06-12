@@ -1,4 +1,4 @@
-# Toggle functionality
+# Toggle functionality (not fully implemented)
 tickets: true
 forums: true
 knowledgebase: true

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <p>
+    Hello <%= @user.name %>,
+  </p>
+  <p>
+    Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response.
+  </p>
+  <p>
+    Log In here: <%= Settings.site_url %><br/>
+    Email: <%= @user.email %><br/>
+    Password: <%= @user.password %><br/>
+  </p><br/>
+  <p>
+    <strong>Powered by Helpy</strong><br/>
+    Get a Free Helpy Support System for your Site at http://helpy.io/
+  </p>
+  </body>
+</html>
