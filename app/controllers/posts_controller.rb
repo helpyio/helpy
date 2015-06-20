@@ -58,6 +58,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def cancel
+    @post = Post.where(id: params[:id]).first
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create
     @topic = Topic.find(params[:topic_id])
     @post = Post.new(:body => params[:post][:body],

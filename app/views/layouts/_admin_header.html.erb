@@ -7,7 +7,7 @@
               <%= menu_item t(:discussions, default: "Discussions"), admin_tickets_path %>
               <%= menu_item t(:content, default: "Content"), admin_knowledgebase_path, class:'kblink' if Settings.knowledgebase %>
               <%= menu_item t(:communities, default: "Communities"), admin_communities_path if Settings.forums %>
-              <%= menu_item t(:app_store, default: "App Store"), "http://helpy.io/" %>
+              <%= menu_item t(:app_store, default: "App Store"), "http://helpy.io/store/" %>
               <% if @remote_search == true %>
                 <%= form_tag admin_search_path, method: :get, remote: true, class: 'navbar-form navbar-right' do %>
                   <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control full-width') %>

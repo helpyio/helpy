@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'result' => 'result#index', as: :result
   get 'tickets' => 'topics#tickets', as: :tickets
   get 'ticket/:id/' => 'topics#ticket', as: :ticket
+  get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
 
   # Admin Routes
   get 'admin' => 'admin#tickets', as: :admin
