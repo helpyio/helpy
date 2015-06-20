@@ -38,7 +38,8 @@ class Post < ActiveRecord::Base
     status = self.topic.current_status
     waiting_on = self.topic.waiting_on
 
-    unless status == 'closed' || status == 'trash'
+    #unless status == 'closed' || status == 'trash'
+    unless status == 'trash'
       logger.info('private message, update waiting on cache')
       status = self.topic.current_status
       if self.user && self.user.admin?

@@ -31,7 +31,7 @@ class EmailProcessor
       post = topic.posts.create(:body => message, :user_id => @user.id, :kind => 'reply')
 
       @tracker.event(category: 'Email', action: 'Inbound', label: 'Reply', non_interactive: true)
-      @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: 'User Replied by Email', label: topic.to_param)
+      @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: 'User Replied by Email', label: topic.to_param) unless topic.assigned_user.nil?
 
 
     elsif subject.include?("Fwd: ") # this is a forwarded message DOES NOT WORK CURRENTLY

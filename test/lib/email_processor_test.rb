@@ -45,5 +45,14 @@ class EmailProcessorTest < ActiveSupport::TestCase
 
   end
 
+  test "a reply to a closed ticket should be added as a reply post to the topic and change the status to pending" do
+
+    assert_difference 'Topic.where(current_status: "pending").count', 1 do
+      assert_difference('Post.count', 1) do
+        EmailProcessor.new(FactoryGirl.build(:reply_to_closed_ticket)).process
+      end
+    end
+
+  end
 
 end

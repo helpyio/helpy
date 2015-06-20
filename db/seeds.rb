@@ -23,6 +23,17 @@
   role: 'user',
   admin: false)
 
+  scott = User.create!(
+  name: 'Scott Miller',
+  login: 'scott',
+  email: 'scott+demo@helpy.io',
+  password: '12345678',
+  role: 'user',
+  admin: false,
+  bio: 'I am the creator of Helpy.io, the open source helpdesk alternative. Welcome to the system!',
+  linkedin: 'http://www.linkedin.com/in/optimizeit',
+  company: 'Innovio Systems'
+  )
 
   # Create top level forums
   Forum.create(name: "Private Tickets", description: "Private Messages to Support", private: true)
@@ -43,3 +54,18 @@
   Category.create(name:'FAQ', icon: 'list',title_tag: 'Frequently asked questions',meta_description:'Answers to all of our FAQs', front_page: true)
   Category.create(name:'Billing', icon: 'credit-card',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)
   Category.create(name:'Expert Tips', icon: 'road',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)
+
+  # Create first example tickets
+  topic = Forum.find(1).topics.create(
+  name: 'Welcome to Helpy',
+  private: true,
+  assigned_user_id: 1,
+  user_id: 3,
+  current_status: 'pending'
+  )
+
+  topic.posts.create(
+  body: 'I am the creator of Helpy, and I wanted to take a moment to welcome you to the system.  I am very interested in your feedback, so please visit http://support.helpy.io/ and leave your thoughts there.',
+  user_id: 3,
+  kind: 'first'
+  )
