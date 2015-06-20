@@ -26,6 +26,15 @@ var Helpy = Helpy || {};
 
 Helpy.ready = function(){
 
+  // make sure dropdowns close after click of link
+  $(".dropdown-menu a").click(function() {
+    $(this).closest(".dropdown-menu").prev().dropdown("toggle");
+  });
+
+  $('.navbar-form, #search-form').off().on('submit', function(){
+    $('.navbar-collapse.in').collapse('hide');
+  });
+
   $('.thumbnail, .stats').off();
 
   // jquery hhoks for the home page
