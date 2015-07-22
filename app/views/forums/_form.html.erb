@@ -2,5 +2,7 @@
 
 <%= f.text_field :name, :size => 40 -%></p>
 <%= f.text_area :description, :rows => 4, :cols => 60 -%></p>
+<%= f.check_box :allow_topic_voting %>
+<%= f.check_box :allow_post_voting %>
 <%= f.check_box :private %>
 <%= f.submit t(:save_changes, default: "Save Changes"), class: 'btn btn-warning' %>

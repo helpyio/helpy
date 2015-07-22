@@ -29,8 +29,7 @@ class TopicTest < ActiveSupport::TestCase
   should belong_to(:user)
   should have_many(:posts)
   should validate_presence_of(:name)
-
-
+  should have_many(:votes)
 
 #forum 1 should exist and be private
 #forum 2 should exist and be private

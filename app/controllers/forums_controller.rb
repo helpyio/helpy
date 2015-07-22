@@ -46,6 +46,8 @@ class ForumsController < ApplicationController
     @forum.name = params[:forum][:name]
     @forum.description = params[:forum][:description]
     @forum.private = params[:forum][:private]
+    @forum.allow_topic_voting = params[:forum][:allow_topic_voting]
+    @forum.allow_post_voting = params[:forum][:allow_post_voting]
 
     respond_to do |format|
       if @forum.save
@@ -67,6 +69,8 @@ class ForumsController < ApplicationController
     @forum.name = params[:forum][:name]
     @forum.description = params[:forum][:description]
     @forum.private = params[:forum][:private]
+    @forum.allow_topic_voting = params[:forum][:allow_topic_voting]
+    @forum.allow_post_voting = params[:forum][:allow_post_voting]
 
     respond_to do |format|
       if @forum.save

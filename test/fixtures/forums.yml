@@ -32,3 +32,5 @@ three:
   name: Public Forum
   description: This is a public forum
   private: false
+  allow_topic_voting: true
+  allow_post_voting: true

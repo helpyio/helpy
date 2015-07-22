@@ -19,6 +19,7 @@
 
 
 
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -140,7 +141,7 @@ body.sub {
     width: 100%;
     white-space: nowrap;
 }
-
+ 
 .truncate-ellipsis > * {
     display: table-cell;
     overflow: hidden;
@@ -430,7 +431,7 @@ span.category-icon {
 }
 
 .last-active {
-	white-space: nowrap;
+	white-space: nowrap;	
 }
 
 .full-width {
@@ -1002,18 +1003,8 @@ table#forums, table#topics, table#posts {
 	border-bottom: 1px solid #eee;
 }
 
-.voting-widget {
-  text-align: center;
-}
-
-.vote-icon {
-  font-size: 80%
-}
-
 .topic-points {
-  font-size: 140%;
-  font-weight: bold;
-  margin-top: -5px;
+	font-size: 220%;
 }
 
 div.topic-status {

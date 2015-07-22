@@ -1,0 +1,1 @@
+$('#topic_<%= @topic.id %>').replaceWith("<%= j(render partial: 'topics/topic', locals: {topic: @topic}) %>");

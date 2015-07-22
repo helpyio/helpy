@@ -1,12 +1,18 @@
 
 <table id="forums" class="table-hover">
 
+  <% if @forum.allow_topic_voting == true %>
+  <col width="5%">
+  <% end %>
   <col>
   <col width="5%">
   <col width="10%">
 
   <tbody>
     <tr>
+      <% if @forum.allow_topic_voting == true %>
+      <th></th>
+      <% end %>
       <th colspan="2"><%= t(:topic) %></th>
   	  <th class="text-right"><%= t(:last_activity) %></th>
     </tr>

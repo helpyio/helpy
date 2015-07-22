@@ -15,4 +15,16 @@ require 'test_helper'
 
 class VoteTest < ActiveSupport::TestCase
 
+  should belong_to(:voteable)
+
+  test "a vote for a topic should increase its point count" do
+    assert_difference('Topic.find(4).points',1) do
+      Topic.find(4).votes.create(user_id: 1)
+    end
+  end
+
+  test "a user should only be able to vote for a voteable once" do
+
+  end
+
 end

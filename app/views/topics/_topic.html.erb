@@ -1,4 +1,14 @@
-<tr class="topic link-row">
+<tr id="topic_<%= topic.id %>" class="topic link-row">
+  <% if topic.forum.allow_topic_voting == true %>
+  <td>
+
+    <div class="voting-widget">
+      <!--<span class="glyphicon glyphicon-plus-sign"></span>-->
+      <div class="vote-icon glyphicon glyphicon-chevron-up"></div>
+      <div class="topic-points"><%= link_to topic.points, up_vote_path(topic.id), remote: true %></div>
+    </div>
+  </td>
+  <% end %>
   <td>
     <span class="more-important truncate-ellipsis"><%= link_to h(topic.name.titleize), topic_posts_path(topic) -%></span>
     <span class="less-important"><%= t(:started_by, :username => topic.user.name.titleize) %></span>

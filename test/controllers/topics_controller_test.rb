@@ -47,6 +47,13 @@ class TopicsControllerTest < ActionController::TestCase
 
   end
 
+  test "a browsing user should not be able to vote" do
+    assert_difference 'Topic.find(forum_id: 3).first.points', 0 do
+      get :index, forum_id: 3
+      # TODO vote for topic
+    end
+  end
+
   test "a signed in user should be able to create a new private topic" do
     sign_in users(:user)
 

@@ -195,31 +195,17 @@ class TopicsController < ApplicationController
   end
 
   def up_vote
-    @topic = Topic.find(params[:id])
-    @topic.votes.create(:user_id => current_user.id)
-    logger.info(current_user.id)
-    @topic.reload
-    if request.xhr?
-      render :update do |page|
-        page['topic-stats'].replace_html :partial => 'posts/topic_stats'
-      end
-    else
-      redirect_to topic_posts_path(@topic)
-    end
-  end
 
-  def down_vote
-    @topic = Topic.find(params[:id])
-    @topic.votes.create(:user_id => current_user, :points => -1)
+    #TODO: Add to GA event tracking
 
+    @topic = Topic.find(params[:id])
+    @topic.votes.create(user_id: current_user.id)
     @topic.reload
-    if request.xhr?
-      render :update do |page|
-        page['topic-stats'].replace_html :partial => 'posts/topic_stats'
-      end
-    else
-      redirect_to topic_posts_path(@topic)
+
+    respond_to do |format|
+      format.js
     end
+
   end
 
   def tag
