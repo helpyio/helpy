@@ -222,6 +222,14 @@ Helpy.ready = function(){
 //    $(".post-menu-" + id).fadeIn();
 //  });
 
+  // Topic voting widget animation
+  $('.topic-points').hover(function(){
+    $(this).addClass('animated pulse');
+    $(this).prev().addClass('animated bounce');
+  }, function(){
+    $(this).removeClass('animated pulse');
+    $(this).prev().removeClass('animated bounce');
+  });
 
 
 };

@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150722031136) do
     t.boolean  "active",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "points",     default: 0
   end
 
   create_table "searches", force: :cascade do |t|

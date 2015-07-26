@@ -84,7 +84,7 @@ namespace :db do
       timeseed = rand(1..30)
       Timecop.travel(Date.today-timeseed.days)
 
-      f = Forum.find(rand(3..6))
+      f = Forum.find(rand(3..7))
       topic = f.topics.new
       topic.name = build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun)
       topic.user_id = User.where(admin: false).sample.id
@@ -94,7 +94,22 @@ namespace :db do
       else
         puts "Discussion #{topic.name} Added"
       end
+
+      if f.allow_topic_voting == true
+        topic.points = rand(0..1000)
+      end
+
       topic.save
+
+      # Add votes to topics
+#      Forum.find(7).topics.each do |topic|
+#        User.all.each do |user|
+#          randnum = rand(0..3)
+#          if randnum == 1
+#            topic.votes.create(user_id: user.id)
+#          end
+#        end
+#      end
 
       # create first post in thread
       post = topic.posts.new

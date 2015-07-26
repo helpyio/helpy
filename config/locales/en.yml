@@ -146,6 +146,9 @@ en:
   select_common: Select Common Reply
   reply: Reply
   internal_note: Internal Note
+  upvote:
+    one: "%{count} Upvote"
+    other: "%{count} Upvotes"
 
   # Content
   new_category: New Category

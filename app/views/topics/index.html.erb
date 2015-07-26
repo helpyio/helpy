@@ -11,9 +11,12 @@
   <tbody>
     <tr>
       <% if @forum.allow_topic_voting == true %>
-      <th></th>
+      <th colspan="3">
+      <% else %>
+      
+      <th colspan="2">
       <% end %>
-      <th colspan="2"><%= t(:topic) %></th>
+        <%= t(:topic) %></th>
   	  <th class="text-right"><%= t(:last_activity) %></th>
     </tr>
     <%= render :partial => 'topic', :collection => @topics %>

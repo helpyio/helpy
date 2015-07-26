@@ -22,13 +22,15 @@ class Vote < ActiveRecord::Base
   protected
 
   def increment_points_cache
-    
+
     case self.voteable_type
 
     when "Topic"
       model = Topic.find(self.voteable_id)
     when "Doc"
       model = Doc.find(self.voteable_id)
+    when "Post"
+      model = Post.find(self.voteable_id)
     end
     model.points += self.points
     model.save

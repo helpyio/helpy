@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 
   resources :users
 
-  get 'topic/:id/vote' => 'topics#up_vote', as: :up_vote
+  post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote
+  post 'post/:id/vote' => 'posts#up_vote', as: :post_vote
   get 'result' => 'result#index', as: :result
   get 'tickets' => 'topics#tickets', as: :tickets
   get 'ticket/:id/' => 'topics#ticket', as: :ticket

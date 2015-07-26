@@ -18,6 +18,7 @@ class PostTest < ActiveSupport::TestCase
 
   should belong_to(:topic)
   should belong_to(:user)
+  should have_many(:votes)
   should validate_presence_of(:body)
   should validate_presence_of(:kind)
 

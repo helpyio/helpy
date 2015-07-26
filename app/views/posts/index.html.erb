@@ -10,7 +10,7 @@
 		</table>
 
 		<% if user_signed_in? %>
-			<div class="add-form">
+		<!--	<div class="add-form">
 			<h4><%= t(:reply) %></h4>
 			<%#= error_messages_for :post -%>
 			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
@@ -20,6 +20,7 @@
 				<%= f.submit t(:submit_reply) -%>
 			<% end -%>
 			</div>
+		-->
 		<% end -%>
 
 	</div>

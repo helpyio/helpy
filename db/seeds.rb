@@ -42,6 +42,7 @@
   Forum.create(name: "Common Questions", description: "Frequently asked questions")
   Forum.create(name: "How To's", description: "Answers to how to do common things")
   Forum.create(name: "Bugs and Issues", description: "Report Bugs here!")
+  Forum.create(name: "Feature Requests", description: "Suggest and vote on what features we should add next!", allow_topic_voting: true)
 
   # Create top level KB categories
   Category.create(name:'Common Replies', title_tag: 'Common Agent Replies', meta_description: 'Common replies to questions (Visible only to agents)', front_page: false, active: false)

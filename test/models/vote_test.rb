@@ -23,6 +23,25 @@ class VoteTest < ActiveSupport::TestCase
     end
   end
 
+  test "a vote for a topic should mark the last active date to today" do
+    assert_no_difference 'Time.now', 'Topic.find(forum_id: 3).updated_at' do
+      Topic.find(forum_id: 3).votes.create(user_id: 1)
+    end
+  end
+
+  test "a vote for a post should increase its point count" do
+    assert_difference('Post.find(3).points',1) do
+      Post.find(3).votes.create(user_id: 1)
+    end
+  end
+
+  test "a vote for a post should mark the last active date to today" do
+    assert_no_difference 'Time.now', 'Post.find(3).updated_at' do
+      Post.find(3).votes.create(user_id: 1)
+    end
+  end
+
+
   test "a user should only be able to vote for a voteable once" do
 
   end

@@ -21,6 +21,14 @@ module PostsHelper
     end
   end
 
+  def vote_widget(topic)
+    content_tag(:div, class: "voting-widget") do
+      content_tag(:div, class: "vote-icon glyphicon glyphicon-chevron-up")
+      content_tag(:div, class: "topic_points") do
+        link_to topic.points, up_vote_path(topic.id), method: :post, remote: true
+      end
+    end
+  end
 
   def post_admin
 

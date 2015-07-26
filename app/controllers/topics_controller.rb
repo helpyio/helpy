@@ -8,7 +8,11 @@ class TopicsController < ApplicationController
   def index
     @forum = Forum.ispublic.where(id: params[:forum_id]).first
     if @forum
-      @topics = @forum.topics.ispublic.chronologic.page params[:page]
+      if @forum.allow_topic_voting == true
+        @topics = @forum.topics.ispublic.by_popularity.page params[:page]
+      else
+        @topics = @forum.topics.ispublic.chronologic.page params[:page]
+      end
 
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
@@ -200,6 +204,7 @@ class TopicsController < ApplicationController
 
     @topic = Topic.find(params[:id])
     @topic.votes.create(user_id: current_user.id)
+    @topic.touch
     @topic.reload
 
     respond_to do |format|
