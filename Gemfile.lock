@@ -43,6 +43,10 @@ GEM
       rake (~> 10.4)
     ansi (1.5.0)
     arel (6.0.0)
+    attachinary (1.3.0)
+      cloudinary (~> 1.0.69)
+      rails (>= 3.2)
+    aws_cf_signer (0.1.3)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -53,6 +57,9 @@ GEM
       rb-readline (= 0.5.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    cloudinary (1.0.85)
+      aws_cf_signer
+      rest-client
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -135,6 +142,7 @@ GEM
       rb-inotify (>= 0.9)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
+    magnific-popup-rails (0.9.9.1)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mail_extract (0.1.4)
@@ -312,8 +320,10 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 3.5)
   annotate
+  attachinary
   bootstrap_form
   byebug
+  cloudinary
   coffee-rails (~> 4.1.0)
   daemons
   devise
@@ -332,6 +342,7 @@ DEPENDENCIES
   kaminari
   kaminari-i18n
   less-rails
+  magnific-popup-rails
   mail_extract
   mailman
   minitest

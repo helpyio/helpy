@@ -16,6 +16,9 @@
 			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
 			  <%= f.text_area :body, :rows => 8, :cols => 160, label: 'Type your response:' -%></p>
 			  <%= f.hidden_field 'kind', value: 'reply' %>
+				<div class="add-screenshots">
+				<%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots %>
+				</div>
 				<%= hidden_field_tag :client_id %>
 				<%= f.submit t(:submit_reply) -%>
 			<% end -%>

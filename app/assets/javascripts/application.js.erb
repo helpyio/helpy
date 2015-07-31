@@ -21,10 +21,19 @@
 //= require rails-timeago-all
 //= require quill/dist/quill
 //= require flare/dist/flare
+//= require jquery.ui.widget
+//= require jquery.iframe-transport
+//= require jquery.fileupload
+//= require cloudinary/jquery.cloudinary
+//= require attachinary
+//= require magnific-popup
 
 var Helpy = Helpy || {};
 
 Helpy.ready = function(){
+
+  $('.attachinary-input').attachinary();
+  $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
 
   // make sure dropdowns close after click of link
   $(".dropdown-menu a").click(function() {

@@ -136,7 +136,11 @@ class AdminController < ApplicationController
 
       if (@user.save || !@user.nil?) && @topic.save
 
-        @post = @topic.posts.create(:body => params[:post][:body], :user_id => @user.id, :kind => 'first')
+        @post = @topic.posts.create(
+          :body => params[:post][:body],
+          :user_id => @user.id,
+          :kind => 'first',
+          :screenshots => params[:topic][:screenshots])
 
         # Send email
         UserMailer.new_user(@user).deliver_now

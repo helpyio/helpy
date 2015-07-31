@@ -13,7 +13,9 @@
   <%= f.text_field :name, :size => 40 -%>
   <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
   <%= hidden_field_tag :client_id %>
-
+  <div class="add-screenshots">
+  <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots %>
+  </div>
   <!--<label>Tags:</label><br/>-->
   <%#= text_field_tag :tags %>
 

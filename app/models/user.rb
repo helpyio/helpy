@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :votes
   has_many :docs
-
+  has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
   ROLES = %w[admin agent editor user]
@@ -95,5 +95,5 @@ class User < ActiveRecord::Base
   def to_param
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
   end
-  
+
 end

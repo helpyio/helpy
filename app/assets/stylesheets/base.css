@@ -140,7 +140,7 @@ body.sub {
     width: 100%;
     white-space: nowrap;
 }
- 
+
 .truncate-ellipsis > * {
     display: table-cell;
     overflow: hidden;
@@ -199,6 +199,14 @@ div.add-form {
 	margin-top: 40px
 }
 
+.add-screenshots {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.attachinary-thumbnails {
+  margin-top: 10px;
+}
 
 /*
 h3 {
@@ -430,7 +438,7 @@ span.category-icon {
 }
 
 .last-active {
-	white-space: nowrap;	
+	white-space: nowrap;
 }
 
 .full-width {

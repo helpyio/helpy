@@ -1,6 +1,6 @@
 <div id="post-<%= post.id %>" class="media post-container <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %>">
 	<div class="pull-left">
-		<%= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>
+		<%= image_tag(user_avatar(post.user), width: '40px', class: 'media-object img-circle') %>
 	</div>
 	<div class="media-body media-right">
 		<span class="hidden-sm hidden-md hidden-lg"><%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %><br/></span>
@@ -22,6 +22,13 @@
 
 		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
 			<%= simple_format(post.body) -%>
+			<div id="post-images">
+				<ul class="list-inline">
+					<% post.screenshots.each do |screenshot| %>
+						<li><%= link_to cl_image_tag(screenshot.path, { size: '125x125', crop: :fit }), "http://res.cloudinary.com/helpy-io/image/upload/#{screenshot.path}", class: 'screenshot-link' %></li>
+					<% end %>
+				</ul>
+			</div>
 		</div>
 
 	</div>

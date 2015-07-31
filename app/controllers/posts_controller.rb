@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
     if @topic
       @posts = @topic.posts.ispublic.active.all
-      #@post = @topic.posts.new
+      @post = @topic.posts.new
 
       #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
 
@@ -71,7 +71,8 @@ class PostsController < ApplicationController
     @post = Post.new(:body => params[:post][:body],
                      :topic_id => @topic.id,
                      :user_id => current_user.id,
-                     :kind => params[:post][:kind])
+                     :kind => params[:post][:kind],
+                     :screenshots => params[:post][:screenshots])
 
     respond_to do |format|
       if @post.save
