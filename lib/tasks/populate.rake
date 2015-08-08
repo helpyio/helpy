@@ -84,7 +84,7 @@ namespace :db do
       timeseed = rand(1..30)
       Timecop.travel(Date.today-timeseed.days)
 
-      f = Forum.find(rand(3..7))
+      f = Forum.find(rand(3..8))
       topic = f.topics.new
       topic.name = build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun)
       topic.user_id = User.where(admin: false).sample.id

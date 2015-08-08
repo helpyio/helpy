@@ -32,7 +32,7 @@
   admin: false,
   bio: 'I am the creator of Helpy.io, the open source helpdesk alternative. Welcome to the system!',
   linkedin: 'http://www.linkedin.com/in/optimizeit',
-  company: 'Innovio Systems'
+  company: ''
   )
 
   # Create top level forums
@@ -42,7 +42,8 @@
   Forum.create(name: "Common Questions", description: "Frequently asked questions")
   Forum.create(name: "How To's", description: "Answers to how to do common things")
   Forum.create(name: "Bugs and Issues", description: "Report Bugs here!")
-  Forum.create(name: "Feature Requests", description: "Suggest and vote on what features we should add next!", allow_topic_voting: true)
+  Forum.create(name: "Feature Requests", description: "Suggest and vote on what features we should add next!", allow_topic_voting: true, allow_post_voting: true)
+  Forum.create(name: "Idea Board", description: "Submit Ideas for HR to consider", allow_topic_voting: true, allow_post_voting: true, layout: 'grid')
 
   # Create top level KB categories
   Category.create(name:'Common Replies', title_tag: 'Common Agent Replies', meta_description: 'Common replies to questions (Visible only to agents)', front_page: false, active: false)

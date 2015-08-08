@@ -1,0 +1,15 @@
+  <div class="idea-box col-lg-3 col-md-3 col-sm-4 col-xs-12" data-link="<%= topic_posts_path(grid) %>">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+      <h5 class="category-header text-center"><%= link_to h(grid.name.titleize), topic_posts_path(grid) -%></h5>
+      <% if grid.forum.allow_topic_voting == true %>
+      <td>
+        <div class="voting-widget">
+          <!--<span class="glyphicon glyphicon-plus-sign"></span>-->
+          <div class="vote-icon glyphicon glyphicon-chevron-up"></div>
+          <div class="topic-points"><%= link_to grid.points, up_vote_path(grid.id), method: :post, remote: true %></div>
+        </div>
+      </td>
+      <% end %>
+    </div>
+  </div>

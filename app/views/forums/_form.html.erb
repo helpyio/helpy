@@ -2,6 +2,8 @@
 
 <%= f.text_field :name, :size => 40 -%></p>
 <%= f.text_area :description, :rows => 4, :cols => 60 -%></p>
+<%= f.select("format", [['Table',"table"],["Grid","grid"],["Q&A","qna"]], include_blank: t(:select_category, default: 'Select Format')) %>
+
 <%= f.check_box :allow_topic_voting %>
 <%= f.check_box :allow_post_voting %>
 <%= f.check_box :private %>

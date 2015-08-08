@@ -1,3 +1,4 @@
+<% if @forum.format == "table" %>
 
 <table id="forums" class="table-hover">
 
@@ -13,7 +14,7 @@
       <% if @forum.allow_topic_voting == true %>
       <th colspan="3">
       <% else %>
-      
+
       <th colspan="2">
       <% end %>
         <%= t(:topic) %></th>
@@ -22,6 +23,14 @@
     <%= render :partial => 'topic', :collection => @topics %>
   </tbody>
 </table>
+
+<% elsif @forum.layout == "grid" %>
+<div id="featured-categories" class="row">
+  <%= render :partial => 'grid', :collection => @topics %>
+</div>
+<% end %>
+
+
 
 <div class="text-right">
 	<%= paginate @topics %>

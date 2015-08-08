@@ -53,14 +53,15 @@ ActiveRecord::Schema.define(version: 20150722031136) do
   create_table "forums", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "topics_count",       default: 0,     null: false
+    t.integer  "topics_count",       default: 0,       null: false
     t.datetime "last_post_date"
     t.integer  "last_post_id"
     t.boolean  "private",            default: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.boolean  "allow_topic_voting", default: false
     t.boolean  "allow_post_voting",  default: false
+    t.string   "layout",             default: "table"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

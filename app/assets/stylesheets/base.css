@@ -1098,6 +1098,25 @@ div.topic-status {
 	text-decoration: none;
 }
 
+/* === IDEABOARD === */
+
+.idea-box {
+    max-height: 120px;
+}
+
+.idea-box .thumbnail {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 5px;
+  right: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align:center;
+  padding-top: 10px;
+  max-height: 100px;
+}
+
 /* === OTHER MEDIA QUERIES === */
 
 @media(max-width:767px){
