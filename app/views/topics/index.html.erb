@@ -1,4 +1,4 @@
-<% if @forum.format == "table" %>
+<% if @forum.layout == "table" %>
 
 <table id="forums" class="table-hover">
 
@@ -27,6 +27,15 @@
 <% elsif @forum.layout == "grid" %>
 <div id="featured-categories" class="row">
   <%= render :partial => 'grid', :collection => @topics %>
+</div>
+
+<% elsif @forum.layout == "qna" %>
+<div class="row">
+	<div class="col-md-12">
+    <div id="qnas">
+      <%= render :partial => 'qna', :collection => @topics %>
+    </div>
+  </div>
 </div>
 <% end %>
 

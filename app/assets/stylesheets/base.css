@@ -1010,6 +1010,10 @@ table#forums, table#topics, table#posts {
   font-size: 80%
 }
 
+.grid-vote {
+  margin-top: 20px;
+}
+
 .topic-points {
   font-size: 140%;
   font-weight: bold;

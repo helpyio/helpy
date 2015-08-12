@@ -119,7 +119,7 @@ namespace :db do
       post.save
       puts "Post added to topic"
 
-      Timecop.scale(12000)
+      Timecop.scale(120000)
 
       rand(2..5).times do
         post = topic.posts.new

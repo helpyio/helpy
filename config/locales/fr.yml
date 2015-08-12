@@ -136,8 +136,8 @@ fr:
   reply: Réponse
   internal_note: Note Interne
   upvote:
-    one: "%{count} Upvote"
-    other: "%{count} Upvotes"
+    one: "Upvote | %{count}"
+    other: "Upvote | %{count}"
 
 
   # Content

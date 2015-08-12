@@ -147,8 +147,8 @@ en:
   reply: Reply
   internal_note: Internal Note
   upvote:
-    one: "%{count} Upvote"
-    other: "%{count} Upvotes"
+    one: "Upvote | %{count}"
+    other: "Upvote | %{count}"
 
   # Content
   new_category: New Category

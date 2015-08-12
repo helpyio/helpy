@@ -125,7 +125,7 @@ Helpy.ready = function(){
   $("ul.breadcrumb li:last-child").html("")
 
   // compress thread if there are more than 4 messages
-  var $thread = $('.post-container.kind-reply, .post-container.kind-note')
+  var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting')
   if ($thread.size() >= 2) {
 
     // insert expand thread message
