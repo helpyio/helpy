@@ -982,7 +982,7 @@ table#forums, table#topics, table#posts {
 
 .post-body {
 	padding-top: 15px;
-	padding-left: 15px;
+	padding-left: 0px;
 }
 
 .kind-reply, .kind-note {
@@ -1120,6 +1120,28 @@ div.topic-status {
   padding-top: 10px;
   max-height: 100px;
 }
+
+/* === Q&A === */
+
+.asked-question {
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+div.asked-question span.more-important {
+  font-weight: normal;
+  font-size: 100%;
+}
+
+h4.qna {
+  margin-top: 0px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+
+
+
 
 /* === OTHER MEDIA QUERIES === */
 

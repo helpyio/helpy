@@ -1,8 +1,10 @@
 <% post = qna.posts.by_votes.first %>
 
   <div id="post-<%= post.id %>" class="media post-container kind-first<%= " inactive" unless post.active? %>">
-    <span><%= distance_of_time_in_words(Time.now,qna.created_at) %> ago <%= post_message(qna.posts.first) %></span>
-    <h3><%= link_to h(qna.name.titleize), topic_posts_path(qna) -%></h3>
+    <div class="asked-question">
+      <%= distance_of_time_in_words(Time.now,qna.created_at) %> ago <%= post_message(qna.posts.first) %>
+    </div>
+    <h4 class="qna"><%= link_to h(qna.name.titleize), topic_posts_path(qna) -%></h4>
 
 
 
@@ -21,26 +23,24 @@
   			<% end %>
   		</span>
 
-  		<span class="last-active posted-at less-important pull-right">
-  			<span class="hidden-xs">
-  			<%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %>
-  			</span>
-  		</span>
-
   		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
-  			<%= simple_format(post.body) -%>
-  			<% if post.topic.forum.allow_post_voting == true %>
-  			<div id="post-vote-<%= post.id %>" class="post-vote btn btn-default">
+  			<span class="shorten"><%= simple_format(post.body) -%></span>
+
+        <% if post.topic.forum.allow_post_voting == true %>
+  			<div id="post-vote-<%= post.id %>" class="btn btn-default">
   				<% if post.kind == 'first' %>
-  				<%= link_to t(:upvote, count: post.topic.points), up_vote_path(post.topic.id), method: :post, remote: true %>
+  				<%= link_to t(:upvote, count: post.topic.points), up_vote_path(post.topic.id), method: :post, remote: true, class: 'topic-vote' %>
   				<% else %>
-  				<%= link_to t(:upvote, count: post.points), post_vote_path(post.id), method: :post, remote: true %>
+  				<%= link_to t(:upvote, count: post.points), post_vote_path(post.id), method: :post, remote: true, class: 'post-vote' %>
   				<% end %>
   			</div>
   			<% end %>
+
   		</div>
 
 
 
   	</div>
   </div>
+
+<hr/>
