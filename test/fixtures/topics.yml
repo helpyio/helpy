@@ -5,6 +5,7 @@
 #  id               :integer          not null, primary key
 #  forum_id         :integer
 #  user_id          :integer
+#  user_name        :string
 #  name             :string
 #  posts_count      :integer          default(0), not null
 #  waiting_on       :string           default("admin"), not null

@@ -133,8 +133,6 @@ class PostsController < ApplicationController
 
   def up_vote
 
-    #TODO: Add to GA event tracking
-
     @post = Post.find(params[:id])
     @post.votes.create(user_id: current_user.id)
     @post.topic.touch

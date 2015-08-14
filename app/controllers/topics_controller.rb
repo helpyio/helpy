@@ -200,8 +200,6 @@ class TopicsController < ApplicationController
 
   def up_vote
 
-    #TODO: Add to GA event tracking
-
     @topic = Topic.find(params[:id])
     @topic.votes.create(user_id: current_user.id)
     @topic.touch

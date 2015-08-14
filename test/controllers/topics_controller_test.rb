@@ -48,9 +48,9 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should not be able to vote" do
-    assert_difference 'Topic.find(forum_id: 3).first.points', 0 do
+    assert_difference 'Topic.find(5).points', 0 do
       get :index, forum_id: 3
-      # TODO vote for topic
+      xhr :post, :up_vote, { id: 5 }
     end
   end
 
@@ -86,6 +86,13 @@ class TopicsControllerTest < ActionController::TestCase
 
   end
 
+  test "a signed in user should be able to vote" do
+    sign_in users(:user)
+    assert_difference 'Topic.find(5).points', 1 do
+      get :index, forum_id: 3
+      xhr :post, :up_vote, { id: 5 }
+    end
+  end
 
 =begin
   test "should get edit" do

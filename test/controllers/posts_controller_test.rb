@@ -20,6 +20,13 @@ class PostsControllerTest < ActionController::TestCase
     assert (not assigns(:posts).include? post.id)
   end
 
+  test "a browsing user should not be able to vote" do
+    assert_difference 'Post.find(6).points', 0 do
+      get :index, forum_id: 3
+      xhr :post, :up_vote, { id: 6 }
+    end
+  end
+
   # logged in user
 
   test "a signed in user should be able to reply to a topic" do
@@ -44,6 +51,14 @@ class PostsControllerTest < ActionController::TestCase
       xhr :post, :create, topic_id: 1, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
     end
   end
+
+  test "a signed in user should be able to vote" do
+    sign_in users(:user)
+    assert_difference 'Post.find(6).points', 1 do
+      xhr :post, :up_vote, { id: 6, topic_id: 5 }
+    end
+  end
+
 
   # logged in admin
 
