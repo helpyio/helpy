@@ -5,7 +5,7 @@
     <div class="voting-widget">
       <!--<span class="glyphicon glyphicon-plus-sign"></span>-->
       <div class="vote-icon glyphicon glyphicon-chevron-up"></div>
-      <div class="topic-points"><%= link_to topic.points, up_vote_path(topic.id), method: :post, remote: true %></div>
+      <div class="topic-points"><%= link_to topic.points, up_vote_path(topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: topic.to_param} %></div>
     </div>
   </td>
   <% end %>

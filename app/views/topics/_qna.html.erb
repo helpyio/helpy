@@ -29,9 +29,9 @@
         <% if post.topic.forum.allow_post_voting == true %>
   			<div id="post-vote-<%= post.id %>" class="btn btn-default">
   				<% if post.kind == 'first' %>
-  				<%= link_to t(:upvote, count: post.topic.points), up_vote_path(post.topic.id), method: :post, remote: true, class: 'topic-vote' %>
+  				<%= link_to t(:upvote, count: post.topic.points), up_vote_path(post.topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: post.topic.to_param} %>
   				<% else %>
-  				<%= link_to t(:upvote, count: post.points), post_vote_path(post.id), method: :post, remote: true, class: 'post-vote' %>
+  				<%= link_to t(:upvote, count: post.points), post_vote_path(post.id), method: :post, remote: true, class: 'post-vote', data: {voted: post.topic.to_param} %>
   				<% end %>
   			</div>
   			<% end %>
