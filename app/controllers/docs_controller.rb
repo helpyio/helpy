@@ -46,7 +46,8 @@ class DocsController < ApplicationController
 
   # GET /docs/1/edit
   def edit
-    @doc = Doc.where(id: params[:id]).first
+#    @doc = Doc.where(id: params[:id]).first
+    @doc = Doc.find(params[:id])
     @category = Category.where(id: params[:category_id]).first
     @categories = Category.alpha
   end
@@ -132,7 +133,7 @@ class DocsController < ApplicationController
   private
 
   def doc_params
-    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page)
+    params.require(:doc).permit(:title, :body, :keywords, :screenshots, :title_tag, :meta_description, :category_id, :rank, :active, :front_page)
   end
 
 end

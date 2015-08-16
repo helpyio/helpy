@@ -20,6 +20,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem 'magnific-popup-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -28,7 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Google Analytics Measurement Protocol
 gem 'staccato'
-
 
 gem 'devise'
 gem 'devise-i18n'
@@ -44,6 +44,9 @@ gem 'kaminari'
 gem 'kaminari-i18n'
 
 gem 'gravtastic'
+
+gem 'cloudinary'
+gem 'attachinary'
 
 gem 'less-rails'
 gem 'font-awesome-less'

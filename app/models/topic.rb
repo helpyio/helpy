@@ -29,6 +29,7 @@ class Topic < ActiveRecord::Base
   belongs_to :user, counter_cache: true, touch: true
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
+  has_attachments  :screenshots, accept: [:jpg, :png, :gif]
 
   paginates_per 25
 

@@ -61,6 +61,9 @@ Rails.application.routes.draw do
   # Receive email from Griddler
   mount_griddler
 
+  # Mount attachinary
+  mount Attachinary::Engine => "/attachinary"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

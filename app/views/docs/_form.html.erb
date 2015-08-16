@@ -7,10 +7,10 @@
 <%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, include_blank: t(:select_category, default: 'Select Category')) %>
 
 <%= f.text_field :rank %>
-
 <%= f.form_group :active, label: { text: "Article Status: " } do %>
   <%= f.radio_button :active, true, label: "Published", inline: true %>
   <%= f.radio_button :active, false, label: "Draft", inline: true %>
 <% end %>
 
 <%= f.check_box :front_page, inline: true %><br/><br/>
+<%= attachinary_file_field_tag 'doc[screenshots]', @doc, :screenshots %>
