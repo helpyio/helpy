@@ -135,7 +135,8 @@ class PostsController < ApplicationController
 
     @post = Post.find(params[:id])
     @post.votes.create(user_id: current_user.id)
-    @post.topic.touch
+    @topic = @post.topic
+    @topic.touch
     @post.reload
 
     respond_to do |format|

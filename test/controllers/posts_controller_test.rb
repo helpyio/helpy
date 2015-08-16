@@ -55,7 +55,7 @@ class PostsControllerTest < ActionController::TestCase
   test "a signed in user should be able to vote" do
     sign_in users(:user)
     assert_difference 'Post.find(6).points', 1 do
-      xhr :post, :up_vote, { id: 6, topic_id: 5 }
+      xhr :post, :up_vote, id: 6, topic_id: 5
     end
   end
 

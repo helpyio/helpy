@@ -5,7 +5,7 @@ class ForumsControllerTest < ActionController::TestCase
   test "a browsing user should get index" do
     get :index
     assert_response :success
-    assert_equal(1, assigns(:forums).count)
+    assert_equal(3, assigns(:forums).count)
   end
 
   # logged out, should not get these pages
