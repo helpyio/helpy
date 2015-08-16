@@ -10,6 +10,7 @@
 #  active     :boolean          default(TRUE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  points     :integer          default(0)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -52,4 +53,12 @@ note:
   user_id: 1
   body: "abc is less than xyz"
   kind: note
+  active: true
+
+voteable:
+  id: 6
+  topic_id: 5
+  user_id: 1
+  body: "This is a public post, should be voteable"
+  kind: first
   active: true

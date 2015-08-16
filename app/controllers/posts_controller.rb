@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
       @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
 
-      @page_title = @topic.name.titleize
+      @page_title = "#{@topic.name.titleize}"
       @title_tag = "#{Settings.site_name}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @topic.forum.name.titleize, forum_topics_path(@topic.forum)
@@ -130,6 +130,21 @@ class PostsController < ApplicationController
        format.html { redirect_to topic_posts_path(@post.topic) }
     end
   end
+
+  def up_vote
+
+    @post = Post.find(params[:id])
+    @post.votes.create(user_id: current_user.id)
+    @topic = @post.topic
+    @topic.touch
+    @post.reload
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
 
   protected
 

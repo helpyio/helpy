@@ -1,0 +1,1 @@
+$('#post-<%= @post.id %>').replaceWith("<%= j(render partial: 'posts/post', locals: {post: @post}) %>");

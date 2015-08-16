@@ -9,6 +9,7 @@
 #  title_tag        :string
 #  meta_description :string
 #  category_id      :integer
+#  user_id          :integer
 #  active           :boolean          default(TRUE)
 #  rank             :integer
 #  permalink        :string

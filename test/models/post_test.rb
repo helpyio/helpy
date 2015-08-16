@@ -10,6 +10,7 @@
 #  active     :boolean          default(TRUE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  points     :integer          default(0)
 #
 
 require 'test_helper'
@@ -18,6 +19,7 @@ class PostTest < ActiveSupport::TestCase
 
   should belong_to(:topic)
   should belong_to(:user)
+  should have_many(:votes)
   should validate_presence_of(:body)
   should validate_presence_of(:kind)
 

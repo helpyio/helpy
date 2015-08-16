@@ -133,6 +133,23 @@ Helpy.track = function(){
   });
 
 
+  // Post and Topic voting.
+  // YOU MAY WANT TO DISABLE THIS IF YOU RUN A BUSY SITE
+  // AS IT COULD EXCEED YOUR EVENT TRACK LIMIT IN GA
+  
+  $('.post-vote').off().on("click", function(){
+    var $voted = $(this).data("voted");
+    console.log('Voted for Post ' + $voted);
+    ga('send', 'event', 'Vote','Post', $voted);
+  });
+
+  $('.topic-vote').off().on("click", function(){
+    var $voted = $(this).data("voted");
+    console.log('Voted for Topic ' + $voted);
+    ga('send', 'event', 'Vote','Topic', $voted);
+  });
+
+
 
     // document.location.href = $(this).data("link");
 

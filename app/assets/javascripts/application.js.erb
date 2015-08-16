@@ -22,6 +22,64 @@
 //= require quill/dist/quill
 //= require flare/dist/flare
 
+// Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
+// modified by Scott Miller- remove animation, newline for more link
+(function($){
+	$.fn.jTruncate = function(options) {
+
+		var defaults = {
+			length: 300,
+			minTrail: 20,
+			moreText: "more",
+			lessText: "less",
+			ellipsisText: "..."
+		};
+
+		var options = $.extend(defaults, options);
+
+		return this.each(function() {
+			obj = $(this);
+			var body = obj.html();
+
+			if(body.length > options.length + options.minTrail) {
+				var splitLocation = body.indexOf(' ', options.length);
+				if(splitLocation != -1) {
+					// truncate tip
+					var splitLocation = body.indexOf(' ', options.length);
+					var str1 = body.substring(0, splitLocation);
+					var str2 = body.substring(splitLocation, body.length - 1);
+					obj.html(str1 + '<span class="truncate_ellipsis">' + options.ellipsisText +
+						'</span>' + '<span class="truncate_more">' + str2 + '</span>');
+					obj.find('.truncate_more').css("display", "none");
+
+					// insert more link
+					obj.find('.truncate_ellipsis').append(
+							'<a href="#" class="truncate_more_link">' + options.moreText + '</a>'
+					);
+
+					// set onclick event for more/less link
+					var moreLink = $('.truncate_more_link', obj);
+					var moreContent = $('.truncate_more', obj);
+					var ellipsis = $('.truncate_ellipsis', obj);
+					moreLink.click(function() {
+						if(moreLink.text() == options.moreText) {
+							moreContent.show();
+							moreLink.text(options.lessText);
+							ellipsis.css("display", "none");
+						} else {
+							moreContent.hide();
+							moreLink.text(options.moreText);
+							ellipsis.css("display", "inline");
+						}
+						return false;
+				  	});
+				}
+			} // end if
+
+		});
+	};
+})(jQuery);
+
 var Helpy = Helpy || {};
 
 Helpy.ready = function(){
@@ -125,7 +183,7 @@ Helpy.ready = function(){
   $("ul.breadcrumb li:last-child").html("")
 
   // compress thread if there are more than 4 messages
-  var $thread = $('.post-container.kind-reply, .post-container.kind-note')
+  var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting')
   if ($thread.size() >= 2) {
 
     // insert expand thread message
@@ -222,9 +280,30 @@ Helpy.ready = function(){
 //    $(".post-menu-" + id).fadeIn();
 //  });
 
+  // Topic voting widget animation
+  $('.topic-points').hover(function(){
+    $(this).addClass('animated pulse');
+    $(this).prev().addClass('animated bounce');
+  }, function(){
+    $(this).removeClass('animated pulse');
+    $(this).prev().removeClass('animated bounce');
+  });
 
+  // Truncate Q&A responses
+  $('.shorten').jTruncate({
+        length: 200,
+        minTrail: 0,
+        moreText: " (more)",
+        lessText: " (less)",
+        ellipsisText: " ...",
+        moreAni: "",
+        lessAni: ""
+    });
 
 };
+
+
+
 
 // This is included here because you would expect to find it here.  The function is actually called
 // from event-tracking.js where we have to unbind and rebind the event to support turbolinks

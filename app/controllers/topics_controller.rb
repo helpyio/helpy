@@ -8,7 +8,11 @@ class TopicsController < ApplicationController
   def index
     @forum = Forum.ispublic.where(id: params[:forum_id]).first
     if @forum
-      @topics = @forum.topics.ispublic.chronologic.page params[:page]
+      if @forum.allow_topic_voting == true
+        @topics = @forum.topics.ispublic.by_popularity.page params[:page]
+      else
+        @topics = @forum.topics.ispublic.chronologic.page params[:page]
+      end
 
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
@@ -195,31 +199,16 @@ class TopicsController < ApplicationController
   end
 
   def up_vote
-    @topic = Topic.find(params[:id])
-    @topic.votes.create(:user_id => current_user.id)
-    logger.info(current_user.id)
-    @topic.reload
-    if request.xhr?
-      render :update do |page|
-        page['topic-stats'].replace_html :partial => 'posts/topic_stats'
-      end
-    else
-      redirect_to topic_posts_path(@topic)
-    end
-  end
 
-  def down_vote
     @topic = Topic.find(params[:id])
-    @topic.votes.create(:user_id => current_user, :points => -1)
-
+    @topic.votes.create(user_id: current_user.id)
+    @topic.touch
     @topic.reload
-    if request.xhr?
-      render :update do |page|
-        page['topic-stats'].replace_html :partial => 'posts/topic_stats'
-      end
-    else
-      redirect_to topic_posts_path(@topic)
+
+    respond_to do |format|
+      format.js
     end
+
   end
 
   def tag

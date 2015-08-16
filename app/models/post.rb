@@ -10,6 +10,7 @@
 #  active     :boolean          default(TRUE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  points     :integer          default(0)
 #
 
 class Post < ActiveRecord::Base
@@ -18,6 +19,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true
+  has_many :votes, :as => :voteable
 
   validates_presence_of :body, :kind
   validates_length_of :body, :maximum => 10000
@@ -30,6 +32,7 @@ class Post < ActiveRecord::Base
   scope :active, -> { where("active = ?", true) }
   scope :ispublic, -> { where("kind != ?", 'note') }
   scope :chronologic, -> { order('created_at ASC') }
+  scope :by_votes, -> { order('points DESC')}
 
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache

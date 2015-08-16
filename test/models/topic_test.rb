@@ -5,6 +5,7 @@
 #  id               :integer          not null, primary key
 #  forum_id         :integer
 #  user_id          :integer
+#  user_name        :string
 #  name             :string
 #  posts_count      :integer          default(0), not null
 #  waiting_on       :string           default("admin"), not null
@@ -29,8 +30,7 @@ class TopicTest < ActiveSupport::TestCase
   should belong_to(:user)
   should have_many(:posts)
   should validate_presence_of(:name)
-
-
+  should have_many(:votes)
 
 #forum 1 should exist and be private
 #forum 2 should exist and be private
