@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create']
+  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
   before_filter :instantiate_tracker
 
   # GET /topics
@@ -204,11 +204,12 @@ class TopicsController < ApplicationController
 
   def up_vote
 
-    @topic = Topic.find(params[:id])
-    @topic.votes.create(user_id: current_user.id)
-    @topic.touch
-    @topic.reload
-
+    if user_signed_in?
+      @topic = Topic.find(params[:id])
+      @topic.votes.create(user_id: current_user.id)
+      @topic.touch
+      @topic.reload
+    end
     respond_to do |format|
       format.js
     end

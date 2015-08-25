@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['index', 'create']
+  before_filter :authenticate_user!, :except => ['index', 'create', 'up_vote']
   before_filter :verify_admin, :only => ['new', 'edit', 'update', 'destroy']
   before_filter :instantiate_tracker
 
@@ -134,11 +134,13 @@ class PostsController < ApplicationController
 
   def up_vote
 
-    @post = Post.find(params[:id])
-    @post.votes.create(user_id: current_user.id)
-    @topic = @post.topic
-    @topic.touch
-    @post.reload
+    if user_signed_in?
+      @post = Post.find(params[:id])
+      @post.votes.create(user_id: current_user.id)
+      @topic = @post.topic
+      @topic.touch
+      @post.reload
+    end
 
     respond_to do |format|
       format.js

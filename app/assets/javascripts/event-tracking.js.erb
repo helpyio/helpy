@@ -55,14 +55,10 @@ Helpy.track = function(){
 
   });
 
-  $('.navbar-nav > li > a, #above-header > small > a').on('click', function(){
-    console.log($(this).text())
-    flare.emit({
-      category: "Main Nav",
-      action: "Click",
-      label: $(this).text()
-    });
-  });
+//  $('.navbar-nav > li > a, #above-header > small > a').on('click', function(){
+//    console.log('Clicked ' + $(this).text())
+//    ga('send', 'event', 'Main Nav','Click', $(this).text())
+//  });
 
   $('.get-help-button').on('click', function(){
     console.log($(this).text())
@@ -136,7 +132,7 @@ Helpy.track = function(){
   // Post and Topic voting.
   // YOU MAY WANT TO DISABLE THIS IF YOU RUN A BUSY SITE
   // AS IT COULD EXCEED YOUR EVENT TRACK LIMIT IN GA
-  
+
   $('.post-vote').off().on("click", function(){
     var $voted = $(this).data("voted");
     console.log('Voted for Post ' + $voted);

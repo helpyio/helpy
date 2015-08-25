@@ -79,12 +79,12 @@ namespace :db do
 
     # Create community threads for our users
 
-    rand(30..50).times do
+    rand(70..100).times do
 
       timeseed = rand(1..30)
       Timecop.travel(Date.today-timeseed.days)
 
-      f = Forum.find(rand(3..8))
+      f = Forum.find(rand(3..6))
       topic = f.topics.new
       topic.name = build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun)
       topic.user_id = User.where(admin: false).sample.id
@@ -159,7 +159,7 @@ namespace :db do
       post.save
       puts "Post added to topic"
 
-      Timecop.scale(12000)
+      Timecop.scale(120000)
       rand(0..5).times do |i|
         post = topic.posts.new
         post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
