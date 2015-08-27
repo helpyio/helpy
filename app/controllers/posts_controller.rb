@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['index', 'create']
+  before_filter :authenticate_user!, :except => ['index', 'create', 'up_vote']
   before_filter :verify_admin, :only => ['new', 'edit', 'update', 'destroy']
   before_filter :instantiate_tracker
 
@@ -12,13 +12,13 @@ class PostsController < ApplicationController
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
     if @topic
       @posts = @topic.posts.ispublic.active.all
-      #@post = @topic.posts.new
+      @post = @topic.posts.new
 
       #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
 
       @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
 
-      @page_title = @topic.name.titleize
+      @page_title = "#{@topic.name.titleize}"
       @title_tag = "#{Settings.site_name}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @topic.forum.name.titleize, forum_topics_path(@topic.forum)
@@ -71,7 +71,8 @@ class PostsController < ApplicationController
     @post = Post.new(:body => params[:post][:body],
                      :topic_id => @topic.id,
                      :user_id => current_user.id,
-                     :kind => params[:post][:kind])
+                     :kind => params[:post][:kind],
+                     :screenshots => params[:post][:screenshots])
 
     respond_to do |format|
       if @post.save
@@ -130,6 +131,23 @@ class PostsController < ApplicationController
        format.html { redirect_to topic_posts_path(@post.topic) }
     end
   end
+
+  def up_vote
+
+    if user_signed_in?
+      @post = Post.find(params[:id])
+      @post.votes.create(user_id: current_user.id)
+      @topic = @post.topic
+      @topic.touch
+      @post.reload
+    end
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
 
   protected
 

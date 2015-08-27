@@ -6,7 +6,7 @@
 
   <div id="ticket-controls" class="col-md-8 col-xs-12 col-md-12 col-lg-8">
     <h2>
-      <%= render 'admin/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= @topic.name.titleize -%>  
+      <%= render 'admin/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= @topic.name.titleize -%>
     </h2>
     <div id="topic-options">
     <%= render :partial => 'admin/topic_options' %>
@@ -35,6 +35,7 @@
         <%= hidden_field_tag :client_id %>
         <%= f.text_area :body, :rows => 8, :cols => 160, hide_label: true, placeholder: t(:type_reply, default: "Type your reply, or select from a common message below") %>
         <%= f.select('reply_id', Doc.replies.collect {|d| [ d.title, d.body ] }, label: t(:select_common, default: "Insert Common Reply"), include_blank: true) %>
+        <%= f.attachinary_file_field :screenshots %>
 
         <%= f.submit t(:submit_reply), class: 'btn btn-warning' -%>
       <% end -%>

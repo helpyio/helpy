@@ -2,15 +2,18 @@
 #
 # Table name: forums
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  description    :text
-#  topics_count   :integer          default(0), not null
-#  last_post_date :datetime
-#  last_post_id   :integer
-#  private        :boolean          default(FALSE)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id                 :integer          not null, primary key
+#  name               :string
+#  description        :text
+#  topics_count       :integer          default(0), not null
+#  last_post_date     :datetime
+#  last_post_id       :integer
+#  private            :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  allow_topic_voting :boolean          default(FALSE)
+#  allow_post_voting  :boolean          default(FALSE)
+#  layout             :string           default("table")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -32,3 +35,23 @@ three:
   name: Public Forum
   description: This is a public forum
   private: false
+  allow_topic_voting: true
+  allow_post_voting: true
+
+four:
+  id: 4
+  name: Public Idea Board
+  description: This is a public forum
+  private: false
+  allow_topic_voting: true
+  allow_post_voting: true
+  layout: grid
+
+five:
+  id: 5
+  name: Public Q&A
+  description: This is a public forum
+  private: false
+  allow_topic_voting: true
+  allow_post_voting: true
+  layout: qna

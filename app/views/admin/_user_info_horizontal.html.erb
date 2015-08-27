@@ -2,7 +2,7 @@
 <div id="user-info-horizontal" class="row">
 
   <div class='col-md-4 col-sm-6 col-xs-12 text-center' id='user-info-image'>
-    <%= image_tag(@user.image_url, width: '150px', class: 'img-circle') %>
+    <%= image_tag(user_avatar(@user,150), width: '150px', class: 'img-circle') %>
   </div>
   <div class='hidden-sm hidden-xs col-md-2' style="height: 100px"><!-- spacer for design--></div>
   <div id="user-contact-info" class="col-md-3 col-sm-3 col-xs-6 user-info">

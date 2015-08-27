@@ -12,7 +12,7 @@
       <div class="more-important meta-header">Assigned To:</div>
       <div class="less-important">
         <% unless @topic.assigned_user.nil? %>
-          <%= image_tag(@topic.assigned_user.image_url, width: '40px', class: 'img-circle') %>
+          <%= image_tag(user_avatar(@topic.assigned_user), width: '40px', class: 'img-circle') %>
           <%= @topic.assigned_user.name.titleize %>
         <% else %>
           Unassigned
@@ -58,6 +58,7 @@
         <%= f.hidden_field 'kind', value: 'reply' %>
         <%= hidden_field_tag :client_id %>
         <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
+        <%= f.attachinary_file_field :screenshots %>
         <%= f.submit 'Post Reply', class: 'btn btn-warning' -%>
       <% end -%>
       </div>

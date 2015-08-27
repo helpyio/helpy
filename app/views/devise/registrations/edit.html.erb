@@ -13,7 +13,7 @@
 
   <div class="col-md-3 text-center">
 
-    <%= image_tag(@user.image_url, width: '150px', class: 'img-circle') %>
+    <%= image_tag(user_avatar(@user), width: '150px', class: 'img-circle') %>
 
   </div>
 
@@ -28,6 +28,7 @@
     <%= f.text_field :title %>
     <%= f.select :language, [['English','en'],['French','fr'],['German','de'],['Spanish','es'],['Russian','ru']] %>
     <%= f.text_area :signature if current_user.admin? %>
+    <%= f.attachinary_file_field :avatar %>
 
     </span>
 

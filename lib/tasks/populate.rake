@@ -79,7 +79,7 @@ namespace :db do
 
     # Create community threads for our users
 
-    rand(30..50).times do
+    rand(70..100).times do
 
       timeseed = rand(1..30)
       Timecop.travel(Date.today-timeseed.days)
@@ -94,7 +94,22 @@ namespace :db do
       else
         puts "Discussion #{topic.name} Added"
       end
+
+      if f.allow_topic_voting == true
+        topic.points = rand(0..1000)
+      end
+
       topic.save
+
+      # Add votes to topics
+#      Forum.find(7).topics.each do |topic|
+#        User.all.each do |user|
+#          randnum = rand(0..3)
+#          if randnum == 1
+#            topic.votes.create(user_id: user.id)
+#          end
+#        end
+#      end
 
       # create first post in thread
       post = topic.posts.new
@@ -104,7 +119,7 @@ namespace :db do
       post.save
       puts "Post added to topic"
 
-      Timecop.scale(12000)
+      Timecop.scale(120000)
 
       rand(2..5).times do
         post = topic.posts.new
@@ -144,7 +159,7 @@ namespace :db do
       post.save
       puts "Post added to topic"
 
-      Timecop.scale(12000)
+      Timecop.scale(120000)
       rand(0..5).times do |i|
         post = topic.posts.new
         post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')

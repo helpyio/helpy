@@ -135,6 +135,9 @@ fr:
   select_common: Sélectionner une réponse commune
   reply: Réponse
   internal_note: Note Interne
+  upvote:
+    one: "Upvote | %{count}"
+    other: "Upvote | %{count}"
 
 
   # Content

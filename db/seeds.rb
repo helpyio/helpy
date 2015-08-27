@@ -32,20 +32,23 @@
   admin: false,
   bio: 'I am the creator of Helpy.io, the open source helpdesk alternative. Welcome to the system!',
   linkedin: 'http://www.linkedin.com/in/optimizeit',
-  company: 'Innovio Systems'
+  thumbnail: '14369.jpg',
+  medium_image: '14369.jpg',
+  large_image: '14369.jpg',
+  company: ''
   )
 
   # Create top level forums
   Forum.create(name: "Private Tickets", description: "Private Messages to Support", private: true)
   Forum.create(name: "Trash", description: "Deleted discussions go here", private: true)
-  Forum.create(name: "Getting Started", description: "How to get started")
-  Forum.create(name: "Common Questions", description: "Frequently asked questions")
-  Forum.create(name: "How To's", description: "Answers to how to do common things")
+  Forum.create(name: "Questions and Answers", description: "Answers to how to do common things", layout: 'qna', allow_topic_voting: true, allow_post_voting: true)
+  Forum.create(name: "Feature Requests", description: "Suggest and vote on what features we should add next!", allow_topic_voting: true)
+  Forum.create(name: "Idea Board", description: "Submit Ideas for HR to consider", allow_topic_voting: true, allow_post_voting: true, layout: 'grid')
   Forum.create(name: "Bugs and Issues", description: "Report Bugs here!")
 
   # Create top level KB categories
   Category.create(name:'Common Replies', title_tag: 'Common Agent Replies', meta_description: 'Common replies to questions (Visible only to agents)', front_page: false, active: false)
-  Category.create(name:'Email templates', title_tag: 'Email Templates',  meta_description: 'Emails used by the system', front_page: false, active: false)
+  Category.create(name:'Email templates', title_tag: 'Email Templates',  meta_description: 'Emails used by the system (Not implemented)', front_page: false, active: false)
   Category.create(name:'Getting Started',icon: 'eye-open', title_tag: 'Getting Started',meta_description:'Learn how to get started with our solution', front_page: true)
   Category.create(name:'Top Issues',icon: 'exclamation-sign', title_tag: 'Solutions to Top Issues',meta_description:'Answers to our most frequent issues', front_page: true)
   Category.create(name:'General Questions', icon: 'question-sign', title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here', front_page: true)

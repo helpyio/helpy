@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create']
+  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
   before_filter :instantiate_tracker
 
   # GET /topics
@@ -8,7 +8,11 @@ class TopicsController < ApplicationController
   def index
     @forum = Forum.ispublic.where(id: params[:forum_id]).first
     if @forum
-      @topics = @forum.topics.ispublic.chronologic.page params[:page]
+      if @forum.allow_topic_voting == true
+        @topics = @forum.topics.ispublic.by_popularity.page params[:page]
+      else
+        @topics = @forum.topics.ispublic.chronologic.page params[:page]
+      end
 
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
@@ -139,7 +143,11 @@ class TopicsController < ApplicationController
 
       if @user.save && @topic.save
 
-        @post = @topic.posts.create(:body => params[:post][:body], :user_id => @user.id, :kind => 'first')
+        @post = @topic.posts.create(
+          :body => params[:post][:body],
+          :user_id => @user.id,
+          :kind => 'first',
+          :screenshots => params[:topic][:screenshots])
 
         unless user_signed_in?
           UserMailer.new_user(@user).deliver_now
@@ -195,31 +203,17 @@ class TopicsController < ApplicationController
   end
 
   def up_vote
-    @topic = Topic.find(params[:id])
-    @topic.votes.create(:user_id => current_user.id)
-    logger.info(current_user.id)
-    @topic.reload
-    if request.xhr?
-      render :update do |page|
-        page['topic-stats'].replace_html :partial => 'posts/topic_stats'
-      end
-    else
-      redirect_to topic_posts_path(@topic)
-    end
-  end
 
-  def down_vote
-    @topic = Topic.find(params[:id])
-    @topic.votes.create(:user_id => current_user, :points => -1)
-
-    @topic.reload
-    if request.xhr?
-      render :update do |page|
-        page['topic-stats'].replace_html :partial => 'posts/topic_stats'
-      end
-    else
-      redirect_to topic_posts_path(@topic)
+    if user_signed_in?
+      @topic = Topic.find(params[:id])
+      @topic.votes.create(user_id: current_user.id)
+      @topic.touch
+      @topic.reload
     end
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def tag

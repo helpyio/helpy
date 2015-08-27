@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+$('#topic_<%= @topic.id %>').replaceWith("<%= j(render partial: 'topics/topic', locals: {topic: @topic}) %>");
+<% else %>
+$('.login-link').click();
+<% end %>

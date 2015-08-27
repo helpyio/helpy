@@ -140,7 +140,7 @@ body.sub {
     width: 100%;
     white-space: nowrap;
 }
- 
+
 .truncate-ellipsis > * {
     display: table-cell;
     overflow: hidden;
@@ -199,6 +199,14 @@ div.add-form {
 	margin-top: 40px
 }
 
+.add-screenshots {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.attachinary-thumbnails {
+  margin-top: 10px;
+}
 
 /*
 h3 {
@@ -430,7 +438,7 @@ span.category-icon {
 }
 
 .last-active {
-	white-space: nowrap;	
+	white-space: nowrap;
 }
 
 .full-width {
@@ -982,7 +990,7 @@ table#forums, table#topics, table#posts {
 
 .post-body {
 	padding-top: 15px;
-	padding-left: 15px;
+	padding-left: 0px;
 }
 
 .kind-reply, .kind-note {
@@ -1000,6 +1008,24 @@ table#forums, table#topics, table#posts {
 
 .bottom-border {
 	border-bottom: 1px solid #eee;
+}
+
+.voting-widget {
+  text-align: center;
+}
+
+.vote-icon {
+  font-size: 80%
+}
+
+.grid-vote {
+  margin-top: 20px;
+}
+
+.topic-points {
+  font-size: 140%;
+  font-weight: bold;
+  margin-top: -5px;
 }
 
 div.topic-status {
@@ -1083,6 +1109,47 @@ div.topic-status {
 	color: #888;
 	text-decoration: none;
 }
+
+/* === IDEABOARD === */
+
+.idea-box {
+    max-height: 120px;
+}
+
+.idea-box .thumbnail {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 5px;
+  right: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align:center;
+  padding-top: 10px;
+  max-height: 100px;
+}
+
+/* === Q&A === */
+
+.asked-question {
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+div.asked-question span.more-important {
+  font-weight: normal;
+  font-size: 100%;
+}
+
+h4.qna {
+  margin-top: 0px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+
+
+
 
 /* === OTHER MEDIA QUERIES === */
 

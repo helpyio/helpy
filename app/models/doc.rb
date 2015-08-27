@@ -9,6 +9,7 @@
 #  title_tag        :string
 #  meta_description :string
 #  category_id      :integer
+#  user_id          :integer
 #  active           :boolean          default(TRUE)
 #  rank             :integer
 #  permalink        :string
@@ -34,6 +35,7 @@ class Doc < ActiveRecord::Base
   has_paper_trail
 
   paginates_per 25
+  has_attachments :screenshots, accept: [:jpg, :png, :gif]
 
   acts_as_taggable
   #before_create :build_permalink
