@@ -7,7 +7,7 @@ require "attachinary/orm/active_record"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Cheatsheet2
+module Helpy
   class Application < Rails::Application
 
     config.assets.paths << "#{Rails}/vendor/assets/fonts"

@@ -14,7 +14,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h1><%= t(:login) %></h1>
+        <h2><%= t(:login) %></h2>
       </div>
       <div class="modal-body">
         <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

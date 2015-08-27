@@ -4,17 +4,18 @@ forums: true
 knowledgebase: true
 
 # Site Settings
-parent_site: /parent-redirect.html
-parent_company: Main Site
-site_url: http://support.yourdomain.com
-site_name: Helpy Support
-site_tagline: Support and Helpdesk Software
-product_name:
-support_phone:
+
+parent_site: /parent-redirect.html # This tells Helpy how to provide a link back to your main site
+parent_company: Main Site # This is the parent company your helpdesk is providing support for
+site_url: http://support.yourdomain.com # This is the URL of your support site
+site_name: Helpy Support # This is the name of your support site
+site_tagline: Support and Helpdesk Software # This is the tagline of your support site
+product_name: # This is the product name your are supporting
+support_phone: # This is support number to be displayed 
 
 # Mandrill Account
-mandrill_username: ENV['MANDRILL_USERNAME'] #Do not edit, set by Heroku
-mandrill_api_key: ENV['MANDRILL_API_KEY'] #Do not edit, set by Heroku
+mandrill_username: #Enter your Madrill username
+mandrill_api_key: #Enter your Madrill API Key
 
 # Analytics and Tracking
 google_analytics_id: #Enter your analytics ID
