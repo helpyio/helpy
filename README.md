@@ -28,6 +28,7 @@ Roadmap
 
 - Enhanced support for other languages (need help with this)
 - Insert link to KB articles into reply in admin
+- Support code formatting in the Knowledgebase
 - Continue to clean up and remove cruft (this is based on an old rails 2 project)
 - Bring back labels (tag) functionality for discussions.  This is partially there now, but is not in the UI yet.
 - Multiple agent/admin roles (basic version stubbed in already)
