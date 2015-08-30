@@ -13,6 +13,9 @@
   email: 'admin@test.com',
   password:'12345678',
   role: 'admin',
+  thumbnail: 'logo.png',
+  medium_image: 'logo.png',
+  large_image: 'logo.png',  
   admin: true)
 
   system_user = User.create!(
