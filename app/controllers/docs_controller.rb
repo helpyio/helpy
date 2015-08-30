@@ -56,7 +56,8 @@ class DocsController < ApplicationController
   # POST /docs.xml
   def create
     @doc = Doc.new(doc_params)
-
+    @doc.user_id = current_user.id
+    
     respond_to do |format|
       if @doc.save
 
@@ -133,7 +134,7 @@ class DocsController < ApplicationController
   private
 
   def doc_params
-    params.require(:doc).permit(:title, :body, :keywords, :screenshots, :title_tag, :meta_description, :category_id, :rank, :active, :front_page)
+    params.require(:doc).permit(:title, :body, :keywords, :screenshots, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id)
   end
 
 end

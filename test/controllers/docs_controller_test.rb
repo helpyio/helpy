@@ -50,7 +50,9 @@ class DocsControllerTest < ActionController::TestCase
 
   test "a signed in user should not get create" do
     sign_in users(:user)
-    post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+    assert_difference 'Doc.count', 0 do
+      post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+    end
     assert_redirected_to root_path
   end
 
@@ -62,7 +64,9 @@ class DocsControllerTest < ActionController::TestCase
 
   test "a signed in user should not get destroy" do
     sign_in users(:user)
-    delete :destroy, { id: 3 }
+    assert_difference 'Doc.count', 0 do
+      delete :destroy, { id: 3 }
+    end
     assert_redirected_to root_path
   end
 
@@ -83,8 +87,20 @@ class DocsControllerTest < ActionController::TestCase
 
   test "an admin should get create" do
     sign_in users(:admin)
-    post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+    assert_difference 'Doc.count', 1 do
+      post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+    end
     assert_redirected_to admin_knowledgebase_path
+  end
+
+  test "an admin should be able to create an article, then view that new article" do
+    sign_in users(:admin)
+    assert_difference 'Doc.count', 1 do
+      post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+    end
+    lastdoc = Doc.last
+    get :show, id: lastdoc
+    assert_response :success
   end
 
   test "an admin should get update" do
@@ -93,9 +109,11 @@ class DocsControllerTest < ActionController::TestCase
     assert_redirected_to admin_knowledgebase_path
   end
 
-  test "an admin should get destroy" do
+  test "an admin should be able to destroy a doc" do
     sign_in users(:admin)
-    xhr :delete, :destroy, id: 1
+    assert_difference 'Doc.count', -1 do
+      xhr :delete, :destroy, id: 1
+    end
     assert_response :success
   end
 
