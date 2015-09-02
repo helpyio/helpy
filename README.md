@@ -29,6 +29,8 @@ Roadmap
 - Enhanced support for other languages (need help with this)
 - Insert link to KB articles into reply in admin
 - Support code formatting in the Knowledgebase
+- Set up JSON API hooks, and test
+- Convert admin to use react.js
 - Continue to clean up and remove cruft (this is based on an old rails 2 project)
 - Bring back labels (tag) functionality for discussions.  This is partially there now, but is not in the UI yet.
 - Multiple agent/admin roles (basic version stubbed in already)
@@ -56,9 +58,9 @@ Helpy leverages three external services to help out:
 Mandrill and Cloudinary have a free tier that should get you started.  To see how to configure Helpy to use Mandrill as your email provider, see the wiki.
 
 1. To get started, install the app and make sure you seed the database `rake db:seed`  You can also populate the database with fake data by running `rake db:populate`
-2. Open up the settings.yml to configure the system.  You will need to add your Mandrill and Google Analytics configs here.
+2. Open up the `settings.yml` to configure the system.  You will need to add your Mandrill and Google Analytics configs here.
 3. Run `rake secret` to secure your app.
-4. You will also need to sign up for an API key/account with an email provider.  I like Mandrill, and Helpy ships with the gem, although switching provider should be trivial.  
+4. You will also need to sign up for an API key/account with an email provider.  I like Mandrill, and Helpy ships with the gem, although switching provider should be trivial.  To get inbound email functioning, review the wiki: [https://github.com/scott/helpy/wiki/How-to-receive-email-with-Mandrill](https://github.com/scott/helpy/wiki/How-to-receive-email-with-Mandrill)
 5. You will also need to sign up for an account with Cloudinary, and complete `cloudinary.yml.config` (remove the .config) with your specific info.
 
 Contributing
