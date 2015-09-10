@@ -28,8 +28,8 @@
     </span>
     <span class="ql-format-group">
       <span title="Link" class="ql-format-button ql-link"></span>
-      <span class="ql-format-separator"></span>
-      <span title="Image" class="ql-format-button ql-image"></span>
+      <!--<span class="ql-format-separator"></span>
+      <span title="Image" class="ql-format-button ql-image"></span>-->
     </span>
   </div>
   <div id="editor"></div>
@@ -48,9 +48,10 @@
   <% else %>
   quill.setHTML('<%= @post.body.html_safe unless @post.nil? %>');
   <% end %>
-  
+
   quill.on('text-change', function(delta, source) {
     //console.log(quill.getHTML());
     $('#doc_body').val(quill.getHTML());
   });
+
 </script>

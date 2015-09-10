@@ -35,7 +35,7 @@ class Doc < ActiveRecord::Base
   has_paper_trail
 
   paginates_per 25
-  has_attachments :screenshots, accept: [:jpg, :png, :gif]
+  has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif]
 
   acts_as_taggable
   #before_create :build_permalink

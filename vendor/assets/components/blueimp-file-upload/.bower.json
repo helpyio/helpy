@@ -1,0 +1,73 @@
+{
+  "name": "blueimp-file-upload",
+  "version": "9.11.2",
+  "title": "jQuery File Upload",
+  "description": "File Upload widget with multiple file selection, drag&amp;drop support, progress bar, validation and preview images.",
+  "keywords": [
+    "jquery",
+    "file",
+    "upload",
+    "widget",
+    "multiple",
+    "selection",
+    "drag",
+    "drop",
+    "progress",
+    "preview",
+    "cross-domain",
+    "cross-site",
+    "chunk",
+    "resume",
+    "gae",
+    "go",
+    "python",
+    "php",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/blueimp/jQuery-File-Upload",
+  "author": {
+    "name": "Sebastian Tschan",
+    "url": "https://blueimp.net"
+  },
+  "maintainers": [
+    {
+      "name": "Sebastian Tschan",
+      "url": "https://blueimp.net"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blueimp/jQuery-File-Upload.git"
+  },
+  "bugs": "https://github.com/blueimp/jQuery-File-Upload/issues",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": ">=1.6",
+    "blueimp-tmpl": ">=2.5.4",
+    "blueimp-load-image": ">=1.13.0",
+    "blueimp-canvas-to-blob": ">=2.1.1"
+  },
+  "main": [
+    "js/jquery.fileupload.js"
+  ],
+  "ignore": [
+    "/*.*",
+    "/cors",
+    "css/demo-ie8.css",
+    "css/demo.css",
+    "css/style.css",
+    "js/app.js",
+    "js/main.js",
+    "server",
+    "test"
+  ],
+  "_release": "9.11.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "9.11.2",
+    "commit": "991ff51d37ade106d0601d3e1e45ac37fb206227"
+  },
+  "_source": "git://github.com/blueimp/jQuery-File-Upload.git",
+  "_target": ">=7.2.1",
+  "_originalSource": "blueimp-file-upload"
+}

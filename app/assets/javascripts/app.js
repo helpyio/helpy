@@ -80,7 +80,12 @@ Helpy.ready = function(){
     }
   });
 
-
+  // Allows image insertion into quill editor
+  $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+    quill.insertEmbed(quill.getLength(), 'image', $.cloudinary.image(data.result.public_id).attr('src'));
+    $('.image_public_id').val(data.result.public_id);
+    return true;
+  });
 
   // Sets up autoscroll for any link with class autoscroll
   // requires data-target param containing class or ID of target
@@ -234,7 +239,23 @@ Helpy.ready = function(){
 
 };
 
-
+$.attachinary.config.template = '\
+  <ul class="list-inline attachinary-thumbnails">\
+    <% for(var i=0; i<files.length; i++){ %>\
+      <li>\
+        <% if(files[i].resource_type == "raw") { %>\
+          <div class="raw-file"></div>\
+        <% } else { %>\
+          <img\
+            src="<%= $.cloudinary.url(files[i].public_id, { "version": files[i].version, "format": "jpg", "crop": "fill", "width": 250, "height": 250 }) %>"\
+            alt="" width="75" height="75" />\
+        <% } %>\
+        <br/>\
+        <a href="#" data-remove="<%= files[i].public_id %>">Remove</a>\
+      </li>\
+    <% } %>\
+  </ul>\
+';
 
 
 // This is included here because you would expect to find it here.  The function is actually called

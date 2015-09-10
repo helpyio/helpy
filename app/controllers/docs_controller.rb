@@ -57,12 +57,12 @@ class DocsController < ApplicationController
   def create
     @doc = Doc.new(doc_params)
     @doc.user_id = current_user.id
-    
+
     respond_to do |format|
       if @doc.save
 
         #@doc.tag_list = params[:tags]
-        @doc.save
+        #@doc.save
         format.html { redirect_to(admin_knowledgebase_path) }
 
       else
@@ -82,7 +82,7 @@ class DocsController < ApplicationController
         format.html { redirect_to(admin_knowledgebase_path) }
 
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "edit", :id => @doc }
       end
     end
   end
@@ -134,7 +134,7 @@ class DocsController < ApplicationController
   private
 
   def doc_params
-    params.require(:doc).permit(:title, :body, :keywords, :screenshots, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id)
+    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id, {screenshots: []})
   end
 
 end

@@ -1,13 +1,11 @@
-<h2><%= t(:new_content, default: 'New Content') %></h2>
 
-<%= bootstrap_form_for(@doc) do |f| %>
-  <div class="col-md-4">
+
+<div class="row">
+  <%= bootstrap_form_for(@doc) do |f| %>
+  <div class="col-md-12">
+    <h2 class="form-subhead"><%= t(:new_content, default: 'New Content') %></h2>
       <%= f.alert_message "Please fix the errors below." %>
       <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
   </div>
-
-  <div class="col-md-8">
-    <%= render 'admin/article_editor' %>
-    <%= f.submit "Save Changes", class: 'btn btn-warning' %>
-  </div>
-<% end %>
+  <% end %>
+</div>
