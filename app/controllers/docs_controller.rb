@@ -13,13 +13,14 @@ class DocsController < ApplicationController
   # GET /docs/1
   # GET /docs/1.xml
   def show
-    @doc = Doc.where(id: params[:id]).first
+    @doc = Doc.where(id: params[:id]).active.first
 
-    @meta_desc = @doc.meta_description
+    @meta_description = @doc.meta_description
     @keywords = @doc.keywords
 
     @page_title = @doc.title.titleize
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag.titleize
+    @title_tag = "#{Settings.site_name}: #{@custom_title}"
 
     add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
     add_breadcrumb @doc.category.name.titleize, category_path(@doc.category)
@@ -35,6 +36,8 @@ class DocsController < ApplicationController
   # GET /docs/new.xml
   def new
     @doc = Doc.new
+    @doc.category_id = params[:category_id]
+
     @post = Post.where(id: params[:post_id]).first if current_user.admin == true
     @categories = Category.alpha
 
@@ -46,7 +49,6 @@ class DocsController < ApplicationController
 
   # GET /docs/1/edit
   def edit
-#    @doc = Doc.where(id: params[:id]).first
     @doc = Doc.find(params[:id])
     @category = Category.where(id: params[:category_id]).first
     @categories = Category.alpha
@@ -63,7 +65,7 @@ class DocsController < ApplicationController
 
         #@doc.tag_list = params[:tags]
         #@doc.save
-        format.html { redirect_to(admin_knowledgebase_path) }
+        format.html { redirect_to(admin_articles_path(@doc.category.id)) }
 
       else
         format.html { render :action => "new" }
@@ -79,7 +81,7 @@ class DocsController < ApplicationController
 
     respond_to do |format|
       if @doc.update_attributes(doc_params)
-        format.html { redirect_to(admin_knowledgebase_path) }
+        format.html { redirect_to(admin_articles_path(@doc.category.id)) }
 
       else
         format.html { render :action => "edit", :id => @doc }

@@ -38,7 +38,6 @@ class Doc < ActiveRecord::Base
   has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif]
 
   acts_as_taggable
-  #before_create :build_permalink
 
   scope :alpha, -> { order('title ASC') }
   scope :by_category, -> { order("category_id") }
@@ -49,7 +48,6 @@ class Doc < ActiveRecord::Base
   scope :all_public_popular, -> { where(active: true).order('points DESC').limit(6) }
   scope :replies, -> { where(category_id: 1) }
 
-  #simple_column_search :body, :title, :keywords
 
   def to_param
     "#{id}-#{title.gsub(/[^a-z0-9]+/i, '-')}"
@@ -59,11 +57,5 @@ class Doc < ActiveRecord::Base
     c = RDiscount.new(self.body)
     return c.to_html
   end
-
-  #protected
-
-  #def build_permalink
-  #  self.permalink = PermalinkFu.escape(self.title)
-  #end
 
 end

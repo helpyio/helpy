@@ -1,7 +1,7 @@
 Helpy: A Modern Helpdesk Alternative
 ====================================
 
-Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.
+Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide an open source alternative to commercial helpdesk solutions like Zendesk or desk.com
 
 ![](http://helpy.io/images/group.png)
 
@@ -12,11 +12,11 @@ Version 1.0 Features
 - **Private Support Discussions (aka tickets):**
 Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum. You can choose to make forums or posts voteable, and select from 3 layout templates (table, grid or Q&A format). Attach images to posts and tickets using Cloudinary.
-- **Voting**: Discussion topics and replies support voting.  This lets you easily create a "feature requests" forum or allow registered users to vote up the best replies to a question.
+- **Voting**: Discussion topics and replies support voting.  This lets you easily create a "feature requests" forum or allow registered users to vote up the best replies to a question similar to Quora or Stack Exchange
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
-- **Multi-lingual:** At launch the app will is ready to translate and include translations for English and French.
+- **Multi-lingual:** At launch the app will is ready to translate and includes translations for English and French.
 
 Live Demo
 ---------
@@ -27,6 +27,7 @@ Roadmap
 -------
 
 - Enhanced support for other languages (need help with this)
+- Add "related articles" section to knowledgebase
 - Insert link to KB articles into reply in admin
 - Support code formatting in the Knowledgebase
 - Set up JSON API hooks, and test

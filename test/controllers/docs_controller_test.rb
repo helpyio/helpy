@@ -90,7 +90,7 @@ class DocsControllerTest < ActionController::TestCase
     assert_difference 'Doc.count', 1 do
       post :create, doc: {title: "some name", body: "some body text", category_id: 1}
     end
-    assert_redirected_to admin_knowledgebase_path
+    assert_redirected_to admin_articles_path(Doc.last.category.id)
   end
 
   test "an admin should be able to create an article, then view that new article" do
@@ -106,7 +106,7 @@ class DocsControllerTest < ActionController::TestCase
   test "an admin should get update" do
     sign_in users(:admin)
     patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1} }
-    assert_redirected_to admin_knowledgebase_path
+    assert_redirected_to admin_articles_path(Doc.last.category.id)
   end
 
   test "an admin should be able to destroy a doc" do
