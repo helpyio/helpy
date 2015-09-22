@@ -13,6 +13,8 @@ Helpy.ready = function(){
 //		return;
 //	});
 
+  $('.profile').initial(); 
+
   $('.attachinary-input').attachinary();
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
 

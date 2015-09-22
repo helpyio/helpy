@@ -1,7 +1,7 @@
 <li id="team-<%= team_member.id %>" class="team-member">
   <div id="user-info" class="row">
       <div class='col-md-12 text-center' id='user-info-image'>
-        <%= image_tag(user_avatar(team_member), width: '90px', class: 'img-circle') %>
+        <%= avatar_image(team_member, size=90) %>
       </div>
   </div>
   <div class="row">

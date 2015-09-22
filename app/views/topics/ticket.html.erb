@@ -12,7 +12,7 @@
       <div class="more-important meta-header">Assigned To:</div>
       <div class="less-important">
         <% unless @topic.assigned_user.nil? %>
-          <%= image_tag(user_avatar(@topic.assigned_user), width: '40px', class: 'img-circle') %>
+          <%= avatar_image(@topic.assigned_user, size=40) %>
           <%= @topic.assigned_user.name.titleize %>
         <% else %>
           Unassigned

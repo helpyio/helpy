@@ -3,7 +3,7 @@
     <div id="written-by" class="doc-meta">
       <div class="more-important meta-header">Written By:</div>
       <div class="less-important">
-        <%= image_tag(user_avatar(@doc.user), width: '40px', class: 'img-circle') %>
+        <%= avatar_image(@doc.user, size=40) %>
         <%= @doc.user.name.titleize %>
       </div>
     </div>

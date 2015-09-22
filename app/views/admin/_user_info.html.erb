@@ -1,6 +1,7 @@
 <div id="user-info" class="row">
     <div class='col-md-12 text-center' id='user-info-image'>
-      <%= image_tag(@topic.user.image_url, width: '90px', class: 'img-circle') %>
+      <%#= image_tag(@topic.user.image_url, width: '90px', class: 'img-circle') %>
+      <%= avatar_image(@topic.user, size=90) %>
     </div>
 </div>
 <div class="row">

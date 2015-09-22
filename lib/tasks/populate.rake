@@ -36,9 +36,8 @@ namespace :db do
       puts "Created Agent: #{u.name}"
     end
 
-    # Create 100 users
+    # Create 50 users with avatars
     50.times do
-
 
       user = RUser.new.first
       u = User.new
@@ -60,6 +59,28 @@ namespace :db do
 
       puts "Created User: #{user.name}"
     end
+
+    # Create 20 users without avatars
+    20.times do
+
+      user = RUser.new.first
+      u = User.new
+      u.name = "#{user.name.first_name} #{user.name.last_name}"
+      u.email = user.email
+      u.login = user.username
+      u.password = '12345678'
+      u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
+      u.street = user.location.street
+      u.city = user.location.city
+      u.state = user.location.state
+      u.zip = user.location.zip
+      u.work_phone = user.phone
+      u.cell_phone = user.cell
+      u.save
+
+      puts "Created User: #{user.name}"
+    end
+
 
     # Create 10-50 Docs per category
     Category.all.each do |category|

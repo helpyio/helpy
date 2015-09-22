@@ -1,7 +1,7 @@
 <tr id="user-<%= user.id %>" class="user">
   <td>
     <div class="user-thumbnail pull-left user-link">
-      <%= link_to image_tag(user_avatar(user), class: 'img-circle', width: '40px'), user_profile_path(user.id), remote: true %>
+      <%= link_to avatar_image(user, size=40), user_profile_path(user.id), remote: true %>
     </div>
   </td>
   <td class="user-link">

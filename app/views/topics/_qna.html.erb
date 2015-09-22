@@ -9,7 +9,8 @@
 
 
     <div class="pull-left">
-  		<%= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>
+  		<%#= image_tag(post.user.image_url, width: '40px', class: 'media-object img-circle') %>
+      <%= avatar_image(post.user, size=40) %>
   	</div>
   	<div class="media-body media-right">
   		<span class="hidden-sm hidden-md hidden-lg"><%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %><br/></span>

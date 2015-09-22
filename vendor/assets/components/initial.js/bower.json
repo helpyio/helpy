@@ -1,0 +1,11 @@
+{
+  "name": "initial.js",
+  "main": "initial.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/judesfernando/initial.js",
+  "authors": [
+    "judesfernando@gmail.com"
+  ],
+  "description": "Plugin to make Gmail like text avatars for profile pictures",
+  "license": "MIT"
+}
