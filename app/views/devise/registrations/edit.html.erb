@@ -26,7 +26,7 @@
     <%= f.text_area :bio %>
     <%= f.text_field :company %>
     <%= f.text_field :title %>
-    <%= f.select :language, [['English','en'],['French','fr'],['German','de'],['Spanish','es'],['Russian','ru']] %>
+    <%= f.select :language, [['English','en'],['Estonian','et'],['French','fr'],['German','de'],['Spanish','es'],['Russian','ru']] %>
     <%= f.text_area :signature if current_user.admin? %>
     <%= f.attachinary_file_field :avatar %>
 

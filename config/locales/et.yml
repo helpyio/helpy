@@ -1,0 +1,211 @@
+et:
+  root: 'Kodu'
+  how_can_we_help: "Kuidas saame aidata?"
+  browse_topics: "Teemade sirvimine"
+  support_team: "Kasutajatoe tiim"
+  nothing_here: "Siin ei ole midagi, veel!"
+
+  # Navigation
+  knowledgebase: "Teadmistebaas"
+  community: "Kommuun"
+  ask_a_question: "Küsi küsimus"
+  home: "Kodu"
+  login: "Logi sisse"
+  logout: "Logi välja"
+  register: "Registreeri"
+  back_to: "Tagasi"
+  welcome_back: "Tere tulemast tagasi %{username}"
+  your_profile: "Sinu profiil"
+  your_tickets: "Sinu piletid"
+
+  # Voting widget
+  did_this_help: "Kas said selle probleemi lahendatud?"
+  yes: 'Jah'
+  no: 'Ei'
+
+  # Search
+  search_placeholder: "Sisesta märksõna, teema või küsimus"
+  no_results: "Tulemusi ei leitud, palun proovige uuesti otsida!"
+  results_found:
+    one: "üks tulemus leiti teie otsingule "
+    other: "%{count} tulemust leiti teie otsingule "
+
+  # Community
+  forum_name: "Teema"
+  subject: "Pealkiri"
+  last_activity: "Viimane aktiivne"
+  topic: "Teema"
+  replies: "Vastuseid"
+  last_post: "Viimane postitus"
+  started_by: "Algatas %{username}"
+  reply: "Vasta sellele teemale"
+  submit_reply: "Postita vastus"
+  posted: "Postitatud"
+  start_discussion: "Alusta uus arutelu"
+  submit_start_discussion: "Alusta arutelu"
+  should_message_be_private: "Kas see sõnum peaks olema privaatne?"
+  only_support_can_respond: "Ainult kasutajatugi saab vastata (loob privaatse pileti)"
+  responses_can_come_from_everyone: "Vastused võivad tulla kommuunilt kui ka kasutajatoelt (soovitatud)"
+  collapsed_messages:
+      one: "1 varjatud sõnum"
+      two: "2 varjatud sõnumit"
+      other: "%{count} varjatud sõnumit"
+
+  # Tickets
+  tickets: "Piletid"
+  no_tickets: "Sa ei ole loonud ühtegi piletit"
+
+  # Get Help
+  get_help_header: "Vajad ikka abi??"
+  get_help_button: "Algata arutelu meiega"
+
+  # Profile
+  my_profile: 'Minu profiil'
+
+  # devise/sessions/new
+  login: Logi sisse
+
+  # devise/shared/links
+  forgot_password: Unustasid parooli?
+
+  # devise/passwords/new
+  send_instructions: Saada mulle juhendid
+
+  # devise/passwords/edit
+  change_password: Vaheta parool
+  new_password: Uus parool
+  new_password_confirmation: Kinnita uus parool
+
+  # devise/confirmations/new
+  resend: Saada uuesti kinnitus juhendid
+
+  # devise/registrations/new
+  sign_up: Registreeri
+
+  # Admin menu
+  discussions: Arutelud
+  content: Sisu
+  communities: Kommuunid
+  app_store: App Store
+  search: Otsing
+
+  # Admin main/statuses
+  support_pipeline: Tugi Pipeline
+  new: Uus
+  active: Aktiivne
+  open: Avatud
+  mine: Minu
+  pending: Ootel
+  closed: Lahendatud
+  spam: Spam
+  trash: Prügi
+  discussion_managment: Arutelu haldus
+  open_new_discussion: Uus arutelu
+  assigned_to: "määratud %{agent}"
+  unassigned: määramata
+  private: privaatne
+  public: avalik
+  save_changes: Salvesta muudatused
+
+  # Discussion controls
+  change_status: Muuda staatus
+  status: Staatus
+  mark_closed: Märgi lahendatuks
+  reopen: Tee lahti
+  mark_spam: Märgi Spam
+  mark_new: Märgi Uus
+  assign_agent: Määra Agent
+  selected_messages:
+    one: "1 valitud sõnum"
+    two: "2 valitud sõnumit"
+    other: "%{count} valitud sõnumit"
+
+  # Discussion messages
+  reopen_message: "See sõnum on taasavatud abipersonali poolt."
+  close_message: "See sõnum on suletud abipersonali poolt."
+  trash_message: "See pilet on kustutatud."
+  assigned_message: "Arutelu on edastatud %{assigned_to}."
+
+  # User Admin
+  contact_info: Kontakt
+  social_info: Sotsiaalne
+  edit_user:
+  work_phone: töö
+  cell_phone: telefon
+
+  # User search results
+  users_found:
+    one: "1 kasutaja leitud %{query}"
+    other: "%{count} kasutajat leitud %{query}"
+
+  # Discussion View
+  asked_a_question: "%{user_name} küsis küsimuse..."
+  replied: "%{user_name} vastas..."
+  posted_note: "%{user_name} postitas siseteatise..."
+  type_reply: Kirjuta vastus või vali korduma kippuv vastus alt
+  select_common: Vali Korduma Kippuv Vastus
+  reply: Vasta
+  internal_note: Siseteatis
+  upvote:
+    one: "Meeldib | %{count}"
+    other: "Meeldib | %{count}"
+
+  # Content
+  new_category: Uus kategooria
+  new_content: Uus sisu
+  front_page_categories: Esilehe kategooriad
+  other_categories: Teised kategooriad
+  edit: Muuda
+  edit_category: Muuda kategooriat
+  select_category: Vali kategooria
+  delete: Kustuta
+  view_and_edit: "Vaata ja Muuda sisu"
+  delete_confirm: "Palun kinnita, et soovid seda kustutada!"
+  select_icon_helptext: "Vali ikoon mida seostada selle kategooriaga (valikuline)"
+
+  # Communities
+  new_community: Loo uus kommuun
+  create_new_community: Loo uus kommuun
+
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Parool
+        name: Nimi
+        company: Firma
+        work_phone: Töö
+        cell_phone: Telefon
+        city: Linn
+        state: Maakond
+
+      topic:
+        name: Pealkiri
+      post:
+        kind: Žanr
+      category:
+        name: Nimi
+        icon: Ikoon
+        keywords: Võtmesõnad
+        title_tag: Pealkirja silt
+        meta_description: Meta kirjeldus
+        front_page: Esileht
+        active: Aktiivne
+      doc:
+        title: Pealkiri
+        meta_description: Meta kirjeldus
+        title_tag: Pealkirja silt
+        keywords: Võtmesõnad
+        category_id: Kategooria
+        active: Staatus
+        front_page: Featured on front page?
+      forum:
+        name: Nimi
+        description: Kirjeldus
+
+    helpers:
+      submit:
+        topic:
+          create: Alusta uus teema
+        post:
+          create:

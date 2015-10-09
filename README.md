@@ -16,12 +16,15 @@ Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
-- **Multi-lingual:** At launch the app will is ready to translate and includes translations for English and French.
+- **Multi-lingual:** Currently the app is ready to translate and includes translations for English, French and Estonian.
 
 Live Demo
 ---------
 
+Admin User: `admin@test.com` and password: `12345678`
+
 http://demo.helpy.io/
+
 
 Roadmap
 -------
@@ -67,7 +70,9 @@ Mandrill and Cloudinary have a free tier that should get you started.  To see ho
 Contributing
 ============
 
-1. Fork
+I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality.  To submit translations, please see the guide in the wiki and send me a gist to your translation file.  For new functionality, follow the standard approach:
+
+1. Fork the project
 2. Create a Branch for your contribution
 3. Write tests to cover your enhancements, and documentation describing what your feature is/does
 4. Submit a pull request
