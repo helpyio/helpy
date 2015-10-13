@@ -32,6 +32,7 @@
 				<% end %>
 			</div>
 			<% end %>
+			<% unless Cloudinary.config.cloud_name.nil? %>
 			<div id="post-images">
 				<ul class="list-inline">
 					<% post.screenshots.each do |screenshot| %>
@@ -39,6 +40,7 @@
 					<% end %>
 				</ul>
 			</div>
+			<% end %>
 		</div>
 
 		<% if user_signed_in? && post.kind == 'first' && post.topic.forum.allow_post_voting == true %>

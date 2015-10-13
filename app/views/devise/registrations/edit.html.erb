@@ -28,7 +28,7 @@
     <%= f.text_field :title %>
     <%= f.select :language, [['English','en'],['Estonian','et'],['French','fr'],['German','de'],['Spanish','es'],['Russian','ru']] %>
     <%= f.text_area :signature if current_user.admin? %>
-    <%= f.attachinary_file_field :avatar %>
+    <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
 
     </span>
 

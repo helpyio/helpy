@@ -22,7 +22,7 @@
   <%= f.text_field :name, :size => 40, label: 'Subject' -%>
   <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
   <div class="add-screenshots">
-  <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots %>
+  <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
   </div>
   <%= hidden_field_tag :client_id %>
 

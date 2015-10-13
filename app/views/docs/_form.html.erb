@@ -3,11 +3,13 @@
 <%= render 'admin/article_editor' %>
 <%= f.hidden_field :body %>
 <hr/>
+<% unless Cloudinary.config.cloud_name.nil? %>
 <div class="doc-form-files">
   <h4 class="form-subhead">Upload Images:</h4>
   <%#= attachinary_file_field_tag 'doc[screenshots]', @doc, :screenshots %>
-  <%= cl_image_upload_tag(:image_id) %></div>
-
+  <%= cl_image_upload_tag(:image_id) %>
+</div>
+<% end %>
 <hr/>
 <h4 class="form-subhead">Additional Settings:</h4>
 <%= f.text_field :meta_description %>

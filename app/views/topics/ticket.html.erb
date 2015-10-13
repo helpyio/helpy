@@ -58,7 +58,7 @@
         <%= f.hidden_field 'kind', value: 'reply' %>
         <%= hidden_field_tag :client_id %>
         <%= f.text_area :body, :rows => 8, :cols => 160 -%></p>
-        <%= f.attachinary_file_field :screenshots %>
+        <%= f.attachinary_file_field :screenshots unless Cloudinary.config.cloud_name.nil? %>
         <%= f.submit 'Post Reply', class: 'btn btn-warning' -%>
       <% end -%>
       </div>
