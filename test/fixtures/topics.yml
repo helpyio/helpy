@@ -79,3 +79,12 @@ private:
   current_status: new
   private: true
   post_cache: This is a new private post
+
+voteable_posts:
+  id: 7
+  forum_id: 5
+  user_id: 2
+  name: "New Question"
+  current_status: new
+  private: false
+  post_cache: This is a new Q&A

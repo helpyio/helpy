@@ -24,18 +24,22 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "an admin should be able to see a specific topic via standard request" do
-    get :ticket, { id: 3 }
-    assert_not_nil assigns(:topic)
-    assert_template 'ticket'
-    assert_response :success
+  test "an admin should be able to see a specific topic of each type via standard request" do
+    [3,7].each do |topic_id|
+      get :ticket, { id: topic_id }
+      assert_not_nil assigns(:topic)
+      assert_template 'ticket'
+      assert_response :success
+    end
   end
 
-  test "an admin should be able to see a specific topic via ajax" do
-    xhr :get, :ticket, { id: 3 }
-    assert_not_nil assigns(:topic)
-    assert_template 'ticket'
-    assert_response :success
+  test "an admin should be able to see a specific topic of each type via ajax" do
+    [3,7].each do |topic_id|
+      xhr :get, :ticket, { id: topic_id }
+      assert_not_nil assigns(:topic)
+      assert_template 'ticket'
+      assert_response :success
+    end
   end
 
   ### Testing User Views
@@ -43,7 +47,7 @@ class AdminControllerTest < ActionController::TestCase
   test "an admin should be able to see a user profile" do
     xhr :get, :user_profile, { id: 2 }
     assert_response :success
-    assert_equal(4, assigns(:topics).count)
+    assert_equal(5, assigns(:topics).count)
   end
 
   test "an admin should be able to edit a user profile" do

@@ -31,6 +31,7 @@ Roadmap
 
 - Enhanced support for other languages (need help with this)
 - Add "related articles" section to knowledgebase
+- Add commenting to knowledgebase using community functions
 - Insert link to KB articles into reply in admin
 - Support code formatting in the Knowledgebase
 - Set up JSON API hooks, and test

@@ -62,3 +62,11 @@ voteable:
   body: "This is a public post, should be voteable"
   kind: first
   active: true
+
+answer:
+  id: 7
+  topic_id: 7
+  user_id: 1
+  body: "This is a public answer to a question, should be voteable"
+  kind: first
+  active: true
