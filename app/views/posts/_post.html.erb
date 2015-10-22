@@ -43,15 +43,15 @@
 			<% end %>
 		</div>
 
-		<% if user_signed_in? && post.kind == 'first' && post.topic.forum.allow_post_voting == true && post.topic.forum.layout != 'qna'  %>
-			<div class="add-form">
+		<% if user_signed_in? && post.kind == 'first' && post.topic.forum.allow_post_voting == true && params[:controller] != 'admin'   %>
+			<div class="add-form inline-reply">
 			<h4><%= t(:reply) %></h4>
 			<%#= error_messages_for :post -%>
 			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
 			  <%= f.text_area :body, :rows => 4, :cols => 160, label: 'Type your response:' -%></p>
 			  <%= f.hidden_field 'kind', value: 'reply' %>
 				<div class="add-screenshots">
-				<%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+				<%= attachinary_file_field_tag 'post[screenshots]', @topic.posts.new, :screenshots unless Cloudinary.config.cloud_name.nil? %>
 				</div>
 				<%= hidden_field_tag :client_id %>
 				<%= f.submit t(:submit_reply) -%>

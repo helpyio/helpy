@@ -70,3 +70,11 @@ answer:
   body: "This is a public answer to a question, should be voteable"
   kind: first
   active: true
+
+idea:
+  id: 8
+  topic_id: 8
+  user_id: 1
+  body: "This is a public idea, should be voteable"
+  kind: first
+  active: true

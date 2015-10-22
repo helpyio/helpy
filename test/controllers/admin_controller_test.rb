@@ -47,7 +47,7 @@ class AdminControllerTest < ActionController::TestCase
   test "an admin should be able to see a user profile" do
     xhr :get, :user_profile, { id: 2 }
     assert_response :success
-    assert_equal(5, assigns(:topics).count)
+    assert_equal(6, assigns(:topics).count)
   end
 
   test "an admin should be able to edit a user profile" do

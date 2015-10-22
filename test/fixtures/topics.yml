@@ -80,7 +80,7 @@ private:
   private: true
   post_cache: This is a new private post
 
-voteable_posts:
+qna_post:
   id: 7
   forum_id: 5
   user_id: 2
@@ -88,3 +88,12 @@ voteable_posts:
   current_status: new
   private: false
   post_cache: This is a new Q&A
+
+grid_post:
+  id: 8
+  forum_id: 4
+  user_id: 2
+  name: "New Idea"
+  current_status: new
+  private: false
+  post_cache: This is a new Idea

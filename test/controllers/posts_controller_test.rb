@@ -29,6 +29,18 @@ class PostsControllerTest < ActionController::TestCase
 
   # logged in user
 
+  test "a signed in user should see one reply form" do
+    sign_in users(:user)
+
+    # Loop through several test cases for different types of topic layout/voteability etc.
+    # The Q&A format uses an inline reply form immediately beneath the original question
+    [4,5,7,8].each do |topic_id|
+      get :index, topic_id: topic_id
+      assert_select 'div.add-form', true, "failed on #{topic_id}"
+      assert :success
+    end
+  end
+
   test "a signed in user should be able to reply to a topic" do
     sign_in users(:user)
     assert_difference 'Post.count', 1 do
