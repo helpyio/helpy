@@ -1,7 +1,9 @@
 <%= f.text_field :title %>
 <%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, include_blank: t(:select_category, default: 'Select Category')) %>
-<%= render 'admin/article_editor' %>
-<%= f.hidden_field :body %>
+<%#= render 'admin/quill_editor' #uncomment this line if you prefer to use the quill editor %>
+<%#= f.hidden_field :body #uncomment this line if you prefer to use the quill editor %>
+<%= f.trix_editor :body %>
+</body>
 <hr/>
 <% unless Cloudinary.config.cloud_name.nil? %>
 <div class="doc-form-files">
