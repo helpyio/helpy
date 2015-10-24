@@ -72,7 +72,7 @@ td > img {
 
 #pipeline-wrapper {
 	background-color: #eee;
-	height: 160px;	
+	height: 160px;
 }
 
 #user-info-image {
@@ -179,6 +179,10 @@ ul.dropdown-menu {
 }
 
 #editor {
+	min-height: 500px;
+}
+
+trix-editor {
 	min-height: 500px;
 }
 
@@ -319,7 +323,7 @@ a.stats.active {
 	h1 {
 		font-size: 190%;
 	}
-	
+
 	h2 {
 		margin-top: 45px;
 	}
@@ -334,7 +338,7 @@ a.stats.active {
 	}
 	#pipeline-wrapper {
 		padding-bottom: 20px;
-		padding-top: 10px; 		
+		padding-top: 10px;
 	}
 }
 
@@ -353,8 +357,8 @@ a.stats.active {
 	}
 	#pipeline-wrapper {
 		padding-bottom: 0;
-		padding-top: 10px;		 
-	}	
+		padding-top: 10px;
+	}
 }
 
 @media(min-width:1200px){
@@ -372,7 +376,7 @@ a.stats.active {
 	}
 	#pipeline-wrapper {
 		padding-bottom: 0;
-		padding-top: 10px; 
-		
+		padding-top: 10px;
+
 	}
 }

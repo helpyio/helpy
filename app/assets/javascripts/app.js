@@ -13,7 +13,7 @@ Helpy.ready = function(){
 //		return;
 //	});
 
-  $('.profile').initial(); 
+  $('.profile').initial();
 
   $('.attachinary-input').attachinary();
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
@@ -84,7 +84,14 @@ Helpy.ready = function(){
 
   // Allows image insertion into quill editor
   $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-    quill.insertEmbed(quill.getLength(), 'image', $.cloudinary.image(data.result.public_id).attr('src'));
+    // uncomment this line to insert into Quill if you are using that editor
+    //quill.insertEmbed(quill.getLength(), 'image', $.cloudinary.image(data.result.public_id).attr('src'));
+
+    // these lines should uncommented for the trix editor
+    var element = document.querySelector("trix-editor");
+    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
+    element.editor.insertHTML(thisImage);
+    
     $('.image_public_id').val(data.result.public_id);
     return true;
   });
