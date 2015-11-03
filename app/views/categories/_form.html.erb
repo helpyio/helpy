@@ -1,14 +1,15 @@
 <%= bootstrap_form_for @category, label_errors: true do |f| %>
   <%= f.alert_message "Please fix the errors below." %>
 
-  <%= f.text_field :name %>
-  <%= f.text_field :icon, class: 'icon-picker', placeholder: t(:select_icon_helptext, default: 'Select an icon to associate with this category (optional)') %>
+  <%= f.text_field :name, :label => I18n.translate("activerecord.attributes.category.name", locale: I18n.default_locale) %>
+  <%= f.text_field :icon, class: 'icon-picker', placeholder: t(:select_icon_helptext, default: 'Select an icon to associate with this category (optional)'), :label => I18n.translate("activerecord.attributes.category.icon", locale: I18n.default_locale) %>
   <%#= f.text_field :section %>
-  <%= f.text_field :keywords %>
-  <%= f.text_field :title_tag %>
-  <%= f.text_field :meta_description %>
-  <%= f.check_box :front_page %>
-  <%= f.check_box :active %>
+  <%= f.text_field :keywords, :label => I18n.translate("activerecord.attributes.category.keywords", locale: I18n.default_locale) %>
+  <%= f.text_field :title_tag, :label => I18n.translate("activerecord.attributes.category.title_tag", locale: I18n.default_locale) %>
+  <%= f.text_field :meta_description, :label => I18n.translate("activerecord.attributes.category.meta_description", locale: I18n.default_locale) %>
+  <%= f.check_box :front_page, :label => I18n.translate("activerecord.attributes.category.front_page", locale: I18n.default_locale) %>
+  <%= f.check_box :active, :label => I18n.translate("activerecord.attributes.category.active", locale: I18n.default_locale) %>
   <%#= f.text_field :rank %>
+  <%= hidden_field_tag :lang, params[:lang] %>
   <%= f.submit class: 'btn btn-warning' %>
 <% end %>

@@ -36,6 +36,9 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'rails-i18n', '~> 4.0.0'
+gem 'i18n-country-translations'
+gem 'route_translator'
+gem 'http_accept_language'
 
 gem 'permalink_fu'
 gem 'paper_trail'
@@ -44,6 +47,9 @@ gem 'acts-as-taggable-on', '~>3.5'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
+#gem 'globalize', '~> 5.0.0'
+gem 'globalize-versioning', '~> 0.1.0'
+gem 'globalize-accessors'
 
 gem 'gravtastic'
 

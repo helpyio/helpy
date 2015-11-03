@@ -8,7 +8,7 @@
   <% else %>
   <li class="search-result">
     <span class="more-important"><%= link_to result.searchable.title, category_doc_path(result.searchable.category_id, result.searchable_id, class: 'lead') %></span><br/>
-    <span class="result-body less-important"><%= strip_tags result.searchable.body.truncate_words(20) %></span><br/><br/>
+    <span class="result-body less-important"><%= strip_tags(result.searchable.body.truncate_words(20)) unless result.searchable.body.nil? %></span><br/><br/>
   </li>
   <% end %>
 <% end %>

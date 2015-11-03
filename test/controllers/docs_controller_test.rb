@@ -3,34 +3,34 @@ require 'test_helper'
 class DocsControllerTest < ActionController::TestCase
 
   test "a browsing user should get show" do
-    get :show, id: 1
+    get :show, id: 1, locale: :en
     assert_response :success
   end
 
   # logged out, should not get these pages
 
   test "a browsing user should not get new" do
-    get :new
+    get :new, locale: :en
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get edit" do
-    get :edit, { id: 3 }
+    get :edit, { id: 3, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get create" do
-    post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+    post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get update" do
-    patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1} }
+    patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get destroy" do
-    delete :destroy, { id: 3 }
+    delete :destroy, { id: 3, locale: :en}
     assert_redirected_to new_user_session_path
   end
 
@@ -38,34 +38,34 @@ class DocsControllerTest < ActionController::TestCase
 
   test "a signed in user should not get new" do
     sign_in users(:user)
-    get :new
+    get :new, locale: :en
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get edit" do
     sign_in users(:user)
-    get :edit, { id: 3 }
+    get :edit, { id: 3, locale: :en}
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get create" do
     sign_in users(:user)
     assert_difference 'Doc.count', 0 do
-      post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+      post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     end
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get update" do
     sign_in users(:user)
-    patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1} }
+    patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en }
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get destroy" do
     sign_in users(:user)
     assert_difference 'Doc.count', 0 do
-      delete :destroy, { id: 3 }
+      delete :destroy, { id: 3, locale: :en }
     end
     assert_redirected_to root_path
   end
@@ -75,20 +75,20 @@ class DocsControllerTest < ActionController::TestCase
 
   test "an admin should get new" do
     sign_in users(:admin)
-    get :new
+    get :new, locale: :en
     assert_response :success
   end
 
   test "an admin should get edit" do
     sign_in users(:admin)
-    get :edit, id: 1, category_id: 1
+    get :edit, id: 1, category_id: 1, locale: :en
     assert_response :success
   end
 
   test "an admin should get create" do
     sign_in users(:admin)
     assert_difference 'Doc.count', 1 do
-      post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+      post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     end
     assert_redirected_to admin_articles_path(Doc.last.category.id)
   end
@@ -96,23 +96,23 @@ class DocsControllerTest < ActionController::TestCase
   test "an admin should be able to create an article, then view that new article" do
     sign_in users(:admin)
     assert_difference 'Doc.count', 1 do
-      post :create, doc: {title: "some name", body: "some body text", category_id: 1}
+      post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     end
     lastdoc = Doc.last
-    get :show, id: lastdoc
+    get :show, id: lastdoc, locale: :en
     assert_response :success
   end
 
   test "an admin should get update" do
     sign_in users(:admin)
-    patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1} }
+    patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en }
     assert_redirected_to admin_articles_path(Doc.last.category.id)
   end
 
   test "an admin should be able to destroy a doc" do
     sign_in users(:admin)
     assert_difference 'Doc.count', -1 do
-      xhr :delete, :destroy, id: 1
+      xhr :delete, :destroy, id: 1, locale: :en
     end
     assert_response :success
   end

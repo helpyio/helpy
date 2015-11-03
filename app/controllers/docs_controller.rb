@@ -77,6 +77,9 @@ class DocsController < ApplicationController
   # PUT /docs/1
   # PUT /docs/1.xml
   def update
+
+    I18n.locale = params['lang'] unless params['lang'].nil?
+
     @doc = Doc.where(id: params[:id]).first
 
     respond_to do |format|

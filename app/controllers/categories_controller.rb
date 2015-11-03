@@ -11,8 +11,11 @@ class CategoriesController < ApplicationController
   # GET /categories.xml
   def index
 
-    @categories = Category.active.alpha
-
+    if I18n.available_locales.count > 1
+      @categories = Category.active.alpha.with_translations(I18n.locale)
+    else
+      @categories = Category.active.alpha
+    end
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
     @title_tag = "#{Settings.site_name}: " + @page_title
     @meta_desc = "Knowledgebase for #{Settings.site_name}"
@@ -29,8 +32,12 @@ class CategoriesController < ApplicationController
   # GET /categories/1.xml
   def show
     @category = Category.active.where(id: params[:id]).first
-    @docs = @category.docs.ordered.active.page params[:page]
-    @categories = Category.active.alpha
+    if I18n.available_locales.count > 1
+      @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
+    else
+      @docs = @category.docs.ordered.active.page params[:page]
+    end
+    @categories = Category.active.alpha.with_translations(I18n.locale)
     @related = Doc.in_category(@doc.category_id) if @doc
 
     @page_title = @category.name.titleize
@@ -91,6 +98,9 @@ class CategoriesController < ApplicationController
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
+
+    I18n.locale = params['lang']
+
     @category = Category.where(id: params[:id]).first
 
     @category.name = params[:category][:name]

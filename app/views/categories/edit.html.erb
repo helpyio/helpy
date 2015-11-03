@@ -3,7 +3,11 @@
       $(".icon-picker").iconPicker();
   });
 </script>
-
 <h2><%= t(:edit_category, default: 'Edit Category') %>: <%- @category.name %></h2>
 
+<%= locale_select if I18n.available_locales.count > 1 %>
+<hr/>
+
+<% Globalize.with_locale(params['lang']) do %>
 <%= render 'form' %>
+<% end %>

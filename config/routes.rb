@@ -1,40 +1,45 @@
 Rails.application.routes.draw do
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root to: "home#redirect_on_locale"
 
-  root to: "home#index"
 
-  devise_for :users, controllers: {
-        registrations: 'registrations'
-      }
+  localized do
 
-  resources :knowledgebase, :as => 'categories', :controller => "categories" do
-    #collection do
-    #  get 'admin'
-    #end
+    root to: "home#index"
+
+    devise_for :users, controllers: {
+          registrations: 'registrations'
+        }
+
+
+    resources :knowledgebase, :as => 'categories', :controller => "categories" do
+      #collection do
+      #  get 'admin'
+      #end
+      resources :docs
+    end
+
     resources :docs
-  end
-  resources :docs
-  resources :community, :as => 'forums', :controller => "forums" do
-    resources :topics
-  end
-  resources :topics do
+    resources :community, :as => 'forums', :controller => "forums" do
+      resources :topics
+    end
+    resources :topics do
+      resources :posts
+    end
     resources :posts
+
+    resources :users
+
+    post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote
+    post 'post/:id/vote' => 'posts#up_vote', as: :post_vote
+    get 'result' => 'result#index', as: :result
+    get 'tickets' => 'topics#tickets', as: :tickets
+    get 'ticket/:id/' => 'topics#ticket', as: :ticket
+    get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
   end
-  resources :posts
 
-  resources :users
-
-  post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote
-  post 'post/:id/vote' => 'posts#up_vote', as: :post_vote
-  get 'result' => 'result#index', as: :result
-  get 'tickets' => 'topics#tickets', as: :tickets
-  get 'ticket/:id/' => 'topics#ticket', as: :ticket
-  get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
+  get '/switch_locale' => 'home#switch_locale', as: :switch_locale
 
   # Admin Routes
   get 'admin' => 'admin#tickets', as: :admin
@@ -56,6 +61,7 @@ Rails.application.routes.draw do
   get 'admin/user/:id' => 'admin#user_profile', as: :user_profile
   get 'admin/topic_search' => 'admin#topic_search', as: :admin_search
   get 'admin/user_search' => 'admin#user_search', as: :user_search
+
 
 
   # Receive email from Griddler

@@ -99,6 +99,16 @@ GEM
       railties (>= 3.2, < 5.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    globalize (5.0.1)
+      activemodel (>= 4.2.0, < 4.3)
+      activerecord (>= 4.2.0, < 4.3)
+    globalize-accessors (0.2.1)
+      globalize (~> 5.0, >= 5.0.0)
+    globalize-versioning (0.1.0)
+      activemodel (>= 3.2.0, < 5)
+      activerecord (>= 3.2.0, < 5)
+      globalize (>= 3.0.4, < 6)
+      paper_trail (~> 3.0.0)
     gravtastic (3.2.6)
     griddler (1.1.0)
       htmlentities
@@ -111,7 +121,11 @@ GEM
     htmlentities (4.3.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    http_accept_language (2.0.5)
     i18n (0.7.0)
+    i18n-country-translations (1.2.3)
+      i18n (~> 0.5)
+      railties (>= 3.0)
     jbuilder (2.2.11)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -234,6 +248,9 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    route_translator (4.1.0)
+      actionpack (>= 3.2, < 5.0)
+      activesupport (>= 3.2, < 5.0)
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
@@ -337,9 +354,13 @@ DEPENDENCIES
   faker
   font-awesome-less
   font-awesome-rails
+  globalize-accessors
+  globalize-versioning (~> 0.1.0)
   gravtastic
   griddler
   griddler-mandrill
+  http_accept_language
+  i18n-country-translations
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
@@ -364,6 +385,7 @@ DEPENDENCIES
   rails_12factor
   rails_config
   rdiscount
+  route_translator
   rspec
   ruser
   sass-rails (~> 5.0)

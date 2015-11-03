@@ -876,7 +876,7 @@ div.fieldWithErrors textarea
 	text-align: right;
 }
 
-#above-header ul {
+/*#above-header ul {
 	list-style-type: none;
 	display: inline;
 	float: right;
@@ -887,8 +887,8 @@ div.fieldWithErrors textarea
 	padding-right: 4px;
 	padding-left: 4px;
 }
-
-#above-header ul li a{
+*/
+above-header ul li a{
 	color: #666;
 	text-decoration: none;
 }

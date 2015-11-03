@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726192908) do
+ActiveRecord::Schema.define(version: 20151027034830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,35 @@ ActiveRecord::Schema.define(version: 20150726192908) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "category_translations", force: :cascade do |t|
+    t.integer  "category_id",      null: false
+    t.string   "locale",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "name"
+    t.string   "keywords"
+    t.string   "title_tag"
+    t.string   "meta_description"
+  end
+
+  add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
+  add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
+
+  create_table "doc_translations", force: :cascade do |t|
+    t.integer  "doc_id",           null: false
+    t.string   "locale",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "title"
+    t.text     "body"
+    t.string   "keywords"
+    t.string   "title_tag"
+    t.string   "meta_description"
+  end
+
+  add_index "doc_translations", ["doc_id"], name: "index_doc_translations_on_doc_id", using: :btree
+  add_index "doc_translations", ["locale"], name: "index_doc_translations_on_locale", using: :btree
+
   create_table "docs", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -65,6 +94,18 @@ ActiveRecord::Schema.define(version: 20150726192908) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
+
+  create_table "forum_translations", force: :cascade do |t|
+    t.integer  "forum_id",    null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "name"
+    t.text     "description"
+  end
+
+  add_index "forum_translations", ["forum_id"], name: "index_forum_translations_on_forum_id", using: :btree
+  add_index "forum_translations", ["locale"], name: "index_forum_translations_on_locale", using: :btree
 
   create_table "forums", force: :cascade do |t|
     t.string   "name"

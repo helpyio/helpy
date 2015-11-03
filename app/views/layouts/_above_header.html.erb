@@ -1,7 +1,17 @@
-<small>
 <% unless user_signed_in? %>
   <%= link_to "#{t(:back_to, default: "Back to")} #{Settings.parent_company}", Settings.parent_site %> | <%= link_to t(:login), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
 <% else %>
   <%= link_to t(:welcome_back, :username => current_user.name.titleize), edit_user_registration_path %> | <%= link_to('Admin', admin_path) + " | " if current_user.admin? %><%= link_to t(:logout), destroy_user_session_path %>
 <% end %>
-</small>
+<% if I18n.available_locales.count > 1 %>
+  | <%= params[:locale] %>
+<div class="btn-group">
+  <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
+  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+    <% I18n.available_locales.each do |l| %>
+    <li><%#= link_to I18n.translate("i18n_languages.#{l}", locale: l).mb_chars.capitalize.to_s, "/#{l == I18n.default_locale ? "" : l}" %></li>
+    <li><%= link_to I18n.translate("i18n_languages.#{l}", locale: l).mb_chars.capitalize.to_s, "/#{l}" %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

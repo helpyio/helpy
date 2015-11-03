@@ -3,7 +3,7 @@ require 'test_helper'
 class ForumsControllerTest < ActionController::TestCase
 
   test "a browsing user should get index" do
-    get :index
+    get :index, locale: :en
     assert_response :success
     assert_equal(3, assigns(:forums).count)
   end
@@ -11,27 +11,27 @@ class ForumsControllerTest < ActionController::TestCase
   # logged out, should not get these pages
 
   test "a browsing user should not get new" do
-    get :new
+    get :new, locale: :en
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get edit" do
-    get :edit, { id: 3 }
+    get :edit, { id: 3, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get create" do
-    post :create, forum: {name: "some name", description: "some descrpition"}
+    post :create, forum: {name: "some name", description: "some descrpition"}, locale: :en
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get update" do
-    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
+    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"}, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get destroy" do
-    delete :destroy, { id: 3 }
+    delete :destroy, { id: 3, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
@@ -39,31 +39,31 @@ class ForumsControllerTest < ActionController::TestCase
 
   test "a signed in user should not get new" do
     sign_in users(:user)
-    get :new
+    get :new, locale: :en
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get edit" do
     sign_in users(:user)
-    get :edit, { id: 3 }
+    get :edit, { id: 3, locale: :en }
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get create" do
     sign_in users(:user)
-    post :create, forum: {name: "some name", description: "some descrpition"}
+    post :create, forum: {name: "some name", description: "some descrpition"}, locale: :en
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get update" do
     sign_in users(:user)
-    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
+    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"}, locale: :en }
     assert_redirected_to root_path
   end
 
   test "a signed in user should not get destroy" do
     sign_in users(:user)
-    delete :destroy, { id: 3 }
+    delete :destroy, { id: 3, locale: :en }
     assert_redirected_to root_path
   end
 
@@ -73,31 +73,31 @@ class ForumsControllerTest < ActionController::TestCase
 
   test "an admin should get new" do
     sign_in users(:admin)
-    get :new
+    get :new, locale: :en
     assert_response :success
   end
 
   test "an admin should get edit" do
     sign_in users(:admin)
-    get :edit, id: 3
+    get :edit, id: 3, locale: :en
     assert_response :success
   end
 
   test "an admin should get create" do
     sign_in users(:admin)
-    post :create, forum: {name: "some name", description: "some descrpition"}
+    post :create, forum: {name: "some name", description: "some descrpition"}, locale: :en
     assert_redirected_to admin_communities_path
   end
 
   test "an admin should get update" do
     sign_in users(:admin)
-    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"} }
+    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"}, locale: :en }
     assert_redirected_to admin_communities_path
   end
 
   test "an admin should get destroy" do
     sign_in users(:admin)
-    delete :destroy, id: 3
+    delete :destroy, id: 3, locale: :en
     assert_redirected_to admin_communities_path
   end
 

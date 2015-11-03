@@ -4,17 +4,30 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_breadcrumb 'Home', :root_path
 
-  before_action :set_locale
+  before_filter :set_locale
   before_filter :instantiate_tracker
+
+  def url_options
+    { locale: I18n.locale }.merge(super)
+  end
+
+
 
   private
 
   def set_locale
-    if user_signed_in?
-      I18n.locale = current_user.language
+    #unless params[:locale].nil?
+    @browser_locale = http_accept_language.compatible_language_from(I18n.available_locales)
+    #I18n.locale = params[:locale] || @browser_locale # params[:locale]
+    unless params[:locale].blank?
+      I18n.locale = params[:locale]
     else
-      I18n.locale = I18n.default_locale
+      I18n.locale = @browser_locale
     end
+    #else
+    #end
+    #I18n.locale = params[:locale] || I18n.default_locale
+    #Rails.application.routes.default_url_options[:locale]= I18n.locale
   end
 
   def fetch_counts
