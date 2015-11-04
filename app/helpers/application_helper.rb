@@ -43,7 +43,7 @@ module ApplicationHelper
   def locale_select
     content_tag(:div, class: ['form-group']) do
       form_tag('#', id: "locale-change", method: 'get') do
-        select_tag "lang", options_for_select(I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }, params[:lang]), {id: "lang", class: "form-control", prompt: "Translate in a different language..."}
+        select_tag("lang", options_for_select(I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }, params[:lang]), {id: "lang", class: "form-control", prompt: "Translate in a different language..."}) + content_tag(:hr)
       end
     end
   end

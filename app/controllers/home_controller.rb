@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
 
-  #before_filter :redirect_on_locale
 
   def index
 
@@ -17,15 +16,6 @@ class HomeController < ApplicationController
       format.html # index.rhtml
       format.rss
     end
-  end
-
-  def switch_locale
-    I18n.locale = params[:to]
-    redirect_to root_path
-  end
-
-  def redirect_on_locale
-      redirect_to root_path, status: 301
   end
 
   #def tag

@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge(super)
   end
 
-
-
   private
 
   def set_locale

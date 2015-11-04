@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  root to: "home#redirect_on_locale"
+  root to: "locales#redirect_on_locale"
 
 
   localized do
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
+    get 'locales/select' => 'locales#select', as: :select_locale
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
