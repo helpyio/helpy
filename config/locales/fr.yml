@@ -17,6 +17,8 @@ fr:
   welcome_back: "Bienvenue à nouveau %{username}"
   your_profile: "Your Profile"
   your_tickets: "Vos billets"
+  locale: "Locale"
+  change_your_locale: "Change your Locale"
 
   # Voting widget
   did_this_help: "Cela at-il aidé à résoudre votre problème?"
@@ -127,6 +129,17 @@ fr:
   work_phone: téléphone au travail
   cell_phone: portable
 
+  # User search results
+  users_found:
+    one: "1 user was found named %{query}"
+    other: "%{count} users were found named %{query}"
+
+  # Discussion messages
+  reopen_message: "This message has been reopened by the support staff"
+  close_message: "This ticket has been closed by the support staff."
+  trash_message: "This ticket has been deleted."
+  assigned_message: "Discussion has been transferred to %{assigned_to}."
+
   # Discussion View
   asked_a_question: "%{user_name} a posé une question..."
   replied: "%{user_name} a répondu..."
@@ -138,7 +151,6 @@ fr:
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
-
 
   # Content
   new_category: Nouvelle Catégorie
@@ -152,7 +164,7 @@ fr:
   view_and_edit: "Afficher et modifier le contenu"
   delete_confirm: "S'il vous plaît confirmer que vous souhaitez supprimer cette!"
   select_icon_helptext: "Sélectionnez une icône à associer à cette catégorie (facultatif)"
-
+  translate: "Translate to a different language"
 
   # Communities
   new_community: Nouvelle Communauté
@@ -164,6 +176,12 @@ fr:
         email: Email
         password: Password
         name: Nom
+        company: Company
+        work_phone: Work
+        cell_phone: Cell
+        city: City
+        state: State
+
       topic:
         name: Sujet
       post:

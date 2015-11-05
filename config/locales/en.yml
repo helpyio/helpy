@@ -17,6 +17,8 @@ en:
   welcome_back: "Welcome Back %{username}"
   your_profile: "Your Profile"
   your_tickets: "Your Tickets"
+  locale: "Locale"
+  change_your_locale: "Change your Locale"
 
   # Voting widget
   did_this_help: "Did this solve your problem?"
@@ -129,7 +131,7 @@ en:
   # User Admin
   contact_info: Contact
   social_info: Social
-  edit_user:
+  edit_user: Edit User
   work_phone: work
   cell_phone: cell
 
@@ -162,6 +164,7 @@ en:
   view_and_edit: "View and Edit Content"
   delete_confirm: "Please confirm you want to DELETE this!"
   select_icon_helptext: "Select an icon to associate with this category (optional)"
+  translate: "Translate to a different language"
 
   # Communities
   new_community: Create New Community

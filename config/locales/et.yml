@@ -17,6 +17,8 @@ et:
   welcome_back: "Tere tulemast tagasi %{username}"
   your_profile: "Sinu profiil"
   your_tickets: "Sinu piletid"
+  locale:
+  change_your_locale: 
 
   # Voting widget
   did_this_help: "Kas said selle probleemi lahendatud?"
@@ -162,6 +164,7 @@ et:
   view_and_edit: "Vaata ja Muuda sisu"
   delete_confirm: "Palun kinnita, et soovid seda kustutada!"
   select_icon_helptext: "Vali ikoon mida seostada selle kategooriaga (valikuline)"
+  translate:
 
   # Communities
   new_community: Loo uus kommuun
