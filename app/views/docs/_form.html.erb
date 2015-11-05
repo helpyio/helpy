@@ -1,5 +1,5 @@
-  <%= f.text_field :title, :label => I18n.translate("activerecord.attributes.doc.title", locale: I18n.default_locale) %>
-  <%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, { include_blank: t(:select_category, default: 'Select Category'), :label => I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.default_locale) }, { class: 'no-translate' }) %>
+  <%= f.text_field :title, :label => I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale) %>
+  <%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, { include_blank: t(:select_category, default: 'Select Category'), :label => I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale) }, { class: 'no-translate' }) %>
   <%#= render 'admin/quill_editor' #uncomment this line if you prefer to use the quill editor %>
   <%#= f.hidden_field :body #uncomment this line if you prefer to use the quill editor %>
   <%= f.trix_editor :body %>
@@ -14,12 +14,12 @@
   <% end %>
   <hr/>
   <h4 class="form-subhead">Additional Settings:</h4>
-  <%= f.text_field :meta_description, :label => I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.default_locale) %>
-  <%= f.text_field :title_tag, :label => I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.default_locale) %>
-  <%= f.text_field :keywords, :label => I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.default_locale) %>
+  <%= f.text_field :meta_description, :label => I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale) %>
+  <%= f.text_field :title_tag, :label => I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale) %>
+  <%= f.text_field :keywords, :label => I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale) %>
 
   <%#= f.text_field :rank %>
-  <%= f.check_box :front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.default_locale) %><br/><br/>
+  <%= f.check_box :front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale) %><br/><br/>
   <hr/>
   <%= f.form_group :active, class:'no-translate', label: { text: "Article Status: " } do %>
     <%= f.radio_button :active, true, label: "Published", inline: true, class:'no-translate' %>

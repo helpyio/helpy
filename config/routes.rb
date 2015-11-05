@@ -13,14 +13,14 @@ Rails.application.routes.draw do
         }
 
 
-    resources :knowledgebase, :as => 'categories', :controller => "categories" do
+    resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit] do
       #collection do
       #  get 'admin'
       #end
-      resources :docs
+      resources :docs, except: [:new, :edit]
     end
 
-    resources :docs
+    resources :docs, except: [:new, :edit]
     resources :community, :as => 'forums', :controller => "forums" do
       resources :topics
     end
@@ -43,25 +43,37 @@ Rails.application.routes.draw do
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
 
   # Admin Routes
-  get 'admin' => 'admin#tickets', as: :admin
-  get 'admin/dashboard' => 'admin#dashboard', as: :admin_dashboard
-  get 'admin/content' => 'admin#knowledgebase', as: :admin_knowledgebase
-  get 'admin/content/:category_id/articles' => 'admin#articles', as: :admin_articles
-  get 'admin/tickets' => 'admin#tickets', as: :admin_tickets
-  get 'admin/ticket/:id' => 'admin#ticket', as: :admin_ticket
-  get 'admin/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
-  post 'admin/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
-  get 'admin/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
-  get 'admin/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
-  get 'admin/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
-  get 'admin/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
-  get 'admin/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
-  get 'admin/communities' => 'admin#communities', as: :admin_communities
-  get 'admin/users'
-  get 'admin/user/:id/edit' => 'admin#edit_user', as: :admin_user
-  get 'admin/user/:id' => 'admin#user_profile', as: :user_profile
-  get 'admin/topic_search' => 'admin#topic_search', as: :admin_search
-  get 'admin/user_search' => 'admin#user_search', as: :user_search
+
+  scope 'admin' do
+
+    get '/' => 'admin#tickets', as: :admin
+
+    resources :docs, only: [:new, :edit]
+    resources :knowledgebase, :as => 'categories', :controller => "categories", only: [:new, :edit] do
+      resources :docs, only: [:new, :edit]
+    end
+
+    get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
+    get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
+    get '/content/:category_id/articles' => 'admin#articles', as: :admin_articles
+    get '/tickets' => 'admin#tickets', as: :admin_tickets
+    get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
+    get '/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
+    post '/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
+    get '/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
+    get '/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
+    get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
+    get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
+    get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
+    get '/communities' => 'admin#communities', as: :admin_communities
+    #get '/users'
+    get '/user/:id/edit' => 'admin#edit_user', as: :admin_user
+    get '/user/:id' => 'admin#user_profile', as: :user_profile
+    get '/topic_search' => 'admin#topic_search', as: :admin_search
+    get '/user_search' => 'admin#user_search', as: :user_search
+
+  end
+
 
 
 
