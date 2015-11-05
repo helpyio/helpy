@@ -452,6 +452,10 @@ span.category-icon {
 	margin-top: 40px;
 }
 
+ul.dropdown-menu li a.strong {
+  font-weight: bolder;
+}
+
 /* === LAYOUT === */
 
 #breadcrumbs {
