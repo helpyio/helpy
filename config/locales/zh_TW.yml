@@ -1,0 +1,211 @@
+zh-TW:
+  root: "首頁"
+  how_can_we_help: "如何為你提供協助？"
+  browse_topics: "瀏覽標題"
+  support_team: "支援小組"
+  nothing_here: "沒有內容"
+
+  # Navigation
+  knowledgebase: "知識庫"
+  community: "社區"
+  ask_a_question: "發問"
+  home: "首頁"
+  login: "登入"
+  logout: "登出"
+  register: "新用戶註冊"
+  back_to: "返回"
+  welcome_back: "歡迎 %{username}回來"
+  your_profile: "個人檔案"
+  your_tickets: "已要求的協助"
+
+  # Voting widget
+  did_this_help: "這是否解決你的問題？"
+  yes: "是"
+  no: "否"
+
+  # Search
+  search_placeholder: "輸入關鍵字, 主題, 或問題"
+  no_results: "沒有搜尋結果, 請重新搜尋"
+  results_found:
+    one: "搜尋到1個結果"
+    other: "搜尋到 %{count} 個結果"
+
+  # Community
+  forum_name: "主旨"
+  subject: "題目"
+  last_activity: "最後上線"
+  topic: "討論"
+  replies: "回覆"
+  last_post: "最後發表"
+  started_by: "由 %{username}發表"
+  reply: "回覆此帖子"
+  submit_reply: "發表回覆"
+  posted: "張貼"
+  start_discussion: "發表新討論"
+  submit_start_discussion: "確定發表"
+  should_message_be_private: "將訊息標為私人?"
+  only_support_can_respond: "僅管理員回應 (要求私人協助)"
+  responses_can_come_from_everyone: "接受管理員或社區的回應 (建議)"
+  collapsed_messages:
+    one: "1個已摺疊訊息"
+    two: "2個已摺疊訊息"
+    other: "%{count}個已摺疊訊息"
+
+  # Tickets
+  tickets: "要求協助"
+  no_tickets: "你還未要求協助"
+
+  # Get Help
+  get_help_header: "需要更多協助??"
+  get_help_button: "與我們討論"
+
+  # Profile
+  my_profile: "我的檔案"
+
+  # devise/sessions/new
+  login: 登入
+
+  # devise/shared/links
+  forgot_password: 忘記密碼?
+
+  # devise/passwords/new
+  send_instructions: 傳送指令
+
+  # devise/passwords/edit
+  change_password: 變更密碼
+  new_password: 輸入新密碼
+  new_password_confirmation: 確定新密碼
+
+  # devise/confirmations/new
+  resend: 重新發送確認指令
+
+  # devise/registrations/new
+  sign_up: 註冊
+
+  # Admin menu
+  discussions: 討論
+  content: 內容
+  communities: 社區
+  app_store: App Store
+  search: 搜尋
+
+  # Admin main/statuses
+  support_pipeline: 待支援項目
+  new: 新
+  active: 熱門
+  open: 開啟
+  mine: 我的
+  pending: 未解決
+  closed: 已解決
+  spam: 垃圾訊息
+  trash: 垃圾桶
+  discussion_managment: 管理討論
+  open_new_discussion: 發表新討論
+  assigned_to: "委託至 %{agent}"
+  unassigned: 未分配
+  private: 私人
+  public: 公開
+  save_changes: 儲存變更
+
+  # Discussion controls
+  change_status: 修改狀態
+  status: 狀態
+  mark_closed: 標記為已解決
+  reopen: 重啟
+  mark_spam: 標記為垃圾訊息
+  mark_new: 標記為新訊息
+  assign_agent: 委託代理
+  selected_messages:
+    one: "1個已選訊息"
+    two: "2個已選訊息"
+    other: "%{count}個已選訊息"
+
+  # Discussion messages
+  reopen_message: "支援人員已回覆此訊息"
+  close_message: "支援人員已關閉此協助訊息"
+  trash_message: "此協助訊息已被刪除"
+  assigned_message: "討論已轉到 %{assigned_to}."
+
+  # User Admin
+  contact_info: 聯絡
+  social_info: 社交網站
+  edit_user: 修改使用者
+  work_phone: 公司
+  cell_phone: 行動電話
+
+  # User search results
+  users_found:
+    one: "已找到1位使用者 %{query}"
+    other: "已找到 %{count} 位使用者 %{query}"
+
+  # Discussion View
+  asked_a_question: "%{user_name} 發問了問題..."
+  replied: "%{user_name} 回覆…"
+  posted_note: "%{user_name} 張貼了內部注解..."
+  type_reply: 輸入你的回覆, 或選擇以下常用回覆
+  select_common: 選擇常用回覆
+  reply: 回覆
+  internal_note: 內部注解
+  upvote:
+    one: "%{count}| 讚賞"
+    other: "%{count}| 讚賞"
+
+  # Content
+  new_category: 新分類
+  new_content: 新內容
+  front_page_categories: 首頁分類
+  other_categories: 其他分類
+  edit: 修改
+  edit_category: 修改分類
+  select_category: 選擇分類
+  delete: 刪除
+  view_and_edit: "檢視及修改分類"
+  delete_confirm: "確定刪除?"
+  select_icon_helptext: "選擇分類圖標 (自選)"
+
+  # Communities
+  new_community: 新社區
+  create_new_community: 創建新社區
+
+  activerecord:
+    attributes:
+      user: #使用者
+        email: 電郵
+        password: 密碼
+        name: 姓名
+        company: 公司
+        work_phone: 工作電話
+        cell_phone: 行動電話
+        city: 城市
+        state: 省份
+
+      topic: #主題
+        name: 名稱
+      post: #帖子
+        kind: 類別
+        category: 分類
+        name: 名稱
+        icon: 圖標
+        keywords: 關鍵字
+        title_tag: 標題標籤
+        meta_description: META標籤
+        front_page: 首頁
+        active: 熱門
+      doc:
+        title: 標題
+        meta_description: META標籤
+        title_tag: 標題標籤
+        keywords: 關鍵字
+        category_id: 分類
+        active: 狀態
+        front_page: 推薦在首頁?
+      forum: #討論區
+        name: 名稱
+        description: 說明
+
+    helpers: #幫手
+       submit: #送出
+         topic: #主題
+           create: 建立
+         post: #帖子
+           create: 建立
