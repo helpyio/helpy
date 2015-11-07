@@ -1,5 +1,9 @@
   <%= f.text_field :title, :label => I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale) %>
-  <%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, { include_blank: t(:select_category, default: 'Select Category'), :label => I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale) }, { class: 'no-translate' }) %>
+  <% if params[:lang] == "#{I18n.locale}" %>
+    <%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, { include_blank: t(:select_category, default: 'Select Category'), :label => I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale) }, { class: 'no-translate' })  %>
+  <% else %>
+    <%= f.hidden_field("category_id", value: @doc.category_id) %>
+  <% end %>
   <%#= render 'admin/quill_editor' #uncomment this line if you prefer to use the quill editor %>
   <%#= f.hidden_field :body #uncomment this line if you prefer to use the quill editor %>
   <%= f.trix_editor :body %>
@@ -19,11 +23,13 @@
   <%= f.text_field :keywords, :label => I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale) %>
 
   <%#= f.text_field :rank %>
-  <%= f.check_box :front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale) %><br/><br/>
+  <%= f.check_box(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale)) if params[:lang] == "#{I18n.locale}"  %><br/><br/>
   <hr/>
-  <%= f.form_group :active, class:'no-translate', label: { text: "Article Status: " } do %>
-    <%= f.radio_button :active, true, label: "Published", inline: true, class:'no-translate' %>
-    <%= f.radio_button :active, false, label: "Draft", inline: true, class:'no-translate' %>
+  <% if params[:lang] == "#{I18n.locale}" %>
+    <%= f.form_group :active, class:'no-translate', label: { text: "Article Status: " } do %>
+      <%= f.radio_button :active, true, label: "Published", inline: true, class:'no-translate' %>
+      <%= f.radio_button :active, false, label: "Draft", inline: true, class:'no-translate' %>
+    <% end %>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>
   <%= f.submit "Save Changes", class: 'btn btn-warning' %>

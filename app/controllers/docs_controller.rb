@@ -23,7 +23,7 @@ class DocsController < ApplicationController
     @title_tag = "#{Settings.site_name}: #{@custom_title}"
 
     add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
-    add_breadcrumb @doc.category.name.titleize, category_path(@doc.category)
+    add_breadcrumb @doc.category.name.titleize, category_path(@doc.category) if @doc.category.name
     add_breadcrumb @doc.title.titleize
 
     respond_to do |format|
@@ -81,7 +81,7 @@ class DocsController < ApplicationController
     unless params['lang'].nil?
       I18n.locale = params['lang']
     end
-    
+
     @doc = Doc.where(id: params[:id]).first
 
     respond_to do |format|

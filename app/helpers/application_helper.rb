@@ -41,11 +41,25 @@ module ApplicationHelper
   end
 
   def locale_select
+
+    options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
+
+    tag = "<select name='lang' class='form-control' id='lang'>"
+    tag += "<option value='#{I18n.locale}'>Translate to a different language...</option>"
+
+    I18n.available_locales.sort.each do |locale|
+      selected = "selected" if "#{locale}" == params[:lang]
+      tag += "<option value='#{locale}' #{selected}>#{I18n.translate("i18n_languages.#{locale}")}</option>" unless locale == I18n.locale
+    end
+    tag += "</select>"
+    tag += "<hr/>"
+
     content_tag(:div, class: ['form-group']) do
       form_tag('#', id: "locale-change", method: 'get') do
-        select_tag("lang", options_for_select(I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }, params[:lang]), {id: "lang", class: "form-control", prompt: "Translate to a different language..."}) + content_tag(:hr)
+        tag.html_safe
       end
     end
+
   end
 
 end
