@@ -13,8 +13,6 @@
 
 <%= stylesheet_link_tag 'application', "data-turbolinks-track" => true %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-
-<script src="/assets/locales/jquery.timeago.<%= "#{I18n.locale}" %>.js"></script>
 <%= timeago_script_tag %>
 
 <%= @feed_link.html_safe if @feed_link %>
