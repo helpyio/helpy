@@ -4,7 +4,9 @@
   <%= f.text_field :keywords, :label => I18n.translate("activerecord.attributes.category.keywords", locale: I18n.locale) %>
   <%= f.text_field :title_tag, :label => I18n.translate("activerecord.attributes.category.title_tag", locale: I18n.locale) %>
   <%= f.text_field :meta_description, :label => I18n.translate("activerecord.attributes.category.meta_description", locale: I18n.locale) %>
-  <%= f.check_box :front_page, class: 'no-translate', :label => I18n.translate("activerecord.attributes.category.front_page", locale: I18n.locale) %>
-  <%= f.check_box :active, class: 'no-translate', :label => I18n.translate("activerecord.attributes.category.active", locale: I18n.locale) %>
+  <% if params[:lang] == "#{I18n.locale}" %>
+    <%= f.check_box :front_page, class: 'no-translate', :label => I18n.translate("activerecord.attributes.category.front_page", locale: I18n.locale) %>
+    <%= f.check_box :active, class: 'no-translate', :label => I18n.translate("activerecord.attributes.category.active", locale: I18n.locale) %>
+  <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>
   <%= f.submit class: 'btn btn-warning' %>

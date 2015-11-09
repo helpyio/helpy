@@ -9,7 +9,7 @@
   <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
   <ul class="dropdown-menu dropdown-menu-right" role="menu">
     <% I18n.available_locales.sort.each do |l| %>
-    <li><%= link_to I18n.translate("i18n_languages.#{l}", locale: l).mb_chars.capitalize.to_s, "/#{l}", class: (l == I18n.locale) ? 'strong' : '' %></li>
+    <li><%= link_to I18n.translate("language_name", locale: l).mb_chars.capitalize.to_s, "/#{l}", class: (l == I18n.locale) ? 'strong' : '' %></li>
     <% end %>
   </ul>
 </span>

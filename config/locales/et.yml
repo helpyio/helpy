@@ -1,4 +1,5 @@
 et:
+  language_name: 'eesti'
   root: 'Kodu'
   how_can_we_help: "Kuidas saame aidata?"
   browse_topics: "Teemade sirvimine"
@@ -18,7 +19,7 @@ et:
   your_profile: "Sinu profiil"
   your_tickets: "Sinu piletid"
   locale:
-  change_your_locale: 
+  change_your_locale:
 
   # Voting widget
   did_this_help: "Kas said selle probleemi lahendatud?"

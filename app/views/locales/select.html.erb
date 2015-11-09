@@ -4,7 +4,7 @@
   <div class="col-xs-10">
     <ul class="list-unstyled locale-list">
       <% I18n.available_locales.each do |l| %>
-      <li class="text-left"><%= link_to "#{l.upcase}- #{I18n.translate("i18n_languages.#{l}", locale: l).mb_chars.capitalize.to_s}", "/#{l}" %></li>
+      <li class="text-left"><%= link_to "#{l.upcase}- #{I18n.translate("language_name", locale: l).mb_chars.capitalize.to_s}", "/#{l}" %></li>
       <% end %>
     </ul>
   </div>
