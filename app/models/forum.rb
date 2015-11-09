@@ -27,9 +27,6 @@ class Forum < ActiveRecord::Base
   scope :isprivate, -> { where(private: true)}
   scope :ispublic, -> { where(private: false)}
 
-  translates :name, :description
-  globalize_accessors
-
   validates_presence_of :name, :description
   validates_length_of :name, :maximum => 255
   validates_length_of :description, :maximum => 1000
@@ -39,7 +36,7 @@ class Forum < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
   end
 
 end

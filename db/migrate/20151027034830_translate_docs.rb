@@ -19,18 +19,10 @@ class TranslateDocs < ActiveRecord::Migration
       :migrate_data => true
     })
 
-    Forum.create_translation_table!({
-      :name => :string,
-      :description => :text
-    }, {
-      :migrate_data => true
-    })
-
   end
 
   def self.down
     Doc.drop_translation_table! :migrate_data => true
     Category.drop_translation_table! :migrate_data => true
-    Forum.drop_translation_table! :migrate_data => true
   end
 end
