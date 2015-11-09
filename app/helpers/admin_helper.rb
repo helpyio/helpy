@@ -21,8 +21,11 @@ module AdminHelper
         Doc.replies.with_translations(locale).all.each do |doc|
           select += "<option value='#{doc.body}'>#{doc.title}</option>"
         end
+        select += "</optgroup>"
       end
     end
+
+    select += "</select>"
 
     # Return select
     select.html_safe
