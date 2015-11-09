@@ -17,7 +17,7 @@ module AdminHelper
 
     I18n.available_locales.each do |locale|
       Globalize.with_locale(locale) do
-        select += "<optgroup label='#{I18n.translate("language_name")}'>"
+        select += "<optgroup label='#{I18n.translate("i18n_languages.#{locale}")}'>"
         Doc.replies.with_translations(locale).all.each do |doc|
           select += "<option value='#{doc.body}'>#{doc.title}</option>"
         end
