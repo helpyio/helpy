@@ -32,7 +32,7 @@ class Doc < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:title, :body, :keywords]
 
-  translates :title, :body, :keywords, :title_tag, :meta_description
+  translates :title, :body, :keywords, :title_tag, :meta_description, versioning: :paper_trail
   globalize_accessors
 
   has_paper_trail
