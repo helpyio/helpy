@@ -1,0 +1,80 @@
+---
+ha:
+  i18n_languages:
+    af: Afirkanci
+    ar: Larabci
+    az: Azerbaijanci
+    be: Belarusanci
+    bg: Bulgaranci
+    bn: Bengali
+    bs: Bosniyanci
+    ca: Kataloniyanci
+    cs: Harshen Cak
+    cy: Kabilar Welsh
+    da: Danish
+    de: Jamusanci
+    el: Girkanci
+    en: Turanci
+    eo: Dʼan/ʼYar Kabilar Andalus
+    es: Ispaniyanci
+    et: Istoniyanci
+    eu: Dan/ʼYar Kabilar Bas
+    fa: Parisanci
+    fi: Yaren mutanen Finland
+    fr: Faransanci
+    ga: Dan Ailan
+    gl: Bagalike
+    gu: Gujarati
+    ha: Hausa
+    hi: Harshen Hindi
+    hr: Kuroshiyan
+    hu: Harshen Hungari
+    hy: Armeniyanci
+    id: Harshen Indunusiya
+    ig: Inyamuranci
+    is: Yaren mutanen Iceland
+    it: Italiyanci
+    ja: Japananci
+    ka: Jojiyanci
+    km: Harshen Kimar
+    kn: Dan/ʼYar Kabilar Kannada
+    ko: Harshen Koreya
+    la: Dan Kabilar Latin
+    lo: Laothian
+    lt: Lituweniyanci
+    lv: Latbiyanci
+    mk: Dan Masedoniya
+    ml: Kabilar Maleyalam
+    mn: Mongolian
+    mr: Kʼabilan Marathi
+    ms: Harshen Malai
+    mt: Harshen Maltis
+    my: Burmanci
+    ne: Nepali
+    nl: Holanci
+    pa: Punjabi
+    pl: Harshen Polan
+    pt: Harshen Portugal
+    ro: Romaniyanci
+    ru: Rashanci
+    si: Sinhalanci
+    sk: Basulake
+    sl: Basulabe
+    so: Somali
+    sq: Dʼan/ʼYar Kabilar Albaniya
+    sr: Sabiyan
+    st: Sesotanci
+    su: Sundanese
+    sv: Harshen Suwedan
+    sw: Harshen Suwahili
+    ta: Tamil
+    te: Dʼan/ʼYar Kabilar Telug
+    th: Thai
+    tr: Harshen Turkiyya
+    uk: Harshen Yukuren
+    ur: Harshen Urdu
+    uz: Uzbek
+    vi: Harshen Biyetinam
+    yo: Yarbanci
+    zh: Harshen Sin
+    zu: Harshen Zulu
