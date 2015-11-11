@@ -1,6 +1,6 @@
 fr:
   language_name: "Français"
-  root: "Page d'accueil"
+  root: "Accueil"
   how_can_we_help: "Comment pouvons-nous aider?"
   browse_topics: "Feuilleter"
   support_team: "équipe De Soutien"
@@ -11,8 +11,8 @@ fr:
   community: "Communauté"
   ask_a_question: "Poser une question"
   home: "Page d'accueil"
-  login: "Login"
-  logout: "se Déconnecter"
+  login: "Connexion"
+  logout: "Déconnexion"
   register: "Signer"
   back_to: "Retour à"
   welcome_back: "Bienvenue à nouveau %{username}"
@@ -66,7 +66,7 @@ fr:
   my_profile: 'My Profile'
 
   # devise/sessions/new
-  login: Log in
+  login: Connexion
 
   # devise/shared/links
   forgot_password: Forgot your password?
@@ -175,7 +175,7 @@ fr:
     attributes:
       user:
         email: Email
-        password: Password
+        password: Mot de passe
         name: Nom
         company: Company
         work_phone: Work
