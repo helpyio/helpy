@@ -1,4 +1,5 @@
 ca:
+  language_name: "Català"
   root: 'Home'
   how_can_we_help: "Com el podem ajudar?"
   browse_topics: "Navegar pels temes"

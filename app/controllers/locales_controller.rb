@@ -1,5 +1,6 @@
 class LocalesController < ApplicationController
 
+
   def select
 
     @page_title = t(:select_locale, default: "Change your Locale")

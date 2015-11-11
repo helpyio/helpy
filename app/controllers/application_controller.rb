@@ -14,18 +14,12 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    #unless params[:locale].nil?
     @browser_locale = http_accept_language.compatible_language_from(I18n.available_locales)
-    #I18n.locale = params[:locale] || @browser_locale # params[:locale]
     unless params[:locale].blank?
       I18n.locale = params[:locale]
     else
       I18n.locale = @browser_locale
     end
-    #else
-    #end
-    #I18n.locale = params[:locale] || I18n.default_locale
-    #Rails.application.routes.default_url_options[:locale]= I18n.locale
   end
 
   def fetch_counts

@@ -7,6 +7,9 @@
   <% if params[:lang] == "#{I18n.locale}" %>
     <%= f.check_box :front_page, class: 'no-translate', :label => I18n.translate("activerecord.attributes.category.front_page", locale: I18n.locale) %>
     <%= f.check_box :active, class: 'no-translate', :label => I18n.translate("activerecord.attributes.category.active", locale: I18n.locale) %>
+  <% else %>
+    <%= f.hidden_field :front_page, value: @category.front_page %>
+    <%= f.hidden_field :active, value: @category.active %>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>
   <%= f.submit class: 'btn btn-warning' %>

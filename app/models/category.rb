@@ -22,8 +22,8 @@ class Category < ActiveRecord::Base
   has_many :docs
   has_paper_trail
 
-  translates :name, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: true, versioning: :paper_trail
-  globalize_accessors :locales => I18n.available_locales, :attributes => [:name, :keywords, :title_tag, :meta_description]
+  translates :name, :keywords, :title_tag, :meta_description, versioning: :paper_trail
+  globalize_accessors #:locales => I18n.available_locales, :attributes => [:name, :keywords, :title_tag, :meta_description]
 
   scope :alpha, -> { order('name ASC') }
   scope :active, -> { where(active: true) }

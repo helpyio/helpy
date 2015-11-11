@@ -32,10 +32,10 @@ class Doc < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:title, :body, :keywords]
 
-  translates :title, :body, :keywords, :title_tag, :meta_description, versioning: :paper_trail
-  globalize_accessors
-
   has_paper_trail
+
+  translates :title, :body, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: true, versioning: :paper_trail
+  globalize_accessors
 
   paginates_per 25
   has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif]
