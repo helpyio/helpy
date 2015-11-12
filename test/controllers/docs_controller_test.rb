@@ -85,10 +85,22 @@ class DocsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "an admin should get create" do
+  test "an admin should be able to create a new doc" do
     sign_in users(:admin)
-    assert_difference 'Doc.count', 1 do
-      post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
+    assert_difference 'Doc.translations.count', 1 do
+      assert_difference 'Doc.count', 1 do
+        post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
+      end
+    end
+    assert_redirected_to admin_articles_path(Doc.last.category.id)
+  end
+
+  test "an admin should be able to create a new doc and a default translation should be stored" do
+    sign_in users(:admin)
+    assert_difference 'Doc.translations.count', 1 do
+      assert_difference 'Doc.count', 1 do
+        post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
+      end
     end
     assert_redirected_to admin_articles_path(Doc.last.category.id)
   end

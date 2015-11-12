@@ -87,21 +87,41 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "an admin should get create" do
+  test "an admin should be able to create a new category" do
     sign_in users(:admin)
-    post :create, category: { name: "some name" }, locale: :en
+    assert_difference 'Category.count', 1 do
+      post :create, category: { name: "some name" }, locale: :en
+    end
     assert_redirected_to admin_knowledgebase_path
   end
 
-  test "an admin should get update" do
+  test "an admin should be able to create a new category, and have the default translation created" do
+    sign_in users(:admin)
+    post :create, category: { name: "some name" }, locale: :en
+    assert_equal Category.last.translations.count, 2
+    assert_redirected_to admin_knowledgebase_path
+  end
+
+  test "an admin should be able to update an existing category" do
     sign_in users(:admin)
     patch :update, { id: 1, category: {name: "some name" }, locale: :en }
     assert_redirected_to admin_knowledgebase_path
   end
 
-  test "an admin should get destroy" do
+  test "an admin should be able to add a new translation to an existing category" do
     sign_in users(:admin)
-    xhr :delete, :destroy, id: 1, locale: :en
+    assert_equal Category.find(1).translations.count, 2 do
+      patch :update, { id: 1, category: {name: "some name" }, locale: :en, lang: 'fr' }
+    end
+    assert_equal Category.find(1).translations.last.locale, :en
+    assert_redirected_to admin_knowledgebase_path
+  end
+
+  test "an admin should be able to destroy a category" do
+    sign_in users(:admin)
+    assert_difference 'Category.count', -1 do
+      xhr :delete, :destroy, id: 1, locale: :en
+    end
     assert_response :success
   end
 
