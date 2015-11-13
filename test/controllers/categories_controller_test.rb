@@ -98,7 +98,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "an admin should be able to create a new category, and have the default translation created" do
     sign_in users(:admin)
     post :create, category: { name: "some name" }, locale: :en
-    assert_equal Category.last.translations.count, 2
+    assert_equal Category.last.translations.count, 1
     assert_redirected_to admin_knowledgebase_path
   end
 
@@ -110,10 +110,10 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "an admin should be able to add a new translation to an existing category" do
     sign_in users(:admin)
-    assert_equal Category.find(1).translations.count, 2 do
-      patch :update, { id: 1, category: {name: "some name" }, locale: :en, lang: 'fr' }
+    assert_difference 'Category.find(1).translations.count', 1 do
+      patch :update, { id: 1, category: {name: "some name" }, locale: :fr, lang: 'fr' }
     end
-    assert_equal Category.find(1).translations.last.locale, :en
+    assert_equal Category.find(1).translations.last.locale, :fr
     assert_redirected_to admin_knowledgebase_path
   end
 
