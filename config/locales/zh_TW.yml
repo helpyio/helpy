@@ -1,6 +1,6 @@
 zh-tw:
   language_name: "中文（繁体）"
-  root: "首頁"
+  root: &root "首頁"
   how_can_we_help: "如何為你提供協助？"
   browse_topics: "瀏覽標題"
   support_team: "支援小組"
@@ -210,3 +210,34 @@ zh-tw:
            create: 建立
          post: #帖子
            create: 建立
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"
+           

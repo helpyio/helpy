@@ -1,6 +1,6 @@
 et:
   language_name: 'eesti'
-  root: 'Kodu'
+  root: &root 'Kodu'
   how_can_we_help: "Kuidas saame aidata?"
   browse_topics: "Teemade sirvimine"
   support_team: "Kasutajatoe tiim"
@@ -213,3 +213,33 @@ et:
           create: Alusta uus teema
         post:
           create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"

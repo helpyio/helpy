@@ -1,6 +1,6 @@
 fr:
   language_name: "Français"
-  root: "Accueil"
+  root: &root "Accueil"
   how_can_we_help: "Comment pouvons-nous aider?"
   browse_topics: "Feuilleter"
   support_team: "équipe De Soutien"
@@ -214,3 +214,34 @@ fr:
           create: Démarrer le nouvelle discussion
         post:
           create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"
+            

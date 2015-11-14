@@ -1,6 +1,6 @@
 en:
   language_name: 'English' # The name of the translation file, in that language
-  root: 'Home'
+  root: &root 'Home'
   how_can_we_help: "How can we help?"
   browse_topics: "Browse Topics"
   support_team: "Support Team"
@@ -213,3 +213,33 @@ en:
           create: Démarrer le nouvelle discussion
         post:
           create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"
