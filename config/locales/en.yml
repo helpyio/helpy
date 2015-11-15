@@ -100,7 +100,7 @@ en:
   spam: Spam
   trash: Trash
   discussion_managment: Discussion Management
-  open_new_discussion: Open Discussion
+  open_new_discussion: New Discussion
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
   private: private
