@@ -34,7 +34,6 @@
 
         <%= hidden_field_tag :client_id %>
         <%= f.text_area :body, :rows => 8, :cols => 160, hide_label: true, placeholder: t(:type_reply, default: "Type your reply, or select from a common message below") %>
-        <%#= f.select('reply_id', Doc.replies.collect {|d| [ d.title, d.body ] }, label: t(:select_common, default: "Insert Common Reply"), include_blank: true) %>
         <%= i18n_reply %>
         <%= f.attachinary_file_field :screenshots unless Cloudinary.config.cloud_name.nil? %>
         <%= f.submit t(:submit_reply), class: 'btn btn-warning' -%>
