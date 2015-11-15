@@ -206,6 +206,6 @@ en:
     helpers:
       submit:
         topic:
-          create: Démarrer le nouvelle discussion
+          create: Start New Discussion
         post:
           create:

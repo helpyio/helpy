@@ -1,0 +1,210 @@
+ja:
+  root: 'ホーム'
+  how_can_we_help: "なにかお探しでしょうか？"
+  browse_topics: "トピックを検索"
+  support_team: "サポットチーム"
+  nothing_here: "ここには見るべきものは何もありません"
+
+  # Navigation
+  knowledgebase: "知識ベース"
+  community: "コミュニティ"
+  ask_a_question: "質問をする"
+  home: "ホーム"
+  login: "ログイン"
+  logout: "ログアウト"
+  register: "登録"
+  back_to: "戻る"
+  welcome_back: "ようこそ %{username}"
+  your_profile: "プロフィール"
+  your_tickets: "あなたのサポットチケット"
+
+  # Voting widget
+  did_this_help: "このヘルプは役に立ちましたか？"
+  yes: '役に立った'
+  no: '役に立たなかった'
+
+  # Search　検索
+  search_placeholder: "ご質問．問題の内容は？"
+  no_results: "一致する情報は見つかりませんでした, 別のキーワードを検索ください。"
+  results_found:
+    one: "一件のヒットがありました"
+    other: "%{count} のヒットがありました"
+
+  # Community
+  forum_name: "トピック"
+  subject: "題名"
+  last_activity: "最終ログイン"
+  topic: "掲示板"
+  replies: "返信"
+  last_post: "最終投稿"
+  started_by: "%{username} 開始"
+  reply: "コメントする"
+  submit_reply: "投稿する"
+  posted: "投稿した"
+  start_discussion: "新規投稿"
+  submit_start_discussion: "新規投稿をする"
+  should_message_be_private: "このメッセージを非公開にするですか？"
+  only_support_can_respond: "管理者権限のユーザーのみが投稿可能"
+  responses_can_come_from_everyone: "誰でも投稿できる (おすすめ)"
+  collapsed_messages:
+      one: "1 折り畳みメッセージ"
+      two: "2 折り畳みメッセージ"
+      other: "%{count} 折り畳みメッセージ"
+
+  # Tickets
+  tickets: "サポットチケット"
+  no_tickets: "あなたはまだサポットチケットを作成しません"
+
+  # Get Help
+  get_help_header: "まだなにかお探しでしょうか？"
+  get_help_button: "私達とやり取りを始めましょう。"
+
+  # Profile
+  my_profile: 'プロフィール'
+
+  # devise/sessions/new
+  login: ログイン
+
+  # devise/shared/links
+  forgot_password: "パスワードを忘れた場合はこちら"
+
+  # devise/passwords/new
+  send_instructions: "手順を送ってください"
+
+  # devise/passwords/edit
+  change_password: "パスワードを変更"
+  new_password: "新しいパスワード"
+  new_password_confirmation: "新規パスワードを再入力"
+
+  # devise/confirmations/new
+  resend: "完了報告を再送"
+
+  # devise/registrations/new
+  sign_up: "登録"
+
+  # Admin menu
+  discussions: "掲示板"
+  content: "内容"
+  communities: "コミュニティ"
+  app_store: "App Store"
+  search: "検索"
+
+  # Admin main/statuses
+  support_pipeline: "サポットパイポライン"
+  new: "新規"
+  active: "アクティブ"
+  open: "開く"
+  mine: "私のもの"
+  pending: "保留中"
+  closed: "解決済み"
+  spam: "迷惑メール"
+  trash: "ゴミ箱"
+  discussion_managment: "管理画面"
+  open_new_discussion: "掲示板に投稿する"
+  assigned_to: "%{agent}に委託する"
+  unassigned: "未割り当て"
+  private: "非公開"
+  public: "公開済み"
+  save_changes: "変更を保存"
+
+  # Discussion controls
+  change_status: "状態を変更する"
+  status: "状態"
+  mark_closed: "解決済みにする"
+  reopen: "再開"
+  mark_spam: "迷惑メールにする"
+  mark_new: "新着にする"
+  assign_agent: "委託するエージェント"
+  selected_messages:
+    one: "1 選択されたメッセージ"
+    two: "2 選択されたメッセージ"
+    other: "%{count} 選択されたメッセージ"
+
+  # Discussion messages
+  reopen_message: "サポットスタッフにより再開されました"
+  close_message: "このサポットチケットはサポットスタッフにより解決済みしました"
+  trash_message: "このサポットチケットは削除されました"
+  assigned_message: "やり取りは%{assigned_to}に転送されました"
+
+  # User Admin
+  contact_info: "連絡先"
+  social_info: "SNS"
+  edit_user:
+  work_phone: "職場の電話番号"
+  cell_phone: "携帯電話番号"
+
+  # User search results
+  users_found:
+    one: "1 ユーザーを見つけました"
+    other: "%{count} ユーザーを見つけました： %{query}"
+
+  # Discussion View
+  asked_a_question: "%{user_name}さんは質問しました"
+  replied: "%{user_name}さんは返信しました"
+  posted_note: "%{user_name}さんは社内メモを投稿する"
+  type_reply: "ご記入いただくか、下記のテンプレートより返信内容をお選びください。"
+  select_common: "テンプレート選択"
+  reply: "返信"
+  internal_note: "社内メモ"
+  upvote:
+    one: "いいね | %{count}"
+    other: "いいね | %{count}"
+
+  # Content
+  new_category: "新しいカテゴリー"
+  new_content: "新しいコンテント"
+  front_page_categories: "フロントページカテゴリー"
+  other_categories: "他のカテゴリー"
+  edit: "編集"
+  edit_category: 'カテゴリーの編集'
+  select_category: 'カテゴリー選択'
+  delete: "削除"
+  view_and_edit: "ビュー．編集"
+  delete_confirm: "削除しますか？"
+  select_icon_helptext: "カテゴリーと関係しているものをアイコンよりお選びください"
+
+  # Communities
+  new_community: "コミュニティの作成"
+  create_new_community: "コミュニティの作成"
+
+  activerecord:
+    attributes:
+      user:
+        email: "Eメール"
+        password: "パスワード"
+        name: "名前"
+        company: "会社"
+        work_phone: "代表番号"
+        cell_phone: "携帯電話番号"
+        city: "都市"
+        state: "州"
+      topic:
+        name: "題名"
+      post:
+        kind: "種類"
+      category:
+        name: "名前"
+        icon: "アイコン"
+        keywords: "キーワード"
+        title_tag: "タイトルタグ"
+        meta_description: "メタディスクリプション"
+        front_page: "フロントページ"
+        active: "アクティブ"
+      doc:
+        title: "タイトル"
+        meta_description: "メタディスクリプション"
+        title_tag: "タイトルタグ"
+        keywords: "キーワード"
+        category_id: "カテゴリー"
+        active: "アクティブ"
+        front_page: "フロントページを作成しますか？"
+      forum:
+        name: "名"
+        description: "説明"
+
+    helpers:
+      submit:
+        topic:
+          create: "作成する"
+        post:
+          create:　"作成する"
