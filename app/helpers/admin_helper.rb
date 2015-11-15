@@ -29,7 +29,7 @@ module AdminHelper
           select += "<optgroup label='#{I18n.translate("i18n_languages.#{locale}")}'>"
         end
         Doc.replies.with_translations(locale).all.each do |doc|
-          select += "<option value='#{doc.body}'>#{doc.title}</option>"
+          select += "<option value='#{strip_tags(doc.body)}'>#{doc.title}</option>"
         end
         select += "</optgroup>"
       end
