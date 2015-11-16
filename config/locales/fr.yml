@@ -10,7 +10,7 @@ fr:
   knowledgebase: "Base de connaissances"
   community: "Communauté"
   ask_a_question: "Poser une question"
-  home: "Page d'accueil"
+  home: *root
   login: "Connexion"
   logout: "Déconnexion"
   register: "Signer"
@@ -23,8 +23,8 @@ fr:
 
   # Voting widget
   did_this_help: "Cela at-il aidé à résoudre votre problème?"
-  yes: 'Oui'
-  no: 'Non'
+  yes_button: 'Oui'
+  no_button: 'Non'
 
   # Search
   search_placeholder: "Entrez un mot-clé, sujet ou une question"
@@ -244,4 +244,3 @@ fr:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
-            

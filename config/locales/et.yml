@@ -10,7 +10,7 @@ et:
   knowledgebase: "Teadmistebaas"
   community: "Kommuun"
   ask_a_question: "Küsi küsimus"
-  home: "Kodu"
+  home: *root
   login: "Logi sisse"
   logout: "Logi välja"
   register: "Registreeri"
@@ -23,8 +23,8 @@ et:
 
   # Voting widget
   did_this_help: "Kas said selle probleemi lahendatud?"
-  yes: 'Jah'
-  no: 'Ei'
+  yes_button: 'Jah'
+  no_button: 'Ei'
 
   # Search
   search_placeholder: "Sisesta märksõna, teema või küsimus"

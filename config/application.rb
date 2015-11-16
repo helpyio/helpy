@@ -26,7 +26,7 @@ module Helpy
 
 
 
-    I18n.available_locales = [:en, :fr, :et, :ca, 'zh-cn', 'zh-tw']
+    I18n.available_locales = [:en, :fr, :et, :ca, :ja, 'zh-cn', 'zh-tw']
 #    I18n.available_locales = [:en]
     config.i18n.default_locale = :en
     #config.i18n.fallbacks = [ :en ]

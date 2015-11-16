@@ -1,5 +1,6 @@
 ja:
-  root: 'ホーム'
+  language_name: "日本語"
+  root: &root 'ホーム'
   how_can_we_help: "なにかお探しでしょうか？"
   browse_topics: "トピックを検索"
   support_team: "サポットチーム"
@@ -9,7 +10,7 @@ ja:
   knowledgebase: "知識ベース"
   community: "コミュニティ"
   ask_a_question: "質問をする"
-  home: "ホーム"
+  home: *root
   login: "ログイン"
   logout: "ログアウト"
   register: "登録"
@@ -20,8 +21,8 @@ ja:
 
   # Voting widget
   did_this_help: "このヘルプは役に立ちましたか？"
-  yes: '役に立った'
-  no: '役に立たなかった'
+  yes_button: '役に立った'
+  no_button: '役に立たなかった'
 
   # Search　検索
   search_placeholder: "ご質問．問題の内容は？"
@@ -208,3 +209,33 @@ ja:
           create: "作成する"
         post:
           create:　"作成する"
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"

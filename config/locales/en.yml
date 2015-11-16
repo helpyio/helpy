@@ -23,8 +23,8 @@ en:
 
   # Voting widget
   did_this_help: "Did this solve your problem?"
-  yes: 'Yes'
-  no: 'No'
+  yes_button: 'Yes'
+  no_button: 'No'
 
   # Search
   search_placeholder: "Enter a keyword, topic, or question"

@@ -10,7 +10,7 @@ zh-tw:
   knowledgebase: "知識庫"
   community: "社區"
   ask_a_question: "發問"
-  home: "首頁"
+  home: *root
   login: "登入"
   logout: "登出"
   register: "新用戶註冊"
@@ -21,8 +21,8 @@ zh-tw:
 
   # Voting widget
   did_this_help: "這是否解決你的問題？"
-  yes: "是"
-  no: "否"
+  yes_button: "是"
+  no_button: "否"
 
   # Search
   search_placeholder: "輸入關鍵字, 主題, 或問題"
@@ -240,4 +240,3 @@ zh-tw:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
-           

@@ -10,7 +10,7 @@ ca:
   knowledgebase: "Base de coneixament"
   community: "Comunitat"
   ask_a_question: "Fer una pregunta"
-  home: "Home"
+  home: *root
   login: "Iniciar"
   logout: "Sortir"
   register: "Registrar-se"
@@ -21,8 +21,8 @@ ca:
 
   # Voting widget
   did_this_help: "Això ha solucionat el teu problema?"
-  yes: 'Si'
-  no: 'No'
+  yes_button: 'Si'
+  no_button: 'No'
 
   # Search
   search_placeholder: "Entra una paraula clau, tema o pregunta"
