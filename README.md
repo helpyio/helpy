@@ -16,15 +16,15 @@ Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
-- **Multi-lingual:** Currently the app is ready to translate and includes translations for English, French and Estonian.
+- **Multi-lingual:** Currently the app is ready to translate and includes translations for English, French, Catalan, Chinese, Japanese and Estonian.
 
 Live Demo
 ---------
 
 Admin User: `admin@test.com` and password: `12345678`
 
-http://demo.helpy.io/
-
+Front End: http://demo.helpy.io/en/
+Admin Panel: http://demo.helpy.io/admin
 
 Roadmap
 -------
@@ -33,7 +33,6 @@ Roadmap
 - Add "related articles" section to knowledgebase
 - Add commenting to knowledgebase using community functions
 - Insert link to KB articles into reply in admin
-- Support code formatting in the Knowledgebase
 - Set up JSON API hooks, and test
 - Convert admin to use react.js
 - Continue to clean up and remove cruft (this is based on an old rails 2 project)
@@ -62,16 +61,15 @@ Helpy leverages three external services to help out:
 
 Mandrill and Cloudinary have a free tier that should get you started.  To see how to configure Helpy to use Mandrill as your email provider, see the wiki.
 
-1. To get started, install the app and make sure you seed the database `rake db:seed`  You can also populate the database with fake data by running `rake db:populate`
-2. Open up the `settings.yml` to configure the system.  You will need to add your Mandrill and Google Analytics configs here.
-3. Run `rake secret` to secure your app.
-4. You will also need to sign up for an API key/account with an email provider.  I like Mandrill, and Helpy ships with the gem, although switching provider should be trivial.  To get inbound email functioning, review the wiki: [https://github.com/scott/helpy/wiki/How-to-receive-email-with-Mandrill](https://github.com/scott/helpy/wiki/How-to-receive-email-with-Mandrill)
-5. You will also need to sign up for an account with Cloudinary, and complete `cloudinary.yml.config` (remove the .config) with your specific info.
+How to Install: [http://support.helpy.io](http://support.helpy.io)
+Installation Wiki: [https://github.com/scott/helpy/wiki/](https://github.com/scott/helpy/wiki/)
 
 Contributing
 ============
 
-I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality.  To submit translations, please see the guide in the wiki and send me a gist to your translation file.  For new functionality, follow the standard approach:
+**Helpy needs your help speading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
+
+I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality. To submit translations, please see the guide in the wiki and send me a gist to your translation file.  For new functionality, follow the standard approach:
 
 1. Fork the project
 2. Create a Branch for your contribution
