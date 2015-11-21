@@ -1,6 +1,7 @@
 <div id="left-col" class="col-md-3 hidden-sm hidden-xs affix affix-top">
   <ul class="list-unstyled border-right">
-  <% @categories.each do |category| %>
+  <% @categories.with_translations(I18n.locale).each do |category| %>
+    <% if category.docs.with_translations(I18n.locale).count > 0 %>
     <li class="">
       <% if @category.nil? %>
       <%= link_to category.name.titleize, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
@@ -8,6 +9,7 @@
       <%= link_to category.name.titleize, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
       <% end %>
     </li>
+    <% end %>
   <% end %>
   </ul>
 </div>

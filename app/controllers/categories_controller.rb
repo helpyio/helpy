@@ -5,17 +5,15 @@ class CategoriesController < ApplicationController
   before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
-  #before_filter :authenticate_master?, :except => 'index'
-
   # GET /categories
   # GET /categories.xml
   def index
 
-    if I18n.available_locales.count > 1
+    #if I18n.available_locales.count > 1
       @categories = Category.active.alpha.with_translations(I18n.locale)
-    else
-      @categories = Category.active.alpha
-    end
+    #else
+    #  @categories = Category.active.alpha
+    #end
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
     @title_tag = "#{Settings.site_name}: " + @page_title
     @meta_desc = "Knowledgebase for #{Settings.site_name}"

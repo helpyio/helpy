@@ -5,7 +5,7 @@
 <% end %>
 <% if I18n.available_locales.count > 1 %>
   |
-<span class="btn-group">
+<span class="btn-group select-locale">
   <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
   <ul class="dropdown-menu dropdown-menu-right" role="menu">
     <% I18n.available_locales.sort.each do |l| %>

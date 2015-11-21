@@ -2,70 +2,96 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
 
-  test "a browsing user should get index" do
-    get :index, locale: :en
-    assert_response :success
+  setup do
+    # reset the available_locales before each test because on tests where
+    # this is reduced, it persists and breaks other tests
+    I18n.available_locales = [:en, :fr, :et]
   end
 
-  test "a browsing user should get show" do
+  test "a browsing user in the default locale should be able to load the index and see categories" do
+    get :index, locale: :en
+    assert_response :success
+
+    # Should see at least once category
+    assert_select 'a#category-1', true
+
+    # should be able to see Documents
+    assert_select 'li.article', true
+
+  end
+
+  test "a browsing user in a locale without translations should be able to load the index and see no categories" do
+    get :index, locale: :fr
+    assert_response :success
+
+    # Make sure nothing here message shown
+    assert_select 'div.nothing-in-locale', true
+
+  end
+
+  test "a browsing user in the default locale should be able to see a category page" do
     get :show, id: 1, locale: :en
     assert_response :success
+
+    # should be able to see Documents
+    assert_select 'li.article', true
+
   end
 
   # logged out, should not get these pages
 
-  test "a browsing user should not get new" do
+  test "a browsing user should not be able to load new" do
     get :new, locale: :en
     assert_redirected_to new_user_session_path
   end
 
-  test "a browsing user should not get edit" do
+  test "a browsing user should not be able to load edit" do
     get :edit, { id: 1, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
-  test "a browsing user should not get create" do
+  test "a browsing user should not be able to load create" do
     post :create, category: {name: "some name" }, locale: :en
     assert_redirected_to new_user_session_path
   end
 
-  test "a browsing user should not get update" do
+  test "a browsing user should not be able to load update" do
     patch :update, { id: 1, category: { name: "some name" }, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
-  test "a browsing user should not get destroy" do
+  test "a browsing user should not be able to load destroy" do
     delete :destroy, { id: 1, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
   # logged in user, should not get these pages
 
-  test "a signed in user should not get new" do
+  test "a signed in user should be able to load get new" do
     sign_in users(:user)
     get :new, locale: :en
     assert_redirected_to root_path
   end
 
-  test "a signed in user should not get edit" do
+  test "a signed in user should not be able to load edit" do
     sign_in users(:user)
     get :edit, { id: 1, locale: :en }
     assert_redirected_to root_path
   end
 
-  test "a signed in user should not get create" do
+  test "a signed in user should not be able to load create" do
     sign_in users(:user)
     post :create, category: {name: "some name"}, locale: :en
     assert_redirected_to root_path
   end
 
-  test "a signed in user should not get update" do
+  test "a signed in user should not be able to load update" do
     sign_in users(:user)
     patch :update, { id: 1, category: { name: "some name" }, locale: :en }
     assert_redirected_to root_path
   end
 
-  test "a signed in user should not get destroy" do
+  test "a signed in user should not be able to load destroy" do
     sign_in users(:user)
     delete :destroy, { id: 1, locale: :en}
     assert_redirected_to root_path
@@ -81,11 +107,26 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "an admin should get edit" do
+  test "an admin should be able to edit a category" do
     sign_in users(:admin)
     get :edit, id: 1, locale: :en
     assert_response :success
   end
+
+  test "when there are multiple available_locales there should be a translate dropdown" do
+    sign_in users(:admin)
+    get :edit, id: 1, locale: :en
+    assert_select 'select#lang', 1
+  end
+
+  test "when there is one available_locales there should not be a translate dropdown" do
+    sign_in users(:admin)
+    I18n.available_locales = [:en]
+    get :edit, id: 1, locale: :en do
+      assert_select 'select#lang', 0
+    end
+  end
+
 
   test "an admin should be able to create a new category" do
     sign_in users(:admin)

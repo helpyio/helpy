@@ -40,4 +40,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # test locales
+  config.i18n.available_locales = [:en, :fr, :et]
+  config.i18n.default_locale = :en
+  config.i18n.fallbacks = true
+
+
 end

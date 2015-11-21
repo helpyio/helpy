@@ -95,18 +95,6 @@ ActiveRecord::Schema.define(version: 20151107185413) do
     t.datetime "updated_at",                       null: false
   end
 
-  create_table "forum_translations", force: :cascade do |t|
-    t.integer  "forum_id",    null: false
-    t.string   "locale",      null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "name"
-    t.text     "description"
-  end
-
-  add_index "forum_translations", ["forum_id"], name: "index_forum_translations_on_forum_id", using: :btree
-  add_index "forum_translations", ["locale"], name: "index_forum_translations_on_locale", using: :btree
-
   create_table "forums", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
