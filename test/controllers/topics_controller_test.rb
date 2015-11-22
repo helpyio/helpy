@@ -2,6 +2,11 @@ require 'test_helper'
 
 class TopicsControllerTest < ActionController::TestCase
 
+  setup do
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
+  end
+
   test "a browsing user should get index of topics in a public forum" do
     get :index, forum_id: 3, locale: :en
     assert_not_nil assigns(:topics)

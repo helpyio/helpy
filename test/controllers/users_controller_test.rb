@@ -2,6 +2,11 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
 
+  setup do
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
+  end
+
   # browsers
 
   test "a browser should NOT be able to view edit profile page" do

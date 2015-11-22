@@ -25,3 +25,10 @@ four_translation:
   name: some title
   created_at: 2015-10-30 03:04:05.157655
   updated_at: 2015-10-30 03:04:05.157655
+
+four_translation:
+  locale: et
+  category_id: 1
+  name: some title in estonian
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655

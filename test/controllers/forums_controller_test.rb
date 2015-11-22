@@ -2,10 +2,16 @@ require 'test_helper'
 
 class ForumsControllerTest < ActionController::TestCase
 
+  setup do
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
+  end
+
   test "a browsing user should get index" do
     get :index, locale: :en
     assert_response :success
     assert_equal(3, assigns(:forums).count)
+
   end
 
   # logged out, should not get these pages

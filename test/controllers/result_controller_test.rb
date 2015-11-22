@@ -7,7 +7,8 @@ class ResultControllerTest < ActionController::TestCase
     # Build PG search
     PgSearch::Multisearch.rebuild(Doc)
     PgSearch::Multisearch.rebuild(Topic)
-
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
   end
 
   test "a browsing user searching for a doc should return a result" do
@@ -74,10 +75,9 @@ class ResultControllerTest < ActionController::TestCase
 
   test "a browing user shoud be able to search and find a newly created article" do
     I18n.locale = :en
-    @doc = Doc.create(category_id: 1, title: "some title", body: 'some body text')
-
-    # have to manually rebuild search
-    PgSearch::Multisearch.rebuild(Doc)
+    assert_difference 'Doc.count', 1 do
+      Doc.create(category_id: 1, title: "some title", body: 'some body text', locale: :en)
+    end
 
     get(:index, { q: 'some body text', locale: :en })
     assert_not_nil assigns(:results)
@@ -87,10 +87,8 @@ class ResultControllerTest < ActionController::TestCase
   end
 
   test "a browing user shoud not see HTML code in the search results" do
-    @doc = Doc.create(user_id: 1, category_id: 1, title: "new title", body: '<div><b>new</b> body text</div>')
-
-    # have to manually rebuild search
-    PgSearch::Multisearch.rebuild(Doc)
+    # Create new doc with html, so we can verify the html is stripped in the search results
+    Doc.create(user_id: 1, category_id: 1, title: "new title", body: '<div><b>new</b> body text</div>', locale: :en)
 
     get(:index, { q: 'new body text', locale: :en })
     assert_not_nil assigns(:results)

@@ -6,6 +6,8 @@ class AdminControllerTest < ActionController::TestCase
     # login admin for all tests of admin functions
     sign_in users(:admin)
     @request.headers["Accepts"] = "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
   end
 
   ### Topic Views

@@ -4,6 +4,8 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   setup do
     @request.env["devise.mapping"] = Devise.mappings[:user]
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
   end
 
   test "a logged in user should be able to edit their user profile" do

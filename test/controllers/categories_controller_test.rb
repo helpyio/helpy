@@ -6,6 +6,7 @@ class CategoriesControllerTest < ActionController::TestCase
     # reset the available_locales before each test because on tests where
     # this is reduced, it persists and breaks other tests
     I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
   end
 
   test "a browsing user in the default locale should be able to load the index and see categories" do
@@ -101,7 +102,7 @@ class CategoriesControllerTest < ActionController::TestCase
 
   #admin logged in, should get these pages
 
-  test "an admin should get new" do
+  test "an admin should be able to load new" do
     sign_in users(:admin)
     get :new, locale: :en
     assert_response :success
@@ -113,20 +114,19 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "when there are multiple available_locales there should be a translate dropdown" do
+  test "an admin should see a translate dropdown when there are multiple available_locales" do
     sign_in users(:admin)
     get :edit, id: 1, locale: :en
     assert_select 'select#lang', 1
   end
 
-  test "when there is one available_locales there should not be a translate dropdown" do
+  test "an admin should not see a translate dropdown when there is only one available_locale" do
     sign_in users(:admin)
     I18n.available_locales = [:en]
     get :edit, id: 1, locale: :en do
       assert_select 'select#lang', 0
     end
   end
-
 
   test "an admin should be able to create a new category" do
     sign_in users(:admin)

@@ -2,6 +2,11 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
 
+  setup do
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
+  end
+
   # browsers (anonymous users)
 
   test "a browsing user should get index of posts for a given topic, if its public" do
