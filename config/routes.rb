@@ -1,61 +1,80 @@
 Rails.application.routes.draw do
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root to: "locales#redirect_on_locale"
 
-  root to: "home#index"
 
-  devise_for :users, controllers: {
-        registrations: 'registrations'
-      }
+  localized do
 
-  resources :knowledgebase, :as => 'categories', :controller => "categories" do
-    #collection do
-    #  get 'admin'
-    #end
-    resources :docs
-  end
-  resources :docs
-  resources :community, :as => 'forums', :controller => "forums" do
-    resources :topics
-  end
-  resources :topics do
+    root to: "home#index"
+
+    devise_for :users, controllers: {
+          registrations: 'registrations'
+        }
+
+
+    resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit] do
+      #collection do
+      #  get 'admin'
+      #end
+      resources :docs, except: [:new, :edit]
+    end
+
+    resources :docs, except: [:new, :edit]
+    resources :community, :as => 'forums', :controller => "forums" do
+      resources :topics
+    end
+    resources :topics do
+      resources :posts
+    end
     resources :posts
+
+    resources :users
+
+    post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote
+    post 'post/:id/vote' => 'posts#up_vote', as: :post_vote
+    get 'result' => 'result#index', as: :result
+    get 'tickets' => 'topics#tickets', as: :tickets
+    get 'ticket/:id/' => 'topics#ticket', as: :ticket
+    get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
+    get 'locales/select' => 'locales#select', as: :select_locale
   end
-  resources :posts
 
-  resources :users
-
-  post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote
-  post 'post/:id/vote' => 'posts#up_vote', as: :post_vote
-  get 'result' => 'result#index', as: :result
-  get 'tickets' => 'topics#tickets', as: :tickets
-  get 'ticket/:id/' => 'topics#ticket', as: :ticket
-  get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
+  get '/switch_locale' => 'home#switch_locale', as: :switch_locale
 
   # Admin Routes
-  get 'admin' => 'admin#tickets', as: :admin
-  get 'admin/dashboard' => 'admin#dashboard', as: :admin_dashboard
-  get 'admin/content' => 'admin#knowledgebase', as: :admin_knowledgebase
-  get 'admin/content/:category_id/articles' => 'admin#articles', as: :admin_articles
-  get 'admin/tickets' => 'admin#tickets', as: :admin_tickets
-  get 'admin/ticket/:id' => 'admin#ticket', as: :admin_ticket
-  get 'admin/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
-  post 'admin/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
-  get 'admin/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
-  get 'admin/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
-  get 'admin/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
-  get 'admin/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
-  get 'admin/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
-  get 'admin/communities' => 'admin#communities', as: :admin_communities
-  get 'admin/users'
-  get 'admin/user/:id/edit' => 'admin#edit_user', as: :admin_user
-  get 'admin/user/:id' => 'admin#user_profile', as: :user_profile
-  get 'admin/topic_search' => 'admin#topic_search', as: :admin_search
-  get 'admin/user_search' => 'admin#user_search', as: :user_search
+
+  scope 'admin' do
+
+    get '/' => 'admin#tickets', as: :admin
+
+    resources :docs, only: [:new, :edit]
+    resources :knowledgebase, :as => 'categories', :controller => "categories", only: [:new, :edit] do
+      resources :docs, only: [:new, :edit]
+    end
+
+    get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
+    get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
+    get '/content/:category_id/articles' => 'admin#articles', as: :admin_articles
+    get '/tickets' => 'admin#tickets', as: :admin_tickets
+    get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
+    get '/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
+    post '/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
+    get '/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
+    get '/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
+    get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
+    get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
+    get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
+    get '/communities' => 'admin#communities', as: :admin_communities
+    #get '/users'
+    get '/user/:id/edit' => 'admin#edit_user', as: :admin_user
+    get '/user/:id' => 'admin#user_profile', as: :user_profile
+    get '/topic_search' => 'admin#topic_search', as: :admin_search
+    get '/user_search' => 'admin#user_search', as: :user_search
+
+  end
+
+
 
 
   # Receive email from Griddler

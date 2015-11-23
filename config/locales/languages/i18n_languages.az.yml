@@ -1,0 +1,90 @@
+---
+az:
+  i18n_languages:
+    af: afrikaans
+    ar: ərəb
+    az: azərbaycan
+    be: belarus
+    bg: bolqar
+    bn: benqal
+    bs: bosniak
+    ca: katalan
+    ceb: kebuano dili
+    cs: çex
+    cy: uels
+    da: danimarka
+    de: alman
+    el: yunan
+    en: ingilis
+    eo: esperanto
+    es: ispan
+    et: eston
+    eu: bask
+    fa: fars
+    fi: fin
+    fr: fransız
+    ga: irland
+    gl: qalisian
+    gu: qucarat
+    ha: hausa
+    hi: hindi
+    hmn: monq dili
+    hr: xorvat
+    ht: haiti
+    hu: macar
+    hy: erməni
+    id: indonez
+    ig: iqbo
+    is: island
+    it: italyan
+    ja: yapon
+    ka: gürcü
+    kk: qazax
+    km: kxmer
+    kn: kannada
+    ko: koreya
+    la: latın
+    lo: laos
+    lt: litva
+    lv: latış
+    mg: malaqas
+    mi: maori
+    mk: makedon
+    ml: malayalam
+    mn: monqol
+    mr: marati
+    ms: malay
+    mt: malta
+    my: birma
+    ne: nepal
+    nl: holland
+    ny: nyanca dili
+    pa: pəncab
+    pl: polyak
+    pt: portuqal
+    ro: rumın
+    ru: rus
+    si: sinhal
+    sk: slovak
+    sl: sloven
+    so: somali
+    sq: alban
+    sr: serb
+    st: Sesoto dili
+    su: sudan
+    sv: isveç
+    sw: suahili
+    ta: tamil
+    te: teluqu
+    tg: tacik
+    th: tay
+    tl: taqaloq dili
+    tr: türk
+    uk: ukrayna
+    ur: urdu
+    uz: özbək
+    vi: vyetnam
+    yi: Yahudi dili
+    yo: yoruba
+    zh: çin
+    zu: zulu

@@ -1,0 +1,8 @@
+<% if I18n.available_locales.count > 1 %>
+<div class="form-group">
+  <label class="control-label" for="locale_to_edit">Add Translation For:</label>
+  <form id="locale-change" method="get">
+    <%= select_tag "lang", options_for_select(I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }, params[:lang]), {id: "lang", class: "form-control"} if I18n.available_locales.count > 0 %>
+  </form>
+</div>
+<% end %>

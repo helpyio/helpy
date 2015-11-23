@@ -21,7 +21,6 @@
 
 one:
   id: 1
-  name: active and featured
   active: true
   front_page: true
 

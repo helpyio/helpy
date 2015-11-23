@@ -34,6 +34,9 @@ class Doc < ActiveRecord::Base
 
   has_paper_trail
 
+  translates :title, :body, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: false, versioning: :paper_trail
+  globalize_accessors
+
   paginates_per 25
   has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif]
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726192908) do
+ActiveRecord::Schema.define(version: 20151107185413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,35 @@ ActiveRecord::Schema.define(version: 20150726192908) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
+
+  create_table "category_translations", force: :cascade do |t|
+    t.integer  "category_id",      null: false
+    t.string   "locale",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "name"
+    t.string   "keywords"
+    t.string   "title_tag"
+    t.string   "meta_description"
+  end
+
+  add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
+  add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
+
+  create_table "doc_translations", force: :cascade do |t|
+    t.integer  "doc_id",           null: false
+    t.string   "locale",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "title"
+    t.text     "body"
+    t.string   "keywords"
+    t.string   "title_tag"
+    t.string   "meta_description"
+  end
+
+  add_index "doc_translations", ["doc_id"], name: "index_doc_translations_on_doc_id", using: :btree
+  add_index "doc_translations", ["locale"], name: "index_doc_translations_on_locale", using: :btree
 
   create_table "docs", force: :cascade do |t|
     t.string   "title"
@@ -199,6 +228,7 @@ ActiveRecord::Schema.define(version: 20150726192908) do
     t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
+    t.string   "locale"
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree

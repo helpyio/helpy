@@ -1,5 +1,6 @@
 ca:
-  root: 'Home'
+  language_name: "Català"
+  root: &root 'Home'
   how_can_we_help: "Com el podem ajudar?"
   browse_topics: "Navegar pels temes"
   support_team: "Atenció al client"
@@ -9,7 +10,7 @@ ca:
   knowledgebase: "Base de coneixament"
   community: "Comunitat"
   ask_a_question: "Fer una pregunta"
-  home: "Home"
+  home: *root
   login: "Iniciar"
   logout: "Sortir"
   register: "Registrar-se"
@@ -20,8 +21,8 @@ ca:
 
   # Voting widget
   did_this_help: "Això ha solucionat el teu problema?"
-  yes: 'Si'
-  no: 'No'
+  yes_button: 'Si'
+  no_button: 'No'
 
   # Search
   search_placeholder: "Entra una paraula clau, tema o pregunta"
@@ -209,3 +210,33 @@ ca:
           create: Començar un nou debat
         post:
           create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"

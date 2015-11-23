@@ -1,0 +1,26 @@
+one_translation:
+  doc_id: 1
+  title: Article 1
+  body: article1 text
+  keywords: My article keywords
+  locale: en
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655
+
+two_translation:
+  doc_id: 2
+  title: Article 2
+  body: article 2 text
+  keywords: My Article keywords 2
+  locale: en
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655
+
+three_translation:
+  doc_id: 3
+  title: Article 3
+  body: "*article 3* text"
+  keywords: My Article keywords 2
+  locale: en
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655

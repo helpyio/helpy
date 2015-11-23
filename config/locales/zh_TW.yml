@@ -1,5 +1,6 @@
-zh-TW:
-  root: "首頁"
+zh-tw:
+  language_name: "中文（繁体）"
+  root: &root "首頁"
   how_can_we_help: "如何為你提供協助？"
   browse_topics: "瀏覽標題"
   support_team: "支援小組"
@@ -9,7 +10,7 @@ zh-TW:
   knowledgebase: "知識庫"
   community: "社區"
   ask_a_question: "發問"
-  home: "首頁"
+  home: *root
   login: "登入"
   logout: "登出"
   register: "新用戶註冊"
@@ -20,8 +21,8 @@ zh-TW:
 
   # Voting widget
   did_this_help: "這是否解決你的問題？"
-  yes: "是"
-  no: "否"
+  yes_button: "是"
+  no_button: "否"
 
   # Search
   search_placeholder: "輸入關鍵字, 主題, 或問題"
@@ -209,3 +210,33 @@ zh-TW:
            create: 建立
          post: #帖子
            create: 建立
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"

@@ -1,5 +1,6 @@
 et:
-  root: 'Kodu'
+  language_name: 'eesti'
+  root: &root 'Kodu'
   how_can_we_help: "Kuidas saame aidata?"
   browse_topics: "Teemade sirvimine"
   support_team: "Kasutajatoe tiim"
@@ -9,7 +10,7 @@ et:
   knowledgebase: "Teadmistebaas"
   community: "Kommuun"
   ask_a_question: "Küsi küsimus"
-  home: "Kodu"
+  home: *root
   login: "Logi sisse"
   logout: "Logi välja"
   register: "Registreeri"
@@ -17,11 +18,13 @@ et:
   welcome_back: "Tere tulemast tagasi %{username}"
   your_profile: "Sinu profiil"
   your_tickets: "Sinu piletid"
+  locale:
+  change_your_locale:
 
   # Voting widget
   did_this_help: "Kas said selle probleemi lahendatud?"
-  yes: 'Jah'
-  no: 'Ei'
+  yes_button: 'Jah'
+  no_button: 'Ei'
 
   # Search
   search_placeholder: "Sisesta märksõna, teema või küsimus"
@@ -162,6 +165,7 @@ et:
   view_and_edit: "Vaata ja Muuda sisu"
   delete_confirm: "Palun kinnita, et soovid seda kustutada!"
   select_icon_helptext: "Vali ikoon mida seostada selle kategooriaga (valikuline)"
+  translate:
 
   # Communities
   new_community: Loo uus kommuun
@@ -209,3 +213,33 @@ et:
           create: Alusta uus teema
         post:
           create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"

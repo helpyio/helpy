@@ -15,13 +15,13 @@
 							<%= menu_divider %>
 							<%= menu_item "#{t(:back_to).titleize} #{Settings.parent_company}", Settings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
 
+							<%= menu_item t(:locale), select_locale_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
 							<% if user_signed_in? %>
-							<%= menu_item t(:your_profile), edit_user_registration_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>							
+							<%= menu_item t(:your_profile), edit_user_registration_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
 							<%= menu_item t(:logout), destroy_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
 							<% else %>
 							<%= menu_item t(:login), new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
 							<% end %>
-
 					<% end %>
 			<% end %>
 </div>

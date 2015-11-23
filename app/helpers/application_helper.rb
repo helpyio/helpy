@@ -40,4 +40,28 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def locale_select
+
+    options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
+
+    tag = "<select name='lang' class='form-control' id='lang'>"
+    tag += "<option value='#{I18n.locale}'>Translate to a different language...</option>"
+
+    I18n.available_locales.sort.each do |locale|
+      selected = "selected" if "#{locale}" == params[:lang]
+      I18n.with_locale(locale) do
+        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize.to_s}</option>" #unless locale == I18n.locale
+      end
+    end
+    tag += "</select>"
+    tag += "<hr/>"
+
+    content_tag(:div, class: ['form-group']) do
+      form_tag('#', id: "locale-change", method: 'get') do
+        tag.html_safe
+      end
+    end
+
+  end
+
 end

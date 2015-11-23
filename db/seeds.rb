@@ -15,7 +15,7 @@
   role: 'admin',
   thumbnail: 'logo.png',
   medium_image: 'logo.png',
-  large_image: 'logo.png',  
+  large_image: 'logo.png',
   admin: true)
 
   system_user = User.create!(
@@ -56,10 +56,10 @@
   Category.create(name:'Top Issues',icon: 'exclamation-sign', title_tag: 'Solutions to Top Issues',meta_description:'Answers to our most frequent issues', front_page: true)
   Category.create(name:'General Questions', icon: 'question-sign', title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here', front_page: true)
   Category.create(name:'Troubleshooting', icon: 'ok-circle', title_tag: 'Troubleshooting',meta_description:'Got a problem? Start here to learn more about solving it', front_page: true)
-  Category.create(name:'How do I...', icon: 'send', title_tag: 'How to Accomplish specific things',meta_description:'Learn how to accomplish many common things with our solution', front_page: true)
-  Category.create(name:'FAQ', icon: 'list',title_tag: 'Frequently asked questions',meta_description:'Answers to all of our FAQs', front_page: true)
-  Category.create(name:'Billing', icon: 'credit-card',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)
-  Category.create(name:'Expert Tips', icon: 'road',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)
+#  Category.create(name:'How do I...', icon: 'send', title_tag: 'How to Accomplish specific things',meta_description:'Learn how to accomplish many common things with our solution', front_page: true)
+#  Category.create(name:'FAQ', icon: 'list',title_tag: 'Frequently asked questions',meta_description:'Answers to all of our FAQs', front_page: true)
+#  Category.create(name:'Billing', icon: 'credit-card',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)
+#  Category.create(name:'Expert Tips', icon: 'road',title_tag: 'Billing Support',meta_description:'Start here if you have billing questions', front_page: true)
 
   # Create first example tickets
   topic = Forum.find(1).topics.create(
@@ -74,4 +74,18 @@
   body: 'I am the creator of Helpy, and I wanted to take a moment to welcome you to the system.  I am very interested in your feedback, so please visit http://support.helpy.io/ and leave your thoughts there.',
   user_id: 3,
   kind: 'first'
+  )
+
+  topic.posts.create(
+  body: 'Helpy is largely a project of passion, and represents many hours of time spent coding, researching, developing ideas, documenting features, writing translations and helping to spread the word. This is all contributed for free by a community devoted to building a great customer support helpdesk, and viable alternative to commericial options like Zendesk and Desk.com.
+
+Despite all the gains thus far, we still need YOUR help. If you can do one of the following, please do so to help support the cause. The bigger we can grow the community, the better it will become:
+
+1. Help Spread the Word: If you like what we are doing, please SHARE, TWEET, POST, BLOG and tell all your friends about Helpy. Seriously, this is still a fairly young and little known project. Helping us spread the word is our number one request!
+
+2. Help with I18n: We have had some great translations contributed already. If you translate Helpy to you language and we don’t have it yet, please please please send us a pull request or gist of the yml file.
+
+Thanks in advance for helping us out!',
+  user_id: 3,
+  kind: 'reply'
   )

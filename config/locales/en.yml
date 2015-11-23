@@ -1,5 +1,6 @@
 en:
-  root: 'Home'
+  language_name: 'English' # The name of the translation file, in that language
+  root: &root 'Home'
   how_can_we_help: "How can we help?"
   browse_topics: "Browse Topics"
   support_team: "Support Team"
@@ -17,11 +18,13 @@ en:
   welcome_back: "Welcome Back %{username}"
   your_profile: "Your Profile"
   your_tickets: "Your Tickets"
+  locale: "Locale"
+  change_your_locale: "Change your Locale"
 
   # Voting widget
   did_this_help: "Did this solve your problem?"
-  yes: 'Yes'
-  no: 'No'
+  yes_button: 'Yes'
+  no_button: 'No'
 
   # Search
   search_placeholder: "Enter a keyword, topic, or question"
@@ -129,7 +132,7 @@ en:
   # User Admin
   contact_info: Contact
   social_info: Social
-  edit_user:
+  edit_user: Edit User
   work_phone: work
   cell_phone: cell
 
@@ -162,6 +165,7 @@ en:
   view_and_edit: "View and Edit Content"
   delete_confirm: "Please confirm you want to DELETE this!"
   select_icon_helptext: "Select an icon to associate with this category (optional)"
+  translate: "Translate to a different language"
 
   # Communities
   new_community: Create New Community
@@ -209,3 +213,33 @@ en:
           create: Start New Discussion
         post:
           create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"

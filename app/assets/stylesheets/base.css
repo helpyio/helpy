@@ -452,6 +452,10 @@ span.category-icon {
 	margin-top: 40px;
 }
 
+ul.dropdown-menu li a.strong {
+  font-weight: bolder;
+}
+
 /* === LAYOUT === */
 
 #breadcrumbs {
@@ -726,6 +730,12 @@ li.team-member {
 	padding-right: 10px;
 }
 
+ul.locale-list li {
+  border-bottom: 1px solid #eee;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 /* === KNOWLEDGEBASE === */
 
 
@@ -876,7 +886,7 @@ div.fieldWithErrors textarea
 	text-align: right;
 }
 
-#above-header ul {
+/*#above-header ul {
 	list-style-type: none;
 	display: inline;
 	float: right;
@@ -887,8 +897,8 @@ div.fieldWithErrors textarea
 	padding-right: 4px;
 	padding-left: 4px;
 }
-
-#above-header ul li a{
+*/
+above-header ul li a{
 	color: #666;
 	text-decoration: none;
 }

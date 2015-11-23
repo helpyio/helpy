@@ -91,7 +91,7 @@ Helpy.ready = function(){
     var element = document.querySelector("trix-editor");
     var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
     element.editor.insertHTML(thisImage);
-    
+
     $('.image_public_id').val(data.result.public_id);
     return true;
   });
@@ -245,6 +245,15 @@ Helpy.ready = function(){
         moreAni: "",
         lessAni: ""
     });
+
+  // Locale Picker
+  $('#lang').off().on('change', function() {
+    var url = $("#lang").val();
+    if(url !="")
+     {
+     $("#locale-change").submit();
+     }
+  });
 
 };
 

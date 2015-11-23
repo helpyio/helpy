@@ -59,7 +59,6 @@ class AdminController < ApplicationController
     end
 
 
-    @replies = Doc.replies
     @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
 
     respond_to do |format|

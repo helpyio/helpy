@@ -5,9 +5,9 @@ namespace :db do
 
   # How many fake objects to create
   number_support_team = 4
-  number_users = 25
-  number_docs = rand(10..20)
-  number_threads = rand(70..100)
+  number_users = 10
+  number_docs = rand(5..10)
+  number_threads = rand(20..50)
   number_tickets = rand(20..50)
 
 
@@ -89,6 +89,15 @@ namespace :db do
     puts "Created User: #{user.name}"
   end
 
+  # Create I18n versions for the demo
+  Category.all.each do |category|
+    category.attributes = {name: "Exemple catégorie traduit en français", locale: :fr}
+    category.save
+    category.attributes = {name: "Näide kategooria tõlgitud prantsuse", locale: :et}
+    category.save
+    category.attributes = {name: "Exemple categoria traduïda al francès", locale: :ca}
+    category.save
+  end
 
   # Create 10-50 Docs per category
   Category.all.each do |category|
@@ -105,7 +114,14 @@ namespace :db do
     end
   end
 
-
+  # Create 1 doc for each demo i18n language
+  Category.first.docs.first.attributes = {title: "La documentation de soutien Exemple traduit en français" ,body: '', locale: :fr}
+  Category.first.docs.first.save
+  Category.first.docs.first.attributes = {title: "Näide toetust dokumentatsiooni tõlgitud prantsuse" ,body: '', locale: :et}
+  Category.first.docs.first.save
+  Category.first.docs.first.attributes = {title: "Documentació de suport Exemple traduïda al francès" ,body: '', locale: :ca}
+  Category.first.docs.first.save
+  
   # Create community threads for our users
 
   number_threads.times do

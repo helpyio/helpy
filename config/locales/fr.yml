@@ -1,5 +1,6 @@
 fr:
-  root: "Page d'accueil"
+  language_name: "Français"
+  root: &root "Accueil"
   how_can_we_help: "Comment pouvons-nous aider?"
   browse_topics: "Feuilleter"
   support_team: "équipe De Soutien"
@@ -9,19 +10,21 @@ fr:
   knowledgebase: "Base de connaissances"
   community: "Communauté"
   ask_a_question: "Poser une question"
-  home: "Page d'accueil"
-  login: "Login"
-  logout: "se Déconnecter"
+  home: *root
+  login: "Connexion"
+  logout: "Déconnexion"
   register: "Signer"
   back_to: "Retour à"
   welcome_back: "Bienvenue à nouveau %{username}"
   your_profile: "Your Profile"
   your_tickets: "Vos billets"
+  locale: "Locale"
+  change_your_locale: "Change your Locale"
 
   # Voting widget
   did_this_help: "Cela at-il aidé à résoudre votre problème?"
-  yes: 'Oui'
-  no: 'Non'
+  yes_button: 'Oui'
+  no_button: 'Non'
 
   # Search
   search_placeholder: "Entrez un mot-clé, sujet ou une question"
@@ -63,7 +66,7 @@ fr:
   my_profile: 'My Profile'
 
   # devise/sessions/new
-  login: Log in
+  login: Connexion
 
   # devise/shared/links
   forgot_password: Forgot your password?
@@ -127,6 +130,17 @@ fr:
   work_phone: téléphone au travail
   cell_phone: portable
 
+  # User search results
+  users_found:
+    one: "1 user was found named %{query}"
+    other: "%{count} users were found named %{query}"
+
+  # Discussion messages
+  reopen_message: "This message has been reopened by the support staff"
+  close_message: "This ticket has been closed by the support staff."
+  trash_message: "This ticket has been deleted."
+  assigned_message: "Discussion has been transferred to %{assigned_to}."
+
   # Discussion View
   asked_a_question: "%{user_name} a posé une question..."
   replied: "%{user_name} a répondu..."
@@ -138,7 +152,6 @@ fr:
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
-
 
   # Content
   new_category: Nouvelle Catégorie
@@ -152,7 +165,7 @@ fr:
   view_and_edit: "Afficher et modifier le contenu"
   delete_confirm: "S'il vous plaît confirmer que vous souhaitez supprimer cette!"
   select_icon_helptext: "Sélectionnez une icône à associer à cette catégorie (facultatif)"
-
+  translate: "Translate to a different language"
 
   # Communities
   new_community: Nouvelle Communauté
@@ -162,8 +175,14 @@ fr:
     attributes:
       user:
         email: Email
-        password: Password
+        password: Mot de passe
         name: Nom
+        company: Company
+        work_phone: Work
+        cell_phone: Cell
+        city: City
+        state: State
+
       topic:
         name: Sujet
       post:
@@ -195,3 +214,33 @@ fr:
           create: Démarrer le nouvelle discussion
         post:
           create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"
