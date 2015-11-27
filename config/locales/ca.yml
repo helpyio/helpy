@@ -57,31 +57,31 @@ ca:
   no_tickets: "Encara no has creat cap tiquet"
 
   # Get Help
-  get_help_header: "Encara necessites ajuda??"
-  get_help_button: "Comença una dis"
+  get_help_header: "Encara necessites ajuda?"
+  get_help_button: "Comença un debat"
 
   # Profile
-  my_profile: 'My Profile'
+  my_profile: 'El meu perfil'
 
   # devise/sessions/new
-  login: Log in
+  login: Iniciar sessió
 
   # devise/shared/links
-  forgot_password: Forgot your password?
+  forgot_password: Has oblidat la teva contrassenya?
 
   # devise/passwords/new
-  send_instructions: Send me instructions
+  send_instructions: Envia'm les instruccions
 
   # devise/passwords/edit
-  change_password: Change password
-  new_password: New password
-  new_password_confirmation: Confirm new password
+  change_password: Contrassenya canviada
+  new_password: Nova contrassenya
+  new_password_confirmation: Confirma nova contrassenya
 
   # devise/confirmations/new
-  resend: Resend confirmation instructions
+  resend: Reenvia les instruccions de comfirmació
 
   # devise/registrations/new
-  sign_up: Sign Up
+  sign_up: Registrar-se
 
   # Admin menu
   discussions: Debats
@@ -122,7 +122,7 @@ ca:
     other: "%{count} missatges seleccionats"
 
   # Discussion messages
-  reopen_message: "Aquest missatge ha estat reobert per l'equip d'atenció al client"
+  reopen_message: "Aquest missatge ha estat reobert per l'equip d'atenció al client."
   close_message: "Aquest missatge ha estat tencat per l'equip d'antenció al client."
   trash_message: "Aquest missatge ha estat eliminat."
   assigned_message: "El debat ha estat transferit a %{assigned_to}."
