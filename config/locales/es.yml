@@ -1,0 +1,211 @@
+es:
+  root: 'Home'
+  how_can_we_help: "¿Cómo podemos ayudarle?"
+  browse_topics: "Navegar por los temas"
+  support_team: "Atención al cliente"
+  nothing_here: "No hay nada aquí!"
+
+  # Navigation
+  knowledgebase: "Base de conocimiento"
+  community: "Comunidad"
+  ask_a_question: "Hacer una pregunta"
+  home: "Home"
+  login: "Iniciar"
+  logout: "Salir"
+  register: "Registrarse"
+  back_to: "Volver"
+  welcome_back: "Bienvenido de nuevo %{username}"
+  your_profile: "Tu perfil"
+  your_tickets: "Tus tiquets"
+
+  # Voting widget
+  did_this_help: "¿Ha solucionado esto tu problema?"
+  yes: 'Si'
+  no: 'No'
+
+  # Search
+  search_placeholder: "Entra una palabra clave, tema o pregunta"
+  no_results: "No hay resultados, profavor prueba unos terminos distintos!"
+  results_found:
+    one: "se ha encontrado un resultado para su búsqueda"
+    other: "se han encontrado %{count} resultados para su búsqueda"
+
+  # Community
+  forum_name: "Tema"
+  subject: "Asunto"
+  last_activity: "Activo por última vez"
+  topic: "Debate"
+  replies: "Respuestas"
+  last_post: "Último post"
+  started_by: "Empezado por %{username}"
+  reply: "Responda este tema"
+  submit_reply: "Suba una respuesta"
+  posted: "Subida"
+  start_discussion: "Empieza un nuevo debate"
+  submit_start_discussion: "Empezar debate"
+  should_message_be_private: "¿Deberia ser privado este mensaje?"
+  only_support_can_respond: "Solo el equipo de atención al cliente puede responder (crea un tiquet privado)"
+  responses_can_come_from_everyone: "Las respuestas pueden ser de la comunidad o del equipo de atención al cliente (recomendado)"
+  collapsed_messages:
+      one: "1 mensaje minimizado"
+      two: "2 mensajes minimizados"
+      other: "%{count} mensajes minimizados"
+
+  # Tickets
+  tickets: "Tiquets"
+  no_tickets: "Aún no has creado ningún tiquet"
+
+  # Get Help
+  get_help_header: "¿Aún necesitas ayuda?"
+  get_help_button: "Empieza una discusión"
+
+  # Profile
+  my_profile: 'Mi perfil'
+
+  # devise/sessions/new
+  login: Iniciar sessión
+
+  # devise/shared/links
+  forgot_password: Has olvidado tu contraseña?
+
+  # devise/passwords/new
+  send_instructions: Enviame las instrucciones
+
+  # devise/passwords/edit
+  change_password: Canvia la contraseña
+  new_password: Nueva contraseña
+  new_password_confirmation: Confirmar nueva contraseña
+
+  # devise/confirmations/new
+  resend: Reenviar instrucciones de confirmación
+
+  # devise/registrations/new
+  sign_up: Registrarse
+
+  # Admin menu
+  discussions: Debates
+  content: Contenido
+  communities: Comunidades
+  app_store: App Store
+  search: Búsqueda
+
+  # Admin main/statuses
+  support_pipeline: Flujo de trabajo de atención al cliente
+  new: Nuevo
+  active: Activo
+  open: Abierto
+  mine: Mio
+  pending: Pendiente 
+  closed: Resuelto
+  spam: Spam
+  trash: Papelera
+  discussion_managment: Gestión de debates
+  open_new_discussion: Abrir debate
+  assigned_to: "asignado a %{agent}"
+  unassigned: no asignado
+  private: privado
+  public: publico
+  save_changes: Guardar cambios
+
+  # Discussion controls
+  change_status: Cambiar estado
+  status: Estado
+  mark_closed: Marcar como resuleto
+  reopen: Reabrir
+  mark_spam: Marcar como spam
+  mark_new: Marcar como nuevo
+  assign_agent: Asignar agente
+  selected_messages:
+    one: "1 mensaje seleccionado"
+    two: "2 mensajes seleccionados"
+    other: "%{count} mensajes seleccionados"
+
+  # Discussion messages
+  reopen_message: "Este mensaje ha sido reabierto por el equipo de atención al cliente"
+  close_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
+  trash_message: "Este mensaje ha sido eliminado."
+  assigned_message: "El debate se ha trasladado a %{assigned_to}."
+
+  # User Admin
+  contact_info: Contacto
+  social_info: Social
+  edit_user:
+  work_phone: trabajo
+  cell_phone: móvil
+
+  # User search results
+  users_found:
+    one: "1 usuario encontrado con nombre %{query}"
+    other: "%{count} usuarios encontrados con nombre %{query}"
+
+  # Discussion View
+  asked_a_question: "%{user_name} ha preguntado..."
+  replied: "%{user_name} ha contestado..."
+  posted_note: "%{user_name} ha subido un mensaje interno..."
+  type_reply: Escribe tu respuesta o selecciona una respuesta común debajo.
+  select_common: Selecciona una respuesta común
+  reply: Responde
+  internal_note: Nota interna
+  upvote:
+    one: "Votos positivos | %{count}"
+    other: "Votos positivos | %{count}"
+
+  # Content
+  new_category: Nueva categoria
+  new_content: Nuevo contenido
+  front_page_categories: Categoria de la página principal
+  other_categories: Otras categorías
+  edit: Editar
+  edit_category: Editar categoría
+  select_category: Seleccionar categoría
+  delete: Borrar
+  view_and_edit: "Ver i editar contenido"
+  delete_confirm: "Porfavor confirma que deseas ELIMINAR esto!"
+  select_icon_helptext: "Selecciona un icono para asociar con esta categoría (opcional)"
+
+  # Communities
+  new_community: Crea una nueva comunidad
+  create_new_community: Crea una nueva comunidad
+
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Contraseña
+        name: Nombre
+        company: Empresa
+        work_phone: Trabajo
+        cell_phone: Móvil
+        city: Ciudad
+        state: Estado o provincia
+
+      topic:
+        name: Asunto
+      post:
+        kind: Sexo
+      category:
+        name: Nombre
+        icon: Icono
+        keywords: Palabras clave
+        title_tag: Etiqueta de título
+        meta_description: Meta descripción
+        front_page: Página principal
+        active: Activo
+      doc:
+        title: Título
+        meta_description: Meta descripción
+        title_tag: Etiqueta de título
+        keywords: Palabras clave
+        category_id: Categoría
+        active: Activo
+        front_page: Destacado a la página principal?
+      forum:
+        name: Nombre
+        description: Descripción
+
+    helpers:
+      submit:
+        topic:
+          create: Empezar un nuevo debate
+        post:
+          create:
