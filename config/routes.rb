@@ -3,15 +3,20 @@ Rails.application.routes.draw do
 
   root to: "locales#redirect_on_locale"
 
+  devise_for :users, skip: [:session, :password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   localized do
 
     root to: "home#index"
 
-    devise_for :users, controllers: {
-          registrations: 'registrations'
-        }
+    get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 
+    #devise_for :users, controllers: {
+    #      registrations: 'registrations',
+    #      omniauth_callbacks: "callbacks"
+    #    }
+
+    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit] do
       #collection do

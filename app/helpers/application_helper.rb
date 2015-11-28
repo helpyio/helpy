@@ -64,4 +64,11 @@ module ApplicationHelper
 
   end
 
+  def login_with(with, redirect_to = "/#{I18n.locale}")
+    provider = (with == "google_oauth2") ? "google" : with
+    link_to(user_omniauth_authorize_path(with.to_sym, origin: redirect_to), class: ["btn","btn-block","btn-social","btn-#{provider}"], style: "color:white;") do
+      content_tag(:span, '', {class: ["fa", "fa-#{provider}"]}).html_safe + "Log in with #{provider.titleize}"
+    end
+  end
+
 end

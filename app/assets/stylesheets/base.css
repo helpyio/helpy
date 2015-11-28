@@ -211,6 +211,11 @@ div.add-form {
 .form-subhead {
   margin-bottom: 25px;
 }
+
+.login-buttons {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 /*
 h3 {
 	color: #ab2a30;

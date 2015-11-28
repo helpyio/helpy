@@ -1,7 +1,7 @@
 <% unless user_signed_in? %>
   <%= link_to "#{t(:back_to, default: "Back to")} #{Settings.parent_company}", Settings.parent_site %> | <%= link_to t(:login), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
 <% else %>
-  <%= link_to t(:welcome_back, :username => current_user.name.titleize), edit_user_registration_path %> | <%= link_to('Admin', admin_path) + " | " if current_user.admin? %><%= link_to t(:logout), destroy_user_session_path %>
+  <%= link_to t(:welcome_back, :username => current_user.name), edit_user_registration_path %> | <%= link_to('Admin', admin_path) + " | " if current_user.admin? %><%= link_to t(:logout), destroy_user_session_path %>
 <% end %>
 <% if I18n.available_locales.count > 1 %>
   |

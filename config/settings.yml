@@ -11,7 +11,7 @@ site_url: http://support.yourdomain.com # This is the URL of your support site
 site_name: Helpy Support # This is the name of your support site
 site_tagline: Support and Helpdesk Software # This is the tagline of your support site
 product_name: # This is the product name your are supporting
-support_phone: # This is support number to be displayed 
+support_phone: # This is support number to be displayed
 
 # Mandrill Account
 mandrill_username: #Enter your Madrill username
@@ -22,3 +22,17 @@ google_analytics_id: #Enter your analytics ID
 send_usage_data: true
 admin_email: inbound.support@yourdomain.com
 from_email: inbound.support@yourdomain.com
+
+# You must signup with each oauth provider you wish to support and add the ID and secret
+# for each below:
+#omniauth:
+#  providers:
+#    github:
+#      id:
+#      secret:
+#    twitter:
+#      id:
+#      secret:
+#    google:
+#      id:
+#      secret:

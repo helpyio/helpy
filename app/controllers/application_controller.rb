@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge(super)
   end
 
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || root_url
+  end
+
   private
 
   def set_locale
