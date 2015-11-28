@@ -7,7 +7,7 @@ ca:
   nothing_here: "No hi ha res aquí!"
 
   # Navigation
-  knowledgebase: "Base de coneixament"
+  knowledgebase: "Base de coneixement"
   community: "Comunitat"
   ask_a_question: "Fer una pregunta"
   home: *root
@@ -26,7 +26,7 @@ ca:
 
   # Search
   search_placeholder: "Entra una paraula clau, tema o pregunta"
-  no_results: "No hi ha resultats, siusplau prova uns termes diferents!"
+  no_results: "No hi ha resultats, si us plau prova uns termes diferents!"
   results_found:
     one: "s'ha trobat un resultat per la teva cerca "
     other: "s'han trobat %{count} resultats per la teva cerca "
@@ -40,13 +40,13 @@ ca:
   last_post: "Últim post"
   started_by: "Començat per %{username}"
   reply: "Contesteu aquest tema"
-  submit_reply: "Penjeu una resposta"
+  submit_reply: "Pengeu una resposta"
   posted: "Penjada"
   start_discussion: "Comença un nou debat"
   submit_start_discussion: "Comença debat"
   should_message_be_private: "Aquest missatge hauria de ser privat?"
   only_support_can_respond: "Només l'equip d'atenció al client pot respondre (crea un tiquet privat)"
-  responses_can_come_from_everyone: "Les respostes poden ser de la comunitat o de l'equip d'atenció al client (recomenat)"
+  responses_can_come_from_everyone: "Les respostes poden ser de la comunitat o de l'equip d'atenció al client (recomanat)"
   collapsed_messages:
       one: "1 missatge minimitzat"
       two: "2 missatges minimitzat"
@@ -67,7 +67,7 @@ ca:
   login: Iniciar sessió
 
   # devise/shared/links
-  forgot_password: Has oblidat la teva contrassenya?
+  forgot_password: Has oblidat la teva contrasenya?
 
   # devise/passwords/new
   send_instructions: Envia'm les instruccions
@@ -75,10 +75,10 @@ ca:
   # devise/passwords/edit
   change_password: Contrassenya canviada
   new_password: Nova contrassenya
-  new_password_confirmation: Confirma nova contrassenya
+  new_password_confirmation: Confirma nova contrasenya
 
   # devise/confirmations/new
-  resend: Reenvia les instruccions de comfirmació
+  resend: Re-envia les instruccions de confirmació
 
   # devise/registrations/new
   sign_up: Registrar-se
@@ -122,8 +122,8 @@ ca:
     other: "%{count} missatges seleccionats"
 
   # Discussion messages
-  reopen_message: "Aquest missatge ha estat reobert per l'equip d'atenció al client."
-  close_message: "Aquest missatge ha estat tencat per l'equip d'antenció al client."
+  reopen_message: "Aquest missatge ha estat re-obert per l'equip d'atenció al client."
+  close_message: "Aquest missatge ha estat tancat per l'equip d'atenció al client."
   trash_message: "Aquest missatge ha estat eliminat."
   assigned_message: "El debat ha estat transferit a %{assigned_to}."
 
@@ -161,7 +161,7 @@ ca:
   select_category: Seleccionar categoria
   delete: Esborrar
   view_and_edit: "Veure i editar contingut"
-  delete_confirm: "Siusplau confirma que vols ELIMINAR això!"
+  delete_confirm: "Si us plau confirma que vols ELIMINAR això!"
   select_icon_helptext: "Selecciona una icona per associar amb aquesta categoria (opcional)"
 
   # Communities
@@ -172,13 +172,13 @@ ca:
     attributes:
       user:
         email: Email
-        password: Contrassenya
+        password: Contrasenya
         name: Nom
         company: Empresa
         work_phone: Feina
         cell_phone: Mòbil
         city: Ciutat
-        state: Estat o provincia
+        state: Estat o província
 
       topic:
         name: Assumpte
@@ -227,16 +227,16 @@ ca:
     result:
       root: *root
   helpers:
-    actions: "Actions"
+    actions: "Accions"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      back: "Endarrera"
+      cancel: "Cancel·lar"
+      confirm: "N'estàs segur?"
+      destroy: "Eliminar"
+      new: "Nou"
+      edit: "Editar"
     titles:
-      edit: "Edit %{model}"
-      save: "Save %{model}"
-      new: "New %{model}"
-      delete: "Delete %{model}"
+      edit: "Editar %{model}"
+      save: "Guardar %{model}"
+      new: "Nou %{model}"
+      delete: "Eliminar %{model}"
