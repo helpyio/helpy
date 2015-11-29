@@ -1,14 +1,14 @@
 <div class="row content-row">
   <div class="col-md-3 hidden-xs hidden-sm">
     <div id="written-by" class="doc-meta">
-      <div class="more-important meta-header">Written By:</div>
+      <div class="more-important meta-header"><%= I18n.t("written_by", default: "Written By") %>:</div>
       <div class="less-important">
         <%= avatar_image(@doc.user, size=40) %>
         <%= @doc.user.name.titleize %>
       </div>
     </div>
     <div id="doc-last-edit" class="doc-meta">
-      <div class="more-important meta-header">Last Edit:</div>
+      <div class="more-important meta-header"><%= I18n.t("last_edited", default: "Last Edited") %>:</div>
       <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
     </div>
   </div>

@@ -54,6 +54,10 @@ fr:
       two: "%{count} messages cachés"
       other: "%{count} messages cachés"
 
+  # Knowledgebase
+  written_by: "écrit par"
+  last_edited: "Dernière édition"
+
   # Tickets
   tickets: "Billets"
   no_tickets: "Vous ne avez pas encore créé de billets"
