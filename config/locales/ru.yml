@@ -1,7 +1,7 @@
-en:
-  language_name: 'English' # The name of the translation file, in that language
-  root: &root 'Home'
-  how_can_we_help: "How can we help?"
+ru:
+  language_name: 'Русский' # The name of the translation file, in that language
+  root: &root 'Главная'
+  how_can_we_help: "Как мы можем помочь?"
   browse_topics: "Browse Topics"
   support_team: "Support Team"
   nothing_here: "Nothing here yet!"
@@ -10,9 +10,9 @@ en:
   knowledgebase: "Knowledgebase"
   community: "Community"
   ask_a_question: "Ask a Question"
-  home: "Home"
-  login: "Login"
-  logout: "Logout"
+  home: "Главная"
+  login: "Войти"
+  logout: "Выйти"
   register: "Register"
   back_to: "Back to"
   welcome_back: "Welcome Back %{username}"
@@ -23,8 +23,8 @@ en:
 
   # Voting widget
   did_this_help: "Did this solve your problem?"
-  yes_button: 'Yes'
-  no_button: 'No'
+  yes_button: 'Да'
+  no_button: 'Нет'
 
   # Search
   search_placeholder: "Enter a keyword, topic, or question"
@@ -35,17 +35,17 @@ en:
 
   # Community
   forum_name: "Topic"
-  subject: "Subject"
+  subject: "Тема"
   last_activity: "Last Active"
   topic: "Discussion"
-  replies: "Replies"
+  replies: "ответы"
   last_post: "Last Post"
   started_by: "Started by %{username}"
   reply: "Reply to this topic"
-  submit_reply: "Post Reply"
+  submit_reply: "Ответьте"
   posted: "Posted"
-  start_discussion: "Start a New Discussion"
-  submit_start_discussion: "Start Discussion"
+  start_discussion: "Начать новое обсуждение"
+  submit_start_discussion: "Начать обсуждение"
   should_message_be_private: "Should this message be private?"
   only_support_can_respond: "Only support can respond (creates a private ticket)"
   responses_can_come_from_everyone: "Responses can come from support or the community (recommended)"
@@ -54,41 +54,30 @@ en:
       two: "2 collapsed messages"
       other: "%{count} collapsed messages"
 
-  # Knowledgebase
-  written_by: "Written By"
-  last_edited: "Last Edited"
-
   # Tickets
   tickets: "Tickets"
   no_tickets: "You have not created any tickets yet"
-  ticket_number: "Ticket Number"
-  assigned_to_label: "Assigned to"
-  created_on: "Created on"
 
   # Get Help
   get_help_header: "Still Need Help??"
-  get_help_button: "Start a Discussion with Us"
+  get_help_button: "Начните обсуждение с нами"
 
   # Profile
   my_profile: 'My Profile'
-
-  # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
   login: Log in
 
   # devise/shared/links
-  forgot_password: Forgot your password?
+  forgot_password: Забыли пароль?
 
   # devise/passwords/new
   send_instructions: Send me instructions
 
   # devise/passwords/edit
   change_password: Change password
-  new_password: New password
-  new_password_confirmation: Confirm new password
+  new_password: Новый пароль
+  new_password_confirmation: Подтвердите новый пароль
 
   # devise/confirmations/new
   resend: Resend confirmation instructions
@@ -97,7 +86,7 @@ en:
   sign_up: Sign Up
 
   # Admin menu
-  discussions: Discussions
+  discussions: Обсуждения
   content: Content
   communities: Communities
   app_store: App Store
@@ -105,13 +94,13 @@ en:
 
   # Admin main/statuses
   support_pipeline: Support Pipeline
-  new: New
-  active: Active
+  new: Новый
+  active: рабочий
   open: Open
   mine: Mine
   pending: Pending
   closed: Resolved
-  spam: Spam
+  spam: Спам
   trash: Trash
   discussion_managment: Discussion Management
   open_new_discussion: New Discussion
@@ -123,7 +112,7 @@ en:
 
   # Discussion controls
   change_status: Change Status
-  status: Status
+  status: Статус
   mark_closed: Mark Resolved
   reopen: Reopen
   mark_spam: Mark Spam
@@ -143,9 +132,9 @@ en:
   # User Admin
   contact_info: Contact
   social_info: Social
-  edit_user: Edit User
+  edit_user: Редактировать пользователя
   work_phone: work
-  cell_phone: cell
+  cell_phone: номер мобильного телефона
 
   # User search results
   users_found:
@@ -156,9 +145,9 @@ en:
   asked_a_question: "%{user_name} asked a question..."
   replied: "%{user_name} replied..."
   posted_note: "%{user_name} posted an internal note..."
-  type_reply: Type your reply, or select from a common message below
-  select_common: Select Common Reply
-  reply: Reply
+  type_reply: Введите ответ или выберите из общего сообщения ниже
+  select_common: Выберите Общий Ответ
+  reply: Ответьте
   internal_note: Internal Note
   upvote:
     one: "Upvote | %{count}"
@@ -169,22 +158,14 @@ en:
   new_content: New Content
   front_page_categories: Front Page Categories
   other_categories: Other Categories
-  edit: Edit
-  edit_category: Edit Category
+  edit: Редактировать
+  edit_category: Редактировать Категорию
   select_category: Select Category
-  delete: Delete
+  delete: Удалить
   view_and_edit: "View and Edit Content"
-  delete_confirm: "Please confirm you want to DELETE this!"
+  delete_confirm: "Вы уверены, что хотите удалить это?"
   select_icon_helptext: "Select an icon to associate with this category (optional)"
   translate: "Translate to a different language"
-  view_on_site: "View on Site"
-  written_on: "Written on %{date_written}"
-  content_last_updated: "Last Updated on %{date_updated}"
-  featured_content: "Featured"
-  draft_content: "Draft"
-  published_content: "Published"
-  additional_settings: "Additional Settings"
-  content_status: "Content Status"
 
   # Communities
   new_community: Create New Community
@@ -193,38 +174,38 @@ en:
   activerecord:
     attributes:
       user:
-        email: Email
-        password: Password
-        name: Name
-        company: Company
+        email: почта
+        password: пароль
+        name: Имя
+        company: Компания
         work_phone: Work
-        cell_phone: Cell
-        city: City
+        cell_phone: номер мобильного телефона
+        city: город
         state: State
 
       topic:
-        name: Subject
+        name: Тема
       post:
-        kind: Genre
+        kind: Жанр
       category:
-        name: Name
-        icon: Icon
-        keywords: Keywords
-        title_tag: Title Tag
-        meta_description: Meta Description
-        front_page: Front Page
+        name: Имя
+        icon: Нконка
+        keywords: Ключевые слова
+        title_tag: Название тегов
+        meta_description: Мета Описание
+        front_page: главная страница
         active: Active
       doc:
-        title: Title
-        meta_description: Meta Description
-        title_tag: Title Tag
-        keywords: Keywords
+        title: Название
+        meta_description: Мета Описание
+        title_tag: Название тегов
+        keywords: Ключевые слова
         category_id: Category
-        active: Status
-        front_page: Featured on front page?
+        active: Статус
+        front_page: Популярное на первой странице?
       forum:
-        name: Name
-        description: Description
+        name: Имя
+        description: Описание
 
     helpers:
       submit:
@@ -255,8 +236,8 @@ en:
       cancel: "Cancel"
       confirm: "Are you sure?"
       destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      new: "Новый"
+      edit: "Редактировать"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"

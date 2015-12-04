@@ -31,7 +31,7 @@
               <%= f.check_box :remember_me %>
           <% end -%>
 					<div class="modal-footer">
-						<%= f.submit t(:login, default: "Login"), class: 'btn btn-warning' %> <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+						<%= f.submit t(:login, default: "Login"), class: 'btn btn-warning' %> <%= link_to I18n.t('forgot_password', default: "Forgot your password?"), new_password_path(resource_name) %>
 		      </div>
         <% end %>
 				<% end %>
