@@ -41,4 +41,19 @@ module AdminHelper
     select.html_safe
   end
 
+  def i18n_icons(object)
+    output = '<div class="locale-badges pull-right hidden-xs hidden-sm">'
+    I18n.available_locales.each do |locale|
+      I18n.with_locale(locale) do
+        if object.translations.where(locale: locale).count > 0
+          output += "<span class='badge' title='#{I18n.t(:language_name)}'>#{locale.upcase}</span></a>"
+        else
+          output += "<span class='badge badge-light' title='#{I18n.t(:language_name)}'>#{locale.upcase}</span></a>"
+        end
+      end
+    end
+    output += '</div>'
+    output.html_safe
+  end
+
 end

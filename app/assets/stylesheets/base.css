@@ -456,6 +456,15 @@ ul.dropdown-menu li a.strong {
   font-weight: bolder;
 }
 
+.badge-light {
+  background-color: #eee;
+}
+
+.locale-badges {
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
 /* === LAYOUT === */
 
 #breadcrumbs {
