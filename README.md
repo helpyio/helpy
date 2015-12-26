@@ -32,6 +32,7 @@ Roadmap
 - More translation files (need help with this)
 - Add "related articles" section to knowledgebase
 - Add commenting to knowledgebase using community functions
+- Support for different themes- and easy way to customize look and feel
 - Insert link to KB articles into reply in admin
 - Set up JSON API hooks, and test
 - Convert admin to use react.js
@@ -41,7 +42,7 @@ Roadmap
 - Social Media integration (sharing of topics, replies, etc.)
 - Omniauth login, with import of user avatars (almost done)
 - Some kind of rules capability linked to tagging, etc.
-- Pull GA stats into an internal dashboard (almost done)
+- Pull GA stats into an internal dashboard
 - Dynamic/Behavioral Personalization
 
 Installation
@@ -55,11 +56,11 @@ Helpy was designed to run on Heroku, although it should work just about anywhere
 - Unicorn
 
 Helpy leverages three external services to help out:
-- an email provider like Mandrill
+- an email provider like Sendgrid
 - an image manipulation and host (Cloudinary)
 - Google Analytics for stats
 
-Mandrill and Cloudinary have a free tier that should get you started.  To see how to configure Helpy to use Mandrill as your email provider, see the wiki.
+Sendgrid and Cloudinary have a free tier that should get you started.  To see how to configure Helpy to use Mandrill as your email provider, see the wiki.
 
 How to Install: [http://support.helpy.io](http://support.helpy.io)
 
