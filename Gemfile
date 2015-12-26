@@ -77,6 +77,7 @@ gem 'mail_extract'
 # gem 'mandrill_mailer'
 gem 'griddler'
 gem 'griddler-mandrill'
+gem 'griddler-sendgrid'
 
 gem 'rails-timeago'
 

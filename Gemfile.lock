@@ -115,6 +115,8 @@ GEM
       rails (>= 3.2.0)
     griddler-mandrill (1.0.2)
       griddler
+    griddler-sendgrid (0.0.1)
+      griddler
     hashie (3.4.1)
     hike (1.2.3)
     hitimes (1.2.2)
@@ -359,6 +361,7 @@ DEPENDENCIES
   gravtastic
   griddler
   griddler-mandrill
+  griddler-sendgrid
   http_accept_language
   i18n-country-translations
   jbuilder (~> 2.0)
