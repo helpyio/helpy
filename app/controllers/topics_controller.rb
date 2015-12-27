@@ -121,17 +121,21 @@ class TopicsController < ApplicationController
 
     unless user_signed_in?
 
-      @user = @topic.build_user
+      # User is not signed in, lets see if we can recognize the email address
+      @user = User.where(email: params[:topic][:user][:email]).first
 
-      # generate user password
-      source_characters = "0124356789abcdefghijk"
-      password = ""
-      1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+      if @user
+        logger.info("User found")
+        @topic.user_id = @user.id
 
-      @user.name = params[:topic][:user][:name]
-      @user.login = params[:topic][:user][:email].split("@")[0]
-      @user.email = params[:topic][:user][:email]
-      @user.password = password
+      else #User not found, lets build it
+        @user = @topic.build_user
+        @user.name = params[:topic][:user][:name]
+        @user.login = params[:topic][:user][:email].split("@")[0]
+        @user.email = params[:topic][:user][:email]
+        @user.password = User.create_password
+        built_user = true
+      end
 
     else
       @user = current_user
@@ -149,7 +153,7 @@ class TopicsController < ApplicationController
           :kind => 'first',
           :screenshots => params[:topic][:screenshots])
 
-        unless user_signed_in?
+        if built_user == true && !user_signed_in?
           UserMailer.new_user(@user).deliver_now
           sign_in(:user, @user)
         end

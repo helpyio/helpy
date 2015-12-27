@@ -59,6 +59,7 @@ class TopicsControllerTest < ActionController::TestCase
     end
   end
 
+  # A user who is signed in should be able to create a new private or public topic
   test "a signed in user should be able to create a new private topic" do
     sign_in users(:user)
 
@@ -75,6 +76,21 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to ticket_path(assigns(:topic)), "Did not redirect to private topic view"
   end
 
+  # A user who is registered, but not signed in currently should be able to create a new private
+  # or public topic
+  test "an unsigned in user with an account should be able to create a new private topic" do
+
+    get :new, locale: :en
+    assert_response :success
+
+    assert_difference 'Topic.count', 1, "A topic should have been created" do
+      assert_difference 'Post.count', 1, "A post should have been created" do
+        post :create, topic: { user: {name: 'Scott Miller', email: 'scott.miller@test.com'}, name: "some new private topic", body: "some body text", forum_id: 1, private: true}, post: {body: 'this is the body'}, locale: :en
+      end
+    end
+
+    assert_redirected_to ticket_path(assigns(:topic)), "Did not redirect to private topic view"
+  end
 
   test "a signed in user should not see trashed topics in a public forum" do
     sign_in users(:user)
