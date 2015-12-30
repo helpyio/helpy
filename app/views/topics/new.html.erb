@@ -25,6 +25,7 @@
   <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
   </div>
   <%= hidden_field_tag :client_id %>
+  <%= f.hidden_field :doc_id, value: params[:doc_id] if params[:doc_id] %> 
 
   <!--<label>Tags:</label><br/>-->
   <%#= text_field_tag :tags %>

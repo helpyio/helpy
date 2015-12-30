@@ -20,6 +20,7 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  doc_id           :integer          default(0)
 #
 
 class Topic < ActiveRecord::Base
@@ -27,6 +28,8 @@ class Topic < ActiveRecord::Base
 
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
+  belongs_to :doc, counter_cache: true, touch: true
+  
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif]
@@ -54,6 +57,7 @@ class Topic < ActiveRecord::Base
   scope :active, -> { where("current_status = ? OR current_status = ?", "open", "pending") }
   scope :undeleted, -> { where("current_status != ?", "trash") }
   scope :front, -> { limit(6) }
+  scope :for_doc, -> { where("doc_id= ?", doc)}
 
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where("current_status <> 'Spam'").where(private: true)}

@@ -28,6 +28,7 @@
 
   <%#= f.text_field :rank %>
   <%= f.check_box(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale)) if params[:lang] == "#{I18n.locale}"  %><br/><br/>
+  <%= f.check_box(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale)) if params[:lang] == "#{I18n.locale}"  %><br/><br/>
   <hr/>
   <% if params[:lang] == "#{I18n.locale}" %>
     <%= f.form_group :active, class:'no-translate', label: { text: "Article Status: " } do %>

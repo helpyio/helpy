@@ -117,7 +117,8 @@ class TopicsController < ApplicationController
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
-      private: params[:topic][:private] )
+      private: params[:topic][:private],
+      doc_id: params[:topic][:doc_id] )
 
     unless user_signed_in?
 

@@ -20,6 +20,7 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  doc_id           :integer          default(0)
 #
 
 require 'test_helper'
