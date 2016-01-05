@@ -121,7 +121,62 @@ namespace :db do
   Category.first.docs.first.save
   Category.first.docs.first.attributes = {title: "Documentació de suport Exemple traduïda al francès" ,body: '', locale: :ca}
   Category.first.docs.first.save
-  
+
+  # Create document comment threads for our users
+
+  Doc.all.each do |doc|
+
+    timeseed = rand(1..30)
+    Timecop.travel(Date.today-timeseed.days)
+
+    rand(1..5).times do
+
+      f = Forum.where(name: 'Doc comments').first
+      topic = f.topics.new
+      topic.name = build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun)
+      topic.user_id = User.where(admin: false).sample.id
+      topic.doc_id = doc.id
+  #    if f.private?
+  #      topic.private = true
+  #      puts "Private Ticket Created!"
+  #    else
+  #      puts "Discussion #{topic.name} Added"
+  #    end
+
+  #    if f.allow_topic_voting == true
+  #      topic.points = rand(0..1000)
+  #    end
+
+      topic.save
+
+      # create first post in thread
+      post = topic.posts.new
+      post.body = Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>')
+      post.user_id = topic.user_id
+      post.kind = 'first'
+      post.save
+      puts "Post added to doc"
+
+#      Timecop.scale(120000)
+
+#      rand(2..5).times do
+#        post = topic.posts.new
+#        post.body = Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>')
+#        post.user_id = rand(3..12)
+#        post.kind = 'reply'
+#        post.save
+#        puts "Post added to topic"
+#      end
+
+#      Timecop.return
+    end
+  end
+
+
+
+
+
+
   # Create community threads for our users
 
   number_threads.times do

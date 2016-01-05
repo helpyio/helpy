@@ -26,6 +26,7 @@ class Forum < ActiveRecord::Base
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where(private: true)}
   scope :ispublic, -> { where(private: false)}
+  scope :for_docs, -> { where(name: 'Doc comments') }
 
   validates_presence_of :name, :description
   validates_length_of :name, :maximum => 255

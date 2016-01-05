@@ -44,6 +44,7 @@
   # Create top level forums
   Forum.create(name: "Private Tickets", description: "Private Messages to Support", private: true)
   Forum.create(name: "Trash", description: "Deleted discussions go here", private: true)
+  Forum.create(name: "Doc comments", description: "Contains comments to docs", private: true)
   Forum.create(name: "Questions and Answers", description: "Answers to how to do common things", layout: 'qna', allow_topic_voting: true, allow_post_voting: true)
   Forum.create(name: "Feature Requests", description: "Suggest and vote on what features we should add next!", allow_topic_voting: true)
   Forum.create(name: "Idea Board", description: "Submit Ideas for HR to consider", allow_topic_voting: true, allow_post_voting: true, layout: 'grid')

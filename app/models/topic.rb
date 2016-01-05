@@ -29,7 +29,7 @@ class Topic < ActiveRecord::Base
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :doc, counter_cache: true, touch: true
-  
+
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif]
@@ -53,6 +53,7 @@ class Topic < ActiveRecord::Base
   scope :spam, -> { where(current_status: "spam")}
 
   scope :chronologic, -> { order('updated_at DESC') }
+  scope :reverse, -> { order('updated_at ASC') }
   scope :by_popularity, -> { order('points DESC') }
   scope :active, -> { where("current_status = ? OR current_status = ?", "open", "pending") }
   scope :undeleted, -> { where("current_status != ?", "trash") }

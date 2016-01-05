@@ -21,7 +21,12 @@ class DocsController < ApplicationController
     @page_title = @doc.title.titleize
     @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag.titleize
     @title_tag = "#{Settings.site_name}: #{@custom_title}"
-    @topics = @doc.topics
+    @topics = @doc.topics.reverse
+    @forum = Forum.for_docs.first
+
+    #@topic = Topic.new
+    @user = User.new unless user_signed_in?
+
 
     add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
     add_breadcrumb @doc.category.name.titleize, category_path(@doc.category) if @doc.category.name

@@ -1,0 +1,69 @@
+
+
+<div id="post-<%= comment.id %>" class="media post-container <%= "kind-#{comment.kind}" %><%= comment.topic.forum.allow_post_voting? ? "" : " disallow-post-voting" %><%= " inactive" unless comment.active? %>">
+	<div class="pull-left">
+		<%#= image_tag(user_avatar(comment.user), width: '40px', class: 'media-object img-circle') %>
+		<%= avatar_image(comment.user, size=40) %>
+	</div>
+	<div class="media-body media-right">
+		<span class="hidden-sm hidden-md hidden-lg"><%= comment.kind == "first" ? last_active_time(comment.created_at) : "#{distance_of_time_in_words(comment.created_at,comment.topic.created_at)} later" %><br/></span>
+		<span id="row-<%= comment.id %>"  class="post-menu post-menu-<%= comment.id %> btn-group">
+			<%=
+			content_tag(:span, class: 'more-important') do
+        comment.user.name.titleize
+      end
+			%>
+			<% if user_signed_in? && current_user.admin? && params[:controller] == 'admin' %>
+				<ul class="dropdown-menu dropdown-menu-left" role="menu">
+					<li><%= link_to 'Edit', edit_post_path(comment), remote: true %></li>
+					<li><%= link_to 'Turn post into content', new_doc_path(post_id: comment.id, lang: I18n.locale) %></li>
+				</ul>
+			<% end %>
+		</span>
+
+		<span class="last-active posted-at less-important pull-right">
+			<span class="hidden-xs">
+			<%= comment.kind == "first" ? last_active_time(comment.created_at) : "#{distance_of_time_in_words(comment.created_at,comment.topic.created_at)} later" %>
+			</span>
+		</span>
+
+		<div id="post-body-<%= comment.id %>" class="post-body less-important text-left">
+			<%= simple_format(comment.body) -%>
+			<% if comment.topic.forum.allow_post_voting == true %>
+			<div id="post-vote-<%= comment.id %>" class="btn btn-default">
+				<% if comment.kind == 'first' %>
+				<%= link_to t(:upvote, count: comment.topic.points), up_vote_path(comment.topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: comment.topic.to_param} %>
+				<% else %>
+				<%= link_to t(:upvote, count: comment.points), post_vote_path(comment.id), method: :post, remote: true, class: 'post-vote', data: {voted: comment.id} %>
+				<% end %>
+			</div>
+			<% end %>
+			<% unless Cloudinary.config.cloud_name.nil? %>
+			<div id="post-images">
+				<ul class="list-inline">
+					<% comment.screenshots.each do |screenshot| %>
+						<li><%= link_to cl_image_tag(screenshot.path, { size: '125x125', crop: :fit }), "http://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/#{screenshot.path}", class: 'screenshot-link' %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+		</div>
+
+		<% if user_signed_in? && comment.kind == 'first' && comment.topic.forum.allow_post_voting == true && params[:controller] != 'admin'   %>
+			<div class="add-form inline-reply">
+			<h4><%= t(:reply) %></h4>
+			<%#= error_messages_for :post -%>
+			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
+			  <%= f.text_area :body, :rows => 4, :cols => 160, label: 'Type your response:' -%></p>
+			  <%= f.hidden_field 'kind', value: 'reply' %>
+				<div class="add-screenshots">
+				<%= attachinary_file_field_tag 'post[screenshots]', @topic.posts.new, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+				</div>
+				<%= hidden_field_tag :client_id %>
+				<%= f.submit t(:submit_reply) -%>
+			<% end -%>
+			</div>
+		<% end -%>
+
+	</div>
+</div>
