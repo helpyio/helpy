@@ -56,8 +56,8 @@ class Topic < ActiveRecord::Base
   scope :front, -> { limit(6) }
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where("current_status <> 'Spam'").where(private: true)}
-  scope :ispublic, -> { where("current_status <> 'Spam'").where(private: false)}
+  scope :isprivate, -> { where("current_status <> 'spam'").where(private: true)}
+  scope :ispublic, -> { where("current_status <> 'spam'").where(private: false)}
 
   # may want to get rid of this filter:
   # before_save :check_for_private
