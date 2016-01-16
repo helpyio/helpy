@@ -78,6 +78,9 @@ gem 'mail_extract'
 gem 'griddler'
 gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
+gem 'griddler-mailgun'
+gem 'griddler-postmark'
+gem 'griddler-cloudmailin'
 
 gem 'rails-timeago'
 
