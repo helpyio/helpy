@@ -18,6 +18,8 @@ es:
   welcome_back: "Bienvenido de nuevo %{username}"
   your_profile: "Tu perfil"
   your_tickets: "Tus tiquets"
+  locale: "Locale"
+  change_your_locale: "Change your Locale"
 
   # Voting widget
   did_this_help: "¿Ha solucionado esto tu problema?"
@@ -52,13 +54,24 @@ es:
       two: "2 mensajes minimizados"
       other: "%{count} mensajes minimizados"
 
+  # Knowledgebase
+  written_by: "Written By"
+  last_edited: "Last Edited"
+
   # Tickets
   tickets: "Tiquets"
   no_tickets: "Aún no has creado ningún tiquet"
+  ticket_number: "Ticket Number"
+  assigned_to_label: "Assigned to"
+  created_on: "Created on"
 
   # Get Help
   get_help_header: "¿Aún necesitas ayuda?"
   get_help_button: "Empieza una discusión"
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # Profile
   my_profile: 'Mi perfil'
@@ -163,6 +176,15 @@ es:
   view_and_edit: "Ver y editar contenido"
   delete_confirm: "Por favor confirma que deseas ELIMINAR esto!"
   select_icon_helptext: "Selecciona un icono para asociar con esta categoría (opcional)"
+  translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: Crea una nueva comunidad
@@ -203,7 +225,7 @@ es:
       forum:
         name: Nombre
         description: Descripción
-
+        private: Private
     helpers:
       submit:
         topic:

@@ -201,7 +201,6 @@ en:
         cell_phone: Cell
         city: City
         state: State
-
       topic:
         name: Subject
       post:
@@ -225,6 +224,7 @@ en:
       forum:
         name: Name
         description: Description
+        private: Private
 
     helpers:
       submit:
