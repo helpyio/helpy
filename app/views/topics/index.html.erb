@@ -44,3 +44,11 @@
 <div class="text-right">
 	<%= paginate @topics %>
 </div>
+
+<div>
+  <% if user_signed_in? %>
+    <span class="hidden-xs pull-right"><%= link_to t(:open_new_discussion, default: "Open Discussion"), new_topic_path, class: 'btn btn-primary' %></span>
+  <% else %>
+    <span class="hidden-xs pull-right"><%= link_to t(:open_new_discussion, default: "Open Discussion"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+  <% end %>
+</div>

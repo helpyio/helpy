@@ -3,6 +3,8 @@ class TopicsController < ApplicationController
   before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
   before_filter :instantiate_tracker
 
+  layout "clean", only: [:new, :index]
+
   # GET /topics
   # GET /topics.xml
   def index
@@ -94,8 +96,6 @@ class TopicsController < ApplicationController
     @forums = Forum.ispublic.all
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
-
-    render layout: 'clean'
 
   end
 

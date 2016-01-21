@@ -9,23 +9,35 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6">
-  <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <%= f.email_field :email, autofocus: true %>
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if devise_mapping.rememberable? -%>
-        <%= f.check_box :remember_me %>
-    <% end -%>
 
-    <%= f.submit t(:login, default: "Login"), class: 'btn btn-warning' %> <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+  <% if Devise.omniauth_providers.size > 10 %>
+  <div class="col-md-4">
+    <ul class="list-inline">
+      <% Devise.omniauth_providers.each do |provider| %>
+        <li style="width:100%;"><%= login_with(provider.to_s) %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <hr class="hidden-md hidden-lg" />
+  <div class="col-md-8">
+  <% else %>
+
+  <div class="col-md-12">
   <% end %>
+    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= f.email_field :email, placeholder: I18n.t("activerecord.attributes.user.email"), skip_label: true %>
+      <%= f.password_field :password, placeholder: I18n.t("activerecord.attributes.user.password"), autocomplete: "off", skip_label: true %>
+      <% if devise_mapping.rememberable? -%>
+          <%= f.check_box :remember_me %>
+      <% end -%>
 
-  <%= render "devise/shared/links" %>
+      <%= f.submit t(:login, default: "Login"), class: 'btn btn-warning' %> <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    <% end %>
+
+    <%#= render "devise/shared/links" %>
   </div>
 
-  <div class="col-md-6">
-
-  </div>
 
 
 </div>
