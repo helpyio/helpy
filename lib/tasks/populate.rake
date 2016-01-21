@@ -17,28 +17,28 @@ namespace :db do
   end
 
   # Add Support Team
-  company = RUser.new.first
+  company = RUser.new
   company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
 
   number_support_team.times do
-    user = RUser.new.first
+    user = RUser.new
     u = User.new
-    u.name = "#{user.name.first_name} #{user.name.last_name}"
+    u.name = "#{user.first_name} #{user.last_name}"
     u.email = user.email
     u.login = user.username
     u.password = '12345678'
     u.admin = true
     u.role = 'admin'
     u.company = company_name
-    u.street = company.location.street
-    u.city = company.location.city
-    u.state = company.location.state
-    u.zip = company.location.zip
+    u.street = company.street
+    u.city = company.city
+    u.state = company.state
+    u.zip = company.postal
     u.work_phone = company.phone
     u.cell_phone = user.cell
-    u.thumbnail = user.picture.thumbnail
-    u.medium_image = user.picture.medium
-    u.large_image = user.picture.large
+    u.thumbnail = user.profile_thumbnail_url
+    u.medium_image = user.profile_medium_url
+    u.large_image = user.profile_large_url
     u.save
 
     puts "Created Agent: #{u.name}"
@@ -47,22 +47,22 @@ namespace :db do
   # Create users with avatars
   number_users.times do
 
-    user = RUser.new.first
+    user = RUser.new
     u = User.new
-    u.name = "#{user.name.first_name} #{user.name.last_name}"
+    u.name = "#{user.first_name} #{user.last_name}"
     u.email = user.email
     u.login = user.username
     u.password = '12345678'
     u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
-    u.street = user.location.street
-    u.city = user.location.city
-    u.state = user.location.state
-    u.zip = user.location.zip
+    u.street = user.street
+    u.city = user.city
+    u.state = user.state
+    u.zip = user.postal
     u.work_phone = user.phone
     u.cell_phone = user.cell
-    u.thumbnail = user.picture.thumbnail
-    u.medium_image = user.picture.medium
-    u.large_image = user.picture.large
+    u.thumbnail = user.profile_thumbnail_url
+    u.medium_image = user.profile_medium_url
+    u.large_image = user.profile_large_url
     u.save
 
     puts "Created User: #{user.name}"
@@ -71,17 +71,17 @@ namespace :db do
   # Create users without avatars
   number_users.times do
 
-    user = RUser.new.first
+    user = RUser.new
     u = User.new
-    u.name = "#{user.name.first_name} #{user.name.last_name}"
+    u.name = "#{user.first_name} #{user.last_name}"
     u.email = user.email
     u.login = user.username
     u.password = '12345678'
     u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
-    u.street = user.location.street
-    u.city = user.location.city
-    u.state = user.location.state
-    u.zip = user.location.zip
+    u.street = user.street
+    u.city = user.city
+    u.state = user.state
+    u.zip = user.postal
     u.work_phone = user.phone
     u.cell_phone = user.cell
     u.save
@@ -121,7 +121,7 @@ namespace :db do
   Category.first.docs.first.save
   Category.first.docs.first.attributes = {title: "Documentació de suport Exemple traduïda al francès" ,body: '', locale: :ca}
   Category.first.docs.first.save
-  
+
   # Create community threads for our users
 
   number_threads.times do
