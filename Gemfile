@@ -64,7 +64,7 @@ gem 'twitter-bootstrap-rails-confirm'
 gem 'therubyracer'
 gem 'rdiscount'
 
-gem 'rails_config'
+gem 'config'
 
 gem 'daemons'
 #gem 'mailman-rails'

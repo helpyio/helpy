@@ -70,8 +70,12 @@ GEM
     columnize (0.9.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.0)
+    config (1.0.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.0)
     daemons (1.2.2)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -233,8 +237,6 @@ GEM
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_config (0.4.2)
-      activesupport (>= 3.0)
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.3)
     railties (4.2.5)
@@ -353,6 +355,7 @@ DEPENDENCIES
   byebug
   cloudinary (= 1.1.2)
   coffee-rails (~> 4.1.0)
+  config
   daemons
   devise
   devise-bootstrap-views
@@ -393,7 +396,6 @@ DEPENDENCIES
   rails-i18n (~> 4.0.0)
   rails-timeago
   rails_12factor
-  rails_config
   rdiscount
   route_translator
   rspec
