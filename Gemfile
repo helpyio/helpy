@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'pg_search'
@@ -20,7 +20,6 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'magnific-popup-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -53,10 +52,10 @@ gem 'globalize-accessors'
 
 gem 'gravtastic'
 
-gem 'cloudinary'
+gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 
-gem 'less-rails'
+gem 'less-rails', '2.7.1'
 gem 'font-awesome-less'
 gem 'font-awesome-rails'
 gem 'bootstrap_form'
@@ -65,7 +64,7 @@ gem 'twitter-bootstrap-rails-confirm'
 gem 'therubyracer'
 gem 'rdiscount'
 
-gem 'rails_config'
+gem 'config'
 
 gem 'daemons'
 #gem 'mailman-rails'

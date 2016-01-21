@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: helpy-io
+  api_key: '255484141479413'
+  api_secret: eucSpj7-ZRRoDrv9lalx-vXDCsE
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: helpy-io
+  api_key: '255484141479413'
+  api_secret: eucSpj7-ZRRoDrv9lalx-vXDCsE
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: helpy-io
+  api_key: '255484141479413'
+  api_secret: eucSpj7-ZRRoDrv9lalx-vXDCsE
+  enhance_image_tag: true
+  static_image_support: false

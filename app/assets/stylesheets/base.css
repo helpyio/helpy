@@ -726,6 +726,19 @@ div.home-square {
 	width: 100%;
 }
 
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
+}
+
 div#community-forums-block > span.glyphicon {
 	font-size: 400%;
 }
