@@ -94,7 +94,7 @@ gem 'rails-timeago'
 
 gem 'faker'
 gem 'populator'
-gem 'ruser'
+gem 'ruser', '~> 3.0'
 gem 'timecop' #used to populate
 
 
