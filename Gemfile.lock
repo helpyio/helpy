@@ -113,9 +113,9 @@ GEM
     griddler (1.1.0)
       htmlentities
       rails (>= 3.2.0)
-    griddler-cloudmailin (0.0.1)
-      griddler
     griddler-mailgun (1.0.2)
+      griddler
+    griddler-mailin (0.0.1)
       griddler
     griddler-mandrill (1.0.2)
       griddler
@@ -366,8 +366,8 @@ DEPENDENCIES
   globalize-versioning (~> 0.1.0)
   gravtastic
   griddler
-  griddler-cloudmailin
   griddler-mailgun
+  griddler-mailin
   griddler-mandrill
   griddler-postmark
   griddler-sendgrid
