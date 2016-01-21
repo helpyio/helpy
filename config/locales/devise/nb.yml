@@ -1,0 +1,114 @@
+nb:
+  activerecord:
+    attributes:
+      user:
+        current_password: 
+        email: 
+        password: 
+        password_confirmation: 
+        remember_me: 
+    models:
+      user: 
+  devise:
+    confirmations:
+      confirmed: Din konto er aktiveret og du er nå innlogget.
+      new:
+        resend_confirmation_instructions: Send bekreftelsesinstruksjoner på nytt
+      send_instructions: Du vil snart motta en epost med instruksjoner for å aktivere din konto.
+      send_paranoid_instructions: Hvis e-postadresen allerede finnes i databasen, vil du om få minutter motta en e-post med instruksjoner om hvordan bekrefte kontoen.
+    failure:
+      already_authenticated: Du er allerede innlogget.
+      inactive: Din konto er ikke aktivert.
+      invalid: Epost-adresse eller passord er ikke gyldig.
+      last_attempt: Du har et forsøk til før din konto blir låst.
+      locked: Din konto er låst.
+      not_found_in_database: Ugyldig e-post eller passord.
+      timeout: Din sesjon er utløpt. Logg inn igjen for å kunne fortsette.
+      unauthenticated: Du må logge inn eller registrere deg for å kunne fortsette.
+      unconfirmed: Du må bekrefte kontoen din for å kunne fortsette.
+    mailer:
+      confirmation_instructions:
+        action: Aktiver min konto
+        greeting: Velkommen %{recipient}!
+        instruction: 'Du kan aktivere '
+        subject: Bekreftelsesinstruksjoner
+      reset_password_instructions:
+        action: Bytt passord
+        greeting: Hei, %{recipient}!
+        instruction: Noen har bedt om en link for å endre passordet ditt, og dette kan gjøres på linken under.
+        instruction_2: Vennligst ignorer denne e-posten hvis du ikke ba om dette.
+        instruction_3: Passordet ditt endres ikke før du følger linken over og velger et nytt passord.
+        subject: Nullstilling av passord
+      unlock_instructions:
+        action: Gjenåpne min konto
+        greeting: Hei, %{recipient}!
+        instruction: 'Trykk på linken under for å gjenåpne din konto:'
+        message: Kontoen din har blitt låst grunnet et høyt antall mislykkede innloggingsforsøk.
+        subject: Gjenåpning av konto
+    omniauth_callbacks:
+      failure: Kunne ikke autorisere deg fra %{kind} fordi "%{reason}".
+      success: Vellykket autorisering fra %{kind}.
+    passwords:
+      edit:
+        change_my_password: 
+        change_your_password: 
+        confirm_new_password: 
+        new_password: 
+      new:
+        forgot_your_password: Glemt passordet ditt?
+        send_me_reset_password_instructions: Send instrukser for nullstilling av passord
+      no_token: For å få tilgang til denne siden må du klikket deg inn fra en epost for å sette passord på nytt. Hvis du klikket deg inn fra en slik epost, sørg for at hele lenken ble brukt.
+      send_instructions: Du vil snart motta en epost med instruksjoner for å nullstille passordet ditt.
+      send_paranoid_instructions: Hvis e-postadressen allerede finnes i databasen, vil du motta en lenke for å sette passordet på nytt
+      updated: Ditt passord er endret og du er nå innlogget.
+      updated_not_active: Passordet er endret.
+    registrations:
+      destroyed: Farvel. Din konto er nå slettet.
+      edit:
+        are_you_sure: Er du sikker?
+        cancel_my_account: Slett min konto
+        currently_waiting_confirmation_for_email: 
+        leave_blank_if_you_don_t_want_to_change_it: la være tomt hvis du ikke ønsker å endre dette
+        title: Rediger %{resource}
+        unhappy: 
+        update: 
+        we_need_your_current_password_to_confirm_your_changes: vi trenger ditt nåværende passord for å bekrefte endringene
+      new:
+        sign_up: Registrer deg
+      signed_up: Velkommen! Din registrering er vellykket.
+      signed_up_but_inactive: Du er nå registrert. Men vi kan ikke logge deg inn når kontoen ikke er aktivert.
+      signed_up_but_locked: Du er nå registrert. Men vi kan ikke legge deg inn fordi kontoen er låst.
+      signed_up_but_unconfirmed: En melding med lenke for bekreftelse er sendt til e-postadressen. Vennligst åpne lenken for å aktivere kontoen.
+      update_needs_confirmation: Kontoen er nå oppdatert. Men vi må bekrefte den nye adressen. Vennligst sjekk e-posten og klikk på lenken for å bekrefte din nye e-postadresse.
+      updated: Din profil er oppdatert.
+    sessions:
+      already_signed_out: Logget ut.
+      new:
+        sign_in: Logg inn
+      signed_in: Du er nå innlogget.
+      signed_out: Du er nå logget ut.
+    shared:
+      links:
+        back: 
+        didn_t_receive_confirmation_instructions: Ikke mottatt bekreftelsesinstruksjoner?
+        didn_t_receive_unlock_instructions: Ikke mottatt instruksjoner for nullstilling av passord?
+        forgot_your_password: Glemt passordet ditt?
+        sign_in: Logg inn
+        sign_in_with_provider: Logg inn med %{provider}
+        sign_up: Registrer deg
+    unlocks:
+      new:
+        resend_unlock_instructions: Send instrukser for gjenåpning av konto på nytt
+      send_instructions: Du vil snart motta en epost med instruksjon for å gjenåpne din konto.
+      send_paranoid_instructions: Hvis kontoen eksisterer, vil du om få minutter motta en e-post med instruksjoner om hvordan du låser opp den.
+      unlocked: Din konto er gjenåpnet og du er nå innlogget.
+  errors:
+    messages:
+      already_confirmed: har allerede blitt bekreftet. Prøv å logg inn.
+      confirmation_period_expired: må bekreftes innen %{period}, vennligst be om et nytt
+      expired: har utløpt, vennligst forespør en ny
+      not_found: ikke funnet
+      not_locked: var ikke låst
+      not_saved:
+        one: "Én feil gjorde at %{resource} ikke kunne lagres:"
+        other: "%{count} feil gjorde at %{resource} ikke kunne lagres:"

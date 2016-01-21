@@ -1,0 +1,112 @@
+tr:
+  activerecord:
+    attributes:
+      user:
+        current_password: Geçerli Parola
+        email: E-Posta
+        password: Parola
+        password_confirmation: Parola Doğrulama
+        remember_me: Beni Hatırla
+    models:
+      user: Kullanıcı
+  devise:
+    confirmations:
+      confirmed: Hesabınız başarıyla onaylandı. Şu an giriş yapmış bulunuyorsunuz.
+      new:
+        resend_confirmation_instructions: Onaylama talimatlarını tekrar gönder
+      send_instructions: Birkaç dakika içinde hesabınızı nasıl onaylayacağınızı anlatan bir e-posta alacaksınız.
+      send_paranoid_instructions: Eğer e-posta adresiniz sistemimizde kayıtlı ise, birkaç dakika içinde hesabınızı nasıl onaylayacağınızı anlatan bir e-posta alacaksınız.
+    failure:
+      already_authenticated: Zaten giriş yaptınız.
+      inactive: Hesabınız daha aktifleştirilmemiş.
+      invalid: Yanlış e-posta adresi veya şifre girdiniz.
+      last_attempt: Hesabınız askıya alınmadan önce son bir deneme hakkınız kaldı.
+      locked: Hesabınız kilitlendi.
+      not_found_in_database: Geçersiz eposta adresi veya şifre.
+      timeout: Oturumunuz sonlandı. Devam etmek için, lütfen yeniden giriş yapınız.
+      unauthenticated: Devam etmeden önce giriş yapmanız veya kayıt olmanız gereklidir.
+      unconfirmed: Devam etmeden önce hesabınızı onaylamalısınız.
+    mailer:
+      confirmation_instructions:
+        action: Hesabımı onayla
+        greeting: Hoşgeldiniz %{recipient}!
+        instruction: 'E-postanızı aşağıdaki bağlantıyı takip ederek onaylayabilirsiniz:'
+        subject: Onaylama talimatları.
+      reset_password_instructions:
+        action: Parolamı değiştir
+        greeting: Merhaba %{recipient}!
+        instruction: Birisi parolanızı değiştirmek için bir istek gönderdi, aşağıdaki bağlantıyı kullanarak bunu yapabilirsiniz.
+        instruction_2: Eğer bu isteği siz yapmadıysanız, bu e-postayı görmezden gelebilirsiniz.
+        instruction_3: Parolanız yukarıdaki bağlantıyı kullanıp, yeni bir parola oluşturmadığınız sürece değişmeyecektir.
+        subject: "Şifre sıfırlama talimatları."
+      unlock_instructions:
+        action: Hesabımı geri aç
+        greeting: Merhaba %{recipient}!
+        instruction: 'Hesabınızı geri açmak için aşağıdaki bağlantıyı tıklayınız:'
+        message: Hesabınız çok fazla başarısız giriş denemesinden dolayı kilitlenmiştir.
+        subject: Kilit açma talimatları.
+    omniauth_callbacks:
+      failure: Sizi %{kind} aracılığıyla tanıyamadık çünkü "%{reason}".
+      success: "%{kind} aracılığıyla onaylandınız."
+    passwords:
+      edit:
+        change_my_password: "Şifremi değiştir"
+        change_your_password: "Şifreni değiştir"
+        confirm_new_password: Yeni parolanı doğrula
+        new_password: Yeni Parola
+      new:
+        forgot_your_password: Parolanızı mı unuttunuz?
+        send_me_reset_password_instructions: Parola yenileme talimatlarını gönder
+      no_token: Bu sayfaya şifre sıfırlama e-postasındaki linke tıklayarak gelmeniz gerekmektedir. Linke tıklamak yerine kopyaladıysanız, hata yapmış olabilirsiniz. Lütfen şifre sıfırlama e-postasındaki linke tıklayın.
+      send_instructions: Birkaç dakika içinde şifrenizi nasıl sıfırlayacağınız ile ilgili bir e-posta alacaksınız.
+      send_paranoid_instructions: 'Eğer e-posta adresiniz sistemimizde kayıtlı ise, birkaç dakika içinde şifrenizi nasıl sıfırlayacağınız ile ilgili bir e-posta alacaksınız. '
+      updated: "Şifreniz başarıyla güncellendi. Şu an giriş yapmış bulunuyorsunuz."
+      updated_not_active: "Şifreniz başarıyla güncellendi."
+    registrations:
+      destroyed: Hesabınız başarıyla kapatıldı. En kısa sürede görüşmek üzere!
+      edit:
+        are_you_sure: Emin misiniz?
+        cancel_my_account: Hesabımı iptal et
+        currently_waiting_confirmation_for_email: 'Doğrulama için bekleniyor : %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: değiştirmek istemiyorsanız boş bırakın
+        title: "%{resource} düzenle"
+        unhappy: Mutsuz
+        update: Güncelle
+        we_need_your_current_password_to_confirm_your_changes: değişikleri onaylamak için şu anki parolanız gerekli
+      new:
+        sign_up: Kaydol
+      signed_up: Başarıyla giriş yaptınız. Hoşgeldiniz!
+      signed_up_but_inactive: Kaydınız başarıyla gerçekleşti. Fakat, hesabınız aktifleştirilmediği için siteye giriş yapamadınız.
+      signed_up_but_locked: Kaydınız başarıyla gerçekleşti. Fakat, hesabınız kilitlendiği için siteye giriş yapamadınız.
+      signed_up_but_unconfirmed: E-posta adresinize hesap aktifleştirme linkini içeren bir e-posta gönderdik. Hesabınızı aktifleştirmek için lütfen e-posta ile gönderdiğimiz linki açın.
+      update_needs_confirmation: Hesabınızı başarıyla güncellediniz, fakat yeni e-posta adresinizin onaylanması gerek. Yeni e-posta hesabınızın onaylanması için lütfen size gönderdiğimiz e-postada bulunan onay linkini açın.
+      updated: Hesabınız başarıyla güncellendi.
+    sessions:
+      already_signed_out: Başarıyla çıkış yapıldı.
+      new:
+        sign_in: Giriş yap
+      signed_in: Başarıyla giriş yapıldı.
+      signed_out: Başarıyla çıkış yapıldı.
+    shared:
+      links:
+        back: Geri
+        didn_t_receive_confirmation_instructions: Onaylama talimatlarını almadınız mı?
+        didn_t_receive_unlock_instructions: Hesap geri açma talimatlarını almadınız mı?
+        forgot_your_password: Parolanızı mı unuttunuz?
+        sign_in: Giriş yap
+        sign_in_with_provider: "%{provider} ile giriş yap"
+        sign_up: Kaydol
+    unlocks:
+      new:
+        resend_unlock_instructions: Hesap geri açma talimatlarını tekrar gönder
+      send_instructions: Birkaç dakika içerisinde hesap kilidi açma talimatlarını içeren bir e-posta alacaksınız.
+      send_paranoid_instructions: Eğer hesabınız varsa, birkaç dakika içerisinde hesap kilidi açma talimatlarını içeren bir e-posta alacaksınız.
+      unlocked: Hesabınızın kilidi başarıyla açıldı. Devam etmek için lütfen giriş yapın.
+  errors:
+    messages:
+      already_confirmed: zaten onaylanmış, lütfen giriş yapmayı deneyin
+      confirmation_period_expired: "%{period} içinde onaylanması gerekmektedir, lütfen yeni bir tane isteyiniz."
+      expired: süresi doldu, lütfen yeni bir tane isteyin
+      not_found: bulunamadı
+      not_locked: kilitlenmemiş
+      not_saved: "%{count} tane hata %{resource}'ın kaydını engelledi."

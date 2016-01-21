@@ -1,0 +1,114 @@
+et:
+  activerecord:
+    attributes:
+      user:
+        current_password: Praegune parool
+        email: E-post
+        password: Parool
+        password_confirmation: Parooli kinnitus
+        remember_me: Hoia mind meeles
+    models:
+      user: Kasutaja
+  devise:
+    confirmations:
+      confirmed: Sinu konto on edukalt kinnitatud.
+      new:
+        resend_confirmation_instructions: Saada kinnitusjuhend uuesti
+      send_instructions: Mõne minuti jooksul saad sa e-kirja juhistega oma konto kinnitamiseks.
+      send_paranoid_instructions: Kui sinu e-post on meie andmebaasis, saad varsti e-kirja juhistega, kuidas oma konto kinnitada.
+    failure:
+      already_authenticated: Oled juba sisse loginud.
+      inactive: Sinu konto polnud veel aktiveeritud.
+      invalid: Vigane e-post või salasõna.
+      last_attempt: Sinul on jäänud veel üks katse enne kui su konto lukustatakse.
+      locked: Sinu konto lukustati.
+      not_found_in_database: Vigane e-post või salasõna.
+      timeout: Sinu sessioon on aegunud, jätkamiseks logi palun sisse.
+      unauthenticated: Sa pead sisse logima või registreeruma enne jätkamist.
+      unconfirmed: Sa pead oma konto kinnitama, enne jätkamist.
+    mailer:
+      confirmation_instructions:
+        action: Kinnita konto
+        greeting: Teretulemast %{recipient}!
+        instruction: 'Oma konto saad kinnitada alloleva lingi kaudu:'
+        subject: Kinnitamise juhised
+      reset_password_instructions:
+        action: Muuda parooli
+        greeting: Tere %{recipient}!
+        instruction: Keegi on soovinud muuta sinu parooli, saad seda teha alloleva lingi kaudu.
+        instruction_2: Kui sa ei ole seda soovinud, palun ignoreeri seda kirja.
+        instruction_3: Sinu parool ei muutu enne kui sa oled külastanud eelolevat linki ja uue parooli sisestanud.
+        subject: Salasõna taastamise juhised
+      unlock_instructions:
+        action: Ava konto
+        greeting: Tere %{recipient}!
+        instruction: Vajuta allolevale lingile, et oma konto avada
+        message: Sinu konto on lukustatud liigsete ebaõnnestunud sisselogimiskatsete tõttu
+        subject: Lukust vabastamise juhised
+    omniauth_callbacks:
+      failure: Ei õnnestunud autoriseerida %{kind}-kontot, põhjus "%{reason}".
+      success: Edukalt autoriseeritud %{kind}-konto.
+    passwords:
+      edit:
+        change_my_password: Muuda parooli
+        change_your_password: Muuda oma parool
+        confirm_new_password: Kinnita uus parool
+        new_password: Uus parool
+      new:
+        forgot_your_password: Unustasid oma parooli?
+        send_me_reset_password_instructions: Saada parooli ennistamise juhend
+      no_token: Sa ei saa seda lehte külastada mujalt kui salasõna taastamise e-kirjast. Kui sa tuled salasõna taastamise e-kirjast, palun kontrolli, et sa kasutasid täielikku URLi.
+      send_instructions: Mõne minuti jooksul saad sa kirja juhistega, kuidas oma salasõna taastada.
+      send_paranoid_instructions: Kui su e-post on meie andmebaasis, saad varsti e-kirja salasõna taastamise lingiga.
+      updated: Sinu salasõna vahetati edukalt. Oled nüüd sisse logitud.
+      updated_not_active: Sinu salasõna vahetati edukalt.
+    registrations:
+      destroyed: Nägemist! Sinu konto on edukalt tühistatud. Loodame sind peagi uuesti näha.
+      edit:
+        are_you_sure: Oled sa kindel?
+        cancel_my_account: Kustuta konto
+        currently_waiting_confirmation_for_email: 'Kinnituse ootel: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: jäta tühjaks, kui sa ei soovi seda muuta
+        title: Muuda %{resource}
+        unhappy: "Õnnetu"
+        update: Uuenda
+        we_need_your_current_password_to_confirm_your_changes: meil on vaja sinu praegust parooli, et muutused kinnitada
+      new:
+        sign_up: Loo konto
+      signed_up: Tere tulemast! Sa registreerusid edukalt.
+      signed_up_but_inactive: Sa registreerusid edukalt. Siiski ei saa me sind sisse logida, sest su konto pole veel aktiveeritud.
+      signed_up_but_locked: Sa registreerusid edukalt. Siiski ei saa me sind sisse logida, sest su konto on lukus.
+      signed_up_but_unconfirmed: Kiri kinnituslingiga on saadetud sinu e-posti aadressile. Palun ava see link oma konto kinnitamiseks.
+      update_needs_confirmation: Sa uuendasid edukalt oma kontot, kuid me peame kontrollima sinu e-posti aadressi. Palun kontrolli oma e-posti ja ava kinnitamise link, et viia lõpule aadressi kinnitamine.
+      updated: Sa uuendasid edukalt oma kontot.
+    sessions:
+      already_signed_out: Edukalt välja logitud.
+      new:
+        sign_in: Logi sisse
+      signed_in: Edukalt sisse logitud.
+      signed_out: Edukalt välja logitud.
+    shared:
+      links:
+        back: Tagasi
+        didn_t_receive_confirmation_instructions: Ei saanud kinnitusjuhiseid?
+        didn_t_receive_unlock_instructions: Ei saanud konto avamise juhiseid?
+        forgot_your_password: Unustasid oma parooli?
+        sign_in: Logi sisse
+        sign_in_with_provider: Logi sisse %{provider}-ga
+        sign_up: Loo konto
+    unlocks:
+      new:
+        resend_unlock_instructions: Saada konto avamise juhised uuesti
+      send_instructions: Sa saad mõne minuti jooksul e-kirja juhistega, kuidas oma konto lukust vabastada.
+      send_paranoid_instructions: Kui su konto eksisteerib, saad sa mõne minuti jooksul e-kirja juhistega, kuidas oma konto lukust vabastada.
+      unlocked: Sinu konto on edukalt lukust vabastatud. Jätkamiseks palun logi sisse.
+  errors:
+    messages:
+      already_confirmed: on juba kinnitatud, proovi sisse logida
+      confirmation_period_expired: vajab kinnitamist %{period} jooksul, palun küsi uus
+      expired: on aegunud, palun küsi uus
+      not_found: ei leitud
+      not_locked: ei olnud lukus
+      not_saved:
+        one: '1 viga takistas salvestamast objekti %{resource}:'
+        other: "%{count} viga takistasid salvestamast objekti %{resource}:"
