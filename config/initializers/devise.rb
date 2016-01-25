@@ -250,7 +250,7 @@ Devise.setup do |config|
 #  config.omniauth :google_oauth2, 'APP_ID', 'APP_SECRET', scope: 'user:email'
   unless Settings.omniauth.nil? || Settings.omniauth.providers.nil?
     Settings.omniauth.providers.each do |provider|
-      config.omniauth provider[0], provider[1].id, provider[1].secret, scope: 'user:email'
+      config.omniauth provider[0], provider[1].id, provider[1].secret#, scope: 'user:email'
     end
   end
   # ==> Warden configuration

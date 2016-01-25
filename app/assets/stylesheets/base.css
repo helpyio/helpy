@@ -472,6 +472,15 @@ ul.dropdown-menu li a.strong {
   margin-bottom: 40px;
 }
 
+.badge-light {
+  background-color: #eee;
+}
+
+.locale-badges {
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
 /* === LAYOUT === */
 
 #breadcrumbs {
@@ -731,6 +740,19 @@ div.home-square {
 
 .search-field {
 	width: 100%;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
 }
 
 div#community-forums-block > span.glyphicon {

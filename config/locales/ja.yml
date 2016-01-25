@@ -18,6 +18,8 @@ ja:
   welcome_back: "ようこそ %{username}"
   your_profile: "プロフィール"
   your_tickets: "あなたのサポットチケット"
+  locale:
+  change_your_locale:
 
   # Voting widget
   did_this_help: "このヘルプは役に立ちましたか？"
@@ -52,9 +54,16 @@ ja:
       two: "2 折り畳みメッセージ"
       other: "%{count} 折り畳みメッセージ"
 
+  # Knowledgebase
+  written_by:
+  last_edited:
+
   # Tickets
   tickets: "サポットチケット"
   no_tickets: "あなたはまだサポットチケットを作成しません"
+  ticket_number:
+  assigned_to_label:
+  created_on:
 
   # Get Help
   get_help_header: "まだなにかお探しでしょうか？"
@@ -62,6 +71,10 @@ ja:
 
   # Profile
   my_profile: 'プロフィール'
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
   login: ログイン
@@ -163,6 +176,15 @@ ja:
   view_and_edit: "ビュー．編集"
   delete_confirm: "削除しますか？"
   select_icon_helptext: "カテゴリーと関係しているものをアイコンよりお選びください"
+  translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: "コミュニティの作成"
@@ -202,6 +224,7 @@ ja:
       forum:
         name: "名"
         description: "説明"
+        private:
 
     helpers:
       submit:

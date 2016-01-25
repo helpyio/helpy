@@ -77,6 +77,14 @@ class User < ActiveRecord::Base
     Topic.where(assigned_user_id: self.id).active.count
   end
 
+  def self.create_password
+    # generate user password
+    source_characters = "0124356789abcdefghijk"
+    password = ""
+    1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+    password
+  end
+
   def thumbnail_url
     if self.thumbnail == ""
       self.gravatar_url(:size => 60)

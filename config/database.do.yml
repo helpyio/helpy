@@ -1,0 +1,25 @@
+# This file is configured for the Digital Ocean install described at
+# http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/1-Installing-Helpy-on-Digital-Ocean
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: helpy_development
+  port: 5432
+  host: localhost
+
+test:
+  <<: *default
+  database: helpy_test
+
+production:
+  <<: *default
+  database: helpy_production
+  username: rails
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>

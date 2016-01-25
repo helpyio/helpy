@@ -31,11 +31,17 @@ class Category < ActiveRecord::Base
   scope :ranked, -> { order('rank ASC') }
   scope :featured, -> {where(front_page: true) }
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
+
   def to_param
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
   end
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  def read_translated_attribute(name)
+    globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
+  end
+
 
 end

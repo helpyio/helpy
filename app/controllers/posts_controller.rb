@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
     if @topic
-      @posts = @topic.posts.ispublic.active.all
+      @posts = @topic.posts.ispublic.active.all.chronologic
       @post = @topic.posts.new
 
       #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)

@@ -16,7 +16,7 @@ Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
-- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, Catalan, Chinese, Japanese and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
+- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, Spanish, Catalan, Chinese, Japanese, Russian and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
 
 Live Demo
 ---------
@@ -32,6 +32,7 @@ Roadmap
 - More translation files (need help with this)
 - Add "related articles" section to knowledgebase
 - Add commenting to knowledgebase using community functions
+- Support for different themes- and easy way to customize look and feel
 - Insert link to KB articles into reply in admin
 - Set up JSON API hooks, and test
 - Convert admin to use react.js
@@ -39,7 +40,7 @@ Roadmap
 - Bring back labels (tag) functionality for discussions.  This is partially there now, but is not in the UI yet.
 - Multiple agent/admin roles (basic version stubbed in already)
 - Social Media integration (sharing of topics, replies, etc.)
-- Omniauth login, with import of user avatars
+- Omniauth login, with import of user avatars (almost done)
 - Some kind of rules capability linked to tagging, etc.
 - Pull GA stats into an internal dashboard
 - Dynamic/Behavioral Personalization
@@ -55,11 +56,11 @@ Helpy was designed to run on Heroku, although it should work just about anywhere
 - Unicorn
 
 Helpy leverages three external services to help out:
-- an email provider like Mandrill
+- an email provider like Sendgrid
 - an image manipulation and host (Cloudinary)
 - Google Analytics for stats
 
-Mandrill and Cloudinary have a free tier that should get you started.  To see how to configure Helpy to use Mandrill as your email provider, see the wiki.
+Sendgrid and Cloudinary have a free tier that should get you started.  To see how to configure Helpy to use Mandrill as your email provider, see the wiki.
 
 How to Install: [http://support.helpy.io](http://support.helpy.io)
 
