@@ -461,6 +461,17 @@ ul.dropdown-menu li a.strong {
   font-weight: bolder;
 }
 
+/* == MODAL === */
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.login-button {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
 /* === LAYOUT === */
 
 #breadcrumbs {

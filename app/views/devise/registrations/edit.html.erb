@@ -12,36 +12,33 @@
 <div class="row content-row">
 
   <div class="col-md-3 text-center">
-
     <%= avatar_image(@user, size=150) %>
-
   </div>
 
   <div class="col-md-9">
   <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
     <span class="user-fields">
-    <%= f.email_field :email, autofocus: true %>
-    <%= f.text_field :name %>
-    <%= f.text_area :bio %>
-    <%= f.text_field :company %>
-    <%= f.text_field :title %>
-    <%#= f.select :language, [['English','en'],['Estonian','et'],['French','fr'],['German','de'],['Spanish','es'],['Russian','ru']] %>
-    <%= f.text_area :signature if current_user.admin? %>
-    <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
-
+      <%= f.email_field :email, autofocus: true %>
+      <%= f.text_field :name %>
+      <%= f.text_area :bio %>
+      <%= f.text_field :company %>
+      <%= f.text_field :title %>
+      <%= f.text_area :signature if current_user.admin? %>
+      <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
     </span>
 
     <%= f.password_field :current_password, autocomplete: "off" %>
 
     <br/><br/>
-    <h4>Change Password: </h4>
+    <h4><%= t(:change_password) %></h4>
+    <br/>
     <span class="password-fields">
-    <%= f.password_field :password, autocomplete: "off", label: "New Password" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off", label: "Confirm New Password" %>
+      <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off"  %>
     </span>
 
-    <%= f.submit "Save Changes", class: 'btn btn-warning' %>
+    <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
 
   <% end %>
 
