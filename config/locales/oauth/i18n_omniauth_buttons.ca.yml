@@ -1,0 +1,2 @@
+ca:
+  sign_in_with_omniauth_provider: "Connecta't amb %{provider}"

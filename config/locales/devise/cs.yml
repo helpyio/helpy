@@ -1,0 +1,115 @@
+cs:
+  activerecord:
+    attributes:
+      user:
+        current_password: Současné heslo
+        email: Email
+        password: Heslo
+        password_confirmation: Potvrzení hesla
+        remember_me: Zapamatuj si mě
+    models:
+      user: Uživatel
+  devise:
+    confirmations:
+      confirmed: Váš účet byl úspěšně potvrzen. Nyní jste přihlášen(a).
+      new:
+        resend_confirmation_instructions: Opět poslat instrukce pro potvrzení
+      send_instructions: Za několik minut obdržíte email s instrukcemi k potvrzení vašeho účtu.
+      send_paranoid_instructions: Pokud váš e-mail existuje v naší databázi, za několik minut obdržíte e-mail s pokyny o tom, jak potvrdit svůj účet.
+    failure:
+      already_authenticated: Přihlášení již proběhlo.
+      inactive: Váš účet ještě nebyl aktivován.
+      invalid: Neplatná identita nebo heslo.
+      last_attempt: Zbývá Vám ještě jeden pokus než bude Váš účet uzamčen.
+      locked: Váš účet je uzamčen.
+      not_found_in_database: Neplatná identita nebo heslo.
+      timeout: Vaše relace vypršela, přihlašte se prosím znovu, pak můžete pokračovat.
+      unauthenticated: Musíte se zaregistrovat nebo přihlásit, pak můžete pokračovat.
+      unconfirmed: Musíte potvrdit svůj účet, pak můžete pokračovat.
+    mailer:
+      confirmation_instructions:
+        action: Potvrdit můj účet
+        greeting: Vítejte, %{recipient}!
+        instruction: Můžete potvrdit svůj účet pomocí odkazu níže
+        subject: Potvrzovací instrukce
+      reset_password_instructions:
+        action: Změnit mé heslo
+        greeting: Ahoj %{recipient}!
+        instruction: Někdo si vyžádal odkaz pro změnu vašeho hesla, to můžete udělat pomocí odkazu níže.
+        instruction_2: Pokud jste si toto nevyžádali, můžete tento e-mail ignorovat.
+        instruction_3: Vaše heslo se nezmění dokud nepřejdete na výše uvedený odkaz a nevytvoříte nové heslo
+        subject: Instrukce k nastavení nového hesla
+      unlock_instructions:
+        action: Odblokovat můj účet
+        greeting: Ahoj %{recipient}!
+        instruction: 'Přejděte na odkaz níže pro odblokování účtu:'
+        message: Váš účet byl zablokován pro nadměrný počet neúspěšných pokusů o přihlášení.
+        subject: Instrukce k odemknutí účtu
+    omniauth_callbacks:
+      failure: 'Není možné autorizovat z %{kind}, protože: "%{reason}".'
+      success: "Úspěšná autorizace z účtu %{kind}."
+    passwords:
+      edit:
+        change_my_password: Změnit mé heslo
+        change_your_password: Změnit mé heslo
+        confirm_new_password: Potvrdit nové heslo
+        new_password: Nové heslo
+      new:
+        forgot_your_password: Zapomněl jste své heslo?
+        send_me_reset_password_instructions: Poslat instrukce pro obnovení hesla
+      no_token: Na tuto stránku lze pouze z emailu, který nastavuje nové heslo. Pokud jste přišli z takového emailu, prosím, přesvěčte se že jste použili celou URL adresu.
+      send_instructions: Za několik minut obdržíte email s instrukcemi k nastavení nového hesla.
+      send_paranoid_instructions: Pokud váš e-mail existuje v naší databázi, za několik minut obdržíte e-mail s instrukcemi k nastavení nového hesla.
+      updated: Vaše heslo bylo úspěšně změněno. Nyní jste přihlášen(a).
+      updated_not_active: Vaše heslo bylo úspěšně změněno.
+    registrations:
+      destroyed: Nashle! Váš účet byl úspěšně zrušen. Doufáme, že se brzy opět uvidíme.
+      edit:
+        are_you_sure: Jste si jistý?
+        cancel_my_account: Zrušit můj účet
+        currently_waiting_confirmation_for_email: 'Momentálně čekám na potvrzení pro: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: nech prázdné, pokud to nechceš měnit
+        title: Upravit %{resource}
+        unhappy: Nešťastný
+        update: Aktualizovat
+        we_need_your_current_password_to_confirm_your_changes: Potřebujeme vaše současné heslo pro potvrzení změn
+      new:
+        sign_up: Registrovat
+      signed_up: Vítejte! Registrace byla úspěšná.
+      signed_up_but_inactive: Vítejte! Registrace byla úspěšná. Bohužel se nemůžete přihlásit, protože váš účet ještě není aktivován.
+      signed_up_but_locked: Vítejte! Registrace byla úspěšná. Bohužel se nemůžete přihlásit, protože váš účet je zamknutý.
+      signed_up_but_unconfirmed: Vítejte! Registrace byla úspěšná. Pro dokončení otevřete aktivační odkaz zaslaný na váš email.
+      update_needs_confirmation: "Úspěšně jste aktualizoval svů účet, ale ještě musíte ověřit svou novou e-mailovou adresu. Zkontrolujte prosím svou schránku a klikněte na odkaz pro dokončení ověření vaši nové e-mailové adresy."
+      updated: Váš účet byl úspěšně aktualizován.
+    sessions:
+      already_signed_out: "Úspěšně odhlášen"
+      new:
+        sign_in: Přihlásit
+      signed_in: Přihlášení úspěšné.
+      signed_out: Odhlášení úspěšné.
+    shared:
+      links:
+        back: Zpět
+        didn_t_receive_confirmation_instructions: Nedostali jste informace pro potvrzení?
+        didn_t_receive_unlock_instructions: Nedostali jste instrukce pro odblokování?
+        forgot_your_password: Zapomněli jste heslo?
+        sign_in: Přihlásit
+        sign_in_with_provider: Přihlásit se s %{provider}
+        sign_up: Registrovat
+    unlocks:
+      new:
+        resend_unlock_instructions: Znovu odeslat instrukce pro odblokování
+      send_instructions: Za několik minut obdržíte email s instrukcemi, jak odemknout svůj účet.
+      send_paranoid_instructions: Pokud váš e-mail existuje v naší databázi, za několik minut obdržíte e-mail s instrukcemi pro odemknutí účtu.
+      unlocked: Váš účet byl úspěšně odemknut. Nyní jste přihlášen(a).
+  errors:
+    messages:
+      already_confirmed: byl již potvrzen, prosím, zkuste se přihlásit
+      confirmation_period_expired: Je potřeba potvrdit do %{period}, prosím, požádejte o novou
+      expired: vypršela, prosím, požádejte o nové
+      not_found: nenalezen
+      not_locked: nebyl uzamčen
+      not_saved:
+        few: "%{resource} nebyl uložen kvůli %{count} chybám:"
+        one: "%{resource} nebyl uložen kvůli chybě:"
+        other: "%{resource} nebyl uložen kvůli %{count} chybám:"

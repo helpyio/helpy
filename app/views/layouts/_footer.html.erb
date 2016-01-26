@@ -15,21 +15,12 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2><%= t(:login) %></h2>
-      </div>
-      <div class="modal-body">
-        <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <%= f.email_field :email, autofocus: true %>
-          <%= f.password_field :password, autocomplete: "off" %>
-          <% if devise_mapping.rememberable? -%>
-              <%= f.check_box :remember_me %>
-          <% end -%>
-					<div class="modal-footer">
-						<%= f.submit t(:login, default: "Login"), class: 'btn btn-warning' %> <%= link_to I18n.t('forgot_password', default: "Forgot your password?"), new_password_path(resource_name) %>
-		      </div>
-        <% end %>
+        <h3 class="modal-title"><%= t('devise.sessions.new.sign_in') %></h3>
       </div>
 
+      <div class="modal-body row">
+				<%= render 'layouts/login' %>
+      </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

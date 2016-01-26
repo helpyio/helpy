@@ -1,0 +1,2 @@
+zh-tw:
+  sign_in_with_omniauth_provider: "使用 %{provider} 登入"

@@ -8,6 +8,9 @@ class PostsController < ApplicationController
   after_filter :send_message, :only => 'create'
 #  after_filter :view_causes_vote, :only => 'index'
 
+  layout "clean", only: [:index]
+
+
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
     if @topic

@@ -1,0 +1,115 @@
+lv:
+  activerecord:
+    attributes:
+      user:
+        current_password: Tagadējā parole
+        email: Epasts
+        password: Parole
+        password_confirmation: Apstiprināt paroli
+        remember_me: Atcerēties mani
+    models:
+      user: Lietotājs
+  devise:
+    confirmations:
+      confirmed: Jūsu lietotājs ir veiksmīgi apstiprināts. Jūs esat pieslēdzies.
+      new:
+        resend_confirmation_instructions: Atkārtoti atsūtīt instrukcijas apstiprinājumu
+      send_instructions: Pāris minūšu laikā uz Jūsu epastu tiks nosūtīts apraksts, kā apstiprināt Jūsu lietotāju.
+      send_paranoid_instructions: Ja Jūsu parole eksistē mūsu datubāzē, tad pāris minūšu laikā uz Jūsu epastu tiks nosūtīts apraksts, kā apstiprināt Jūsu lietotāju.
+    failure:
+      already_authenticated: Jūs jau esiet pieslēdzies.
+      inactive: Jūsu lietotājs vēl nav aktivizēts.
+      invalid: Nekorekts epasts vai parole.
+      last_attempt: Jums ir atlicis pēdējais mēģinājums, pirms jūsu lietotājs tiks bloķēts.
+      locked: Jūsu lietotājs ir nobloķēts.
+      not_found_in_database: Nepareizs epasts vai parole.
+      timeout: Jūsu sesijas laiks ir beidzies. Lūdzu pieslēdzieties vēlreiz, lai turpinātu.
+      unauthenticated: Jums ir jāpieslēdzas vai jāreģistrējas, lai turpinātu.
+      unconfirmed: Jums ir jāapstiprina reģistrācijas epasts, lai turpinātu.
+    mailer:
+      confirmation_instructions:
+        action: Apstiprināt kontu
+        greeting: Sveicināti, %{recipient}!
+        instruction: 'Jūs varat apstiprināt, Jūsu konta epastu caur saiti zemāk:'
+        subject: Apstiprināšanas apraksts
+      reset_password_instructions:
+        action: Veikt paroles maiņu
+        greeting: Sveicināti, %{recipient}!
+        instruction: Kāds ir nosūtijis pieprasijumu, Jūsu paroles maiņai, to var veikt caur saiti zemāk.
+        instruction_2: Ja Jūs neveicāt šo pieprasījumu, lūdzu ignorējiet šo ziņu.
+        instruction_3: Jūsu parole netiks mainīta, kamēr Jūs neapstiprināsiet saiti augstāk un neizveidosiet jaunu.
+        subject: Paroles nomainīšanas apraksts
+      unlock_instructions:
+        action: Atbloķēt kontu
+        greeting: Sveicināti, %{recipient}!
+        instruction: 'Nospiežiet uz saites zemāk, lai atbloķētu kontu:'
+        message: Jūsu konts tika bloķēts vairāku kļūdainu datu ievadīšanas rezultātā.
+        subject: Atbloķēšanas apraksts
+    omniauth_callbacks:
+      failure: 'Neizdevās autorizēties ar %{kind} lietotāju. Iemesls: "%{reason}".'
+      success: Veiksmīgi autorizējis ar %{kind} lietotāju.
+    passwords:
+      edit:
+        change_my_password: Mainīt paroli
+        change_your_password: Paroles maiņa
+        confirm_new_password: Apstiprināt jauno paroli
+        new_password: Jauna parole
+      new:
+        forgot_your_password: Aizmirsāt paroli?
+        send_me_reset_password_instructions: Atsūtīt paroles maiņas instrukciju
+      no_token: "Šī lapa ir pieejama tikai no paroles maiņas e-pasta. Ja Jūs atvērāt šo lapu no e-pasta, tad pārliecinieties, ka izmantojāt pilno URL adresi."
+      send_instructions: Pāris minūšu laikā uz Jūsu epastu tiks nosūtīts apraksts, kā nomainīt jūsu paroli.
+      send_paranoid_instructions: Ja Jūsu parole eksistē mūsu datubāzē, tad jums tiks nosūtīts paroles atjaunošanas apraksts uz epastu
+      updated: Jūsu parole ir veiksmīgi nomainīta. Jūs esat pieslēdzies.
+      updated_not_active: Jūsu parole ir veiksmīgi nomainīta.
+    registrations:
+      destroyed: Uz redzēšanos! Jūsu lietotājs ir veiksmīgi dzēsts. Ceram Jūs drīzumā redzēt atkal.
+      edit:
+        are_you_sure: Vai Jūs esat pārliecināts/-ta?
+        cancel_my_account: Atcelt kontu
+        currently_waiting_confirmation_for_email: 'Pašlaik gaida apstiprinājumu epastam: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: atstājiet tukšu šo lauku, ja nevēlaties veikt izmaiņas
+        title: Rediģēt %{resource}
+        unhappy: Neapmierināts
+        update: Izmainīt
+        we_need_your_current_password_to_confirm_your_changes: mums ir nepieciešama Jūsu tagadējā parole, lai veiktu izmaiņas
+      new:
+        sign_up: Reģistrēties
+      signed_up: Laipni lūgti! Jūs esiet veiksmīgi reģistrējies.
+      signed_up_but_inactive: Jūs esat veiksmīgi reģistrējies. Tomēr Jūs neesat pieslēdzies, jo Jūsu lietotājs vēl nav aktivizēts.
+      signed_up_but_locked: Jūs esat veiksmīgi reģistrējies. Tomēr Jūs neesat pieslēdzies, jo Jūsu lietotājs ir nobloķēts.
+      signed_up_but_unconfirmed: Jums ir nosūtīts e-pasts ar reģistrācijas apstiprinājuma saiti. Lūdzu atveriet šo saiti, lai aktivizētu Jūsu lietotāju.
+      update_needs_confirmation: Jūsu labotās izmaiņas ir veiksmīgi saglabātas, bet mums ir jāpārbauda Jūsu jaunā e-pasta adrese. Lūdzu pārbaudiet Jūsu e-pastu un uzklikšķiniet uz apstiprinājuma saites, lai pabeigtu Jūsu jaunās e-pasta adreses apstiprināšanu.
+      updated: Jūsu labotās izmaiņas ir veiksmīgi saglabātas.
+    sessions:
+      already_signed_out: 
+      new:
+        sign_in: Pievienoties
+      signed_in: Veiksmīgi pieslēdzies.
+      signed_out: Veiksmīgi atslēdzies.
+    shared:
+      links:
+        back: Atpakaļ
+        didn_t_receive_confirmation_instructions: Nesaņēmāt apstiprināšanas instrukciju?
+        didn_t_receive_unlock_instructions: Nesaņēmāt atbloķēšanas instrukciju?
+        forgot_your_password: Aizmirsāt paroli?
+        sign_in: Pievienoties
+        sign_in_with_provider: Pievienoties ar %{provider}
+        sign_up: Reģistrēties
+    unlocks:
+      new:
+        resend_unlock_instructions: Atkārtoti atsūtīt atbloķēšanas instrukciju
+      send_instructions: Pāris minūšu laikā uz Jūsu epastu tiks nosūtīts apraksts, kā atbloķēt Jūsu lietotāju.
+      send_paranoid_instructions: Ja Jūsu parole eksistē mūsu datubāzē, tad pāris minūšu laikā uz Jūsu epastu tiks nosūtīts apraksts, kā atbloķēt jūsu lietotāju.
+      unlocked: Jūsu lietotājs ir veiksmīgi atbloķēts. Jūs esat pieslēdzies.
+  errors:
+    messages:
+      already_confirmed: ir jau apstiprināts, lūdzu mēģiniet pieslēgties
+      confirmation_period_expired: nepieciešama apstiprināšana %{period} laikā, lūdzu piesakieties jaunam
+      expired: derīgums beidzies, lūdzu piesakieties jaunam
+      not_found: netika atrasts
+      not_locked: netika nobloķēts
+      not_saved:
+        one: "%{resource} netika saglabāts 1 kļūdas dēļ:"
+        other: "%{resource} netika saglabāts %{count} kļūdu dēļ:"
+        zero: "%{resource} netika saglabāts %{count} kļūdu dēļ:"

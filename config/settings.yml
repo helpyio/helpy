@@ -4,7 +4,6 @@ forums: true
 knowledgebase: true
 
 # Site Settings
-
 parent_site: /parent-redirect.html # This tells Helpy how to provide a link back to your main site
 parent_company: Main Site # This is the parent company your helpdesk is providing support for
 site_url: http://support.yourdomain.com # This is the URL of your support site
@@ -28,3 +27,17 @@ smtp_mail_password: # Enter your SMTP email password
 mail_smtp: 'smtp.mandrillapp.com' #Enter the server address for your SMTP server
 mail_port: 587 #Enter the port of your SMTP server
 mail_domain: #Enter your the heroku.com if you are on heroku, otherwise enter your domain
+
+# You must sign up with each oauth provider you wish to support and add the ID and secret
+# for each below:
+omniauth:
+  providers:
+    github:
+      id:
+      secret:
+    twitter:
+      id:
+      secret:
+    google_oauth2:
+      id:
+      secret:

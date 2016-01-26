@@ -26,6 +26,18 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   end
 
+  test "an omniauth logged in user should be able to update their user profile without password" do
+    @user = users(:oauth_user)
+    sign_in @user
+    assert_difference 'User.find(4).name.length', -3 do
+      patch :update, { id: @user.id, user: {name: 'something'}, locale: :en }
+      assert User.find(4).name == 'something', "name does not update"
+    end
+    assert_redirected_to root_path
+  end
+
+
+
   test "a signed in user should NOT be able to change their admin or active status" do
     sign_in users(:user)
 
