@@ -28,16 +28,17 @@ mail_smtp: 'smtp.mandrillapp.com' #Enter the server address for your SMTP server
 mail_port: 587 #Enter the port of your SMTP server
 mail_domain: #Enter your the heroku.com if you are on heroku, otherwise enter your domain
 
-# You must sign up with each oauth provider you wish to support and add the ID and secret
+# You must sign up with each oauth provider you wish to support and uncomment and add the ID and secret
 # for each below:
+
 omniauth:
   providers:
-    github:
-      id:
-      secret:
-    twitter:
-      id:
-      secret:
-    google_oauth2:
-      id:
-      secret:
+#    github:
+#      id:
+#      secret:
+#    twitter:
+#      id:
+#      secret:
+#    google_oauth2:
+#      id:
+#      secret:
