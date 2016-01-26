@@ -467,7 +467,7 @@ ul.dropdown-menu li a.strong {
   border-bottom: 0;
 }
 
-.login-button {
+.login-button, .reset-button {
   margin-top: 30px;
   margin-bottom: 40px;
 }

@@ -145,6 +145,13 @@ Helpy.track = function(){
     ga('send', 'event', 'Vote','Topic', $voted);
   });
 
+  // OAuth Click Events
+  $('.oauth').off().on("click", function(){
+    var $provider = $(this).data("provider");
+    console.log('Oauth login with ' + $provider);
+    ga('send', 'event', 'oauth','provider', $provider);
+  });
+
 
 
     // document.location.href = $(this).data("link");
