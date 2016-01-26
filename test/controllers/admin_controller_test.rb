@@ -205,7 +205,7 @@ class AdminControllerTest < ActionController::TestCase
     xhr :get, :topic_search, q: 'scott'
     assert_nil assigns(:topics)
     assert_not_nil assigns(:users)
-    assert_equal(2, assigns(:users).size)
+    assert_equal(3, assigns(:users).size)
     assert_response :success
   end
 
@@ -231,7 +231,7 @@ class AdminControllerTest < ActionController::TestCase
     get :topic_search, q: 'scott'
     assert_nil assigns(:topics)
     assert_not_nil assigns(:users)
-    assert_equal(2, assigns(:users).size)
+    assert_equal(3, assigns(:users).size)
     assert_response :success
   end
 
