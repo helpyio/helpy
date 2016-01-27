@@ -102,13 +102,21 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_oauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    if !where(email: auth.info.email).empty?
+      user = where(email: auth.info.email).first
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = auth.provider == 'twitter' ? "#{auth.info.nickname}@twitter.com" : auth.info.email
-      user.name = auth.info.name
-      user.thumbnail = auth.info.image
-      user.password = Devise.friendly_token[0,20]
+      user.save!
+      user
+    else
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.provider == 'twitter' ? "#{auth.info.nickname}@twitter.com" : auth.info.email
+        user.name = auth.info.name
+        user.thumbnail = auth.info.image
+        user.password = Devise.friendly_token[0,20]
+      end
     end
   end
 
