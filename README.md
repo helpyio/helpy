@@ -40,7 +40,6 @@ Roadmap
 - Bring back labels (tag) functionality for discussions.  This is partially there now, but is not in the UI yet.
 - Multiple agent/admin roles (basic version stubbed in already)
 - Social Media integration (sharing of topics, replies, etc.)
-- Omniauth login, with import of user avatars (almost done)
 - Some kind of rules capability linked to tagging, etc.
 - Pull GA stats into an internal dashboard
 - Dynamic/Behavioral Personalization
@@ -63,8 +62,6 @@ Helpy leverages three external services to help out:
 Sendgrid and Cloudinary have a free tier that should get you started.  To see how to configure Helpy to use Mandrill as your email provider, see the wiki.
 
 How to Install: [http://support.helpy.io](http://support.helpy.io)
-
-Installation Wiki: [https://github.com/scott/helpy/wiki/](https://github.com/scott/helpy/wiki/)
 
 Contributing
 ============
