@@ -30,7 +30,7 @@ de:
   search_placeholder: "Geben Sie ein Stichwort, ein Thema oder eine Frage ein"
   no_results: "Keine Ergebnisse gefunden, bitte suchen Sie erneut!"
   results_found:
-    one: "Es wurden ein Ergebnis für Ihre Suche gefunden "
+    one: "Es wurde ein Ergebnis für Ihre Suche gefunden "
     other: "Es wurden %{count} Ergebnisse für Ihre Suche gefunden "
 
   # Community
@@ -41,176 +41,176 @@ de:
   replies: "Antworten"
   last_post: "Letzte Beiträge"
   started_by: "Eröffnet durch %{username}"
-  reply: "Reply to this topic"
-  submit_reply: "Post Reply"
-  posted: "Posted"
-  start_discussion: "Start a New Discussion"
-  submit_start_discussion: "Start Discussion"
-  should_message_be_private: "Should this message be private?"
-  only_support_can_respond: "Only support can respond (creates a private ticket)"
-  responses_can_come_from_everyone: "Responses can come from support or the community (recommended)"
+  reply: "Auf dieses Thema antworten"
+  submit_reply: "Antwort abschicken"
+  posted: "Abgeschickt"
+  start_discussion: "Ein neue Diskussion beginnen"
+  submit_start_discussion: "Diskussion beginnen"
+  should_message_be_private: "Soll diese Nachricht privat sein?"
+  only_support_can_respond: "Nur der Support kann antworten (ein privates Ticket erstellen)"
+  responses_can_come_from_everyone: "Antworten können vom Support oder der Community kommen (empfohlen)"
   collapsed_messages:
-      one: "1 collapsed message"
-      two: "2 collapsed messages"
-      other: "%{count} collapsed messages"
+      one: "1 verborgene Nachricht"
+      two: "2 verborgene Nachrichten"
+      other: "%{count} verborgene Nachrichten"
 
   # Tickets
   tickets: "Tickets"
-  no_tickets: "You have not created any tickets yet"
+  no_tickets: "Du hast noch keine Tickets erstellt"
 
   # Get Help
-  get_help_header: "Still Need Help??"
-  get_help_button: "Start a Discussion with Us"
+  get_help_header: "Brauchen Sie noch Hilfe??"
+  get_help_button: "Starten Sie eine Diskussion mit uns"
 
   # Profile
-  my_profile: 'My Profile'
+  my_profile: 'Mein Profil'
 
   # devise/sessions/new
-  login: Log in
+  login: Anmelden
 
   # devise/shared/links
-  forgot_password: Forgot your password?
+  forgot_password: Passwort vergessen?
 
   # devise/passwords/new
-  send_instructions: Send me instructions
+  send_instructions: Bestätigung schicken
 
   # devise/passwords/edit
-  change_password: Change password
-  new_password: New password
-  new_password_confirmation: Confirm new password
+  change_password: Passwort ändern
+  new_password: Neues Passwort
+  new_password_confirmation: Passwort wiederholen
 
   # devise/confirmations/new
-  resend: Resend confirmation instructions
+  resend: Bestätigungsmail erneut schicken
 
   # devise/registrations/new
-  sign_up: Sign Up
+  sign_up: Registrieren
 
   # Admin menu
-  discussions: Discussions
-  content: Content
+  discussions: Diskussionen
+  content: Inhalt
   communities: Communities
   app_store: App Store
-  search: Search
+  search: Suche
 
   # Admin main/statuses
   support_pipeline: Support Pipeline
-  new: New
-  active: Active
-  open: Open
-  mine: Mine
-  pending: Pending
-  closed: Resolved
+  new: Neu
+  active: Aktiv
+  open: Offen
+  mine: Meine
+  pending: In Bearbeitung
+  closed: Abgeschlossen
   spam: Spam
-  trash: Trash
-  discussion_managment: Discussion Management
-  open_new_discussion: New Discussion
-  assigned_to: "assigned to %{agent}"
-  unassigned: unassigned
-  private: private
-  public: public
-  save_changes: Save Changes
+  trash: Papierkorb
+  discussion_managment: Diskussionsverwaltung
+  open_new_discussion: Neue Diskussion
+  assigned_to: "zugeordnet an %{agent}"
+  unassigned: nicht zugeordnet
+  private: privat
+  public: öffentlich
+  save_changes: Änderungen speichern
 
   # Discussion controls
-  change_status: Change Status
+  change_status: Status ändern
   status: Status
-  mark_closed: Mark Resolved
-  reopen: Reopen
-  mark_spam: Mark Spam
-  mark_new: Mark New
-  assign_agent: Assign Agent
+  mark_closed: Als gelöst markieren
+  reopen: Erneut öffnen
+  mark_spam: Als Spam markieren
+  mark_new: Als Neu markieren
+  assign_agent: Agent zuordnen
   selected_messages:
-    one: "1 selected message"
-    two: "2 selected messages"
-    other: "%{count} selected messages"
+    one: "1 markierte Nachricht"
+    two: "2 markierte Nachrichten"
+    other: "%{count} markierte Nachrichten"
 
   # Discussion messages
-  reopen_message: "This message has been reopened by the support staff"
-  close_message: "This ticket has been closed by the support staff."
-  trash_message: "This ticket has been deleted."
-  assigned_message: "Discussion has been transferred to %{assigned_to}."
+  reopen_message: "Diese Nachricht wurde erneut durch einen Support-Mitarbeiter geöffnet."
+  close_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
+  trash_message: "Diese Ticket wurde gelöscht."
+  assigned_message: "Die Diskussion wurde %{assigned_to} zugeordnet."
 
   # User Admin
-  contact_info: Contact
-  social_info: Social
-  edit_user: Edit User
-  work_phone: work
-  cell_phone: cell
+  contact_info: Kontakt
+  social_info: Soziales
+  edit_user: Benutzer bearbeiten
+  work_phone: Arbeit
+  cell_phone: Handy
 
   # User search results
   users_found:
-    one: "1 user was found named %{query}"
-    other: "%{count} users were found named %{query}"
+    one: "1 Benutzer mit dem Namen %{query} wurde gefunden"
+    other: "%{count} Benutzer mit dem Namen %{query} wurden gefunden"
 
   # Discussion View
-  asked_a_question: "%{user_name} asked a question..."
-  replied: "%{user_name} replied..."
-  posted_note: "%{user_name} posted an internal note..."
-  type_reply: Type your reply, or select from a common message below
-  select_common: Select Common Reply
-  reply: Reply
-  internal_note: Internal Note
+  asked_a_question: "%{user_name} hat eine Frage gestellt..."
+  replied: "%{user_name} hat geantwortet..."
+  posted_note: "%{user_name} hat eine interne Notiz gesendet..."
+  type_reply: Schreiben Sie eine Antwort oder wählen Sie eine Standardnachricht unten aus
+  select_common: Standardnachricht auswählen
+  reply: Antworten
+  internal_note: Interne Notiz
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
 
   # Content
-  new_category: New Category
-  new_content: New Content
-  front_page_categories: Front Page Categories
-  other_categories: Other Categories
-  edit: Edit
-  edit_category: Edit Category
-  select_category: Select Category
-  delete: Delete
-  view_and_edit: "View and Edit Content"
-  delete_confirm: "Please confirm you want to DELETE this!"
-  select_icon_helptext: "Select an icon to associate with this category (optional)"
-  translate: "Translate to a different language"
+  new_category: Neue Kategorie
+  new_content: Neuer Inhalt
+  front_page_categories: Kategorien Startseite
+  other_categories: Andere Kategorien
+  edit: Bearbeiten
+  edit_category: Kategorie bearbeiten
+  select_category: Kategorie auswählen
+  delete: Löschen
+  view_and_edit: "Inhalte anzeigen und bearbeiten"
+  delete_confirm: "Bitte bestätigen Sie, dass Sie dies LÖSCHEN wollen!"
+  select_icon_helptext: "Symbol für die Kategorie auswählen (optional)"
+  translate: "In eine andere Sprache übersetzen"
 
   # Communities
-  new_community: Create New Community
-  create_new_community: Create New Community
+  new_community: Eine neue Community erstellen
+  create_new_community: Eine neue Community erstellen
 
   activerecord:
     attributes:
       user:
         email: Email
-        password: Password
+        password: Passwort
         name: Name
-        company: Company
-        work_phone: Work
-        cell_phone: Cell
-        city: City
-        state: State
+        company: Firma
+        work_phone: Arbeit
+        cell_phone: Handy
+        city: Stadt
+        state: Bundesland
 
       topic:
-        name: Subject
+        name: Betreff
       post:
-        kind: Genre
+        kind: Art
       category:
         name: Name
-        icon: Icon
-        keywords: Keywords
-        title_tag: Title Tag
-        meta_description: Meta Description
-        front_page: Front Page
-        active: Active
+        icon: Symbol
+        keywords: Stichworte
+        title_tag: Titel Stichwort
+        meta_description: Beschreibung
+        front_page: Startseite
+        active: Aktiv
       doc:
-        title: Title
-        meta_description: Meta Description
-        title_tag: Title Tag
-        keywords: Keywords
-        category_id: Category
+        title: Titel
+        meta_description: Beschreibung
+        title_tag: Titel Stichwort
+        keywords: Stichworte
+        category_id: Kategorie
         active: Status
-        front_page: Featured on front page?
+        front_page: Auf die Startseite setzen?
       forum:
         name: Name
-        description: Description
+        description: Beschreibung
 
     helpers:
       submit:
         topic:
-          create: Start New Discussion
+          create: Eine neue Diskussion starten
         post:
           create:
 
@@ -230,16 +230,16 @@ de:
     result:
       root: *root
   helpers:
-    actions: "Actions"
+    actions: "Aktionen"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      back: "Zurück"
+      cancel: "Abbrechen"
+      confirm: "Sind Sie sicher?"
+      destroy: "Löschen"
+      new: "Neu"
+      edit: "Bearbeiten"
     titles:
-      edit: "Edit %{model}"
-      save: "Save %{model}"
-      new: "New %{model}"
-      delete: "Delete %{model}"
+      edit: "%{model} bearbeiten"
+      save: "%{model} speichern"
+      new: "Neue oder neues %{model}"
+      delete: "%{model} löschen"
