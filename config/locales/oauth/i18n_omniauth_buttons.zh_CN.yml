@@ -1,0 +1,2 @@
+zh-cn:
+  sign_in_with_omniauth_provider: "登入%{provider}"

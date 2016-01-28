@@ -56,6 +56,10 @@ class Doc < ActiveRecord::Base
     "#{id}-#{title.gsub(/[^a-z0-9]+/i, '-')}"
   end
 
+  def read_translated_attribute(name)
+    globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
+  end
+
   def content
     c = RDiscount.new(self.body)
     return c.to_html

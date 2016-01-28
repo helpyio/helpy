@@ -7,14 +7,15 @@
 <div class="row">
   <div class="col-md-12">
     <table id="forums">
-      <col width="85%">
-      <col width="15%">
+      <col>
+      <col width="5%">
       <% @docs.each do |doc| %>
       <tr id="doc-<%= doc.id %>">
         <td>
-          <span class="more-important"><%= link_to doc.title, edit_category_doc_path(doc.category.id, doc.id, lang: I18n.locale)  %> <%= ' - Featured' if doc.front_page == true %> <%= ' - Draft' if doc.active == false %></span>
+          <span class="more-important"><%= link_to doc.title, edit_category_doc_path(doc.category.id, doc.id, lang: I18n.locale)  %> <%= " - #{I18n.t('featured_content', default: 'Featured')}" if doc.front_page == true %> <%= " - #{I18n.t('draft_content', default: 'Draft')}" if doc.active == false %></span>
+          <%= i18n_icons(doc) if I18n.available_locales.count > 1 %>
           <br/>
-          <span class="less-important">Written <%= doc.created_at.strftime("%m/%d/%Y") %> <%= doc.updated_at == doc.created_at ? "" : " | Last Updated: #{doc.updated_at.strftime("%m/%d/%Y")}" %></span>
+          <span class="less-important"><%= I18n.t('written_on', date_written: doc.created_at.strftime("%m/%d/%Y"), default: 'Written on') %> <%= doc.updated_at == doc.created_at ? "" : " | #{I18n.t("content_last_updated", date_updated: doc.updated_at.strftime("%m/%d/%Y"))}" %></span>
         </td>
         <td class="text-right">
           <div class="btn-group">
@@ -22,7 +23,7 @@
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
               <li><%= link_to t(:edit, default: 'Edit'), edit_category_doc_path(doc.category.id, doc.id, lang: I18n.locale) %></li>
               <li><%= link_to t(:delete, default: 'Delete'), doc, data: {confirm: t(:delete_confirm, default: 'Please confirm you really want to DELETE this')}, method: :delete, remote: true, class: 'less-important' %></li>
-              <li><%= link_to t(:view, default: 'View on Site'), category_doc_path(doc.category, doc), {target: "_blank"} %></li>
+              <li><%= link_to t(:view_on_site, default: 'View on Site'), category_doc_path(doc.category, doc), {target: "_blank"} %></li>
             </ul>
           </div>
         </td>

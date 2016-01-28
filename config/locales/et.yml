@@ -54,13 +54,24 @@ et:
       two: "2 varjatud sõnumit"
       other: "%{count} varjatud sõnumit"
 
+  # Knowledgebase
+  written_by: "Written By"
+  last_edited: "Last Edited"
+
   # Tickets
   tickets: "Piletid"
   no_tickets: "Sa ei ole loonud ühtegi piletit"
+  ticket_number: "Ticket Number"
+  assigned_to_label: "Assigned to"
+  created_on: "Created on"
 
   # Get Help
   get_help_header: "Vajad ikka abi??"
   get_help_button: "Algata arutelu meiega"
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # Profile
   my_profile: 'Minu profiil'
@@ -165,7 +176,15 @@ et:
   view_and_edit: "Vaata ja Muuda sisu"
   delete_confirm: "Palun kinnita, et soovid seda kustutada!"
   select_icon_helptext: "Vali ikoon mida seostada selle kategooriaga (valikuline)"
-  translate:
+  translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: Loo uus kommuun
@@ -182,7 +201,6 @@ et:
         cell_phone: Telefon
         city: Linn
         state: Maakond
-
       topic:
         name: Pealkiri
       post:
@@ -206,6 +224,7 @@ et:
       forum:
         name: Nimi
         description: Kirjeldus
+        private: Private
 
     helpers:
       submit:

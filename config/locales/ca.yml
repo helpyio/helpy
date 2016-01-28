@@ -7,7 +7,7 @@ ca:
   nothing_here: "No hi ha res aquí!"
 
   # Navigation
-  knowledgebase: "Base de coneixament"
+  knowledgebase: "Base de coneixement"
   community: "Comunitat"
   ask_a_question: "Fer una pregunta"
   home: *root
@@ -18,6 +18,8 @@ ca:
   welcome_back: "Benvingut de nou %{username}"
   your_profile: "El teu perfil"
   your_tickets: "Els teus tiquets"
+  locale: "Locale"
+  change_your_locale: "Change your Locale"
 
   # Voting widget
   did_this_help: "Això ha solucionat el teu problema?"
@@ -26,7 +28,7 @@ ca:
 
   # Search
   search_placeholder: "Entra una paraula clau, tema o pregunta"
-  no_results: "No hi ha resultats, siusplau prova uns termes diferents!"
+  no_results: "No hi ha resultats, si us plau prova uns termes diferents!"
   results_found:
     one: "s'ha trobat un resultat per la teva cerca "
     other: "s'han trobat %{count} resultats per la teva cerca "
@@ -40,48 +42,59 @@ ca:
   last_post: "Últim post"
   started_by: "Començat per %{username}"
   reply: "Contesteu aquest tema"
-  submit_reply: "Penjeu una resposta"
+  submit_reply: "Pengeu una resposta"
   posted: "Penjada"
   start_discussion: "Comença un nou debat"
   submit_start_discussion: "Comença debat"
   should_message_be_private: "Aquest missatge hauria de ser privat?"
   only_support_can_respond: "Només l'equip d'atenció al client pot respondre (crea un tiquet privat)"
-  responses_can_come_from_everyone: "Les respostes poden ser de la comunitat o de l'equip d'atenció al client (recomenat)"
+  responses_can_come_from_everyone: "Les respostes poden ser de la comunitat o de l'equip d'atenció al client (recomanat)"
   collapsed_messages:
       one: "1 missatge minimitzat"
       two: "2 missatges minimitzat"
       other: "%{count} missatge minimitzat"
 
+  # Knowledgebase
+  written_by: "Written By"
+  last_edited: "Last Edited"
+
   # Tickets
   tickets: "Tiquets"
   no_tickets: "Encara no has creat cap tiquet"
+  ticket_number: "Ticket Number"
+  assigned_to_label: "Assigned to"
+  created_on: "Created on"
 
   # Get Help
-  get_help_header: "Encara necessites ajuda??"
-  get_help_button: "Comença una dis"
+  get_help_header: "Encara necessites ajuda?"
+  get_help_button: "Comença un debat"
 
   # Profile
-  my_profile: 'My Profile'
+  my_profile: 'El meu perfil'
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
-  login: Log in
+  login: Iniciar sessió
 
   # devise/shared/links
-  forgot_password: Forgot your password?
+  forgot_password: Has oblidat la teva contrasenya?
 
   # devise/passwords/new
-  send_instructions: Send me instructions
+  send_instructions: Envia'm les instruccions
 
   # devise/passwords/edit
-  change_password: Change password
-  new_password: New password
-  new_password_confirmation: Confirm new password
+  change_password: Contrassenya canviada
+  new_password: Nova contrassenya
+  new_password_confirmation: Confirma nova contrasenya
 
   # devise/confirmations/new
-  resend: Resend confirmation instructions
+  resend: Re-envia les instruccions de confirmació
 
   # devise/registrations/new
-  sign_up: Sign Up
+  sign_up: Registrar-se
 
   # Admin menu
   discussions: Debats
@@ -122,8 +135,8 @@ ca:
     other: "%{count} missatges seleccionats"
 
   # Discussion messages
-  reopen_message: "Aquest missatge ha estat reobert per l'equip d'atenció al client"
-  close_message: "Aquest missatge ha estat tencat per l'equip d'antenció al client."
+  reopen_message: "Aquest missatge ha estat re-obert per l'equip d'atenció al client."
+  close_message: "Aquest missatge ha estat tancat per l'equip d'atenció al client."
   trash_message: "Aquest missatge ha estat eliminat."
   assigned_message: "El debat ha estat transferit a %{assigned_to}."
 
@@ -161,8 +174,17 @@ ca:
   select_category: Seleccionar categoria
   delete: Esborrar
   view_and_edit: "Veure i editar contingut"
-  delete_confirm: "Siusplau confirma que vols ELIMINAR això!"
+  delete_confirm: "Si us plau confirma que vols ELIMINAR això!"
   select_icon_helptext: "Selecciona una icona per associar amb aquesta categoria (opcional)"
+  translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: Crea una nova comunitat
@@ -172,14 +194,13 @@ ca:
     attributes:
       user:
         email: Email
-        password: Contrassenya
+        password: Contrasenya
         name: Nom
         company: Empresa
         work_phone: Feina
         cell_phone: Mòbil
         city: Ciutat
-        state: Estat o provincia
-
+        state: Estat o província
       topic:
         name: Assumpte
       post:
@@ -203,6 +224,7 @@ ca:
       forum:
         name: Nom
         description: Descripció
+        private: Private
 
     helpers:
       submit:
@@ -227,16 +249,16 @@ ca:
     result:
       root: *root
   helpers:
-    actions: "Actions"
+    actions: "Accions"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      back: "Endarrera"
+      cancel: "Cancel·lar"
+      confirm: "N'estàs segur?"
+      destroy: "Eliminar"
+      new: "Nou"
+      edit: "Editar"
     titles:
-      edit: "Edit %{model}"
-      save: "Save %{model}"
-      new: "New %{model}"
-      delete: "Delete %{model}"
+      edit: "Editar %{model}"
+      save: "Guardar %{model}"
+      new: "Nou %{model}"
+      delete: "Eliminar %{model}"

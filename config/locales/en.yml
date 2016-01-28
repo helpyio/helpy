@@ -54,9 +54,16 @@ en:
       two: "2 collapsed messages"
       other: "%{count} collapsed messages"
 
+  # Knowledgebase
+  written_by: "Written By"
+  last_edited: "Last Edited"
+
   # Tickets
   tickets: "Tickets"
   no_tickets: "You have not created any tickets yet"
+  ticket_number: "Ticket Number"
+  assigned_to_label: "Assigned to"
+  created_on: "Created on"
 
   # Get Help
   get_help_header: "Still Need Help??"
@@ -64,6 +71,10 @@ en:
 
   # Profile
   my_profile: 'My Profile'
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
   login: Log in
@@ -166,6 +177,14 @@ en:
   delete_confirm: "Please confirm you want to DELETE this!"
   select_icon_helptext: "Select an icon to associate with this category (optional)"
   translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: Create New Community
@@ -182,7 +201,6 @@ en:
         cell_phone: Cell
         city: City
         state: State
-
       topic:
         name: Subject
       post:
@@ -206,6 +224,7 @@ en:
       forum:
         name: Name
         description: Description
+        private: Private
 
     helpers:
       submit:

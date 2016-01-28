@@ -1,0 +1,114 @@
+zh-CN:
+  activerecord:
+    attributes:
+      user:
+        current_password: "当前密码"
+        email: "电子邮箱"
+        password: "密码"
+        password_confirmation: "密码确认"
+        remember_me: "记住登录信息"
+    models:
+      user: "用户"
+  devise:
+    confirmations:
+      confirmed: "恭喜您，注册成功，现在可以登录了"
+      new:
+        resend_confirmation_instructions: "重新发送确认邮件"
+      send_instructions: "几分钟后，您将收到确认帐号的电子邮件."
+      send_paranoid_instructions: "您将收到一封确认账号的邮件.，请注意查收"
+    failure:
+      already_authenticated: "登录成功"
+      inactive: "您的账号还未激活"
+      invalid: "账号或密码错误"
+      last_attempt: "你还有一次尝试正确的密码，过后你的帐户会被锁住"
+      locked: "由于您登陆过于频繁，现在我们决定封锁您的账号，请过后再来"
+      not_found_in_database: "邮箱或密码错误"
+      timeout: "登录超时，请重新登录."
+      unauthenticated: "继续操作前请确保您已登录."
+      unconfirmed: "继续操作前请先确认您的帐号."
+    mailer:
+      confirmation_instructions:
+        action: "确认我的帐户"
+        greeting: "欢迎 %{recipient}!"
+        instruction: "您可以通过下面的链接确认您的帐户的电子邮件:"
+        subject: "确认信息"
+      reset_password_instructions:
+        action: "更改我的密码"
+        greeting: "你好 %{recipient}!"
+        instruction: "有人要求更改密码的链接，您可以通过下面的链接更改密码："
+        instruction_2: "如果您没有要求请求更改密码，请忽略此电子邮件。"
+        instruction_3: "如果你没有访问上面的链接并更改密码，你的密码就不会被改变。"
+        subject: "重置密码信息"
+      unlock_instructions:
+        action: "帐户解锁"
+        greeting: "你好 %{recipient}!"
+        instruction: "点击下面的链接到您的帐户解锁:"
+        message: "由于多次的不成功的登入尝试，您的帐户已被锁定。"
+        subject: "解锁信息"
+    omniauth_callbacks:
+      failure: "因为%{reason}，所以您无法从%{kind}获得授权."
+      success: "成功地从%{kind}获得授权."
+    passwords:
+      edit:
+        change_my_password: "更改我的密码"
+        change_your_password: "更改您的密码"
+        confirm_new_password: "确认新密码"
+        new_password: "新密码"
+      new:
+        forgot_your_password: "忘记密码？"
+        send_me_reset_password_instructions: "请给我发送重设密码的邮件"
+      no_token: "您暂时不能访问此页面。您需要通过密码重置邮件中的重置链接来访问此页面，如果您正是通过重置链接访问，请确定链接的正确性。"
+      send_instructions: "几分钟后，您将收到重置密码的电子邮件."
+      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封找回密码的邮件."
+      updated: "您的密码已修改成功，您现在已登录."
+      updated_not_active: "密码修改成功."
+    registrations:
+      destroyed: "再见！您的帐户已成功注销。我们希望很快可以再见到您."
+      edit:
+        are_you_sure: "你确定吗？"
+        cancel_my_account: "取消我的帐户"
+        currently_waiting_confirmation_for_email: "等待 %{email} 的确认"
+        leave_blank_if_you_don_t_want_to_change_it: "你不想去改变它，不需要填写"
+        title: "修改 %{resource}"
+        unhappy: "不喜欢"
+        update: "更新"
+        we_need_your_current_password_to_confirm_your_changes: "我们需要您的当前密码以确认您的更改"
+      new:
+        sign_up: "注册"
+      signed_up: "欢迎您！您已注册成功."
+      signed_up_but_inactive: "谢谢您！然而您的账号还未被激活，在这之前无法登陆。"
+      signed_up_but_locked: "谢谢您！然而您的账号已被锁定，无法登陆。"
+      signed_up_but_unconfirmed: "谢谢您！一封确认邮件已经发至您的邮箱，请点击其中的链接激活您的账号。"
+      update_needs_confirmation: "新的账号信息已成功提交，一封确认邮件已经发至您的邮箱，请点击其中的链接以使您的新E-mail地址生效。"
+      updated: "帐号资料更新成功."
+    sessions:
+      already_signed_out: "成功的登出"
+      new:
+        sign_in: "登录"
+      signed_in: "登录成功."
+      signed_out: "退出成功."
+    shared:
+      links:
+        back: "返回"
+        didn_t_receive_confirmation_instructions: "没有收到确认邮件？"
+        didn_t_receive_unlock_instructions: "没有收到解锁邮件？"
+        forgot_your_password: "忘记密码？"
+        sign_in: "登录"
+        sign_in_with_provider: "用 %{provider} 登录"
+        sign_up: "注册"
+    unlocks:
+      new:
+        resend_unlock_instructions: "重发解锁邮件"
+      send_instructions: "几分钟后，您将收到一封解锁帐号的邮件."
+      send_paranoid_instructions: "如果您的邮箱存在于我们的数据库中，您将收到一封解锁账号的邮件."
+      unlocked: "您的帐号已成功解锁，您现在已登录."
+  errors:
+    messages:
+      already_confirmed: "已经确认，请重新登录."
+      confirmation_period_expired: "必须在 %{period} 以内确认，请重新申请"
+      expired: "您已过期，请重新申请"
+      not_found: "没有找到"
+      not_locked: "未锁定"
+      not_saved:
+        one: "因为1个错误导致此%{resource}保存失败:"
+        other: "因为%{count}个错误导致此%{resource}保存失败:"

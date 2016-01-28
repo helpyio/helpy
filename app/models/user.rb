@@ -46,7 +46,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
   validates_presence_of :name, :email
   validates_uniqueness_of :email
@@ -76,6 +77,14 @@ class User < ActiveRecord::Base
     Topic.where(assigned_user_id: self.id).active.count
   end
 
+  def self.create_password
+    # generate user password
+    source_characters = "0124356789abcdefghijk"
+    password = ""
+    1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+    password
+  end
+
   def thumbnail_url
     if self.thumbnail == ""
       self.gravatar_url(:size => 60)
@@ -89,6 +98,25 @@ class User < ActiveRecord::Base
       self.gravatar_url(:size => 60)
     else
       self.medium_image
+    end
+  end
+
+  def self.find_for_oauth(auth)
+    if !where(email: auth.info.email).empty?
+      user = where(email: auth.info.email).first
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.save!
+      user
+    else
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.provider == 'twitter' ? "#{auth.info.nickname}@twitter.com" : auth.info.email
+        user.name = auth.info.name
+        user.thumbnail = auth.info.image
+        user.password = Devise.friendly_token[0,20]
+      end
     end
   end
 

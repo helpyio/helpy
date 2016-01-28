@@ -70,7 +70,7 @@ Rails.application.configure do
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
-  # I18n.available_locales = [:en, :fr, :et, :ca, :ja, 'zh-cn', 'zh-tw']
+  # I18n.available_locales = [:en, :es, :fr, :et, :ca, :ja, 'zh-cn', 'zh-tw']
   config.i18n.available_locales = [:en, :fr]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true

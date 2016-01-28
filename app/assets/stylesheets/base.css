@@ -211,6 +211,11 @@ div.add-form {
 .form-subhead {
   margin-bottom: 25px;
 }
+
+.login-buttons {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 /*
 h3 {
 	color: #ab2a30;
@@ -454,6 +459,26 @@ span.category-icon {
 
 ul.dropdown-menu li a.strong {
   font-weight: bolder;
+}
+
+/* == MODAL === */
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.login-button, .reset-button {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.badge-light {
+  background-color: #eee;
+}
+
+.locale-badges {
+  padding-right: 20px;
+  padding-top: 10px;
 }
 
 /* === LAYOUT === */
@@ -715,6 +740,19 @@ div.home-square {
 
 .search-field {
 	width: 100%;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
+    pointer-events: none;
 }
 
 div#community-forums-block > span.glyphicon {

@@ -18,6 +18,8 @@ zh-tw:
   welcome_back: "歡迎 %{username}回來"
   your_profile: "個人檔案"
   your_tickets: "已要求的協助"
+  locale:
+  change_your_locale:
 
   # Voting widget
   did_this_help: "這是否解決你的問題？"
@@ -52,9 +54,16 @@ zh-tw:
     two: "2個已摺疊訊息"
     other: "%{count}個已摺疊訊息"
 
+  # Knowledgebase
+  written_by:
+  last_edited:
+
   # Tickets
   tickets: "要求協助"
   no_tickets: "你還未要求協助"
+  ticket_number:
+  assigned_to_label:
+  created_on:
 
   # Get Help
   get_help_header: "需要更多協助??"
@@ -62,6 +71,10 @@ zh-tw:
 
   # Profile
   my_profile: "我的檔案"
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
   login: 登入
@@ -163,6 +176,15 @@ zh-tw:
   view_and_edit: "檢視及修改分類"
   delete_confirm: "確定刪除?"
   select_icon_helptext: "選擇分類圖標 (自選)"
+  translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: 新社區
@@ -179,7 +201,6 @@ zh-tw:
         cell_phone: 行動電話
         city: 城市
         state: 省份
-
       topic: #主題
         name: 名稱
       post: #帖子
@@ -203,6 +224,7 @@ zh-tw:
       forum: #討論區
         name: 名稱
         description: 說明
+        private:
 
     helpers: #幫手
        submit: #送出
