@@ -16,7 +16,7 @@ Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
-- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, Spanish, Catalan, Chinese, Japanese, Russian and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
+- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, German, Spanish, Catalan, Chinese, Japanese, Russian and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
 
 Live Demo
 ---------
