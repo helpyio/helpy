@@ -129,7 +129,13 @@ class TopicsController < ApplicationController
         @topic.user_id = @user.id
 
       else #User not found, lets build it
+
         @user = @topic.build_user
+
+        @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+        @user.reset_password_token = enc
+        @user.reset_password_sent_at = Time.now.utc
+
         @user.name = params[:topic][:user][:name]
         @user.login = params[:topic][:user][:email].split("@")[0]
         @user.email = params[:topic][:user][:email]
@@ -154,8 +160,7 @@ class TopicsController < ApplicationController
           :screenshots => params[:topic][:screenshots])
 
         if built_user == true && !user_signed_in?
-          UserMailer.new_user(@user).deliver_now
-          sign_in(:user, @user)
+          UserMailer.new_user(@user, @token).deliver_now
         end
 
         # track event in GA

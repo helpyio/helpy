@@ -21,7 +21,8 @@
     <% end %>
     <%= f.collection_select(:forum_id, @forums, :id, :name, label: t(:forum_name)) %>
   <% else %>
-    <%= f.hidden_field :forum_id, value: 3 %>
+    <%= f.hidden_field :private, value: true %>
+    <%= f.hidden_field :forum_id, value: 1 %>
   <% end %>
 
   <%= f.text_field :name, :size => 40, label: 'Subject' -%>
