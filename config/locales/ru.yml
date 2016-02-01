@@ -2,24 +2,24 @@ ru:
   language_name: 'Русский' # The name of the translation file, in that language
   root: &root 'Главная'
   how_can_we_help: "Как мы можем помочь?"
-  browse_topics: "Browse Topics"
-  support_team: "Support Team"
-  nothing_here: "Nothing here yet!"
+  browse_topics: "Выбор темы"
+  support_team: "Группа поддержки"
+  nothing_here: "Здесь еще ничего нет"
 
   # Navigation
-  knowledgebase: "Knowledgebase"
-  community: "Community"
-  ask_a_question: "Ask a Question"
+  knowledgebase: "База данных"
+  community: "Сообщество"
+  ask_a_question: "Задайте вопрос"
   home: "Главная"
   login: "Войти"
   logout: "Выйти"
-  register: "Register"
-  back_to: "Back to"
-  welcome_back: "Welcome Back %{username}"
-  your_profile: "Your Profile"
-  your_tickets: "Your Tickets"
-  locale: "Locale"
-  change_your_locale: "Change your Locale"
+  register: "Зарегистрироваться"
+  back_to: "Назад"
+  welcome_back: "Добро пожаловать снова %{username}"
+  your_profile: "Ваши данные"
+  your_tickets: "Ваши заявки"
+  locale: "Язык"
+  change_your_locale: "Изменить язык"
 
   # Voting widget
   did_this_help: "Did this solve your problem?"
