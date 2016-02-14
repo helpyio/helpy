@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :set_client_id
 
   def show
     @user = current_user
   end
-
 
   def edit
     @page_title = t(:my_profile)
@@ -59,6 +58,14 @@ class UsersController < ApplicationController
     end
 
   end
+
+  def set_client_id
+    
+    session[:client_id] = params[:client_id]
+    render nothing: true
+
+  end
+
 
   private
 
