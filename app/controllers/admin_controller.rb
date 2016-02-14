@@ -116,15 +116,14 @@ class AdminController < ApplicationController
 
       @user = @topic.build_user
 
-      # generate user password
-      source_characters = "0124356789abcdefghijk"
-      password = ""
-      1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+      @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+      @user.reset_password_token = enc
+      @user.reset_password_sent_at = Time.now.utc
 
       @user.name = params[:topic][:user][:name]
       @user.login = params[:topic][:user][:email].split("@")[0]
       @user.email = params[:topic][:user][:email]
-      @user.password = password
+      @user.password = User.create_password
 
     else
       @topic.user_id = @user.id
@@ -142,7 +141,7 @@ class AdminController < ApplicationController
           :screenshots => params[:topic][:screenshots])
 
         # Send email
-        UserMailer.new_user(@user).deliver_now
+        UserMailer.new_user(@user, @token).deliver_now
 
         # track event in GA
         @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
