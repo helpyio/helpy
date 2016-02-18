@@ -31,8 +31,6 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @topic
         format.html # index.rhtml
-        format.xml  { render :xml => @posts.to_xml }
-        format.rss  { render :layout => false}
       else
         format.html { redirect_to root_path}
       end
