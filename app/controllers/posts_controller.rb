@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
       #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
 
-      @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
+      #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
 
       @page_title = "#{@topic.name.titleize}"
       @title_tag = "#{Settings.site_name}: #{@page_title}"

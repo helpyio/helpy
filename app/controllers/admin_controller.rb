@@ -14,7 +14,7 @@ class AdminController < ApplicationController
   end
 
   def knowledgebase
-    @categories = Category.featured.alpha
+    @categories = Category.featured.ordered
     @nonfeatured = Category.where(front_page: false).alpha
 
     respond_to do |format|
@@ -24,12 +24,21 @@ class AdminController < ApplicationController
 
   def articles
     @category = Category.where(id: params[:category_id]).first
-    @docs = @category.docs.ordered.alpha
+    @docs = @category.docs.ordered
 
     respond_to do |format|
       format.html
       format.xml  { render :xml => @category }
     end
+  end
+
+  def update_order
+    object = params[:object].titleize.constantize
+    @obj = object.find(params[:obj_id])
+    @obj.rank_position = params[:row_order_position]
+    @obj.save!
+
+    render nothing: true
   end
 
   def tickets

@@ -1,23 +1,4 @@
-
 /* === BASE STYLES === */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 html, body {
     max-width: 100%;
@@ -153,6 +134,9 @@ body.sub {
 	text-overflow: ellipsis;
 }
 
+.active-item-shadow {
+    box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px
+}
 
 #page-title {
 	padding-top: 30px;
@@ -853,11 +837,6 @@ li.feed-item {
 	text-shadow: #000000 0 0 0;
 	list-style-position: outside;
 	opacity: 1;
-}
-
-thead th {
-  background-color: #eee;
-  border-bottom: 1px solid #ddd;
 }
 
 div#flash-notice {

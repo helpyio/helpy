@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
     get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
     get '/content/:category_id/articles' => 'admin#articles', as: :admin_articles
+    post '/content/update_order' => 'admin#update_order', as: :admin_update_order
     get '/tickets' => 'admin#tickets', as: :admin_tickets
     get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
     get '/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket

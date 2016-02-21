@@ -235,4 +235,14 @@ class AdminControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "an admin should be able to reorder docs" do
+    post :update_order, object: 'doc', obj_id: 4, row_order_position: 0
+    assert_equal Doc.order('rank asc').first.id, 4
+  end
+
+  test "an admin should be able to reorder categories" do
+    post :update_order, object: 'category', obj_id: 4, row_order_position: 0
+    assert_equal Category.order('rank asc').first.id, 4
+  end
+
 end

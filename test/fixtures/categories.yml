@@ -23,21 +23,25 @@ one:
   id: 1
   active: true
   front_page: true
+  rank: 10
 
 two:
   id: 2
   name: active not featured
   active: true
   front_page: false
+  rank: 20
 
 three:
   id: 3
   name: not active
   active: false
   front_page: false
+  rank: 30
 
 four:
   id: 4
   name: some title
   active: true
   front_page: true
+  rank: 40

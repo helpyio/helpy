@@ -40,6 +40,9 @@ class Doc < ActiveRecord::Base
   paginates_per 25
   has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif]
 
+  include RankedModel
+  ranks :rank
+
   acts_as_taggable
 
   scope :alpha, -> { order('title ASC') }

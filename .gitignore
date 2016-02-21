@@ -20,3 +20,5 @@ config/settings_bu.yml
 
 *.eml
 *.DS_Store
+
+/app/assets/.DS_Store

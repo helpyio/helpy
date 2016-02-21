@@ -144,6 +144,8 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     json (1.8.3)
     jwt (1.5.2)
     kaminari (0.16.3)
@@ -275,6 +277,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.15.0)
     rake (10.5.0)
+    ranked-model (0.4.0)
+      activerecord (>= 3.1.12)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -402,6 +406,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   kaminari
   kaminari-i18n
   less-rails (= 2.7.1)
@@ -425,6 +430,7 @@ DEPENDENCIES
   rails-i18n (~> 4.0.0)
   rails-timeago
   rails_12factor
+  ranked-model
   rdiscount
   route_translator
   rspec

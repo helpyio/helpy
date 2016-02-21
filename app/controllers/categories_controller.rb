@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   def index
 
     #if I18n.available_locales.count > 1
-      @categories = Category.active.alpha.with_translations(I18n.locale)
+      @categories = Category.active.ordered.with_translations(I18n.locale)
     #else
     #  @categories = Category.active.alpha
     #end

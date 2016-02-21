@@ -19,17 +19,24 @@ $(document).ready(function(){
 
 <div class="row">
   <div class="col-md-12">
-    <table id="forums" class="table-hover">
+    <table id="forums" class="table-hover sortable">
+      <col>
+      <col width="5%">
+      <thead>
+        <tr>
+          <th colspan="2" class='tiny-header'><%= t(:front_page_categories, default: 'Front Page Categories') %></th>
+        </tr>
+      </thead>
+      <tbody id="categories">
+        <%= render partial: 'cat', collection: @categories %>
+      </tbody>
+    </table>
 
+    <% if @nonfeatured.count > 0 %>
+    <table id="forums" class="table-hover">
       <col>
       <col width="5%">
       <tbody id="categories">
-      <tr>
-        <td colspan="2" class='tiny-header'><%= t(:front_page_categories, default: 'Front Page Categories') %></td>
-      </tr>
-      <%= render partial: 'cat', collection: @categories %>
-
-      <% if @nonfeatured.count > 0 %>
         <tr>
           <td colspan="2"></td>
         </tr>
@@ -37,9 +44,9 @@ $(document).ready(function(){
           <td colspan="2" class='tiny-header'><%= t(:other_categories, default: 'Other Categories') %></td>
         </tr>
         <%= render partial: 'cat', collection: @nonfeatured %>
-      <% end %>
       </tbody>
     </table>
+    <% end %>
 
   </div>
 </div>
