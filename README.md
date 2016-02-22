@@ -23,7 +23,7 @@ Live Demo
 
 Admin User: `admin@test.com` and password: `12345678`
 
-Front End: http://demo.helpy.io/en/
+Front End: http://demo.helpy.io/
 Admin Panel: http://demo.helpy.io/admin
 
 Roadmap
@@ -31,7 +31,7 @@ Roadmap
 
 - More translation files (need help with this)
 - Add "related articles" section to knowledgebase
-- Add commenting to knowledgebase using community functions
+- Add commenting to knowledgebase using community functions (almost done)
 - Support for different themes- and easy way to customize look and feel
 - Insert link to KB articles into reply in admin
 - Set up JSON API hooks, and test
