@@ -8,3 +8,5 @@ services:
 # Setup Test Database
 before_script:
   - psql -c 'create database helpy_test;' -U postgres
+
+cache: bundler
