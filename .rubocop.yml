@@ -1,0 +1,20 @@
+AllCops:
+
+  Exclude:
+    - db/**/*
+    - lib/**/*
+    - tmp/**/*
+
+  TargetRubyVersion: 2.0
+
+Rails:
+  Enabled: false
+
+Style:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+Lint:
+  Enabled: false
