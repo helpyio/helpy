@@ -101,7 +101,10 @@ gem 'rails-timeago'
 
 gem 'faker'
 gem 'populator'
-gem 'ruser', '~> 3.0'
+
+# RandomUser.me API
+gem 'ruser', '~> 3.0', group: :development
+
 gem 'timecop' #used to populate
 
 group :development, :test do
