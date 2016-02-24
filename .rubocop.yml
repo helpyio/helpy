@@ -76,14 +76,6 @@ Lint/StringConversionInInterpolation:
   Exclude:
     - 'app/helpers/application_helper.rb'
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoreEmptyBlocks.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'config/initializers/devise.rb'
-    - 'config/unicorn.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
