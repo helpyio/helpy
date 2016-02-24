@@ -47,7 +47,11 @@ Roadmap
 Installation
 ============
 
-Helpy was designed to run on Heroku, although it should work just about anywhere. Requirements are:
+Helpy was designed to run on Heroku, although it should work just about anywhere.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+Requirements are:
 
 - Ruby 2.2
 - Rails 4.2
