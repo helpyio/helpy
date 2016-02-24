@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(auth)
     if !where(email: auth.info.email).empty?
-      user = where(email: auth.info.email).first
+      user = find_by(email: auth.info.email)
       user.provider = auth.provider
       user.uid = auth.uid
       user.save!

@@ -70,7 +70,7 @@ class Topic < ActiveRecord::Base
 
 
   def assigned_user
-    User.where(id: self.assigned_user_id).first
+    User.find_by_id(self.assigned_user_id)
   end
 
   def to_param
