@@ -71,11 +71,6 @@ Lint/ParenthesesAsGroupedExpression:
     - 'test/controllers/posts_controller_test.rb'
 
 # Offense count: 1
-Lint/ShadowingOuterLocalVariable:
-  Exclude:
-    - 'app/models/user.rb'
-
-# Offense count: 1
 # Cop supports --auto-correct.
 Lint/StringConversionInInterpolation:
   Exclude:
