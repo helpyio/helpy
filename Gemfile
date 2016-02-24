@@ -60,6 +60,7 @@ gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 
 #gem 'font-awesome-rails'
+gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
