@@ -407,7 +407,6 @@ DEPENDENCIES
   bullet
   byebug
   cloudinary (= 1.1.2)
-  coffee-rails (~> 4.1.0)
   config
   daemons
   devise
