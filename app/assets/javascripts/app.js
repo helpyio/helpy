@@ -297,7 +297,7 @@ $.attachinary.config.template = '\
 Helpy.didthisHelp = function(yesno){
   var message;
   if (yesno == "no") {
-    message = "<h3>We're sorry this did you help you.  Please open a discussion in our support forums for more help!</h3>";
+    message = "<h3>We're sorry this didn't you help you. Please open a discussion in our support forums for more help!</h3>";
   } else {
     message = "<h3>Great!! Thanks for the feedback!</h3>";
   }
