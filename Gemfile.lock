@@ -171,7 +171,6 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    libv8 (3.16.14.13)
     listen (2.10.1)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
@@ -297,7 +296,6 @@ GEM
     rdiscount (2.1.8)
     rdoc (4.2.1)
       json (~> 1.4)
-    ref (2.0.0)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
@@ -353,9 +351,6 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     staccato (0.4.5)
-    therubyracer (0.12.2)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -430,7 +425,6 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   kaminari-i18n
-  less-rails (= 2.7.1)
   mail_extract
   mailman
   minitest
@@ -461,7 +455,6 @@ DEPENDENCIES
   shoulda
   spring (~> 1.4.0)
   staccato
-  therubyracer
   timecop
   trix
   turbolinks
