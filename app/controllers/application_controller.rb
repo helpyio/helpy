@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }.merge(super)
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     # If the user is an agent, redirect to admin panel
     redirect_url = current_user.admin? ? admin_url : root_url
     oauth_url = current_user.admin? ? admin_url : request.env['omniauth.origin']
