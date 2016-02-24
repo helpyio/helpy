@@ -173,7 +173,7 @@ class TopicsController < ApplicationController
           else
             redirect_to topic_posts_path(@topic)
           end
-          }
+        }
       else
         format.html { render action: 'new' }
       end

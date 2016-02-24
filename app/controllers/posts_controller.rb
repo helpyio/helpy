@@ -81,7 +81,7 @@ class PostsController < ApplicationController
         format.html {
           @posts = @topic.posts.ispublic.chronologic.active
           redirect_to topic_posts_path(@topic)
-          }
+        }
         format.js {
           if current_user.admin?
             fetch_counts
