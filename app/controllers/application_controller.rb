@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_breadcrumb :root
 
-  before_filter :set_locale
-  before_filter :instantiate_tracker
+  before_action :set_locale
+  before_action :instantiate_tracker
 
   def url_options
     { locale: I18n.locale }.merge(super)

@@ -8,7 +8,7 @@ AllCops:
   TargetRubyVersion: 2.0
 
 Rails:
-  Enabled: false
+  Enabled: true
 
 Style:
   Enabled: false

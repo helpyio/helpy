@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['index', 'create', 'up_vote']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'destroy']
-  before_filter :instantiate_tracker
+  before_action :authenticate_user!, :except => ['index', 'create', 'up_vote']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'destroy']
+  before_action :instantiate_tracker
 
 #  before_filter :fetch_counts, :only => 'create'
-  after_filter :send_message, :only => 'create'
+  after_action :send_message, :only => 'create'
 #  after_filter :view_causes_vote, :only => 'index'
 
   layout "clean", only: [:index]

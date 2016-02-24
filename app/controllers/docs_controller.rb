@@ -1,7 +1,7 @@
 class DocsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show', 'home']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :authenticate_user!, :except => ['show', 'home']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
 
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
