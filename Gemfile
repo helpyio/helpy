@@ -100,7 +100,6 @@ gem 'rails-timeago'
 # gem 'capistrano-rails', group: :development
 
 gem 'faker'
-gem 'populator'
 
 # RandomUser.me API
 gem 'ruser', '~> 3.0', group: :development
