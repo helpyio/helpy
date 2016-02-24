@@ -76,11 +76,6 @@ Lint/StringConversionInInterpolation:
   Exclude:
     - 'app/helpers/application_helper.rb'
 
-# Offense count: 1
-Lint/UselessAccessModifier:
-  Exclude:
-    - 'app/controllers/users_controller.rb'
-
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:
