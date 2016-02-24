@@ -50,7 +50,7 @@ module ApplicationHelper
     I18n.available_locales.sort.each do |locale|
       selected = "selected" if "#{locale}" == params[:lang]
       I18n.with_locale(locale) do
-        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize.to_s}</option>" #unless locale == I18n.locale
+        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize}</option>" #unless locale == I18n.locale
       end
     end
     tag += "</select>"

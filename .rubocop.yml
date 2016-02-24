@@ -70,12 +70,6 @@ Lint/ParenthesesAsGroupedExpression:
   Exclude:
     - 'test/controllers/posts_controller_test.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Lint/StringConversionInInterpolation:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:
