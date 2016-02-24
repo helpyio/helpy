@@ -65,11 +65,6 @@ Lint/HandleExceptions:
     - 'bin/rails'
     - 'bin/rake'
 
-# Offense count: 1
-Lint/ParenthesesAsGroupedExpression:
-  Exclude:
-    - 'test/controllers/posts_controller_test.rb'
-
 # Offense count: 4
 Lint/UselessAssignment:
   Exclude:
