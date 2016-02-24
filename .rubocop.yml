@@ -16,5 +16,95 @@ Style:
 Metrics:
   Enabled: false
 
-Lint:
-  Enabled: false
+# TODO: Resolve the following RuboCop violations
+
+# Offense count: 1
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - 'app/models/user.rb'
+
+# Offense count: 2
+# Configuration parameters: Include.
+# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
+Rails/Output:
+  Exclude:
+    - 'config/unicorn.rb'
+
+# Offense count: 4
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: strict, flexible
+Rails/TimeZone:
+  Exclude:
+    - 'app/models/post.rb'
+    - 'app/models/topic.rb'
+
+# Offense count: 13
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/Validation:
+  Exclude:
+    - 'app/models/category.rb'
+    - 'app/models/doc.rb'
+    - 'app/models/forum.rb'
+    - 'app/models/post.rb'
+    - 'app/models/topic.rb'
+    - 'app/models/user.rb'
+    - 'app/models/vote.rb'
+
+# Offense count: 1
+# Configuration parameters: AllowSafeAssignment.
+Lint/AssignmentInCondition:
+  Exclude:
+    - 'bin/spring'
+
+# Offense count: 2
+Lint/HandleExceptions:
+  Exclude:
+    - 'bin/rails'
+    - 'bin/rake'
+
+# Offense count: 1
+Lint/ParenthesesAsGroupedExpression:
+  Exclude:
+    - 'test/controllers/posts_controller_test.rb'
+
+# Offense count: 1
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - 'app/models/user.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+Lint/StringConversionInInterpolation:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+
+# Offense count: 7
+# Cop supports --auto-correct.
+# Configuration parameters: IgnoreEmptyBlocks.
+Lint/UnusedBlockArgument:
+  Exclude:
+    - 'config/initializers/devise.rb'
+    - 'config/unicorn.rb'
+
+# Offense count: 2
+# Cop supports --auto-correct.
+# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
+Lint/UnusedMethodArgument:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/omniauth_callbacks_controller.rb'
+
+# Offense count: 1
+Lint/UselessAccessModifier:
+  Exclude:
+    - 'app/controllers/users_controller.rb'
+
+# Offense count: 4
+Lint/UselessAssignment:
+  Exclude:
+    - 'app/controllers/docs_controller.rb'
+    - 'app/helpers/application_helper.rb'
+    - 'test/integration/sign_in_flow_test.rb'
