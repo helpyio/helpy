@@ -64,10 +64,3 @@ Lint/HandleExceptions:
   Exclude:
     - 'bin/rails'
     - 'bin/rake'
-
-# Offense count: 4
-Lint/UselessAssignment:
-  Exclude:
-    - 'app/controllers/docs_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'test/integration/sign_in_flow_test.rb'

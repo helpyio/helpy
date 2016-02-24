@@ -42,7 +42,7 @@ module ApplicationHelper
 
   def locale_select
 
-    options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
+    # options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
 
     tag = "<select name='lang' class='form-control' id='lang'>"
     tag += "<option value='#{I18n.locale}'>Translate to a different language...</option>"
