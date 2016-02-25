@@ -25,7 +25,6 @@
 
 class Topic < ActiveRecord::Base
 
-
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :assigned_user, class_name: 'User'
@@ -120,7 +119,6 @@ class Topic < ActiveRecord::Base
     self.save
   end
 
-
   # DEPRECATED updates the last post date, called when a post is made
   def self.last_post
     Topic.post(:first, :order => 'updated_at DESC')
@@ -133,8 +131,10 @@ class Topic < ActiveRecord::Base
     self.private = true if f.private?
   end
 
+  # TODO: This is better named 'public?'
   def public
-    true if self.forum_id >= 3 && self.private == false
+    # Note: We assume forum_ids 1,2,3 are seed data
+    forum_id >= 3 && !private?
   end
 
   private
@@ -146,5 +146,4 @@ class Topic < ActiveRecord::Base
   def add_locale
     self.locale = I18n.locale
   end
-
 end
