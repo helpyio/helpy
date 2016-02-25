@@ -47,19 +47,19 @@ class Topic < ActiveRecord::Base
   scope :open, -> { where(current_status: "open") }
   scope :unread, -> { where(current_status: "new") }
   scope :pending, -> { where(current_status: "pending") }
-  scope :mine, -> (user) { where("assigned_user_id = ?", user) }
+  scope :mine, -> (user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
   scope :spam, -> { where(current_status: "spam")}
 
   scope :chronologic, -> { order('updated_at DESC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where("current_status = ? OR current_status = ?", "open", "pending") }
-  scope :undeleted, -> { where("current_status != ?", "trash") }
+  scope :active, -> { where(current_status: %w(open pending)) }
+  scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where("current_status <> 'spam'").where(private: true)}
-  scope :ispublic, -> { where("current_status <> 'spam'").where(private: false)}
+  scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
+  scope :ispublic, -> { where.not(current_status: 'spam').where(private: false)}
 
   # may want to get rid of this filter:
   # before_save :check_for_private
