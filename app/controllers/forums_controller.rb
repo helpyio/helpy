@@ -23,7 +23,6 @@ class ForumsController < ApplicationController
   before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
-
   # GET /forums
   # GET /forums.xml
   def index
@@ -42,7 +41,6 @@ class ForumsController < ApplicationController
   end
 
   # GET /forums/1
-  # GET /forums/1.xml
   def show
     redirect_to topics_path(:forum_id => params[:id])
   end
@@ -60,13 +58,7 @@ class ForumsController < ApplicationController
   # POST /forums
   # POST /forums.xml
   def create
-    @forum = Forum.new
-    @forum.name = params[:forum][:name]
-    @forum.description = params[:forum][:description]
-    @forum.layout = params[:forum][:layout]
-    @forum.private = params[:forum][:private]
-    @forum.allow_topic_voting = params[:forum][:allow_topic_voting]
-    @forum.allow_post_voting = params[:forum][:allow_post_voting]
+    @forum = Forum.new(forum_params)
 
     respond_to do |format|
       if @forum.save
@@ -74,7 +66,7 @@ class ForumsController < ApplicationController
         format.html { redirect_to admin_communities_path }
         format.xml  { head :created, :location => forum_url(@forum) }
       else
-        format.html { render :action => "new" }
+        format.html { render :new }
         format.xml  { render :xml => @forum.errors.to_xml }
       end
     end
@@ -85,20 +77,13 @@ class ForumsController < ApplicationController
   def update
     @forum = Forum.find(params[:id])
 
-    @forum.name = params[:forum][:name]
-    @forum.description = params[:forum][:description]
-    @forum.layout = params[:forum][:layout]
-    @forum.private = params[:forum][:private]
-    @forum.allow_topic_voting = params[:forum][:allow_topic_voting]
-    @forum.allow_post_voting = params[:forum][:allow_post_voting]
-
     respond_to do |format|
-      if @forum.save
+      if @forum.update(forum_params)
         flash[:notice] = 'Forum was successfully updated.'
         format.html { redirect_to admin_communities_path }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :edit }
         format.xml  { render :xml => @forum.errors.to_xml }
       end
     end
@@ -115,5 +100,18 @@ class ForumsController < ApplicationController
       format.js
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def forum_params
+    params.require(:forum).permit(
+      :name,
+      :description,
+      :layout,
+      :private,
+      :allow_topic_voting,
+      :allow_post_voting
+    )
   end
 end
