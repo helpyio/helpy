@@ -72,71 +72,37 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/new
-  # GET /categories/new.xml
   def new
     @category = Category.new
-
-    respond_to do |format|
-      format.html
-
-    end
   end
 
   # GET /categories/1/edit
   def edit
-    @category = Category.where(id: params[:id]).first
+    @category = Category.find(params[:id])
   end
 
   # POST /categories
-  # POST /categories.xml
   def create
-    @category = Category.new
+    @category = Category.new(category_params)
 
-      @category.name = params[:category][:name]
-      @category.keywords = params[:category][:keywords]
-      @category.title_tag = params[:category][:title_tag]
-      @category.icon = params[:category][:icon]
-      @category.meta_description = params[:category][:meta_description]
-      @category.front_page = params[:category][:front_page]
-      @category.active = params[:category][:active]
-      @category.section = params[:category][:section]
-      @category.rank = params[:category][:rank]
-
-      respond_to do |format|
-        if @category.save
-          format.html { redirect_to(admin_knowledgebase_path) }
-          #format.js
-        else
-          format.html { render action: "knowledgebase" }
-        end
-      end
+    if @category.save
+      redirect_to(admin_knowledgebase_path)
+    else
+      render :knowledgebase
+    end
   end
 
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
-
     I18n.locale = params['lang']
 
-    @category = Category.where(id: params[:id]).first
+    @category = Category.find(params[:id])
 
-    @category.name = params[:category][:name]
-    @category.keywords = params[:category][:keywords]
-    @category.title_tag = params[:category][:title_tag]
-    @category.icon = params[:category][:icon]
-    @category.meta_description = params[:category][:meta_description]
-    @category.front_page = params[:category][:front_page]
-    @category.active = params[:category][:active]
-    @category.section = params[:category][:section]
-    @category.rank = params[:category][:rank]
-
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to admin_knowledgebase_path }
-        #format.js
-      else
-        format.html { render action: 'edit' }
-      end
+    if @category.update(category_params)
+      redirect_to admin_knowledgebase_path
+    else
+      render :edit
     end
   end
 
@@ -167,8 +133,17 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page)
+    params.require(:category).permit(
+    :name,
+    :keywords,
+    :title_tag,
+    :icon,
+    :meta_description,
+    :front_page,
+    :active,
+    :section,
+    :rank
+  )
   end
-
 
 end
