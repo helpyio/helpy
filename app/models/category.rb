@@ -39,7 +39,7 @@ class Category < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
+    "#{id}-#{name.parameterize}" unless name.nil?
   end
 
   def read_translated_attribute(name)

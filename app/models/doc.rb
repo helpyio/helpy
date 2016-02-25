@@ -55,7 +55,7 @@ class Doc < ActiveRecord::Base
   scope :replies, -> { where(category_id: 1) }
 
   def to_param
-    "#{id}-#{title.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{title.parameterize}"
   end
 
   def read_translated_attribute(name)

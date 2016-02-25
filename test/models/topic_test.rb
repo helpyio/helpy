@@ -39,7 +39,7 @@ class TopicTest < ActiveSupport::TestCase
 
 
   test "to_param" do
-    assert Topic.find(1).to_param == "1-Private-topic"
+    assert Topic.find(1).to_param == "1-private-topic"
   end
 
   test "a new discussion should have status of NEW" do

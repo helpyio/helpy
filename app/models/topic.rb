@@ -72,7 +72,7 @@ class Topic < ActiveRecord::Base
   validates_length_of :name, :maximum => 255
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{name.parameterize}"
   end
 
   def email_subject
