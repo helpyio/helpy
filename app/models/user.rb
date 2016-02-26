@@ -79,11 +79,7 @@ class User < ActiveRecord::Base
   end
 
   def self.create_password
-    # generate user password
-    source_characters = "0124356789abcdefghijk"
-    password = ""
-    1.upto(8) { password += source_characters[rand(source_characters.length),1] }
-    password
+    Devise.friendly_token
   end
 
   def thumbnail_url
