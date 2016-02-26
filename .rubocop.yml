@@ -50,7 +50,6 @@ Rails/Validation:
     - 'app/models/forum.rb'
     - 'app/models/post.rb'
     - 'app/models/topic.rb'
-    - 'app/models/user.rb'
     - 'app/models/vote.rb'
 
 # Offense count: 1
