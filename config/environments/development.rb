@@ -51,4 +51,10 @@ Rails.application.configure do
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
+  config.after_initialize do
+    # Bullet Configuration / https://github.com/flyerhzm/bullet
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.add_footer = true
+  end
 end
