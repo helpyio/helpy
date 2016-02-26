@@ -11,7 +11,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   test "a browser should be able to sign in and be shown the home page" do
     get "/en/users/sign_in"
-    user = assigns(:user)
+    # user = assigns(:user)
     post '/en/users/sign_in', 'user[email]' => 'scott.miller@test.com', 'user[password]' => '12345678'
     follow_redirect!
     assert_equal '/en', path
@@ -19,7 +19,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to sign in and be shown the admin page" do
     get "/en/users/sign_in"
-    user = assigns(:user)
+    # user = assigns(:user)
     post '/en/users/sign_in', 'user[email]' => 'admin@test.com', 'user[password]' => '12345678'
     follow_redirect!
     assert_equal '/admin', path

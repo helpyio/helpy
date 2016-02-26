@@ -120,6 +120,10 @@ group :development, :test do
   gem 'rack-mini-profiler'
 end
 
+group :development do
+  gem 'rubocop'
+end
+
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
