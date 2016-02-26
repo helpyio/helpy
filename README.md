@@ -1,9 +1,9 @@
-Helpy: A Modern Helpdesk Alternative [![Build Status]
+Helpy: A Modern Helpdesk Alternative 
 ====================================
 
 Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide an open source alternative to commercial helpdesk solutions like Zendesk or desk.com
 
-(https://img.shields.io/travis/scott/helpy.svg)](https://travis-ci.org/scott/helpy)
+[![Build Status](https://img.shields.io/travis/scott/helpy.svg)](https://travis-ci.org/scott/helpy)
 
 ![](http://helpy.io/images/HelpyBrowser.png)
 
@@ -70,7 +70,7 @@ Contributing
 
 **Helpy needs your help speading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
 
-I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality. To submit translations, please see the guide in the wiki and send me a gist to your translation file.  For new functionality, follow the standard approach:
+I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality. To submit translations, [please see the guide to translation](http://support.helpy.io/en/knowledgebase/12-Using-Helpy/docs/4-Supported-locales-How-to-Contribute) and send me a gist to your translation file.  For new functionality, follow the standard approach:
 
 1. Fork the project
 2. Create a Branch for your contribution
