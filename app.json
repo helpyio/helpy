@@ -11,6 +11,6 @@
   "logo": "http://helpy.io/images/logo.png",
   "success_url": "/admin",
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
+    "postdeploy": "bundle exec rake db:setup"
   }
 }
