@@ -121,6 +121,9 @@ group :development, :test do
 end
 
 group :development do
+  # Check Eager Loading / N+1 query problems
+  gem 'bullet'
+
   gem 'rubocop'
 end
 

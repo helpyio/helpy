@@ -54,6 +54,9 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap_form (2.3.0)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (8.2.1)
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -374,6 +377,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.9.0)
     warden (1.2.4)
       rack (>= 1.0)
     web-console (2.2.1)
@@ -390,6 +394,7 @@ DEPENDENCIES
   annotate
   attachinary
   bootstrap_form
+  bullet
   byebug
   cloudinary (= 1.1.2)
   coffee-rails (~> 4.1.0)
