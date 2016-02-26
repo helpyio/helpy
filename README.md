@@ -68,6 +68,8 @@ Contributing
 
 **Helpy needs your help speading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
 
+[![Build Status](https://img.shields.io/travis/scott/helpy.svg)](https://travis-ci.org/scott/helpy)
+
 I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality. To submit translations, please see the guide in the wiki and send me a gist to your translation file.  For new functionality, follow the standard approach:
 
 1. Fork the project
