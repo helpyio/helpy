@@ -83,19 +83,11 @@ class User < ActiveRecord::Base
   end
 
   def thumbnail_url
-    if self.thumbnail == ""
-      self.gravatar_url(:size => 60)
-    else
-      self.thumbnail
-    end
+    self.thumbnail.blank? ? self.gravatar_url(size: 60) : self.thumbnail
   end
 
   def image_url
-    if self.medium_image.nil?
-      self.gravatar_url(:size => 60)
-    else
-      self.medium_image
-    end
+    self.medium_image || self.gravatar_url(size: 60)
   end
 
   def self.find_for_oauth(auth)
