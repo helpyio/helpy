@@ -6,3 +6,7 @@ linters:
   # Forbid /* X */ comments which appear in generated CSS.
   Comment:
     severity: error
+
+  # Forbid empty blocks
+  EmptyRule:
+    severity: error

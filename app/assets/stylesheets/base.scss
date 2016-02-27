@@ -745,59 +745,14 @@ li.feed-item {
 	opacity: 1;
 }
 
-div#flash-notice {
-
-}
-
-div#flash-warning {
-
-}
-
-div#flash-error {
-
-}
-
-//  === ERROR MESSAGES ===
-div#errorExplanation {
-
-}
-
-div#errorExplanation h2 {
-
-}
-
-div#errorExplanation p {
-
-}
-
-div#errorExplanation ul {
-
-}
-
-div#errorExplanation ul li {
-
-}
-
-//  === FORMS ===
-div.fieldWithErrors {
-
-}
-
-div.fieldWithErrors label {
-
+thead th {
+  background-color: #eee;
+  border-bottom: 1px solid #ddd;
 }
 
 tr.table-header {
 	padding-bottom: 20px;
 }
-
-div.fieldWithErrors input, div.fieldWithErrors select,
-div.fieldWithErrors textarea
-{
-
-}
-
-
 
 //  === HEADER STYLES ===
 
@@ -817,9 +772,6 @@ above-header ul li a{
 #header-logo {
 	margin-top: -10px;
 }
-
-#header-wrapper {
-	}
 
 #main-body {
 	margin-top: 10px;
