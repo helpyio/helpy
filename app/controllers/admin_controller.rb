@@ -40,24 +40,24 @@ class AdminController < ApplicationController
       @status = params[:status]
     end
 
+    topics_raw = Topic.includes(:user).chronologic
     case @status
-
     when 'all'
-      @topics = Topic.all.chronologic.page params[:page]
+      topics_raw = topics_raw.all
     when 'new'
-      @topics = Topic.unread.chronologic.page params[:page]
+      topics_raw = topics_raw.unread
     when 'active'
-      @topics = Topic.active.chronologic.page params[:page]
+      topics_raw = topics_raw.active
     when 'unread'
-      @topics = Topic.unread.chronologic.all.page params[:page]
+      topics_raw = topics_raw.unread.all
     when 'assigned'
-      @topics = Topic.mine(current_user.id).chronologic.page params[:page]
+      topics_raw = topics_raw.mine(current_user.id)
     when 'pending'
-      @topics = Topic.pending.mine(current_user.id).chronologic.page params[:page]
+      topics_raw = topics_raw.pending.mine(current_user.id)
     else
-      @topics = Topic.where(current_status: @status).chronologic.page params[:page]
+      topics_raw = topics_raw.where(current_status: @status)
     end
-
+    @topics = topics_raw.page params[:page]
 
     @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
 
