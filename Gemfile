@@ -102,7 +102,7 @@ gem 'rails-timeago'
 gem 'faker'
 
 # RandomUser.me API
-gem 'ruser', '~> 3.0', group: :development
+gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
 
