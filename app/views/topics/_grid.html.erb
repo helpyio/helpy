@@ -5,7 +5,7 @@
         <%= link_to h(grid.name.titleize), topic_posts_path(grid) %>
       </span>
       <div class="text-left">
-         <%= grid.posts.count %> comments
+         <%= grid.posts_count %> comments
       </div>
       <% if grid.forum.allow_post_voting == true %>
       <div id="post-vote-<%= grid.posts.first.id %>" class="grid-vote text-right">
