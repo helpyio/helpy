@@ -40,7 +40,7 @@ class AdminController < ApplicationController
       @status = params[:status]
     end
 
-    topics_raw = Topic.includes(:user).chronologic
+    topics_raw = Topic.includes(user: :avatar_files).chronologic
     case @status
     when 'all'
       topics_raw = topics_raw.all
