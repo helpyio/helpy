@@ -190,6 +190,15 @@ zh-cn:
   new_community: 新社区
   create_new_community: 建立新社区
 
+  # Mail messages
+  hello: "Hello %{user_name}"
+  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+  account_generated: "An account has been generated for you. To sign in, please use this link:"
+  above_this_line: "Make sure your reply appears above this line"
+  message_id: "Message ID"
+  message_response: "The following message has been posted in response to your question:"
+  view_online: "View this online:"
+
   activerecord:
     attributes:
       user: #用户
@@ -224,7 +233,7 @@ zh-cn:
       forum: #討論區
         name: 名称
         description: 说明
-        private: 
+        private:
 
     helpers: #帮手
       submit: #送出
