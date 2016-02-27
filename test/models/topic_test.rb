@@ -63,7 +63,7 @@ class TopicTest < ActiveSupport::TestCase
 
       assert topic.assigned_user_id.nil?
       assert topic.forum_id == 2
-      assert topic.private == true
+      assert topic.private?
       assert topic.current_status == 'trash'
       assert_not_nil topic.closed_date
 
