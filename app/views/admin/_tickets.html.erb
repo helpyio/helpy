@@ -12,7 +12,7 @@
     <th class="text-right hidden-xs"><%= t(:last_activity, default: "Last Active") %></th>
   </tr>
   <tbody>
-  <%= render :partial => 'admin/topic', :collection => @topics %>
+  <%= render partial: 'admin/topic', collection: @topics.includes(:assigned_user) %>
   </tbody>
   <tbody id="multiple-edit" style="display:none;">
     <tr>
