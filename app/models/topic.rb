@@ -20,6 +20,7 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  locale           :string
 #
 
 class Topic < ActiveRecord::Base
@@ -62,6 +63,7 @@ class Topic < ActiveRecord::Base
   # may want to get rid of this filter:
   # before_save :check_for_private
   before_create :cache_user_name
+  before_create :add_locale
 
   # acts_as_taggable
 
@@ -144,5 +146,8 @@ class Topic < ActiveRecord::Base
     self.user_name = self.user.name
   end
 
+  def add_locale
+    self.locale = I18n.locale
+  end
 
 end

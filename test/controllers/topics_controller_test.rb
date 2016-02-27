@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id               :integer          not null, primary key
+#  forum_id         :integer
+#  user_id          :integer
+#  user_name        :string
+#  name             :string
+#  posts_count      :integer          default(0), not null
+#  waiting_on       :string           default("admin"), not null
+#  last_post_date   :datetime
+#  closed_date      :datetime
+#  last_post_id     :integer
+#  current_status   :string           default("new"), not null
+#  private          :boolean          default(FALSE)
+#  assigned_user_id :integer
+#  cheatsheet       :boolean          default(FALSE)
+#  points           :integer          default(0)
+#  post_cache       :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  locale           :string
+#
+
 require 'test_helper'
 
 class TopicsControllerTest < ActionController::TestCase
@@ -57,6 +82,11 @@ class TopicsControllerTest < ActionController::TestCase
       get :index, forum_id: 3, locale: :en
       xhr :post, :up_vote, { id: 5, locale: :en }
     end
+  end
+
+  test "Helpy should capture the users locale when they create a new topic" do
+    post :create, topic: { user: {name: 'a user', email: 'anon@test.com'}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: 'this is the body'}, locale: :en
+    assert_not_nil Topic.last.locale, "Did not capture locale when user created new topic"
   end
 
   # A user who is signed in should be able to create a new private or public topic

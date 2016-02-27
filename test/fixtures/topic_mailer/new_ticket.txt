@@ -1,14 +1,14 @@
 Make sure your reply appears above this line
 =================================================================
-Message ID:<%= @topic.id %>
+Message ID:2
 
-Hello <%= @topic.user.login %>,
+Hello scott,
 
 The following message has been posted in response to your question:
 
-<%= simple_format(@topic.posts.last.body) %>
+New Private Topic
 
-View this online: <%= topic_posts_url(@topic) %>
+View this online:http://localhost:3000/en/topics/2-test-test/posts
 -----------
 Powered by Helpy
 Get a Free Helpy Support System for your Site at http://helpy.io/

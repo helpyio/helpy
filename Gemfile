@@ -108,6 +108,11 @@ gem 'timecop' #used to populate
 
 gem 'newrelic_rpm'
 
+group :development do
+  gem "better_errors"
+  gem "quiet_assets"
+end
+
 group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -119,7 +124,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
-  gem 'rack-mini-profiler'
+
 end
 
 group :test do

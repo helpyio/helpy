@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id               :integer          not null, primary key
+#  forum_id         :integer
+#  user_id          :integer
+#  user_name        :string
+#  name             :string
+#  posts_count      :integer          default(0), not null
+#  waiting_on       :string           default("admin"), not null
+#  last_post_date   :datetime
+#  closed_date      :datetime
+#  last_post_id     :integer
+#  current_status   :string           default("new"), not null
+#  private          :boolean          default(FALSE)
+#  assigned_user_id :integer
+#  cheatsheet       :boolean          default(FALSE)
+#  points           :integer          default(0)
+#  post_cache       :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  locale           :string
+#
+
 class TopicsController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']

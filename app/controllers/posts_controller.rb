@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  topic_id   :integer
+#  user_id    :integer
+#  body       :text
+#  kind       :string
+#  active     :boolean          default(TRUE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  points     :integer          default(0)
+#
+
 class PostsController < ApplicationController
 
   before_filter :authenticate_user!, :except => ['index', 'create', 'up_vote']
@@ -153,13 +168,19 @@ class PostsController < ApplicationController
   protected
 
   def send_message
-    # TODO deliver/create a firstmessage to deliver on the initial post
     #Should only send when admin posts, not when user replies
 
     if current_user.admin?
-      TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private == true
+      if @post.kind == 'first'
+        email_locale = I18n.locale
+      else
+        email_locale = @topic.locale.nil? ? I18n.locale : @topic.locale.to_sym
+      end
+      I18n.with_locale(email_locale) do
+        TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private == true
+      end
     else
-      logger.info("reply is not from admin, don't email")
+      logger.info("reply is not from admin, don't email") #might want to cchange this if we want admin notification emails
     end
   end
 
