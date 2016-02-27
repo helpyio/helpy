@@ -1,8 +1,7 @@
 module AdminHelper
 
-
   def assigned_to(topic)
-    unless topic.assigned_user.nil?
+    if topic.assigned_user.present?
       t(:assigned_to, agent: topic.assigned_user.name, default: "assigned to #{topic.assigned_user.name}")
     else
       t(:unassigned, default: "Unassigned")
