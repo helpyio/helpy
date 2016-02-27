@@ -191,13 +191,13 @@ pt:
   create_new_community: "Criar uma Nova Comunidade"
 
   # Mail messages
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  hello: "Olá %{user_name}"
+  new_user: "Obrigado pelo seu contacto. A sua mensagem foi recebida pela nossa equipa de suporte e iremos entrar em contacto consigo o mais rapidamente possível."
+  account_generated: "Foi criada uma nova conta para si. Para fazer login, use este link:"
+  above_this_line: "Escreva a sua resposta acima desta linha"
+  message_id: "Id da Mensagem"
+  message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
+  view_online: "Ver isto online:"
 
   activerecord:
     attributes:
