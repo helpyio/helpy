@@ -1,21 +1,4 @@
-/*=== ADMIN GLOBAL OVERRIDES === */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// === ADMIN GLOBAL OVERRIDES ===
 
 
 body {
@@ -50,7 +33,7 @@ td > img {
 	margin-bottom: 20px;
 }
 
-/*=== ADMIN LAYOUT === */
+// === ADMIN LAYOUT ===
 
 #upper-wrapper {
 	background-color: #222;
@@ -61,7 +44,7 @@ td > img {
 }
 
 #ticket-info {
-	/* margin-top: 30px; */
+	// margin-top: 30px;
 }
 
 #left-col-user-info {
@@ -100,7 +83,7 @@ td > img {
 
 
 #tickets {
-	/* margin-top: 30px; */
+	// margin-top: 30px;
 }
 
 #topic-options {
@@ -114,7 +97,7 @@ td > img {
 
 
 
-/*=== ADMIN STYLES === */
+// === ADMIN STYLES ===
 
 .white-bg {
 	background-color: white;
@@ -226,7 +209,7 @@ a.stats.active {
     padding-left: 5px;
     padding-right: 5px;
     text-align:center;
-    /*padding-top:calc(40% - 30px);*/
+    // padding-top:calc(40% - 30px);
 }
 
 .stats .hover-stats {
@@ -261,7 +244,7 @@ a.stats.active {
 .has-arrow:after {
 	border-width: 10px;
 	border-left-color: #fff;
-	/*top: 35px;*/
+	// top: 35px;
 	top: 40%
 }
 

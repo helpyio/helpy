@@ -1,5 +1,3 @@
-/* === BASE STYLES === */
-
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -48,7 +46,7 @@ h1 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	background-color: #feffe9;
-	/*background-color: #ffdf91;*/
+	// background-color: #ffdf91;
 }
 
 @media(max-width:767px){
@@ -97,23 +95,7 @@ textarea {
   border-bottom:1px solid #e9e9e9;
 }
 
-/* === GLOBAL STYLES === */
-/*
-h2 {
-	font-family: Georgia, "Times New Roman", Times, serif;
-}
-*/
-
-
-/*
-body.home {
-	background-color: white;
-}
-
-body.sub {
-	background-color: white;
-}
-*/
+//  === GLOBAL STYLES ===
 
 .truncate-ellipsis {
     display: table;
@@ -200,17 +182,6 @@ div.add-form {
   margin-top: 25px;
   margin-bottom: 25px;
 }
-/*
-h3 {
-	color: #ab2a30;
-}
-*/
-
-/*
-input {
-  width:98%;
-  font-size: 20px;
-}*/
 
 label {
   font-weight: normal;
@@ -253,7 +224,7 @@ div.admin-tools {
 	margin-left: 0px;
 }
 
-/* === GLOBAL CLASSES === */
+//  === GLOBAL CLASSES ===
 
 .logo {
 	padding-right: 5px;
@@ -363,12 +334,6 @@ span.more-important a:link {
 	font-color: #444;
 }
 
-overflow {}
-
-a {}
-
-a {}
-
 .less-important {
 	color: #666;
 }
@@ -445,7 +410,7 @@ ul.dropdown-menu li a.strong {
   font-weight: bolder;
 }
 
-/* == MODAL === */
+//  == MODAL ===
 
 .modal-header {
   border-bottom: 0;
@@ -465,7 +430,7 @@ ul.dropdown-menu li a.strong {
   padding-top: 10px;
 }
 
-/* === LAYOUT === */
+//  === LAYOUT ===
 
 #breadcrumbs {
 	margin-bottom:  20px;
@@ -531,23 +496,7 @@ ul.dropdown-menu li a.strong {
 
 
 
-/* === BOOTSTRAP OVERRIDES == */
-/*
-.dropdown-menu > li > a {
-  display: inline;
-  padding: 3px 10px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333333;
-  white-space: nowrap;
-}
-*/
-
-/*
-.navbar-default{background-color:#fff;border-color:#fff}.navbar-default .navbar-brand{color:#777}.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus{color:#5e5e5e;background-color:transparent}.navbar-default .navbar-text{color:#777}.navbar-default .navbar-nav>li>a{color:#777}.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav>.disabled>a,.navbar-default .navbar-nav>.disabled>a:hover,.navbar-default .navbar-nav>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-toggle{border-color:#ddd}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:#ddd}.navbar-default .navbar-toggle .icon-bar{background-color:#888}.navbar-default .navbar-collapse,.navbar-default .navbar-form{border-color:#e7e7e7}.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{background-color:#e7e7e7;color:#555}.navbar-default .navbar-nav .open .dropdown-menu>li>a{color:#777}.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-link{color:#777}.navbar-default .navbar-link:hover{color:#333}.navbar-default .btn-link{color:#777}.navbar-default .btn-link:hover,.navbar-default .btn-link:focus{color:#333}.navbar-default .btn-link[disabled]:hover,fieldset[disabled] .navbar-default .btn-link:hover,.navbar-default .btn-link[disabled]:focus,fieldset[disabled] .navbar-default .btn-link:focus{color:#ccc}
-*/
-
+//  === BOOTSTRAP OVERRIDES ==
 
 .jumbotron {
 	background-color: #fff;
@@ -615,50 +564,7 @@ ul.dropdown-menu li a.strong {
 	min-width: 300px;
 }
 
-/* === HOME PAGE === */
-/*
-div.topic {
-	font-size: 150%;
-	margin-bottom: 20px;
-}
-
-div.topic-points {
-	color: #00843B;
-	margin-right: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	background-color: #EAFFCA;
-	float: left;
-	text-align: center;
-	min-width: 30px;
-}
-
-div#topic-vote {
-	margin-top: 35px;
-}
-
-div.topic-message {
-	text-align: left;
-	margin-left: 40px;
-}
-
-ul.buttons {
-	list-style-type: none;
-}
-
-ul.buttons li {
-	margin: 15px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 120%;
-	display: block;
-	background-color: #eee;
-}
-*/
-
-
+//  === HOME PAGE ===
 
 h1#how-help {
 	padding-top:50px;
@@ -667,7 +573,7 @@ h1#how-help {
 
 #home-search {
 	background-color: #feffe9;
-	/*background-color: #ffdf91;*/
+	// background-color: #ffdf91;
 	padding-bottom: 100px;
 }
 
@@ -758,7 +664,7 @@ ul.locale-list li {
   padding-bottom: 5px;
 }
 
-/* === KNOWLEDGEBASE === */
+//  === KNOWLEDGEBASE ===
 
 
 #left-col.affix-top {
@@ -821,14 +727,14 @@ a.list-group-item {
 }
 
 
-/* === SEARCH  === */
+//  === SEARCH  ===
 
 div#results-found {
 	margin-top: 15px;
 	margin-bottom: 30px;
 }
 
-/* === FLASH MESSAGES === */
+//  === FLASH MESSAGES ===
 
 
 li.feed-item {
@@ -851,7 +757,7 @@ div#flash-error {
 
 }
 
-/* === ERROR MESSAGES === */
+//  === ERROR MESSAGES ===
 div#errorExplanation {
 
 }
@@ -872,7 +778,7 @@ div#errorExplanation ul li {
 
 }
 
-/* === FORMS === */
+//  === FORMS ===
 div.fieldWithErrors {
 
 }
@@ -893,7 +799,7 @@ div.fieldWithErrors textarea
 
 
 
-/* === HEADER STYLES === */
+//  === HEADER STYLES ===
 
 #above-header {
 	font-size: 85%;
@@ -903,18 +809,6 @@ div.fieldWithErrors textarea
 	text-align: right;
 }
 
-/*#above-header ul {
-	list-style-type: none;
-	display: inline;
-	float: right;
-}
-
-#above-header ul li {
-	display: inline;
-	padding-right: 4px;
-	padding-left: 4px;
-}
-*/
 above-header ul li a{
 	color: #666;
 	text-decoration: none;
@@ -924,10 +818,6 @@ above-header ul li a{
 	margin-top: -10px;
 }
 
-/*#upper-wrapper {
-	background-color: #eee;
-}
-*/
 #header-wrapper {
 	}
 
@@ -951,10 +841,6 @@ div.status {
 #header-nav {
 	margin-top: 17px;
 }
-
-/* #header-nav {
-	text-align: right;
-} */
 
 #header-nav ul li a {
 	font-weight: normal;
@@ -989,8 +875,7 @@ div.status {
 
 }
 
-
-/* === FORUM === */
+//  === FORUM ===
 
 table#forums, table#topics, table#posts {
 	width: 100%;
@@ -1005,7 +890,7 @@ table#forums, table#topics, table#posts {
 	border-bottom: 1px solid #eee;
 }
 
-/* === DISCUSSION === */
+//  === DISCUSSION ===
 
 .collapsed-posts {
 	margin-top: 40px;
@@ -1030,7 +915,6 @@ table#forums, table#topics, table#posts {
 .kind-note {
 	color: #999;
 }
-
 
 .posted_by {
 	margin-top: 10px;;
@@ -1086,11 +970,10 @@ div.topic-status {
 	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
-/* === MAIN PANEL === */
-
+//  === MAIN PANEL ===
 
 #main-content {
-	/*font-size: 110%;*/
+	// font-size: 110%;
 	background-color: #fff;
 }
 
@@ -1104,14 +987,13 @@ div.topic-status {
 	height: 278px;
 }
 
-/* === FOOTER === */
+//  === FOOTER ===
 
 #get-help-wrapper {
 	background-color: #FFDF91;
 	padding-top: 20px;
 	padding-bottom: 20px;
 }
-
 
 #footer-left h3, #footer-right h3 {
 	color: white;
@@ -1124,7 +1006,6 @@ div.topic-status {
 #footer-wrapper {
 	width: 100%;
 	background-color: #222;
-
 }
 
 #footer {
@@ -1140,7 +1021,7 @@ div.topic-status {
 	text-decoration: none;
 }
 
-/* === IDEABOARD === */
+//  === IDEABOARD ===
 
 .idea-box {
     max-height: 120px;
@@ -1159,7 +1040,7 @@ div.topic-status {
   max-height: 100px;
 }
 
-/* === Q&A === */
+//  === Q&A ===
 
 .asked-question {
   margin-bottom: 5px;
@@ -1177,11 +1058,7 @@ h4.qna {
   margin-bottom: 15px;
 }
 
-
-
-
-
-/* === OTHER MEDIA QUERIES === */
+//  === OTHER MEDIA QUERIES ===
 
 @media(max-width:767px){
 	.dummy {
@@ -1202,37 +1079,4 @@ h4.qna {
 	.kind-reply, .kind-note {
 		margin-left: 0;
 	}
-	/*
-	#upper-wrapper {
-		height: 40px;
-	}
-
-	#upper-wrapper, #upper-wrapper.jumbotron {
-		height: 40px;
-		margin-bottom: 5px;
-		padding: 0px;
-		background-color: #eee;
-
-		-webkit-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
-		-moz-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
-		box-shadow: 0px 0px 12px 0px rgba(196,196,196,1);
-	}*/
 }
-
-@media(min-width:768px){
-
-}
-
-@media(min-width:992px){
-
-}
-
-@media(min-width:1200px){
-
-}
-
-/* @group My Group */
-
-
-
-/* @end */

@@ -1,2 +1,8 @@
 
 scss_files: 'app/assets/stylesheets/**/*.scss'
+
+linters:
+
+  # Forbid /* X */ comments which appear in generated CSS.
+  Comment:
+    severity: error
