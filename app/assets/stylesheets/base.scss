@@ -110,16 +110,6 @@ textarea {
     text-overflow: ellipsis;
 }
 
-.ellipses {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.active-item-shadow {
-    box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px
-}
-
 #page-title {
 	padding-top: 30px;
 	background-color: #feffe9;
@@ -175,11 +165,6 @@ div.add-form {
 }
 
 .form-subhead {
-  margin-bottom: 25px;
-}
-
-.login-buttons {
-  margin-top: 25px;
   margin-bottom: 25px;
 }
 
@@ -338,10 +323,6 @@ span.more-important a:link {
 	color: #666;
 }
 
-input.wide-field {
-	width: 100%;
-}
-
 span.category-icon {
 	color: #666;
 	margin-bottom: 15px;
@@ -369,29 +350,6 @@ span.category-icon {
 .verticalness {
 	padding-top: 150px;
 	padding-bottom: 150px;
-}
-
-.talkbubble {
-   width: 120px;
-   height: 80px;
-   background: white;
-   border: 1px solid #eee;
-   position: relative;
-   -moz-border-radius:    10px;
-   -webkit-border-radius: 10px;
-   border-radius:         10px;
-}
-
-.talkbubble:before {
-   content:"";
-   position: absolute;
-   right: 100%;
-   top: 26px;
-   width: 0;
-   height: 0;
-   border-top: 13px solid transparent;
-   border-right: 26px solid #eee;
-   border-bottom: 13px solid transparent;
 }
 
 .last-active {
@@ -441,11 +399,6 @@ ul.dropdown-menu li a.strong {
 	background-color: #3cceff;
 }
 
-#main-left {
-	height: 500px;
-	margin-bottom: 20px;
-}
-
 #left-nav ul {
 	list-style-image: none;
 }
@@ -493,16 +446,12 @@ ul.dropdown-menu li a.strong {
 	margin-top: 80px;
 }
 
-
-
-
 //  === BOOTSTRAP OVERRIDES ==
 
 .jumbotron {
 	background-color: #fff;
 	margin-bottom: 0px;
 }
-
 
 .navbar-brand {
 	color: black;
@@ -577,40 +526,11 @@ h1#how-help {
 	padding-bottom: 100px;
 }
 
-#home-options {
-	padding-top:2%;
-	padding-bottom:2%;
-	padding-right:10%;
-	padding-left:10%;
-	margin-bottom: 5%;
-}
-
-.home-option {
-	padding-top: 30px;
-	padding-bottom: 30px;
-}
-
-.home-option > h3 {
-	padding-top: 30px;
-}
-
-#home-options span.glyphicon {
-	font-size: 300%;
-}
-
 #featured-categories, #featured-team {
 	margin-top: 40px;
 	background-color: #fff;
 	margin-left: 20px;
 	margin-right: 20px;
-}
-
-div.home-square {
-	padding-right: 10px;
-	padding-left: 10px;
-	height: 120px;
-	background-color: #fff;
-	margin: 0px;
 }
 
 .dummy {
@@ -628,10 +548,6 @@ div.home-square {
     padding-top:calc(40% - 30px);
 }
 
-.search-field {
-	width: 100%;
-}
-
 .right-inner-addon {
     position: relative;
 }
@@ -643,14 +559,6 @@ div.home-square {
     right: 0px;
     padding: 10px 12px;
     pointer-events: none;
-}
-
-div#community-forums-block > span.glyphicon {
-	font-size: 400%;
-}
-
-div#community-forums-block > h3 {
-	padding-top: 15px;
 }
 
 li.team-member {
@@ -726,7 +634,6 @@ a.list-group-item {
 	margin-bottom: 5px;
 }
 
-
 //  === SEARCH  ===
 
 div#results-found {
@@ -736,22 +643,9 @@ div#results-found {
 
 //  === FLASH MESSAGES ===
 
-
-li.feed-item {
-	list-style-image: url(../images/16/1.png);
-	margin-top: 5px;
-	text-shadow: #000000 0 0 0;
-	list-style-position: outside;
-	opacity: 1;
-}
-
 thead th {
   background-color: #eee;
   border-bottom: 1px solid #ddd;
-}
-
-tr.table-header {
-	padding-bottom: 20px;
 }
 
 //  === HEADER STYLES ===
@@ -762,15 +656,6 @@ tr.table-header {
 	margin-bottom: 5px;
 	margin-top: 0px;
 	text-align: right;
-}
-
-above-header ul li a{
-	color: #666;
-	text-decoration: none;
-}
-
-#header-logo {
-	margin-top: -10px;
 }
 
 #main-body {
@@ -788,43 +673,6 @@ div#main-body {
 div.status {
 	float: right;
 	margin-left: 30px;
-}
-
-#header-nav {
-	margin-top: 17px;
-}
-
-#header-nav ul li a {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	margin-right: 5px;
-	padding: 8px;
-}
-
-#header-nav ul li a:hover {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	background-color: #eee;
-	padding:  8px;
-
-}
-
-#header-nav ul li a.current {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	margin-right: 5px;
-	padding: 8px;
-	background-color: #555;
-}
-
-#header-nav ul li {
-	display: inline-block;
-	font-size: 120%;
-	background-color: #fff;
-
 }
 
 //  === FORUM ===
@@ -861,19 +709,11 @@ table#forums, table#topics, table#posts {
 }
 
 .kind-reply, .kind-note {
-	margin-left: 50px;
+  margin-left: 50px;
 }
 
 .kind-note {
-	color: #999;
-}
-
-.posted_by {
-	margin-top: 10px;;
-}
-
-.bottom-border {
-	border-bottom: 1px solid #eee;
+  color: #999;
 }
 
 .voting-widget {
@@ -894,34 +734,6 @@ table#forums, table#topics, table#posts {
   margin-top: -5px;
 }
 
-div.topic-status {
-	padding-bottom: 2px;
-	padding-top: 2px;
-	margin-bottom: 20px;
-	font-variant: small-caps;
-	text-align: left;
-	font-size: 12px;
-}
-
-#topic-stats {
-	background-color: #fff;
-}
-
-#topic-stats div.topic-points {
-	font-size: 400%;
-	float: right;
-}
-
-#topic-stats div.topic-related table tbody tr td div.topic-points {
-	font-size: 110%;
-}
-
-#topic-stats h3 {
-	margin-top: 20px;
-	color: #666;
-	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-}
-
 //  === MAIN PANEL ===
 
 #main-content {
@@ -934,21 +746,12 @@ div.topic-status {
 	font-size: 110%;
 }
 
-#main-panel {
-	background: url(/images/main-panel.gif) no-repeat;
-	height: 278px;
-}
-
 //  === FOOTER ===
 
 #get-help-wrapper {
 	background-color: #FFDF91;
 	padding-top: 20px;
 	padding-bottom: 20px;
-}
-
-#footer-left h3, #footer-right h3 {
-	color: white;
 }
 
 #footer h5 {
@@ -1027,8 +830,5 @@ h4.qna {
 	    text-align:center;
 	    padding-top: 10px;
 	    max-height: 100px;
-	}
-	.kind-reply, .kind-note {
-		margin-left: 0;
 	}
 }

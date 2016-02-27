@@ -30,7 +30,7 @@ Helpy.ready = function(){
   $('.thumbnail, .stats').off();
 
   // jquery hhoks for the home page
-  $('.home-option, .home-option-xs, .topic-box').click(function(){
+  $('.topic-box').click(function(){
     document.location.href = $(this).data("link");
   });
 
