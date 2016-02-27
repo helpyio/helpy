@@ -25,8 +25,8 @@
 
 class TopicsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
-  before_filter :instantiate_tracker
+  before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
+  before_action :instantiate_tracker
 
   layout "clean", only: [:new, :index]
 
@@ -198,7 +198,7 @@ class TopicsController < ApplicationController
           else
             redirect_to topic_posts_path(@topic)
           end
-          }
+        }
       else
         format.html { render action: 'new' }
       end

@@ -23,8 +23,8 @@
 
 class DocsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show', 'home']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :authenticate_user!, :except => ['show', 'home']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
 
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
@@ -143,7 +143,7 @@ class DocsController < ApplicationController
     if params[:permalink]
       @doc = Doc.find_by_permalink(params[:permalink])
     else
-      category = Category.find_by_link(params[:link])
+      # category = Category.find_by_link(params[:link])
       @doc = Doc.find_by_category_id(params[:link])
     end
     @related = Doc.in_category(@doc.category_id)

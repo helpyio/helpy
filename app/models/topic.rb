@@ -28,6 +28,8 @@ class Topic < ActiveRecord::Base
 
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
+  belongs_to :assigned_user, class_name: 'User'
+
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif]
@@ -69,11 +71,6 @@ class Topic < ActiveRecord::Base
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
-
-
-  def assigned_user
-    User.where(id: self.assigned_user_id).first
-  end
 
   def to_param
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"

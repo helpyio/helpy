@@ -19,8 +19,8 @@
 class ForumsController < ApplicationController
   #cache_sweeper :forum_sweeper, :only => [:update, :create, :destroy]
 
-  before_filter :authenticate_user!, :only => ['new', 'edit', 'update', 'create', 'destroy']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :authenticate_user!, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
 

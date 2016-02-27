@@ -37,7 +37,7 @@ class PostsControllerTest < ActionController::TestCase
   test "a browsing user should not be able to see inactive posts" do
     post = posts(:inactive_reply)
     get :index, topic_id: topics(:public).id, locale: :en
-    assert (not assigns(:posts).include? post.id)
+    refute assigns(:posts).include? post.id
   end
 
   test "a browsing user should not be able to vote" do

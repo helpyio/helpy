@@ -1,0 +1,17 @@
+language: ruby
+rvm:
+  - 2.2.1
+
+services:
+  - postgresql
+
+# Setup Test Database
+before_script:
+  - psql -c 'create database helpy_test;' -U postgres
+
+script:
+  - bundle exec rake db:schema:load
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+
+cache: bundler

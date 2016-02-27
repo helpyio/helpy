@@ -46,7 +46,7 @@
 
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!, except: :set_client_id
+  before_action :authenticate_user!, except: :set_client_id
 
   def show
     @user = current_user
@@ -111,9 +111,5 @@ class UsersController < ApplicationController
     render nothing: true
 
   end
-
-
-  private
-
 
 end

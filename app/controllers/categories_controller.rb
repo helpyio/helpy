@@ -18,10 +18,10 @@
 #
 
 class CategoriesController < ApplicationController
-  before_filter :get_tags
+  before_action :get_tags
 
-  before_filter :authenticate_user!, :except => ['index', 'show']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :authenticate_user!, :except => ['index', 'show']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
   # GET /categories

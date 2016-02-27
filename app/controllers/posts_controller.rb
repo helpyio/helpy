@@ -15,12 +15,12 @@
 
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['index', 'create', 'up_vote']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'destroy']
-  before_filter :instantiate_tracker
+  before_action :authenticate_user!, :except => ['index', 'create', 'up_vote']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'destroy']
+  before_action :instantiate_tracker
 
 #  before_filter :fetch_counts, :only => 'create'
-  after_filter :send_message, :only => 'create'
+  after_action :send_message, :only => 'create'
 #  after_filter :view_causes_vote, :only => 'index'
 
   layout "clean", only: [:index]
@@ -96,7 +96,7 @@ class PostsController < ApplicationController
         format.html {
           @posts = @topic.posts.ispublic.chronologic.active
           redirect_to topic_posts_path(@topic)
-          }
+        }
         format.js {
           if current_user.admin?
             fetch_counts
@@ -176,8 +176,9 @@ class PostsController < ApplicationController
       else
         email_locale = @topic.locale.nil? ? I18n.locale : @topic.locale.to_sym
       end
+
       I18n.with_locale(email_locale) do
-        TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private == true
+        TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private?
       end
     else
       logger.info("reply is not from admin, don't email") #might want to cchange this if we want admin notification emails

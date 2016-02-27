@@ -1,0 +1,65 @@
+AllCops:
+
+  Exclude:
+    - db/**/*
+    - lib/**/*
+    - tmp/**/*
+
+  TargetRubyVersion: 2.0
+
+Rails:
+  Enabled: true
+
+Style:
+  Enabled: false
+
+Metrics:
+  Enabled: false
+
+# TODO: Resolve the following RuboCop violations
+
+# Offense count: 1
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - 'app/models/user.rb'
+
+# Offense count: 2
+# Configuration parameters: Include.
+# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
+Rails/Output:
+  Exclude:
+    - 'config/unicorn.rb'
+
+# Offense count: 4
+# Configuration parameters: EnforcedStyle, SupportedStyles.
+# SupportedStyles: strict, flexible
+Rails/TimeZone:
+  Exclude:
+    - 'app/models/post.rb'
+    - 'app/models/topic.rb'
+
+# Offense count: 13
+# Configuration parameters: Include.
+# Include: app/models/**/*.rb
+Rails/Validation:
+  Exclude:
+    - 'app/models/category.rb'
+    - 'app/models/doc.rb'
+    - 'app/models/forum.rb'
+    - 'app/models/post.rb'
+    - 'app/models/topic.rb'
+    - 'app/models/vote.rb'
+
+# Offense count: 1
+# Configuration parameters: AllowSafeAssignment.
+Lint/AssignmentInCondition:
+  Exclude:
+    - 'bin/spring'
+
+# Offense count: 2
+Lint/HandleExceptions:
+  Exclude:
+    - 'bin/rails'
+    - 'bin/rake'
