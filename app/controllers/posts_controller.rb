@@ -157,7 +157,7 @@ class PostsController < ApplicationController
     #Should only send when admin posts, not when user replies
 
     if current_user.admin?
-      TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private == true
+      TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private?
     else
       logger.info("reply is not from admin, don't email")
     end
