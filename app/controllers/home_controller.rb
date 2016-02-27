@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     @articles = Doc.all_public_popular.with_translations(I18n.locale)
     @team = User.admins
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{root_url}index.rss' />"
-    @categories = Category.active.featured.all.with_translations(I18n.locale)
+    @categories = Category.active.ordered.featured.all.with_translations(I18n.locale)
 
     #@topics = Topic.ispublic.tag_counts_on(:tags)
 
