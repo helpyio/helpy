@@ -62,5 +62,13 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test 'should only track validation errors once' do
+    user = User.new(email: User.first.email)
+    user.validate
+    errs = user.errors.full_messages
+    # Verify there are no duplicate errors!
+    assert_equal errs.length, errs.uniq.length
+  end
+
 
 end

@@ -49,8 +49,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
-  validates_presence_of :name, :email
-  validates_uniqueness_of :email
+  validates :name, presence: true
 
   include Gravtastic
 
