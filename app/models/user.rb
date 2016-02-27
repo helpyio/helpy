@@ -79,27 +79,15 @@ class User < ActiveRecord::Base
   end
 
   def self.create_password
-    # generate user password
-    source_characters = "0124356789abcdefghijk"
-    password = ""
-    1.upto(8) { password += source_characters[rand(source_characters.length),1] }
-    password
+    Devise.friendly_token
   end
 
   def thumbnail_url
-    if self.thumbnail == ""
-      self.gravatar_url(:size => 60)
-    else
-      self.thumbnail
-    end
+    self.thumbnail.blank? ? self.gravatar_url(size: 60) : self.thumbnail
   end
 
   def image_url
-    if self.medium_image.nil?
-      self.gravatar_url(:size => 60)
-    else
-      self.medium_image
-    end
+    self.medium_image || self.gravatar_url(size: 60)
   end
 
   def self.find_for_oauth(auth)
@@ -122,7 +110,7 @@ class User < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{name.parameterize}"
   end
 
 end

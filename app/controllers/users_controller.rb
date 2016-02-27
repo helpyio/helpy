@@ -57,36 +57,20 @@ class UsersController < ApplicationController
     @title_tag = "#{Settings.site_name} Support: My Profile"
     add_breadcrumb @page_title, categories_path
 
-    @user = User.where(id: current_user.id).first
+    @user = current_user
   end
 
   def update
 
     if current_user.admin?
-      @user = User.where(id: params[:id]).first
+      @user = User.find(params[:id])
       @user.admin = params[:user][:admin]
       @user.active = params[:user][:active]
     else
       @user = current_user
     end
 
-    #Update the user
-    @user.name = params[:user][:name]
-    @user.bio = params[:user][:bio]
-    @user.signature = params[:user][:signature]
-    @user.work_phone = params[:user][:work_phone]
-    @user.cell_phone = params[:user][:cell_phone]
-    @user.email = params[:user][:email]
-    @user.company = params[:user][:company]
-    @user.street = params[:user][:street]
-    @user.city = params[:user][:city]
-    @user.state = params[:user][:state]
-    @user.zip = params[:user][:zip]
-    @user.title = params[:user][:title]
-    @user.twitter = params[:user][:twitter]
-    @user.linkedin = params[:user][:linkedin]
-    @user.language = params[:user][:language]
-    @user.save
+    @user.update(user_params)
 
     if current_user.admin?
       fetch_counts
@@ -110,6 +94,28 @@ class UsersController < ApplicationController
     session[:client_id] = params[:client_id]
     render nothing: true
 
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(
+      :name,
+      :bio,
+      :signature,
+      :work_phone,
+      :cell_phone,
+      :email,
+      :company,
+      :street,
+      :city,
+      :state,
+      :zip,
+      :title,
+      :twitter,
+      :linkedin,
+      :language
+    )
   end
 
 end

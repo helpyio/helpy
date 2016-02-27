@@ -43,11 +43,7 @@ class AdminController < ApplicationController
 
   def tickets
 
-    if params[:status].nil?
-      @status = "pending"
-    else
-      @status = params[:status]
-    end
+    @status = params[:status] || "pending"
 
     topics_raw = Topic.includes(user: :avatar_files).chronologic
     case @status

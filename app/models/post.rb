@@ -30,8 +30,8 @@ class Post < ActiveRecord::Base
   #after_save :send_message
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
-  scope :active, -> { where("active = ?", true) }
-  scope :ispublic, -> { where("kind != ?", 'note') }
+  scope :active, -> { where(active: true) }
+  scope :ispublic, -> { where.not(kind: 'note') }
   scope :chronologic, -> { order('created_at ASC') }
   scope :by_votes, -> { order('points DESC')}
 

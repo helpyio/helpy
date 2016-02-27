@@ -174,34 +174,29 @@ class TopicsController < ApplicationController
 
     end
 
-    respond_to do |format|
+    if @user.save && @topic.save
 
-      if @user.save && @topic.save
+      @post = @topic.posts.create(
+        :body => params[:post][:body],
+        :user_id => @user.id,
+        :kind => 'first',
+        :screenshots => params[:topic][:screenshots])
 
-        @post = @topic.posts.create(
-          :body => params[:post][:body],
-          :user_id => @user.id,
-          :kind => 'first',
-          :screenshots => params[:topic][:screenshots])
-
-        if built_user == true && !user_signed_in?
-          UserMailer.new_user(@user, @token).deliver_now
-        end
-
-        # track event in GA
-        @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
-        @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
-
-        format.html {
-          if @topic.private?
-            redirect_to ticket_path(@topic)
-          else
-            redirect_to topic_posts_path(@topic)
-          end
-        }
-      else
-        format.html { render action: 'new' }
+      if built_user == true && !user_signed_in?
+        UserMailer.new_user(@user, @token).deliver_now
       end
+
+      # track event in GA
+      @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
+      @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+
+      if @topic.private?
+        redirect_to ticket_path(@topic)
+      else
+        redirect_to topic_posts_path(@topic)
+      end
+    else
+      render :new
     end
 
   end

@@ -36,7 +36,7 @@ class Forum < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
+    "#{id}-#{name.parameterize}" unless name.nil?
   end
 
 end

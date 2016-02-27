@@ -31,7 +31,7 @@ class ForumTest < ActiveSupport::TestCase
   end
 
   test "to_param" do
-    assert Forum.find(1).to_param == "1-Private-Tickets"
+    assert Forum.find(1).to_param == "1-private-tickets"
   end
 
 

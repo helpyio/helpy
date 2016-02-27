@@ -25,7 +25,6 @@
 
 class Topic < ActiveRecord::Base
 
-
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :assigned_user, class_name: 'User'
@@ -48,19 +47,19 @@ class Topic < ActiveRecord::Base
   scope :open, -> { where(current_status: "open") }
   scope :unread, -> { where(current_status: "new") }
   scope :pending, -> { where(current_status: "pending") }
-  scope :mine, -> (user) { where("assigned_user_id = ?", user) }
+  scope :mine, -> (user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
   scope :spam, -> { where(current_status: "spam")}
 
   scope :chronologic, -> { order('updated_at DESC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where("current_status = ? OR current_status = ?", "open", "pending") }
-  scope :undeleted, -> { where("current_status != ?", "trash") }
+  scope :active, -> { where(current_status: %w(open pending)) }
+  scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where("current_status <> 'spam'").where(private: true)}
-  scope :ispublic, -> { where("current_status <> 'spam'").where(private: false)}
+  scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
+  scope :ispublic, -> { where.not(current_status: 'spam').where(private: false)}
 
   # may want to get rid of this filter:
   # before_save :check_for_private
@@ -73,7 +72,7 @@ class Topic < ActiveRecord::Base
   validates_length_of :name, :maximum => 255
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{name.parameterize}"
   end
 
   def email_subject
@@ -120,7 +119,6 @@ class Topic < ActiveRecord::Base
     self.save
   end
 
-
   # DEPRECATED updates the last post date, called when a post is made
   def self.last_post
     Topic.post(:first, :order => 'updated_at DESC')
@@ -133,8 +131,10 @@ class Topic < ActiveRecord::Base
     self.private = true if f.private?
   end
 
+  # TODO: This is better named 'public?'
   def public
-    true if self.forum_id >= 3 && self.private == false
+    # Note: We assume forum_ids 1,2,3 are seed data
+    forum_id >= 3 && !private?
   end
 
   private
@@ -146,5 +146,4 @@ class Topic < ActiveRecord::Base
   def add_locale
     self.locale = I18n.locale
   end
-
 end
