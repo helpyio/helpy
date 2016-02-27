@@ -36,7 +36,7 @@ module AdminHelper
 
     select += "</select>"
 
-    # Return select
+    # TODO: Replace this ugly string concatenation with Rails' / ActionView's "grouped_options_for_select" helper
     select.html_safe
   end
 
