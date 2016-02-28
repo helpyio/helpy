@@ -57,8 +57,8 @@ class Post < ActiveRecord::Base
       end
     end
 
-    self.topic.update(last_post_date: Time.now, waiting_on: waiting_on, current_status: status)
-    self.topic.forum.update(last_post_date: Time.now)
+    self.topic.update(last_post_date: Time.current, waiting_on: waiting_on, current_status: status)
+    self.topic.forum.update(last_post_date: Time.current)
   end
 
   #updates cache of post content used in search

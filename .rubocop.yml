@@ -32,14 +32,6 @@ Rails/Output:
   Exclude:
     - 'config/unicorn.rb'
 
-# Offense count: 4
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: strict, flexible
-Rails/TimeZone:
-  Exclude:
-    - 'app/models/post.rb'
-    - 'app/models/topic.rb'
-
 # Offense count: 1
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:
