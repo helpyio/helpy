@@ -37,7 +37,7 @@ class DocTest < ActiveSupport::TestCase
   end
   
   test "to_param" do
-    assert Doc.find(1).to_param == "1-Article-1"
+    assert Doc.find(1).to_param == "1-article-1"
   end
 
 end

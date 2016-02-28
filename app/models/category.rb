@@ -29,7 +29,8 @@ class Category < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :main, -> { where(section: 'main') }
   scope :ordered, -> { order('rank ASC') }
-  scope :featured, -> {where(front_page: true) }
+  scope :ranked, -> { order('rank ASC') }
+  scope :featured, -> { where(front_page: true) }
 
   include RankedModel
   ranks :rank
@@ -38,7 +39,7 @@ class Category < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
+    "#{id}-#{name.parameterize}" unless name.nil?
   end
 
   def read_translated_attribute(name)

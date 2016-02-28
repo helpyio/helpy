@@ -19,6 +19,4 @@ config/environments/*.local.yml
 config/settings_bu.yml
 
 *.eml
-*.DS_Store
-
-/app/assets/.DS_Store
+.DS_Store

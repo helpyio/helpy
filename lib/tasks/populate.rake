@@ -21,7 +21,7 @@ namespace :db do
 
   number_support_team.times do
     user = RUser.new
-    u = User.create!(
+    u = User.create(
       name: "#{user.first_name} #{user.last_name}",
       email: user.email,
       login: user.username,
@@ -47,7 +47,7 @@ namespace :db do
   number_users.times do
 
     user = RUser.new
-    u = User.create!(
+    u = User.create(
       name: "#{user.first_name} #{user.last_name}",
       email: user.email,
       login: user.username,
@@ -71,7 +71,7 @@ namespace :db do
   number_users.times do
 
     user = RUser.new
-    u = User.create!(
+    u = User.create(
       name: "#{user.first_name} #{user.last_name}",
       email: user.email,
       login: user.username,
@@ -125,10 +125,11 @@ namespace :db do
     rand(1..5).times do
 
       f = Forum.where(name: 'Doc comments').first
-      topic = f.topics.new
-      topic.name = build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun)
-      topic.user_id = User.where(admin: false).sample.id
-      topic.doc_id = doc.id
+      topic = f.topics.create!(
+        name: build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun),
+        user_id: User.where(admin: false).sample.id,
+        doc_id: doc.id
+      )
   #    if f.private?
   #      topic.private = true
   #      puts "Private Ticket Created!"
@@ -140,14 +141,12 @@ namespace :db do
   #      topic.points = rand(0..1000)
   #    end
 
-      topic.save
-
       # create first post in thread
-      post = topic.posts.new
-      post.body = Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>')
-      post.user_id = topic.user_id
-      post.kind = 'first'
-      post.save
+      post = topic.posts.create!(
+        body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
+        user_id: topic.user_id,
+        kind: 'first'
+      )
       puts "Post added to doc"
 
 #      Timecop.scale(120000)
@@ -164,11 +163,6 @@ namespace :db do
 #      Timecop.return
     end
   end
-
-
-
-
-
 
   # Create community threads for our users
 
