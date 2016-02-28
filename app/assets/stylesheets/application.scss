@@ -18,4 +18,4 @@
 // Import all other custom Helpy stylesheets
 @import "base";
 
-@import "admin";
+// Note: admin.scss is included separately via `layouts/admin.html.erb`.
