@@ -22,8 +22,8 @@ class Post < ActiveRecord::Base
   has_many :votes, :as => :voteable
   has_attachments :screenshots, accept: [:jpg, :png, :gif]
 
-  validates_presence_of :body, :kind
-  validates_length_of :body, :maximum => 10000
+  validates :body, presence: true, length: { maximum: 10_000 }
+  validates :kind, presence: true
 
   after_create  :update_waiting_on_cache
   after_save  :update_topic_cache

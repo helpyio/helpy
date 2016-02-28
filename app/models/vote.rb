@@ -17,7 +17,7 @@ class Vote < ActiveRecord::Base
   belongs_to :user
   after_create :increment_points_cache
 
-  validates_uniqueness_of :voteable_id, :scope => [:user_id, :voteable_type]
+  validates :voteable_id, uniqueness: { scope: [:user_id, :voteable_type] }
 
   protected
 

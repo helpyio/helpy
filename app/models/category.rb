@@ -37,8 +37,7 @@ class Category < ActiveRecord::Base
   include RankedModel
   ranks :rank
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates :name, presence: true, uniqueness: true
 
   def to_param
     "#{id}-#{name.parameterize}" unless name.nil?

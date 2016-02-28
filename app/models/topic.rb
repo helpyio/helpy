@@ -70,8 +70,7 @@ class Topic < ActiveRecord::Base
 
   # acts_as_taggable
 
-  validates_presence_of :name
-  validates_length_of :name, :maximum => 255
+  validates :name, presence: true, length: { maximum: 255 }
 
   def to_param
     "#{id}-#{name.parameterize}"

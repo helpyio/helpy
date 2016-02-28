@@ -40,18 +40,6 @@ Rails/TimeZone:
     - 'app/models/post.rb'
     - 'app/models/topic.rb'
 
-# Offense count: 13
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/Validation:
-  Exclude:
-    - 'app/models/category.rb'
-    - 'app/models/doc.rb'
-    - 'app/models/forum.rb'
-    - 'app/models/post.rb'
-    - 'app/models/topic.rb'
-    - 'app/models/vote.rb'
-
 # Offense count: 1
 # Configuration parameters: AllowSafeAssignment.
 Lint/AssignmentInCondition:

@@ -20,8 +20,10 @@ class PostTest < ActiveSupport::TestCase
   should belong_to(:topic)
   should belong_to(:user)
   should have_many(:votes)
+
   should validate_presence_of(:body)
   should validate_presence_of(:kind)
+  should validate_length_of(:body).is_at_most(10_000)
 
   # first post should be kind first
   # post belonging to a topic with multiple posts should be a reply

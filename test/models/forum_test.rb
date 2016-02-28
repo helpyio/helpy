@@ -24,7 +24,10 @@ class ForumTest < ActiveSupport::TestCase
   should have_many(:posts)
 
   should validate_presence_of(:name)
+  should validate_length_of(:name).is_at_most(255)
+
   should validate_presence_of(:description)
+  should validate_length_of(:description).is_at_most(1000)
 
   test "should count number of posts" do
     assert Forum.find(1).total_posts == 3
