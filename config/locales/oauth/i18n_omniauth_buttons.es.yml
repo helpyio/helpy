@@ -1,0 +1,2 @@
+es:
+  sign_in_with_omniauth_provider: "Conéctate con %{provider}"

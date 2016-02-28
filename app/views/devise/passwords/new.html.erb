@@ -3,7 +3,7 @@
     <span class="hidden-xs">
       <%= render_breadcrumbs('') %>
     </span>
-    <h1><%= t(:forgot_password) %></h1>
+    <h1><%= t('devise.passwords.new.forgot_your_password') %></h1>
   </div>
   <div class="col-md-4" id="page-title-right">
   </div>
@@ -14,8 +14,6 @@
   <%= f.email_field :email, autofocus: true %>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit t('devise.passwords.new.send_me_reset_password_instructions'), class: 'btn btn-warning' %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

@@ -3,7 +3,7 @@
     <span class="hidden-xs">
       <%= render_breadcrumbs('') %>
     </span>
-    <h1><%= t(:change_password) %></h1>
+    <h1><%= params[:first] == 'true' ? t('devise.sessions.new.sign_in') : t('devise.passwords.edit.change_my_password') %></h1>
   </div>
   <div class="col-md-4" id="page-title-right">
   </div>
@@ -12,9 +12,7 @@
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <%= f.password_field :password, autofocus: true, autocomplete: "off", label:"New Password" %>
-  <%= f.password_field :password_confirmation, autocomplete: "off", label: "Confirm New Password" %>
-  <%= f.submit "Change my password" %>
+  <%= f.password_field :password, autofocus: true, autocomplete: "off", label:I18n.t('devise.passwords.edit.new_password') %>
+  <%= f.password_field :password_confirmation, autocomplete: "off", label: I18n.t('devise.passwords.edit.confirm_new_password') %>
+  <%= f.submit I18n.t('devise.passwords.edit.change_my_password'), class: 'btn btn-warning' %>
 <% end %>
-
-<%= render "devise/shared/links" %>

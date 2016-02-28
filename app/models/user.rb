@@ -46,12 +46,12 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
-  validates_presence_of :name, :email
-  validates_uniqueness_of :email
+  validates :name, presence: true
 
   include Gravtastic
 
@@ -99,6 +99,25 @@ class User < ActiveRecord::Base
       self.gravatar_url(:size => 60)
     else
       self.medium_image
+    end
+  end
+
+  def self.find_for_oauth(auth)
+    if !where(email: auth.info.email).empty?
+      user = find_by(email: auth.info.email)
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.save!
+      user
+    else
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+        u.provider = auth.provider
+        u.uid = auth.uid
+        u.email = auth.provider == 'twitter' ? "#{auth.info.nickname}@twitter.com" : auth.info.email
+        u.name = auth.info.name
+        u.thumbnail = auth.info.image
+        u.password = Devise.friendly_token[0,20]
+      end
     end
   end
 

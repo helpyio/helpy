@@ -10,36 +10,35 @@ namespace :db do
   number_threads = rand(20..50)
   number_tickets = rand(20..50)
 
-
   unless User.where(email: 'admin@test.com')
     admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
     puts "Created Admin: #{admin_user.name}"
   end
 
   # Add Support Team
-  company = RUser.new.first
+  company = RUser.new
   company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
 
   number_support_team.times do
-    user = RUser.new.first
-    u = User.new
-    u.name = "#{user.name.first_name} #{user.name.last_name}"
-    u.email = user.email
-    u.login = user.username
-    u.password = '12345678'
-    u.admin = true
-    u.role = 'admin'
-    u.company = company_name
-    u.street = company.location.street
-    u.city = company.location.city
-    u.state = company.location.state
-    u.zip = company.location.zip
-    u.work_phone = company.phone
-    u.cell_phone = user.cell
-    u.thumbnail = user.picture.thumbnail
-    u.medium_image = user.picture.medium
-    u.large_image = user.picture.large
-    u.save
+    user = RUser.new
+    u = User.create!(
+      name: "#{user.first_name} #{user.last_name}",
+      email: user.email,
+      login: user.username,
+      password: '12345678',
+      admin: true,
+      role: 'admin',
+      company: company_name,
+      street: company.street,
+      city: company.city,
+      state: company.state,
+      zip: company.postal,
+      work_phone: company.phone,
+      cell_phone: user.cell,
+      thumbnail: user.profile_thumbnail_url,
+      medium_image: user.profile_medium_url,
+      large_image: user.profile_large_url
+    )
 
     puts "Created Agent: #{u.name}"
   end
@@ -47,80 +46,74 @@ namespace :db do
   # Create users with avatars
   number_users.times do
 
-    user = RUser.new.first
-    u = User.new
-    u.name = "#{user.name.first_name} #{user.name.last_name}"
-    u.email = user.email
-    u.login = user.username
-    u.password = '12345678'
-    u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
-    u.street = user.location.street
-    u.city = user.location.city
-    u.state = user.location.state
-    u.zip = user.location.zip
-    u.work_phone = user.phone
-    u.cell_phone = user.cell
-    u.thumbnail = user.picture.thumbnail
-    u.medium_image = user.picture.medium
-    u.large_image = user.picture.large
-    u.save
+    user = RUser.new
+    u = User.create!(
+      name: "#{user.first_name} #{user.last_name}",
+      email: user.email,
+      login: user.username,
+      password: '12345678',
+      company: "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}",
+      street: user.street,
+      city: user.city,
+      state: user.state,
+      zip: user.postal,
+      work_phone: user.phone,
+      cell_phone: user.cell,
+      thumbnail: user.profile_thumbnail_url,
+      medium_image: user.profile_medium_url,
+      large_image: user.profile_large_url
+    )
 
-    puts "Created User: #{user.name}"
+    puts "Created User: #{u.name}"
   end
 
   # Create users without avatars
   number_users.times do
 
-    user = RUser.new.first
-    u = User.new
-    u.name = "#{user.name.first_name} #{user.name.last_name}"
-    u.email = user.email
-    u.login = user.username
-    u.password = '12345678'
-    u.company = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
-    u.street = user.location.street
-    u.city = user.location.city
-    u.state = user.location.state
-    u.zip = user.location.zip
-    u.work_phone = user.phone
-    u.cell_phone = user.cell
-    u.save
+    user = RUser.new
+    u = User.create!(
+      name: "#{user.first_name} #{user.last_name}",
+      email: user.email,
+      login: user.username,
+      password: '12345678',
+      company: "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}",
+      street: user.street,
+      city: user.city,
+      state: user.state,
+      zip: user.postal,
+      work_phone: user.phone,
+      cell_phone: user.cell
+    )
 
-    puts "Created User: #{user.name}"
+    puts "Created User: #{u.name}"
   end
 
   # Create I18n versions for the demo
   Category.all.each do |category|
-    category.attributes = {name: "Exemple catégorie traduit en français", locale: :fr}
-    category.save
-    category.attributes = {name: "Näide kategooria tõlgitud prantsuse", locale: :et}
-    category.save
-    category.attributes = {name: "Exemple categoria traduïda al francès", locale: :ca}
-    category.save
+    category.update(name: "Exemple catégorie traduit en français", locale: :fr)
+    category.update(name: "Näide kategooria tõlgitud prantsuse", locale: :et)
+    category.update(name: "Exemple categoria traduïda al francès", locale: :ca)
   end
 
   # Create 10-50 Docs per category
   Category.all.each do |category|
     number_docs.times do
-      doc = category.docs.new
       title = Faker::Lorem.sentence
-      doc.title_tag = "#{title}"
-      doc.title = title
-      doc.body = Faker::Lorem.paragraphs(rand(1..5)).join('<br/><br/>')
-      doc.meta_description = Faker::Lorem.sentences(1)
-      doc.user_id = rand(1..5)
-      doc.save
+      doc = category.docs.create!(
+        title_tag: title,
+        title: title,
+        body: Faker::Lorem.paragraphs(rand(1..5)).join('<br/><br/>'),
+        meta_description: Faker::Lorem.sentences(1),
+        user_id: rand(1..5)
+      )
       puts "Created Doc: #{doc.title}"
     end
   end
 
   # Create 1 doc for each demo i18n language
-  Category.first.docs.first.attributes = {title: "La documentation de soutien Exemple traduit en français" ,body: '', locale: :fr}
-  Category.first.docs.first.save
-  Category.first.docs.first.attributes = {title: "Näide toetust dokumentatsiooni tõlgitud prantsuse" ,body: '', locale: :et}
-  Category.first.docs.first.save
-  Category.first.docs.first.attributes = {title: "Documentació de suport Exemple traduïda al francès" ,body: '', locale: :ca}
-  Category.first.docs.first.save
+  Category.first.docs.first.update(title: "La documentation de soutien Exemple traduit en français" ,body: '', locale: :fr)
+  Category.first.docs.first.update(title: "Näide toetust dokumentatsiooni tõlgitud prantsuse" ,body: '', locale: :et)
+  Category.first.docs.first.update(title: "Documentació de suport Exemple traduïda al francès" ,body: '', locale: :ca)
 
   # Create document comment threads for our users
 
@@ -202,21 +195,21 @@ namespace :db do
     topic.save
 
     # create first post in thread
-    post = topic.posts.new
-    post.body = Faker::Lorem.paragraphs(rand(4..8)).join('<br/><br/>')
-    post.user_id = topic.user_id
-    post.kind = 'first'
-    post.save
+    post = topic.posts.create!(
+      body: Faker::Lorem.paragraphs(rand(4..8)).join('<br/><br/>'),
+      user_id: topic.user_id,
+      kind: 'first'
+    )
     puts "Post added to topic"
 
     Timecop.scale(120000)
 
     rand(2..5).times do
-      post = topic.posts.new
-      post.body = Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>')
-      post.user_id = rand(3..12)
-      post.kind = 'reply'
-      post.save
+      post = topic.posts.create!(
+        body: Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>'),
+        user_id: rand(3..12),
+        kind: 'reply'
+      )
       puts "Post added to topic"
     end
 
@@ -231,22 +224,22 @@ namespace :db do
       timeseed = rand(1..30)
       Timecop.travel(Date.today-timeseed.days)
 
-      topic = f.topics.new
       q = Faker::Hacker.ingverb + " " + Faker::Hacker.noun
       question = build_question(q)
 
-      topic.name = question
-      topic.user_id = User.where(admin: false).sample.id
-      topic.private = true
-      topic.assigned_user_id = User.where(admin: true).sample.id
-      topic.save
+      topic = f.topics.create!(
+        name: question,
+        user_id: User.where(admin: false).sample.id,
+        private: true,
+        assigned_user_id: User.where(admin: true).sample.id
+      )
 
       # create first post in thread
-      post = topic.posts.new
-      post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
-      post.user_id = topic.user_id
-      post.kind = 'first'
-      post.save
+      post = topic.posts.create!(
+        body: Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>'),
+        user_id: topic.user_id,
+        kind: 'first'
+      )
       puts "Post added to topic"
 
       Timecop.scale(120000)
@@ -281,35 +274,17 @@ namespace :db do
   end
 
   def build_question(q="something")
-    question = rand(1..5)
-    case question
-    when 1
-      question = "How do I use #{q}?"
-    when 2
-      question = "#{q} is not working!"
-    when 3
-      question = "Need Help!"
-    when 4
-      question = "Setting up #{q}"
-    when 5
-      question = "#{q} initial questions"
-    end
+    [
+      "How do I use #{q}?",
+      "#{q.titleize} is not working!",
+      "Need Help!",
+      "Setting up #{q}",
+      "#{q.titleize} initial questions"
+    ].sample
   end
 
   def company_type
-    company_seed = rand(1..5)
-    case company_seed
-    when 1
-      companytype = "Inc."
-    when 2
-      companytype = "LLC."
-    when 3
-      companytype = "Partners"
-    when 4
-      companytype = ".com"
-    when 5
-      companytype = "Company"
-    end
+    %w(Inc. LLC. Partners .com Company).sample
   end
 
 end

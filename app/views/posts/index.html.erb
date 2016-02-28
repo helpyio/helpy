@@ -9,6 +9,7 @@
 			<%= render :partial => 'post', :collection => @posts %>
 		</table>
 
+
 		<% if user_signed_in? && !@topic.forum.allow_post_voting == true %>
 			<div class="add-form">
 				<h4><%= t(:reply) %></h4>
@@ -23,6 +24,8 @@
 					<%= f.submit t(:submit_reply) -%>
 				<% end -%>
 			</div>
+		<% else %>
+			<span class="hidden-xs pull-right"><%= link_to t(:reply, default: "Reply"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
 		<% end -%>
 
 	</div>

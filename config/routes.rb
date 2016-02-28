@@ -3,15 +3,20 @@ Rails.application.routes.draw do
 
   root to: "locales#redirect_on_locale"
 
+  devise_for :users, skip: [:session, :password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   localized do
 
     root to: "home#index"
 
-    devise_for :users, controllers: {
-          registrations: 'registrations'
-        }
+    get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 
+    #devise_for :users, controllers: {
+    #      registrations: 'registrations',
+    #      omniauth_callbacks: "callbacks"
+    #    }
+
+    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit] do
       #collection do
@@ -41,6 +46,7 @@ Rails.application.routes.draw do
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
+  get '/set_client_id' => 'users#set_client_id', as: :set_client_id
 
   # Admin Routes
 
@@ -56,6 +62,7 @@ Rails.application.routes.draw do
     get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
     get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
     get '/content/:category_id/articles' => 'admin#articles', as: :admin_articles
+    post '/content/update_order' => 'admin#update_order', as: :admin_update_order
     get '/tickets' => 'admin#tickets', as: :admin_tickets
     get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
     get '/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
@@ -83,52 +90,4 @@ Rails.application.routes.draw do
   # Mount attachinary
   mount Attachinary::Engine => "/attachinary"
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

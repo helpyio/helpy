@@ -1,1 +1,21 @@
-send_email: true
+send_email: false
+site_name: Helpy Support
+
+# Site Settings
+parent_site: /parent-redirect.html # This tells Helpy how to provide a link back to your main site
+parent_company: Main Site # This is the parent company your helpdesk is providing support for
+site_url: http://support.yourdomain.com # This is the URL of your support site
+site_name: Helpy Support # This is the name of your support site
+site_tagline: Support and Helpdesk Software # This is the tagline of your support site
+product_name: # This is the product name your are supporting
+support_phone: # This is support number to be displayed
+
+# Analytics and Tracking
+google_analytics_id: #Enter your analytics ID
+send_usage_data: true
+
+# Mail specific settings:
+# See http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/14-Setting-up-your-Helpy-installation-to-send-and-receive-email
+
+admin_email: inbound.support@yourdomain.com
+from_email: inbound.support@yourdomain.com # This is the email that will be used for email replies (reply to)

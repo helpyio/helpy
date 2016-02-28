@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'pg_search'
@@ -17,10 +17,11 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'magnific-popup-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -28,13 +29,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'trix'
-
+gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+
 gem 'rails-i18n', '~> 4.0.0'
 gem 'i18n-country-translations'
 gem 'route_translator'
@@ -53,19 +60,19 @@ gem 'globalize-accessors'
 
 gem 'gravtastic'
 
-gem 'cloudinary'
+gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 
-gem 'less-rails'
-gem 'font-awesome-less'
-gem 'font-awesome-rails'
+gem 'less-rails', '2.7.1'
+#gem 'font-awesome-less'
+#gem 'font-awesome-rails'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'therubyracer'
 gem 'rdiscount'
 
-gem 'rails_config'
+gem 'config'
 
 gem 'daemons'
 #gem 'mailman-rails'
@@ -78,6 +85,9 @@ gem 'mail_extract'
 gem 'griddler'
 gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
+gem 'griddler-mailgun'
+gem 'griddler-postmark'
+gem 'griddler-mailin'
 
 gem 'rails-timeago'
 
@@ -92,11 +102,8 @@ gem 'rails-timeago'
 
 gem 'faker'
 gem 'populator'
-gem 'ruser'
+gem 'ruser', '~> 3.0'
 gem 'timecop' #used to populate
-
-
-gem 'newrelic_rpm'
 
 group :development, :test do
 
@@ -109,7 +116,16 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
-  gem 'rack-mini-profiler'
+
+end
+
+group :development do
+  gem "better_errors"
+  gem "quiet_assets"
+
+  # Check Eager Loading / N+1 query problems
+  gem 'bullet'
+  gem 'rubocop'
 end
 
 group :test do
@@ -121,6 +137,7 @@ group :test do
 end
 
 group :production do
+  gem 'newrelic_rpm'
   gem 'rails_12factor'
   gem 'unicorn'
 end

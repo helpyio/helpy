@@ -18,6 +18,8 @@ zh-cn:
   welcome_back: "欢迎 %{username}回来"
   your_profile: "个人档案"
   your_tickets: "已要求的协助"
+  locale:
+  change_your_locale:
 
   # Voting widget
   did_this_help: "你的问题是否已解决？"
@@ -52,9 +54,16 @@ zh-cn:
     two: "2个已摺叠讯息"
     other: "%{count}个已摺叠讯息"
 
+  # Knowledgebase
+  written_by:
+  last_edited:
+
   # Tickets
   tickets: "要求协助"
   no_tickets: "你还未要求协助"
+  ticket_number:
+  assigned_to_label:
+  created_on:
 
   # Get Help
   get_help_header: "需要更多协助??"
@@ -62,6 +71,10 @@ zh-cn:
 
   # Profile
   my_profile: "我的档案"
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
   login: 登录
@@ -163,10 +176,28 @@ zh-cn:
   view_and_edit: "检视及修改分类"
   delete_confirm: "确定删除?"
   select_icon_helptext: "选择分类图标 (自选)"
+  translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: 新社区
   create_new_community: 建立新社区
+
+  # Mail messages
+  hello: "Hello %{user_name}"
+  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+  account_generated: "An account has been generated for you. To sign in, please use this link:"
+  above_this_line: "Make sure your reply appears above this line"
+  message_id: "Message ID"
+  message_response: "The following message has been posted in response to your question:"
+  view_online: "View this online:"
 
   activerecord:
     attributes:
@@ -179,7 +210,6 @@ zh-cn:
         cell_phone: 行动电话
         city: 城市
         state: 省份
-
       topic: #标题
         name: 名称
       post: #帖子
@@ -203,6 +233,7 @@ zh-cn:
       forum: #討論區
         name: 名称
         description: 说明
+        private:
 
     helpers: #帮手
       submit: #送出

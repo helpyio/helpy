@@ -2,11 +2,11 @@ class AdminController < ApplicationController
 
   layout 'admin'
 
-  before_filter :authenticate_user!
-  before_filter :verify_admin
-  before_filter :fetch_counts, :only => ['dashboard','tickets','ticket', 'update_ticket', 'topic_search', 'user_profile']
-  before_filter :pipeline, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
-  before_filter :remote_search, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
+  before_action :authenticate_user!
+  before_action :verify_admin
+  before_action :fetch_counts, :only => ['dashboard','tickets','ticket', 'update_ticket', 'topic_search', 'user_profile']
+  before_action :pipeline, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
+  before_action :remote_search, :only => ['tickets', 'ticket', 'topic_search', 'update_ticket']
 
   def dashboard
     #@users = PgSearch.multisearch(params[:q]).page params[:page]
@@ -14,7 +14,7 @@ class AdminController < ApplicationController
   end
 
   def knowledgebase
-    @categories = Category.featured.alpha
+    @categories = Category.featured.ordered
     @nonfeatured = Category.where(front_page: false).alpha
 
     respond_to do |format|
@@ -24,12 +24,21 @@ class AdminController < ApplicationController
 
   def articles
     @category = Category.where(id: params[:category_id]).first
-    @docs = @category.docs.ordered.alpha
+    @docs = @category.docs.ordered
 
     respond_to do |format|
       format.html
       format.xml  { render :xml => @category }
     end
+  end
+
+  def update_order
+    object = params[:object].titleize.constantize
+    @obj = object.find(params[:obj_id])
+    @obj.rank_position = params[:row_order_position]
+    @obj.save!
+
+    render nothing: true
   end
 
   def tickets
@@ -40,24 +49,24 @@ class AdminController < ApplicationController
       @status = params[:status]
     end
 
+    topics_raw = Topic.includes(user: :avatar_files).chronologic
     case @status
-
     when 'all'
-      @topics = Topic.all.chronologic.page params[:page]
+      topics_raw = topics_raw.all
     when 'new'
-      @topics = Topic.unread.chronologic.page params[:page]
+      topics_raw = topics_raw.unread
     when 'active'
-      @topics = Topic.active.chronologic.page params[:page]
+      topics_raw = topics_raw.active
     when 'unread'
-      @topics = Topic.unread.chronologic.all.page params[:page]
+      topics_raw = topics_raw.unread.all
     when 'assigned'
-      @topics = Topic.mine(current_user.id).chronologic.page params[:page]
+      topics_raw = topics_raw.mine(current_user.id)
     when 'pending'
-      @topics = Topic.pending.mine(current_user.id).chronologic.page params[:page]
+      topics_raw = topics_raw.pending.mine(current_user.id)
     else
-      @topics = Topic.where(current_status: @status).chronologic.page params[:page]
+      topics_raw = topics_raw.where(current_status: @status)
     end
-
+    @topics = topics_raw.page params[:page]
 
     @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
 
@@ -116,15 +125,14 @@ class AdminController < ApplicationController
 
       @user = @topic.build_user
 
-      # generate user password
-      source_characters = "0124356789abcdefghijk"
-      password = ""
-      1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+      @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+      @user.reset_password_token = enc
+      @user.reset_password_sent_at = Time.now.utc
 
       @user.name = params[:topic][:user][:name]
       @user.login = params[:topic][:user][:email].split("@")[0]
       @user.email = params[:topic][:user][:email]
-      @user.password = password
+      @user.password = User.create_password
 
     else
       @topic.user_id = @user.id
@@ -142,7 +150,7 @@ class AdminController < ApplicationController
           :screenshots => params[:topic][:screenshots])
 
         # Send email
-        UserMailer.new_user(@user).deliver_now
+        UserMailer.new_user(@user, @token).deliver_now
 
         # track event in GA
         @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')

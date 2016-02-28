@@ -1,7 +1,34 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id               :integer          not null, primary key
+#  forum_id         :integer
+#  user_id          :integer
+#  user_name        :string
+#  name             :string
+#  posts_count      :integer          default(0), not null
+#  waiting_on       :string           default("admin"), not null
+#  last_post_date   :datetime
+#  closed_date      :datetime
+#  last_post_id     :integer
+#  current_status   :string           default("new"), not null
+#  private          :boolean          default(FALSE)
+#  assigned_user_id :integer
+#  cheatsheet       :boolean          default(FALSE)
+#  points           :integer          default(0)
+#  post_cache       :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  locale           :string
+#
+
 class TopicsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
-  before_filter :instantiate_tracker
+  before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
+  before_action :instantiate_tracker
+
+  layout "clean", only: [:new, :index]
 
   # GET /topics
   # GET /topics.xml
@@ -95,8 +122,6 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
 
-    render layout: 'clean'
-
   end
 
   # GET /topics/1;edit
@@ -130,7 +155,13 @@ class TopicsController < ApplicationController
         @topic.user_id = @user.id
 
       else #User not found, lets build it
+
         @user = @topic.build_user
+
+        @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+        @user.reset_password_token = enc
+        @user.reset_password_sent_at = Time.now.utc
+
         @user.name = params[:topic][:user][:name]
         @user.login = params[:topic][:user][:email].split("@")[0]
         @user.email = params[:topic][:user][:email]
@@ -155,8 +186,7 @@ class TopicsController < ApplicationController
           :screenshots => params[:topic][:screenshots])
 
         if built_user == true && !user_signed_in?
-          UserMailer.new_user(@user).deliver_now
-          sign_in(:user, @user)
+          UserMailer.new_user(@user, @token).deliver_now
         end
 
         # track event in GA
@@ -169,7 +199,7 @@ class TopicsController < ApplicationController
           else
             redirect_to topic_posts_path(@topic)
           end
-          }
+        }
       else
         format.html { render action: 'new' }
       end

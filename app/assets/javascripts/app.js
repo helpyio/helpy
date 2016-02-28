@@ -255,6 +255,22 @@ Helpy.ready = function(){
      }
   });
 
+  // Login/Forgot Switcher
+
+  $('.login-link').off().on('click', function() {
+    $('.login-form').show();
+    $('.forgot-form').hide();
+    $('.modal-title').text($('.login-form').data("title"));
+    $('.modal-links').show();
+  })
+
+  $('.forgot-link').off().on('click', function() {
+    $('.login-form').hide();
+    $('.forgot-form').show();
+    $('.modal-title').text($('.forgot-form').data("title"));
+    $('.modal-links').hide();
+  });
+
 };
 
 $.attachinary.config.template = '\

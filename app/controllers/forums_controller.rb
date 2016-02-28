@@ -1,8 +1,26 @@
+# == Schema Information
+#
+# Table name: forums
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  description        :text
+#  topics_count       :integer          default(0), not null
+#  last_post_date     :datetime
+#  last_post_id       :integer
+#  private            :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  allow_topic_voting :boolean          default(FALSE)
+#  allow_post_voting  :boolean          default(FALSE)
+#  layout             :string           default("table")
+#
+
 class ForumsController < ApplicationController
   #cache_sweeper :forum_sweeper, :only => [:update, :create, :destroy]
 
-  before_filter :authenticate_user!, :only => ['new', 'edit', 'update', 'create', 'destroy']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :authenticate_user!, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
 

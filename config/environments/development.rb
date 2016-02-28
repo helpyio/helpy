@@ -31,6 +31,10 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Disable database query caching
+  # (this will highlight inefficient queries in development)
+  config.middleware.delete 'ActiveRecord::QueryCache'
+
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
@@ -43,8 +47,14 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.i18n.available_locales = [:en, :es, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw']
+  config.i18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
+  config.after_initialize do
+    # Bullet Configuration / https://github.com/flyerhzm/bullet
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.add_footer = true
+  end
 end

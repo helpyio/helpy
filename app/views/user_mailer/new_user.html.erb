@@ -5,15 +5,13 @@
   </head>
   <body>
   <p>
-    Hello <%= @user.name %>,
+    <%= t('hello', user_name: @user.name) %>,
   </p>
   <p>
-    Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response.
+    <%= t('new_user', default: 'Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response.') %>
   </p>
   <p>
-    Log In here: <%= Settings.site_url %><br/>
-    Email: <%= @user.email %><br/>
-    Password: <%= @user.password %><br/>
+    <p><%= t('account_generated', default: 'An account has been generated for you. To sign in, please use this link:') %> <%= link_to t('devise.sessions.new.sign_in'), edit_password_url(User, reset_password_token: @token, first: true) %></p>
   </p><br/>
   <p>
     <strong>Powered by Helpy</strong><br/>

@@ -28,12 +28,14 @@ class Category < ActiveRecord::Base
   scope :alpha, -> { order('name ASC') }
   scope :active, -> { where(active: true) }
   scope :main, -> { where(section: 'main') }
-  scope :ranked, -> { order('rank ASC') }
+  scope :ordered, -> { order('rank ASC') }
   scope :featured, -> {where(front_page: true) }
+
+  include RankedModel
+  ranks :rank
 
   validates_presence_of :name
   validates_uniqueness_of :name
-
 
   def to_param
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?

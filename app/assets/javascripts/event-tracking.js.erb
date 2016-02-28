@@ -8,15 +8,23 @@ Helpy.track = function(){
   ga(function(tracker) {
     Helpy.clientId = tracker.get('clientId');
     $("#client_id").val(Helpy.clientId);
-    console.log(Helpy.clientId);
+    console.log("trackerID: " + Helpy.clientId);
 
-    // Update links to pass the clientID as a QS param
-    $('.ticket-controls > li > a, .topic-link > a, .mailbox > a, .stats > a').each(function(){
-      var originalLink = $(this).attr("href");
-      var divider = ((originalLink.indexOf("?") == -1) ? "?client_id=" : "&client_id=");
-      $(this).attr("href", originalLink + divider + Helpy.clientId);
-    });
-
+    // Send ajax call with clientID if it is not set
+    var sessionSet = Cookies.get('sessInit');
+    if (sessionSet !== '1') {
+      $.ajax({
+        method: "GET",
+        url: "/set_client_id?client_id=" + Helpy.clientId,
+        data: { client_id: Helpy.clientId  }
+      })
+      .done(function( msg ) {
+        console.log("Session set to trackerID: " + Helpy.clientId);
+        
+        // set a cookie to prevent making this call every time
+        Cookies.set('sessInit', '1');
+      });
+    }
   });
 
 
@@ -143,6 +151,13 @@ Helpy.track = function(){
     var $voted = $(this).data("voted");
     console.log('Voted for Topic ' + $voted);
     ga('send', 'event', 'Vote','Topic', $voted);
+  });
+
+  // OAuth Click Events
+  $('.oauth').off().on("click", function(){
+    var $provider = $(this).data("provider");
+    console.log('Oauth login with ' + $provider);
+    ga('send', 'event', 'oauth','provider', $provider);
   });
 
 

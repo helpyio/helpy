@@ -192,6 +192,15 @@ en:
   new_community: Create New Community
   create_new_community: Create New Community
 
+  # Mail messages
+  hello: "Hello %{user_name}"
+  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+  account_generated: "An account has been generated for you. To sign in, please use this link:"
+  above_this_line: "Make sure your reply appears above this line"
+  message_id: "Message ID"
+  message_response: "The following message has been posted in response to your question:"
+  view_online: "View this online:"
+
   activerecord:
     attributes:
       user:
@@ -203,7 +212,6 @@ en:
         cell_phone: Cell
         city: City
         state: State
-
       topic:
         name: Subject
       post:
@@ -227,6 +235,7 @@ en:
       forum:
         name: Name
         description: Description
+        private: Private
 
     helpers:
       submit:

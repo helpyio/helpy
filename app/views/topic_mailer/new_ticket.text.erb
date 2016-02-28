@@ -1,0 +1,14 @@
+<%= t('above_this_line', default: "Make sure your reply appears above this line") %>
+=================================================================
+<%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
+
+<%= t('hello', user_name: @topic.user.login) %>,
+
+<%= t('message_response', default: 'The following message has been posted in response to your question:') %>
+
+<%= simple_format(@topic.posts.last.body) %>
+
+<%= t('view_online', default: 'View this online:') %><%= topic_posts_url(@topic) %>
+-----------
+Powered by Helpy
+Get a Free Helpy Support System for your Site at http://helpy.io/

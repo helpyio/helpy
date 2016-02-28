@@ -5,12 +5,12 @@ Devise.setup do |config|
 
   #This sets up a cookie to generate the above_header with javascript
 
-  Warden::Manager.after_set_user do |user,auth,opts|
+  Warden::Manager.after_set_user do |user,auth,_opts|
     auth.cookies[:signed_in] = 1
     auth.cookies[:name] = user.name
   end
 
-  Warden::Manager.before_logout do |user,auth,opts|
+  Warden::Manager.before_logout do |_user,auth,_opts|
     auth.cookies.delete :signed_in
     auth.cookies.delete :name
   end
@@ -247,8 +247,12 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
+#  config.omniauth :google_oauth2, 'APP_ID', 'APP_SECRET', scope: 'user:email'
+  unless Settings.omniauth.nil? || Settings.omniauth.providers.nil?
+    Settings.omniauth.providers.each do |provider|
+      config.omniauth provider[0], provider[1].id, provider[1].secret#, scope: 'user:email'
+    end
+  end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

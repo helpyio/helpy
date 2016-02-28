@@ -1,0 +1,114 @@
+hu:
+  activerecord:
+    attributes:
+      user:
+        current_password: Jelenlegi jelszó
+        email: E-mail
+        password: Jelszó
+        password_confirmation: Jelszó megerősítése
+        remember_me: Megjegyez
+    models:
+      user: Felhasználó
+  devise:
+    confirmations:
+      confirmed: Fiók megerősítve. Bejelentkezve a felhasználói fiókba.
+      new:
+        resend_confirmation_instructions: Megerősítő levél újraküldése
+      send_instructions: A megadott címre egy email érkezik a megerősítő linkkel.
+      send_paranoid_instructions: Ha az email cím már létezik az adatbázisban, egy emailt küldtünk a további teendőkkel a fiók megerősítéséhez.
+    failure:
+      already_authenticated: Már belépett.
+      inactive: A fiók még nincs aktiválva.
+      invalid: Hibás email cím vagy jelszó.
+      last_attempt: Már csak egy próbálkozási lehetőség maradt, mielőtt a fiók zárolásra kerül.
+      locked: A fiók zárolva lett.
+      not_found_in_database: Hibás email cím vagy jelszó.
+      timeout: A munkafolyamat lejárt. Újboli bejelentkezés szükséges.
+      unauthenticated: A folytatáshoz bejelentkezés szükséges.
+      unconfirmed: A folytatáshoz az email cím megerősítése szükséges.
+    mailer:
+      confirmation_instructions:
+        action: Fiók megerősítése
+        greeting: Kedves %{recipient}!
+        instruction: 'A fiók megerősítéséhez rá kell kattintani az alábbi linkre:'
+        subject: Email cím megerősítés
+      reset_password_instructions:
+        action: Jelszó megváltoztatása
+        greeting: Kedves %{recipient}!
+        instruction: "Ön, vagy valaki más az ön nevében jelszóváltoztatást kérvényezett, mely a lenti linkre kattintva lehetséges."
+        instruction_2: Amennyiben ön nem kezdeményezte a jelszavának megváltoztatását, kérem hagyja figyelmen kívül ezt a levelet.
+        instruction_3: Amennyiben nem kattint az alábbi linkre, jelszava továbbra is ugyanaz marad, mint eddig.
+        subject: Jelszó megváltoztatása
+      unlock_instructions:
+        action: Zárolás feloldása
+        greeting: Kedves %{recipient}!
+        instruction: 'A zárolás feloldásához az alábbi linkre kell kattintani:'
+        message: A felhasználói fiókja zárolva lett túl sok sikertelen belépési kísérlet miatt.
+        subject: Fiók zárolásának megszüntetése
+    omniauth_callbacks:
+      failure: 'Nem sikerült azonosítani %{kind} fiókkal, az ok: "%{reason}".'
+      success: Sikeres azonosítás %{kind} fiókkal.
+    passwords:
+      edit:
+        change_my_password: Jelszó megváltoztatása
+        change_your_password: Jelszó megváltoztatása
+        confirm_new_password: Jelszó megerősítése
+        new_password: "Új jelszó"
+      new:
+        forgot_your_password: Elfelejtette a jelszavát?
+        send_me_reset_password_instructions: Jelszóviszaállítási teendők küldése
+      no_token: Ezt az oldalt csak a jelszóváltoztató e-mailben küldött linkre kattintva lehet elérni, és ellenőrizni kell, hogy a címsorban az e-mailben található teljes webcím szerepel-e.
+      send_instructions: A megadott címre egy email érkezik hamarosan a további teendőkről.
+      send_paranoid_instructions: Ha az email cím már létezik az adatbázisban, egy jelszó-visszaállító emailt küldtünk a megadott címre.
+      updated: A jelszó megváltozott. Bejelentkezve a felhasználói fiókba
+      updated_not_active: A jelszó megváltozott
+    registrations:
+      destroyed: Felhasználói fiók törölve. Reméljük, még visszatér hozzánk.
+      edit:
+        are_you_sure: Biztos benne?
+        cancel_my_account: Fiók megszüntetése
+        currently_waiting_confirmation_for_email: 'Még várjuk a következő e-mail cím megerősítését: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: csak változás esetén kitöltendő
+        title: "%{resource} módosítása"
+        unhappy: Szomorú
+        update: Módosítás
+        we_need_your_current_password_to_confirm_your_changes: a változtatás végrehajtásához szükséges a jelenlegi jelszó
+      new:
+        sign_up: Regisztráció
+      signed_up: Sikeres regisztráció.
+      signed_up_but_inactive: A regisztráció sikerült, azonban a bejelentkezés még nem lehetséges, mert a fiók nincs aktiválva.
+      signed_up_but_locked: A regisztráció sikerült, azonban a bejelentkezés még nem lehetséges, mert a fiók zárolt.
+      signed_up_but_unconfirmed: Egy megerősítő linket küldtünk a megadott e-mail címre. Nézze meg az e-mailjeit, és kattintson a küldött linkre a fiók aktiválásához.
+      update_needs_confirmation: A fiók módosítása sikeres, de meg kell erősíteni az e-mail címet. Nézze meg az e-mailjeit, és kattintson a küldött linkre hogy megerősítse az e-mail cím létezését.
+      updated: Sikeres fiók módosítás.
+    sessions:
+      already_signed_out: A kijelentkezés már megtörtént.
+      new:
+        sign_in: Belépés
+      signed_in: Sikeres bejelentkezés.
+      signed_out: A kijelentkezés sikeres.
+    shared:
+      links:
+        back: Vissza
+        didn_t_receive_confirmation_instructions: Nem kapta meg a megerősítő levelet?
+        didn_t_receive_unlock_instructions: Nem kapta meg a feloldáshoz a levelet?
+        forgot_your_password: Elfelejtette a jelszavát?
+        sign_in: Belépés
+        sign_in_with_provider: "%{provider} belépés"
+        sign_up: Regisztráció
+    unlocks:
+      new:
+        resend_unlock_instructions: Feloldási teendők újraküldése
+      send_instructions: Hamarosan a megadott címre érkezik egy email a fiók zárolásának megszüntetésével kapcsolatban.
+      send_paranoid_instructions: Ha a fiók létezik, egy emailt küldtünk a további teendőkkel a fiók zárolásának megszüntetéséhez.
+      unlocked: A felhasználói fiók zárolása megszűnt. Bejelentkezve a felhasználói fiókba.
+  errors:
+    messages:
+      already_confirmed: már meg van erősítve
+      confirmation_period_expired: "%{period} letelte előtt kell megerősíteni, igényelj egy újat"
+      expired: lejárt, igényelj egy újat
+      not_found: nem található
+      not_locked: nincs zárolva
+      not_saved:
+        one: '1 hiba miatt %{resource} mentése nem lehetséges:'
+        other: "%{count} hiba miatt %{resource} mentése nem lehetséges:"

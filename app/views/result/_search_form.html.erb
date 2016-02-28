@@ -2,17 +2,17 @@
 <!-- <%= params[:controller] %> -->
 </script>
 
-<div class="form-group has-feedback has-feedback-left">
-<% if params[:controller] == 'result' %>
-  <%= form_tag result_path, method: :get, :id=> 'search-form', remote: 'true' do %>
-  <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
-  <i class="form-control-feedback glyphicon glyphicon-search"></i>
-  <% end %>
+<div class="form-group has-feedback right-inner-addon">
+  <% if params[:controller] == 'result' %>
+    <%= form_tag result_path, method: :get, :id=> 'search-form', remote: 'true' do %>
+      <i class="form-control-feedback glyphicon glyphicon-search"></i>
+      <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
+    <% end %>
 
-<% else %>
-  <%= form_tag result_path, method: :get, :id=> 'search-form' do %>
-  <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
-  <i class="form-control-feedback glyphicon glyphicon-search"></i>
+  <% else %>
+    <%= form_tag result_path, method: :get, :id=> 'search-form' do %>
+      <i class="form-control-feedback glyphicon glyphicon-search"></i>
+      <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
+    <% end %>
   <% end %>
-<% end %>
 </div>

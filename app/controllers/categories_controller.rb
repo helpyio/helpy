@@ -1,8 +1,27 @@
-class CategoriesController < ApplicationController
-  before_filter :get_tags
+# == Schema Information
+#
+# Table name: categories
+#
+#  id               :integer          not null, primary key
+#  name             :string
+#  icon             :string
+#  keywords         :string
+#  title_tag        :string
+#  meta_description :string
+#  rank             :integer
+#  front_page       :boolean          default(FALSE)
+#  active           :boolean          default(TRUE)
+#  permalink        :string
+#  section          :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 
-  before_filter :authenticate_user!, :except => ['index', 'show']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+class CategoriesController < ApplicationController
+  before_action :get_tags
+
+  before_action :authenticate_user!, :except => ['index', 'show']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
   # GET /categories
@@ -10,7 +29,7 @@ class CategoriesController < ApplicationController
   def index
 
     #if I18n.available_locales.count > 1
-      @categories = Category.active.alpha.with_translations(I18n.locale)
+      @categories = Category.active.ordered.with_translations(I18n.locale)
     #else
     #  @categories = Category.active.alpha
     #end

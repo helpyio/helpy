@@ -1,0 +1,14 @@
+Schrijf je antwoord boven deze lijn.
+=================================================================
+Vraag ID:6
+
+Hallo nl,
+
+Het volgende bericht is geplaatst als antwoord op je vraag:
+
+<p>Test using i18n</p>
+
+Bekijk dit bericht online:http://localhost:3000/nl/topics/6-new-private-topic/posts
+-----------
+Powered by Helpy
+Get a Free Helpy Support System for your Site at http://helpy.io/

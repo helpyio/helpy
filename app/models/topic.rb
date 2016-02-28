@@ -21,6 +21,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  doc_id           :integer          default(0)
+#  locale           :string
 #
 
 class Topic < ActiveRecord::Base
@@ -29,6 +30,7 @@ class Topic < ActiveRecord::Base
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :doc, counter_cache: true, touch: true
+  belongs_to :assigned_user, class_name: 'User'
 
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
@@ -61,22 +63,18 @@ class Topic < ActiveRecord::Base
   scope :for_doc, -> { where("doc_id= ?", doc)}
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where("current_status <> 'Spam'").where(private: true)}
-  scope :ispublic, -> { where("current_status <> 'Spam'").where(private: false)}
+  scope :isprivate, -> { where("current_status <> 'spam'").where(private: true)}
+  scope :ispublic, -> { where("current_status <> 'spam'").where(private: false)}
 
   # may want to get rid of this filter:
   # before_save :check_for_private
   before_create :cache_user_name
+  before_create :add_locale
 
   # acts_as_taggable
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 255
-
-
-  def assigned_user
-    User.where(id: self.assigned_user_id).first
-  end
 
   def to_param
     "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
@@ -149,5 +147,8 @@ class Topic < ActiveRecord::Base
     self.user_name = self.user.name
   end
 
+  def add_locale
+    self.locale = I18n.locale
+  end
 
 end
