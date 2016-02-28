@@ -21,7 +21,7 @@ namespace :db do
 
   number_support_team.times do
     user = RUser.new
-    u = User.create!(
+    u = User.create(
       name: "#{user.first_name} #{user.last_name}",
       email: user.email,
       login: user.username,
@@ -47,7 +47,7 @@ namespace :db do
   number_users.times do
 
     user = RUser.new
-    u = User.create!(
+    u = User.create(
       name: "#{user.first_name} #{user.last_name}",
       email: user.email,
       login: user.username,
@@ -71,7 +71,7 @@ namespace :db do
   number_users.times do
 
     user = RUser.new
-    u = User.create!(
+    u = User.create(
       name: "#{user.first_name} #{user.last_name}",
       email: user.email,
       login: user.username,
@@ -85,7 +85,7 @@ namespace :db do
       cell_phone: user.cell
     )
 
-    puts "Created User: #{user.name}"
+    puts "Created User: #{u.name}"
   end
 
   # Create I18n versions for the demo
