@@ -11,9 +11,6 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -62,13 +59,11 @@ gem 'gravtastic'
 gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 
-gem 'less-rails', '2.7.1'
-#gem 'font-awesome-less'
 #gem 'font-awesome-rails'
+gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
-gem 'therubyracer'
 gem 'rdiscount'
 
 gem 'config'
