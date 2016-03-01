@@ -4,7 +4,7 @@
     <div class="asked-question">
       <%= distance_of_time_in_words(Time.now,qna.created_at) %> ago <%= post_message(qna.posts.first) %>
     </div>
-    <h4 class="qna"><%= link_to h(qna.name.titleize), topic_posts_path(qna) -%></h4>
+    <h4 class="qna"><%= link_to h(qna.name.sentence_case), topic_posts_path(qna) -%></h4>
 
 
 

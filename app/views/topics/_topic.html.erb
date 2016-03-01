@@ -10,8 +10,8 @@
   </td>
   <% end %>
   <td>
-    <span class="more-important truncate-ellipsis"><%= link_to h(topic.name.titleize), topic_posts_path(topic) -%></span>
-    <span class="less-important"><%= t(:started_by, :username => topic.user.name.titleize) %></span>
+    <span class="more-important truncate-ellipsis"><%= link_to h(topic.name.sentence_case), topic_posts_path(topic) -%></span>
+    <span class="less-important"><%= t(:started_by, :username => topic.user.name.sentence_case) %></span>
   </td>
   <td>
     <span class="label label-count hidden-xs"><%= topic.posts_count %></span>

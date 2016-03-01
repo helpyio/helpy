@@ -43,13 +43,13 @@ class DocsController < ApplicationController
       @meta_description = @doc.meta_description
       @keywords = @doc.keywords
 
-      @page_title = @doc.title.titleize
-      @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag.titleize
+      @page_title = @doc.title.sentence_case
+      @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag.sentence_case
       @title_tag = "#{Settings.site_name}: #{@custom_title}"
 
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
-      add_breadcrumb @doc.category.name.titleize, category_path(@doc.category) if @doc.category.name
-      add_breadcrumb @doc.title.titleize
+      add_breadcrumb @doc.category.name.sentence_case, category_path(@doc.category) if @doc.category.name
+      add_breadcrumb @doc.title.sentence_case
 
 
       respond_to do |format|

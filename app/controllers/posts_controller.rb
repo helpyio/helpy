@@ -36,11 +36,11 @@ class PostsController < ApplicationController
 
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{topic_posts_url(@topic)}.rss' />"
 
-      @page_title = "#{@topic.name.titleize}"
+      @page_title = "#{@topic.name.sentence_case}"
       @title_tag = "#{Settings.site_name}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
-      add_breadcrumb @topic.forum.name.titleize, forum_topics_path(@topic.forum)
-      add_breadcrumb @topic.name.titleize
+      add_breadcrumb @topic.forum.name.sentence_case, forum_topics_path(@topic.forum)
+      add_breadcrumb @topic.name.sentence_case
     end
 
     respond_to do |format|
