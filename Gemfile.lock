@@ -119,11 +119,11 @@ GEM
       activerecord (>= 4.2.0, < 4.3)
     globalize-accessors (0.2.1)
       globalize (~> 5.0, >= 5.0.0)
-    globalize-versioning (0.1.0)
+    globalize-versioning (0.2.0)
       activemodel (>= 3.2.0, < 5)
       activerecord (>= 3.2.0, < 5)
       globalize (>= 3.0.4, < 6)
-      paper_trail (~> 3.0.0)
+      paper_trail (>= 3.0.0, < 5)
     gravtastic (3.2.6)
     griddler (1.2.1)
       htmlentities
@@ -238,9 +238,10 @@ GEM
       json (~> 1.3)
       omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
-    paper_trail (3.0.9)
-      activerecord (>= 3.0, < 5.0)
-      activesupport (>= 3.0, < 5.0)
+    paper_trail (4.1.0)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1)
     parser (2.3.0.6)
       ast (~> 2.2)
     permalink_fu (1.0.0)
@@ -301,6 +302,7 @@ GEM
     rdiscount (2.1.8)
     rdoc (4.2.1)
       json (~> 1.4)
+    request_store (1.3.0)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
@@ -415,7 +417,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   globalize-accessors
-  globalize-versioning (~> 0.1.0)
+  globalize-versioning
   gravtastic
   griddler
   griddler-mailgun
@@ -469,3 +471,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.11.2
