@@ -19,6 +19,8 @@
 
 class Category < ActiveRecord::Base
 
+  include SentenceCase
+
   has_many :docs
   has_paper_trail
 

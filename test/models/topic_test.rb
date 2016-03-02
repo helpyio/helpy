@@ -84,5 +84,16 @@ class TopicTest < ActiveSupport::TestCase
     end
   end
 
+  test "creating new lowercase name should be saved in sentence_case" do
+    name = "something in lowercase"
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    assert_equal "Something in lowercase", topic.name
+  end
+
+  test "when creating a new topic, any other capitals should be saved as entered" do
+    name = "something in lowercase and UPPERCASE"
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    assert_equal "Something in lowercase and UPPERCASE", topic.name
+  end
 
 end
