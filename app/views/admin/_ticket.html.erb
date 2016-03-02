@@ -6,7 +6,7 @@
 
   <div id="ticket-controls" class="col-md-8 col-xs-12 col-md-12 col-lg-8">
     <h2>
-      <%= render 'admin/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= @topic.name.sentence_case -%>
+      <%= render 'admin/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= @topic.name -%>
     </h2>
     <div id="topic-options">
     <%= render :partial => 'admin/topic_options' %>

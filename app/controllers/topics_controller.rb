@@ -43,10 +43,10 @@ class TopicsController < ApplicationController
 
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
-      @page_title = @forum.name.sentence_case
+      @page_title = @forum.name
       @title_tag = "#{Settings.site_name}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
-      add_breadcrumb @forum.name.sentence_case
+      add_breadcrumb @forum.name
     end
 
     respond_to do |format|
@@ -84,7 +84,7 @@ class TopicsController < ApplicationController
     if @topic
       @posts = @topic.posts.ispublic.chronologic.active.all
 
-      @page_title = "##{@topic.id} #{@topic.name.sentence_case}"
+      @page_title = "##{@topic.id} #{@topic.name}"
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
 

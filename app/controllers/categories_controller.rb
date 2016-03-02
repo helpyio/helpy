@@ -57,7 +57,7 @@ class CategoriesController < ApplicationController
     @categories = Category.active.alpha.with_translations(I18n.locale)
     @related = Doc.in_category(@doc.category_id) if @doc
 
-    @page_title = @category.name.sentence_case
+    @page_title = @category.name
     @title_tag = "#{Settings.site_name}: #{@page_title}"
     @meta_desc = @category.meta_description
     @keywords = @category.keywords

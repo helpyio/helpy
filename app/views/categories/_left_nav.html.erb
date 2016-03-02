@@ -4,9 +4,9 @@
     <% if category.docs.with_translations(I18n.locale).count > 0 %>
     <li class="">
       <% if @category.nil? %>
-      <%= link_to category.name.sentence_case, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
+      <%= link_to category.name, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
       <% else %>
-      <%= link_to category.name.sentence_case, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
+      <%= link_to category.name, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
       <% end %>
     </li>
     <% end %>

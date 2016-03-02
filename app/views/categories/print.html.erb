@@ -4,10 +4,10 @@
 <% @categories.each do |category| %>
 
 
-	<li><%= category.name.sentence_case  %></li>
+	<li><%= category.name  %></li>
 	<ol>
 	<% category.docs.ordered.active.each do |doc| %>
-		<li><%= doc.title.sentence_case %></li>
+		<li><%= doc.title %></li>
 	<% end %>
 	</ol>
 <%
@@ -17,10 +17,10 @@ end
 
 <% @categories.each do |category| %>
 
-	<h3><%= category.name.sentence_case  %></h3>
+	<h3><%= category.name  %></h3>
 
 	<% category.docs.ordered.active.each do |doc| %>
-		<h4><%= doc.title.sentence_case %></h4>
+		<h4><%= doc.title %></h4>
 		<%= doc.body %>
 	<% end %>
 

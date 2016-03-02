@@ -221,10 +221,10 @@ namespace :db do
   def build_question(q="something")
     [
       "How do I use #{q}?",
-      "#{q.sentence_case} is not working!",
+      "#{q} is not working!",
       "Need Help!",
       "Setting up #{q}",
-      "#{q.sentence_case} initial questions"
+      "#{q} initial questions"
     ].sample
   end
 
