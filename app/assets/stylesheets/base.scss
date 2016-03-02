@@ -1,5 +1,3 @@
-/* === BASE STYLES === */
-
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -48,7 +46,7 @@ h1 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	background-color: #feffe9;
-	/*background-color: #ffdf91;*/
+	// background-color: #ffdf91;
 }
 
 @media(max-width:767px){
@@ -97,23 +95,7 @@ textarea {
   border-bottom:1px solid #e9e9e9;
 }
 
-/* === GLOBAL STYLES === */
-/*
-h2 {
-	font-family: Georgia, "Times New Roman", Times, serif;
-}
-*/
-
-
-/*
-body.home {
-	background-color: white;
-}
-
-body.sub {
-	background-color: white;
-}
-*/
+//  === GLOBAL STYLES ===
 
 .truncate-ellipsis {
     display: table;
@@ -126,16 +108,6 @@ body.sub {
     display: table-cell;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.ellipses {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.active-item-shadow {
-    box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px
 }
 
 #page-title {
@@ -196,22 +168,6 @@ div.add-form {
   margin-bottom: 25px;
 }
 
-.login-buttons {
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-/*
-h3 {
-	color: #ab2a30;
-}
-*/
-
-/*
-input {
-  width:98%;
-  font-size: 20px;
-}*/
-
 label {
   font-weight: normal;
   font-size: 100%;
@@ -253,7 +209,7 @@ div.admin-tools {
 	margin-left: 0px;
 }
 
-/* === GLOBAL CLASSES === */
+//  === GLOBAL CLASSES ===
 
 .logo {
 	padding-right: 5px;
@@ -363,18 +319,8 @@ span.more-important a:link {
 	font-color: #444;
 }
 
-overflow {}
-
-a {}
-
-a {}
-
 .less-important {
 	color: #666;
-}
-
-input.wide-field {
-	width: 100%;
 }
 
 span.category-icon {
@@ -406,29 +352,6 @@ span.category-icon {
 	padding-bottom: 150px;
 }
 
-.talkbubble {
-   width: 120px;
-   height: 80px;
-   background: white;
-   border: 1px solid #eee;
-   position: relative;
-   -moz-border-radius:    10px;
-   -webkit-border-radius: 10px;
-   border-radius:         10px;
-}
-
-.talkbubble:before {
-   content:"";
-   position: absolute;
-   right: 100%;
-   top: 26px;
-   width: 0;
-   height: 0;
-   border-top: 13px solid transparent;
-   border-right: 26px solid #eee;
-   border-bottom: 13px solid transparent;
-}
-
 .last-active {
 	white-space: nowrap;
 }
@@ -445,7 +368,7 @@ ul.dropdown-menu li a.strong {
   font-weight: bolder;
 }
 
-/* == MODAL === */
+//  == MODAL ===
 
 .modal-header {
   border-bottom: 0;
@@ -465,7 +388,7 @@ ul.dropdown-menu li a.strong {
   padding-top: 10px;
 }
 
-/* === LAYOUT === */
+//  === LAYOUT ===
 
 #breadcrumbs {
 	margin-bottom:  20px;
@@ -474,11 +397,6 @@ ul.dropdown-menu li a.strong {
 #top-bar {
 	height: 5px;
 	background-color: #3cceff;
-}
-
-#main-left {
-	height: 500px;
-	margin-bottom: 20px;
 }
 
 #left-nav ul {
@@ -528,32 +446,12 @@ ul.dropdown-menu li a.strong {
 	margin-top: 80px;
 }
 
-
-
-
-/* === BOOTSTRAP OVERRIDES == */
-/*
-.dropdown-menu > li > a {
-  display: inline;
-  padding: 3px 10px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333333;
-  white-space: nowrap;
-}
-*/
-
-/*
-.navbar-default{background-color:#fff;border-color:#fff}.navbar-default .navbar-brand{color:#777}.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus{color:#5e5e5e;background-color:transparent}.navbar-default .navbar-text{color:#777}.navbar-default .navbar-nav>li>a{color:#777}.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:hover,.navbar-default .navbar-nav>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav>.disabled>a,.navbar-default .navbar-nav>.disabled>a:hover,.navbar-default .navbar-nav>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-toggle{border-color:#ddd}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus{background-color:#ddd}.navbar-default .navbar-toggle .icon-bar{background-color:#888}.navbar-default .navbar-collapse,.navbar-default .navbar-form{border-color:#e7e7e7}.navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{background-color:#e7e7e7;color:#555}.navbar-default .navbar-nav .open .dropdown-menu>li>a{color:#777}.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus{color:#333;background-color:transparent}.navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus{color:#555;background-color:#e7e7e7}.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus{color:#ccc;background-color:transparent}.navbar-default .navbar-link{color:#777}.navbar-default .navbar-link:hover{color:#333}.navbar-default .btn-link{color:#777}.navbar-default .btn-link:hover,.navbar-default .btn-link:focus{color:#333}.navbar-default .btn-link[disabled]:hover,fieldset[disabled] .navbar-default .btn-link:hover,.navbar-default .btn-link[disabled]:focus,fieldset[disabled] .navbar-default .btn-link:focus{color:#ccc}
-*/
-
+//  === BOOTSTRAP OVERRIDES ==
 
 .jumbotron {
 	background-color: #fff;
 	margin-bottom: 0px;
 }
-
 
 .navbar-brand {
 	color: black;
@@ -615,50 +513,7 @@ ul.dropdown-menu li a.strong {
 	min-width: 300px;
 }
 
-/* === HOME PAGE === */
-/*
-div.topic {
-	font-size: 150%;
-	margin-bottom: 20px;
-}
-
-div.topic-points {
-	color: #00843B;
-	margin-right: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	background-color: #EAFFCA;
-	float: left;
-	text-align: center;
-	min-width: 30px;
-}
-
-div#topic-vote {
-	margin-top: 35px;
-}
-
-div.topic-message {
-	text-align: left;
-	margin-left: 40px;
-}
-
-ul.buttons {
-	list-style-type: none;
-}
-
-ul.buttons li {
-	margin: 15px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	font-size: 120%;
-	display: block;
-	background-color: #eee;
-}
-*/
-
-
+//  === HOME PAGE ===
 
 h1#how-help {
 	padding-top:50px;
@@ -667,29 +522,8 @@ h1#how-help {
 
 #home-search {
 	background-color: #feffe9;
-	/*background-color: #ffdf91;*/
+	// background-color: #ffdf91;
 	padding-bottom: 100px;
-}
-
-#home-options {
-	padding-top:2%;
-	padding-bottom:2%;
-	padding-right:10%;
-	padding-left:10%;
-	margin-bottom: 5%;
-}
-
-.home-option {
-	padding-top: 30px;
-	padding-bottom: 30px;
-}
-
-.home-option > h3 {
-	padding-top: 30px;
-}
-
-#home-options span.glyphicon {
-	font-size: 300%;
 }
 
 #featured-categories, #featured-team {
@@ -697,14 +531,6 @@ h1#how-help {
 	background-color: #fff;
 	margin-left: 20px;
 	margin-right: 20px;
-}
-
-div.home-square {
-	padding-right: 10px;
-	padding-left: 10px;
-	height: 120px;
-	background-color: #fff;
-	margin: 0px;
 }
 
 .dummy {
@@ -722,10 +548,6 @@ div.home-square {
     padding-top:calc(40% - 30px);
 }
 
-.search-field {
-	width: 100%;
-}
-
 .right-inner-addon {
     position: relative;
 }
@@ -739,14 +561,6 @@ div.home-square {
     pointer-events: none;
 }
 
-div#community-forums-block > span.glyphicon {
-	font-size: 400%;
-}
-
-div#community-forums-block > h3 {
-	padding-top: 15px;
-}
-
 li.team-member {
 	padding-left: 10px;
 	padding-right: 10px;
@@ -758,7 +572,7 @@ ul.locale-list li {
   padding-bottom: 5px;
 }
 
-/* === KNOWLEDGEBASE === */
+//  === KNOWLEDGEBASE ===
 
 
 #left-col.affix-top {
@@ -820,80 +634,21 @@ a.list-group-item {
 	margin-bottom: 5px;
 }
 
-
-/* === SEARCH  === */
+//  === SEARCH  ===
 
 div#results-found {
 	margin-top: 15px;
 	margin-bottom: 30px;
 }
 
-/* === FLASH MESSAGES === */
+//  === FLASH MESSAGES ===
 
-
-li.feed-item {
-	list-style-image: url(../images/16/1.png);
-	margin-top: 5px;
-	text-shadow: #000000 0 0 0;
-	list-style-position: outside;
-	opacity: 1;
+thead th {
+  background-color: #eee;
+  border-bottom: 1px solid #ddd;
 }
 
-div#flash-notice {
-
-}
-
-div#flash-warning {
-
-}
-
-div#flash-error {
-
-}
-
-/* === ERROR MESSAGES === */
-div#errorExplanation {
-
-}
-
-div#errorExplanation h2 {
-
-}
-
-div#errorExplanation p {
-
-}
-
-div#errorExplanation ul {
-
-}
-
-div#errorExplanation ul li {
-
-}
-
-/* === FORMS === */
-div.fieldWithErrors {
-
-}
-
-div.fieldWithErrors label {
-
-}
-
-tr.table-header {
-	padding-bottom: 20px;
-}
-
-div.fieldWithErrors input, div.fieldWithErrors select,
-div.fieldWithErrors textarea
-{
-
-}
-
-
-
-/* === HEADER STYLES === */
+//  === HEADER STYLES ===
 
 #above-header {
 	font-size: 85%;
@@ -902,34 +657,6 @@ div.fieldWithErrors textarea
 	margin-top: 0px;
 	text-align: right;
 }
-
-/*#above-header ul {
-	list-style-type: none;
-	display: inline;
-	float: right;
-}
-
-#above-header ul li {
-	display: inline;
-	padding-right: 4px;
-	padding-left: 4px;
-}
-*/
-above-header ul li a{
-	color: #666;
-	text-decoration: none;
-}
-
-#header-logo {
-	margin-top: -10px;
-}
-
-/*#upper-wrapper {
-	background-color: #eee;
-}
-*/
-#header-wrapper {
-	}
 
 #main-body {
 	margin-top: 10px;
@@ -948,49 +675,7 @@ div.status {
 	margin-left: 30px;
 }
 
-#header-nav {
-	margin-top: 17px;
-}
-
-/* #header-nav {
-	text-align: right;
-} */
-
-#header-nav ul li a {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	margin-right: 5px;
-	padding: 8px;
-}
-
-#header-nav ul li a:hover {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	background-color: #eee;
-	padding:  8px;
-
-}
-
-#header-nav ul li a.current {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	margin-right: 5px;
-	padding: 8px;
-	background-color: #555;
-}
-
-#header-nav ul li {
-	display: inline-block;
-	font-size: 120%;
-	background-color: #fff;
-
-}
-
-
-/* === FORUM === */
+//  === FORUM ===
 
 table#forums, table#topics, table#posts {
 	width: 100%;
@@ -1005,7 +690,7 @@ table#forums, table#topics, table#posts {
 	border-bottom: 1px solid #eee;
 }
 
-/* === DISCUSSION === */
+//  === DISCUSSION ===
 
 .collapsed-posts {
 	margin-top: 40px;
@@ -1024,20 +709,11 @@ table#forums, table#topics, table#posts {
 }
 
 .kind-reply, .kind-note {
-	margin-left: 50px;
+  margin-left: 50px;
 }
 
 .kind-note {
-	color: #999;
-}
-
-
-.posted_by {
-	margin-top: 10px;;
-}
-
-.bottom-border {
-	border-bottom: 1px solid #eee;
+  color: #999;
 }
 
 .voting-widget {
@@ -1058,39 +734,10 @@ table#forums, table#topics, table#posts {
   margin-top: -5px;
 }
 
-div.topic-status {
-	padding-bottom: 2px;
-	padding-top: 2px;
-	margin-bottom: 20px;
-	font-variant: small-caps;
-	text-align: left;
-	font-size: 12px;
-}
-
-#topic-stats {
-	background-color: #fff;
-}
-
-#topic-stats div.topic-points {
-	font-size: 400%;
-	float: right;
-}
-
-#topic-stats div.topic-related table tbody tr td div.topic-points {
-	font-size: 110%;
-}
-
-#topic-stats h3 {
-	margin-top: 20px;
-	color: #666;
-	font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-}
-
-/* === MAIN PANEL === */
-
+//  === MAIN PANEL ===
 
 #main-content {
-	/*font-size: 110%;*/
+	// font-size: 110%;
 	background-color: #fff;
 }
 
@@ -1099,22 +746,12 @@ div.topic-status {
 	font-size: 110%;
 }
 
-#main-panel {
-	background: url(/images/main-panel.gif) no-repeat;
-	height: 278px;
-}
-
-/* === FOOTER === */
+//  === FOOTER ===
 
 #get-help-wrapper {
 	background-color: #FFDF91;
 	padding-top: 20px;
 	padding-bottom: 20px;
-}
-
-
-#footer-left h3, #footer-right h3 {
-	color: white;
 }
 
 #footer h5 {
@@ -1124,7 +761,6 @@ div.topic-status {
 #footer-wrapper {
 	width: 100%;
 	background-color: #222;
-
 }
 
 #footer {
@@ -1140,7 +776,7 @@ div.topic-status {
 	text-decoration: none;
 }
 
-/* === IDEABOARD === */
+//  === IDEABOARD ===
 
 .idea-box {
     max-height: 120px;
@@ -1159,7 +795,7 @@ div.topic-status {
   max-height: 100px;
 }
 
-/* === Q&A === */
+//  === Q&A ===
 
 .asked-question {
   margin-bottom: 5px;
@@ -1177,11 +813,7 @@ h4.qna {
   margin-bottom: 15px;
 }
 
-
-
-
-
-/* === OTHER MEDIA QUERIES === */
+//  === OTHER MEDIA QUERIES ===
 
 @media(max-width:767px){
 	.dummy {
@@ -1199,40 +831,4 @@ h4.qna {
 	    padding-top: 10px;
 	    max-height: 100px;
 	}
-	.kind-reply, .kind-note {
-		margin-left: 0;
-	}
-	/*
-	#upper-wrapper {
-		height: 40px;
-	}
-
-	#upper-wrapper, #upper-wrapper.jumbotron {
-		height: 40px;
-		margin-bottom: 5px;
-		padding: 0px;
-		background-color: #eee;
-
-		-webkit-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
-		-moz-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
-		box-shadow: 0px 0px 12px 0px rgba(196,196,196,1);
-	}*/
 }
-
-@media(min-width:768px){
-
-}
-
-@media(min-width:992px){
-
-}
-
-@media(min-width:1200px){
-
-}
-
-/* @group My Group */
-
-
-
-/* @end */
