@@ -4,6 +4,7 @@ AllCops:
     - db/**/*
     - lib/**/*
     - tmp/**/*
+    - vendor/**/*
 
   TargetRubyVersion: 2.0
 
