@@ -25,6 +25,8 @@
 
 class Topic < ActiveRecord::Base
 
+  include SentenceCase
+
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :assigned_user, class_name: 'User'

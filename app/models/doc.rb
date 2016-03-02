@@ -23,6 +23,8 @@
 
 class Doc < ActiveRecord::Base
 
+  include SentenceCase
+
   belongs_to :category
   belongs_to :user
   has_many :votes, :as => :voteable

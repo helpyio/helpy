@@ -4,10 +4,10 @@
 <% @categories.each do |category| %>
 
 
-	<li><%= category.name.titleize  %></li>
+	<li><%= category.name  %></li>
 	<ol>
 	<% category.docs.ordered.active.each do |doc| %>
-		<li><%= doc.title.titleize %></li>
+		<li><%= doc.title %></li>
 	<% end %>
 	</ol>
 <%
@@ -17,10 +17,10 @@ end
 
 <% @categories.each do |category| %>
 
-	<h3><%= category.name.titleize  %></h3>
+	<h3><%= category.name  %></h3>
 
 	<% category.docs.ordered.active.each do |doc| %>
-		<h4><%= doc.title.titleize %></h4>
+		<h4><%= doc.title %></h4>
 		<%= doc.body %>
 	<% end %>
 

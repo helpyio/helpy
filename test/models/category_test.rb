@@ -30,4 +30,15 @@ class CategoryTest < ActiveSupport::TestCase
     assert Category.find(1).to_param == "1-active-and-featured"
   end
 
+  test "creating new lowercase name should be saved in sentence_case" do
+    name = "something in lowercase"
+    category = Category.create!(name: name)
+    assert_equal "Something in lowercase", category.name
+  end
+
+  test "when creating a new category, any other capitals should be saved as entered" do
+    name = "something in lowercase and UPPERCASE"
+    category = Category.create!(name: name)
+    assert_equal "Something in lowercase and UPPERCASE", category.name
+  end
 end
