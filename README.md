@@ -87,3 +87,5 @@ License
 Copyright 2015, Scott Miller. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make, even though you don't have to.  
 
 Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)
