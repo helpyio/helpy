@@ -59,7 +59,7 @@ gem 'gravtastic'
 gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 
-#gem 'font-awesome-rails'
+gem 'font-awesome-sass'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'

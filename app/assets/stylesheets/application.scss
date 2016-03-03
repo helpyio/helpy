@@ -6,12 +6,15 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// Import font-awesome
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 // Import other dependencies
 @import "bootstrap-icon-chooser/css/icon-picker";
 @import "magnific-popup/dist/magnific-popup";
 @import "animate.css/animate.min";
 @import "trix";
-@import "font-awesome/css/font-awesome.min";
 @import "bootstrap-social/bootstrap-social.scss";
 @import "jquery-ui";
 
