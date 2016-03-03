@@ -13,6 +13,9 @@ script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
   - bundle exec rake
-  - bundle exec brakeman # security scan
+  # Brakeman security scanner
+  - bundle exec brakeman
+  # Check vulnerable gems
+  - bundle exec bundle-audit check --update
 
 cache: bundler
