@@ -368,6 +368,10 @@ ul.dropdown-menu li a.strong {
   font-weight: bolder;
 }
 
+.active-item-shadow {
+    box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px
+}
+
 //  == MODAL ===
 
 .modal-header {
@@ -639,13 +643,6 @@ a.list-group-item {
 div#results-found {
 	margin-top: 15px;
 	margin-bottom: 30px;
-}
-
-//  === FLASH MESSAGES ===
-
-thead th {
-  background-color: #eee;
-  border-bottom: 1px solid #ddd;
 }
 
 //  === HEADER STYLES ===
