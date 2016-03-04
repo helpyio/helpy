@@ -113,6 +113,8 @@ group :development, :test do
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
 
+  # Brakeman for security audit
+  gem 'brakeman', require: false
 end
 
 group :development do
