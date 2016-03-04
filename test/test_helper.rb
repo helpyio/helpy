@@ -7,7 +7,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  Settings.send_email = true
+  Settings.send_email = false
 end
 
 class ActionController::TestCase
