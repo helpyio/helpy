@@ -26,7 +26,10 @@
 <% unless @topic.current_status == "closed" %>
 <span class="status btn-group left-col-dropdown">
   <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-    <%= assigned_badge(@topic).html_safe %>
+    <%= content_tag :span, class: 'btn status-label label label-warning' do %>
+      <%= @topic.assigned_user.try(:name).try(:upcase) || t(:unassigned, default: 'UNASSIGNED') %>
+      <%= icon('caret-down') + ' ' %>
+    <% end %>
   </span>
   <ul class="dropdown-menu ticket-controls" role="menu">
     <% @admins.each do |admin| %>

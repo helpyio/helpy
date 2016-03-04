@@ -42,14 +42,6 @@ module TopicsHelper
     content_tag(:span, "#{str} <span class='caret'></span> ".html_safe, class: 'btn privacy-label label label-info')
   end
 
-  def assigned_badge(topic)
-    if topic.assigned_user_id.nil?
-      "<span class='btn status-label label label-warning'>#{t(:unassigned, default: 'UNASSIGNED')}<span class='caret'></span> </span>"
-    else
-      "<span class='btn status-label label label-warning'>#{topic.assigned_user.name.upcase} <span class='caret'></span> </span>"
-    end
-  end
-
   def status_label(status)
     case status
       when 'new'
