@@ -13,7 +13,7 @@ script:
   # Test suite
   - bundle exec rake
   # Brakeman security scanner
-  - bundle exec brakeman
+  - bundle exec brakeman -z
   # Check vulnerable gems
   - bundle exec bundle-audit check --update
   # Rubocop static code analyzer
