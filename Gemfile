@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rails', '4.2.5.2'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'pg_search'
