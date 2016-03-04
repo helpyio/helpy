@@ -116,6 +116,8 @@ group :development, :test do
 
   # Brakeman for security audit
   gem 'brakeman', require: false
+
+  gem 'rubocop'
 end
 
 group :development do

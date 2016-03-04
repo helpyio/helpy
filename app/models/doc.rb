@@ -29,7 +29,9 @@ class Doc < ActiveRecord::Base
   belongs_to :user
   has_many :votes, :as => :voteable
 
-  validates_presence_of :title, :body, :category_id
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :category_id, presence: true
 
   include PgSearch
   multisearchable :against => [:title, :body, :keywords]

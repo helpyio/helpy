@@ -22,8 +22,8 @@ class Post < ActiveRecord::Base
   has_many :votes, :as => :voteable
   has_attachments :screenshots, accept: [:jpg, :png, :gif]
 
-  validates_presence_of :body, :kind
-  validates_length_of :body, :maximum => 10000
+  validates :body, presence: true, length: { maximum: 10_000 }
+  validates :kind, presence: true
 
   after_create  :update_waiting_on_cache
   after_save  :update_topic_cache
@@ -57,8 +57,8 @@ class Post < ActiveRecord::Base
       end
     end
 
-    self.topic.update(last_post_date: Time.now, waiting_on: waiting_on, current_status: status)
-    self.topic.forum.update(last_post_date: Time.now)
+    self.topic.update(last_post_date: Time.current, waiting_on: waiting_on, current_status: status)
+    self.topic.forum.update(last_post_date: Time.current)
   end
 
   #updates cache of post content used in search
