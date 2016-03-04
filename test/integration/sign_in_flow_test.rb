@@ -9,6 +9,10 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
     I18n.locale = :en
   end
 
+  teardown do
+    Warden.test_reset!
+  end
+
   test "a browser should be able to sign in and be shown the home page" do
     get "/en/users/sign_in"
     # user = assigns(:user)
