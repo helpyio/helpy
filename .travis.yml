@@ -10,12 +10,13 @@ before_script:
   - psql -c 'create database helpy_test;' -U postgres
 
 script:
+  # Test suite
   - bundle exec rake
   # Brakeman security scanner
   - bundle exec brakeman
   # Check vulnerable gems
   - bundle exec bundle-audit check --update
-  # Rubocop static code analyser
+  # Rubocop static code analyzer
   - bundle exec rubocop
 
 cache: bundler
