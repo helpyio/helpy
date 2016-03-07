@@ -1,7 +1,6 @@
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
-
 class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
@@ -84,63 +83,59 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "a logged in user should be prompted to create a new topic" do
+  test "a logged in user should be prompted to create a new public topic" do
 
     sign_in
-    visit "/en/community/3-public-forum/topics"
-    click_on "New Discussion"
-    assert current_path == "/en/topics/new"
 
-    visit "/en/community/4-public-idea-board/topics"
-    click_on "New Discussion"
-    assert current_path == "/en/topics/new"
+    forums = [  "/en/community/3-public-forum/topics",
+                "/en/community/4-public-idea-board/topics",
+                "/en/community/5-public-q-a/topics" ]
 
-    visit "/en/community/5-public-q-a/topics"
-    click_on "New Discussion"
-    assert current_path == "/en/topics/new"
-
-
-
-  end
-
-
-  def devise_sign_in
-    user = User.where(email: "scott.miller@test.com").first
-    login_as :user
-  end
-
-  def sign_in
-
-    visit "/en/users/sign_in"
-    within first('div.login-form') do
-      fill_in("user[email]", with: 'scott.miller@test.com')
-      fill_in("user[password]", with: '12345678')
-      click_on('Sign in')
+    forums.each do |forum|
+      visit forum
+      click_on "New Discussion"
+      assert current_path == "/en/topics/new"
     end
 
   end
 
-  def sign_in_by_modal
+  test "a logged in user should not see the reply button when viewing a public topic" do
 
-    within("div#above-header") do
-      click_on "Sign in", wait: 30
-    end
-    within('div#login-modal') do
-      fill_in("user[email]", with: 'scott.miller@test.com')
-      fill_in("user[password]", with: '12345678')
-#      within('div.login-button') do
-        click_on('Sign in')
-#      end
+    sign_in
+
+    topics = [ "/en/topics/5-new-public-topic/posts",
+               "/en/topics/8-new-idea/posts",
+               "/en/topics/7-new-question/posts" ]
+
+    topics.each do |topic|
+      visit topic
+      assert !page.has_content?('Reply'), message: 'Reply button displayed when it shouldnt be'
+      assert page.has_content?('Type your response:')
     end
 
   end
 
-  def sign_out
+  test "a signed in user should be able to reply to a public topic" do
 
-    logout(:user)
-#    within("div#above-header") do
-#      first("Logout").click
-#    end
+    sign_in
+
+    topics = [ "/en/topics/5-new-public-topic/posts",
+               "/en/topics/8-new-idea/posts",
+               "/en/topics/7-new-question/posts" ]
+
+    topics.each do |topic|
+
+      visit topic
+
+      assert_difference('Post.count', 1) do
+        fill_in "post_body", with: "This is my reply"
+        click_on "Post Reply"
+      end
+
+      visit topic
+      assert page.has_content?('This is my reply'), "Reply not found"
+
+    end
+
   end
-
 end

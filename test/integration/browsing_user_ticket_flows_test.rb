@@ -1,7 +1,6 @@
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
-
 class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
@@ -56,20 +55,30 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "a browsing user should be prompted to login from a forum page" do
+  test "a browsing user should be prompted to login from a public forum page" do
 
-    visit "/en/community/3-public-forum/topics"
-    click_on "New Discussion"
-    assert find("div#login-modal").visible?
+    forums = [  "/en/community/3-public-forum/topics",
+                "/en/community/4-public-idea-board/topics",
+                "/en/community/5-public-q-a/topics" ]
 
-    visit "/en/community/4-public-idea-board/topics"
-    click_on "New Discussion"
-    assert find("div#login-modal").visible?
+    forums.each do |forum|
+      visit forum
+      click_on "New Discussion"
+      assert find("div#login-modal").visible?
+    end
+  end
 
-    visit "/en/community/5-public-q-a/topics"
-    click_on "New Discussion"
-    assert find("div#login-modal").visible?
+  test "a browsing user should be prompted to login when clicking reply from a public discussion view" do
 
+    topics = [ "/en/topics/5-new-public-topic/posts",
+               "/en/topics/8-new-idea/posts",
+               "/en/topics/7-new-question/posts" ]
+
+    topics.each do |topic|
+      visit topic
+      click_on "Reply"
+      assert find("div#login-modal").visible?
+    end
   end
 
 end
