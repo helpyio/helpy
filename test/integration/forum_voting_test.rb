@@ -24,7 +24,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       end
     end
     visit "/en/community/3-public-forum/topics"
-    within ('tr#topic_4') do
+    within 'tr#topic_4' do
       assert page.has_content?("1")
     end
 

@@ -98,7 +98,7 @@ class PostsController < ApplicationController
           redirect_to topic_posts_path(@topic)
         }
         format.js {
-          if current_user.admin?
+          if params[:from] == 'admin' #posted from admin side
             fetch_counts
 
             @posts = @topic.posts.chronologic
@@ -112,7 +112,7 @@ class PostsController < ApplicationController
             end
             render 'admin/ticket'
 
-          else #current_user is a customer
+          else # posted from customer side
             @posts = @topic.posts.ispublic.chronologic.active
             unless @topic.assigned_user_id.nil?
               agent = User.find(@topic.assigned_user_id)
