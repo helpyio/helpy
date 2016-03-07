@@ -43,8 +43,8 @@ class DocsController < ApplicationController
       @meta_description = @doc.meta_description
       @keywords = @doc.keywords
 
-      @page_title = @doc.title.titleize
-      @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag.titleize
+      @page_title = @doc.title
+      @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
       @title_tag = "#{Settings.site_name}: #{@custom_title}"
       @topics = @doc.topics.reverse
       @forum = Forum.for_docs.first
@@ -54,8 +54,8 @@ class DocsController < ApplicationController
 
 
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
-      add_breadcrumb @doc.category.name.titleize, category_path(@doc.category) if @doc.category.name
-      add_breadcrumb @doc.title.titleize
+      add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
+      add_breadcrumb @doc.title
 
 
       respond_to do |format|

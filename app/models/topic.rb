@@ -26,6 +26,8 @@
 
 class Topic < ActiveRecord::Base
 
+  include SentenceCase
+
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :doc, counter_cache: true, touch: true
@@ -72,8 +74,7 @@ class Topic < ActiveRecord::Base
 
   # acts_as_taggable
 
-  validates_presence_of :name
-  validates_length_of :name, :maximum => 255
+  validates :name, presence: true, length: { maximum: 255 }
 
   def to_param
     "#{id}-#{name.parameterize}"
@@ -101,7 +102,7 @@ class Topic < ActiveRecord::Base
   def close(user_id = 2)
     self.posts.create(body: I18n.t(:close_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "closed"
-    self.closed_date = Time.now
+    self.closed_date = Time.current
     self.assigned_user_id = nil
     self.save
   end
@@ -109,7 +110,7 @@ class Topic < ActiveRecord::Base
   def trash(user_id = 2)
     self.posts.create(body: I18n.t(:trash_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "trash"
-    self.closed_date = Time.now
+    self.closed_date = Time.current
     self.forum_id = 2
     self.private = true
     self.assigned_user_id = nil

@@ -31,8 +31,10 @@ class TopicTest < ActiveSupport::TestCase
   should belong_to(:forum)
   should belong_to(:user)
   should have_many(:posts)
-  should validate_presence_of(:name)
   should have_many(:votes)
+
+  should validate_presence_of(:name)
+  should validate_length_of(:name).is_at_most(255)
 
 #forum 1 should exist and be private
 #forum 2 should exist and be private
@@ -85,5 +87,16 @@ class TopicTest < ActiveSupport::TestCase
     end
   end
 
+  test "creating new lowercase name should be saved in sentence_case" do
+    name = "something in lowercase"
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    assert_equal "Something in lowercase", topic.name
+  end
+
+  test "when creating a new topic, any other capitals should be saved as entered" do
+    name = "something in lowercase and UPPERCASE"
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    assert_equal "Something in lowercase and UPPERCASE", topic.name
+  end
 
 end

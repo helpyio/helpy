@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui/sortable
 //= require jquery-ui/effect-highlight
-//= require twitter/bootstrap
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery.turbolinks
 //= require js-cookie/src/js.cookie.js

@@ -18,6 +18,8 @@
 
 class Forum < ActiveRecord::Base
 
+  include SentenceCase
+
   has_many :topics, :dependent => :delete_all
   has_many :posts, :through => :topics
 
@@ -28,9 +30,8 @@ class Forum < ActiveRecord::Base
   scope :ispublic, -> { where(private: false)}
   scope :for_docs, -> { where(name: 'Doc comments') }
 
-  validates_presence_of :name, :description
-  validates_length_of :name, :maximum => 255
-  validates_length_of :description, :maximum => 1000
+  validates :name, presence: true, length: { maximum: 255 }
+  validates :description, presence: true, length: { maximum: 1000 }
 
   def total_posts
     self.posts.count

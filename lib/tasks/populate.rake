@@ -270,10 +270,10 @@ namespace :db do
   def build_question(q="something")
     [
       "How do I use #{q}?",
-      "#{q.titleize} is not working!",
+      "#{q} is not working!",
       "Need Help!",
       "Setting up #{q}",
-      "#{q.titleize} initial questions"
+      "#{q} initial questions"
     ].sample
   end
 

@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rails', '4.2.5.2'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'pg_search'
@@ -10,9 +9,6 @@ gem 'pg_search'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -53,8 +49,8 @@ gem 'acts-as-taggable-on', '~>3.5'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
-#gem 'globalize', '~> 5.0.0'
-gem 'globalize-versioning', '~> 0.1.0'
+
+gem 'globalize-versioning'
 gem 'globalize-accessors'
 
 gem 'gravtastic'
@@ -62,13 +58,11 @@ gem 'gravtastic'
 gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 
-gem 'less-rails', '2.7.1'
-#gem 'font-awesome-less'
-#gem 'font-awesome-rails'
+gem 'font-awesome-sass'
+gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
-gem 'therubyracer'
 gem 'rdiscount'
 
 gem 'config'
@@ -107,6 +101,8 @@ gem 'ruser', '~> 3.0'
 gem 'timecop' #used to populate
 
 group :development, :test do
+  # Audit Gemfile for security vulnerabilities
+  gem 'bundler-audit', require: false
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -118,6 +114,10 @@ group :development, :test do
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
 
+  # Brakeman for security audit
+  gem 'brakeman', require: false
+
+  gem 'rubocop'
 end
 
 group :development do
@@ -127,6 +127,8 @@ group :development do
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
   gem 'rubocop'
+
+  gem 'scss-lint'
 end
 
 group :test do

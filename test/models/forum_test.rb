@@ -24,7 +24,10 @@ class ForumTest < ActiveSupport::TestCase
   should have_many(:posts)
 
   should validate_presence_of(:name)
+  should validate_length_of(:name).is_at_most(255)
+
   should validate_presence_of(:description)
+  should validate_length_of(:description).is_at_most(1000)
 
   test "should count number of posts" do
     assert Forum.find(1).total_posts == 3
@@ -34,5 +37,16 @@ class ForumTest < ActiveSupport::TestCase
     assert Forum.find(1).to_param == "1-private-tickets"
   end
 
+  test "creating new lowercase name should be saved in sentence_case" do
+    name = "something in lowercase"
+    forum = Forum.create!(name: name, description: "test test test")
+    assert_equal "Something in lowercase", forum.name
+  end
+
+  test "when creating a new category, any other capitals should be saved as entered" do
+    name = "something in lowercase and UPPERCASE"
+    forum = Forum.create!(name: name, description: "test test test")
+    assert_equal "Something in lowercase and UPPERCASE", forum.name
+  end
 
 end

@@ -4,6 +4,7 @@ AllCops:
     - db/**/*
     - lib/**/*
     - tmp/**/*
+    - vendor/**/*
 
   TargetRubyVersion: 2.0
 
@@ -31,26 +32,6 @@ Rails/HasAndBelongsToMany:
 Rails/Output:
   Exclude:
     - 'config/unicorn.rb'
-
-# Offense count: 4
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: strict, flexible
-Rails/TimeZone:
-  Exclude:
-    - 'app/models/post.rb'
-    - 'app/models/topic.rb'
-
-# Offense count: 13
-# Configuration parameters: Include.
-# Include: app/models/**/*.rb
-Rails/Validation:
-  Exclude:
-    - 'app/models/category.rb'
-    - 'app/models/doc.rb'
-    - 'app/models/forum.rb'
-    - 'app/models/post.rb'
-    - 'app/models/topic.rb'
-    - 'app/models/vote.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowSafeAssignment.
