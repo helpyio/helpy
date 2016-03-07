@@ -7,8 +7,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     Warden.test_mode!
     I18n.available_locales = [:en, :fr, :et]
     I18n.locale = :en
-#    Capybara.current_driver = Capybara.javascript_driver
-#    Capybara.default_wait_time = 30
   end
 
   def teardown
@@ -17,13 +15,11 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a signed in user should be able to create a private ticket via the web interface" do
 
-    # sign in user
     sign_in
 
     visit '/en'
     visit '/en/topics/new/'
 
-    # make sure we get the signed in version
     assert page.has_content?('Should this message be private?')
 
     assert_difference('Topic.count', 1) do
@@ -41,13 +37,11 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a signed in user should be able to create a public topic via the web interface" do
 
-    # sign in user
     sign_in
 
     visit '/en'
     visit '/en/topics/new/'
 
-    # make sure we get the signed in version
     assert page.has_content?('Should this message be private?')
 
     assert_difference('Topic.count', 1) do
@@ -109,7 +103,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     topics.each do |topic|
       visit topic
-      assert !page.has_content?('Reply'), message: 'Reply button displayed when it shouldnt be'
+      assert page.has_no_css?('#reply-button'), message: "Reply button displayed when it shouldnt be (url: #{topic})"
       assert page.has_content?('Type your response:')
     end
 

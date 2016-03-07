@@ -8,12 +8,9 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
     I18n.available_locales = [:en, :fr, :et]
     I18n.locale = :en
     logout(:user)
-#    Capybara.current_driver = Capybara.javascript_driver
-#    Capybara.default_wait_time = 30
   end
 
   def teardown
-#    logout(:user)
     Warden.test_reset!
   end
 

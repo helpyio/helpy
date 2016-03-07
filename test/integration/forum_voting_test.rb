@@ -7,8 +7,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     Warden.test_mode!
     I18n.available_locales = [:en, :fr, :et]
     I18n.locale = :en
-#    Capybara.current_driver = Capybara.javascript_driver
-#    Capybara.default_wait_time = 30
   end
 
   def teardown

@@ -10,8 +10,6 @@ class SearchFlowsTest < ActionDispatch::IntegrationTest
     # Build PG search
     PgSearch::Multisearch.rebuild(Doc)
     PgSearch::Multisearch.rebuild(Topic)
-#    Capybara.current_driver = Capybara.javascript_driver
-#    Capybara.default_wait_time = 30
   end
 
   def teardown
@@ -24,10 +22,7 @@ class SearchFlowsTest < ActionDispatch::IntegrationTest
 
     within('div#body-wrapper') do
       fill_in('search-field', with: 'public')
-      #find('span.glyphicon-search').click
-      #within 'div#main-content' do
-        find('button.btn-default').click
-      #end
+      find('button.btn-default').click
     end
 
     uri = URI.parse(current_url)
