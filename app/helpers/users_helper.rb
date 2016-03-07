@@ -62,12 +62,12 @@ module UsersHelper
       unless Cloudinary.config.cloud_name.nil?
         image_tag("http://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')
       else
-        image_tag('#', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => '16', 'char-count' => 2}, class: 'profile img-circle')
+        image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => '16', 'char-count' => 2}, class: 'profile img-circle')
       end
     elsif !user.thumbnail.nil?
       image_tag(user.thumbnail, width: "#{size}px", class: 'img-circle')
     else
-      image_tag('#', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => '16', 'char-count' => 2}, class: 'profile img-circle')
+      image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => '16', 'char-count' => 2}, class: 'profile img-circle')
     end
 
   end
