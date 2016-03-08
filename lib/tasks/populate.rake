@@ -116,51 +116,35 @@ namespace :db do
   Category.first.docs.first.update(title: "Documentació de suport Exemple traduïda al francès" ,body: '', locale: :ca)
 
   # Create document comment threads for our users
-
   Doc.all.each do |doc|
 
-    timeseed = rand(1..30)
-    Timecop.travel(Date.today-timeseed.days)
-
-    rand(1..5).times do
-
-      f = Forum.where(name: 'Doc comments').first
+    f = Forum.where(name: 'Doc comments').first
+    rand(0..2).times do
       topic = f.topics.create!(
         name: build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun),
         user_id: User.where(admin: false).sample.id,
         doc_id: doc.id
       )
-  #    if f.private?
-  #      topic.private = true
-  #      puts "Private Ticket Created!"
-  #    else
-  #      puts "Discussion #{topic.name} Added"
-  #    end
-
-  #    if f.allow_topic_voting == true
-  #      topic.points = rand(0..1000)
-  #    end
-
-      # create first post in thread
       post = topic.posts.create!(
         body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
         user_id: topic.user_id,
         kind: 'first'
       )
-      puts "Post added to doc"
 
-#      Timecop.scale(120000)
+      timeseed = rand(1..30)
+      Timecop.travel(Date.today-timeseed.days)
 
-#      rand(2..5).times do
-#        post = topic.posts.new
-#        post.body = Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>')
-#        post.user_id = rand(3..12)
-#        post.kind = 'reply'
-#        post.save
-#        puts "Post added to topic"
-#      end
+      # create posts about this doc
+      rand(0..5).times do
+        post = topic.posts.create!(
+          body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
+          user_id: rand(4..14),
+          kind: 'reply'
+        )
+        puts "Post added to doc"
+      end
 
-#      Timecop.return
+    Timecop.return
     end
   end
 
