@@ -41,7 +41,7 @@
   			<%= render :partial => 'comment', :collection => @posts %>
   		</table>
 
-  		<% if user_signed_in? %>
+  		<% if user_signed_in? # show a form to reply or start discussion %>
         <div class="add-form">
     			<h4><%= @posts.nil? ? t(:start_discussion) : t(:reply) %></h4>
           <% if @topic %>
@@ -70,7 +70,15 @@
             <% end -%>
           <% end %>
         </div>
-  		<% end -%>
+  		<% else # show a button to reply or start the discussion %>
+        <div>
+          <% if @posts.nil? %>
+          <span class="hidden-xs pull-right"><%= link_to t(:start_discussion, default: "Start Discussion"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+          <% else %>
+          <span class="hidden-xs pull-right"><%= link_to t(:reply, default: "Reply"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+          <% end %>
+        </div>
+      <% end %>
   	</div>
   </div>
 <% end %>
