@@ -20,6 +20,7 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  locale           :string
 #
 
 require 'test_helper'
@@ -29,8 +30,10 @@ class TopicTest < ActiveSupport::TestCase
   should belong_to(:forum)
   should belong_to(:user)
   should have_many(:posts)
-  should validate_presence_of(:name)
   should have_many(:votes)
+
+  should validate_presence_of(:name)
+  should validate_length_of(:name).is_at_most(255)
 
 #forum 1 should exist and be private
 #forum 2 should exist and be private
@@ -38,7 +41,7 @@ class TopicTest < ActiveSupport::TestCase
 
 
   test "to_param" do
-    assert Topic.find(1).to_param == "1-Private-topic"
+    assert Topic.find(1).to_param == "1-private-topic"
   end
 
   test "a new discussion should have status of NEW" do
@@ -63,7 +66,7 @@ class TopicTest < ActiveSupport::TestCase
 
       assert topic.assigned_user_id.nil?
       assert topic.forum_id == 2
-      assert topic.private == true
+      assert topic.private?
       assert topic.current_status == 'trash'
       assert_not_nil topic.closed_date
 
@@ -83,5 +86,16 @@ class TopicTest < ActiveSupport::TestCase
     end
   end
 
+  test "creating new lowercase name should be saved in sentence_case" do
+    name = "something in lowercase"
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    assert_equal "Something in lowercase", topic.name
+  end
+
+  test "when creating a new topic, any other capitals should be saved as entered" do
+    name = "something in lowercase and UPPERCASE"
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    assert_equal "Something in lowercase and UPPERCASE", topic.name
+  end
 
 end

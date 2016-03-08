@@ -1,0 +1,114 @@
+he:
+  activerecord:
+    attributes:
+      user:
+        current_password: "סיסמא נוכחית"
+        email: "אימייל"
+        password: "סיסמא"
+        password_confirmation: "אישור סיסמא"
+        remember_me: "זכור אותי"
+    models:
+      user: "משתמש"
+  devise:
+    confirmations:
+      confirmed: "חשבונך אושר בהצלחה. כעת הנך מחובר/ת."
+      new:
+        resend_confirmation_instructions: "שלח מחדש הוראות אישור"
+      send_instructions: "בדקות הקרובות יגיע אליך אימייל עם הנחיות כיצד לאשר את הרשמתך."
+      send_paranoid_instructions: "אם האימייל שלך נמצא במאגר נתונים שלנו, נשלח לך אימייל עם הוראות כיצד לאשר את החשבון שלך בעוד כמה דקות."
+    failure:
+      already_authenticated: "את/ה כבר מחובר/ת"
+      inactive: "חשבונך טרם הופעל."
+      invalid: "כתובת אימייל או סיסמא שגויה."
+      last_attempt: "יש לך עוד ניסיון אחד לפני שהחשבון שלך ינעל."
+      locked: "חשבונך ננעל."
+      not_found_in_database: "כתובת אימייל או סיסמא לא תקינה"
+      timeout: "פג תוקף החיבור לאתר, אנא התחבר מחדש."
+      unauthenticated: "עליך להתחבר או להרשם על-מנת להמשיך."
+      unconfirmed: "עליך לאשר את הרשמתך לפני שתוכל להמשיך."
+    mailer:
+      confirmation_instructions:
+        action: "אשר את החשבון שלי"
+        greeting: "ברוך הבא %{recipient}!"
+        instruction: "אתה יכול לאשר את כתובת האימייל שלך בעזרת הקישור הנֿֿ״ל:"
+        subject: "הוראות לאישור הרשמה"
+      reset_password_instructions:
+        action: "שנה סיסמא"
+        greeting: "שלום %{recipient}!"
+        instruction: "נתקבלה בקשה לשינוי הסיסמא שלך וביכולתך לעשות זאת בעזרת הקישור המוצג למטה."
+        instruction_2: "אם אתה לא ביקשת זאת, אנא התעלם מאימייל זה."
+        instruction_3: "סיסמאתך תוחלף רק אם תלחץ על הקישור המוצג מעל ותיצור סיסמא חדשה."
+        subject: "הוראות לאיפוס סיסמא"
+      unlock_instructions:
+        action: "בטל נעילת חשבון"
+        greeting: "שלום %{recipient}!"
+        instruction: "לחץ על הלינק המוצג למטה בכדי לבטל את נעילת חשבונך:"
+        message: "חשבונך ננעל עקב מספר רב של ניסיונות כניסה כושלים."
+        subject: "הוראות להסרת נעילה"
+    omniauth_callbacks:
+      failure: לא הצלחנו לאמת את זהותך מסוג %{kind} בגלל "%{reason}"
+      success: 
+    passwords:
+      edit:
+        change_my_password: "שנה סיסמא"
+        change_your_password: "שינוי סיסמא"
+        confirm_new_password: "אישור סיסמא חדשה"
+        new_password: "סיסמא חדשה"
+      new:
+        forgot_your_password: "שכחת סיסמא?"
+        send_me_reset_password_instructions: "שלח לי הוראות שיחזור סיסמא"
+      no_token: "אינך יכול/ה לגשת לעמוד זה אם לא הופנת מאימייל לשינוי סיסמא. אם את/ה כן מגיע משם, אנא ודא/י שהשתמשת בכתובת אינטרנט המלאה."
+      send_instructions: "בדקות הקרובות יגיע אליך אימייל עם הנחיות כיצד לאפס את סיסמתך."
+      send_paranoid_instructions: "אם האימייל שלך קיים במאגר, אנו נשלח לך לינק לחידוש סיסמא באימייל."
+      updated: "סיסמתך שונתה בהצלחה. כעת הנך מחובר/ת."
+      updated_not_active: "הסיסמא שלך שונתה בהצלחה."
+    registrations:
+      destroyed: "חשבונך נמחק בהצלחה. מקווים לראותך בעתיד."
+      edit:
+        are_you_sure: "האם את בטוח?"
+        cancel_my_account: "בטל את החשבון שלי"
+        currently_waiting_confirmation_for_email: "ממתין לאישור של הכתובת: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "השאר ריק אם אין ברצונך לשנותו"
+        title: "ערוך %{resource}"
+        unhappy: "לא מרוצה"
+        update: "עדכן"
+        we_need_your_current_password_to_confirm_your_changes: "אנחנו זקוקים לסיסמאתך הנוכחית על מנת לבצע את השינויים שביקשת"
+      new:
+        sign_up: "הרשמה"
+      signed_up: "נרשמת בהצלחה. אם נדרש, יישלח אליך אימייל לאישור הרשמתך."
+      signed_up_but_inactive: "ההרשמה בוצעה בהצלחה, אך לא יכולנו להכניס אותך למערכת מכיוון שעוד לא הפעלת את חשבונך"
+      signed_up_but_locked: "ההרשמה בוצעה בהצלחה, אך לא יכולנו להכניס אותך למערכת מכיוון שחשבונתך נעול."
+      signed_up_but_unconfirmed: "הודעה עם לינק לאישור חשבונך נשלח לאימייל שלך. אנא פתח/י את הלינק על מנת להפעיל את חשבונך."
+      update_needs_confirmation: "עידכנת את חשבונך בהצלחה, אבל אנחנו צריכים לאשר את האימייל החדש שלך. אנא בדק/י את האימייל שלך ולחצ/י על הלינק על מנת לאשר את חשבון האימייל החדש."
+      updated: "עדכנת בהצלחה את חשבונך."
+    sessions:
+      already_signed_out: "התנתקות מוצלחת"
+      new:
+        sign_in: "כניסה"
+      signed_in: "התחברת בהצלחה"
+      signed_out: "התנתקת בהצלחה."
+    shared:
+      links:
+        back: "חזור"
+        didn_t_receive_confirmation_instructions: "לא קיבלת את הוראות האישור?"
+        didn_t_receive_unlock_instructions: "לא קיבלת את הוראות ביטול הנעילה?"
+        forgot_your_password: "שכחת סיסמא?"
+        sign_in: "כניסה"
+        sign_in_with_provider: "כניסה באמצעות %{provider}"
+        sign_up: "הרשמה"
+    unlocks:
+      new:
+        resend_unlock_instructions: "שלח שוב הוראות ביטול נעילה"
+      send_instructions: "בדקות הקרובות יישלח אליך אימייל עם הנחיות כיצד להסיר את הנעילה מחשבונך."
+      send_paranoid_instructions: "אם חשבונך קיים, את/ה תקבל/י אימייל עם הוראות כיצד להפעיל מחדש את חשבונך."
+      unlocked: "הנעילה הוסרה בהצלחה. כעת הנך מחובר/ת."
+  errors:
+    messages:
+      already_confirmed: "כבר אושר. אני נסה להיכנס למערכת."
+      confirmation_period_expired: 
+      expired: "פג תוקף, אנא בקש אחד חדש."
+      not_found: "לא נמצא."
+      not_locked: "לא היה נעול."
+      not_saved:
+        one: "שגיאה אחת מנעה את ה%{resource} מלהישמר:"
+        other: "%{count} שגיאות מנעו מ%{resource} מלהישמר:"

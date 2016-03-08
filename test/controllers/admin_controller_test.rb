@@ -205,7 +205,7 @@ class AdminControllerTest < ActionController::TestCase
     xhr :get, :topic_search, q: 'scott'
     assert_nil assigns(:topics)
     assert_not_nil assigns(:users)
-    assert_equal(2, assigns(:users).size)
+    assert_equal(3, assigns(:users).size)
     assert_response :success
   end
 
@@ -231,8 +231,18 @@ class AdminControllerTest < ActionController::TestCase
     get :topic_search, q: 'scott'
     assert_nil assigns(:topics)
     assert_not_nil assigns(:users)
-    assert_equal(2, assigns(:users).size)
+    assert_equal(3, assigns(:users).size)
     assert_response :success
+  end
+
+  test "an admin should be able to reorder docs" do
+    post :update_order, object: 'doc', obj_id: 4, row_order_position: 0
+    assert_equal Doc.order('rank asc').first.id, 4
+  end
+
+  test "an admin should be able to reorder categories" do
+    post :update_order, object: 'category', obj_id: 4, row_order_position: 0
+    assert_equal Category.order('rank asc').first.id, 4
   end
 
 end

@@ -23,11 +23,15 @@
 
 class Doc < ActiveRecord::Base
 
+  include SentenceCase
+
   belongs_to :category
   belongs_to :user
   has_many :votes, :as => :voteable
 
-  validates_presence_of :title, :body, :category_id
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :category_id, presence: true
 
   include PgSearch
   multisearchable :against => [:title, :body, :keywords]
@@ -40,20 +44,22 @@ class Doc < ActiveRecord::Base
   paginates_per 25
   has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif]
 
+  include RankedModel
+  ranks :rank
+
   acts_as_taggable
 
   scope :alpha, -> { order('title ASC') }
-  scope :by_category, -> { order("category_id") }
-  scope :in_category, -> (cat) { where("category_id = ?", cat).order('front_page DESC, rank ASC') }
+  scope :by_category, -> { order(:category_id) }
+  scope :in_category, -> (cat) { where(category_id: cat).order('front_page DESC, rank ASC') }
   scope :ordered, -> { order('rank ASC') }
   scope :active, -> { where(active: true) }
   scope :recent, -> { order('last_updated DESC').limit(5) }
   scope :all_public_popular, -> { where(active: true).order('points DESC').limit(6) }
   scope :replies, -> { where(category_id: 1) }
 
-
   def to_param
-    "#{id}-#{title.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{title.parameterize}"
   end
 
   def read_translated_attribute(name)

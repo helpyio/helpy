@@ -19,6 +19,8 @@
 
 class Category < ActiveRecord::Base
 
+  include SentenceCase
+
   has_many :docs
   has_paper_trail
 
@@ -28,15 +30,17 @@ class Category < ActiveRecord::Base
   scope :alpha, -> { order('name ASC') }
   scope :active, -> { where(active: true) }
   scope :main, -> { where(section: 'main') }
+  scope :ordered, -> { order('rank ASC') }
   scope :ranked, -> { order('rank ASC') }
-  scope :featured, -> {where(front_page: true) }
+  scope :featured, -> { where(front_page: true) }
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  include RankedModel
+  ranks :rank
 
+  validates :name, presence: true, uniqueness: true
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}" unless name.nil?
+    "#{id}-#{name.parameterize}" unless name.nil?
   end
 
   def read_translated_attribute(name)

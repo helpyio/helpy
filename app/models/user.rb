@@ -40,16 +40,18 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  provider               :string
+#  uid                    :string
 #
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
-  validates_presence_of :name, :email
-  validates_uniqueness_of :email
+  validates :name, presence: true
 
   include Gravtastic
 
@@ -76,24 +78,39 @@ class User < ActiveRecord::Base
     Topic.where(assigned_user_id: self.id).active.count
   end
 
+  def self.create_password
+    Devise.friendly_token
+  end
+
   def thumbnail_url
-    if self.thumbnail == ""
-      self.gravatar_url(:size => 60)
-    else
-      self.thumbnail
-    end
+    self.thumbnail.blank? ? self.gravatar_url(size: 60) : self.thumbnail
   end
 
   def image_url
-    if self.medium_image.nil?
-      self.gravatar_url(:size => 60)
+    self.medium_image || self.gravatar_url(size: 60)
+  end
+
+  def self.find_for_oauth(auth)
+    if !where(email: auth.info.email).empty?
+      user = find_by(email: auth.info.email)
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.save!
+      user
     else
-      self.medium_image
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+        u.provider = auth.provider
+        u.uid = auth.uid
+        u.email = auth.provider == 'twitter' ? "#{auth.info.nickname}@twitter.com" : auth.info.email
+        u.name = auth.info.name
+        u.thumbnail = auth.info.image
+        u.password = Devise.friendly_token[0,20]
+      end
     end
   end
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{name.parameterize}"
   end
 
 end

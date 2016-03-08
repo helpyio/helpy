@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  topic_id   :integer
+#  user_id    :integer
+#  body       :text
+#  kind       :string
+#  active     :boolean          default(TRUE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  points     :integer          default(0)
+#
+
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
@@ -22,7 +37,7 @@ class PostsControllerTest < ActionController::TestCase
   test "a browsing user should not be able to see inactive posts" do
     post = posts(:inactive_reply)
     get :index, topic_id: topics(:public).id, locale: :en
-    assert (not assigns(:posts).include? post.id)
+    refute assigns(:posts).include? post.id
   end
 
   test "a browsing user should not be able to vote" do

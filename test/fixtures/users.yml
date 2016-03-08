@@ -40,6 +40,8 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  provider               :string
+#  uid                    :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -72,3 +74,13 @@ user2:
   email: scott.smith@test.com
   admin: false
   role: user
+
+oauth_user:
+  id: 4
+  login: test
+  identity_url: MyString
+  name: Scott Miller
+  email: scott.test@test.com
+  admin: false
+  role: user
+  provider: github

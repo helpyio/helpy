@@ -18,6 +18,8 @@ ca:
   welcome_back: "Benvingut de nou %{username}"
   your_profile: "El teu perfil"
   your_tickets: "Els teus tiquets"
+  locale: "Locale"
+  change_your_locale: "Change your Locale"
 
   # Voting widget
   did_this_help: "Això ha solucionat el teu problema?"
@@ -52,9 +54,16 @@ ca:
       two: "2 missatges minimitzat"
       other: "%{count} missatge minimitzat"
 
+  # Knowledgebase
+  written_by: "Written By"
+  last_edited: "Last Edited"
+
   # Tickets
   tickets: "Tiquets"
   no_tickets: "Encara no has creat cap tiquet"
+  ticket_number: "Ticket Number"
+  assigned_to_label: "Assigned to"
+  created_on: "Created on"
 
   # Get Help
   get_help_header: "Encara necessites ajuda?"
@@ -62,6 +71,10 @@ ca:
 
   # Profile
   my_profile: 'El meu perfil'
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
   login: Iniciar sessió
@@ -163,10 +176,28 @@ ca:
   view_and_edit: "Veure i editar contingut"
   delete_confirm: "Si us plau confirma que vols ELIMINAR això!"
   select_icon_helptext: "Selecciona una icona per associar amb aquesta categoria (opcional)"
+  translate: "Translate to a different language"
+  view_on_site: "View on Site"
+  written_on: "Written on %{date_written}"
+  content_last_updated: "Last Updated on %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Draft"
+  published_content: "Published"
+  additional_settings: "Additional Settings"
+  content_status: "Content Status"
 
   # Communities
   new_community: Crea una nova comunitat
   create_new_community: Crea una nova comunitat
+
+  # Mail messages
+  hello: "Hello %{user_name}"
+  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+  account_generated: "An account has been generated for you. To sign in, please use this link:"
+  above_this_line: "Make sure your reply appears above this line"
+  message_id: "Message ID"
+  message_response: "The following message has been posted in response to your question:"
+  view_online: "View this online:"
 
   activerecord:
     attributes:
@@ -179,7 +210,6 @@ ca:
         cell_phone: Mòbil
         city: Ciutat
         state: Estat o província
-
       topic:
         name: Assumpte
       post:
@@ -203,6 +233,7 @@ ca:
       forum:
         name: Nom
         description: Descripció
+        private: Private
 
     helpers:
       submit:

@@ -19,7 +19,7 @@ fr:
   your_profile: "Your Profile"
   your_tickets: "Vos billets"
   locale: "Locale"
-  change_your_locale: "Change your Locale"
+  change_your_locale: "Changez votre Locale"
 
   # Voting widget
   did_this_help: "Cela at-il aidé à résoudre votre problème?"
@@ -61,13 +61,20 @@ fr:
   # Tickets
   tickets: "Billets"
   no_tickets: "Vous ne avez pas encore créé de billets"
+  ticket_number: "Numéro de billet"
+  assigned_to_label: "Assigné à"
+  created_on: "Créé"
 
   # Get Help
   get_help_header: "Encore besoin d'aide?"
   get_help_button: "Lancer une discussion avec nous"
 
   # Profile
-  my_profile: 'My Profile'
+  my_profile: 'Mon profil'
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on Github"
 
   # devise/sessions/new
   login: Connexion
@@ -91,9 +98,9 @@ fr:
 
   # Admin menu
   discussions: Discussions
-  content: Le Contenu
+  content: Contenu
   communities: "Communautés"
-  app_store: l'App Store
+  app_store: App Store
   search: Recherche
 
   # Admin main/statuses
@@ -109,7 +116,7 @@ fr:
   discussion_management: Gestion de Discussion
   open_new_discussion: Nouvelle Discussion
   assigned_to: "assigné à %{agent}"
-  unassigned: non assigné
+  unassigned: Non assigné
   private: confidentiel
   public: public
   save_changes: Enregistrez les modifications
@@ -170,10 +177,27 @@ fr:
   delete_confirm: "S'il vous plaît confirmer que vous souhaitez supprimer cette!"
   select_icon_helptext: "Sélectionnez une icône à associer à cette catégorie (facultatif)"
   translate: "Translate to a different language"
+  view_on_site: "Voir sur le site"
+  written_on: "Écrit le %{date_written}"
+  content_last_updated: "Mis à jour le %{date_updated}"
+  featured_content: "Article vedette"
+  draft_content: "Ébauche"
+  published_content: "Publié"
+  additional_settings: "Paramètres additionnels"
+  content_status: "Statut de contenu"
 
   # Communities
   new_community: Nouvelle Communauté
   create_new_community: Créer une Nouvelle Communauté
+
+  # Mail messages
+  hello: "Hello %{user_name}"
+  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+  account_generated: "An account has been generated for you. To sign in, please use this link:"
+  above_this_line: "Make sure your reply appears above this line"
+  message_id: "Message ID"
+  message_response: "The following message has been posted in response to your question:"
+  view_online: "View this online:"
 
   activerecord:
     attributes:
@@ -186,7 +210,6 @@ fr:
         cell_phone: Cell
         city: City
         state: State
-
       topic:
         name: Sujet
       post:

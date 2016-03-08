@@ -1,0 +1,114 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        current_password: "現在のパスワード"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+    models:
+      user: "ユーザ"
+  devise:
+    confirmations:
+      confirmed: "アカウントを登録しました。"
+      new:
+        resend_confirmation_instructions: "アカウント確認メール再送"
+      send_instructions: "アカウントの有効化について数分以内にメールでご連絡します。"
+      send_paranoid_instructions: "あなたのメールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。"
+    failure:
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。"
+      invalid: "メールアドレスまたはパスワードが違います。"
+      last_attempt: "あなたのアカウントが凍結される前に、複数回の操作がおこなわれています。"
+      locked: "あなたのアカウントは凍結されています。"
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
+      timeout: "セッションがタイムアウトしました。もう一度ログインしてください。"
+      unauthenticated: "アカウント登録もしくはログインしてください。"
+      unconfirmed: "メールアドレスの本人確認が必要です。"
+    mailer:
+      confirmation_instructions:
+        action: "アカウント確認"
+        greeting: "ようこそ、%{recipient}さん!"
+        instruction: "次のリンクでメールアドレスの確認が完了します:"
+        subject: "アカウントの有効化について"
+      reset_password_instructions:
+        action: "パスワード変更"
+        greeting: "こんにちは、%{recipient}さん!"
+        instruction: "誰かがパスワードの再設定を希望しました。次のリンクでパスワードの再設定が出来ます。"
+        instruction_2: "あなたが希望したのではないのなら、このメールは無視してください。"
+        instruction_3: "上のリンクにアクセスして新しいパスワードを設定するまで、パスワードは変更されません。"
+        subject: "パスワードの再設定について"
+      unlock_instructions:
+        action: "アカウントのロック解除"
+        greeting: "こんにちは、%{recipient}さん!"
+        instruction: "アカウントのロックを解除するには下のリンクをクリックしてください。"
+        message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
+        subject: "アカウントの凍結解除について"
+    omniauth_callbacks:
+      failure: "%{kind} アカウントによる認証に失敗しました。理由：（%{reason}）"
+      success: "%{kind} アカウントによる認証に成功しました。"
+    passwords:
+      edit:
+        change_my_password: "パスワードを変更する"
+        change_your_password: "パスワードを変更"
+        confirm_new_password: "確認用新しいパスワード"
+        new_password: "新しいパスワード"
+      new:
+        forgot_your_password: "パスワードを忘れましたか?"
+        send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
+      no_token: "このページにはアクセスできません。パスワード再設定メールのリンクからアクセスされた場合には、URL をご確認ください。"
+      send_instructions: "パスワードの再設定について数分以内にメールでご連絡いたします。"
+      send_paranoid_instructions: "あなたのメールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。"
+      updated: "パスワードが正しく変更されました。"
+      updated_not_active: "パスワードが正しく変更されました。"
+    registrations:
+      destroyed: "アカウントを削除しました。またのご利用をお待ちしております。"
+      edit:
+        are_you_sure: "本当に良いですか?"
+        cancel_my_account: "アカウント削除"
+        currently_waiting_confirmation_for_email: "%{email} の確認待ち"
+        leave_blank_if_you_don_t_want_to_change_it: "空欄のままなら変更しません"
+        title: "%{resource}編集"
+        unhappy: "気に入りません"
+        update: "更新"
+        we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
+      new:
+        sign_up: "アカウント登録"
+      signed_up: "アカウント登録が完了しました。"
+      signed_up_but_inactive: "ログインするためには、アカウントを有効化してください。"
+      signed_up_but_locked: "アカウントが凍結されているためログインできません。"
+      signed_up_but_unconfirmed: "本人確認用のメールを送信しました。メール内のリンクからアカウントを有効化させてください。"
+      update_needs_confirmation: "アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。"
+      updated: "アカウント情報を変更しました。"
+    sessions:
+      already_signed_out: "既にログアウト済みです。"
+      new:
+        sign_in: "ログイン"
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+    shared:
+      links:
+        back: "戻る"
+        didn_t_receive_confirmation_instructions: "アカウント確認のメールを受け取っていませんか?"
+        didn_t_receive_unlock_instructions: "アカウントの凍結解除方法のメールを受け取っていませんか?"
+        forgot_your_password: "パスワードを忘れましたか?"
+        sign_in: "ログイン"
+        sign_in_with_provider: "%{provider}でログイン"
+        sign_up: "アカウント登録"
+    unlocks:
+      new:
+        resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+      send_instructions: "アカウントの凍結解除方法を数分以内にメールでご連絡します。"
+      send_paranoid_instructions: "アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。"
+      unlocked: "アカウントを凍結解除しました。"
+  errors:
+    messages:
+      already_confirmed: "は既に登録済みです。ログインしてください。"
+      confirmation_period_expired: "の期限が切れました。%{period} までに確認する必要があります。 新しくリクエストしてください。"
+      expired: "の有効期限が切れました。新しくリクエストしてください。"
+      not_found: "は見つかりませんでした。"
+      not_locked: "は凍結されていません。"
+      not_saved:
+        one: "エラーが発生したため %{resource} は保存されませんでした:"
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"

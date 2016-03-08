@@ -1,7 +1,34 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id               :integer          not null, primary key
+#  forum_id         :integer
+#  user_id          :integer
+#  user_name        :string
+#  name             :string
+#  posts_count      :integer          default(0), not null
+#  waiting_on       :string           default("admin"), not null
+#  last_post_date   :datetime
+#  closed_date      :datetime
+#  last_post_id     :integer
+#  current_status   :string           default("new"), not null
+#  private          :boolean          default(FALSE)
+#  assigned_user_id :integer
+#  cheatsheet       :boolean          default(FALSE)
+#  points           :integer          default(0)
+#  post_cache       :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  locale           :string
+#
+
 class TopicsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
-  before_filter :instantiate_tracker
+  before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
+  before_action :instantiate_tracker
+
+  layout "clean", only: [:new, :index]
 
   # GET /topics
   # GET /topics.xml
@@ -16,10 +43,10 @@ class TopicsController < ApplicationController
 
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
-      @page_title = @forum.name.titleize
+      @page_title = @forum.name
       @title_tag = "#{Settings.site_name}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
-      add_breadcrumb @forum.name.titleize
+      add_breadcrumb @forum.name
     end
 
     respond_to do |format|
@@ -57,7 +84,7 @@ class TopicsController < ApplicationController
     if @topic
       @posts = @topic.posts.ispublic.chronologic.active.all
 
-      @page_title = "##{@topic.id} #{@topic.name.titleize}"
+      @page_title = "##{@topic.id} #{@topic.name}"
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
 
@@ -95,8 +122,6 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
 
-    render layout: 'clean'
-
   end
 
   # GET /topics/1;edit
@@ -121,17 +146,27 @@ class TopicsController < ApplicationController
 
     unless user_signed_in?
 
-      @user = @topic.build_user
+      # User is not signed in, lets see if we can recognize the email address
+      @user = User.where(email: params[:topic][:user][:email]).first
 
-      # generate user password
-      source_characters = "0124356789abcdefghijk"
-      password = ""
-      1.upto(8) { password += source_characters[rand(source_characters.length),1] }
+      if @user
+        logger.info("User found")
+        @topic.user_id = @user.id
 
-      @user.name = params[:topic][:user][:name]
-      @user.login = params[:topic][:user][:email].split("@")[0]
-      @user.email = params[:topic][:user][:email]
-      @user.password = password
+      else #User not found, lets build it
+
+        @user = @topic.build_user
+
+        @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+        @user.reset_password_token = enc
+        @user.reset_password_sent_at = Time.now.utc
+
+        @user.name = params[:topic][:user][:name]
+        @user.login = params[:topic][:user][:email].split("@")[0]
+        @user.email = params[:topic][:user][:email]
+        @user.password = User.create_password
+        built_user = true
+      end
 
     else
       @user = current_user
@@ -139,35 +174,29 @@ class TopicsController < ApplicationController
 
     end
 
-    respond_to do |format|
+    if @user.save && @topic.save
 
-      if @user.save && @topic.save
+      @post = @topic.posts.create(
+        :body => params[:post][:body],
+        :user_id => @user.id,
+        :kind => 'first',
+        :screenshots => params[:topic][:screenshots])
 
-        @post = @topic.posts.create(
-          :body => params[:post][:body],
-          :user_id => @user.id,
-          :kind => 'first',
-          :screenshots => params[:topic][:screenshots])
-
-        unless user_signed_in?
-          UserMailer.new_user(@user).deliver_now
-          sign_in(:user, @user)
-        end
-
-        # track event in GA
-        @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
-        @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
-
-        format.html {
-          if @topic.private?
-            redirect_to ticket_path(@topic)
-          else
-            redirect_to topic_posts_path(@topic)
-          end
-          }
-      else
-        format.html { render action: 'new' }
+      if built_user == true && !user_signed_in?
+        UserMailer.new_user(@user, @token).deliver_now
       end
+
+      # track event in GA
+      @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
+      @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+
+      if @topic.private?
+        redirect_to ticket_path(@topic)
+      else
+        redirect_to topic_posts_path(@topic)
+      end
+    else
+      render :new
     end
 
   end

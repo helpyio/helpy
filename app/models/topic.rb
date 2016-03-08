@@ -20,13 +20,17 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  locale           :string
 #
 
 class Topic < ActiveRecord::Base
 
+  include SentenceCase
 
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
+  belongs_to :assigned_user, class_name: 'User'
+
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif]
@@ -45,36 +49,31 @@ class Topic < ActiveRecord::Base
   scope :open, -> { where(current_status: "open") }
   scope :unread, -> { where(current_status: "new") }
   scope :pending, -> { where(current_status: "pending") }
-  scope :mine, -> (user) { where("assigned_user_id = ?", user) }
+  scope :mine, -> (user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
   scope :spam, -> { where(current_status: "spam")}
 
   scope :chronologic, -> { order('updated_at DESC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where("current_status = ? OR current_status = ?", "open", "pending") }
-  scope :undeleted, -> { where("current_status != ?", "trash") }
+  scope :active, -> { where(current_status: %w(open pending)) }
+  scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where("current_status <> 'Spam'").where(private: true)}
-  scope :ispublic, -> { where("current_status <> 'Spam'").where(private: false)}
+  scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
+  scope :ispublic, -> { where.not(current_status: 'spam').where(private: false)}
 
   # may want to get rid of this filter:
   # before_save :check_for_private
   before_create :cache_user_name
+  before_create :add_locale
 
   # acts_as_taggable
 
-  validates_presence_of :name
-  validates_length_of :name, :maximum => 255
-
-
-  def assigned_user
-    User.where(id: self.assigned_user_id).first
-  end
+  validates :name, presence: true, length: { maximum: 255 }
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{name.parameterize}"
   end
 
   def email_subject
@@ -99,7 +98,7 @@ class Topic < ActiveRecord::Base
   def close(user_id = 2)
     self.posts.create(body: I18n.t(:close_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "closed"
-    self.closed_date = Time.now
+    self.closed_date = Time.current
     self.assigned_user_id = nil
     self.save
   end
@@ -107,7 +106,7 @@ class Topic < ActiveRecord::Base
   def trash(user_id = 2)
     self.posts.create(body: I18n.t(:trash_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "trash"
-    self.closed_date = Time.now
+    self.closed_date = Time.current
     self.forum_id = 2
     self.private = true
     self.assigned_user_id = nil
@@ -121,7 +120,6 @@ class Topic < ActiveRecord::Base
     self.save
   end
 
-
   # DEPRECATED updates the last post date, called when a post is made
   def self.last_post
     Topic.post(:first, :order => 'updated_at DESC')
@@ -134,8 +132,10 @@ class Topic < ActiveRecord::Base
     self.private = true if f.private?
   end
 
+  # TODO: This is better named 'public?'
   def public
-    true if self.forum_id >= 3 && self.private == false
+    # Note: We assume forum_ids 1,2,3 are seed data
+    forum_id >= 3 && !private?
   end
 
   private
@@ -144,5 +144,7 @@ class Topic < ActiveRecord::Base
     self.user_name = self.user.name
   end
 
-
+  def add_locale
+    self.locale = I18n.locale
+  end
 end

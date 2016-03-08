@@ -15,7 +15,7 @@ class ResultControllerTest < ActionController::TestCase
 
     get(:index, { q: 'article1 text', locale: :en })
     assert_not_nil assigns(:results)
-    assert_equal(1, assigns(:results).total_count)
+    assert_equal(2, assigns(:results).total_count)
     assert_response :success
   end
 

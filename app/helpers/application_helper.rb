@@ -42,7 +42,7 @@ module ApplicationHelper
 
   def locale_select
 
-    options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
+    # options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
 
     tag = "<select name='lang' class='form-control' id='lang'>"
     tag += "<option value='#{I18n.locale}'>Translate to a different language...</option>"
@@ -50,7 +50,7 @@ module ApplicationHelper
     I18n.available_locales.sort.each do |locale|
       selected = "selected" if "#{locale}" == params[:lang]
       I18n.with_locale(locale) do
-        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize.to_s}</option>" #unless locale == I18n.locale
+        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize}</option>" #unless locale == I18n.locale
       end
     end
     tag += "</select>"
@@ -62,6 +62,13 @@ module ApplicationHelper
       end
     end
 
+  end
+
+  def login_with(with, redirect_to = "/#{I18n.locale}")
+    provider = (with == "google_oauth2") ? "google" : with
+    link_to(user_omniauth_authorize_path(with.to_sym, origin: redirect_to), class: ["btn","btn-block","btn-social","oauth","btn-#{provider}"], style: "color:white;", data: {provider: "#{provider}"}) do
+      content_tag(:span, '', {class: ["fa", "fa-#{provider}"]}).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
+    end
   end
 
 end

@@ -1,0 +1,116 @@
+pl:
+  activerecord:
+    attributes:
+      user:
+        current_password: Aktualne hasło
+        email: Adres e-mail
+        password: Hasło
+        password_confirmation: Potwierdzenie hasła
+        remember_me: Zapamiętaj mnie
+    models:
+      user: Użytkownik
+  devise:
+    confirmations:
+      confirmed: Konto zostało poprawnie aktywowane.
+      new:
+        resend_confirmation_instructions: Wyślij ponownie instrukcje aktywacji
+      send_instructions: Instrukcja jak aktywować konto zostanie niezwłocznie wysłana na podany adres e-mail.
+      send_paranoid_instructions: Jeśli Twój adres e-mail istnieje w naszej bazie, w ciągu najbliższych minut otrzymasz instrukcje jak aktywować konto.
+    failure:
+      already_authenticated: Jesteś już zalogowany.
+      inactive: Konto nie zostało jeszcze aktywowane.
+      invalid: Niepoprawny adres e-mail lub hasło.
+      last_attempt: Masz jeszcze jedną próbę nim Twoje konto zostanie zablokowane.
+      locked: Twoje konto jest zablokowane.
+      not_found_in_database: Niepoprawny adres e-mail lub hasło.
+      timeout: Sesja wygasła, aby kontynuować zaloguj się ponownie.
+      unauthenticated: Aby kontynuować zaloguj lub zarejestruj się.
+      unconfirmed: Aby kontynuować aktywuj konto.
+    mailer:
+      confirmation_instructions:
+        action: Potwierdź swoje konto
+        greeting: Witaj %{recipient}!
+        instruction: 'Możesz potwierdzić swoje konto przy pomocy poniższego linku:'
+        subject: Instrukcja aktywacji konta
+      reset_password_instructions:
+        action: Zmień swoje hasło
+        greeting: Cześć %{recipient}!
+        instruction: Ktoś zażądał zmiany hasła do Twojego konta. Hasło możesz zmienić wchodząc na poniższy link.
+        instruction_2: Jeśli to nie Ty zażądałeś zmiany hasła, proszę zignoruj tę wiadomość.
+        instruction_3: Twoje hasło nie ulegnie zmianie dopóki nie wejdziesz na poniższy link i nie ustawisz nowego.
+        subject: Instrukcja ustawienia nowego hasła
+      unlock_instructions:
+        action: Odblokuj swoje konto
+        greeting: Cześć %{recipient}!
+        instruction: 'Kliknij poniższy link, aby odblokować swoje konto:'
+        message: Twoje konto zostało zablokowane z powodu zbyt dużej ilości nieprawidłowych prób zalogowania się na nie.
+        subject: Instrukcja odblokowania konta
+    omniauth_callbacks:
+      failure: Logowanie przez konto %{kind} zakończyło się błędem z powodu "%{reason}".
+      success: Logowanie przez konto %{kind} zakończyło się sukcesem.
+    passwords:
+      edit:
+        change_my_password: Zmień moje hasło
+        change_your_password: Zmień swoje hasło
+        confirm_new_password: Powtórz nowe hasło
+        new_password: Nowe hasło
+      new:
+        forgot_your_password: Zapomniałeś swoje hasło?
+        send_me_reset_password_instructions: Wyślij instrukcje zmiany hasła
+      no_token: Do tej strony możesz dostać się tylko poprzez wiadomość e-mail resetującą hasło. Jeśli to z niej tu trafiłeś, upewnij się, że użyłeś pełnego adresu.
+      send_instructions: Instrukcja zmiany hasła zostanie niezwłocznie wysłana na podany adres e-mail.
+      send_paranoid_instructions: Jeśli Twój adres e-mail istnieje w naszej bazie, otrzymasz zaraz wiadomość z instrukcjami odzyskiwania hasła.
+      updated: Hasło zmienione poprawnie. Zostałeś automatycznie zalogowany.
+      updated_not_active: Hasło zmienione poprawnie.
+    registrations:
+      destroyed: Konto zostało usunięte.
+      edit:
+        are_you_sure: Jesteś pewny?
+        cancel_my_account: Anuluj moje konto
+        currently_waiting_confirmation_for_email: 'Aktualnie oczekujemy na potwierdzenie z: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: pozostaw puste, jeśli nie chcesz wprowadzać zmian
+        title: Edytuj %{resource}
+        unhappy: Niezadowolony
+        update: Zaktualizuj
+        we_need_your_current_password_to_confirm_your_changes: potrzebujemy Twojego bieżącego hasła, aby potwierdzić zmiany
+      new:
+        sign_up: Zarejestruj się
+      signed_up: Witaj! Rejestracja zakończyła się sukcesem.
+      signed_up_but_inactive: Konto zostało utworzone pomyślnie. Zanim się jednak zalogujesz, musi ono zostać jeszcze aktywowane.
+      signed_up_but_locked: Konto zostało utworzone pomyślnie. Nie możesz się jednak zalogować, ponieważ jest ono zablokowane.
+      signed_up_but_unconfirmed: Wiadomość z linkiem aktywacyjnym została wysłana na podany adres e-mail. Otwórz link w celu aktywacji konta.
+      update_needs_confirmation: Konto zostało zaktualizowane, musimy jednak potwierdzić nowy adres e-mail. Sprawdź swoją skrzynkę pocztową i otwórz link aktywacyjny, aby ukończyć zmianę adresu.
+      updated: Konto zostało pomyślnie zaktualizowane.
+    sessions:
+      already_signed_out: Wylogowano pomyślnie.
+      new:
+        sign_in: Zaloguj się
+      signed_in: Zalogowano pomyślnie.
+      signed_out: Wylogowano pomyślnie.
+    shared:
+      links:
+        back: Powrót
+        didn_t_receive_confirmation_instructions: Nie otrzymałeś instrukcji aktywacji konta?
+        didn_t_receive_unlock_instructions: Nie otrzymałeś instrukcji odblokowania konta?
+        forgot_your_password: Zapomniałeś hasło?
+        sign_in: Zaloguj się
+        sign_in_with_provider: Zaloguj się przez %{provider}
+        sign_up: Zarejestruj się
+    unlocks:
+      new:
+        resend_unlock_instructions: Wyślij instrukcje odblokowania konta
+      send_instructions: Wkrótce powinieneś otrzymać e-mail z instrukcjami jak odblokować swoje konto.
+      send_paranoid_instructions: Jeśli Twoje konto istnieje w naszej bazie, otrzymasz zaraz e-mail z instrukcjami jak odblokować swoje konto.
+      unlocked: Twoje konto zostało odblokowane. Zaloguj się, aby kontynuować.
+  errors:
+    messages:
+      already_confirmed: już został aktywowany, możesz się zalogować
+      confirmation_period_expired: musi być potwierdzone w ciągu %{period}, zamów nową wiadomość aktywacyjną
+      expired: stracił ważność, wyślij zapytanie o nowy
+      not_found: nie znaleziono
+      not_locked: nie był zablokowany
+      not_saved:
+        few: "%{resource} nie został zapisany z powodu %{count} błędów:"
+        many: "%{resource} nie został zapisany z powodu %{count} błędów:"
+        one: "%{resource} nie został zapisany z powodu jednego błędu:"
+        other: "%{resource} nie został zapisany z powodu %{count} błędów:"

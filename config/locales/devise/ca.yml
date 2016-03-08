@@ -1,0 +1,114 @@
+ca:
+  activerecord:
+    attributes:
+      user:
+        current_password: Contrasenya actual
+        email: Email
+        password: Contrasenya
+        password_confirmation: Confirmar contrasenya
+        remember_me: Recordar-me
+    models:
+      user: Usuari
+  devise:
+    confirmations:
+      confirmed: El teu compte ha estat confirmat correctament.  S'ha iniciat la sessió.
+      new:
+        resend_confirmation_instructions: Reenviar instruccions de confirmació
+      send_instructions: En breu rebràs un correu electrònic amb instruccions sobre com confirmar el teu compte.
+      send_paranoid_instructions: Si la teva adreça electrònica existeix a la base de dades, rebràs un correu electrònic amb instruccions sobre com confirmar el teu compte.
+    failure:
+      already_authenticated: Ja estàs identificat.
+      inactive: El teu compte encara no ha estat activat.
+      invalid: Correu electrònic o contrasenya invàlids.
+      last_attempt: Disposa d'un intent més abans de que li bloquegem el compte.
+      locked: El teu compte està bloquejat.
+      not_found_in_database: Correu electrònic o contrasenya invàlids.
+      timeout: La teva sessió ha caducat. Si us plau, torna a iniciar sessió per a continuar.
+      unauthenticated: Has d'iniciar sessió o bé registrar-te abans de continuar.
+      unconfirmed: Has de confirmar el teu compte abans de continuar.
+    mailer:
+      confirmation_instructions:
+        action: Confirmar el meu compte
+        greeting: Benvingut %{recipient}!
+        instruction: 'Pots confirmar el correu electrònic del teu compte a través d''aquest enllaç:'
+        subject: Instruccions de confirmació
+      reset_password_instructions:
+        action: Canviar la meva contrasenya
+        greeting: Hola %{recipient}!
+        instruction: Algú ha sol·licitat un enllaç per a canviar la teva contrasenya, pots fer-ho amb el següent enllaç.
+        instruction_2: Si tu no ho has sol·licitat, si us plau ignora aquest email.
+        instruction_3: La teva contrasenya no serà canviada fins que accedeixis a l'enllaç i en creïs una nova.
+        subject: Instruccions de regeneració de contrasenya
+      unlock_instructions:
+        action: Desbloquejar el meu compte
+        greeting: Hola %{recipient}!
+        instruction: 'Obre el següent enllaç per a desbloquejar el teu compte:'
+        message: El teu compte s'ha bloquejat a causa d'una quantitat excessiva d'intents fallits per a accedir-hi.
+        subject: Instruccions de desbloqueig
+    omniauth_callbacks:
+      failure: No hem pogut autoritzar el compte des de %{kind} perquè "%{reason}".
+      success: Autoritzat satisfactoriament el compte des de %{kind}.
+    passwords:
+      edit:
+        change_my_password: Canviar la meva contrasenya
+        change_your_password: Canviar la teva contrasenya
+        confirm_new_password: Confirmar nova contrasenya
+        new_password: Nova contrasenya
+      new:
+        forgot_your_password: Has oblidat la teva contrasenya?
+        send_me_reset_password_instructions: Enviar les instruccions per a regenerar la meva contrasenya
+      no_token: Només pots accedir a aquesta pàgina des d'un correu electrònic de recuperació de la contrasenya. Si realment has fet servir l'enllaç del correu electrònic, comprova que has utilitzat la URL completa.
+      send_instructions: En breu rebràs un correu electrònic amb instruccions sobre com restablir la teva contrasenya.
+      send_paranoid_instructions: Si la teva adreça electrònica existeix a la base de dades, rebràs un correu electrònic amb un enllaç per reestablir la contrasenya.
+      updated: La teva contrasenya ha estat canviada correctament. S'ha iniciat la sessió.
+      updated_not_active: La teva contrasenya ha estat canviada correctament.
+    registrations:
+      destroyed: Adéu! El teu compte ha estat cancel·lat correctament. Esperem tornar-te a veure!
+      edit:
+        are_you_sure: Estàs segur?
+        cancel_my_account: Cancel·lar el meu compte
+        currently_waiting_confirmation_for_email: 'Esperant confirmació de: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: deixa'l en blanc si no el vols canviar
+        title: Editar %{resource}
+        unhappy: Descontent
+        update: Actualitzar
+        we_need_your_current_password_to_confirm_your_changes: necessitem la teva contrasenya actual per a confirmar els canvis
+      new:
+        sign_up: Registrar-se
+      signed_up: Has estat registrat correctament.
+      signed_up_but_inactive: El teu compte ha estat creat correctament. Tanmateix, no hem pogut inciar la sessió perquè el teu compte encara no està activat.
+      signed_up_but_locked: El teu compte ha estat creat correctament. Tanmateix, no hem pogut inciar la sessió perquè el teu compte està bloquejat.
+      signed_up_but_unconfirmed: S'ha enviat un missatge amb un enllaç de confirmació al teu correu electrònic. Obre l'enllaç per activar el teu compte.
+      update_needs_confirmation: Has actualitzat el teu compte correctament, però cal confirmar el teu nou correu electrònic. Si us plau, comprova el teu correu i segueix l'enllaç de confirmació per finalitzar la comprovació del nou correu eletrònic.
+      updated: Has actualitzat el teu compte correctament.
+    sessions:
+      already_signed_out: Desconnectat satisfactoriament.
+      new:
+        sign_in: Iniciar sessió
+      signed_in: Sessió iniciada correctament.
+      signed_out: Sessió tancada correctament.
+    shared:
+      links:
+        back: Tornar
+        didn_t_receive_confirmation_instructions: No has rebut les instruccions de confirmació?
+        didn_t_receive_unlock_instructions: No has rebut les instruccions de desbloqueig?
+        forgot_your_password: Has oblidat la teva contrasenya?
+        sign_in: Iniciar sessió
+        sign_in_with_provider: Iniciar sessió amb %{provider}
+        sign_up: Registrar-se
+    unlocks:
+      new:
+        resend_unlock_instructions: Reenviar instruccions de desbloqueig
+      send_instructions: En breu rebràs un correu electrònic amb instruccions sobre com desbloquejar el teu compte.
+      send_paranoid_instructions: Si el teu compte existeix, rebràs un correu electrònic amb instruccions sobre com desbloquejar-lo.
+      unlocked: El teu compte ha estat desbloquejat correctament. S'ha iniciat la sessió.
+  errors:
+    messages:
+      already_confirmed: ja està confirmat
+      confirmation_period_expired: necessita ser confirmat en %{period}, si us plau demana'n un de nou
+      expired: ha caducat, si us plau demana'n un de nou
+      not_found: no s'ha trobat
+      not_locked: no està bloquejat
+      not_saved:
+        one: '1 error ha evitat que %{resource} es pugui desar:'
+        other: "%{count} errors han evitat que %{resource} es pugui desar:"

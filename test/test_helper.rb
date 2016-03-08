@@ -6,11 +6,8 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-
-  ActiveSupport::Deprecation.silenced = true
-
   # Add more helper methods to be used by all tests here...
-  Settings.send_email = true
+  Settings.send_email = false
 end
 
 class ActionController::TestCase

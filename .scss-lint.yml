@@ -1,0 +1,16 @@
+
+scss_files: 'app/assets/stylesheets/**/*.scss'
+
+linters:
+
+  # Forbid /* X */ comments which appear in generated CSS.
+  Comment:
+    severity: error
+
+  # Avoid defining the same property twice
+  DuplicateProperty:
+    severity: error
+
+  # Forbid empty blocks
+  EmptyRule:
+    severity: error

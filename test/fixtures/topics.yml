@@ -20,6 +20,7 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  locale           :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -79,6 +80,7 @@ private:
   current_status: new
   private: true
   post_cache: This is a new private post
+  locale: nl
 
 qna_post:
   id: 7

@@ -35,9 +35,21 @@ class DocTest < ActiveSupport::TestCase
   test "should convert body to markdown" do
     assert Doc.find(3).content == "<p><em>article 3</em> text</p>\n"
   end
-  
+
   test "to_param" do
-    assert Doc.find(1).to_param == "1-Article-1"
+    assert Doc.find(1).to_param == "1-article-1"
+  end
+
+  test "creating new lowercase title should be saved in sentence_case" do
+    title = "something in lowercase"
+    doc = Doc.create!(title: title, category_id: 3, body: 'test test test')
+    assert_equal "Something in lowercase", doc.title
+  end
+
+  test "when creating a new doc, any other capitals should be saved as entered" do
+    title = "something in lowercase and UPPERCASE"
+    doc = Doc.create!(title: title, category_id: 3, body: 'test test test')
+    assert_equal "Something in lowercase and UPPERCASE", doc.title
   end
 
 end

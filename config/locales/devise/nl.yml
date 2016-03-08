@@ -1,0 +1,114 @@
+nl:
+  activerecord:
+    attributes:
+      user:
+        current_password: Huidig wachtwoord
+        email: Email
+        password: Wachtwoord
+        password_confirmation: Bevestig wachtwoord
+        remember_me: Ingelogd blijven
+    models:
+      user: Gebruiker
+  devise:
+    confirmations:
+      confirmed: Je account is bevestigd.
+      new:
+        resend_confirmation_instructions: Verstuur bevestiging-instructies opnieuw
+      send_instructions: Je ontvangt via e-mail instructies hoe je je account kan bevestigen.
+      send_paranoid_instructions: Als we je e-mailadres terugvinden in onze database, zal je binnen enkele ogenblikken een e-mail ontvangen met instructies hoe je je account kan bevestigen.
+    failure:
+      already_authenticated: Je bent reeds aangemeld.
+      inactive: Je account is nog niet geactiveerd.
+      invalid: Ongeldig e-mail of wachtwoord.
+      last_attempt: Je hebt nog één poging voordat je account vergrendeld wordt.
+      locked: Je account is vergrendeld.
+      not_found_in_database: Ongeldig e-mail of wachtwoord.
+      timeout: Je sessie is verlopen, meld je opnieuw aan om door te gaan.
+      unauthenticated: Je dient je aan te melden of in te schrijven om door te gaan.
+      unconfirmed: Je dient eerst je account te bevestigen.
+    mailer:
+      confirmation_instructions:
+        action: Bevestig mijn account
+        greeting: Welkom %{recipient}!
+        instruction: 'U kunt uw email bevestigen via onderstaande link:'
+        subject: Bevestiging
+      reset_password_instructions:
+        action: Verander mijn wachtwoord
+        greeting: Hallo %{recipient}!
+        instruction: Iemand heeft een link gevraagd om uw wachtwoord te wijzigen; dit kan via onderstaande link.
+        instruction_2: Als u dit niet heeft gedaan, negeer deze mail alstublieft.
+        instruction_3: Uw wachtwoord zal niet wijzigen totdat u bovenstaande link heeft gevolgd en een nieuw wachtwoord heeft aangevraagd.
+        subject: Instructies om je wachtwoord opnieuw in te stellen
+      unlock_instructions:
+        action: Ontgrendel mijn account
+        greeting: Hallo %{recipient}!
+        instruction: 'U kunt uw account ontgrendelen via onderstaande link:'
+        message: Uw account is vergrendeld wegens te veel mislukte pogingen in te loggen.
+        subject: Ontgrendelinstructies
+    omniauth_callbacks:
+      failure: We konden je niet aanmelden op je %{kind} omdat "%{reason}".
+      success: Je bent succesvol ingelogd op je %{kind} account.
+    passwords:
+      edit:
+        change_my_password: Verander mijn wachtwoord
+        change_your_password: Wijzig uw wachtwoord
+        confirm_new_password: Bevestig nieuw wachtwoord
+        new_password: Nieuw wachtwoord
+      new:
+        forgot_your_password: Wachtwoord vergeten?
+        send_me_reset_password_instructions: Stuur me wachtwoord reset instructies
+      no_token: Deze pagina is alleen bereikbaar via een wachtwoord vergeten e-mail. Als je wel via een wachtwoord vergeten e-mail komt, zorg er dan voor dat je de volledige URL gebruikt.
+      send_instructions: Je ontvangt een e-mail met instructies hoe je je wachtwoord opnieuw kan instellen.
+      send_paranoid_instructions: Als we je e-mailadres terugvinden in onze database, zal je binnen enkele ogenblikken via e-mail een link ontvangen om je wachtwoord opnieuw in te stellen.
+      updated: Je wachtwoord is gewijzigd. Je bent nu aangemeld.
+      updated_not_active: Je wachtwoord is met succes gewijzigd.
+    registrations:
+      destroyed: Je account is verwijderd, wellicht tot ziens!
+      edit:
+        are_you_sure: Weet u het zeker?
+        cancel_my_account: Annuleer mijn account
+        currently_waiting_confirmation_for_email: 'Aan het wachten op de bevestiging voor: %{email}'
+        leave_blank_if_you_don_t_want_to_change_it: laat leeg als u het niet wilt wijzigen
+        title: Bewerk %{resource}
+        unhappy: Niet blij
+        update: Bijwerken
+        we_need_your_current_password_to_confirm_your_changes: we hebben uw huidige wachtwoord nodig om uw veranderingen te bevestigen
+      new:
+        sign_up: Maak account aan
+      signed_up: Je bent ingeschreven.
+      signed_up_but_inactive: Je bent ingeschreven, maar we konden je niet inloggen omdat je account nog niet is geactiveerd.
+      signed_up_but_locked: Je bent ingeschreven, maar we konden je niet inloggen omdat je account is vergrendeld.
+      signed_up_but_unconfirmed: Een e-mail met een confirmatielink is naar je e-mailadres gestuurd. Open de link in je browser om je account te activeren.
+      update_needs_confirmation: Je account is bijgewerkt, maar we moeten je e-mailadres nog valideren. Een e-mail met een confirmatielink is naar je e-mailadres gestuurd. Open de link in je browser om je e-mailadres te confirmeren.
+      updated: Je accountgegevens zijn opgeslagen.
+    sessions:
+      already_signed_out: Je bent succesvol uitgelogd.
+      new:
+        sign_in: Inloggen
+      signed_in: Je bent succesvol ingelogd.
+      signed_out: Je bent succesvol uitgelogd.
+    shared:
+      links:
+        back: Terug
+        didn_t_receive_confirmation_instructions: Geen bevestigingsmail ontvangen?
+        didn_t_receive_unlock_instructions: Geen ontgrendel-instructies ontvangen?
+        forgot_your_password: Wachtwoord vergeten?
+        sign_in: Inloggen
+        sign_in_with_provider: Inloggen met %{provider}
+        sign_up: Maak account aan
+    unlocks:
+      new:
+        resend_unlock_instructions: Verstuur ontgrendel-instructies opnieuw
+      send_instructions: Je ontvangt via e-mail instructies hoe je je account kan ontgrendelen.
+      send_paranoid_instructions: Als we je e-mailadres terugvinden in onze database, zal je binnen enkele ogenblikken een e-mail ontvangen met instructies hoe je je account kan ontgrendelen.
+      unlocked: Je account is ontgrendeld. Je kan nu weer inloggen.
+  errors:
+    messages:
+      already_confirmed: is reeds bevestigd
+      confirmation_period_expired: moet binnen %{period} worden bevestigd, plaats a.u.b. een nieuw verzoek
+      expired: is verlopen, vraag een nieuwe aan
+      not_found: niet gevonden
+      not_locked: is niet gesloten
+      not_saved:
+        one: 'Een fout verhinderde het opslaan van deze %{resource}:'
+        other: "%{count} fouten verhinderde het opslaan van deze %{resource}:"

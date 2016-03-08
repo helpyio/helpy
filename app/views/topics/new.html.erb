@@ -1,7 +1,7 @@
 
-<div class="add-form">
+<div class="add-form row">
 <%= bootstrap_form_for(@topic) do |f| -%>
-
+  <div class="col-md-12">
   <%= f.alert_message "Please fix the errors below." %>
 
   <% unless user_signed_in? %>
@@ -13,12 +13,18 @@
     <% end %>
   <% end %>
 
-  <%= f.form_group :private, label: { text: t(:should_message_be_private) }, id: 'private-public' do %>
-    <%= f.radio_button :private, true, label: t(:only_support_can_respond), inline: false %>
-    <%= f.radio_button :private, false, label: t(:responses_can_come_from_everyone), inline: false %>
+
+  <% if user_signed_in? %>
+    <%= f.form_group :private, label: { text: t(:should_message_be_private) }, id: 'private-public' do %>
+      <%= f.radio_button :private, true, label: t(:only_support_can_respond), inline: false %>
+      <%= f.radio_button :private, false, label: t(:responses_can_come_from_everyone), inline: false %>
+    <% end %>
+    <%= f.collection_select(:forum_id, @forums, :id, :name, label: t(:forum_name)) %>
+  <% else %>
+    <%= f.hidden_field :private, value: true %>
+    <%= f.hidden_field :forum_id, value: 1 %>
   <% end %>
 
-  <%= f.collection_select(:forum_id, @forums, :id, :name, label: t(:forum_name)) %>
   <%= f.text_field :name, :size => 40, label: 'Subject' -%>
   <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message' -%>
   <div class="add-screenshots">
@@ -30,5 +36,6 @@
   <%#= text_field_tag :tags %>
 
   <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning' %>
+  </div>
 <% end -%>
 </div>

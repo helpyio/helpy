@@ -40,6 +40,8 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
+#  provider               :string
+#  uid                    :string
 #
 
 require 'test_helper'
@@ -60,6 +62,14 @@ class UserTest < ActiveSupport::TestCase
     assert_difference '@user.active_assigned_count', 1 do
       Topic.find(5).assign(1)
     end
+  end
+
+  test 'should only track validation errors once' do
+    user = User.new(email: User.first.email)
+    user.validate
+    errs = user.errors.full_messages
+    # Verify there are no duplicate errors!
+    assert_equal errs.length, errs.uniq.length
   end
 
 

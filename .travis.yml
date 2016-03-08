@@ -1,0 +1,22 @@
+language: ruby
+rvm:
+  - 2.2.1
+
+services:
+  - postgresql
+
+# Setup Test Database
+before_script:
+  - psql -c 'create database helpy_test;' -U postgres
+
+script:
+  # Test suite
+  - bundle exec rake
+  # Brakeman security scanner
+  - bundle exec brakeman -z
+  # Check vulnerable gems
+  - bundle exec bundle-audit check --update
+  # Rubocop static code analyzer
+  - bundle exec rubocop
+
+cache: bundler

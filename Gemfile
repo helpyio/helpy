@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rails', '4.2.5.2'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'pg_search'
@@ -10,17 +9,14 @@ gem 'pg_search'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem 'magnific-popup-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -28,13 +24,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'trix'
-
+gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+
 gem 'rails-i18n', '~> 4.0.0'
 gem 'i18n-country-translations'
 gem 'route_translator'
@@ -47,25 +49,23 @@ gem 'acts-as-taggable-on', '~>3.5'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
-#gem 'globalize', '~> 5.0.0'
-gem 'globalize-versioning', '~> 0.1.0'
+
+gem 'globalize-versioning'
 gem 'globalize-accessors'
 
 gem 'gravtastic'
 
-gem 'cloudinary'
+gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 
-gem 'less-rails'
-gem 'font-awesome-less'
-gem 'font-awesome-rails'
+gem 'font-awesome-sass'
+gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
-gem 'therubyracer'
 gem 'rdiscount'
 
-gem 'rails_config'
+gem 'config'
 
 gem 'daemons'
 #gem 'mailman-rails'
@@ -77,6 +77,10 @@ gem 'mail_extract'
 # gem 'mandrill_mailer'
 gem 'griddler'
 gem 'griddler-mandrill'
+gem 'griddler-sendgrid'
+gem 'griddler-mailgun'
+gem 'griddler-postmark'
+gem 'griddler-mailin'
 
 gem 'rails-timeago'
 
@@ -90,14 +94,15 @@ gem 'rails-timeago'
 # gem 'capistrano-rails', group: :development
 
 gem 'faker'
-gem 'populator'
-gem 'ruser'
+
+# RandomUser.me API
+gem 'ruser', '~> 3.0'
+
 gem 'timecop' #used to populate
 
-
-gem 'newrelic_rpm'
-
 group :development, :test do
+  # Audit Gemfile for security vulnerabilities
+  gem 'bundler-audit', require: false
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -108,7 +113,22 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
-  gem 'rack-mini-profiler'
+
+  # Brakeman for security audit
+  gem 'brakeman', require: false
+
+  gem 'rubocop'
+end
+
+group :development do
+  gem "better_errors"
+  gem "quiet_assets"
+
+  # Check Eager Loading / N+1 query problems
+  gem 'bullet'
+  gem 'rubocop'
+
+  gem 'scss-lint'
 end
 
 group :test do
@@ -117,9 +137,13 @@ group :test do
   gem 'rspec'
   gem 'shoulda'
   gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'launchy'
 end
 
 group :production do
+  gem 'newrelic_rpm'
   gem 'rails_12factor'
   gem 'unicorn'
 end

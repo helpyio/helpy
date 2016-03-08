@@ -1,13 +1,37 @@
+# == Schema Information
+#
+# Table name: docs
+#
+#  id               :integer          not null, primary key
+#  title            :string
+#  body             :text
+#  keywords         :string
+#  title_tag        :string
+#  meta_description :string
+#  category_id      :integer
+#  user_id          :integer
+#  active           :boolean          default(TRUE)
+#  rank             :integer
+#  permalink        :string
+#  version          :integer
+#  front_page       :boolean          default(FALSE)
+#  cheatsheet       :boolean          default(FALSE)
+#  points           :integer          default(0)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 class DocsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => ['show', 'home']
-  before_filter :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  before_action :authenticate_user!, :except => ['show', 'home']
+  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+
   layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
 
   #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
-  after_filter :view_causes_vote, :only => 'show'
+  #after_filter :view_causes_vote, :only => 'show'
 
 
   # GET /docs/1
@@ -15,21 +39,27 @@ class DocsController < ApplicationController
   def show
     @doc = Doc.where(id: params[:id]).active.first
 
-    @meta_description = @doc.meta_description
-    @keywords = @doc.keywords
+    unless @doc.nil?
+      @meta_description = @doc.meta_description
+      @keywords = @doc.keywords
 
-    @page_title = @doc.title.titleize
-    @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag.titleize
-    @title_tag = "#{Settings.site_name}: #{@custom_title}"
+      @page_title = @doc.title
+      @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
+      @title_tag = "#{Settings.site_name}: #{@custom_title}"
 
-    add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
-    add_breadcrumb @doc.category.name.titleize, category_path(@doc.category) if @doc.category.name
-    add_breadcrumb @doc.title.titleize
+      add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
+      add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
+      add_breadcrumb @doc.title
 
-    respond_to do |format|
-      format.html # show.html.erb
 
+      respond_to do |format|
+        format.html # show.html.erb
+      end
+
+    else
+      redirect_to root_url
     end
+
   end
 
   # GET /docs/new
@@ -113,7 +143,7 @@ class DocsController < ApplicationController
     if params[:permalink]
       @doc = Doc.find_by_permalink(params[:permalink])
     else
-      category = Category.find_by_link(params[:link])
+      # category = Category.find_by_link(params[:link])
       @doc = Doc.find_by_category_id(params[:link])
     end
     @related = Doc.in_category(@doc.category_id)

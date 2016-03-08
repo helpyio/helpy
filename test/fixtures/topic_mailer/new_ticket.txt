@@ -1,0 +1,14 @@
+Make sure your reply appears above this line
+=================================================================
+Message ID:2
+
+Hello scott,
+
+The following message has been posted in response to your question:
+
+New Private Topic
+
+View this online:http://localhost:3000/en/topics/2-test-test/posts
+-----------
+Powered by Helpy
+Get a Free Helpy Support System for your Site at http://helpy.io/

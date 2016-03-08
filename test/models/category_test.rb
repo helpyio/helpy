@@ -23,6 +23,7 @@ class CategoryTest < ActiveSupport::TestCase
 
   should have_many(:docs)
   should validate_presence_of(:name)
+  should validate_uniqueness_of(:name)
   should_not allow_value('').for(:name)
   should_not allow_value('active and featured').for(:name) #duplicate name
 
@@ -30,4 +31,15 @@ class CategoryTest < ActiveSupport::TestCase
     assert Category.find(1).to_param == "1-active-and-featured"
   end
 
+  test "creating new lowercase name should be saved in sentence_case" do
+    name = "something in lowercase"
+    category = Category.create!(name: name)
+    assert_equal "Something in lowercase", category.name
+  end
+
+  test "when creating a new category, any other capitals should be saved as entered" do
+    name = "something in lowercase and UPPERCASE"
+    category = Category.create!(name: name)
+    assert_equal "Something in lowercase and UPPERCASE", category.name
+  end
 end

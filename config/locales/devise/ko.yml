@@ -1,0 +1,112 @@
+ko:
+  activerecord:
+    attributes:
+      user:
+        current_password: "현재 비밀번호"
+        email: "이메일"
+        password: "비밀번호"
+        password_confirmation: "비밀번호 확인"
+        remember_me: "로그인 정보를 기억합니다"
+    models:
+      user: "사용자"
+  devise:
+    confirmations:
+      confirmed: "이메일 주소가 성공적으로 인증되었습니다."
+      new:
+        resend_confirmation_instructions: "인증 지침 재발송"
+      send_instructions: "이메일로 이메일 주소 인증 지침이 전송되었습니다."
+      send_paranoid_instructions: "이메일 주소가 이미 등록되어 있으며, 이메일 주소 인증 지침 메일을 잠시 후 받을 수 있습니다."
+    failure:
+      already_authenticated: "이미 로그인되어 있습니다."
+      inactive: "계정이 아직 활성화되지 않았습니다."
+      invalid: "이메일 혹은 비밀번호가 틀립니다."
+      last_attempt: "이번 로그인 시도를 실패하면 계정이 잠깁니다."
+      locked: "계정이 잠겨있습니다."
+      not_found_in_database: "이메일 주소나 비밀번호가 틀립니다."
+      timeout: "세션이 만료되었습니다. 계속하려면 다시 로그인해야 합니다."
+      unauthenticated: "계속하려면 로그인하거나 가입해야 합니다."
+      unconfirmed: "계속하기 전에 이메일 주소를 인증해야 합니다."
+    mailer:
+      confirmation_instructions:
+        action: "본인 계정 인증"
+        greeting: "%{recipient}님 환영합니다!"
+        instruction: "아래의 링크를 클릭하시면 이메일 인증이 완료됩니다:"
+        subject: "이메일 인증 지침"
+      reset_password_instructions:
+        action: "비밀번호 변경"
+        greeting: "%{recipient}님 안녕하세요!"
+        instruction: "누군가 당신의 비밀번호를 변경하는 링크를 요청했으며, 다음의 링크에서 비밀번호 변경이 가능합니다."
+        instruction_2: "이를 요청하지 않으셨다면, 이 메일을 무시하십시오."
+        instruction_3: "위 링크에 접속하여 새로운 비밀번호를 생성하기 전까지, 귀하의 비밀번호는 변경되지 않습니다."
+        subject: "비밀번호 재설정 지침"
+      unlock_instructions:
+        action: "본인 계정 잠금 해제"
+        greeting: "%{recipient}님 안녕하세요!"
+        instruction: "계정 잠금을 해제하려면 아래 링크를 클릭하세요."
+        message: "로그인 실패 횟수 초과로 귀하의 계정이 잠금 처리되었습니다."
+        subject: "잠금 해제 지침"
+    omniauth_callbacks:
+      failure: "%{reason}(으)로 인하여 %{kind}(으)로부터 인증받지 못했습니다."
+      success: "%{kind} 계정으로부터 인증되었습니다."
+    passwords:
+      edit:
+        change_my_password: "내 비밀번호를 변경합니다"
+        change_your_password: "비밀번호 변경"
+        confirm_new_password: "새 비밀번호 확인"
+        new_password: "새 비밀번호"
+      new:
+        forgot_your_password: "비밀번호를 잊으셨나요?"
+        send_me_reset_password_instructions: "비밀번호 재설정 지침을 요청합니다"
+      no_token: "비밀번호 재설정 이메일을 거치지 않고 이 페이지에 접근할 수 없습니다. 비밀번호 재설정 이메일에서 오셨다면, 주소가 제대로 되었는지 확인해 주세요."
+      send_instructions: "잠시 후에 비밀번호 재설정 지침 메일을 받을 수 있습니다."
+      send_paranoid_instructions: "이메일이 데이터베이스에 존재할 경우, 몇 분 안에 비밀번호 재설정 주소를 이메일로 받으실 수 있습니다."
+      updated: "성공적으로 비밀번호를 변경했습니다. 로그인 되었습니다."
+      updated_not_active: "비밀번호가 성공적으로 변경되었습니다."
+    registrations:
+      destroyed: "안녕히 가세요! 계정이 성공적으로 탈퇴되었습니다. 다시 볼 수 있기를 바랍니다."
+      edit:
+        are_you_sure: "정말로 탈퇴하시겠습니까?"
+        cancel_my_account: "회원 탈퇴"
+        currently_waiting_confirmation_for_email: "현재 다음 이메일 인증 대기중입니다: %{email}"
+        leave_blank_if_you_don_t_want_to_change_it: "변경을 원하지 않으시면 빈 칸으로 남겨주세요"
+        title: "%{resource} 정보 수정"
+        unhappy: "회원 탈퇴를 하시겠습니까?"
+        update: "변경"
+        we_need_your_current_password_to_confirm_your_changes: "변경 사항을 반영하려면 현재의 비밀번호를 입력하세요"
+      new:
+        sign_up: "회원 가입"
+      signed_up: "환영합니다! 성공적으로 가입되었습니다."
+      signed_up_but_inactive: "성공적으로 가입되었지만, 아직 계정이 활성화되어 있지 않아 로그인 할 수 없습니다."
+      signed_up_but_locked: "성공적으로 가입되었지만, 계정이 잠겨있어 로그인 할 수 없습니다."
+      signed_up_but_unconfirmed: "인증 주소가 포함된 메시지를 이메일 주소로 보냈습니다. 계정을 활성화하기 위해 메일을 확인하세요."
+      update_needs_confirmation: "계정이 성공적으로 수정되었지만, 새로운 이메일 주소를 확인해야 합니다. 이메일로 전송된 이메일 인증 주소를 클릭하여 새로운 이메일 주소를 인증해 주세요."
+      updated: "계정이 성공적으로 수정되었습니다."
+    sessions:
+      already_signed_out: "성공적으로 로그아웃했습니다."
+      new:
+        sign_in: "로그인"
+      signed_in: "성공적으로 로그인했습니다."
+      signed_out: "성공적으로 로그아웃했습니다."
+    shared:
+      links:
+        back: "돌아가기"
+        didn_t_receive_confirmation_instructions: "인증 이메일을 못받으셨나요?"
+        didn_t_receive_unlock_instructions: "잠금 해제 이메일을 못받으셨나요?"
+        forgot_your_password: "비밀번호를 잊으셨나요?"
+        sign_in: "로그인"
+        sign_in_with_provider: "%{provider}(으)로 로그인"
+        sign_up: "회원 가입"
+    unlocks:
+      new:
+        resend_unlock_instructions: "계정 잠금 해제 재요청"
+      send_instructions: "잠시 후 이메일로 계정 잠금 해제 지침을 받아보실 수 있습니다."
+      send_paranoid_instructions: "계정이 존재한다면, 잠시 후 이메일로 계정 잠금 해제 지침을 받아보실 수 있습니다."
+      unlocked: "계정이 성공적으로 잠금 해제되었습니다. 로그인하여 계속해 주세요."
+  errors:
+    messages:
+      already_confirmed: "은(는) 이미 인증되었습니다. 다시 로그인해 보세요."
+      confirmation_period_expired: "%{period} 이내에 이메일 인증을 해야 합니다. 새로 요청해 주세요."
+      expired: "이(가) 만료되었습니다 새로 요청해 주세요."
+      not_found: "찾을 수 없습니다."
+      not_locked: "은(는) 잠기지 않았습니다."
+      not_saved: "%{count}개의 오류로 인해 %{resource} 저장이 금지 되었습니다."

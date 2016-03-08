@@ -1,0 +1,365 @@
+// === ADMIN GLOBAL OVERRIDES ===
+
+
+body {
+	background-color: #fff;
+}
+
+h1{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 30px;
+}
+
+h2 {
+	margin-top: 0px;
+}
+
+table {
+	margin-top: 20px;
+}
+
+td > img {
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+
+.status {
+	font-size: 120%;
+}
+
+.first-post {
+	background-color: #eee;
+	margin-bottom: 20px;
+}
+
+// === ADMIN LAYOUT ===
+
+#upper-wrapper {
+	background-color: #222;
+}
+
+#upper-wrapper > div {
+	padding-top: 0;
+}
+
+#ticket-info {
+	// margin-top: 30px;
+}
+
+#left-col-user-info {
+	margin-top: 30px;
+	padding-right: 30px;
+	border-right: 1px solid #eee
+}
+
+#pipeline-wrapper {
+	background-color: #eee;
+	height: 160px;
+}
+
+#user-info-image {
+	padding-top: 0;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 30px
+}
+
+#user-info-info h4, #user-info-info span, #user-info-info .tiny-header {
+	color: #333;
+}
+
+#ticket-info {
+	margin-bottom: 10px;
+}
+
+#left-col-ticket-nav {
+	margin-top: 50px;
+}
+
+#admin-stats {
+	height:  100px;
+}
+
+
+#tickets {
+	// margin-top: 30px;
+}
+
+#topic-options {
+	margin-bottom: 30px;
+	margin-top: 20px;
+}
+
+#user-info-horizontal {
+	padding-top: 30px;
+}
+
+
+
+// === ADMIN STYLES ===
+
+.white-bg {
+	background-color: white;
+}
+
+img.user-thumbnail {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+div.left-col-dropdown {
+  width: 100%;
+}
+
+div.left-col-dropdown > .btn-default {
+  width: 100%;
+  text-align: left;
+}
+
+ul.dropdown-menu {
+  width: 250px;
+}
+
+#user-tickets ul li {
+	height: 25px;
+	color: #666;
+}
+
+.user-info {
+	padding-top: 20px;
+	padding-bottom: 0px;
+}
+
+.navbar.navbar-default {
+	background-color: #222;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+	font-weight: normal;
+}
+
+.navbar-brand {
+	padding-top: 15px;
+}
+
+.navbar-right {
+	margin-right: -28px;
+}
+
+.mailbox {
+	padding-right: 10px;
+	padding-bottom: 8px;
+}
+
+.ticket-control {
+	text-transform: uppercase;
+}
+
+#article-editor {
+	border: 1px solid #eee;
+}
+
+#editor {
+	min-height: 500px;
+}
+
+trix-editor {
+	min-height: 500px;
+}
+
+#toolbar {
+	border-bottom: 1px solid #eee;
+}
+
+
+.dummy {
+    margin-top: 110%;
+}
+
+
+.stats {
+  display: block;
+  padding: 4px;
+  margin-bottom: 18px;
+  line-height: 1.42857143;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+a.stats:hover,
+a.stats:focus,
+a.stats.active {
+  border-color: #004084;
+}
+
+.stats {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 5px;
+    right: 5px;
+    height: 100px;
+    max-height: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align:center;
+    // padding-top:calc(40% - 30px);
+}
+
+.stats .hover-stats {
+	cursor: pointer;
+    border: '1px solid #666';
+    box-shadow: '0px 0px 10px #eee';
+}
+
+.stats .selected-stats {
+	color:  #000;
+	cursor: pointer;
+    border: '2px solid #666';
+    box-shadow: '0px 0px 10px #eee';
+}
+
+.has-arrow {
+	position: relative;
+	border: 0px solid #333;
+	height: 100px;
+}
+
+.has-arrow:after, .has-arrow:before {
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	left: 95%;
+	top:  40%;
+	position: absolute;
+	width: 0;
+}
+
+.has-arrow:after {
+	border-width: 10px;
+	border-left-color: #fff;
+	// top: 35px;
+	top: 40%
+}
+
+.has-arrow:before {
+	border-width: 11px;
+	border-left-color: #ddd;
+	top: calc(40% - 1px);
+	  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+
+}
+
+.has-arrow.over:before {
+	border-width: 11px;
+	border-left-color: #333;
+	top: calc(40% - 1px);
+	  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+
+}
+
+.topic-checkbox {
+	margin-top: 13px !important;
+}
+
+.topic span.label-count {
+	margin-top: -11px;
+	margin-right: 10px;
+	margin-left:10px;
+}
+
+@media(max-width:767px){
+	h1 {
+		font-size: 150%;
+	}
+	h1#how-help {
+		font-size: 190%;
+	}
+	h2 {
+		font-size: 150%;
+		margin-top: 25px;
+	}
+	.checkbox-col {
+		width: 10px;
+	}
+	#status-mobile-dropdown {
+		margin-left: 5px;
+		margin-top: -5px;
+
+	}
+	.post-menu {
+		margin-top: 0px;
+	}
+}
+
+@media(min-width:768px){
+	h1 {
+		font-size: 190%;
+	}
+
+	h2 {
+		margin-top: 45px;
+	}
+	.stats {
+		padding-top: 30%;
+	}
+	.stats h2 {
+		color: #666;
+		font-size: 200%;
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+	#pipeline-wrapper {
+		padding-bottom: 20px;
+		padding-top: 10px;
+	}
+}
+
+@media(min-width:992px){
+	h1 {
+		font-size: 200%;
+	}
+	.stats {
+		padding-top: 20%;
+	}
+	.stats h2 {
+		color: #666;
+		font-size: 300%;
+		margin-bottom: 0;
+		margin-top: 0;
+	}
+	#pipeline-wrapper {
+		padding-bottom: 0;
+		padding-top: 10px;
+	}
+}
+
+@media(min-width:1200px){
+	h1 {
+		font-size: 220%;
+	}
+	.stats {
+		padding-top: 10%;
+	}
+	.stats h2 {
+		color: #666;
+		font-size: 350%;
+		margin-top: 0px;
+		margin-bottom: 0;
+	}
+	#pipeline-wrapper {
+		padding-bottom: 0;
+		padding-top: 10px;
+
+	}
+}

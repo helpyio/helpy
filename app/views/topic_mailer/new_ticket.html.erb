@@ -5,21 +5,21 @@
   </head>
   <body>
   <p>
-    Make sure your reply appears above this line<br/>
+    <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
     =================================================================<br/>
-    Message ID:<%= @topic.id %></br>
+    <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %></br>
   </p>
   <p>
-    Hello <%= @topic.user.login %>,
+    <%= t('hello', user_name: @topic.user.login) %>,
   </p>
   <p>
-    The following message has been posted in response to your question:
+    <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
   </p>
   <p>
     <%= simple_format(@topic.posts.last.body) %>
   </p>
   <p>
-    View this online: <%= topic_posts_url(@topic) %>
+    <%= t('view_online', default: 'View this online:') %> <%= topic_posts_url(@topic) %>
   </p><br/>
     <p>
     <strong>Powered by Helpy</strong><br/>

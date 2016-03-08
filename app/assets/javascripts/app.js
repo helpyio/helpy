@@ -30,7 +30,7 @@ Helpy.ready = function(){
   $('.thumbnail, .stats').off();
 
   // jquery hhoks for the home page
-  $('.home-option, .home-option-xs, .topic-box').click(function(){
+  $('.topic-box').click(function(){
     document.location.href = $(this).data("link");
   });
 
@@ -255,6 +255,22 @@ Helpy.ready = function(){
      }
   });
 
+  // Login/Forgot Switcher
+
+  $('.login-link').off().on('click', function() {
+    $('.login-form').show();
+    $('.forgot-form').hide();
+    $('.modal-title').text($('.login-form').data("title"));
+    $('.modal-links').show();
+  })
+
+  $('.forgot-link').off().on('click', function() {
+    $('.login-form').hide();
+    $('.forgot-form').show();
+    $('.modal-title').text($('.forgot-form').data("title"));
+    $('.modal-links').hide();
+  });
+
 };
 
 $.attachinary.config.template = '\
@@ -281,7 +297,7 @@ $.attachinary.config.template = '\
 Helpy.didthisHelp = function(yesno){
   var message;
   if (yesno == "no") {
-    message = "<h3>We're sorry this did you help you.  Please open a discussion in our support forums for more help!</h3>";
+    message = "<h3>We're sorry this didn't you help you. Please open a discussion in our support forums for more help!</h3>";
   } else {
     message = "<h3>Great!! Thanks for the feedback!</h3>";
   }
