@@ -15,7 +15,7 @@
 
 module PostsHelper
 
-  def post_message(post)
+  def post_message(post,admin=false)
 
     case post.kind
     when 'first'
@@ -25,7 +25,7 @@ module PostsHelper
     when 'note'
       message = t(:posted_note, user_name: post.user.name.titleize, default: "posted an internal note...")
     end
-    if user_signed_in? && current_user.admin? && params[:controller] == 'admin'
+    if admin
       content_tag(:span, class: 'btn dropdown-toggle more-important', data: { toggle: 'dropdown'}, aria: {expanded: 'false'}) do
         "#{message} <span class='caret'></span>".html_safe
       end
