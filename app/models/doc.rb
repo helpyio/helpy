@@ -28,7 +28,7 @@ class Doc < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
   has_many :votes, :as => :voteable
-  has_many :topics
+  has_one :topic
 
   validates :title, presence: true
   validates :body, presence: true

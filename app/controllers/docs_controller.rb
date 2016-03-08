@@ -46,7 +46,9 @@ class DocsController < ApplicationController
       @page_title = @doc.title
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
       @title_tag = "#{Settings.site_name}: #{@custom_title}"
-      @topics = @doc.topics.reverse
+      @topic = @doc.topic
+      @posts = @topic.posts.all.includes(:user) unless @topic.nil?
+
       @forum = Forum.for_docs.first
 
       #@topic = Topic.new
