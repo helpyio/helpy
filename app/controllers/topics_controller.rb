@@ -194,7 +194,7 @@ class TopicsController < ApplicationController
       if @topic.private?
         redirect_to ticket_path(@topic)
       else
-        redirect_to topic_posts_path(@topic)
+        redirect_to @topic.doc_id.nil? ? topic_posts_path(@topic) : doc_path(@topic.doc_id)
       end
     else
       render :new

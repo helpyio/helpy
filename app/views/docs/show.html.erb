@@ -28,7 +28,7 @@
     <div class="col-md-3 hidden-xs hidden-sm"></div>
     <div class="col-md-9">
       <hr/>
-      <h4><%= t(:topic) %>:</h4>
+      <h4><%= @posts.nil? ? "" : t(:topic) %></h4>
     </div>
 
     <div class="col-md-3 hidden-xs hidden-sm"></div>
@@ -43,10 +43,10 @@
 
   		<% if user_signed_in? %>
         <div class="add-form">
-    			<h4><%= t(:reply) %></h4>
+    			<h4><%= @posts.nil? ? t(:start_discussion) : t(:reply) %></h4>
           <% if @topic %>
       			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
-      			  <%= f.text_area :body, :rows => 8, :cols => 160, label: 'Type your response:' -%></p>
+      			  <%= f.text_area :body, rows: 8, cols: 160, skip_label: true %></p>
       			  <%= f.hidden_field 'kind', value: 'reply' %>
       				<div class="add-screenshots">
       				  <%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots unless Cloudinary.config.cloud_name.nil? %>
@@ -62,7 +62,7 @@
                 <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
               </div>
               <%= hidden_field_tag :client_id %>
-              <%= f.hidden_field :name, value: "New Comment on #{@doc.title}" %>
+              <%= f.hidden_field :name, value: "Discussion on #{@doc.title}" %>
               <%= f.hidden_field :doc_id, value: @doc.id %>
               <%= f.hidden_field :private, value: false %>
               <%= f.hidden_field :forum_id, value: @forum.id %>
@@ -73,8 +73,6 @@
   		<% end -%>
   	</div>
   </div>
-
-
 <% end %>
 
 <div class="col-md-3 hidden-xs hidden-sm"></div>
