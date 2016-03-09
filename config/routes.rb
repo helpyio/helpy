@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root to: "locales#redirect_on_locale"
   get 'widget/' => 'widget#index', as: :widget
+  get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
 
   devise_for :users, skip: [:session, :password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
