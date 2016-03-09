@@ -1,11 +1,9 @@
-
-// var HelpyWidget = HelpyWidget || {}
-// HelpyWidget.domain = "http://localhost:3000/"
-
 // Uses Widget wrapper provided by lukencode: https://gist.github.com/lukencode/4629345#file-widget-js
 
 (function () {
 
+    var scriptVersion = "1";
+    var helpyDomain = "http://localhost:3000/";
     var scriptName = "widget.v1.js"; //name of this script, used to get reference to own tag
     var jQuery; //noconflict reference to jquery
     var jqueryPath = "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js";
@@ -59,8 +57,6 @@
 
     function initjQuery() {
         jQuery = window.jQuery.noConflict(true);
-//        main();
-
 				$(document).ready(main());
 				$(document).on('page:load', main());
 
@@ -72,28 +68,42 @@
 
         jQuery(document).ready(function ($) {
 
+          // create widget iframe object
+          var $widgetIframe = $('<iframe>', {
+                               src: helpyDomain + "/widget",
+                               id:  'widget-frame',
+                               frameborder: 0,
+                               height: 400,
+                               width: 340,
+                               scrolling: 'no'
+                             });
+
 					// Add container for widget
 					var $widgetContainer = $('<div class="popout"></div>');
-					$widgetContainer.append('<div class="widget-panel"><iframe src="http://localhost:3000/widget/" height="400" width="340" scrolling="no" frameborder="0"></div>');
-					$widgetContainer.append('<div class="btn"><i class="icon glyphicon glyphicon-question-sign"></i></div>');
+					$widgetContainer.append('<div class="widget-panel"></div>');
+					$widgetContainer.append('<div class="btn"><img src="http://localhost:3000/assets/helpy-logo.svg"></div>');
 
 					// Add container to page
 					$('body').append($widgetContainer);
 
-					//$(".widget-panel").html('<iframe src="http://localhost:3000/widget/" height="600" width="340" scrolling="no" frameborder="0">');
+          // Add Iframe to container;
+          $('.widget-panel').append($widgetIframe);
 
-
+          // Reload iframe
+          document.getElementById('widget-frame').contentWindow.location.reload();
 
 					// add listeners
 					$(".popout .btn").off().on('click', function(e){
+
+            // reload the iframe content
+            $widgetIframe.attr('src', helpyDomain + "/widget");
+
 						$(this).toggleClass("active");
 						$(this).closest(".popout").find(".widget-panel").toggleClass("active");
 
 						var $button = $('.popout .btn');
 						var $modal = $('.popout .widget-panel');
 						var top = $button.position().top + $button.height() + (($button.outerHeight(true) - $button.height()));
-
-
 
 						$(".popout").css({"top": top-$modal.height()});
 
