@@ -3,7 +3,7 @@ Helpy: A Modern Helpdesk Alternative
 
 Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide an open source alternative to commercial helpdesk solutions like Zendesk or desk.com
 
-[![Build Status](https://img.shields.io/travis/scott/helpy.svg)](https://travis-ci.org/scott/helpy)
+[![Build Status](https://img.shields.io/travis/scott/helpy/master.svg)](https://travis-ci.org/scott/helpy)
 
 ![](http://helpy.io/images/HelpyBrowser.png)
 
