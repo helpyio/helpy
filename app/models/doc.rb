@@ -19,6 +19,8 @@
 #  points           :integer          default(0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  topics_count     :integer          default(0)
+#  allow_comments   :boolean          default(TRUE)
 #
 
 class Doc < ActiveRecord::Base
