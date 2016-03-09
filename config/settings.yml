@@ -28,7 +28,7 @@ smtp_mail_username: # Enter your SMTP email username
 smtp_mail_password: # Enter your SMTP email password
 mail_smtp: 'smtp.mandrillapp.com' #Enter the server address for your SMTP server
 mail_port: 587 #Enter the port of your SMTP server
-mail_domain: #Enter your the heroku.com if you are on heroku, otherwise enter your domain
+mail_domain: #Enter the heroku.com if you are on heroku, otherwise enter your domain
 
 # Omniauth Config
 # You must sign up with each oauth provider you wish to support and uncomment and add the ID and secret
