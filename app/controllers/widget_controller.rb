@@ -6,12 +6,14 @@ class WidgetController < ApplicationController
   def index
 
     @locale = http_accept_language.compatible_language_from(I18n.available_locales)
-
-    @forums = Forum.ispublic.all
-
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
 
+    render 'topics/new', layout: 'widget'
+    
+  end
+
+  def thanks
 
   end
 

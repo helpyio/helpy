@@ -29,7 +29,42 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', '<%= Settings.google_analytics_id %>', 'auto');
-    </script>
+
+		$(document).ready(function(){
+		  $('form').find("input").each(function(ev)
+		  {
+		    if($(this).next("span")) {
+		     $(this).attr("placeholder", $(this).attr("placeholder") + " " + $(this).next("span").text());
+				 $(this).addClass('placeholder-error');
+				 $(this).next("span").hide();
+		  	}
+		  });
+		});
+
+
+		</script>
+
+		<style>
+		//  === WIDGET CONTENT STYLES ===
+
+		.widget-bg {
+		  background-color: #eee;
+		}
+
+		.widget-footer {
+		  margin-top: 200px;
+		}
+
+		label {
+		  display: none;
+		}
+
+		.placeholder-error::-webkit-input-placeholder {
+		    color: #red;
+		}
+
+
+		</style>
 	</head>
 
   <body>
@@ -38,15 +73,19 @@
       ga('send', 'pageview', { "title": document.title });
     </script>
     <div id="body-wrapper" class="container">
-    		<div class="row">
+<!--    		<div class="row">
     			<div class="col-md-12">
     				<div id="main-body" >
-    					<div id="main-content">
-    						<%= yield %>
-    					</div>
+    					<div id="main-content">-->
+								<% Globalize.with_locale(@locale) do %>
+								  <div class="widget-form">
+    								<%= yield %>
+									</div>
+								<% end %>
+    					<!--</div>
     				</div>
     			</div>
     		</div>
-    </div>
+    </div> -->
   </body>
 </html>

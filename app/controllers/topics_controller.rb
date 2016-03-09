@@ -191,12 +191,16 @@ class TopicsController < ApplicationController
       @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
 
       if @topic.private?
-        redirect_to ticket_path(@topic)
+        redirect_to params[:from] == 'widget' ? widget_thanks_path : ticket_path(@topic)
       else
         redirect_to topic_posts_path(@topic)
       end
     else
-      render :new
+      if params[:from] == 'widget'
+        render 'new', layout: 'widget'
+      else
+        render 'new'
+      end
     end
 
   end
