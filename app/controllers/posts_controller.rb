@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
     if @topic
-      @posts = @topic.posts.ispublic.active.all.chronologic
+      @posts = @topic.posts.ispublic.active.all.chronologic.includes(:user)
       @post = @topic.posts.new
 
       #@related = Topic.ispublic.by_popularity.front.tagged_with(@topic.tag_list)
@@ -99,7 +99,7 @@ class PostsController < ApplicationController
 
         }
         format.js {
-          if current_user.admin?
+          if params[:from] == 'admin' #posted from admin side
             fetch_counts
 
             @posts = @topic.posts.chronologic
@@ -113,7 +113,7 @@ class PostsController < ApplicationController
             end
             render 'admin/ticket'
 
-          else #current_user is a customer
+          else # posted from customer side
             @posts = @topic.posts.ispublic.chronologic.active
             unless @topic.assigned_user_id.nil?
               agent = User.find(@topic.assigned_user_id)
