@@ -28,6 +28,8 @@ require 'test_helper'
 class DocTest < ActiveSupport::TestCase
 
   should belong_to(:category)
+  should have_one(:topic)
+  should have_many(:posts)
   should validate_presence_of(:title)
   should validate_presence_of(:body)
   should validate_presence_of(:category_id)
