@@ -14,3 +14,54 @@ linters:
   # Forbid empty blocks
   EmptyRule:
     severity: error
+
+# TODO: Enable the following
+
+  ColorKeyword:
+    enabled: false
+  ColorVariable:
+    enabled: false
+  EmptyLineBetweenBlocks:
+    enabled: false
+  HexLength:
+    enabled: false
+  HexNotation:
+    enabled: false
+  IdSelector:
+    enabled: false
+  ImportPath:
+    enabled: false
+  ImportantRule:
+    enabled: false
+  Indentation:
+    enabled: false
+  LeadingZero:
+    enabled: false
+  MergeableSelector:
+    enabled: false
+  PropertySortOrder:
+    enabled: false
+  PropertySpelling:
+    enabled: false
+  QualifyingElement:
+    enabled: false
+  SelectorDepth:
+    enabled: false
+  SelectorFormat:
+    enabled: false
+  SingleLinePerSelector:
+    enabled: false
+  SpaceAfterComma:
+    enabled: false
+  SpaceAfterPropertyColon:
+    enabled: false
+  SpaceBeforeBrace:
+    enabled: false
+  StringQuotes:
+    enabled: false
+  TrailingSemicolon:
+    enabled: false
+  VendorPrefix:
+    enabled: false
+  ZeroUnit:
+    enabled: false
