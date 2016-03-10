@@ -283,6 +283,11 @@ Helpy.ready = function(){
     });
   });
 
+  // Autolink messages
+  $tobelinked = $('.content-row, .content-row > li, .post-body');
+  $tobelinked.html(
+    $tobelinked.html().autoLink({ target: "_blank" })
+  );
 };
 
 $.attachinary.config.template = '\
