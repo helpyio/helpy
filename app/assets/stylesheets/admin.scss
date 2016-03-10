@@ -165,7 +165,7 @@ ul.dropdown-menu {
 	min-height: 500px;
 }
 
-trix-editor {
+.trix-editor {
 	min-height: 500px;
 }
 
@@ -214,15 +214,15 @@ a.stats.active {
 
 .stats .hover-stats {
 	cursor: pointer;
-    border: '1px solid #666';
-    box-shadow: '0px 0px 10px #eee';
+  border: 1px solid #666;
+  box-shadow: 0px 0px 10px #eee;
 }
 
 .stats .selected-stats {
 	color:  #000;
 	cursor: pointer;
-    border: '2px solid #666';
-    box-shadow: '0px 0px 10px #eee';
+  border: 2px solid #666;
+  box-shadow: 0px 0px 10px #eee;
 }
 
 .has-arrow {
