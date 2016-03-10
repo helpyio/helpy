@@ -118,6 +118,7 @@ group :development, :test do
   gem 'brakeman', require: false
 
   gem 'rubocop'
+  gem 'scss-lint'
 end
 
 group :development do
@@ -126,8 +127,6 @@ group :development do
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
-
-  gem 'scss-lint'
 end
 
 group :test do
