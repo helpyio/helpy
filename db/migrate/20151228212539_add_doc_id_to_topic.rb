@@ -12,9 +12,12 @@ class AddDocIdToTopic < ActiveRecord::Migration
     add_column :docs, :topics_count, :integer, default: 0
     add_column :docs, :allow_comments, :boolean, default: true
 
-    if Forum.where(name: 'Doc comments').nil?
-      f = Forum.create(name: 'Doc comments', description: 'Contains comments to docs', private: true)
-      f.save
+    if Forum.where(name: 'Doc comments').first.nil?
+      f = Forum.create!(
+        name: 'Doc comments',
+        description: 'Contains comments to docs',
+        private: true
+        )
     end
   end
 
@@ -23,7 +26,8 @@ class AddDocIdToTopic < ActiveRecord::Migration
     remove_column :docs, :topics_count
     remove_column :docs, :allow_comments
 
-    Forum.where(name: 'Doc comments').first.destroy
+    @forum = Forum.where(name: 'Doc comments').first
+    @forum.delete unless @forum.nil?
   end
 
 end

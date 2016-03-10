@@ -178,8 +178,8 @@ ActiveRecord::Schema.define(version: 20160222043130) do
     t.text     "post_cache"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.string   "locale"
     t.integer  "doc_id",           default: 0
+    t.string   "locale"
   end
 
   create_table "users", force: :cascade do |t|
