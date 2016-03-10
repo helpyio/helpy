@@ -43,7 +43,8 @@ th {
 	text-transform: uppercase;
 }
 
-td, th {
+td,
+th {
 	padding-left: 5px;
 	padding-right: 5px;
 	padding-top: 15px;
@@ -378,7 +379,8 @@ ul.dropdown-menu li a.strong {
   border-bottom: 0;
 }
 
-.login-button, .reset-button {
+.login-button,
+.reset-button {
   margin-top: 30px;
   margin-bottom: 40px;
 }
@@ -507,7 +509,12 @@ ul.dropdown-menu li a.strong {
 	margin-left: 14px;
 }
 
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
 		background-color: #666;
 		border-color: #666;
 }
@@ -539,7 +546,8 @@ h1#how-help {
 	padding-bottom: 100px;
 }
 
-#featured-categories, #featured-team {
+#featured-categories,
+#featured-team {
 	margin-top: 40px;
 	background-color: #fff;
 	margin-left: 20px;
@@ -671,7 +679,9 @@ div.status {
 
 //  === FORUM ===
 
-table#forums, table#topics, table#posts {
+table#forums,
+table#topics,
+table#posts {
 	width: 100%;
 	margin-bottom: 20px;
 }
@@ -699,7 +709,8 @@ table#forums, table#topics, table#posts {
 	padding-left: 0px;
 }
 
-.kind-reply, .kind-note {
+.kind-reply,
+.kind-note {
   margin-left: 50px;
 }
 

@@ -61,7 +61,9 @@ td > img {
 	padding-bottom: 30px;
 }
 
-#user-info-info h4, #user-info-info span, #user-info-info .tiny-header {
+#user-info-info h4,
+#user-info-info span,
+#user-info-info .tiny-header {
 	color: #333;
 }
 
@@ -349,6 +351,5 @@ a.stats.active {
 	#pipeline-wrapper {
 		padding-bottom: 0;
 		padding-top: 10px;
-
 	}
 }
