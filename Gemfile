@@ -126,7 +126,6 @@ group :development do
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
-  gem 'rubocop'
 
   gem 'scss-lint'
 end
