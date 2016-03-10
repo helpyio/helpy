@@ -31,8 +31,6 @@ linters:
     enabled: false
   ImportPath:
     enabled: false
-  ImportantRule:
-    enabled: false
   Indentation:
     enabled: false
   LeadingZero:
