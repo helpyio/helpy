@@ -35,8 +35,6 @@ linters:
     enabled: false
   LeadingZero:
     enabled: false
-  MergeableSelector:
-    enabled: false
   PropertySortOrder:
     enabled: false
   PropertySpelling:
