@@ -69,6 +69,7 @@ four:
   active: true
   rank: 40
   front_page: true
+  allow_comments: true
 
 five:
   id: 5

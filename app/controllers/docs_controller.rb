@@ -49,7 +49,7 @@ class DocsController < ApplicationController
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
       @title_tag = "#{Settings.site_name}: #{@custom_title}"
       @topic = @doc.topic
-      @posts = @topic.posts.ispublic.includes(:user) unless @topic.nil?
+      @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
 
       @forum = Forum.for_docs.first
 
@@ -181,7 +181,7 @@ class DocsController < ApplicationController
   private
 
   def doc_params
-    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id, {screenshots: []})
+    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id, :allow_comments, {screenshots: []})
   end
 
 end

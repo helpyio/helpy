@@ -55,3 +55,12 @@ five:
   allow_topic_voting: true
   allow_post_voting: true
   layout: qna
+
+six:
+  id: 6
+  name: Doc comments
+  description: This is a public forum
+  private: true
+  allow_topic_voting: false
+  allow_post_voting: false
+  layout: table
