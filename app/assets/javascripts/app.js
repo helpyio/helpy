@@ -284,10 +284,13 @@ Helpy.ready = function(){
   });
 
   // Autolink messages
-  $tobelinked = $('.post-body');
-  $tobelinked.html(
-    $tobelinked.html().autoLink({ target: "_blank" })
-  );
+  $('.post-body').each(function(){
+    var that = $(this);
+    var text = that.html();
+
+    that.html(text.autoLink({ target: "_blank" }));
+  });
+
 };
 
 $.attachinary.config.template = '\
