@@ -33,8 +33,6 @@ linters:
     enabled: false
   IdSelector:
     enabled: false
-  ImportPath:
-    enabled: false
   LeadingZero:
     enabled: false
   QualifyingElement:
