@@ -39,8 +39,6 @@ linters:
     enabled: false
   SelectorDepth:
     enabled: false
-  SelectorFormat:
-    enabled: false
   VendorPrefix:
     enabled: false
   ZeroUnit:
