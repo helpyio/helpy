@@ -18,5 +18,7 @@ script:
   - bundle exec bundle-audit check --update
   # Rubocop static code analyzer
   - bundle exec rubocop
+  # SCSS analyzer
+  - bundle exec scss-lint
 
 cache: bundler
