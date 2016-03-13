@@ -138,6 +138,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'launchy'
+  gem "codeclimate-test-reporter",require: nil
 end
 
 group :production do
