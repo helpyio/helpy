@@ -125,7 +125,7 @@
 					});
 
           // Load widget styles
-          loadCss(helpyDomain + "assets/widget.css");
+          loadCss(helpyDomain + "assets/widget.v1.css");
         });
 
     }
