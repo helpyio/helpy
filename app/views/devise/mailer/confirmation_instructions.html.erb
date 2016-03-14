@@ -1,5 +1,5 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= t('welcome', default: 'Welcome') %> <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p><%= t('confirmation_instructions.account_email', default: 'You can confirm your account email through the link below') %>:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to t('confirmation_instructions.account_confirm', default: 'Confirm my account'), confirmation_url(@resource, confirmation_token: @token) %></p>

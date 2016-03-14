@@ -192,12 +192,33 @@ en:
 
   # Mail messages
   hello: "Hello %{user_name}"
+  greetings: "Hello"
+  welcome: Welcome
   new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   account_generated: "An account has been generated for you. To sign in, please use this link:"
   above_this_line: "Make sure your reply appears above this line"
   message_id: "Message ID"
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
+
+  #Mail message Confirmation Instructions   #devise/mailer/confirmation_instructions.html.erb
+  confirmation_instructions:
+    account_email: "You can confirm your account email through the link below"
+    account_confirm: "Confirm my account"
+
+  #Mail Message Reset Password Instructions #devise/mailer/reset_password_instructions.html.erb
+  reset_password_instructions:
+      reset_link_request: "Someone has requested a link to change your password. You can do this through the link below"
+      change_password: "Change my password"
+      mail_ignore: "If you didn't request this, please ignore this email"
+      ignore_notice: "Your password won't change until you access the link above and create a new one"
+
+  #Mail Message Unlock Instructions #devise/mailer/unlock_instructions.html.erb
+  unlock_instructions:
+      account_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts"
+      unlock_link: "Click the link below to unlock your account"
+      unlock_account: "Unlock my account"
+
 
   activerecord:
     attributes:
