@@ -32,7 +32,7 @@ iframe {
   text-align: center;
   /* font-size: 26px; */
 	z-index: 999;
-	/*background: #fff;*/
+	background: #fff;
 	color: #fff;
 	border-radius: 50%;
 	box-shadow: 0 0 5px rgba(0,0,0,0.15);
@@ -57,7 +57,7 @@ i.icon.glyphicon.glyphicon-question-sign {
 	border-radius: 50%;
 	width: 60px;
 	height: 60px;
-	background: #FF8300;
+	background: #FFF;
 	z-index: -2;
 	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
 	-moz-transition: -moz-transform 0.2s, opacity 0.2s;

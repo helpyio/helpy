@@ -2,8 +2,8 @@
 
 (function () {
 
-    var scriptVersion = "1";
     var helpyDomain = "http://localhost:3000/";
+    var helpIcon = "helpy-logo.svg";
     var scriptName = "widget.v1.js"; //name of this script, used to get reference to own tag
     var jQuery; //noconflict reference to jquery
     var jqueryPath = "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js";
@@ -57,9 +57,7 @@
 
     function initjQuery() {
         jQuery = window.jQuery.noConflict(true);
-				$(document).ready(main());
-				$(document).on('page:load', main());
-
+				jQuery(document).ready(main());
     }
 
     /******** starting point for your widget ********/
@@ -70,10 +68,10 @@
 
           // create widget iframe object
           var $widgetIframe = $('<iframe>', {
-                               src: helpyDomain + "/widget",
+                               src: helpyDomain + "widget",
                                id:  'widget-frame',
                                frameborder: 0,
-                               height: 400,
+                               height: 380,
                                width: 340,
                                scrolling: 'no'
                              });
@@ -81,7 +79,7 @@
 					// Add container for widget
 					var $widgetContainer = $('<div class="popout"></div>');
 					$widgetContainer.append('<div class="widget-panel"></div>');
-					$widgetContainer.append('<div class="btn"><img src="http://localhost:3000/assets/helpy-logo.svg"></div>');
+					$widgetContainer.append('<div class="btn"><img src="' + helpyDomain + 'assets/' + helpIcon + '"></div>');
 
 					// Add container to page
 					$('body').append($widgetContainer);
@@ -126,10 +124,8 @@
 						event.stopPropagation();
 					});
 
-          loadCss("http://localhost:3000/assets/widget.css");
-
-          //example script load
-          //loadScript("http://example.com/anotherscript.js", function() { /* loaded */ });
+          // Load widget styles
+          loadCss(helpyDomain + "assets/widget.css");
         });
 
     }
