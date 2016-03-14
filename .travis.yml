@@ -22,3 +22,7 @@ script:
   - bundle exec scss-lint
 
 cache: bundler
+
+addons:
+    code_climate:
+        repo_token: 8aed69acf532241f5281042dc5b1a5d89ea9206773d079ce2de838a28f0f5041
