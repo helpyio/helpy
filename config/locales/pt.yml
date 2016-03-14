@@ -191,33 +191,33 @@ pt:
   create_new_community: "Criar uma Nova Comunidade"
 
   # Mail messages
-  hello: "Hello %{user_name}"
-  greetings: "Hello"
-  welcome: "Welcome"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
+  hello: "Olá %{user_name}"
+  greetings: "Olá"
+  welcome: "Bem-vindo"
+  new_user: "Obrigado por nos contactar. A sua mensagem foi recebida pela nossa equipa de suporte e iremos tratar do seu pedido assim que possível."
+  account_generated: "Foi criada uma conta para si no nosso sistema. Para fazer login use o seguinte link:"
+  above_this_line: "Por favor responda acima desta linha"
   message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
+  view_online: "Ver online:"
 
   #Mail message Confirmation Instructions   #devise/mailer/confirmation_instructions.html.erb
   confirmation_instructions:
-    account_email: "You can confirm your account email through the link below"
-    account_confirm: "Confirm my account"
+    account_email: "Pode confirmar a sua conta através do link em baixo"
+    account_confirm: "Confirmar a minha conta"
 
   #Mail Message Reset Password Instructions #devise/mailer/reset_password_instructions.html.erb
   reset_password_instructions:
-      reset_link_request: "Someone has requested a link to change your password. You can do this through the link below"
-      change_password: "Change my password"
-      mail_ignore: "If you didn't request this, please ignore this email"
-      ignore_notice: "Your password won't change until you access the link above and create a new one"
+      reset_link_request: "Foi solicitada a recuperação de password da sua conta. Para o fazer clique no link em baixo"
+      change_password: "Alterar a minha password"
+      mail_ignore: "Se este pedido não foi feito por si, por favor ignore este email"
+      ignore_notice: "A sua password não será alterada até que aceda ao link acima e crie uma nova"
 
   #Mail Message Unlock Instructions #devise/mailer/unlock_instructions.html.erb
   unlock_instructions:
-      account_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts"
-      unlock_link: "Click the link below to unlock your account"
-      unlock_account: "Unlock my account"
+      account_locked: "A sua conta foi bloqueada devido a um pedido excessivo de tentativas de login falhadas"
+      unlock_link: "Clique no link em baixo para desbloquear a sua conta"
+      unlock_account: "Desbloquear a minha conta"
 
   activerecord:
     attributes:
