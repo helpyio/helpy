@@ -27,6 +27,7 @@ class TopicsController < ApplicationController
 
   before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
   before_action :instantiate_tracker
+  before_filter :allow_iframe_requests
 
   layout "clean", only: [:new, :index]
 

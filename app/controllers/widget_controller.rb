@@ -10,17 +10,13 @@ class WidgetController < ApplicationController
     @user = @topic.build_user unless user_signed_in?
 
     render 'topics/new', layout: 'widget'
-    
+
   end
 
   def thanks
 
   end
 
-  protected
 
-  def allow_iframe_requests
-    response.headers.delete('X-Frame-Options')
-  end
 
 end
