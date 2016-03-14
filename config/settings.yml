@@ -11,7 +11,7 @@ site_name: Helpy Support # This is the name of your support site
 site_tagline: Support and Helpdesk Software # This is the tagline of your support site
 product_name: # This is the product name your are supporting
 support_phone: # This is the support number to be displayed
-app_favico: favicon.ico #Full or partial url for app favicon
+app_favicon: favicon.ico #Full or partial url for app favicon
 app_large_logo: logo.png #Full or partial url app large logo
 app_mini_logo: logo.png # Full or partial url for app mini logo
 
