@@ -1,7 +1,7 @@
 class WidgetController < ApplicationController
 
   layout 'widget'
-  before_filter :allow_iframe_requests
+  before_action :allow_iframe_requests
 
   def index
 
