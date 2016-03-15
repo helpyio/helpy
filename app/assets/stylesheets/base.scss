@@ -1,11 +1,20 @@
+html {
+  height: 100%;
+}
+
 html,
 body {
-    max-width: 100%;
-    overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  min-height: 100%;
 	position: relative;
+}
+
+.content {
+  margin-bottom: 200px;
 }
 
 a {
@@ -766,7 +775,9 @@ table#posts {
 }
 
 #footer-wrapper {
+  position: absolute;
   width: 100%;
+  bottom: 0;
   background-color: #222;
 }
 
