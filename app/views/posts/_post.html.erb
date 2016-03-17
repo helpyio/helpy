@@ -15,7 +15,7 @@
 			</span>
 		</span>
 
-		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
+		<div id="post-body-<%= post.id %>" class="post-body less-important text-left text-content">
 			<%= simple_format(post.body) -%>
 			<% if post.topic.forum.allow_post_voting == true %>
 			<div id="post-vote-<%= post.id %>" class="btn btn-default">
