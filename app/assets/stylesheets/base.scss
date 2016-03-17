@@ -1,19 +1,48 @@
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+html {
+  height: 100%;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  min-height: 100%;
 	position: relative;
+}
+
+.content {
+  margin-bottom: 200px;
 }
 
 a {
 	color: #333;
 	text-decoration: none;
+  overflow: hidden;
+
+  &.list-group-item {
+    border: 0px;
+    padding-left: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
 }
 
 tr {
 	height: 50px;
+
+  &.even td {
+    border-top: 1px #ddd solid;
+    background-color: #fff;
+    padding-top:5px;
+  }
+
+  &.odd td {
+    border-top: 1px #ddd solid;
+    padding-top:5px;
+  }
 }
 
 th {
@@ -23,12 +52,10 @@ th {
 	text-transform: uppercase;
 }
 
-td, th {
+td,
+th {
 	padding-left: 5px;
 	padding-right: 5px;
-}
-
-td, th {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -98,16 +125,16 @@ textarea {
 //  === GLOBAL STYLES ===
 
 .truncate-ellipsis {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-    white-space: nowrap;
-}
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
 
-.truncate-ellipsis > * {
+  > * {
     display: table-cell;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
 }
 
 #page-title {
@@ -116,10 +143,9 @@ textarea {
 	padding-bottom: 10px;
 	margin-bottom: 15px;
 
-}
-
-#page-title.row {
-	padding-top: 10px;
+  &.row {
+    padding-top: 10px;
+  }
 }
 
 #page-title-right > div > form {
@@ -130,29 +156,27 @@ ul.breadcrumb {
 	background-color: #feffe9;
 	margin-bottom: 0px;
 	padding-left: 0px;
-	padding-bottom: 0px;;
+	padding-bottom: 0px;
 }
 
 #upper-wrapper {
 	margin-bottom: 5px;
 	padding: 0px;
 	background-color: #fff;
-
 	-webkit-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
 	-moz-box-shadow: 0px 0px 8px 0px rgba(196,196,196,1);
 	box-shadow: 0px 0px 12px 0px rgba(196,196,196,1);
 
-}
-
-#upper-wrapper > div {
-	padding-top: 10px;
-	padding-bottom: 0px;
+  > div {
+    padding-top: 10px;
+    padding-bottom: 0px;
+  }
 }
 
 div.add-form {
 	background-color: rgba(192,255,193,0.25);
 	padding: 10px;
-	margin-top: 40px
+	margin-top: 40px;
 }
 
 .add-screenshots {
@@ -202,11 +226,6 @@ div.admin-tools {
 	font-weight: bold;
 	text-transform: uppercase;
 	padding-bottom: 5px;
-}
-
-.tiny_header li a {
-	padding-left: 0px;
-	margin-left: 0px;
 }
 
 //  === GLOBAL CLASSES ===
@@ -278,18 +297,8 @@ div.admin-tools {
 }
 
 .active {
+  // scss-lint:disable ImportantRule
 	background-color: #fff !important;
-}
-
-tr.even td {
-	border-top: 1px #ddd solid;
-	background-color: #fff;
-	padding-top:5px;
-}
-
-tr.odd td {
-	border-top: 1px #ddd solid;
-	padding-top:5px;
 }
 
 .author {
@@ -300,23 +309,16 @@ tr.odd td {
 .more-important {
 	font-weight: bold;
 	font-size: 105%;
-	font-color: #444;
 }
 
 span.more-important a {
 	font-weight: bold;
 	font-size: 105%;
-	font-color: #444;
-}
-
-a {
-    overflow: hidden;
 }
 
 span.more-important a:link {
 	font-weight: bold;
 	font-size: 105%;
-	font-color: #444;
 }
 
 .less-important {
@@ -369,7 +371,7 @@ ul.dropdown-menu li a.strong {
 }
 
 .active-item-shadow {
-    box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px
+    box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px;
 }
 
 //  == MODAL ===
@@ -378,7 +380,8 @@ ul.dropdown-menu li a.strong {
   border-bottom: 0;
 }
 
-.login-button, .reset-button {
+.login-button,
+.reset-button {
   margin-top: 30px;
   margin-bottom: 40px;
 }
@@ -405,41 +408,43 @@ ul.dropdown-menu li a.strong {
 
 #left-nav ul {
 	list-style-image: none;
-}
 
-#left-nav ul li a {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	margin-right: 5px;
-	padding: 8px;
-	list-style-image: none;
-	margin-bottom: 5px;
-}
+  li {
+    font-size: 120%;
+    background-color: #fff;
+    list-style-image: none;
+    display: block;
 
-#left-nav ul li a:hover {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	background-color: #eee;
-	padding:  8px;
-	list-style-image: none;
-}
+    a {
+      font-weight: normal;
+      text-decoration: none;
+      display: block;
+      margin-right: 5px;
+      padding: 8px;
+      list-style-image: none;
+      margin-bottom: 5px;
 
-#left-nav ul li a.current {
-	font-weight: normal;
-	text-decoration: none;
-	display: block;
-	margin-right: 5px;
-	padding: 8px;
-	background-color: #555;
-}
+      // scss-lint:disable NestingDepth
 
-#left-nav ul li {
-	font-size: 120%;
-	background-color: #fff;
-	list-style-image: none;
-	display: block;
+      &:hover {
+        font-weight: normal;
+        text-decoration: none;
+        display: block;
+        background-color: #eee;
+        padding:  8px;
+        list-style-image: none;
+      }
+
+      &.current {
+        font-weight: normal;
+        text-decoration: none;
+        display: block;
+        margin-right: 5px;
+        padding: 8px;
+        background-color: #555;
+      }
+    }
+  }
 }
 
 #body-wrapper {
@@ -447,7 +452,15 @@ ul.dropdown-menu li a.strong {
 }
 
 #did-this-help {
-	margin-top: 80px;
+  margin-top: 80px;
+
+  h3 {
+    margin-top: 20px;
+  }
+}
+
+#did-this-help-buttons {
+  margin-top: 20px;
 }
 
 //  === BOOTSTRAP OVERRIDES ==
@@ -463,22 +476,21 @@ ul.dropdown-menu li a.strong {
 	padding:0px;
 	font-size:180%;
 	padding-top: 10px;
+
+  a {
+    color: #666;
+  }
 }
 
 .navbar {
-	margin-bottom: 0px;
-	background-color: #fff;
-	border: 0px;
-	padding-bottom: 5px;
-}
+  margin-bottom: 0px;
+  background-color: #fff;
+  border: 0px;
+  padding-bottom: 5px;
 
-.navbar > li > a {
-	background-color: #fff;
-}
-
-
-.navbar-brand a {
-	color:  #666;
+  > li > a {
+    background-color: #fff;
+  }
 }
 
 .navbar-right {
@@ -495,10 +507,15 @@ ul.dropdown-menu li a.strong {
 
 .navbar-nav .form-control {
 	width: 86%;
-	margin-left: 14px
+	margin-left: 14px;
 }
 
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
 		background-color: #666;
 		border-color: #666;
 }
@@ -530,7 +547,8 @@ h1#how-help {
 	padding-bottom: 100px;
 }
 
-#featured-categories, #featured-team {
+#featured-categories,
+#featured-team {
 	margin-top: 40px;
 	background-color: #fff;
 	margin-left: 20px;
@@ -554,15 +572,17 @@ h1#how-help {
 
 .right-inner-addon {
     position: relative;
-}
-.right-inner-addon input {
+
+  input {
     padding-right: 30px;
-}
-.right-inner-addon i {
+  }
+
+  i {
     position: absolute;
     right: 0px;
     padding: 10px 12px;
     pointer-events: none;
+  }
 }
 
 li.team-member {
@@ -597,37 +617,23 @@ ul.articles {
 
 li.article {
 	padding-top: 5px;
-}
-li.article-more {
-	padding-left: 12px;
+
+  > span {
+    font-size: 70%;
+  }
 }
 
-li.article > span {
-	font-size: 70%;
+li.article-more {
+  padding-left: 12px;
 }
 
 h5.category-header {
-	font-size: 110%;
-	font-weight: 600;
-}
+  font-size: 110%;
+  font-weight: 600;
 
-h5.category-header > a {
-	color: #333;
-}
-
-a.list-group-item {
-	border: 0px;
-	padding-left: 2px;
-	padding-top: 4px;
-	padding-bottom: 4px;
-}
-
-#did-this-help h3 {
-	margin-top: 20px;
-}
-
-#did-this-help-buttons {
-	margin-top: 20px;
+  > a {
+    color: #333;
+  }
 }
 
 .doc-meta {
@@ -680,17 +686,16 @@ div.status {
 
 //  === FORUM ===
 
-table#forums, table#topics, table#posts {
+table#forums,
+table#topics,
+table#posts {
 	width: 100%;
 	margin-bottom: 20px;
 }
 
+#forums tbody tr,
 #forums tbody tr td {
-	border-bottom: 1px solid #eee;
-}
-
-#forums tbody tr {
-	border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 //  === DISCUSSION ===
@@ -711,7 +716,8 @@ table#forums, table#topics, table#posts {
 	padding-left: 0px;
 }
 
-.kind-reply, .kind-note {
+.kind-reply,
+.kind-note {
   margin-left: 50px;
 }
 
@@ -724,7 +730,7 @@ table#forums, table#topics, table#posts {
 }
 
 .vote-icon {
-  font-size: 80%
+  font-size: 80%;
 }
 
 .grid-vote {
@@ -757,45 +763,47 @@ table#forums, table#topics, table#posts {
 	padding-bottom: 20px;
 }
 
-#footer h5 {
-	color:  #fff;;
+#footer {
+  color: #777;
+  background-color: #222;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+
+  a {
+    color: #888;
+    text-decoration: none;
+  }
+
+  h5 {
+    color:  #fff;
+  }
 }
 
 #footer-wrapper {
-	width: 100%;
-	background-color: #222;
-}
-
-#footer {
-	color: #777;
-	background-color: #222;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 10px;
-}
-
-#footer a {
-	color: #888;
-	text-decoration: none;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #222;
 }
 
 //  === IDEABOARD ===
 
 .idea-box {
-    max-height: 120px;
-}
+  max-height: 120px;
 
-.idea-box .thumbnail {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 5px;
-  right: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  text-align:center;
-  padding-top: 10px;
-  max-height: 100px;
+  .thumbnail {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 5px;
+    right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align:center;
+    padding-top: 10px;
+    max-height: 100px;
+  }
 }
 
 //  === Q&A ===
