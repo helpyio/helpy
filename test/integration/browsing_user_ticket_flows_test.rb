@@ -78,4 +78,19 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "a browsing user should be able to create a private ticket via widget" do
+
+    visit '/widget'
+
+    assert_difference('Post.count', 1) do
+      fill_in('topic_user_email', with: 'joe@test.com')
+      fill_in('topic_user_name', with: 'Joe Guy')
+      fill_in('topic[name]', with: 'I got problems')
+      fill_in('post[body]', with: 'Please help me!!')
+      click_on('Start Discussion')
+    end
+
+  end
+
+
 end

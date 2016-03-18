@@ -132,4 +132,23 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     end
 
   end
+
+  test "a signed in user should be able to create a private ticket via widget" do
+
+    sign_in
+
+    visit '/widget'
+
+    assert_difference('Post.count', 1) do
+      fill_in('topic[name]', with: 'I got problems')
+      fill_in('post[body]', with: 'Please help me!!')
+      click_on('Start Discussion')
+    end
+
+    visit '/en/tickets/'
+    assert page.has_content?('Tickets')
+    assert page.has_content?("##{Topic.last.id}- I got problems")
+
+  end
+
 end
