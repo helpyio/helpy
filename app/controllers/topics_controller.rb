@@ -198,6 +198,7 @@ class TopicsController < ApplicationController
       end
     else
       if params[:from] == 'widget'
+        @widget = true
         render 'new', layout: 'widget'
       else
         render 'new'
