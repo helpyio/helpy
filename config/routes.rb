@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
     get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
     get '/communities' => 'admin#communities', as: :admin_communities
-    #get '/users'
+    get '/users' => 'admin#users', as: :admin_users
     get '/user/:id/edit' => 'admin#edit_user', as: :admin_user
     get '/user/:id' => 'admin#user_profile', as: :user_profile
     get '/topic_search' => 'admin#topic_search', as: :admin_search
