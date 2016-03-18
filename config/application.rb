@@ -26,5 +26,9 @@ module Helpy
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = false
 
+    # We are using active_job and currently the inline backend.  You may change this if
+    # you want a more robust solution. The queue is used for emails.
+    # config.active_job.queue_adapter = your_adapter_here
+
   end
 end

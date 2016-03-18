@@ -147,7 +147,7 @@ class AdminController < ApplicationController
           :screenshots => params[:topic][:screenshots])
 
         # Send email
-        UserMailer.new_user(@user, @token).deliver_now
+        UserMailer.new_user(@user, @token).deliver_later
 
         # track event in GA
         @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')

@@ -178,7 +178,7 @@ class PostsController < ApplicationController
       end
 
       I18n.with_locale(email_locale) do
-        TopicMailer.new_ticket(@post.topic).deliver_now if @topic.private?
+        TopicMailer.new_ticket(@post.topic).deliver_later if @topic.private?
       end
     else
       logger.info("reply is not from admin, don't email") #might want to cchange this if we want admin notification emails
