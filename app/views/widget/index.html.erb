@@ -2,14 +2,12 @@
   <div class="widget-form">
   <%= bootstrap_form_for(@topic) do |f| -%>
 
-    <%= f.alert_message "Please fix the errors below." %>
+    <%#= f.alert_message "Please fix the errors below." %>
 
     <% unless user_signed_in? %>
       <%= f.fields_for @user do |u| %>
-
         <%= u.email_field :email, placeholder: I18n.t('activerecord.attributes.user.email'), hide_label: true %>
         <%= u.text_field :name, placeholder: I18n.t('activerecord.attributes.user.name'), hide_label: true %>
-
       <% end %>
     <% end %>
 
