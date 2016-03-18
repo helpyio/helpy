@@ -154,6 +154,7 @@ Helpy.ready = function(){
   // Use common reply
   $('#post_reply_id').on('change', function(){
     $('#post_body').val($('#post_reply_id option:selected').val());
+    $('.disableable').attr('disabled', false);
   });
 
   $('.post-menu span').off().on('click', function(){
@@ -269,6 +270,25 @@ Helpy.ready = function(){
     $('.forgot-form').show();
     $('.modal-title').text($('.forgot-form').data("title"));
     $('.modal-links').hide();
+  });
+
+  // Disable submit button if post not provided
+  $('.disable-empty').keyup(function(){
+    $('.disable-empty').each(function(){
+      if ($(this).val() == '') {
+        $('.disableable').attr('disabled', 'disabled');
+      } else {
+        $('.disableable').removeAttr('disabled');
+      }
+    });
+  });
+
+  // Autolink messages
+  $('.post-body').each(function(){
+    var that = $(this);
+    var text = that.html();
+
+    that.html(text.autoLink({ target: "_blank" }));
   });
 
 };

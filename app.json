@@ -7,7 +7,7 @@
     "knowledgebase"
   ],
   "website": "http://helpy.io/",
-  "repository": "https://github.com/scott/helpy/",
+  "repository": "https://github.com/helpyio/helpy/",
   "logo": "http://helpy.io/images/logo.png",
   "success_url": "/admin",
   "scripts": {

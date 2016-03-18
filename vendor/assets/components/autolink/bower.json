@@ -1,0 +1,16 @@
+{
+  "name": "autolink",
+  "version": "1.0.1",
+  "authors": [
+    "Bryan Woods <bryanwoods4e+NO_RECRUITERS_PLEASE@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "*",
+    "example",
+    "test"
+  ],
+  "main": [
+    "./autolink-min.js"
+  ]
+}

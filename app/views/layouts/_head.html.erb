@@ -19,7 +19,7 @@
 <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700|Lobster' rel='stylesheet' type='text/css'>
 
 <%= csrf_meta_tags %>
-<%= favicon_link_tag 'favicon.ico' %>
+<%= favicon_link_tag "#{Settings.app_favicon}" %>
 <%= cloudinary_js_config %>
 
 <% unless Rails.env.test? %>

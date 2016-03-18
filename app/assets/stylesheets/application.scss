@@ -15,7 +15,10 @@
 @import "magnific-popup/dist/magnific-popup";
 @import "animate.css/animate.min";
 @import "trix";
+// Note: need to specify .scss extension as there is also a .css file
+// scss-lint:disable ImportPath
 @import "bootstrap-social/bootstrap-social.scss";
+// scss-lint:enable ImportPath
 @import "jquery-ui";
 
 // Import all other custom Helpy stylesheets

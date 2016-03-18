@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5.2'
+gem 'rails', '4.2.6'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -118,6 +118,7 @@ group :development, :test do
   gem 'brakeman', require: false
 
   gem 'rubocop'
+  gem 'scss-lint'
 end
 
 group :development do
@@ -126,9 +127,6 @@ group :development do
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
-  gem 'rubocop'
-
-  gem 'scss-lint'
 end
 
 group :test do
@@ -140,6 +138,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'launchy'
+  gem "codeclimate-test-reporter",require: nil
 end
 
 group :production do

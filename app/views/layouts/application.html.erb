@@ -11,44 +11,51 @@
   ga('send', 'pageview', { "title": document.title });
 </script>
 
-<div id="top-bar"></div>
-<div id="upper-wrapper" class="jumbotron">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<%= render :partial => 'layouts/header' %>
+<div class="content">
+
+	<div id="top-bar"></div>
+	<div id="upper-wrapper" class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<%= render :partial => 'layouts/header' %>
+				</div>
+
 			</div>
 		</div>
 	</div>
-</div>
-<div id="body-wrapper" class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div id="main-body" >
-					<%#= bootstrap_flash %>
-					<div id="main-content">
-						<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
-						<%= yield %>
+	<div id="body-wrapper" class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="main-body" >
+						<%#= bootstrap_flash %>
+						<div id="main-content">
+							<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
+							<%= yield %>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+	</div>
 </div>
-<div id="get-help-wrapper" class="wrapper">
-	<div class="row">
-		<div class="container">
-			<div class="col-md-6 text-center">
-				<h3><%= t(:get_help_header, default: "Still Need Help??") %></h3>
-			</div>
-			<div class="col-md-6 text-center">
-				<%= link_to t(:get_help_button, default: "Start a Discussion with Us"), new_topic_path, class: 'btn btn-primary btn-lg get-help-button' %>
+
+<div id="footer-wrapper">
+
+	<div id="get-help-wrapper" class="wrapper">
+		<div class="row">
+			<div class="container">
+				<div class="col-md-6 text-center">
+					<h3><%= t(:get_help_header, default: "Still Need Help??") %></h3>
+				</div>
+				<div class="col-md-6 text-center">
+					<%= link_to t(:get_help_button, default: "Start a Discussion with Us"), new_topic_path, class: 'btn btn-primary btn-lg get-help-button' %>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div id="footer-wrapper">
+
 	<div class="container">
-			<%= render :partial => 'layouts/footer' %>
+		<%= render :partial => 'layouts/footer' %>
 	</div>
 </div>
 </body>
