@@ -1,9 +1,16 @@
 require "test_helper"
 require "capybara/rails"
+#require 'capybara/poltergeist'
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+
+#  Capybara.javascript_driver = :poltergeist
+#  Capybara.register_driver :poltergeist do |app|
+#    Capybara::Poltergeist::Driver.new(app, {js_errors: false})
+#  end
+
 end
 
 def sign_in(email='scott.miller@test.com')
@@ -16,6 +23,7 @@ def sign_in(email='scott.miller@test.com')
 end
 
 def sign_in_by_modal(email='scott.miller@test.com')
+  visit('/')
   within("div#above-header") do
     click_on "Sign in", wait: 30
   end
