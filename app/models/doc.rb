@@ -34,7 +34,7 @@ class Doc < ActiveRecord::Base
   validates :category_id, presence: true
 
   include PgSearch
-  multisearchable :against => [:title, :body, :keywords]
+  multisearchable :against => [:title, :body, :keywords], :if => :active
 
   has_paper_trail
 
