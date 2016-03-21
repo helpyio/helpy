@@ -138,6 +138,51 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "an admin should be able to translate a doc" do
+
+    assert current_path == "/admin"
+
+    click_link 'Content'
+
+    # First create content
+    click_link "New Content"
+    assert_difference('Doc.count', 1) do
+      fill_in("doc_title", with: "New Article")
+      select("active and featured", from: "doc_category_id")
+      execute_script('$("trix-editor").html("This is the article content")')
+      fill_in("doc_keywords", with: "Keywords")
+      fill_in("doc_title_tag", with: "Title")
+      fill_in("doc_meta_description", with: "This is the description")
+      check("doc_front_page")
+      choose("doc_active_true")
+      click_on("Save Changes")
+      sleep(1)
+    end
+
+    # Now we will edit it
+    assert current_path == "/admin/content/1/articles"
+    assert page.has_content?("active and featured")
+    @doc = Doc.where(title: "New Article").first
+
+    within("tr#doc-#{@doc.id}") do
+      find(".glyphicon-align-justify").click
+      click_on("Edit")
+    end
+
+    # Select Francais
+    select("Français", from: 'lang')
+
+    fill_in("doc_title", with: "En Français")
+    fill_in("doc_keywords", with: "Français")
+    fill_in("doc_meta_description", with: "Français")
+    click_on("Save Changes")
+
+    # Verify FR is active
+    within("tr#doc-#{@doc.id}") do
+      page.has_css?("span.badge.FR")
+    end
+
+  end
 
 
 end
