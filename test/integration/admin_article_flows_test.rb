@@ -1,0 +1,143 @@
+require 'integration_test_helper'
+include Warden::Test::Helpers
+
+class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
+
+  def setup
+    Warden.test_mode!
+    I18n.available_locales = [:en, :fr, :et]
+    I18n.locale = :en
+
+    Capybara.current_driver = Capybara.javascript_driver
+    sign_in("admin@test.com")
+  end
+
+  def teardown
+    click_logout
+    Warden.test_reset!
+    Capybara.use_default_driver
+  end
+
+  test "an admin should be able to manage knowledgebase docs for a category" do
+
+    assert current_path == "/admin"
+
+    click_link 'Content'
+
+    within("tr#category-1") do
+      find(".glyphicon-align-justify").click
+      click_link "View and Edit Content"
+    end
+
+    #assert current_path == "/admin/content/1/articles"
+    assert page.has_content?("active and featured")
+    assert page.has_content?("New Content")
+    assert page.has_content?("New Category")
+
+    # Should see available locales represented
+    assert page.has_content?("EN")
+    assert page.has_content?("FR")
+    assert page.has_content?("ET")
+
+    within("tr#doc-1") do
+      find(".glyphicon-align-justify").click
+      assert find_link("Edit")
+      assert find_link("Delete")
+      assert find_link("View on Site")
+    end
+
+  end
+
+  test "an admin should be able to add, and edit a knowledgebase document" do
+
+    assert current_path == "/admin"
+    click_link 'Content'
+
+    sleep(1)
+
+    # First create content
+    click_link "New Content"
+    assert_difference('Doc.count', 1) do
+      fill_in("doc_title", with: "New Article")
+      select("active and featured", from: "doc_category_id")
+      execute_script('$("trix-editor").html("This is the article content")')
+      fill_in("doc_keywords", with: "Keywords")
+      fill_in("doc_title_tag", with: "Title")
+      fill_in("doc_meta_description", with: "This is the description")
+      check("doc_front_page")
+      choose("doc_active_true")
+      click_on("Save Changes")
+      sleep(1)
+    end
+
+    # Now we will edit it
+    assert current_path == "/admin/content/1/articles"
+    assert page.has_content?("active and featured")
+    @doc = Doc.where(title: "New Article").first
+
+    within("tr#doc-#{@doc.id}") do
+      find(".glyphicon-align-justify").click
+      click_on("Edit")
+    end
+
+    #assert current_path == "/admin/knowledgebase/#{@category.id}/edit?lang=en&locale=en"
+    assert page.has_content?("Edit: New Article")
+
+    fill_in("doc_title", with: "New Article (edited)")
+    select("active and featured", from: "doc_category_id")
+    execute_script('$("trix-editor").html("This is the article content (edited)")')
+    fill_in("doc_keywords", with: "Keywords (edited)")
+    fill_in("doc_title_tag", with: "Title (edited)")
+    fill_in("doc_meta_description", with: "This is the description (edited)")
+    check("doc_front_page")
+    choose("doc_active_true")
+    click_on("Save Changes")
+
+    assert current_path == "/admin/content/1/articles"
+
+  end
+
+  test "an admin should be able to delete an article" do
+
+    assert current_path == "/admin"
+    click_link 'Content'
+
+    sleep(1)
+    click_link "New Content"
+
+    assert_difference('Doc.count', 1) do
+      fill_in("doc_title", with: "New Article to Delete")
+      select("active and featured", from: "doc_category_id")
+      execute_script('$("trix-editor").html("This is the article content")')
+      fill_in("doc_keywords", with: "Keywords")
+      fill_in("doc_title_tag", with: "Title")
+      fill_in("doc_meta_description", with: "This is the description")
+      check("doc_front_page")
+      choose("doc_active_true")
+      click_on("Save Changes")
+      sleep(1)
+    end
+
+    click_link 'Content'
+    within("tr#category-1") do
+      find(".glyphicon-align-justify").click
+      click_link "View and Edit Content"
+    end
+
+    @doc = Doc.where(title: "New Article to Delete").first
+
+    assert_difference('Doc.count', -1) do
+      within("tr#doc-#{@doc.id}") do
+        find(".glyphicon-align-justify").click
+        sleep(1)
+        click_on("Delete")
+        sleep(1)
+        execute_script "$('a.btn.proceed.btn-primary').click()"
+        sleep(1)
+      end
+    end
+  end
+
+
+
+end

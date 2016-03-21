@@ -7,15 +7,17 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     Warden.test_mode!
     I18n.available_locales = [:en, :fr, :et]
     I18n.locale = :en
+
+    sign_in
   end
 
   def teardown
+    click_logout
     Warden.test_reset!
+    Capybara.use_default_driver
   end
 
   test "a signed in user should be able to create a private ticket via the web interface" do
-
-    sign_in
 
     visit '/en'
     visit '/en/topics/new/'
@@ -37,8 +39,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a signed in user should be able to create a public topic via the web interface" do
 
-    sign_in
-
     visit '/en'
     visit '/en/topics/new/'
 
@@ -59,8 +59,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a signed in user should be able to reply to a private ticket" do
 
-    sign_in
-
     visit '/en'
     visit '/en/tickets'
 
@@ -79,8 +77,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a logged in user should be prompted to create a new public topic" do
 
-    sign_in
-
     forums = [  "/en/community/3-public-forum/topics",
                 "/en/community/4-public-idea-board/topics",
                 "/en/community/5-public-q-a/topics" ]
@@ -95,8 +91,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a logged in user should not see the reply button when viewing a public topic" do
 
-    sign_in
-
     topics = [ "/en/topics/5-new-public-topic/posts",
                "/en/topics/8-new-idea/posts",
                "/en/topics/7-new-question/posts" ]
@@ -110,8 +104,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "a signed in user should be able to reply to a public topic" do
-
-    sign_in
 
     topics = [ "/en/topics/5-new-public-topic/posts",
                "/en/topics/8-new-idea/posts",
