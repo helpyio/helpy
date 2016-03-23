@@ -36,7 +36,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     check("doc_front_page")
     choose("doc_active_true")
     click_on("Save Changes")
-    sleep(1)
+    sleep(3)
 
     @doc = Doc.where(title: title).first
   end
@@ -99,7 +99,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     sleep(3)
 
     # Now we will edit it
-    assert current_path == "/admin/content/#{@doc.category_id}/articles"
+    assert current_path == "/admin/content/1/articles"
     assert page.has_content?("active and featured")
 
     within("tr#doc-#{@doc.id}") do
@@ -178,7 +178,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     @doc = Doc.where(title: 'Translate This').first
 
     # Now we will edit it
-    assert current_path == "/admin/content/#{@doc.category_id}/articles"
+    assert current_path == "/admin/content/1/articles"
     assert page.has_content?("active and featured")
     @doc = Doc.last
 

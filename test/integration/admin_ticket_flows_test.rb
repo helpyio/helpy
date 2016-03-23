@@ -71,7 +71,8 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     click_link("Admin User (2)")
     sleep(2)
     assert page.has_no_content?("unassigned")
-    assert_equal(0, Topic.open.count)
+    @open = Topic.open.count
+    assert_equal(0, @open)
 
     # Next lets mark all new discussions resolved
     click_on("New")
