@@ -18,9 +18,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
-  def create_discussion
+  def create_discussion(subject="")
     click_on "New Discussion"
-
+    sleep(2)
     fill_in("topic_user_email", with: "scott.smith@test.com")
     fill_in("topic_user_name", with: "Scott Smith")
     fill_in("topic_name", with: "New test message from admin form")
@@ -118,7 +118,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("article1 text")
   end
 
-  test "an admin should be able to edit, deactivate and turn a post into content" do
+  test "an admin should be able to edit deactivate and turn a post into content" do
 
     create_discussion
     sleep(1)
@@ -171,7 +171,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "an admin should be able to change status, privacy or assignment of a discussion from the detailed view" do
+  test "an admin should be able to change status privacy or assignment of a discussion from the detailed view" do
     assert current_path == "/admin"
 
     @admin = User.find(1)
