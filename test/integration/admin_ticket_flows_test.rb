@@ -138,7 +138,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     @post = Post.last
 
     # Edit the reply
-    within ("div#post-#{@post.id}") do
+    within("div#post-#{@post.id}") do
       find('span.post-tools').click
       #click_on("Admin User replied...")
       sleep(1)
@@ -156,7 +156,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("PUBLIC")
 
     # Make the reply inactive and verify it is not visible onsite
-    within ("div#post-#{@post.id}") do
+    within("div#post-#{@post.id}") do
       find('span.post-tools').click
       #click_on("Admin User replied...")
       sleep(1)
@@ -165,7 +165,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
       click_on("Save Changes")
     end
 
-    visit ('/en/topics/9-new-test-message-from-admin-form/posts')
+    visit('/en/topics/9-new-test-message-from-admin-form/posts')
     assert page.has_no_content?("That was way too long, lets try something shorter")
 
 

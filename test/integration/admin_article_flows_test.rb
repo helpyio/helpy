@@ -64,7 +64,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "an admin should be able to add, and edit a knowledgebase document" do
+  test "an admin should be able to add and edit a knowledgebase document" do
 
     assert current_path == "/admin"
     click_link 'Content'

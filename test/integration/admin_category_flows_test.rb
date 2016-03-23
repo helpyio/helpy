@@ -120,7 +120,6 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     fill_in("category_title_tag", with: "Français")
     fill_in("category_meta_description", with: "Français")
     click_on("Update Category")
-    save_screenshot('/Users/scott/workspace/cat.png', :full => true)
 
     # Verify FR is active
     within("tr#category-#{@cat.id}") do
