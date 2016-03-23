@@ -29,6 +29,8 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     choose("doc_active_true")
     click_on("Save Changes")
     sleep(1)
+
+    @doc = Doc.where(title: title).first
   end
 
   test "an admin should be able to manage knowledgebase docs for a category" do
@@ -54,9 +56,10 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
 
     within("tr#doc-1") do
       find(".glyphicon-align-justify").click
-      assert find_link("Edit")
-      assert find_link("Delete")
-      assert find_link("View on Site")
+      sleep(1)
+      assert find_link("Edit"), "Edit not found"
+      assert find_link("Delete"), "Delete not found"
+      assert find_link("View on Site"), "View on site not found"
 
       # This is to avoid a weird poltergeist error and is not needed for the test
       click_link("Edit")
@@ -87,7 +90,6 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
       click_on("Edit")
     end
 
-    #assert current_path == "/admin/knowledgebase/#{@category.id}/edit?lang=en&locale=en"
     assert page.has_content?("Edit: New Article")
 
     fill_in("doc_title", with: "New Article (edited)")
