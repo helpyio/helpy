@@ -17,7 +17,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
       'http://fonts.googleapis.com',
       'http://fonts.gstatic.com'
     ]
-    
+
   end
 
   def teardown
@@ -154,14 +154,25 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
 
     # First create content
     click_link "New Content"
-    #assert_difference('Doc.count', 1) do
-      create_doc
-    #end
 
+    fill_in("doc_title", with: "Translate This")
+    select("active and featured", from: "doc_category_id")
+    execute_script('$("trix-editor").html("This is the article content")')
+    fill_in("doc_keywords", with: "Keywords")
+    fill_in("doc_title_tag", with: "Title")
+    fill_in("doc_meta_description", with: "This is the description")
+    check("doc_front_page")
+    choose("doc_active_true")
+    click_on("Save Changes")
+    sleep(1)
+
+    @doc = Doc.where(title: 'Translate This').first
+
+    #create_doc
     sleep(3)
 
     # Now we will edit it
-    assert current_path == "/admin/content/1/articles"
+    assert current_path == "/admin/content/#{@doc.category.id}/articles"
     assert page.has_content?("active and featured")
     @doc = Doc.last
 

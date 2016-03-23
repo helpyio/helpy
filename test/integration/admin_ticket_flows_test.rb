@@ -17,7 +17,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
       'http://fonts.googleapis.com',
       'http://fonts.gstatic.com'
     ]
-    
+
   end
 
   def teardown
@@ -26,7 +26,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
-  def create_discussion(subject="")
+  def create_discussion
     click_on "New Discussion"
     sleep(2)
     fill_in("topic_user_email", with: "scott.smith@test.com")
