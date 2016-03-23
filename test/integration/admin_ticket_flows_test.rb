@@ -10,6 +10,14 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     Capybara.current_driver = Capybara.javascript_driver
     sign_in("admin@test.com")
+
+    page.driver.browser.url_blacklist = [
+      'http://www.google.com',
+      'http://google-analytics.com',
+      'http://fonts.googleapis.com',
+      'http://fonts.gstatic.com'
+    ]
+    
   end
 
   def teardown
