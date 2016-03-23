@@ -66,6 +66,8 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(2)
     check("check-all")
     sleep(2)
+    
+    @open = Topic.open.count
     assert page.has_content?("#{Topic.open.count} SELECTED MESSAGES")
     find("span.ticket-agent").click
     click_link("Admin User (2)")
