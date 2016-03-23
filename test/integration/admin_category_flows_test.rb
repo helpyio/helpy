@@ -18,6 +18,22 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
+  def create_category(name = "New Category")
+    within("span.admin-options") do
+      click_link "New Category"
+    end
+
+    fill_in("category_name", with: name)
+    fill_in("category_icon", with: "align-justify")
+    fill_in("category_keywords", with: "Keywords")
+    fill_in("category_title_tag", with: "Title")
+    fill_in("category_meta_description", with: "This is the description")
+    check("category_front_page")
+    click_on("Create Category")
+    sleep(2)
+    @cat = Category.where(name: name).first
+  end
+
   test "an admin should be able to manage knowledgebase categories" do
 
     assert current_path == "/admin"
@@ -34,11 +50,15 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
 
     within("tr#category-1") do
       find(".glyphicon-align-justify").click
+      sleep(1)
       assert find_link("Edit")
       assert find_link("Delete")
       assert find_link("View and Edit Content")
       assert find_link("New Content")
     end
+
+    #This is for poltergeist
+    click_on("Edit")
   end
 
   test "an admin should be able to add and edit a knowledgebase category" do
@@ -48,23 +68,15 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_link 'Content'
 
     # First create category
-    click_link "New Category"
     assert_difference('Category.count', 1) do
-      fill_in("category_name", with: "New Category")
-      fill_in("category_icon", with: "align-justify")
-      fill_in("category_keywords", with: "Keywords")
-      fill_in("category_title_tag", with: "Title")
-      fill_in("category_meta_description", with: "This is the description")
-      check("category_front_page")
-      click_on("Create Category")
+      create_category
     end
 
     # Now we will edit it
     assert current_path == "/admin/content"
     assert page.has_content?("New Category")
-    @category = Category.where(name: "New Category").first
 
-    within("tr#category-#{@category.id}") do
+    within("tr#category-#{@cat.id}") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
@@ -88,23 +100,30 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
 
     click_link 'Content'
 
+    # First create category
+    assert_difference('Category.count', 1) do
+      create_category("Translate This")
+    end
+
     # Now translate into French
-    within("tr#category-1") do
+    within("tr#category-#{@cat.id}") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
 
     # Select Francais
     select("Français", from: 'lang')
-
+    sleep(3)
     fill_in("category_name", with: "En Français")
-    fill_in("category_keywords", with: "Français")
+    fill_in("category_icon", with: "En Français")
+    fill_in("category_keywords", with: "align-justify")
     fill_in("category_title_tag", with: "Français")
     fill_in("category_meta_description", with: "Français")
     click_on("Update Category")
+    save_screenshot('/Users/scott/workspace/cat.png', :full => true)
 
     # Verify FR is active
-    within("tr#category-1") do
+    within("tr#category-#{@cat.id}") do
       page.has_css?("span.badge.FR")
     end
 
@@ -113,28 +132,20 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
   test "an admin should be able to delete a category" do
 
     assert current_path == "/admin"
-
     click_link 'Content'
 
     # First create category
-    click_link "New Category"
     assert_difference('Category.count', 1) do
-      fill_in("category_name", with: "Deleteable Category")
-      fill_in("category_icon", with: "align-justify")
-      fill_in("category_keywords", with: "Keywords")
-      fill_in("category_title_tag", with: "Title")
-      fill_in("category_meta_description", with: "This is the description")
-      check("category_front_page")
-      click_on("Create Category")
+      create_category
     end
-    sleep(1)
-    @cat = Category.where(name: 'Deleteable Category').first
 
     click_link 'Content'
+    sleep(3)
+
     assert_difference('Category.count', -1) do
       within("tr#category-#{@cat.id}") do
-        find(".glyphicon-align-justify").click
-        sleep(1)
+        find("span.glyphicon-align-justify").click
+        sleep(2)
         click_on("Delete")
         sleep(1)
         execute_script "$('a.btn.proceed.btn-primary').click()"
@@ -142,5 +153,4 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
       end
     end
   end
-
 end

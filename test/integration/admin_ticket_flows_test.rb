@@ -186,6 +186,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     click_on("##{Topic.last.id}- #{Topic.last.name}")
 
     #Next, assign the message to admin
+    sleep(2)
     find("span.ticket-agent").click
     click_link "Admin User (#{@admin.active_assigned_count})"
     sleep(1)

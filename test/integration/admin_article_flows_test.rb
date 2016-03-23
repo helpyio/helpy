@@ -172,7 +172,10 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     click_on("Save Changes")
 
     # Verify FR is active
-    #assert page.has_css?("span.badge.FR")
+    within("tr#doc-#{@doc.id}") do
+      page.has_css?("span.badge.FR")
+    end
+
 
   end
 

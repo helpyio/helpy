@@ -10,7 +10,7 @@ class ActionDispatch::IntegrationTest
     Capybara::Poltergeist::Driver.new(app,
       js_errors: false,
       debug: false,
-      window_size: [1920, 6000]
+      window_size: [1920, 2000]
     )
   end
 
@@ -49,7 +49,7 @@ def click_logout
   find('a.navbar-brand').click
   sleep(2)
   within("div#above-header") do
-    find('.logout-link').trigger('click')
+    click_on("Logout")
   end
   sleep(3)
 end
