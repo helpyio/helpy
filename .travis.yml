@@ -25,4 +25,7 @@ cache: bundler
 
 addons:
     code_climate:
-        repo_token: 8aed69acf532241f5281042dc5b1a5d89ea9206773d079ce2de838a28f0f5041
+        repo_token: "8aed69acf532241f5281042dc5b1a5d89ea9206773d079ce2de838a28f0f5041"
+    sauce_connect:
+        username: "helpy"
+        access_key: "3f385552-7722-4daa-a3de-c8df23989ad9"
