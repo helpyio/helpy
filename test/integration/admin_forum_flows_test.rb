@@ -23,14 +23,19 @@ class AdminForumFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin"
 
     click_link 'Communities'
+    sleep(3)
+    assert current_path == "/admin/communities"
+    assert page.has_content?("Admin Communities")
 
     assert page.has_content?("Create New Community")
 
-    within("tr#forum-3") do
-      find(".glyphicon-align-justify").click
-      assert find_link("Edit")
-      assert find_link("Delete")
-    end
+    find("span#row-3").click
+    assert find_link("Edit")
+    assert find_link("Delete")
+
+    # This is to avoid a weird poltergeist error and is not needed for the test
+    click_link("Edit")
+
   end
 
   test "an admin should be able to add and edit a community forum" do
@@ -66,10 +71,8 @@ class AdminForumFlowsTest < ActionDispatch::IntegrationTest
     uncheck("forum_allow_post_voting")
     click_on("Save Changes")
 
-
     assert current_path == "/admin/communities"
     assert page.has_content?("New Forum (edited)")
-
   end
 
   test "an admin should be able to delete a Forum" do
@@ -102,5 +105,8 @@ class AdminForumFlowsTest < ActionDispatch::IntegrationTest
         sleep(1)
       end
     end
+
+    assert page.has_content?("Admin Communities")
   end
+
 end

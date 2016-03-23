@@ -110,57 +110,6 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-=begin
-
-  test "an admin should be able to add, edit, and delete a knowledgebase document" do
-
-    assert current_path == "/admin"
-
-    click_link 'Content'
-
-    # First create content
-    click_link "New Content"
-    assert_difference('Doc.count', 1) do
-      fill_in("doc_title", with: "New Article")
-      select("active and featured", from: "doc_category_id")
-      fill_in("doc_body_trix_input_doc", with: "This is the article content")
-      fill_in("doc_keywords", with: "Keywords")
-      fill_in("doc_title_tag", with: "Title")
-      fill_in("doc_meta_description", with: "This is the description")
-      check("doc_front_page")
-      choose("true", from: "doc_active")
-      click_on("Save Changes")
-    end
-
-    # Now we will edit it
-    assert current_path == "/admin/content/1/articles"
-    #assert page.has_content?("active and featured")
-    @doc = Doc.where(name: "New Article").first
-
-    within("tr#doc-#{@category.id}") do
-      find(".glyphicon-align-justify").click
-      click_on("Edit")
-    end
-
-    #assert current_path == "/admin/knowledgebase/#{@category.id}/edit?lang=en&locale=en"
-    assert page.has_content?("Edit: New Article")
-
-    fill_in("doc_title", with: "New Article (edited)")
-    select("active_and_featured", from: "doc_category_id")
-    fill_in("doc_body_trix_input_doc", with: "This is the article content (edited)")
-    fill_in("doc_keywords", with: "Keywords (edited)")
-    fill_in("doc_title_tag", with: "Title (edited)")
-    fill_in("doc_meta_description", with: "This is the description (edited)")
-    check("doc_front_page")
-    choose("true", from: "doc_active")
-    click_on("Save Changes")
-
-    assert current_path == "/admin/content/1/articles"
-
-  end
-
-=end
-
   test "an admin should be able to delete a category" do
 
     assert current_path == "/admin"

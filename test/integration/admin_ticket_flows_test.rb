@@ -118,6 +118,59 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("article1 text")
   end
 
+  test "an admin should be able to edit, deactivate and turn a post into content" do
+
+    create_discussion
+    sleep(1)
+    click_on("New")
+    sleep(1)
+    click_on("##{Topic.last.id}- #{Topic.last.name}")
+    sleep(1)
+    assert page.has_content?("Reply to this Topic")
+
+    # Reply with text
+    assert_difference('Post.count', 1) do
+      fill_in("post_body", with: "Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks and only print them to the logs. In the next version, these errors will no longer be suppressed. Instead, the errors will propagate normally just like in other Active Record callbacks.")
+      click_on("Post Reply")
+      sleep(1)
+    end
+
+    @post = Post.last
+
+    # Edit the reply
+    within ("div#post-#{@post.id}") do
+      find('span.post-tools').click
+      #click_on("Admin User replied...")
+      sleep(1)
+      click_link 'Edit'
+      fill_in('post_body', with: "That was way too long, lets try something shorter... Currently, Active Record suppresses errors raised within... blah blah")
+      click_on("Save Changes")
+    end
+
+    assert page.has_content?("blah blah")
+
+    # Make this message public
+    find("span.ticket-forum").click
+    click_link "Move: Public Forum"
+    sleep(1)
+    assert page.has_content?("PUBLIC")
+
+    # Make the reply inactive and verify it is not visible onsite
+    within ("div#post-#{@post.id}") do
+      find('span.post-tools').click
+      #click_on("Admin User replied...")
+      sleep(1)
+      click_link 'Edit'
+      uncheck("post_active")
+      click_on("Save Changes")
+    end
+
+    visit ('/en/topics/9-new-test-message-from-admin-form/posts')
+    assert page.has_no_content?("That was way too long, lets try something shorter")
+
+
+  end
+
   test "an admin should be able to change status, privacy or assignment of a discussion from the detailed view" do
     assert current_path == "/admin"
 
@@ -129,7 +182,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     #Now view it
     sleep(1)
     click_on("New")
-    sleep(1)
+    sleep(3)
     click_on("##{Topic.last.id}- #{Topic.last.name}")
 
     #Next, assign the message to admin
@@ -149,8 +202,6 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     click_link "Mark Resolved"
     sleep(1)
     assert page.has_content?("This ticket has been closed by the support staff.")
-
-
 
   end
 
