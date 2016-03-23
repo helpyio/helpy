@@ -137,7 +137,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
-  #gem 'poltergeist'
+  gem 'poltergeist'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
 end
