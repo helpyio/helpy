@@ -5,13 +5,13 @@ require "capybara/poltergeist"
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
-  Capybara.default_wait_time = 15
+
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app,
       js_errors: false,
       debug: false,
       window_size: [1920, 2000],
-      timeout: 15
+      timeout: 120
     )
   end
 
