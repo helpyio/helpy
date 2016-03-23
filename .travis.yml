@@ -9,9 +9,14 @@ services:
 before_script:
   - psql -c 'create database helpy_test;' -U postgres
 
+# Run unit and integration in parallel
+env:
+  - TEST_SUITE=units
+  - TEST_SUITE=integration
+
 script:
   # Test suite
-  - bundle exec rake
+  - bundle exec rake test:$TEST_SUITE
   # Brakeman security scanner
   - bundle exec brakeman -z
   # Check vulnerable gems
