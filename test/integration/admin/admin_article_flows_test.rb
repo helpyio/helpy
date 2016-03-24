@@ -100,9 +100,9 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
 
     # Now we will edit it
     # assert current_path == "/admin/content/1/articles"
-    assert page.has_content?("active and featured")
+    #assert page.has_content?("active and featured")
 
-    within("tr#doc-#{@doc.id}") do
+    within("tr#doc-6") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
@@ -119,7 +119,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     choose("doc_active_true")
     click_on("Save Changes")
 
-    assert current_path == "/admin/content/#{@doc.category_id}/articles"
+    assert current_path == "/admin/content/1/articles"
 
   end
 
@@ -128,47 +128,19 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin"
     click_link 'Content'
 
-    sleep(1)
-    click_link "New Content"
-
-    #assert_difference('Doc.count', 1) do
-      #create_doc
-      # First create content
-      click_link "New Content"
-      fill_in("doc_title", with: "Add Doc")
-      select("active and featured", from: "doc_category_id")
-      execute_script('$("trix-editor").html("This is the article content")')
-      fill_in("doc_keywords", with: "Keywords")
-      fill_in("doc_title_tag", with: "Title")
-      fill_in("doc_meta_description", with: "This is the description")
-      check("doc_front_page")
-      choose("doc_active_true")
-      click_on("Save Changes")
-      sleep(3)
-
-      @doc = Doc.where(title: "Add Doc").first
-
-
-    #end
-
-    click_link 'Content'
     within("tr#category-1") do
       find(".glyphicon-align-justify").click
       click_link "View and Edit Content"
     end
 
-    @doc = Doc.where(title: "New Article").first
-
-    #assert_difference('Doc.count', -1) do
-      within("tr#doc-#{@doc.id}") do
-        find(".glyphicon-align-justify").click
-        sleep(1)
-        click_on("Delete")
-        sleep(1)
-        execute_script "$('a.btn.proceed.btn-primary').click()"
-        sleep(1)
-      end
-    #end
+    within("tr#doc-5") do
+      find(".glyphicon-align-justify").click
+      sleep(1)
+      click_on("Delete")
+      sleep(1)
+      execute_script "$('a.btn.proceed.btn-primary').click()"
+      sleep(1)
+    end
   end
 
   test "an admin should be able to translate a doc" do
@@ -177,28 +149,12 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
 
     click_link 'Content'
 
-    # First create content
-    click_link "New Content"
+    within("tr#category-1") do
+      find(".glyphicon-align-justify").click
+      click_link "View and Edit Content"
+    end
 
-    fill_in("doc_title", with: "Translate This")
-    select("active and featured", from: "doc_category_id")
-    execute_script('$("trix-editor").html("This is the article content")')
-    fill_in("doc_keywords", with: "Keywords")
-    fill_in("doc_title_tag", with: "Title")
-    fill_in("doc_meta_description", with: "This is the description")
-    check("doc_front_page")
-    choose("doc_active_true")
-    click_on("Save Changes")
-    sleep(3)
-
-    @doc = Doc.where(title: 'Translate This').first
-
-    # Now we will edit it
-    #assert current_path == "/admin/content/1/articles"
-    assert page.has_content?("active and featured")
-    @doc = Doc.last
-
-    within("tr#doc-#{@doc.id}") do
+    within("tr#doc-1") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
@@ -215,7 +171,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     click_on("Save Changes")
 
     # Verify FR is active
-    within("tr#doc-#{@doc.id}") do
+    within("tr#doc-1") do
       page.has_css?("span.badge.FR")
     end
 

@@ -66,3 +66,14 @@ four:
   active: true
   rank: 40
   front_page: true
+
+five:
+  id: 5
+  title: To be deleted
+  body: article 5 text
+  keywords: My article keywords 5
+  category_id: 1
+  user_id: 1
+  active: true
+  rank: 50
+  front_page: true
