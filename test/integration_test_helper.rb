@@ -10,7 +10,7 @@ class ActionDispatch::IntegrationTest
     Capybara::Poltergeist::Driver.new(app,
       js_errors: false,
       debug: false,
-      window_size: [1920, 2000],
+      window_size: [1500, 2000],
       timeout: 120
     )
   end

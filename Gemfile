@@ -140,6 +140,7 @@ group :test do
   gem 'poltergeist'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
+  gem 'capybara-screenshot'
 end
 
 group :production do
