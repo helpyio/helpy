@@ -8,19 +8,17 @@ services:
 # Setup Test Database
 before_script:
   - psql -c 'create database helpy_test;' -U postgres
+  - bundle install
 
 # Run unit and integration in parallel
 env:
-#  - TEST_SUITE=units
-#  - TEST_SUITE=integration
-  - TESTFOLDER=integration/admin
-  - TESTFOLDER=integration/web
-  - TESTFOLDER=units
-
+  - TEST_SUITE=units
+  - TEST_SUITE=controllers
+  - TEST_SUITE=integration
 
 script:
   # Test suite
-  - bundle exec rake test:$TESTFOLDER
+  - bundle exec rake test:$TEST_SUITE
   # Brakeman security scanner
   - bundle exec brakeman -z
   # Check vulnerable gems
