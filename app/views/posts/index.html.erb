@@ -5,9 +5,9 @@
 			Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
 		</script>
 
-		<table id="posts">
+		<div id="posts">
 			<%= render :partial => 'post', :collection => @posts %>
-		</table>
+		</div>
 
 		<%
 		# NOTE: this is a bit of confusing logic- basically if the forum does not
