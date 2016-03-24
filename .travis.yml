@@ -11,12 +11,16 @@ before_script:
 
 # Run unit and integration in parallel
 env:
-  - TEST_SUITE=units
-  - TEST_SUITE=integration
+#  - TEST_SUITE=units
+#  - TEST_SUITE=integration
+  - TESTFOLDER=integration/admin
+  - TESTFOLDER=integration/web
+  - TESTFOLDER=units
+
 
 script:
   # Test suite
-  - bundle exec rake test:$TEST_SUITE
+  - bundle exec rake test:$TESTFOLDER
   # Brakeman security scanner
   - bundle exec brakeman -z
   # Check vulnerable gems
