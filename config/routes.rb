@@ -59,6 +59,7 @@ Rails.application.routes.draw do
       resources :docs, only: [:new, :edit]
     end
 
+    get '/stats' => 'admin#stats', as: :admin_stats
     get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
     get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
     get '/content/:category_id/articles' => 'admin#articles', as: :admin_articles
