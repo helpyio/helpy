@@ -25,7 +25,7 @@
   <% end %>
 
   <%= f.text_field :name, :size => 40, placeholder: I18n.t(:subject), label: 'Subject', class: 'disable-empty' -%>
-  <%= text_area :post, :body, :rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty' -%>
+  <%= text_area :post, :body, :rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control' -%>
   <div class="add-screenshots">
   <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
   </div>
