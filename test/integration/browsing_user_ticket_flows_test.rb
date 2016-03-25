@@ -87,7 +87,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
       fill_in('topic_user_name', with: 'Joe Guy')
       fill_in('topic[name]', with: 'I got problems')
       fill_in('post[body]', with: 'Please help me!!')
-      click_on('Start Discussion')
+      click_on('Start Discussion', disabled: true)
     end
 
   end

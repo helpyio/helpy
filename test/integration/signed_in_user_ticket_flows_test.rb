@@ -142,7 +142,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert_difference('Post.count', 1) do
       fill_in('topic[name]', with: 'I got problems')
       fill_in('post[body]', with: 'Please help me!!')
-      click_on('Start Discussion')
+      click_on('Start Discussion', disabled: true)
     end
 
     visit '/en/tickets/'
