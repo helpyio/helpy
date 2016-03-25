@@ -26,6 +26,7 @@ class Post < ActiveRecord::Base
   validates :kind, presence: true
 
   after_create  :update_waiting_on_cache
+  after_create  :assign_on_reply
   after_save  :update_topic_cache
   #after_save :send_message
 
@@ -66,6 +67,13 @@ class Post < ActiveRecord::Base
     unless self.kind == 'note'
       current_cache = self.topic.post_cache
       self.topic.update(post_cache: "#{current_cache} #{self.body}")
+    end
+  end
+
+  # Assign the parent topic if not assigned and this is a reply by admin
+  def assign_on_reply
+    if self.topic.assigned_user_id.nil? #&& self.topic.private == false
+      self.topic.assigned_user_id = self.user.admin? ? self.user_id : nil
     end
   end
 
