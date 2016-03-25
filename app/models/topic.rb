@@ -52,6 +52,7 @@ class Topic < ActiveRecord::Base
   scope :mine, -> (user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
   scope :spam, -> { where(current_status: "spam")}
+  scope :assigned, -> { where.not(assigned_user_id: nil) }
 
   scope :chronologic, -> { order('updated_at DESC') }
   scope :by_popularity, -> { order('points DESC') }

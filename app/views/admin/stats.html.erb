@@ -18,33 +18,65 @@ end
 
 <div class="row">
   <div class="col-md-12">
-    <table>
+    <table class="table table-striped table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Assigned Topics</th>
+          <th>Responded Topics</th>
+          <th>Replies Sent</th>
+          <th>Topics Closed</th>
+          <th>
+            Median Time to First Response
+          </th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
-          <th>Topic Count</th>
-          <td><%= Topic.count %></td>
+          <th>Total</th>
+
+          <% topic_count = Topic.undeleted.count %>
+          <td><%= topic_count %></td>
+
+          <% responded_topic_count = Topic.undeleted.where('posts_count > 1').count %>
+          <td>
+            <%= responded_topic_count %> / <%= topic_count %> =
+            <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
+          </td>
+
+          <% posts_count = Post.count %>
+          <td><%= posts_count %></td>
+
+          <% closed_topic_count = Topic.undeleted.closed.count %>
+          <td><%= closed_topic_count %></td>
+
+          <% delays = Topic.undeleted.where('posts_count > 1').map { |t| t.posts.second.created_at - t.created_at } %>
+          <td><%= distance_of_time_in_words median(delays) %></td>
         </tr>
-        <tr>
-          <th>Topic Count (excluding deleted)</th>
-          <td><%= Topic.undeleted.count %></td>
-        </tr>
-        <tr>
-          <th>Unresponded Topics</th>
-          <td><%= Topic.undeleted.where('posts_count <= 1').count %></td>
-        </tr>
-        <tr>
-          <th>Responded Topics</th>
-          <td><%= Topic.undeleted.where('posts_count > 1').count %></td>
-        </tr>
-        <% delays = Topic.undeleted.where('posts_count > 1').map { |t| t.posts.second.created_at - t.created_at } %>
-        <tr>
-          <th>Individual Delay Times (s)</th>
-          <td><%= delays %></td>
-        </tr>
-        <tr>
-          <th>Time to first response (seconds)</th>
-          <td><%= delays.min %> to <%= delays.max %> (mean = <%= mean(delays) %> / median = <%= median(delays) %>)</td>
-        </tr>
+        <% Topic.undeleted.assigned.select(:assigned_user_id).distinct.each do |t| %>
+          <tr>
+            <td><%= t.assigned_user.name %></td>
+
+            <% topic_count = Topic.undeleted.where(assigned_user: t.assigned_user).count %>
+            <td><%= topic_count %></td>
+
+            <% responded_topic_count = Topic.undeleted.where(assigned_user: t.assigned_user).where('posts_count > 1').count %>
+            <td>
+              <%= responded_topic_count %> / <%= topic_count %> =
+              <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
+            </td>
+
+            <% posts_count = Post.where(user: t.assigned_user).count %>
+            <td><%= posts_count %></td>
+
+            <% closed_topic_count = Topic.undeleted.where(user: t.assigned_user).closed.count %>
+            <td><%= closed_topic_count %></td>
+
+            <% delays = Topic.undeleted.where(assigned_user: t.assigned_user).where('posts_count > 1').map { |t| t.posts.second.created_at - t.created_at } %>
+            <td><%= distance_of_time_in_words median(delays) %></td>
+
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
