@@ -2,7 +2,7 @@
 
 (function () {
 
-    var helpyDomain = "http://localhost:3000/";
+    var helpyDomain = Helpy.domain;
     var helpIcon = "helpy-logo.svg";
     var scriptName = "widget.v1.js"; //name of this script, used to get reference to own tag
     var jQuery; //noconflict reference to jquery
@@ -68,18 +68,24 @@
 
           // create widget iframe object
           var $widgetIframe = $('<iframe>', {
-                               src: helpyDomain + "widget",
+                               src: helpyDomain + "/widget",
                                id:  'widget-frame',
                                frameborder: 0,
-                               height: 380,
+                               //height: 380,
                                width: 340,
-                               scrolling: 'no'
+                               scrolling: 'no',
+                               class: 'widget-iframe'
                              });
 
 					// Add container for widget
 					var $widgetContainer = $('<div class="popout"></div>');
 					$widgetContainer.append('<div class="widget-panel"></div>');
-					$widgetContainer.append('<div class="btn"><img src="' + helpyDomain + 'assets/' + helpIcon + '"></div>');
+					$widgetContainer.append('<div class="btn"><img src="' + helpyDomain + '/assets/' + helpIcon + '"></div>');
+
+          // Resizer for Iframe
+          $('.widget-iframe').on('load', function(){
+            this.style.height=this.contentDocument.body.scrollHeight +'px';
+          });
 
 					// Add container to page
 					$('body').append($widgetContainer);
@@ -125,7 +131,7 @@
 					});
 
           // Load widget styles
-          loadCss(helpyDomain + "assets/widget.v1.css");
+          loadCss(helpyDomain + "/assets/widget.v1.css");
         });
 
     }

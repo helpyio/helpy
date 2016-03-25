@@ -74,19 +74,11 @@
       ga('send', 'pageview', { "title": document.title });
     </script>
     <div id="body-wrapper" class="container">
-<!--    		<div class="row">
-    			<div class="col-md-12">
-    				<div id="main-body" >
-    					<div id="main-content">-->
-								<% Globalize.with_locale(@locale) do %>
-								  <div class="widget-form">
-    								<%= yield %>
-									</div>
-								<% end %>
-    					<!--</div>
-    				</div>
-    			</div>
-    		</div>
-    </div> -->
+				<% Globalize.with_locale(@locale) do %>
+				  <div class="widget-form">
+						<%= yield %>
+					</div>
+				<% end %>
+		</div>
   </body>
 </html>
