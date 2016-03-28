@@ -13,6 +13,21 @@ class AdminController < ApplicationController
     @topics = Topic.mine(current_user.id).pending.page params[:page]
   end
 
+  def stats
+    @interval = params[:interval].try(:to_i) || 7
+    @topics = Topic.undeleted.where('topics.created_at > ?', @interval.days.ago)
+    @topic_count = @topics.count
+    @responded_topics = @topics.where('posts_count > 1')
+    @responded_topic_count = @responded_topics.count
+    @closed_topic_count = @topics.closed.count
+
+    @posts = Post.where('created_at > ?', @interval.days.ago)
+
+    delays = @responded_topics.map { |t| t.posts.second.created_at - t.created_at }
+
+    @median_first_response_time = median(delays) unless delays.empty?
+  end
+
   def knowledgebase
     @categories = Category.featured.ordered
     @nonfeatured = Category.where(front_page: false).alpha
@@ -436,6 +451,13 @@ class AdminController < ApplicationController
     else
       @topics = Topic.where(current_status: @status).page params[:page]
     end
+  end
+
+  # See: http://stackoverflow.com/a/14859546/1323144
+  def median(array)
+    sorted = array.sort
+    len = sorted.length
+    (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
   end
 
 end

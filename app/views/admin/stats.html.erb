@@ -7,73 +7,88 @@ def mean(array)
   array.inject{ |sum, el| sum + el }.to_f / array.size
 end
 
-# See: http://stackoverflow.com/a/14859546/1323144
-def median(array)
-  sorted = array.sort
-  len = sorted.length
-  (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
-end
-
 %>
 
 <div class="row">
+
+  <div class="col-md-12">
+    <h2>
+      Insights for <%= Settings.site_name %>
+
+      <%= link_to 'Last 7 days', admin_stats_path(interval: 7), class: "btn btn-#{params[:interval] == '7' ? 'primary' : 'default'}" %>
+      <%= link_to 'Last 28 days', admin_stats_path(interval: 28), class: "btn btn-#{params[:interval] == '28' ? 'primary' : 'default'}" %>
+      <%= link_to 'Last 90 days', admin_stats_path(interval: 90), class: "btn btn-#{params[:interval] == '90' ? 'primary' : 'default'}" %>
+    </h2>
+
+    <p>
+      <% if @topic_count > 0 %>
+        In the last
+        <strong><%= pluralize @interval, 'day' %></strong>
+        your users started
+        <strong><%= pluralize @topic_count, 'new conversation' %></strong>
+        of which your team replied to
+        <strong><%= @responded_topic_count %> (<%= number_to_percentage(@responded_topic_count.to_f / @topic_count.to_f * 100.00, precision: 1)  %>)</strong>
+        with a median first response time of
+        <strong><%= distance_of_time_in_words @median_first_response_time %></strong>.
+      <% else %>
+        No new conversations have been started in the last <strong><%= pluralize @interval, 'day' %></strong>.
+      <% end %>
+    </p>
+  </div>
+
   <div class="col-md-12">
     <table class="table table-striped table-bordered table-condensed">
       <thead>
         <tr>
-          <th>&nbsp;</th>
-          <th>Assigned Topics</th>
-          <th>Responded Topics</th>
-          <th>Replies Sent</th>
-          <th>Topics Closed</th>
+          <th>Agent</th>
+          <th>Assigned<br>Topics</th>
+          <th>Responded<br>Topics</th>
+          <th>Closed<br>Topics</th>
+          <th>Replies<br>Sent</th>
           <th>
-            Median Time to First Response
+            Median Time to<br>First Response
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>Total</th>
-
-          <% topic_count = Topic.undeleted.count %>
-          <td><%= topic_count %></td>
-
-          <% responded_topic_count = Topic.undeleted.where('posts_count > 1').count %>
-          <td>
-            <%= responded_topic_count %> / <%= topic_count %> =
-            <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
-          </td>
-
-          <% posts_count = Post.count %>
-          <td><%= posts_count %></td>
-
-          <% closed_topic_count = Topic.undeleted.closed.count %>
-          <td><%= closed_topic_count %></td>
-
-          <% delays = Topic.undeleted.where('posts_count > 1').map { |t| t.posts.second.created_at - t.created_at } %>
-          <td><%= distance_of_time_in_words median(delays) %></td>
-        </tr>
         <% Topic.undeleted.assigned.select(:assigned_user_id).distinct.each do |t| %>
           <tr>
             <td><%= t.assigned_user.name %></td>
 
-            <% topic_count = Topic.undeleted.where(assigned_user: t.assigned_user).count %>
-            <td><%= topic_count %></td>
+            <% topic_count = @topics.where(assigned_user: t.assigned_user).count %>
+            <td><%= topic_count.zero? ? '-' : topic_count %></td>
 
-            <% responded_topic_count = Topic.undeleted.where(assigned_user: t.assigned_user).where('posts_count > 1').count %>
+            <% responded_topic_count = @responded_topics.where(assigned_user: t.assigned_user).count %>
             <td>
-              <%= responded_topic_count %> / <%= topic_count %> =
-              <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
+              <% if responded_topic_count.zero? %>
+                -
+              <% else %>
+                <%= responded_topic_count %> / <%= topic_count %> =
+                <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
+              <% end %>
             </td>
 
-            <% posts_count = Post.where(user: t.assigned_user).count %>
-            <td><%= posts_count %></td>
-
             <% closed_topic_count = Topic.undeleted.where(user: t.assigned_user).closed.count %>
-            <td><%= closed_topic_count %></td>
+            <td>
+              <% if closed_topic_count.zero? %>
+                -
+              <% else %>
+                <%= closed_topic_count %> / <%= topic_count %> =
+                <%= number_to_percentage(closed_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
+              <% end %>
+            </td>
 
-            <% delays = Topic.undeleted.where(assigned_user: t.assigned_user).where('posts_count > 1').map { |t| t.posts.second.created_at - t.created_at } %>
-            <td><%= distance_of_time_in_words median(delays) %></td>
+            <% posts_count = @posts.where(user: t.assigned_user).count %>
+            <td><%= posts_count.zero? ? '-' : posts_count %></td>
+
+            <% delays = @responded_topics.where(assigned_user: t.assigned_user).map { |t| t.posts.second.created_at - t.created_at } %>
+            <td>
+              <% if delays.empty? %>
+                N/A
+              <% else %>
+                <%= distance_of_time_in_words median(delays) %>
+              <% end %>
+            </td>
 
           </tr>
         <% end %>
