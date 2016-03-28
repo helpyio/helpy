@@ -78,9 +78,10 @@ class PostTest < ActiveSupport::TestCase
 
   # Should not AA when already assigned
   # Should not AA when a note is posted
-  # Should not AA when if the topic is Public
   # Should not AA when the reply is posted by a non admin
   # Should AA when a reply is posted by an admin
+
+  # Note: decided that public posts should assigned if an admin replies to the thread
 
   test "Should not AA when topic is already assigned" do
 

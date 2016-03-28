@@ -72,7 +72,7 @@ class Post < ActiveRecord::Base
 
   # Assign the parent topic if not assigned and this is a reply by admin
   def assign_on_reply
-    if self.topic.assigned_user_id.nil? #&& self.topic.private == false
+    if self.topic.assigned_user_id.nil?
       self.topic.assigned_user_id = self.user.admin? ? self.user_id : nil
     end
   end
