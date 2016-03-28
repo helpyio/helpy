@@ -17,8 +17,14 @@ class AdminController < ApplicationController
     @interval = params[:interval].try(:to_i) || 7
     @topics = Topic.undeleted.where('topics.created_at > ?', @interval.days.ago)
     @topic_count = @topics.count
-    @responded_topics = @topics.where('posts_count > 1')
-    @responded_topic_count = @responded_topics.count
+    # Note: Cannot use 'posts_count' counter cache; we only count posts with kind='reply' (not 'first' or 'note').
+    responded_topic_ids = @topics
+      .joins(:posts)
+      .where(posts: { kind: 'reply' })
+      .group('topics.id')
+      .having('COUNT(posts.id) > 1')
+      .ids
+    @responded_topics = Topic.where(id: responded_topic_ids)
     @closed_topic_count = @topics.closed.count
 
     @posts = Post.where('created_at > ?', @interval.days.ago)

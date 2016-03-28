@@ -3,7 +3,7 @@
       </div>
       <%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo") + content_tag(:span, "Helpy Support", class: 'hidden-sm'), responsive: true, inverse: true do %>
           <%= menu_group pull: :right do %>
-              <%= menu_item 'Stats', admin_stats_path %>
+              <%= menu_item 'Stats', admin_stats_path(interval: 7) %>
               <%= menu_item t(:discussions, default: "Discussions"), admin_tickets_path %>
               <%= menu_item t(:content, default: "Content"), admin_knowledgebase_path, class:'kblink' if Settings.knowledgebase %>
               <%= menu_item t(:communities, default: "Communities"), admin_communities_path if Settings.forums %>

@@ -27,9 +27,11 @@ end
         your users started
         <strong><%= pluralize @topic_count, 'new conversation' %></strong>
         of which your team replied to
-        <strong><%= @responded_topic_count %> (<%= number_to_percentage(@responded_topic_count.to_f / @topic_count.to_f * 100.00, precision: 1)  %>)</strong>
-        with a median first response time of
-        <strong><%= distance_of_time_in_words @median_first_response_time %></strong>.
+        <strong><%= @responded_topics.count %> (<%= number_to_percentage(@responded_topics.count.to_f / @topic_count.to_f * 100.00, precision: 1)  %>)</strong>
+        <% if @responded_topics.count > 0 %>
+          with a median first response time of
+          <strong><%= distance_of_time_in_words @median_first_response_time %></strong>.
+        <% end %>
       <% else %>
         No new conversations have been started in the last <strong><%= pluralize @interval, 'day' %></strong>.
       <% end %>
@@ -51,16 +53,16 @@ end
         </tr>
       </thead>
       <tbody>
-        <% Topic.undeleted.assigned.select(:assigned_user_id).distinct.each do |t| %>
+        <% Topic.undeleted.select(:assigned_user_id).distinct.each do |t| %>
           <tr>
-            <td><%= t.assigned_user.name %></td>
+            <td><%= t.assigned_user.try(:name) || 'No Agent<br>(UNASSIGNED)'.html_safe %></td>
 
             <% topic_count = @topics.where(assigned_user: t.assigned_user).count %>
             <td><%= topic_count.zero? ? '-' : topic_count %></td>
 
-            <% responded_topic_count = @responded_topics.where(assigned_user: t.assigned_user).count %>
+            <% responded_topic_count = @responded_topics.where(assigned_user: t.assigned_user).length %>
             <td>
-              <% if responded_topic_count.zero? %>
+              <% if topic_count.zero? %>
                 -
               <% else %>
                 <%= responded_topic_count %> / <%= topic_count %> =
@@ -70,7 +72,7 @@ end
 
             <% closed_topic_count = Topic.undeleted.where(user: t.assigned_user).closed.count %>
             <td>
-              <% if closed_topic_count.zero? %>
+              <% if topic_count.zero? %>
                 -
               <% else %>
                 <%= closed_topic_count %> / <%= topic_count %> =
