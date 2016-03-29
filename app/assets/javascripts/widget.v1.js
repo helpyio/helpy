@@ -79,7 +79,7 @@
 
 					// Add container for widget
 					var $widgetContainer = $('<div class="popout"></div>');
-					$widgetContainer.append('<div class="widget-panel"></div>');
+					$widgetContainer.append('<div class="widget-panel hidden"></div>');
 					$widgetContainer.append('<div class="btn hidden-xs"><img src="' + helpyDomain + '/assets/' + helpIcon + '"></div>');
 
           // Resizer for Iframe
@@ -97,19 +97,20 @@
           document.getElementById('widget-frame').contentWindow.location.reload();
 
 					// add listeners
+
 					$(".popout .btn").off().on('click', function(e){
 
             // reload the iframe content
             $widgetIframe.attr('src', helpyDomain + "/widget");
 
 						$(this).toggleClass("active");
-						$(this).closest(".popout").find(".widget-panel").toggleClass("active");
+						$(this).closest(".popout").find(".widget-panel").toggleClass("active").removeClass("hidden");
 
 						var $button = $('.popout .btn');
 						var $modal = $('.popout .widget-panel');
 						var top = $button.position().top + $button.height() + (($button.outerHeight(true) - $button.height()));
 
-						$(".popout").css({"top": top-$modal.height()});
+//						$(".popout").css({"top": top-$modal.height()});
 
 						console.log($button.css('top'));
 						console.log(top);
@@ -117,8 +118,10 @@
 
 						e.stopPropagation();
 					});
+
 					$(document).click(function(){
 						$(".popout .widget-panel").removeClass("active");
+            $(".widget-panel").addClass("hidden");
 						$(".popout .btn").removeClass("active");
 					});
 
