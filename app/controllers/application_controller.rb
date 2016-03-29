@@ -69,4 +69,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def allow_iframe_requests
+    response.headers.delete('X-Frame-Options')
+  end
+
 end
