@@ -164,11 +164,11 @@ GEM
       griddler
     griddler-sendgrid (0.0.1)
       griddler
-    haml (4.0.7)
-      tilt
     griddler-sparkpost (0.0.1)
       griddler
       mail
+    haml (4.0.7)
+      tilt
     hashie (3.4.3)
     highline (1.7.8)
     hitimes (1.2.3)
@@ -543,3 +543,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.11.2

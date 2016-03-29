@@ -110,7 +110,7 @@
 						var $modal = $('.popout .widget-panel');
 						var top = $button.position().top + $button.height() + (($button.outerHeight(true) - $button.height()));
 
-//						$(".popout").css({"top": top-$modal.height()});
+						$(".popout").css({"top": top-$modal.height()});
 
 						console.log($button.css('top'));
 						console.log(top);
