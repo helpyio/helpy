@@ -47,7 +47,7 @@
 				<%= attachinary_file_field_tag 'post[screenshots]', @topic.posts.new, :screenshots unless Cloudinary.config.cloud_name.nil? %>
 				</div>
 				<%= hidden_field_tag :client_id %>
-				<%= f.submit t(:submit_reply) -%>
+				<%= f.submit t(:submit_reply), class: 'btn btn-warning' -%>
 			<% end -%>
 			</div>
 		<% end -%>
