@@ -7,8 +7,8 @@
   <% unless user_signed_in? %>
     <%= f.fields_for @user do |u| %>
 
-      <%= u.email_field :email, placeholder: I18n.t('activerecord.attributes.user.email'), autofocus: true %>
-      <%= u.text_field :name, placeholder: I18n.t('activerecord.attributes.user.name') %>
+      <%= u.email_field :email, placeholder: I18n.t('activerecord.attributes.user.email'), autofocus: true, class: 'topic-placeholder' %>
+      <%= u.text_field :name, placeholder: I18n.t('activerecord.attributes.user.name'), class: 'topic-placeholder' %>
 
     <% end %>
   <% end %>
@@ -24,8 +24,8 @@
     <%= f.hidden_field :forum_id, value: 1 %>
   <% end %>
 
-  <%= f.text_field :name, :size => 40, placeholder: I18n.t(:subject), label: 'Subject', class: 'disable-empty' -%>
-  <%= text_area :post, :body, :rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control' -%>
+  <%= f.text_field :name, :size => 40, placeholder: I18n.t(:subject), label: 'Subject', class: 'disable-empty topic-placeholder' -%>
+  <%= text_area :post, :body, :rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder' -%>
   <div class="add-screenshots">
   <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
   </div>
