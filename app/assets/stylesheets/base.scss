@@ -380,6 +380,24 @@ ul.dropdown-menu li a.strong {
     box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px;
 }
 
+// These styles hide the placeholder text for the web version, and they are are overridden on the widget:
+
+.topic-placeholder::-webkit-input-placeholder {
+   color: white;
+}
+
+.topic-placeholder:-moz-placeholder { /* Firefox 18- */
+   color: white;
+}
+
+.topic-placeholder::-moz-placeholder {  /* Firefox 19+ */
+   color: white;
+}
+
+.topic-placeholder:-ms-input-placeholder {
+   color: white;
+}
+
 //  == MODAL ===
 
 .modal-header {
