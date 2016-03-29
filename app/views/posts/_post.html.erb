@@ -15,7 +15,7 @@
 			</span>
 		</span>
 
-		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
+		<div id="post-body-<%= post.id %>" class="post-body less-important text-left text-content">
 			<%= simple_format(post.body) -%>
 			<% if post.topic.forum.allow_post_voting == true %>
 			<div id="post-vote-<%= post.id %>" class="btn btn-default">
@@ -47,7 +47,7 @@
 				<%= attachinary_file_field_tag 'post[screenshots]', @topic.posts.new, :screenshots unless Cloudinary.config.cloud_name.nil? %>
 				</div>
 				<%= hidden_field_tag :client_id %>
-				<%= f.submit t(:submit_reply) -%>
+				<%= f.submit t(:submit_reply), class: 'btn btn-warning' -%>
 			<% end -%>
 			</div>
 		<% end -%>

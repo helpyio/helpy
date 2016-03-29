@@ -30,6 +30,7 @@
 //= require magnific-popup/dist/jquery.magnific-popup.min.js
 //= require initial.js/initial.js
 //= require trix
+//= require autolink/autolink-min.js
 //= require app
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate

@@ -73,7 +73,7 @@ class ResultControllerTest < ActionController::TestCase
 
   end
 
-  test "a browing user shoud be able to search and find a newly created article" do
+  test "a browing user should be able to search and find a newly created article" do
     I18n.locale = :en
     assert_difference 'Doc.count', 1 do
       Doc.create(category_id: 1, title: "some title", body: 'some body text', locale: :en)
@@ -83,7 +83,14 @@ class ResultControllerTest < ActionController::TestCase
     assert_not_nil assigns(:results)
     assert_equal(1, assigns(:results).total_count, "Did not find results for the search for a new created Doc")
     assert_response :success
+  end
 
+  test "a browing user should not be able to find an unpublished article" do
+    I18n.locale = :en
+    Doc.create(category_id: 1, title: "some title", body: 'some body text', locale: :en, active: false)
+    get(:index, { q: 'some body text', locale: :en })
+    assert_equal(0, assigns(:results).total_count, "Found results for an inactive doc")
+    assert_response :success
   end
 
   test "a browing user shoud not see HTML code in the search results" do

@@ -1,36 +1,36 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.2.5.2)
-      actionpack (= 4.2.5.2)
-      actionview (= 4.2.5.2)
-      activejob (= 4.2.5.2)
+    actionmailer (4.2.6)
+      actionpack (= 4.2.6)
+      actionview (= 4.2.6)
+      activejob (= 4.2.6)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.5.2)
-      actionview (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    actionpack (4.2.6)
+      actionview (= 4.2.6)
+      activesupport (= 4.2.6)
       rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    actionview (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    actionview (4.2.6)
+      activesupport (= 4.2.6)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    activejob (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activejob (4.2.6)
+      activesupport (= 4.2.6)
       globalid (>= 0.3.0)
-    activemodel (4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activemodel (4.2.6)
+      activesupport (= 4.2.6)
       builder (~> 3.1)
-    activerecord (4.2.5.2)
-      activemodel (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    activerecord (4.2.6)
+      activemodel (= 4.2.6)
+      activesupport (= 4.2.6)
       arel (~> 6.0)
-    activesupport (4.2.5.2)
+    activesupport (4.2.6)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -93,6 +93,8 @@ GEM
     cloudinary (1.1.2)
       aws_cf_signer
       rest-client
+    codeclimate-test-reporter (0.5.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -119,6 +121,7 @@ GEM
     devise-bootstrap-views (0.0.7)
     devise-i18n (0.12.1)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -163,6 +166,9 @@ GEM
       griddler
     haml (4.0.7)
       tilt
+    griddler-sparkpost (0.0.1)
+      griddler
+      mail
     hashie (3.4.3)
     highline (1.7.8)
     hitimes (1.2.3)
@@ -284,16 +290,16 @@ GEM
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.5.2)
-      actionmailer (= 4.2.5.2)
-      actionpack (= 4.2.5.2)
-      actionview (= 4.2.5.2)
-      activejob (= 4.2.5.2)
-      activemodel (= 4.2.5.2)
-      activerecord (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    rails (4.2.6)
+      actionmailer (= 4.2.6)
+      actionpack (= 4.2.6)
+      actionview (= 4.2.6)
+      activejob (= 4.2.6)
+      activemodel (= 4.2.6)
+      activerecord (= 4.2.6)
+      activesupport (= 4.2.6)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.5.2)
+      railties (= 4.2.6)
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -314,9 +320,9 @@ GEM
       rails_stdout_logging
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.4)
-    railties (4.2.5.2)
-      actionpack (= 4.2.5.2)
-      activesupport (= 4.2.5.2)
+    railties (4.2.6)
+      actionpack (= 4.2.6)
+      activesupport (= 4.2.6)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
@@ -393,6 +399,11 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slim (3.0.6)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
@@ -464,6 +475,7 @@ DEPENDENCIES
   byebug
   capybara
   cloudinary (= 1.1.2)
+  codeclimate-test-reporter
   config
   daemons
   devise
@@ -481,6 +493,7 @@ DEPENDENCIES
   griddler-mandrill
   griddler-postmark
   griddler-sendgrid
+  griddler-sparkpost
   http_accept_language
   i18n-country-translations
   jbuilder (~> 2.0)
@@ -505,7 +518,7 @@ DEPENDENCIES
   pg
   pg_search
   quiet_assets
-  rails (= 4.2.5.2)
+  rails (= 4.2.6)
   rails-i18n (~> 4.0.0)
   rails-timeago
   rails_12factor

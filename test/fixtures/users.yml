@@ -84,3 +84,13 @@ oauth_user:
   admin: false
   role: user
   provider: github
+
+another_admin:
+  id: 5
+  login: admin2
+  identity_url: MyString
+  name: Admin Guy
+  email: guy@test.com
+  admin: true
+  role: admin
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK

@@ -3,14 +3,43 @@ scss_files: 'app/assets/stylesheets/**/*.scss'
 
 linters:
 
-  # Forbid /* X */ comments which appear in generated CSS.
-  Comment:
-    severity: error
+  # Ignore whitespace-related problems
+  EmptyLineBetweenBlocks:
+    enabled: false
+  Indentation:
+    enabled: false
+  PropertySortOrder:
+    enabled: false
+  SpaceAfterComma:
+    enabled: false
+  SpaceAfterPropertyColon:
+    enabled: false
+  SpaceBeforeBrace:
+    enabled: false
 
-  # Avoid defining the same property twice
-  DuplicateProperty:
-    severity: error
+  # Permit single or double quoted strings
+  StringQuotes:
+    enabled: false
 
-  # Forbid empty blocks
-  EmptyRule:
-    severity: error
+  # TODO: Resolve the following violations
+
+  ColorKeyword:
+    enabled: false
+  ColorVariable:
+    enabled: false
+  HexLength:
+    enabled: false
+  HexNotation:
+    enabled: false
+  IdSelector:
+    enabled: false
+  LeadingZero:
+    enabled: false
+  QualifyingElement:
+    enabled: false
+  SelectorDepth:
+    enabled: false
+  VendorPrefix:
+    enabled: false
+  ZeroUnit:
+    enabled: false

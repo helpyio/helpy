@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "locales#redirect_on_locale"
 
-  devise_for :users, skip: [:session, :password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, skip: [:password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   localized do
 
