@@ -32,5 +32,5 @@ ga('create', '<%= Settings.google_analytics_id %>', 'auto');
 </script>
 <% end %>
 <script>
-Helpy.domain = '<%= Settings.site_url %>';
+Helpy.domain = '<%= "//" + request.host %>';
 </script>

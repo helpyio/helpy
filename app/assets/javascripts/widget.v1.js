@@ -3,7 +3,7 @@
 (function () {
 
     var helpyDomain = Helpy.domain;
-    var helpIcon = "helpy-logo.svg";
+    var helpIcon = "helpy-logo.svg"; // 60x60 round icon, with 6px gutter
     var scriptName = "widget.v1.js"; //name of this script, used to get reference to own tag
     var jQuery; //noconflict reference to jquery
     var jqueryPath = "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js";
@@ -80,7 +80,7 @@
 					// Add container for widget
 					var $widgetContainer = $('<div class="popout"></div>');
 					$widgetContainer.append('<div class="widget-panel"></div>');
-					$widgetContainer.append('<div class="btn"><img src="' + helpyDomain + '/assets/' + helpIcon + '"></div>');
+					$widgetContainer.append('<div class="btn hidden-xs"><img src="' + helpyDomain + '/assets/' + helpIcon + '"></div>');
 
           // Resizer for Iframe
           $('.widget-iframe').on('load', function(){
