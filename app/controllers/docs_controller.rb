@@ -49,6 +49,8 @@ class DocsController < ApplicationController
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
       @title_tag = "#{Settings.site_name}: #{@custom_title}"
       @topic = @doc.topic
+      @newtopic = Topic.new
+      @post = @topic.posts.new unless @topic.nil?
       @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
 
       @forum = Forum.for_docs.first
@@ -56,11 +58,9 @@ class DocsController < ApplicationController
       #@topic = Topic.new
       @user = User.new unless user_signed_in?
 
-
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
       add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
       add_breadcrumb @doc.title
-
 
       respond_to do |format|
         format.html # show.html.erb

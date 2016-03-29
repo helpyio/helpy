@@ -44,29 +44,29 @@
   		<% if user_signed_in? # show a form to reply or start discussion %>
         <div class="add-form">
     			<h4><%= @posts.nil? ? t(:start_discussion) : t(:reply) %></h4>
-          <% if @topic %>
+          <% if @topic # This is the reply form  %>
       			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
-      			  <%= f.text_area :body, rows: 8, cols: 160, skip_label: true %></p>
+      			  <%= f.text_area :body, rows: 8, cols: 160, skip_label: true, class: 'disable-empty' %></p>
       			  <%= f.hidden_field 'kind', value: 'reply' %>
       				<div class="add-screenshots">
       				  <%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots unless Cloudinary.config.cloud_name.nil? %>
       				</div>
       				<%= hidden_field_tag :client_id %>
-      				<%= f.submit t(:submit_reply), class: 'btn btn-warning' -%>
+      				<%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
       			<% end -%>
 
-          <% else %>
-            <%= bootstrap_form_for(Topic.new) do |f| -%>
-              <%= text_area :post, :body, :rows => 8, :cols => 160, label: 'Message' -%>
+          <% else # Show the new form %>
+            <%= bootstrap_form_for(@newtopic) do |f| -%>
+              <%= text_area :post, :body, :rows => 8, :cols => 160, label: 'Message', class: 'disable-empty'  -%>
               <div class="add-screenshots">
-                <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+                <%= attachinary_file_field_tag 'topic[screenshots]', @newtopic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
               </div>
               <%= hidden_field_tag :client_id %>
               <%= f.hidden_field :name, value: "Discussion on #{@doc.title}" %>
               <%= f.hidden_field :doc_id, value: @doc.id %>
               <%= f.hidden_field :private, value: false %>
               <%= f.hidden_field :forum_id, value: @forum.id %>
-              <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning' %>
+              <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
             <% end -%>
           <% end %>
         </div>
