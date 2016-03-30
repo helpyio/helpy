@@ -28,6 +28,8 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
+gem "rails-settings-cached"
+
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
