@@ -27,6 +27,7 @@ class TopicsController < ApplicationController
 
   before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
   before_action :instantiate_tracker
+  before_action :allow_iframe_requests
 
   layout "clean", only: [:new, :index]
 
@@ -191,12 +192,17 @@ class TopicsController < ApplicationController
       @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
 
       if @topic.private?
-        redirect_to ticket_path(@topic)
+        redirect_to params[:from] == 'widget' ? widget_thanks_path : ticket_path(@topic)
       else
         redirect_to topic_posts_path(@topic)
       end
     else
-      render :new
+      if params[:from] == 'widget'
+        @widget = true
+        render 'new', layout: 'widget'
+      else
+        render 'new'
+      end
     end
 
   end

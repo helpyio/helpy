@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
 
   root to: "locales#redirect_on_locale"
+  get 'widget/' => 'widget#index', as: :widget
+  get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
 
   devise_for :users, skip: [:password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
@@ -43,6 +45,7 @@ Rails.application.routes.draw do
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
     get 'locales/select' => 'locales#select', as: :select_locale
+
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale

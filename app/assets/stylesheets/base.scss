@@ -179,6 +179,12 @@ div.add-form {
 	margin-top: 40px;
 }
 
+div.widget-form {
+	//background-color: rgba(192,255,193,0.25);
+	padding: 10px;
+	margin-top: 0px;
+}
+
 .add-screenshots {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -372,6 +378,24 @@ ul.dropdown-menu li a.strong {
 
 .active-item-shadow {
     box-shadow: rgba(133, 133, 133, 0.1) 0 0 5px 2px, rgba(133, 133, 133, 0.3) 0 0 2px;
+}
+
+// These styles hide the placeholder text for the web version, and they are are overridden on the widget:
+
+.topic-placeholder::-webkit-input-placeholder {
+   color: white;
+}
+
+.topic-placeholder:-moz-placeholder {
+   color: white;
+}
+
+.topic-placeholder::-moz-placeholder {  
+   color: white;
+}
+
+.topic-placeholder:-ms-input-placeholder {
+   color: white;
 }
 
 //  == MODAL ===

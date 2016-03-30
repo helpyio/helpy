@@ -164,6 +164,9 @@ GEM
       griddler
     griddler-sendgrid (0.0.1)
       griddler
+    griddler-sparkpost (0.0.1)
+      griddler
+      mail
     haml (4.0.7)
       tilt
     hashie (3.4.3)
@@ -490,6 +493,7 @@ DEPENDENCIES
   griddler-mandrill
   griddler-postmark
   griddler-sendgrid
+  griddler-sparkpost
   http_accept_language
   i18n-country-translations
   jbuilder (~> 2.0)
@@ -539,3 +543,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.11.2

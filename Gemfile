@@ -81,6 +81,7 @@ gem 'griddler-sendgrid'
 gem 'griddler-mailgun'
 gem 'griddler-postmark'
 gem 'griddler-mailin'
+gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
 
