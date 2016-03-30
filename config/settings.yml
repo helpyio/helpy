@@ -1,12 +1,15 @@
+# System Settings
+site_url: http://support.yourdomain.com # This is the URL of your support site
+
+
 # Toggle functionality (not fully implemented)
 tickets: true
 forums: true
 knowledgebase: true
 
-# Site Settings
+# Site Settings (These have been moved into the admin UI and you should change them there!)
 parent_site: /parent-redirect.html # This tells Helpy how to provide a link back to your main site
 parent_company: Main Site # This is the parent company your helpdesk is providing support for
-site_url: http://support.yourdomain.com # This is the URL of your support site
 site_name: Helpy Support # This is the name of your support site
 site_tagline: Support and Helpdesk Software # This is the tagline of your support site
 product_name: # This is the product name your are supporting

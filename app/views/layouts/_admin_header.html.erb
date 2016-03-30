@@ -17,6 +17,7 @@
                   <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control full-width') %>
                 <% end %>
               <% end %>
+              <%= menu_item t(:settings, default: "Settings"), admin_settings_path %>
           <% end %>
       <% end %>
 </div>

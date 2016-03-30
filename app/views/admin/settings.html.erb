@@ -1,0 +1,9 @@
+
+<h2>Settings</h2>
+
+<%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
+  <% @settings.each do |name, value| %>
+    <%= f.text_field name, value: value, label: name.gsub("_"," ").titleize %>
+  <% end %>
+  <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+<% end %>

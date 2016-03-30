@@ -402,6 +402,33 @@ class AdminController < ApplicationController
 
   end
 
+  def settings
+    @settings = AppSettings.get_all
+
+    respond_to do |format|
+      format.html
+    end
+
+  end
+
+  def update_settings
+
+    @settings = AppSettings.get_all
+
+    # iterate through
+    @settings.each do |setting|
+      logger.info("Setting: #{setting[0]}")
+      logger.info("Value: #{params[setting[0]]}")
+
+      AppSettings[setting[0]] = params[setting[0].to_sym]
+    end
+
+    respond_to do |format|
+        format.html { redirect_to(admin_settings_path) }
+    end
+  end
+
+
   private
 
   def pipeline

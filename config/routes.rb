@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root to: "locales#redirect_on_locale"
   get 'widget/' => 'widget#index', as: :widget
   get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
@@ -81,6 +80,8 @@ Rails.application.routes.draw do
     get '/user/:id' => 'admin#user_profile', as: :user_profile
     get '/topic_search' => 'admin#topic_search', as: :admin_search
     get '/user_search' => 'admin#user_search', as: :user_search
+    get '/settings' => 'admin#settings', as: :admin_settings
+    put '/update_settings/' => 'admin#update_settings', as: :update_settings
 
   end
 
