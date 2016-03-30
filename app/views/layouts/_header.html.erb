@@ -13,7 +13,7 @@
 							<%= menu_item t(:community), forums_path if Settings.forums %>
 							<%= menu_item t(:ask_a_question), new_topic_path %>
 							<%= menu_divider %>
-							<%= menu_item "#{t(:back_to).titleize} #{AppSettings.parent_company}", Settings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
+							<%= menu_item "#{t(:back_to).titleize} #{AppSettings.parent_company}", AppSettings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
 
 							<%= menu_item t(:locale), select_locale_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
 							<% if user_signed_in? %>
