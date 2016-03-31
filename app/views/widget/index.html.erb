@@ -13,9 +13,7 @@
 
     <%= f.text_field :name, :size => 40, placeholder: I18n.t(:subject), hide_label: 'true' -%>
     <%= text_area :post, :body, :rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help) -%>
-    <div class="add-screenshots">
-    <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
-    </div>
+
     <%= hidden_field_tag :client_id %>
     <%= f.hidden_field :private, value: true %>
     <%= f.hidden_field :forum_id, value: 1 %>
