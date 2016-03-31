@@ -73,9 +73,9 @@ four:
 
 five:
   id: 5
-  title: Does not allow comments
-  body: article1 text
-  keywords: My article keywords
+  title:
+  body:
+  keywords:
   category_id: 1
   user_id: 1
   active: true
@@ -85,9 +85,9 @@ five:
 
 six:
   id: 6
-  title: Allows comments
-  body: article1 text
-  keywords: My article keywords
+  title:
+  body:
+  keywords: 
   category_id: 1
   user_id: 1
   active: true
