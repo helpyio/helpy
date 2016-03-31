@@ -81,7 +81,7 @@ i.icon.glyphicon.glyphicon-question-sign {
 	visibility: hidden;
 	transform: scale(0);
 	transform-origin: 100% 100%;
-	transition: transform 0.2s, visibility 0s 0.2s, opacity: 0.2s;
+	transition: transform 0.2s, visibility 0s 0.2s, opacity 0.2s;
 	opacity: 0;
 }
 .popout .widget-panel.active {

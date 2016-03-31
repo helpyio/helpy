@@ -19,6 +19,8 @@
 #  points           :integer          default(0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  topics_count     :integer          default(0)
+#  allow_comments   :boolean          default(TRUE)
 #
 
 class Doc < ActiveRecord::Base
@@ -28,6 +30,8 @@ class Doc < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
   has_many :votes, :as => :voteable
+  has_one :topic
+  has_many :posts, through: :topic
 
   validates :title, presence: true
   validates :body, presence: true

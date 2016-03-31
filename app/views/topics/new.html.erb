@@ -33,7 +33,8 @@
     <% end %>
   </div>
   <%= hidden_field_tag :client_id %>
-  <%= hidden_field_tag :from, 'widget' if params[:controller] == 'widget' || params[:from] == 'widget' %>
+  <%= f.hidden_field :doc_id, value: params[:doc_id] if params[:doc_id] %>
+  <%= hidden_field_tag :from, 'widget' if params[:controller] == 'widget' || params[:from] == 'widget' %> 
 
   <!--<label>Tags:</label><br/>-->
   <%#= text_field_tag :tags %>

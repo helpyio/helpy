@@ -19,6 +19,8 @@
 #  points           :integer          default(0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  topics_count     :integer          default(0)
+#  allow_comments   :boolean          default(TRUE)
 #
 
 class DocsController < ApplicationController
@@ -46,11 +48,19 @@ class DocsController < ApplicationController
       @page_title = @doc.title
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
       @title_tag = "#{Settings.site_name}: #{@custom_title}"
+      @topic = @doc.topic
+      @newtopic = Topic.new
+      @post = @topic.posts.new unless @topic.nil?
+      @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
+
+      @forum = Forum.for_docs.first
+
+      #@topic = Topic.new
+      @user = User.new unless user_signed_in?
 
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
       add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
       add_breadcrumb @doc.title
-
 
       respond_to do |format|
         format.html # show.html.erb
@@ -171,7 +181,7 @@ class DocsController < ApplicationController
   private
 
   def doc_params
-    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id, {screenshots: []})
+    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id, :allow_comments, {screenshots: []})
   end
 
 end

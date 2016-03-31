@@ -55,6 +55,11 @@ Forum.create(
   private: true
 )
 Forum.create(
+  name: "Doc comments",
+  description: "Contains comments to docs", 
+  private: true
+)
+Forum.create(
   name: "Questions and Answers",
   description: "Answers to how to do common things",
   layout: 'qna',

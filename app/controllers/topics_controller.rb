@@ -21,6 +21,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  locale           :string
+#  doc_id           :integer          default(0)
 #
 
 class TopicsController < ApplicationController
@@ -143,7 +144,8 @@ class TopicsController < ApplicationController
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
-      private: params[:topic][:private] )
+      private: params[:topic][:private],
+      doc_id: params[:topic][:doc_id] )
 
     unless user_signed_in?
 
@@ -194,7 +196,7 @@ class TopicsController < ApplicationController
       if @topic.private?
         redirect_to params[:from] == 'widget' ? widget_thanks_path : ticket_path(@topic)
       else
-        redirect_to topic_posts_path(@topic)
+        redirect_to @topic.doc_id.nil? ? topic_posts_path(@topic) : doc_path(@topic.doc_id)
       end
     else
       if params[:from] == 'widget'

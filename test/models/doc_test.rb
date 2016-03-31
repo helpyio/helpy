@@ -19,6 +19,8 @@
 #  points           :integer          default(0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  topics_count     :integer          default(0)
+#  allow_comments   :boolean          default(TRUE)
 #
 
 require 'test_helper'
@@ -26,6 +28,8 @@ require 'test_helper'
 class DocTest < ActiveSupport::TestCase
 
   should belong_to(:category)
+  should have_one(:topic)
+  should have_many(:posts)
   should validate_presence_of(:title)
   should validate_presence_of(:body)
   should validate_presence_of(:category_id)
