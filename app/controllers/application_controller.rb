@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_locale
-    @browser_locale = http_accept_language.compatible_language_from(I18n.available_locales)
+    @browser_locale = http_accept_language.compatible_language_from(AppSettings['i18n.available_locales'])
     unless params[:locale].blank?
       I18n.locale = params[:locale]
     else
@@ -53,18 +53,18 @@ class ApplicationController < ActionController::Base
 
     if session[:client_id]
       logger.info("initiate tracker with client id from session")
-      @tracker = Staccato.tracker(Settings.google_analytics_id, session[:client_id])
+      @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'], session[:client_id])
     else
       # not in the session, so check the url
       if params[:client_id]
         logger.info("initiate tracker with client id from params")
         session[:client_id] = params[:client_id]
-        @tracker = Staccato.tracker(Settings.google_analytics_id, params[:client_id])
+        @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'], params[:client_id])
       else
         # this is a last resort and should not occur for regular web
         # visits.
         logger.info("!!! initiate tracker without client id !!!")
-        @tracker = Staccato.tracker(Settings.google_analytics_id)
+        @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'])
       end
     end
   end

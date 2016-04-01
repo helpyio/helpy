@@ -424,7 +424,7 @@ class AdminController < ApplicationController
     end
 
     logger.info(params['i18n'])
-    AppSettings['hidden.i18n'] = params['i18n']
+    AppSettings['i18n.available_locales'] = params['i18n.available_locales']
 
     respond_to do |format|
         format.html { redirect_to(admin_settings_path) }

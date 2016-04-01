@@ -33,8 +33,10 @@
       <% end %>
       <br/>
       <h4>International Support:</h4>
+      <%= f.text_field 'i18n.default_locale', value: AppSettings['i18n.default_locale'], label: "Default Locale" %>
+      Supported Locales:
       <% I18n.available_locales.each do |locale| %>
-        <%= f.check_box 'i18n', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['hidden.i18n'].include?(locale.to_s) }, "#{locale}", nil  %>
+        <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
       <% end %>
       <br/>
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>
