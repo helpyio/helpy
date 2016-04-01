@@ -1,9 +1,43 @@
 
 <h2>Settings</h2>
 
-<%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
-  <% @settings.each do |name, value| %>
-    <%= f.text_field name, value: value, label: name.gsub("_"," ").titleize %>
-  <% end %>
-  <%= f.submit "Save Settings", class: 'btn btn-warning' %>
-<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <ul>
+      <li>System Settings</li>
+      <li>Globalization</li>
+      <li>Embed Widget</li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
+
+      <h4>General Settings:</h4>
+      <% AppSettings.get_all('settings').each do |name, value| %>
+        <%= f.text_field name, value: value, label: name.gsub("_"," ").split('.')[1].titleize %>
+      <% end %>
+      <br/>
+      <h4>Images:</h4>
+      <% AppSettings.get_all('logos').each do |name, value| %>
+        <div class="row">
+          <div class="col-md-1">
+            <%= image_tag(value, width: 40, class: 'pull-left') %>
+          </div>
+          <div class="col-md-11">
+            <%= f.text_field name, value: value, label: name.gsub("_"," ").split('.')[1].titleize %>
+          </div>
+        </div>
+      <% end %>
+      <br/>
+      <h4>International Support:</h4>
+      <% I18n.available_locales.each do |locale| %>
+        <%= f.check_box 'i18n', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['hidden.i18n'].include?(locale.to_s) }, "#{locale}", nil  %>
+      <% end %>
+      <br/>
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    <% end %>
+  </div>
+</div>

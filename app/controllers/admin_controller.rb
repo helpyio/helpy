@@ -417,11 +417,14 @@ class AdminController < ApplicationController
 
     # iterate through
     @settings.each do |setting|
-      logger.info("Setting: #{setting[0]}")
-      logger.info("Value: #{params[setting[0]]}")
+#      logger.info("Setting: #{setting[0]}")
+#      logger.info("Value: #{params[setting[0]]}")
 
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
+
+    logger.info(params['i18n'])
+    AppSettings['hidden.i18n'] = params['i18n']
 
     respond_to do |format|
         format.html { redirect_to(admin_settings_path) }
