@@ -95,7 +95,8 @@ class PostsController < ApplicationController
 
         format.html {
           @posts = @topic.posts.ispublic.chronologic.active
-          redirect_to topic_posts_path(@topic)
+          redirect_to @topic.doc_id.nil? ? topic_posts_path(@topic) : doc_path(@topic.doc_id)
+
         }
         format.js {
           if params[:from] == 'admin' #posted from admin side

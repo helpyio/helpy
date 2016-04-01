@@ -316,13 +316,15 @@ $.attachinary.config.template = '\
 // from event-tracking.js where we have to unbind and rebind the event to support turbolinks
 Helpy.didthisHelp = function(yesno){
   var message;
+  var contactus;
   if (yesno == "no") {
-    message = "<h3>We're sorry this didn't you help you. Please open a discussion in our support forums for more help!</h3>";
+    message = "<h3>" + Helpy.noHelped + "</h3>";
+    contactus = "<div class='col-md-3 align-right'><h3>" + Helpy.contactUs + "</h3></div>";
   } else {
-    message = "<h3>Great!! Thanks for the feedback!</h3>";
+    message = "<h3>" + Helpy.yesHelped + "</h3>";
   }
 
-  message = "<div class='col-md-12'>" + message + "</div>";
+  message = "<div class='col-md-9'>" + message + "</div>" + contactus;
 
   $('#did-this-help').html(message);
   return true;

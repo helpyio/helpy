@@ -21,6 +21,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  locale           :string
+#  doc_id           :integer          default(0)
 #
 
 module TopicsHelper

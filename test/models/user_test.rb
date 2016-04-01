@@ -103,4 +103,16 @@ class UserTest < ActiveSupport::TestCase
 
   end
 
+  test "should not accept names with numbers" do
+    names = [ 
+      "Vasiya2",
+      "123123"
+    ]
+
+    names.each do |name| 
+      user = User.create(name: name, email: "#{name.split(" ")[0]}@testing.com", password: "12345678")
+      assert_equal user.valid?, false
+    end
+  end
+
 end

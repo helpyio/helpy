@@ -20,6 +20,7 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  doc_id           :integer          default(0)
 #  locale           :string
 #
 
@@ -29,6 +30,7 @@ class Topic < ActiveRecord::Base
 
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
+  belongs_to :doc, counter_cache: true, touch: true
   belongs_to :assigned_user, class_name: 'User'
 
   has_many :posts, :dependent => :delete_all
@@ -54,10 +56,12 @@ class Topic < ActiveRecord::Base
   scope :spam, -> { where(current_status: "spam")}
 
   scope :chronologic, -> { order('updated_at DESC') }
+  scope :reverse, -> { order('updated_at ASC') }
   scope :by_popularity, -> { order('points DESC') }
   scope :active, -> { where(current_status: %w(open pending)) }
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
+  scope :for_doc, -> { where("doc_id= ?", doc)}
 
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}

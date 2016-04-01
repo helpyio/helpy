@@ -115,6 +115,39 @@ namespace :db do
   Category.first.docs.first.update(title: "Näide toetust dokumentatsiooni tõlgitud prantsuse" ,body: '', locale: :et)
   Category.first.docs.first.update(title: "Documentació de suport Exemple traduïda al francès" ,body: '', locale: :ca)
 
+  # Create document comment threads for our users
+  Doc.all.each do |doc|
+
+    f = Forum.where(name: 'Doc comments').first
+    rand(0..2).times do
+      topic = f.topics.create!(
+        name: build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun),
+        user_id: User.where(admin: false).sample.id,
+        doc_id: doc.id
+      )
+      post = topic.posts.create!(
+        body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
+        user_id: topic.user_id,
+        kind: 'first'
+      )
+
+      timeseed = rand(1..30)
+      Timecop.travel(Date.today-timeseed.days)
+
+      # create posts about this doc
+      rand(0..5).times do
+        post = topic.posts.create!(
+          body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
+          user_id: rand(4..14),
+          kind: 'reply'
+        )
+        puts "Post added to doc"
+      end
+
+    Timecop.return
+    end
+  end
+
   # Create community threads for our users
 
   number_threads.times do
