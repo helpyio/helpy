@@ -1,4 +1,4 @@
-<%= link_to "#{t(:back_to, default: "Back to")} #{AppSettings.parent_company}", AppSettings.parent_site %> |
+<%= link_to "#{t(:back_to, default: "Back to")} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'] %> |
 <% unless user_signed_in? %>
    <%= link_to t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
 <% else %>

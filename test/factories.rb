@@ -17,14 +17,14 @@ FactoryGirl.define do
   factory :reply, class: OpenStruct do
     to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
     from({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' })
-    subject "Re: [#{AppSettings.site_name}] #1-Pending private topic"
+    subject "Re: [#{AppSettings['settings.site_name']}] #1-Pending private topic"
     body 'Hello!'
   end
 
   factory :reply_to_closed_ticket, class: OpenStruct do
     to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
     from({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' })
-    subject "Re: [#{AppSettings.site_name}] #3-Closed private topic"
+    subject "Re: [#{AppSettings['settings.site_name']}] #3-Closed private topic"
     body 'Hello!'
   end
 

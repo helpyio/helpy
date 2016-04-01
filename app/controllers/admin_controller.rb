@@ -109,7 +109,7 @@ class AdminController < ApplicationController
   def create_ticket
 
     @page_title = t(:start_discussion, default: "Start a New Discussion")
-    @title_tag = "#{AppSettings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     @forum = Forum.find(1)
     @user = User.where(email: params[:topic][:user][:email]).first

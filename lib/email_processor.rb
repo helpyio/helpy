@@ -17,7 +17,7 @@ class EmailProcessor
       create_user
     end
 
-    sitename = AppSettings.site_name
+    sitename = AppSettings['settings.site_name']
     message = @email.body
     subject = @email.subject
 
