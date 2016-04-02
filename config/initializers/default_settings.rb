@@ -9,7 +9,7 @@ AppSettings.defaults['settings.google_analytics_id'] = Settings.google_analytics
 AppSettings.defaults['logos.favicon'] = Settings.app_favicon
 AppSettings.defaults['logos.header_logo'] = Settings.app_mini_logo #Note: the contributer accidentally reversed these in the code
 AppSettings.defaults['logos.footer_mini_logo'] = Settings.app_large_logo
-AppSettings.defaults['i18n.default_locale'] = :en
+AppSettings.defaults['i18n.default_locale'] = 'en'
 AppSettings.defaults['i18n.available_locales'] = ''.split(',')
 AppSettings.defaults['hidden.helptext'] = {
   site_name: "The name of the site you are supporting",

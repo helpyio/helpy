@@ -2,7 +2,7 @@
 <h2>Settings</h2>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-3">
     <ul>
       <li>System Settings</li>
       <li>Globalization</li>
@@ -12,7 +12,7 @@
       <li></li>
     </ul>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
 
       <h4>General Settings:</h4>
@@ -33,12 +33,20 @@
       <% end %>
       <br/>
       <h4>International Support:</h4>
-      <%= f.text_field 'i18n.default_locale', value: AppSettings['i18n.default_locale'], label: "Default Locale" %>
+      <%= select_default_locale%>
       Supported Locales:
       <% I18n.available_locales.each do |locale| %>
         <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
       <% end %>
       <br/>
+
+      <h4>Embed Widget</h4>
+      <p>Add the embed widget to your site using the following URL:<br/>
+        <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code>
+
+      </p>
+
+
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>
     <% end %>
   </div>
