@@ -5,32 +5,52 @@
   <div class="col-md-3">
     <ul>
       <li>System Settings</li>
-      <li>Globalization</li>
+      <li>Images</li>
+      <li>International Support</li>
       <li>Embed Widget</li>
-      <li></li>
-      <li></li>
-      <li></li>
     </ul>
   </div>
   <div class="col-md-9">
     <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
 
       <h4>General Settings:</h4>
-      <% AppSettings.get_all('settings').each do |name, value| %>
-        <%= f.text_field name, value: value, label: name.gsub("_"," ").split('.')[1].titleize %>
-      <% end %>
+      <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
+      <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: "Parent Site" %>
+      <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
+      <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: "Site Tagline" %>
+      <%= f.text_field 'settings.product_name', value: AppSettings['settings.product_name'], label: "Product Name" %>
+      <%= f.text_field 'settings.support_phone', value: AppSettings['settings.support_phone'], label: "Support Phone" %>
+      <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
+
+
       <br/>
       <h4>Images:</h4>
-      <% AppSettings.get_all('logos').each do |name, value| %>
-        <div class="row">
-          <div class="col-md-1">
-            <%= image_tag(value, width: 40, class: 'pull-left') %>
-          </div>
-          <div class="col-md-11">
-            <%= f.text_field name, value: value, label: name.gsub("_"," ").split('.')[1].titleize %>
-          </div>
+      <div class="row">
+        <div class="col-md-1">
+          <%= image_tag(AppSettings['logos.header_logo'], width: 40, class: 'pull-left') %>
         </div>
-      <% end %>
+        <div class="col-md-11">
+          <%= f.text_field 'logos.header_logo', value: AppSettings['logos.header_logo'], label: "Header Logo" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+          <%= image_tag(AppSettings['logos.footer_mini_logo'], width: 40, class: 'pull-left') %>
+        </div>
+        <div class="col-md-11">
+          <%= f.text_field 'logos.footer_logo', value: AppSettings['logos.footer_mini_logo'], label: "Footer Logo" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+          <%= image_tag(AppSettings['logos.favicon'], width: 40, class: 'pull-left') %>
+        </div>
+        <div class="col-md-11">
+          <%= f.text_field 'logos.favicon', value: AppSettings['logos.favicon'], label: "Favicon" %>
+        </div>
+      </div>
+
+
       <br/>
       <h4>International Support:</h4>
       <%= select_default_locale%>
