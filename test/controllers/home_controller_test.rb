@@ -5,7 +5,7 @@ class HomeControllerTest < ActionController::TestCase
   setup do
     # reset the available_locales before each test because on tests where
     # this is reduced, it persists and breaks other tests
-    I18n.available_locales = [:en, :fr, :et]
+    I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
   end
 

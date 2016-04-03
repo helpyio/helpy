@@ -5,7 +5,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   setup do
     Warden.test_mode!
-    I18n.available_locales = [:en, :fr, :et]
+    I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
   end
 
