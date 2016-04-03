@@ -33,6 +33,9 @@ Helpy.admin = function(){
 
   });
 
+  $(".pick-a-color").pickAColor({
+    inlineDropdown: true //display underneath field
+  });
 
 };
 

@@ -2,7 +2,7 @@
   <div class="col-md-3">
     <ul class="settings-menu" class="list-unstyled">
       <li><%= link_to 'General', '#', class: 'settings-link', "data-target" => "general" %></li>
-      <li><%= link_to 'Images', '#', class: 'settings-link', "data-target" => "images" %></li>
+      <li><%= link_to 'Design', '#', class: 'settings-link', "data-target" => "design" %></li>
       <li><%= link_to 'Internationalization', '#', class: 'settings-link', "data-target" => "i18n" %></li>
       <li><%= link_to 'Embed Widget', '#', class: 'settings-link', "data-target" => "widget" %></li>
     </ul>
@@ -20,35 +20,41 @@
         <%= f.text_field 'settings.support_phone', value: AppSettings['settings.support_phone'], label: "Support Phone" %>
         <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
       </div>
+      <div class="settings-section design hidden">
+        <h2>Design:</h2>
 
+          <div class="row">
+            <div class="col-md-1">
+              <%= image_tag(AppSettings['design.header_logo'], width: 40, class: 'pull-left') %>
+            </div>
+            <div class="col-md-11">
+              <%= f.text_field 'design.header_logo', value: AppSettings['design.header_logo'], label: "Header Logo" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <%= image_tag(AppSettings['design.footer_mini_logo'], width: 20, class: 'pull-left') %>
+            </div>
+            <div class="col-md-11">
+              <%= f.text_field 'design.footer_logo', value: AppSettings['design.footer_mini_logo'], label: "Footer Logo" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+              <%= image_tag(AppSettings['design.favicon'], width: 32, class: 'pull-left') %>
+            </div>
+            <div class="col-md-11">
+              <%= f.text_field 'design.favicon', value: AppSettings['design.favicon'], label: "Favicon" %>
+            </div>
+          </div>
+
+        <%= f.text_field 'design.search_background', value: AppSettings['design.search_background'], label: "Search Background Color", class: 'pick-a-color' %>
+        <%= f.text_field 'design.top_bar', value: AppSettings['design.top_bar'], label: "Header Accent", class: 'pick-a-color' %>
+        <%= f.text_field 'design.link_color', value: AppSettings['design.link_color'], label: "Link Color", class: 'pick-a-color' %>
+        <%= f.text_field 'design.form_background', value: AppSettings['design.form_background'], label: "Add Form Background", class: 'pick-a-color' %>
+        <%= f.text_field 'design.still_need_help', value: AppSettings['design.still_need_help'], label: "Still Need Help Background", class: 'pick-a-color' %>
       </div>
-      <div class="settings-section images hidden">
-        <h2>Images:</h2>
-        <div class="row">
-          <div class="col-md-1">
-            <%= image_tag(AppSettings['logos.header_logo'], width: 40, class: 'pull-left') %>
-          </div>
-          <div class="col-md-11">
-            <%= f.text_field 'logos.header_logo', value: AppSettings['logos.header_logo'], label: "Header Logo" %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-1">
-            <%= image_tag(AppSettings['logos.footer_mini_logo'], width: 20, class: 'pull-left') %>
-          </div>
-          <div class="col-md-11">
-            <%= f.text_field 'logos.footer_logo', value: AppSettings['logos.footer_mini_logo'], label: "Footer Logo" %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-1">
-            <%= image_tag(AppSettings['logos.favicon'], width: 32, class: 'pull-left') %>
-          </div>
-          <div class="col-md-11">
-            <%= f.text_field 'logos.favicon', value: AppSettings['logos.favicon'], label: "Favicon" %>
-          </div>
-        </div>
-      </div>
+
       <div class="settings-section i18n hidden">
         <h2>International Support:</h2>
         <%= select_default_locale %>
