@@ -269,6 +269,19 @@ a.stats.active {
 	margin-left:10px;
 }
 
+.settings-section {
+	margin-bottom: 50px;
+
+	h2 {
+		margin-top: 30px;
+		margin-bottom: 50px;
+	}
+}
+
+ul.settings-menu {
+	margin-top: 60px;
+}
+
 @media(max-width:767px){
 	h1 {
 		font-size: 150%;

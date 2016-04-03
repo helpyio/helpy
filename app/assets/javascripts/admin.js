@@ -25,6 +25,15 @@ Helpy.admin = function(){
     }
   });
 
+  $('.settings-link').off().on('click', function(){
+    var showthis = $(this).data("target");
+    $(".settings-section").addClass("hidden");
+    $('.settings-section.' + showthis).removeClass("hidden");
+    return false;
+
+  });
+
+
 };
 
 $(document).on('page:change', Helpy.admin);
