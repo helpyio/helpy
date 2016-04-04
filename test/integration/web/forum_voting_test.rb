@@ -11,6 +11,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   def teardown
     Warden.test_reset!
+    Capybara.reset_sessions!
   end
 
   test "a logged in user should be able to vote on a topic from the topic index view" do

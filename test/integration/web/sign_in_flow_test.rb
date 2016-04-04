@@ -10,6 +10,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
   end
 
   teardown do
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 

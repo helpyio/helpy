@@ -13,7 +13,7 @@ class SearchFlowsTest < ActionDispatch::IntegrationTest
   end
 
   def teardown
-
+    Capybara.reset_sessions!
   end
 
   test "a browsing user should be able to search from the home page" do
