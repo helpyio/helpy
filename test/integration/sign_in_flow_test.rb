@@ -1,6 +1,7 @@
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
+
 class SignInFlowTest < ActionDispatch::IntegrationTest
 
   setup do
@@ -10,6 +11,8 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
   end
 
   teardown do
+    sign_out
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 

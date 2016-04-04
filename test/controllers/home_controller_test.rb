@@ -7,6 +7,7 @@ class HomeControllerTest < ActionController::TestCase
     # this is reduced, it persists and breaks other tests
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+    default_settings
   end
 
   test "a browsing user in the default locale should be able to load home page" do
@@ -20,6 +21,7 @@ class HomeControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should see a selector for locale if there are alternate locales" do
+    I18n.available_locales = [:en, :fr, :ca]
     get :index, locale: :en
     assert_equal I18n.available_locales.count, 3 do
       assert_select 'span.select-locale', true

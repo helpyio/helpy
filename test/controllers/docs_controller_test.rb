@@ -32,9 +32,8 @@ class DocsControllerTest < ActionController::TestCase
     # this is reduced, it persists and breaks other tests
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+    default_settings
   end
-
-
 
   test "a browsing user should be able to load show" do
     get :show, id: 1, locale: :en
@@ -121,6 +120,7 @@ class DocsControllerTest < ActionController::TestCase
 
   test "an admin should see a translate dropdown when there are multiple available_locales" do
     sign_in users(:admin)
+    AppSettings['i18n.available_locales'] = ['en','es','fr']
     get :edit, id: 1, category_id: 1, locale: :en
     assert_select 'select#lang', 1
   end

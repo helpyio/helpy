@@ -8,6 +8,7 @@ class AdminControllerTest < ActionController::TestCase
     @request.headers["Accepts"] = "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+    default_settings
   end
 
   ### Topic Views

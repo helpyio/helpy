@@ -10,6 +10,8 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   def teardown
+    default_settings
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 

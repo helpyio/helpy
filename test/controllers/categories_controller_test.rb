@@ -26,6 +26,7 @@ class CategoriesControllerTest < ActionController::TestCase
     # this is reduced, it persists and breaks other tests
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+    default_settings
   end
 
   test "a browsing user in the default locale should be able to load the index and see categories" do
@@ -134,6 +135,9 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "an admin should see a translate dropdown when there are multiple available_locales" do
+    # Ensure there are multiple locales
+    AppSettings['i18n.available_locales'] = ['en','es','fr']
+    
     sign_in users(:admin)
     get :edit, id: 1, locale: :en
     assert_select 'select#lang', 1

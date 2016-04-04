@@ -13,7 +13,7 @@ class SearchFlowsTest < ActionDispatch::IntegrationTest
   end
 
   def teardown
-
+    default_settings
   end
 
   test "a browsing user should be able to search from the home page" do

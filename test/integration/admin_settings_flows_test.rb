@@ -7,42 +7,21 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     Warden.test_mode!
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+    default_settings
 
     sign_in('admin@test.com')
+    sleep(2)
   end
 
   def teardown
-    reset_default_settings
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 
-  def reset_default_settings
-    AppSettings['settings.parent_site'] = Settings.parent_site
-    AppSettings['settings.parent_company'] = Settings.parent_company
-    AppSettings['settings.site_url'] = Settings.site_url
-    AppSettings['settings.site_name'] = Settings.site_name
-    AppSettings['settings.site_tagline'] = Settings.site_tagline
-    AppSettings['settings.product_name'] = Settings.product_name
-    AppSettings['settings.support_phone'] = Settings.support_phone
-    AppSettings['settings.google_analytics_id'] = Settings.google_analytics_id
-    AppSettings['design.favicon'] = Settings.app_favicon
-    AppSettings['design.header_logo'] = Settings.app_mini_logo
-    AppSettings['design.footer_mini_logo'] = Settings.app_large_logo
-    AppSettings['css.search_background'] = 'feffe9'
-    AppSettings['css.top_bar'] = '3cceff'
-    AppSettings['css.link_color'] = '004084'
-    AppSettings['css.form_background'] = 'F0FFF0'
-    AppSettings['css.still_need_help'] = 'ffdf91'
-    AppSettings['i18n.default_locale'] = 'en'
-    AppSettings['i18n.available_locales'] = ''.split(',')
-    AppSettings['widget.show_on_support_site'] = 'true'
-  end
-
-
   test "an admin should be able to modify site settings and see those changes on the support site" do
 
-    click_on 'Settings'
-    assert page.has_content?("General Settings")
+    visit("/admin/settings")
+    assert page.has_content?("General Settings"), "Missing header"
 
     # Now make changes to all settings from defaults and make sure those changes are on the live site
     fill_in('settings.site_name', with: 'xyz')
@@ -52,6 +31,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     click_on 'Save Settings'
 
     visit('/en')
+    sleep(1)
     within('a.navbar-brand') do
       assert page.has_content?('xyz')
     end
@@ -62,8 +42,9 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to enable or disable i18n and be able to browse to those locales on the site" do
 
-    click_on 'Settings'
-    assert page.has_content?("General Settings")
+    visit("/admin/settings")
+
+    assert page.has_content?("General Settings"), "Missing header"
 
     # Now make changes to all settings from defaults and make sure those changes are on the live site
     check('English')
@@ -72,6 +53,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     click_on 'Save Settings'
 
     visit('/en/locales/select')
+    sleep(1)
 
     # TODO: Need javascript for dropdown
 
@@ -85,8 +67,9 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to alter the logo images used" do
 
-    click_on 'Settings'
-    assert page.has_content?("Design")
+    visit("/admin/settings")
+
+    assert page.has_content?("Design"), "Missing header"
 
     fill_in("Header Logo", with: 'logo-test.png')
     fill_in("Footer Logo", with: 'logo-test.png')
@@ -94,6 +77,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     click_on 'Save Settings'
 
     visit('/en')
+    sleep(1)
 
     within('a.navbar-brand') do
       assert_equal '/images/logo-test.png', page.find('img')['src']
