@@ -202,7 +202,12 @@ label {
   font-weight: normal;
   font-size: 100%;
   color: #666;
+  &.required:after {
+    content: " *";
+  }
 }
+
+ 
 
 thead {
 	margin-bottom: 20px;
