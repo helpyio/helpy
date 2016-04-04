@@ -15,6 +15,7 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
   def teardown
     click_logout
     Warden.test_reset!
+    Capybara.reset_sessions!
     Capybara.use_default_driver
   end
 
