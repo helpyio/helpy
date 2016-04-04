@@ -16,7 +16,7 @@ module AdminHelper
     select += "<select name='post[reply_id]' class='form-control' id='post_reply_id'>"
     select += "<option value=''></option>"
 
-    I18n.available_locales.each do |locale|
+    AppSettings['i18n.available_locales'].each do |locale|
       Globalize.with_locale(locale) do
         # TODO THIS IS A HACK because there appears to be no difference in language files for chinese simple and traditional
         # This could be changed to display the language names in english fairly easily
@@ -42,7 +42,7 @@ module AdminHelper
 
   def i18n_icons(object)
     output = '<div class="locale-badges pull-right hidden-xs hidden-sm">'
-    I18n.available_locales.each do |locale|
+    AppSettings['i18n.available_locales'].each do |locale|
       I18n.with_locale(locale) do
         if object.translations.where(locale: locale).count > 0
           output += "<span class='badge' title='#{I18n.t(:language_name)}'>#{locale.upcase}</span></a>"

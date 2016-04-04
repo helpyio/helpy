@@ -47,7 +47,7 @@ module ApplicationHelper
     tag = "<select name='lang' class='form-control' id='lang'>"
     tag += "<option value='#{I18n.locale}'>Translate to a different language...</option>"
 
-    I18n.available_locales.sort.each do |locale|
+    AppSettings['i18n.available_locales'].sort.each do |locale|
       selected = "selected" if "#{locale}" == params[:lang]
       I18n.with_locale(locale) do
         tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize}</option>" #unless locale == I18n.locale
