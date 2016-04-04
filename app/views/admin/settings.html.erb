@@ -16,8 +16,8 @@
         <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: "Parent Site" %>
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
         <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: "Site Tagline" %>
-        <%= f.text_field 'settings.product_name', value: AppSettings['settings.product_name'], label: "Product Name" %>
-        <%= f.text_field 'settings.support_phone', value: AppSettings['settings.support_phone'], label: "Support Phone" %>
+        <%#= f.text_field 'settings.product_name', value: AppSettings['settings.product_name'], label: "Product Name" %>
+        <%#= f.text_field 'settings.support_phone', value: AppSettings['settings.support_phone'], label: "Support Phone" %>
         <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
       </div>
       <div class="settings-section design hidden">
@@ -36,7 +36,7 @@
               <%= image_tag(AppSettings['design.footer_mini_logo'], width: 20, class: 'pull-left') %>
             </div>
             <div class="col-md-11">
-              <%= f.text_field 'design.footer_logo', value: AppSettings['design.footer_mini_logo'], label: "Footer Logo" %>
+              <%= f.text_field 'design.footer_mini_logo', value: AppSettings['design.footer_mini_logo'], label: "Footer Logo" %>
             </div>
           </div>
           <div class="row">
