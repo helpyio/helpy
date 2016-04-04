@@ -12,8 +12,32 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   end
 
   def teardown
+    reset_default_settings
     Warden.test_reset!
   end
+
+  def reset_default_settings
+    AppSettings['settings.parent_site'] = Settings.parent_site
+    AppSettings['settings.parent_company'] = Settings.parent_company
+    AppSettings['settings.site_url'] = Settings.site_url
+    AppSettings['settings.site_name'] = Settings.site_name
+    AppSettings['settings.site_tagline'] = Settings.site_tagline
+    AppSettings['settings.product_name'] = Settings.product_name
+    AppSettings['settings.support_phone'] = Settings.support_phone
+    AppSettings['settings.google_analytics_id'] = Settings.google_analytics_id
+    AppSettings['design.favicon'] = Settings.app_favicon
+    AppSettings['design.header_logo'] = Settings.app_mini_logo
+    AppSettings['design.footer_mini_logo'] = Settings.app_large_logo
+    AppSettings['css.search_background'] = 'feffe9'
+    AppSettings['css.top_bar'] = '3cceff'
+    AppSettings['css.link_color'] = '004084'
+    AppSettings['css.form_background'] = 'F0FFF0'
+    AppSettings['css.still_need_help'] = 'ffdf91'
+    AppSettings['i18n.default_locale'] = 'en'
+    AppSettings['i18n.available_locales'] = ''.split(',')
+    AppSettings['widget.show_on_support_site'] = 'true'
+  end
+
 
   test "an admin should be able to modify site settings and see those changes on the support site" do
 
