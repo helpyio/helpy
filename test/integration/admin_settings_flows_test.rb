@@ -1,7 +1,7 @@
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
-class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
+class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
     Warden.test_mode!
@@ -18,11 +18,69 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
   test "an admin should be able to modify site settings and see those changes on the support site" do
 
     click_on 'Settings'
+    assert page.has_content?("General Settings")
 
-    assert page.has_content?("Settings")
+    # Now make changes to all settings from defaults and make sure those changes are on the live site
+    fill_in('settings.site_name', with: 'xyz')
+    fill_in('settings.parent_site', with: 'xyz')
+    fill_in('settings.parent_company', with: 'xyz')
+    fill_in('settings.google_analytics_id', with: 'xyz')
+    click_on 'Save Settings'
 
+    visit('/en')
+    within('a.navbar-brand') do
+      assert page.has_content?('xyz')
+    end
+    assert page.has_content?('Back to xyz')
 
-    
+    #TODO: Figure out how to test the change of GA token
+  end
+
+  test "an admin should be able to enable or disable i18n and be able to browse to those locales on the site" do
+
+    click_on 'Settings'
+    assert page.has_content?("General Settings")
+
+    # Now make changes to all settings from defaults and make sure those changes are on the live site
+    check('English')
+    check('Español')
+    check('Deutsch')
+    click_on 'Save Settings'
+
+    visit('/en/locales/select')
+
+    # TODO: Need javascript for dropdown
+
+    within('ul.locale-list') do
+      assert page.has_content?('English')
+      assert page.has_content?('Español')
+      assert page.has_content?('Deutsch')
+      assert page.has_no_content?('Eesti')
+    end
+  end
+
+  test "an admin should be able to alter the logo images used" do
+
+    click_on 'Settings'
+    assert page.has_content?("Design")
+
+    fill_in("Header Logo", with: 'logo-test.png')
+    fill_in("Footer Logo", with: 'logo-test.png')
+    fill_in("Favicon", with: 'favicon-test.png')
+    click_on 'Save Settings'
+
+    visit('/en')
+
+    within('a.navbar-brand') do
+      assert_equal '/images/logo-test.png', page.find('img')['src']
+    end
+
+    within('div#footer') do
+      assert_equal '/images/logo-test.png', page.find('img')['src']
+    end
+
+    #TODO: Figure out how to test the change of favicon
+
   end
 
 
