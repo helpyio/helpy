@@ -66,7 +66,7 @@
       <div class="settings-section widget hidden">
         <h2>Embed Widget</h2>
 
-        <%= f.check_box 'widget.show_on_support_site', checked: true  %>
+        <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1"} %>
         <p>Add the embed widget to your site using the following URL:<br/>
           <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code>
         </p>
