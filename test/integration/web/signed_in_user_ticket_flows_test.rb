@@ -63,6 +63,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     visit '/en'
     visit '/en/tickets'
 
+    sleep(2)
     assert page.has_content?('#1- Private topic')
     click_on('#1- Private topic')
 

@@ -12,14 +12,6 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     Capybara.current_driver = Capybara.javascript_driver
     sign_in("admin@test.com")
-
-    page.driver.browser.url_blacklist = [
-      'www.google.com',
-      'google-analytics.com',
-      'fonts.googleapis.com',
-      'fonts.gstatic.com'
-    ].flat_map { |domain| [ "http://#{domain}", "https://#{domain}" ] }
-
   end
 
   def teardown
@@ -27,16 +19,6 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     Warden.test_reset!
     Capybara.reset_sessions!
     Capybara.use_default_driver
-  end
-
-  def create_discussion
-    click_on "New Discussion"
-    sleep(2)
-    fill_in("topic_user_email", with: "scott.smith@test.com")
-    fill_in("topic_user_name", with: "Scott Smith")
-    fill_in("topic_name", with: "New test message from admin form")
-    fill_in("post_body", with: "This is the message")
-    click_on "Start Discussion"
   end
 
   test "an admin should be able to create a new private discussion via the admin form" do

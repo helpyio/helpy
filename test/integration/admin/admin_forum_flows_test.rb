@@ -24,15 +24,17 @@ class AdminForumFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin"
 
     click_link 'Communities'
-    sleep(3)
-    assert current_path == "/admin/communities"
-    assert page.has_content?("Admin Communities")
+    sleep(1)
 
+    assert page.has_content?("Admin Communities")
     assert page.has_content?("Create New Community")
 
-    find("span#row-3").click
-    assert find_link("Edit")
-    assert find_link("Delete")
+    within first(".forum") do
+      find(".glyphicon-align-justify").click
+      sleep(2)
+      assert find_link("Edit")
+      assert find_link("Delete")
+    end
 
     # This is to avoid a weird poltergeist error and is not needed for the test
     click_link("Edit")
@@ -47,24 +49,22 @@ class AdminForumFlowsTest < ActionDispatch::IntegrationTest
 
     # First create category
     click_link "Create New Community"
-    assert_difference('Forum.count', 1) do
-      fill_in("forum_name", with: "New Forum")
-      fill_in("forum_description", with: "This is the description")
-      select("Table", from: "forum_layout")
-      check("forum_allow_topic_voting")
-      check("forum_allow_post_voting")
-      click_on("Save Changes")
-    end
+    fill_in("forum_name", with: "New Forum")
+    fill_in("forum_description", with: "This is the description")
+    select("Table", from: "forum_layout")
+    check("forum_allow_topic_voting")
+    check("forum_allow_post_voting")
+    click_on("Save Changes")
 
     # Now we will edit it
     assert current_path == "/admin/communities"
     assert page.has_content?("Admin Communities")
-    @forum = Forum.where(name: "New Forum").first
 
-    within("tr#forum-#{@forum.id}") do
+    within first(".forum") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
+
     fill_in("forum_name", with: "New Forum (edited)")
     fill_in("forum_description", with: "This is the description (edited)")
     select("Table", from: "forum_layout")
@@ -84,28 +84,22 @@ class AdminForumFlowsTest < ActionDispatch::IntegrationTest
 
     # First create forum
     click_link "Create New Community"
-    #assert_difference('Forum.count', 1) do
-      fill_in("forum_name", with: "New Forum")
-      fill_in("forum_description", with: "This is the description")
-      select("Table", from: "forum_layout")
-      check("forum_allow_topic_voting")
-      check("forum_allow_post_voting")
-      click_on("Save Changes")
-    #end
+    fill_in("forum_name", with: "New Forum")
+    fill_in("forum_description", with: "This is the description")
+    select("Table", from: "forum_layout")
+    check("forum_allow_topic_voting")
+    check("forum_allow_post_voting")
+    click_on("Save Changes")
     sleep(1)
 
-    @forum = Forum.where(name: "New Forum").first
-
-    #assert_difference('Forum.count', -1) do
-      within("tr#forum-#{@forum.id}") do
-        find(".glyphicon-align-justify").click
-        sleep(1)
-        click_on("Delete")
-        sleep(1)
-        execute_script "$('a.btn.proceed.btn-primary').click()"
-        sleep(1)
-      end
-    #end
+    within first(".forum") do
+      find(".glyphicon-align-justify").click
+      sleep(1)
+      click_on("Delete")
+      sleep(1)
+      execute_script "$('a.btn.proceed.btn-primary').click()"
+      sleep(1)
+    end
 
     assert page.has_content?("Admin Communities")
   end

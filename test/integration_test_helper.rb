@@ -1,21 +1,15 @@
 require "test_helper"
 require "capybara/rails"
-require "capybara/poltergeist"
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
 
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app,
-      js_errors: false,
-      debug: false,
-      window_size: [1500, 2000],
-      timeout: 120
-    )
+  Capybara::Webkit.configure do |config|
+    config.block_unknown_urls
+    config.timeout = 5
   end
-
-  Capybara.javascript_driver = :poltergeist
+  Capybara.javascript_driver = :webkit
 end
 
 def sign_in(email='scott.miller@test.com')
@@ -53,4 +47,14 @@ def click_logout
     click_on("Logout")
   end
   sleep(3)
+end
+
+def create_discussion
+  click_on "New Discussion"
+  sleep(2)
+  fill_in("topic_user_email", with: "scott.smith@test.com")
+  fill_in("topic_user_name", with: "Scott Smith")
+  fill_in("topic_name", with: "New test message from admin form")
+  fill_in("post_body", with: "This is the message")
+  click_on "Start Discussion"
 end

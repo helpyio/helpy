@@ -89,11 +89,13 @@ GEM
     capybara-screenshot (1.0.11)
       capybara (>= 1.0, < 3)
       launchy
+    capybara-webkit (1.9.0)
+      capybara (>= 2.3.0, < 2.7.0)
+      json
     celluloid (0.16.0)
       timers (~> 4.0.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
-    cliver (0.3.2)
     cloudinary (1.1.2)
       aws_cf_signer
       rest-client
@@ -285,11 +287,6 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
-    poltergeist (1.9.0)
-      capybara (~> 2.1)
-      cliver (~> 0.3.1)
-      multi_json (~> 1.0)
-      websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -462,9 +459,6 @@ GEM
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
     websocket (1.2.2)
-    websocket-driver (0.6.3)
-      websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -484,6 +478,7 @@ DEPENDENCIES
   byebug
   capybara
   capybara-screenshot
+  capybara-webkit
   cloudinary (= 1.1.2)
   codeclimate-test-reporter
   config
@@ -526,7 +521,6 @@ DEPENDENCIES
   permalink_fu
   pg
   pg_search
-  poltergeist
   quiet_assets
   rails (= 4.2.6)
   rails-i18n (~> 4.0.0)
@@ -553,3 +547,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   web-console (~> 2.0)
+
+BUNDLED WITH
+   1.11.2

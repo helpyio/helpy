@@ -21,8 +21,15 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to view a user profile and edit that user" do
 
-    first(".user-link").click
-    assert page.has_content?('Scott Miller')
+    create_discussion
+    sleep(2)
+    click_on "Discussions"
+    sleep(2)
+    click_on "New"
+    sleep(2)
+
+    first("span.user-thumbnail").click
+    assert page.has_content?('Scott Smith')
     assert page.has_content?('BIO')
     assert page.has_content?('CONTACT')
     assert page.has_content?('SOCIAL')
