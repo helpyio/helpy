@@ -141,6 +141,8 @@ group :test do
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'capybara-screenshot'
+  gem 'sauce'
+  gem 'saucelabs'
 end
 
 group :production do
