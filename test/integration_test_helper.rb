@@ -11,7 +11,8 @@ class ActionDispatch::IntegrationTest
     Capybara::Poltergeist::Driver.new(app,
       js_errors: false,
       window_size: [1200, 1000],
-      phantomjs_logger: 'fake'
+      phantomjs_logger: 'fake',
+      timeout: 120
     )
   end
 end
