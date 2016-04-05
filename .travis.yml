@@ -9,7 +9,10 @@ services:
 before_script:
   - psql -c 'create database helpy_test;' -U postgres
   - bundle install
-
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  
 # Run unit and integration in parallel
 env:
   - TEST_FOLDER=models
