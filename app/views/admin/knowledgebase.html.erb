@@ -27,7 +27,7 @@ $(document).ready(function(){
           <th colspan="2" class='tiny-header'><%= t(:front_page_categories, default: 'Front Page Categories') %></th>
         </tr>
       </thead>
-      <tbody id="categories">
+      <tbody id="categories" class="front-categories">
         <%= render partial: 'cat', collection: @categories %>
       </tbody>
     </table>
@@ -36,12 +36,15 @@ $(document).ready(function(){
     <table id="forums" class="table-hover">
       <col>
       <col width="5%">
-      <tbody id="categories">
+      <thead>
+        <tr>
+          <th colspan="2" class='tiny-header'><%= t(:other_categories, default: 'Other Categories') %></th>
+        </tr>
+      </thead>
+
+      <tbody id="categories" class="other-categories">
         <tr>
           <td colspan="2"></td>
-        </tr>
-        <tr>
-          <td colspan="2" class='tiny-header'><%= t(:other_categories, default: 'Other Categories') %></td>
         </tr>
         <%= render partial: 'cat', collection: @nonfeatured %>
       </tbody>

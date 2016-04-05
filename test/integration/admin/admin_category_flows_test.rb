@@ -33,7 +33,6 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     check("category_front_page")
     click_on("Create Category")
     sleep(2)
-    @cat = Category.where(name: name).first
   end
 
   test "an admin should be able to manage knowledgebase categories" do
@@ -70,15 +69,13 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_link 'Content'
 
     # First create category
-    assert_difference('Category.count', 1) do
-      create_category
-    end
+    create_category
 
     # Now we will edit it
     assert current_path == "/admin/content"
     assert page.has_content?("New Category")
 
-    within("tr#category-#{@cat.id}") do
+    within first("tr.category") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
@@ -103,14 +100,14 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_link 'Content'
 
     # First create category
-    assert_difference('Category.count', 1) do
-      create_category("Translate This")
-    end
+    create_category("Translate This")
 
     # Now translate into French
-    within("tr#category-#{@cat.id}") do
-      find(".glyphicon-align-justify").click
-      click_on("Edit")
+    within(".front-categories") do
+      within all(".category").last do
+        find(".glyphicon-align-justify").click
+        click_on("Edit")
+      end
     end
 
     # Select Francais
@@ -124,8 +121,10 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_on("Update Category")
 
     # Verify FR is active
-    within("tr#category-#{@cat.id}") do
-      page.has_css?("span.badge.FR")
+    within(".front-categories") do
+      within all(".category").last do
+        page.has_css?("span.badge.FR")
+      end
     end
 
   end
@@ -136,15 +135,11 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_link 'Content'
 
     # First create category
-    assert_difference('Category.count', 1) do
-      create_category
-    end
-
-    click_link 'Content'
+    create_category
     sleep(3)
 
-    #assert_difference('Category.count', -1) do
-      within("tr#category-#{@cat.id}") do
+    within(".front-categories") do
+      within all(".category").last do
         find("span.glyphicon-align-justify").click
         sleep(2)
         click_on("Delete")
@@ -152,6 +147,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
         execute_script "$('a.btn.proceed.btn-primary').click()"
         sleep(1)
       end
-    #end
+    end
+
   end
 end
