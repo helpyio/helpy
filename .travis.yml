@@ -1,6 +1,16 @@
 language: ruby
 rvm:
   - 2.2.1
+  
+sudo: required
+dist: trusty
+
+before_install:
+  - sudo add-apt-repository --yes ppa:beineri/opt-qt551-trusty
+  - sudo apt-get update -qq
+  
+install:
+  - sudo apt-get -y install qt55[QTPACKAGE]
 
 services:
   - postgresql
@@ -10,6 +20,10 @@ before_script:
   - psql -c 'create database helpy_test;' -U postgres
 
 script:
+  - source /opt/qt55/bin/qt55-env.sh
+  - /opt/qt55/bin/qmake
+  - make
+
   # Test suite
   - bundle exec rake
   # Brakeman security scanner
