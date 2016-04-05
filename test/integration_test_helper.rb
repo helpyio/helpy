@@ -9,7 +9,6 @@ class ActionDispatch::IntegrationTest
 
   Capybara::Webkit.configure do |config|
     config.block_unknown_urls
-    config.debug = true
     config.timeout = 10
   end
 end
