@@ -8,14 +8,13 @@
 
       <col width="85%">
       <col width="15%">
+      <thead>
+        <tr>
+          <td colspan="2" class='tiny-header'>Community</td>
+        </tr>
+      </thead>
       <tbody id="categories">
-      <tr>
-        <td colspan="2" class='tiny-header'>Community</td>
-      </tr>
-      <%= render partial: 'forum', collection: @forums %>
-      <tr>
-        <td colspan="2"></td>
-      </tr>
+        <%= render partial: 'admin/forum', collection: @forums %>
       </tbody>
     </table>
 
