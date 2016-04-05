@@ -1,4 +1,5 @@
 require "test_helper"
+require "sauce_helper"
 require "capybara/rails"
 require "sauce/capybara"
 
