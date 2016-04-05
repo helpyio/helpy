@@ -88,11 +88,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Reply to this Topic")
 
     # Reply with text
-    assert_difference('Post.count', 1) do
-      fill_in("post_body", with: "This is a reply, check it out")
-      click_on("Post Reply", disabled: true)
-      sleep(1)
-    end
+    fill_in("post_body", with: "This is a reply, check it out")
+    click_on("Post Reply", disabled: true)
+    sleep(1)
     assert page.has_content?("Admin User replied...")
 
     # Reply with internal note
