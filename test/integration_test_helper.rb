@@ -61,5 +61,5 @@ def create_discussion
   fill_in("topic_user_name", with: "Scott Smith")
   fill_in("topic_name", with: "New test message from admin form")
   fill_in("post_body", with: "This is the message")
-  click_on "Start Discussion"
+  click_on("Start Discussion", disabled: true)
 end

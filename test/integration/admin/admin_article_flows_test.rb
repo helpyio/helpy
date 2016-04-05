@@ -89,14 +89,11 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     click_on("Save Changes")
     sleep(3)
 
-    @doc = Doc.where(title: "Add Doc").first
-    sleep(3)
-
     # Now we will edit it
     # assert current_path == "/admin/content/1/articles"
     #assert page.has_content?("active and featured")
 
-    within("tr#doc-6") do
+    within all(".article").last do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
