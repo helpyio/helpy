@@ -29,12 +29,14 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
     sleep(2)
 
     first("span.user-thumbnail").click
+    sleep(1)
     assert page.has_content?('Scott Smith')
     assert page.has_content?('BIO')
     assert page.has_content?('CONTACT')
     assert page.has_content?('SOCIAL')
 
     click_on "Edit"
+    sleep(1)
     assert page.has_css?('.checkbox-inline')
 
     #Edit user

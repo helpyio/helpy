@@ -1,17 +1,17 @@
 require "test_helper"
-require "sauce_helper"
 require "capybara/rails"
-require "sauce/capybara"
+require "capybara/webkit"
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+  Capybara.javascript_driver = :webkit
 
   Capybara::Webkit.configure do |config|
     config.block_unknown_urls
-    config.timeout = 5
+    config.debug = true
+    config.timeout = 10
   end
-  Capybara.javascript_driver = :sauce
 end
 
 def sign_in(email='scott.miller@test.com')

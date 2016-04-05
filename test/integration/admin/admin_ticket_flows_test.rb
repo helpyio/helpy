@@ -84,6 +84,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     click_on("New")
     sleep(1)
     click_on("#8- New Idea")
+    sleep(1)
     assert page.has_content?("Reply to this Topic")
 
     # Reply with text
