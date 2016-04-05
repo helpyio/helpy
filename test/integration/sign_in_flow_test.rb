@@ -13,22 +13,28 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
     Warden.test_reset!
   end
 
+  def sign_out
+    visit '/'
+    within("div#above-header") do
+      click_on("Logout")
+    end
+  end
+
   test "a browser should be able to sign in and be shown the home page" do
     sign_in
     assert_equal '/en', current_path
+    sign_out
   end
 
   test "an admin should be able to sign in and be shown the admin page" do
-    sign_in_admin
-    assert_equal '/admin', path
+    sign_in("admin@test.com")
+    assert_equal '/admin', current_path
+    sign_out
   end
 
-  # TODO: for some reason I could not get the admin login with the regular sign_in method to work
-  # The current path never changed from /en so I had to resort to doing it this way:
-  def sign_in_admin
-    get "/en/users/sign_in"
-    post '/en/users/sign_in', 'user[email]' => 'admin@test.com', 'user[password]' => '12345678'
-    follow_redirect!
+  test "a browser visiting an admin page should be redirected to login in their locale" do
+    visit '/admin'
+    assert_equal '/en/users/sign_in', current_path
   end
 
 end
