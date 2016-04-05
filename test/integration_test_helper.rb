@@ -1,15 +1,18 @@
 require "test_helper"
 require "capybara/rails"
-require "capybara/webkit"
+require "capybara/poltergeist"
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
-  Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver = :poltergeist
 
-  Capybara::Webkit.configure do |config|
-    config.block_unknown_urls
-    config.timeout = 10
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app,
+      js_errors: false,
+      window_size: [1200, 1000],
+      phantomjs_logger: 'fake'
+    )
   end
 end
 

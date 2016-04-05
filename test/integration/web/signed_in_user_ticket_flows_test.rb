@@ -25,12 +25,10 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?('Should this message be private?')
 
-    assert_difference('Topic.count', 1) do
-      choose('Only support can respond (creates a private ticket)')
-      fill_in('topic[name]', with: 'I got problems')
-      fill_in('post[body]', with: 'Please help me!!')
-      click_on('Start Discussion', disabled: true)
-    end
+    choose('Only support can respond (creates a private ticket)')
+    fill_in('topic[name]', with: 'I got problems')
+    fill_in('post[body]', with: 'Please help me!!')
+    click_on('Start Discussion', disabled: true)
 
     visit '/en/tickets/'
     assert page.has_content?('Tickets')
@@ -45,13 +43,11 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?('Should this message be private?')
 
-    assert_difference('Topic.count', 1) do
-      choose('Responses can come from support or the community (recommended)')
-      select('Public Forum', from: "topic[forum_id]")
-      fill_in('topic[name]', with: 'I got problems')
-      fill_in('post[body]', with: 'Please help me!!')
-      click_on('Start Discussion', disabled: true)
-    end
+    choose('Responses can come from support or the community (recommended)')
+    select('Public Forum', from: "topic[forum_id]")
+    fill_in('topic[name]', with: 'I got problems')
+    fill_in('post[body]', with: 'Please help me!!')
+    click_on('Start Discussion', disabled: true)
 
     visit '/en/community/3-public-forum/topics'
     assert page.has_content?("I got problems")
@@ -68,10 +64,8 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     click_on('#1- Private topic')
 
     assert current_path == '/en/ticket/1-private-topic'
-    assert_difference('Post.count', 1) do
-      fill_in "post_body", with: "This is my reply"
-      click_on "Post Reply", disabled: true
-    end
+    fill_in "post_body", with: "This is my reply"
+    click_on "Post Reply", disabled: true
 
 #    assert page.has_content?('This is my reply'), "Reply not found"
 
@@ -115,10 +109,8 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
       visit topic
 
-      assert_difference('Post.count', 1) do
-        fill_in "post_body", with: "This is my reply"
-        click_on "Post Reply"
-      end
+      fill_in "post_body", with: "This is my reply"
+      click_on "Post Reply"
 
       visit topic
       assert page.has_content?('This is my reply'), "Reply not found"
