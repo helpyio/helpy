@@ -34,6 +34,8 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     check("category_front_page")
     click_on("Create Category")
     sleep(2)
+
+    @category = Category.where(name: name).first
   end
 
   test "an admin should be able to manage knowledgebase categories" do
@@ -63,7 +65,23 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_on("Edit")
   end
 
-  test "an admin should be able to add and edit a knowledgebase category" do
+  test "an admin should be able to add a knowledgebase category" do
+
+    assert current_path == "/admin"
+
+    click_link 'Content'
+
+    # First create category
+    create_category
+
+    # Now we will edit it
+    assert current_path == "/admin/content"
+    assert page.has_content?("#{@category.name}")
+
+
+  end
+
+  test "an admin should be able to edit a knowledgebase category" do
 
     assert current_path == "/admin"
 
@@ -76,7 +94,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin/content"
     assert page.has_content?("New Category")
 
-    within first("tr.category") do
+    within("tr#category-#{@category.id}") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
@@ -91,7 +109,6 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin/content"
     assert page.has_content?("Updated Category")
 
-
   end
 
   test "an admin should be able to translate a category" do
@@ -104,11 +121,9 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     create_category("Translate This")
 
     # Now translate into French
-    within("tbody.front-categories") do
-      within all(".category").last do
-        find(".glyphicon-align-justify").click
-        click_on("Edit")
-      end
+    within("tr#category-#{@category.id}") do
+      find(".glyphicon-align-justify").click
+      click_on("Edit")
     end
 
     # Select Francais
@@ -122,10 +137,8 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_on("Update Category")
 
     # Verify FR is active
-    within("tbody.front-categories") do
-      within all(".category").last do
-        page.has_css?("span.badge.FR")
-      end
+    within("tr#category-#{@category.id}") do
+      page.has_css?("span.badge.FR")
     end
 
   end
@@ -139,15 +152,14 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     create_category
     sleep(3)
 
-    within("tbody.front-categories") do
-      within all(".category").last do
-        find("span.glyphicon-align-justify").click
-        sleep(2)
-        click_on("Delete")
-        sleep(1)
-        execute_script "$('a.btn.proceed.btn-primary').click()"
-        sleep(1)
-      end
+    save_and_open_page
+    within("tr#category-#{@category.id}") do
+      find("span.glyphicon-align-justify").click
+      sleep(2)
+      click_on("Delete")
+      sleep(1)
+      execute_script "$('a.btn.proceed.btn-primary').click()"
+      sleep(1)
     end
 
   end
