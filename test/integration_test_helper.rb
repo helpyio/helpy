@@ -1,7 +1,6 @@
 require "test_helper"
 require "capybara/rails"
 require "capybara/poltergeist"
-require 'capybara-screenshot/testunit'
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
