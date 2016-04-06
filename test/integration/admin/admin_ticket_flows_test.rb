@@ -36,7 +36,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     sleep(2)
 
-    @ticket = Topic.where(name: name).first
+    @ticket = Topic.where(name: name).last
     sleep(2)
   end
 
