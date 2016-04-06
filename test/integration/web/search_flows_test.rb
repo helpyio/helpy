@@ -1,3 +1,4 @@
+=begin
 require 'integration_test_helper'
 
 class SearchFlowsTest < ActionDispatch::IntegrationTest
@@ -31,3 +32,4 @@ class SearchFlowsTest < ActionDispatch::IntegrationTest
   end
 
 end
+=end
