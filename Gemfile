@@ -136,13 +136,9 @@ group :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'capybara'
-#  gem 'selenium-webdriver'
-#  gem 'capybara-webkit'
   gem 'launchy'
-  gem "codeclimate-test-reporter",require: nil
+#  gem "codeclimate-test-reporter", require: nil
   gem 'capybara-screenshot'
-#  gem 'sauce'
-#  gem 'saucelabs'
   gem 'poltergeist'
 end
 
