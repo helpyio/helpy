@@ -1,4 +1,3 @@
-=begin
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
@@ -153,4 +152,3 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
 
   end
 end
-=end
