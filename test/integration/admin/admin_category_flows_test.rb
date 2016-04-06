@@ -35,6 +35,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_on("Create Category")
     sleep(2)
 
+    # Set instance variable of the new category
     @category = Category.where(name: name).first
   end
 
@@ -74,8 +75,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     # First create category
     create_category
 
-    # Now we will edit it
-    assert current_path == "/admin/content"
+    # Make sure new category is displayed
     assert page.has_content?("#{@category.name}")
 
 
@@ -152,7 +152,6 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     create_category
     sleep(3)
 
-    save_and_open_page
     within("tr#category-#{@category.id}") do
       find("span.glyphicon-align-justify").click
       sleep(2)
