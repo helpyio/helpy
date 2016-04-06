@@ -103,7 +103,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     create_category("Translate This")
 
     # Now translate into French
-    within(".front-categories") do
+    within("tbody.front-categories") do
       within all(".category").last do
         find(".glyphicon-align-justify").click
         click_on("Edit")
@@ -121,7 +121,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_on("Update Category")
 
     # Verify FR is active
-    within(".front-categories") do
+    within("tbody.front-categories") do
       within all(".category").last do
         page.has_css?("span.badge.FR")
       end
@@ -138,7 +138,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     create_category
     sleep(3)
 
-    within(".front-categories") do
+    within("tbody.front-categories") do
       within all(".category").last do
         find("span.glyphicon-align-justify").click
         sleep(2)

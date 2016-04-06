@@ -89,7 +89,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     # Reply with text
     fill_in("post_body", with: "This is a reply, check it out")
-    click_on("Post Reply", disabled: true)
+    click_on("Post Reply")
     sleep(1)
     assert page.has_content?("Admin User replied...")
 
@@ -122,7 +122,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     # Reply with text
     fill_in("post_body", with: "Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks and only print them to the logs. In the next version, these errors will no longer be suppressed. Instead, the errors will propagate normally just like in other Active Record callbacks.")
-    click_on("Post Reply", disabled: true)
+    click_on("Post Reply")
     sleep(2)
 
     # Edit the reply

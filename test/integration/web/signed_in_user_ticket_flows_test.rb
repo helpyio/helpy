@@ -56,14 +56,15 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a signed in user should be able to reply to a private ticket" do
 
-    visit '/en'
     visit '/en/tickets'
 
     sleep(2)
-    assert page.has_content?('#1- Private topic')
-    click_on('#1- Private topic')
+    assert page.has_content?('Tickets')
+    within("table#topics") do
+      first("a.ticket-link").click
+    end
+    assert page.has_content?('Ticket Number')
 
-    assert current_path == '/en/ticket/1-private-topic'
     fill_in "post_body", with: "This is my reply"
     click_on "Post Reply", disabled: true
 

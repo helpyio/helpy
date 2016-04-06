@@ -30,10 +30,7 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
 
     first("span.user-thumbnail").click
     sleep(1)
-    assert page.has_content?('Scott Smith')
-    assert page.has_content?('BIO')
-    assert page.has_content?('CONTACT')
-    assert page.has_content?('SOCIAL')
+    assert page.has_content?('BIO') #Only exists on user view
 
     click_on "Edit"
     sleep(1)

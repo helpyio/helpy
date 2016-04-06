@@ -1,7 +1,7 @@
 <tr class="topic border-bottom">
   <td>
     <span class="truncate-ellipsis">
-      <%= link_to "##{ticket.id}- #{ticket.name.capitalize}", ticket_path(ticket) -%><%= badge_for_status(ticket.current_status) %>
+      <%= link_to "##{ticket.id}- #{ticket.name.capitalize}", ticket_path(ticket), class: "ticket-link" -%><%= badge_for_status(ticket.current_status) %>
     </span>
   </td>
   <td class="last-active less-important text-right">
