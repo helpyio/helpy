@@ -1,3 +1,4 @@
+=begin
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
@@ -14,7 +15,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sign_in("admin@test.com")
 
     blacklist_urls
-    
+
   end
 
   def teardown
@@ -197,3 +198,4 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
 end
+=end
