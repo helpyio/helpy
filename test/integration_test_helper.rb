@@ -45,7 +45,7 @@ def sign_out
 end
 
 def click_logout
-  visit ('/')
+  visit '/'
   execute_script "$('.logout-link')[0].click()"
 end
 
