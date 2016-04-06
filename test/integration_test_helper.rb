@@ -62,5 +62,5 @@ def create_discussion
   fill_in("topic_name", with: "New test message from admin form")
   fill_in("post_body", with: "This is the message")
   sleep(1)
-  click_on("Start Discussion")
+  find(".submit-start-discussion").click
 end
