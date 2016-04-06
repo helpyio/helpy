@@ -32,7 +32,8 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     fill_in("topic_name", with: name)
     fill_in("post_body", with: "This is the message")
     sleep(1)
-    find(".submit-start-discussion").click
+    #find(".submit-start-discussion").click
+    execute_script("$('.submit-start-discussion')[0].click()")
 
     sleep(2)
 
