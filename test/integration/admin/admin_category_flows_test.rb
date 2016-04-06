@@ -73,7 +73,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_link 'Content'
 
     # First create category
-    create_category
+    create_category("Added Category")
 
     # Make sure new category is displayed
     assert page.has_content?("#{@category.name}")
@@ -88,7 +88,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_link 'Content'
 
     # First create category
-    create_category
+    create_category("Category to be edited")
 
     # Now we will edit it
     assert current_path == "/admin/content"
@@ -149,7 +149,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     click_link 'Content'
 
     # First create category
-    create_category
+    create_category("Category to be deleted")
     sleep(3)
 
     within("tr#category-#{@category.id}") do
