@@ -30,7 +30,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     fill_in("topic_name", with: "New test message from admin form")
     fill_in("post_body", with: "This is the message")
     sleep(1)
-    click_on "Start Discussion"
+    click_button "Start Discussion"
 
     sleep(2)
     click_on "New"
@@ -91,7 +91,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     # Reply with text
     fill_in("post_body", with: "This is a reply, check it out")
     sleep(1)
-    click_on("Post Reply")
+    click_button("Post Reply")
     sleep(1)
     assert page.has_content?("Admin User replied...")
 
@@ -107,7 +107,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     #Reply with common reply
     select('Article 1', from: 'post_reply_id')
-    click_on("Post Reply")
+    click_button("Post Reply")
     sleep(1)
 
     assert page.has_content?("2 collapsed messages")
@@ -125,7 +125,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     # Reply with text
     fill_in("post_body", with: "Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks and only print them to the logs. In the next version, these errors will no longer be suppressed. Instead, the errors will propagate normally just like in other Active Record callbacks.")
     sleep(1)
-    click_on("Post Reply")
+    click_button("Post Reply")
     sleep(1)
 
     # Edit the reply

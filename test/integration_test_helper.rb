@@ -23,7 +23,7 @@ def sign_in(email='scott.miller@test.com')
   within first('div.login-form') do
     fill_in("user[email]", with: email)
     fill_in("user[password]", with: '12345678')
-    click_on('Sign in')
+    click_button('Sign in')
   end
 end
 
