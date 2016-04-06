@@ -31,9 +31,9 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
     click_on "New"
     sleep(2)
 
-    first("span.user-thumbnail").click
+    first("a.user-profile-link").click
     sleep(1)
-    assert page.has_content?('BIO') #Only exists on user view
+    assert page.has_content?('BIO:') #Only exists on user view
 
     click_on "Edit"
     sleep(1)
