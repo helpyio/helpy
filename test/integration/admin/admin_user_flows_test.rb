@@ -10,6 +10,9 @@ class AdminUserFlowsTest < ActionDispatch::IntegrationTest
 
     Capybara.current_driver = Capybara.javascript_driver
     sign_in("admin@test.com")
+
+    blacklist_urls
+
   end
 
   def teardown

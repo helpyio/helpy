@@ -12,7 +12,7 @@ class ActionDispatch::IntegrationTest
       js_errors: false,
       window_size: [1200, 1000],
       phantomjs_logger: 'fake',
-      timeout: 15
+      timeout: 60
     )
   end
 end
@@ -52,6 +52,16 @@ def click_logout
     click_on("Logout")
   end
   sleep(3)
+end
+
+def blacklist_urls
+
+  page.driver.browser.url_blacklist = [
+    'http://www.google.com',
+    'http://www.google-analytics.com',
+    'http://randomuser.me'
+  ]
+
 end
 
 def create_discussion
