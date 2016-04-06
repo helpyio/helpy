@@ -24,7 +24,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
-  def admin_create_discussion(name="New test message from admin form")
+  def admin_create_discussion(name = "New test message from admin form")
     click_on "New Discussion"
     sleep(2)
     fill_in("topic_user_email", with: "scott.smith@test.com")
@@ -117,7 +117,11 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     click_on("New")
     sleep(1)
-    click_on("##{@ticket.id}- New test message from admin form")
+    #click_on("##{@ticket.id}- New test message from admin form")
+    within("tr#topic-#{@ticket.id}") do
+      find(".topic-link").click
+    end
+
     sleep(1)
     assert page.has_content?("Reply to this Topic")
 
@@ -130,7 +134,11 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     click_on("New")
     sleep(1)
-    click_on("##{@ticket.id}- Discussion for a reply")
+#    click_on("##{@ticket.id}- Discussion for a reply")
+    within("tr#topic-#{@ticket.id}") do
+      find(".topic-link").click
+    end
+
     sleep(1)
     assert page.has_content?("Reply to this Topic")
 
@@ -149,7 +157,10 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     click_on("New")
     sleep(1)
-    click_on("##{@ticket.id}- Discussion for internal note")
+    within("tr#topic-#{@ticket.id}") do
+      #click_on("##{@ticket.id}- Discussion for internal note")
+      find(".topic-link").click
+    end
     sleep(1)
     assert page.has_content?("Reply to this Topic")
 
@@ -171,7 +182,11 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     click_on("New")
     sleep(1)
-    click_on("##{@ticket.id}- Discussion for common reply")
+#    click_on("##{@ticket.id}- Discussion for common reply")
+    within("tr#topic-#{@ticket.id}") do
+      find(".topic-link").click
+    end
+
     sleep(1)
     assert page.has_content?("Reply to this Topic")
 
@@ -189,7 +204,11 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     click_on("New")
     sleep(2)
-    click_on("##{@ticket.id}- Discussion for post")
+    within("tr#topic-#{@ticket.id}") do
+      find(".topic-link").click
+    end
+
+#    click_on("##{@ticket.id}- Discussion for post")
     sleep(2)
     assert page.has_content?("Reply to this Topic")
 

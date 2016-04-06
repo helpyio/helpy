@@ -1,4 +1,3 @@
-=begin
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
@@ -37,7 +36,7 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
     sleep(2)
 
     # Set instance variable of the new category
-    @category = Category.where(name: name).first
+    @category = Category.where(name: name).last
   end
 
   test "an admin should be able to manage knowledgebase categories" do
@@ -164,4 +163,3 @@ class AdminCategoryFlowsTest < ActionDispatch::IntegrationTest
 
   end
 end
-=end
