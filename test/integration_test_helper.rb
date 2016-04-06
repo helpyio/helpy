@@ -45,13 +45,8 @@ def sign_out
 end
 
 def click_logout
-  sleep(2)
-  find('a.navbar-brand').click
-  sleep(2)
-  within("div#above-header") do
-    click_on("Logout")
-  end
-  sleep(3)
+  visit ('/')
+  execute_script "$('.logout-link')[0].click()"
 end
 
 def blacklist_urls
