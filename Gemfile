@@ -138,6 +138,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
 #  gem "codeclimate-test-reporter", require: nil
+  gem "selenium-webdriver"
   gem 'capybara-screenshot'
   gem 'poltergeist'
 end

@@ -8,7 +8,11 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     I18n.available_locales = [:en, :fr, :et]
     I18n.locale = :en
 
+    Capybara.current_driver = Capybara.javascript_driver
     sign_in
+
+    blacklist_urls
+
   end
 
   def teardown
@@ -28,7 +32,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     choose('Only support can respond (creates a private ticket)')
     fill_in('topic[name]', with: 'I got problems')
     fill_in('post[body]', with: 'Please help me!!')
-    click_on('Start Discussion', disabled: true)
+    click_on('Start Discussion')
 
     visit '/en/tickets/'
     assert page.has_content?('Tickets')
@@ -47,7 +51,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     select('Public Forum', from: "topic[forum_id]")
     fill_in('topic[name]', with: 'I got problems')
     fill_in('post[body]', with: 'Please help me!!')
-    click_on('Start Discussion', disabled: true)
+    click_on('Start Discussion')
 
     visit '/en/community/3-public-forum/topics'
     assert page.has_content?("I got problems")
@@ -66,7 +70,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Ticket Number')
 
     fill_in "post_body", with: "This is my reply"
-    click_on "Post Reply", disabled: true
+    click_on "Post Reply"
 
 #    assert page.has_content?('This is my reply'), "Reply not found"
 
@@ -80,8 +84,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     forums.each do |forum|
       visit forum
-      click_on "New Discussion"
-      assert current_path == "/en/topics/new"
+      assert page.has_content?("New Discussion")
     end
 
   end
@@ -119,4 +122,5 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     end
 
   end
+
 end

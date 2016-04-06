@@ -91,6 +91,8 @@ GEM
       launchy
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    childprocess (0.5.9)
+      ffi (~> 1.0, >= 1.0.11)
     cliver (0.3.2)
     cloudinary (1.1.2)
       aws_cf_signer
@@ -372,6 +374,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
+    rubyzip (1.2.0)
     ruser (3.0.0)
     safe_yaml (1.0.4)
     sass (3.4.21)
@@ -387,6 +390,10 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selenium-webdriver (2.53.0)
+      childprocess (~> 0.5)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0)
     sexp_processor (4.7.0)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
@@ -445,6 +452,7 @@ GEM
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)
       sprockets-rails (>= 2.0, < 4.0)
+    websocket (1.2.2)
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -523,6 +531,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   scss-lint
   sdoc (~> 0.4.0)
+  selenium-webdriver
   shoulda
   spring (~> 1.4.0)
   staccato

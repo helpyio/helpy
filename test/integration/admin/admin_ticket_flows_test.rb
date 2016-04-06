@@ -1,4 +1,3 @@
-=begin
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
@@ -25,18 +24,34 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
-  test "an admin should be able to create a new private discussion via the admin form" do
-
+  def admin_create_discussion(name="New test message from admin form")
     click_on "New Discussion"
     sleep(2)
     fill_in("topic_user_email", with: "scott.smith@test.com")
     fill_in("topic_user_name", with: "Scott Smith")
-    fill_in("topic_name", with: "New test message from admin form")
+    fill_in("topic_name", with: name)
     fill_in("post_body", with: "This is the message")
     sleep(1)
     find(".submit-start-discussion").click
 
     sleep(2)
+
+    @ticket = Topic.where(name: name).last
+  end
+
+  def visit_message_detail
+    # Jump directly to ticket detail via search
+    fill_in('q', with: '1')
+    execute_script "$('form.navbar-form.navbar-right').submit()"
+    sleep(2)
+    assert page.has_content?("#1- Private topic")
+    click_on("#1- Private topic")
+  end
+
+  test "an admin should be able to create a new private discussion via the admin form" do
+
+    admin_create_discussion
+
     click_on "New"
     sleep(2)
 
@@ -55,7 +70,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "an admin should be able to select multiple discussions and assign them or change their status" do
+  test "an admin should be able to select multiple discussions and assign them" do
     assert current_path == "/admin"
 
     # First we'll reassign all open discussions
@@ -71,6 +86,16 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_no_content?("unassigned")
     #@open = Topic.open.count
     #assert_equal(0, @open)
+  end
+
+  test "an admin should be able to select multiple discussions change their status" do
+    assert current_path == "/admin"
+
+    # First we'll reassign all open discussions
+    click_on("Resolved")
+    sleep(2)
+    check("check-all")
+    sleep(2)
 
     # Next lets mark all new discussions resolved
     click_on("Pending")
@@ -83,12 +108,27 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "an admin should be able to click on a listed discussion to view and reply to it" do
+  test "an admin should be able to click on a listed discussion to view it" do
     assert current_path == "/admin"
+
+    admin_create_discussion
 
     click_on("New")
     sleep(1)
-    click_on("#8- New Idea")
+    click_on("##{@ticket.id}- New test message from admin form")
+    sleep(1)
+    assert page.has_content?("Reply to this Topic")
+
+  end
+
+  test "an admin should be able to click on a listed discussion to reply to it" do
+    assert current_path == "/admin"
+
+    admin_create_discussion("Discussion for a reply")
+
+    click_on("New")
+    sleep(1)
+    click_on("##{@ticket.id}- Discussion for a reply")
     sleep(1)
     assert page.has_content?("Reply to this Topic")
 
@@ -99,6 +139,18 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(1)
     assert page.has_content?("Admin User replied...")
 
+  end
+  test "an admin should be able to click on a listed discussion and post an internal note to it" do
+    assert current_path == "/admin"
+
+    admin_create_discussion("Discussion for internal note")
+
+    click_on("New")
+    sleep(1)
+    click_on("##{@ticket.id}- Discussion for internal note")
+    sleep(1)
+    assert page.has_content?("Reply to this Topic")
+
     # Reply with internal note
     choose("post_kind_note")
     fill_in("post_body", with: "This is an internal note")
@@ -107,23 +159,35 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(2)
 
     assert page.has_content?("Admin User posted an internal note...")
-    assert page.has_content?("1 collapsed message")
     assert page.has_content?("This is an internal note")
+  end
+
+  test "an admin should be able to click on a listed discussion and reply with a common reply" do
+    assert current_path == "/admin"
+
+    admin_create_discussion("Discussion for common reply")
+
+    click_on("New")
+    sleep(1)
+    click_on("##{@ticket.id}- Discussion for common reply")
+    sleep(1)
+    assert page.has_content?("Reply to this Topic")
 
     #Reply with common reply
     select('Article 1', from: 'post_reply_id')
     find(".submit-post-reply").click
     sleep(1)
 
-    assert page.has_content?("2 collapsed messages")
     assert page.has_content?("article1 text")
   end
 
   test "an admin should be able to edit deactivate and turn a post into content" do
 
+    admin_create_discussion("Discussion for post")
+
     click_on("New")
     sleep(2)
-    click_on("#7- New Question")
+    click_on("##{@ticket.id}- Discussion for post")
     sleep(2)
     assert page.has_content?("Reply to this Topic")
 
@@ -165,15 +229,10 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "an admin should be able to change status privacy or assignment of a discussion from the detailed view" do
+  test "an admin should be able to change assignment of a discussion from the detailed view" do
     assert current_path == "/admin"
 
-    # Jump directly to ticket detail via search
-    fill_in('q', with: '1')
-    execute_script "$('form.navbar-form.navbar-right').submit()"
-    sleep(2)
-    assert page.has_content?("#1- Private topic")
-    click_on("#1- Private topic")
+    visit_message_detail
 
     #Next, assign the message to admin
     find("span.ticket-agent").click
@@ -181,21 +240,31 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     sleep(2)
     assert page.has_content?("Discussion has been transferred to Admin User.")
+  end
 
+  test "an admin should be able to change privacy of a discussion from the detailed view" do
+    assert current_path == "/admin"
 
-    #Now make it public
+    visit_message_detail
+
+    #Make it public
     find("span.ticket-forum").click
     click_link "Move: Public Forum"
     sleep(2)
     assert page.has_content?("PUBLIC")
 
-    #And last, change its status to resolved
+  end
+
+  test "an admin should be able to change status of a discussion from the detailed view" do
+    assert current_path == "/admin"
+
+    visit_message_detail
+
+    #Change its status to resolved
     find("span.ticket-status").click
     click_link "Mark Resolved"
     sleep(2)
     assert page.has_content?("This ticket has been closed by the support staff.")
 
   end
-
 end
-=end
