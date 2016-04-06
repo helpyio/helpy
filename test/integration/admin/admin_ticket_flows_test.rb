@@ -36,7 +36,8 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     sleep(2)
 
-    @ticket = Topic.where(name: name).last
+    @ticket = Topic.where(name: name).first
+    sleep(2)
   end
 
   def visit_message_detail
@@ -46,6 +47,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(2)
     assert page.has_content?("#1- Private topic")
     click_on("#1- Private topic")
+    sleep(1)
   end
 
   test "an admin should be able to create a new private discussion via the admin form" do

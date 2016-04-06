@@ -1,3 +1,4 @@
+=begin
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
@@ -107,3 +108,4 @@ class AdminForumFlowsTest < ActionDispatch::IntegrationTest
   end
 
 end
+=end
