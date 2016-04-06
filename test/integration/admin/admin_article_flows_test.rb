@@ -70,7 +70,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
-  test "an admin should be able to add and edit a knowledgebase document" do
+  test "an admin should be able to add a knowledgebase document" do
 
     assert current_path == "/admin"
     click_link 'Content'
@@ -90,16 +90,30 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     click_on("Save Changes")
     sleep(3)
 
-    # Now we will edit it
-    # assert current_path == "/admin/content/1/articles"
-    #assert page.has_content?("active and featured")
+    assert page.has_content?("Add Doc")
 
-    within all(".article").last do
+  end
+
+  test "an admin should be edit a knowledgebase document" do
+
+    assert current_path == "/admin"
+    click_link 'Content'
+
+    sleep(1)
+
+    within first(".category") do
+      find(".glyphicon-align-justify").click
+      click_on("View and Edit Content")
+    end
+
+    sleep(1)
+
+    within first(".article") do
       find(".glyphicon-align-justify").click
       click_on("Edit")
     end
 
-    assert page.has_content?("Edit: Add Doc")
+    assert page.has_content?("Edit:")
 
     fill_in("doc_title", with: "New Article (edited)")
     select("active and featured", from: "doc_category_id")
@@ -111,7 +125,7 @@ class AdminArticleFlowsTest < ActionDispatch::IntegrationTest
     choose("doc_active_true")
     click_on("Save Changes")
 
-    assert current_path == "/admin/content/1/articles"
+    assert page.has_content?("New Article (edited)")
 
   end
 
