@@ -192,12 +192,32 @@ pt:
 
   # Mail messages
   hello: "Olá %{user_name}"
-  new_user: "Obrigado pelo seu contacto. A sua mensagem foi recebida pela nossa equipa de suporte e iremos entrar em contacto consigo o mais rapidamente possível."
-  account_generated: "Foi criada uma nova conta para si. Para fazer login, use este link:"
-  above_this_line: "Escreva a sua resposta acima desta linha"
-  message_id: "Id da Mensagem"
+  greetings: "Olá"
+  welcome: "Bem-vindo"
+  new_user: "Obrigado por nos contactar. A sua mensagem foi recebida pela nossa equipa de suporte e iremos tratar do seu pedido assim que possível."
+  account_generated: "Foi criada uma conta para si no nosso sistema. Para fazer login use o seguinte link:"
+  above_this_line: "Por favor responda acima desta linha"
+  message_id: "Message ID"
   message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
-  view_online: "Ver isto online:"
+  view_online: "Ver online:"
+
+  #Mail message Confirmation Instructions   #devise/mailer/confirmation_instructions.html.erb
+  confirmation_instructions:
+    account_email: "Pode confirmar a sua conta através do link em baixo"
+    account_confirm: "Confirmar a minha conta"
+
+  #Mail Message Reset Password Instructions #devise/mailer/reset_password_instructions.html.erb
+  reset_password_instructions:
+      reset_link_request: "Foi solicitada a recuperação de password da sua conta. Para o fazer clique no link em baixo"
+      change_password: "Alterar a minha password"
+      mail_ignore: "Se este pedido não foi feito por si, por favor ignore este email"
+      ignore_notice: "A sua password não será alterada até que aceda ao link acima e crie uma nova"
+
+  #Mail Message Unlock Instructions #devise/mailer/unlock_instructions.html.erb
+  unlock_instructions:
+      account_locked: "A sua conta foi bloqueada devido a um pedido excessivo de tentativas de login falhadas"
+      unlock_link: "Clique no link em baixo para desbloquear a sua conta"
+      unlock_account: "Desbloquear a minha conta"
 
   activerecord:
     attributes:
