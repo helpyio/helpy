@@ -81,10 +81,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(1)
     #find(".submit-start-discussion").trigger('click')
     #execute_script("$('.submit-start-discussion')[0].click()")
-
-    within('form.new_topic') do
-      find('input[name="commit"]').click
-    end
+    execute_script("$('form.new_topic').submit()")
 
     sleep(1)
 
