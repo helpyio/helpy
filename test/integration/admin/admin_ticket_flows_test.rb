@@ -83,7 +83,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     execute_script("$('.submit-start-discussion')[0].click()")
     sleep(1)
 
-    assert_page.has_no_content?("Discussion Management: New Discussion")
+    assert page.has_no_content?("Discussion Management: New Discussion")
     assert page.has_content?("Scott Smith")
     assert page.has_content?(subject)
   end
