@@ -67,15 +67,15 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(1)
   end
 
-  # test "an admin should be able to create a new private discussion via the admin form" do
-  #
-  #   admin_create_discussion
-  #
-  #   click_on "New"
-  #   sleep(2)
-  #
-  #   assert page.has_content?("#{@ticket.name}")
-  # end
+  test "an admin should be able to create a new private discussion via the admin form" do
+
+    create_discussion("New Discussion")
+
+    click_on "New"
+    sleep(2)
+
+    assert page.has_content?("#{@new_topic.name}")
+  end
 
   # test "an admin should see a list of pending discussions and be able to navigate between types" do
   #   assert current_path == "/admin"
@@ -88,7 +88,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
   #     end
   #   end
   # end
-
+  #
   # test "an admin should be able to select multiple discussions and assign them" do
   #   assert current_path == "/admin"
   #
@@ -106,7 +106,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
   #   #@open = Topic.open.count
   #   #assert_equal(0, @open)
   # end
-
+  #
   # test "an admin should be able to select multiple discussions change their status" do
   #   assert current_path == "/admin"
   #
@@ -130,13 +130,13 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
   test "an admin should be able to click on a listed discussion to view it" do
     assert current_path == "/admin"
 
-    admin_create_discussion("New test message from admin form")
+    create_discussion("New test message from admin form")
 
     click_on("New")
     sleep(1)
     #click_on("##{@ticket.id}- New test message from admin form")
 
-    within("tr#topic-#{@ticket.id}") do
+    within("tr#topic-#{@new_topic.id}") do
       find(".topic-link").click
     end
 
@@ -147,12 +147,12 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to click on a listed discussion to reply to it" do
 
-    admin_create_discussion("Discussion for a reply")
+    create_discussion("Discussion for a reply")
 
     click_on("New")
     sleep(1)
 #    click_on("##{@ticket.id}- Discussion for a reply")
-    within("tr#topic-#{@ticket.id}") do
+    within("tr#topic-#{@new_topic.id}") do
       find(".topic-link").click
     end
 
@@ -170,11 +170,11 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to click on a listed discussion and post an internal note to it" do
 
-    admin_create_discussion("Discussion for internal note")
+    create_discussion("Discussion for internal note")
 
     click_on("New")
     sleep(1)
-    within("tr#topic-#{@ticket.id}") do
+    within("tr#topic-#{@new_topic.id}") do
       #click_on("##{@ticket.id}- Discussion for internal note")
       find(".topic-link").click
     end
@@ -194,12 +194,12 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to click on a listed discussion and reply with a common reply" do
 
-    admin_create_discussion("Discussion for common reply")
+    create_discussion("Discussion for common reply")
 
     click_on("New")
     sleep(1)
 #    click_on("##{@ticket.id}- Discussion for common reply")
-    within("tr#topic-#{@ticket.id}") do
+    within("tr#topic-#{@new_topic.id}") do
       find(".topic-link").click
     end
 
@@ -264,44 +264,44 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 #     assert page.has_no_content?("That was way too long, lets try something shorter")
 #
 #
-  # end
-
-  test "an admin should be able to change assignment of a discussion from the detailed view" do
-    assert current_path == "/admin"
-
-    visit_message_detail
-
-    #Next, assign the message to admin
-    find("span.ticket-agent").click
-    click_link "Admin User"
-
-    sleep(2)
-    assert page.has_content?("Discussion has been transferred to Admin User.")
-  end
-
-  test "an admin should be able to change privacy of a discussion from the detailed view" do
-    assert current_path == "/admin"
-
-    visit_message_detail
-
-    #Make it public
-    find("span.ticket-forum").click
-    click_link "Move: Public Forum"
-    sleep(2)
-    assert page.has_content?("PUBLIC")
-
-  end
-
-  test "an admin should be able to change status of a discussion from the detailed view" do
-    assert current_path == "/admin"
-
-    visit_message_detail
-
-    #Change its status to resolved
-    find("span.ticket-status").click
-    click_link "Mark Resolved"
-    sleep(2)
-    assert page.has_content?("This ticket has been closed by the support staff.")
-
-  end
+#   end
+#
+#   test "an admin should be able to change assignment of a discussion from the detailed view" do
+#     assert current_path == "/admin"
+#
+#     visit_message_detail
+#
+#     #Next, assign the message to admin
+#     find("span.ticket-agent").click
+#     click_link "Admin User"
+#
+#     sleep(2)
+#     assert page.has_content?("Discussion has been transferred to Admin User.")
+#   end
+#
+#   test "an admin should be able to change privacy of a discussion from the detailed view" do
+#     assert current_path == "/admin"
+#
+#     visit_message_detail
+#
+#     #Make it public
+#     find("span.ticket-forum").click
+#     click_link "Move: Public Forum"
+#     sleep(2)
+#     assert page.has_content?("PUBLIC")
+#
+#   end
+#
+#   test "an admin should be able to change status of a discussion from the detailed view" do
+#     assert current_path == "/admin"
+#
+#     visit_message_detail
+#
+#     #Change its status to resolved
+#     find("span.ticket-status").click
+#     click_link "Mark Resolved"
+#     sleep(2)
+#     assert page.has_content?("This ticket has been closed by the support staff.")
+#
+#   end
 end

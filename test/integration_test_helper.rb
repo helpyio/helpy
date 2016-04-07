@@ -60,13 +60,16 @@ def blacklist_urls
 
 end
 
-def create_discussion
+def create_discussion(name = "New test message from admin form")
   click_on "New Discussion"
   sleep(2)
   fill_in("topic_user_email", with: "scott.smith@test.com")
   fill_in("topic_user_name", with: "Scott Smith")
-  fill_in("topic_name", with: "New test message from admin form")
+  fill_in("topic_name", with: name)
   fill_in("post_body", with: "This is the message")
   sleep(1)
-  find(".submit-start-discussion").click
+  # find(".submit-start-discussion").click
+  execute_script("$('.submit-start-discussion')[0].click()")
+  @new_topic = Topic.where(name: name).last
+
 end
