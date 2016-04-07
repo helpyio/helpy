@@ -194,7 +194,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     #Reply with common reply
     select('Article 1', from: 'post_reply_id')
     sleep(1)
-    execute_script("$('form.new_post').submit()")
+    execute_script("$('form.edit_post').submit()")
     sleep(1)
 
     assert page.has_content?("article1 text")
