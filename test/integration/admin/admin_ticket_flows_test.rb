@@ -193,6 +193,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     #Reply with common reply
     select('Article 1', from: 'post_reply_id')
+    sleep(1)
     execute_script("$('form.new_post').submit()")
     sleep(1)
 
@@ -250,43 +251,44 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 #
 #
 #   end
-#
-#   test "an admin should be able to change assignment of a discussion from the detailed view" do
-#     assert current_path == "/admin"
-#
-#     visit_message_detail
-#
-#     #Next, assign the message to admin
-#     find("span.ticket-agent").click
-#     click_link "Admin User"
-#
-#     sleep(2)
-#     assert page.has_content?("Discussion has been transferred to Admin User.")
-#   end
-#
-#   test "an admin should be able to change privacy of a discussion from the detailed view" do
-#     assert current_path == "/admin"
-#
-#     visit_message_detail
-#
-#     #Make it public
-#     find("span.ticket-forum").click
-#     click_link "Move: Public Forum"
-#     sleep(2)
-#     assert page.has_content?("PUBLIC")
-#
-#   end
-#
-#   test "an admin should be able to change status of a discussion from the detailed view" do
-#     assert current_path == "/admin"
-#
-#     visit_message_detail
-#
-#     #Change its status to resolved
-#     find("span.ticket-status").click
-#     click_link "Mark Resolved"
-#     sleep(2)
-#     assert page.has_content?("This ticket has been closed by the support staff.")
-#
-#   end
+
+  test "an admin should be able to change assignment of a discussion from the detailed view" do
+    assert current_path == "/admin"
+
+    visit_message_detail
+
+    #Next, assign the message to admin
+    find("span.ticket-agent").click
+    click_link "Admin User"
+
+    sleep(2)
+    assert page.has_content?("Discussion has been transferred to Admin User.")
+  end
+
+  test "an admin should be able to change privacy of a discussion from the detailed view" do
+    assert current_path == "/admin"
+
+    visit_message_detail
+
+    #Make it public
+    find("span.ticket-forum").click
+    click_link "Move: Public Forum"
+    sleep(2)
+    assert page.has_content?("PUBLIC")
+
+  end
+
+  test "an admin should be able to change status of a discussion from the detailed view" do
+    assert current_path == "/admin"
+
+    visit_message_detail
+
+    #Change its status to resolved
+    find("span.ticket-status").click
+    click_link "Mark Resolved"
+    sleep(2)
+    assert page.has_content?("This ticket has been closed by the support staff.")
+
+  end
+
 end
