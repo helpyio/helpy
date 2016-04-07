@@ -5,12 +5,13 @@
   <col width="80px" class="checkbox-col">
   <col>
   <col width="20%" class="hidden-xs">
-
-  <tr>
-    <th><%= check_box_tag 'check-all' %></th>
-    <th><%= t(:subject, default: "Subject") %></th>
-    <th class="text-right hidden-xs"><%= t(:last_activity, default: "Last Active") %></th>
-  </tr>
+  <thead>
+    <tr>
+      <th><%= check_box_tag 'check-all' %></th>
+      <th><%= t(:subject, default: "Subject") %></th>
+      <th class="text-right hidden-xs"><%= t(:last_activity, default: "Last Active") %></th>
+    </tr>
+  </thead>
   <tbody>
   <%= render partial: 'admin/topic', collection: @topics.includes(:assigned_user) %>
   </tbody>
