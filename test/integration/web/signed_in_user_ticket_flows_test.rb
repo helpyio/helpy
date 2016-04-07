@@ -69,9 +69,10 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     end
     assert page.has_content?('Ticket Number')
 
-    fill_in "post_body", with: "This is my reply"
-    execute_script("$('form.new_post').submit()")
-
+    within("div#ticket-controls") do
+      fill_in "post_body", with: "This is my reply"
+      execute_script("$('form.new_post').submit()")
+    end
 #    assert page.has_content?('This is my reply'), "Reply not found"
 
   end
