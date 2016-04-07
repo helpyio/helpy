@@ -76,8 +76,8 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     fill_in("topic_name", with: subject)
     fill_in("post_body", with: "This is the message")
     sleep(1)
-    #find(".submit-start-discussion").click
-    execute_script("$('.submit-start-discussion')[0].click()")
+    find(".submit-start-discussion").trigger('click')
+    #execute_script("$('.submit-start-discussion')[0].click()")
     sleep(10)
 
     assert page.has_content?("Scott Smith")
