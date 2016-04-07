@@ -66,10 +66,25 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
   test "an admin should be able to create a new private discussion via the admin form" do
 
     subject = "Test Created Discussion"
-    admin_create_discussion(subject)
 
-    click_on "New"
+    click_on "New Discussion"
     sleep(2)
+    assert page.has_content?("Discussion Management: New Discussion")
+
+    fill_in("topic_user_email", with: "scott.smith@test.com")
+    fill_in("topic_user_name", with: "Scott Smith")
+    fill_in("topic_name", with: subject)
+    fill_in("post_body", with: "This is the message")
+    sleep(1)
+    #find(".submit-start-discussion").click
+    execute_script("$('.submit-start-discussion')[0].click()")
+    sleep(2)
+
+
+
+
+    #click_on "New"
+    #sleep(2)
 
     assert page.has_content?(subject)
   end
