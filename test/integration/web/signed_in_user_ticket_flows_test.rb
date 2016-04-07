@@ -115,7 +115,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
       fill_in "post_body", with: "This is my reply"
       execute_script("$('form.new_post').submit()")
-
+      sleep(2)
       visit topic
       assert page.has_content?('This is my reply'), "Reply not found"
 
