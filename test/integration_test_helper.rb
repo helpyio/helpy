@@ -12,8 +12,7 @@ class ActionDispatch::IntegrationTest
       js_errors: false,
       window_size: [1200, 1000],
       phantomjs_logger: 'fake',
-      timeout: 60,
-      inspector: true
+      timeout: 60
     )
   end
 end
