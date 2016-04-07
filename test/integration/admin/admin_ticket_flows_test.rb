@@ -80,7 +80,12 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     fill_in("post_body", with: "This is the message")
     sleep(1)
     #find(".submit-start-discussion").trigger('click')
-    execute_script("$('.submit-start-discussion')[0].click()")
+    #execute_script("$('.submit-start-discussion')[0].click()")
+
+    within('form.new_topic') do
+      find('input[name="commit"]').click
+    end
+
     sleep(1)
 
     assert page.has_no_content?("Discussion Management: New Discussion")
