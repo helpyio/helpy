@@ -146,12 +146,12 @@ class AdminController < ApplicationController
           :kind => 'first',
           :screenshots => params[:topic][:screenshots])
 
-        # # Send email
-        # UserMailer.new_user(@user, @token).deliver_now unless Rails.env.test?
-        #
-        # # track event in GA
-        # @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
-        # @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+        # Send email
+        UserMailer.new_user(@user, @token).deliver_now unless Rails.env.test?
+
+        # track event in GA
+        @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
+        @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
 
         format.js {
           @topics = Topic.recent.page params[:page]
