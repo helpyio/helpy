@@ -1,4 +1,3 @@
-=begin
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
@@ -81,4 +80,3 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
 end
-=end
