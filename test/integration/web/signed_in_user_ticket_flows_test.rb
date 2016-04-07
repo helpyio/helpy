@@ -76,10 +76,11 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?('Ticket Number:')
 
-    within("div#ticket-controls") do
-      fill_in "post_body", with: "This is my reply"
-      execute_script("$('form.new_post').submit()")
-    end
+    #NOTE: Direct visit page because turbolinks can result in weird DOM
+
+    visit "/en/ticket/#{@topic.id}-#{@topic.name.gsub(" ","-")}"
+    fill_in "post_body", with: "This is my reply"
+    execute_script("$('form.new_post').submit()")
 
   end
 
@@ -120,7 +121,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
       visit topic
 
-      fill_in "post_body", with: "This is my reply"
+      fill_in first("post_body"), with: "This is my reply"
       execute_script("$('form.new_post').submit()")
       sleep(2)
       visit topic
