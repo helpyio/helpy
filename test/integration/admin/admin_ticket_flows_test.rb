@@ -42,12 +42,16 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   def visit_message_detail
+
+    #create discussion to work with
+    admin_create_discussion
+
     # Jump directly to ticket detail via search
-    fill_in('q', with: 1)
+    fill_in('q', with: @topic.id)
     execute_script "$('form.navbar-form.navbar-right').submit()"
     sleep(2)
-    assert page.has_content?("#1- Private topic")
-    click_on("#1- Private topic")
+    assert page.has_content?("##{@topic.id}- #{@topic.name}")
+    click_on("##{@topic.id}- #{@topic.name}")
     # find("a.topic-link").click
     sleep(1)
   end
@@ -85,7 +89,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(2)
 
     #assert page.has_content?("1 SELECTED MESSAGE")
-    find("span.ticket-agent").click
+    within("tbody#multiple-edit") do
+      find("span.ticket-agent").click
+    end
     click_link("Admin User")
     sleep(2)
     assert page.has_no_content?("unassigned")
@@ -108,7 +114,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     check("check-all")
     sleep(2)
     #assert page.has_content?("2 SELECTED MESSAGES")
-    find("span.ticket-status").click
+    within("tbody#multiple-edit") do
+      find("span.ticket-status").click
+    end
     click_link("Mark Resolved")
 
   end
@@ -194,7 +202,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     #Reply with common reply
     select('Article 1', from: 'post_reply_id')
     sleep(1)
-    execute_script("$('form.edit_post').submit()")
+    execute_script("$('form.new_post').submit()")
     sleep(1)
 
     assert page.has_content?("article1 text")
@@ -258,7 +266,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     visit_message_detail
 
     #Next, assign the message to admin
-    find("span.ticket-agent").click
+    within("div#topic-options") do
+      find("span.ticket-agent").trigger('click')
+    end
     click_link "Admin User"
 
     sleep(2)
@@ -271,7 +281,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     visit_message_detail
 
     #Make it public
-    find("span.ticket-forum").click
+    within("div#topic-options") do
+      find("span.ticket-forum").click
+    end
     click_link "Move: Public Forum"
     sleep(2)
     assert page.has_content?("PUBLIC")
@@ -284,7 +296,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     visit_message_detail
 
     #Change its status to resolved
-    find("span.ticket-status").click
+    within("div#topic-options") do
+      find("span.ticket-status").click
+    end
     click_link "Mark Resolved"
     sleep(2)
     assert page.has_content?("This ticket has been closed by the support staff.")
