@@ -78,14 +78,9 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     sleep(1)
     #find(".submit-start-discussion").click
     execute_script("$('.submit-start-discussion')[0].click()")
-    sleep(2)
+    sleep(10)
 
-
-
-
-    #click_on "New"
-    #sleep(2)
-
+    assert page.has_content?("Scott Smith")
     assert page.has_content?(subject)
   end
 
