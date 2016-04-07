@@ -1,4 +1,3 @@
-=begin
 require 'integration_test_helper'
 include Warden::Test::Helpers
 
@@ -33,7 +32,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     choose('Only support can respond (creates a private ticket)')
     fill_in('topic[name]', with: 'I got problems')
     fill_in('post[body]', with: 'Please help me!!')
-    click_on('Start Discussion')
+    execute_script("$('form.new_topic').submit()")
 
     visit '/en/tickets/'
     assert page.has_content?('Tickets')
@@ -52,7 +51,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     select('Public Forum', from: "topic[forum_id]")
     fill_in('topic[name]', with: 'I got problems')
     fill_in('post[body]', with: 'Please help me!!')
-    click_on('Start Discussion')
+    execute_script("$('form.new_topic').submit()")
 
     visit '/en/community/3-public-forum/topics'
     assert page.has_content?("I got problems")
@@ -71,7 +70,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_content?('Ticket Number')
 
     fill_in "post_body", with: "This is my reply"
-    click_on "Post Reply"
+    execute_script("$('form.new_post').submit()")
 
 #    assert page.has_content?('This is my reply'), "Reply not found"
 
@@ -115,7 +114,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       visit topic
 
       fill_in "post_body", with: "This is my reply"
-      click_on "Post Reply"
+      execute_script("$('form.new_post').submit()")
 
       visit topic
       assert page.has_content?('This is my reply'), "Reply not found"
@@ -125,4 +124,3 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
 end
-=end
