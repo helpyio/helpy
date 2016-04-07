@@ -83,7 +83,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == "/admin"
 
     # First we'll reassign all open discussions
-    click_on("Resolved")
+    click_on("Open")
     sleep(2)
     check("check-all")
     sleep(2)
@@ -101,12 +101,6 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to select multiple discussions change their status" do
     assert current_path == "/admin"
-
-    # First we'll reassign all open discussions
-    click_on("Resolved")
-    sleep(2)
-    check("check-all")
-    sleep(2)
 
     # Next lets mark all new discussions resolved
     click_on("Pending")
