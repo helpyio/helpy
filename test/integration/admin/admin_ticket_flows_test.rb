@@ -37,8 +37,6 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     execute_script("$('.submit-start-discussion')[0].click()")
     sleep(2)
 
-    @ticket = Topic.where(name: name).last
-
     # @ticket = Topic.create!(
     #   forum_id: 1,
     #   user_id: 3,
@@ -51,8 +49,6 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     #   body: "This is the message",
     #   kind: 'first'
     # )
-
-    sleep(2)
 
   end
 
@@ -69,12 +65,13 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to create a new private discussion via the admin form" do
 
-    create_discussion("New Discussion")
+    subject = "Test Created Discussion"
+    admin_create_discussion(subject)
 
     click_on "New"
     sleep(2)
 
-    assert page.has_content?("#{@new_topic.name}")
+    assert page.has_content?(subject)
   end
 
   # test "an admin should see a list of pending discussions and be able to navigate between types" do
@@ -130,13 +127,13 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
   test "an admin should be able to click on a listed discussion to view it" do
     assert current_path == "/admin"
 
-    create_discussion("New test message from admin form")
+    admin_create_discussion("New test message from admin form")
 
     click_on("New")
     sleep(1)
     #click_on("##{@ticket.id}- New test message from admin form")
 
-    within("tr#topic-#{@new_topic.id}") do
+    within first("tr.topic") do
       find(".topic-link").click
     end
 
@@ -147,12 +144,12 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to click on a listed discussion to reply to it" do
 
-    create_discussion("Discussion for a reply")
+    admin_create_discussion("Discussion for a reply")
 
     click_on("New")
     sleep(1)
 #    click_on("##{@ticket.id}- Discussion for a reply")
-    within("tr#topic-#{@new_topic.id}") do
+    within first("tr.topic") do
       find(".topic-link").click
     end
 
@@ -170,12 +167,11 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to click on a listed discussion and post an internal note to it" do
 
-    create_discussion("Discussion for internal note")
+    admin_create_discussion("Discussion for internal note")
 
     click_on("New")
     sleep(1)
-    within("tr#topic-#{@new_topic.id}") do
-      #click_on("##{@ticket.id}- Discussion for internal note")
+    within first("tr.topic") do
       find(".topic-link").click
     end
     sleep(1)
@@ -194,12 +190,11 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to click on a listed discussion and reply with a common reply" do
 
-    create_discussion("Discussion for common reply")
+    admin_create_discussion("Discussion for common reply")
 
     click_on("New")
     sleep(1)
-#    click_on("##{@ticket.id}- Discussion for common reply")
-    within("tr#topic-#{@new_topic.id}") do
+    within first("tr.topic") do
       find(".topic-link").click
     end
 
