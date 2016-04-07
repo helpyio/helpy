@@ -148,7 +148,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     # Reply with text
     fill_in("post_body", with: "This is a reply, check it out")
     sleep(1)
-    find(".submit-post-reply").click
+    execute_script("$('form.new_post').submit()")
     sleep(1)
     assert page.has_content?("Admin User replied...")
 
@@ -171,7 +171,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
     choose("post_kind_note")
     fill_in("post_body", with: "This is an internal note")
     sleep(1)
-    find(".submit-post-reply").click
+    execute_script("$('form.new_post').submit()")
     sleep(2)
 
     assert page.has_content?("Admin User posted an internal note...")
@@ -193,7 +193,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     #Reply with common reply
     select('Article 1', from: 'post_reply_id')
-    find(".submit-post-reply").click
+    execute_script("$('form.new_post').submit()")
     sleep(1)
 
     assert page.has_content?("article1 text")
@@ -216,7 +216,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 #     # Reply with text
 #     fill_in("post_body", with: "Currently, Active Record suppresses errors raised within `after_rollback`/`after_commit` callbacks and only print them to the logs. In the next version, these errors will no longer be suppressed. Instead, the errors will propagate normally just like in other Active Record callbacks.")
 #     sleep(1)
-#     find(".submit-post-reply").click
+#     execute_script("$('form.new_post').submit()")
 #     sleep(1)
 #
 #     # Edit the reply
@@ -226,7 +226,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 #     sleep(1)
 #     within('div.post-container.kind-reply') do
 #       fill_in('post_body', with: "That was way too long, lets try something shorter... Currently, Active Record suppresses errors raised within... blah blah")
-#       click_on("Save Changes")
+#       execute_script("$('form.edit_post').submit()")
 #     end
 #     sleep(1)
 #     assert page.has_content?("That was way too long, lets try something shorter... Currently, Active Record suppresses errors raised within... blah blah")
@@ -242,7 +242,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 #       sleep(1)
 #       click_link 'Edit'
 #       uncheck("post_active")
-#       click_on("Save Changes")
+#       execute_script("$('form.edit_post').submit()")
 #     end
 #
 #     visit('/en/topics/7-new-question/posts')
