@@ -129,7 +129,7 @@ class AdminTicketFlowsTest < ActionDispatch::IntegrationTest
 
     admin_create_discussion("New test message from admin form")
 
-    page.driver.debug
+    save_screenshot('new-discussion.png', :full => true)
     click_on("New")
     sleep(1)
     #click_on("##{@ticket.id}- New test message from admin form")
