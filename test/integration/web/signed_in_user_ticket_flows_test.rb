@@ -22,21 +22,27 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
+  def create_topic(name = "New Private Ticket")
+    visit '/en/topics/new/'
+
+    choose('Only support can respond (creates a private ticket)')
+    sleep(1)
+    fill_in('topic[name]', with: name)
+    fill_in('post[body]', with: 'Please help me!!')
+    execute_script("$('form.new_topic').submit()")
+    sleep(2)
+    @topic = Topic.last
+  end
+
+
   test "a signed in user should be able to create a private ticket via the web interface" do
 
     visit '/en'
-    visit '/en/topics/new/'
+    subject = "I got problems"
+    create_topic(subject)
 
-    assert page.has_content?('Should this message be private?')
-
-    choose('Only support can respond (creates a private ticket)')
-    fill_in('topic[name]', with: 'I got problems')
-    fill_in('post[body]', with: 'Please help me!!')
-    execute_script("$('form.new_topic').submit()")
-
-    visit '/en/tickets/'
     assert page.has_content?('Tickets')
-    assert page.has_content?("##{Topic.last.id}- I got problems")
+    assert page.has_content?("##{@topic.id} #{subject}")
 
   end
 
@@ -60,20 +66,20 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   test "a signed in user should be able to reply to a private ticket" do
 
+    create_topic("To be replied to")
+
     visit '/en/tickets'
 
     sleep(2)
     assert page.has_content?('Tickets')
-    within("table#topics") do
-      first("a.ticket-link").click
-    end
-    assert page.has_content?('Ticket Number')
+    click_on("##{@topic.id}- #{@topic.name}")
+
+    assert page.has_content?('Ticket Number:')
 
     within("div#ticket-controls") do
       fill_in "post_body", with: "This is my reply"
       execute_script("$('form.new_post').submit()")
     end
-#    assert page.has_content?('This is my reply'), "Reply not found"
 
   end
 
