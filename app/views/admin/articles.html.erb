@@ -6,11 +6,11 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <table id="forums" class="sortable table-hover">
+    <table id="forums" class="articles sortable table-hover">
       <col>
       <col width="5%">
       <% @docs.each do |doc| %>
-      <tr id="doc-<%= doc.id %>" data-obj-id="<%= "#{doc.id}" %>" data-obj='doc' class="item">
+      <tr id="doc-<%= doc.id %>" data-obj-id="<%= "#{doc.id}" %>" data-obj='doc' class="article item">
         <td>
           <span class="more-important"><%= link_to doc.title, edit_category_doc_path(doc.category.id, doc.id, lang: I18n.locale)  %> <%= " - #{I18n.t('featured_content', default: 'Featured')}" if doc.front_page == true %> <%= " - #{I18n.t('draft_content', default: 'Draft')}" if doc.active == false %></span>
           <%= i18n_icons(doc) if I18n.available_locales.count > 1 %>

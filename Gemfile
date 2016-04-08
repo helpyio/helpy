@@ -137,9 +137,11 @@ group :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'launchy'
-  gem "codeclimate-test-reporter",require: nil
+#  gem "codeclimate-test-reporter", require: nil
+  gem "selenium-webdriver"
+  gem 'capybara-screenshot'
+  gem 'poltergeist'
 end
 
 group :production do

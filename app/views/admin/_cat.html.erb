@@ -1,4 +1,4 @@
-<tr id="category-<%= cat.id %>" class="item <%#= 'hidden' if cat.front_page == false %>" data-obj-id="<%= "#{cat.id}" %>" data-obj='category'>
+<tr id="category-<%= cat.id %>" class="category item <%#= 'hidden' if cat.front_page == false %>" data-obj-id="<%= "#{cat.id}" %>" data-obj='category'>
   <td>
     <span class="more-important">
       <%= link_to cat.name, admin_articles_path(cat.id) %>

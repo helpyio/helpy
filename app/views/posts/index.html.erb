@@ -19,7 +19,7 @@
 			<div class="add-form">
 			<h4><%= t(:reply) %></h4>
 			<%#= error_messages_for :post -%>
-			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
+			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic), :html => {:method => :post, :class => 'new_post'} do |f| -%>
 			  <%= f.text_area :body, :rows => 8, :cols => 160, label: 'Type your response:', class: 'disable-empty' -%></p>
 			  <%= f.hidden_field 'kind', value: 'reply' %>
 				<div class="add-screenshots">

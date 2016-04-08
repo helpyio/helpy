@@ -12,6 +12,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   def teardown
     Warden.test_reset!
+    Capybara.reset_sessions!
   end
 
   test "a browsing user who is not registered should be able to create a private ticket via the web interface" do

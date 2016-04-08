@@ -45,7 +45,7 @@ module AdminHelper
     I18n.available_locales.each do |locale|
       I18n.with_locale(locale) do
         if object.translations.where(locale: locale).count > 0
-          output += "<span class='badge' title='#{I18n.t(:language_name)}'>#{locale.upcase}</span></a>"
+          output += "<span class='badge #{locale}' title='#{I18n.t(:language_name)}'>#{locale.upcase}</span></a>"
         else
           output += "<span class='badge badge-light' title='#{I18n.t(:language_name)}'>#{locale.upcase}</span></a>"
         end

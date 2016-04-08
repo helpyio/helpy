@@ -1,21 +1,34 @@
 require "test_helper"
 require "capybara/rails"
+require "capybara/poltergeist"
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+  Capybara.javascript_driver = :poltergeist
+
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app,
+      js_errors: false,
+      window_size: [1200, 1000],
+      phantomjs_logger: 'fake',
+      timeout: 60
+    )
+  end
 end
 
 def sign_in(email='scott.miller@test.com')
   visit "/en/users/sign_in"
+  sleep(1)
   within first('div.login-form') do
     fill_in("user[email]", with: email)
     fill_in("user[password]", with: '12345678')
-    click_on('Sign in')
+    click_button('Sign in')
   end
 end
 
 def sign_in_by_modal(email='scott.miller@test.com')
+  visit('/')
   within("div#above-header") do
     click_on "Sign in", wait: 30
   end
@@ -28,4 +41,34 @@ end
 
 def sign_out
   logout(:user)
+  sleep(3)
+end
+
+def click_logout
+  visit '/'
+  execute_script "$('.logout-link')[0].click()"
+end
+
+def blacklist_urls
+
+  page.driver.browser.url_blacklist = [
+    'http://www.google.com',
+    'http://www.google-analytics.com',
+    'http://randomuser.me'
+  ]
+
+end
+
+def create_discussion(name = "New test message from admin form")
+  click_on "New Discussion"
+  sleep(2)
+  fill_in("topic_user_email", with: "scott.smith@test.com")
+  fill_in("topic_user_name", with: "Scott Smith")
+  fill_in("topic_name", with: name)
+  fill_in("post_body", with: "This is the message")
+  sleep(1)
+  # find(".submit-start-discussion").click
+  execute_script("$('.submit-start-discussion')[0].click()")
+  @new_topic = Topic.where(name: name).last
+
 end

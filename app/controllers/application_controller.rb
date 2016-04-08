@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
     else
       # not in the session, so check the url
       if params[:client_id]
-        logger.info("initiate tracker with client id from params")
+        logger.info("initiate tracker with client id from params") if Rails.env == 'development'
         session[:client_id] = params[:client_id]
         @tracker = Staccato.tracker(Settings.google_analytics_id, params[:client_id])
       else
