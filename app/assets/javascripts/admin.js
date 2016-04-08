@@ -1,3 +1,9 @@
+
+// Gives us a capitalize method
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 var Helpy = Helpy || {};
 Helpy.admin = function(){
 
@@ -26,9 +32,13 @@ Helpy.admin = function(){
   });
 
   $('.settings-link').off().on('click', function(){
+    $('.settings-link').removeClass('active-settings-link');
+
     var showthis = $(this).data("target");
+    $(this).addClass("active-settings-link");
     $(".settings-section").addClass("hidden");
     $('.settings-section.' + showthis).removeClass("hidden");
+    $('h2#setting-header').text(showthis.capitalize() + " Settings:");
     return false;
 
   });

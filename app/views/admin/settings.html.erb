@@ -1,17 +1,24 @@
-<div class="row">
-  <div class="col-md-12">
-    <ul class="settings-menu list-unstyled list-inline">
-      <li><%= link_to 'General', '#', class: 'settings-link', "data-target" => "general" %></li>
+<div class="row admin-header">
+  <div class="col-md-3 col-sm-4">
+    <h2 id="setting-header">
+      General Settings:
+    </h2>
+  </div>
+  <div class="col-md-9 col-sm-8">
+    <ul class="settings-menu list-unstyled list-inline pull-right">
+      <li><%= link_to 'General', '#', class: 'settings-link active-settings-link', "data-target" => "general" %></li>
       <li><%= link_to 'Design', '#', class: 'settings-link', "data-target" => "design" %></li>
       <li><%= link_to 'Internationalization', '#', class: 'settings-link', "data-target" => "i18n" %></li>
       <li><%= link_to 'Embed Widget', '#', class: 'settings-link', "data-target" => "widget" %></li>
     </ul>
   </div>
-  <div class="col-md-12">
-    <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
+</div>
 
+<div class="row">
+  <div class="col-md-12">
+
+    <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
       <div class="settings-section general">
-        <h2>General Settings:</h2>
         <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
         <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: "Parent Site" %>
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
@@ -21,7 +28,7 @@
         <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
       </div>
       <div class="settings-section design hidden">
-        <h2>Design:</h2>
+        <!-- <h2>Design:</h2> -->
 
           <div class="row">
             <div class="col-md-1 col-sm-2 col-xs-2">
@@ -56,14 +63,14 @@
       </div>
 
       <div class="settings-section i18n hidden">
-        <h2>International Support:</h2>
+        <!-- <h2>International Support:</h2> -->
         Supported Locales:
         <% I18n.available_locales.each do |locale| %>
           <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
         <% end %>
       </div>
       <div class="settings-section widget hidden">
-        <h2>Embed Widget</h2>
+        <!-- <h2>Embed Widget</h2> -->
 
         <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1"} %>
         <p>Add the embed widget to your site using the following URL:<br/>

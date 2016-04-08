@@ -1,3 +1,4 @@
+
 // === ADMIN GLOBAL OVERRIDES ===
 
 body {
@@ -270,11 +271,16 @@ a.stats.active {
 
 .settings-section {
 	margin-bottom: 50px;
+	margin-top: 20px;
 
 	h2 {
 		margin-top: 30px;
 		margin-bottom: 50px;
 	}
+}
+
+.active-settings-link {
+	font-weight: bold;
 }
 
 ul.settings-menu {
