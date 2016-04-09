@@ -23,6 +23,7 @@ def default_settings
   Rails.cache.clear
 
   # Loads default settings
+=begin
   AppSettings["settings.parent_site"] = Settings.parent_site
   AppSettings["settings.parent_company"] = Settings.parent_company
   AppSettings["settings.site_url"] = Settings.site_url
@@ -42,4 +43,5 @@ def default_settings
   AppSettings["i18n.default_locale"] = "en"
   AppSettings["i18n.available_locales"] = ["en", "fr", "de", "et"]
   AppSettings["widget.show_on_support_site"] = "true"
+=end
 end
