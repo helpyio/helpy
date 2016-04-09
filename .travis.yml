@@ -10,6 +10,8 @@ before_script:
   - psql -c 'create database helpy_test;' -U postgres
 
 script:
+  # Load Schema
+  - bundle exec rake db:schema:load RAILS_ENV=test
   # Test suite
   - bundle exec rake
   # Brakeman security scanner
