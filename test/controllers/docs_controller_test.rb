@@ -32,6 +32,7 @@ class DocsControllerTest < ActionController::TestCase
     # this is reduced, it persists and breaks other tests
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+
     default_settings
   end
 
@@ -127,7 +128,7 @@ class DocsControllerTest < ActionController::TestCase
 
   test "an admin should not see a translate dropdown when there is only one available_locale" do
     sign_in users(:admin)
-    I18n.available_locales = [:en]
+    AppSettings['i18n.available_locales'] = ['en']
     get :edit, id: 1, category_id: 1, locale: :en do
       assert_select 'select#lang', 0
     end

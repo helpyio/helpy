@@ -7,6 +7,7 @@ class HomeControllerTest < ActionController::TestCase
     # this is reduced, it persists and breaks other tests
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+
     default_settings
   end
 
@@ -21,19 +22,15 @@ class HomeControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should see a selector for locale if there are alternate locales" do
-    I18n.available_locales = [:en, :fr, :ca]
     get :index, locale: :en
-    assert_equal I18n.available_locales.count, 3 do
-      assert_select 'span.select-locale', true
-    end
+    assert_select 'span.select-locale', true
   end
 
   test "a browsing user should not see a selector for locale if there are no alternate locales" do
+    AppSettings['i18n.available_locales'] = ['en']
+
     get :index, locale: :en
-    I18n.available_locales = [:en]
-    assert_equal I18n.available_locales.count, 1, "The available locales are #{I18n.available_locales}" do
-      assert_select 'span.select-locale', false, "Should not have found locale selector"
-    end
+    assert_select 'span.select-locale', false, "Should not have found locale selector"
   end
 
   test "a browsing user should see the correct template when visiting the home page" do
@@ -62,6 +59,7 @@ class HomeControllerTest < ActionController::TestCase
   # Even if there is a translated category for the current locale, if there are no translated docs in that category,
   # No category boxes should be shown
   test "a browsing user in a locale with a translated category but without translated docs should not see any category" do
+
     get :index, locale: :et
 
     #Should not be any category boxes

@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   def set_locale
     @browser_locale = http_accept_language.compatible_language_from(AppSettings['i18n.available_locales'])
     unless params[:locale].blank?
-      I18n.locale = params[:locale]
+      I18n.locale = AppSettings['i18n.available_locales'].include?(params[:locale]) ? params[:locale] : AppSettings['i18n.default_locale']
     else
       I18n.locale = @browser_locale
     end

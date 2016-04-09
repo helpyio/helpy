@@ -18,6 +18,11 @@ class ActionController::TestCase
 end
 
 def default_settings
+
+  # Clear the cache before we load our defaults
+  Rails.cache.clear
+
+  # Loads default settings
   AppSettings['settings.parent_site'] = Settings.parent_site
   AppSettings['settings.parent_company'] = Settings.parent_company
   AppSettings['settings.site_url'] = Settings.site_url
@@ -35,6 +40,6 @@ def default_settings
   AppSettings['css.form_background'] = 'F0FFF0'
   AppSettings['css.still_need_help'] = 'ffdf91'
   AppSettings['i18n.default_locale'] = 'en'
-  AppSettings['i18n.available_locales'] = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl].split(',')
+  AppSettings['i18n.available_locales'] = ['en', 'fr', 'de', 'et']
   AppSettings['widget.show_on_support_site'] = 'true'
 end

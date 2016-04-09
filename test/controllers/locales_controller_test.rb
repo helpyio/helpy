@@ -5,6 +5,8 @@ class LocalesControllerTest < ActionController::TestCase
   setup do
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+
+    default_settings
   end
 
   test "a browsing user requesting the root domain should get redirected to the default language" do
@@ -29,6 +31,11 @@ class LocalesControllerTest < ActionController::TestCase
     get :redirect_on_locale do
       assert_redirected_to(controller: 'home', action: 'index', locale: :et)
     end
+  end
+
+  test "a browsing user should be able to change the locale with the locales view" do
+    get :select, locale: :en
+    assert_response :success
   end
 
 

@@ -7,6 +7,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     Warden.test_mode!
     I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
     I18n.locale = :en
+
     default_settings
 
     sign_in('admin@test.com')
@@ -61,7 +62,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
       assert page.has_content?('English')
       assert page.has_content?('Español')
       assert page.has_content?('Deutsch')
-      assert page.has_no_content?('Eesti')
+      assert page.has_no_content?('eesti')
     end
   end
 
