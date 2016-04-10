@@ -41,7 +41,6 @@ module ApplicationHelper
   end
 
   def locale_select
-
     # options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
 
     tag = "<select name='lang' class='form-control' id='lang'>"
@@ -61,7 +60,6 @@ module ApplicationHelper
         tag.html_safe
       end
     end
-
   end
 
   def login_with(with, redirect_to = "/#{I18n.locale}")
@@ -82,5 +80,4 @@ module ApplicationHelper
     styles += "</style>"
     styles.html_safe
   end
-
 end

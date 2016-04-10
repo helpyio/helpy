@@ -22,9 +22,6 @@ def set_default_settings
   I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
   I18n.locale = :en
 
-  # Clear the cache before we load our defaults
-  # Rails.cache.clear
-
   # Loads default settings
   AppSettings["settings.parent_site"] = Settings.parent_site
   AppSettings["settings.parent_company"] = Settings.parent_company

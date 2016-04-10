@@ -40,7 +40,6 @@ class HomeControllerTest < ActionController::TestCase
 
     #Should be at least one category box
     assert_select "div.topic-box", true
-
   end
 
   # If there are no translations for a given locale, no category boxes should be displayed
@@ -54,7 +53,6 @@ class HomeControllerTest < ActionController::TestCase
   # Even if there is a translated category for the current locale, if there are no translated docs in that category,
   # No category boxes should be shown
   test "a browsing user in a locale with a translated category but without translated docs should not see any category" do
-
     get :index, locale: :et
 
     #Should not be any category boxes

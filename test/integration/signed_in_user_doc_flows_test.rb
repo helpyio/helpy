@@ -1,4 +1,5 @@
-require 'integration_test_helper'
+require "integration_test_helper"
+
 include Warden::Test::Helpers
 
 class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest

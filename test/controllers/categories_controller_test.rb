@@ -34,7 +34,6 @@ class CategoriesControllerTest < ActionController::TestCase
 
     # should be able to see Documents
     assert_select "li.article", true
-
   end
 
   test "a browsing user in a locale without translations should be able to load the index and should see no categories" do
@@ -43,7 +42,6 @@ class CategoriesControllerTest < ActionController::TestCase
 
     # Make sure nothing here message shown
     assert_select "div.nothing-in-locale", true
-
   end
 
   test "a browsing user in the default locale should be able to see a category page" do
@@ -52,7 +50,6 @@ class CategoriesControllerTest < ActionController::TestCase
 
     # should be able to see Documents
     assert_select "li.article", true
-
   end
 
   # logged out, should not get these pages
@@ -114,9 +111,7 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-
-
-  #admin logged in, should get these pages
+  # admin logged in, should get these pages
 
   test "an admin should be able to load new" do
     sign_in users(:admin)
@@ -132,10 +127,11 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "an admin should see a translate dropdown when there are multiple available_locales" do
     # Ensure there are multiple locales
-    AppSettings["i18n.available_locales"] = ["en","es","fr"]
+
+    AppSettings["i18n.available_locales"] = %w(en es fr)
 
     sign_in users(:admin)
-    get :edit, id: 1, locale: :en
+    get :edit, id: 1, locale: "en"
     assert_select "select#lang", 1
   end
 

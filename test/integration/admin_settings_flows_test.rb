@@ -1,4 +1,4 @@
-require 'integration_test_helper'
+require "integration_test_helper"
 include Warden::Test::Helpers
 
 class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
@@ -16,7 +16,6 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "an admin should be able to modify site settings and see those changes on the support site" do
-
     visit("/admin/settings")
     assert page.has_content?("General Settings"), "Missing header"
 
@@ -34,11 +33,10 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     end
     assert page.has_content?("Back to xyz")
 
-    #TODO: Figure out how to test the change of GA token
+    # TODO: Figure out how to test the change of GA token
   end
 
   test "an admin should be able to enable or disable i18n and be able to browse to those locales on the site" do
-
     visit("/admin/settings")
 
     assert page.has_content?("General Settings"), "Missing header"
@@ -63,7 +61,6 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "an admin should be able to alter the logo images used" do
-
     visit("/admin/settings")
 
     assert page.has_content?("Design"), "Missing header"
@@ -84,9 +81,6 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
       assert_equal "/images/logo-test.png", page.find("img")["src"]
     end
 
-    #TODO: Figure out how to test the change of favicon
-
+    # TODO: Figure out how to test the change of favicon
   end
-
-
 end

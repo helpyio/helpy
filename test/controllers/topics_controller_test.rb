@@ -55,13 +55,13 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_difference "User.count", 1, "A user should be created" do
-      post :create, topic: { user: {name: "a user", email: "anon@test.com"}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body"}, locale: :en
+      post :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body" }, locale: :en
     end
     assert_difference "Topic.count", 1, "A topic should have been created" do
-      post :create, topic: { user: {name: "a user", email: "anon@test.com"}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body"}, locale: :en
+      post :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body" }, locale: :en
     end
     assert_difference "Post.count", 1, "The new topic should have had a post" do
-      post :create, topic: { user: {name: "a user", email: "anon@test.com"}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body"}, locale: :en
+      post :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body" }, locale: :en
     end
 
     assert_redirected_to topic_posts_path(assigns(:topic)), "Did not redirect to new public topic"
@@ -71,7 +71,7 @@ class TopicsControllerTest < ActionController::TestCase
 
     assert_difference "Topic.count", 1 do
       assert_difference "ActionMailer::Base.deliveries.size", 1 do
-        post :create, topic: { user: {name: "a user", email: "anon@test.com"}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body"}, locale: :en
+        post :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body" }, locale: :en
       end
     end
 
@@ -85,7 +85,7 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test "Helpy should capture the users locale when they create a new topic" do
-    post :create, topic: { user: {name: "a user", email: "anon@test.com"}, name: "some new public topic", body: "some body text", forum_id: 3}, post: {body: "this is the body"}, locale: :en
+    post :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new public topic", body: "some body text", forum_id: 3 }, post: { body: "this is the body" }, locale: :en
     assert_not_nil Topic.last.locale, "Did not capture locale when user created new topic"
   end
 
@@ -97,10 +97,10 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_difference "Topic.count", 1, "A topic should have been created" do
-      post :create, topic: {name: "some new private topic", body: "some body text", forum_id: 1, private: true}, post: {body: "this is the body"}, locale: :en
+      post :create, topic: { name: "some new private topic", body: "some body text", forum_id: 1, private: true }, post: {body: "this is the body"}, locale: :en
     end
     assert_difference "Post.count", 1, "A post should have been created" do
-      post :create, topic: { user: {name: "a user", email: "anon@test.com"}, name: "some new public topic", body: "some body text", forum_id: 1, private: true}, post: {body: "this is the body"}, locale: :en
+      post :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new public topic", body: "some body text", forum_id: 1, private: true }, post: { body: "this is the body" }, locale: :en
     end
 
     assert_redirected_to ticket_path(assigns(:topic)), "Did not redirect to private topic view"
@@ -115,7 +115,7 @@ class TopicsControllerTest < ActionController::TestCase
 
     assert_difference "Topic.count", 1, "A topic should have been created" do
       assert_difference "Post.count", 1, "A post should have been created" do
-        post :create, topic: { user: {name: "Scott Miller", email: "scott.miller@test.com"}, name: "some new private topic", body: "some body text", forum_id: 1, private: true}, post: {body: "this is the body"}, locale: :en
+        post :create, topic: { user: { name: "Scott Miller", email: "scott.miller@test.com" }, name: "some new private topic", body: "some body text", forum_id: 1, private: true }, post: { body: "this is the body" }, locale: :en
       end
     end
 
@@ -141,7 +141,7 @@ class TopicsControllerTest < ActionController::TestCase
     sign_in users(:user)
     assert_difference "Topic.find(5).points", 1 do
       get :index, forum_id: 3, locale: :en
-      xhr :post, :up_vote, { id: 5 , locale: :en}
+      xhr :post, :up_vote, { id: 5 , locale: :en }
     end
   end
 
