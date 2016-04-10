@@ -23,17 +23,12 @@
 #  allow_comments   :boolean          default(TRUE)
 #
 
-require 'test_helper'
+require "test_helper"
 
 class DocsControllerTest < ActionController::TestCase
 
   setup do
-    # reset the available_locales before each test because on tests where
-    # this is reduced, it persists and breaks other tests
-    I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
-    I18n.locale = :en
-
-    default_settings
+    set_default_settings
   end
 
   test "a browsing user should be able to load show" do
@@ -84,7 +79,7 @@ class DocsControllerTest < ActionController::TestCase
 
   test "a signed in user should not be able to load create" do
     sign_in users(:user)
-    assert_difference 'Doc.count', 0 do
+    assert_difference "Doc.count", 0 do
       post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     end
     assert_redirected_to root_path
@@ -98,7 +93,7 @@ class DocsControllerTest < ActionController::TestCase
 
   test "a signed in user should not be able to load destroy" do
     sign_in users(:user)
-    assert_difference 'Doc.count', 0 do
+    assert_difference "Doc.count", 0 do
       delete :destroy, { id: 3, locale: :en }
     end
     assert_redirected_to root_path
@@ -121,22 +116,22 @@ class DocsControllerTest < ActionController::TestCase
 
   test "an admin should see a translate dropdown when there are multiple available_locales" do
     sign_in users(:admin)
-    AppSettings['i18n.available_locales'] = ['en','es','fr']
+    AppSettings["i18n.available_locales"] = ["en","es","fr"]
     get :edit, id: 1, category_id: 1, locale: :en
-    assert_select 'select#lang', 1
+    assert_select "select#lang", 1
   end
 
   test "an admin should not see a translate dropdown when there is only one available_locale" do
     sign_in users(:admin)
-    AppSettings['i18n.available_locales'] = ['en']
+    AppSettings["i18n.available_locales"] = ["en"]
     get :edit, id: 1, category_id: 1, locale: :en do
-      assert_select 'select#lang', 0
+      assert_select "select#lang", 0
     end
   end
 
   test "an admin should be able to create a new doc" do
     sign_in users(:admin)
-    assert_difference 'Doc.count', 1 do
+    assert_difference "Doc.count", 1 do
       post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     end
     assert_redirected_to admin_articles_path(Doc.last.category.id)
@@ -144,7 +139,7 @@ class DocsControllerTest < ActionController::TestCase
 
   test "an admin should be able to create an article, then view that new article" do
     sign_in users(:admin)
-    assert_difference 'Doc.count', 1 do
+    assert_difference "Doc.count", 1 do
       post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     end
     lastdoc = Doc.last
@@ -176,7 +171,7 @@ class DocsControllerTest < ActionController::TestCase
 
   test "an admin should be able to destroy a doc" do
     sign_in users(:admin)
-    assert_difference 'Doc.count', -1 do
+    assert_difference "Doc.count", -1 do
       xhr :delete, :destroy, id: 1, locale: :en
     end
     assert_response :success

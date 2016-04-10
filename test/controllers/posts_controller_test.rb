@@ -13,13 +13,12 @@
 #  points     :integer          default(0)
 #
 
-require 'test_helper'
+require "test_helper"
 
 class PostsControllerTest < ActionController::TestCase
 
   setup do
-    I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
-    I18n.locale = :en
+    set_default_settings
   end
 
   # browsers (anonymous users)
@@ -41,7 +40,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should not be able to vote" do
-    assert_difference 'Post.find(6).points', 0 do
+    assert_difference "Post.find(6).points", 0 do
       get :index, forum_id: 3, locale: :en
       xhr :post, :up_vote, { id: 6, locale: :en }
     end
@@ -56,15 +55,15 @@ class PostsControllerTest < ActionController::TestCase
     # The Q&A format uses an inline reply form immediately beneath the original question
     [4,5,7,8].each do |topic_id|
       get :index, topic_id: topic_id, locale: :en
-      assert_select 'div.add-form', true, "failed on #{topic_id}"
+      assert_select "div.add-form", true, "failed on #{topic_id}"
       assert :success
     end
   end
 
   test "a signed in user should be able to reply to a topic" do
     sign_in users(:user)
-    assert_difference 'Post.count', 1 do
-      xhr :post, :create, topic_id: 1, locale: :en , post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
+    assert_difference "Post.count", 1 do
+      xhr :post, :create, topic_id: 1, locale: :en , post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
     end
     assert :success
   end
@@ -72,21 +71,21 @@ class PostsControllerTest < ActionController::TestCase
   test "a signed in user should NOT be able to edit a post" do
     sign_in users(:user)
     original_post = Post.find(1)
-    xhr :patch, :update, { id: 1, post: { body: 'this has changed' }, locale: :en}
+    xhr :patch, :update, { id: 1, post: { body: "this has changed" }, locale: :en}
     assert original_post.body == Post.find(1).body
     assert :success
   end
 
   test "a signed in user should be able to post a reply to an open topic and the topic status should change to pending" do
     sign_in users(:user)
-    assert_difference 'Topic.where(current_status: "pending").count', 1 do
-      xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
+    assert_difference "Topic.where(current_status: 'pending').count", 1 do
+      xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
     end
   end
 
   test "a signed in user should be able to vote" do
     sign_in users(:user)
-    assert_difference 'Post.find(6).points', 1 do
+    assert_difference "Post.find(6).points", 1 do
       xhr :post, :up_vote, id: 6, topic_id: 5, locale: :en
     end
   end
@@ -103,9 +102,9 @@ class PostsControllerTest < ActionController::TestCase
   test "an admin should be able to reply to a private topic, and the system should send an email" do
     sign_in users(:admin)
 
-    assert_difference 'ActionMailer::Base.deliveries.size', 1 do
-      assert_difference 'Post.count', 1 do
-        xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
+    assert_difference "ActionMailer::Base.deliveries.size", 1 do
+      assert_difference "Post.count", 1 do
+        xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
       end
     end
     assert :success
@@ -114,9 +113,9 @@ class PostsControllerTest < ActionController::TestCase
   test "an admin should be able to reply to a public topic, and the system should NOT send an email" do
     sign_in users(:admin)
 
-    assert_difference 'ActionMailer::Base.deliveries.size', 0 do
-      assert_difference 'Post.count', 1 do
-        xhr :post, :create, topic_id: 4, locale: :en, post: { user_id: User.find(2).id, body: 'new reply', kind: 'reply' }
+    assert_difference "ActionMailer::Base.deliveries.size", 0 do
+      assert_difference "Post.count", 1 do
+        xhr :post, :create, topic_id: 4, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
       end
     end
     assert :success
@@ -125,15 +124,15 @@ class PostsControllerTest < ActionController::TestCase
   test "an admin should be able to edit a post" do
     sign_in users(:admin)
     old = Post.find(1).body
-    xhr :patch, :update, {id: 1, locale: :en, post: { body: 'this has changed' }  }
+    xhr :patch, :update, {id: 1, locale: :en, post: { body: "this has changed" }  }
     assert old != Post.find(1).body
     assert :success
   end
 
   test "an admin should be able to post a reply to a pending ticket, and the topic status should change to open" do
     sign_in users(:admin)
-    assert_difference 'Topic.where(current_status: "open").count', 1 do
-      xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: 'new reply', kind: 'reply' }
+    assert_difference "Topic.where(current_status: 'open').count", 1 do
+      xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: "new reply", kind: "reply" }
     end
   end
 

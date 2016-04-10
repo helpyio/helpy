@@ -17,7 +17,10 @@ class ActionController::TestCase
   include Devise::TestHelpers
 end
 
-def default_settings
+def set_default_settings
+  # Enable i18n locales in Rails
+  I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
+  I18n.locale = :en
 
   # Clear the cache before we load our defaults
   Rails.cache.clear

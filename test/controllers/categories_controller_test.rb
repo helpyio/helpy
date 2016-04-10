@@ -17,17 +17,12 @@
 #  updated_at       :datetime         not null
 #
 
-require 'test_helper'
+require "test_helper"
 
 class CategoriesControllerTest < ActionController::TestCase
 
   setup do
-    # reset the available_locales before each test because on tests where
-    # this is reduced, it persists and breaks other tests
-    I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
-    I18n.locale = :en
-
-    default_settings
+    set_default_settings
   end
 
   test "a browsing user in the default locale should be able to load the index and see categories" do
@@ -35,10 +30,10 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_response :success
 
     # Should see at least once category
-    assert_select 'a#category-1', true
+    assert_select "a#category-1", true
 
     # should be able to see Documents
-    assert_select 'li.article', true
+    assert_select "li.article", true
 
   end
 
@@ -47,7 +42,7 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_response :success
 
     # Make sure nothing here message shown
-    assert_select 'div.nothing-in-locale', true
+    assert_select "div.nothing-in-locale", true
 
   end
 
@@ -56,7 +51,7 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_response :success
 
     # should be able to see Documents
-    assert_select 'li.article', true
+    assert_select "li.article", true
 
   end
 
@@ -137,24 +132,24 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "an admin should see a translate dropdown when there are multiple available_locales" do
     # Ensure there are multiple locales
-    AppSettings['i18n.available_locales'] = ['en','es','fr']
+    AppSettings["i18n.available_locales"] = ["en","es","fr"]
 
     sign_in users(:admin)
     get :edit, id: 1, locale: :en
-    assert_select 'select#lang', 1
+    assert_select "select#lang", 1
   end
 
   test "an admin should not see a translate dropdown when there is only one available_locale" do
     sign_in users(:admin)
-    AppSettings['i18n.available_locales'] = ['en']
+    AppSettings["i18n.available_locales"] = ["en"]
     get :edit, id: 1, locale: :en do
-      assert_select 'select#lang', 0
+      assert_select "select#lang", 0
     end
   end
 
   test "an admin should be able to create a new category" do
     sign_in users(:admin)
-    assert_difference 'Category.count', 1 do
+    assert_difference "Category.count", 1 do
       post :create, category: { name: "some name" }, locale: :en
     end
     assert_redirected_to admin_knowledgebase_path
@@ -175,8 +170,8 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "an admin should be able to add a new translation to an existing category" do
     sign_in users(:admin)
-    assert_difference 'Category.find(1).translations.count', 1 do
-      patch :update, { id: 1, category: {name: "some name" }, locale: :fr, lang: 'fr' }
+    assert_difference "Category.find(1).translations.count", 1 do
+      patch :update, { id: 1, category: {name: "some name" }, locale: :fr, lang: "fr" }
     end
     assert_equal Category.find(1).translations.last.locale, :fr
     assert_redirected_to admin_knowledgebase_path
@@ -184,7 +179,7 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "an admin should be able to destroy a category" do
     sign_in users(:admin)
-    assert_difference 'Category.count', -1 do
+    assert_difference "Category.count", -1 do
       xhr :delete, :destroy, id: 1, locale: :en
     end
     assert_response :success

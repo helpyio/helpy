@@ -8,8 +8,8 @@ var Helpy = Helpy || {};
 Helpy.admin = function(){
 
   $('table.sortable').sortable({
-    items: ".item",
-    axis: "y",
+    items: '.item',
+    axis: 'y',
     cursor: 'move',
     sort: function(event, ui) {
       ui.item.addClass('active-item-shadow');
@@ -34,16 +34,16 @@ Helpy.admin = function(){
   $('.settings-link').off().on('click', function(){
     $('.settings-link').removeClass('active-settings-link');
 
-    var showthis = $(this).data("target");
-    $(this).addClass("active-settings-link");
-    $(".settings-section").addClass("hidden");
-    $('.settings-section.' + showthis).removeClass("hidden");
-    $('h2#setting-header').text(showthis.capitalize() + " Settings:");
+    var showthis = $(this).data('target');
+    $(this).addClass('active-settings-link');
+    $('.settings-section').addClass('hidden');
+    $('.settings-section.' + showthis).removeClass('hidden');
+    $('h2#setting-header').text(showthis.capitalize() + ' Settings:');
     return false;
 
   });
 
-  $(".pick-a-color").pickAColor({
+  $('.pick-a-color').pickAColor({
     inlineDropdown: true //display underneath field
   });
 
