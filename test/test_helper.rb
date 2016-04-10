@@ -23,7 +23,7 @@ def set_default_settings
   I18n.locale = :en
 
   # Clear the cache before we load our defaults
-  Rails.cache.clear
+  # Rails.cache.clear
 
   # Loads default settings
   AppSettings["settings.parent_site"] = Settings.parent_site
