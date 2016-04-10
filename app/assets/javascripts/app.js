@@ -2,17 +2,6 @@ var Helpy = Helpy || {};
 
 Helpy.ready = function(){
 
-//	$('.login-link').off().on('click',function(){
-//		console.log($(this))
-//		$(this).magnificPopup({
-//			type:'iframe',
-//			iframe: {
-//				src: '/users/sign_in'
-//			}
-//		});
-//		return;
-//	});
-
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
@@ -84,10 +73,6 @@ Helpy.ready = function(){
 
   // Allows image insertion into quill editor
   $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-    // uncomment this line to insert into Quill if you are using that editor
-    //quill.insertEmbed(quill.getLength(), 'image', $.cloudinary.image(data.result.public_id).attr('src'));
-
-    // these lines should uncommented for the trix editor
     var element = document.querySelector("trix-editor");
     var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
     element.editor.insertHTML(thisImage);
@@ -105,15 +90,6 @@ Helpy.ready = function(){
           scrollTop: $(scrollTarget).offset().top},'slow');
         });
   });
-
-
-  // handle article voting. Events are registered in event-tracking.js
-//  $("#did-this-help-no").off().on("click", function(){
-
-    //Change Message
-    //Report to Google
-
-//  });
 
   // used by create topic form
   $('#topic_private_true').click(function(){
@@ -137,7 +113,7 @@ Helpy.ready = function(){
     var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + Helpy.messages + " </span></div>";
 
     // check to see if we are already collapsed
-    if ($(".collapsed-posts").size() == 0) {
+    if ($(".collapsed-posts").size() === 0) {
       $(".kind-first").append($hider);
     }
 
@@ -198,7 +174,7 @@ Helpy.ready = function(){
       updateMessage();
 
     } else {
-      if ($('.topic-checkbox:checked').size() == 0) {
+      if ($('.topic-checkbox:checked').size() === 0) {
         $('#multiple-edit').fadeOut();
       } else {
         updateMessage();
@@ -221,11 +197,6 @@ Helpy.ready = function(){
     // return true to follow the link
     return true;
   });
-
-//  $('.post-container').off().on('mouseover', function(){
-//    var id = $(this).attr("id").split("-")[1];
-//    $(".post-menu-" + id).fadeIn();
-//  });
 
   // Topic voting widget animation
   $('.topic-points').hover(function(){
@@ -250,7 +221,7 @@ Helpy.ready = function(){
   // Locale Picker
   $('#lang').off().on('change', function() {
     var url = $("#lang").val();
-    if(url !="")
+    if(url !=="")
      {
      $("#locale-change").submit();
      }
@@ -275,7 +246,7 @@ Helpy.ready = function(){
   // Disable submit button if post not provided
   $('.disable-empty').keyup(function(){
     $('.disable-empty').each(function(){
-      if ($(this).val() == '') {
+      if ($(this).val() === '') {
         $('.disableable').attr('disabled', 'disabled');
       } else {
         $('.disableable').removeAttr('disabled');
@@ -317,7 +288,7 @@ $.attachinary.config.template = '\
 Helpy.didthisHelp = function(yesno){
   var message;
   var contactus;
-  if (yesno == "no") {
+  if (yesno === "no") {
     message = "<h3>" + Helpy.noHelped + "</h3>";
     contactus = "<div class='col-md-3 align-right'><h3>" + Helpy.contactUs + "</h3></div>";
   } else {

@@ -1,6 +1,6 @@
 class CustomFailure < Devise::FailureApp
   def redirect_url
-    I18n.locale = params[:locale]
+    I18n.locale = params[:locale] if params[:locale]
     new_user_session_path
   end
 

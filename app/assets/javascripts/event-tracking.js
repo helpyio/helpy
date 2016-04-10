@@ -20,7 +20,7 @@ Helpy.track = function(){
       })
       .done(function( msg ) {
         console.log("Session set to trackerID: " + Helpy.clientId);
-        
+
         // set a cookie to prevent making this call every time
         Cookies.set('sessInit', '1');
       });
@@ -37,20 +37,17 @@ Helpy.track = function(){
   // Search Events
 
   $('#page-title').find('#search-form').unbind().on('submit', function(){
-    console.log('header search')
     ga('send', 'event', 'Search','Search', 'Header Search')
     ga('send', 'event', 'Search','Search', $('#search-field').val())
   });
 
   $('#home-search').find('#search-form').unbind().on('submit', function(){
-    console.log('home page search')
     ga('send', 'event', 'Search','Search', 'Home Page')
     ga('send', 'event', 'Search','Search', $('#search-field').val())
   });
 
 
   $('.search-result > span > a').unbind().on('click', function(){
-    console.log("Search Result Click")
     ga('send', 'event', 'Results','Click', $('#search-field').val())
   });
 
@@ -91,47 +88,39 @@ Helpy.track = function(){
   // do not involve global navigation
 
   $('.label-collapsed').off().on("click", function(){
-    console.log($(this).text())
     ga('send', 'event', 'Inpage-Nav','Click', 'Show Hidden')
   })
 
   $('.topic-box').on("click", function(){
-    console.log($(this).find('h5').text())
     ga('send', 'event', 'Inpage-Nav','Click', $(this).find('h5').text())
   });
 
   // Discussion Click
   $('tr.forum').find('a').off().on('click', function(){
-    console.log("Clicked:" + $(this).text());
     ga('send', 'event', 'Inpage-nav','Click', "Forum: " + $(this).text());
   });
 
   $('.topic-link').find('a').off().on('click', function(){
-    console.log("Clicked:" + $(this).text());
     ga('send', 'event', 'Inpage-nav','Click', "Topic: " + $(this).text());
   });
 
   $('.user-link').find('a').off().on('click', function(){
-    console.log("Clicked:" + $(this).text());
     ga('send', 'event', 'Inpage-nav','Click', "User: " + $(this).text());
   });
 
   // Same page links: links which scroll the page or repesent some other
   // interaction on the page
   $('.autoscroll').off().on("click", function(){
-    console.log($(this).text())
     ga('send', 'event', 'Same-Page-Nav','Click', $(this).text())
   });
 
   // Voting Events
   $('#did-this-help-no').off().on("click", function(){
-    console.log('NO- ' + $('#page-title h1').text());
     Helpy.didthisHelp("no");
     ga('send', 'event', 'Feedback','No', $('#page-title h1').text());
   });
 
   $('#did-this-help-yes').off().on("click", function(){
-    console.log('YES- ' + $('#page-title h1').text());
     Helpy.didthisHelp("yes");
     ga('send', 'event', 'Feedback','Yes', $('#page-title h1').text());
   });
@@ -143,20 +132,17 @@ Helpy.track = function(){
 
   $('.post-vote').off().on("click", function(){
     var $voted = $(this).data("voted");
-    console.log('Voted for Post ' + $voted);
     ga('send', 'event', 'Vote','Post', $voted);
   });
 
   $('.topic-vote').off().on("click", function(){
     var $voted = $(this).data("voted");
-    console.log('Voted for Topic ' + $voted);
     ga('send', 'event', 'Vote','Topic', $voted);
   });
 
   // OAuth Click Events
   $('.oauth').off().on("click", function(){
     var $provider = $(this).data("provider");
-    console.log('Oauth login with ' + $provider);
     ga('send', 'event', 'oauth','provider', $provider);
   });
 
