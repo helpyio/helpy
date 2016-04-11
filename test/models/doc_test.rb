@@ -23,7 +23,7 @@
 #  allow_comments   :boolean          default(TRUE)
 #
 
-require "test_helper"
+require 'test_helper'
 
 class DocTest < ActiveSupport::TestCase
 

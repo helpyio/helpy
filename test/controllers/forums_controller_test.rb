@@ -16,7 +16,7 @@
 #  layout             :string           default("table")
 #
 
-require "test_helper"
+require 'test_helper'
 
 class ForumsControllerTest < ActionController::TestCase
 

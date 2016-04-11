@@ -1,5 +1,4 @@
 module AdminHelper
-
   def assigned_to(topic)
     if topic.assigned_user.present?
       t(:assigned_to, agent: topic.assigned_user.name, default: "assigned to #{topic.assigned_user.name}")
@@ -9,7 +8,6 @@ module AdminHelper
   end
 
   def i18n_reply
-
     # Builds the nested selector for common replies
 
     select = "<label class='control-label' for='post_reply_id'>#{t(:select_common, default: 'Insert Common Reply')}</label>"
@@ -56,7 +54,6 @@ module AdminHelper
   end
 
   def select_default_locale
-
     tag = "<div class='form-group'>"
     tag += "<label class='control-label' for='i18n.default_locale'>Default Locale</label>"
     tag += "<select name='i18n.default_locale' class='form-control' id='i18n.default_locale'>"
@@ -64,12 +61,11 @@ module AdminHelper
     I18n.available_locales.sort.each do |locale|
       selected = "selected" if "#{locale}" == AppSettings['i18n.default_locale'].to_s
       I18n.with_locale(locale) do
-        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize}</option>"
+        tag += "<option value='#{locale}' #{selected}>#{I18n.translate('language_name').mb_chars.capitalize}</option>"
       end
     end
     tag += "</select></div>"
 
     tag.html_safe
   end
-
 end

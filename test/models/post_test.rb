@@ -13,7 +13,7 @@
 #  points     :integer          default(0)
 #
 
-require "test_helper"
+require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
 
