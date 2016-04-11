@@ -33,12 +33,12 @@ Helpy.admin = function(){
 
   $('.settings-link').off().on('click', function(){
     $('.settings-link').removeClass('active-settings-link');
-
-    var showthis = $(this).data('target');
+    var $this = $(this);
+    var showthis = $this.data('target');
     $(this).addClass('active-settings-link');
     $('.settings-section').addClass('hidden');
     $('.settings-section.' + showthis).removeClass('hidden');
-    $('h2#setting-header').text(showthis.capitalize() + ' Settings:');
+    $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
     return false;
 
   });
@@ -46,7 +46,6 @@ Helpy.admin = function(){
   $('.pick-a-color').pickAColor({
     inlineDropdown: true //display underneath field
   });
-
 };
 
 $(document).on('page:change', Helpy.admin);

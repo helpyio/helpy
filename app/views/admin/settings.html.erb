@@ -1,21 +1,21 @@
 <div class="admin-header">
   <h2 id="setting-header">
-    General Settings:
+    Settings: General
   </h2>
 </div>
 
 <div class="row">
 
-  <div class="col-md-3 col-sm-2">
+  <div class="col-md-3 col-sm-4">
     <ul class="settings-menu list-unstyled">
-      <li><%= link_to 'General', '#', class: 'settings-link active-settings-link', "data-target" => "general" %></li>
-      <li><%= link_to 'Design', '#', class: 'settings-link', "data-target" => "design" %></li>
-      <li><%= link_to 'Internationalization', '#', class: 'settings-link', "data-target" => "i18n" %></li>
-      <li><%= link_to 'Embed Widget', '#', class: 'settings-link', "data-target" => "widget" %></li>
+      <li><%= link_to t("general", default: "General"), '#', class: 'settings-link active-settings-link', "data-target" => "general" %></li>
+      <li><%= link_to t("design", default: "Design"), '#', class: 'settings-link', "data-target" => "design" %></li>
+      <li><%= link_to t("i18n", default: "Internationalization"), '#', class: 'settings-link', "data-target" => "i18n" %></li>
+      <li><%= link_to t("widget", default: "Embed Widget"), '#', class: 'settings-link', "data-target" => "widget" %></li>
     </ul>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-9 col-sm-8">
 
     <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
       <div class="settings-section general">
