@@ -1,6 +1,9 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/tickets') %>");
 $('.ticket-stats').html("<%= j render 'admin/ticket_stats' %>");
 $('#user-info').html("<%= j render 'admin/user_info_horizontal' if @user %>");
+<% if params[:mode] == 'edit' # This is used when the admin clicks edit from user search %>
+$('#user-info-horizontal').html("<%= j render partial: 'admin/edit_user' %>");
+<% end %>
 
 <% if @user %>
 window.location.hash = 'user_profile_<%= @user.id %>';
