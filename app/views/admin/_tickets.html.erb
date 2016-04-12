@@ -1,5 +1,6 @@
 <div id="user-info">
 </div>
+<% if @topics.count > 0 %>
 <table id="topics" class="forum table-hover">
 
   <col width="80px" class="checkbox-col">
@@ -58,3 +59,4 @@
 <div class="text-center">
   <%= paginate @topics, remote: true %>
 </div>
+<% end %>
