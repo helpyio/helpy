@@ -1,8 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.i18n.default_locale = :en
-
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -66,11 +64,13 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: Settings.site_url }
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :test #:smtp #CHANGE THIS IF YOU WANT YOUR APP TO SEND MAIL!
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
-  # I18n.available_locales = [:en, :es, :fr, :et, :ca, :ja, 'zh-cn', 'zh-tw']
+  # This can be managed through the settings panel inside Helpy.  It is probably best you leave
+  # all locales enabled.  If you write a new locale, you need to add it here!
+
   config.i18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
