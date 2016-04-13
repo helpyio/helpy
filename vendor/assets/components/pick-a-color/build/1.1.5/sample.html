@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta http-equiv="x-ua-compatible" content="IE=10">	  
+
+		<link rel="stylesheet" href="css/bootstrap-2.2.2.min.css">
+		<link rel="stylesheet" href="css/pick-a-color-1.1.5.min.css">	  
+		
+		<style type="text/css">
+		
+			div.pick-a-color-markup {
+				margin:20px 5px;;
+			}
+			
+		</style>	
+		
+	</head>
+	
+	<body>
+		
+		<input id="appendedPrependedDropdownButton" type="text" value="222" name="border-color" class="pick-a-color">
+		<input id="appendedPrependedDropdownButton" type="text" value="aaa" name="font-color" class="pick-a-color">
+		<input id="appendedPrependedDropdownButton" type="text" value="a1beef" name="backgound-color" class="pick-a-color">
+		<input id="appendedPrependedDropdownButton" type="text" value="551033" name="highlight-color" class="pick-a-color">
+		<input id="appendedPrependedDropdownButton" type="text" value="eee" name="contrast-color" class="pick-a-color">
+		<input id="appendedPrependedDropdownButton" type="text" class="pick-a-color">
+		<input id="rebelId" type="text" class="pick-a-color">
+		
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/tinycolor-0.9.14.min.js"></script>
+	<script src="js/pick-a-color-1.1.5.min.js"></script>	
+	
+	<script type="text/javascript">
+	
+		$(document).ready(function () {
+
+			$(".pick-a-color").pickAColor({
+			  showSpectrum            : false,
+				showSavedColors         : true,
+				saveColorsPerElement    : true,
+				fadeMenuToggle          : true,
+				showAdvanced						: true,
+				showHexInput            : true,
+				showBasicColors         : true
+			});
+			
+		});
+	
+		</script>
+				
+	</body>
+	
+</html>

@@ -46,7 +46,7 @@ class TopicsController < ApplicationController
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
       @page_title = @forum.name
-      @title_tag = "#{Settings.site_name}: #{@page_title}"
+      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @forum.name
     end
@@ -68,7 +68,7 @@ class TopicsController < ApplicationController
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
 
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
@@ -90,7 +90,7 @@ class TopicsController < ApplicationController
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
 
-      @title_tag = "#{Settings.site_name}: #{@page_title}"
+      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
     end
 
     respond_to do |format|
@@ -118,7 +118,7 @@ class TopicsController < ApplicationController
 
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     add_breadcrumb @page_title
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     @forums = Forum.ispublic.all
     @topic = Topic.new
@@ -137,7 +137,7 @@ class TopicsController < ApplicationController
 
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     add_breadcrumb @page_title
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)

@@ -109,7 +109,7 @@ class AdminController < ApplicationController
   def create_ticket
 
     @page_title = t(:start_discussion, default: "Start a New Discussion")
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     @forum = Forum.find(1)
     @user = User.where(email: params[:topic][:user][:email]).first
@@ -169,17 +169,20 @@ class AdminController < ApplicationController
   def topic_search
 
     # search for user, if [one] found, we'll give details on that person
-    # if more than one found, we'll list them
-    users = User.user_search(params[:q])
+    # if more than one found, we'll list them, if search is for "users" then show all
+    if params[:q] == 'users'
+      users = User.all
+    else
+      users = User.user_search(params[:q])
+    end
 
     if users.size == 0 # not a user search, so look for topics
       @topics = Topic.admin_search(params[:q]).page params[:page]
       template = 'tickets'
 
       @tracker.event(category: "Admin Search", action: "Topic Search", label: params[:q])
-
-    else
-      if users.size == 1
+      logger.info("Topic Search")
+    elsif users.size == 1
         @user = users.first
         @topics = Topic.admin_search(params[:q]).page params[:page]
         @topic = Topic.where(user_id: @user.id).first unless @user.nil?
@@ -187,12 +190,12 @@ class AdminController < ApplicationController
 
         @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
         @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
-
-      else
+        logger.info("Single User")
+    else
         @users = users.page params[:page]
         template = 'users'
         @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
-      end
+        logger.info("User Search")
     end
 
     respond_to do |format|
@@ -401,6 +404,36 @@ class AdminController < ApplicationController
     end
 
   end
+
+  def settings
+    @settings = AppSettings.get_all
+
+    respond_to do |format|
+      format.html
+    end
+
+  end
+
+  def update_settings
+
+    @settings = AppSettings.get_all
+
+    # iterate through
+    @settings.each do |setting|
+#      logger.info("Setting: #{setting[0]}")
+#      logger.info("Value: #{params[setting[0]]}")
+
+      AppSettings[setting[0]] = params[setting[0].to_sym]
+    end
+
+    logger.info(params['i18n'])
+    AppSettings['i18n.available_locales'] = params['i18n.available_locales']
+
+    respond_to do |format|
+        format.html { redirect_to(admin_settings_path) }
+    end
+  end
+
 
   private
 

@@ -1,0 +1,37 @@
+{
+    "name": "pick-a-color",
+    "title": "Pick-a-Color",
+    "description": "an easy-to-use jQuery color picker for Twitter Bootstrap.",
+    "keywords": [
+        "color",
+				"input",
+				"bootstrap"
+    ],
+    "version": "1.2.3",
+    "author": {
+        "name": "Lauren Sperber",
+        "url": "http://lauren.github.com/pick-a-color/"
+    },
+    "maintainers": [
+        {
+            "name": "Lauren Sperber",
+            "email": "lauren.sperber@gmail.com",
+            "url": "http://laurensperber.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/lauren/pick-a-color/blob/master/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/lauren/pick-a-color/issues",
+    "homepage": "http://lauren.github.com/pick-a-color/",
+    "docs": "http://lauren.github.com/pick-a-color/",
+    "download": "http://lauren.github.com/pick-a-color/pick-a-color.zip",
+    "dependencies": {
+        "jquery": ">=1.9",
+	      "tinycolor": ">=0.9.14",
+				"bootstrap": ">=2.2.2"
+    }
+}

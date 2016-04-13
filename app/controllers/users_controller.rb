@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   def edit
     @page_title = t(:my_profile)
-    @title_tag = "#{Settings.site_name} Support: My Profile"
+    @title_tag = "#{AppSettings['settings.site_name']} Support: My Profile"
     add_breadcrumb @page_title, categories_path
 
     @user = current_user

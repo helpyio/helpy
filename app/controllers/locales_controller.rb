@@ -5,7 +5,7 @@ class LocalesController < ApplicationController
 
     @page_title = t(:select_locale, default: "Change your Locale")
     add_breadcrumb @page_title
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     respond_to do |format|
       format.html

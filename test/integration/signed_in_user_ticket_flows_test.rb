@@ -1,15 +1,16 @@
 require 'integration_test_helper'
+
 include Warden::Test::Helpers
 
 class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
     Warden.test_mode!
-    I18n.available_locales = [:en, :fr, :et]
-    I18n.locale = :en
+    set_default_settings
   end
 
   def teardown
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 

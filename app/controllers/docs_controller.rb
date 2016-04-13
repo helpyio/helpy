@@ -47,7 +47,7 @@ class DocsController < ApplicationController
 
       @page_title = @doc.title
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
-      @title_tag = "#{Settings.site_name}: #{@custom_title}"
+      @title_tag = "#{AppSettings['settings.site_name']}: #{@custom_title}"
       @topic = @doc.topic
       @newtopic = Topic.new
       @post = @topic.posts.new unless @topic.nil?

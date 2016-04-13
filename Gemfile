@@ -28,6 +28,8 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
+gem "rails-settings-cached"
+
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
@@ -65,7 +67,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 
-gem 'config'
+gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 gem 'daemons'
 #gem 'mailman-rails'
@@ -108,9 +110,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
@@ -128,6 +127,10 @@ group :development do
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
 end
 
 group :test do

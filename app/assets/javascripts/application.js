@@ -31,6 +31,8 @@
 //= require initial.js/initial.js
 //= require trix
 //= require autolink/autolink-min.js
+//= require pick-a-color/build/1.2.3/js/pick-a-color-1.2.3.min.js
+//= require tinycolor/dist/tinycolor-min.js
 //= require app
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate

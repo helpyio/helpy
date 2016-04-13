@@ -1,5 +1,5 @@
-// === ADMIN GLOBAL OVERRIDES ===
 
+// === ADMIN GLOBAL OVERRIDES ===
 
 body {
 	background-color: #fff;
@@ -267,6 +267,24 @@ a.stats.active {
 	margin-top: -11px;
 	margin-right: 10px;
 	margin-left:10px;
+}
+
+.settings-section {
+  margin-bottom: 50px;
+  margin-top: 40px;
+
+  h2 {
+    margin-bottom: 50px;
+    margin-top: 30px;
+	}
+}
+
+.active-settings-link {
+  font-weight: bold;
+}
+
+ul.settings-menu {
+	margin-top: 40px;
 }
 
 @media(max-width:767px){

@@ -21,8 +21,7 @@ require 'test_helper'
 class ForumsControllerTest < ActionController::TestCase
 
   setup do
-    I18n.available_locales = [:en, :fr, :et]
-    I18n.locale = :en
+    set_default_settings
   end
 
   test "a browsing user should get index" do

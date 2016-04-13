@@ -10,11 +10,14 @@ $(document).ready(function(){
 });
 </script>
 
-<h2><%= t(:content, default: 'Content') %><span class="admin-options text-right pull-right">
-  <%= link_to t(:new_category, default: "New Category"), new_category_path(lang: I18n.locale), class: 'btn btn-primary' %>
-  <%= link_to t(:new_content, default: "New Content"), new_doc_path(lang: I18n.locale), class: 'btn btn-primary' %>
-</span></h2>
-
+<div class="admin-header">
+  <h2><%= t(:content, default: 'Content') %>
+    <span class="admin-options text-right pull-right">
+    <%= link_to t(:new_category, default: "New Category"), new_category_path(lang: I18n.locale), class: 'btn btn-primary' %>
+    <%= link_to t(:new_content, default: "New Content"), new_doc_path(lang: I18n.locale), class: 'btn btn-primary' %>
+    </span>
+  </h2>
+</div>
 
 
 <div class="row">

@@ -5,11 +5,11 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   setup do
     Warden.test_mode!
-    I18n.available_locales = [:en, :fr, :et]
-    I18n.locale = :en
+    set_default_settings
   end
 
   teardown do
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 
