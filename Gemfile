@@ -67,7 +67,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 
-gem 'config'
+gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 gem 'daemons'
 #gem 'mailman-rails'

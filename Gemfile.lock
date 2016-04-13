@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/railsconfig/config.git
+  revision: 813e504f47d370bc9b5847dce772828445e9dad7
+  specs:
+    config (1.1.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -106,9 +114,6 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.1)
-    config (1.1.0)
-      activesupport (>= 3.0)
-      deep_merge (~> 1.0.1)
     daemons (1.2.3)
     debug_inspector (0.0.2)
     deep_merge (1.0.1)
@@ -475,7 +480,7 @@ DEPENDENCIES
   capybara
   cloudinary (= 1.1.2)
   codeclimate-test-reporter
-  config
+  config (~> 1.1.0)!
   daemons
   devise
   devise-bootstrap-views
