@@ -33,7 +33,9 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-# Auth gems
+gem "rails-settings-cached"
+
+# Auth Gems
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
@@ -72,7 +74,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 
-gem 'config'
+gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 gem 'daemons'
 gem 'mailman'#, require: false
@@ -108,7 +110,6 @@ group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
   gem 'brakeman', require: false
@@ -122,6 +123,10 @@ group :development do
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
 end
 
 group :test do

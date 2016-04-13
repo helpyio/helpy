@@ -34,8 +34,8 @@ class CategoriesController < ApplicationController
     #  @categories = Category.active.alpha
     #end
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
-    @title_tag = "#{Settings.site_name}: " + @page_title
-    @meta_desc = "Knowledgebase for #{Settings.site_name}"
+    @title_tag = "#{AppSettings['settings.site_name']}: " + @page_title
+    @meta_desc = "Knowledgebase for #{AppSettings['settings.site_name']}"
     @keywords = "Knowledgebase, Knowledge base, support, articles, documentation, how-to, faq, frequently asked questions"
     add_breadcrumb @page_title, categories_path
 
@@ -58,7 +58,7 @@ class CategoriesController < ApplicationController
     @related = Doc.in_category(@doc.category_id) if @doc
 
     @page_title = @category.name
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
     @meta_desc = @category.meta_description
     @keywords = @category.keywords
 

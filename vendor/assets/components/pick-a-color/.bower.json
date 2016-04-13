@@ -1,0 +1,38 @@
+{
+  "name": "pick-a-color",
+  "keywords": [
+    "color picker",
+    "jquery color picker",
+    "bootstrap color picker"
+  ],
+  "description": "an easy-to-use jQuery color picker for Twitter Bootstrap",
+  "version": "1.2.3",
+  "main": [
+    "build/1.2.2/js/pick-a-color-1.2.2.min.js",
+    "build/1.2.0/css/pick-a-color-1.2.0.min.css"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.0.0",
+    "jquery": "1.9.1",
+    "tinycolor": "0.9.15"
+  },
+  "homepage": "https://github.com/lauren/pick-a-color",
+  "_release": "1.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.2.3",
+    "commit": "eac88ab7fc78b1c9e5d6946ab598cd7ab0b5ac09"
+  },
+  "_source": "git://github.com/lauren/pick-a-color.git",
+  "_target": "^1.2.3",
+  "_originalSource": "pick-a-color",
+  "_direct": true
+}

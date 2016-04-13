@@ -3,10 +3,7 @@ require 'test_helper'
 class HomeControllerTest < ActionController::TestCase
 
   setup do
-    # reset the available_locales before each test because on tests where
-    # this is reduced, it persists and breaks other tests
-    I18n.available_locales = [:en, :fr, :et]
-    I18n.locale = :en
+    set_default_settings
   end
 
   test "a browsing user in the default locale should be able to load home page" do
@@ -21,17 +18,14 @@ class HomeControllerTest < ActionController::TestCase
 
   test "a browsing user should see a selector for locale if there are alternate locales" do
     get :index, locale: :en
-    assert_equal I18n.available_locales.count, 3 do
-      assert_select 'span.select-locale', true
-    end
+    assert_select "span.select-locale", true
   end
 
   test "a browsing user should not see a selector for locale if there are no alternate locales" do
+    AppSettings["i18n.available_locales"] = ["en"]
+
     get :index, locale: :en
-    I18n.available_locales = [:en]
-    assert_equal I18n.available_locales.count, 1, "The available locales are #{I18n.available_locales}" do
-      assert_select 'span.select-locale', false, "Should not have found locale selector"
-    end
+    assert_select "span.select-locale", false, "Should not have found locale selector"
   end
 
   test "a browsing user should see the correct template when visiting the home page" do
@@ -45,8 +39,7 @@ class HomeControllerTest < ActionController::TestCase
     assert_not_nil assigns(:categories)
 
     #Should be at least one category box
-    assert_select 'div.topic-box', true
-
+    assert_select "div.topic-box", true
   end
 
   # If there are no translations for a given locale, no category boxes should be displayed
@@ -54,7 +47,7 @@ class HomeControllerTest < ActionController::TestCase
     get :index, locale: :fr
 
     #Should not be any category boxes
-    assert_select 'div.topic-box', false
+    assert_select "div.topic-box", false
   end
 
   # Even if there is a translated category for the current locale, if there are no translated docs in that category,
@@ -63,7 +56,7 @@ class HomeControllerTest < ActionController::TestCase
     get :index, locale: :et
 
     #Should not be any category boxes
-    assert_select 'div.topic-box', false
+    assert_select "div.topic-box", false
   end
 
   # If there is a translated category with at least one translated doc, a category box should be shown
@@ -78,7 +71,7 @@ class HomeControllerTest < ActionController::TestCase
     get :index, locale: :et
 
     #Should not be a category box
-    assert_select 'div.topic-box', true
+    assert_select "div.topic-box", true
   end
 
 end

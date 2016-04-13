@@ -4,6 +4,7 @@
 	<head>
 		<%= render partial: 'layouts/head' %>
 	</head>
+	<%= css_overrides %>
 
 <body>
 <script>
@@ -58,6 +59,6 @@
 		<%= render :partial => 'layouts/footer' %>
 	</div>
 </div>
-<script src="/assets/widget.v1.js"></script>
+<%= "<script src='/assets/widget.v1.js'></script>".html_safe if AppSettings['widget.show_on_support_site'] == '1' %>
 </body>
 </html>

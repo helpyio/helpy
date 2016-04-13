@@ -715,12 +715,14 @@ div.status {
 
 table#forums,
 table#topics,
-table#posts {
+table#posts,
+table#users {
 	width: 100%;
 	margin-bottom: 20px;
 }
 
 #forums tbody tr,
+#users tbody tr,
 #forums tbody tr td {
   border-bottom: 1px solid #eee;
 }

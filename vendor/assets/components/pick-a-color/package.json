@@ -1,0 +1,16 @@
+{
+  "name": "pick-a-color",
+  "version": "1.2.3",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-less": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.1",
+    "grunt-bower-task": "~0.3.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lauren/pick-a-color.git"
+  }
+}

@@ -10,6 +10,8 @@ before_script:
   - psql -c 'create database helpy_test;' -U postgres
 
 script:
+  # Migrate database
+  - bin/rake db:migrate RAILS_ENV=test
   # Test suite
   - bundle exec rake
   # Brakeman security scanner

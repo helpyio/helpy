@@ -3,7 +3,7 @@
     <span class="more-important">
       <%= link_to cat.name, admin_articles_path(cat.id) %>
     </span><span class="label label-count pull-right"><%= cat.docs.count %></span>
-    <%= i18n_icons(cat) if I18n.available_locales.count > 1 %>&nbsp;&nbsp;
+    <%= i18n_icons(cat) if AppSettings['i18n.available_locales'].count > 1 %>&nbsp;&nbsp;
     <br/>
     <%= cat.meta_description %>
   </td>

@@ -1,16 +1,17 @@
 require 'integration_test_helper'
+
 include Warden::Test::Helpers
 
 class BrowsingUserDocFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
     Warden.test_mode!
-    I18n.available_locales = [:en, :fr, :et]
-    I18n.locale = :en
     logout(:user)
+    set_default_settings
   end
 
   def teardown
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 

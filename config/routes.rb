@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root to: "locales#redirect_on_locale"
   get 'widget/' => 'widget#index', as: :widget
   get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
@@ -38,8 +37,8 @@ Rails.application.routes.draw do
 
     resources :users
 
-    post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote
-    post 'post/:id/vote' => 'posts#up_vote', as: :post_vote
+    post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
+    post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
     get 'result' => 'result#index', as: :result
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
@@ -76,11 +75,13 @@ Rails.application.routes.draw do
     get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
     get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
     get '/communities' => 'admin#communities', as: :admin_communities
-    #get '/users'
+    get '/users' => 'admin#users', as: :admin_users
     get '/user/:id/edit' => 'admin#edit_user', as: :admin_user
     get '/user/:id' => 'admin#user_profile', as: :user_profile
     get '/topic_search' => 'admin#topic_search', as: :admin_search
     get '/user_search' => 'admin#user_search', as: :user_search
+    get '/settings' => 'admin#settings', as: :admin_settings
+    put '/update_settings/' => 'admin#update_settings', as: :update_settings
 
   end
 

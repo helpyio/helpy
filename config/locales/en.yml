@@ -201,6 +201,13 @@ en:
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
 
+  # settings
+  settings: "Settings: General"
+  general: "General"
+  design: "Design"
+  i18n: "International"
+  widget: "Embeddable Widget"
+
   activerecord:
     attributes:
       user:
