@@ -26,7 +26,7 @@ send_usage_data: true
 
 admin_email: inbound.support@yourdomain.com
 from_email: inbound.support@yourdomain.com # This is the email that will be used for email replies (reply to)
-send_email: true #Send email or not
+send_email: false #Send email or not
 
 mail_service: :mandrill # :sendgrid :cloudmailin, :postmark, :mandrill, :mailgun, :sparkpost
 smtp_mail_username: # Enter your SMTP email username

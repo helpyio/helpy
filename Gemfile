@@ -130,7 +130,7 @@ group :development do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  
+
 end
 
 group :test do
@@ -151,4 +151,4 @@ group :production do
   gem 'unicorn'
 end
 
-ruby "2.3.0"
+ruby "2.2.1"
