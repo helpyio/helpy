@@ -28,3 +28,16 @@ AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
 # Widget:
 
 AppSettings.defaults["widget.show_on_support_site"] = "true"
+
+# Email specific:
+
+AppSettings.defaults["email.admin_email"] = Settings.admin_email
+AppSettings.defaults["email.from_email"] = Settings.from_email
+AppSettings.defaults["email.send_email"] = Settings.send_email
+
+AppSettings.defaults["email.mail_service"] = Settings.mail_service
+AppSettings.defaults["email.smtp_mail_username"] = Settings.smtp_mail_username
+AppSettings.defaults["email.smtp_mail_password"] = Settings.smtp_mail_password
+AppSettings.defaults["email.mail_smtp"] = Settings.mail_smtp
+AppSettings.defaults["email.mail_port"] = Settings.mail_port
+AppSettings.defaults["email.mail_domain"]= Settings.mail_domain

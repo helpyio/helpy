@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   add_breadcrumb :root
 
   before_action :set_locale
+  before_action :set_vars
   before_action :instantiate_tracker
 
   def url_options
@@ -27,6 +28,26 @@ class ApplicationController < ActionController::Base
     else
       I18n.locale = @browser_locale
     end
+  end
+
+  def set_vars
+    # Configure griddler, mailer
+    Griddler.configuration.email_service = AppSettings["email.mail_service"].to_sym
+
+    ActionMailer::Base.smtp_settings = {
+        :address   => AppSettings["email.mail_smtp"],
+        :port      => AppSettings["email.mail_port"],
+        :user_name => AppSettings["email.smtp_mail_username"],
+        :password  => AppSettings["email.smtp_mail_password"],
+        :domain    => AppSettings["email.mail_domain"]
+    }
+
+    ActionMailer::Base.perform_deliveries = to_boolean(AppSettings['email.send_email'])
+
+  end
+
+  def to_boolean(str)
+    str == 'true'
   end
 
   def fetch_counts

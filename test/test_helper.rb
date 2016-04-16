@@ -41,4 +41,13 @@ def set_default_settings
   AppSettings['i18n.default_locale'] = 'en'
   AppSettings['i18n.available_locales'] = ['en', 'fr', 'de', 'et']
   AppSettings['widget.show_on_support_site'] = 'true'
+  AppSettings['email.admin_email'] = Settings.admin_email
+  AppSettings['email.from_email'] = Settings.from_email
+  AppSettings['email.send_email'] = 'true'
+  AppSettings['email.mail_service'] = Settings.mail_service
+  AppSettings['email.smtp_mail_username'] = Settings.smtp_mail_username
+  AppSettings['email.smtp_mail_password'] = Settings.smtp_mail_password
+  AppSettings['email.mail_smtp'] = Settings.mail_smtp
+  AppSettings['email.mail_port'] = Settings.mail_port
+  AppSettings['email.mail_domain']= Settings.mail_domain
 end
