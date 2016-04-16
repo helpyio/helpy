@@ -309,4 +309,25 @@ class AdminControllerTest < ActionController::TestCase
     end
   end
 
+  test 'an admin should be able to add mail settings' do
+    put :update_settings,
+      'email.admin_email' => 'test@test.com',
+      'email.from_email' => 'test@test.com',
+      'email.mail_service' => 'mailgun',
+      'email.mail_smtp' => 'mail.test.com',
+      'email.smtp_mail_username' => 'test-login',
+      'email.smtp_mail_password' => '1234',
+      'email.mail_port' => '587',
+      'email.mail_domain' => 'something.com'
+    assert_redirected_to :admin_settings
+
+    assert_equal 'test@test.com', AppSettings['email.admin_email']
+    assert_equal 'test@test.com', AppSettings['email.from_email']
+    assert_equal 'mailgun', AppSettings['email.mail_service']
+    assert_equal 'mail.test.com', AppSettings['email.mail_smtp']
+    assert_equal 'test-login', AppSettings['email.smtp_mail_username']
+    assert_equal '1234', AppSettings['email.smtp_mail_password']
+    assert_equal '587', AppSettings['email.mail_port']
+    assert_equal 'something.com', AppSettings['email.mail_domain']
+  end
 end
