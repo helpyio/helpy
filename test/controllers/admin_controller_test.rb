@@ -301,4 +301,12 @@ class AdminControllerTest < ActionController::TestCase
     assert_equal '1', AppSettings['widget.show_on_support_site']
   end
 
+  test 'an admin should be able to turn email delivery on and off' do
+    put :update_settings,
+      'email.send_email' => 'false'
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      xhr :post, :create_ticket, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new private topic', body: 'some body text', forum_id: 1 }, post: { body: 'this is the body' }
+    end
+  end
+
 end
