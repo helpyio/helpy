@@ -13,6 +13,7 @@
       <li><%= link_to t("i18n", default: "Internationalization"), '#', class: 'settings-link', "data-target" => "i18n" %></li>
       <li><%= link_to t("widget", default: "Embed Widget"), '#', class: 'settings-link', "data-target" => "widget" %></li>
       <li><%= link_to t("email", default: "Email Setup"), '#', class: 'settings-link', "data-target" => "email" %></li>
+      <li><%= link_to t("cloudinary", default: "Cloudinary"), '#', class: 'settings-link', "data-target" => "cloudinary" %></li>
     </ul>
   </div>
 
@@ -94,6 +95,12 @@
           <%= f.text_field 'email.mail_port', value: AppSettings['email.mail_port'], label: "SMTP Port" %>
           <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: "SMTP Domain" %>
         </div>
+      </div>
+
+      <div class="settings-section cloudinary hidden">
+        <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
+        <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
+        <%= f.text_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
       </div>
 
       <div class="submit-section">
