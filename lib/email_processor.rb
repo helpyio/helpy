@@ -69,7 +69,7 @@ class EmailProcessor
     @user.name = @email.from[:name].blank? ? @email.from[:token] : @email.from[:name]
     @user.password = User.create_password
     if @user.save
-      UserMailer.new_user(@user, @token).deliver_now
+      UserMailer.new_user(@user, @token).deliver_later
     end
   end
 end

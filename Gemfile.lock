@@ -422,6 +422,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     staccato (0.4.5)
+    sucker_punch (2.0.1)
+      concurrent-ruby (~> 1.0.0)
     temple (0.7.6)
     terminal-table (1.5.2)
     thor (0.19.1)
@@ -540,6 +542,7 @@ DEPENDENCIES
   shoulda
   spring (~> 1.4.0)
   staccato
+  sucker_punch (~> 2.0)
   timecop
   trix
   turbolinks
