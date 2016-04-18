@@ -1,0 +1,70 @@
+<div id="panel-1" class="panel text-center">
+
+  <div class="onboard-message">
+    <h2>Welcome to Helpy!</h2>
+    <h4>Around the globe, companies like yours are using Helpy to provide better customer service and support. It's exciting to have you on board!</h4>
+  </div>
+  <div class="welcome-image">
+  <%= image_tag 'http://helpy.io/images/HelpyBrowser.png', width: '70%' %><br/>
+  </div>
+  <%= link_to "Let's set up your Helpy", '#', class: 'btn btn-primary panel-link', data: { panel: 2 } %>
+
+</div>
+<div id="panel-2" class="panel hidden text-center">
+
+  <div class="onboard-message">
+    <h2>Customize your login</h2>
+  </div>
+  <div class="edit-admin text-left">
+    
+    <%= bootstrap_form_for(@user, remote: true) do |f| %>
+      <%= devise_error_messages! %>
+      <span class="user-fields">
+        <%= f.email_field :email, autofocus: true %>
+        <%= f.text_field :name %>
+        <%= f.text_field :company %>
+        <%= f.hidden_field :admin, value: 'true' %>
+        <%= hidden_field_tag :source, 'ob' %>
+        <% if @user.provider.nil? %>
+          <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
+        <% end %>
+      </span>
+
+      <div class="text-center">
+      <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>
+
+<div id="panel-3" class="panel text-center hidden">
+
+  <div class="onboard-message">
+    <h2>Great! Lets Customize your Helpdesk:</h2>
+  </div>
+
+  <div class="text-left">
+  <%= bootstrap_form_tag url: update_settings_path, method: 'put', remote: true do |f| %>
+
+    <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
+    <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: "Parent Site" %>
+    <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
+
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+  </div>
+
+
+</div>
+
+<div id="panel-4" class="panel text-center hidden">
+
+  <div class="onboard-message">
+    <h2>Almost Done! Invite your Support Team:</h2>
+  </div>
+
+</div>

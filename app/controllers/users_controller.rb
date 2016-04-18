@@ -83,14 +83,18 @@ class UsersController < ApplicationController
         redirect_to root_path
       }
       format.js {
-        render 'admin/tickets' if current_user.admin?
+        if params[:source] == 'ob'
+          render js: "$('.panel-link')[2].click();"
+        else
+          render 'admin/tickets' if current_user.admin?
+        end
       }
     end
 
   end
 
   def set_client_id
-    
+
     session[:client_id] = params[:client_id]
     render nothing: true
 

@@ -28,3 +28,4 @@ AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
 # Widget:
 
 AppSettings.defaults["widget.show_on_support_site"] = "true"
+AppSettings['onboard.shown'] = 'false'

@@ -46,6 +46,15 @@ Helpy.admin = function(){
   $('.pick-a-color').pickAColor({
     inlineDropdown: true //display underneath field
   });
+
+  // Onboarding flow
+  $('.panel-link').off().on('click', function(){
+    $('.panel').addClass('hidden');
+    $('#panel-' + $(this).data('panel')).removeClass('hidden');
+    $('li.step-' + ($(this).data('panel')-1)).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
+  });
+
+
 };
 
 $(document).on('page:change', Helpy.admin);

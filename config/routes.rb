@@ -82,7 +82,7 @@ Rails.application.routes.draw do
     get '/user_search' => 'admin#user_search', as: :user_search
     get '/settings' => 'admin#settings', as: :admin_settings
     put '/update_settings/' => 'admin#update_settings', as: :update_settings
-
+    get '/onboarding' => 'admin#onboarding', as: :onboarding
   end
 
 

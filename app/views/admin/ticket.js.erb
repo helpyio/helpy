@@ -6,6 +6,11 @@ $('#ticket-page-title').html("").hide();
 $(document).prop('title', "Discussion Management: #<%= @topic.id %> <%= @topic.name.titleize %>");
 window.location.hash = '<%= "#{@topic.id} #{@topic.name}" %>';
 
+<%# if AppSettings['onboard.shown'] == false %>
+// Inject onboarding if first login
+$('#modal').modal();
+<%# end %>
+
 // Update timestamps
 $('.last-active time[data-time-ago]').timeago();
 

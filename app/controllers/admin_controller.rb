@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
 
-  layout 'admin'
+  layout 'admin', except: 'onboarding'
 
   before_action :authenticate_user!
   before_action :verify_admin
@@ -430,10 +430,17 @@ class AdminController < ApplicationController
     AppSettings['i18n.available_locales'] = params['i18n.available_locales']
 
     respond_to do |format|
-        format.html { redirect_to(admin_settings_path) }
+      format.html { redirect_to(admin_settings_path) }
+      format.js {
+        render js: "$('.panel-link')[3].click();"
+      }
     end
   end
 
+  def onboarding
+    @user = current_user
+    render layout: 'onboard'
+  end
 
   private
 
