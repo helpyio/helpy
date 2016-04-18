@@ -4,6 +4,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+# Requiring this library causes your jobs to run everything inline. So a call to the following
+# will actually be SYNCHRONOUS
+require 'sucker_punch/testing/inline'
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

@@ -28,7 +28,7 @@ module Helpy
 
     # We are using active_job and currently the inline backend.  You may change this if
     # you want a more robust solution. The queue is used for emails.
-    # config.active_job.queue_adapter = your_adapter_here
+    config.active_job.queue_adapter = :sucker_punch
 
   end
 end
