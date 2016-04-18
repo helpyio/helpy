@@ -24,7 +24,7 @@ module Helpy
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = false
+    config.active_record.raise_in_transactional_callbacks = true
 
     # We are using active_job and currently the inline backend.  You may change this if
     # you want a more robust solution. The queue is used for emails.

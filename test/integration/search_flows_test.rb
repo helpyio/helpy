@@ -1,19 +1,16 @@
 require 'integration_test_helper'
 
+
 class SearchFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
-
-    I18n.available_locales = [:en, :fr, :et]
-    I18n.locale = :en
-
     # Build PG search
     PgSearch::Multisearch.rebuild(Doc)
     PgSearch::Multisearch.rebuild(Topic)
+    set_default_settings
   end
 
   def teardown
-
   end
 
   test "a browsing user should be able to search from the home page" do

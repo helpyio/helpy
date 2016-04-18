@@ -72,5 +72,47 @@ class UserTest < ActiveSupport::TestCase
     assert_equal errs.length, errs.uniq.length
   end
 
+  test "should accept w3c example names" do
+
+    names = [
+      "Björk Guðmundsdóttir",
+      "Isa bin Osman",
+      "毛泽东",
+      "María-Jose Carreño Quiñones",
+      "Борис Николаевич Ельцин",
+      "Наина Иосифовна Ельцина",
+      "John Q. Public",
+      "V. S. Achuthanandan",
+      "Nguyễn Tấn Dũng",
+      "Steve Johns-Smith",
+      "Scott",
+      "JJ Adams",
+      "T O'Shea"
+    ]
+
+    names.each do |name|
+      user = User.create!(
+        name: name,
+        email: "#{name.split(" ")[0]}@testing.com",
+        password: '12345678'
+      )
+
+      assert_equal name, user.name
+
+    end
+
+  end
+
+  test "should not accept names with numbers" do
+    names = [ 
+      "Vasiya2",
+      "123123"
+    ]
+
+    names.each do |name| 
+      user = User.create(name: name, email: "#{name.split(" ")[0]}@testing.com", password: "12345678")
+      assert_equal user.valid?, false
+    end
+  end
 
 end

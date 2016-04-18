@@ -1,16 +1,17 @@
 require 'integration_test_helper'
+
 include Warden::Test::Helpers
 
 class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   def setup
     Warden.test_mode!
-    I18n.available_locales = [:en, :fr, :et]
-    I18n.locale = :en
     logout(:user)
+    set_default_settings
   end
 
   def teardown
+    Capybara.reset_sessions!
     Warden.test_reset!
   end
 
@@ -77,5 +78,20 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
       assert find("div#login-modal").visible?
     end
   end
+
+  test "a browsing user should be able to create a private ticket via widget" do
+
+    visit '/widget'
+
+    assert_difference('Post.count', 1) do
+      fill_in('topic_user_email', with: 'joe@test.com')
+      fill_in('topic_user_name', with: 'Joe Guy')
+      fill_in('topic[name]', with: 'I got problems')
+      fill_in('post[body]', with: 'Please help me!!')
+      click_on('Start Discussion', disabled: true)
+    end
+
+  end
+
 
 end

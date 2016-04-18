@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
-  validates :name, presence: true
+  validates :name, presence: true, format: { with: /\A\D+\z/ }
 
   include Gravtastic
 

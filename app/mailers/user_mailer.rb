@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @token = token
     email_with_name = %("#{user.name}" <#{user.email}>)
-    mail(to: email_with_name, subject: "Welcome to #{Settings.site_name}")
+    mail(to: email_with_name, subject: "Welcome to #{AppSettings['settings.site_name']}")
   end
 
 end

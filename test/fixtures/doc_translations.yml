@@ -24,3 +24,30 @@ three_translation:
   locale: en
   created_at: 2015-10-30 03:04:05.157655
   updated_at: 2015-10-30 03:04:05.157655
+
+four:
+  doc_id: 4
+  title: Article 4
+  body: article1 text
+  keywords: My article keywords 4
+  locale: en
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655
+
+five:
+  doc_id: 5
+  title: Does not allow comments
+  body: Does not allow comments
+  keywords: My article keywords
+  locale: en
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655
+
+six:
+  doc_id: 6
+  title: Allows comments
+  body: Allows comments
+  keywords: My article keywords
+  locale: en
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655

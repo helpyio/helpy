@@ -1,0 +1,109 @@
+/* customized from http://codepen.io/timothylong/pen/yNMpqx */
+
+iframe {
+    -moz-transform: scale(1);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(1);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(1);
+    -webkit-transform-origin: 0 0;
+    height: 400px;
+}
+
+.popout {
+	position: absolute;
+	bottom: 3rem;
+	right: 3rem;
+}
+
+.popout .btn {
+	display: inline-block;
+	position: fixed;
+  bottom: 50px;
+  right: 50px;
+
+	outline: none;
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: pointer;
+	/*width: 60px;
+	height: 60px;
+  line-height: 60px; */
+  text-align: center;
+  /* font-size: 26px; */
+	z-index: 999;
+	background: #fff;
+	color: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 5px rgba(0,0,0,0.15);
+  padding: 0px;
+	transition:0.2s opacity ease-in-out;
+	-webkit-transition:0.2s opacity ease-in-out;
+}
+
+i.icon.glyphicon.glyphicon-question-sign {
+  padding-top: 16px;
+}
+
+.popout .btn.active {
+	visibility: hidden;
+	opacity: 0;
+}
+.popout .btn:after {
+	display: block;
+	position: absolute;
+	top: 0;
+	content: "";
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	background: #FFF;
+	z-index: -2;
+	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.2s, opacity 0.2s;
+	transition: transform 0.2s, opacity 0.2s;
+}
+.popout .btn:active:after {
+	-webkit-transform: scale(1.3);
+	-moz-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
+	opacity: 0;
+}
+.popout .widget-panel {
+	box-shadow: 0 0 5px rgba(0,0,0,0.15);
+  display: block;
+  position: relative;
+  top: 0;
+	width: 340px;
+	text-align: left;
+	overflow: hidden;
+	visibility: hidden;
+	transform: scale(0);
+	transform-origin: 100% 100%;
+	transition: transform 0.2s, visibility 0s 0.2s, opacity 0.2s;
+	opacity: 0;
+}
+.popout .widget-panel.active {
+	height: auto;
+	opacity: 1;
+	visibility: visible;
+	transform: scale(1);
+	transition: transform 0.2s, visibility 0s 0s, opacity 0.2s;
+}
+.popout .panel-header {
+	padding: 20px;
+	font-size: 15px;
+	background-color: #34495e;
+	color: #fff;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.popout .panel-body {
+	padding: 10px 20px;
+	background-color: #fff;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	font-size: 11px;
+	color: #aaa;
+}

@@ -21,12 +21,14 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  locale           :string
+#  doc_id           :integer          default(0)
 #
 
 class TopicsController < ApplicationController
 
   before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
   before_action :instantiate_tracker
+  before_action :allow_iframe_requests
 
   layout "clean", only: [:new, :index]
 
@@ -44,7 +46,7 @@ class TopicsController < ApplicationController
       #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
       @page_title = @forum.name
-      @title_tag = "#{Settings.site_name}: #{@page_title}"
+      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @forum.name
     end
@@ -66,7 +68,7 @@ class TopicsController < ApplicationController
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
 
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
 
@@ -88,7 +90,7 @@ class TopicsController < ApplicationController
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
 
-      @title_tag = "#{Settings.site_name}: #{@page_title}"
+      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
     end
 
     respond_to do |format|
@@ -116,7 +118,7 @@ class TopicsController < ApplicationController
 
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     add_breadcrumb @page_title
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     @forums = Forum.ispublic.all
     @topic = Topic.new
@@ -135,14 +137,15 @@ class TopicsController < ApplicationController
 
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     add_breadcrumb @page_title
-    @title_tag = "#{Settings.site_name}: #{@page_title}"
+    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
-      private: params[:topic][:private] )
+      private: params[:topic][:private],
+      doc_id: params[:topic][:doc_id] )
 
     unless user_signed_in?
 
@@ -191,12 +194,17 @@ class TopicsController < ApplicationController
       @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
 
       if @topic.private?
-        redirect_to ticket_path(@topic)
+        redirect_to params[:from] == 'widget' ? widget_thanks_path : ticket_path(@topic)
       else
-        redirect_to topic_posts_path(@topic)
+        redirect_to @topic.doc_id.nil? ? topic_posts_path(@topic) : doc_path(@topic.doc_id)
       end
     else
-      render :new
+      if params[:from] == 'widget'
+        @widget = true
+        render 'new', layout: 'widget'
+      else
+        render 'new'
+      end
     end
 
   end

@@ -3,7 +3,7 @@
 			<div id="above-header" class="hidden-xs small">
 				<%= render :partial => 'layouts/above_header' %>
 			</div>
-			<%= nav_bar brand: image_tag("#{Settings.app_mini_logo}", width: 40, class: "pull-left logo") + "#{Settings.product_name + " " if Settings.product_name}" "#{Settings.site_name}", responsive: true do %>
+			<%= nav_bar brand: image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", responsive: true do %>
 					<%= menu_group pull: :right do %>
 							<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
 							<%= menu_divider %>
@@ -13,7 +13,7 @@
 							<%= menu_item t(:community), forums_path if Settings.forums %>
 							<%= menu_item t(:ask_a_question), new_topic_path %>
 							<%= menu_divider %>
-							<%= menu_item "#{t(:back_to).titleize} #{Settings.parent_company}", Settings.parent_site, :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
+							<%= menu_item "#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'], :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
 
 							<%= menu_item t(:locale), select_locale_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
 							<% if user_signed_in? %>

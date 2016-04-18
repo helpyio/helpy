@@ -18,6 +18,7 @@ Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
+- **Embed Widget:** Helpy Includes a lightweight javascript widget that allows your users to contact you from just about anywhere.
 - **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, German, Spanish, Catalan, Portuguese, Nederlands, Chinese, Japanese, Russian and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
 
 
@@ -42,7 +43,7 @@ Requirements are:
 - Ruby 2.2
 - Rails 4.2
 - Postgres
-- Unicorn
+- A server like Unicorn, Puma or Passenger
 
 Helpy leverages three external services to help out:
 
@@ -65,7 +66,7 @@ Although not required, installing locally is highly recommended and will make it
 
 **Configure Basic Settings**
 
-`Settings.yml` has a number of configurations, to set up things like the name of your company, products, support site address, etc.  There is a full guide to this file at: [Configuring Your Helpy Settings](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/22-Configuring-your-Helpy-Settings)
+`Settings.yml` has a number of configurations, to set up things like your SMTP server, mail provider, etc.  You can also configure site settings and design from the settings panel inside the system.  There is a full guide at: [Configuring Your Helpy Settings](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/22-Configuring-your-Helpy-Settings)
 
 **Support Multiple Languages (optional)**
 
@@ -102,6 +103,6 @@ I am happy to accept contributions of any kind, including feedback and ideas, tr
 License
 =======
 
-Copyright 2015, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2016, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)

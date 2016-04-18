@@ -20,6 +20,7 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  doc_id           :integer          default(0)
 #  locale           :string
 #
 
@@ -54,7 +55,7 @@ class TopicTest < ActiveSupport::TestCase
     @user = User.first
     @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
 
-    assert @topic.user_name = @user.name
+    assert @topic.user_name == @user.name
 
   end
 

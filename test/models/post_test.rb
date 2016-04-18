@@ -73,7 +73,69 @@ class PostTest < ActiveSupport::TestCase
 
   end
 
-  # making a note active should add it to the post cache
+  # Topics should be autoassigned(AA) when they are unassigned and a reply is made by an admin
+  # --------------------------------------------------------------------------------------
 
+  # Should not AA when already assigned
+  # Should not AA when a note is posted
+  # Should not AA when the reply is posted by a non admin
+  # Should AA when a reply is posted by an admin
 
+  # Note: decided that public posts should assigned if an admin replies to the thread
+
+  test "Should not AA when topic is already assigned" do
+
+    @topic = Topic.find(1) #already assigned topic
+    @topic.posts.create!(
+      user_id: 5,
+      body: "This is the reply",
+      kind: "reply"
+    )
+    assert_not_equal(5, Topic.find(1).assigned_user_id, "Topic assignment should not have changed")
+
+  end
+
+  test "Should not AA when an internal note is posted" do
+
+    @topic = Topic.find(4) #unassigned public topic
+    @topic.posts.create!(
+      user_id: 1,
+      body: "This is a note",
+      kind: "note"
+    )
+    assert_not_equal(1, Topic.find(4).assigned_user_id, "Internal note should not set assignment")
+
+    @topic = Topic.find(6) #unassigned private topic
+    @topic.posts.create!(
+      user_id: 1,
+      body: "This is a note",
+      kind: "note"
+    )
+    assert_not_equal(1, Topic.find(6).assigned_user_id, "Internal note should not set assignment")
+
+  end
+
+  test "Should not AA when the reply is posted by a non admin" do
+
+    @topic = Topic.find(6) #unassigned topic
+    @topic.posts.create!(
+      user_id: 2, #non admin user
+      body: "This is the reply",
+      kind: "reply"
+    )
+    assert_not_equal(2, Topic.find(6).assigned_user_id, "Topic assignment should not have changed")
+
+  end
+
+  test "Should AA when a reply is posted by an admin" do
+
+    @topic = Topic.find(4) #unassigned topic
+    @topic.posts.create!(
+      user_id: 1,
+      body: "This is the reply",
+      kind: "reply"
+    )
+    assert_equal(1, Topic.find(4).assigned_user_id, "Topic should be assigned to user 1")
+
+  end
 end

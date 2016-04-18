@@ -25,6 +25,8 @@ en:
   did_this_help: "Did this solve your problem?"
   yes_button: 'Yes'
   no_button: 'No'
+  yes_helped: 'Great!! Thanks for the feedback!'
+  no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Enter a keyword, topic, or question"
@@ -198,6 +200,13 @@ en:
   message_id: "Message ID"
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
+
+  # settings
+  settings: "Settings: General"
+  general: "General"
+  design: "Design"
+  i18n: "International"
+  widget: "Embeddable Widget"
 
   activerecord:
     attributes:

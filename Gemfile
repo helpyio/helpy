@@ -20,14 +20,22 @@ gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Trix is the wysiwyg editor
 gem 'trix'
+
+# Ranked model gives the ability to rank articles and categories
 gem 'ranked-model'
+
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
+gem "rails-settings-cached"
+
+# Auth Gems
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
@@ -37,6 +45,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
+# i18n gems
 gem 'rails-i18n', '~> 4.0.0'
 gem 'i18n-country-translations'
 gem 'route_translator'
@@ -65,22 +74,19 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 
-gem 'config'
+gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 gem 'daemons'
-#gem 'mailman-rails'
 gem 'mailman'#, require: false
 gem 'mail_extract'
 
-# Mandrill Integration
-# gem 'mandrill-api'
-# gem 'mandrill_mailer'
 gem 'griddler'
 gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
 gem 'griddler-mailgun'
 gem 'griddler-postmark'
 gem 'griddler-mailin'
+gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
 
@@ -103,20 +109,10 @@ gem 'timecop' #used to populate
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
-
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
-
-  # Brakeman for security audit
   gem 'brakeman', require: false
-
   gem 'rubocop'
   gem 'scss-lint'
 end
@@ -127,6 +123,10 @@ group :development do
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
+
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
 end
 
 group :test do
