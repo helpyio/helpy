@@ -4,6 +4,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+# Requiring this library causes your jobs to run everything inline. So a call to the following
+# will actually be SYNCHRONOUS
+require 'sucker_punch/testing/inline'
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
@@ -41,4 +45,16 @@ def set_default_settings
   AppSettings['i18n.default_locale'] = 'en'
   AppSettings['i18n.available_locales'] = ['en', 'fr', 'de', 'et']
   AppSettings['widget.show_on_support_site'] = 'true'
+  AppSettings['email.admin_email'] = Settings.admin_email
+  AppSettings['email.from_email'] = Settings.from_email
+  AppSettings['email.send_email'] = 'true'
+  AppSettings['email.mail_service'] = Settings.mail_service
+  AppSettings['email.smtp_mail_username'] = Settings.smtp_mail_username
+  AppSettings['email.smtp_mail_password'] = Settings.smtp_mail_password
+  AppSettings['email.mail_smtp'] = Settings.mail_smtp
+  AppSettings['email.mail_port'] = Settings.mail_port
+  AppSettings['email.mail_domain'] = Settings.mail_domain
+  AppSettings['cloudinary.cloud_name'] = ''
+  AppSettings['cloudinary.api_key'] = ''
+  AppSettings['cloudinary.api_secret'] = ''  
 end

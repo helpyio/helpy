@@ -54,6 +54,14 @@ Helpy.admin = function(){
     $('li.step-' + ($(this).data('panel')-1)).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
   });
 
+  $('input.send-email').off().on('change', function(){
+    var chosen = $("input.send-email:radio:checked").val();
+    if (chosen === 'true') {
+      $('.smtp-settings').removeClass('hidden');
+    } else {
+      $('.smtp-settings').addClass('hidden');
+    }
+  });
 
 };
 

@@ -34,6 +34,7 @@ gem 'ranked-model'
 gem 'staccato'
 
 gem "rails-settings-cached"
+gem 'sucker_punch', '~> 2.0'
 
 # Auth Gems
 gem 'devise'
