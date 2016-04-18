@@ -46,6 +46,16 @@ Helpy.admin = function(){
   $('.pick-a-color').pickAColor({
     inlineDropdown: true //display underneath field
   });
+
+  $('input.send-email').off().on('change', function(){
+    var chosen = $("input.send-email:radio:checked").val();
+    if (chosen === 'true') {
+      $('.smtp-settings').removeClass('hidden');
+    } else {
+      $('.smtp-settings').addClass('hidden');
+    }
+  });
+
 };
 
 $(document).on('page:change', Helpy.admin);

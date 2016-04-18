@@ -301,4 +301,50 @@ class AdminControllerTest < ActionController::TestCase
     assert_equal '1', AppSettings['widget.show_on_support_site']
   end
 
+  test 'an admin should be able to turn email delivery on and off' do
+    put :update_settings,
+      'email.send_email' => 'false'
+    assert_no_difference 'ActionMailer::Base.deliveries.size' do
+      xhr :post, :create_ticket, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new private topic', body: 'some body text', forum_id: 1 }, post: { body: 'this is the body' }
+    end
+  end
+
+  test 'an admin should be able to add mail settings' do
+    put :update_settings,
+      'email.admin_email' => 'test@test.com',
+      'email.from_email' => 'test@test.com',
+      'email.mail_service' => 'mailgun',
+      'email.mail_smtp' => 'mail.test.com',
+      'email.smtp_mail_username' => 'test-login',
+      'email.smtp_mail_password' => '1234',
+      'email.mail_port' => '587',
+      'email.mail_domain' => 'something.com'
+    assert_redirected_to :admin_settings
+
+    assert_equal 'test@test.com', AppSettings['email.admin_email']
+    assert_equal 'test@test.com', AppSettings['email.from_email']
+    assert_equal 'mailgun', AppSettings['email.mail_service']
+    assert_equal 'mail.test.com', AppSettings['email.mail_smtp']
+    assert_equal 'test-login', AppSettings['email.smtp_mail_username']
+    assert_equal '1234', AppSettings['email.smtp_mail_password']
+    assert_equal '587', AppSettings['email.mail_port']
+    assert_equal 'something.com', AppSettings['email.mail_domain']
+  end
+
+  test 'an admin should be able to add a cloudinary key' do
+    put :update_settings,
+      'cloudinary.cloud_name' => 'something',
+      'cloudinary.api_key' => 'something',
+      'cloudinary.api_secret' => 'something'
+    assert_redirected_to :admin_settings
+
+    assert_equal 'something', AppSettings['cloudinary.cloud_name']
+    assert_equal 'something', AppSettings['cloudinary.api_key']
+    assert_equal 'something', AppSettings['cloudinary.api_secret']
+    get :settings
+    assert_equal 'something', Cloudinary.config.cloud_name
+    assert_equal 'something', Cloudinary.config.api_key
+    assert_equal 'something', Cloudinary.config.api_secret
+  end
+
 end
