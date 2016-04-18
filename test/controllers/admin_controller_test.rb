@@ -330,4 +330,21 @@ class AdminControllerTest < ActionController::TestCase
     assert_equal '587', AppSettings['email.mail_port']
     assert_equal 'something.com', AppSettings['email.mail_domain']
   end
+
+  test 'an admin should be able to add a cloudinary key' do
+    put :update_settings,
+      'cloudinary.cloud_name' => 'something',
+      'cloudinary.api_key' => 'something',
+      'cloudinary.api_secret' => 'something'
+    assert_redirected_to :admin_settings
+
+    assert_equal 'something', AppSettings['cloudinary.cloud_name']
+    assert_equal 'something', AppSettings['cloudinary.api_key']
+    assert_equal 'something', AppSettings['cloudinary.api_secret']
+    get :settings
+    assert_equal 'something', Cloudinary.config.cloud_name
+    assert_equal 'something', Cloudinary.config.api_key
+    assert_equal 'something', Cloudinary.config.api_secret
+  end
+
 end

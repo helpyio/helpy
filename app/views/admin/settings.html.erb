@@ -82,11 +82,11 @@
       <div class="settings-section email hidden">
         <%= f.select 'email.mail_service', options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost'],['Mailin','mailin']], AppSettings['email.mail_service']), label: "Inbound Mail Service Provider" %>
 
-        <%= f.form_group 'email.send_email', label: { text: "Enable Outbound (SMTP) Email" }, class: 'send-email-toggle' do %>
-          <%= f.radio_button 'email.send_email', false, label: "No", checked: AppSettings['email.send_email'] == 'false', class: 'send-email' %>
-          <%= f.radio_button 'email.send_email', true, label: "Yes", checked: AppSettings['email.send_email'] == 'true', class: 'send-email' %>
+        <%= f.form_group 'email.send_email', label: { text: "Enable Outbound (SMTP) Email- #{AppSettings['email.send_email']}" }, class: 'send-email-toggle' do %>
+          <%= f.radio_button 'email.send_email', false, label: "No", checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
+          <%= f.radio_button 'email.send_email', true, label: "Yes", checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
         <% end %>
-        <div class="smtp-settings <%= "hidden" if AppSettings['email.send_email'] == 'false' %>">
+        <div class="smtp-settings <%= "hidden" if "#{AppSettings['email.send_email']}" == 'false' %>">
           <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: "Admin Email" %>
           <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: "From Email" %>
           <%= f.text_field 'email.smtp_mail_username', value: AppSettings['email.smtp_mail_username'], label: "SMTP Username" %>
@@ -100,7 +100,7 @@
       <div class="settings-section cloudinary hidden">
         <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
         <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
-        <%= f.text_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
+        <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
       </div>
 
       <div class="submit-section">

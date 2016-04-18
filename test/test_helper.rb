@@ -49,5 +49,8 @@ def set_default_settings
   AppSettings['email.smtp_mail_password'] = Settings.smtp_mail_password
   AppSettings['email.mail_smtp'] = Settings.mail_smtp
   AppSettings['email.mail_port'] = Settings.mail_port
-  AppSettings['email.mail_domain']= Settings.mail_domain
+  AppSettings['email.mail_domain'] = Settings.mail_domain
+  AppSettings['cloudinary.cloud_name'] = ''
+  AppSettings['cloudinary.api_key'] = ''
+  AppSettings['cloudinary.api_secret'] = ''  
 end
