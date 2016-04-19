@@ -14,12 +14,12 @@ tr:
   login: "Giriş"
   logout: "Çıkış"
   register: "Kayıt Ol"
-  back_to: "Back to"
+  back_to: "Geri dön:"
   welcome_back: "Hoşgeldin %{username}"
   your_profile: "Profiliniz"
   your_tickets: "Destek Talepleriniz"
   locale: "Dil"
-  change_your_locale: "Change your Locale"
+  change_your_locale: "Dili Değiştir"
 
   # Voting widget
   did_this_help: "Bu sorununuzu çözdü mü?"
@@ -85,7 +85,7 @@ tr:
   forgot_password: Şifrenizi mi unuttunuz?
 
   # devise/passwords/new
-  send_instructions: Bana talimatları gönderin
+  send_instructions: Talimatları gönder
 
   # devise/passwords/edit
   change_password: Şifre değiştir
