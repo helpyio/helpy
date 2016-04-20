@@ -63,7 +63,7 @@ tr:
   # Tickets
   tickets: "Destek Talepleri"
   no_tickets: "Henüz destek talebi oluşturmadınız"
-  ticket_number: "Deste kTalebi Numarası"
+  ticket_number: "Destek Talebi Numarası"
   assigned_to_label: "Atandı:"
   created_on: "Oluşturuldu:"
 
@@ -140,7 +140,7 @@ tr:
   reopen_message: "Bu talep destek personeli tarafından yeniden açıldı"
   close_message: "Bu talep destek personeli tarafından kapatıldı."
   trash_message: "Bu destek talebi silindi."
-  assigned_message: "Görüşme %{assigned_to} destek personeline aktarışmıştır."
+  assigned_message: "Görüşme %{assigned_to} isimli destek personeline aktarışmıştır."
 
   # User Admin
   contact_info: İletişim
@@ -236,7 +236,7 @@ tr:
         meta_description: Meta Açıklaması
         title_tag: Etiket
         keywords: Anahtar Kelimeler
-        category_id: Kategorş
+        category_id: Kategori
         active: Durum
         front_page: Ana sayfada öne çıkarılsın mı?
       forum:
