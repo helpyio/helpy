@@ -50,6 +50,8 @@ class ApplicationController < ActionController::Base
       config.api_secret = AppSettings['cloudinary.api_secret']
     end
 
+  rescue
+    logger.warn("WARNING!!! Error setting configs.")
   end
 
   def to_boolean(str)
