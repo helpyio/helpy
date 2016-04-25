@@ -52,6 +52,9 @@ class ApplicationController < ActionController::Base
 
   rescue
     logger.warn("WARNING!!! Error setting configs.")
+    if AppSettings['email.mail_service'] == 'mailin'
+      AppSettings['email.mail_service'] == ''
+    end
   end
 
   def to_boolean(str)
