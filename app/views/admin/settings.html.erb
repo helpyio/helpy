@@ -80,7 +80,7 @@
       </div>
 
       <div class="settings-section email hidden">
-        <%= f.select 'email.mail_service', options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost'],['Mailin','mailin']], AppSettings['email.mail_service']), label: "Inbound Mail Service Provider" %>
+        <%= f.select 'email.mail_service', options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']), label: "Inbound Mail Service Provider" %>
 
         <%= f.form_group 'email.send_email', label: { text: "Enable Outbound (SMTP) Email" }, class: 'send-email-toggle' do %>
           <%= f.radio_button 'email.send_email', false, label: "No", checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>

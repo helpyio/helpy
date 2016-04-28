@@ -50,6 +50,11 @@ class ApplicationController < ActionController::Base
       config.api_secret = AppSettings['cloudinary.api_secret']
     end
 
+  rescue
+    logger.warn("WARNING!!! Error setting configs.")
+    if AppSettings['email.mail_service'] == 'mailin'
+      AppSettings['email.mail_service'] == ''
+    end
   end
 
   def to_boolean(str)

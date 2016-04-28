@@ -66,7 +66,7 @@ Although not required, installing locally is highly recommended and will make it
 
 **Configure Basic Settings**
 
-`Settings.yml` has a number of configurations, to set up things like your SMTP server, mail provider, etc.  You can also configure site settings and design from the settings panel inside the system.  There is a full guide at: [Configuring Your Helpy Settings](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/22-Configuring-your-Helpy-Settings)
+There is a settings option in the admin panel to set up things like i18n, system names, colors, the embeddable widget, etc.  There is a full guide to getting set up at: [Configuring Your Helpy Settings](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/22-Configuring-your-Helpy-Settings)
 
 **Support Multiple Languages (optional)**
 
@@ -82,7 +82,7 @@ Helpy supports Omniauth login capabilities.  This means you can allow your suppo
 
 **Set up Cloudinary (optional)**
 
-Helpy uses a service called Cloudinary to host and manipulate images.  If you do not provide an API key in the cloudinary.yml file, Helpy will not give users the option to attach images to their support tickets, and you will not be able to easily add images to your knowledge base documents.
+Helpy uses a service called Cloudinary to host and manipulate images.  If you do not provide an API key in the admin settings, Helpy will not give users the option to attach images to their support tickets, and you will not be able to easily add images to your knowledge base documents.
 
 
 Contributing
