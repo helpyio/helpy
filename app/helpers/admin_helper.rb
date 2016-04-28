@@ -68,4 +68,32 @@ module AdminHelper
 
     tag.html_safe
   end
+
+  def settings_item(icon, title, description)
+    content_tag(:div, class: 'media settings-grid-block') do
+      concat content_tag(:div, content_tag(:span, '', class: "glyphicon glyphicon-#{icon} settings-icon"), class: 'pull-left')
+      concat settings_blurb(title, description)
+    end
+  end
+
+  def settings_blurb(title, description)
+    content_tag(:div, class: 'media-body') do
+      concat content_tag(:h4, settings_title_link(title), class: 'more-important media-heading')
+      concat content_tag(:p, "#{description}", class: 'less-important')
+    end
+  end
+
+  def settings_title_link(title)
+    link_to t(title.to_sym, default: "#{title.capitalize}"), '#', class: 'settings-link active-settings-link', "data-target" => "#{title}"
+  end
+
+  def settings_menu_item(icon, title)
+    content_tag(:li, class: 'settings-menu-item') do
+      link_to('#', class: 'settings-link active-settings-link', "data-target" => title) do
+        concat content_tag(:span, '', class: "glyphicon glyphicon-#{icon} settings-menu-icon")
+        concat content_tag(:span, t(title, default: title.capitalize), class: 'hidden-xs')
+      end
+    end
+  end
+
 end

@@ -1,24 +1,53 @@
 <div class="admin-header">
   <h2 id="setting-header">
-    Settings: General
+    Settings
   </h2>
 </div>
 
-<div class="row">
-
-  <div class="col-md-3 col-sm-4">
-    <ul class="settings-menu list-unstyled">
-      <li><%= link_to t("general", default: "General"), '#', class: 'settings-link active-settings-link', "data-target" => "general" %></li>
-      <li><%= link_to t("design", default: "Design"), '#', class: 'settings-link', "data-target" => "design" %></li>
-      <li><%= link_to t("i18n", default: "Internationalization"), '#', class: 'settings-link', "data-target" => "i18n" %></li>
-      <li><%= link_to t("widget", default: "Embed Widget"), '#', class: 'settings-link', "data-target" => "widget" %></li>
-      <li><%= link_to t("email", default: "Email Setup"), '#', class: 'settings-link', "data-target" => "email" %></li>
-      <li><%= link_to t("cloudinary", default: "Cloudinary"), '#', class: 'settings-link', "data-target" => "cloudinary" %></li>
+<div class="settings-grid" data-hook="admin_settings_grid">
+  <div class="settings-grid-row row">
+    <div class="col-md-2 hidden-xs hidden-sm">
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <%= settings_item('cog', "general", "Manage general system settings like your Helpy name, what company to link back to and more.") %>
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <%= settings_item('pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
+    </div>
+  </div>
+  <div class="settings-grid-row row">
+    <div class="col-md-2 hidden-xs hidden-sm">
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <%= settings_item('globe', "i18n", "Select what languages your Helpy will speak be able to speak.") %>
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <%= settings_item('modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
+    </div>
+  </div>
+  <div class="settings-grid-row row">
+    <div class="col-md-2 hidden-xs hidden-sm">
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <%= settings_item('envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
+    </div>
+    <div class="col-md-5 col-sm-6">
+      <%= settings_item('cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
+    </div>
+  </div>
+</div>
+<div class="settings-panel row hidden">
+  <div class="col-md-3 col-sm-4 col-xs-2">
+    <ul class="settings-menu list-unstyled" data-hook="admin_settings_menu">
+      <%= settings_menu_item('cog', 'general') %>
+      <%= settings_menu_item('pencil', 'design') %>
+      <%= settings_menu_item('globe', 'i18n') %>
+      <%= settings_menu_item('modal-window', 'widget') %>
+      <%= settings_menu_item('envelope', 'email') %>
+      <%= settings_menu_item('cloud', 'cloudinary') %>
     </ul>
   </div>
-
-  <div class="col-md-9 col-sm-8">
-
+  <div class="col-md-9 col-sm-8 col-xs-10">
     <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
       <div class="settings-section general">
         <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
@@ -55,15 +84,13 @@
               <%= f.text_field 'design.favicon', value: AppSettings['design.favicon'], label: "Favicon" %>
             </div>
           </div>
-
         <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: "Search Background Color", class: 'pick-a-color' %>
         <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: "Header Accent", class: 'pick-a-color' %>
         <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: "Link Color", class: 'pick-a-color' %>
         <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: "Add Form Background", class: 'pick-a-color' %>
         <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: "Still Need Help Background", class: 'pick-a-color' %>
       </div>
-
-      <div class="settings-section i18n hidden">
+      <div class="settings-section i18n hidden" data-hook="admin_settings_i18n">
         Supported Locales:
         <% I18n.available_locales.each do |locale| %>
           <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
@@ -71,15 +98,14 @@
         <br/>
         <%= select_default_locale %>
       </div>
-
-      <div class="settings-section widget hidden">
+      <div class="settings-section widget hidden" data-hook="admin_settings_widget">
         <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: "Show Widget on Support Site" } %>
         <p>Add the embed widget to your site using the following URL:<br/>
           <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code>
         </p>
       </div>
 
-      <div class="settings-section email hidden">
+      <div class="settings-section email hidden" data-hook="admin_settings_email">
         <%= f.select 'email.mail_service', options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']), label: "Inbound Mail Service Provider" %>
 
         <%= f.form_group 'email.send_email', label: { text: "Enable Outbound (SMTP) Email" }, class: 'send-email-toggle' do %>
@@ -96,13 +122,11 @@
           <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: "SMTP Domain" %>
         </div>
       </div>
-
-      <div class="settings-section cloudinary hidden">
+      <div class="settings-section cloudinary hidden" data-hook="admin_settings_cloudinary">
         <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
         <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
         <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
       </div>
-
       <div class="submit-section">
         <%= f.submit "Save Settings", class: 'btn btn-warning' %>
       </div>
