@@ -425,28 +425,12 @@ class AdminController < ApplicationController
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
 
-    # logger.info(params['i18n'])
-    # AppSettings['i18n.available_locales'] = params['i18n.available_locales']
-
-    # Configure griddler, mailer
-    # Griddler.configuration.email_service = params["email.mail_service"].to_sym
-
-    # SMTP Settings from AppSettings
-    # ActionMailer::Base.smtp_settings = {
-    #     :address   => params["email.mail_smtp"],
-    #     :port      => params["email.mail_port"],
-    #     :user_name => params["email.smtp_mail_username"],
-    #     :password  => params["email.smtp_mail_password"],
-    #     :domain    => params["email.mail_domain"]
-    # }
-    #
-    # # Toggle Delivery on and off via AppSettings
-    # ActionMailer::Base.perform_deliveries = AppSettings['email.send_email']
-
     respond_to do |format|
       format.html { redirect_to(admin_settings_path) }
       format.js {
-        render js: "$('.panel-link')[3].click();"
+        if params[:source] == 'ob'
+          render js: "$('.panel-link')[2].click();"
+        end
       }
     end
   end
@@ -454,6 +438,20 @@ class AdminController < ApplicationController
   def onboarding
     @user = current_user
     render layout: 'onboard'
+  end
+
+  def complete_onboard
+    # Toggle setting for onboarding shown
+    AppSettings['onboard.shown'] == true
+
+    respond_to do |format|
+      format.html {
+        redirect_to root_path
+      }
+      format.js {
+        render js: "parent.$('#modal').modal('toggle');"
+      }
+    end
   end
 
   private

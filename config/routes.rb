@@ -83,6 +83,7 @@ Rails.application.routes.draw do
     get '/settings' => 'admin#settings', as: :admin_settings
     put '/update_settings/' => 'admin#update_settings', as: :update_settings
     get '/onboarding' => 'admin#onboarding', as: :onboarding
+    get '/complete_onboard' => 'admin#complete_onboard', as: :complete_onboard
   end
 
 

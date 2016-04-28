@@ -66,6 +66,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @user.admin = params[:user][:admin]
       @user.active = params[:user][:active]
+      @user.password = params[:user][:password]
     else
       @user = current_user
     end
@@ -84,20 +85,17 @@ class UsersController < ApplicationController
       }
       format.js {
         if params[:source] == 'ob'
-          render js: "$('.panel-link')[2].click();"
+          render js: "$('.panel-link')[3].click();"
         else
           render 'admin/tickets' if current_user.admin?
         end
       }
     end
-
   end
 
   def set_client_id
-
     session[:client_id] = params[:client_id]
     render nothing: true
-
   end
 
   private

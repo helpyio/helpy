@@ -49,7 +49,7 @@ Helpy.admin = function(){
 
   // Onboarding flow
   $('.panel-link').off().on('click', function(){
-    $('.panel').addClass('hidden');
+    $('.onboard-panel').addClass('hidden');
     $('#panel-' + $(this).data('panel')).removeClass('hidden');
     $('li.step-' + ($(this).data('panel')-1)).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
   });
