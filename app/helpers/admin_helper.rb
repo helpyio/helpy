@@ -70,15 +70,17 @@ module AdminHelper
   end
 
   def settings_item(icon, title, description)
-    content_tag(:div, class: 'media settings-grid-block') do
-      concat content_tag(:div, content_tag(:span, '', class: "glyphicon glyphicon-#{icon} settings-icon"), class: 'pull-left')
-      concat settings_blurb(title, description)
+    content_tag(:div, class: 'col-md-5 col-sm-6') do
+      content_tag(:div, class: 'media settings-grid-block') do
+        concat content_tag(:div, content_tag(:span, '', class: "glyphicon glyphicon-#{icon} settings-icon"), class: 'pull-left')
+        concat settings_blurb(title, description)
+      end
     end
   end
 
   def settings_blurb(title, description)
     content_tag(:div, class: 'media-body') do
-      concat content_tag(:h4, settings_title_link(title), class: 'more-important media-heading')
+      concat content_tag(:h4, settings_title_link(title), class: 'settings-link more-important media-heading')
       concat content_tag(:p, "#{description}", class: 'less-important')
     end
   end

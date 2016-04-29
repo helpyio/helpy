@@ -6,34 +6,19 @@
 
 <div class="settings-grid" data-hook="admin_settings_grid">
   <div class="settings-grid-row row">
-    <div class="col-md-2 hidden-xs hidden-sm">
-    </div>
-    <div class="col-md-5 col-sm-6">
-      <%= settings_item('cog', "general", "Manage general system settings like your Helpy name, what company to link back to and more.") %>
-    </div>
-    <div class="col-md-5 col-sm-6">
-      <%= settings_item('pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
-    </div>
+    <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
+    <%= settings_item('cog', "general", "Manage general system settings like your Helpy name, what company to link back to and more.") %>
+    <%= settings_item('pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
   </div>
   <div class="settings-grid-row row">
-    <div class="col-md-2 hidden-xs hidden-sm">
-    </div>
-    <div class="col-md-5 col-sm-6">
-      <%= settings_item('globe', "i18n", "Select what languages your Helpy will speak be able to speak.") %>
-    </div>
-    <div class="col-md-5 col-sm-6">
-      <%= settings_item('modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
-    </div>
+    <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
+    <%= settings_item('globe', "i18n", "Select what languages your Helpy will speak be able to speak.") %>
+    <%= settings_item('modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
   </div>
   <div class="settings-grid-row row">
-    <div class="col-md-2 hidden-xs hidden-sm">
-    </div>
-    <div class="col-md-5 col-sm-6">
-      <%= settings_item('envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
-    </div>
-    <div class="col-md-5 col-sm-6">
-      <%= settings_item('cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
-    </div>
+    <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
+    <%= settings_item('envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
+    <%= settings_item('cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
   </div>
 </div>
 <div class="settings-panel row hidden">
