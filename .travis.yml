@@ -21,7 +21,7 @@ script:
   # Rubocop static code analyzer
   - bundle exec rubocop
   # SCSS analyzer
-  - bundle exec scss-lint
+  - bundle exec scss_lint
 
 cache: bundler
 
