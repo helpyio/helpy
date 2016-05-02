@@ -115,7 +115,7 @@ group :development, :test do
   gem 'annotate'
   gem 'brakeman', require: false
   gem 'rubocop'
-  gem 'scss-lint'
+  gem 'scss_lint'
 end
 
 group :development do
