@@ -269,6 +269,10 @@ a.stats.active {
 	margin-left:10px;
 }
 
+.settings-grid {
+	margin-top: 40px;
+}
+
 .settings-section {
   margin-bottom: 50px;
   margin-top: 40px;
@@ -279,12 +283,28 @@ a.stats.active {
 	}
 }
 
+.settings-menu-item {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 .active-settings-link {
   font-weight: bold;
 }
 
 ul.settings-menu {
 	margin-top: 40px;
+}
+
+.settings-icon {
+	font-size: 20px;
+	color: #333;
+}
+
+.settings-menu-icon {
+	margin-right: 5px;
+	font-size: 110%;
+	color: #333;
 }
 
 @media(max-width:767px){
@@ -309,6 +329,12 @@ ul.settings-menu {
 	.post-menu {
 		margin-top: 0px;
 	}
+	.settings-grid-block {
+		margin-bottom: 10px;
+	}
+	.settings-menu-icon {
+		font-size: 20px;
+	}
 }
 
 @media(min-width:768px){
@@ -332,6 +358,10 @@ ul.settings-menu {
 		padding-bottom: 20px;
 		padding-top: 10px;
 	}
+	.settings-grid-row {
+		margin-bottom: 20px;
+	}
+
 }
 
 @media(min-width:992px){
@@ -369,5 +399,8 @@ ul.settings-menu {
 	#pipeline-wrapper {
 		padding-bottom: 0;
 		padding-top: 10px;
+	}
+	.settings-grid-row {
+		margin-bottom: 20px;
 	}
 }
