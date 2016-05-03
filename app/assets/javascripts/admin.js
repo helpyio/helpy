@@ -32,10 +32,16 @@ Helpy.admin = function(){
   });
 
   $('.settings-link').off().on('click', function(){
+    // Clean up any select-styled links
     $('.settings-link').removeClass('active-settings-link');
+
+    // Hide and show the grid/panels
+    $('.settings-grid').addClass('hidden');
+    $('.settings-panel').removeClass('hidden');
+
     var $this = $(this);
     var showthis = $this.data('target');
-    $(this).addClass('active-settings-link');
+    $('a[data-target=' + showthis + ']').addClass('active-settings-link');
     $('.settings-section').addClass('hidden');
     $('.settings-section.' + showthis).removeClass('hidden');
     $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
