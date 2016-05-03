@@ -37,24 +37,7 @@
     <h2>Customize your login</h2>
   </div>
   <div class="edit-admin text-left">
-
-    <%= bootstrap_form_for(@user, remote: true) do |f| %>
-      <%= devise_error_messages! %>
-      <span class="user-fields">
-        <%= f.email_field :email, autofocus: true %>
-        <%= f.text_field :name %>
-        <%= f.text_field :company %>
-        <%= f.password_field :password %>
-        <%= f.hidden_field :admin, value: 'true' %>
-        <%= hidden_field_tag :source, 'ob' %>
-
-      </span>
-
-      <div class="text-center onboard-submit-section">
-      <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
-      </div>
-    <% end %>
-
+    <%= render 'admin/onboard_user' %>
   </div>
 
 </div>

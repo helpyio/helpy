@@ -1,0 +1,26 @@
+<%= form_for(@user, validate: true, remote: true) do |f| %>
+  <span class="user-fields">
+    <p>
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+    </p>
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name, validate: { presence: true } %>
+    </p>
+    <%= f.text_field :company %>
+    <%= f.password_field :password %>
+    <%= f.hidden_field :admin, value: 'true' %>
+    <%= hidden_field_tag :source, 'ob' %>
+
+  </span>
+
+  <div class="text-center onboard-submit-section">
+  <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
+  </div>
+<% end %>
+<script>
+$(document).ready(function(){
+$('#edit_user_1').enableClientSideValidations();
+});
+</script>
