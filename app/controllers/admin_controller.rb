@@ -417,19 +417,20 @@ class AdminController < ApplicationController
   def update_settings
 
     # NOTE: We iterate through settings here to establish our universe of settings to save
-    # this means if you add a setting, you MUST declare a default value in the "default_settings intializer"
+    # this means if you add a setting ie. in a plugin, you MUST declare a default value in the
+    # "default_settings intializer".
     @settings = AppSettings.get_all
 
     # iterate through
     @settings.each do |setting|
-      AppSettings[setting[0]] = params[setting[0].to_sym]
+      AppSettings[setting[0]] = params[setting[0].to_sym] unless params[setting[0].to_sym].nil?
     end
 
     respond_to do |format|
       format.html { redirect_to(admin_settings_path) }
       format.js {
         if params[:source] == 'ob'
-          render js: "$('.panel-link')[2].click();"
+          render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
         end
       }
     end
@@ -437,12 +438,15 @@ class AdminController < ApplicationController
 
   def onboarding
     @user = current_user
+    @user.name = ""
+    @user.email = ""
+    @user.password = ""
     render layout: 'onboard'
   end
 
   def complete_onboard
     # Toggle setting for onboarding shown
-    AppSettings['onboard.shown'] == true
+    AppSettings['onboard.shown'] = true
 
     respond_to do |format|
       format.html {

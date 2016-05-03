@@ -80,16 +80,28 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html {
-        redirect_to root_path
-      }
-      format.js {
-        if params[:source] == 'ob'
-          render js: "$('.panel-link')[3].click();"
-        else
-          render 'admin/tickets' if current_user.admin?
-        end
-      }
+      if @user.save
+        logger.info("User saved")
+        sign_in(@user, bypass: true) if current_user.admin? && params[:source] == 'ob'
+
+        format.html {
+          logger.info("redirecting home")
+          redirect_to root_path
+        }
+        format.js {
+          if params[:source] == 'ob'
+            logger.info("render js")
+            render js: "Helpy.showPanel(4);"
+          else
+            render 'admin/tickets' if current_user.admin?
+          end
+        }
+      else
+        format.html {
+           render 'admin/onboarding', layout: 'onboard'
+        }
+        logger.info("Errors prevented saving the user")
+      end
     end
   end
 
@@ -116,7 +128,12 @@ class UsersController < ApplicationController
       :title,
       :twitter,
       :linkedin,
-      :language
+      :language,
+      :password,
+      :admin,
+      :active,
+      :opt_in,
+      :password_confirmation
     )
   end
 

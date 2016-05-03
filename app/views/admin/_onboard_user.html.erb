@@ -1,26 +1,18 @@
-<%= form_for(@user, validate: true, remote: true) do |f| %>
-  <span class="user-fields">
-    <p>
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true %>
-    </p>
-    <p>
-      <%= f.label :name %>
-      <%= f.text_field :name, validate: { presence: true } %>
-    </p>
-    <%= f.text_field :company %>
-    <%= f.password_field :password %>
-    <%= f.hidden_field :admin, value: 'true' %>
-    <%= hidden_field_tag :source, 'ob' %>
+<%= simple_form_for(@user, validate: true, remote: true ) do |f| %>
 
-  </span>
+  <%= f.input :email, value: nil, validate: true %>
+  <%= f.input :name, value: '' %>
+  <%= f.input :company, value: '' %>
+  <%= f.input :password, value: '', validate: true %>
+  <%= f.input :password_confirmation, autocomplete: "off", validate: true  %>
+
+  <%= f.input :opt_in, label: 'Notify me of future enhancements and critical security issues to Helpy' ,as: :boolean, validate: false %>
+  <%= f.hidden_field :admin, value: 'true' %>
+  <%#= f.hidden_field :current_password, value: '12345678' %>
+
+  <%= hidden_field_tag :source, 'ob' %>
 
   <div class="text-center onboard-submit-section">
   <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
   </div>
 <% end %>
-<script>
-$(document).ready(function(){
-$('#edit_user_1').enableClientSideValidations();
-});
-</script>

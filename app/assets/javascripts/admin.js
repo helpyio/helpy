@@ -65,4 +65,12 @@ Helpy.admin = function(){
 
 };
 
+Helpy.showPanel = function(panel) {
+  var currentPanel = panel-1
+  $('.onboard-panel').addClass('hidden');
+  $('#panel-' + panel).removeClass('hidden');
+  $('li.step-' + currentPanel).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
+  return;
+}
+
 $(document).on('page:change', Helpy.admin);

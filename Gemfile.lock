@@ -103,6 +103,9 @@ GEM
       jquery-rails (>= 3.1.2, < 5.0.0)
       js_regex (~> 1.0, >= 1.0.9)
       rails (>= 4.0.0, < 4.3.0)
+    client_side_validations-simple_form (3.2.3)
+      client_side_validations (~> 4.2.3)
+      simple_form (~> 3.2)
     cloudinary (1.1.2)
       aws_cf_signer
       rest-client
@@ -412,6 +415,9 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -488,6 +494,7 @@ DEPENDENCIES
   byebug
   capybara
   client_side_validations
+  client_side_validations-simple_form
   cloudinary (= 1.1.2)
   codeclimate-test-reporter
   config (~> 1.1.0)!
@@ -548,6 +555,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver
   shoulda
+  simple_form
   spring (~> 1.4.0)
   staccato
   sucker_punch (~> 2.0)
