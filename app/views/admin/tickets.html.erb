@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<% unless AppSettings['onboard.shown'] == true %>
+<% unless AppSettings['onboard.shown'] == 'true' %>
 <%#= content_tag :a, "Modal", href: "#modal", class: 'btn', data: {toggle: 'modal'} %>
 <div id='modal' class="modal" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-lg">

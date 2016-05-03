@@ -446,7 +446,7 @@ class AdminController < ApplicationController
 
   def complete_onboard
     # Toggle setting for onboarding shown
-    AppSettings['onboard.shown'] = true
+    AppSettings['onboard.shown'] = 'true'
 
     respond_to do |format|
       format.html {

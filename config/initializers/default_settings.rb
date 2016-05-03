@@ -12,7 +12,8 @@ AppSettings.defaults["settings.google_analytics_id"] = Settings.google_analytics
 # Design: (Colors etc.)
 
 AppSettings.defaults["design.favicon"] = Settings.app_favicon
-AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo #Note: the contributer accidentally reversed these in the code
+AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo
+# Note: the contributer accidentally reversed these in the code
 AppSettings.defaults["design.footer_mini_logo"] = Settings.app_large_logo
 AppSettings.defaults["css.search_background"] = "feffe9"
 AppSettings.defaults["css.top_bar"] = "3cceff"
@@ -47,3 +48,7 @@ AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''
 AppSettings.defaults['cloudinary.api_secret'] = ''
+
+# Admin Onboarding:
+
+AppSettings.defaults['onboard.shown'] = 'false'
