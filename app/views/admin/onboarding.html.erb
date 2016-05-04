@@ -23,10 +23,11 @@
   <%= bootstrap_form_tag url: update_settings_path, method: 'put', remote: true do |f| %>
 
     <%= f.text_field 'settings.site_name', label: "Support Site Name", placeholder: 'Typically your product name and support.' %>
-    <%= f.text_field 'settings.site_url', label: "Support Site URL", placeholder: 'The URL of your Support Site.' %>
-    <%= f.text_field 'settings.parent_site', label: "Parent Site", placeholder: 'This is your main website, Helpy will link back to.' %>
-    <%= f.text_field 'settings.parent_company', label: "Parent Company" %>
-    <%= f.hidden_field 'source', value: 'ob' %>
+    <%= f.text_field 'settings.site_url', label: "Support Site URL", placeholder: 'The URL of your Helpy (support.yourdomain.com)' %>
+    <%= f.text_field 'settings.parent_site', label: "Parent Site", placeholder: 'This is your main website. Helpy will link back to it.' %>
+    <%= f.text_field 'settings.parent_company', label: "Parent Company", placeholder: 'This is your main company.' %>
+
+    <%= hidden_field 'source', value: 'ob' %>
     <div class="onboard-submit-section">
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>
     </div>
