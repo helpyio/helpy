@@ -5,13 +5,9 @@
   <%= f.input :company, value: '' %>
   <%= f.input :password, value: '', validate: true %>
   <%= f.input :password_confirmation, autocomplete: "off", validate: true  %>
-
-  <%= f.input :opt_in, label: 'Notify me of future enhancements and critical security issues to Helpy', as: :boolean, validate: false %>
   <%= f.hidden_field :admin, value: 'true' %>
-  <%#= f.hidden_field :current_password, value: '12345678' %>
 
   <%= hidden_field_tag :source, 'ob' %>
-
   <div class="text-center onboard-submit-section">
   <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
   </div>

@@ -22,9 +22,10 @@
   <div class="text-left">
   <%= bootstrap_form_tag url: update_settings_path, method: 'put', remote: true do |f| %>
 
-    <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
-    <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: "Parent Site" %>
-    <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
+    <%= f.text_field 'settings.site_name', label: "Support Site Name", placeholder: 'Typically your product name and support.' %>
+    <%= f.text_field 'settings.site_url', label: "Support Site URL", placeholder: 'The URL of your Support Site.' %>
+    <%= f.text_field 'settings.parent_site', label: "Parent Site", placeholder: 'This is your main website, Helpy will link back to.' %>
+    <%= f.text_field 'settings.parent_company', label: "Parent Company" %>
     <%= f.hidden_field 'source', value: 'ob' %>
     <div class="onboard-submit-section">
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>
@@ -51,7 +52,10 @@
       <%= link_to "Get Started!", complete_onboard_path, class: 'btn btn-primary', remote: true %>
     </div>
 
-
+    <script>
+      ga('create', 'UA-50151-25', 'auto', 'installPinger');
+      ga('installPinger.send', 'pageview', { "title": "Set Up Complete: " + Helpy.domain });
+    </script>
   </div>
 
 </div>

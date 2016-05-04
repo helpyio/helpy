@@ -58,6 +58,7 @@ Helpy.admin = function(){
     $('.onboard-panel').addClass('hidden');
     $('#panel-' + $(this).data('panel')).removeClass('hidden');
     $('li.step-' + ($(this).data('panel')-1)).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
+    $('li.step-' + $(this).data('panel')).addClass('active-step');
   });
 
   $('input.send-email').off().on('change', function(){
@@ -72,10 +73,11 @@ Helpy.admin = function(){
 };
 
 Helpy.showPanel = function(panel) {
-  var currentPanel = panel-1
+  var currentPanel = panel-1;
   $('.onboard-panel').addClass('hidden');
   $('#panel-' + panel).removeClass('hidden');
   $('li.step-' + currentPanel).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
+  $('li.step-' + panel).addClass('active-step');
   return;
 }
 

@@ -32,6 +32,12 @@
   text-align: center;
 }
 
+.active-step {
+  border: 2px solid #000;
+  color: #000;
+  font-weight: bold;
+}
+
 .filled-circle {
   color: #fff;
   background-color: #ff8300;
