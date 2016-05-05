@@ -4,6 +4,9 @@ $('#ticket-page-title').html("<%= "#{t(:discussion_management, default: 'Discuss
 $(document).prop('title', "<%= "#{t(:discussion_management, default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
 window.location.hash = 'new-discussion';
 
+// Hook validations
+$('#new_topic').enableClientSideValidations();
+
 // Empty ticket search field
 $('q').val();
 
