@@ -11,7 +11,9 @@
   <% end %>
 
   <%= f.input :name, :size => 40, class: 'disable-empty' -%>
-  <%= text_area :post, :body, :rows => 8, :cols => 60, label: 'Message', class: 'disable-empty form-control' -%>
+  <%= f.simple_fields_for @topic.posts.new do |i| %>
+    <%= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
+  <% end %>
   <%= hidden_field_tag :client_id %>
   <div class="add-screenshots">
   <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
@@ -19,6 +21,6 @@
   <!--<label>Tags:</label><br/>-->
   <%#= text_field_tag :tags %>
 
-  <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: true %>
+  <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: true %>
 <% end -%>
 </div>

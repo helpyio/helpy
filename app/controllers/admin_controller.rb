@@ -141,7 +141,7 @@ class AdminController < ApplicationController
       if (@user.save || !@user.nil?) && @topic.save
 
         @post = @topic.posts.create(
-          :body => params[:post][:body],
+          :body => params[:topic][:post][:body],
           :user_id => @user.id,
           :kind => 'first',
           :screenshots => params[:topic][:screenshots])
