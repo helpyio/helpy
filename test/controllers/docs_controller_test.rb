@@ -177,5 +177,37 @@ class DocsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'an admin should see the option to attach files if cloudinary configured' do
+
+    # Make sure cloudinary cloud name is setup
+    AppSettings['cloudinary.cloud_name'] = "test-cloud"
+    AppSettings['cloudinary.api_key'] = "some-key"
+    AppSettings['cloudinary.api_secret'] = "test-cloud"
+
+    # Get new topics page
+    sign_in users(:admin)
+    get :new, locale: :en
+    assert_response :success
+
+    assert_select("input.cloudinary-fileupload", true)
+
+  end
+
+  test 'an admin should not see the option to attach files if cloudinary is not configured' do
+
+    # Make sure cloudinary cloud name is setup
+    AppSettings['cloudinary.cloud_name'] = ""
+    AppSettings['cloudinary.api_key'] = ""
+    AppSettings['cloudinary.api_secret'] = ""
+
+    # Get new topics page
+    sign_in users(:admin)
+    get :new, locale: :en
+    assert_response :success
+
+    assert_select("input.cloudinary-fileupload", false)
+
+  end
+
 
 end
