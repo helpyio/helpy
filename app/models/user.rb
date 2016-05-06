@@ -52,6 +52,8 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
   validates :name, presence: true, format: { with: /\A\D+\z/ }
+  validates :email, presence: true
+
 
   include Gravtastic
 

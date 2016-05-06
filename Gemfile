@@ -14,6 +14,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+# Inline js validations
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'jquery-turbolinks'
@@ -71,6 +75,7 @@ gem 'attachinary'
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
+gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
