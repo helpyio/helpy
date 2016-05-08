@@ -4,32 +4,30 @@
   </h2>
 </div>
 
-<div class="settings-grid" data-hook="admin_settings_grid">
+<div class="settings-grid">
   <div class="settings-grid-row row">
     <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
-    <%= settings_item('cog', "general", "Manage general system settings like your Helpy name, what company to link back to and more.") %>
-    <%= settings_item('pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
-  </div>
-  <div class="settings-grid-row row">
-    <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
-    <%= settings_item('globe', "i18n", "Select what languages your Helpy will speak be able to speak.") %>
-    <%= settings_item('modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
-  </div>
-  <div class="settings-grid-row row">
-    <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
-    <%= settings_item('envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
-    <%= settings_item('cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
+    <div class="grids col-md-10 col-sm-12">
+      <div class="row" data-hook="admin_settings_grid">
+        <%= settings_item('glyphicon glyphicon-cog', "general", "Manage general system settings like your Helpy name, what company to link back to.") %>
+        <%= settings_item('glyphicon glyphicon-pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
+        <%= settings_item('glyphicon glyphicon-globe', "i18n", "Select what languages your Helpy will speak be able to speak.") %>
+        <%= settings_item('glyphicon glyphicon-modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
+        <%= settings_item('glyphicon glyphicon-envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
+        <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
+      </div>
+    </div>
   </div>
 </div>
 <div class="settings-panel row hidden">
   <div class="col-md-3 col-sm-4 col-xs-2">
     <ul class="settings-menu list-unstyled" data-hook="admin_settings_menu">
-      <%= settings_menu_item('cog', 'general') %>
-      <%= settings_menu_item('pencil', 'design') %>
-      <%= settings_menu_item('globe', 'i18n') %>
-      <%= settings_menu_item('modal-window', 'widget') %>
-      <%= settings_menu_item('envelope', 'email') %>
-      <%= settings_menu_item('cloud', 'cloudinary') %>
+      <%= settings_menu_item('glyphicon glyphicon-cog', 'general') %>
+      <%= settings_menu_item('glyphicon glyphicon-pencil', 'design') %>
+      <%= settings_menu_item('glyphicon glyphicon-globe', 'i18n') %>
+      <%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget') %>
+      <%= settings_menu_item('glyphicon glyphicon-envelope', 'email') %>
+      <%= settings_menu_item('glyphicon glyphicon-cloud', 'cloudinary') %>
     </ul>
   </div>
   <div class="col-md-9 col-sm-8 col-xs-10">
@@ -40,8 +38,6 @@
         <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: "Parent Site" %>
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
         <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: "Site Tagline" %>
-        <%#= f.text_field 'settings.product_name', value: AppSettings['settings.product_name'], label: "Product Name" %>
-        <%#= f.text_field 'settings.support_phone', value: AppSettings['settings.support_phone'], label: "Support Phone" %>
         <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
       </div>
       <div class="settings-section design hidden">
@@ -89,7 +85,6 @@
           <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code>
         </p>
       </div>
-
       <div class="settings-section email hidden" data-hook="admin_settings_email">
         <%= f.select 'email.mail_service', options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']), label: "Inbound Mail Service Provider" %>
 
