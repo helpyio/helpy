@@ -20,12 +20,10 @@
 class CategoriesController < ApplicationController
   before_action :get_tags
 
-  before_action :authenticate_user!, :except => ['index', 'show']
-  before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
-  layout 'admin', :only => ['new', 'edit', 'update', 'create']
+  # before_action :authenticate_user!, :except => ['index', 'show']
+  # before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
+  # layout 'admin', :only => ['new', 'edit', 'update', 'create']
 
-  # GET /categories
-  # GET /categories.xml
   def index
 
     #if I18n.available_locales.count > 1
@@ -41,12 +39,9 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @categories }
     end
   end
 
-  # GET /categories/1
-  # GET /categories/1.xml
   def show
     @category = Category.active.where(id: params[:id]).first
     if I18n.available_locales.count > 1
@@ -67,56 +62,9 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml  { render :xml => @category }
     end
   end
 
-  # GET /categories/new
-  def new
-    @category = Category.new
-  end
-
-  # GET /categories/1/edit
-  def edit
-    @category = Category.find(params[:id])
-  end
-
-  # POST /categories
-  def create
-    @category = Category.new(category_params)
-
-    if @category.save
-      redirect_to(admin_knowledgebase_path)
-    else
-      render :knowledgebase
-    end
-  end
-
-  # PUT /categories/1
-  # PUT /categories/1.xml
-  def update
-    I18n.locale = params['lang']
-
-    @category = Category.find(params[:id])
-
-    if @category.update(category_params)
-      redirect_to admin_knowledgebase_path
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /categories/1
-  # DELETE /categories/1.xml
-  def destroy
-    @category = Category.find(params[:id])
-    @category.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(admin_knowledgebase_path) }
-      format.js
-    end
-  end
 
   def print
     @categories = Category.alpha.find(:all)

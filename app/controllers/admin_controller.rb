@@ -13,24 +13,24 @@ class AdminController < ApplicationController
     @topics = Topic.mine(current_user.id).pending.page params[:page]
   end
 
-  def knowledgebase
-    @categories = Category.featured.ordered
-    @nonfeatured = Category.where(front_page: false).alpha
-
-    respond_to do |format|
-      format.html { render :action => "knowledgebase" }
-    end
-  end
-
-  def articles
-    @category = Category.where(id: params[:category_id]).first
-    @docs = @category.docs.ordered
-
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @category }
-    end
-  end
+  # def knowledgebase
+  #   @categories = Category.featured.ordered
+  #   @nonfeatured = Category.where(front_page: false).alpha
+  #
+  #   respond_to do |format|
+  #     format.html { render :action => "knowledgebase" }
+  #   end
+  # end
+  #
+  # def articles
+  #   @category = Category.where(id: params[:category_id]).first
+  #   @docs = @category.docs.ordered
+  #
+  #   respond_to do |format|
+  #     format.html
+  #     format.xml  { render :xml => @category }
+  #   end
+  # end
 
   def update_order
     # Safely identify the model we're updating the position of
@@ -193,7 +193,7 @@ class AdminController < ApplicationController
         logger.info("Single User")
     else
         @users = users.page params[:page]
-        template = 'users'
+        template = 'users/users'
         @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
         logger.info("User Search")
     end
@@ -372,10 +372,6 @@ class AdminController < ApplicationController
       format.js
     end
 
-  end
-
-  def communities
-    @forums = Forum.where(private: false).order('name ASC')
   end
 
   def users

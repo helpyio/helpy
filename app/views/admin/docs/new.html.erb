@@ -1,5 +1,5 @@
 <div class="row">
-  <%= bootstrap_form_for(@doc) do |f| %>
+  <%= bootstrap_form_for([:admin, @doc]) do |f| %>
   <div class="col-md-12">
     <h2 class="form-subhead"><%= t(:new_content, default: 'New Content') %></h2>
       <%= f.alert_message "Please fix the errors below." %>

@@ -6,7 +6,7 @@
 
 <h2><%= t(:new_category, default: 'New Category') %></h2>
 
-<%= bootstrap_form_for @category, label_errors: true, method: 'post' do |f| %>
+<%= bootstrap_form_for [:admin, @category], label_errors: true, method: 'post' do |f| %>
     <%= f.alert_message "Please fix the errors below." %>
     <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
 <% end %>

@@ -19,11 +19,11 @@ Rails.application.routes.draw do
 
     devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
 
-    resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit] do
+    resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
       #collection do
       #  get 'admin'
       #end
-      resources :docs, except: [:new, :edit]
+      resources :docs, except: [:new, :edit, :create, :update]
     end
 
     resources :docs, except: [:new, :edit]
@@ -52,18 +52,29 @@ Rails.application.routes.draw do
 
   # Admin Routes
 
+  namespace :admin do
+
+    # resources :docs
+    resources :categories do
+      resources :docs, except: [:index, :show]
+    end
+    resources :docs, except: [:index, :show]
+    resources :forums# , except: [:index, :show]
+  end
+
+
   scope 'admin' do
 
     get '/' => 'admin#tickets', as: :admin
 
-    resources :docs, only: [:new, :edit]
-    resources :knowledgebase, :as => 'categories', :controller => "categories", only: [:new, :edit] do
-      resources :docs, only: [:new, :edit]
-    end
+    # resources :docs, only: [:new, :edit]
+    # resources :knowledgebase, :as => 'categories', :controller => "categories", only: [:new, :edit] do
+    #   resources :docs, only: [:new, :edit]
+    # end
 
     get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
-    get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
-    get '/content/:category_id/articles' => 'admin#articles', as: :admin_articles
+    # get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
+    # get '/content/:category_id/articles' => 'categories#show', as: :admin_articles
     post '/content/update_order' => 'admin#update_order', as: :admin_update_order
     get '/tickets' => 'admin#tickets', as: :admin_tickets
     get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
@@ -74,7 +85,6 @@ Rails.application.routes.draw do
     get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
     get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
     get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
-    get '/communities' => 'admin#communities', as: :admin_communities
     get '/users' => 'admin#users', as: :admin_users
     get '/user/:id/edit' => 'admin#edit_user', as: :admin_user
     get '/user/:id' => 'admin#user_profile', as: :user_profile
