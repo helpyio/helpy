@@ -80,4 +80,8 @@ module ApplicationHelper
     styles += "</style>"
     styles.html_safe
   end
+
+  def get_path(screenshot)
+    screenshot.format == "pdf" ? "#{screenshot.public_id}.png" : screenshot.path
+  end
 end
