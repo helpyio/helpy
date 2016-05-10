@@ -26,10 +26,8 @@
 				<% end %>
 			</div>
 			<% end %>
-			<% unless Cloudinary.config.cloud_name.nil? %>
-              <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } %>
-            <% end %>
-		</div>
+            <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } unless Cloudinary.config.cloud_name.nil? %>
+        </div>
 
 		<% if user_signed_in? && post.kind == 'first' && post.topic.forum.allow_post_voting == true %>
 			<div class="add-form inline-reply">
