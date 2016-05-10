@@ -58,9 +58,13 @@ Rails.application.routes.draw do
     end
     resources :docs, except: [:index, :show]
     resources :forums# , except: [:index, :show]
-  end
     resources :users
 
+    # SearchController Routes
+    get '/topic_search' => 'search#topic_search', as: :topic_search
+    get '/user_search' => 'search#user_search', as: :user_search
+
+  end
 
   scope 'admin' do
 
@@ -82,8 +86,6 @@ Rails.application.routes.draw do
     get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
     get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
     get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
-    get '/topic_search' => 'admin#topic_search', as: :admin_search
-    get '/user_search' => 'admin#user_search', as: :user_search
     get '/settings' => 'admin#settings', as: :admin_settings
     put '/update_settings/' => 'admin#update_settings', as: :update_settings
 
