@@ -53,14 +53,13 @@ Rails.application.routes.draw do
   # Admin Routes
 
   namespace :admin do
-
-    # resources :docs
     resources :categories do
       resources :docs, except: [:index, :show]
     end
     resources :docs, except: [:index, :show]
     resources :forums# , except: [:index, :show]
   end
+    resources :users
 
 
   scope 'admin' do
@@ -73,8 +72,6 @@ Rails.application.routes.draw do
     # end
 
     get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
-    # get '/content' => 'admin#knowledgebase', as: :admin_knowledgebase
-    # get '/content/:category_id/articles' => 'categories#show', as: :admin_articles
     post '/content/update_order' => 'admin#update_order', as: :admin_update_order
     get '/tickets' => 'admin#tickets', as: :admin_tickets
     get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
@@ -85,9 +82,6 @@ Rails.application.routes.draw do
     get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
     get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
     get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
-    get '/users' => 'admin#users', as: :admin_users
-    get '/user/:id/edit' => 'admin#edit_user', as: :admin_user
-    get '/user/:id' => 'admin#user_profile', as: :user_profile
     get '/topic_search' => 'admin#topic_search', as: :admin_search
     get '/user_search' => 'admin#user_search', as: :user_search
     get '/settings' => 'admin#settings', as: :admin_settings

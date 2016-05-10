@@ -43,20 +43,6 @@ class AdminControllerTest < ActionController::TestCase
     end
   end
 
-  ### Testing User Views
-
-  test 'an admin should be able to see a user profile' do
-    xhr :get, :user_profile, { id: 2 }
-    assert_response :success
-    assert_equal(6, assigns(:topics).count)
-  end
-
-  test 'an admin should be able to edit a user profile' do
-    xhr :get, :edit_user, { id: 2 }
-    assert_response :success
-  end
-
-
   ### Assigning topic tests
 
   test 'an admin should be able to assign an unassigned discussion' do

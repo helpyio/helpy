@@ -44,43 +44,84 @@
 #  uid                    :string
 #
 
-require 'test_helper'
+class Admin::UsersController < Admin::BaseController
 
-class Admin::UsersControllerTest < ActionController::TestCase
+  before_action :authenticate_user!, except: :set_client_id
+  before_action :fetch_counts, :only => ['show']
 
-  setup do
-    set_default_settings
+  def index
+    @users = User.all.page params[:page]
+    @user = User.new
   end
 
-  # admins
+  def show
+    @user = User.where(id: params[:id]).first
+    @topics = Topic.where(user_id: @user.id).page params[:page]
 
-  test "an admin should be able to update a user" do
-    sign_in users(:admin)
-    assert_difference("User.find(2).name.length", -3) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com"}, locale: :en}
+    # We still have to grab the first topic for the user to use the same user partial
+    @topic = Topic.where(user_id: @user.id).first
+    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
+
+    respond_to do |format|
+      format.html {
+        render 'admin/tickets'
+      }
+      format.js {
+        render 'admin/tickets'
+      }
     end
-    assert User.find(2).name == "something", "name does not update"
   end
 
-  test "an admin should be able to update a user and make them an admin" do
-    sign_in users(:admin)
-    assert_difference("User.admins.count", 1) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", admin: true}, locale: :en}
+  def edit
+    @user = User.where(id: params[:id]).first
+    @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
+
+    respond_to do |format|
+      format.js
     end
   end
 
-  ### Testing User Views
+  def update
+    @user = User.find(params[:id])
+    @user.admin = params[:user][:admin]
+    @user.active = params[:user][:active]
+    @user.update(user_params)
+    fetch_counts
+    @topics = @user.topics.page params[:page]
+    @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
 
-  test 'an admin should be able to see a user profile' do
-    xhr :get, :show, { id: 2 }, format: 'js'
-    # assert_response :success
-    # assert_equal(6, assigns(:topics).count)
+    respond_to do |format|
+      format.html {
+        redirect_to root_path
+      }
+      format.js {
+        render 'admin/tickets'
+      }
+    end
   end
 
-  test 'an admin should be able to edit a user profile' do
-    xhr :get, :edit, { id: 2 }
-    # assert_response :success
-  end
+  private
 
+  def user_params
+    params.require(:user).permit(
+      :name,
+      :bio,
+      :signature,
+      :work_phone,
+      :cell_phone,
+      :email,
+      :company,
+      :street,
+      :city,
+      :state,
+      :zip,
+      :title,
+      :twitter,
+      :linkedin,
+      :language,
+      :active,
+      :admin
+    )
+  end
 
 end

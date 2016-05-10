@@ -13,25 +13,6 @@ class AdminController < ApplicationController
     @topics = Topic.mine(current_user.id).pending.page params[:page]
   end
 
-  # def knowledgebase
-  #   @categories = Category.featured.ordered
-  #   @nonfeatured = Category.where(front_page: false).alpha
-  #
-  #   respond_to do |format|
-  #     format.html { render :action => "knowledgebase" }
-  #   end
-  # end
-  #
-  # def articles
-  #   @category = Category.where(id: params[:category_id]).first
-  #   @docs = @category.docs.ordered
-  #
-  #   respond_to do |format|
-  #     format.html
-  #     format.xml  { render :xml => @category }
-  #   end
-  # end
-
   def update_order
     # Safely identify the model we're updating the position of
     klass = [Category, Doc].detect { |c| c.name.casecmp(params[:object]) == 0 }
@@ -163,72 +144,6 @@ class AdminController < ApplicationController
         }
       end
     end
-  end
-
-  # simple search tickets by # and user
-  def topic_search
-
-    # search for user, if [one] found, we'll give details on that person
-    # if more than one found, we'll list them, if search is for "users" then show all
-    if params[:q] == 'users'
-      users = User.all
-    else
-      users = User.user_search(params[:q])
-    end
-
-    if users.size == 0 # not a user search, so look for topics
-      @topics = Topic.admin_search(params[:q]).page params[:page]
-      template = 'tickets'
-
-      @tracker.event(category: "Admin Search", action: "Topic Search", label: params[:q])
-      logger.info("Topic Search")
-    elsif users.size == 1
-        @user = users.first
-        @topics = Topic.admin_search(params[:q]).page params[:page]
-        @topic = Topic.where(user_id: @user.id).first unless @user.nil?
-        template = 'tickets'
-
-        @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
-        @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
-        logger.info("Single User")
-    else
-        @users = users.page params[:page]
-        template = 'users/users'
-        @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
-        logger.info("User Search")
-    end
-
-    respond_to do |format|
-      format.html {
-        render template
-      }
-      format.js {
-        render template
-      }
-    end
-
-  end
-
-  # show user profile and tickets
-  def user_profile
-
-    @user = User.where(id: params[:id]).first
-    @topics = Topic.where(user_id: @user.id).page params[:page]
-
-    # We still have to grab the first topic for the user to use the same user partial
-    @topic = Topic.where(user_id: @user.id).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
-
-    respond_to do |format|
-      format.html {
-        render 'tickets'
-      }
-      format.js {
-        render 'tickets'
-      }
-    end
-
-
   end
 
   # Updates discussion status
@@ -374,32 +289,32 @@ class AdminController < ApplicationController
 
   end
 
-  def users
-    @users = User.all.page params[:page]
-    @user = User.new
-  end
-
-  def edit_user
-    @user = User.where(id: params[:id]).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
-
-    respond_to do |format|
-      format.js
-    end
-
-  end
-
-  def user_search
-    @users = User.user_search(params[:q]).page params[:page]
-
-    respond_to do |format|
-      format.js
-      format.html {
-        render admin_users_path
-      }
-    end
-
-  end
+  # def users
+  #   @users = User.all.page params[:page]
+  #   @user = User.new
+  # end
+  #
+  # def edit_user
+  #   @user = User.where(id: params[:id]).first
+  #   @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
+  #
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  #
+  # end
+  #
+  # def user_search
+  #   @users = User.user_search(params[:q]).page params[:page]
+  #
+  #   respond_to do |format|
+  #     format.js
+  #     format.html {
+  #       render admin_users_path
+  #     }
+  #   end
+  #
+  # end
 
   def settings
     @settings = AppSettings.get_all
