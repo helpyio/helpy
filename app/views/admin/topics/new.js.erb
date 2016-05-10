@@ -1,4 +1,4 @@
-$('#tickets').html("<%= escape_javascript(render 'new_ticket') %>");
+$('#tickets').html("<%= escape_javascript(render 'admin/topics/new_ticket') %>");
 $('#left-col-ticket-nav').html("<%= escape_javascript(render 'ticket_nav') %>");
 $('#ticket-page-title').html("<%= "#{t(:discussion_management, default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
 $(document).prop('title', "<%= "#{t(:discussion_management, default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");

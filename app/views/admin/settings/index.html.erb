@@ -31,7 +31,7 @@
     </ul>
   </div>
   <div class="col-md-9 col-sm-8 col-xs-10">
-    <%= bootstrap_form_tag url: update_settings_path, method: 'put' do |f| %>
+    <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put' do |f| %>
       <div class="settings-section general">
         <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
         <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: "Site URL" %>

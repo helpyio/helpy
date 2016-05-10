@@ -53,43 +53,58 @@ Rails.application.routes.draw do
   # Admin Routes
 
   namespace :admin do
+
+
     resources :categories do
       resources :docs, except: [:index, :show]
     end
     resources :docs, except: [:index, :show]
     resources :forums# , except: [:index, :show]
     resources :users
+    resources :topics, except: [:delete, :edit, :update] do
+      resources :posts
+    end
 
     # SearchController Routes
     get '/topic_search' => 'search#topic_search', as: :topic_search
     get '/user_search' => 'search#user_search', as: :user_search
 
+    # Extra topic Routes
+    get '/topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: {format: 'js'}
+    get '/topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
+    get '/topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
+    get '/topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
+    get '/topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
+
+    get '/settings' => 'settings#index', as: :settings
+    put '/update_settings/' => 'settings#update_settings', as: :update_settings
+
+    post '/content/update_order' => 'admin#update_order', as: :update_order
+
+    # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
+    root to: 'topics#index', as: :admin
   end
 
-  scope 'admin' do
+  # scope 'admin' do
 
-    get '/' => 'admin#tickets', as: :admin
 
     # resources :docs, only: [:new, :edit]
     # resources :knowledgebase, :as => 'categories', :controller => "categories", only: [:new, :edit] do
     #   resources :docs, only: [:new, :edit]
     # end
 
-    get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
-    post '/content/update_order' => 'admin#update_order', as: :admin_update_order
-    get '/tickets' => 'admin#tickets', as: :admin_tickets
-    get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
-    get '/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
-    post '/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
-    get '/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
-    get '/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
-    get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
-    get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
-    get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
-    get '/settings' => 'admin#settings', as: :admin_settings
-    put '/update_settings/' => 'admin#update_settings', as: :update_settings
 
-  end
+    # get '/tickets' => 'admin#tickets', as: :admin_tickets
+    # get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
+    # get '/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
+    # post '/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
+    # get '/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
+    # get '/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
+    # get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
+    # get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
+    # get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
+
+  # end
 
 
 
