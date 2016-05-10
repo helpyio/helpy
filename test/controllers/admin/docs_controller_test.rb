@@ -202,8 +202,6 @@ class Admin::DocsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_select("input.cloudinary-fileupload", false)
-
   end
-
 
 end

@@ -1,8 +1,8 @@
 class Admin::TopicsController < Admin::BaseController
 
-  before_action :fetch_counts, :only => ['index','show', 'update_ticket', 'topic_search', 'user_profile']
-  before_action :pipeline, :only => ['index', 'show', 'topic_search', 'update_ticket']
-  before_action :remote_search, :only => ['index', 'show', 'topic_search', 'update_ticket']
+  before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
+  before_action :pipeline, :only => ['index', 'show', 'update_topic']
+  before_action :remote_search, :only => ['index', 'show', 'update_topic']
 
   def index
 
@@ -117,11 +117,11 @@ class Admin::TopicsController < Admin::BaseController
 
         format.js {
           @topics = Topic.recent.page params[:page]
-          render action: 'tickets'
+          render action: 'index'
         }
       else
         format.html {
-          render action: 'new_ticket'
+          render action: 'new'
         }
       end
     end
@@ -129,6 +129,8 @@ class Admin::TopicsController < Admin::BaseController
 
   # Updates discussion status
   def update_topic
+
+    logger.info("Starting update")
 
     #handle array of topics
     params[:topic_ids].each do |id|
@@ -163,9 +165,9 @@ class Admin::TopicsController < Admin::BaseController
       format.js {
         if params[:topic_ids].count > 1
           get_tickets
-          render 'tickets'
+          render 'admin/topics/index'
         else
-          render 'update_ticket', id: @topic.id
+          render 'admin/topics/update_ticket', id: @topic.id
         end
       }
     end
@@ -216,7 +218,7 @@ class Admin::TopicsController < Admin::BaseController
       format.js {
         if params[:topic_ids].count > 1
           get_tickets
-          render 'tickets'
+          render 'index'
         else
           render 'update_ticket', id: @topic.id
         end
@@ -245,7 +247,7 @@ class Admin::TopicsController < Admin::BaseController
     respond_to do |format|
       format.js {
         if params[:topic_ids].count > 1
-          render 'tickets'
+          render 'index'
         else
           render 'update_ticket', id: @topic.id
         end
@@ -271,14 +273,6 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   private
-
-  def pipeline
-    @pipeline = true
-  end
-
-  def remote_search
-    @remote_search = true
-  end
 
   def get_tickets
     if params[:status].nil?

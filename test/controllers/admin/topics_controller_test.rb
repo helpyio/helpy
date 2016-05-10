@@ -12,33 +12,33 @@ class Admin::TopicsControllerTest < ActionController::TestCase
   ### Topic Views
 
   test 'an admin should be able to see a list of topics via standard request' do
-    get :tickets, { status: 'open' }
+    get :index, { status: 'open' }
     assert_not_nil assigns(:topics)
-    assert_template 'tickets'
+    assert_template 'admin/topics/index'
     assert_response :success
   end
 
   test 'an admin should be able to see a list of topics via ajax' do
-    xhr :get, :tickets, { status: 'open' }, format: :js
+    xhr :get, :index, { status: 'open' }, format: :js
     assert_not_nil assigns(:topics)
-    assert_template 'tickets'
+    assert_template 'admin/topics/index'
     assert_response :success
   end
 
   test 'an admin should be able to see a specific topic of each type via standard request' do
     [3,7].each do |topic_id|
-      get :ticket, { id: topic_id }
+      get :show, { id: topic_id }
       assert_not_nil assigns(:topic)
-      assert_template 'ticket'
+      assert_template 'admin/topics/show'
       assert_response :success
     end
   end
 
   test 'an admin should be able to see a specific topic of each type via ajax' do
     [3,7].each do |topic_id|
-      xhr :get, :ticket, { id: topic_id }
+      xhr :get, :show, { id: topic_id }
       assert_not_nil assigns(:topic)
-      assert_template 'ticket'
+      assert_template 'admin/topics/show'
       assert_response :success
     end
   end
@@ -82,28 +82,28 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to change an open ticket to closed' do
     assert_difference('Post.count') do
-      xhr :get, :update_ticket, { topic_ids: [2], change_status: 'closed' }
+      xhr :get, :update_topic, { topic_ids: [2], change_status: 'closed' }
     end
     assert_response :success
   end
 
   test 'an admin should be able to change a closed ticket to open' do
     assert_difference('Post.count') do
-      xhr :get, :update_ticket, { topic_ids: [3], change_status: 'reopen' }
+      xhr :get, :update_topic, { topic_ids: [3], change_status: 'reopen' }
     end
     assert_response :success
     assert_template layout: nil
   end
 
   test 'an admin should be able to change an open ticket to spam' do
-    xhr :get, :update_ticket, { topic_ids: [2], change_status: 'spam' }
+    xhr :get, :update_topic, { topic_ids: [2], change_status: 'spam' }
     assert_response :success
     assert_template layout: nil
   end
 
   test 'an admin should be able to change the status of multiple topics at once' do
     assert_difference('Post.count',2) do
-      xhr :get, :update_ticket, { topic_ids: [2,3], change_status: 'closed' }
+      xhr :get, :update_topic, { topic_ids: [2,3], change_status: 'closed' }
     end
     assert_response :success
   end
@@ -111,7 +111,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
   ### testing new discussion creation and lifecycle
 
   test 'an admin should be able to open a new discussion for a new user' do
-    xhr :get, :new_ticket
+    xhr :get, :new
     assert_response :success
   end
 
@@ -121,7 +121,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference 'Post.count', 1 do
         assert_difference 'User.count', 1 do
           assert_difference 'ActionMailer::Base.deliveries.size', 1 do
-            xhr :post, :create_ticket, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new private topic', post: { body: 'this is the body' }, forum_id: 1 }
+            xhr :post, :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new private topic', post: { body: 'this is the body' }, forum_id: 1 }
           end
         end
       end
@@ -133,7 +133,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference 'Post.count', 1 do
         assert_no_difference 'User.count' do
           assert_difference 'ActionMailer::Base.deliveries.size', 1 do
-            xhr :post, :create_ticket, topic: { user: { name: 'Scott Smith', email: 'scott.smith@test.com' }, name: 'some new private topic', post: { body: 'this is the body' }, forum_id: 1 }
+            xhr :post, :create, topic: { user: { name: 'Scott Smith', email: 'scott.smith@test.com' }, name: 'some new private topic', post: { body: 'this is the body' }, forum_id: 1 }
           end
         end
       end
@@ -143,7 +143,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
   test 'an admin viewing a new discussion should change the status to PENDING' do
     @ticket = Topic.find(6)
 
-    xhr :get, :ticket, { id: @ticket.id }
+    xhr :get, :show, { id: @ticket.id }
 
     #reload object:
     @ticket = Topic.find(6)

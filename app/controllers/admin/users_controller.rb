@@ -64,10 +64,10 @@ class Admin::UsersController < Admin::BaseController
 
     respond_to do |format|
       format.html {
-        render 'admin/tickets'
+        render 'admin/topics/index'
       }
       format.js {
-        render 'admin/tickets'
+        render 'admin/topics/index'
       }
     end
   end
@@ -88,6 +88,8 @@ class Admin::UsersController < Admin::BaseController
     @user.update(user_params)
     fetch_counts
     @topics = @user.topics.page params[:page]
+    @topic = Topic.where(user_id: @user.id).first
+
     @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
 
     respond_to do |format|
@@ -95,7 +97,7 @@ class Admin::UsersController < Admin::BaseController
         redirect_to root_path
       }
       format.js {
-        render 'admin/tickets'
+        render 'admin/topics/index'
       }
     end
   end

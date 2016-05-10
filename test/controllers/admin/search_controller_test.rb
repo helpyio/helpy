@@ -2,7 +2,9 @@ require 'test_helper'
 
 class Admin::SearchControllerTest < ActionController::TestCase
 
-  ### Test search function
+  setup do
+    sign_in users(:admin)
+  end
 
   test 'an admin should be able to search by topic ID by ajax' do
     xhr :get, :topic_search, q: '1'
@@ -56,13 +58,4 @@ class Admin::SearchControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test 'an admin should be able to reorder docs' do
-    post :update_order, object: 'doc', obj_id: 4, row_order_position: 0
-    assert_equal Doc.order('rank asc').first.id, 4
-  end
-
-  test 'an admin should be able to reorder categories' do
-    post :update_order, object: 'category', obj_id: 4, row_order_position: 0
-    assert_equal Category.order('rank asc').first.id, 4
-  end
 end

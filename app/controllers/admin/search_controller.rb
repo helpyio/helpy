@@ -1,5 +1,9 @@
 class Admin::SearchController < Admin::BaseController
 
+  before_action :fetch_counts, :only => ['topic_search']
+  before_action :pipeline, :only => ['topic_search']
+  before_action :remote_search, :only => ['topic_search']
+
   # simple search tickets by # and user
   def topic_search
 
@@ -13,24 +17,23 @@ class Admin::SearchController < Admin::BaseController
 
     if users.size == 0 # not a user search, so look for topics
       @topics = Topic.admin_search(params[:q]).page params[:page]
-      template = 'admin/tickets'
-
+      template = 'admin/topics/index'
       @tracker.event(category: "Admin Search", action: "Topic Search", label: params[:q])
       logger.info("Topic Search")
     elsif users.size == 1
-        @user = users.first
-        @topics = Topic.admin_search(params[:q]).page params[:page]
-        @topic = Topic.where(user_id: @user.id).first unless @user.nil?
-        template = 'admin/tickets'
+      @user = users.first
+      @topics = Topic.admin_search(params[:q]).page params[:page]
+      @topic = Topic.where(user_id: @user.id).first unless @user.nil?
+      template = 'admin/topics/index'
 
-        @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
-        @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
-        logger.info("Single User")
+      @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
+      @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
+      logger.info("Single User")
     else
-        @users = users.page params[:page]
-        template = 'admin/users/users'
-        @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
-        logger.info("User Search")
+      @users = users.page params[:page]
+      template = 'admin/users/users'
+      @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
+      logger.info("User Search")
     end
 
     respond_to do |format|
@@ -43,14 +46,14 @@ class Admin::SearchController < Admin::BaseController
     end
   end
 
-  def user_search
-    @users = User.user_search(params[:q]).page params[:page]
-
-    respond_to do |format|
-      format.js
-      format.html {
-        render admin_users_path
-      }
-    end
-  end
+  # def user_search
+  #   @users = User.user_search(params[:q]).page params[:page]
+  #
+  #   respond_to do |format|
+  #     format.js
+  #     format.html {
+  #       render admin_users_path
+  #     }
+  #   end
+  # end
 end

@@ -1,6 +1,6 @@
 
 <!-- <div id="edit-user-info-horizontal" class="row">-->
-  <%= bootstrap_form_for(@user, remote: true, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
+  <%= bootstrap_form_for(:user, url: admin_user_path, remote: true, method: 'patch', layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
   <div class='col-md-4 col-sm-12 col-xs-12 text-center' id='user-info-image'>
     <%= avatar_image(@user, size=150) %>
   </div>

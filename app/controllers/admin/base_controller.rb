@@ -4,14 +4,14 @@ class Admin::BaseController < ApplicationController
   before_action :authenticate_user!
   before_action :verify_admin
 
-  def update_order
-    # Safely identify the model we're updating the position of
-    klass = [Category, Doc].detect { |c| c.name.casecmp(params[:object]) == 0 }
-    @obj = klass.find(params[:obj_id])
-    @obj.rank_position = params[:row_order_position]
-    @obj.save!
+  protected
 
-    render nothing: true
+  def pipeline
+    @pipeline = true
+  end
+
+  def remote_search
+    @remote_search = true
   end
 
 end

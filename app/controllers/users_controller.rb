@@ -61,36 +61,18 @@ class UsersController < ApplicationController
   end
 
   def update
-
-    if current_user.admin?
-      @user = User.find(params[:id])
-      @user.admin = params[:user][:admin]
-      @user.active = params[:user][:active]
-    else
-      @user = current_user
-    end
-
+    @user = current_user
     @user.update(user_params)
-
-    if current_user.admin?
-      fetch_counts
-      @topics = @user.topics.page params[:page]
-      @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
-    end
 
     respond_to do |format|
       format.html {
         redirect_to root_path
       }
-      format.js {
-        render 'admin/tickets' if current_user.admin?
-      }
     end
-
   end
 
   def set_client_id
-    
+
     session[:client_id] = params[:client_id]
     render nothing: true
 

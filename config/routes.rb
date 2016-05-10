@@ -54,6 +54,20 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
+    # Extra topic Routes
+    get 'topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: {format: 'js'}
+    get 'topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
+    get 'topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
+    get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
+    get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
+
+    # SearchController Routes
+    get 'search/topic_search' => 'search#topic_search', as: :topic_search
+    # get 'search/user_search' => 'search#user_search', as: :user_search
+    get 'settings' => 'settings#index', as: :settings
+    put 'update_settings/' => 'settings#update_settings', as: :update_settings
+
+    post 'shared/update_order' => 'shared#update_order', as: :update_order
 
     resources :categories do
       resources :docs, except: [:index, :show]
@@ -65,24 +79,8 @@ Rails.application.routes.draw do
       resources :posts
     end
 
-    # SearchController Routes
-    get '/topic_search' => 'search#topic_search', as: :topic_search
-    get '/user_search' => 'search#user_search', as: :user_search
-
-    # Extra topic Routes
-    get '/topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: {format: 'js'}
-    get '/topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
-    get '/topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
-    get '/topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
-    get '/topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
-
-    get '/settings' => 'settings#index', as: :settings
-    put '/update_settings/' => 'settings#update_settings', as: :update_settings
-
-    post '/content/update_order' => 'admin#update_order', as: :update_order
-
     # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
-    root to: 'topics#index', as: :admin
+    root to: 'topics#index'
   end
 
   # scope 'admin' do
