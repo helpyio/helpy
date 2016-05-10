@@ -1,5 +1,5 @@
 <div class="add-form">
-<%= simple_form_for(@topic, remote: true, validate: true, html: { class: 'form-vertical', method: 'post' }) do |f| -%>
+<%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, html: { class: 'form-vertical', method: 'post' }) do |f| -%>
 
   <%#= f.alert_message "Please fix the errors below." %>
 

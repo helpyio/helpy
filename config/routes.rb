@@ -42,7 +42,6 @@ Rails.application.routes.draw do
     get 'result' => 'result#index', as: :result
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
-    get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
     get 'locales/select' => 'locales#select', as: :select_locale
 
   end
@@ -69,6 +68,8 @@ Rails.application.routes.draw do
 
     post 'shared/update_order' => 'shared#update_order', as: :update_order
 
+    get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
+
     resources :categories do
       resources :docs, except: [:index, :show]
     end
@@ -78,6 +79,7 @@ Rails.application.routes.draw do
     resources :topics, except: [:delete, :edit, :update] do
       resources :posts
     end
+    resources :posts
 
     # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
     root to: 'topics#index'

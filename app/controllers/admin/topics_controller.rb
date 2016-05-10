@@ -69,7 +69,6 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def create
-
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
