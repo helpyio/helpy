@@ -25,12 +25,6 @@
 
 class DocsController < ApplicationController
 
-  # before_action :authenticate_user!, :except => ['show', 'home']
-  # before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
-
-  # layout 'admin', :only => ['new', 'edit', 'update', 'create']
-
-
   #before_filter :get_tags
   #before_filter :set_docs, :only => 'show'
   #after_filter :view_causes_vote, :only => 'show'
@@ -85,7 +79,6 @@ class DocsController < ApplicationController
 
   protected
 
-
   #def get_tags
   #  @tags = Doc.tag_counts
   #end
@@ -96,12 +89,6 @@ class DocsController < ApplicationController
     else
       @doc.votes.create
     end
-  end
-
-  private
-
-  def doc_params
-    params.require(:doc).permit(:title, :body, :keywords, :title_tag, :meta_description, :category_id, :rank, :active, :front_page, :user_id, :allow_comments, {screenshots: []})
   end
 
 end

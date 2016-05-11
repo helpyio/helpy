@@ -42,12 +42,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def new
-    @topic = Topic.find(params[:topic_id], :include => :forum)
-    @post = Post.new
-    @forums = Forum.all
-  end
-
   def create
     @topic = Topic.find(params[:topic_id])
     @post = Post.new(:body => params[:post][:body],

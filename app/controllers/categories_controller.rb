@@ -20,17 +20,9 @@
 class CategoriesController < ApplicationController
   before_action :get_tags
 
-  # before_action :authenticate_user!, :except => ['index', 'show']
-  # before_action :verify_admin, :only => ['new', 'edit', 'update', 'create', 'destroy']
-  # layout 'admin', :only => ['new', 'edit', 'update', 'create']
-
   def index
 
-    #if I18n.available_locales.count > 1
-      @categories = Category.active.ordered.with_translations(I18n.locale)
-    #else
-    #  @categories = Category.active.alpha
-    #end
+    @categories = Category.active.ordered.with_translations(I18n.locale)
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
     @title_tag = "#{AppSettings['settings.site_name']}: " + @page_title
     @meta_desc = "Knowledgebase for #{AppSettings['settings.site_name']}"
@@ -65,7 +57,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-
   def print
     @categories = Category.alpha.find(:all)
     render :layout => 'help'
@@ -76,22 +67,6 @@ class CategoriesController < ApplicationController
 
   def get_tags
     @tags = Doc.tag_counts
-  end
-
-  private
-
-  def category_params
-    params.require(:category).permit(
-    :name,
-    :keywords,
-    :title_tag,
-    :icon,
-    :meta_description,
-    :front_page,
-    :active,
-    :section,
-    :rank
-  )
   end
 
 end
