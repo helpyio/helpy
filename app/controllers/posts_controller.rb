@@ -16,7 +16,6 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_user!, :except => ['index', 'create', 'up_vote']
-  #before_action :instantiate_tracker
   # after_action :send_message, :only => 'create'
   respond_to :js, only: [:up_vote]
   layout "clean", only: [:index]

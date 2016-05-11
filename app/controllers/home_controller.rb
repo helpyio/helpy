@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   respond_to :html
 
   def index
-
     @topics = Topic.by_popularity.ispublic.front
     @rss = Topic.chronologic.active
     @articles = Doc.all_public_popular.with_translations(I18n.locale)

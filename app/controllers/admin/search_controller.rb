@@ -35,17 +35,6 @@ class Admin::SearchController < Admin::BaseController
     end
 
     render template
-
   end
-
-  # def user_search
-  #   @users = User.user_search(params[:q]).page params[:page]
-  #
-  #   respond_to do |format|
-  #     format.js
-  #     format.html {
-  #       render admin_users_path
-  #     }
-  #   end
-  # end
+  
 end

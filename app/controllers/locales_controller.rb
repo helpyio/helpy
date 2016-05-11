@@ -5,7 +5,6 @@ class LocalesController < ApplicationController
   def select
     @page_title = t(:select_locale, default: "Change your Locale")
     add_breadcrumb @page_title
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
   end
 
   def switch_locale
@@ -14,7 +13,7 @@ class LocalesController < ApplicationController
   end
 
   def redirect_on_locale
-      redirect_to root_path, status: 301
+    redirect_to root_path, status: 301
   end
 
 end

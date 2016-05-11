@@ -56,7 +56,6 @@ Rails.application.routes.draw do
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
-    # get 'search/user_search' => 'search#user_search', as: :user_search
     get 'settings' => 'settings#index', as: :settings
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
 
