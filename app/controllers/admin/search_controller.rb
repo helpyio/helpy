@@ -3,6 +3,7 @@ class Admin::SearchController < Admin::BaseController
   before_action :fetch_counts, :only => ['topic_search']
   before_action :pipeline, :only => ['topic_search']
   before_action :remote_search, :only => ['topic_search']
+  respond_to :html, :js
 
   # simple search tickets by # and user
   def topic_search
@@ -19,7 +20,6 @@ class Admin::SearchController < Admin::BaseController
       @topics = Topic.admin_search(params[:q]).page params[:page]
       template = 'admin/topics/index'
       @tracker.event(category: "Admin Search", action: "Topic Search", label: params[:q])
-      logger.info("Topic Search")
     elsif users.size == 1
       @user = users.first
       @topics = Topic.admin_search(params[:q]).page params[:page]
@@ -28,22 +28,14 @@ class Admin::SearchController < Admin::BaseController
 
       @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
       @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
-      logger.info("Single User")
     else
       @users = users.page params[:page]
       template = 'admin/users/users'
       @tracker.event(category: "Admin Search", action: "User Search", label: params[:q])
-      logger.info("User Search")
     end
 
-    respond_to do |format|
-      format.html {
-        render template
-      }
-      format.js {
-        render template
-      }
-    end
+    render template
+
   end
 
   # def user_search

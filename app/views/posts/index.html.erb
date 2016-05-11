@@ -1,5 +1,6 @@
-<div class="row">
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 
+<div class="row">
 	<div class="col-md-12">
 		<script>
 			Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';

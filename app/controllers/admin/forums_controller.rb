@@ -1,5 +1,8 @@
 class Admin::ForumsController < Admin::BaseController
 
+  respond_to :html, only: ['index','show','new','edit','create']
+  respond_to :js, only: :destroy
+
   def index
     @forums = Forum.where(private: false).order('name ASC')
   end
@@ -14,38 +17,25 @@ class Admin::ForumsController < Admin::BaseController
 
   def create
     @forum = Forum.new(forum_params)
-
-    respond_to do |format|
-      if @forum.save
-        flash[:notice] = 'Forum was successfully created.'
-        format.html { redirect_to admin_forums_path }
-      else
-        format.html { render :new }
-      end
+    if @forum.save
+      redirect_to admin_forums_path
+    else
+      render :new
     end
   end
 
   def update
     @forum = Forum.find(params[:id])
-
-    respond_to do |format|
-      if @forum.update(forum_params)
-        flash[:notice] = 'Forum was successfully updated.'
-        format.html { redirect_to admin_forums_path }
-      else
-        format.html { render :edit }
-      end
+    if @forum.update(forum_params)
+      redirect_to admin_forums_path
+    else
+      render :edit
     end
   end
 
   def destroy
     @forum = Forum.find(params[:id])
     @forum.destroy
-
-    respond_to do |format|
-      format.html { redirect_to admin_forums_path }
-      format.js
-    end
   end
 
   private

@@ -111,8 +111,8 @@ class Admin::ForumsControllerTest < ActionController::TestCase
 
   test "an admin should get destroy" do
     sign_in users(:admin)
-    delete :destroy, id: 3, locale: :en
-    assert_redirected_to admin_forums_path
+    xhr :delete, :destroy, id: 3, locale: :en
+    assert_template 'destroy'
   end
 
 end

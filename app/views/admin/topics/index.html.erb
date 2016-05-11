@@ -1,5 +1,3 @@
-<%#= render 'admin/ticket_stats' %>
-
 <h2 id="ticket-page-title">
   <%= t(:discussions, default: "Discussions") %>:
   <span class='label <%= status_class(@status) %>' style='text-transform: uppercase'>
@@ -12,13 +10,7 @@
 </h2>
 
 <div class="row">
-  <div class="col-md-3 hidden-lg hidden-md hidden-xs hidden-sm" id="left-col-ticket-nav">
-    <%#= render 'ticket_nav' %>
-  </div>
-
   <div class="col-md-12" id="tickets">
     <%= render 'admin/topics/tickets' %>
   </div>
-
-
 </div>

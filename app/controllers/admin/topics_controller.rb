@@ -1,13 +1,40 @@
+# == Schema Information
+#
+# Table name: topics
+#
+#  id               :integer          not null, primary key
+#  forum_id         :integer
+#  user_id          :integer
+#  user_name        :string
+#  name             :string
+#  posts_count      :integer          default(0), not null
+#  waiting_on       :string           default("admin"), not null
+#  last_post_date   :datetime
+#  closed_date      :datetime
+#  last_post_id     :integer
+#  current_status   :string           default("new"), not null
+#  private          :boolean          default(FALSE)
+#  assigned_user_id :integer
+#  cheatsheet       :boolean          default(FALSE)
+#  points           :integer          default(0)
+#  post_cache       :text
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  locale           :string
+#  doc_id           :integer          default(0)
+#
+
 class Admin::TopicsController < Admin::BaseController
 
   before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
   before_action :pipeline, :only => ['index', 'show', 'update_topic']
   before_action :remote_search, :only => ['index', 'show', 'update_topic']
 
+  respond_to :js, :html, only: :show
+  respond_to :js
+
   def index
-
     @status = params[:status] || "pending"
-
     topics_raw = Topic.includes(user: :avatar_files).chronologic
     case @status
     when 'all'
@@ -26,48 +53,26 @@ class Admin::TopicsController < Admin::BaseController
       topics_raw = topics_raw.where(current_status: @status)
     end
     @topics = topics_raw.page params[:page]
-
     @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
-
   end
 
   def show
-
     @topic = Topic.where(id: params[:id]).first
-
     if @topic.current_status == 'new'
       @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
       @topic.open
     end
-
     @posts = @topic.posts.chronologic
-
     @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
-
     fetch_counts
-    respond_to do |format|
-      format.html
-      format.js
-    end
-
-
   end
 
   def new
     @topic = Topic.new
     @user = User.new
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
+  # TODO: Still need to refactor this method and the update methods into one
   def create
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
@@ -243,31 +248,15 @@ class Admin::TopicsController < Admin::BaseController
     @posts = @topic.posts.chronologic
 
     fetch_counts
-    respond_to do |format|
-      format.js {
+    # respond_to do |format|
+    #   format.js {
         if params[:topic_ids].count > 1
           render 'index'
         else
           render 'update_ticket', id: @topic.id
         end
-      }
-    end
-
-  end
-
-  # "Toggles" post visibility by marking it inactive
-  def toggle_post
-
-    @post = Post.find(params[:id])
-    @topic = @post.topic
-
-    @post.active = params[:active]
-    @post.save
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    #   }
+    # end
 
   end
 

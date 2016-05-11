@@ -26,8 +26,7 @@
 
 class TopicsController < ApplicationController
 
-  # before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
-  before_action :authenticate_user!, :only => ['tickets','ticket','create']
+  before_action :authenticate_user!, :only => ['tickets','ticket']
   before_action :allow_iframe_requests
 
   layout "clean", only: [:new, :index]
@@ -41,17 +40,13 @@ class TopicsController < ApplicationController
         @topics = @forum.topics.ispublic.chronologic.page params[:page]
       end
       @page_title = @forum.name
-      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @forum.name
     end
-
     respond_to do |format|
-      if @forum
-        format.html # index.rhtml
-      else
-        format.html { redirect_to root_path }
-      end
+      format.html {
+        redirect_to root_path unless @forum
+      }
     end
   end
 
@@ -59,9 +54,6 @@ class TopicsController < ApplicationController
     @topics = current_user.topics.isprivate.undeleted.chronologic.page params[:page]
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
-
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-
     respond_to do |format|
       format.html # index.rhtml
     end
@@ -71,36 +63,29 @@ class TopicsController < ApplicationController
     @topic = current_user.topics.undeleted.where(id: params[:id]).first
     if @topic
       @posts = @topic.posts.ispublic.chronologic.active.all
-
       @page_title = "##{@topic.id} #{@topic.name}"
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
-
-      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
     end
-
     respond_to do |format|
-      if @topic
-        format.html # index.rhtml
-      else
-        format.html { redirect_to root_path}
-      end
+      format.html {
+        redirect_to root_path unless @topic
+      }
     end
   end
 
   def new
     @page_title = t(:start_discussion, default: "Start a New Discussion")
-    add_breadcrumb @page_title
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
     @forums = Forum.ispublic.all
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
+    add_breadcrumb @page_title
   end
 
   def create
-    @page_title = t(:start_discussion, default: "Start a New Discussion")
-    add_breadcrumb @page_title
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
+    # @page_title = t(:start_discussion, default: "Start a New Discussion")
+    # add_breadcrumb @page_title
+    # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)

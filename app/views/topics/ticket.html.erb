@@ -1,5 +1,6 @@
-<div id="ticket-info" class="row">
+<%- title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 
+<div id="ticket-info" class="row">
   <div class="col-md-3 col-sm-3 hidden-xs" id="left-col-user-info">
     <div class="doc-meta">
       <div class="more-important meta-header">Ticket Number:</div>
@@ -28,7 +29,6 @@
     <div id="posts">
       <%= render :partial => 'posts/post', :collection => @posts %>
     </div>
-
     <% if user_signed_in? %>
       <div class="add-form">
       <h4><%= I18n.t("reply", default: "Reply to this Topic") %></h4>
@@ -44,7 +44,4 @@
       </div>
     <% end -%>
   </div>
-
-
-
 </div>

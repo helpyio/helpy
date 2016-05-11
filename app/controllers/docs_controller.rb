@@ -33,9 +33,6 @@ class DocsController < ApplicationController
     @doc = Doc.where(id: params[:id]).active.first
 
     unless @doc.nil?
-      @meta_description = @doc.meta_description
-      @keywords = @doc.keywords
-
       @page_title = @doc.title
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
       @title_tag = "#{AppSettings['settings.site_name']}: #{@custom_title}"
@@ -45,18 +42,14 @@ class DocsController < ApplicationController
       @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
 
       @forum = Forum.for_docs.first
-
       #@topic = Topic.new
       @user = User.new unless user_signed_in?
-
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
       add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
       add_breadcrumb @doc.title
-
       respond_to do |format|
         format.html # show.html.erb
       end
-
     else
       redirect_to root_url
     end

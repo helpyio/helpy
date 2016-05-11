@@ -48,6 +48,7 @@ class Admin::UsersController < Admin::BaseController
 
   before_action :authenticate_user!, except: :set_client_id
   before_action :fetch_counts, :only => ['show']
+  respond_to :html, :js
 
   def index
     @users = User.all.page params[:page]
@@ -61,45 +62,22 @@ class Admin::UsersController < Admin::BaseController
     # We still have to grab the first topic for the user to use the same user partial
     @topic = Topic.where(user_id: @user.id).first
     @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
-
-    respond_to do |format|
-      format.html {
-        render 'admin/topics/index'
-      }
-      format.js {
-        render 'admin/topics/index'
-      }
-    end
+    render 'admin/topics/index'
   end
 
   def edit
     @user = User.where(id: params[:id]).first
     @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def update
     @user = User.find(params[:id])
-    @user.admin = params[:user][:admin]
-    @user.active = params[:user][:active]
     @user.update(user_params)
     fetch_counts
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
-
     @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
-
-    respond_to do |format|
-      format.html {
-        redirect_to root_path
-      }
-      format.js {
-        render 'admin/topics/index'
-      }
-    end
+    render 'admin/topics/index'
   end
 
   private

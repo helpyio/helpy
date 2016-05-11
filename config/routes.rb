@@ -20,9 +20,6 @@ Rails.application.routes.draw do
     devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
-      #collection do
-      #  get 'admin'
-      #end
       resources :docs, except: [:new, :edit, :create, :update]
     end
 

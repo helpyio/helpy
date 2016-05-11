@@ -23,10 +23,6 @@ class ForumsController < ApplicationController
 
     @forums = Forum.where(private: false).order('name ASC')
     add_breadcrumb @page_title
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-    @meta_desc = "Community discussion for #{AppSettings['settings.site_name']}"
-    @keywords = "support, articles, documentation, how-to, faq, frequently asked questions, forum, discussion"
-
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @forums.to_xml }

@@ -1,4 +1,4 @@
-<%= bootstrap_form_for :post, :url => topic_post_path(:id => @post, :topic_id => @post.topic,
+<%= bootstrap_form_for :post, :url => admin_topic_post_path(:id => @post, :topic_id => @post.topic,
                                      :forum_id => @post.topic.forum),
                                      :html => {:method => :put}, remote: true do |f| %>
   <%= f.text_area :body, :rows => 8, :cols => 60, hide_label: true %></p>

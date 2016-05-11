@@ -27,18 +27,15 @@ class PostsController < ApplicationController
       @posts = @topic.posts.ispublic.active.all.chronologic.includes(:user)
       @post = @topic.posts.new
       @page_title = "#{@topic.name}"
-      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @topic.forum.name, forum_topics_path(@topic.forum)
       add_breadcrumb @topic.name
     end
 
     respond_to do |format|
-      if @topic
-        format.html # index.rhtml
-      else
-        format.html { redirect_to root_path}
-      end
+      format.html {
+        redirect_to root_path unless @topic
+      }
     end
   end
 
@@ -54,8 +51,14 @@ class PostsController < ApplicationController
       if @post.save
         format.html {
           @posts = @topic.posts.ispublic.chronologic.active
-          logger.info(@topic.doc_id)
           redirect_to @topic.doc.nil? ? topic_posts_path(@topic.id) : doc_path(@topic.doc_id)
+        }
+        format.js {
+          @posts = @topic.posts.ispublic.chronologic.active
+          unless @topic.assigned_user_id.nil?
+            agent = User.find(@topic.assigned_user_id)
+            @tracker.event(category: "Agent: #{agent.name}", action: "User Replied", label: @topic.to_param) #TODO: Need minutes
+          end
         }
       else
         format.html { render :action => "new" }

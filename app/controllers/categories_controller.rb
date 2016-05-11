@@ -21,14 +21,9 @@ class CategoriesController < ApplicationController
   before_action :get_tags
 
   def index
-
     @categories = Category.active.ordered.with_translations(I18n.locale)
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
-    @title_tag = "#{AppSettings['settings.site_name']}: " + @page_title
-    @meta_desc = "Knowledgebase for #{AppSettings['settings.site_name']}"
-    @keywords = "Knowledgebase, Knowledge base, support, articles, documentation, how-to, faq, frequently asked questions"
     add_breadcrumb @page_title, categories_path
-
     respond_to do |format|
       format.html # index.html.erb
     end
@@ -45,13 +40,8 @@ class CategoriesController < ApplicationController
     @related = Doc.in_category(@doc.category_id) if @doc
 
     @page_title = @category.name
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-    @meta_desc = @category.meta_description
-    @keywords = @category.keywords
-
     add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
     add_breadcrumb @page_title, category_path(@category)
-
     respond_to do |format|
       format.html
     end
