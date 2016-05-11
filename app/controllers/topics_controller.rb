@@ -155,27 +155,6 @@ class TopicsController < ApplicationController
 
   end
 
-  # def update
-  #   @topic = Topic.find(params[:id])
-  #   @topic.tag_list = params[:tags]
-  #   respond_to do |format|
-  #     if @topic.update_attributes(params[:topic])
-  #       format.html { redirect_to topic_posts_path(@topic) }
-  #     else
-  #       format.html { render :action => "edit" }
-  #     end
-  #   end
-  # end
-  #
-  # def destroy
-  #   @topic = Topic.find(params[:id])
-  #   @topic.posts.each { |post| post.destroy }
-  #   @topic.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to forum_topics_path(@topic.forum) }
-  #   end
-  # end
-
   def up_vote
     if user_signed_in?
       @topic = Topic.find(params[:id])

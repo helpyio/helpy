@@ -29,6 +29,8 @@ class DocsController < ApplicationController
   #before_filter :set_docs, :only => 'show'
   #after_filter :view_causes_vote, :only => 'show'
 
+  respond_to :html
+
   def show
     @doc = Doc.where(id: params[:id]).active.first
 
@@ -47,9 +49,6 @@ class DocsController < ApplicationController
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
       add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
       add_breadcrumb @doc.title
-      respond_to do |format|
-        format.html # show.html.erb
-      end
     else
       redirect_to root_url
     end

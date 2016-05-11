@@ -19,14 +19,12 @@
 
 class CategoriesController < ApplicationController
   before_action :get_tags
+  respond_to :html
 
   def index
     @categories = Category.active.ordered.with_translations(I18n.locale)
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
     add_breadcrumb @page_title, categories_path
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   def show
@@ -42,9 +40,6 @@ class CategoriesController < ApplicationController
     @page_title = @category.name
     add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
     add_breadcrumb @page_title, category_path(@category)
-    respond_to do |format|
-      format.html
-    end
   end
 
   def print

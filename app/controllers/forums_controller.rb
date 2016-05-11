@@ -18,15 +18,13 @@
 
 class ForumsController < ApplicationController
 
+  respond_to :html
+
   def index
     @page_title = t(:community, default: "Community")
 
     @forums = Forum.where(private: false).order('name ASC')
     add_breadcrumb @page_title
-    respond_to do |format|
-      format.html # index.rhtml
-      format.xml  { render :xml => @forums.to_xml }
-    end
   end
 
   def show

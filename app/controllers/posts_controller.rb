@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, :except => ['index', 'create', 'up_vote']
   #before_action :instantiate_tracker
   # after_action :send_message, :only => 'create'
-
+  respond_to :js, only: [:up_vote]
   layout "clean", only: [:index]
 
   def index
@@ -32,11 +32,7 @@ class PostsController < ApplicationController
       add_breadcrumb @topic.name
     end
 
-    respond_to do |format|
-      format.html {
-        redirect_to root_path unless @topic
-      }
-    end
+    redirect_to root_path unless @topic
   end
 
   def create
@@ -73,10 +69,6 @@ class PostsController < ApplicationController
       @topic = @post.topic
       @topic.touch
       @post.reload
-    end
-
-    respond_to do |format|
-      format.js
     end
   end
 
