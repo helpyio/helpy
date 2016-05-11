@@ -32,15 +32,12 @@ Rails.application.routes.draw do
     end
     resources :posts
 
-    resources :users
-
     post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
     get 'result' => 'result#index', as: :result
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
     get 'locales/select' => 'locales#select', as: :select_locale
-
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
