@@ -35,7 +35,7 @@ class Topic < ActiveRecord::Base
 
   has_many :posts, :dependent => :delete_all
   has_many :votes, :as => :voteable
-  has_attachments  :screenshots, accept: [:jpg, :png, :gif]
+  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf]
 
   paginates_per 25
 

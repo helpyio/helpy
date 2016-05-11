@@ -46,7 +46,7 @@ class Doc < ActiveRecord::Base
   globalize_accessors
 
   paginates_per 25
-  has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif]
+  has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif, :pdf]
 
   include RankedModel
   ranks :rank
