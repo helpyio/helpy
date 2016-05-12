@@ -73,34 +73,9 @@ Rails.application.routes.draw do
       resources :posts
     end
     resources :posts
-
     # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
     root to: 'topics#index'
   end
-
-  # scope 'admin' do
-
-
-    # resources :docs, only: [:new, :edit]
-    # resources :knowledgebase, :as => 'categories', :controller => "categories", only: [:new, :edit] do
-    #   resources :docs, only: [:new, :edit]
-    # end
-
-
-    # get '/tickets' => 'admin#tickets', as: :admin_tickets
-    # get '/ticket/:id' => 'admin#ticket', as: :admin_ticket
-    # get '/tickets/new' => 'admin#new_ticket', as: :admin_new_ticket
-    # post '/tickets/create' => 'admin#create_ticket', as: :admin_create_ticket
-    # get '/tickets/update' => 'admin#update_ticket', as: :update_ticket, defaults: {format: 'js'}
-    # get '/tickets/update_multiple' => 'admin#update_multiple_tickets', as: :update_multiple_tickets
-    # get '/tickets/assign_agent' => 'admin#assign_agent', as: :assign_agent
-    # get '/tickets/toggle_privacy' => 'admin#toggle_privacy', as: :toggle_privacy
-    # get '/tickets/:id/toggle' => 'admin#toggle_post', as: :toggle_post
-
-  # end
-
-
-
 
   # Receive email from Griddler
   mount_griddler
