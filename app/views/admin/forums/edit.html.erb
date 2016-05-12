@@ -2,5 +2,4 @@
 
 <%= bootstrap_form_for([:admin, @forum]) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} -%>
-  <%= link_to t(:delete, default: 'Delete'), [:admin, @forum], data: {confirm: 'Please confirm you really want to DELETE this forum and all discussions'}, method: :delete, class: 'btn btn-danger  less-important' %>
 <% end %>

@@ -22,8 +22,8 @@
       <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
     </div>
   </div>
-  <div class="col-md-9 text-content">
-    <%= @doc.content %>
+    <div class="col-md-9 text-content">
+    <%= @doc.content.html_safe %>
   </div>
 </div>
 
