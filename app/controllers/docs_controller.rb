@@ -25,14 +25,10 @@
 
 class DocsController < ApplicationController
 
-  #before_filter :get_tags
-  #before_filter :set_docs, :only => 'show'
-  #after_filter :view_causes_vote, :only => 'show'
-
   respond_to :html
 
   def show
-    @doc = Doc.where(id: params[:id]).active.first
+    @doc = Doc.find(params[:id]).active
 
     unless @doc.nil?
       @page_title = @doc.title
@@ -51,35 +47,6 @@ class DocsController < ApplicationController
       add_breadcrumb @doc.title
     else
       redirect_to root_url
-    end
-
-  end
-
-  def set_docs
-    if params[:permalink]
-      @doc = Doc.find_by_permalink(params[:permalink])
-    else
-      # category = Category.find_by_link(params[:link])
-      @doc = Doc.find_by_category_id(params[:link])
-    end
-    @related = Doc.in_category(@doc.category_id)
-  end
-
-  def home
-    render(:layout => 'discussion')
-  end
-
-  protected
-
-  #def get_tags
-  #  @tags = Doc.tag_counts
-  #end
-
-  def view_causes_vote
-    if user_signed_in?
-      @doc.votes.create unless current_user.admin?
-    else
-      @doc.votes.create
     end
   end
 
