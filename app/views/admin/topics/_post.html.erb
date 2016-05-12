@@ -21,15 +21,7 @@
 
 		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
 			<%= simple_format(post.body) -%>
-			<% unless Cloudinary.config.cloud_name.nil? %>
-			<div id="post-images">
-				<ul class="list-inline">
-					<% post.screenshots.each do |screenshot| %>
-						<li><%= link_to cl_image_tag(screenshot.path, { size: '125x125', crop: :fit }), "http://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/#{screenshot.path}", class: 'screenshot-link' %></li>
-					<% end %>
-				</ul>
-			</div>
-			<% end %>
+            <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } unless Cloudinary.config.cloud_name.nil? %>
 		</div>
 
 	</div>
