@@ -318,7 +318,14 @@ class AdminControllerTest < ActionController::TestCase
       'email.smtp_mail_username' => 'test-login',
       'email.smtp_mail_password' => '1234',
       'email.mail_port' => '587',
-      'email.mail_domain' => 'something.com'
+      'email.mail_domain' => 'something.com',
+      'email.pop3_server' => 'pop3.somehost.com',
+      'email.pop3_username' => 'pop3user',
+      'email.pop3_password' => 'pop3password',
+      'email.imap_server' => 'imap.somehost.com',
+      'email.imap_username' => 'imapuser',
+      'email.imap_password' => 'imappassword'
+
     assert_redirected_to :admin_settings
 
     assert_equal 'test@test.com', AppSettings['email.admin_email']
@@ -329,6 +336,13 @@ class AdminControllerTest < ActionController::TestCase
     assert_equal '1234', AppSettings['email.smtp_mail_password']
     assert_equal '587', AppSettings['email.mail_port']
     assert_equal 'something.com', AppSettings['email.mail_domain']
+    assert_equal 'pop3.somehost.com', AppSettings['email.pop3_server']
+    assert_equal 'pop3user', AppSettings['email.pop3_username']
+    assert_equal 'pop3password', AppSettings['email.pop3_password']
+    assert_equal 'imap.somehost.com', AppSettings['email.imap_server']
+    assert_equal 'imapuser', AppSettings['email.imap_username']
+    assert_equal 'imappassword', AppSettings['email.imap_password']
+
   end
 
   test 'an admin should be able to add a cloudinary key' do
