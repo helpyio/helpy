@@ -15,10 +15,8 @@
 
 class PostsController < ApplicationController
 
-  before_action :authenticate_user!, :except => ['index', 'create', 'up_vote']
-  # after_action :send_message, :only => 'create'
   respond_to :js, only: [:up_vote]
-  layout "clean", only: [:index]
+  layout "clean", only: :index
 
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
@@ -68,16 +66,6 @@ class PostsController < ApplicationController
       @topic = @post.topic
       @topic.touch
       @post.reload
-    end
-  end
-
-  protected
-
-  def view_causes_vote
-    if logged_in?
-      @topic.votes.create unless current_user.admin?
-    else
-      @topic.votes.create
     end
   end
 end

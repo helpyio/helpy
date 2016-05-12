@@ -31,6 +31,8 @@ class TopicsController < ApplicationController
 
   layout "clean", only: [:new, :index]
 
+  # TODO Still need to so a lot of refactoring here!
+
   def index
     @forum = Forum.ispublic.where(id: params[:forum_id]).first
     if @forum

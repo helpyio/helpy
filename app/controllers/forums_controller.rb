@@ -22,7 +22,6 @@ class ForumsController < ApplicationController
 
   def index
     @page_title = t(:community, default: "Community")
-
     @forums = Forum.where(private: false).order('name ASC')
     add_breadcrumb @page_title
   end

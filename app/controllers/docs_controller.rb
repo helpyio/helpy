@@ -28,19 +28,16 @@ class DocsController < ApplicationController
   respond_to :html
 
   def show
-    @doc = Doc.find(params[:id]).active
+    @doc = Doc.where(id: params[:id]).active.first
 
     unless @doc.nil?
       @page_title = @doc.title
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
-      @title_tag = "#{AppSettings['settings.site_name']}: #{@custom_title}"
       @topic = @doc.topic
       @newtopic = Topic.new
       @post = @topic.posts.new unless @topic.nil?
       @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
-
       @forum = Forum.for_docs.first
-      #@topic = Topic.new
       @user = User.new unless user_signed_in?
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
       add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name

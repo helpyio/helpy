@@ -11,8 +11,4 @@ class HomeController < ApplicationController
     @categories = Category.active.ordered.featured.all.with_translations(I18n.locale)
   end
 
-  #def tag
-  #  @topics = Topic.ispublic.tag_counts_on(:tags)
-  #end
-
 end

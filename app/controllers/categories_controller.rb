@@ -18,7 +18,6 @@
 #
 
 class CategoriesController < ApplicationController
-  before_action :get_tags
   respond_to :html
 
   def index
@@ -41,17 +40,4 @@ class CategoriesController < ApplicationController
     add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
     add_breadcrumb @page_title, category_path(@category)
   end
-
-  def print
-    @categories = Category.alpha.find(:all)
-    render :layout => 'help'
-  end
-
-
-  protected
-
-  def get_tags
-    @tags = Doc.tag_counts
-  end
-
 end
