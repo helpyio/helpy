@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  $(function () {
+      $(".icon-picker").iconPicker();
+  });
+</script>
+<h2><%= t(:edit_category, default: 'Edit Category') %>: <%- @category.name %></h2>
+
+<%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
+
+<%= bootstrap_form_for @category, url: admin_category_path(id: @category.id), label_errors: true, method: 'patch' do |f| %>
+  <% Globalize.with_locale(params['lang']) do %>
+    <%= f.alert_message "Please fix the errors below." %>
+    <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
+  <% end %>
+<% end %>
+
+<% unless params[:lang].nil? %>
+<script>
+//$(function(){
+//  $('.no-translate').attr("disabled", true);
+//});
+</script>
+<% end %>

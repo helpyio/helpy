@@ -1,0 +1,34 @@
+<div id="user-info" class="row">
+    <div class='col-md-12 text-center' id='user-info-image'>
+      <%#= image_tag(@topic.user.image_url, width: '90px', class: 'img-circle') %>
+      <%= avatar_image(@topic.user, size=90) %>
+    </div>
+</div>
+<div class="row">
+  <div class='col-md-12' id='user-info-info'>
+    <div id="user-contact-info" class="user-info">
+      <div class="tiny-header"><%= @topic.user.name? ? @topic.user.name.titleize : @topic.user.email %></div>
+      <span class="small">
+        <%= @topic.user.company.titleize unless @topic.user.company.nil? %><br/>
+        <%= @topic.user.city.titleize + ', ' unless @topic.user.city.nil? %> <%= @topic.user.state.titleize unless @topic.user.state.nil? %>
+        <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
+      </span>
+    </div>
+    <div id="user-contact-info" class="user-info">
+      <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
+      <%= t(:work_phone, default: "work") %>: <%= @topic.user.work_phone %><br/>
+      <%= t(:cell_phone, default: "cell") %>: <%= @topic.user.cell_phone %><br/>
+      <%= @topic.user.email %><br/>
+    </div>
+
+
+    <div id="user-tickets" class="user-info">
+      <div class="tiny-header">Discussions:</div>
+      <ul class='list-unstyled'>
+      <% @topic.user.topics.isprivate.each do |ticket| %>
+        <li><%= link_to("##{ticket.id}- #{ticket.name}", admin_topic_path(ticket), remote: true) %><span class="status pull-right"><%#= badge_for_status(ticket.current_status) %></span>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
