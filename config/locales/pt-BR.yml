@@ -27,7 +27,7 @@ pt-BR:
   no_button: 'Não'
 
   # Search
-  search_placeholder: "Introduza uma palavra-chave, tópico ou questão"
+  search_placeholder: "Insira uma palavra-chave, tópico ou questão"
   no_results: "Não foram encontrados resultados, por favor pesquise novamente!"
   results_found:
     one: "um resultado encontrado para a sua pesquisa "
@@ -47,7 +47,7 @@ pt-BR:
   start_discussion: "Iniciar uma nova Discussão"
   submit_start_discussion: "Iniciar Discussão"
   should_message_be_private: "Esta mensagem deve ser privada?"
-  only_support_can_respond: "Apenas o suporte pode responder (cria um ticket privado)"
+  only_support_can_respond: "Apenas o suporte pode responder (criar um ticket privado)"
   responses_can_come_from_everyone: "As respostas podem ser do suporte ou da comunidade (recomendado)"
   collapsed_messages:
       one: "1 mensagem apresentada"
@@ -80,15 +80,15 @@ pt-BR:
   login: "Log in"
 
   # devise/shared/links
-  forgot_password: "Esqueceu-se da password?"
+  forgot_password: "Esqueceu-se da senha?"
 
   # devise/passwords/new
   send_instructions: "Enviem-me Instruções"
 
   # devise/passwords/edit
-  change_password: "Alterar Password"
-  new_password: "Nova Password"
-  new_password_confirmation: "Confirmar Nova Password"
+  change_password: "Alterar Senha"
+  new_password: "Nova Senha"
+  new_password_confirmation: "Confirmar Nova Senha"
 
   # devise/confirmations/new
   resend: "Reenviar confirmação de Intruções"
@@ -106,7 +106,7 @@ pt-BR:
   # Admin main/statuses
   support_pipeline: "Conduta de Suporte"
   new: "Novo"
-  active: "Activo"
+  active: "Ativo"
   open: "Aberto"
   mine: "Meu"
   pending: "Pendente"
@@ -136,20 +136,20 @@ pt-BR:
 
   # Discussion messages
   reopen_message: "Esta mensagem foi reaberta pelo suporte."
-  close_message: "Esta mensagem foi fechado pelo suporte."
-  trash_message: "Esta mensagem foi apagado pelo suporte."
+  close_message: "Esta mensagem foi fechada pelo suporte."
+  trash_message: "Esta mensagem foi apagada pelo suporte."
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
 
   # User Admin
-  contact_info: "Contacto"
+  contact_info: "Contato"
   social_info: "Social"
-  edit_user: "Editar Utilizador"
+  edit_user: "Editar Usuário"
   work_phone: "trabalho"
-  cell_phone: "telemóvel"
+  cell_phone: "celular"
 
   # User search results
   users_found:
-    one: "1 utilizador encontrado com o nome %{query}"
+    one: "1 usuário encontrado com o nome %{query}"
     other: "%{count} utilizadores encontrados com o nome %{query}"
 
   # Discussion View
@@ -192,8 +192,8 @@ pt-BR:
 
   # Mail messages
   hello: "Olá %{user_name}"
-  new_user: "Obrigado pelo seu contacto. A sua mensagem foi recebida pela nossa equipa de suporte e iremos entrar em contacto consigo o mais rapidamente possível."
-  account_generated: "Foi criada uma nova conta para si. Para fazer login, use este link:"
+  new_user: "Obrigado pelo seu contato. A sua mensagem foi recebida pela nossa equipe de suporte e iremos entrar em contato o mais rapidamente possível."
+  account_generated: "Foi criada uma nova conta para voce. Para fazer login, use este link:"
   above_this_line: "Escreva a sua resposta acima desta linha"
   message_id: "Id da Mensagem"
   message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
@@ -202,14 +202,14 @@ pt-BR:
   activerecord:
     attributes:
       user:
-        email: Email
-        password: Password
+        email: "Email"
+        password: "Password"
         name: "Nome"
         company: "Empresa"
         work_phone: "Trabalho"
-        cell_phone: "Telemóvel"
+        cell_phone: "Celular"
         city: "Cidade"
-        state: "Distrito"
+        state: "Estado"
       topic:
         name: "Assunto"
       post:
@@ -217,7 +217,7 @@ pt-BR:
       category:
         name: "Nome"
         icon: "Ícone"
-        keywords: Keywords
+        keywords: "Palavras-Chave"
         title_tag: "Meta Title"
         meta_description: "Meta Description"
         front_page: "Página Frontal"
@@ -226,7 +226,7 @@ pt-BR:
         title: "Título"
         meta_description: Meta Description
         title_tag: "Meta Title"
-        keywords: Keywords
+        keywords: "Pa"
         category_id: "Categoria"
         active: "Estado"
         front_page: "Em Destaque na página Inicial?"
@@ -268,6 +268,6 @@ pt-BR:
       edit: "Editar"
     titles:
       edit: "Editar %{model}"
-      save: "Guardar %{model}"
+      save: "Salvar %{model}"
       new: "Novo %{model}"
       delete: "Apagar    %{model}"
