@@ -1,4 +1,4 @@
-pt-BR:
+pt-br:
   language_name: 'Português-BR' # The name of the translation file, in that language
   root: &root 'Início'
   how_can_we_help: "Como podemos ajudar?"
