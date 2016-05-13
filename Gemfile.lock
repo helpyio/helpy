@@ -404,6 +404,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    selectize-rails (0.12.1)
     selenium-webdriver (2.53.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -553,6 +554,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   scss-lint
   sdoc (~> 0.4.0)
+  selectize-rails
   selenium-webdriver
   shoulda
   simple_form
@@ -568,5 +570,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.1p85
+
 BUNDLED WITH
-   1.11.2
+   1.12.3

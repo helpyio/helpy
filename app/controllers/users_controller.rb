@@ -90,7 +90,7 @@ class UsersController < ApplicationController
   end
 
   def set_client_id
-    
+
     session[:client_id] = params[:client_id]
     render nothing: true
 
@@ -114,7 +114,8 @@ class UsersController < ApplicationController
       :title,
       :twitter,
       :linkedin,
-      :language
+      :language,
+      :team_list
     )
   end
 
