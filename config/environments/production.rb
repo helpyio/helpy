@@ -73,7 +73,7 @@ Rails.application.configure do
   # This can be managed through the settings panel inside Helpy.  It is probably best you leave
   # all locales enabled.  If you write a new locale, you need to add it here!
 
-  config.i18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr']
+  config.i18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br']
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 

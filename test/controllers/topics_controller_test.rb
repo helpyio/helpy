@@ -89,6 +89,36 @@ class TopicsControllerTest < ActionController::TestCase
     assert_not_nil Topic.last.locale, 'Did not capture locale when user created new topic'
   end
 
+  test 'a user should see the option to attach files if cloudinary configured' do
+
+    # Make sure cloudinary cloud name is setup
+    AppSettings['cloudinary.cloud_name'] = "test-cloud"
+    AppSettings['cloudinary.api_key'] = "some-key"
+    AppSettings['cloudinary.api_secret'] = "test-cloud"
+
+    # Get new topics page
+    get :new, locale: :en
+    assert_response :success
+
+    assert_select("input#topic_screenshots", true)
+
+  end
+
+  test 'a user should not see the option to attach files if cloudinary is not configured' do
+
+    # Make sure cloudinary cloud name is setup
+    AppSettings['cloudinary.cloud_name'] = ""
+    AppSettings['cloudinary.api_key'] = ""
+    AppSettings['cloudinary.api_secret'] = ""
+
+    # Get new topics page
+    get :new, locale: :en
+    assert_response :success
+
+    assert_select("input#topic_screenshots", false)
+
+  end
+
   # A user who is signed in should be able to create a new private or public topic
   test 'a signed in user should be able to create a new private topic' do
     sign_in users(:user)
@@ -144,5 +174,4 @@ class TopicsControllerTest < ActionController::TestCase
       xhr :post, :up_vote, { id: 5 , locale: :en }
     end
   end
-
 end

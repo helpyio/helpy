@@ -1,0 +1,8 @@
+<%= bootstrap_form_for :post, :url => admin_topic_post_path(:id => @post, :topic_id => @post.topic,
+                                     :forum_id => @post.topic.forum),
+                                     :html => {:method => :put}, remote: true do |f| %>
+  <%= f.text_area :body, :rows => 8, :cols => 60, hide_label: true %></p>
+  <%= f.check_box :active %>
+  <%= f.submit 'Save Changes' %> or
+  <%= link_to 'Cancel', admin_cancel_edit_post_path(id: @post.id), remote: true, class: 'cancel-edit', id: "cancel-edit-#{@post.id}" %>
+<% end -%>

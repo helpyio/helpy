@@ -71,10 +71,6 @@ td > img {
 	margin-bottom: 10px;
 }
 
-#left-col-ticket-nav {
-	margin-top: 50px;
-}
-
 #admin-stats {
 	height:  100px;
 }
@@ -357,6 +353,10 @@ ul.settings-menu {
 	#pipeline-wrapper {
 		padding-bottom: 20px;
 		padding-top: 10px;
+	}
+	.settings-grid-block {
+		min-height: 70px;
+		margin-bottom: 10px;
 	}
 	.settings-grid-row {
 		margin-bottom: 20px;

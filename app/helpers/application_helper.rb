@@ -1,13 +1,26 @@
 module ApplicationHelper
 
-  #include TagsHelper
+  # include TagsHelper
 
   # Sets the page title and outputs title if container is passed in.
   # eg. <%= title('Hello World', :h2) %> will return the following:
   # <h2>Hello World</h2> as well as setting the page title.
-  def title(str, container = nil)
-    @page_title = str
-    content_tag(container, str) if container
+  # def title(str, container = nil)
+  #   # @page_title = str
+  #   content_tag(:title, str)
+  #   content_tag(container, str) if container
+  # end
+
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
+
+  def meta_tag(tag, text)
+    content_for :"meta_#{tag}", text
+  end
+
+  def yield_meta_tag(tag, default_text='')
+    content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_text
   end
 
   # Outputs the corresponding flash message if any are set
@@ -79,5 +92,9 @@ module ApplicationHelper
     styles += "   .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {\n color: ##{AppSettings['css.link_color']};\n  }\n" if AppSettings['css.link_color'] != '004084'
     styles += "</style>"
     styles.html_safe
+  end
+
+  def get_path(screenshot)
+    screenshot.format == "pdf" ? "#{screenshot.public_id}.png" : screenshot.path
   end
 end

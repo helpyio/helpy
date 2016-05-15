@@ -1,0 +1,19 @@
+<div class="add-form">
+<%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, html: { class: 'form-vertical', method: 'post' }) do |f| -%>
+  <%= f.simple_fields_for @user do |u| %>
+    <%= u.input :email, autofocus: true, class: 'disable-empty' %>
+    <%= u.input :name, class: 'disable-empty' %>
+  <% end %>
+  <%= f.input :name, :size => 40, class: 'disable-empty' -%>
+  <%= f.simple_fields_for @topic.posts.new do |i| %>
+    <%= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
+  <% end %>
+  <%= hidden_field_tag :client_id %>
+  <div class="add-screenshots">
+  <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+  </div>
+  <!--<label>Tags:</label><br/>-->
+  <%#= text_field_tag :tags %>
+  <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: true %>
+<% end -%>
+</div>

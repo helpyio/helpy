@@ -1,3 +1,7 @@
+<% title "#{AppSettings['settings.site_name']}: #{@custom_title}" %>
+<% meta_tag :description, "#{@doc.meta_description}" %>
+<% meta_tag :keywords, "#{@doc.keywords}" %>
+
 <script>
   Helpy.yesHelped = '<%= j t(:yes_helped) %>';
   Helpy.noHelped = '<%= j t(:no_helped) %>';
@@ -18,7 +22,7 @@
       <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
     </div>
   </div>
-  <div class="col-md-9 text-content">
+    <div class="col-md-9 text-content">
     <%= @doc.content.html_safe %>
   </div>
 </div>

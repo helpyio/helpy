@@ -1,0 +1,129 @@
+<script>
+$(document).ready(function(){
+  $('.topic-box').click(function(){
+    document.location.href = $(this).data("link");
+  });
+  $('.thumbnail').mouseover(function(){
+    $(this).css('cursor','pointer');
+    $(this).css('border','1px solid #666');
+    $(this).css('box-shadow', '0px 0px 10px #eee');
+  });
+  $('.thumbnail').mouseout(function(){
+    $(this).css('cursor','auto');
+    $(this).css('border','1px solid #eee');
+    $(this).css('box-shadow', '');
+  });
+
+
+});
+</script>
+
+
+<h1>Admin Dashboard</h1>
+
+<div class="tiny-header">Discussion Flow</div>
+
+<div id="admin-stats" class="row">
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @closed %></h2>
+      Resolved
+    </div>
+  </div>
+  <div class="topic-box col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+      <h2><%= Topic.all.count %></h2>
+      All
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+    <h2><%= @active %></h2>
+    Active
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @open %></h2>
+      Open
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @mine %></h2>
+      Mine
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="dummy"></div>
+    <div class="thumbnail">
+
+      <h2><%= @pending %></h2>
+      Waiting
+    </div>
+  </div>
+</div>
+
+<table id="topics" class="forum table-hover">
+
+  <col width="70%">
+  <col width="30%">
+
+  <tr>
+    <th>Subject</th>
+    <th class="text-right">Last Post</th>
+  </tr>
+  <tbody>
+  <%= render :partial => 'topic', :collection => @topics %>
+  </tbody>
+</table>
+<div class="text-right">
+  <%= paginate @topics, remote: true %>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_users_path %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-user'></span><br/><%= link_to 'Admin Team', admin_users_path  %><br/></h5>
+        <p class="text-center less-important hidden-xs">See reports on individual users.</p>
+      </div>
+    </div>
+    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_knowledgebase_path %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-book'></span><br/><%= link_to "Content", admin_knowledgebase_path %><br/></h5>
+        <p class="text-center less-important hidden-xs">Edit Knowledgebase, common replies, or other site content</p>
+      </div>
+    </div>
+    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_topics_path %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-comment'></span><br/><%= link_to "Discussions", admin_topics_path %><br/></h5>
+        <p class="text-center less-important hidden-xs">Read and Resolve Support Discussions</p>
+      </div>
+    </div>
+    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_communities_path %>">
+      <div class="dummy"></div>
+      <div class="thumbnail">
+        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-align-justify'></span><br/><%= link_to "Community", admin_communities_path %><br/></h5>
+        <p class="text-center less-important hidden-xs">Add or Remove Support Community Topics</p>
+      </div>
+    </div>
+    <h4>Jump to User:</h4>
+    <%= render 'user_search_form' %>
+    <div id="users">
+      <%= render 'users' %>
+    </div>
+  </div>
+</div>

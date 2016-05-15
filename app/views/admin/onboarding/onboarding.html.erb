@@ -1,0 +1,75 @@
+<div id="panel-1" class="onboard-panel text-center">
+
+  <div class="onboard-message">
+    <h2>Welcome to Helpy!</h2>
+    <h4>All around the globe, companies like yours are using Helpy to provide better customer service and support. It's exciting to have you on board!</h4>
+  </div>
+  <div class="welcome-image">
+  <%= image_tag 'HelpyBrowser.png', width: '70%' %><br/>
+  </div>
+  <div class="onboard-submit-section">
+    <%= link_to "Let's set up your Helpy", '#', class: 'btn btn-primary panel-link', data: { panel: 2 } %>
+  </div>
+</div>
+
+
+<div id="panel-2" class="onboard-panel text-center hidden">
+
+  <div class="onboard-message">
+    <h2>Great! Lets Customize your Helpdesk:</h2>
+  </div>
+
+  <div class="text-left">
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', remote: true do |f| %>
+
+    <%= f.text_field 'settings.site_name', label: "Support Site Name", placeholder: 'Typically your product name and support.' %>
+    <%= f.text_field 'settings.site_url', label: "Support Site URL", placeholder: 'The URL of your Helpy (support.yourdomain.com)' %>
+    <%= f.text_field 'settings.parent_site', label: "Parent Site", placeholder: 'This is your main website. Helpy will link back to it.' %>
+    <%= f.text_field 'settings.parent_company', label: "Parent Company", placeholder: 'This is your main company.' %>
+
+    <%= f.hidden_field_tag :settings_mode, 'ob' %>
+    <div class="onboard-submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+  </div>
+</div>
+<div id="panel-3" class="onboard-panel hidden text-center">
+  <div class="onboard-message">
+    <h2>Customize your login</h2>
+  </div>
+  <div class="edit-admin text-left">
+    <%= simple_form_for(@user, url: admin_user_path(id: @user.id), validate: true, remote: true ) do |f| %>
+
+      <%= f.input :email, value: nil, validate: true %>
+      <%= f.input :name, value: '' %>
+      <%= f.input :company, value: '' %>
+      <%= f.input :password, value: '', validate: true %>
+      <%= f.input :password_confirmation, autocomplete: "off", validate: true  %>
+      <%= f.hidden_field :admin, value: 'true' %>
+
+      <%= hidden_field_tag :settings_mode, 'ob' %>
+      <div class="text-center onboard-submit-section">
+      <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+<div id="panel-4" class="onboard-panel hidden text-center">
+  <div class="onboard-message">
+    <h2>Your customers will thank you!</h2>
+  </div>
+  <div class="edit-admin text-left">
+    Your Helpy is ready to go!  You can customize more in the settings area!
+    <div class="onboard-submit-section text-center">
+      <%= link_to "Get Started!", admin_complete_onboard_path, class: 'btn btn-primary', remote: true %>
+    </div>
+
+    <script>
+      ga('create', 'UA-50151-25', 'auto', 'installPinger');
+      ga('installPinger.send', 'pageview', { "title": "Install: " + Helpy.domain });
+    </script>
+  </div>
+
+</div>

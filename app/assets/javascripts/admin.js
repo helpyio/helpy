@@ -24,7 +24,7 @@ Helpy.admin = function(){
       var position = ui.item.index();
       $.ajax({
         type: 'POST',
-        url: '/admin/content/update_order',
+        url: '/admin/shared/update_order',
         dataType: 'json',
         data: {object: obj, obj_id: obj_id, row_order_position: position }
       });
@@ -46,7 +46,6 @@ Helpy.admin = function(){
     $('.settings-section.' + showthis).removeClass('hidden');
     $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
     return false;
-
   });
 
   $('.pick-a-color').pickAColor({
@@ -79,6 +78,18 @@ Helpy.showPanel = function(panel) {
   $('li.step-' + currentPanel).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
   $('li.step-' + panel).addClass('active-step');
   return;
+}
+
+Helpy.showGrid = function() {
+  // Clean up any select-styled links
+  $('.settings-link').removeClass('active-settings-link');
+
+  // Hide and show the grid/panels
+  $('.settings-grid').removeClass('hidden');
+  $('.settings-panel').addClass('hidden');
+
+  $('h2#setting-header').text('Settings');
+
 }
 
 $(document).on('page:change', Helpy.admin);

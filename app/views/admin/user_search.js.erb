@@ -1,2 +1,0 @@
-$('#users').html("<%= j render('users') %>");
-$('#ticket-page-title').html("<%= t(:users_found, count: @users.size, default: @users.size + ' found for your search') %>: <%= status_label(@status) if @status %> <span class='hidden-xs pull-right'><%= j link_to t(:open_new_discussion, default: 'Open Discussion'), admin_new_ticket_path, remote: true, class: 'btn btn-primary' %></span><%= escape_javascript(render 'admin/ticket_nav_dropdown') %>");

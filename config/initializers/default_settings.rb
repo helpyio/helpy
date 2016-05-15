@@ -24,7 +24,7 @@ AppSettings.defaults["css.still_need_help"] = "ffdf91"
 # i18n:
 
 AppSettings.defaults["i18n.default_locale"] = "en"
-AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
+AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de","pt-BR"]
 
 # Widget:
 

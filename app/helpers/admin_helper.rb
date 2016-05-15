@@ -70,9 +70,9 @@ module AdminHelper
   end
 
   def settings_item(icon, title, description)
-    content_tag(:div, class: 'col-md-5 col-sm-6') do
-      content_tag(:div, class: 'media settings-grid-block') do
-        concat content_tag(:div, content_tag(:span, '', class: "glyphicon glyphicon-#{icon} settings-icon"), class: 'pull-left')
+    content_tag(:div, class: 'col-md-6 col-sm-6 settings-grid-block') do
+      content_tag(:div, class: 'media') do
+        concat content_tag(:div, content_tag(:span, '', class: "#{icon} settings-icon"), class: 'pull-left')
         concat settings_blurb(title, description)
       end
     end
@@ -92,7 +92,7 @@ module AdminHelper
   def settings_menu_item(icon, title)
     content_tag(:li, class: 'settings-menu-item') do
       link_to('#', class: 'settings-link active-settings-link', "data-target" => title) do
-        concat content_tag(:span, '', class: "glyphicon glyphicon-#{icon} settings-menu-icon")
+        concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
         concat content_tag(:span, t(title, default: title.capitalize), class: 'hidden-xs')
       end
     end

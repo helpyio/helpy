@@ -1,0 +1,4 @@
+<h2><%= t(:create_new_community, default:'Create New Community') %></h2>
+<%= bootstrap_form_for([:admin, @forum]) do |f| %>
+  	<%= render :partial => 'form', :locals => {:f => f} -%>
+<% end %>
