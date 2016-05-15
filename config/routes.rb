@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
-  get '/set_client_id' => 'users#set_client_id', as: :set_client_id
+  get '/set_client_id' => 'home#set_client_id', as: :set_client_id
 
   # Admin Routes
 
