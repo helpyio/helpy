@@ -74,6 +74,10 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     @user.update(user_params)
     fetch_counts
+
+    # update role if admin only
+    @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin?
+
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
     @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
@@ -99,7 +103,6 @@ class Admin::UsersController < Admin::BaseController
       :twitter,
       :linkedin,
       :language,
-      :role,
       :active,
       :admin
     )

@@ -28,7 +28,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   test "an admin should be able to sign in and be shown the admin page" do
     sign_in("admin@test.com")
-    assert_equal '/admin', current_path
+    assert_equal admin_root_path, current_path
     sign_out
   end
 
