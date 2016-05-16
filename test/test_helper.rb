@@ -1,3 +1,7 @@
+# Simplecov to give a report of the test coverage on local development environment
+require 'simplecov'
+SimpleCov.start
+
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
 ENV['RAILS_ENV'] ||= 'test'
@@ -7,10 +11,6 @@ require 'rails/test_help'
 # Requiring this library causes your jobs to run everything inline. So a call to the following
 # will actually be SYNCHRONOUS
 require 'sucker_punch/testing/inline'
-
-# Simplecov to give a report of the test coverage on local development environment
-require 'simplecov'
-SimpleCov.start
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
