@@ -1,5 +1,6 @@
 class Admin::PostsController < Admin::BaseController
 
+  before_action :verify_agent
   after_action :send_message, :only => 'create'
   # respond_to :html, only: ['destroy']
   respond_to :js

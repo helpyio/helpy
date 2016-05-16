@@ -46,7 +46,7 @@
 
 class Admin::UsersController < Admin::BaseController
 
-  before_action :authenticate_user!, except: :set_client_id
+  before_action :verify_agent
   before_action :fetch_counts, :only => ['show']
   respond_to :html, :js
 
@@ -99,6 +99,7 @@ class Admin::UsersController < Admin::BaseController
       :twitter,
       :linkedin,
       :language,
+      :role,
       :active,
       :admin
     )

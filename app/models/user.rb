@@ -115,4 +115,19 @@ class User < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
+  # and changing it could be painful for upgrading installed users
+
+  def is_agent?
+    self.role == 'agent' || self.role == 'admin' ? true : false
+  end
+
+  def is_admin?
+    self.admin? || self.role == 'admin' ? true : false
+  end
+
+  def is_editor?
+    self.role == 'editor' || self.role == 'admin' ? true : false
+  end
+
 end
