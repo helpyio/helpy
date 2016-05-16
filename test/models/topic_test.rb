@@ -102,7 +102,7 @@ class TopicTest < ActiveSupport::TestCase
 
   test "#open? should return true for pending topics and false otherwise" do
     topic = Topic.create!(name: name, user_id: 1, forum_id: 1, current_status: 'open')
-    assert_equal false, topic.open?
+    assert_equal true, topic.open?
   end
 
   test "#open should set the current status of the topic to open/pending" do
