@@ -26,14 +26,13 @@
 
 class TopicsController < ApplicationController
 
-  before_action :authenticate_user!, :except => ['show','index','tag','make_private', 'new', 'create', 'up_vote']
-  before_action :instantiate_tracker
+  before_action :authenticate_user!, :only => ['tickets','ticket']
   before_action :allow_iframe_requests
 
   layout "clean", only: [:new, :index]
 
-  # GET /topics
-  # GET /topics.xml
+  # TODO Still need to so a lot of refactoring here!
+
   def index
     @forum = Forum.ispublic.where(id: params[:forum_id]).first
     if @forum
@@ -42,102 +41,53 @@ class TopicsController < ApplicationController
       else
         @topics = @forum.topics.ispublic.chronologic.page params[:page]
       end
-
-      #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
-
       @page_title = @forum.name
-      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @forum.name
     end
-
     respond_to do |format|
-      if @forum
-        format.html # index.rhtml
-        format.xml  { render :xml => @topics.to_xml }
-        format.rss
-      else
-        format.html { redirect_to root_path }
-      end
+      format.html {
+        redirect_to root_path unless @forum
+      }
     end
   end
 
   def tickets
-
     @topics = current_user.topics.isprivate.undeleted.chronologic.page params[:page]
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
-
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-
-    #@feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{forum_topics_url}.rss' />"
-
     respond_to do |format|
       format.html # index.rhtml
-      format.xml  { render :xml => @topics.to_xml }
-      format.rss
     end
   end
 
-
   def ticket
-
     @topic = current_user.topics.undeleted.where(id: params[:id]).first
     if @topic
       @posts = @topic.posts.ispublic.chronologic.active.all
-
       @page_title = "##{@topic.id} #{@topic.name}"
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
-
-      @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
     end
-
     respond_to do |format|
-      if @topic
-        format.html # index.rhtml
-        format.xml  { render :xml => @topics.to_xml }
-        format.rss
-      else
-        format.html { redirect_to root_path}
-      end
+      format.html {
+        redirect_to root_path unless @topic
+      }
     end
-
-
   end
 
-
-  # GET /topics/1
-  # GET /topics/1.xml
-  def show
-
-  end
-
-  # GET /topics/new
   def new
-
     @page_title = t(:start_discussion, default: "Start a New Discussion")
-    add_breadcrumb @page_title
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-
     @forums = Forum.ispublic.all
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
-
-  end
-
-  # GET /topics/1;edit
-  def edit
-    @topic = Topic.find(params[:id])
-  end
-
-  # POST /topics
-  # POST /topics.xml
-  def create
-
-    @page_title = t(:start_discussion, default: "Start a New Discussion")
     add_breadcrumb @page_title
-    @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
+  end
+
+  def create
+    # @page_title = t(:start_discussion, default: "Start a New Discussion")
+    # add_breadcrumb @page_title
+    # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
@@ -148,7 +98,6 @@ class TopicsController < ApplicationController
       doc_id: params[:topic][:doc_id] )
 
     unless user_signed_in?
-
       # User is not signed in, lets see if we can recognize the email address
       @user = User.where(email: params[:topic][:user][:email]).first
 
@@ -174,7 +123,6 @@ class TopicsController < ApplicationController
     else
       @user = current_user
       @topic.user_id = @user.id
-
     end
 
     if @user.save && @topic.save
@@ -209,38 +157,7 @@ class TopicsController < ApplicationController
 
   end
 
-  # PUT /topics/1
-  # PUT /topics/1.xml
-  def update
-    @topic = Topic.find(params[:id])
-    @topic.tag_list = params[:tags]
-    respond_to do |format|
-      if @topic.update_attributes(params[:topic])
-        #flash[:notice] = 'Topic was successfully updated.'
-        format.html { redirect_to topic_posts_path(@topic) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @topic.errors.to_xml }
-      end
-    end
-  end
-
-  # DELETE /topics/1
-  # DELETE /topics/1.xml
-  def destroy
-    @topic = Topic.find(params[:id])
-    @topic.posts.each { |post| post.destroy }
-    @topic.destroy
-
-    respond_to do |format|
-      format.html { redirect_to forum_topics_path(@topic.forum) }
-      format.xml  { head :ok }
-    end
-  end
-
   def up_vote
-
     if user_signed_in?
       @topic = Topic.find(params[:id])
       @topic.votes.create(user_id: current_user.id)
@@ -250,7 +167,6 @@ class TopicsController < ApplicationController
     respond_to do |format|
       format.js
     end
-
   end
 
   def tag

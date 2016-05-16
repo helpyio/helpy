@@ -1,0 +1,19 @@
+<div class="row">
+  <%= bootstrap_form_for([:admin, @doc]) do |f| %>
+  <div class="col-md-12">
+    <h2 class="form-subhead"><%= t(:new_content, default: 'New Content') %></h2>
+      <%= f.alert_message "Please fix the errors below." %>
+      <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+  </div>
+  <% end %>
+</div>
+
+<script>
+var element = document.querySelector("trix-editor");
+element.editor.setSelectedRange([0, 0]);
+<% if @post.nil? %>
+element.editor.insertHTML('<%= @doc.body.html_safe if @doc.body? %>');
+<% else %>
+element.editor.insertHTML('<%= @post.body.html_safe unless @post.nil? %>');
+<% end %>
+</script>

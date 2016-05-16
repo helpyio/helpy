@@ -26,16 +26,8 @@
 				<% end %>
 			</div>
 			<% end %>
-			<% unless Cloudinary.config.cloud_name.nil? %>
-			<div id="post-images">
-				<ul class="list-inline">
-					<% post.screenshots.each do |screenshot| %>
-						<li><%= link_to cl_image_tag(screenshot.path, { size: '125x125', crop: :fit }), "http://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/#{screenshot.path}", class: 'screenshot-link' %></li>
-					<% end %>
-				</ul>
-			</div>
-			<% end %>
-		</div>
+      <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } unless Cloudinary.config.cloud_name.nil? %>
+    </div>
 
 		<% if user_signed_in? && post.kind == 'first' && post.topic.forum.allow_post_voting == true %>
 			<div class="add-form inline-reply">

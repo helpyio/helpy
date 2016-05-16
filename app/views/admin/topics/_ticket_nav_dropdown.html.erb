@@ -1,0 +1,49 @@
+<div id="status-mobile-dropdown" class="btn-group hidden-md hidden-lg hidden-sm pull-right">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <span class="status"><%#= status_label(@status) if @status %></span><span class="caret"></span>
+  </button>
+  <ul class="list-unstyled dropdown-menu" role="menu">
+    <li class="mailbox tiny-header">
+      <%= link_to admin_topics_path(:status => 'new'), :remote => true do %>
+      <%= t(:new, default: "New") %>
+      <span class="tiny-header pull-right"><%= @unread %></span>
+      <% end %>
+    </li>
+
+    <li class="mailbox tiny-header">
+      <%= link_to admin_topics_path(:status => 'pending'), :remote => true do %>
+      <%= t(:pending, default:"Pending") %>
+      <span class="tiny-header pull-right"><%= @pending %></span>
+      <% end %>
+    </li>
+    <li class="mailbox tiny-header">
+      <%= link_to admin_topics_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true do %>
+      <%= t(:mine, default: "Mine") %>
+      <span class="tiny-header pull-right"><%= @mine %></span>
+      <% end %>
+    </li>
+
+    <li class="mailbox tiny-header">
+      <%= link_to admin_topics_path(:status => 'open'), :remote => true do %>
+      <%= t(:open, default: "Open") %>
+      <span class="tiny-header pull-right"><%= @open %></span>
+      <% end %>
+    </li>
+
+    <li class="mailbox tiny-header">
+      <%= link_to admin_topics_path(:status => 'closed'), :remote => true do %>
+      <%= t(:closed, default: "Resolved") %>
+      <span class="tiny-header pull-right"><%= @closed %></span>
+      <% end %>
+    </li>
+    <li class="mailbox tiny-header">
+      <%= link_to admin_topics_path(:status => 'spam'), :remote => true do %>
+      Spam
+      <span class="tiny-header pull-right"><%= @spam %></span>
+      <% end %>
+    </li>
+    <li class="mailbox tiny-header">
+      <%= link_to t(:open_new_discussion, default: "Create New Ticket"), new_admin_topic_path, remote: true, class: 'btn btn-default' %>
+    </li>
+  </ul>
+</div>

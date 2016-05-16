@@ -1,11 +1,10 @@
-
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 
 <% if params[:q] %>
   <div id="results-found">
   <%= render 'results_found' %>
   </div>
 <% end %>
-
 
 <div id="search-results">
   <%= render 'search_results' %>

@@ -1,0 +1,21 @@
+<tr id="category-<%= cat.id %>" class="item <%#= 'hidden' if cat.front_page == false %>" data-obj-id="<%= "#{cat.id}" %>" data-obj='category'>
+  <td>
+    <span class="more-important">
+      <%= link_to cat.name, admin_category_path(cat.id) %>
+    </span><span class="label label-count pull-right"><%= cat.docs.count %></span>
+    <%= i18n_icons(cat) if AppSettings['i18n.available_locales'].count > 1 %>&nbsp;&nbsp;
+    <br/>
+    <%= cat.meta_description %>
+  </td>
+  <td class="text-right">
+    <div class="btn-group">
+      <span id="row-<%= cat.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle glyphicon glyphicon-align-justify'></span>
+      <ul class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><%= link_to t(:edit, default: 'Edit'), edit_admin_category_path(id: cat.id, lang: I18n.locale) %></li>
+        <li><%= link_to t(:delete, default: 'Delete'), admin_category_path(id: cat.id), data: {confirm: t(:delete_confirm, default: 'Please confirm you really want to DELETE this, and all articles')}, method: :delete, remote: true, class: 'less-important' %></li>
+        <li><%= link_to t(:view_and_edit, default: "View and Edit content"), admin_category_path(cat.id), class: 'less-important' %></li>
+        <li><%= link_to t(:new_content, default: 'New Content'), new_admin_category_doc_path(category_id: cat.id, lang: I18n.locale) %></li>
+      </ul>
+    </div>
+  </td>
+</tr>

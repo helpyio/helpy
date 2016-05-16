@@ -17,11 +17,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-#    unless current_user.provider.nil?
-      params.require(:user).permit(:name, :email, :bio, :avatar, :company, :title, :password, :password_confirmation, :current_password)
-#    else
-#      params.require(:user).permit(:name, :email, :bio, :avatar, :company, :title)
-#    end
+      params.require(:user).permit(
+        :name,
+        :email,
+        :bio,
+        :avatar,
+        :company,
+        :title,
+        :password,
+        :password_confirmation,
+        :current_password
+      )
   end
 
 end
