@@ -1,5 +1,10 @@
 <% if user_signed_in? %>
-$('#topic_<%= @topic.id %>').replaceWith("<%= j(render partial: 'topics/topic', locals: {topic: @topic}) %>");
-<% else %>
+	<% if @forum.layout == "table" %>
+	  $('#topic_<%= @topic.id %>').replaceWith("<%= j(render partial: 'topics/topic', locals: {topic: @topic}) %>");
+	<% elsif @forum.layout == "grid" %>
+	  $('#topic_<%= @topic.id %>').replaceWith("<%= j(render partial: 'topics/grid', locals: {grid: @topic}) %>");
+	<% elsif @forum.layout == "qna" %>
+	  $('#post-<%= @topic.posts.by_votes.first.id %>').replaceWith("<%= j(render partial: 'topics/qna', locals: {qna: @topic}) %>");
+	<% end %>
 $('.login-link').click();
 <% end %>
