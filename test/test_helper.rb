@@ -8,6 +8,10 @@ require 'rails/test_help'
 # will actually be SYNCHRONOUS
 require 'sucker_punch/testing/inline'
 
+# Simplecov to give a report of the test coverage on local development environment
+require 'simplecov'
+SimpleCov.start
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

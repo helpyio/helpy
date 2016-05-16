@@ -556,6 +556,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   simple_form
+  simplecov
   spring (~> 1.4.0)
   staccato
   sucker_punch (~> 2.0)
@@ -568,5 +569,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.1p85
+
 BUNDLED WITH
-   1.11.2
+   1.12.3
