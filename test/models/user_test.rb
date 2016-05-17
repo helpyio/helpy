@@ -104,15 +104,51 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should not accept names with numbers" do
-    names = [ 
+    names = [
       "Vasiya2",
       "123123"
     ]
 
-    names.each do |name| 
+    names.each do |name|
       user = User.create(name: name, email: "#{name.split(" ")[0]}@testing.com", password: "12345678")
       assert_equal user.valid?, false
     end
+  end
+
+  test "is_agent? should evaluate to true if user is an agent" do
+    assert_equal User.find(6).is_agent?, true
+
+    # Admin should also evaluate to true because they cover all capabilities
+    # of an agent
+    assert_equal User.find(1).is_agent?, true
+  end
+
+  test "is_agent? should evaluate to false if user is an editor" do
+    assert_equal User.find(7).is_agent?, false
+  end
+
+  test "is_admin? should evaluate to true if user is an admin" do
+    assert_equal User.find(1).is_admin?, true
+  end
+
+  test "is_admin? should evaluate to false if user is an agent" do
+    assert_equal User.find(6).is_admin?, true
+  end
+
+  test "is_admin? should evaluate to false if user is an editor" do
+    assert_equal User.find(7).is_admin?, true
+  end
+
+  test "is_editor? should evaluate to true if user is an agent" do
+    assert_equal User.find(7).is_editor?, true
+
+    # Admin should also evaluate to true because they cover all capabilities
+    # of an editor
+    assert_equal User.find(1).is_editor?, true
+
+    # Agent should also evaluate to true because they cover all capabilities
+    # of an editor
+    assert_equal User.find(6).is_editor?, true
   end
 
 end
