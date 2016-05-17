@@ -104,7 +104,8 @@ class Admin::UsersController < Admin::BaseController
       :linkedin,
       :language,
       :active,
-      :admin
+      :admin,
+      :team_list
     )
   end
 

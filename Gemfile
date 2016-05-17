@@ -96,6 +96,7 @@ gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
 
+gem 'selectize-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

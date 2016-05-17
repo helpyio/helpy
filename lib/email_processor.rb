@@ -46,7 +46,9 @@ class EmailProcessor
     else # this is a new direct message
 
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
-
+      if @email.header['X-Helpy-Teams'].present?
+        topic.team_list = @email.header['X-Helpy-Teams']
+      end
       #insert post to new topic
       post = topic.posts.create(:body => message, :user_id => @user.id, :kind => "first")
 

@@ -119,6 +119,8 @@ en:
   open_new_discussion: New Discussion
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
+  no_team_assigned: no team assigned
+  unassign_from_team: unassign from team
   private: private
   public: public
   save_changes: Save Changes

@@ -72,13 +72,20 @@ class User < ActiveRecord::Base
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
+  acts_as_taggable_on :teams
+
   ROLES = %w[admin agent editor user]
 
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
+  scope :agents, -> { where('role = ?', 'agent').order('name asc') }
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
+  end
+
+  def is_restricted?
+    self.team_list.count > 0 && !self.is_admin?
   end
 
   def self.create_password

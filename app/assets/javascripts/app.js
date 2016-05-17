@@ -30,7 +30,6 @@ Helpy.ready = function(){
     $(this).closest('.has-arrow').addClass('over');
   });
 
-
   $('.stats').on('click', function(){
 
 

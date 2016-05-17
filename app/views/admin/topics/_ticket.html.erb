@@ -11,9 +11,11 @@
     <div id="topic-options">
     <%= render :partial => 'admin/topics/topic_options' %>
     </div>
-    <script>
-      Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
-    </script>
+    <% if @posts  %>
+      <script>
+        Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
+      </script>
+    <% end %>
     <div id="posts">
     <%= render :partial => 'admin/topics/post', :collection => @posts %>
     </div>

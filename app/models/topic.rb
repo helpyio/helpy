@@ -73,6 +73,7 @@ class Topic < ActiveRecord::Base
   before_create :add_locale
 
   # acts_as_taggable
+  acts_as_taggable_on :teams
 
   validates :name, presence: true, length: { maximum: 255 }
 

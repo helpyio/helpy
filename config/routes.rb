@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     get 'topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
-
+    get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
     get 'settings' => 'settings#index', as: :settings
