@@ -1,0 +1,19 @@
+<li id="team-<%= team_member.id %>" class="team-member">
+  <div id="user-info" class="row">
+      <div class='col-md-12 text-center' id='user-info-image'>
+        <%= avatar_image(team_member, size=90) %>
+      </div>
+  </div>
+  <div class="row">
+    <div class='col-md-12' id='user-info-info'>
+      <h4>
+        <%= team_member.name.titleize %><br/>
+        <span class="small less-important">
+          <%#= team_member.company.titleize unless team_member.company.nil? %><br/>
+          <%#= team_member.title.titleize unless team_member.title.nil? %>
+        </span>
+      </h4>
+
+    </div>
+  </div>
+</li>

@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+$('#post-<%= @post.id %>').replaceWith("<%= j(render partial: 'posts/post', locals: {post: @post}) %>");
+$('.profile').initial();
+<% else %>
+$('.login-link').click();
+<% end %>

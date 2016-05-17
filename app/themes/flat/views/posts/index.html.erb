@@ -1,0 +1,41 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+
+<div class="row">
+	<div class="col-md-12">
+		<script>
+			Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
+		</script>
+
+		<div id="posts">
+			<%= render :partial => 'post', :collection => @posts %>
+		</div>
+
+		<%
+		# NOTE: this is a bit of confusing logic- basically if the forum does not
+		# allow reply (post) voting, the form should be shown beneath all posts.
+		# This is handled here.  However, if there is post voting enabled,
+		# it will render immediately after the first post, within the partial.
+		%>
+		<% if user_signed_in? && @topic.forum.allow_post_voting == false %>
+			<div class="add-form">
+			<h4><%= t(:reply) %></h4>
+			<%#= error_messages_for :post -%>
+			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
+			  <%= f.text_area :body, :rows => 8, :cols => 160, label: 'Type your response:', class: 'disable-empty' -%></p>
+			  <%= f.hidden_field 'kind', value: 'reply' %>
+				<div class="add-screenshots">
+				<%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+				</div>
+				<%= hidden_field_tag :client_id %>
+				<%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
+			<% end -%>
+			</div>
+		<% else %>
+			<% unless user_signed_in? %>
+			<span id="reply-button" class="hidden-xs pull-right"><%= link_to t(:reply, default: "Reply"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+			<% end %>
+		<% end -%>
+
+	</div>
+
+</div>

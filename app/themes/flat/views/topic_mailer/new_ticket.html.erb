@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <p>
+    <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
+    =================================================================<br/>
+    <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %></br>
+  </p>
+  <p>
+    <%= t('hello', user_name: @topic.user.login) %>,
+  </p>
+  <p>
+    <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
+  </p>
+  <p>
+    <%= simple_format(@topic.posts.last.body) %>
+  </p>
+  <p>
+    <%= t('view_online', default: 'View this online:') %> <%= topic_posts_url(@topic) %>
+  </p><br/>
+    <p>
+    <strong>Powered by Helpy</strong><br/>
+    Get a Free Helpy Support System for your Site at http://helpy.io/
+  </p>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<!-- screenshots thumbnail partial -->
+<%= content_tag(:div, id: 'post-images')  do %>
+    <%= content_tag(:ul, class: 'list-inline') do %>
+        <%- model_name.screenshots.each do |screenshot| %>
+            <%= content_tag(:li) do %>
+                <%= link_to cl_image_tag(get_path(screenshot), { size: '125x125', crop: :fit }), "http://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/#{screenshot.path}", class: 'screenshot-link' %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>

@@ -1,0 +1,19 @@
+<div id="page-title" class="row">
+  <div class="col-md-8" id="page-title-left">
+    <span class="hidden-xs">
+      <%= render_breadcrumbs('') %>
+    </span>
+    <h1><%= t(:resend) %></h1>
+  </div>
+  <div class="col-md-4" id="page-title-right">
+  </div>
+</div>
+<%= bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+    <%= f.email_field :email, autofocus: true %>
+    <%= f.submit "Resend confirmation instructions" %>
+
+<% end %>
+
+<%= render "devise/shared/links" %>

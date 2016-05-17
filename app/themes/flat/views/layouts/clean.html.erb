@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<%= render partial: 'layouts/head' %>
+	</head>
+
+<body>
+<script>
+  ga('set', 'location', location.href.split('#')[0]);
+  ga('send', 'pageview', { "title": document.title });
+</script>
+<div id="top-bar"></div>
+<div id="upper-wrapper" class="jumbotron">
+	<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<%= render :partial => 'layouts/header' %>
+		</div>
+	</div>
+</div>
+</div>
+<div id="body-wrapper" class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="main-body" >
+					<%#= bootstrap_flash %>
+					<div id="main-content">
+						<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
+						<%= yield %>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<div id="footer-wrapper">
+	<div class="container">
+			<%= render :partial => 'layouts/footer' %>
+	</div>
+</div>
+
+</body>
+</html>

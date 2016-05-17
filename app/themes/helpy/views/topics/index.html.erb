@@ -1,0 +1,56 @@
+<%- title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+
+<% if @forum.layout == "table" %>
+
+<table id="forums" class="table-hover">
+
+  <% if @forum.allow_topic_voting == true %>
+  <col width="5%">
+  <% end %>
+  <col>
+  <col width="5%">
+  <col width="10%">
+
+  <tbody>
+    <tr>
+      <% if @forum.allow_topic_voting == true %>
+      <th colspan="3">
+      <% else %>
+
+      <th colspan="2">
+      <% end %>
+        <%= t(:topic) %></th>
+  	  <th class="text-right"><%= t(:last_activity) %></th>
+    </tr>
+    <%= render :partial => 'topic', :collection => @topics %>
+  </tbody>
+</table>
+
+<% elsif @forum.layout == "grid" %>
+<div id="featured-categories" class="row">
+  <%= render :partial => 'grid', :collection => @topics %>
+</div>
+
+<% elsif @forum.layout == "qna" %>
+<div class="row">
+	<div class="col-md-12">
+    <div id="qnas">
+      <%= render :partial => 'qna', :collection => @topics %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+
+<div class="text-right">
+	<%= paginate @topics %>
+</div>
+
+<div>
+  <% if user_signed_in? %>
+    <span class="hidden-xs pull-right"><%= link_to t(:start_discussion, default: "Start Discussion"), new_topic_path, class: 'btn btn-primary' %></span>
+  <% else %>
+    <span class="hidden-xs pull-right"><%= link_to t(:start_discussion, default: "Start Discussion"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+  <% end %>
+</div>

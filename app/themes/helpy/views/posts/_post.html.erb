@@ -1,0 +1,48 @@
+<!-- standard post partial -->
+<div id="post-<%= post.id %>" class="media post-container <%= "kind-#{post.kind}" %><%= post.topic.forum.allow_post_voting? ? "" : " disallow-post-voting" %><%= " inactive" unless post.active? %>">
+	<div class="pull-left">
+		<%= avatar_image(post.user, size=40) %>
+	</div>
+	<div class="media-body media-right">
+		<span class="hidden-sm hidden-md hidden-lg"><%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %><br/></span>
+		<span id="row-<%= post.id %>"  class="post-menu post-menu-<%= post.id %> btn-group">
+			<%= post_message(post) %>
+		</span>
+
+		<span class="last-active posted-at less-important pull-right">
+			<span class="hidden-xs">
+			<%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %>
+			</span>
+		</span>
+
+		<div id="post-body-<%= post.id %>" class="post-body less-important text-left text-content">
+			<%= simple_format(post.body) -%>
+			<% if post.topic.forum.allow_post_voting == true %>
+			<div id="post-vote-<%= post.id %>" class="btn btn-default">
+				<% if post.kind == 'first' %>
+				<%= link_to t(:upvote, count: post.topic.points), up_vote_path(post.topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: post.topic.to_param}, id: "upvote_#{post.topic.id}" %>
+				<% else %>
+				<%= link_to t(:upvote, count: post.points), post_vote_path(post.id), method: :post, remote: true, class: 'post-vote', data: {voted: post.id}, id: "upvote_#{post.id}"  %>
+				<% end %>
+			</div>
+			<% end %>
+      <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } unless Cloudinary.config.cloud_name.nil? %>
+    </div>
+
+		<% if user_signed_in? && post.kind == 'first' && post.topic.forum.allow_post_voting == true %>
+			<div class="add-form inline-reply">
+			<h4><%= t(:reply) %></h4>
+			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
+			  <%= f.text_area :body, :rows => 4, :cols => 160, label: 'Type your response:' -%></p>
+			  <%= f.hidden_field 'kind', value: 'reply' %>
+				<div class="add-screenshots">
+				<%= attachinary_file_field_tag 'post[screenshots]', @topic.posts.new, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+				</div>
+				<%= hidden_field_tag :client_id %>
+				<%= f.submit t(:submit_reply), class: 'btn btn-warning' -%>
+			<% end -%>
+			</div>
+		<% end -%>
+
+	</div>
+</div>

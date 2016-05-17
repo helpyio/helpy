@@ -1,0 +1,30 @@
+<div id="page-title" class="row">
+  <div class="col-md-8" id="page-title-left">
+    <span class="hidden-xs">
+      <%= render_breadcrumbs('') %>
+    </span>
+    <h1><%= I18n.t('devise.registrations.new.sign_up') %></h1>
+  </div>
+  <div class="col-md-4" id="page-title-right">
+  </div>
+</div>
+<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+    <%= devise_error_messages! %>
+
+    <%= f.email_field :email, autofocus: true %>
+    <%= f.text_field :name %>
+    <%= f.text_area :bio %>
+    <%= f.text_field :company %>
+    <%= f.text_field :title %>
+    <%= f.text_area :signature %>
+    <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
+
+    <% if @validatable %>
+    <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
+    <% end %>
+    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+    <%= f.submit I18n.t('devise.registrations.new.sign_up'), class: 'btn btn-warning' %>
+<% end %>

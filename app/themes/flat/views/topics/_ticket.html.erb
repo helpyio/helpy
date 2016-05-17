@@ -1,0 +1,11 @@
+<tr class="topic border-bottom">
+  <td>
+    <span class="truncate-ellipsis">
+      <%= link_to "##{ticket.id}- #{ticket.name.capitalize}", ticket_path(ticket) -%><%= badge_for_status(ticket.current_status) %>
+    </span>
+  </td>
+  <td class="last-active less-important text-right">
+    <span class="label label-count hidden-xs pull-left"><%= ticket.posts_count %></span>
+    <%= last_active_time(ticket.updated_at) %>
+  </td>
+</tr>
