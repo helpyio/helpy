@@ -1,20 +1,20 @@
 <tr id="topic_<%= topic.id %>" class="topic link-row">
   <% if topic.forum.allow_topic_voting == true %>
-  <td>
+    <td>
 
-    <div class="voting-widget">
-      <!--<span class="glyphicon glyphicon-plus-sign"></span>-->
-      <div class="vote-icon glyphicon glyphicon-chevron-up"></div>
-      <div class="topic-points"><%= link_to topic.points, up_vote_path(topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: topic.to_param} %></div>
-    </div>
-  </td>
+      <div class="voting-widget">
+        <!--<span class="glyphicon glyphicon-plus-sign"></span>-->
+        <div class="vote-icon glyphicon glyphicon-chevron-up"></div>
+        <div class="topic-points"><%= link_to topic.points, up_vote_path(topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: topic.to_param} %></div>
+      </div>
+    </td>
   <% end %>
   <td>
     <span class="more-important truncate-ellipsis"><%= link_to h(topic.name), topic_posts_path(topic) -%></span>
     <span class="less-important"><%= t(:started_by, :username => topic.user.name.titleize) %></span>
   </td>
   <td>
-    <span class="label label-count hidden-xs"><%= topic.posts_count %></span>
+    <span class="label label-count hidden-xs" id="upvote-<%= topic.id %>"><%= topic.posts_count %></span>
   </td>
   <td class="last-active less-important text-right">
     <%= last_active_time(topic.last_post_date) %>

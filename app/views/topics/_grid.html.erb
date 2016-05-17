@@ -9,7 +9,7 @@
       </div>
       <% if grid.forum.allow_post_voting == true %>
       <div id="post-vote-<%= grid.posts.first.id %>" class="grid-vote text-right">
-        <%= link_to t(:upvote, count: grid.points), up_vote_path(grid.id), method: :post, remote: true, class: 'topic-vote', data: {voted: grid.to_param} %>
+        <%= link_to t(:upvote, count: grid.points), up_vote_path(grid.id), method: :post, remote: true, class: 'pic-vote', data: {voted: grid.to_param}, id: "upvote_#{grid.id}" %>
       </div>
       <% end %>
     </div>
