@@ -76,6 +76,7 @@ class User < ActiveRecord::Base
 
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
+  scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count

@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
     @closed = Topic.closed.count
     @spam = Topic.spam.count
 
-    @admins = User.admins
+    @admins = User.agents
   end
 
   def instantiate_tracker
