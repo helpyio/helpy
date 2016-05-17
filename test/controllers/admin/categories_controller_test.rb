@@ -86,6 +86,18 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
 
   # admin logged in, should get these pages
 
+  test "an admin should be able to access the index and get the featured categories" do
+    sign_in users(:admin)
+    get :index, locale: :en
+    assert_response :success
+  end
+
+  test "an admin should be able to get the details of a particular featured category" do
+    sign_in users(:admin)
+    get :show, locale: :en, id: 1
+    assert_response :success
+  end
+
   test "an admin should be able to load new" do
     sign_in users(:admin)
     get :new, locale: :en
@@ -125,6 +137,14 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
     assert_redirected_to admin_categories_path
   end
 
+  test "creating a category with no name re-renders the index template" do
+    sign_in users(:admin)
+    assert_difference "Category.count", 0 do
+      post :create, category: { name: nil }, locale: :en
+    end
+    assert_template :index
+  end
+
   test "an admin should be able to create a new category, and have the default translation created" do
     sign_in users(:admin)
     post :create, category: { name: "some name" }, locale: :en
@@ -136,6 +156,12 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
     sign_in users(:admin)
     patch :update, { id: 1, category: {name: "some name" }, locale: :en }
     assert_redirected_to admin_categories_path
+  end
+
+  test "attempting to update a category with invalid params re-renders the edit template" do
+    sign_in users(:admin)
+    patch :update, { id: 1, category: {name: nil }, locale: :en }
+    assert_template :edit
   end
 
   test "an admin should be able to add a new translation to an existing category" do

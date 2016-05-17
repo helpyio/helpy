@@ -30,6 +30,7 @@ class TopicTest < ActiveSupport::TestCase
 
   should belong_to(:forum)
   should belong_to(:user)
+  should belong_to(:doc)
   should have_many(:posts)
   should have_many(:votes)
 
@@ -99,4 +100,39 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal "Something in lowercase and UPPERCASE", topic.name
   end
 
+  test "#open? should return true for pending topics and false otherwise" do
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1, current_status: 'open')
+    assert_equal true, topic.open?
+  end
+
+  test "#open should set the current status of the topic to open/pending" do
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    topic.open
+    assert_equal 'pending', topic.current_status
+  end
+
+  test "#close should set the current_status of the topic to closed, and the assigned_user_id to nil" do
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    topic.close
+    assert_equal 'closed', topic.current_status
+    assert_equal nil, topic.assigned_user_id
+  end
+
+  test "#trash should set the current_status of the topic to trash, assigned_user_id to nil, and should create a closed_message post belonging to that topic" do
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    t_posts_count = topic.posts.count
+    topic.trash
+    assert_equal 'trash', topic.current_status
+    assert_equal nil, topic.assigned_user_id
+    assert_equal t_posts_count + 1, topic.posts.count
+  end
+
+  test "#assign should set the current_status of the topic to pending, assigned_user_id to specified user_id, and should create a closed_message post belonging to that topic" do
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    t_posts_count = topic.posts.count
+    topic.assign(2, 1)
+    assert_equal 'pending', topic.current_status
+    assert_equal 1, topic.assigned_user_id
+    assert_equal t_posts_count + 1, topic.posts.count
+  end
 end
