@@ -89,10 +89,6 @@ class ApplicationController < ActionController::Base
     @admins = User.admins
   end
 
-  def verify_admin
-      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
-  end
-
   def instantiate_tracker
     # instantiate a tracker instance for GA Measurement Protocol
     # this is used to track events happening on the server side, like email support ticket creation
