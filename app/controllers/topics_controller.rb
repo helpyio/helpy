@@ -160,6 +160,7 @@ class TopicsController < ApplicationController
   def up_vote
     if user_signed_in?
       @topic = Topic.find(params[:id])
+      @forum = @topic.forum
       @topic.votes.create(user_id: current_user.id)
       @topic.touch
       @topic.reload
