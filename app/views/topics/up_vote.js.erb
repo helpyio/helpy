@@ -1,5 +1,9 @@
 <% if user_signed_in? %>
-$('#topic_<%= @topic.id %>').replaceWith("<%= j(render partial: 'topics/topic', locals: {topic: @topic}) %>");
-<% else %>
-$('.login-link').click();
+  <% if @forum.layout == "table" %>
+	  $('#upvote_<%= @topic.id %>').text("<%= @topic.points %>");
+	<% else %>
+	  $('#upvote_<%= @topic.id %>').text("<%= t(:upvote, count: @topic.points) %>");
+	<% end %>
+<% else %>	
+  $('.login-link').click();
 <% end %>
