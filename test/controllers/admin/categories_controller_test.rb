@@ -87,6 +87,18 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
   # admin logged in, should get these pages
   %w(admin agent editor).each do |admin|
 
+    test "an #{admin} should be able to access the index and get the featured categories" do
+      sign_in users(admin.to_sym)
+      get :index, locale: :en
+      assert_response :success
+    end
+
+    test "an #{admin} should be able to get the details of a particular featured category" do
+      sign_in users(admin.to_sym)
+      get :show, locale: :en, id: 1
+      assert_response :success
+    end
+
     test "an #{admin} should be able to load new" do
       sign_in users(admin.to_sym)
       get :new, locale: :en
@@ -126,6 +138,14 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
       assert_redirected_to admin_categories_path
     end
 
+    test "an #{admin} creating a category with no name re-renders the index template" do
+      sign_in users(admin.to_sym)
+      assert_difference "Category.count", 0 do
+        post :create, category: { name: nil }, locale: :en
+      end
+      assert_template :index
+    end
+
     test "an #{admin} should be able to create a new category, and have the default translation created" do
       sign_in users(admin.to_sym)
       post :create, category: { name: "some name" }, locale: :en
@@ -139,13 +159,17 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
       assert_redirected_to admin_categories_path
     end
 
+    test "an #{admin} attempting to update a category with invalid params re-renders the edit template" do
+      sign_in users(admin.to_sym)
+      patch :update, { id: 1, category: {name: nil }, locale: :en }
+      assert_template :edit
+    end
+
     test "an #{admin} should be able to add a new translation to an existing category" do
       sign_in users(admin.to_sym)
       assert_difference "Category.find(1).translations.count", 1 do
         patch :update, { id: 1, category: {name: "some name" }, locale: :fr, lang: "fr" }
       end
-      assert_equal Category.find(1).translations.last.locale, :fr
-      assert_redirected_to admin_categories_path
     end
 
     test "an #{admin} should be able to destroy a category" do

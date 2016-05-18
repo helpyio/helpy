@@ -151,4 +151,26 @@ class UserTest < ActiveSupport::TestCase
     assert_equal User.find(6).is_editor?, true
   end
 
+  test "#find_for_oauth should not duplicate existing user, but should update the provider and the uid values and create records for new users" do
+    user_count = User.count
+    email = Faker::Internet.email
+    oath = OmniAuth::AuthHash.new({
+                                    :provider  => 'facebook',
+                                    :uid       => '123545',
+                                    :info      => { email: email }
+                                  })
+    User.find_for_oauth(oath)
+
+    assert_equal user_count + 1, User.count
+
+    user = User.last
+    user_count = User.count
+    User.find_for_oauth(oath)
+    user.reload
+
+    assert_equal user_count, User.count
+    assert_equal 'facebook', user.provider
+    assert_equal '123545', user.uid
+  end
+
 end
