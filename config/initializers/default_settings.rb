@@ -49,6 +49,7 @@ AppSettings.defaults["email.imap_security"]= Settings.imap_security
 
 AppSettings.defaults["email.pop3_server"] = Settings.pop3_server
 AppSettings.defaults["email.pop3_username"] = Settings.pop3_username
+AppSettings.defaults["email.pop3_password"] = Settings.pop3_password
 AppSettings.defaults["email.pop3_security"]= Settings.pop3_security
 
 # Cloudinary:
