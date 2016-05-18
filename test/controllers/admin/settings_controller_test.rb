@@ -91,9 +91,11 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'email.imap_server' => 'imap.something.com',
       'email.imap_username' => 'imapu',
       'email.imap_password' => 'imappw',
+      'email.imap_security' => 'ssl',
       'email.pop3_server' => 'pop3.something.com',
       'email.pop3_username' => 'pop3u',
-      'email.pop3_password' => 'pop3pw'
+      'email.pop3_password' => 'pop3pw',
+      'email.pop3_security' => 'ssl',
 
     assert_redirected_to :admin_settings
 
@@ -108,9 +110,11 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal 'imap.something.com', AppSettings['email.imap_server']
     assert_equal 'imapu', AppSettings['email.imap_username']
     assert_equal 'imappw', AppSettings['email.imap_password']
+    assert_equal 'ssl', AppSettings['email.imap_security']
     assert_equal 'pop3.something.com', AppSettings['email.pop3_server']
     assert_equal 'pop3u', AppSettings['email.pop3_username']
     assert_equal 'pop3pw', AppSettings['email.pop3_password']
+    assert_equal 'ssl', AppSettings['email.pop3_security']
   end
 
   test 'an admin should be able to add a cloudinary key' do

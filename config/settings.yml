@@ -38,10 +38,12 @@ mail_domain: #Enter the heroku.com if you are on heroku, otherwise enter your do
 pop3_server: # Enter your POP3 host
 pop3_username: # Enter your POP3 email username
 pop3_password: # Enter your POP3 email password
+pop3_security: #ssl or starttls
 
 imap_server: # Enter your IMAP host
 imap_username: # Enter your IMAP email username
 imap_password: # Enter your IMAP email password
+imap_security: # ssl or starttls
 
 # Omniauth Config
 # You must sign up with each oauth provider you wish to support, uncomment and add the ID and secret
