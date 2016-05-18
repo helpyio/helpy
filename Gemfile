@@ -80,6 +80,8 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 
+gem "selectize-rails"
+
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 gem 'daemons'

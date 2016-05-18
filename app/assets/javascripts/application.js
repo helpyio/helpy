@@ -37,6 +37,7 @@
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require rails.validations.callbacks
+//= require selectize
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link

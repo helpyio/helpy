@@ -72,12 +72,18 @@ class User < ActiveRecord::Base
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
+  acts_as_taggable_on :teams
+
   ROLES = %w[admin agent editor user]
 
   scope :admins, -> { where(admin: true).order('name asc') }
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
+  end
+
+  def is_restricted?
+    self.team_list.count > 0
   end
 
   def self.create_password

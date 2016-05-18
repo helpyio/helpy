@@ -73,11 +73,37 @@ class Admin::UsersController < Admin::BaseController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+<<<<<<< HEAD:app/controllers/users_controller.rb
+
+    if current_user.admin?
+      fetch_counts
+      @topics = @user.topics.page params[:page]
+      @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
+    end
+
+    respond_to do |format|
+      format.html {
+        redirect_to root_path
+      }
+      format.js {
+        render 'admin/tickets' if current_user.admin?
+      }
+    end
+
+  end
+
+  def set_client_id
+
+    session[:client_id] = params[:client_id]
+    render nothing: true
+
+=======
     fetch_counts
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
     @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
     render 'admin/topics/index'
+>>>>>>> 179a465b97a4ea40dfbeef591ec280f269f614b6:app/controllers/admin/users_controller.rb
   end
 
   private
@@ -99,8 +125,12 @@ class Admin::UsersController < Admin::BaseController
       :twitter,
       :linkedin,
       :language,
+<<<<<<< HEAD:app/controllers/users_controller.rb
+      :team_list
+=======
       :active,
       :admin
+>>>>>>> 179a465b97a4ea40dfbeef591ec280f269f614b6:app/controllers/admin/users_controller.rb
     )
   end
 
