@@ -25,6 +25,8 @@
 
 class DocsController < ApplicationController
 
+  theme 'flat'
+
   respond_to :html
 
   def show

@@ -19,6 +19,7 @@
 
 class CategoriesController < ApplicationController
   respond_to :html
+  theme 'flat'
 
   def index
     @categories = Category.active.ordered.with_translations(I18n.locale)

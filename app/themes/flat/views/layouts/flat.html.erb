@@ -12,10 +12,10 @@
   ga('send', 'pageview', { "title": document.title });
 </script>
 
-<div class="content">
-	<div class="wrapper" id="above-header">
+<div class="content container">
+	<div class="wrapper row" id="above-header">
 		<div class="col-12-md" class="hidden-xs small">
-			<%= nav_bar responsive: true do %>
+			<%= nav_bar brand: image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", responsive: true do %>
 					<%= menu_group pull: :right do %>
 							<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
 							<%= menu_divider %>
@@ -27,9 +27,11 @@
 							<% unless user_signed_in? %>
 							   <%= menu_item t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
 							<% else %>
-							  <%= menu_item t(:your_profile, :username => current_user.name), edit_user_registration_path %> | <%= link_to('Admin', admin_root_path) + " | " if current_user.admin? %><%= link_to t(:logout), destroy_user_session_path %>
+							  <%= menu_item t(:your_profile, :username => current_user.name), edit_user_registration_path %>
+								<%= menu_item('Admin', admin_root_path) if current_user.admin? %>
+								<%= menu_item t(:logout), destroy_user_session_path %>
 							<% end %>
-							<% if AppSettings['i18n.available_locales'].count > 1 %>
+							<!-- <% if AppSettings['i18n.available_locales'].count > 1 %>
 							  |
 							<span class="btn-group select-locale">
 							  <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
@@ -41,7 +43,7 @@
 							    <% end %>
 							  </ul>
 							</span>
-							<% end %>
+							<% end %> -->
 
 							<%= menu_item t(:locale), select_locale_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
 							<% if user_signed_in? %>
@@ -53,16 +55,11 @@
 					<% end %>
 			<% end %>
 		</div>
+
+		<%= yield :home %>
 	</div>
-	<div id="upper-wrapper" class="jumbotron">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<%= render :partial => 'layouts/header' %>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
 	<div id="body-wrapper" class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -79,24 +76,9 @@
 </div>
 
 <div id="footer-wrapper">
-
-	<div id="get-help-wrapper" class="wrapper">
-		<div class="row">
-			<div class="container">
-				<div class="col-md-6 text-center">
-					<h3><%= t(:get_help_header, default: "Still Need Help??") %></h3>
-				</div>
-				<div class="col-md-6 text-center">
-					<%= link_to t(:get_help_button, default: "Start a Discussion with Us"), new_topic_path, class: 'btn btn-primary btn-lg get-help-button' %>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="container">
 		<%= render :partial => 'layouts/footer' %>
 	</div>
 </div>
-<%= "<script src='/assets/widget.v1.js'></script>".html_safe if AppSettings['widget.show_on_support_site'] == '1' %>
 </body>
 </html>
