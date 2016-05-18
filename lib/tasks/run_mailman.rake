@@ -29,13 +29,14 @@ namespace :helpy do
     end
 
     Mailman::Application.run do
-      #to 'xikolo-ticket@apptanic.de' do
+      # to AppSettings["email.admin_email"] do
+      default do
         begin
           EmailProcessor.new(message).process
         rescue Exception => e
           p e
         end
-      #end
+      end
     end
   end
 end

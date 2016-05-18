@@ -8,7 +8,7 @@ class EmailProcessor
 
   def process
     # scan users DB for sender email
-    @user = User.where(email: get_email_from_mail).first
+    @user = User.where('lower(email) = ?', get_email_from_mail.downcase).first
     if @user.nil?
       create_user
     end
