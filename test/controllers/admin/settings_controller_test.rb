@@ -95,7 +95,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'email.pop3_server' => 'pop3.something.com',
       'email.pop3_username' => 'pop3u',
       'email.pop3_password' => 'pop3pw',
-      'email.pop3_security' => 'ssl',
+      'email.pop3_security' => 'ssl'
 
     assert_redirected_to :admin_settings
 
