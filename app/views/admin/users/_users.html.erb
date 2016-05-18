@@ -1,0 +1,11 @@
+<table id="users">
+  <col width="5%">
+  <col width="85%">
+  <col width="10%">
+
+  <%= render partial: 'admin/users/user', collection: @users if @users %>
+</table>
+
+<div class="text-center">
+  <%= paginate @users if @users %>
+</div>

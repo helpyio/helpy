@@ -1,0 +1,8 @@
+$('#posts').append('<%= j render(partial: 'post', locals: { post: @post }) %>');
+
+// Update timestamps
+$('.last-active time[data-time-ago]').timeago();
+$('.profile').initial();
+// jQuery hook
+//Helpy.ready();
+//Helpy.track();

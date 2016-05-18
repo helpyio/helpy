@@ -1,0 +1,16 @@
+<h2 class="form-subhead"><%= t(:edit, default:'Edit') %>: <%= @doc.title %></h2>
+<%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
+<%= bootstrap_form_for :doc, url: admin_category_doc_path(category_id: @category.id, id: @doc.id), :method => 'patch' do |f| %>
+
+  <% Globalize.with_locale(params['lang']) do %>
+  <%= f.alert_message "Please fix the errors below." %>
+  <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+  <% end %>
+<% end %>
+<% unless params[:lang].nil? %>
+<script>
+//$(function(){
+//  $('.no-translate').attr("disabled", true);
+//});
+</script>
+<% end %>

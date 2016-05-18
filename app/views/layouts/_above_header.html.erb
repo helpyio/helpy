@@ -2,7 +2,7 @@
 <% unless user_signed_in? %>
    <%= link_to t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
 <% else %>
-  <%= link_to t(:your_profile, :username => current_user.name), edit_user_registration_path %> | <%= link_to('Admin', admin_path) + " | " if current_user.admin? %><%= link_to t(:logout), destroy_user_session_path %>
+  <%= link_to t(:your_profile, :username => current_user.name), edit_user_registration_path %> | <%= link_to('Admin', admin_root_path) + " | " if current_user.admin? %><%= link_to t(:logout), destroy_user_session_path %>
 <% end %>
 <% if AppSettings['i18n.available_locales'].count > 1 %>
   |

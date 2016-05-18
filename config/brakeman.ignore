@@ -1,0 +1,24 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "f062db0937943cec43ebc5abe9beb082487c5a91d2ac3de650a4b1cb62d2bdd1",
+      "message": "Unescaped model attribute",
+      "file": "app/views/docs/show.html.erb",
+      "line": 26,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Doc.where(:id => params[:id]).active.first.content",
+      "render_path": [{"type":"controller","class":"DocsController","method":"show","line":34,"file":"app/controllers/docs_controller.rb"}],
+      "location": {
+        "type": "template",
+        "template": "docs/show"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "note": "Doc.content should only ever be entered by an admin, significantly mitigating the exposure."
+    }
+  ],
+  "updated": "2016-05-12 15:15:00 -0600",
+  "brakeman_version": "3.2.1"
+}

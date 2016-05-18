@@ -1,12 +1,12 @@
-<%#= @page_title || AppSettings['settings.site_name'] %>
-<title><%= @title_tag || AppSettings['settings.site_name'] %></title>
+<!-- <title><%= @title_tag || AppSettings['settings.site_name'] %></title> -->
+<title><%= content_for(:title) ? content_for(:title) : AppSettings['settings.site_name'] %></title>
 
 <meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
 <meta name="distribution" content="all" />
 <meta name="robots" content="all" />
-<meta name="description" content="<%= @meta_description %>" />
-<meta name="keywords" content="<%= @keywords %>" />
+<meta name="description" content="<%= yield_meta_tag(:description, '') %>" />
+<meta name="keywords" content="<%= yield_meta_tag(:keywords, '') %>" />
 <meta name="resource-type" content="document" />
 <meta name="MSSmartTagsPreventParsing" content="true" />
 <meta name="viewport" content="width=device-width, initial-scale=1">

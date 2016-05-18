@@ -1,3 +1,7 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+<% meta_tag :description, "#{@category.meta_description}" %>
+<% meta_tag :keywords, "#{@category.keywords}" %>
+
 <div class="row content-row">
 
   <%= render 'left_nav' %>

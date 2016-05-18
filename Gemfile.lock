@@ -558,6 +558,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   simple_form
+  simplecov
   spring (~> 1.4.0)
   staccato
   sucker_punch (~> 2.0)

@@ -1,0 +1,18 @@
+$('#tickets').html("<%= escape_javascript(render 'admin/users/users') %>");
+$('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
+$('#user-info').html("<%= j render 'admin/users/user_info_horizontal' if @user %>");
+$('#ticket-page-title').html("<%= t(:users_found, count: @users.size, query: params[:q].titleize, default: 'Search Results') unless params[:q] == 'users'%> <%= status_label(@status) if @status %> <span class='hidden-xs pull-right'><%= j link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path, remote: true, class: 'btn btn-primary' %></span><%= escape_javascript(render 'admin/topics/ticket_nav_dropdown') %>");
+window.location.hash = 'users';
+
+// Empty ticket search field
+$('q').val("");
+
+// Update timestamps
+$('.last-active time[data-time-ago]').timeago();
+
+// Send ping to GA
+ga('send', 'pageview');
+
+// jQuery hook
+Helpy.ready();
+Helpy.track();

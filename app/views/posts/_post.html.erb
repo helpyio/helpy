@@ -20,14 +20,14 @@
 			<% if post.topic.forum.allow_post_voting == true %>
 			<div id="post-vote-<%= post.id %>" class="btn btn-default">
 				<% if post.kind == 'first' %>
-				<%= link_to t(:upvote, count: post.topic.points), up_vote_path(post.topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: post.topic.to_param} %>
+				<%= link_to t(:upvote, count: post.topic.points), up_vote_path(post.topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: post.topic.to_param}, id: "upvote_#{post.topic.id}" %>
 				<% else %>
-				<%= link_to t(:upvote, count: post.points), post_vote_path(post.id), method: :post, remote: true, class: 'post-vote', data: {voted: post.id} %>
+				<%= link_to t(:upvote, count: post.points), post_vote_path(post.id), method: :post, remote: true, class: 'post-vote', data: {voted: post.id}, id: "upvote_#{post.id}"  %>
 				<% end %>
 			</div>
 			<% end %>
-            <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } unless Cloudinary.config.cloud_name.nil? %>
-        </div>
+      <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } unless Cloudinary.config.cloud_name.nil? %>
+    </div>
 
 		<% if user_signed_in? && post.kind == 'first' && post.topic.forum.allow_post_voting == true %>
 			<div class="add-form inline-reply">

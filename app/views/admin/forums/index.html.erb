@@ -1,0 +1,23 @@
+<h2>Admin Communities <span class="admin-options pull-right">
+  <%= link_to t(:new_community, default: "Create New Community"), new_admin_forum_path, class: 'btn btn-primary' %>
+</span></h2>
+
+<div class="row">
+  <div class="col-md-12">
+    <table id="forums" class="table-hover">
+
+      <col width="85%">
+      <col width="15%">
+      <tbody id="categories">
+      <tr>
+        <td colspan="2" class='tiny-header'>Community</td>
+      </tr>
+      <%= render partial: 'forum', collection: @forums %>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

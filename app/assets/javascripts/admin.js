@@ -24,7 +24,7 @@ Helpy.admin = function(){
       var position = ui.item.index();
       $.ajax({
         type: 'POST',
-        url: '/admin/content/update_order',
+        url: '/admin/shared/update_order',
         dataType: 'json',
         data: {object: obj, obj_id: obj_id, row_order_position: position }
       });

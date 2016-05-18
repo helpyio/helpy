@@ -1,13 +1,14 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+<% meta_tag :description, "Community discussion for #{AppSettings['settings.site_name']}" %>
+<% meta_tag :keywords, "support, articles, documentation, how-to, faq, frequently asked questions, forum, discussion" %>
 
 <table id="forums" class="table-hover">
   <col>
   <col width="10%">
-
   <tr>
       <th><%= t(:forum_name) %></th>
 		  <th class="text-right"><%= t(:last_activity) %></th>
   </tr>
-
   <tbody>
 	<%= render :partial => 'forum', :collection => @forums %>
   </tbody>
