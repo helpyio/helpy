@@ -31,7 +31,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
       end
     end
 
-    assert current_path == '/en/users/sign_in'
+    assert current_path == '/en/thanks'
 
   end
 
