@@ -122,7 +122,8 @@ class User < ActiveRecord::Base
   # Utility methods for checking the role of an admin:
 
   def is_admin?
-    self.admin? || self.role == 'admin' ? true : false
+    self.role == 'admin' ? true : false
+    # self.admin? || self.role == 'admin' ? true : false
   end
 
   def is_agent?

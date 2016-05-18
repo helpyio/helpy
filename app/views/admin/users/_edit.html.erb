@@ -11,8 +11,8 @@
       <%= f.text_field :company %>
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
-      <%= f.check_box :active, inline: true %> <%#= f.check_box :admin, inline: true %>
       <%= f.select(:role, [['Select Role',''],['Admin','admin'],['Agent','agent'],['Editor','editor'],['User','user']]) if current_user.is_admin? %>
+      <%= f.check_box :active, inline: true %> <%#= f.check_box :admin, inline: true %>
     </span>
   </div>
   <div id="user-contact-info" class="col-md-4 col-sm-6 col-xs-12  user-info">

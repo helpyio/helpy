@@ -132,11 +132,11 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "is_admin? should evaluate to false if user is an agent" do
-    assert_equal User.find(6).is_admin?, true
+    assert_equal User.find(6).is_admin?, false
   end
 
   test "is_admin? should evaluate to false if user is an editor" do
-    assert_equal User.find(7).is_admin?, true
+    assert_equal User.find(7).is_admin?, false
   end
 
   test "is_editor? should evaluate to true if user is an agent" do

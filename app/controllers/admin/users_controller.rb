@@ -103,8 +103,7 @@ class Admin::UsersController < Admin::BaseController
       :twitter,
       :linkedin,
       :language,
-      :active,
-      :admin
+      :active
     )
   end
 
