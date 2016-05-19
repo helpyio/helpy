@@ -45,7 +45,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
   end
 
   test "a browser visiting an admin page should be redirected to login in their locale" do
-    visit 'admin'
+    visit '/admin'
     assert_equal '/en/users/sign_in', current_path
   end
 
