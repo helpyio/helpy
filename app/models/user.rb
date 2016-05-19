@@ -123,7 +123,6 @@ class User < ActiveRecord::Base
 
   def is_admin?
     self.role == 'admin' ? true : false
-    # self.admin? || self.role == 'admin' ? true : false
   end
 
   def is_agent?
