@@ -8,6 +8,9 @@ AppSettings.defaults["settings.site_tagline"] = Settings.site_tagline
 AppSettings.defaults["settings.product_name"] = Settings.product_name
 AppSettings.defaults["settings.support_phone"] = Settings.support_phone
 AppSettings.defaults["settings.google_analytics_id"] = Settings.google_analytics_id
+AppSettings.defaults["settings.recaptcha_site_key"] = Settings.recaptcha_site_key
+AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
+
 
 # Design: (Colors etc.)
 

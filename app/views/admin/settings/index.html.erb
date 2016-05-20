@@ -39,6 +39,8 @@
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
         <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: "Site Tagline" %>
         <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
+        <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: "Recaptcha Site Key" %>
+        <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: "Recaptcha API Key" %>
       </div>
       <div class="settings-section design hidden">
           <div class="row">
