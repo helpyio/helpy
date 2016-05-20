@@ -24,7 +24,7 @@
       <%= f.text_area :bio %>
       <%= f.text_field :company %>
       <%= f.text_field :title %>
-      <%= f.text_area :signature if current_user.admin? %>
+      <%= f.text_area :signature if current_user.is_admin? %>
       <% if @user.provider.nil? %>
         <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
       <% end %>

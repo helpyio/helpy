@@ -75,7 +75,7 @@ Rails.application.routes.draw do
     end
     resources :posts
     # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
-    root to: 'topics#index'
+    root to: 'dashboard#index'
   end
 
   # Receive email from Griddler
