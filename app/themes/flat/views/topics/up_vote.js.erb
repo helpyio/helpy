@@ -1,9 +1,0 @@
-<% if user_signed_in? %>
-  <% if @forum.layout == "table" %>
-	  $('#upvote_<%= @topic.id %>').text("<%= @topic.points %>");
-	<% else %>
-	  $('#upvote_<%= @topic.id %>').text("<%= t(:upvote, count: @topic.points) %>");
-	<% end %>
-<% else %>	
-  $('.login-link').click();
-<% end %>
