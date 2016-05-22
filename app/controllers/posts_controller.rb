@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
   respond_to :js, only: [:up_vote]
   layout "clean", only: :index
-  theme 'flat'
+  theme :theme_chosen
 
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)

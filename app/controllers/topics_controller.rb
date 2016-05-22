@@ -30,7 +30,7 @@ class TopicsController < ApplicationController
   before_action :allow_iframe_requests
 
   layout "clean", only: [:new, :index]
-  theme 'flat'
+  theme :theme_chosen
 
   # TODO Still need to so a lot of refactoring here!
 

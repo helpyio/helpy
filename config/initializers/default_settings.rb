@@ -20,6 +20,10 @@ AppSettings.defaults["css.link_color"] = "004084"
 AppSettings.defaults["css.form_background"] = "F0FFF0"
 AppSettings.defaults["css.still_need_help"] = "ffdf91"
 
+# Theme:
+
+AppSettings.defaults["theme.active"] = "helpy"
+
 # i18n:
 
 AppSettings.defaults["i18n.default_locale"] = "en"

@@ -18,28 +18,24 @@
 </div>
 <% end %>
 
-<!-- <div class="row">
-  <div id="category-col" class="col-md-12"> -->
-  <div class="row">
-    <h2 class="text-center space-h2"><%= t(:browse_topics)%></h2>
+<div class="row">
+  <h2 class="text-center space-h2"><%= t(:browse_topics)%></h2>
 
-    <% @categories.each do |category| %>
+  <% @categories.each do |category| %>
 
-      <% if category.docs.all.with_translations(I18n.locale).count > 0 %>
-        <div class="col-md-6">
-          <h5 class="tiny-header"><%= link_to category.name, category_path(category), id: "category-#{category.id}", class:'tiny-header'  %></h5>
-          <ul class='list-unstyled articles'>
-            <% category.docs.with_translations(I18n.locale).ordered.active.limit(5).each_with_index do |doc| -%>
-              <%= render ("docs/doc"), doc: doc -%>
-            <% end -%>
-            <li class="article article-more">
-              <%= link_to "More Documents", category_path(category) if category.docs.ordered.active.count > 5 -%>
-            </li>
-          </ul>
-        </div>
-      <% end %>
-
+    <% if category.docs.all.with_translations(I18n.locale).count > 0 %>
+      <div class="col-md-6">
+        <h5 class="tiny-header"><%= link_to category.name, category_path(category), id: "category-#{category.id}", class:'tiny-header'  %></h5>
+        <ul class='list-unstyled articles'>
+          <% category.docs.with_translations(I18n.locale).ordered.active.limit(5).each_with_index do |doc| -%>
+            <%= render ("docs/doc"), doc: doc -%>
+          <% end -%>
+          <li class="article article-more">
+            <%= link_to "More Documents", category_path(category) if category.docs.ordered.active.count > 5 -%>
+          </li>
+        </ul>
+      </div>
     <% end %>
-  </div>
-  <!-- </div>
-</div> -->
+
+  <% end %>
+</div>

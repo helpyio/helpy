@@ -105,4 +105,8 @@ class ApplicationController < ActionController::Base
     response.headers.delete('X-Frame-Options')
   end
 
+  def theme_chosen
+    AppSettings['theme.active'] || 'helpy'
+  end
+
 end

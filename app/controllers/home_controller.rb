@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
 
-  theme 'flat'
-
+  theme :theme_chosen
   respond_to :html
 
   def index

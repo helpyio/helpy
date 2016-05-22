@@ -62,6 +62,11 @@ Helpy.admin = function(){
     }
   });
 
+  // $('.theme').off().on('click',function(){
+  //   var chosenTheme = $('input[name="theme"]:checked').val();
+  //   $('input#theme.active').val(chosenTheme);
+  // })
+
 };
 
 $(document).on('page:change', Helpy.admin);

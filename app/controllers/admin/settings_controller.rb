@@ -4,6 +4,7 @@ class Admin::SettingsController < Admin::BaseController
 
   def index
     @settings = AppSettings.get_all
+    @themes = Theme.find_all
   end
 
   def update_settings

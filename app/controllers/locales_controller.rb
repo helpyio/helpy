@@ -1,7 +1,7 @@
 class LocalesController < ApplicationController
 
   respond_to :html
-  theme 'flat'
+  theme :theme_chosen
 
   def select
     @page_title = t(:select_locale, default: "Change your Locale")

@@ -19,7 +19,7 @@
 class ForumsController < ApplicationController
 
   respond_to :html
-  theme 'flat'
+  theme :theme_chosen
 
   def index
     @page_title = t(:community, default: "Community")

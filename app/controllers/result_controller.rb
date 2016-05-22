@@ -1,6 +1,6 @@
 class ResultController < ApplicationController
   respond_to :html, :js
-  theme 'flat'
+  theme :theme_chosen
 
   def index
     @results = PgSearch.multisearch(params[:q]).page params[:page]
