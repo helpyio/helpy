@@ -205,7 +205,7 @@ en:
   settings: "Settings"
   general: "General"
   design: "Design"
-  i18n: "International"
+  international: "International"
   widget: "Embeddable Widget"
 
   activerecord:

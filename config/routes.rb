@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
     post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
+    get 'thanks' => 'topics#thanks', as: :topic_thanks
     get 'result' => 'result#index', as: :result
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
@@ -74,7 +75,7 @@ Rails.application.routes.draw do
     end
     resources :posts
     # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
-    root to: 'topics#index'
+    root to: 'dashboard#index'
   end
 
   # Receive email from Griddler

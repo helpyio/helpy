@@ -15,14 +15,29 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(_resource)
     # If the user is an agent, redirect to admin panel
-    redirect_url = current_user.admin? ? admin_root_url : root_url
-    oauth_url = current_user.admin? ? admin_root_url : request.env['omniauth.origin']
+    redirect_url = current_user.is_agent? ? admin_root_url : root_url
+    oauth_url = current_user.is_agent? ? admin_root_url : request.env['omniauth.origin']
     oauth_url || redirect_url
   end
 
   def recaptcha_enabled?
     AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
   end  
+
+  # These 3 methods provide feature authorization for admins. Editor is the most restricted,
+  # agent is next and admin has access to everything:
+
+  def verify_editor
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
+  end
+
+  def verify_agent
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
+  end
+
+  def verify_admin
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
+  end
 
   private
 
@@ -83,11 +98,7 @@ class ApplicationController < ActionController::Base
     @closed = Topic.closed.count
     @spam = Topic.spam.count
 
-    @admins = User.admins
-  end
-
-  def verify_admin
-      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    @admins = User.agents
   end
 
   def instantiate_tracker

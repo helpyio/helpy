@@ -205,7 +205,7 @@ tr:
   settings: "Ayarlar: Genel"
   general: "Genel"
   design: "Dizayn"
-  i18n: "Uluslararası"
+  international: "Uluslararası"
   widget: "Gömülebilir Bileşen"
 
   activerecord:

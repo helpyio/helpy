@@ -29,7 +29,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, :only => ['tickets','ticket']
   before_action :allow_iframe_requests
 
-  layout "clean", only: [:new, :index]
+  layout "clean", only: [:new, :index, :thanks]
 
   # TODO Still need to so a lot of refactoring here!
 
@@ -148,9 +148,10 @@ class TopicsController < ApplicationController
       @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
 
       if @topic.private?
-        redirect_to params[:from] == 'widget' ? widget_thanks_path : ticket_path(@topic)
+        redirect_to params[:from] == 'widget' ? widget_thanks_path : topic_thanks_path
       else
-        redirect_to @topic.doc_id.nil? ? topic_posts_path(@topic) : doc_path(@topic.doc_id)
+        # redirect_to @topic.doc_id.nil? ? topic_posts_path(@topic) : doc_path(@topic.doc_id)
+        redirect_to topic_posts_path(@topic)
       end
     else
       if params[:from] == 'widget'
@@ -163,9 +164,14 @@ class TopicsController < ApplicationController
 
   end
 
+  def thanks
+     @page_title = t(:thank_you, default: 'Thank You!')
+  end
+
   def up_vote
     if user_signed_in?
       @topic = Topic.find(params[:id])
+      @forum = @topic.forum
       @topic.votes.create(user_id: current_user.id)
       @topic.touch
       @topic.reload

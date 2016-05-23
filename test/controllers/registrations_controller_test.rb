@@ -35,13 +35,11 @@ class RegistrationsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-
-
   test "a signed in user should NOT be able to change their admin or active status" do
     sign_in users(:user)
 
-    patch :update, { id: 2, user: {admin: true, current_password: "12345678"}, locale: :en }
-    assert users(:user).admin == false
+    patch :update, { id: 2, user: {role: 'admin', current_password: "12345678"}, locale: :en }
+    assert users(:user).is_admin? == false
 
     assert_redirected_to root_path
 

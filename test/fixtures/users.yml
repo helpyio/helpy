@@ -91,6 +91,26 @@ another_admin:
   identity_url: MyString
   name: Admin Guy
   email: guy@test.com
-  admin: true
+  admin: false
   role: admin
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+
+agent:
+  id: 6
+  login: agent
+  identity_url: MyString
+  name: Agent
+  email: agent@test.com
+  admin: false
+  role: agent
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+
+editor:
+  id: 7
+  login: editor
+  identity_url: MyString
+  name: Editor
+  email: editor@test.com
+  admin: false
+  role: editor
   encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK

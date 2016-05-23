@@ -132,8 +132,8 @@ class TopicsControllerTest < ActionController::TestCase
     assert_difference 'Post.count', 1, 'A post should have been created' do
       post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 1, private: true }, post: { body: 'this is the body' }, locale: :en
     end
-
-    assert_redirected_to ticket_path(assigns(:topic)), 'Did not redirect to private topic view'
+    
+    assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
   # A user who is registered, but not signed in currently should be able to create a new private
@@ -149,7 +149,7 @@ class TopicsControllerTest < ActionController::TestCase
       end
     end
 
-    assert_redirected_to ticket_path(assigns(:topic)), 'Did not redirect to private topic view'
+    assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
   test 'a signed in user should not see trashed topics in a public forum' do
