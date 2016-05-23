@@ -54,33 +54,41 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
   # admins
 
-  test "an admin should be able to update a user" do
-    sign_in users(:admin)
-    assert_difference("User.find(2).name.length", -3) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com"}, locale: :en}
+  %w(admin agent).each do |admin|
+    test "an #{admin} should be able to update a user" do
+      sign_in users(admin.to_sym)
+      assert_difference("User.find(2).name.length", -3) do
+        patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com"}, locale: :en}
+      end
+      assert User.find(2).name == "something", "name does not update"
     end
-    assert User.find(2).name == "something", "name does not update"
+
+    test "an #{admin} should be able to see a user profile" do
+      xhr :get, :show, { id: 2 }, format: 'js'
+      # assert_response :success
+      # assert_equal(6, assigns(:topics).count)
+    end
+
+    test "an #{admin} should be able to edit a user profile" do
+      xhr :get, :edit, { id: 2 }
+      # assert_response :success
+    end
   end
 
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", admin: true}, locale: :en}
+      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
     end
   end
 
-  ### Testing User Views
-
-  test 'an admin should be able to see a user profile' do
-    xhr :get, :show, { id: 2 }, format: 'js'
-    # assert_response :success
-    # assert_equal(6, assigns(:topics).count)
+  %w(user editor agent).each do |unauthorized|
+    test "an #{unauthorized} should NOT be able to update a user and change their role" do
+      sign_in users(unauthorized.to_sym)
+      assert_difference("User.admins.count", 0) do
+        patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
+      end
+    end
   end
-
-  test 'an admin should be able to edit a user profile' do
-    xhr :get, :edit, { id: 2 }
-    # assert_response :success
-  end
-
 
 end

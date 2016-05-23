@@ -26,9 +26,21 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
     sign_out
   end
 
-  test "an admin should be able to sign in and be shown the admin page" do
+  test "an admin should be able to sign in and be shown the topics page" do
     sign_in("admin@test.com")
-    assert_equal '/admin', current_path
+    assert_equal '/admin/topics', current_path
+    sign_out
+  end
+
+  test "an agent should be able to sign in and be shown the topics page" do
+    sign_in("agent@test.com")
+    assert_equal '/admin/topics', current_path
+    sign_out
+  end
+
+  test "an editor should be able to sign in and be shown the categories page" do
+    sign_in("editor@test.com")
+    assert_equal '/en', current_path
     sign_out
   end
 

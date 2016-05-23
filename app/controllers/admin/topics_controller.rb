@@ -26,6 +26,7 @@
 
 class Admin::TopicsController < Admin::BaseController
 
+  before_action :verify_agent
   before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
   before_action :pipeline, :only => ['index', 'show', 'update_topic']
   before_action :remote_search, :only => ['index', 'show', 'update_topic']

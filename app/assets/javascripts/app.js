@@ -1,7 +1,6 @@
 var Helpy = Helpy || {};
 
 Helpy.ready = function(){
-
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
@@ -207,17 +206,6 @@ Helpy.ready = function(){
     $(this).prev().removeClass('animated bounce');
   });
 
-  // Truncate Q&A responses
-  $('.shorten').jTruncate({
-        length: 200,
-        minTrail: 0,
-        moreText: " (more)",
-        lessText: " (less)",
-        ellipsisText: " ...",
-        moreAni: "",
-        lessAni: ""
-    });
-
   // Locale Picker
   $('#lang').off().on('change', function() {
     var url = $("#lang").val();
@@ -307,3 +295,18 @@ Helpy.didthisHelp = function(yesno){
 
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);
+
+$(document).on('page:change', function () {
+  
+  //Truncate Q&A responses
+  $('.shorten').jTruncate({
+    length: 200,
+    minTrail: 0,
+    moreText: " (more)",
+    lessText: " (less)",
+    ellipsisText: " ...",
+    moreAni: "",
+    lessAni: ""
+  });
+});
+

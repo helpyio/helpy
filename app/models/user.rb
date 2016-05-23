@@ -74,7 +74,9 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin agent editor user]
 
-  scope :admins, -> { where(admin: true).order('name asc') }
+  # TODO: Will want to refactor this using .or when upgrading to Rails 5
+  scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
+  scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
@@ -113,6 +115,22 @@ class User < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.parameterize}"
+  end
+
+  # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
+  # and changing it could be painful for upgrading installed users. These are three
+  # Utility methods for checking the role of an admin:
+
+  def is_admin?
+    self.role == 'admin' ? true : false
+  end
+
+  def is_agent?
+    self.role == 'agent' || self.role == 'admin' ? true : false
+  end
+
+  def is_editor?
+    self.role == 'editor' || self.role == 'agent' || self.role == 'admin' ? true : false
   end
 
 end
