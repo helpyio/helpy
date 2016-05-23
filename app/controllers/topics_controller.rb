@@ -97,13 +97,13 @@ class TopicsController < ApplicationController
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id] )
     @forums = Forum.ispublic.all
-
+     
     unless user_signed_in?
       
       # User is not signed in, lets see if we can recognize the email address
       @user = User.where(email: params[:topic][:user][:email]).first
       
-      if recaptcha_enabled?
+      if recaptcha_enabled? && params[:from] != 'widget'
         render :new and return unless verify_recaptcha(model: @topic)
       end
    
