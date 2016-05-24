@@ -6,7 +6,7 @@
     </div>
     <h4 class="qna"><%= link_to h(qna.name), topic_posts_path(qna) -%></h4>
     <div class="pull-left">
-      <%= avatar_image(post.user, size=40) %>
+      <%= avatar_image(post.topic.user, size=40) %>
   	</div>
   	<div class="media-body media-right">
   		<span class="hidden-sm hidden-md hidden-lg"><%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %><br/></span>
