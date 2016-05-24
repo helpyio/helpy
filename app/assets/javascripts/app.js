@@ -70,16 +70,6 @@ Helpy.ready = function(){
     }
   });
 
-  // Allows image insertion into quill editor
-  $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-    var element = document.querySelector("trix-editor");
-    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
-    element.editor.insertHTML(thisImage);
-
-    $('.image_public_id').val(data.result.public_id);
-    return true;
-  });
-
   // Sets up autoscroll for any link with class autoscroll
   // requires data-target param containing class or ID of target
   $(".autoscroll").each(function(){
@@ -308,5 +298,18 @@ $(document).on('page:change', function () {
     moreAni: "",
     lessAni: ""
   });
+
+  // Allows image insertion into quill editor
+  $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+    var element = document.querySelector("trix-editor");
+    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
+    element.editor.insertHTML(thisImage);
+
+    $('.image_public_id').val(data.result.public_id);
+    return true;
+  });
+
 });
+
+
 
