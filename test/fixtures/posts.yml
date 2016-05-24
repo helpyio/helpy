@@ -78,3 +78,19 @@ idea:
   body: "This is a public idea, should be voteable"
   kind: first
   active: true
+
+comment:
+  id: 9
+  topic_id: 9
+  user_id: 2
+  body: "Commenting on an article"
+  kind: first
+  active: true
+
+comment_reply:
+  id: 10
+  topic_id: 9
+  user_id: 2
+  body: "Replying to comment"
+  kind: reply
+  active: true
