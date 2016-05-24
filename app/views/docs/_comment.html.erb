@@ -1,7 +1,9 @@
+
 <!-- comment topic: <%= comment.topic.id %> post: <%= comment.id %>-->
+<!-- <div id="post-<%= comment.id %>" class="media post-container <%= "kind-#{comment.kind}" %><%= comment.topic.forum.allow_post_voting? ? "" : " disallow-post-voting" %><%= " inactive" unless comment.active? %>"> -->
 <div id="post-<%= comment.id %>" class="media post-container kind-first <%= comment.topic.forum.allow_post_voting? ? "" : " disallow-post-voting" %><%= " inactive" unless comment.active? %>">
 	<div class="pull-left">
-		<%= avatar_image(comment.topic.user, size=40) %>
+		<%= avatar_image(comment.user, size=40) %>
 	</div>
 	<div class="media-body media-right">
 		<span class="hidden-sm hidden-md hidden-lg"><%= comment.kind == "first" ? last_active_time(comment.created_at) : "#{distance_of_time_in_words(comment.created_at,comment.topic.created_at)} later" %><br/></span>
