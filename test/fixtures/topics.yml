@@ -100,3 +100,13 @@ grid_post:
   current_status: new
   private: false
   post_cache: This is a new Idea
+
+article:
+  id: 9
+  forum_id: 6
+  user_id: 2
+  name: "Sample topic for doc"
+  doc_id: 7
+  current_status: new
+  private: false
+  post_cache: Sample topic for doc
