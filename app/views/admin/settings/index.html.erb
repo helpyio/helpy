@@ -93,6 +93,8 @@
           <%= f.text_field 'email.pop3_username', value: AppSettings['email.pop3_username'], label: "POP3 Login" %>
           <%= f.password_field 'email.pop3_password', value: AppSettings['email.pop3_password'], label: "POP3 Password" %>
           <%= f.select 'email.pop3_security', options_for_select([['None', ''],['SSL', 'ssl'],['StartTLS','starttls']], AppSettings['email.pop3_security']), label: "POP3 Security" %>
+          <%= f.text_field 'email.pop3_port', value: AppSettings['email.pop3_port'], label: "POP3 Port (if empty use default port)" %>
+
         </div>
         <div class="imap-settings <%= "hidden" if "#{AppSettings['email.mail_service']}" != 'imap' %>">
           <p>IMAP will require run 'rake helpy:mailman'. Also changes will require a restart of the rake task</p>
@@ -100,6 +102,7 @@
           <%= f.text_field 'email.imap_username', value: AppSettings['email.imap_username'], label: "IMAP Login" %>
           <%= f.password_field 'email.imap_password', value: AppSettings['email.imap_password'], label: "IMAP Password" %>
           <%= f.select 'email.imap_security', options_for_select([['None', ''],['SSL', 'ssl'],['StartTLS','starttls']], AppSettings['email.imap_security']), label: "IMAP Security" %>
+          <%= f.text_field 'email.imap_port', value: AppSettings['email.imap_port'], label: "IMAP Port (if empty use default port)" %>
 
         </div>
         <%= f.form_group 'email.send_email', label: { text: "Enable Outbound (SMTP) Email" }, class: 'send-email-toggle' do %>

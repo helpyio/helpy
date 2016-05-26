@@ -7,24 +7,33 @@ namespace :helpy do
 
     if AppSettings["email.mail_service"] == 'pop3'
       puts 'pop3 config found'
+      pop3_port = AppSettings['email.pop3_port']
+      if pop3_port.empty?
+        pop3_port = AppSettings['email.pop3_security'] == 'ssl' ? 995 : 110
+      end
       Mailman.config.pop3 = {
         server: AppSettings['email.pop3_server'],
         ssl: AppSettings['email.pop3_security'] == 'ssl' ? true : false,
         starttls: AppSettings['email.pop3_security'] == 'starttls' ? true : false,
         username: AppSettings['email.pop3_username'],
-        password: AppSettings['email.pop3_password']
+        password: AppSettings['email.pop3_password'],
+        port: pop3_port
       }
     end
 
     if AppSettings["email.mail_service"] == 'imap'
       puts 'imap config found'
+      imap_port = AppSettings['email.imap_port']
+      if imap_port.empty?
+        imap_port = AppSettings['email.imap_security'] == 'ssl' ? 993 : 143
+      end
       Mailman.config.imap = {
         server: AppSettings['email.imap_server'],
-        port: 993, # you usually don't need to set this, but it's there if you need to
         ssl: AppSettings['email.imap_security'] == 'ssl' ? true : false,
         starttls: AppSettings['email.imap_security'] == 'starttls' ? true : false,
         username: AppSettings['email.imap_username'],
-        password: AppSettings['email.imap_password']
+        password: AppSettings['email.imap_password'],
+        port: imap_port
       }
     end
 

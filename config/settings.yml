@@ -39,11 +39,13 @@ pop3_server: # Enter your POP3 host
 pop3_username: # Enter your POP3 email username
 pop3_password: # Enter your POP3 email password
 pop3_security: #ssl or starttls
+pop3_port: #pop3 port, if not set will default based on security setting
 
 imap_server: # Enter your IMAP host
 imap_username: # Enter your IMAP email username
 imap_password: # Enter your IMAP email password
 imap_security: # ssl or starttls
+imap_port: #pop3 port, if not set will default based on security setting
 
 # Omniauth Config
 # You must sign up with each oauth provider you wish to support, uncomment and add the ID and secret
