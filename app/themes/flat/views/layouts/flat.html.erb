@@ -4,62 +4,98 @@
 	<head>
 		<%= render partial: 'layouts/head' %>
 	</head>
-	<%= css_overrides %>
-
 <body>
 <script>
   ga('set', 'location', location.href.split('#')[0]);
   ga('send', 'pageview', { "title": document.title });
 </script>
 
-<div class="content container">
-	<div class="wrapper row" id="above-header">
-		<div class="col-12-md" class="hidden-xs small">
-			<%= nav_bar brand: image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", responsive: true do %>
-					<%= menu_group pull: :right do %>
-							<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
-							<%= menu_divider %>
 
-							<%= menu_item t(:your_tickets), tickets_path, Settings.tickets if user_signed_in? %>
-							<%= menu_item t(:ask_a_question), new_topic_path %>
-							<%= menu_divider %>
-							<%= menu_item "#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'], :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
-							<% unless user_signed_in? %>
-							   <%= menu_item t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
-							<% else %>
-							  <%= menu_item t(:your_profile, :username => current_user.name), edit_user_registration_path %>
-								<%= menu_item('Admin', admin_root_path) if current_user.admin? %>
-								<%= menu_item t(:logout), destroy_user_session_path %>
-							<% end %>
-							<!-- <% if AppSettings['i18n.available_locales'].count > 1 %>
-							  |
-							<span class="btn-group select-locale">
-							  <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
-							  <ul class="dropdown-menu dropdown-menu-right" role="menu">
-							    <% AppSettings['i18n.available_locales'].each do |l| %>
-							    <% local_url = request.fullpath.split("/") %>
-							    <% local_url[1] = "#{l}" %>
-							    <li><%= link_to I18n.translate("language_name", locale: l).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (l == I18n.locale) ? 'strong' : '' %></li>
-							    <% end %>
-							  </ul>
-							</span>
-							<% end %> -->
-
-							<%= menu_item t(:locale), select_locale_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+					<%= link_to image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand', responsive: true %>
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right" data-hook="header-main-nav">
+              <span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
+              <li class="divider-vertical"></li>
+              <%= content_tag :li, link_to(t(:your_tickets), tickets_path), data: { hook: 'tickets-nav' } if user_signed_in? %>
+              <%#= content_tag :li, link_to(t(:knowledgebase), categories_path, class:'kblink') if Settings.knowledgebase %>
+              <%#= content_tag :li, link_to(t(:community), forums_path) if Settings.forums %>
+              <%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' } %>
+              <li class="divider-vertical"></li>
+              <%= content_tag :li, link_to("#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'], :class => 'hidden-lg hidden-md hidden-sm border-bottom') %>
+              <%= content_tag :li, link_to(t(:locale), select_locale_path, :class => 'header-login hidden-lg hidden-md hidden-sm') %>
+              <%= content_tag :li, link_to(t(:your_profile), edit_user_registration_path, :class => 'header-login hidden-lg hidden-md hidden-sm') %>
 							<% if user_signed_in? %>
-							<%= menu_item t(:your_profile), edit_user_registration_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
-							<%= menu_item t(:logout), destroy_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+							<%= content_tag :li, link_to(t(:logout), destroy_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm') %>
 							<% else %>
-							<%= menu_item t(:login), new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+							<%= content_tag :li, link_to(t(:login), new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm') %>
 							<% end %>
-					<% end %>
-			<% end %>
-		</div>
+          </ul>
+      </div>
+  </div>
+</nav>
 
+
+<%= nav_bar brand: image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", responsive: true do %>
+		<%= menu_group pull: :right do %>
+				<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
+				<%= menu_divider %>
+
+				<%= menu_item t(:your_tickets), tickets_path, Settings.tickets if user_signed_in? %>
+				<%= menu_item t(:ask_a_question), new_topic_path %>
+				<%= menu_divider %>
+				<%= menu_item "#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'], :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
+				<% unless user_signed_in? %>
+					 <%= menu_item t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
+				<% else %>
+					<%= menu_item t(:your_profile, :username => current_user.name), edit_user_registration_path %>
+					<%= menu_item('Admin', admin_root_path) if current_user.admin? %>
+					<%= menu_item t(:logout), destroy_user_session_path %>
+				<% end %>
+				<!-- <% if AppSettings['i18n.available_locales'].count > 1 %>
+					|
+				<span class="btn-group select-locale">
+					<span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
+					<ul class="dropdown-menu dropdown-menu-right" role="menu">
+						<% AppSettings['i18n.available_locales'].each do |l| %>
+						<% local_url = request.fullpath.split("/") %>
+						<% local_url[1] = "#{l}" %>
+						<li><%= link_to I18n.translate("language_name", locale: l).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (l == I18n.locale) ? 'strong' : '' %></li>
+						<% end %>
+					</ul>
+				</span>
+				<% end %> -->
+
+				<%= menu_item t(:locale), select_locale_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+				<% if user_signed_in? %>
+				<%= menu_item t(:your_profile), edit_user_registration_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+				<%= menu_item t(:logout), destroy_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+				<% else %>
+				<%= menu_item t(:login), new_user_session_path, :class => 'header-login hidden-lg hidden-md hidden-sm' %>
+				<% end %>
+		<% end %>
+<% end %>
+<!-- <div class="container small flat-nav-container">
+
+</div> -->
+<div class="jumbotron flat-main-panel">
+	<div class="container">
+		<div class="col-md-12">
 		<%= yield :home %>
+		</div>
 	</div>
+</div>
 
-
+<div class="content container">
 	<div id="body-wrapper" class="container">
 			<div class="row">
 				<div class="col-md-12">

@@ -1,7 +1,7 @@
 <% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 
 <% content_for :home do %>
-<div class="row col-md-12 text-center" id="home-search">
+<div class="text-center" id="home-search">
   <h1 id="how-help" class="text-center"><%= t(:how_can_we_help) %></h1>
   <%= render 'result/search_form' %>
 </div>
@@ -11,8 +11,10 @@
 <div id="featured-categories" class="row">
   <% @categories.each do |category| %>
   <div class="col-md-3 col-sm-6 text-center">
-    <h2><span class="category-icon glyphicon glyphicon-<%= category.icon %>"></span></h2>
-    <%= link_to category.name, category_path(category), id: "category-#{category.id}"  %>
+    <%= link_to category_path(category), id: "category-#{category.id}" do %>
+      <i class="circle-icon glyphicon glyphicon-<%= category.icon %>"></i><br/>
+      <%= category.name %>
+    <% end %>
   </div>
   <% end %>
 </div>
