@@ -79,10 +79,10 @@ class ApplicationController < ActionController::Base
   def fetch_counts
     if current_user.is_restricted?
       topics = Topic.tagged_with(current_user.team_list, :any => true)
-      @admins = User.admins #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
+      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else
       topics = Topic.all
-      @admins = User.admins
+      @admins = User.agents
     end
     @new = topics.unread.count
     @unread = topics.unread.count
@@ -92,10 +92,6 @@ class ApplicationController < ActionController::Base
     @mine = topics.mine(current_user.id).count
     @closed = topics.closed.count
     @spam = topics.spam.count
-  end
-
-  def verify_admin
-      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
   end
 
   def instantiate_tracker

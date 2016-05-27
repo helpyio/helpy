@@ -78,7 +78,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", admin: true}, locale: :en}
+      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
     end
   end
 

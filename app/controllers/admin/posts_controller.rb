@@ -33,7 +33,8 @@ class Admin::PostsController < Admin::BaseController
           fetch_counts
 
           @posts = @topic.posts.chronologic
-          #@admins = User.admins #This comes from the admin controller
+
+          @admins = User.agents
           #@post = Post.new
           case @post.kind
           when "reply"
