@@ -85,12 +85,24 @@ five:
 
 six:
   id: 6
-  title:
-  body:
-  keywords: 
+  title: Should allow commenting 2
+  body: This doc should allow comments
+  keywords:
   category_id: 1
   user_id: 1
   active: true
   rank: 60
+  front_page: false
+  allow_comments: true
+
+seven:
+  id: 7
+  title: Should allow commenting 2
+  body: This doc should allow comments
+  keywords:
+  category_id: 1
+  user_id: 1
+  active: true
+  rank: 67
   front_page: false
   allow_comments: true
