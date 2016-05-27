@@ -22,13 +22,17 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     I18n.locale = session[:omniauth_login_locale] || I18n.default_locale
 
     # NOTE: This is for oauth users without email addresses.  This means twitter
-    # and sometimes github and facebook for sure.  They are redirected to add
+    # and sometimes github and facebook.  They are redirected to add
     # their email address and then returned to the home page
 
     @user = user
     if !env['omniauth.auth'].email.present? && @user.email == @user.temp_email(env['omniauth.auth'])
       # @user = user
-      render "users/finish_signup"
+      session['omniauth_uid'] = env['omniauth.auth'].uid
+
+      @page_title = "Please complete your signup"
+      # render "users/finish_signup"
+      redirect_to finish_signup_path
     else
       sign_in_and_redirect user#, event: :authentication
     end

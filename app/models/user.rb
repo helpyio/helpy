@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
       where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
         u.provider = auth.provider
         u.uid = auth.uid
-        u.email = auth.info.email.present? ? auth.info.email : temp_email(auth)
+        u.email = auth.info.email.present? ? auth.info.email : u.temp_email(auth)
         u.name = auth.info.name
         u.thumbnail = auth.info.image
         u.password = Devise.friendly_token[0,20]
