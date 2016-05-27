@@ -28,7 +28,7 @@ class Admin::CategoriesController < Admin::BaseController
     if @category.save
       redirect_to(admin_categories_path)
     else
-      render :index
+      render :new
     end
   end
 
