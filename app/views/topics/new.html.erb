@@ -14,7 +14,7 @@
     <% end %>
   <% end %>
 
-  <% if user_signed_in? && !@widget %>
+  <% if user_signed_in? && !@widget && Settings.forums %>
     <%= f.form_group :private, label: { text: t(:should_message_be_private) }, id: 'private-public' do %>
       <%= f.radio_button :private, true, label: t(:only_support_can_respond), inline: false %>
       <%= f.radio_button :private, false, label: t(:responses_can_come_from_everyone), inline: false %>
