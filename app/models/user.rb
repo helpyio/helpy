@@ -51,6 +51,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
+  TEMP_EMAIL_PREFIX = 'change@me'
+
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
@@ -105,12 +107,16 @@ class User < ActiveRecord::Base
       where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
         u.provider = auth.provider
         u.uid = auth.uid
-        u.email = auth.provider == 'twitter' ? "#{auth.info.nickname}@twitter.com" : auth.info.email
+        u.email = auth.info.email.present? ? auth.info.email : u.temp_email(auth)
         u.name = auth.info.name
         u.thumbnail = auth.info.image
         u.password = Devise.friendly_token[0,20]
       end
     end
+  end
+
+  def temp_email(auth)
+    "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
   end
 
   def to_param
