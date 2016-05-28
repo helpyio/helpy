@@ -22,7 +22,7 @@ class UsersControllerTest < ActionController::TestCase
     session['omniauth_uid'] = '123545'
 
     # Mock a new user coming from Twitter
-    u = User.create!(
+    User.create!(
       email: 'change@me-123545-twitter.com',
       name: 'test user',
       password: '12345678',
