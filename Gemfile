@@ -112,6 +112,8 @@ gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
 
+gem "recaptcha", require: "recaptcha/rails"
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false

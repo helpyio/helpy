@@ -21,6 +21,10 @@ app_mini_logo: logo.png # Full or partial url for app mini logo
 google_analytics_id: #Enter your analytics ID
 send_usage_data: false
 
+#Recaptcha secret keys
+recaptcha_site_key: #Enter your site key
+recaptcha_api_key: #Enter your api  key
+
 # Mail specific settings:
 # See http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/14-Setting-up-your-Helpy-installation-to-send-and-receive-email
 
