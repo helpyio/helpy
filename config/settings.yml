@@ -19,7 +19,11 @@ app_mini_logo: logo.png # Full or partial url for app mini logo
 
 # Analytics and Tracking
 google_analytics_id: #Enter your analytics ID
-send_usage_data: true
+send_usage_data: false
+
+#Recaptcha secret keys
+recaptcha_site_key: #Enter your site key
+recaptcha_api_key: #Enter your api  key
 
 # Mail specific settings:
 # See http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/14-Setting-up-your-Helpy-installation-to-send-and-receive-email
@@ -28,12 +32,24 @@ admin_email: inbound.support@yourdomain.com
 from_email: inbound.support@yourdomain.com # This is the email that will be used for email replies (reply to)
 send_email: false #Send email or not
 
-mail_service: :mandrill # :sendgrid :cloudmailin, :postmark, :mandrill, :mailgun, :sparkpost
+mail_service: :mandrill # :sendgrid :cloudmailin, :postmark, :mandrill, :mailgun, :sparkpost, :pop3, :imap
 smtp_mail_username: # Enter your SMTP email username
 smtp_mail_password: # Enter your SMTP email password
 mail_smtp: 'smtp.mandrillapp.com' #Enter the server address for your SMTP server
 mail_port: 587 #Enter the port of your SMTP server
 mail_domain: #Enter the heroku.com if you are on heroku, otherwise enter your domain
+
+pop3_server: # Enter your POP3 host
+pop3_username: # Enter your POP3 email username
+pop3_password: # Enter your POP3 email password
+pop3_security: #ssl or starttls
+pop3_port: #pop3 port, if not set will default based on security setting
+
+imap_server: # Enter your IMAP host
+imap_username: # Enter your IMAP email username
+imap_password: # Enter your IMAP email password
+imap_security: # ssl or starttls
+imap_port: #pop3 port, if not set will default based on security setting
 
 # Omniauth Config
 # You must sign up with each oauth provider you wish to support, uncomment and add the ID and secret

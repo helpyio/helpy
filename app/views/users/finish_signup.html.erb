@@ -1,0 +1,22 @@
+<div class="row content-row">
+
+  <div class="col-md-3 text-center">
+    <%= avatar_image(@user, size=150) %>
+  </div>
+
+  <div class="col-md-9">
+    <%= simple_form_for(@user, url: finish_signup_path, validate: true, :html => { role: 'form'}) do |f| %>
+    <%= devise_error_messages! %>
+    <span class="user-fields">
+      <%= f.input :email, input_html: { value: '', autofocus: true } %>
+      <%= f.input :name %>
+      <%= f.input :bio %>
+      <%= f.input :company %>
+      <%= f.input :title %>
+    </span>
+    <%= f.button :submit, t("save_changes"), class: 'btn btn-warning' %>
+    <%#= f.button :submit %>
+  <% end %>
+
+  </div>
+</div>

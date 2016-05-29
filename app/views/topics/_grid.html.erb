@@ -1,4 +1,4 @@
-  <div class="idea-box col-lg-3 col-md-3 col-sm-4 col-xs-12" data-link="<%= topic_posts_path(grid) %>">
+  <div class="idea-box col-lg-3 col-md-3 col-sm-4 col-xs-12" data-link="<%= topic_posts_path(grid) %>" id="topic_<%= grid.id %>" >
     <div class="dummy"></div>
     <div class="thumbnail">
       <span class="more-important truncate-ellipsis text-left">
@@ -9,7 +9,7 @@
       </div>
       <% if grid.forum.allow_post_voting == true %>
       <div id="post-vote-<%= grid.posts.first.id %>" class="grid-vote text-right">
-        <%= link_to t(:upvote, count: grid.points), up_vote_path(grid.id), method: :post, remote: true, class: 'topic-vote', data: {voted: grid.to_param} %>
+        <%= link_to t(:upvote, count: grid.points), up_vote_path(grid.id), method: :post, remote: true, class: 'topic-vote', data: {voted: grid.to_param}, id: "upvote_#{grid.id}" %>
       </div>
       <% end %>
     </div>

@@ -1,6 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
   respond_to :html, :js
+  before_action :verify_admin
   before_action :settings_mode
 
   def index

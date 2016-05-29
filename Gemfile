@@ -83,9 +83,9 @@ gem 'rdiscount'
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 gem 'daemons'
-gem 'mailman'#, require: false
+gem 'mailman' #, require: false
 gem 'mail_extract'
-
+gem 'mail', '~> 2.6.4'
 gem 'griddler'
 gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
@@ -111,6 +111,8 @@ gem 'faker'
 gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
+
+gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
@@ -145,6 +147,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
+  gem 'simplecov', :require => false
 end
 
 group :production do

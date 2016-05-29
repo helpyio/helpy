@@ -352,6 +352,8 @@ GEM
     rdiscount (2.1.8)
     rdoc (4.2.2)
       json (~> 1.4)
+    recaptcha (2.0.0)
+      json
     regexp_parser (0.3.3)
     request_store (1.3.1)
     responders (2.1.2)
@@ -524,6 +526,7 @@ DEPENDENCIES
   kaminari
   kaminari-i18n
   launchy
+  mail (~> 2.6.4)
   mail_extract
   mailman
   minitest
@@ -546,6 +549,7 @@ DEPENDENCIES
   rails_12factor
   ranked-model
   rdiscount
+  recaptcha
   route_translator
   rspec
   rubocop
@@ -556,6 +560,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   simple_form
+  simplecov
   spring (~> 1.4.0)
   staccato
   sucker_punch (~> 2.0)
@@ -568,5 +573,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.1p85
+
 BUNDLED WITH
-   1.11.2
+   1.12.3
