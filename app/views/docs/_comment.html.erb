@@ -32,7 +32,7 @@
 				<% end %>
 			</div>
 			<% end %>
-      <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } unless Cloudinary.config.cloud_name.nil? %>
+      <%= render :partial => 'posts/thumbnail', locals: { :model_name => comment } unless Cloudinary.config.cloud_name.nil? %>
 	  </div>
 
 	</div>

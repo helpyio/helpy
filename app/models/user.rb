@@ -51,6 +51,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
+  TEMP_EMAIL_PREFIX = 'change@me'
+
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
@@ -74,7 +76,9 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin agent editor user]
 
-  scope :admins, -> { where(admin: true).order('name asc') }
+  # TODO: Will want to refactor this using .or when upgrading to Rails 5
+  scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
+  scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
@@ -103,7 +107,7 @@ class User < ActiveRecord::Base
       where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
         u.provider = auth.provider
         u.uid = auth.uid
-        u.email = auth.provider == 'twitter' ? "#{auth.info.nickname}@twitter.com" : auth.info.email
+        u.email = auth.info.email.present? ? auth.info.email : u.temp_email(auth)
         u.name = auth.info.name
         u.thumbnail = auth.info.image
         u.password = Devise.friendly_token[0,20]
@@ -111,8 +115,28 @@ class User < ActiveRecord::Base
     end
   end
 
+  def temp_email(auth)
+    "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
+  end
+
+  # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
+  # and changing it could be painful for upgrading installed users. These are three
+  # Utility methods for checking the role of an admin:
+
+  def is_admin?
+    self.role == 'admin' ? true : false
+  end
+
+  def is_agent?
+    self.role == 'agent' || self.role == 'admin' ? true : false
+  end
+
+  def is_editor?
+    self.role == 'editor' || self.role == 'agent' || self.role == 'admin' ? true : false
   end
 
 end

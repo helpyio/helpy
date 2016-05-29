@@ -1,5 +1,6 @@
 class Admin::PostsController < Admin::BaseController
 
+  before_action :verify_agent
   after_action :send_message, :only => 'create'
   # respond_to :html, only: ['destroy']
   respond_to :js
@@ -32,7 +33,7 @@ class Admin::PostsController < Admin::BaseController
           fetch_counts
 
           @posts = @topic.posts.chronologic
-          @admins = User.admins
+          @admins = User.agents
           #@post = Post.new
           case @post.kind
           when "reply"

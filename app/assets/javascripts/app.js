@@ -1,7 +1,6 @@
 var Helpy = Helpy || {};
 
 Helpy.ready = function(){
-
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
@@ -69,16 +68,6 @@ Helpy.ready = function(){
       $(this).css('box-shadow', '');
       $(this).closest('.has-arrow').removeClass('over');
     }
-  });
-
-  // Allows image insertion into quill editor
-  $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-    var element = document.querySelector("trix-editor");
-    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
-    element.editor.insertHTML(thisImage);
-
-    $('.image_public_id').val(data.result.public_id);
-    return true;
   });
 
   // Sets up autoscroll for any link with class autoscroll
@@ -207,17 +196,6 @@ Helpy.ready = function(){
     $(this).prev().removeClass('animated bounce');
   });
 
-  // Truncate Q&A responses
-  $('.shorten').jTruncate({
-        length: 200,
-        minTrail: 0,
-        moreText: " (more)",
-        lessText: " (less)",
-        ellipsisText: " ...",
-        moreAni: "",
-        lessAni: ""
-    });
-
   // Locale Picker
   $('#lang').off().on('change', function() {
     var url = $("#lang").val();
@@ -307,3 +285,31 @@ Helpy.didthisHelp = function(yesno){
 
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);
+
+$(document).on('page:change', function () {
+  
+  //Truncate Q&A responses
+  $('.shorten').jTruncate({
+    length: 200,
+    minTrail: 0,
+    moreText: " (more)",
+    lessText: " (less)",
+    ellipsisText: " ...",
+    moreAni: "",
+    lessAni: ""
+  });
+
+  // Allows image insertion into quill editor
+  $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
+    var element = document.querySelector("trix-editor");
+    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
+    element.editor.insertHTML(thisImage);
+
+    $('.image_public_id').val(data.result.public_id);
+    return true;
+  });
+
+});
+
+
+

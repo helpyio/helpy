@@ -1,8 +1,9 @@
 class Admin::SearchController < Admin::BaseController
 
-  before_action :fetch_counts, :only => ['topic_search']
-  before_action :pipeline, :only => ['topic_search']
-  before_action :remote_search, :only => ['topic_search']
+  before_action :verify_agent
+  before_action :fetch_counts
+  before_action :pipeline
+  before_action :remote_search
   respond_to :html, :js
 
   # simple search tickets by # and user
@@ -36,5 +37,5 @@ class Admin::SearchController < Admin::BaseController
 
     render template
   end
-  
+
 end

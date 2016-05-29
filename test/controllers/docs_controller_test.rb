@@ -31,8 +31,25 @@ class DocsControllerTest < ActionController::TestCase
     set_default_settings
   end
 
-  test "a browsing user should be able to load show" do
+  test "a browsing user should be able to show a document" do
     get :show, id: 1, locale: "en"
     assert_response :success
   end
+
+  test "a browsing user should be able to show a document with comments" do
+    get :show, id: 6, locale: "en"
+    assert_response :success
+  end
+
+  test "a browsing user should be able to show a document with comments if cloudinary is configured" do
+
+    # Make sure cloudinary cloud name is setup
+    AppSettings['cloudinary.cloud_name'] = "test-cloud"
+    AppSettings['cloudinary.api_key'] = "some-key"
+    AppSettings['cloudinary.api_secret'] = "test-cloud"
+
+    get :show, id: 6, locale: "en"
+    assert_response :success
+  end
+
 end

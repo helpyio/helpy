@@ -24,6 +24,7 @@ class Post < ActiveRecord::Base
 
   validates :body, presence: true, length: { maximum: 10_000 }
   validates :kind, presence: true
+  validates :user_id, presence: true
 
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
@@ -47,7 +48,7 @@ class Post < ActiveRecord::Base
     unless status == 'trash'
       logger.info('private message, update waiting on cache')
       status = self.topic.current_status
-      if self.user && self.user.admin?
+      if self.user && self.user.is_agent?
         logger.info('waiting on user')
         waiting_on = "user"
         status = "open"
@@ -71,9 +72,10 @@ class Post < ActiveRecord::Base
   end
 
   # Assign the parent topic if not assigned and this is a reply by admin
+  # or agents
   def assign_on_reply
     if self.topic.assigned_user_id.nil?
-      self.topic.assigned_user_id = self.user.admin? ? self.user_id : nil
+      self.topic.assigned_user_id = self.user.is_agent? ? self.user_id : nil
     end
   end
 

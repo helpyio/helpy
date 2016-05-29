@@ -62,11 +62,17 @@ Helpy.admin = function(){
     }
   });
 
-  // $('.theme').off().on('click',function(){
-  //   var chosenTheme = $('input[name="theme"]:checked').val();
-  //   $('input#theme.active').val(chosenTheme);
-  // })
-
+  $('.settings-section.email select').off().on('change', function(){
+    var chosen = $(".settings-section.email select").val();
+      $('.imap-settings').addClass('hidden');
+      $('.pop3-settings').addClass('hidden');
+    if (chosen == 'pop3' ){
+      $('.pop3-settings').removeClass('hidden');
+    }
+    if (chosen == 'imap' ){
+      $('.imap-settings').removeClass('hidden');
+    }
+  });
 };
 
 $(document).on('page:change', Helpy.admin);
