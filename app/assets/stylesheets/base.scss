@@ -880,8 +880,11 @@ h4.qna {
 }
 
 .radio{
-  .collection_radio_buttons{
-    padding: 0px;
+  .radio-label{
+    label{
+      padding: 0px;
+    }
+    
   }  
 }
 
