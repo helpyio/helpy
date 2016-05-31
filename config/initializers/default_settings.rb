@@ -8,6 +8,9 @@ AppSettings.defaults["settings.site_tagline"] = Settings.site_tagline
 AppSettings.defaults["settings.product_name"] = Settings.product_name
 AppSettings.defaults["settings.support_phone"] = Settings.support_phone
 AppSettings.defaults["settings.google_analytics_id"] = Settings.google_analytics_id
+AppSettings.defaults["settings.recaptcha_site_key"] = Settings.recaptcha_site_key
+AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
+
 
 # Design: (Colors etc.)
 
@@ -42,8 +45,19 @@ AppSettings.defaults["email.mail_smtp"] = Settings.mail_smtp
 AppSettings.defaults["email.mail_port"] = Settings.mail_port
 AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
 
-# Cloudinary:
+AppSettings.defaults["email.imap_server"] = Settings.imap_server
+AppSettings.defaults["email.imap_username"] = Settings.imap_username
+AppSettings.defaults["email.imap_password"]= Settings.imap_password
+AppSettings.defaults["email.imap_security"]= Settings.imap_security
+AppSettings.defaults["email.imap_port"]= Settings.imap_port
 
+AppSettings.defaults["email.pop3_server"] = Settings.pop3_server
+AppSettings.defaults["email.pop3_username"] = Settings.pop3_username
+AppSettings.defaults["email.pop3_password"] = Settings.pop3_password
+AppSettings.defaults["email.pop3_security"]= Settings.pop3_security
+AppSettings.defaults["email.pop3_port"]= Settings.pop3_port
+
+# Cloudinary:
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''
 AppSettings.defaults['cloudinary.api_secret'] = ''

@@ -173,4 +173,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal '123545', user.uid
   end
 
+  test "temp_email should be used if Oauth does not include an email address in response" do
+    oath = OmniAuth::AuthHash.new({
+                                    :provider  => 'facebook',
+                                    :uid       => '123545',
+                                    :info      => {}
+                                  })
+    user = User.find_for_oauth(oath)
+    assert_equal user.email, user.temp_email(oath)
+  end
+
 end

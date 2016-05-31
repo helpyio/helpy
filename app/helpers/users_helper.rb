@@ -50,7 +50,7 @@ module UsersHelper
     if user.thumbnail == "" && user.avatar.nil?
       user.gravatar_url(:size => 60)
     elsif user.avatar.nil? == false
-      "http://res.cloudinary.com/helpy-io/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}"
+      "https://res.cloudinary.com/helpy-io/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}"
     else
       user.thumbnail
     end
@@ -60,7 +60,7 @@ module UsersHelper
 
     if user.avatar.nil? == false
       unless Cloudinary.config.cloud_name.nil?
-        image_tag("http://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')
+        image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')
       else
         image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => '16', 'char-count' => 2}, class: 'profile img-circle')
       end
