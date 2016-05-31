@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     #      omniauth_callbacks: "callbacks"
     #    }
 
+    match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
     devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do

@@ -526,6 +526,7 @@ DEPENDENCIES
   kaminari
   kaminari-i18n
   launchy
+  mail (~> 2.6.4)
   mail_extract
   mailman
   minitest
