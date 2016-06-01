@@ -8,6 +8,24 @@ class EmailProcessorTest < ActiveSupport::TestCase
         assert_difference('User.count', 1) do
           assert_difference('ActionMailer::Base.deliveries.size', 1) do
             EmailProcessor.new(FactoryGirl.build(:email_from_unknown)).process
+            assert_equal(Topic.where(current_status: "new").last.name, 'Email subject')
+            assert_equal(Post.last.body, 'Hello!')
+            assert_equal(User.last.name, 'From User')
+          end
+        end
+      end
+    end
+  end
+
+  test 'an email send via griddler to the support address from an unknown user should create a new user and topic with status new' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 1) do
+            EmailProcessor.new(FactoryGirl.build(:email_from_unknown_via_griddler)).process
+            assert_equal(Topic.where(current_status: "new").last.name, 'Email subject')
+            assert_equal(Post.last.body, 'Hello!')
+            assert_equal(User.last.name, 'From User')
           end
         end
       end
@@ -43,4 +61,5 @@ class EmailProcessorTest < ActiveSupport::TestCase
       end
     end
   end
+
 end

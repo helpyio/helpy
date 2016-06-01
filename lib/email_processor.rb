@@ -59,7 +59,7 @@ class EmailProcessor
     @user.reset_password_sent_at = Time.now.utc
 
     @user.email = get_email_from_mail
-    @user.name = get_name_from_mail.blank? ? @user.email : get_name_from_mail
+    @user.name = get_name_from_mail.blank? ? get_token_from_mail : get_name_from_mail
     @user.password = User.create_password
     if @user.save
       UserMailer.new_user(@user, @token).deliver_later
@@ -67,14 +67,28 @@ class EmailProcessor
   end
 
   def get_name_from_mail
-    @email[:from].addrs.first.display_name
+    mail_is_mail ? @email[:from].addrs.first.display_name : @email.from[:name]
   end
 
   def get_email_from_mail
-    @email[:from].addrs.first.address
+    mail_is_mail ? @email[:from].addrs.first.address : @email.from[:email]
+  end
+
+  def get_token_from_mail
+    #this seems to only be there for griddler and co
+    @email.from[:token]
   end
 
   def get_content_from_mail
-    plain_part = @email.multipart? ? (@email.text_part ? @email.text_part.body.decoded : nil) : @email.body.decoded
+    if mail_is_mail
+      @email.multipart? ? (@email.text_part ? @email.text_part.body.decoded : nil) : @email.body.decoded
+    else
+      MailExtract.new(@email.body).body
+    end
   end
+
+  def mail_is_mail
+    @email.class.name == 'Mail::Message'
+  end
+
 end
