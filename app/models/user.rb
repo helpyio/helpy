@@ -97,7 +97,8 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_oauth(auth)
-    if user = find_by(email: auth.info.email)
+    user = find_by(email: auth.info.email)
+    if user 
       user.tap do |u|
         u.provider = auth.provider
         u.uid = auth.uid
