@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
+    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations', sessions: 'sessions' }
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
       resources :docs, except: [:new, :edit, :create, :update]

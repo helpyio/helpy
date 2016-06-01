@@ -9,8 +9,48 @@ body {
 }
 
 body {
+  width: 100%;
+  // height: 100%;
   min-height: 100%;
-	position: relative;
+  position: relative;
+}
+
+.slideout-menu {
+  position: fixed;
+  left: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  width: 256px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+  background-color: #000;
+
+  a {
+    color: white;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.slideout-panel {
+  position:relative;
+  z-index: 1;
+  will-change: transform;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+  overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+  display: block;
 }
 
 .content {
@@ -78,12 +118,27 @@ h1 {
 	h1 {
 		font-size: 150%;
 	}
-	h1#how-help {
+
+  h1#how-help {
 		font-size: 190%;
 	}
-	h2 {
+
+  h2 {
 		font-size: 150%;
 	}
+
+  .article-block {
+  }
+
+  i.circle-icon {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    font-size: 24px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #888;
+  }
 }
 
 @media(min-width:768px){
@@ -91,18 +146,53 @@ h1 {
 		font-size: 190%;
 	}
 
+  i.circle-icon {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    font-size: 34px;
+    padding: 25px;
+    margin-bottom: 20px;
+    color: #888;
+  }
 }
 
 @media(min-width:992px){
 	h1 {
 		font-size: 200%;
 	}
+  .article-block {
+    min-height: 250px;
+  }
+
+  i.circle-icon {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    font-size: 44px;
+    padding: 30px;
+    margin-bottom: 20px;
+    color: #888;
+  }
 }
 
 @media(min-width:1200px){
 	h1 {
 		font-size: 220%;
 	}
+  .article-block {
+    min-height: 250px;
+  }
+
+  i.circle-icon {
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 0px 0px 2px #888;
+    font-size: 44px;
+    padding: 30px;
+    margin-bottom: 20px;
+    color: #888;
+  }
 }
 
 textarea {
@@ -137,6 +227,11 @@ textarea {
 	padding-top: 30px;
 	padding-bottom: 10px;
 	margin-bottom: 15px;
+  max-height: 150px;
+
+  h2 {
+    margin-top: 0;
+  }
 
   &.row {
     padding-top: 10px;
@@ -165,7 +260,6 @@ ul.breadcrumb {
 }
 
 div.add-form {
-	background-color: rgba(192,255,193,0.25);
 	padding: 10px;
 	margin-top: 40px;
 }
@@ -512,6 +606,14 @@ ul.dropdown-menu li a.strong {
   }
 }
 
+.navbar-form {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-form .input-group .form-control {
+}
+
 .navbar-right {
 	margin-right: -45px;
 }
@@ -537,6 +639,10 @@ ul.dropdown-menu li a.strong {
 .pagination>.active>span:focus {
 		background-color: #666;
 		border-color: #666;
+}
+
+ul.breadcrumb {
+  background-color: $main-panel-bg;
 }
 
 .breadcrumb > li + li:before {
@@ -566,16 +672,6 @@ h1#how-help {
 
 .flat-nav-container {
   background-color: $main-panel-bg;
-}
-
-i.circle-icon {
-  display: inline-block;
-  border-radius: 60px;
-  box-shadow: 0px 0px 2px #888;
-  font-size: 44px;
-  padding: 30px;
-  margin-bottom: 20px;
-  color: #888;
 }
 
 #home-search {

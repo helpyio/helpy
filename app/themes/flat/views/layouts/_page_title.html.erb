@@ -3,9 +3,10 @@
     <span>
       <%= render_breadcrumbs('') %>
     </span>
-    <h1><%= @page_title %></h1>
-  </div>
-  <div class="col-md-4 hidden-xs" id="page-title-right">
-      <%= render('result/search_form') %>
+    <% if @page_title.present? %>
+    <h2><%= @page_title %></h2>
+    <% else %>
+    <%= yield :page_title %>
+    <% end %>
   </div>
 </div>
