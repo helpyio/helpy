@@ -90,57 +90,31 @@ class TopicsController < ApplicationController
     # add_breadcrumb @page_title
     # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
     
-    params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
+    @forum = params[:id].nil? ? Forum.find(params[:topic][:forum_id]) : Forum.find(params[:id])
     logger.info(@forum.name)
-
+    
     @topic = @forum.topics.new(
       name: params[:topic][:name],
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id] )
+
+    # varify recaptcha if enabled
+    if recaptcha_enabled? && params[:from] != 'widget'
+      render :new and return unless verify_recaptcha(model: @topic)
+    end
+    
     @forums = Forum.ispublic.all
      
-    unless user_signed_in?
-      
-      # User is not signed in, lets see if we can recognize the email address
-      @user = User.where(email: params[:topic][:user][:email]).first
-      
-      if recaptcha_enabled? && params[:from] != 'widget'
-        render :new and return unless verify_recaptcha(model: @topic)
-      end
-   
-      if @user
-        logger.info("User found")
-        @topic.user_id = @user.id
-
-      else #User not found, lets build it
-
-        @user = @topic.build_user
-
-        @token, enc = Devise.token_generator.generate(User, :reset_password_token)
-        @user.reset_password_token = enc
-        @user.reset_password_sent_at = Time.now.utc
-
-        @user.name = params[:topic][:user][:name]
-        @user.login = params[:topic][:user][:email].split("@")[0]
-        @user.email = params[:topic][:user][:email]
-        @user.password = User.create_password
-        built_user = true
-      end
-
-    else
-      @user = current_user
-      @topic.user_id = @user.id
-    end
-
-    if @user.save && @topic.save
+    if @topic.create_topic_with_user(params, current_user)
+      @user = @topic.user
       @post = @topic.posts.create(
         :body => params[:topic][:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
         :screenshots => params[:topic][:screenshots])
 
-      if built_user == true && !user_signed_in?
-        UserMailer.new_user(@user, @token).deliver_later
+      if !user_signed_in?
+        UserMailer.new_user(@user, @user.reset_password_token).deliver_later
       end
 
       # track event in GA
