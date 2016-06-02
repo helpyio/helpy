@@ -6,11 +6,8 @@
 // Colours: Brand Defaults
 $brand-primary:         #3cceff;
 $brand-link:            #004084;
-
 $link-color:            $brand-link;
-
 $table-border-color:    #fff;
-
 $breadcrumb-bg:         #fff;
 
 // Navbar links
@@ -27,11 +24,15 @@ $navbar-default-link-active-bg:            #fff;
 $font-family-sans-serif:  "Raleway", sans-serif;
 $font-family-serif:       'Raleway', serif;
 
+// Theme Specific Colors
+$header-bg:               #fff;
 $font-size-base:          14px;
-$main-panel-bg:           #eee;
+$main-panel-bg:           #666;
+$main-panel-font-color:   #fff;
+$main-panel-breadcrumb-color: $main-panel-font-color;
+$icon-color:              $main-panel-bg;
+$icon-bg-color:           #eee;
 
-
-$grid-float-breakpoint: 1400px;
 
 // LEGACY LESS CODE FOLLOWS:
 // TODO: Replace as necessary with SCSS equivalents

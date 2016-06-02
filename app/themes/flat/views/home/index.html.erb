@@ -2,7 +2,7 @@
 
 <% content_for :home do %>
 <div class="text-center" id="home-search">
-  <h1 id="how-help" class="text-center"><%= t(:how_can_we_help) %></h1>
+  <h1 id="how-help" class="text-center"><%= t('how_can_we_help') %></h1>
   <%= render 'result/search_form' %>
 </div>
 <% end %>
@@ -10,7 +10,7 @@
 <% if @categories.count > 0 && Doc.all.with_translations(I18n.locale).count > 0 %>
 <div id="featured-categories" class="row">
   <% @categories.each do |category| %>
-  <div class="col-md-3 col-sm-6 col-xs-6 text-center">
+  <div class="col-md-3 col-sm-6 col-xs-6 text-center article-icon">
     <%= link_to category_path(category), id: "category-#{category.id}" do %>
       <i class="circle-icon glyphicon glyphicon-<%= category.icon %>"></i><br/>
       <%= category.name %>
