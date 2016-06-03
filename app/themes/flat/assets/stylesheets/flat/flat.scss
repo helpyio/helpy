@@ -12,11 +12,13 @@ body {
   width: 100%;
   min-height: 100%;
   position: relative;
+  background-color: $body-bg;
 }
 
 .content {
-  margin-bottom: 200px;
+  margin-bottom: 100px;
   height: 100%;
+  background-color: $body-bg;
 }
 
 a {
@@ -30,6 +32,7 @@ a {
   }
 
   &.list-group-item {
+    background-color: $body-bg;
     border: 0px;
     padding-left: 2px;
     padding-top: 4px;

@@ -69,7 +69,7 @@
 		</div>
 	</header>
 
-	<article>
+	<article class="content">
 		<div class="jumbotron flat-main-panel">
 			<div class="container">
 				<div class="row">
@@ -82,7 +82,7 @@
 		</div>
 
 		<div class="white">
-			<div id="body-wrapper" class="content container">
+			<div id="body-wrapper" class="container">
 				<%= bootstrap_flash %>
 				<%= yield %>
 			</div>
@@ -91,11 +91,13 @@
 
 </main>
 
+<footer>
 	<div id="footer-wrapper">
 		<div class="container">
 			<%= render :partial => 'layouts/footer' %>
 		</div>
 	</div>
+</footer>
 
 <script>
   var slideout = new Slideout({

@@ -1,13 +1,7 @@
-<div id="page-title" class="row">
-  <div class="col-md-8" id="page-title-left">
-    <span class="hidden-xs">
-      <%= render_breadcrumbs('') %>
-    </span>
-    <h1><%= I18n.t('devise.registrations.new.sign_up') %></h1>
-  </div>
-  <div class="col-md-4" id="page-title-right">
-  </div>
-</div>
+<% content_for :page_title do %>
+  <h1><%= I18n.t('devise.registrations.new.sign_up') %></h1>
+<% end %>
+
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
     <%= devise_error_messages! %>
