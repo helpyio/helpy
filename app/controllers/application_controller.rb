@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def recaptcha_enabled?
     AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
-  end  
+  end
 
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
   # agent is next and admin has access to everything:
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
     end
 
     Recaptcha.configure do |config|
-      config.public_key  = AppSettings['settings.recaptcha_site_key'].blank? ? nil : AppSettings['settings.recaptcha_site_key'] 
+      config.public_key  = AppSettings['settings.recaptcha_site_key'].blank? ? nil : AppSettings['settings.recaptcha_site_key']
       config.private_key = AppSettings['settings.recaptcha_api_key'].blank? ? nil : AppSettings['settings.recaptcha_api_key']
       # Uncomment the following line if you are using a proxy server:
       # config.proxy = 'http://myproxy.com.au:8080'
@@ -130,7 +130,7 @@ class ApplicationController < ActionController::Base
   end
 
   def theme_chosen
-    AppSettings['theme.active'] || 'helpy'
+    params['theme'] || AppSettings['theme.active'] || 'helpy'
   end
 
 end

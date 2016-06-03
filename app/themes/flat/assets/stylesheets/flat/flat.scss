@@ -24,6 +24,11 @@ a {
 	text-decoration: none;
   overflow: hidden;
 
+  &:hover {
+    color: $link-color;
+    font-weight: bold;
+  }
+
   &.list-group-item {
     border: 0px;
     padding-left: 2px;
@@ -67,7 +72,7 @@ tbody {
 }
 
 h1 {
-	font-family: 'Raleway', serif;
+	font-family: $font-family-sans-serif;
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 5px;
@@ -81,12 +86,8 @@ i.circle-icon {
 }
 
 @media(max-width:767px){
-	h1 {
-		font-size: 150%;
-	}
-
-  h1#how-help {
-		font-size: 190%;
+	.jumbotron h1, h1 {
+		font-size: 200%;
 	}
 
   h2 {
@@ -111,8 +112,8 @@ i.circle-icon {
 }
 
 @media(min-width:768px){
-	h1 {
-		font-size: 190%;
+	.jumbotron h1, h1 {
+		font-size: 200%;
 	}
 
   i.circle-icon {
@@ -130,8 +131,8 @@ i.circle-icon {
 }
 
 @media(min-width:992px){
-	h1 {
-		font-size: 200%;
+	.jumbotron h1, h1 {
+		font-size: 300%;
 	}
   .article-block {
     min-height: 250px;
@@ -148,8 +149,8 @@ i.circle-icon {
 }
 
 @media(min-width:1200px){
-	h1 {
-		font-size: 220%;
+	.jumbotron h1, h1 {
+		font-size: 300%;
 	}
   .article-block {
     min-height: 250px;
@@ -482,6 +483,16 @@ ul.dropdown-menu li a.strong {
 header {
   height: 50px;
   background-color: $header-bg;
+
+  a {
+    color: $header-link-color;
+
+    &:hover {
+      color: $header-link-color;
+      font-weight: bold;
+    }
+
+  }
 }
 
 #breadcrumbs {
@@ -561,6 +572,17 @@ header {
   }
 }
 
+//  === HEADER ===
+
+.flat-nav-container {
+  background-color: $main-panel-bg;
+}
+
+.toggle-button {
+  color: $header-link-color;
+}
+
+
 //  === BOOTSTRAP OVERRIDES ==
 
 .jumbotron {
@@ -569,7 +591,7 @@ header {
 }
 
 .navbar-brand {
-	color: black;
+	color: $header-link-color;
 	font-family: 'Raleway', sans-serif;
 	padding:0px;
 	font-size:120%;
@@ -661,10 +683,6 @@ h1#how-help {
   }
 }
 
-.flat-nav-container {
-  background-color: $main-panel-bg;
-}
-
 #home-search {
 	background-color: $main-panel-bg;
 	padding-bottom: 100px;
@@ -674,7 +692,7 @@ h1#how-help {
 #featured-team {
 	margin-top: 80px;
   margin-bottom: 80px;
-	background-color: #fff;
+	// background-color: #fff;
 	margin-left: 20px;
 	margin-right: 20px;
 }
@@ -728,11 +746,6 @@ ul.locale-list li {
     margin-top:22px;
     width:228px;
   }
-
-#left-col.affix {
-   top:225px;
-   width:250px;
-}
 
 ul.articles {
 	padding-bottom: 20px;

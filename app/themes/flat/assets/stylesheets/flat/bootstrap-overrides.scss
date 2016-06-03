@@ -6,9 +6,10 @@
 // Colours: Brand Defaults
 $brand-primary:         #3cceff;
 $brand-link:            #004084;
-$link-color:            $brand-link;
+$link-color:            #666;
 $table-border-color:    #fff;
 $breadcrumb-bg:         #fff;
+$body-bg:               #eee;
 
 // Navbar links
 $navbar-default-link-color: #004084;
@@ -25,7 +26,8 @@ $font-family-sans-serif:  "Raleway", sans-serif;
 $font-family-serif:       'Raleway', serif;
 
 // Theme Specific Colors
-$header-bg:               #fff;
+$header-bg:               #666;
+$header-link-color:       #fff;
 $font-size-base:          14px;
 $main-panel-bg:           #666;
 $main-panel-font-color:   #fff;

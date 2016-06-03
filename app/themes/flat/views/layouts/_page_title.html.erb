@@ -1,12 +1,10 @@
-<div id="page-title" class="row">
-  <div class="col-md-12" id="page-title-left">
+<div id="page-title">
     <span>
       <%= render_breadcrumbs('') %>
     </span>
     <% if @page_title.present? %>
-    <h2><%= @page_title %></h2>
+    <h1><%= @page_title %></h1>
     <% else %>
     <%= yield :page_title %>
     <% end %>
-  </div>
 </div>
