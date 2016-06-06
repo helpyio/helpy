@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
     get 'settings' => 'settings#index', as: :settings
+    get 'settings/preview' => 'settings#preview', as: :preview
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
 
     post 'shared/update_order' => 'shared#update_order', as: :update_order

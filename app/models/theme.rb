@@ -28,6 +28,10 @@ class Theme
     end
   end
 
+  def thumbnail
+    "#{name}.png"
+  end
+
   # Find a theme, given the theme name
   def self.find(name)
     new(name, theme_path(name))

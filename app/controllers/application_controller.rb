@@ -130,7 +130,8 @@ class ApplicationController < ActionController::Base
   end
 
   def theme_chosen
-    params['theme'] || AppSettings['theme.active'] || 'helpy'
+    session['theme'] = params['theme'] if params['theme'].present?
+    session['theme'] || AppSettings['theme.active'] || 'helpy'
   end
 
 end
