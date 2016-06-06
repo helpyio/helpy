@@ -77,10 +77,10 @@
         <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: "Still Need Help Background", class: 'pick-a-color' %>
         <% end %>
       </div>
-      <div class="settings-section themes hidden">
+      <div class="settings-section theme hidden">
         <div class="row">
           <% @themes.each do |theme| %>
-          <div class="col-md-6" class="theme">
+          <div class="col-md-6" class="theme-item">
             <%= f.radio_button 'theme.active', theme.name, checked: theme.name == AppSettings['theme.active'], label: theme.name.titleize %>
             <%= link_to(image_tag(url_for(action: 'preview', theme: theme.name)), root_url(theme: theme.name), target: '_blank')  %>
             <%= theme.description %>
