@@ -1,4 +1,4 @@
-class Theme < Rails::Generators::NamedBase
+class Theme < Rails::Generators::Base
   source_root File.expand_path("../templates", __FILE__)
   argument    :theme_name, type: :string
   desc        "Creates a new theme"
@@ -35,7 +35,7 @@ class Theme < Rails::Generators::NamedBase
     def theme_directory
       "app/themes/#{theme_name}"
     end
-
+    
     def theme_views_layout
       "#{theme_directory}/views/layouts"
     end
