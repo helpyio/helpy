@@ -28,7 +28,32 @@ Helpy.ready = function(){
     $(this).css('box-shadow', '0px 0px 10px #eee');
     $(this).closest('.has-arrow').addClass('over');
   });
+  
+  var searchRequest = null;
 
+  var minlength = 3;
+
+  $(".autosearch").keyup(function () {
+     
+      var that = this,
+      value = $(this).val();
+
+      if (value.length >= minlength ) {
+        if (searchRequest != null) 
+          searchRequest.abort();
+        $(".autosearch").autocomplete({
+          source: function (request, response) {
+            jQuery.get("/en/search.json", {
+                query: value
+            }, function (data) {
+              console.log(data)
+              response(data);
+            });
+          },
+          minLength: 3
+        });
+      }
+  });
 
   $('.stats').on('click', function(){
 

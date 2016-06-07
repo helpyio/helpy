@@ -7,4 +7,11 @@ class ResultController < ApplicationController
     add_breadcrumb 'Search'
   end
 
+  def search
+    @results = PgSearch.multisearch(params[:query]).first(10)
+    respond_to do |format|
+      format.json { render :json => @results.map(&:content).to_json.html_safe }
+    end
+  end
+
 end
