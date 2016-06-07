@@ -59,7 +59,7 @@
 							<% if user_signed_in? %>
 							<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
 							<% else %>
-							<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: { toggle: "modal", target: "#login-modal" }, class: 'hidden-xs') %>
+							<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), '#', class: 'login-link hidden-xs', data: { toggle: "modal", target: "#login-modal" }) %>
 							<% end %>
 							<li><h2 class="toggle-button fa fa-bars"></h2></li>
 						</ul>
