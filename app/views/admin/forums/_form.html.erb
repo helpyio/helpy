@@ -1,10 +1,10 @@
-<%= f.alert_message "Please fix the errors below." %>
+<%= render 'shared/error_messages', object: f.object %>
 
-<%= f.text_field :name, :size => 40 -%></p>
-<%= f.text_area :description, :rows => 4, :cols => 60 -%></p>
-<%= f.select("layout", [['Table',"table"],["Grid","grid"],["Q&A","qna"]], include_blank: t(:select_category, default: 'Select Format')) %>
+<%= f.input :name, :size => 40 -%></p>
+<%= f.input :description, input_html: {:rows => 4, :cols => 60} -%></p>
+<%= f.input("layout", collection: [['Table',"table"],["Grid","grid"],["Q&A","qna"]], :include_blank => t(:select_category, default: 'Select Format') , locale: I18n.locale) %>
 
-<%= f.check_box :allow_topic_voting %>
-<%= f.check_box :allow_post_voting %>
-<%= f.check_box :private %>
+<%= f.input :allow_topic_voting %>
+<%= f.input :allow_post_voting %>
+<%= f.input  :private %>
 <%= f.submit t(:save_changes, default: "Save Changes"), class: 'btn btn-warning' %>

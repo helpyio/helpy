@@ -1,6 +1,6 @@
-  <%= f.text_field :title, label: I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale), value: @doc.read_translated_attribute(:title) %>
+  <%= f.input :title, label: I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale), value: @doc.read_translated_attribute(:title) %>
   <% if params[:lang] == "#{I18n.locale}" %>
-    <%= f.select("category_id", Category.all.collect {|c| [ c.name, c.id ] }, { include_blank: t(:select_category, default: 'Select Category'), :label => I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale) }, { class: 'no-translate' })  %>
+    <%= f.input("category_id", collection: Category.all.collect {|c| [ c.name, c.id ] }, prompt: t(:select_category, default: 'Select Category'), label: I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale), :input_html => { class: 'no-translate' })  %>
   <% else %>
     <%= f.hidden_field("category_id", value: @doc.category_id) %>
   <% end %>
@@ -22,19 +22,19 @@
   <% end %>
   <hr/>
   <h4 class="form-subhead">Additional Settings:</h4>
-  <%= f.text_field :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale), value: @doc.read_translated_attribute(:meta_description)  %>
-  <%= f.text_field :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale), value: @doc.read_translated_attribute(:title_tag)  %>
-  <%= f.text_field :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale), value: @doc.read_translated_attribute(:keywords)  %>
+  <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale), value: @doc.read_translated_attribute(:meta_description)  %>
+  <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale), value: @doc.read_translated_attribute(:title_tag)  %>
+  <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale), value: @doc.read_translated_attribute(:keywords)  %>
 
   <%#= f.text_field :rank %>
-  <%= f.check_box(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %><br/><br/>
-  <%= f.check_box(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if params[:lang] == "#{I18n.locale}"  %><br/><br/>
+  <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %>
+  <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if params[:lang] == "#{I18n.locale}"  %>
   <hr/>
   <% if params[:lang] == "#{I18n.locale}" %>
-    <%= f.form_group :active, class:'no-translate', label: { text: "Article Status: " } do %>
-      <%= f.radio_button :active, true, label: "Published", inline: true, class:'no-translate' %>
-      <%= f.radio_button :active, false, label: "Draft", inline: true, class:'no-translate' %>
-    <% end %>
+    <div class= "form_group no-translate">
+      <label class="control-label" for="doc_active">Article Status: </label>
+      <%= f.collection_radio_buttons :active, [[true, 'Published'] ,[false, 'Draft']], :first, :last %>
+    </div>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>
   <%= f.submit "Save Changes", class: 'btn btn-warning' %>
