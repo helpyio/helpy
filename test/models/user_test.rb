@@ -183,4 +183,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user.email, user.temp_email(oath)
   end
 
+  test "signup_guest should create user" do
+    user_count = User.count
+    params = ActionController::Parameters.new({user: {name: "test", email: Faker::Internet.email}})
+    user = User.new(params.require(:user).permit(:email, :name))
+    assert_equal true, user.signup_guest
+    assert_equal user_count + 1, User.count
+  end
+  
 end

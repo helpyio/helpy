@@ -36,7 +36,7 @@ class TopicTest < ActiveSupport::TestCase
 
   should validate_presence_of(:name)
   should validate_length_of(:name).is_at_most(255)
-
+  
 #forum 1 should exist and be private
 #forum 2 should exist and be private
 
@@ -135,4 +135,29 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal 1, topic.assigned_user_id
     assert_equal t_posts_count + 1, topic.posts.count
   end
+
+  test "#create_topic_with_user should create topic with user when params are valid and current_user is not present" do
+    params = ActionController::Parameters.new({topic: {name: "test", private: false, doc_id: 1, user: {name: "test_user", email: "test@mail.com"}}})
+    topic = Topic.new(
+      forum_id: 1,
+      name: params[:topic][:name],
+      private: params[:topic][:private],
+      doc_id: params[:topic][:doc_id] )
+    
+    assert_equal topic.create_topic_with_user(params, nil), true
+    assert_equal User.where(email: params[:topic][:user][:email]).count, 1
+  end
+
+  test "#create_topic_with_user should create topic with user when params are valid and current_user is present" do
+    user = User.first
+    params = ActionController::Parameters.new({topic: {name: "test", private: false, doc_id: 1}})
+    topic = Topic.new(
+      forum_id: 1,
+      name: params[:topic][:name],
+      private: params[:topic][:private],
+      doc_id: params[:topic][:doc_id] )
+    
+    assert_equal topic.create_topic_with_user(params, user), true
+  end
+
 end

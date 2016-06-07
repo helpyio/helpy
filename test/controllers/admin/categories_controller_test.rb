@@ -138,12 +138,12 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
       assert_redirected_to admin_categories_path
     end
 
-    test "an #{admin} creating a category with no name re-renders the index template" do
+    test "an #{admin} creating a category with no name re-renders the new template" do
       sign_in users(admin.to_sym)
       assert_difference "Category.count", 0 do
         post :create, category: { name: nil }, locale: :en
       end
-      assert_template :index
+      assert_template :new
     end
 
     test "an #{admin} should be able to create a new category, and have the default translation created" do

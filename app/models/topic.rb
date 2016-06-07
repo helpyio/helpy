@@ -34,6 +34,8 @@ class Topic < ActiveRecord::Base
   belongs_to :assigned_user, class_name: 'User'
 
   has_many :posts, :dependent => :delete_all
+  accepts_nested_attributes_for :posts
+
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf]
 
@@ -142,6 +144,15 @@ class Topic < ActiveRecord::Base
     forum_id >= 3 && !private?
   end
 
+  def create_topic_with_user(params, current_user)
+    self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email]) 
+    
+    unless self.user #User not found, lets build it
+      self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
+    end
+    self.user.persisted? and self.save
+  end  
+
   private
 
   def cache_user_name
@@ -151,4 +162,5 @@ class Topic < ActiveRecord::Base
   def add_locale
     self.locale = I18n.locale
   end
+
 end

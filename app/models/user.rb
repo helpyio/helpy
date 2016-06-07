@@ -56,7 +56,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
-
   include Gravtastic
 
   include PgSearch
@@ -118,6 +117,16 @@ class User < ActiveRecord::Base
 
   def temp_email(auth)
     "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
+  end
+
+  def signup_guest
+    enc = Devise.token_generator.generate(User, :reset_password_token)
+    self.reset_password_token = enc
+    self.reset_password_sent_at = Time.now.utc
+
+    self.login = self.email.split("@")[0]
+    self.password = User.create_password
+    self.save
   end
 
   def to_param
