@@ -62,7 +62,3 @@ AppSettings.defaults["email.pop3_port"]= Settings.pop3_port
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''
 AppSettings.defaults['cloudinary.api_secret'] = ''
-
-# Admin Onboarding:
-
-AppSettings.defaults['onboard.shown'] = 'false'

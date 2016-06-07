@@ -64,10 +64,10 @@ Rails.application.routes.draw do
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
 
     # Onboarding Routes
-    get '/onboarding/index' => 'onboarding#onboarding', as: :onboarding
-    # get '/onboarding/update_user' => 'onboarding#update_user', as: :complete_onboard
-    # get '/onboarding/update_settings' => 'onboarding#update_settings', as: :complete_onboard
-    get '/onboarding/complete_onboard' => 'onboarding#complete_onboard', as: :complete_onboard
+    get '/onboarding/index' => 'onboarding#index', as: :onboarding
+    patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
+    patch '/onboarding/update_settings' => 'onboarding#update_settings', as: :onboard_settings
+    get '/onboarding/complete' => 'onboarding#complete', as: :complete_onboard
 
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order

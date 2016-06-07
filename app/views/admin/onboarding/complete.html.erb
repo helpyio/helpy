@@ -1,0 +1,36 @@
+<script>
+  ga('create', 'UA-50151-25', 'auto', 'installPinger');
+  ga('installPinger.send', 'pageview', { 'title': 'Onboard Completed: ' + Helpy.domain });
+</script>
+<div id="panel-4" class="onboard-panel text-center">
+  <div class="onboard-message">
+    <h2>Your Helpy is ready!</h2>
+  </div>
+  <div class="edit-admin text-left">
+    Your Helpy is ready to go!  You can customize more in the settings area.  Follow our twitter to stay up
+    to date on important bug fixes, security patches and the latest coolness.
+
+    <a class="twitter-follow-button"
+      href="https://twitter.com/TwitterDev"
+      data-size="large" data-show-count="false">
+    Follow @HelpyApp</a>
+
+    <div class="onboard-submit-section text-center">
+      <%= link_to "Get Started!", '#', class: 'btn btn-primary get-started' %>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function(){
+      // Progress bar
+      $.each([1,2,3], function( i, value ) {
+        $('li.step-' + value).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
+      });
+      $('li.step-' + 4).addClass('active-step');
+
+      // Add listener to close modal
+      $('.get-started').on('click', function(){
+        parent.closeModal();
+      });
+    });
+</script>

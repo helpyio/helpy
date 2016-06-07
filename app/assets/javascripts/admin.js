@@ -88,7 +88,11 @@ Helpy.showPanel = function(panel) {
   $('#panel-' + panel).removeClass('hidden');
   $('li.step-' + currentPanel).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
   $('li.step-' + panel).addClass('active-step');
-  return;
+  return true;
+}
+
+window.closeModal = function() {
+  $('#modal').modal('hide');
 }
 
 Helpy.showGrid = function() {

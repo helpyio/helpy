@@ -1,49 +1,34 @@
 class Admin::OnboardingController < Admin::BaseController
 
-  layout 'onboarding'
+  layout 'onboard'
+
+  def index
+    @user = current_user
+    @user.name = ""
+    @user.email = ""
+    @user.password = ""
+    render layout: 'onboard'
+  end
 
   def update_user
-
     if current_user.admin?
       @user = User.find(params[:id])
-      @user.admin = params[:user][:admin]
-      @user.active = params[:user][:active]
+      @user.admin = true
+      @user.active = true
+      @user.role = 'admin'
       @user.password = params[:user][:password]
     else
       @user = current_user
     end
 
     @user.update(user_params)
-
-    if current_user.admin?
-      fetch_counts
-      @topics = @user.topics.page params[:page]
-      @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
-    end
-
-    respond_to do |format|
-      if @user.save
-        logger.info("User saved")
-        sign_in(@user, bypass: true) if current_user.admin? && params[:source] == 'ob'
-
-        format.html {
-          logger.info("redirecting home")
-          redirect_to root_path
-        }
-        format.js {
-          if params[:source] == 'ob'
-            logger.info("render js")
-            render js: "Helpy.showPanel(4);"
-          else
-            render 'admin/tickets' if current_user.admin?
-          end
-        }
-      else
-        format.html {
-           render 'admin/onboarding', layout: 'onboard'
-        }
-        logger.info("Errors prevented saving the user")
-      end
+    if @user.save
+      logger.info("User saved")
+      sign_in(@user, bypass: true) if current_user.admin?
+      redirect_to admin_complete_onboard_path
+    else
+      logger.info("Errors prevented saving the user")
+      render :index
     end
   end
 
@@ -62,34 +47,23 @@ class Admin::OnboardingController < Admin::BaseController
     respond_to do |format|
       format.html { redirect_to(admin_settings_path) }
       format.js {
-        if params[:source] == 'ob'
-          @ob = true
           render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
-        end
       }
     end
   end
 
-  def onboarding
-    @user = current_user
-    @user.name = ""
-    @user.email = ""
-    @user.password = ""
-    render layout: 'onboard'
+  def complete
+    respond_to :html
   end
 
-  def complete_onboard
-    # Toggle setting for onboarding shown
-    # AppSettings['onboard.shown'] = 'true'
+  private
 
-    respond_to do |format|
-      format.html {
-        redirect_to root_path
-      }
-      format.js {
-        render js: "parent.$('#modal').modal('toggle');"
-      }
-    end
+  def user_params
+    params.require(:user).permit(
+      :name,
+      :email,
+      :company
+    )
   end
 
 

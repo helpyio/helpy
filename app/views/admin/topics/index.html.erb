@@ -15,8 +15,7 @@
   </div>
 </div>
 
-<% unless AppSettings['onboard.shown'] == 'true' %>
-<%#= content_tag :a, "Modal", href: "#modal", class: 'btn', data: {toggle: 'modal'} %>
+<% if show_onboarding? %>
 <div id='modal' class="modal" tabindex="-1" role="dialog" data-backdrop="static">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
