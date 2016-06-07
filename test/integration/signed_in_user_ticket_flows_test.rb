@@ -26,7 +26,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert_difference('Topic.count', 1) do
       choose('Only support can respond (creates a private ticket)')
       fill_in('topic[name]', with: 'I got problems')
-      fill_in('post[body]', with: 'Please help me!!')
+      fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
       click_on('Start Discussion', disabled: true)
     end
 
@@ -49,7 +49,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       choose('Responses can come from support or the community (recommended)')
       select('Public Forum', from: "topic[forum_id]")
       fill_in('topic[name]', with: 'I got problems')
-      fill_in('post[body]', with: 'Please help me!!')
+      fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
       click_on('Start Discussion', disabled: true)
     end
 
@@ -142,7 +142,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     assert_difference('Post.count', 1) do
       fill_in('topic[name]', with: 'I got problems')
-      fill_in('post[body]', with: 'Please help me!!')
+      fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
       click_on('Start Discussion', disabled: true)
     end
 

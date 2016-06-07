@@ -30,7 +30,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic_user_email', with: 'test@test.com')
         fill_in('topic[user][name]', with: 'John Smith')
         fill_in('topic[name]', with: 'I got problems')
-        fill_in('post[body]', with: 'Please help me!!')
+        fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
         click_on('Start Discussion', disabled: true)
       end
     end
@@ -53,7 +53,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic_user_email', with: 'test@test.com')
         fill_in('topic[user][name]', with: 'John Smith')
         fill_in('topic[name]', with: 'I got problems')
-        fill_in('post[body]', with: 'Please help me!!')
+        fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
         click_on('Start Discussion', disabled: true)
       end
     end
@@ -72,7 +72,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic_user_email', with: 'scott.miller@test.com')
         fill_in('topic[user][name]', with: 'Scott Miller')
         fill_in('topic[name]', with: 'I got problems')
-        fill_in('post[body]', with: 'Please help me!!')
+        fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
         click_on('Start Discussion', disabled: true)
       end
     end
@@ -113,7 +113,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
       fill_in('topic_user_email', with: 'joe@test.com')
       fill_in('topic_user_name', with: 'Joe Guy')
       fill_in('topic[name]', with: 'I got problems')
-      fill_in('post[body]', with: 'Please help me!!')
+      fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
       click_on('Start Discussion', disabled: true)
     end
 
