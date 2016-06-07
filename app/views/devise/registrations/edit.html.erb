@@ -9,29 +9,29 @@
   </div>
 
   <div class="col-md-9">
-  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
     <span class="user-fields">
-      <%= f.email_field :email, autofocus: true %>
-      <%= f.text_field :name %>
-      <%= f.text_area :bio %>
-      <%= f.text_field :company %>
-      <%= f.text_field :title %>
-      <%= f.text_area :signature if current_user.is_admin? %>
+      <%= f.input :email, autofocus: true %>
+      <%= f.input :name %>
+      <%= f.input :bio, input_html: {:rows => 4, :cols => 60} %>
+      <%= f.input :company %>
+      <%= f.input :title %>
+      <%= f.input :signature, input_html: {:rows => 4, :cols => 60} if current_user.is_admin? %>
       <% if @user.provider.nil? %>
         <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
       <% end %>
     </span>
 
     <% if @user.provider.nil? %>
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <%= f.input :current_password, autocomplete: "off" %>
 
     <br/><br/>
     <h4><%= t(:change_password) %></h4>
     <br/>
     <span class="password-fields">
-      <%= f.password_field :password, autocomplete: "off" %>
-      <%= f.password_field :password_confirmation, autocomplete: "off"  %>
+      <%= f.input :password, autocomplete: "off" %>
+      <%= f.input :password_confirmation, autocomplete: "off"  %>
     </span>
     <% end %>
 

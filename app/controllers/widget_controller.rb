@@ -7,13 +7,12 @@ class WidgetController < ApplicationController
     @locale = http_accept_language.compatible_language_from(I18n.available_locales)
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
+    @topic.posts.build
     @widget = true
     render 'topics/new', layout: 'widget'
   end
 
   def thanks
   end
-
-
 
 end

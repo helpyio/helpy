@@ -97,12 +97,13 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_oauth(auth)
-    if !where(email: auth.info.email).empty?
-      user = find_by(email: auth.info.email)
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.save!
-      user
+    user = find_by(email: auth.info.email)
+    if user 
+      user.tap do |u|
+        u.provider = auth.provider
+        u.uid = auth.uid
+        u.save!
+      end
     else
       where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
         u.provider = auth.provider
@@ -128,15 +129,15 @@ class User < ActiveRecord::Base
   # Utility methods for checking the role of an admin:
 
   def is_admin?
-    self.role == 'admin' ? true : false
+    self.role == 'admin'
   end
 
   def is_agent?
-    self.role == 'agent' || self.role == 'admin' ? true : false
+    %w( agent admin ).include?(self.role)
   end
 
   def is_editor?
-    self.role == 'editor' || self.role == 'agent' || self.role == 'admin' ? true : false
+    %w( editor agent admin ).include?(self.role)
   end
 
 end

@@ -82,6 +82,7 @@ class TopicsController < ApplicationController
     @forums = Forum.ispublic.all
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
+    @topic.posts.build
     add_breadcrumb @page_title
   end
 
@@ -89,7 +90,7 @@ class TopicsController < ApplicationController
     # @page_title = t(:start_discussion, default: "Start a New Discussion")
     # add_breadcrumb @page_title
     # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-
+    
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
 
@@ -133,9 +134,8 @@ class TopicsController < ApplicationController
     end
 
     if @user.save && @topic.save
-
       @post = @topic.posts.create(
-        :body => params[:post][:body],
+        :body => params[:topic][:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
         :screenshots => params[:topic][:screenshots])
