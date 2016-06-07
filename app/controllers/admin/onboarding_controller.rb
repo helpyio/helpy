@@ -1,6 +1,7 @@
 class Admin::OnboardingController < Admin::BaseController
 
   layout 'onboard'
+  before_action :allow_onboarding, except: 'complete'
 
   def index
     @user = current_user
@@ -23,11 +24,10 @@ class Admin::OnboardingController < Admin::BaseController
 
     @user.update(user_params)
     if @user.save
-      logger.info("User saved")
       sign_in(@user, bypass: true) if current_user.admin?
       redirect_to admin_complete_onboard_path
     else
-      logger.info("Errors prevented saving the user")
+      logger.warn("Errors prevented saving the user")
       render :index
     end
   end
@@ -39,7 +39,9 @@ class Admin::OnboardingController < Admin::BaseController
     # "default_settings intializer".
     @settings = AppSettings.get_all
 
-    # iterate through
+    # iterate through all settings.  We don't really need to do this for the
+    # current version of onboarding, but this was kept in for future use if
+    # we want to onboard more settings
     @settings.each do |setting|
       AppSettings[setting[0]] = params[setting[0].to_sym] unless params[setting[0].to_sym].nil?
     end
@@ -56,6 +58,14 @@ class Admin::OnboardingController < Admin::BaseController
     respond_to :html
   end
 
+  protected
+
+  def allow_onboarding
+    unless show_onboarding?
+      redirect_to admin_complete_onboard_path
+    end
+  end
+
   private
 
   def user_params
@@ -65,6 +75,7 @@ class Admin::OnboardingController < Admin::BaseController
       :company
     )
   end
+
 
 
 end

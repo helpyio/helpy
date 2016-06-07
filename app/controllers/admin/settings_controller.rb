@@ -1,8 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
-  respond_to :html, :js
   before_action :verify_admin
-  before_action :settings_mode
+  skip_before_action :verify_authenticity_token
 
   def index
     @settings = AppSettings.get_all
@@ -16,21 +15,15 @@ class Admin::SettingsController < Admin::BaseController
     @settings.each do |setting|
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
-    # @ob = true if params[:source] == 'ob'
-    # respond_to do |format|
-    #   format.html { redirect_to(admin_settings_path) }
-    #   format.js {
-    #     if params[:source] == 'ob'
-    #       render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
-    #     end
-    #   }
-    # end
+
+    respond_to do |format|
+      format.html {
+        redirect_to admin_settings_path
+      }
+      format.js {
+      }
+    end
   end
 
-  protected
-
-  def settings_mode
-    @mode = 'ob' if params[:settings_mode] == 'ob'
-  end
 
 end

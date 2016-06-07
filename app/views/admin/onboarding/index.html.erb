@@ -26,7 +26,6 @@
     <%= f.text_field 'settings.site_url', label: "Support Site URL", placeholder: 'The URL of your Helpy (support.yourdomain.com)' %>
     <%= f.text_field 'settings.parent_site', label: "Parent Site", placeholder: 'This is your main website. Helpy will link back to it.' %>
     <%= f.text_field 'settings.parent_company', label: "Parent Company", placeholder: 'This is your main company.' %>
-    <%= f.hidden_field_tag :settings_mode, 'ob' %>
     <div class="onboard-submit-section">
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>
     </div>
@@ -46,7 +45,6 @@
       <%= f.input :password, value: '', validate: true %>
       <%= f.input :password_confirmation, autocomplete: "off", validate: true  %>
       <%= f.hidden_field :admin, value: 'true' %>
-      <%= hidden_field_tag :settings_mode, 'ob' %>
       <div class="text-center onboard-submit-section">
       <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
       </div>

@@ -48,7 +48,6 @@ class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
   before_action :fetch_counts, :only => ['show']
-  before_action :settings_mode, only: 'update'
   respond_to :html, :js
 
   def index
@@ -84,18 +83,7 @@ class Admin::UsersController < Admin::BaseController
     @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
 
     # TODO: Refactor this to use an index method/view on the users model
-    # NOTE: @mode is defined in the settings controller and is only set during onboarding
-    if !@mode.nil?
-      render 'admin/topics/index'
-    elsif @mode == 'ob'
-      render js: "Helpy.showPanel(4);"
-    end
-  end
-
-  protected
-
-  def settings_mode
-    @mode = 'ob' if params[:settings_mode] == 'ob'
+    render 'admin/topics/index'
   end
 
   private
