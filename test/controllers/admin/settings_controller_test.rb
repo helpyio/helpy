@@ -121,7 +121,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'email.smtp_mail_password' => '1234',
       'email.mail_port' => '587',
       'email.mail_domain' => 'something.com'
-    assert_redirected_to :admin_settings
+    assert_response :success
 
     assert_equal 'test@test.com', AppSettings['email.admin_email']
     assert_equal 'test@test.com', AppSettings['email.from_email']
