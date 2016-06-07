@@ -1,0 +1,36 @@
+<!-- <title><%= @title_tag || AppSettings['settings.site_name'] %></title> -->
+<title><%= content_for(:title) ? content_for(:title) : AppSettings['settings.site_name'] %></title>
+
+<meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="distribution" content="all" />
+<meta name="robots" content="all" />
+<meta name="description" content="<%= yield_meta_tag(:description, '') %>" />
+<meta name="keywords" content="<%= yield_meta_tag(:keywords, '') %>" />
+<meta name="resource-type" content="document" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%#= stylesheet_link_tag 'application', "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag 'light/all', "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "light/all", "data-turbolinks-track" => true %>
+<%= timeago_script_tag %>
+
+<%= @feed_link.html_safe if @feed_link %>
+<link href='//fonts.googleapis.com/css?family=Raleway:400,700|Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+
+<%= csrf_meta_tags %>
+<%= favicon_link_tag "#{AppSettings['design.favicon']}" %>
+<%= cloudinary_js_config %>
+
+<script data-turbolinks-eval="false">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '<%= AppSettings['settings.google_analytics_id'] %>', 'auto');
+</script>
+<script>
+Helpy.domain = '<%= "//" + request.host_with_port %>';
+</script>
