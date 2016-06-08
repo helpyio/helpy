@@ -20,7 +20,6 @@ class Theme
 
   def description
     about_file = "#{path}/about.markdown"
-    puts about_file
     if File.exist? about_file
       File.read about_file
     else

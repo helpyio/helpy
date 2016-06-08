@@ -1,1 +1,1 @@
-Flat is a simple, minimalist theme that puts your knowledge base way out front.  Although it still includes a request button in the header, flat is optimized to help your customers find their own answer, quickly.
+Flat is a simple, minimalist theme that puts your knowledge base way out front.

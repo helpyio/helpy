@@ -1,2 +1,1 @@
-Update the about.markdown file to describe your theme.  This will appear in the
-admin panel and theme store.
+Light is a simple, minimalist theme that puts your knowledge base way out front.

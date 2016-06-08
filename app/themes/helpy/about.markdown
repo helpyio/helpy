@@ -1,3 +1,1 @@
-## Default Theme for Helpy
-
-The default theme ships with Helpy.
+This is the default theme for Helpy.  How it call got started!
