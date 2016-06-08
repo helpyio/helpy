@@ -56,10 +56,13 @@ Rails.application.routes.draw do
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
 
+
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
     get 'settings' => 'settings#index', as: :settings
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
+
+    get '/stats' => 'admin#stats', as: :admin_stats
 
     post 'shared/update_order' => 'shared#update_order', as: :update_order
 
