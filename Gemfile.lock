@@ -531,6 +531,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   newrelic_rpm
+  nokogiri (~> 1.6)
   omniauth
   omniauth-facebook
   omniauth-github
@@ -572,5 +573,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.1p85
+
 BUNDLED WITH
-   1.12.3
+   1.12.4
