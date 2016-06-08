@@ -83,11 +83,11 @@ $(document).ready(function(){
     <th class="text-right">Last Post</th>
   </tr>
   <tbody>
-  <%= render :partial => 'topic', :collection => @topics %>
+  <%#= render :partial => 'topic', :collection => @topics %>
   </tbody>
 </table>
 <div class="text-right">
-  <%= paginate @topics, remote: true %>
+  <%#= paginate @topics, remote: true %>
 </div>
 
 <div class="row">
@@ -99,10 +99,10 @@ $(document).ready(function(){
         <p class="text-center less-important hidden-xs">See reports on individual users.</p>
       </div>
     </div>
-    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_knowledgebase_path %>">
+    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_categories_path %>">
       <div class="dummy"></div>
       <div class="thumbnail">
-        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-book'></span><br/><%= link_to "Content", admin_knowledgebase_path %><br/></h5>
+        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-book'></span><br/><%= link_to "Content", admin_categories_path %><br/></h5>
         <p class="text-center less-important hidden-xs">Edit Knowledgebase, common replies, or other site content</p>
       </div>
     </div>
@@ -113,17 +113,12 @@ $(document).ready(function(){
         <p class="text-center less-important hidden-xs">Read and Resolve Support Discussions</p>
       </div>
     </div>
-    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_communities_path %>">
+    <div class="topic-box col-md-3 col-sm-3 col-xs-6" data-link="<%= admin_forums_path %>">
       <div class="dummy"></div>
       <div class="thumbnail">
-        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-align-justify'></span><br/><%= link_to "Community", admin_communities_path %><br/></h5>
+        <h5 class="category-header text-center"><span class='category-icon glyphicon glyphicon-align-justify'></span><br/><%= link_to "Community", admin_forums_path %><br/></h5>
         <p class="text-center less-important hidden-xs">Add or Remove Support Community Topics</p>
       </div>
-    </div>
-    <h4>Jump to User:</h4>
-    <%= render 'user_search_form' %>
-    <div id="users">
-      <%= render 'users' %>
     </div>
   </div>
 </div>

@@ -14,4 +14,26 @@ class Admin::DashboardController < Admin::BaseController
     end
   end
 
+  def stats
+    @interval = params[:interval].try(:to_i) || 7
+    @topics = Topic.undeleted.where('topics.created_at > ?', @interval.days.ago)
+    @topic_count = @topics.count
+    # Note: Cannot use 'posts_count' counter cache; we only count posts with kind='reply' (not 'first' or 'note').
+    responded_topic_ids = @topics
+      .joins(:posts)
+      .where(posts: { kind: 'reply' })
+      .group('topics.id')
+      .having('COUNT(posts.id) > 1')
+      .ids
+    @responded_topics = Topic.where(id: responded_topic_ids)
+    @closed_topic_count = @topics.closed.count
+
+    @posts = Post.where('created_at > ?', @interval.days.ago)
+
+    delays = @responded_topics.map { |t| t.posts.second.created_at - t.created_at }
+
+    @median_first_response_time = median(delays) unless delays.empty?
+  end
+
+
 end

@@ -62,10 +62,7 @@ Rails.application.routes.draw do
     get 'settings' => 'settings#index', as: :settings
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
 
-    get '/stats' => 'admin#stats', as: :admin_stats
-
     post 'shared/update_order' => 'shared#update_order', as: :update_order
-
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
 
     resources :categories do
@@ -78,7 +75,8 @@ Rails.application.routes.draw do
       resources :posts
     end
     resources :posts
-    # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
+    get '/dashboard' => 'dashboard#dashboard', as: :dashboard
+    get '/stats' => 'dashboard#stats', as: :stats
     root to: 'dashboard#index'
   end
 
