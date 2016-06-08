@@ -28,31 +28,38 @@ Helpy.ready = function(){
     $(this).css('box-shadow', '0px 0px 10px #eee');
     $(this).closest('.has-arrow').addClass('over');
   });
+
+  $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+    return $( "<li></li>" )
+        .data( "item.autocomplete", item["name"] )
+        .append( "<div class='ui-menu-item-heading'><a href="+item["link"]+" >" + item["name"] + "</a></div>" )
+        .append( "<div class='ui-menu-item-content' >"+item["content"]+"</div>" )
+        .appendTo( ul );
+  };
   
-  var searchRequest = null;
-
-  var minlength = 3;
-
+  
   $(".autosearch").keyup(function () {
-     
-      var that = this,
+      var that = $(this)
       value = $(this).val();
+      $(this).autocomplete({
+        source: function (request, response) {
+          jQuery.get("/en/search.json", {
+              query: value
+          }, function (data) {
+            response(data);
+          });
+        },
+        minLength: 3,
+        appendTo: that.next(),
+        focus: function( event, ui ) {
+          $(".autosearch").val(ui["item"]["name"]);
+        },
+        select: function( event, ui ) {
+          window.location.href = ui["item"]["link"];
+        }
 
-      if (value.length >= minlength ) {
-        if (searchRequest != null) 
-          searchRequest.abort();
-        $(".autosearch").autocomplete({
-          source: function (request, response) {
-            jQuery.get("/en/search.json", {
-                query: value
-            }, function (data) {
-              console.log(data)
-              response(data);
-            });
-          },
-          minLength: 3
-        });
-      }
+      });
+    
   });
 
   $('.stats').on('click', function(){

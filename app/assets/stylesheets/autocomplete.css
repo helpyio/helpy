@@ -1,6 +1,6 @@
 .ui-autocomplete {
   position: absolute;
-  top: 100%;
+  top: 0;
   left: 0;
   z-index: 1000;
   float: left;
@@ -46,4 +46,28 @@
       background-image: none;
     }
   }
+  .ui-state-focus{
+    border: 1px solid #999999;
+    background: #dadada;
+    color: #212121;
+  }
+
+  .ui-menu-item-heading{
+    text-align: left; 
+    margin-left: 5px; 
+    font-weight: bold; 
+    font-size: 105%; 
+  }
+
+  .ui-menu-item-content{
+    text-align: left; 
+    margin-left: 5px; 
+    color: #666;
+  }
+
+  .ui-menu-item{
+    margin-bottom: 1%; 
+  }
 }
+
+
