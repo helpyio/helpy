@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   before_action :instantiate_tracker
 
   def url_options
-    { locale: I18n.locale }.merge(super)
+    { locale: I18n.locale, theme: params[:theme] }.merge(super)
   end
 
   def after_sign_in_path_for(_resource)
@@ -130,8 +130,11 @@ class ApplicationController < ActionController::Base
   end
 
   def theme_chosen
-    session['theme'] = params['theme'] if params['theme'].present?
-    session['theme'] || AppSettings['theme.active'] || 'helpy'
+    if params[:theme].present?
+      params[:theme]
+    else
+      AppSettings['theme.active'].present? ? AppSettings['theme.active'] : 'helpy'
+    end
   end
 
 end

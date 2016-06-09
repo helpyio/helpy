@@ -80,6 +80,16 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal '000000', AppSettings['css.still_need_help']
   end
 
+  test 'an admin should be able to change the theme' do
+    AppSettings['theme.active'] = ''
+
+    sign_in users(:admin)
+    put :update_settings,
+      'theme.active' => 'flat'
+    assert_redirected_to :admin_settings
+    assert_equal 'flat', AppSettings['theme.active']
+  end
+
   test 'an admin should be able to toggle locales on and off' do
     sign_in users(:admin)
     # first, toggle off all locales
