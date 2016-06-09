@@ -56,6 +56,10 @@ Helpy.ready = function(){
         },
         select: function( event, ui ) {
           window.location.href = ui["item"]["link"];
+        },
+        messages: {
+          noResults: '',
+          results: function() {}
         }
 
       });
