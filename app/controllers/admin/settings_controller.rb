@@ -1,7 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
   before_action :verify_admin
-  respond_to :html
+  skip_before_action :verify_authenticity_token
 
   def index
     @settings = AppSettings.get_all
@@ -15,7 +15,15 @@ class Admin::SettingsController < Admin::BaseController
     @settings.each do |setting|
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
-    redirect_to(admin_settings_path)
+
+    respond_to do |format|
+      format.html {
+        redirect_to admin_settings_path
+      }
+      format.js {
+      }
+    end
   end
+
 
 end

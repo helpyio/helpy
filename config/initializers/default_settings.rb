@@ -15,7 +15,8 @@ AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
 # Design: (Colors etc.)
 
 AppSettings.defaults["design.favicon"] = Settings.app_favicon
-AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo #Note: the contributer accidentally reversed these in the code
+AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo
+# Note: the contributer accidentally reversed these in the code
 AppSettings.defaults["design.footer_mini_logo"] = Settings.app_large_logo
 AppSettings.defaults["css.search_background"] = "feffe9"
 AppSettings.defaults["css.top_bar"] = "3cceff"

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<%= render partial: 'layouts/head' %>
+		<%= stylesheet_link_tag 'onboard', "data-turbolinks-track" => false  %>
+		<%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
+	</head>
+
+<body>
+<script>
+  ga('set', 'location', location.href.split('#')[0]);
+  ga('send', 'pageview', { "title": document.title });
+</script>
+<div class="content">
+
+	<div id="top-bar"></div>
+	<div id="body-wrapper" class="container">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<%= yield %>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+	</div>
+</div>
+<div id="onboard-footer-wrapper">
+	<div class="container">
+		<div class="col-12-md onboard-pager text-center">
+			<ul class="panel-list list-unstyled list-inline">
+				<li class="number-circle step-1 active-step">1</li>
+				<li>-</li>
+				<li class="number-circle step-2">2</li>
+				<li>-</li>
+				<li class="number-circle step-3">3</li>
+				<li>-</li>
+				<li class="number-circle step-4">4</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

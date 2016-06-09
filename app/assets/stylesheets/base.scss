@@ -393,12 +393,20 @@ ul.dropdown-menu li a.strong {
    color: white;
 }
 
-.topic-placeholder::-moz-placeholder {  
+.topic-placeholder::-moz-placeholder {
    color: white;
 }
 
 .topic-placeholder:-ms-input-placeholder {
    color: white;
+}
+
+.social-icons {
+  margin-top: 15px;
+
+  span {
+    font-size: 150%;
+  }
 }
 
 //  == MODAL ===
@@ -884,7 +892,6 @@ h4.qna {
     label{
       padding: 0px;
     }
-    
-  }  
-}
 
+  }
+}

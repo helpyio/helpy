@@ -58,11 +58,19 @@ Rails.application.routes.draw do
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
+
+    # Settings Routes
     get 'settings' => 'settings#index', as: :settings
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
 
-    post 'shared/update_order' => 'shared#update_order', as: :update_order
+    # Onboarding Routes
+    get '/onboarding/index' => 'onboarding#index', as: :onboarding
+    patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
+    patch '/onboarding/update_settings' => 'onboarding#update_settings', as: :onboard_settings
+    get '/onboarding/complete' => 'onboarding#complete', as: :complete_onboard
 
+    # Misc Routes
+    post 'shared/update_order' => 'shared#update_order', as: :update_order
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
 
     resources :categories do
