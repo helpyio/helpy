@@ -32,8 +32,9 @@ class Admin::DocsController < Admin::BaseController
       I18n.locale = params['lang']
     end
     @doc = Doc.where(id: params[:id]).first
+    @category = @doc.category
     if @doc.update_attributes(doc_params)
-      redirect_to(admin_category_path(@doc.category.id))
+      redirect_to(admin_category_path(@category.id))
     else
       render 'edit', id: @doc
     end

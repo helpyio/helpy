@@ -34,6 +34,8 @@ class Topic < ActiveRecord::Base
   belongs_to :assigned_user, class_name: 'User'
 
   has_many :posts, :dependent => :delete_all
+  accepts_nested_attributes_for :posts
+
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf]
 

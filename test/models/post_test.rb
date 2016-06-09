@@ -38,7 +38,7 @@ class PostTest < ActiveSupport::TestCase
       @post = @topic.posts.create(body: "this is a reply", kind: "first", user_id: @user.id)
     end
 
-    assert @topic.post_cache == " #{@post.body}"
+    assert @post.topic.post_cache == " #{@post.body}"
 
   end
 
@@ -48,11 +48,11 @@ class PostTest < ActiveSupport::TestCase
 
     @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
     @post = @topic.posts.create(body: "this is a reply", kind: "first", user_id: @user.id)
-    assert @topic.post_cache == " #{@post.body}"
+    assert @post.topic.post_cache == " #{@post.body}"
 
     @post.active = false
     @post.save
-    assert @topic.post_cache != " #{@post.body}"
+    assert @post.topic.post_cache != " #{@post.body}"
 
   end
 

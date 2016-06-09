@@ -872,3 +872,19 @@ h4.qna {
 	    max-height: 100px;
 	}
 }
+
+.checkbox{
+  label{
+    position: initial;
+  }
+}
+
+.radio{
+  .radio-label{
+    label{
+      padding: 0px;
+    }
+    
+  }  
+}
+
