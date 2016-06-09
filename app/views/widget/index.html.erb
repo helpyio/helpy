@@ -1,3 +1,12 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromosing your
+# ability to upgrade in the future
+################################################################################
+%>
+
 <% Globalize.with_locale(@locale) do %>
   <div class="widget-form">
   <%= bootstrap_form_for(@topic) do |f| -%>

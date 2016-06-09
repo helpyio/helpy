@@ -115,6 +115,7 @@ gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
 
+gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do

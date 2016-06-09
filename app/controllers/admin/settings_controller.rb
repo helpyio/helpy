@@ -5,6 +5,13 @@ class Admin::SettingsController < Admin::BaseController
 
   def index
     @settings = AppSettings.get_all
+    @themes = Theme.find_all
+  end
+
+  def preview
+    theme = Theme.find(params[:theme])
+    send_file File.join(theme.path, theme.thumbnail),
+            type: 'image/png', disposition: 'inline', stream: false
   end
 
   def update_settings
