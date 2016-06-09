@@ -401,6 +401,14 @@ ul.dropdown-menu li a.strong {
    color: white;
 }
 
+.social-icons {
+  margin-top: 15px;
+
+  span {
+    font-size: 150%;
+  }
+}
+
 //  == MODAL ===
 
 .modal-header {
@@ -884,7 +892,6 @@ h4.qna {
     label{
       padding: 0px;
     }
-    
-  }  
-}
 
+  }
+}

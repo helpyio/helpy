@@ -35,7 +35,7 @@
 
 <div id="panel-3" class="onboard-panel hidden text-center">
   <div class="onboard-message">
-    <h2>Customize your login</h2>
+    <h2>Customize your login:</h2>
   </div>
   <div class="edit-admin text-left">
     <%= simple_form_for(@user, url: admin_onboard_user_path(id: @user.id), method: 'patch', validate: true) do |f| %>
@@ -45,7 +45,7 @@
       <%= f.input :password, value: '', validate: true %>
       <%= f.input :password_confirmation, autocomplete: "off", validate: true  %>
       <%= f.hidden_field :admin, value: 'true' %>
-      <div class="text-center onboard-submit-section">
+      <div class="onboard-submit-section">
       <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
       </div>
     <% end %>
