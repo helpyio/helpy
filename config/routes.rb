@@ -75,7 +75,7 @@ Rails.application.routes.draw do
       resources :posts
     end
     resources :posts
-    get '/dashboard' => 'dashboard#dashboard', as: :dashboard
+    get '/dashboard' => 'dashboard#index', as: :dashboard
     get '/stats' => 'dashboard#stats', as: :stats
     root to: 'dashboard#index'
   end

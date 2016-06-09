@@ -35,6 +35,7 @@ class Post < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :ispublic, -> { where.not(kind: 'note') }
   scope :chronologic, -> { order('created_at ASC') }
+  scope :reverse, -> { order('created_at DESC') }
   scope :by_votes, -> { order('points DESC')}
 
   #updates the last post date for both the forum and the topic
