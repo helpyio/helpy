@@ -88,6 +88,9 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
   end
 
+  mount API::Base, at: "/"
+  mount GrapeSwaggerRails::Engine => '/swagger'
+  
   # Receive email from Griddler
   mount_griddler
 

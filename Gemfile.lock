@@ -28,6 +28,10 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_model_serializers (0.10.0)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
     activejob (4.2.6)
       activesupport (= 4.2.6)
       globalid (>= 0.3.0)
@@ -59,6 +63,10 @@ GEM
     autoprefixer-rails (6.3.6)
       execjs
     aws_cf_signer (0.1.3)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -112,6 +120,8 @@ GEM
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.1)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -124,6 +134,8 @@ GEM
     daemons (1.2.3)
     debug_inspector (0.0.2)
     deep_merge (1.0.1)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -137,6 +149,8 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
+    enumerable-lazy (0.0.1)
+    equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.7.0)
@@ -163,6 +177,24 @@ GEM
       activerecord (>= 3.2.0, < 5)
       globalize (>= 3.0.4, < 6)
       paper_trail (>= 3.0.0, < 5)
+    grape (0.16.2)
+      activesupport
+      builder
+      hashie (>= 2.1.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      mustermann19 (~> 0.4.3)
+      rack (>= 1.3.0)
+      rack-accept
+      virtus (>= 1.0.0)
+    grape-active_model_serializers (1.3.2)
+      active_model_serializers (>= 0.9.0)
+      grape
+    grape-swagger (0.21.0)
+      grape (>= 0.12.0)
+    grape-swagger-rails (0.2.1)
+      grape-swagger (>= 0.7.2)
+      railties (>= 3.2.12)
     gravtastic (3.2.6)
     griddler (1.3.1)
       htmlentities
@@ -193,6 +225,7 @@ GEM
     i18n-country-translations (1.2.3)
       i18n (~> 0.5)
       railties (>= 3.0)
+    ice_nine (0.11.2)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -252,6 +285,8 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mustermann19 (0.4.3)
+      enumerable-lazy
     netrc (0.11.0)
     newrelic_rpm (3.15.1.316)
     nokogiri (1.6.8)
@@ -304,6 +339,9 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.6)
@@ -473,6 +511,11 @@ GEM
       kgio (~> 2.6)
       raindrops (~> 0.7)
     uniform_notifier (1.9.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -513,6 +556,10 @@ DEPENDENCIES
   font-awesome-sass
   globalize-accessors
   globalize-versioning
+  grape
+  grape-active_model_serializers
+  grape-swagger
+  grape-swagger-rails
   gravtastic
   griddler
   griddler-mailgun
@@ -546,6 +593,7 @@ DEPENDENCIES
   pg
   pg_search
   quiet_assets
+  rack-cors
   rails (= 4.2.6)
   rails-i18n (~> 4.0.0)
   rails-settings-cached
