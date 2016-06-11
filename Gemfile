@@ -65,6 +65,8 @@ gem 'grape-swagger'
 gem 'grape-swagger-rails'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'grape-active_model_serializers'
+gem 'doorkeeper'
+gem 'wine_bouncer', '~> 0.5.1'
 
 gem 'permalink_fu'
 gem 'paper_trail'

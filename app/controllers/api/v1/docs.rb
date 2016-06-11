@@ -1,6 +1,14 @@
+require 'doorkeeper/grape/helpers'
+
 module API
   module V1
     class Docs < Grape::API
+      helpers Doorkeeper::Grape::Helpers
+
+      before do
+        doorkeeper_authorize!
+      end
+
       include API::V1::Defaults
       resource :docs do
         desc "Return a doc"
@@ -18,8 +26,6 @@ module API
         get "", root: :docs do
           Doc.where(category_id: permitted_params[:category_id]).all
         end
-
-
       end
     end
   end
