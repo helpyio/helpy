@@ -55,7 +55,7 @@ class Topic < ActiveRecord::Base
   scope :pending, -> { where(current_status: "pending") }
   scope :mine, -> (user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
-  scope :spam, -> { where(current_status: "spam")}
+  scope :spam, -> { where(current_status: "spam") }
 
   scope :chronologic, -> { order('updated_at DESC') }
   scope :reverse, -> { order('updated_at ASC') }

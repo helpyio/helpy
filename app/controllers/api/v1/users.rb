@@ -2,7 +2,7 @@ require 'doorkeeper/grape/helpers'
 
 module API
   module V1
-    class Categories < Grape::API
+    class Users < Grape::API
       # helpers Doorkeeper::Grape::Helpers
       #
       # before do
@@ -10,10 +10,10 @@ module API
       # end
 
       include API::V1::Defaults
-      resource :categories do
-        desc "Return all public categories"
-        get "", root: :categories do
-          Category.active.all
+      resource :users do
+        desc "Return all topics"
+        get "", root: :users do
+          User.all
         end
       end
     end

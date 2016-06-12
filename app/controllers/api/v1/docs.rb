@@ -3,11 +3,11 @@ require 'doorkeeper/grape/helpers'
 module API
   module V1
     class Docs < Grape::API
-      helpers Doorkeeper::Grape::Helpers
-
-      before do
-        doorkeeper_authorize!
-      end
+      # helpers Doorkeeper::Grape::Helpers
+      #
+      # before do
+      #   doorkeeper_authorize!
+      # end
 
       include API::V1::Defaults
       resource :docs do

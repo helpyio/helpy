@@ -6,6 +6,10 @@ module API
       format :json
       mount API::V1::Docs
       mount API::V1::Categories
+      mount API::V1::Forums
+      mount API::V1::Topics
+      mount API::V1::Posts
+      mount API::V1::Users
       add_swagger_documentation
     end
   end
