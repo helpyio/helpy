@@ -9,11 +9,16 @@ module API
       #   doorkeeper_authorize!
       # end
 
+      # LIST ALL CATEGORIES
       include API::V1::Defaults
       resource :categories do
-        desc "Return all public categories"
+        desc "Return all public categories", {
+          entity: Entity::Category,
+          notes: "Lists all active categories defined for the knowledgebase"
+        }
         get "", root: :categories do
-          Category.active.all
+          categories = Category.active.all
+          present categories, with: Entity::Category
         end
       end
     end

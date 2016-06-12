@@ -10,52 +10,64 @@ module API
       # end
 
       include API::V1::Defaults
+
+      # PRIVATE TICKET ENDPOINTS
       resource :tickets do
-        desc "Returns all open tickets"
+
+        # LIST BY STATUS
+        desc "Returns all tickets by status", {
+          entity: Entity::Topic,
+          notes: "List all open tickets (private topics)"
+        }
         params do
+          requires :status, type: String, desc: "Status group (New, Open, Pending, etc.)"
         end
-        get "open", root: :topics do
-          Forum.find(1).topics.open
+        get "status/:status", root: :topics do
+          topics = Forum.find(1).topics.where(
+            current_status: permitted_params[:status]
+          )
+          present topics, with: Entity::Topic
         end
 
-        desc "Returns all unread tickets"
-        params do
-        end
-        get "unread", root: :topics do
-          Forum.find(1).topics.unread
-        end
-
-        desc "Returns all pending tickets"
-        params do
-        end
-        get "pending", root: :topics do
-          Forum.find(1).topics.pending
-        end
-
-        desc "Returns all tickets for a user"
+        # LIST BY USER
+        desc "Returns all tickets for a user", {
+          entity: Entity::Topic,
+          notes: "List all tickets (private topics) for a given user"
+        }
         params do
           requires :user_id, type: String, desc: "ID of the user"
         end
         get "by_user", root: :topics do
-          Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
+          topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
+          present topics, with: Entity::Topic
         end
 
-        desc "Returns a single topic"
+        # SHOW ONE TICKET AND ITS THREAD
+        desc "Returns a single ticket", {
+          entity: Entity::Topic,
+          notes: "Show one ticket (private topic)"
+        }
         params do
-          requires :id, type: String, desc: "Forum to list topics from"
+          requires :id, type: String, desc: "Ticket ID"
         end
         get ":id", root: :topics do
-          Topic.where(id: permitted_params[:id]).first
+          topic = Topic.includes(:posts).find(permitted_params[:id])#
+          present topic, with: Entity::Topic
         end
       end
 
+      # PUBLIC TOPIC ENDPOINTS FOR COMMUNITY FORUMS
       resource :topics do
-        desc "Return all public topics for a forum"
+        desc "Return all public topics for a forum", {
+          entity: Entity::Topic,
+          notes: "List all topics for a given forum"
+        }
         params do
           requires :forum_id, type: String, desc: "Displays public community forum topics"
         end
         get "", root: :topics do
-          Forum.find(permitted_params[:forum_id]).topics.all
+          topics = Forum.find(permitted_params[:forum_id]).topics.all
+          present topics, with: Entity::Topic
         end
       end
     end

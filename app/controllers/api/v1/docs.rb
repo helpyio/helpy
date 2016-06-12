@@ -11,20 +11,28 @@ module API
 
       include API::V1::Defaults
       resource :docs do
-        desc "Return a doc"
+        desc "Return a doc", {
+          entity: Entity::Doc,
+          notes: "Returns the full content of one doc"
+        }
         params do
           requires :id, type: String, desc: "ID of the doc"
         end
         get ":id", root: "doc" do
-          Doc.where(id: permitted_params[:id]).first!
+          doc = Doc.where(id: permitted_params[:id]).first!
+          present doc, with: Entity::Doc
         end
 
-        desc "Return all docs in a Category"
+        desc "Return all docs in a Category", {
+          entity: Entity::Doc,
+          notes: "List all docs in a category"
+        }
         params do
           requires :category_id, type: String, desc: "Category to list docs from"
         end
         get "", root: :docs do
-          Doc.where(category_id: permitted_params[:category_id]).all
+          docs = Doc.where(category_id: permitted_params[:category_id]).all
+          present docs, with: Entity::Doc          
         end
       end
     end
