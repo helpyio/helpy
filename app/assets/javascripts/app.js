@@ -43,7 +43,7 @@ Helpy.ready = function(){
       value = $(this).val();
       $(this).autocomplete({
         source: function (request, response) {
-          jQuery.get("/en/search.json", {
+          jQuery.get("/"+location.href.split("/")[3]+"/search.json", {
               query: value
           }, function (data) {
             response(data);
