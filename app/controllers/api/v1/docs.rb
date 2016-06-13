@@ -11,29 +11,88 @@ module API
 
       include API::V1::Defaults
       resource :docs do
-        desc "Return a doc", {
+
+        # SHOW A SINGLE DOC
+        desc "Shows a single doc", {
           entity: Entity::Doc,
           notes: "Returns the full content of one doc"
         }
         params do
-          requires :id, type: String, desc: "ID of the doc"
+          requires :id, type: String, desc: "ID of the doc to show"
         end
         get ":id", root: "doc" do
           doc = Doc.where(id: permitted_params[:id]).first!
           present doc, with: Entity::Doc
         end
 
-        desc "Return all docs in a Category", {
+        # CREATE NEW DOC
+        desc "Create a new doc", {
           entity: Entity::Doc,
-          notes: "List all docs in a category"
+          notes: "Create a new doc"
         }
         params do
-          requires :category_id, type: String, desc: "Category to list docs from"
+          requires :title, String, desc: "The name of the articles"
+          requires :category_id, Integer, desc: "The category the doc belongs to"
+          requires :body, String, desc: "The body/text of the article"
+          requires :user_id, Integer, desc: "The author of the article"
+          optional :keywords, String, desc: "Keywords that will be used for internal search and SEO"
+          optional :title_tag, String, desc: "An alternate title tag that will be used if provided"
+          optional :meta_description, String, desc: "A short description for SEO and internal purposes"
+          optional :rank, Integer, desc: "The rank can be used to determine the ordering of docs"
+          optional :front_page, String, desc: "Whether or not the doc should appear on the front page"
+          optional :active, Boolean, desc: "Whether or not the doc is live on the site"
         end
-        get "", root: :docs do
-          docs = Doc.where(category_id: permitted_params[:category_id]).all
-          present docs, with: Entity::Doc          
+        post "", root: :docs do
+          doc = Doc.create!(
+            title: permitted_params[:title],
+            category_id: permitted_params[:category_id],
+            body: permitted_params[:body],
+            user_id: permitted_params[:user_id],
+            keywords: permitted_params[:keywords],
+            title_tag: permitted_params[:title_tag],
+            meta_description: permitted_params[:meta_description],
+            rank: permitted_params[:rank],
+            front_page: permitted_params[:front_page],
+            active: permitted_params[:active]
+          )
+          present doc, with: Entity::Doc
         end
+
+        # UPDATE EXISTING DOC
+        desc "Update a doc", {
+          entity: Entity::Doc,
+          notes: "Update a doc"
+        }
+        params do
+          requires :id, Integer, desc: "The ID of the Doc being updated"
+          requires :title, String, desc: "The name of the category of articles"
+          requires :category_id, Integer, desc: "The category the doc belongs to"
+          requires :body, String, desc: "The body/text of the article"
+          requires :user_id, Integer, desc: "The author of the article"
+          optional :keywords, String, desc: "Keywords that will be used for internal search and SEO"
+          optional :title_tag, String, desc: "An alternate title tag that will be used if provided"
+          optional :meta_description, String, desc: "A short description for SEO and internal purposes"
+          optional :rank, Integer, desc: "The rank can be used to determine the ordering of docs"
+          optional :front_page, String, desc: "Whether or not the doc should appear on the front page"
+          optional :active, Boolean, desc: "Whether or not the doc is live on the site"
+        end
+        patch ":id", root: :docs do
+          doc = Doc.where(id: permitted_params[:id])
+          doc.update!(
+            title: permitted_params[:title],
+            category_id: permitted_params[:category_id],
+            body: permitted_params[:body],
+            user_id: permitted_params[:user_id],
+            keywords: permitted_params[:keywords],
+            title_tag: permitted_params[:title_tag],
+            meta_description: permitted_params[:meta_description],
+            rank: permitted_params[:rank],
+            front_page: permitted_params[:front_page],
+            active: permitted_params[:active]
+          )
+          present doc, with: Entity::Doc
+        end
+
       end
     end
   end

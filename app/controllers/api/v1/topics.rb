@@ -15,7 +15,7 @@ module API
       resource :tickets do
 
         # LIST BY STATUS
-        desc "Returns all tickets by status", {
+        desc "List all tickets by status", {
           entity: Entity::Topic,
           notes: "List all open tickets (private topics)"
         }
@@ -30,20 +30,20 @@ module API
         end
 
         # LIST BY USER
-        desc "Returns all tickets for a user", {
+        desc "List all tickets for a user", {
           entity: Entity::Topic,
           notes: "List all tickets (private topics) for a given user"
         }
         params do
           requires :user_id, type: String, desc: "ID of the user"
         end
-        get "by_user", root: :topics do
+        get "user/:user_id", root: :topics do
           topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
           present topics, with: Entity::Topic
         end
 
         # SHOW ONE TICKET AND ITS THREAD
-        desc "Returns a single ticket", {
+        desc "Show a single ticket", {
           entity: Entity::Topic,
           notes: "Show one ticket (private topic)"
         }
@@ -52,13 +52,60 @@ module API
         end
         get ":id", root: :topics do
           topic = Topic.includes(:posts).find(permitted_params[:id])#
-          present topic, with: Entity::Topic
+          present topic, with: Entity::Topic, posts: true
         end
+
+        # CREATE A NEW PRIVATE TICKET
+        desc "Create a new ticket"
+        params do
+          requires :name, type: String, desc: "The subject of the ticket"
+          requires :body, type: String, desc: "The post body"
+          requires :user_id, type: String, desc: "the User ID"
+        end
+
+        post "", root: :topics do
+          ticket = Topic.create!(
+            forum_id: 1,
+            name: params[:name],
+            user_id: params[:user_id],
+            private: true
+          )
+          post = topic.posts.create!(
+            body: params[:body],
+            user_id: params[:user_id],
+            kind: 'first'
+          )
+          present ticket, with: Entity::Topic, posts: true
+        end
+
+        # UPDATE SINGLE TICKET
+        desc "Update a private ticket"
+        params do
+          requires :id, type: Integer, desc: "The ticket ID to update"
+          requires :name, type: String, desc: "The subject of the ticket"
+          requires :body, type: String, desc: "The post body"
+          requires :user_id, type: String, desc: "the User ID"
+        end
+
+        patch ":id", root: :topics do
+
+          ticket = Topic.where(id: permitted_params[:id]).first
+          ticket.update!(
+            forum_id: 1,
+            name: params[:name],
+            user_id: params[:user_id],
+            private: true
+          )
+          present ticket, with: Entity::Topic, posts: true
+        end
+
+
+
       end
 
       # PUBLIC TOPIC ENDPOINTS FOR COMMUNITY FORUMS
       resource :topics do
-        desc "Return all public topics for a forum", {
+        desc "List all public topics for a forum", {
           entity: Entity::Topic,
           notes: "List all topics for a given forum"
         }
@@ -70,6 +117,11 @@ module API
           present topics, with: Entity::Topic
         end
       end
+
+      # CREATE A NEW TOPIC
+
+
+
     end
   end
 end

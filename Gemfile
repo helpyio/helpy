@@ -62,10 +62,10 @@ gem 'http_accept_language'
 # API gems
 gem 'grape'
 gem 'grape-swagger'
-gem 'grape-swagger-rails'
-gem 'rack-cors', :require => 'rack/cors'
-# gem 'grape-active_model_serializers'
 gem 'grape-entity'
+gem 'grape-swagger-rails'
+gem 'grape-swagger-entity'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'doorkeeper'
 gem 'wine_bouncer', '~> 0.5.1'
 

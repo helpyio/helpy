@@ -1,6 +1,5 @@
 module Entity
   class Topic < Base
-
     expose :id
     expose :forum_id
     expose :user_id
@@ -19,6 +18,6 @@ module Entity
     expose :updated_at
     expose :doc_id
     expose :locale
-    expose :posts, using: Entity::Post
+    expose :posts, using: Entity::Post, if: { posts: true }
   end
 end
