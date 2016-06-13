@@ -10,6 +10,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+# Explicitly include Nokogiri to control version
+gem 'nokogiri', '>= 1.6.8'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -83,9 +86,9 @@ gem 'rdiscount'
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 gem 'daemons'
-gem 'mailman' #, require: false
+gem 'mailman'#, require: false
 gem 'mail_extract'
-gem 'mail', '~> 2.6.4'
+
 gem 'griddler'
 gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
@@ -112,6 +115,7 @@ gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
 
+gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do

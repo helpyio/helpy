@@ -81,6 +81,8 @@ class Admin::UsersController < Admin::BaseController
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
     @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
+
+    # TODO: Refactor this to use an index method/view on the users model
     render 'admin/topics/index'
   end
 

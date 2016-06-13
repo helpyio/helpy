@@ -1,0 +1,37 @@
+// .slideout-menu {
+//   position: fixed;
+//   left: auto;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   z-index: 0;
+//   width: 256px;
+//   overflow-y: auto;
+//   -webkit-overflow-scrolling: touch;
+//   display: none;
+//   background-color: #000;
+//
+//   a {
+//     color: white;
+//
+//     &:hover {
+//       color: black;
+//     }
+//   }
+// }
+//
+// .slideout-panel {
+//   position:relative;
+//   z-index: 1;
+//   will-change: transform;
+// }
+//
+// .slideout-open,
+// .slideout-open body,
+// .slideout-open .slideout-panel {
+//   overflow: hidden;
+// }
+//
+// .slideout-open .slideout-menu {
+//   display: block;
+// }

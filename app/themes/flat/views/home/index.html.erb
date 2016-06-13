@@ -1,0 +1,43 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+
+<% content_for :home do %>
+<div class="text-center" id="home-search">
+  <h1 id="how-help" class="text-center"><%= t('how_can_we_help') %></h1>
+  <%= render 'result/search_form' %>
+</div>
+<% end %>
+
+<% if @categories.count > 0 && Doc.all.with_translations(I18n.locale).count > 0 %>
+<div id="featured-categories" class="row">
+  <% @categories.each do |category| %>
+  <div class="col-md-3 col-sm-6 col-xs-6 text-center article-icon">
+    <%= link_to category_path(category), id: "category-#{category.id}" do %>
+      <i class="circle-icon glyphicon glyphicon-<%= category.icon %>"></i><br/>
+      <%= category.name %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
+<div class="row">
+  <h2 class="text-center space-h2"><%= t(:browse_topics)%></h2>
+
+  <% @categories.each do |category| %>
+
+    <% if category.docs.all.with_translations(I18n.locale).count > 0 %>
+      <div class="col-md-6 article-block">
+        <h5 class="tiny-header"><%= link_to category.name, category_path(category), id: "category-#{category.id}", class:'tiny-header'  %></h5>
+        <ul class='list-unstyled articles'>
+          <% category.docs.with_translations(I18n.locale).ordered.active.limit(5).each_with_index do |doc| -%>
+            <%= render ("docs/doc"), doc: doc -%>
+          <% end -%>
+          <li class="article article-more">
+            <%= link_to "More Documents", category_path(category) if category.docs.ordered.active.count > 5 -%>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+
+  <% end %>
+</div>

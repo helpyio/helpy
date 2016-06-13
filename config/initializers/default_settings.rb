@@ -15,13 +15,18 @@ AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
 # Design: (Colors etc.)
 
 AppSettings.defaults["design.favicon"] = Settings.app_favicon
-AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo #Note: the contributer accidentally reversed these in the code
+AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo
+# Note: the contributer accidentally reversed these in the code
 AppSettings.defaults["design.footer_mini_logo"] = Settings.app_large_logo
 AppSettings.defaults["css.search_background"] = "feffe9"
 AppSettings.defaults["css.top_bar"] = "3cceff"
 AppSettings.defaults["css.link_color"] = "004084"
 AppSettings.defaults["css.form_background"] = "F0FFF0"
 AppSettings.defaults["css.still_need_help"] = "ffdf91"
+
+# Theme:
+
+AppSettings.defaults["theme.active"] = "helpy"
 
 # i18n:
 
@@ -45,19 +50,8 @@ AppSettings.defaults["email.mail_smtp"] = Settings.mail_smtp
 AppSettings.defaults["email.mail_port"] = Settings.mail_port
 AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
 
-AppSettings.defaults["email.imap_server"] = Settings.imap_server
-AppSettings.defaults["email.imap_username"] = Settings.imap_username
-AppSettings.defaults["email.imap_password"]= Settings.imap_password
-AppSettings.defaults["email.imap_security"]= Settings.imap_security
-AppSettings.defaults["email.imap_port"]= Settings.imap_port
-
-AppSettings.defaults["email.pop3_server"] = Settings.pop3_server
-AppSettings.defaults["email.pop3_username"] = Settings.pop3_username
-AppSettings.defaults["email.pop3_password"] = Settings.pop3_password
-AppSettings.defaults["email.pop3_security"]= Settings.pop3_security
-AppSettings.defaults["email.pop3_port"]= Settings.pop3_port
-
 # Cloudinary:
+
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''
 AppSettings.defaults['cloudinary.api_secret'] = ''

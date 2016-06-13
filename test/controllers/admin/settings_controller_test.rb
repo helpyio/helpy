@@ -44,13 +44,13 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to modify settings' do
     sign_in users(:admin)
-    put :update_settings,
+    xhr :put, :update_settings,
       'settings.site_name' => 'Helpy Support 2',
       'settings.parent_site' => 'http://helpy.io/2',
       'settings.parent_company' => 'Helpy 2',
       'settings.site_tagline' => 'Support',
       'settings.google_analytics_id' => 'UA-0000-21'
-    assert_redirected_to :admin_settings
+    assert_response :success
     assert_equal 'Helpy Support 2', AppSettings['settings.site_name']
     assert_equal 'http://helpy.io/2', AppSettings['settings.parent_site']
     assert_equal 'Helpy 2', AppSettings['settings.parent_company']
@@ -60,7 +60,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to modify design' do
     sign_in users(:admin)
-    put :update_settings,
+    xhr :put,:update_settings,
       'design.header_logo' => 'logo2.png',
       'design.footer_mini_logo' => 'logo2.png',
       'design.favicon' => 'favicon2.ico',
@@ -69,7 +69,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'css.link_color' => '000000',
       'css.form_background' => '000000',
       'css.still_need_help' => '000000'
-    assert_redirected_to :admin_settings
+    assert_response :success
     assert_equal 'logo2.png', AppSettings['design.header_logo']
     assert_equal 'logo2.png', AppSettings['design.footer_mini_logo']
     assert_equal 'favicon2.ico', AppSettings['design.favicon']
@@ -80,15 +80,25 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal '000000', AppSettings['css.still_need_help']
   end
 
+  test 'an admin should be able to change the theme' do
+    AppSettings['theme.active'] = ''
+
+    sign_in users(:admin)
+    put :update_settings,
+      'theme.active' => 'flat'
+    assert_redirected_to :admin_settings
+    assert_equal 'flat', AppSettings['theme.active']
+  end
+
   test 'an admin should be able to toggle locales on and off' do
     sign_in users(:admin)
     # first, toggle off all locales
     AppSettings['i18n.available_locales'] = ''
 
-    put :update_settings,
+    xhr :put, :update_settings,
       'i18n.available_locales' => ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl']
 
-    assert_redirected_to :admin_settings
+    assert_response :success
     assert_equal ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl'], AppSettings['i18n.available_locales']
   end
 
@@ -96,7 +106,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     sign_in users(:admin)
     # toggle it off
     AppSettings['widget.show_on_support_site'] = 0
-    put :update_settings, 'widget.show_on_support_site' => '1'
+    xhr :put, :update_settings, 'widget.show_on_support_site' => '1'
     assert_equal '1', AppSettings['widget.show_on_support_site']
   end
 
@@ -112,7 +122,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to add mail settings' do
     sign_in users(:admin)
-    put :update_settings,
+    xhr :put, :update_settings,
       'email.admin_email' => 'test@test.com',
       'email.from_email' => 'test@test.com',
       'email.mail_service' => 'mailgun',
@@ -120,19 +130,8 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'email.smtp_mail_username' => 'test-login',
       'email.smtp_mail_password' => '1234',
       'email.mail_port' => '587',
-      'email.mail_domain' => 'something.com',
-      'email.imap_server' => 'imap.something.com',
-      'email.imap_username' => 'imapu',
-      'email.imap_password' => 'imappw',
-      'email.imap_security' => 'ssl',
-      'email.imap_port' => '993',
-      'email.pop3_server' => 'pop3.something.com',
-      'email.pop3_username' => 'pop3u',
-      'email.pop3_password' => 'pop3pw',
-      'email.pop3_security' => 'ssl',
-      'email.pop3_port' => '995'
-
-    assert_redirected_to :admin_settings
+      'email.mail_domain' => 'something.com'
+    assert_response :success
 
     assert_equal 'test@test.com', AppSettings['email.admin_email']
     assert_equal 'test@test.com', AppSettings['email.from_email']
@@ -142,29 +141,28 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal '1234', AppSettings['email.smtp_mail_password']
     assert_equal '587', AppSettings['email.mail_port']
     assert_equal 'something.com', AppSettings['email.mail_domain']
-    assert_equal 'imap.something.com', AppSettings['email.imap_server']
-    assert_equal 'imapu', AppSettings['email.imap_username']
-    assert_equal 'imappw', AppSettings['email.imap_password']
-    assert_equal 'ssl', AppSettings['email.imap_security']
-    assert_equal '993', AppSettings['email.imap_port']
-    assert_equal 'pop3.something.com', AppSettings['email.pop3_server']
-    assert_equal 'pop3u', AppSettings['email.pop3_username']
-    assert_equal 'pop3pw', AppSettings['email.pop3_password']
-    assert_equal 'ssl', AppSettings['email.pop3_security']
-    assert_equal '995', AppSettings['email.pop3_port']
   end
 
   test 'an admin should be able to add a cloudinary key' do
     sign_in users(:admin)
-    put :update_settings,
+    xhr :put, :update_settings,
       'cloudinary.cloud_name' => 'something',
       'cloudinary.api_key' => 'something',
       'cloudinary.api_secret' => 'something'
-    assert_redirected_to :admin_settings
-
+    assert_response :success
     assert_equal 'something', AppSettings['cloudinary.cloud_name']
     assert_equal 'something', AppSettings['cloudinary.api_key']
     assert_equal 'something', AppSettings['cloudinary.api_secret']
+    get :index
+  end
+
+  test 'the updated cloudinary keys should be persisted into the api object' do
+    sign_in users(:admin)
+    xhr :put, :update_settings,
+      'cloudinary.cloud_name' => 'something',
+      'cloudinary.api_key' => 'something',
+      'cloudinary.api_secret' => 'something'
+    assert_response :success
     get :index
     assert_equal 'something', Cloudinary.config.cloud_name
     assert_equal 'something', Cloudinary.config.api_key
