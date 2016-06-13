@@ -73,6 +73,19 @@ Helpy.admin = function(){
       $('.imap-settings').removeClass('hidden');
     }
   });
+
+  $("#new_doc select, #edit_doc select").focusout(function(){
+    if($(this).val() == ""){
+      $("div.select").removeClass("has-success").addClass("has-error");
+      $("select").next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+      $("div.select .glyphicon-ok").remove();
+      $("<span class='help-block'>can't be blank</span>").insertAfter("div.select .glyphicon-remove")
+      $('input[type="submit"]').prop('disabled', true);
+    }
+    else{
+     $('input[type="submit"]').prop('disabled', false); 
+    }
+  })
 };
 
 $(document).on('page:change', Helpy.admin);
