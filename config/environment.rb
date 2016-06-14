@@ -5,6 +5,6 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 # Get the current tag version
-VERSION = '0.9.2'
+VERSION = '0.10'
 REVISION = `git log --pretty=format:'%h' -n 1`
 APP_VERSION = "#{VERSION}:#{REVISION}"
