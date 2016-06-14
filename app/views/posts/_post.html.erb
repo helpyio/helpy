@@ -1,3 +1,12 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
 <!-- standard post partial -->
 <div id="post-<%= post.id %>" class="media post-container <%= "kind-#{post.kind}" %><%= post.topic.forum.allow_post_voting? ? "" : " disallow-post-voting" %><%= " inactive" unless post.active? %>">
 	<div class="pull-left">

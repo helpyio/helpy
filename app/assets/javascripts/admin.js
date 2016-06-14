@@ -46,11 +46,18 @@ Helpy.admin = function(){
     $('.settings-section.' + showthis).removeClass('hidden');
     $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
     return false;
-
   });
 
   $('.pick-a-color').pickAColor({
     inlineDropdown: true //display underneath field
+  });
+
+  // Onboarding flow
+  $('.panel-link').off().on('click', function(){
+    $('.onboard-panel').addClass('hidden');
+    $('#panel-' + $(this).data('panel')).removeClass('hidden');
+    $('li.step-' + ($(this).data('panel')-1)).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
+    $('li.step-' + $(this).data('panel')).addClass('active-step');
   });
 
   $('input.send-email').off().on('change', function(){
@@ -63,5 +70,30 @@ Helpy.admin = function(){
   });
 
 };
+
+Helpy.showPanel = function(panel) {
+  var currentPanel = panel-1;
+  $('.onboard-panel').addClass('hidden');
+  $('#panel-' + panel).removeClass('hidden');
+  $('li.step-' + currentPanel).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
+  $('li.step-' + panel).addClass('active-step');
+  return true;
+}
+
+window.closeModal = function() {
+  $('#modal').modal('hide');
+}
+
+Helpy.showGrid = function() {
+  // Clean up any select-styled links
+  $('.settings-link').removeClass('active-settings-link');
+
+  // Hide and show the grid/panels
+  $('.settings-grid').removeClass('hidden');
+  $('.settings-panel').addClass('hidden');
+
+  $('h2#setting-header').text('Settings');
+
+}
 
 $(document).on('page:change', Helpy.admin);

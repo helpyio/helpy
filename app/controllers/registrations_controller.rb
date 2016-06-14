@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  theme :theme_chosen
 
   # Overwrite update_resource to let users to update their user without giving their password
   def update_resource(resource, params)

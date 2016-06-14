@@ -1,15 +1,34 @@
 {
   "ignored_warnings": [
     {
+      "warning_type": "File Access",
+      "warning_code": 16,
+      "fingerprint": "c6fb122f62bf327dfd3817ae58e788d2a30839d35d0ec7af830c981e5b302368",
+      "message": "Model attribute used in file name",
+      "file": "app/controllers/admin/settings_controller.rb",
+      "line": 13,
+      "link": "http://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "send_file(File.join(Theme.find(params[:theme]).path, Theme.find(params[:theme]).thumbnail), :type => \"image/png\", :disposition => \"inline\", :stream => false)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Admin::SettingsController",
+        "method": "preview"
+      },
+      "user_input": "Theme.find(params[:theme]).thumbnail",
+      "confidence": "Weak",
+      "note": "Theme is a class, not a database table"
+    },
+    {
       "warning_type": "Cross Site Scripting",
       "warning_code": 2,
       "fingerprint": "f062db0937943cec43ebc5abe9beb082487c5a91d2ac3de650a4b1cb62d2bdd1",
       "message": "Unescaped model attribute",
       "file": "app/views/docs/show.html.erb",
-      "line": 26,
+      "line": 35,
       "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
       "code": "Doc.where(:id => params[:id]).active.first.content",
-      "render_path": [{"type":"controller","class":"DocsController","method":"show","line":34,"file":"app/controllers/docs_controller.rb"}],
+      "render_path": [{"type":"controller","class":"DocsController","method":"show","line":36,"file":"app/controllers/docs_controller.rb"}],
       "location": {
         "type": "template",
         "template": "docs/show"
@@ -19,6 +38,6 @@
       "note": "Doc.content should only ever be entered by an admin, significantly mitigating the exposure."
     }
   ],
-  "updated": "2016-05-12 15:15:00 -0600",
+  "updated": "2016-06-08 16:02:11 -0600",
   "brakeman_version": "3.2.1"
 }

@@ -303,6 +303,22 @@ ul.settings-menu {
 	color: #333;
 }
 
+.theme {
+
+	label {
+		font-size: 18px;
+		font-weight: bold;
+		color: black;
+	}
+
+	img {
+		max-width: 100%;
+		margin-bottom: 20px;
+	}
+
+
+}
+
 @media(max-width:767px){
 	h1 {
 		font-size: 150%;
