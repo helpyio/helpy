@@ -18,6 +18,10 @@ module API
           def logger
             Rails.logger
           end
+
+          def current_user
+            resource_owner
+          end
         end
 
         rescue_from ActiveRecord::RecordNotFound do |e|

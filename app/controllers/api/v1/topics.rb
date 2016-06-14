@@ -88,7 +88,6 @@ module API
         end
 
         patch ":id", root: :topics do
-
           ticket = Topic.where(id: permitted_params[:id]).first
           ticket.update!(
             forum_id: 1,
@@ -98,13 +97,12 @@ module API
           )
           present ticket, with: Entity::Topic, posts: true
         end
-
-
-
       end
 
       # PUBLIC TOPIC ENDPOINTS FOR COMMUNITY FORUMS
       resource :topics do
+
+        # LIST ALL TOPICS IN A FORUM
         desc "List all public topics for a forum", {
           entity: Entity::Topic,
           notes: "List all topics for a given forum"
@@ -116,6 +114,24 @@ module API
           topics = Forum.find(permitted_params[:forum_id]).topics.all
           present topics, with: Entity::Topic
         end
+
+        # VOTE FOR A TOPIC
+        desc "Vote for a topic", {
+          entity: Entity::Topic,
+          notes: "Vote for a given topic"
+        }
+        params do
+          requires :id, type: Integer, desc: "The ID of the topic to vote for"
+          #requires :user_id, type: Integer
+        end
+        put ':id/vote', root: :topics do
+          topic = Topic.where(id: permitted_params[:id]).first
+          topic.votes.create!(
+            user_id: current_user #|| permitted_params[:user_id]
+          )
+          present topic, with: Entity::Topic
+        end
+
       end
 
       # CREATE A NEW TOPIC

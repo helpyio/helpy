@@ -11,6 +11,8 @@ module API
 
       include API::V1::Defaults
       resource :posts do
+
+        # LIST ALL POSTS FOR TOPIC
         desc "Return all posts in a given topic", {
           entity: Entity::Post,
           notes: "List all posts for supplied topic"
@@ -23,6 +25,7 @@ module API
           present posts, with: Entity::Post
         end
 
+        # CREATE NEW POST
         desc "Add a new post to an existing topic"
         params do
           requires :topic_id, type: String, desc: "Topic to add post to"

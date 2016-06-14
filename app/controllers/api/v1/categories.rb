@@ -18,6 +18,7 @@ module API
           entity: Entity::Category,
           notes: "Lists all active categories defined for the knowledgebase"
         }
+        oauth2 'public'
         get "", root: :categories do
           categories = Category.active.all
           present categories, with: Entity::Category
@@ -31,6 +32,7 @@ module API
         params do
           requires :id, type: String, desc: "Category to list docs from"
         end
+        oauth2 'public'
         get ":id", root: :categories do
           category = Category.where(id: permitted_params[:id]).first
           present category, with: Entity::Category, docs: true
@@ -42,15 +44,16 @@ module API
           notes: "Create a new category"
         }
         params do
-          requires :name, String, desc: "The name of the category of articles"
-          optional :icon, String, desc: "An icon that represents the category"
-          optional :keywords, String, desc: "Keywords that will be used for internal search and SEO"
-          optional :title_tag, String, desc: "An alternate title tag that will be used if provided"
-          optional :meta_description, String, desc: "A short description for SEO and internal purposes"
-          optional :rank, Integer, desc: "The rank can be used to determine the ordering of categories"
-          optional :front_page, String, desc: "Whether or not the category should appear on the front page"
-          optional :active, Boolean, desc: "Whether or not the category is live on the site"
+          requires :name, type: String, desc: "The name of the category of articles"
+          optional :icon, type: String, desc: "An icon that represents the category"
+          optional :keywords, type: String, desc: "Keywords that will be used for internal search and SEO"
+          optional :title_tag, type: String, desc: "An alternate title tag that will be used if provided"
+          optional :meta_description, type: String, desc: "A short description for SEO and internal purposes"
+          optional :rank, type: Integer, desc: "The rank can be used to determine the ordering of categories"
+          optional :front_page, type: String, desc: "Whether or not the category should appear on the front page"
+          optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
+        oauth2
         post "", root: :categories do
           category = Category.create!(
             name: permitted_params[:name],
@@ -65,22 +68,23 @@ module API
           present category, with: Entity::Category
         end
 
-        # EDIT CATEGORY
-        desc "Edit a single category", {
+        # UPDATE CATEGORY
+        desc "Update a single category", {
           entity: Entity::Category,
           notes: "Edit a single category"
         }
         params do
           requires :id, type: Integer, desc: "Category to update"
-          requires :name, String, desc: "The name of the category of articles"
-          optional :icon, String, desc: "An icon that represents the category"
-          optional :keywords, String, desc: "Keywords that will be used for internal search and SEO"
-          optional :title_tag, String, desc: "An alternate title tag that will be used if provided"
-          optional :meta_description, String, desc: "A short description for SEO and internal purposes"
-          optional :rank, Integer, desc: "The rank can be used to determine the ordering of categories"
-          optional :front_page, String, desc: "Whether or not the category should appear on the front page"
-          optional :active, Boolean, desc: "Whether or not the category is live on the site"
+          requires :name, type: String, desc: "The name of the category of articles"
+          optional :icon, type: String, desc: "An icon that represents the category"
+          optional :keywords, type: String, desc: "Keywords that will be used for internal search and SEO"
+          optional :title_tag, type: String, desc: "An alternate title tag that will be used if provided"
+          optional :meta_description, type: String, desc: "A short description for SEO and internal purposes"
+          optional :rank, type: Integer, desc: "The rank can be used to determine the ordering of categories"
+          optional :front_page, type: String, desc: "Whether or not the category should appear on the front page"
+          optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
+        oauth2
         patch ":id", root: :categories do
           category = Category.where(id: permitted_params[:id]).first
           category.update!(
