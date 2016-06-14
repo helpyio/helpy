@@ -19,8 +19,16 @@ module API
             Rails.logger
           end
 
+          # def current_user
+          #   resource_owner
+          # end
+
+          # def current_user
+          #   @current_user ||= User.authorize!(env)
+          # end
+
           def current_user
-            resource_owner
+            @current_user ||= User.find(doorkeeper_token[:resource_owner_id])
           end
         end
 

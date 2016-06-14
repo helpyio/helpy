@@ -18,7 +18,7 @@ module API
           entity: Entity::Category,
           notes: "Lists all active categories defined for the knowledgebase"
         }
-        oauth2 'public'
+        oauth2 'write'
         get "", root: :categories do
           categories = Category.active.all
           present categories, with: Entity::Category
