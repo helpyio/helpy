@@ -1,3 +1,12 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
 <% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 <% meta_tag :description, "#{@category.meta_description}" %>
 <% meta_tag :keywords, "#{@category.keywords}" %>

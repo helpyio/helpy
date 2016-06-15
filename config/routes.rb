@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations' }
+    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations', sessions: 'sessions' }
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
       resources :docs, except: [:new, :edit, :create, :update]
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
     get 'thanks' => 'topics#thanks', as: :topic_thanks
     get 'result' => 'result#index', as: :result
+    get 'search' => 'result#search', as: :search
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
     get 'locales/select' => 'locales#select', as: :select_locale
@@ -58,11 +59,20 @@ Rails.application.routes.draw do
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
+
+    # Settings Routes
     get 'settings' => 'settings#index', as: :settings
+    get 'settings/preview' => 'settings#preview', as: :preview
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
 
-    post 'shared/update_order' => 'shared#update_order', as: :update_order
+    # Onboarding Routes
+    get '/onboarding/index' => 'onboarding#index', as: :onboarding
+    patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
+    patch '/onboarding/update_settings' => 'onboarding#update_settings', as: :onboard_settings
+    get '/onboarding/complete' => 'onboarding#complete', as: :complete_onboard
 
+    # Misc Routes
+    post 'shared/update_order' => 'shared#update_order', as: :update_order
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
 
     resources :categories do

@@ -25,6 +25,8 @@
 
 class DocsController < ApplicationController
 
+  theme :theme_chosen
+
   respond_to :html
 
   def show

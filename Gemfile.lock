@@ -242,7 +242,7 @@ GEM
       mail (>= 2.0.3)
       maildir (>= 0.5.0)
     mime-types (2.99.1)
-    mini_portile2 (2.0.0)
+    mini_portile2 (2.1.0)
     minitest (5.8.4)
     minitest-reporters (1.1.8)
       ansi
@@ -254,8 +254,9 @@ GEM
     multipart-post (2.0.0)
     netrc (0.11.0)
     newrelic_rpm (3.15.1.316)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     oauth (0.5.1)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
@@ -298,6 +299,7 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
+    pkg-config (1.1.7)
     powerpack (0.1.1)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -441,6 +443,8 @@ GEM
       concurrent-ruby (~> 1.0.0)
     temple (0.7.6)
     terminal-table (1.5.2)
+    themes_on_rails (0.4.0)
+      rails (>= 3.2)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
@@ -531,6 +535,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   newrelic_rpm
+  nokogiri (>= 1.6.8)
   omniauth
   omniauth-facebook
   omniauth-github
@@ -563,6 +568,7 @@ DEPENDENCIES
   spring (~> 1.4.0)
   staccato
   sucker_punch (~> 2.0)
+  themes_on_rails
   timecop
   trix
   turbolinks
@@ -572,5 +578,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.1p85
+
 BUNDLED WITH
-   1.12.3
+   1.12.4

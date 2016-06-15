@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
+  attr_accessor :opt_in
 
   include Gravtastic
 

@@ -30,6 +30,7 @@ class TopicsController < ApplicationController
   before_action :allow_iframe_requests
 
   layout "clean", only: [:new, :index, :thanks]
+  theme :theme_chosen
 
   # TODO Still need to so a lot of refactoring here!
 
@@ -81,6 +82,7 @@ class TopicsController < ApplicationController
     @forums = Forum.ispublic.all
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
+    @topic.posts.build
     add_breadcrumb @page_title
   end
 
@@ -88,7 +90,7 @@ class TopicsController < ApplicationController
     # @page_title = t(:start_discussion, default: "Start a New Discussion")
     # add_breadcrumb @page_title
     # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-
+    
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
 
@@ -97,16 +99,16 @@ class TopicsController < ApplicationController
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id] )
     @forums = Forum.ispublic.all
-     
+
     unless user_signed_in?
-      
+
       # User is not signed in, lets see if we can recognize the email address
       @user = User.where(email: params[:topic][:user][:email]).first
-      
+
       if recaptcha_enabled? && params[:from] != 'widget'
         render :new and return unless verify_recaptcha(model: @topic)
       end
-   
+
       if @user
         logger.info("User found")
         @topic.user_id = @user.id
@@ -132,9 +134,8 @@ class TopicsController < ApplicationController
     end
 
     if @user.save && @topic.save
-
       @post = @topic.posts.create(
-        :body => params[:post][:body],
+        :body => params[:topic][:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
         :screenshots => params[:topic][:screenshots])

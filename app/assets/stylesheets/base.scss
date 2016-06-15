@@ -393,12 +393,20 @@ ul.dropdown-menu li a.strong {
    color: white;
 }
 
-.topic-placeholder::-moz-placeholder {  
+.topic-placeholder::-moz-placeholder {
    color: white;
 }
 
 .topic-placeholder:-ms-input-placeholder {
    color: white;
+}
+
+.social-icons {
+  margin-top: 15px;
+
+  span {
+    font-size: 150%;
+  }
 }
 
 //  == MODAL ===
@@ -871,4 +879,19 @@ h4.qna {
 	    padding-top: 10px;
 	    max-height: 100px;
 	}
+}
+
+.checkbox{
+  label{
+    position: initial;
+  }
+}
+
+.radio{
+  .radio-label{
+    label{
+      padding: 0px;
+    }
+
+  }
 }
