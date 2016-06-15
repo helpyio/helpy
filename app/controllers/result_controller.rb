@@ -28,7 +28,7 @@ class ResultController < ApplicationController
       else
         serialized_result << {
           name: result.searchable.title, 
-          content: result.searchable.body.truncate_words(20),
+          content: result.searchable.body.nil? ? nil : result.searchable.body.truncate_words(20),
           link: category_doc_path(result.searchable.category_id, Doc.find(result.searchable_id))
         }
       end
