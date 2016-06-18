@@ -125,7 +125,7 @@ Helpy.ready = function(){
   $('.post-menu span').off().on('click', function(){
     $(this).closest('.post-container').css('z-index','99999');
   });
-
+  
   function updateMessage(){
     var output;
     var messages = $('.topic-checkbox:checked').size();
@@ -217,6 +217,7 @@ Helpy.ready = function(){
   $('.forgot-link').off().on('click', function() {
     $('.login-form').hide();
     $('.forgot-form').show();
+    $(ClientSideValidations.selectors.forms).validate(); 
     $('.modal-title').text($('.forgot-form').data("title"));
     $('.modal-links').hide();
   });
