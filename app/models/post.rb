@@ -35,6 +35,7 @@ class Post < ActiveRecord::Base
   scope :ispublic, -> { where.not(kind: 'note') }
   scope :chronologic, -> { order('created_at ASC') }
   scope :by_votes, -> { order('points DESC')}
+  attr_accessor :resolved
 
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache
