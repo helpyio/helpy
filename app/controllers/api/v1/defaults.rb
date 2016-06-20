@@ -19,17 +19,34 @@ module API
             Rails.logger
           end
 
-          # def current_user
-          #   resource_owner
-          # end
-
-          # def current_user
-          #   @current_user ||= User.authorize!(env)
-          # end
+          def authenticate!
+            if doorkeeper_token
+               doorkeeper_authorize!
+            else
+              error!('Unauthorized. Invalid or expired token.', 401) unless current_user #||
+            end
+          end
 
           def current_user
-            @current_user ||= User.find(doorkeeper_token[:resource_owner_id])
+            # find token. Check if valid.
+            if doorkeeper_token
+              User.find(doorkeeper_token.resource_owner_id)
+            else
+              passed_token = request.headers["X-Token"] || params["token"]
+              token = ApiKey.where(access_token: passed_token).first
+
+              if token && !token.expired?
+                @current_user = User.find(token.user_id)
+              else
+                false
+              end
+            end
           end
+
+          def restrict_to_role(role)
+            error!('Unauthorized. Insufficient access priviledges.', 401) unless role.include?(current_user.role)
+          end
+
         end
 
         rescue_from ActiveRecord::RecordNotFound do |e|

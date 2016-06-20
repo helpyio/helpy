@@ -8,7 +8,10 @@ module API
       # before do
       #   doorkeeper_authorize!
       # end
-
+      before do
+        authenticate!
+      end
+      
       include API::V1::Defaults
 
       # PRIVATE TICKET ENDPOINTS

@@ -3,14 +3,18 @@ require 'doorkeeper/grape/helpers'
 module API
   module V1
     class Categories < Grape::API
-      # helpers Doorkeeper::Grape::Helpers
+      helpers Doorkeeper::Grape::Helpers
       #
       # before do
       #   doorkeeper_authorize!
       # end
 
-      include API::V1::Defaults
+      before do
+        authenticate!
+        restrict_to_role %w(admin agent)
+      end
 
+      include API::V1::Defaults
       resource :categories do
 
         # LIST ALL CATEGORIES
@@ -18,8 +22,8 @@ module API
           entity: Entity::Category,
           notes: "Lists all active categories defined for the knowledgebase"
         }
-        oauth2 'write'
         get "", root: :categories do
+          # authenticate!
           categories = Category.active.all
           present categories, with: Entity::Category
         end
@@ -32,7 +36,6 @@ module API
         params do
           requires :id, type: String, desc: "Category to list docs from"
         end
-        oauth2 'public'
         get ":id", root: :categories do
           category = Category.where(id: permitted_params[:id]).first
           present category, with: Entity::Category, docs: true
@@ -53,7 +56,6 @@ module API
           optional :front_page, type: String, desc: "Whether or not the category should appear on the front page"
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
-        oauth2
         post "", root: :categories do
           category = Category.create!(
             name: permitted_params[:name],
@@ -84,7 +86,6 @@ module API
           optional :front_page, type: String, desc: "Whether or not the category should appear on the front page"
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
-        oauth2
         patch ":id", root: :categories do
           category = Category.where(id: permitted_params[:id]).first
           category.update!(

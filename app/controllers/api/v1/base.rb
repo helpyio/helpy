@@ -4,7 +4,7 @@ module API
   module V1
     class Base < Grape::API
       format :json
-      use ::WineBouncer::OAuth2
+      # use ::WineBouncer::OAuth2
 
       mount API::V1::Categories
       mount API::V1::Docs

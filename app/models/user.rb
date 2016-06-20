@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :votes
   has_many :docs
+  has_many :api_keys
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
@@ -99,7 +100,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(auth)
     user = find_by(email: auth.info.email)
-    if user 
+    if user
       user.tap do |u|
         u.provider = auth.provider
         u.uid = auth.uid
