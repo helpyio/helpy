@@ -47,7 +47,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
@@ -139,6 +139,15 @@ class User < ActiveRecord::Base
 
   def is_editor?
     %w( editor agent admin ).include?(self.role)
+  end
+
+  def self.bulk_invite(emails)
+    emails = emails.split(',')
+    emails.each do |email|
+      if email.match '^.+@.+$'
+        User.invite!(:email => email).deliver_later
+      end
+    end
   end
 
 end

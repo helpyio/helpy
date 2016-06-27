@@ -55,3 +55,6 @@ AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''
 AppSettings.defaults['cloudinary.api_secret'] = ''
+
+# Bulk Invite:
+AppSettings.defaults['invite.emails'] = ''

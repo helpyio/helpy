@@ -99,6 +99,8 @@ gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
 
+gem 'devise_invitable', '~> 1.5.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -127,6 +129,7 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'rubocop'
   gem 'scss-lint'
+  gem 'awesome_print'
 end
 
 group :development do
