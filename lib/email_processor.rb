@@ -2,9 +2,9 @@ class EmailProcessor
 
   def initialize(email)
     @email = email
-    puts @email
+    Rails.logger.info @email
+    Rails.logger.info "Tracking GA: #{Settings.google_analytics_id}"
 
-    puts "Tracking GA: #{Settings.google_analytics_id}"
     @tracker = Staccato.tracker(Settings.google_analytics_id)
   end
 
