@@ -17,9 +17,27 @@ class ApiKeyTest < ActiveSupport::TestCase
 
   should belong_to(:user)
 
-  test "creating a new Api Key should generate an access token" do
+  test "creating a new api key should generate an access token" do
     api_key = ApiKey.create!(name: "MyApiKey")
     assert_not_nil api_key.access_token
   end
+
+  test "updating an existing api key should not modify its access token" do
+    api_key = ApiKey.create!(name: "MyApiKey")
+    access_token = api_key.access_token
+    api_key.name = "ChangedApiKeyName"
+    api_key.save!
+    assert_equal access_token, api_key.access_token
+  end
+
+  test "expired should be false" do
+    api_key = ApiKey.create!(name: "MyApiKey")
+    assert (api_key.expired? == false), "ApiKey#expired? should be false when date_expired is not present"
+  end
+
+  test "expired should be true" do
+    api_key = ApiKey.create!(name: "MyApiKey", date_expired: 1.month.ago)
+    assert (api_key.expired? == true), "ApiKey#expired? should be true when date_expired is present"
+  end  
 
 end
