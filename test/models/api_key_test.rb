@@ -14,7 +14,12 @@
 require 'test_helper'
 
 class ApiKeyTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  should belong_to(:user)
+
+  test "creating a new Api Key should generate an access token" do
+    api_key = ApiKey.create!(name: "MyApiKey")
+    assert_not_nil api_key.access_token
+  end
+
 end

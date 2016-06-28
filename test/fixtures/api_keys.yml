@@ -14,13 +14,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  token: MyString
+  access_token:
   user_id: 1
   name: MyString
-  expired: false
+  date_expired:
 
 two:
-  token: MyString
+  access_token:
   user_id: 1
   name: MyString
-  expired: false
+  date_expired: 
