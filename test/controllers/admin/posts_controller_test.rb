@@ -73,6 +73,15 @@ class Admin::PostsControllerTest < ActionController::TestCase
         xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: "new reply", kind: "reply" }
       end
     end
+
+    test "an #{admin} should be able to post a reply with resolve flag which should change topic status to closed" do
+      sign_in users(admin.to_sym)
+      old_post_count = Post.count     
+      xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: "new reply", kind: "reply", resolved: "1" }
+      assert old_post_count < Post.count
+      assert old_post_count == (Post.count - 2) # two post created one for "new reply" one for "closing" internel note 
+      assert Topic.find(2).current_status == "closed"
+    end
   end
 
 end
