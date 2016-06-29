@@ -16,5 +16,5 @@ module Entity
     expose :updated_at
     expose :topics_count
     expose :allow_comments
-   end
- end
+  end
+end

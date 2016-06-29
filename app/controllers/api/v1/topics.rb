@@ -73,7 +73,7 @@ module API
             user_id: params[:user_id],
             private: true
           )
-          post = topic.posts.create!(
+          topic.posts.create!(
             body: params[:body],
             user_id: params[:user_id],
             kind: 'first'
