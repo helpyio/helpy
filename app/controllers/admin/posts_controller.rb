@@ -30,8 +30,8 @@ class Admin::PostsController < Admin::BaseController
     respond_to do |format|
       if @post.save
         format.js {
-          fetch_counts
           @topic.close(current_user.id) if params[:post][:resolved] == "1"
+          fetch_counts
           @posts = @topic.posts.chronologic
           @admins = User.agents
           #@post = Post.new
