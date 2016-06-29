@@ -22,3 +22,7 @@ config/settings_bu.yml
 
 *.eml
 .DS_Store
+
+/.ruby-version
+/.ruby-gemset
+/.rvmrc
