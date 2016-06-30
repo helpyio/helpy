@@ -1,7 +1,7 @@
 module Entity
   class Category < Base
     expose :id#, documentation: {type: 'Integer', desc: 'Category ID'}
-    expose :slug do |category, options| 
+    expose :slug do |category| 
       category.to_param
     end#, documentation: {type: 'String', desc: 'Parameterised Category ID'}
     expose :name#, documentation: {type: 'String', desc: 'The name of the category of articles'}

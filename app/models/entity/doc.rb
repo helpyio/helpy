@@ -1,7 +1,7 @@
 module Entity
   class Doc < Base
     expose :id
-    expose :slug do |doc, options|
+    expose :slug do |doc|
       doc.to_param
     end
     expose :title
@@ -19,5 +19,5 @@ module Entity
     expose :updated_at
     expose :topics_count
     expose :allow_comments
-   end
- end
+  end
+end
