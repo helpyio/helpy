@@ -16,5 +16,6 @@ module Entity
     expose :updated_at
     expose :topics_count
     expose :allow_comments
+    expose :category, using: Entity::Category, if: { category: true }
   end
 end
