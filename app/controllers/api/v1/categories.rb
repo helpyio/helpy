@@ -22,10 +22,13 @@ module API
           entity: Entity::Category,
           notes: "Lists all active categories defined for the knowledgebase"
         }
+        params do
+          optional :docs, type: Boolean, desc: "Whether to include the documents in the response"
+          optional :docs_limit, type: Integer, desc: "How many docs to return with the category"
+        end
         get "", root: :categories do
-          # authenticate!
-          categories = Category.active.all
-          present categories, with: Entity::Category
+          categories = Category.includes(:translations).active.ranked.all
+          present categories, with: Entity::Category, docs: permitted_params[:docs], docs_limit: permitted_params[:docs_limit]
         end
 
         # SHOW CATEGORY
