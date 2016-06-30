@@ -11,6 +11,8 @@ module Entity
     expose :active#, documentation: {type: 'String', desc: 'Whether or not the category is live on the site'}
     expose :created_at
     expose :updated_at
-    expose :docs, using: Entity::Doc, if: { docs: true }
+    expose :docs, using: Entity::Doc, if: { docs: true } do |category, options|
+      category.docs.includes(:translations).ordered.limit(options[:docs_limit])        
+    end
   end
 end
