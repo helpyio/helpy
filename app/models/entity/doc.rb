@@ -1,9 +1,6 @@
 module Entity
   class Doc < Base
     expose :id
-    expose :slug do |doc, options|
-      doc.to_param
-    end
     expose :title
     expose :body
     expose :keywords
