@@ -3,15 +3,13 @@ require 'doorkeeper/grape/helpers'
 module API
   module V1
     class Docs < Grape::API
-      helpers Doorkeeper::Grape::Helpers
+      #helpers Doorkeeper::Grape::Helpers
       #
       # before do
       #   doorkeeper_authorize!
       # end
-      
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
