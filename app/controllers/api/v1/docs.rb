@@ -14,6 +14,25 @@ module API
 
       include API::V1::Defaults
       resource :docs do
+        ## SEARCH EXISTING DOCS
+        desc "Search docs", {
+          entity: Entity::Doc,
+          notes: "Search for docs by query"
+        }
+        params do
+          requires :q, type: String, desc: "The query term to search for"
+          optional :page, type: Integer, desc: "The current page"
+          optional :per_page, type: Integer, desc: "The number of results to return per page"
+        end
+        get "search", root: :doc do
+          results = PgSearch.multisearch(permitted_params[:q])
+                            .includes(:searchable)
+                            .where(searchable_type: "Doc")
+                            .page(permitted_params[:page])
+                            .per(permitted_params[:per_page])
+          docs = results.map(&:searchable)
+          present docs, with: Entity::Doc, category: true
+        end
 
         # SHOW A SINGLE DOC
         desc "Shows a single doc", {
@@ -95,6 +114,8 @@ module API
           )
           present doc, with: Entity::Doc
         end
+
+        
 
       end
     end
