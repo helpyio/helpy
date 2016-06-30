@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   before_action :set_vars
   before_action :instantiate_tracker
 
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
   end
@@ -135,6 +137,12 @@ class ApplicationController < ActionController::Base
     else
       AppSettings['theme.active'].present? ? AppSettings['theme.active'] : 'helpy'
     end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
   end
 
 end

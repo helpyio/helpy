@@ -127,7 +127,7 @@
         <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
       </div>
       <div class="settings-section invite hidden" data-hook="admin_settings_invite">
-        <%= f.text_field 'invite.emails', label: "Emails" %>
+        <%= f.text_area 'invite.emails', label: "Emails" %>
       </div>
       <div class="submit-section">
         <%= f.submit "Save Settings", class: 'btn btn-warning' %>

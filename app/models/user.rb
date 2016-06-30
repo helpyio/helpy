@@ -75,11 +75,18 @@ class User < ActiveRecord::Base
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
+  after_invitation_accepted :set_role_on_invitation_accept
+
   ROLES = %w[admin agent editor user]
 
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
+
+  def set_role_on_invitation_accept
+    self.role = "agent"
+    self.save
+  end
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
@@ -142,9 +149,11 @@ class User < ActiveRecord::Base
   end
 
   def self.bulk_invite(emails)
-    emails = emails.split(',')
+    #below line merge comma saperated emails as well as emails saperated by new lines
+    emails = emails.each_line.reject { |l| l =~ /^\s+$/ }.map { |l| l.strip.split(', ') }.flatten
+    
     emails.each do |email|
-      if email.match '^.+@.+$'
+      if email.match('^.+@.+$')
         User.invite!(:email => email).deliver_later
       end
     end
