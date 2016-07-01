@@ -91,6 +91,7 @@ Contributing
 ============
 
 We have a contributors Slack room, click below to get access. Before you embark on anything too ambitious you should chat us up to make sure no one else is already working on it, and to coordinate your efforts.
+
 [![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
 There is also a project roadmap available at [Trello](https://trello.com/b/NuiWsdmK/helpy)
 
