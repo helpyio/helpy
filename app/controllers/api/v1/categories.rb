@@ -23,7 +23,6 @@ module API
           notes: "Lists all active categories defined for the knowledgebase"
         }
         get "", root: :categories do
-          # authenticate!
           categories = Category.active.all
           present categories, with: Entity::Category
         end
