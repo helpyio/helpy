@@ -4,7 +4,7 @@ es:
   how_can_we_help: "¿Cómo podemos ayudarle?"
   browse_topics: "Navegar por los temas"
   support_team: "Atención al cliente"
-  nothing_here: "No hay nada aquí!"
+  nothing_here: "¡No hay nada aquí!"
 
   # Navigation
   knowledgebase: "Base de conocimiento"
@@ -17,14 +17,16 @@ es:
   back_to: "Volver"
   welcome_back: "Bienvenido de nuevo %{username}"
   your_profile: "Tu perfil"
-  your_tickets: "Tus tiquets"
-  locale: "Locale"
-  change_your_locale: "Change your Locale"
+  your_tickets: "Tus tickets"
+  locale: "Idioma"
+  change_your_locale: "Cambiar idioma"
 
   # Voting widget
   did_this_help: "¿Ha solucionado esto tu problema?"
   yes_button: 'Si'
   no_button: 'No'
+  yes_helped: '¡Genial! Gracias por tu opinión!'
+  no_helped: "Sentimos mucho no poder haberte ayudado. ¡Ponte en contacto con nosotros!"
 
   # Search
   search_placeholder: "Entra una palabra clave, tema o pregunta"
@@ -55,23 +57,23 @@ es:
       other: "%{count} mensajes minimizados"
 
   # Knowledgebase
-  written_by: "Written By"
-  last_edited: "Last Edited"
+  written_by: "Escrito por"
+  last_edited: "Última edición"
 
   # Tickets
-  tickets: "Tiquets"
-  no_tickets: "Aún no has creado ningún tiquet"
+  tickets: "Tickets"
+  no_tickets: "Aún no has creado ningún ticket"
   ticket_number: "Ticket Number"
-  assigned_to_label: "Assigned to"
-  created_on: "Created on"
+  assigned_to_label: "Asignado a"
+  created_on: "Creado el"
 
   # Get Help
   get_help_header: "¿Aún necesitas ayuda?"
   get_help_button: "Empieza una discusión"
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  powered_by: "Provisto por Helpy. Un software libre para soporte tecnico"
+  get_your_copy: "Obtén tu copia en Github"
 
   # Profile
   my_profile: 'Mi perfil'
@@ -86,7 +88,7 @@ es:
   send_instructions: Envíame las instrucciones
 
   # devise/passwords/edit
-  change_password: Cambia la contraseña
+  change_password: Cambiar contraseña
   new_password: Nueva contraseña
   new_password_confirmation: Confirmar nueva contraseña
 
@@ -158,8 +160,9 @@ es:
   posted_note: "%{user_name} ha subido un mensaje interno..."
   type_reply: Escribe tu respuesta o selecciona una respuesta común debajo.
   select_common: Selecciona una respuesta común
-  reply: Responde
+  reply: Responder
   internal_note: Nota interna
+  mark_as_resolved: Marcar como resuelto
   upvote:
     one: "Votos positivos | %{count}"
     other: "Votos positivos | %{count}"
@@ -174,30 +177,37 @@ es:
   select_category: Seleccionar categoría
   delete: Borrar
   view_and_edit: "Ver y editar contenido"
-  delete_confirm: "Por favor confirma que deseas ELIMINAR esto!"
+  delete_confirm: "¡Por favor confirma que deseas ELIMINAR esto!"
   select_icon_helptext: "Selecciona un icono para asociar con esta categoría (opcional)"
-  translate: "Translate to a different language"
-  view_on_site: "View on Site"
-  written_on: "Written on %{date_written}"
-  content_last_updated: "Last Updated on %{date_updated}"
-  featured_content: "Featured"
-  draft_content: "Draft"
-  published_content: "Published"
-  additional_settings: "Additional Settings"
-  content_status: "Content Status"
+  translate: "Traducir a otro lenguaje"
+  view_on_site: "Ver en sitio"
+  written_on: "Escrito el %{date_written}"
+  content_last_updated: "Última actualización el %{date_updated}"
+  featured_content: "Destacado"
+  draft_content: "Borrador"
+  published_content: "Publicado"
+  additional_settings: "Configuración adicional"
+  content_status: "Estado del contenido"
 
   # Communities
   new_community: Crea una nueva comunidad
   create_new_community: Crea una nueva comunidad
 
   # Mail messages
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  hello: "Hola %{user_name}"
+  new_user: "Gracias por contactarnos. Tu mensaje ha sido recibido por nuestro equipo de soporte y pronto se pondrán en contacto."
+  account_generated: "Se te ha creado una cuenta. Para iniciar sesión, usa el siguiente enlace:"
+  above_this_line: "Asegurate que tu respuesta aparece arriba de esta línea"
+  message_id: "Id del mensaje"
+  message_response: "El siguiente mensaje ha sido publicado en respuesta a tu pregunta:"
+  view_online: "Ver en línea:"
+
+  # settings
+  settings: "Configuración"
+  general: "General"
+  design: "Diseño"
+  international: "Internacional"
+  widget: "Incrustar widget"
 
   activerecord:
     attributes:
@@ -210,11 +220,10 @@ es:
         cell_phone: Móvil
         city: Ciudad
         state: Estado o provincia
-
       topic:
         name: Asunto
       post:
-        kind: Sexo
+        kind: Género
       category:
         name: Nombre
         icon: Icono
@@ -230,11 +239,12 @@ es:
         keywords: Palabras clave
         category_id: Categoría
         active: Activo
-        front_page: Destacado a la página principal?
+        front_page: ¿Destacado en la página principal?
       forum:
         name: Nombre
         description: Descripción
         private: Private
+
     helpers:
       submit:
         topic:
@@ -262,7 +272,7 @@ es:
     links:
       back: "Atrás"
       cancel: "Cancelar"
-      confirm: "Estás seguro?"
+      confirm: "¿Estás seguro?"
       destroy: "Eliminar"
       new: "Nuevo"
       edit: "Editar"

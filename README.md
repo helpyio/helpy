@@ -90,7 +90,7 @@ Contributing
 
 We have a contributors Slack room, please message me if you would like an invite.  There is also a project roadmap available at [Trello](https://trello.com/b/NuiWsdmK/helpy)
 
-**Helpy needs your help speading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
+**Helpy needs your help spreading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
 
 I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality. To submit translations, [please see the guide to translation](http://support.helpy.io/en/knowledgebase/12-Using-Helpy/docs/4-Supported-locales-How-to-Contribute) and send me a gist to your translation file.  For new functionality, follow the standard approach:
 
