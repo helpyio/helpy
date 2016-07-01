@@ -20,16 +20,18 @@ Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
 - **Embed Widget:** Helpy Includes a lightweight javascript widget that allows your users to contact you from just about anywhere.
 - **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, German, Spanish, Catalan, Portuguese, Nederlands, Chinese, Japanese, Russian and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
+- **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
 
+Test it Out
+=========
+
+We offer a hosted version of Helpy for businesses that don't want to worry about self installing and maintaining their Helpy.  You can get an instant free trial of the hosted version to see if Helpy is right for you: [Test it Out for Free](https://helpy.io/hosted)
 
 Live Demo
 =========
 
+There is also a live demo with fake data available at [http://demo.helpy.io](http://demo.helpy.io)
 Admin User: `admin@test.com` and password: `12345678`
-
-Front End: http://demo.helpy.io/
-Admin Panel: http://demo.helpy.io/admin
-
 
 Installation
 ============
@@ -88,10 +90,8 @@ Helpy uses a service called Cloudinary to host and manipulate images.  If you do
 Contributing
 ============
 
-We have a contributors Slack room, click below to get access.  
-
+We have a contributors Slack room, click below to get access. Before you embark on anything too ambitious you should chat us up to make sure no one else is already working on it, and to coordinate your efforts.
 [![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
-
 There is also a project roadmap available at [Trello](https://trello.com/b/NuiWsdmK/helpy)
 
 **Helpy needs your help speading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
