@@ -3,7 +3,7 @@ Helpy: A Modern Helpdesk Alternative
 
 Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide an open source alternative to commercial helpdesk solutions like Zendesk or desk.com
 
-[![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy) [![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
+[![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy) 
 
 ![](http://helpy.io/images/HelpyBrowser.png)
 
@@ -88,7 +88,11 @@ Helpy uses a service called Cloudinary to host and manipulate images.  If you do
 Contributing
 ============
 
-We have a contributors Slack room, please message me if you would like an invite.  There is also a project roadmap available at [Trello](https://trello.com/b/NuiWsdmK/helpy)
+We have a contributors Slack room, click below to get access.  
+
+[![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
+
+There is also a project roadmap available at [Trello](https://trello.com/b/NuiWsdmK/helpy)
 
 **Helpy needs your help speading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
 
