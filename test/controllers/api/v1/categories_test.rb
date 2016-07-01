@@ -88,7 +88,7 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
 
     object = JSON.parse(last_response.body)
 
-    assert_equal object['name'], params[:name]
+    assert_equal params[:name], object['name']
   end
 
   test "an API user should not be able to create an invalid category" do
@@ -111,13 +111,13 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
   test "an API user should be able to update a category" do
     category = Category.first
     params = {
-      name: Faker::Company.catch_phrase,
+      name: Faker::Company.catch_phrase
     }
 
     patch "/api/v1/categories/#{category.id}.json", @default_params.merge(params)
 
     object = JSON.parse(last_response.body)
 
-    assert_equal object['name'], params[:name]
+    assert_equal params[:name], object['name']
   end
 end
