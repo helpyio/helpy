@@ -29,6 +29,42 @@ Helpy.ready = function(){
     $(this).closest('.has-arrow').addClass('over');
   });
 
+  $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+    return $( "<li></li>" )
+        .data( "item.autocomplete", item["name"] )
+        .append( "<div class='ui-menu-item-heading'><a href="+item["link"]+" >" + item["name"] + "</a></div>" )
+        .append( "<div class='ui-menu-item-content' >"+item["content"]+"</div>" )
+        .appendTo( ul );
+  };
+  
+  
+  $(".autosearch").keyup(function () {
+      var that = $(this)
+      value = $(this).val();
+      $(this).autocomplete({
+        source: function (request, response) {
+          jQuery.get("/"+location.href.split("/")[3]+"/search.json", {
+              query: value
+          }, function (data) {
+            response(data);
+          });
+        },
+        minLength: 3,
+        appendTo: that.next(),
+        focus: function( event, ui ) {
+          $(".autosearch").val(ui["item"]["name"]);
+        },
+        select: function( event, ui ) {
+          window.location.href = ui["item"]["link"];
+        },
+        messages: {
+          noResults: '',
+          results: function() {}
+        }
+
+      });
+    
+  });
 
   $('.stats').on('click', function(){
 
