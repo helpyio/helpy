@@ -22,8 +22,8 @@ class Admin::SettingsController < Admin::BaseController
     @settings.each do |setting|
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
-
-    User.bulk_invite(params["invite.emails"]) if params["invite.emails"].present?
+    
+    User.bulk_invite(params["invite.emails"], params["invite.message"]) if params["invite.emails"].present?
 
     respond_to do |format|
       format.html {

@@ -58,6 +58,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :opt_in
 
+  attr_accessor :message
+
   include Gravtastic
 
   include PgSearch
@@ -148,15 +150,22 @@ class User < ActiveRecord::Base
     %w( editor agent admin ).include?(self.role)
   end
 
-  def self.bulk_invite(emails)
+  def self.bulk_invite(emails, message)
     #below line merge comma saperated emails as well as emails saperated by new lines
     emails = emails.each_line.reject { |l| l =~ /^\s+$/ }.map { |l| l.strip.split(', ') }.flatten
     
     emails.each do |email|
       if email.match('^.+@.+$')
-        User.invite!(:email => email).deliver_later
+        User.invite!({email: email}) do |user|
+          user.message = message
+        end
       end
     end
+  end
+  
+  #use deliver_later on devise notifications
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 
 end
