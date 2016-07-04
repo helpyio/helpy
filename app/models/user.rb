@@ -155,7 +155,8 @@ class User < ActiveRecord::Base
     emails = emails.each_line.reject { |l| l =~ /^\s+$/ }.map { |l| l.strip.split(', ') }.flatten
     
     emails.each do |email|
-      if email.match('^.+@.+$')
+      is_valid_email = email.match('^.+@.+$')
+      if is_valid_email
         User.invite!({email: email}) do |user|
           user.message = message
         end
@@ -163,9 +164,9 @@ class User < ActiveRecord::Base
     end
   end
   
-  #use deliver_later on devise notifications
+  #when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    devise_mailer.send(notification, self, *args).deliver
   end
 
 end

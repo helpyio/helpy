@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :set_vars
   before_action :instantiate_tracker
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
