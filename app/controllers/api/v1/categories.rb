@@ -23,7 +23,6 @@ module API
           notes: "Lists all active categories defined for the knowledgebase"
         }
         get "", root: :categories do
-          # authenticate!
           categories = Category.active.all
           present categories, with: Entity::Category
         end
@@ -37,7 +36,7 @@ module API
           requires :id, type: String, desc: "Category to list docs from"
         end
         get ":id", root: :categories do
-          category = Category.where(id: permitted_params[:id]).first
+          category = Category.active.find(permitted_params[:id])
           present category, with: Entity::Category, docs: true
         end
 
@@ -87,7 +86,7 @@ module API
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
         patch ":id", root: :categories do
-          category = Category.where(id: permitted_params[:id]).first
+          category = Category.find(permitted_params[:id])
           category.update!(
             name: permitted_params[:name],
             icon: permitted_params[:icon],

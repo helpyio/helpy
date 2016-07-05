@@ -20,8 +20,9 @@ module API
           end
 
           def authenticate!
+            
             if doorkeeper_token
-               doorkeeper_authorize!
+              doorkeeper_authorize!
             else
               error!('Unauthorized. Invalid or expired token.', 401) unless current_user #||
             end

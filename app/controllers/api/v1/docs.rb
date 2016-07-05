@@ -3,13 +3,15 @@ require 'doorkeeper/grape/helpers'
 module API
   module V1
     class Docs < Grape::API
-      # helpers Doorkeeper::Grape::Helpers
+      helpers Doorkeeper::Grape::Helpers
       #
       # before do
       #   doorkeeper_authorize!
       # end
+      
       before do
         authenticate!
+        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -43,7 +45,7 @@ module API
           requires :id, type: String, desc: "ID of the doc to show"
         end
         get ":id", root: "doc" do
-          doc = Doc.where(id: permitted_params[:id]).first!
+          doc = Doc.active.find(permitted_params[:id])
           present doc, with: Entity::Doc
         end
 
@@ -87,10 +89,10 @@ module API
         }
         params do
           requires :id, type: Integer, desc: "The ID of the Doc being updated"
-          requires :title, type: String, desc: "The name of the category of articles"
-          requires :category_id, type: Integer, desc: "The category the doc belongs to"
-          requires :body, type: String, desc: "The body/text of the article"
-          requires :user_id, type: Integer, desc: "The author of the article"
+          optional :title, type: String, desc: "The name of the category of articles"
+          optional :category_id, type: Integer, desc: "The category the doc belongs to"
+          optional :body, type: String, desc: "The body/text of the article"
+          optional :user_id, type: Integer, desc: "The author of the article"
           optional :keywords, type: String, desc: "Keywords that will be used for internal search and SEO"
           optional :title_tag, type: String, desc: "An alternate title tag that will be used if provided"
           optional :meta_description, type: String, desc: "A short description for SEO and internal purposes"
@@ -99,7 +101,7 @@ module API
           optional :active, type: Boolean, desc: "Whether or not the doc is live on the site"
         end
         patch ":id", root: :docs do
-          doc = Doc.where(id: permitted_params[:id])
+          doc = Doc.find(permitted_params[:id])
           doc.update!(
             title: permitted_params[:title],
             category_id: permitted_params[:category_id],
