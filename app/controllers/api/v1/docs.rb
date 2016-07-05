@@ -43,10 +43,11 @@ module API
         }
         params do
           requires :id, type: String, desc: "ID of the doc to show"
+          optional :category, type: Boolean, desc: "Whether to return the category object in full"
         end
         get ":id", root: "doc" do
           doc = Doc.active.find(permitted_params[:id])
-          present doc, with: Entity::Doc
+          present doc, with: Entity::Doc, category: permitted_params[:category]
         end
 
         # CREATE NEW DOC
