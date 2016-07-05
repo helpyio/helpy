@@ -23,7 +23,7 @@ module API
         params do
           requires :q, type: String, desc: "The query term to search for"
           optional :type, type: String, desc: "The type of entity to search for"
-          optional :page, type: Integer, desc: "The current page"
+          optional :page, type: Integer, desc: "The current page", default: 1
           optional :per_page, type: Integer, desc: "The number of results to return per page", default: 25
         end
         get "", root: :search do
