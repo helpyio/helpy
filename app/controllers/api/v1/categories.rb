@@ -8,7 +8,6 @@ module API
       # before do
       #   doorkeeper_authorize!
       # end
-
       before do
         authenticate!
         restrict_to_role %w(admin agent)
