@@ -59,7 +59,7 @@ module API
             per_page: permitted_params[:per_page],
             total_pages: total_pages
           }
-          present :results, results, with: entity
+          present :results, results, with: entity, category: true
         end
       end
     end
