@@ -12,6 +12,7 @@ module API
       mount API::V1::Topics
       mount API::V1::Posts
       mount API::V1::Users
+      mount API::V1::Search
       add_swagger_documentation
     end
   end
