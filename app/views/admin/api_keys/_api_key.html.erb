@@ -1,0 +1,5 @@
+<tr class="api_key_<%= api_key.id %>">
+  <td><%= api_key.name %></td>
+  <td><%= api_key.access_token %></td>
+  <td><%= link_to "Expire", admin_api_key_path(id: api_key.id), method: :delete, remote: true, data: {confirm: 'Please confirm you really want to expire this token'} %></td>
+</tr>

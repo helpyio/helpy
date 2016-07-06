@@ -1,0 +1,35 @@
+<div class="admin-header">
+  <h2 id="setting-header">
+    API Keys
+  </h2>
+</div>
+<div class="row content-row">
+
+  <div class="col-md-12">
+
+    <table id="forums" class="api_keys table-hover">
+      <col width="15%">
+      <col width="40%">
+      <col width="40%">
+      <col width="5%">
+      <thead>
+        <tr>
+          <td class="tiny-header">Name</td>
+          <td class="tiny-header">Token</td>
+        </tr>
+      </thead>
+      <%= render partial: 'api_key', collection: @api_keys %>
+    </table>
+
+    <div class="add-form">
+    <h4>Add a New Key</h4>
+    <%= simple_form_for(@api_key, url: admin_api_keys_path, validate: true, remote: true, :html => { role: 'form'}) do |f| %>
+      <span class="api_key-fields">
+        <%= f.input :name %>
+        <%= f.input :user_id, input_html: { value: @user.id }, as: :hidden %>
+      </span>
+      <%= f.button :submit, t("save_changes"), class: 'btn btn-warning' %>
+    <% end %>
+    </div>
+  </div>
+</div>

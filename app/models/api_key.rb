@@ -16,6 +16,8 @@ class ApiKey < ActiveRecord::Base
 
   belongs_to :user
   validates :access_token, uniqueness: true
+  scope :active, -> { where(date_expired: nil) }
+
 
   def expired?
     self.date_expired.present?
