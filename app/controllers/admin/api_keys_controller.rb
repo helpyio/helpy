@@ -15,6 +15,9 @@ class Admin::ApiKeysController < Admin::BaseController
 
   before_action :set_user
 
+  # Restrict API token generation to admins only for now
+  before_action :verify_admin
+
   def index
     @api_keys = @user.api_keys.active.all.order(created_at: :desc)
     @api_key = ApiKey.new
@@ -30,7 +33,7 @@ class Admin::ApiKeysController < Admin::BaseController
 
   def destroy
     @api_key = @user.api_keys.where(id: params[:id]).first
-    @api_key.update! date_expired: Time.now
+    @api_key.update! date_expired: Time.current
 
     render js: "$('.api_key_#{@api_key.id}').remove();"
   end
