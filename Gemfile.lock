@@ -548,7 +548,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.6)
   rails-i18n (~> 4.0.0)
-  rails-settings-cached
+  rails-settings-cached (~> 0.5)
   rails-timeago
   rails_12factor
   ranked-model
