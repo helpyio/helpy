@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get 'widget/' => 'widget#index', as: :widget
   get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
 
-  devise_for :users, skip: [:password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  as :user do
+    get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
+    post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+  end
 
   localized do
 
@@ -18,7 +22,12 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations', sessions: 'sessions' }
+    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions' }
+    
+    as :user do
+      get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
+      post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+    end
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
       resources :docs, except: [:new, :edit, :create, :update]
