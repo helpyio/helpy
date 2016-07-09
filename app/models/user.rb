@@ -58,7 +58,6 @@ class User < ActiveRecord::Base
 
   attr_accessor :opt_in
 
-  attr_accessor :message
 
   include Gravtastic
 
@@ -158,7 +157,7 @@ class User < ActiveRecord::Base
       is_valid_email = email.match('^.+@.+$')
       if is_valid_email
         User.invite!({email: email}) do |user|
-          user.message = message
+          user.invitation_message = message
         end
       end
     end
@@ -166,7 +165,7 @@ class User < ActiveRecord::Base
   
   #when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 
 end
