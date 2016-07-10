@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
 
   devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
   as :user do
     get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
     post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+    put "/users/invitation" => "devise/invitations#update", as: nil
+    patch "/users/invitation" => "devise/invitations#update", as: nil
   end
 
   localized do
@@ -27,6 +30,8 @@ Rails.application.routes.draw do
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
       post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+      put "/users/invitation" => "devise/invitations#update", as: nil
+      patch "/users/invitation" => "devise/invitations#update", as: nil
     end
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
