@@ -40,14 +40,16 @@ class ApplicationController < ActionController::Base
   end
 
   def tracker(ga_category, ga_action, ga_label, ga_value=nil)
-    TrackerJob.perform_later(
-      ga_category,
-      ga_action,
-      ga_label,
-      ga_value,
-      session['client_id'] || params[:client_id],
-      AppSettings['settings.google_analytics_id']
-    )
+    if AppSettings['settings.google_analytics_id'].present?
+      TrackerJob.perform_later(
+        ga_category,
+        ga_action,
+        ga_label,
+        ga_value,
+        session['client_id'] || params[:client_id],
+        AppSettings['settings.google_analytics_id']
+      )
+    end
   end
 
   private
