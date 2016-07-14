@@ -37,9 +37,11 @@ class Admin::PostsController < Admin::BaseController
           #@post = Post.new
           case @post.kind
           when "reply"
-            @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Replied", label: @topic.to_param) #TODO: Need minutes
+            # @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Replied", label: @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{current_user.name}", "Agent Replied", @topic.to_param, nil) #TODO: Need minutes
           when "note"
-            @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Posted Note", label: @topic.to_param) #TODO: Need minutes
+            # @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Posted Note", label: @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{current_user.name}", "Agent Posted Note", @topic.to_param, nil #TODO: Need minutes
           end
           render 'admin/topics/show'
         }

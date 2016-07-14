@@ -54,7 +54,8 @@ class Admin::TopicsController < Admin::BaseController
       topics_raw = topics_raw.where(current_status: @status)
     end
     @topics = topics_raw.page params[:page]
-    @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
+    # @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
+    tracker("Admin-Nav", "Click", @status.titleize, nil)
   end
 
   def show
@@ -62,29 +63,13 @@ class Admin::TopicsController < Admin::BaseController
     if @topic.current_status == 'new'
 
       # @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
-      TrackerJob.perform_later(
-        "Agent: #{current_user.name}",
-        "Opened Ticket",
-        @topic.to_param,
-        @topic.id,
-        session['client_id'] || params[:client_id],
-        AppSettings['settings.google_analytics_id']
-      )
-
+      tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
       @topic.open
     end
     @posts = @topic.posts.chronologic
 
     #@tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
-    TrackerJob.perform_later(
-      "Agent: #{current_user.name}",
-      "Viewed Ticket",
-      @topic.to_param,
-      @topic.id,
-      session['client_id'] || params[:client_id],
-      AppSettings['settings.google_analytics_id']
-    )
-
+    tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
   end
 
@@ -138,24 +123,9 @@ class Admin::TopicsController < Admin::BaseController
 
         # track event in GA
         # @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
-        TrackerJob.perform_later(
-          'Request',
-          'Post',
-          'New Topic',
-          '',
-          session['client_id'] || params[:client_id],
-          AppSettings['settings.google_analytics_id']
-        )
-
+        tracker('Request', 'Post', 'New Topic')
         # @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
-        TrackerJob.perform_later(
-          "Agent: Unassigned",
-          "New",
-          @topic.to_param,
-          '',
-          session['client_id'] || params[:client_id],
-          AppSettings['settings.google_analytics_id']
-        )
+        tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
           @topics = Topic.recent.page params[:page]
@@ -198,15 +168,7 @@ class Admin::TopicsController < Admin::BaseController
 
       # Calls to GA for close, reopen, assigned. Inline version of tracker commented
       # @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
-      TrackerJob.perform_later(
-        "Agent: #{current_user.name}",
-        @action_performed,
-        @topic.to_param,
-        @minutes,
-        session['client_id'] || params[:client_id],
-        AppSettings['settings.google_analytics_id']
-      )
-
+      tracker("Agent: #{current_user.name}", @action_performed, @topic.to_param, @minutes)
     end
     @posts = @topic.posts.chronologic
 
@@ -242,19 +204,9 @@ class Admin::TopicsController < Admin::BaseController
         assigned_user = User.find(params[:assigned_user_id])
         @topic.assign(previous_assigned_id, assigned_user.id)
 
-        # Create internal note
-#        @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
-
         # Calls to GA
         #@tracker.event(category: "Agent: #{current_user.name}", action: "Assigned to #{assigned_user.name.titleize}", label: @topic.to_param, value: @minutes)
-        TrackerJob.perform_later(
-          "Agent: #{current_user.name}",
-          "Assigned to #{assigned_user.name.titleize}",
-          @topic.to_param,
-          @minutes,
-          session['client_id'] || params[:client_id],
-          AppSettings['settings.google_analytics_id']
-        )
+        tracker("Agent: #{current_user.name}", "Assigned to #{assigned_user.name.titleize}", @topic.to_param, @minutes)
       end
       @count = @count + 1
     end

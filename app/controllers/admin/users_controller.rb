@@ -61,13 +61,15 @@ class Admin::UsersController < Admin::BaseController
 
     # We still have to grab the first topic for the user to use the same user partial
     @topic = Topic.where(user_id: @user.id).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
+    # @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
+    tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name, nil)
     render 'admin/topics/index'
   end
 
   def edit
     @user = User.where(id: params[:id]).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
+    # @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
+    tracker("Agent: #{current_user.name}", "Editing User Profile", @user.name, nil)
   end
 
   def update
@@ -80,7 +82,8 @@ class Admin::UsersController < Admin::BaseController
 
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
+    # @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
+    tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name, nil)
 
     # TODO: Refactor this to use an index method/view on the users model
     render 'admin/topics/index'

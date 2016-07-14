@@ -39,6 +39,17 @@ class ApplicationController < ActionController::Base
     (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
   end
 
+  def tracker(ga_category, ga_action, ga_label, ga_value=nil)
+    TrackerJob.perform_later(
+      ga_category,
+      ga_action,
+      ga_label,
+      ga_value,
+      session['client_id'] || params[:client_id],
+      AppSettings['settings.google_analytics_id']
+    )
+  end
+
   private
 
   def set_locale
