@@ -60,11 +60,31 @@ class Admin::TopicsController < Admin::BaseController
   def show
     @topic = Topic.where(id: params[:id]).first
     if @topic.current_status == 'new'
-      @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
+
+      # @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
+      TrackerJob.perform_later(
+        "Agent: #{current_user.name}",
+        "Opened Ticket",
+        @topic.to_param,
+        @topic.id,
+        session['client_id'] || params[:client_id],
+        AppSettings['settings.google_analytics_id']
+      )
+
       @topic.open
     end
     @posts = @topic.posts.chronologic
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
+
+    #@tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
+    TrackerJob.perform_later(
+      "Agent: #{current_user.name}",
+      "Viewed Ticket",
+      @topic.to_param,
+      @topic.id,
+      session['client_id'] || params[:client_id],
+      AppSettings['settings.google_analytics_id']
+    )
+
     fetch_counts
   end
 
@@ -117,8 +137,25 @@ class Admin::TopicsController < Admin::BaseController
         UserMailer.new_user(@user, @token).deliver_later
 
         # track event in GA
-        @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
-        @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+        # @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
+        TrackerJob.perform_later(
+          'Request',
+          'Post',
+          'New Topic',
+          '',
+          session['client_id'] || params[:client_id],
+          AppSettings['settings.google_analytics_id']
+        )
+
+        # @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+        TrackerJob.perform_later(
+          "Agent: Unassigned",
+          "New",
+          @topic.to_param,
+          '',
+          session['client_id'] || params[:client_id],
+          AppSettings['settings.google_analytics_id']
+        )
 
         format.js {
           @topics = Topic.recent.page params[:page]
@@ -159,8 +196,16 @@ class Admin::TopicsController < Admin::BaseController
         @action_performed = "Marked #{params[:change_status].titleize}"
       end
 
-      # Calls to GA for close, reopen, assigned
-      @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+      # Calls to GA for close, reopen, assigned. Inline version of tracker commented
+      # @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+      TrackerJob.perform_later(
+        "Agent: #{current_user.name}",
+        @action_performed,
+        @topic.to_param,
+        @minutes,
+        session['client_id'] || params[:client_id],
+        AppSettings['settings.google_analytics_id']
+      )
 
     end
     @posts = @topic.posts.chronologic
@@ -189,8 +234,6 @@ class Admin::TopicsController < Admin::BaseController
       @topic = Topic.where(id: id).first
 
       @minutes = 0
-#      logger.info("inside loop")
-#      logger.info(params[:assigned_user_id])
       unless params[:assigned_user_id].blank?
 
         # if message was unassigned previously, use the new assignee
@@ -203,8 +246,15 @@ class Admin::TopicsController < Admin::BaseController
 #        @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
 
         # Calls to GA
-        @tracker.event(category: "Agent: #{current_user.name}", action: "Assigned to #{assigned_user.name.titleize}", label: @topic.to_param, value: @minutes)
-
+        #@tracker.event(category: "Agent: #{current_user.name}", action: "Assigned to #{assigned_user.name.titleize}", label: @topic.to_param, value: @minutes)
+        TrackerJob.perform_later(
+          "Agent: #{current_user.name}",
+          "Assigned to #{assigned_user.name.titleize}",
+          @topic.to_param,
+          @minutes,
+          session['client_id'] || params[:client_id],
+          AppSettings['settings.google_analytics_id']
+        )
       end
       @count = @count + 1
     end
