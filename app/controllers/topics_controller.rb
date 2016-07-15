@@ -90,7 +90,7 @@ class TopicsController < ApplicationController
     # @page_title = t(:start_discussion, default: "Start a New Discussion")
     # add_breadcrumb @page_title
     # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-    
+
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
 

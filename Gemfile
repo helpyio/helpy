@@ -132,7 +132,8 @@ end
 group :development do
   gem "better_errors"
   gem "quiet_assets"
-
+  gem 'mailcatcher'
+  
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
 
