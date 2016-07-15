@@ -159,5 +159,3 @@ group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
-
-ruby "2.2.1"
