@@ -145,9 +145,7 @@ class TopicsController < ApplicationController
       end
 
       # track event in GA
-      # @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
       tracker('Request', 'Post', 'New Topic')
-      # @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
       tracker('Agent: Unassigned', 'New', @topic.to_param)
 
       if @topic.private?

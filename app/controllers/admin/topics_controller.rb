@@ -54,21 +54,17 @@ class Admin::TopicsController < Admin::BaseController
       topics_raw = topics_raw.where(current_status: @status)
     end
     @topics = topics_raw.page params[:page]
-    # @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
-    tracker("Admin-Nav", "Click", @status.titleize, nil)
+    tracker("Admin-Nav", "Click", @status.titleize)
   end
 
   def show
     @topic = Topic.where(id: params[:id]).first
     if @topic.current_status == 'new'
-
-      # @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
       tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
       @topic.open
     end
     @posts = @topic.posts.chronologic
 
-    #@tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
     tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
   end
@@ -122,9 +118,7 @@ class Admin::TopicsController < Admin::BaseController
         UserMailer.new_user(@user, @token).deliver_later
 
         # track event in GA
-        # @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
         tracker('Request', 'Post', 'New Topic')
-        # @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
@@ -166,8 +160,7 @@ class Admin::TopicsController < Admin::BaseController
         @action_performed = "Marked #{params[:change_status].titleize}"
       end
 
-      # Calls to GA for close, reopen, assigned. Inline version of tracker commented
-      # @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
+      # Calls to GA for close, reopen, assigned.
       tracker("Agent: #{current_user.name}", @action_performed, @topic.to_param, @minutes)
     end
     @posts = @topic.posts.chronologic
@@ -205,7 +198,6 @@ class Admin::TopicsController < Admin::BaseController
         @topic.assign(previous_assigned_id, assigned_user.id)
 
         # Calls to GA
-        #@tracker.event(category: "Agent: #{current_user.name}", action: "Assigned to #{assigned_user.name.titleize}", label: @topic.to_param, value: @minutes)
         tracker("Agent: #{current_user.name}", "Assigned to #{assigned_user.name.titleize}", @topic.to_param, @minutes)
       end
       @count = @count + 1
