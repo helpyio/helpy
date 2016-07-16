@@ -133,8 +133,8 @@ GEM
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.8)
     devise-i18n (1.0.1)
-    devise_invitable (1.5.5)
-      actionmailer (>= 3.2.6, < 5)
+    devise_invitable (1.6.0)
+      actionmailer (>= 3.2.6)
       devise (>= 3.2.0)
     docile (1.1.5)
     domain_name (0.5.20160310)
@@ -520,7 +520,7 @@ DEPENDENCIES
   devise
   devise-bootstrap-views
   devise-i18n
-  devise_invitable (~> 1.5.2)
+  devise_invitable (~> 1.6)
   factory_girl_rails
   faker
   font-awesome-sass

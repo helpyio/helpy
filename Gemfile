@@ -99,7 +99,7 @@ gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
 
-gem 'devise_invitable', '~> 1.5.2'
+gem 'devise_invitable', '~> 1.6'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
