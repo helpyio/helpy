@@ -90,7 +90,7 @@ class TopicsController < ApplicationController
     # @page_title = t(:start_discussion, default: "Start a New Discussion")
     # add_breadcrumb @page_title
     # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
-    
+
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
     logger.info(@forum.name)
 
@@ -145,8 +145,8 @@ class TopicsController < ApplicationController
       end
 
       # track event in GA
-      @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
-      @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+      tracker('Request', 'Post', 'New Topic')
+      tracker('Agent: Unassigned', 'New', @topic.to_param)
 
       if @topic.private?
         redirect_to params[:from] == 'widget' ? widget_thanks_path : topic_thanks_path

@@ -162,6 +162,7 @@ en:
   select_common: Select Common Reply
   reply: Reply
   internal_note: Internal Note
+  mark_as_resolved: Mark as resolved
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"

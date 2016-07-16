@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -40,7 +40,7 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached"
+gem "rails-settings-cached", '~> 0.5'
 gem 'sucker_punch', '~> 2.0'
 
 # Auth Gems
@@ -134,7 +134,7 @@ end
 
 group :development do
   gem "better_errors"
-  gem "quiet_assets"
+  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
@@ -147,7 +147,6 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'rspec'
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'capybara'
