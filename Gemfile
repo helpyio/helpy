@@ -144,7 +144,6 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'rspec'
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'capybara'

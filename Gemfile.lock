@@ -133,7 +133,6 @@ GEM
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.8)
     devise-i18n (1.0.1)
-    diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
@@ -367,19 +366,6 @@ GEM
     route_translator (4.3.0)
       actionpack (>= 3.2, < 5.0)
       activesupport (>= 3.2, < 5.0)
-    rspec (3.4.0)
-      rspec-core (~> 3.4.0)
-      rspec-expectations (~> 3.4.0)
-      rspec-mocks (~> 3.4.0)
-    rspec-core (3.4.4)
-      rspec-support (~> 3.4.0)
-    rspec-expectations (3.4.0)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.4.0)
-    rspec-mocks (3.4.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.4.0)
-    rspec-support (3.4.1)
     rubocop (0.39.0)
       parser (>= 2.3.0.7, < 3.0)
       powerpack (~> 0.1)
@@ -555,7 +541,6 @@ DEPENDENCIES
   rdiscount
   recaptcha
   route_translator
-  rspec
   rubocop
   ruser (~> 3.0)
   sass-rails (~> 5.0)
