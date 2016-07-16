@@ -30,7 +30,10 @@ class Admin::PostsController < Admin::BaseController
     respond_to do |format|
       if @post.save
         format.js {
-          @topic.close(current_user.id) if params[:post][:resolved] == "1"
+          if params[:post][:resolved] == "1"
+            @topic.close(current_user.id)
+            tracker("Agent: #{current_user.name}", "Closed", @topic.to_param) #TODO: Need minutes
+          end
           fetch_counts
           @posts = @topic.posts.chronologic
           @admins = User.agents
