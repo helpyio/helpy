@@ -9,7 +9,6 @@ Helpy.track = function(){
     Helpy.clientId = tracker.get('clientId');
 
     // Do some more stuff here if you want...
-    }
   });
 
   // Search Events
