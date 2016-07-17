@@ -4,35 +4,13 @@
 var Helpy = Helpy || {};
 Helpy.track = function(){
 
-  // Get the GA Universal Analytics ClientID.  This is used for server side tracking
+  // Put the Google Analytics clientID into the Helpy data layer
   ga(function(tracker) {
     Helpy.clientId = tracker.get('clientId');
-    $("#client_id").val(Helpy.clientId);
-    console.log("trackerID: " + Helpy.clientId);
 
-    // Send ajax call with clientID if it is not set
-    var sessionSet = Cookies.get('sessInit');
-    if (sessionSet !== '1') {
-      $.ajax({
-        method: "GET",
-        url: "/set_client_id?client_id=" + Helpy.clientId,
-        data: { client_id: Helpy.clientId  }
-      })
-      .done(function( msg ) {
-        console.log("Session set to trackerID: " + Helpy.clientId);
-
-        // set a cookie to prevent making this call every time
-        Cookies.set('sessInit', '1');
-      });
+    // Do some more stuff here if you want...
     }
   });
-
-
-  // send search event to google
-//  $('#search-form').unbind().on('submit', function(){
-//    console.log($('#search-field').val())
-//    ga('send', 'event', 'Search','Search', $('#search-field').val())
-//  });
 
   // Search Events
 
