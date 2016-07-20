@@ -2,10 +2,7 @@ class EmailProcessor
 
   def initialize(email)
     @email = email
-    Rails.logger.info @email
-    Rails.logger.info "Tracking GA: #{Settings.google_analytics_id}"
-
-    @tracker = Staccato.tracker(Settings.google_analytics_id)
+    @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'])
   end
 
   def process
@@ -48,6 +45,10 @@ class EmailProcessor
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
+
+      # Call to GA
+      @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
+      @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
 
     else # this is a new direct message
 

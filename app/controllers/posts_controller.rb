@@ -51,7 +51,7 @@ class PostsController < ApplicationController
           @posts = @topic.posts.ispublic.chronologic.active
           unless @topic.assigned_user_id.nil?
             agent = User.find(@topic.assigned_user_id)
-            @tracker.event(category: "Agent: #{agent.name}", action: "User Replied", label: @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
           end
         }
       else

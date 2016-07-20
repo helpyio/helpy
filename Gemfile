@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -131,7 +131,7 @@ end
 
 group :development do
   gem "better_errors"
-  gem "quiet_assets"
+  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
@@ -144,7 +144,6 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'rspec'
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'capybara'
