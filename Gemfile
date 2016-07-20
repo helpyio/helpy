@@ -44,7 +44,7 @@ gem "rails-settings-cached", '~> 0.5'
 gem 'sucker_punch', '~> 2.0'
 
 # Auth Gems
-gem 'devise'
+gem 'devise', '~> 4.0.0'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'omniauth'
