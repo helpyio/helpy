@@ -69,6 +69,31 @@ Helpy.admin = function(){
     }
   });
 
+  $('.settings-section.email select').off().on('change', function(){
+    var chosen = $(".settings-section.email select").val();
+      $('.imap-settings').addClass('hidden');
+      $('.pop3-settings').addClass('hidden');
+    if (chosen == 'pop3' ){
+      $('.pop3-settings').removeClass('hidden');
+    }
+    if (chosen == 'imap' ){
+      $('.imap-settings').removeClass('hidden');
+    }
+  });
+
+  $("#new_doc select, #edit_doc select").focusout(function(){
+    if($(this).val() == ""){
+      $("div.select").removeClass("has-success").addClass("has-error");
+      $("select").next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
+      $("div.select .glyphicon-ok").remove();
+      $("<span class='help-block'>can't be blank</span>").insertAfter("div.select .glyphicon-remove")
+      $('input[type="submit"]').prop('disabled', true);
+    }
+    else{
+     $('input[type="submit"]').prop('disabled', false); 
+    }
+  })
+
 };
 
 Helpy.showPanel = function(panel) {

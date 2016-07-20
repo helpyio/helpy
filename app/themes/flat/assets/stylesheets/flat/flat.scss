@@ -688,6 +688,10 @@ h1#how-help {
   a {
     color: $main-panel-breadcrumb-color;
   }
+
+  .ui-menu-item a{
+    color: $link-color;
+  }
 }
 
 #home-search {

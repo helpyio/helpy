@@ -27,10 +27,10 @@
   <% end %>
 </div>
 <div class="col-md-12 forgot-form" style="display: none;" data-title="<%= t('devise.passwords.new.forgot_your_password') %>">
-  <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= devise_error_messages! %>
+  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, validate: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.input :email, autofocus: true %>
 
     <div class="reset-button">
       <%= f.submit t('devise.passwords.new.send_me_reset_password_instructions'), class: 'btn btn-warning' %>

@@ -37,13 +37,13 @@ Rails.application.routes.draw do
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
     get 'thanks' => 'topics#thanks', as: :topic_thanks
     get 'result' => 'result#index', as: :result
+    get 'search' => 'result#search', as: :search
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
     get 'locales/select' => 'locales#select', as: :select_locale
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
-  get '/set_client_id' => 'home#set_client_id', as: :set_client_id
 
   # Admin Routes
 

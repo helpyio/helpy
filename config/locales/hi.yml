@@ -1,0 +1,278 @@
+hi:
+  language_name: 'हिंदी' 
+  root: &root 'होम'
+  how_can_we_help: "हम आपकी किस प्रकार मदद कर सकते हैं?"
+  browse_topics: "खोज विषयों"
+  support_team: "सपोर्ट टीम"
+  nothing_here: "यहाँ कुछ नहीं हैं!"
+
+  # Navigation
+  knowledgebase: "ज्ञानधार"  #
+  community: "समुदाय"
+  ask_a_question: "प्रश्न पूछें"
+  home: "होम"
+  login: "लॉगिन"
+  logout: "लॉगआउट"
+  register: "रजिस्टर"
+  back_to: "वापस"
+  welcome_back: "वेलकम बैक %{username}"
+  your_profile: "आपकी प्रोफ़ाइल"
+  your_tickets: "आपकी टिकट्स"
+  locale: "स्थान"
+  change_your_locale: "अपने स्थान को बदलें"
+
+  # Voting widget
+  did_this_help: "इसने आपकी समस्या का समाधान किया?"
+  yes_button: 'हाँ'
+  no_button: 'नहीं'
+  yes_helped: 'वाह !! प्रतिक्रिया के लिए धन्यवाद!'
+  no_helped: "मदद नहीं करने के लिए माफी मांगते हैं. कृपया हमसे सम्पर्क करें!"
+
+  # Search
+  search_placeholder: "एक कीवर्ड, विषय, या प्रश्न लिखें"
+  no_results: "कोई परिणाम नहीं मिला , तो आपकी खोज फिर से प्रयास करें!"
+  results_found:
+    one: "एक रिजल्टं मिला "
+    other: "%{count} रिजल्ट्स मिलें "
+
+  # Community
+  forum_name: "प्रसंग"
+  subject: "समस्या"
+  last_activity: "पिछली बार"
+  topic: "विषय"
+  replies: "जवाबें"
+  last_post: "पिछली पोस्ट"
+  started_by: "%{username} द्वारा शुरू किया"
+  reply: "इस विषय का जवाब दें"
+  submit_reply: "जवाब सबमिट करें"
+  posted: "पोस्टेड"
+  start_discussion: "एक नई चर्चा शुरू करें"
+  submit_start_discussion: "चर्चा जमा करें"
+  should_message_be_private: "इस संदेश को प्राइवेट होना चाहिए?"
+  only_support_can_respond: "केवल सपोर्ट जवाब कर सकते हैं (एक प्राइवेट टिकट बनाता है)"
+  responses_can_come_from_everyone: "उत्तर के सपोर्ट या समुदाय से आ सकता है (अनुशंसित)"
+  collapsed_messages:
+      one: "1 संकुचित संदेश"
+      two: "2 संकुचित संदेशों"
+      other: "%{count} संकुचित संदेशों"
+
+  # Knowledgebase
+  written_by: "लिखित द्वारा"
+  last_edited: "पिछले संपादित"
+
+  # Tickets
+  tickets: "टिकट्स"
+  no_tickets: "आपने अब तक कोई टिकट नहीं बनाया है"
+  ticket_number: "टिकट नंबर"
+
+
+  # Get Help
+  get_help_header: "अभी भी सहायता चाहिए??"
+  get_help_button: "हमारे साथ एक चर्चा शुरू करिये"
+
+  # Profile
+  my_profile: 'मेरी प्रोफाइल'
+
+  # devise/sessions/new
+  login: लॉगिन
+
+  # devise/shared/links
+  forgot_password: क्या आप अपना पासवर्ड भूल गए?
+
+  # devise/passwords/new
+  send_instructions: मुझे अनुदेश भेजें
+
+  # devise/passwords/edit
+  change_password: पासवर्ड बदलें
+  new_password: नया पासवर्ड
+  new_password_confirmation: नए पासवर्ड की पुष्टि करें
+
+  # devise/confirmations/new
+  resend: पुष्टि निर्देश फिर से भेजना
+
+  # devise/registrations/new
+  sign_up: साइन उप
+
+  # Admin menu
+  discussions: चर्चाएँ
+  content: कंटेंट
+  communities: समुदायों
+  app_store: App Store
+  search: खोज
+
+  # Admin main/statuses
+  support_pipeline: सपोर्ट पाइपलाइन
+  new: नया
+  active: एक्टिव
+  open: खुले
+  mine: अपना
+  pending: पड़ा हुआ
+  closed: समाप्त
+  spam: स्पैम
+  trash: कचरा
+  discussion_managment: चर्चा प्रबंधन
+  open_new_discussion: नई चर्चा
+  assigned_to: "%{agent} को सौंपा गया"
+  unassigned: असाइन नहीं की गई
+  private: प्राइवेट
+  public: पब्लिक
+  save_changes: जो भी बदली सेव करो
+
+  # Discussion controls
+  change_status: स्टेटस बदलो
+  status: स्टेटस
+  mark_closed: बंद करें
+  reopen: फिर से खोलें
+  mark_spam: स्पैम मार्क करो
+  mark_new: नया  मार्क करो
+  assign_agent: एजेंट नियुक्त करना
+  selected_messages:
+    one: "1 चुने हुए संदेश"
+    two: "2 चुने हुए संदेश"
+    other: "%{count} चुने हुए संदेश"
+
+  # Discussion messages
+  reopen_message: "सपोर्ट स्टाफ इस संदेश को फिर से खोल दी"
+  close_message: "सपोर्ट स्टाफ से यह टिकट बंद कर दिया गया है."
+  trash_message: "यह टिकट हटा दिया गया है."
+  assigned_message: "%{assigned_to} को चर्चा करने के लिए स्थानांतरित कर दिया गया है ."
+
+  # User Admin
+  contact_info: संपर्क करें
+  social_info: सोशियल
+  edit_user: Edit User
+  work_phone: काम
+  cell_phone: मोबाइल
+
+  # User search results
+  users_found:
+    one: "1 यूजर नामित %{query} मिला था"
+    other: "%{count} यूजर्स नामित %{query} मिला था"
+
+  # Discussion View
+  asked_a_question: "%{user_name} एक सवाल पूछा..."
+  replied: "%{user_name} जवाब दिया..."
+  posted_note: "%{user_name} एक आंतरिक नोट पोस्ट किए..."
+  type_reply: आपके उत्तर टाइप करें, या नीचे एक आम संदेश से चुनें
+  select_common: एक आम जबाब चुनें
+  reply: जवाब
+  internal_note: आंतरिक नोट
+  upvote:
+    one: "Upvote | %{count}"
+    other: "Upvote | %{count}"
+
+  # Content
+  new_category: नया केटेगरी
+  new_content: नया कंटेंट
+  front_page_categories: मुखपृष्ठ केटेगरी
+  other_categories: और केटेगरी
+  edit: एडिट
+  edit_category: एडिट केटेगरी
+  select_category: केटेगरी चुनें
+  delete: हटाना
+  view_and_edit: "कंटेंट देखें और बदलें"
+  delete_confirm: "कृपया पुष्टि करें कि आप इसे हटाना चाहते हैं!"
+  select_icon_helptext: "इस केटेगरी के साथ संबद्ध करने के लिए एक आइकन का चयन करें (ऑप्शनल)"
+  translate: "अलग भाषा में अनुवाद"
+  view_on_site: "साइट पर देखें"
+  written_on: "%{date_written} को लिखा"
+  content_last_updated: "%{date_updated} को अंतिम बार अपडेट किया गया"
+  featured_content: "Featured"
+  draft_content: "ड्राफ्ट"
+  published_content: "पब्लिश्ड"
+  additional_settings: "अतिरिक्त सेटिंग्स"
+  content_status: "कंटेंट की स्थिति"
+
+  # Communities
+  new_community: नया कम्युनिटी बनाओ
+  create_new_community: नया कम्युनिटी बनाओ
+
+  # Mail messages
+  hello: "Hello %{user_name}"
+  new_user: "हमसे संपर्क करने के लिए धन्यवाद। आपका संदेश हमारे सपोर्ट टीम द्वारा प्राप्त किया गया है और हम आपको जल्दी जवाब देंगे."
+  account_generated: "एक अकाउंट आप के लिए बनाया गया है। साइन इन के लिए, इस लिंक का उपयोग करें:"
+  above_this_line: "सुनिश्चित करें कि आपके जबाब इस लाइन के ऊपर दिखाई देता है"
+  message_id: "संदेश ID"
+  message_response: "आपके सवाल का जवाब नीचे दिया गया है:"
+  view_online: "इसको ऑनलाइन पे देखिए:"
+
+
+  # settings
+  settings: "Settings"
+  general: "General"
+  design: "Design"
+  international: "International"
+  widget: "Embeddable Widget"
+
+  activerecord:
+    attributes:
+      user:
+        email: ईमेल
+        password: पासवर्
+        name: नाम
+        company: कंपनी
+        work_phone: काम
+        cell_phone: मोबाइल
+        city: शहर
+        state: स्टेट
+      topic:
+        name: विषय
+      post:
+        kind: Genre
+      category:
+        name: नाम
+        icon: आइकन
+        keywords: Keywords
+        title_tag: शीर्षक टैग
+        meta_description: Meta Description
+        front_page: मुखपृष्ठ
+        active: एक्टिव
+      doc:
+        title: शीर्षक
+        meta_description: Meta Description
+        title_tag: शीर्षक टैग
+        keywords: खोजशब्दों
+        category_id: केटेगरी
+        active: स्टेटस
+        front_page: पहले पन्ने पर छापा ?
+      forum:
+        name: नाम
+        description: वर्णन
+        private: प्राइवेट
+
+    helpers:
+      submit:
+        topic:
+          create: एक नई चर्चा शुरू
+        post:
+          create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "एक्शन्स"
+    links:
+      back: "वापस"
+      cancel: "कैंसिल"
+      confirm: "क्या आपको यकीन है?"
+      destroy: "हटाना"
+      new: "नया"
+      edit: "एडिट"
+    titles:
+      edit: "एडिट %{model}"
+      save: "सेव %{model}"
+      new: "नया %{model}"
+      delete: "डिलीट %{model}"
