@@ -23,10 +23,6 @@ module ApplicationHelper
     content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_text
   end
 
-  def format_date(date,format='%m/%d/%y - %H:%M')
-    date.strftime(format)
-  end
-
   def last_active_time(last_activity)
     content_tag(:span, timeago_tag(last_activity, :limit => 7.days.ago), class: ['hidden-xs']) +
     content_tag(:span, timeago_tag(last_activity, :limit => 0.days.ago), class: ['hidden-sm','hidden-md','hidden-lg'])
