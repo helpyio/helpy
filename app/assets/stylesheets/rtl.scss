@@ -1,0 +1,50 @@
+.navbar-nav {
+    float:left;
+}
+.navbar-right {
+    float:left !important;
+}
+
+.navbar-brand>img {
+    float: right !important;
+    padding: 0 0 0 5px;
+}
+div#footer.row .text-left {
+    float:left;
+}
+.topic .status-label {
+    float:left !important;
+}
+.label-count, .topic-checkbox {
+    float:right !important;
+}
+
+.media-body .last-active,.media-body .less-important {
+    text-align:left !important;
+}
+
+.media-body .post-body {
+    text-align:right !important;
+}
+.media-body .posted-at {
+    float: left !important;
+}
+#posts .pull-left {
+    float:right;
+}
+#left-col-user-info {
+    border-right:none;
+    border-right: 1px solid #eee;
+}
+
+.glyphicon-chevron-right:before {
+  content: "\e079";
+}
+
+// this is for widget
+textarea.form-control {
+    direction:rtl;
+}
+input.form-control {
+    direction:rtl;
+}
