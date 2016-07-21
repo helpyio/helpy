@@ -23,15 +23,6 @@ module ApplicationHelper
     content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_text
   end
 
-  # Outputs the corresponding flash message if any are set
-  def flash_messages
-    messages = []
-    %w(notice warning error).each do |msg|
-      messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => 'flash-message', :class => "#{msg}") unless flash[msg.to_sym].blank?
-    end
-    messages
-  end
-
   def format_date(date,format='%m/%d/%y - %H:%M')
     date.strftime(format)
   end
