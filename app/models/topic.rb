@@ -86,10 +86,6 @@ class Topic < ActiveRecord::Base
     "##{self.id} | #{self.name}"
   end
 
-  def open?
-    self.current_status == "open"
-  end
-
   def open
     self.current_status = "pending"
     self.save
