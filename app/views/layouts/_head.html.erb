@@ -22,6 +22,11 @@
 <%= favicon_link_tag "#{AppSettings['design.favicon']}" %>
 <%= cloudinary_js_config %>
 
+<% if rtl_locale?(params["locale"]) %>
+<!-- Load Bootstrap RTL theme from RawGit -->
+<link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css">
+<% end %>
+
 <script data-turbolinks-eval="false">
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
