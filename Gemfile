@@ -129,6 +129,8 @@ group :development, :test do
   gem 'scss-lint'
 end
 
+gem 'bulk_insert'
+
 group :development do
   gem "better_errors"
   gem 'mailcatcher'
