@@ -36,8 +36,4 @@ module PostsHelper
     end
   end
 
-  def post_admin
-
-  end
-
 end
