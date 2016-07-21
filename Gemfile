@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "2.2.5"
+
 gem 'rails', '4.2.7'
 
 # Use postgresql as the database for Active Record
@@ -158,5 +160,3 @@ group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
-
-ruby "2.2.1"
