@@ -29,10 +29,6 @@ class ForumTest < ActiveSupport::TestCase
   should validate_presence_of(:description)
   should validate_length_of(:description).is_at_most(1000)
 
-  test "should count number of posts" do
-    assert Forum.find(1).total_posts == 3
-  end
-
   test "to_param" do
     assert Forum.find(1).to_param == "1-private-tickets"
   end
