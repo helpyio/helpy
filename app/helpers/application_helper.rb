@@ -53,6 +53,15 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def rtl_tags
+    stylesheet_link_tag('//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css', "data-turbolinks-track" => true) +
+    stylesheet_link_tag('rtl')
+  end
+
+  def rtl?
+    rtl_locale?(params[:locale] || @browser_locale)
+  end
+
   def locale_select
     # options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
 
