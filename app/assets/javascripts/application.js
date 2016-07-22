@@ -70,7 +70,7 @@
           obj.find('.truncate_more').css("display", "none");
 
           // insert more link
-          $('<a href="#" class="truncate_more_link">' + options.moreText + '</a>').insertAfter(obj.find('.truncate_more'))
+          $('<a href="#" class="truncate_more_link">' + options.moreText + '</a>').insertAfter(obj.find('.truncate_more'));
         }
       } // end if
 

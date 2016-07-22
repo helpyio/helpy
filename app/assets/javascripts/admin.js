@@ -1,8 +1,8 @@
 
 // Gives us a capitalize method
 String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
 
 var Helpy = Helpy || {};
 Helpy.admin = function(){
@@ -86,13 +86,13 @@ Helpy.admin = function(){
       $("div.select").removeClass("has-success").addClass("has-error");
       $("select").next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
       $("div.select .glyphicon-ok").remove();
-      $("<span class='help-block'>can't be blank</span>").insertAfter("div.select .glyphicon-remove")
+      $("<span class='help-block'>can't be blank</span>").insertAfter("div.select .glyphicon-remove");
       $('input[type="submit"]').prop('disabled', true);
     }
     else{
      $('input[type="submit"]').prop('disabled', false); 
     }
-  })
+  });
 
 };
 
@@ -103,11 +103,11 @@ Helpy.showPanel = function(panel) {
   $('li.step-' + currentPanel).html("<span class='glyphicon glyphicon-ok'></span>").addClass('filled-circle');
   $('li.step-' + panel).addClass('active-step');
   return true;
-}
+};
 
 window.closeModal = function() {
   $('#modal').modal('hide');
-}
+};
 
 Helpy.showGrid = function() {
   // Clean up any select-styled links
@@ -119,6 +119,6 @@ Helpy.showGrid = function() {
 
   $('h2#setting-header').text('Settings');
 
-}
+};
 
 $(document).on('page:change', Helpy.admin);
