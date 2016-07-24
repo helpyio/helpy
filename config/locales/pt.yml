@@ -1,7 +1,7 @@
 pt:
   language_name: 'Português' # The name of the translation file, in that language
   root: &root 'Início'
-  how_can_we_help: "Como podemos ajudar?"
+  how_can_we_help: "Como podemos ajudar"
   browse_topics: "Procurar Tópicos"
   support_team: "Equipa de Suporte"
   nothing_here: "O Diretório está vazio!"
@@ -11,8 +11,8 @@ pt:
   community: "Comunidade"
   ask_a_question: "Faça-nos uma Pergunta"
   home: "Início"
-  login: "Login"
-  logout: "Logout"
+  login: "Entrar"
+  logout: "Sair"
   register: "Registar"
   back_to: "Voltar a"
   welcome_back: "Bem-vindo %{username}"
@@ -22,7 +22,7 @@ pt:
   change_your_locale: "Alterar Localização"
 
   # Voting widget
-  did_this_help: "Isto ajudou o seu problema?"
+  did_this_help: "Resolveu o seu problema?"
   yes_button: 'Sim'
   no_button: 'Não'
 
@@ -39,7 +39,7 @@ pt:
   last_activity: "Última Atividade"
   topic: "Discussão"
   replies: "Respostas"
-  last_post: "Último Post"
+  last_post: "Último Tópico"
   started_by: "Iniciado por %{username}"
   reply: "Responder a este tópico"
   submit_reply: "Responder"
@@ -73,22 +73,23 @@ pt:
   my_profile: 'O Meu Perfil'
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  powered_by: "Um produto Helpy. Um Sistema de Código Aberto"
+  get_your_copy: "Obtenha sua cópia no GitHub"
+  version: "Versão:"
 
   # devise/sessions/new
-  login: "Log in"
+  login: "Entrar"
 
   # devise/shared/links
-  forgot_password: "Esqueceu-se da password?"
+  forgot_password: "Esqueceu-se da senha?"
 
   # devise/passwords/new
   send_instructions: "Enviem-me Instruções"
 
   # devise/passwords/edit
-  change_password: "Alterar Password"
-  new_password: "Nova Password"
-  new_password_confirmation: "Confirmar Nova Password"
+  change_password: "Alterar Senha"
+  new_password: "Nova Senha"
+  new_password_confirmation: "Confirmar Nova Senha"
 
   # devise/confirmations/new
   resend: "Reenviar confirmação de Intruções"
@@ -104,7 +105,7 @@ pt:
   search: "Procurar"
 
   # Admin main/statuses
-  support_pipeline: "Conduta de Suporte"
+  support_pipeline: "Ciclo de Suporte"
   new: "Novo"
   active: "Activo"
   open: "Aberto"
@@ -112,7 +113,7 @@ pt:
   pending: "Pendente"
   closed: "Resolvido"
   spam: Spam
-  trash: Trash
+  trash: Lixo
   discussion_managment: "Gestão de Discussões"
   open_new_discussion: "Nova Discussão"
   assigned_to: "associado a %{agent}"
@@ -161,8 +162,8 @@ pt:
   reply: "Responder"
   internal_note: "Nota Interna"
   upvote:
-    one: "Upvote | %{count}"
-    other: "Upvote | %{count}"
+    one: "Endossar | %{count}"
+    other: "Endossar | %{count}"
 
   # Content
   new_category: "Nova Categoria"
@@ -193,7 +194,7 @@ pt:
   # Mail messages
   hello: "Olá %{user_name}"
   new_user: "Obrigado pelo seu contacto. A sua mensagem foi recebida pela nossa equipa de suporte e iremos entrar em contacto consigo o mais rapidamente possível."
-  account_generated: "Foi criada uma nova conta para si. Para fazer login, use este link:"
+  account_generated: "Foi criada uma nova conta para si. Para entrar, use este link:"
   above_this_line: "Escreva a sua resposta acima desta linha"
   message_id: "Id da Mensagem"
   message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
@@ -203,7 +204,7 @@ pt:
     attributes:
       user:
         email: Email
-        password: Password
+        password: Senha
         name: "Nome"
         company: "Empresa"
         work_phone: "Trabalho"
