@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
     devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions' }
-    
+
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
       post "/users/invitation" => "devise/invitations#create", as: :user_invitation
@@ -87,6 +87,8 @@ Rails.application.routes.draw do
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
+    get 'users/invite' => 'users#invite', as: :invite
+    put 'users/invite_users' => 'users#invite_users', as: :invite_users
 
     resources :categories do
       resources :docs, except: [:index, :show]

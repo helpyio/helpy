@@ -1,0 +1,7 @@
+<%= bootstrap_form_tag url: admin_invite_users_path, method: 'put' do |f| %>
+  <%= f.text_area 'invite.emails', label: "Emails" %>
+  <%= f.text_area 'invite.message', label: "Message" %>
+  <%= f.select('invite.role', [['Select Role',''],['Agent','agent'],['Editor','editor'],['User','user']]) if current_user.is_admin? %>
+
+  <%= f.submit 'Invite Users', class: 'btn btn-warning' %>
+<% end %>

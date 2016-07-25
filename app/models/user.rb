@@ -85,8 +85,10 @@ class User < ActiveRecord::Base
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
 
   def set_role_on_invitation_accept
-    self.role = "agent"
-    self.save
+    if self.role.nil?
+      self.role = "agent"
+      self.save
+    end
   end
 
   def active_assigned_count
@@ -107,7 +109,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(auth)
     user = find_by(email: auth.info.email)
-    if user 
+    if user
       user.tap do |u|
         u.provider = auth.provider
         u.uid = auth.uid
@@ -149,20 +151,22 @@ class User < ActiveRecord::Base
     %w( editor agent admin ).include?(self.role)
   end
 
-  def self.bulk_invite(emails, message)
+  def self.bulk_invite(emails, message, role)
     #below line merge comma saperated emails as well as emails saperated by new lines
     emails = emails.each_line.reject { |l| l =~ /^\s+$/ }.map { |l| l.strip.split(', ') }.flatten
-    
+
     emails.each do |email|
       is_valid_email = email.match('^.+@.+$')
       if is_valid_email
         User.invite!({email: email}) do |user|
           user.invitation_message = message
+          user.name = "Invited User: #{email}"
+          user.role = role
         end
       end
     end
   end
-  
+
   #when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
