@@ -23,8 +23,6 @@ class Admin::SettingsController < Admin::BaseController
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
     
-    User.bulk_invite(params["invite.emails"], params["invite.message"]) if params["invite.emails"].present?
-
     respond_to do |format|
       format.html {
         redirect_to admin_settings_path
