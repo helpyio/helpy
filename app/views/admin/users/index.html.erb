@@ -4,7 +4,7 @@
     <%= status_label(@status) if @status %>
   </span>
   <span class="pull-right">
-    <%= link_to t(:invite_users, default: "Add Users"), admin_invite_path, remote: false, class: 'btn btn-primary' %>
+    <%= link_to t(:invite_users, default: "Invite New Users"), admin_invite_path, remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
   </span>
 </h2>
 

@@ -143,6 +143,7 @@ en:
   assigned_message: "Discussion has been transferred to %{assigned_to}."
 
   # User Admin
+  users: Users
   contact_info: Contact
   social_info: Social
   edit_user: Edit User
@@ -153,6 +154,15 @@ en:
   users_found:
     one: "1 user was found named %{query}"
     other: "%{count} users were found named %{query}"
+
+  # Invite users
+  invite_users: "Invite New Users"
+  invite_emails: "Email Addresses"
+  invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  invite_message: "Message"
+  invite_message_placeholder: "An optional message that will be sent to the new users"
+  invite_role: "Role for Invited Users"
+  send_invite: "Send Invite"
 
   # Discussion View
   asked_a_question: "%{user_name} asked a question..."
