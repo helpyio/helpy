@@ -77,6 +77,7 @@ en:
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on Github"
+  version: "Version:"
 
   # devise/sessions/new
   login: Log in
