@@ -149,7 +149,7 @@ class Admin::TopicsController < Admin::BaseController
         user_id = current_user.id || 2
         @topics.each do |topic|
           # prepare bulk params
-          bulk_post_attributes << {body: I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name), kind: 'note', user_id: user_id}
+          bulk_post_attributes << {body: I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name), kind: 'note', user_id: user_id, topic_id: topic.id}
         end
 
         case params[:change_status]
