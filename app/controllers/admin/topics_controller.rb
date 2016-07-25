@@ -202,7 +202,7 @@ class Admin::TopicsController < Admin::BaseController
     if params[:topic_ids].count > 1
       get_tickets
     else
-      @topic = @topics.first
+      @topic = Topic.find(@topics.first.id)
       @posts = @topic.posts.chronologic
     end
 
@@ -220,7 +220,6 @@ class Admin::TopicsController < Admin::BaseController
         end
       }
     end
-
   end
 
   # Toggle privacy of a topic
