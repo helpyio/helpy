@@ -139,31 +139,43 @@ class Admin::TopicsController < Admin::BaseController
     logger.info("Starting update")
 
     #handle array of topics
-    params[:topic_ids].each do |id|
+    @topics = Topic.where(id: params[:topic_ids])
 
-      @topic = Topic.where(id: id).first
-      @minutes = 0
+    bulk_post_attributes = []
 
-      # actions for each status change
-      unless params[:change_status].blank?
+    if params[:change_status].present?
+
+      if ["closed", "reopen", "trash"].include?(params[:change_status])
+        user_id = current_user.id || 2
+        @topics.each do |topic|
+          # prepare bulk params
+          bulk_post_attributes << {body: I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name), kind: 'note', user_id: user_id}
+        end
+
         case params[:change_status]
         when 'closed'
-          @topic.close(current_user.id)
+          @topics.bulk_close(bulk_post_attributes)
         when 'reopen'
-          @topic.reopen(current_user.id)
+          @topics.bulk_reopen(bulk_post_attributes)
         when 'trash'
-          @topic.trash(current_user.id)
-        else
-          @topic.current_status = params[:change_status] unless params[:change_status].blank?
-          @topic.save
-        end
-        @action_performed = "Marked #{params[:change_status].titleize}"
+          @topics.bulk_trash(bulk_post_attributes)
+        end 
+      else
+        @topics.update_all(current_status: params[:change_status])
       end
-
+      
+      
+      @action_performed = "Marked #{params[:change_status].titleize}"
       # Calls to GA for close, reopen, assigned.
-      tracker("Agent: #{current_user.name}", @action_performed, @topic.to_param, @minutes)
+      tracker("Agent: #{current_user.name}", @action_performed, @topics.to_param, 0)
+      
     end
-    @posts = @topic.posts.chronologic
+    
+    
+    if params[:topic_ids].present?
+      @topic = Topic.find(params[:topic_ids].last) 
+      @posts = @topic.posts.chronologic
+    end
 
     fetch_counts
     respond_to do |format|

@@ -125,7 +125,7 @@ de:
 
   # Discussion messages
   reopen_message: "Dieses Ticket wurde erneut durch einen Support-Mitarbeiter geöffnet."
-  close_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
+  closed_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
   trash_message: "Dieses Ticket wurde gelöscht."
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
 

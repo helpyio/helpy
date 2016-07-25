@@ -101,12 +101,22 @@ class Topic < ActiveRecord::Base
     self.save
   end
 
+  def self.bulk_reopen(post_attributes)
+    Post.bulk_insert values: post_attributes
+    self.update_all(current_status: 'open')
+  end
+
   def close(user_id = 2)
-    self.posts.create(body: I18n.t(:close_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
+    self.posts.create(body: I18n.t(:closed_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "closed"
     self.closed_date = Time.current
     self.assigned_user_id = nil
     self.save
+  end
+
+  def self.bulk_close(post_attributes)
+    Post.bulk_insert values: post_attributes
+    self.update_all(current_status: 'closed', assigned_user_id: nil, closed_date: Time.current)
   end
 
   def trash(user_id = 2)
@@ -117,6 +127,11 @@ class Topic < ActiveRecord::Base
     self.private = true
     self.assigned_user_id = nil
     self.save
+  end
+
+  def self.bulk_trash(post_attributes)
+    Post.bulk_insert values: post_attributes
+    self.update_all(current_status: 'trash', forum_id: 2, private: true, assigned_user_id: nil, closed_date: Time.current)
   end
 
   def self.bulk_assign(post_attributes, assigned_to)

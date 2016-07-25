@@ -136,7 +136,7 @@ pt:
 
   # Discussion messages
   reopen_message: "Esta mensagem foi reaberta pelo suporte."
-  close_message: "Esta mensagem foi fechado pelo suporte."
+  closed_message: "Esta mensagem foi fechado pelo suporte."
   trash_message: "Esta mensagem foi apagado pelo suporte."
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
 
