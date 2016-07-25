@@ -164,13 +164,11 @@ class Admin::TopicsController < Admin::BaseController
         @topics.update_all(current_status: params[:change_status])
       end
       
-      
       @action_performed = "Marked #{params[:change_status].titleize}"
       # Calls to GA for close, reopen, assigned.
       tracker("Agent: #{current_user.name}", @action_performed, @topics.to_param, 0)
       
     end
-    
     
     if params[:topic_ids].present?
       @topic = Topic.find(params[:topic_ids].last) 
@@ -238,15 +236,11 @@ class Admin::TopicsController < Admin::BaseController
   def toggle_privacy
 
     #handle array of topics
-    params[:topic_ids].each do |id|
+    @topics = Topic.where(id: params[:topic_ids])
 
-      @topic = Topic.where(id: id).first
-      @topic.private = params[:private]
-      @topic.forum_id = params[:forum_id]
-      @topic.save
+    @topics.update_all(private: params[:private], forum_id: params[:forum_id])
 
-
-    end
+    @topic = @topics.last
     @posts = @topic.posts.chronologic
 
     fetch_counts
