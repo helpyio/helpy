@@ -47,6 +47,7 @@
 class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
+  before_action :verify_admin, only: ['invite','invite_users']
   before_action :fetch_counts, :only => ['show']
   respond_to :html, :js
 
@@ -84,6 +85,21 @@ class Admin::UsersController < Admin::BaseController
 
     # TODO: Refactor this to use an index method/view on the users model
     render 'admin/topics/index'
+  end
+
+  def invite
+  end
+
+  def invite_users
+    User.bulk_invite(params["invite.emails"], params["invite.message"], params["invite.role"]) if params["invite.emails"].present?
+
+    respond_to do |format|
+      format.html {
+        redirect_to admin_users_path
+      }
+      format.js {
+      }
+    end
   end
 
   private
