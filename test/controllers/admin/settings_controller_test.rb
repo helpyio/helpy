@@ -169,15 +169,5 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal 'something', Cloudinary.config.api_secret
   end
 
-  test "an admin should be able to bulk invite agents and invitation emails should send" do
-    sign_in users(:admin)
-    assert_difference "ActionMailer::Base.deliveries.size", 3 do
-      assert_difference("User.count", 3) do
-        xhr :put, :update_settings,
-          'invite.emails' => 'test1@mail.com, test2@mail.com, test3@mail.com',
-          'invite.message' => "this is the test invitation message"
-      end
-    end  
-  end
 
 end
