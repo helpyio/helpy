@@ -31,7 +31,7 @@
       <%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget') %>
       <%= settings_menu_item('glyphicon glyphicon-envelope', 'email') %>
       <%= settings_menu_item('glyphicon glyphicon-cloud', 'cloudinary') %>
-      <%= settings_menu_item('glyphicon glyphicon-user', 'invite') %>
+      <%= settings_menu_item('glyphicon glyphicon-user', 'users', admin_users_path) %>
     </ul>
   </div>
   <div class="col-md-9 col-sm-8 col-xs-10">
@@ -125,10 +125,6 @@
         <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
         <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
         <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
-      </div>
-      <div class="settings-section invite hidden" data-hook="admin_settings_invite">
-        <%= f.text_area 'invite.emails', label: "Emails" %>
-        <%= f.text_area 'invite.message', label: "Message" %>
       </div>
       <div class="submit-section">
         <%= f.submit "Save Settings", class: 'btn btn-warning' %>
