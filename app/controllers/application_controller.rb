@@ -42,12 +42,16 @@ class ApplicationController < ActionController::Base
 
   def tracker(ga_category, ga_action, ga_label, ga_value=nil)
     if AppSettings['settings.google_analytics_id'].present?
+      ga_cookie = cookies['_ga'].split('.')
+      ga_client_id = ga_cookie[2] + '.' + ga_cookie[3]
+      logger.info("Enqueing job for #{ga_client_id}")
+
       TrackerJob.perform_later(
         ga_category,
         ga_action,
         ga_label,
         ga_value,
-        session['client_id'] || params[:client_id],
+        ga_client_id,
         AppSettings['settings.google_analytics_id']
       )
     end

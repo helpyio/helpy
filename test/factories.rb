@@ -23,6 +23,21 @@ FactoryGirl.define do
         })
       ]}
     end
+
+    trait :with_multiple_attachments do
+      attachments {[
+        ActionDispatch::Http::UploadedFile.new({
+          filename: 'logo.png',
+          type: 'image/png',
+          tempfile: File.new("#{File.expand_path(File.dirname(__FILE__))}/fixtures/logo.png")
+        }),
+        ActionDispatch::Http::UploadedFile.new({
+          filename: 'logo.png',
+          type: 'image/png',
+          tempfile: File.new("#{File.expand_path(File.dirname(__FILE__))}/fixtures/logo.png")
+        })
+      ]}
+    end
   end
 
   factory :email_from_known, class: OpenStruct do
