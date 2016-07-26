@@ -2,6 +2,10 @@ require 'test_helper'
 
 class EmailProcessorTest < ActiveSupport::TestCase
 
+  setup do
+    set_default_settings
+  end
+
   test 'an email to the support address from an unknown user should create a new user and topic with status new' do
     assert_difference('Topic.where(current_status: "new").count', 1) do
       assert_difference('Post.count', 1) do
@@ -13,6 +17,37 @@ class EmailProcessorTest < ActiveSupport::TestCase
       end
     end
   end
+
+  # Throws an error with having a Cloudinary config in place
+  # TODO: Mock Cloudinary
+
+  # test 'an email with one attachment to the support address from an unknown user should create a new user and topic with status new' do
+  #   assert_difference('Topic.where(current_status: "new").count', 1) do
+  #     assert_difference('Post.count', 1) do
+  #       assert_difference('User.count', 1) do
+  #         assert_difference('Attachinary::File.all.count', 1) do
+  #           assert_difference('ActionMailer::Base.deliveries.size', 1) do
+  #             EmailProcessor.new(FactoryGirl.build(:email_from_unknown_with_attachments, :with_attachment)).process
+  #           end
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
+
+  # test 'an email with multiple attachments to the support address from an unknown user should create a new user and topic with status new' do
+  #   assert_difference('Topic.where(current_status: "new").count', 1) do
+  #     assert_difference('Post.count', 1) do
+  #       assert_difference('User.count', 1) do
+  #         # assert_difference('Attachinary::File.all.count', 2) do
+  #           assert_difference('ActionMailer::Base.deliveries.size', 1) do
+  #             EmailProcessor.new(FactoryGirl.build(:email_from_unknown_with_attachments, :with_multiple_attachments)).process
+  #           end
+  #         # end
+  #       end
+  #     end
+  #   end
+  # end
 
   test 'an email to the support address from a known user should create a new ticket for the user' do
     assert_difference('Topic.count', 1) do

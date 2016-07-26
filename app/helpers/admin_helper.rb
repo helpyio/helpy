@@ -89,9 +89,9 @@ module AdminHelper
       link_to t(title.to_sym, default: "#{title.capitalize}"), link, class: "#{settings_link(link)} active-settings-link", "data-target" => "#{title}"
   end
 
-  def settings_menu_item(icon, title)
+  def settings_menu_item(icon, title, link='#')
     content_tag(:li, class: 'settings-menu-item') do
-      link_to('#', class: 'settings-link active-settings-link', "data-target" => title) do
+      link_to(link, class: "#{settings_link(link)} #{'active-settings-link' if link == '#'}", "data-target" => title) do
         concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
         concat content_tag(:span, t(title, default: title.capitalize), class: 'hidden-xs')
       end

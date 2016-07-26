@@ -5,7 +5,14 @@ Rails.application.routes.draw do
   get 'widget/' => 'widget#index', as: :widget
   get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
 
-  devise_for :users, skip: [:password, :registration, :confirmation], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
+  as :user do
+    get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
+    post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+    put "/users/invitation" => "devise/invitations#update", as: nil
+    patch "/users/invitation" => "devise/invitations#update", as: nil
+  end
 
   localized do
 
@@ -19,7 +26,14 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: :omniauth_callbacks, controllers: { registrations: 'registrations', sessions: 'sessions' }
+    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions' }
+
+    as :user do
+      get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
+      post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+      put "/users/invitation" => "devise/invitations#update", as: nil
+      patch "/users/invitation" => "devise/invitations#update", as: nil
+    end
 
     resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
       resources :docs, except: [:new, :edit, :create, :update]
@@ -38,13 +52,13 @@ Rails.application.routes.draw do
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
     get 'thanks' => 'topics#thanks', as: :topic_thanks
     get 'result' => 'result#index', as: :result
+    get 'search' => 'result#search', as: :search
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
     get 'locales/select' => 'locales#select', as: :select_locale
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
-  get '/set_client_id' => 'home#set_client_id', as: :set_client_id
 
   # Admin Routes
 
@@ -74,6 +88,8 @@ Rails.application.routes.draw do
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
+    get 'users/invite' => 'users#invite', as: :invite
+    put 'users/invite_users' => 'users#invite_users', as: :invite_users
 
     resources :categories do
       resources :docs, except: [:index, :show]

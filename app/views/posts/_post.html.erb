@@ -2,7 +2,7 @@
 ################################################################################
 # NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
 # of your Helpy, that you create a custom theme instead.  This will allow
-# you to override any views or styles you wish to, without compromosing your
+# you to override any views or styles you wish to, without compromising your
 # ability to upgrade in the future
 ################################################################################
 %>
@@ -13,14 +13,14 @@
 		<%= avatar_image(post.user, size=40) %>
 	</div>
 	<div class="media-body media-right">
-		<span class="hidden-sm hidden-md hidden-lg"><%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %><br/></span>
+		<span class="hidden-sm hidden-md hidden-lg"><%= last_active_time(post.created_at) %><br/></span>
 		<span id="row-<%= post.id %>"  class="post-menu post-menu-<%= post.id %> btn-group">
 			<%= post_message(post) %>
 		</span>
 
 		<span class="last-active posted-at less-important pull-right">
 			<span class="hidden-xs">
-			<%= post.kind == "first" ? last_active_time(post.created_at) : "#{distance_of_time_in_words(post.created_at,post.topic.created_at)} later" %>
+				<%= last_active_time(post.created_at) %>
 			</span>
 		</span>
 

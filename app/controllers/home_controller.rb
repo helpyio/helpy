@@ -12,9 +12,4 @@ class HomeController < ApplicationController
     @categories = Category.active.ordered.featured.all.with_translations(I18n.locale)
   end
 
-  def set_client_id
-    session[:client_id] = params[:client_id]
-    render nothing: true
-  end
-
 end

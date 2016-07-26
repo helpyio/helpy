@@ -48,6 +48,18 @@ class Admin::PostsControllerTest < ActionController::TestCase
       assert :success
     end
 
+    # Should not send email out for internal notes
+    test "an #{admin} should be able to post an internal note, and the system should NOT send an email" do
+      sign_in users(admin.to_sym)
+
+      assert_difference "ActionMailer::Base.deliveries.size", 0 do
+        assert_difference "Post.count", 1 do
+          xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new internal note", kind: "note" }
+        end
+      end
+      assert :success
+    end
+
     test "an #{admin} should be able to reply to a public topic, and the system should NOT send an email" do
       sign_in users(admin.to_sym)
 
@@ -72,6 +84,15 @@ class Admin::PostsControllerTest < ActionController::TestCase
       assert_difference "Topic.where(current_status: 'open').count", 1 do
         xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: "new reply", kind: "reply" }
       end
+    end
+
+    test "an #{admin} should be able to post a reply with resolve flag which should change topic status to closed" do
+      sign_in users(admin.to_sym)
+      old_post_count = Post.count
+      xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: "new reply", kind: "reply", resolved: "1" }
+      assert old_post_count < Post.count
+      assert old_post_count == (Post.count - 2) # two post created one for "new reply" one for "closing" internel note
+      assert Topic.find(2).current_status == "closed"
     end
   end
 

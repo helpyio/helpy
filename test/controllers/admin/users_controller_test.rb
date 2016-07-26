@@ -82,6 +82,17 @@ class Admin::UsersControllerTest < ActionController::TestCase
     end
   end
 
+  test "an admin should be able to bulk invite agents and invitation emails should send" do
+    sign_in users(:admin)
+    assert_difference "ActionMailer::Base.deliveries.size", 3 do
+      assert_difference("User.count", 3) do
+        put :invite_users,
+          'invite.emails' => 'test1@mail.com, test2@mail.com, test3@mail.com',
+          'invite.message' => "this is the test invitation message"
+      end
+    end
+  end
+
   %w(user editor agent).each do |unauthorized|
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)

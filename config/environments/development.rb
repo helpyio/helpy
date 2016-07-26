@@ -39,6 +39,9 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
+  # Mute asset pipeline log messages
+  config.assets.quiet = true
+
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
@@ -47,7 +50,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.i18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br']
+  config.i18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br']
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 

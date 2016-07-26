@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_action :set_vars
-  before_action :instantiate_tracker
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
@@ -39,6 +40,23 @@ class ApplicationController < ActionController::Base
     (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
   end
 
+  def tracker(ga_category, ga_action, ga_label, ga_value=nil)
+    if AppSettings['settings.google_analytics_id'].present?
+      ga_cookie = cookies['_ga'].split('.')
+      ga_client_id = ga_cookie[2] + '.' + ga_cookie[3]
+      logger.info("Enqueing job for #{ga_client_id}")
+
+      TrackerJob.perform_later(
+        ga_category,
+        ga_action,
+        ga_label,
+        ga_value,
+        ga_client_id,
+        AppSettings['settings.google_analytics_id']
+      )
+    end
+  end
+
   private
 
   def set_locale
@@ -52,7 +70,7 @@ class ApplicationController < ActionController::Base
 
   def set_vars
     # Configure griddler, mailer, cloudinary, recaptcha
-    Griddler.configuration.email_service = AppSettings["email.mail_service"].to_sym
+    Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
 
     ActionMailer::Base.smtp_settings = {
         :address   => AppSettings["email.mail_smtp"],
@@ -102,29 +120,6 @@ class ApplicationController < ActionController::Base
     @admins = User.agents
   end
 
-  def instantiate_tracker
-    # instantiate a tracker instance for GA Measurement Protocol
-    # this is used to track events happening on the server side, like email support ticket creation
-    # this is stored in the session, so first lets check if its in the session
-
-    if session[:client_id]
-      logger.info("initiate tracker with client id from session")
-      @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'], session[:client_id])
-    else
-      # not in the session, so check the url
-      if params[:client_id]
-        logger.info("initiate tracker with client id from params")
-        session[:client_id] = params[:client_id]
-        @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'], params[:client_id])
-      else
-        # this is a last resort and should not occur for regular web
-        # visits.
-        logger.info("!!! initiate tracker without client id !!!")
-        @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'])
-      end
-    end
-  end
-
   def allow_iframe_requests
     response.headers.delete('X-Frame-Options')
   end
@@ -135,6 +130,12 @@ class ApplicationController < ActionController::Base
     else
       AppSettings['theme.active'].present? ? AppSettings['theme.active'] : 'helpy'
     end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
   end
 
 end
