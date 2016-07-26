@@ -1,5 +1,5 @@
 fa:
-  language_name: 'Persian' # The name of the translation file, in that language
+  language_name: 'فارسی' # The name of the translation file, in that language
   root: &root 'خانه'
   how_can_we_help: "چطور می‌تونیم کمکت کنیم؟"
   browse_topics: "موضوع ها"

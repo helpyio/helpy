@@ -13,6 +13,7 @@ Helpy.rtl = function(){
   $pullRights.removeClass('pull-right').addClass('pull-left');
   $pullLefts.removeClass('pull-left').addClass('pull-right');
   $('.logo').removeClass('pull-left').addClass('pull-right');
+  $('#above-header').css('text-align', 'left');
   $('.dropdown-menu-right').removeClass('dropdown-menu-right').addClass('dropdown-menu-left');
   $('#status-mobile-dropdown .dropdown-menu').addClass('dropdown-menu-left');
   $('.topic .status-label').css('float','right');
@@ -20,6 +21,7 @@ Helpy.rtl = function(){
   $('.media-body .last-active,.media-body .less-important').css('text-align', 'left');
   $('.media-body .post-body ').css('text-align','right');
   $('.media-body .posted-at ').css('float','right');
+  $('.media .post-body').removeClass('text-left').addClass('text-right');
 };
 
 $(document).on('page:change', Helpy.rtl);
