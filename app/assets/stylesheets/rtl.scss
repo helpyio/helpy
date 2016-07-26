@@ -1,0 +1,28 @@
+
+div#footer.row .text-left {
+    float:left;
+}
+#posts .pull-left {
+    float:right;
+}
+#left-col-user-info {
+    border-right: 0;
+    border-left: 1px solid #eee;
+}
+
+.glyphicon-chevron-right:before {
+  content: "\e079";
+}
+
+.logo {
+    padding-right: 0;
+    padding-left: 5px;
+}
+
+// this is for widget
+textarea.form-control {
+    direction:rtl;
+}
+input.form-control {
+    direction:rtl;
+}
