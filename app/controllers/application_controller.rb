@@ -57,6 +57,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def rtl_locale?(locale)
+    return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
+    return false
+  end
+  helper_method :rtl_locale?
+
   private
 
   def set_locale
