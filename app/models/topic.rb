@@ -126,6 +126,11 @@ class Topic < ActiveRecord::Base
     self.save
   end
 
+  def self.bulk_assign(post_attributes, assigned_to)
+    Post.create(post_attributes)
+    self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+  end
+
   # DEPRECATED updates the last post date, called when a post is made
   def self.last_post
     Topic.post(:first, :order => 'updated_at DESC')
