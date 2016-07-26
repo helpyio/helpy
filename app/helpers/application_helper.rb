@@ -55,7 +55,8 @@ module ApplicationHelper
 
   def rtl_tags
     stylesheet_link_tag('//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css', "data-turbolinks-track" => true) +
-    stylesheet_link_tag('rtl')
+    stylesheet_link_tag('rtl') +
+    javascript_include_tag('rtl', "data-turbolinks-track" => true)
   end
 
   def rtl?

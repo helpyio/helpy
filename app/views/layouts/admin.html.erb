@@ -8,7 +8,7 @@
 	<%= rtl_tags if rtl? %>
 	</head>
 
-<body>
+<body class="<%= 'rtl' if rtl? %>">
 	<script>
 	  ga('set', 'location', location.href.split('#')[0]);
 	  ga('send', 'pageview', { "title": document.title });
