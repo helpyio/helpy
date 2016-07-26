@@ -22,7 +22,7 @@ class Admin::SettingsController < Admin::BaseController
     @settings.each do |setting|
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
-
+    
     respond_to do |format|
       format.html {
         redirect_to admin_settings_path

@@ -5,13 +5,13 @@ rvm:
 services:
   - postgresql
 
-# Setup Test Database
 before_script:
+  # Setup Test Database
   - psql -c 'create database helpy_test;' -U postgres
 
 script:
-  # Migrate database
-  - bin/rake db:migrate RAILS_ENV=test
+  # Load database schema
+  - bundle exec rake db:schema:load
   # Test suite
   - bundle exec rake
   # Brakeman security scanner

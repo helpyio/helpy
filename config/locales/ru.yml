@@ -101,7 +101,7 @@ ru:
 
   # Admin menu
   discussions: Обсуждения
-  content: Content
+  content: Категории
   communities: Сообщества
   app_store: Приложения
   search: Поиск
@@ -224,11 +224,11 @@ ru:
         kind: Жанр
       category:
         name: Имя
-        icon: Нконка
+        icon: Иконка
         keywords: Ключевые слова
         title_tag: Название тегов
         meta_description: Мета Описание
-        front_page: главная страница
+        front_page: Главная страница
         active: Активный
       doc:
         title: Название

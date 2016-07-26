@@ -1,0 +1,10 @@
+da:
+  devise:
+    invitations:
+      send_instructions: 'En email med invitation er blevet sendt til %{email}.'
+      invitation_token_invalid: 'Token til invitationen er ikke gyldig!'
+      updated: 'Dit kodeord er blevet gemt. Du er nu logget ind.'
+      no_invitations_remaining: "Der er ikke flere invitationer"
+    mailer:
+      invitation_instructions:
+        subject: 'Instruktioner til invitation'

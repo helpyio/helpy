@@ -1,0 +1,15 @@
+<h2 id="ticket-page-title">
+  <%= t(:users, default: "Users") %>:
+  <span class='label <%= status_class(@status) %>' style='text-transform: uppercase'>
+    <%= status_label(@status) if @status %>
+  </span>
+  <span class="pull-right">
+    <%= link_to t(:invite_users, default: "Invite New Users"), admin_invite_path, remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
+  </span>
+</h2>
+
+<div class="row">
+  <div id="tickets">
+    <%= render partial: 'admin/users/users' %>
+  </div>
+</div>
