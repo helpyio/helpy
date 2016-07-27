@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  use_doorkeeper
 
   root to: "locales#redirect_on_locale"
   get 'widget/' => 'widget#index', as: :widget
@@ -15,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   localized do
+
+    use_doorkeeper
 
     root to: "home#index"
 
