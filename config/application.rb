@@ -30,6 +30,12 @@ module Helpy
     # you want a more robust solution. The queue is used for emails.
     config.active_job.queue_adapter = :sucker_punch
 
+    config.to_prepare do
+      Doorkeeper::ApplicationsController.layout "application"
+      Doorkeeper::AuthorizationsController.layout "application"
+      Doorkeeper::AuthorizedApplicationsController.layout "application"
+    end
+
   end
 end
 
