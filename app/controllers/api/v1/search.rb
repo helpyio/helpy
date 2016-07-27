@@ -8,10 +8,9 @@ module API
       # before do
       #   doorkeeper_authorize!
       # end
-      
+
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -38,11 +37,11 @@ module API
             # Convert pluralized into singular for the searcher
             type = permitted_params[:type].singularize.camelize
             results = results.where(searchable_type: type)
-                             .includes(:searchable)            
+                             .includes(:searchable)
           end
 
           # Grab total pagesnow in case we have to map the results array
-          total_pages = results.total_pages 
+          total_pages = results.total_pages
 
 
           # Check what kind of entity we are searching for and modify the Entity output accordingly
@@ -54,8 +53,8 @@ module API
                      "Entity::#{type}".constantize
                    end
 
-          present pages: { 
-            page: permitted_params[:page], 
+          present pages: {
+            page: permitted_params[:page],
             per_page: permitted_params[:per_page],
             total_pages: total_pages
           }

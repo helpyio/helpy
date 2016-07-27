@@ -10,38 +10,42 @@ module API
       # end
       before do
         authenticate!
+        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
       resource :posts do
 
-        # LIST ALL POSTS FOR TOPIC
-        desc "Return all posts in a given topic", {
-          entity: Entity::Post,
-          notes: "List all posts for supplied topic"
-        }
-        params do
-          requires :topic_id, type: String, desc: "Topic to list posts from"
-        end
-        get "", root: :posts do
-          posts = Post.where(topic_id: permitted_params[:topic_id]).all
-          present posts, with: Entity::Post
-        end
-
-        # CREATE NEW POST
+        # CREATE NEW POST. THIS REPLIES TO BOTH COMMUNITY TOPICS AND PRIVATE TICKETS
         desc "Add a new post to an existing topic"
         params do
-          requires :topic_id, type: String, desc: "Topic to add post to"
+          requires :topic_id, type: Integer, desc: "Topic to add post to"
           requires :body, type: String, desc: "The post body"
-          requires :user_id, type: String, desc: "the User ID"
-          requires :kind, type: String, desc: "The kind of post"
+          requires :user_id, type: Integer, desc: "The User ID of the poster"
+          requires :kind, type: String, desc: "The kind of post, either 'reply' or 'note'"
         end
         post "create", root: :posts do
           post = Post.create!(
-            topic_id: params[:topic_id],
-            body: params[:body],
-            user_id: params[:user_id],
-            kind: 'reply'
+            topic_id: permitted_params[:topic_id],
+            body: permitted_params[:body],
+            user_id: permitted_params[:user_id],
+            kind: permitted_params[:kind]
+          )
+          present post, with: Entity::Post
+        end
+
+        # UPDATE POST. THIS REPLIES TO BOTH COMMUNITY TOPICS AND PRIVATE TICKETS
+        desc "Update existing post"
+        params do
+          requires :id, type: Integer, desc: "The Post ID"
+          requires :body, type: String, desc: "The post body"
+          requires :active, type: Boolean, desc: "Whether the post is live or not"
+        end
+        patch ":id", root: :posts do
+          post = Post.find(permitted_params[:id])
+          post.update!(
+            body: permitted_params[:body],
+            active: permitted_params[:active]
           )
           present post, with: Entity::Post
         end

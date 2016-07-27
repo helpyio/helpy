@@ -55,7 +55,7 @@ module API
           optional :title_tag, type: String, desc: "An alternate title tag that will be used if provided"
           optional :meta_description, type: String, desc: "A short description for SEO and internal purposes"
           optional :rank, type: Integer, desc: "The rank can be used to determine the ordering of categories"
-          optional :front_page, type: String, desc: "Whether or not the category should appear on the front page"
+          optional :front_page, type: Boolean, desc: "Whether or not the category should appear on the front page"
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
         post "", root: :categories do
@@ -85,7 +85,7 @@ module API
           optional :title_tag, type: String, desc: "An alternate title tag that will be used if provided"
           optional :meta_description, type: String, desc: "A short description for SEO and internal purposes"
           optional :rank, type: Integer, desc: "The rank can be used to determine the ordering of categories"
-          optional :front_page, type: String, desc: "Whether or not the category should appear on the front page"
+          optional :front_page, type: Boolean, desc: "Whether or not the category should appear on the front page"
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
         patch ":id", root: :categories do

@@ -10,6 +10,7 @@ module API
       # end
       before do
         authenticate!
+        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -28,14 +29,15 @@ module API
         # SHOW ONE FORUM
         desc "Show one forum", {
           entity: Entity::Forum,
-          notes: "Returns details of one forum"
+          notes: "Returns details of one forum, including topics"
         }
         params do
           requires :id, type: String, desc: "ID of the forum"
+          optional :topics_limit, type: Integer, desc: "How many topics to return"
         end
         get ":id", root: "forum" do
           forum = Forum.where(id: permitted_params[:id]).first!
-          present forum, with: Entity::Forum
+          present forum, with: Entity::Forum, topics: true
         end
 
         # CREATE NEW FORUM
@@ -45,8 +47,8 @@ module API
         }
         params do
           requires :name, type: String, desc: "The name of the forum"
-          requires :allow_post_voting, type: String, desc: "Should topic replies be voteable?"
-          requires :allow_topic_voting, type: String, desc: "Should topics be voteable?"
+          requires :allow_post_voting, type: Boolean, desc: "Should topic replies be voteable?"
+          requires :allow_topic_voting, type: Boolean, desc: "Should topics be voteable?"
           requires :layout, type: String, desc: "The author of the article"
         end
         post "", root: :forums do
@@ -65,17 +67,11 @@ module API
           notes: "Update a forum"
         }
         params do
-          requires :id, type: Integer, desc: "The ID of the Doc being updated"
-          requires :title, type: String, desc: "The name of the category of articles"
-          requires :category_id, type: Integer, desc: "The category the doc belongs to"
-          requires :body, type: String, desc: "The body/text of the article"
-          requires :user_id, type: Integer, desc: "The author of the article"
-          optional :keywords, type: String, desc: "Keywords that will be used for internal search and SEO"
-          optional :title_tag, type: String, desc: "An alternate title tag that will be used if provided"
-          optional :meta_description, type: String, desc: "A short description for SEO and internal purposes"
-          optional :rank, type: Integer, desc: "The rank can be used to determine the ordering of docs"
-          optional :front_page, type: String, desc: "Whether or not the doc should appear on the front page"
-          optional :active, type: Boolean, desc: "Whether or not the doc is live on the site"
+          requires :id, type: Integer, desc: "The ID of the forum you are updating"
+          requires :name, type: String, desc: "The name of the forum"
+          requires :allow_post_voting, type: Boolean, desc: "Should topic replies be voteable?"
+          requires :allow_topic_voting, type: Boolean, desc: "Should topics be voteable?"
+          requires :layout, type: String, desc: "The author of the article"
         end
         patch ":id", root: :forums do
           forum = Forum.where(id: permitted_params[:id])
