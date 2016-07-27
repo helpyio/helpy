@@ -16,6 +16,8 @@ module API
       include API::V1::Defaults
       resource :categories do
 
+        throttle max: 200, per: 1.minute
+
         # LIST ALL CATEGORIES
         desc "List all public categories", {
           entity: Entity::Category,

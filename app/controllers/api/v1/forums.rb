@@ -16,6 +16,8 @@ module API
       include API::V1::Defaults
       resource :forums do
 
+        throttle max: 200, per: 1.minute
+
         # LIST ALL FORUMS
         desc "List all forums", {
           entity: Entity::Forum,

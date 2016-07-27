@@ -16,6 +16,8 @@ module API
       include API::V1::Defaults
       resource :posts do
 
+        throttle max: 200, per: 1.minute
+
         # CREATE NEW POST. THIS REPLIES TO BOTH COMMUNITY TOPICS AND PRIVATE TICKETS
         desc "Add a new post to an existing topic"
         params do

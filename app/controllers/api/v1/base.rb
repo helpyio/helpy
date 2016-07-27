@@ -5,6 +5,7 @@ module API
     class Base < Grape::API
       format :json
       # use ::WineBouncer::OAuth2
+      use Grape::Attack::Throttle
 
       mount API::V1::Categories
       mount API::V1::Docs
@@ -13,6 +14,7 @@ module API
       mount API::V1::Posts
       mount API::V1::Users
       mount API::V1::Search
+      mount API::V1::Settings
       add_swagger_documentation
     end
   end

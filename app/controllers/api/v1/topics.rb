@@ -15,6 +15,8 @@ module API
 
       include API::V1::Defaults
 
+      throttle max: 200, per: 1.minute
+
       # PRIVATE TICKET ENDPOINTS
       resource :tickets do
 

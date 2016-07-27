@@ -16,8 +16,11 @@ module API
 
       include API::V1::Defaults
 
-      # LIST ALL USERS
       resource :users do
+
+        throttle max: 200, per: 1.minute
+
+        # LIST ALL USERS
         desc "List all users", {
           entity: Entity::User,
           notes: "List all users"
@@ -26,10 +29,8 @@ module API
           users = User.all
           present users, with: Entity::User
         end
-      end
 
-      # SHOW USER
-      resource :users do
+        # SHOW USER
         desc "Show details of a user", {
           entity: Entity::User,
           notes: "Show details of a user"
@@ -41,10 +42,8 @@ module API
           user = User.where(id: permitted_params[:id])
           present user, with: Entity::User
         end
-      end
 
-      # CREATE A USER
-      resource :users do
+        # CREATE A USER
         desc "Create a new user", {
           entity: Entity::User,
           notes: "Create a new user"
@@ -98,10 +97,8 @@ module API
             )
           present user, with: Entity::User
         end
-      end
 
-      # UPDATE A USER
-      resource :users do
+        # UPDATE A USER
         desc "Update a user", {
           entity: Entity::User,
           notes: "Update a user"
@@ -157,8 +154,20 @@ module API
             )
           present user, with: Entity::User
         end
-      end
 
+        # INVITE USER
+        desc "Invite one or more users to create an account"
+        params do
+          requires :emails, type: String, desc: "Comma separated list of email addresses"
+          requires :message, type: String, desc: "A short message to be included with your invitation"
+          requires :role, type: String, desc: "The role given to the new invited users (user, editor, agent, admin)"
+        end
+        post "invite", root: :users do
+          User.bulk_invite(permitted_params["emails"], permitted_params["message"], permitted_params["role"])
+          present params[:emails]
+        end
+
+      end
     end
   end
 end

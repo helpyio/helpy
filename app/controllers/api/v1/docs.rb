@@ -17,6 +17,8 @@ module API
       include API::V1::Defaults
       resource :docs do
 
+        throttle max: 200, per: 1.minute
+
         # SHOW A SINGLE DOC
         desc "Shows a single doc", {
           entity: Entity::Doc,
