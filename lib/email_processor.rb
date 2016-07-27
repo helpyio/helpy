@@ -69,9 +69,11 @@ class EmailProcessor
 
   def handle_attachments(email, post)
     if email.attachments.present? && cloudinary_enabled?
+      array_of_files = []
       email.attachments.each do |attachment|
-        post.screenshots = File.open(attachment.tempfile.path, 'r')
+        array_of_files << File.open(attachment.tempfile.path, 'r')
       end
+      post.screenshots = array_of_files
     end
   end
 

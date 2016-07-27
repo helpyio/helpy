@@ -169,4 +169,5 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal 'something', Cloudinary.config.api_secret
   end
 
+
 end
