@@ -62,7 +62,6 @@
         var splitLocation = body.indexOf(' ', options.length);
         if(splitLocation != -1) {
           // truncate tip
-          var splitLocation = body.indexOf(' ', options.length);
           var str1 = body.substring(0, splitLocation);
           var str2 = body.substring(splitLocation, body.length - 1);
           obj.html(str1 + '<span class="truncate_ellipsis">' + options.ellipsisText +
