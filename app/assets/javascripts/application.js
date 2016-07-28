@@ -43,7 +43,7 @@
 // modified by Scott Miller- remove animation, newline for more link
 
 (function($){
-  $.fn.jTruncate = function(options) {
+  $.fn.jTruncate = function(opts) {
     var defaults = {
       length: 300,
       minTrail: 20,
@@ -52,7 +52,7 @@
       ellipsisText: "..."
     };
 
-    var options = $.extend(defaults, options);
+    var options = $.extend(defaults, opts);
 
     return this.each(function() {
       obj = $(this);
