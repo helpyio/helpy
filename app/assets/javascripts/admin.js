@@ -82,7 +82,7 @@ Helpy.admin = function(){
   });
 
   $("#new_doc select, #edit_doc select").focusout(function(){
-    if($(this).val() == ""){
+    if($(this).val() === ""){
       $("div.select").removeClass("has-success").addClass("has-error");
       $("select").next().removeClass("glyphicon-ok").addClass("glyphicon-remove");
       $("div.select .glyphicon-ok").remove();
