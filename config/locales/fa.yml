@@ -8,7 +8,7 @@ fa:
 
   # Navigation
   knowledgebase: "دانشنامه"
-  community: "انحمن"
+  community: "انجمن"
   ask_a_question: "سوال بپرسید"
   home: "خانه"
   login: "ورود"
@@ -46,11 +46,11 @@ fa:
   reply: "پاسخ به این موضوع"
   submit_reply: "پاسخ دهید"
   posted: "پست شد"
-  start_discussion: "بحث جدید شروع کنید"
+  start_discussion: "گفتگو جدید شروع کنید"
   submit_start_discussion: "بفرست"
   should_message_be_private: "این پیغام خصوصی است؟"
-  only_support_can_respond: "فقط پشتیبانی می‌تونه پاسخ بده )بحث جدید بسازید("
-  responses_can_come_from_everyone: "پاسخ از پشتیبانی یا کاربران دیگر )توصیه شده("
+  only_support_can_respond: "فقط پشتیبانی می‌تونه پاسخ بده (بحث جدید بسازید)"
+  responses_can_come_from_everyone: "پاسخ از پشتیبانی یا کاربران دیگر (توصیه شده)"
   collapsed_messages:
       one: "۱ پیغام مخفی"
       two: "۲ پیغام مخفی"
@@ -69,14 +69,14 @@ fa:
 
   # Get Help
   get_help_header: "هنوز به کمک نیاز داری؟"
-  get_help_button: "یک بحث با ما شروع کن"
+  get_help_button: "سوال خود را بپرسید"
 
   # Profile
   my_profile: 'پروفایل من'
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  powered_by: "نیرو گرفته از Helpy. سیستم پشتیبانی اوپن سورس."
+  get_your_copy: "یک کپی از روی گیت هاب بردار"
 
   # devise/sessions/new
   login: ورود
@@ -183,7 +183,7 @@ fa:
   view_on_site: "نمایش در سایت"
   written_on: "نوشته شده در %{date_written}"
   content_last_updated: "آخرین به روز رسانی %{date_updated}"
-  featured_content: "Featured"
+  featured_content: "مطالب پیشنهادی"
   draft_content: "پیش نویس"
   published_content: "منتشر شده"
   additional_settings: "تنظیمات بیشتر"
@@ -195,7 +195,6 @@ fa:
 
   # Mail messages
   hello: "سلام %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   new_user: "مرسی از تماس شما. پیغام شما دریافت شد توسط تیم پشتیبانی و در اسرع وقت به شما پاسخ میدیم."
   account_generated: "یک حساب کاربر برای شما ساخته شد. برای ورود از این لینک استفاده کنید"
   above_this_line: "مطمئن شوید پاسخ شما در بالا نوشته شده"
