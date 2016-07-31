@@ -83,12 +83,14 @@ class User < ActiveRecord::Base
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
+  scope :active, -> { where('active = ?', true)}
 
   def set_role_on_invitation_accept
     if self.role.nil?
       self.role = "agent"
-      self.save
     end
+    self.active = true
+    self.save
   end
 
   def active_assigned_count
@@ -162,6 +164,7 @@ class User < ActiveRecord::Base
           user.invitation_message = message
           user.name = "Invited User: #{email}"
           user.role = role
+          user.active = false
         end
       end
     end
