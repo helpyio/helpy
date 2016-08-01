@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  <p>
+    <%= t('notify_new_public', default: 'A new public customer question has been posted:') %>
+  </p>
+  <p>
+    <%= simple_format(@topic.posts.last.body) %>
+  </p>
+  <p>
+    <%= t('to_reply', default: 'To reply, please view this online:') %> <%= topic_posts_url(@topic, host: AppSettings['settings.site_url']) %>
+  </p>
+  <br/>
+  <p>
+    <strong>Powered by Helpy</strong><br/>
+    Get a Free Helpy Support System for your Site at http://helpy.io/
+  </p>
+  </body>
+</html>

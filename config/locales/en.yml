@@ -143,6 +143,12 @@ en:
   trash_message: "This ticket has been deleted."
   assigned_message: "Discussion has been transferred to %{assigned_to}."
 
+  # Admin notifications
+  notify_new_private: "A new private customer question has been received:"
+  notify_new_public: "A new public customer question has been posted:"
+  notify_new_reply: "A new customer reply has been received:"
+  to_reply: "To reply, please view this online:"
+
   # User Admin
   users: Users
   contact_info: Contact

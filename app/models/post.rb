@@ -28,6 +28,7 @@ class Post < ActiveRecord::Base
 
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
+  after_create  :notify
   after_save  :update_topic_cache
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -76,6 +77,26 @@ class Post < ActiveRecord::Base
   def assign_on_reply
     if self.topic.assigned_user_id.nil?
       self.topic.assigned_user_id = self.user.is_agent? ? self.user_id : nil
+    end
+  end
+
+  # send notification to admin if configured
+  def notify
+    logger.info("Ready to Notify")
+    # Handle new private ticket notification:
+    if self.kind == "first" && self.topic.private?
+      NotificationMailer.new_private(self.topic).deliver_later if AppSettings['notify.on_private'] == "1"
+
+    # Handles new public ticket notification:
+    elsif self.kind == "first" && self.topic.public?
+      NotificationMailer.new_public(self.topic).deliver_later if AppSettings['notify.on_public'] == "1"
+
+    # Handles customer reply notification:
+    elsif self.kind == "reply" && self.user_id == self.topic.user_id && self.topic.private?
+      NotificationMailer.new_reply(self.topic).deliver_later if AppSettings['notify.on_reply'] == "1"
+
+    else
+      logger.info("Did not meet conditions to notify")
     end
   end
 
