@@ -51,6 +51,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
+  # Add preferences to user model
+  include RailsSettings::Extend
+
   TEMP_EMAIL_PREFIX = 'change@me'
 
   validates :name, presence: true, format: { with: /\A\D+\z/ }

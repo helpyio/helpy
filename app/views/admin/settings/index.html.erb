@@ -15,7 +15,6 @@
         <%= settings_item('glyphicon glyphicon-globe', "international", "Select what languages your Helpy will speak be able to speak.") %>
         <%= settings_item('glyphicon glyphicon-modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
         <%= settings_item('glyphicon glyphicon-envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
-        <%= settings_item('glyphicon glyphicon-bell', "notifications", "Configure admin notifications.") %>
         <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
         <%= settings_item('glyphicon glyphicon-user', "users", "View and Add Users", admin_users_path) %>
       </div>
@@ -122,11 +121,7 @@
           <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: "SMTP Domain" %>
         </div>
       </div>
-      <div class="settings-section notifications hidden" data-hook="admin_settings_notifications">
-        <%= f.check_box 'notify.on_private', { checked: AppSettings['notify.on_private'] == "1", label: "Email agents when a private customer question has been received" } %>
-        <%= f.check_box 'notify.on_public', { checked: AppSettings['notify.on_public'] == "1", label: "Email agents when a public customer question has been posted" } %>
-        <%= f.check_box 'notify.on_reply', { checked: AppSettings['notify.on_reply'] == "1", label: "Email me when a new reply to a private discussion has been received" } %>
-      </div>
+
       <div class="settings-section cloudinary hidden" data-hook="admin_settings_cloudinary">
         <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
         <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>

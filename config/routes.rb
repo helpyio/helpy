@@ -77,6 +77,8 @@ Rails.application.routes.draw do
     get 'settings' => 'settings#index', as: :settings
     get 'settings/preview' => 'settings#preview', as: :preview
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
+    get 'notifications' => 'settings#notifications', as: :notifications
+    put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
 
     # Onboarding Routes
     get '/onboarding/index' => 'onboarding#index', as: :onboarding

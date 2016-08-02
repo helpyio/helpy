@@ -80,20 +80,20 @@ class Post < ActiveRecord::Base
     end
   end
 
-  # send notification to admin if configured
+  # send notification to agents/admins if configured
   def notify
     logger.info("Ready to Notify")
     # Handle new private ticket notification:
     if self.kind == "first" && self.topic.private?
-      NotificationMailer.new_private(self.topic).deliver_later if AppSettings['notify.on_private'] == "1"
+      NotificationMailer.new_private(self.topic).deliver_later
 
     # Handles new public ticket notification:
     elsif self.kind == "first" && self.topic.public
-      NotificationMailer.new_public(self.topic).deliver_later if AppSettings['notify.on_public'] == "1"
+      NotificationMailer.new_public(self.topic).deliver_later
 
     # Handles customer reply notification:
     elsif self.kind == "reply" && self.user_id == self.topic.user_id && self.topic.private?
-      NotificationMailer.new_reply(self.topic).deliver_later if AppSettings['notify.on_reply'] == "1"
+      NotificationMailer.new_reply(self.topic).deliver_later
 
     else
       logger.info("Did not meet conditions to notify")
