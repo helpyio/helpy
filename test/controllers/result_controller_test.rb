@@ -48,7 +48,7 @@ class ResultControllerTest < ActionController::TestCase
     # have to manually rebuild search
     PgSearch::Multisearch.rebuild(Topic)
 
-    assert @topic.public == true, "Topic should be public"
+    assert @topic.public?, "Topic should be public"
     assert Topic.last.post_cache == " This is something amazing"
     get(:index, { q: "This is something amazing", locale: :en })
     assert_not_nil assigns(:results)

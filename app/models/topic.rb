@@ -43,7 +43,7 @@ class Topic < ActiveRecord::Base
 
   include PgSearch
   multisearchable :against => [:id, :name, :post_cache],
-                  :if => :public
+                  :if => :public?
 
   pg_search_scope :admin_search,
                   against: [:id, :name, :user_name, :current_status, :post_cache]
@@ -138,8 +138,7 @@ class Topic < ActiveRecord::Base
     self.private = true if f.private?
   end
 
-  # TODO: This is better named 'public?'
-  def public
+  def public?
     # Note: We assume forum_ids 1,2,3 are seed data
     forum_id >= 3 && !private?
   end
