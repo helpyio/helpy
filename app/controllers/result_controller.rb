@@ -23,7 +23,7 @@ class ResultController < ApplicationController
       if result.searchable_type == "Topic"
         serialized_result << {
           name: result.searchable.name, 
-          content: result.searchable.post_cache.truncate_words(20),
+          content: result.searchable.post_cache.nil? ? nil : result.searchable.post_cache.truncate_words(20),
           link: topic_posts_path(Topic.find(result.searchable_id))
           }
       else
