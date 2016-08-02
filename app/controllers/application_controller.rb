@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :set_vars
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
   end
@@ -54,6 +56,12 @@ class ApplicationController < ActionController::Base
       )
     end
   end
+
+  def rtl_locale?(locale)
+    return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
+    return false
+  end
+  helper_method :rtl_locale?
 
   private
 
@@ -128,6 +136,12 @@ class ApplicationController < ActionController::Base
     else
       AppSettings['theme.active'].present? ? AppSettings['theme.active'] : 'helpy'
     end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
   end
 
 end
