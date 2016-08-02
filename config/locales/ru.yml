@@ -140,7 +140,7 @@ ru:
 
   # Discussion messages
   reopen_message: "Это сообщение было снова открыто поддержкой."
-  close_message: "Этот тикет был закрыт поддержкой."
+  closed_message: "Этот тикет был закрыт поддержкой."
   trash_message: "Этот тикет был удалён."
   assigned_message: "Обсуждение было перенесено в %{assigned_to}."
 

@@ -139,7 +139,7 @@ en:
 
     # Discussion messages
     reopen_message: "This message has been reopened by the support staff"
-    close_message: "This ticket has been closed by the support staff."
+    closed_message: "This ticket has been closed by the support staff."
     trash_message: "This ticket has been deleted."
     assigned_message: "Discussion has been transferred to %{assigned_to}."
 

@@ -136,7 +136,7 @@ et:
 
   # Discussion messages
   reopen_message: "See sõnum on taasavatud abipersonali poolt."
-  close_message: "See sõnum on suletud abipersonali poolt."
+  closed_message: "See sõnum on suletud abipersonali poolt."
   trash_message: "See pilet on kustutatud."
   assigned_message: "Arutelu on edastatud %{assigned_to}."
 

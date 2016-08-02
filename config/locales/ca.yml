@@ -136,7 +136,7 @@ ca:
 
   # Discussion messages
   reopen_message: "Aquest missatge ha estat re-obert per l'equip d'atenció al client."
-  close_message: "Aquest missatge ha estat tancat per l'equip d'atenció al client."
+  closed_message: "Aquest missatge ha estat tancat per l'equip d'atenció al client."
   trash_message: "Aquest missatge ha estat eliminat."
   assigned_message: "El debat ha estat transferit a %{assigned_to}."
 

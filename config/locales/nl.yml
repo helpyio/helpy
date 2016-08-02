@@ -136,7 +136,7 @@ nl:
 
   # Discussion messages
   reopen_message: "Deze vraag is door de helpdesk heropend"
-  close_message: "Deze vraag is door de helpdesk gesloten."
+  closed_message: "Deze vraag is door de helpdesk gesloten."
   trash_message: "Deze vraag is verwijderd."
   assigned_message: "Discussie overgedragen aan %{assigned_to}."
 
