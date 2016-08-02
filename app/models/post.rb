@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
 
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
-  after_create  :notify
+  after_commit  :notify, on: :create
   after_save  :update_topic_cache
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -88,7 +88,7 @@ class Post < ActiveRecord::Base
       NotificationMailer.new_private(self.topic).deliver_later
 
     # Handles new public ticket notification:
-    elsif self.kind == "first" && self.topic.public
+    elsif self.kind == "first" && self.topic.public?
       NotificationMailer.new_public(self.topic).deliver_later
 
     # Handles customer reply notification:

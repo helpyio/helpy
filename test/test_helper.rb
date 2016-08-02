@@ -55,14 +55,11 @@ def set_default_settings
   AppSettings['email.mail_service'] = Settings.mail_service
   AppSettings['email.smtp_mail_username'] = Settings.smtp_mail_username
   AppSettings['email.smtp_mail_password'] = Settings.smtp_mail_password
-  AppSettings['email.mail_smtp'] = Settings.mail_smtp
-  AppSettings['email.mail_port'] = Settings.mail_port
+  AppSettings['email.mail_smtp'] = '127.0.0.1' # Settings.mail_smtp
+  AppSettings['email.mail_port'] = 1025 # Settings.mail_port
   AppSettings['email.mail_domain'] = Settings.mail_domain
   AppSettings['cloudinary.cloud_name'] = ''
   AppSettings['cloudinary.api_key'] = ''
   AppSettings['cloudinary.api_secret'] = ''
   AppSettings['theme.active'] = 'helpy'
-  AppSettings['notify.on_private'] = '1'
-  AppSettings['notify.on_public'] = '1'
-  AppSettings['notify.on_reply'] = '1'
 end
