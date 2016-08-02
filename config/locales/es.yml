@@ -138,7 +138,7 @@ es:
 
   # Discussion messages
   reopen_message: "Este mensaje ha sido reabierto por el equipo de atención al cliente"
-  close_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
+  closed_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
   trash_message: "Este mensaje ha sido eliminado."
   assigned_message: "El debate se ha trasladado a %{assigned_to}."
 

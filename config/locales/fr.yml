@@ -148,7 +148,7 @@ fr:
 
   # Discussion messages
   reopen_message: "Ce message a été rouvert par le support."
-  close_message: "Ce message a été fermé par le support."
+  closed_message: "Ce message a été fermé par le support."
   trash_message: "Ce billet a été supprimé."
   assigned_message: "Cette discussion a été transférée à %{assigned_to}."
 

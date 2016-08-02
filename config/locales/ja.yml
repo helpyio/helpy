@@ -136,7 +136,7 @@ ja:
 
   # Discussion messages
   reopen_message: "サポットスタッフにより再開されました"
-  close_message: "このサポットチケットはサポットスタッフにより解決済みしました"
+  closed_message: "このサポットチケットはサポットスタッフにより解決済みしました"
   trash_message: "このサポットチケットは削除されました"
   assigned_message: "やり取りは%{assigned_to}に転送されました"
 

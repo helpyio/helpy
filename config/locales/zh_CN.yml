@@ -136,7 +136,7 @@ zh-cn:
 
   # Discussion messages
   reopen_message: "支援人员已回覆此讯息"
-  close_message: "支援人员已关闭此协助讯息"
+  closed_message: "支援人员已关闭此协助讯息"
   trash_message: "此协助讯息已被删除"
   assigned_message: "讨论已转到 %{assigned_to}."
 

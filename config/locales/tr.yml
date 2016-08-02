@@ -138,7 +138,7 @@ tr:
 
   # Discussion messages
   reopen_message: "Bu talep destek personeli tarafından yeniden açıldı"
-  close_message: "Bu talep destek personeli tarafından kapatıldı."
+  closed_message: "Bu talep destek personeli tarafından kapatıldı."
   trash_message: "Bu destek talebi silindi."
   assigned_message: "Görüşme %{assigned_to} isimli destek personeline aktarışmıştır."
 
