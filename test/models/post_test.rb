@@ -138,4 +138,61 @@ class PostTest < ActiveSupport::TestCase
     assert_equal(1, Topic.find(4).assigned_user_id, "Topic should be assigned to user 1")
 
   end
+
+  # Notifications Specs
+
+  test "Should send an admin notification of a new private topic created, if enabled" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first post",
+        kind: "first"
+      )
+    end
+  end
+
+  test "Should send an admin notification of a new public topic, if enabled" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      @topic = Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: false)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first message",
+        kind: "first"
+      )
+    end
+  end
+
+  test "Should send an admin notification pf a new private reply, if enabled" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      @topic = Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: true)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first message",
+        kind: "first"
+      )
+      @topic.posts.create!(
+        user_id: 1,
+        body: "This is the first reply",
+        kind: "reply"
+      )
+    end
+  end
+
+  test "Should NOT send any notifications if a new internal note" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first message",
+        kind: "first"
+      )
+      @topic.posts.create!(
+        user_id: 1,
+        body: "This is the first note",
+        kind: "note"
+      )
+    end
+  end
+
 end

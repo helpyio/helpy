@@ -5,7 +5,7 @@
   </head>
   <body>
   <p>
-    <%= t('notify_new_private', default: 'A new private customer question has been received:') %>
+    <%= t('notify_new_private', default: 'A new private customer message has been received:') %>
   </p>
   <p>
     <%= simple_format(@topic.posts.last.body) %>

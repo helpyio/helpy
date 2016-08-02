@@ -88,7 +88,7 @@ class Post < ActiveRecord::Base
       NotificationMailer.new_private(self.topic).deliver_later if AppSettings['notify.on_private'] == "1"
 
     # Handles new public ticket notification:
-    elsif self.kind == "first" && self.topic.public?
+    elsif self.kind == "first" && self.topic.public
       NotificationMailer.new_public(self.topic).deliver_later if AppSettings['notify.on_public'] == "1"
 
     # Handles customer reply notification:

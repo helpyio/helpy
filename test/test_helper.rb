@@ -62,4 +62,7 @@ def set_default_settings
   AppSettings['cloudinary.api_key'] = ''
   AppSettings['cloudinary.api_secret'] = ''
   AppSettings['theme.active'] = 'helpy'
+  AppSettings['notify.on_private'] = '1'
+  AppSettings['notify.on_public'] = '1'
+  AppSettings['notify.on_reply'] = '1'
 end
