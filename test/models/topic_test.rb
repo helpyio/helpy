@@ -36,7 +36,7 @@ class TopicTest < ActiveSupport::TestCase
 
   should validate_presence_of(:name)
   should validate_length_of(:name).is_at_most(255)
-  
+
 #forum 1 should exist and be private
 #forum 2 should exist and be private
 
@@ -134,5 +134,10 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal 'pending', topic.current_status
     assert_equal 1, topic.assigned_user_id
     assert_equal t_posts_count + 1, topic.posts.count
+  end
+
+  test "public? should return true for a public topic, false if private" do
+    assert_equal Topic.find(1).public?, false
+    assert_equal Topic.find(4).public?, true
   end
 end
