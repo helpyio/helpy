@@ -9,6 +9,12 @@
     <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
     <div class="grids col-md-10 col-sm-12">
       <div class="row" data-hook="admin_settings_grid">
+        <%= settings_item('glyphicon glyphicon-bell', "notifications", "Select what notifications you would like to receive.", admin_notifications_path) %>
+      </div>
+
+      <% if current_user.is_admin? %>
+      <h3>System Settings:</h3>
+      <div class="row" data-hook="admin_settings_grid">
         <%= settings_item('glyphicon glyphicon-cog', "general", "Manage general system settings like your Helpy name, what company to link back to.") %>
         <%= settings_item('glyphicon glyphicon-pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
         <%= settings_item('fa fa-clone', "theme", "Select a theme for your Helpy") %>
@@ -18,9 +24,11 @@
         <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
         <%= settings_item('glyphicon glyphicon-user', "users", "View and Add Users", admin_users_path) %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
+<% if current_user.is_admin? %>
 <div class="settings-panel row hidden">
   <div class="col-md-3 col-sm-4 col-xs-2">
     <ul class="settings-menu list-unstyled" data-hook="admin_settings_menu">
@@ -36,6 +44,7 @@
   </div>
   <div class="col-md-9 col-sm-8 col-xs-10">
     <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', remote: true do |f| %>
+
       <div class="settings-section general">
         <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
         <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: "Site URL" %>
@@ -133,3 +142,4 @@
     <% end %>
   </div>
 </div>
+<% end %>

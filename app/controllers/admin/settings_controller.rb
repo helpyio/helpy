@@ -1,7 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
-  before_action :verify_admin, except: ['notifications','update_notifications']
-  before_action :verify_agent, only: ['notifications','update_notifications']
+  before_action :verify_admin, except: ['index', 'notifications','update_notifications']
+  before_action :verify_agent, only: ['index', 'notifications', 'update_notifications']
   skip_before_action :verify_authenticity_token
 
   def index
