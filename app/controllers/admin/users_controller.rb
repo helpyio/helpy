@@ -91,7 +91,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def invite_users
-    User.bulk_invite(params["invite.emails"], params["invite.message"], params["invite.role"]) if params["invite.emails"].present?
+    User.bulk_invite(params["invite.emails"], params["invite.message"], params["role"]) if params["invite.emails"].present?
 
     respond_to do |format|
       format.html {
