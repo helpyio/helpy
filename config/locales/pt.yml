@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Tiago Silva, Sergio Maziano
+
 pt:
   language_name: 'Português' # The name of the translation file, in that language
   root: &root 'Início'
@@ -25,6 +27,8 @@ pt:
   did_this_help: "Resolveu o seu problema?"
   yes_button: 'Sim'
   no_button: 'Não'
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Introduza uma palavra-chave, tópico ou questão"
@@ -142,6 +146,7 @@ pt:
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: "Contacto"
   social_info: "Social"
   edit_user: "Editar Utilizador"
@@ -153,6 +158,15 @@ pt:
     one: "1 utilizador encontrado com o nome %{query}"
     other: "%{count} utilizadores encontrados com o nome %{query}"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} fez uma questão..."
   replied: "%{user_name} respondeu..."
@@ -161,6 +175,7 @@ pt:
   select_common: "Selecione uma Resposta Predefinida"
   reply: "Responder"
   internal_note: "Nota Interna"
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "Endossar | %{count}"
     other: "Endossar | %{count}"
@@ -186,10 +201,16 @@ pt:
   published_content: "Publicado"
   additional_settings: "Configurações Adicionais"
   content_status: "Estado do Conteúdo"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: "Criar uma Nova Comunidade"
   create_new_community: "Criar uma Nova Comunidade"
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Olá %{user_name}"
@@ -199,6 +220,13 @@ pt:
   message_id: "Id da Mensagem"
   message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
   view_online: "Ver isto online:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -211,6 +239,7 @@ pt:
         cell_phone: "Telemóvel"
         city: "Cidade"
         state: "Distrito"
+        # signature: Signature
       topic:
         name: "Assunto"
       post:
@@ -235,6 +264,9 @@ pt:
         name: "Nome"
         description: "Descrição"
         private: "Privado"
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

@@ -1,3 +1,5 @@
+# MAINTAINER: SCOTT MILLER
+
 en:
   language_name: 'English' # The name of the translation file, in that language
   root: &root 'Home'
@@ -199,10 +201,16 @@ en:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
+  convert_content: 'Turn post into content'
+  upload_image: 'Upload Image'
 
   # Communities
   new_community: Create New Community
   create_new_community: Create New Community
+  layout_select: Select Format
+  layout_table: Table
+  layout_grid: Grid
+  layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -231,6 +239,7 @@ en:
         cell_phone: Cell
         city: City
         state: State
+        signature: Signature
       topic:
         name: Subject
       post:
@@ -255,6 +264,9 @@ en:
         name: Name
         description: Description
         private: Private
+        layout: Layout
+        allow_topic_voting: Allow topic voting?
+        allow_post_voting: Allow post voting?
 
     helpers:
       submit:
