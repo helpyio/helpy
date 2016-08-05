@@ -4,8 +4,6 @@
   <% else %>
     <%= f.hidden_field("category_id", value: @doc.category_id) %>
   <% end %>
-  <%#= render 'admin/quill_editor' #uncomment this line if you prefer to use the quill editor %>
-  <%#= f.hidden_field :body #uncomment this line if you prefer to use the quill editor %>
   <%= f.trix_editor :body, value: @doc.read_translated_attribute(:body) %>
   <% unless params[:lang] == "#{I18n.locale}" || @doc.translations.where(locale: locale).count > 0 %>
   <script>
@@ -16,12 +14,12 @@
   <hr/>
   <% unless Cloudinary.config.cloud_name.nil? %>
   <div class="doc-form-files">
-    <h4 class="form-subhead">Upload Images:</h4>
+    <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
     <%= cl_image_upload_tag(:image_id) %>
   </div>
   <% end %>
   <hr/>
-  <h4 class="form-subhead">Additional Settings:</h4>
+    <h4 class="form-subhead"><%= t('additional_settings', default: 'Additional Settings') %>:</h4>
   <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale), value: @doc.read_translated_attribute(:meta_description)  %>
   <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale), value: @doc.read_translated_attribute(:title_tag)  %>
   <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale), value: @doc.read_translated_attribute(:keywords)  %>
@@ -32,9 +30,9 @@
   <hr/>
   <% if params[:lang] == "#{I18n.locale}" %>
     <div class= "form_group no-translate">
-      <label class="control-label" for="doc_active">Article Status: </label>
-      <%= f.collection_radio_buttons :active, [[true, 'Published'] ,[false, 'Draft']], :first, :last %>
+      <label class="control-label" for="doc_active"><%= t('status', default: 'Article Status') %>: </label>
+      <%= f.collection_radio_buttons :active, [[true, t('published_content', default: "Published")] ,[false, t('draft_content', default: "Draft")]], :first, :last %>
     </div>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>
-  <%= f.submit "Save Changes", class: 'btn btn-warning' %>
+  <%= f.submit t('save_changes', default: "Save Changes"), class: 'btn btn-warning' %>
