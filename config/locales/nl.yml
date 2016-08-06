@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Bob Moree
+
 nl:
   language_name: "Nederlands" # The name of the translation file, in that language
   root: &root "Home"
@@ -25,6 +27,8 @@ nl:
   did_this_help: "Was dit antwoord nuttig?"
   yes_button: "Ja"
   no_button: "Nee"
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Typ hier een zoekwoord, onderwerp of vraag"
@@ -75,6 +79,7 @@ nl:
   # footer
   powered_by: "Vente Helpdesk - Met dank aan Helpy."
   get_your_copy: "Bekijk dit project op Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: Inloggen
@@ -136,11 +141,12 @@ nl:
 
   # Discussion messages
   reopen_message: "Deze vraag is door de helpdesk heropend"
-  close_message: "Deze vraag is door de helpdesk gesloten."
+  closed_message: "Deze vraag is door de helpdesk gesloten."
   trash_message: "Deze vraag is verwijderd."
   assigned_message: "Discussie overgedragen aan %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: Contact
   social_info: Social Media
   edit_user: Gebruiker bewerken
@@ -152,6 +158,15 @@ nl:
     one: "1 gebruiker gevonden met de naam %{query}"
     other: "%{count} gebruikers gevonden met de naam %{query}"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} vroeg..."
   replied: "%{user_name} antwoordde..."
@@ -160,6 +175,7 @@ nl:
   select_common: Standaard antwoord selecteren
   reply: Beantwoorden
   internal_note: Interne Notitie
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "Stem op dit antwoord | %{count}"
     other: "Stem op dit antwoord | %{count}"
@@ -185,10 +201,16 @@ nl:
   published_content: "Gepubliceerd"
   additional_settings: "Aamvullende instellingen"
   content_status: "Content Status"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Nieuw forum
   create_new_community: Nieuw forum aanmaken
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Hallo %{user_name}"
@@ -198,6 +220,13 @@ nl:
   message_id: "Vraag ID"
   message_response: "Het volgende bericht is geplaatst als antwoord op je vraag:"
   view_online: "Bekijk dit bericht online:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -210,6 +239,7 @@ nl:
         cell_phone: Mobiel
         city: stad
         state: Staat
+        # signature: Signature
       topic:
         name: Onderwerp
       post:
@@ -234,7 +264,10 @@ nl:
         name: Naam
         description: Beschrijving
         private: "Privé"
-
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
+        
     helpers:
       submit:
         topic:

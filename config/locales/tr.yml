@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Emin
+
 tr:
   language_name: 'Türkçe'
   root: &root 'Ana Sayfa'
@@ -77,6 +79,7 @@ tr:
   # footer
   powered_by: "Helpy tarafından güçlendirilmiştir. Bir Açık Kaynak Destek Sistemi."
   get_your_copy: "Github'dan bir kopyasını alın"
+  # version: "Version:"
 
   # devise/sessions/new
   login: Giriş yap
@@ -138,11 +141,12 @@ tr:
 
   # Discussion messages
   reopen_message: "Bu talep destek personeli tarafından yeniden açıldı"
-  close_message: "Bu talep destek personeli tarafından kapatıldı."
+  closed_message: "Bu talep destek personeli tarafından kapatıldı."
   trash_message: "Bu destek talebi silindi."
   assigned_message: "Görüşme %{assigned_to} isimli destek personeline aktarışmıştır."
 
   # User Admin
+  # users: Users
   contact_info: İletişim
   social_info: Sosyal
   edit_user: Kullanıcıyı Düzenle
@@ -154,6 +158,15 @@ tr:
     one: "%{query} isimli 1 kullanıcı bulundu"
     other: "%{query} isimli %{count} kullanıcı bulundu"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} bir soru sordu..."
   replied: "%{user_name} yanıtladı..."
@@ -162,6 +175,7 @@ tr:
   select_common: Genel Cevap Seçin
   reply: Yanıtla
   internal_note: Dahili Not
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "Oy | %{count}"
     other: "Oy | %{count}"
@@ -187,10 +201,16 @@ tr:
   published_content: "Yayınlanan"
   additional_settings: "Ek Ayarlar"
   content_status: "İçerik Durumu"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Yeni Topluluk Oluştur
   create_new_community: Yeni Topluluk Oluştur
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Merhaba %{user_name}"
@@ -219,6 +239,7 @@ tr:
         cell_phone: Cep
         city: Şehir
         state: Eyalet
+        # signature: Signature
       topic:
         name: Konu
       post:
@@ -243,7 +264,10 @@ tr:
         name: İsim
         description: Açıklama
         private: Özel
-
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
+        
     helpers:
       submit:
         topic:
@@ -280,4 +304,3 @@ tr:
       save: "%{model} Kaydet"
       new: "Yeni %{model}"
       delete: "%{model} Sil"
-

@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Pep Rodeja, Juan Carlos Alonso
+
 es:
   language_name: "Español"
   root: &root 'Home'
@@ -71,12 +73,13 @@ es:
   get_help_header: "¿Aún necesitas ayuda?"
   get_help_button: "Empieza una discusión"
 
+  # Profile
+  my_profile: 'Mi perfil'
+
   # footer
   powered_by: "Provisto por Helpy. Un software libre para soporte tecnico"
   get_your_copy: "Obtén tu copia en Github"
-
-  # Profile
-  my_profile: 'Mi perfil'
+  # version: "Version:"
 
   # devise/sessions/new
   login: Iniciar sesión
@@ -138,11 +141,12 @@ es:
 
   # Discussion messages
   reopen_message: "Este mensaje ha sido reabierto por el equipo de atención al cliente"
-  close_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
+  closed_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
   trash_message: "Este mensaje ha sido eliminado."
   assigned_message: "El debate se ha trasladado a %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: Contacto
   social_info: Social
   edit_user:
@@ -153,6 +157,15 @@ es:
   users_found:
     one: "1 usuario encontrado con nombre %{query}"
     other: "%{count} usuarios encontrados con nombre %{query}"
+
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
 
   # Discussion View
   asked_a_question: "%{user_name} ha preguntado..."
@@ -188,10 +201,16 @@ es:
   published_content: "Publicado"
   additional_settings: "Configuración adicional"
   content_status: "Estado del contenido"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Crea una nueva comunidad
   create_new_community: Crea una nueva comunidad
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Hola %{user_name}"
@@ -220,6 +239,7 @@ es:
         cell_phone: Móvil
         city: Ciudad
         state: Estado o provincia
+        # signature: Signature
       topic:
         name: Asunto
       post:
@@ -244,6 +264,9 @@ es:
         name: Nombre
         description: Descripción
         private: Private
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Hadi Farnoud
+
 fa:
   language_name: 'فارسی' # The name of the translation file, in that language
   root: &root 'خانه'
@@ -77,6 +79,7 @@ fa:
   # footer
   powered_by: "نیرو گرفته از Helpy. سیستم پشتیبانی اوپن سورس."
   get_your_copy: "یک کپی از روی گیت هاب بردار"
+  # version: "Version:"
 
   # devise/sessions/new
   login: ورود
@@ -143,6 +146,7 @@ fa:
   assigned_message: "این بحث منتقل شد به %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: تماس
   social_info: سوشال
   edit_user: ویرایش کاربر
@@ -153,6 +157,15 @@ fa:
   users_found:
     one: "۱ کاربر با اسم %{query} پیدا شد"
     other: "%{count} کاربر با اسم %{query} پیدا شد"
+
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
 
   # Discussion View
   asked_a_question: "%{user_name} یک سوال پرسیده..."
@@ -188,10 +201,16 @@ fa:
   published_content: "منتشر شده"
   additional_settings: "تنظیمات بیشتر"
   content_status: "وضعیت محتوا"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: انجمن جدید بساز
   create_new_community: انجمن جدید بساز
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "سلام %{user_name}"
@@ -220,6 +239,7 @@ fa:
         cell_phone: موبایل
         city: شهر
         state: استان
+        # signature: Signature
       topic:
         name: عنوان
       post:
@@ -244,6 +264,9 @@ fa:
         name: نام
         description: توضیحات
         private: خصوصی
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

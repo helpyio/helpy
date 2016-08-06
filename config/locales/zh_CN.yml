@@ -1,3 +1,5 @@
+# TRANSLATOR(s):
+
 zh-cn:
   language_name: "中文（简体）"
   root: &root "主页"
@@ -18,13 +20,15 @@ zh-cn:
   welcome_back: "欢迎 %{username}回来"
   your_profile: "个人档案"
   your_tickets: "已要求的协助"
-  locale:
-  change_your_locale:
+  # locale:
+  # change_your_locale:
 
   # Voting widget
   did_this_help: "你的问题是否已解决？"
   yes_button: "是"
   no_button: "否"
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "输入关键字, 主题, 或问题"
@@ -73,8 +77,9 @@ zh-cn:
   my_profile: "我的档案"
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  # powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  # get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: 登录
@@ -136,11 +141,12 @@ zh-cn:
 
   # Discussion messages
   reopen_message: "支援人员已回覆此讯息"
-  close_message: "支援人员已关闭此协助讯息"
+  closed_message: "支援人员已关闭此协助讯息"
   trash_message: "此协助讯息已被删除"
   assigned_message: "讨论已转到 %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: 联络
   social_info: 社交网站
   edit_user: 修改使用者
@@ -152,6 +158,15 @@ zh-cn:
     one: "已找到1位使用者 %{query}"
     other: "已找到 %{count} 位使用者 %{query}"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} 发问了问题..."
   replied: "%{user_name} 回覆…"
@@ -160,6 +175,7 @@ zh-cn:
   select_common: 选择常用回覆
   reply: 回覆
   internal_note: 内部注解
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "%{count}| 赞赏"
     other: "%{count}| 赞赏"
@@ -176,28 +192,41 @@ zh-cn:
   view_and_edit: "检视及修改分类"
   delete_confirm: "确定删除?"
   select_icon_helptext: "选择分类图标 (自选)"
-  translate: "Translate to a different language"
-  view_on_site: "View on Site"
-  written_on: "Written on %{date_written}"
-  content_last_updated: "Last Updated on %{date_updated}"
-  featured_content: "Featured"
-  draft_content: "Draft"
-  published_content: "Published"
-  additional_settings: "Additional Settings"
-  content_status: "Content Status"
+  # translate: "Translate to a different language"
+  # view_on_site: "View on Site"
+  # written_on: "Written on %{date_written}"
+  # content_last_updated: "Last Updated on %{date_updated}"
+  # featured_content: "Featured"
+  # draft_content: "Draft"
+  # published_content: "Published"
+  # additional_settings: "Additional Settings"
+  # content_status: "Content Status"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: 新社区
   create_new_community: 建立新社区
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  # hello: "Hello %{user_name}"
+  # new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+  # account_generated: "An account has been generated for you. To sign in, please use this link:"
+  # above_this_line: "Make sure your reply appears above this line"
+  # message_id: "Message ID"
+  # message_response: "The following message has been posted in response to your question:"
+  # view_online: "View this online:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -210,6 +239,7 @@ zh-cn:
         cell_phone: 行动电话
         city: 城市
         state: 省份
+        # signature: Signature
       topic: #标题
         name: 名称
       post: #帖子
@@ -230,11 +260,15 @@ zh-cn:
         category_id: 分类
         active: 状态
         front_page: 推荐在首页?
+        # allow_comments: Allow comments?
       forum: #討論區
         name: 名称
         description: 说明
-        private:
-
+        # private:
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
+          
     helpers: #帮手
       submit: #送出
         topic: #标题

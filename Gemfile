@@ -132,6 +132,8 @@ group :development, :test do
   gem 'awesome_print'
 end
 
+gem 'bulk_insert'
+
 group :development do
   gem "better_errors"
   gem 'mailcatcher'

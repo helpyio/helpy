@@ -1,3 +1,5 @@
+/*jshint multistr: true */
+
 var Helpy = Helpy || {};
 
 Helpy.ready = function(){
@@ -31,15 +33,15 @@ Helpy.ready = function(){
 
   $.ui.autocomplete.prototype._renderItem = function( ul, item) {
     return $( "<li></li>" )
-        .data( "item.autocomplete", item["name"] )
-        .append( "<div class='ui-menu-item-heading'><a href="+item["link"]+" >" + item["name"] + "</a></div>" )
-        .append( "<div class='ui-menu-item-content' >"+item["content"]+"</div>" )
+        .data( "item.autocomplete", item.name )
+        .append( "<div class='ui-menu-item-heading'><a href=" + item.link + " >" + item.name + "</a></div>" )
+        .append( "<div class='ui-menu-item-content' >" + item.content + "</div>" )
         .appendTo( ul );
   };
-  
-  
+
+
   $(".autosearch").keyup(function () {
-      var that = $(this)
+      var that = $(this);
       value = $(this).val();
       $(this).autocomplete({
         source: function (request, response) {
@@ -52,10 +54,10 @@ Helpy.ready = function(){
         minLength: 3,
         appendTo: that.next(),
         focus: function( event, ui ) {
-          $(".autosearch").val(ui["item"]["name"]);
+          $(".autosearch").val(ui.item.name);
         },
         select: function( event, ui ) {
-          window.location.href = ui["item"]["link"];
+          window.location.href = ui.item.link;
         },
         messages: {
           noResults: '',
@@ -63,7 +65,7 @@ Helpy.ready = function(){
         }
 
       });
-    
+
   });
 
   $('.stats').on('click', function(){
@@ -119,7 +121,7 @@ Helpy.ready = function(){
   // used by create topic form
   $('#topic_private_true').click(function(){
     $("#topic_forum_id").parent().hide();
-    $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>")
+    $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>");
   });
   $('#topic_private_false').click(function(){
     $("#topic_forum_id").parent().show();
@@ -127,10 +129,10 @@ Helpy.ready = function(){
   });
 
   // Hide/replace last child of breadcrumbs since I don't have time to hack gem right now
-  $("ul.breadcrumb li:last-child").html("")
+  $("ul.breadcrumb li:last-child").html("");
 
   // compress thread if there are more than 4 messages
-  var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting')
+  var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting');
   if ($thread.size() >= 2) {
 
     // insert expand thread message
@@ -161,7 +163,7 @@ Helpy.ready = function(){
   $('.post-menu span').off().on('click', function(){
     $(this).closest('.post-container').css('z-index','99999');
   });
-  
+
   function updateMessage(){
     var output;
     var messages = $('.topic-checkbox:checked').size();
@@ -178,7 +180,7 @@ Helpy.ready = function(){
         break;
     }
     $('.selected-message').text(output);
-  };
+  }
 
   $('#check-all').off().on('change', function(){
     if (this.checked) {
@@ -216,7 +218,7 @@ Helpy.ready = function(){
     });
     // modify link to include array
     $.each(topic_ids, function(i){
-      str = str + "&topic_ids[]=" + topic_ids[i]
+      str = str + "&topic_ids[]=" + topic_ids[i];
     });
     $(this).attr('href', str);
     // return true to follow the link
@@ -248,12 +250,12 @@ Helpy.ready = function(){
     $('.forgot-form').hide();
     $('.modal-title').text($('.login-form').data("title"));
     $('.modal-links').show();
-  })
+  });
 
   $('.forgot-link').off().on('click', function() {
     $('.login-form').hide();
     $('.forgot-form').show();
-    $(ClientSideValidations.selectors.forms).validate(); 
+    $(ClientSideValidations.selectors.forms).validate();
     $('.modal-title').text($('.forgot-form').data("title"));
     $('.modal-links').hide();
   });
@@ -312,19 +314,20 @@ Helpy.didthisHelp = function(yesno){
     contactus = "<div class='col-md-3 align-right'><h3>" + Helpy.contactUs + "</h3></div>";
   } else {
     message = "<h3>" + Helpy.yesHelped + "</h3>";
+    contactus = '';
   }
 
   message = "<div class='col-md-9'>" + message + "</div>" + contactus;
 
   $('#did-this-help').html(message);
   return true;
-}
+};
 
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);
 
 $(document).on('page:change', function () {
-  
+
   //Truncate Q&A responses
   $('.shorten').jTruncate({
     length: 200,
@@ -339,7 +342,7 @@ $(document).on('page:change', function () {
   // Allows image insertion into quill editor
   $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
     var element = document.querySelector("trix-editor");
-    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>"
+    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>";
     element.editor.insertHTML(thisImage);
 
     $('.image_public_id').val(data.result.public_id);
@@ -347,6 +350,3 @@ $(document).on('page:change', function () {
   });
 
 });
-
-
-

@@ -1,5 +1,7 @@
+# TRANSLATOR(s): Prashanth261993
+
 hi:
-  language_name: 'हिंदी' 
+  language_name: 'हिंदी'
   root: &root 'होम'
   how_can_we_help: "हम आपकी किस प्रकार मदद कर सकते हैं?"
   browse_topics: "खोज विषयों"
@@ -64,7 +66,8 @@ hi:
   tickets: "टिकट्स"
   no_tickets: "आपने अब तक कोई टिकट नहीं बनाया है"
   ticket_number: "टिकट नंबर"
-
+  # assigned_to_label: "Assigned to"
+  # created_on: "Created on"
 
   # Get Help
   get_help_header: "अभी भी सहायता चाहिए??"
@@ -72,6 +75,11 @@ hi:
 
   # Profile
   my_profile: 'मेरी प्रोफाइल'
+
+  # footer
+  # powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  # get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: लॉगिन
@@ -133,11 +141,12 @@ hi:
 
   # Discussion messages
   reopen_message: "सपोर्ट स्टाफ इस संदेश को फिर से खोल दी"
-  close_message: "सपोर्ट स्टाफ से यह टिकट बंद कर दिया गया है."
+  closed_message: "सपोर्ट स्टाफ से यह टिकट बंद कर दिया गया है."
   trash_message: "यह टिकट हटा दिया गया है."
   assigned_message: "%{assigned_to} को चर्चा करने के लिए स्थानांतरित कर दिया गया है ."
 
   # User Admin
+  # users: Users
   contact_info: संपर्क करें
   social_info: सोशियल
   edit_user: Edit User
@@ -149,6 +158,15 @@ hi:
     one: "1 यूजर नामित %{query} मिला था"
     other: "%{count} यूजर्स नामित %{query} मिला था"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} एक सवाल पूछा..."
   replied: "%{user_name} जवाब दिया..."
@@ -157,6 +175,7 @@ hi:
   select_common: एक आम जबाब चुनें
   reply: जवाब
   internal_note: आंतरिक नोट
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
@@ -182,10 +201,16 @@ hi:
   published_content: "पब्लिश्ड"
   additional_settings: "अतिरिक्त सेटिंग्स"
   content_status: "कंटेंट की स्थिति"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: नया कम्युनिटी बनाओ
   create_new_community: नया कम्युनिटी बनाओ
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -215,6 +240,7 @@ hi:
         cell_phone: मोबाइल
         city: शहर
         state: स्टेट
+        # signature: Signature
       topic:
         name: विषय
       post:
@@ -239,6 +265,9 @@ hi:
         name: नाम
         description: वर्णन
         private: प्राइवेट
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

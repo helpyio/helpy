@@ -42,7 +42,7 @@ class EmailProcessor
       topic = Forum.first.topics.create!(:name => subject, :user_id => @user.id, :private => true)
 
       #insert post to new topic
-      message = "Attachments:" if email.attachments.present? && @email.body.blank?
+      message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create!(:body => @email.raw_body, :user_id => @user.id, kind: 'first')
 
       # Push array of attachments and send to Cloudinary

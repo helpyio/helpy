@@ -1,3 +1,5 @@
+# MAINTAINER: SCOTT MILLER
+
 en:
   language_name: 'English' # The name of the translation file, in that language
   root: &root 'Home'
@@ -139,7 +141,7 @@ en:
 
   # Discussion messages
   reopen_message: "This message has been reopened by the support staff"
-  close_message: "This ticket has been closed by the support staff."
+  closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
   assigned_message: "Discussion has been transferred to %{assigned_to}."
 
@@ -205,10 +207,16 @@ en:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
+  convert_content: 'Turn post into content'
+  upload_image: 'Upload Image'
 
   # Communities
   new_community: Create New Community
   create_new_community: Create New Community
+  layout_select: Select Format
+  layout_table: Table
+  layout_grid: Grid
+  layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -237,6 +245,7 @@ en:
         cell_phone: Cell
         city: City
         state: State
+        signature: Signature
       topic:
         name: Subject
       post:
@@ -261,6 +270,9 @@ en:
         name: Name
         description: Description
         private: Private
+        layout: Layout
+        allow_topic_voting: Allow topic voting?
+        allow_post_voting: Allow post voting?
 
     helpers:
       submit:
