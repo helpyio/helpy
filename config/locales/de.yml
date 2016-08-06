@@ -1,3 +1,5 @@
+# TRANSLATOR(s): @zefanja
+
 de:
   language_name: 'Deutsch' # The name of the translation file, in that language
   root: &root 'Home'
@@ -25,6 +27,8 @@ de:
   did_this_help: "Hat das Ihr Problem gelöst?"
   yes_button: 'Ja'
   no_button: 'Nein'
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Geben Sie ein Stichwort, ein Thema oder eine Frage ein"
@@ -54,9 +58,16 @@ de:
       two: "2 verborgene Nachrichten"
       other: "%{count} verborgene Nachrichten"
 
+  # Knowledgebase
+  # written_by: "Written By"
+  # last_edited: "Last Edited"
+
   # Tickets
   tickets: "Tickets"
   no_tickets: "Du hast noch keine Tickets erstellt"
+  # ticket_number: "Ticket Number"
+  # assigned_to_label: "Assigned to"
+  # created_on: "Created on"
 
   # Get Help
   get_help_header: "Brauchen Sie noch Hilfe??"
@@ -64,6 +75,11 @@ de:
 
   # Profile
   my_profile: 'Mein Profil'
+
+  # footer
+  # powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  # get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: Anmelden
@@ -130,6 +146,7 @@ de:
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
 
   # User Admin
+  # users: Users
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
@@ -141,6 +158,15 @@ de:
     one: "1 Benutzer mit dem Namen %{query} wurde gefunden"
     other: "%{count} Benutzer mit dem Namen %{query} wurden gefunden"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} hat eine Frage gestellt..."
   replied: "%{user_name} hat geantwortet..."
@@ -149,6 +175,7 @@ de:
   select_common: Textvorlage auswählen
   reply: Antworten
   internal_note: Interne Notiz
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
@@ -166,10 +193,24 @@ de:
   delete_confirm: "Bitte bestätigen Sie, dass Sie dies LÖSCHEN wollen!"
   select_icon_helptext: "Symbol für die Kategorie auswählen (optional)"
   translate: "In eine andere Sprache übersetzen"
+  # view_on_site: "View on Site"
+  # written_on: "Written on %{date_written}"
+  # content_last_updated: "Last Updated on %{date_updated}"
+  # featured_content: "Featured"
+  # draft_content: "Draft"
+  # published_content: "Published"
+  # additional_settings: "Additional Settings"
+  # content_status: "Content Status"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Ein neues Forum erstellen
   create_new_community: Ein neues Forum erstellen
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -179,6 +220,13 @@ de:
   message_id: "Message ID"
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -191,7 +239,7 @@ de:
         cell_phone: Handy
         city: Stadt
         state: Bundesland
-
+        # signature: Signature
       topic:
         name: Betreff
       post:
@@ -215,6 +263,10 @@ de:
       forum:
         name: Name
         description: Beschreibung
+        # private: Private
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Martin Letellier
+
 fr:
   language_name: "Français"
   root: &root "Accueil"
@@ -25,6 +27,8 @@ fr:
   did_this_help: "Cela at-il aidé à résoudre votre problème?"
   yes_button: 'Oui'
   no_button: 'Non'
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Entrez un mot-clé, sujet ou une question"
@@ -75,6 +79,7 @@ fr:
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: Connexion
@@ -134,7 +139,14 @@ fr:
     two: "2 messages sélectionnés"
     other: "%{count} messages sélectionnés"
 
+  # Discussion messages
+  reopen_message: "Ce message a été rouvert par le support."
+  closed_message: "Ce message a été fermé par le support."
+  trash_message: "Ce billet a été supprimé."
+  assigned_message: "Cette discussion a été transférée à %{assigned_to}."
+
   # User Admin
+  # users: Users
   contact_info: Informations de contact
   social_info: Réseaux sociaux
   edit_user:
@@ -146,11 +158,14 @@ fr:
     one: "1 utilisateur nommé %{query} a été trouvé"
     other: "%{count} utilisateurs nommés %{query} ont été trouvés"
 
-  # Discussion messages
-  reopen_message: "Ce message a été rouvert par le support."
-  closed_message: "Ce message a été fermé par le support."
-  trash_message: "Ce billet a été supprimé."
-  assigned_message: "Cette discussion a été transférée à %{assigned_to}."
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
 
   # Discussion View
   asked_a_question: "%{user_name} a posé une question..."
@@ -160,6 +175,7 @@ fr:
   select_common: Sélectionner une réponse type
   reply: Réponse
   internal_note: Note Interne
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "Vote | %{count}"
     other: "Votes | %{count}"
@@ -167,7 +183,7 @@ fr:
   # Content
   new_category: Nouvelle Catégorie
   new_content: Nouveau contenu
-  front_page_categories: Catégories sur la page d'accueil 
+  front_page_categories: Catégories sur la page d'accueil
   other_categories: Autres Catégories
   edit: Modifier
   edit_category: Modifier cette catégorie
@@ -185,10 +201,16 @@ fr:
   published_content: "Publié"
   additional_settings: "Paramètres additionnels"
   content_status: "Statut de contenu"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Nouvelle Communauté
   create_new_community: Créer une Nouvelle Communauté
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -198,6 +220,13 @@ fr:
   message_id: "Id du message"
   message_response: "Le message suivant a été posté en réponse à votre question:"
   view_online: "Voir en ligne:"
+
+  # settings
+  settings: "Settings"
+  general: "General"
+  design: "Design"
+  international: "International"
+  widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -210,6 +239,7 @@ fr:
         cell_phone: Portable
         city: Ville
         state: Région
+        # signature: Signature
       topic:
         name: Sujet
       post:
@@ -230,10 +260,14 @@ fr:
         category_id: Catégorie
         active: Status
         front_page: Page d'accueil
+        # allow_comments: Allow comments?
       forum:
         name: Nom
         description: Description
         private: Confidential
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

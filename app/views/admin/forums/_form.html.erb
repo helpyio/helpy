@@ -2,7 +2,7 @@
 
 <%= f.input :name, :size => 40 -%></p>
 <%= f.input :description, input_html: {:rows => 4, :cols => 60} -%></p>
-<%= f.input("layout", collection: [['Table',"table"],["Grid","grid"],["Q&A","qna"]], :include_blank => t(:select_category, default: 'Select Format') , locale: I18n.locale) %>
+<%= f.select("layout", [[t(:layout_table, default: 'Table'),"table"],[t(:layout_grid, default: "Grid"),"grid"],[t(:layout_qna, default: "Q&A"),"qna"]], include_blank: t(:layout_select, default: 'Select Format')) %>
 
 <%= f.input :allow_topic_voting %>
 <%= f.input :allow_post_voting %>

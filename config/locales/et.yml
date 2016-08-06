@@ -1,3 +1,5 @@
+# TRANSLATOR(s):
+
 et:
   language_name: 'eesti'
   root: &root 'Kodu'
@@ -18,13 +20,15 @@ et:
   welcome_back: "Tere tulemast tagasi %{username}"
   your_profile: "Sinu profiil"
   your_tickets: "Sinu piletid"
-  locale:
-  change_your_locale:
+  # locale:
+  # change_your_locale:
 
   # Voting widget
   did_this_help: "Kas said selle probleemi lahendatud?"
   yes_button: 'Jah'
   no_button: 'Ei'
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Sisesta märksõna, teema või küsimus"
@@ -61,9 +65,9 @@ et:
   # Tickets
   tickets: "Piletid"
   no_tickets: "Sa ei ole loonud ühtegi piletit"
-  ticket_number: "Ticket Number"
-  assigned_to_label: "Assigned to"
-  created_on: "Created on"
+  # ticket_number: "Ticket Number"
+  # assigned_to_label: "Assigned to"
+  # created_on: "Created on"
 
   # Get Help
   get_help_header: "Vajad ikka abi??"
@@ -72,6 +76,7 @@ et:
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # Profile
   my_profile: 'Minu profiil'
@@ -141,6 +146,7 @@ et:
   assigned_message: "Arutelu on edastatud %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: Kontakt
   social_info: Sotsiaalne
   edit_user:
@@ -151,6 +157,15 @@ et:
   users_found:
     one: "1 kasutaja leitud %{query}"
     other: "%{count} kasutajat leitud %{query}"
+
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
 
   # Discussion View
   asked_a_question: "%{user_name} küsis küsimuse..."
@@ -185,10 +200,16 @@ et:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Loo uus kommuun
   create_new_community: Loo uus kommuun
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -210,6 +231,7 @@ et:
         cell_phone: Telefon
         city: Linn
         state: Maakond
+        # signature: Signature
       topic:
         name: Pealkiri
       post:
@@ -230,10 +252,14 @@ et:
         category_id: Kategooria
         active: Staatus
         front_page: Featured on front page?
+        # allow_comments: Allow comments?
       forum:
         name: Nimi
         description: Kirjeldus
         private: Private
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

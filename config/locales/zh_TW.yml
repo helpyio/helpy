@@ -1,3 +1,5 @@
+# TRANSLATOR(s):
+
 zh-tw:
   language_name: "中文（繁体）"
   root: &root "首頁"
@@ -18,13 +20,15 @@ zh-tw:
   welcome_back: "歡迎 %{username}回來"
   your_profile: "個人檔案"
   your_tickets: "已要求的協助"
-  locale:
-  change_your_locale:
+  # locale:
+  # change_your_locale:
 
   # Voting widget
   did_this_help: "這是否解決你的問題？"
   yes_button: "是"
   no_button: "否"
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "輸入關鍵字, 主題, 或問題"
@@ -73,8 +77,9 @@ zh-tw:
   my_profile: "我的檔案"
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  # powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  # get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: 登入
@@ -141,6 +146,7 @@ zh-tw:
   assigned_message: "討論已轉到 %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: 聯絡
   social_info: 社交網站
   edit_user: 修改使用者
@@ -152,6 +158,15 @@ zh-tw:
     one: "已找到1位使用者 %{query}"
     other: "已找到 %{count} 位使用者 %{query}"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} 發問了問題..."
   replied: "%{user_name} 回覆…"
@@ -160,6 +175,7 @@ zh-tw:
   select_common: 選擇常用回覆
   reply: 回覆
   internal_note: 內部注解
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "%{count}| 讚賞"
     other: "%{count}| 讚賞"
@@ -176,28 +192,41 @@ zh-tw:
   view_and_edit: "檢視及修改分類"
   delete_confirm: "確定刪除?"
   select_icon_helptext: "選擇分類圖標 (自選)"
-  translate: "Translate to a different language"
-  view_on_site: "View on Site"
-  written_on: "Written on %{date_written}"
-  content_last_updated: "Last Updated on %{date_updated}"
-  featured_content: "Featured"
-  draft_content: "Draft"
-  published_content: "Published"
-  additional_settings: "Additional Settings"
-  content_status: "Content Status"
+  # translate: "Translate to a different language"
+  # view_on_site: "View on Site"
+  # written_on: "Written on %{date_written}"
+  # content_last_updated: "Last Updated on %{date_updated}"
+  # featured_content: "Featured"
+  # draft_content: "Draft"
+  # published_content: "Published"
+  # additional_settings: "Additional Settings"
+  # content_status: "Content Status"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: 新社區
   create_new_community: 創建新社區
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  # hello: "Hello %{user_name}"
+  # new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+  # account_generated: "An account has been generated for you. To sign in, please use this link:"
+  # above_this_line: "Make sure your reply appears above this line"
+  # message_id: "Message ID"
+  # message_response: "The following message has been posted in response to your question:"
+  # view_online: "View this online:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -210,6 +239,7 @@ zh-tw:
         cell_phone: 行動電話
         city: 城市
         state: 省份
+        # signature: Signature
       topic: #主題
         name: 名稱
       post: #帖子
@@ -230,10 +260,14 @@ zh-tw:
         category_id: 分類
         active: 狀態
         front_page: 推薦在首頁?
+        # allow_comments: Allow comments?
       forum: #討論區
         name: 名稱
         description: 說明
         private:
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers: #幫手
        submit: #送出

@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Pep Rodeja
+
 ca:
   language_name: "Català"
   root: &root 'Home'
@@ -25,6 +27,8 @@ ca:
   did_this_help: "Això ha solucionat el teu problema?"
   yes_button: 'Si'
   no_button: 'No'
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Entra una paraula clau, tema o pregunta"
@@ -55,15 +59,15 @@ ca:
       other: "%{count} missatge minimitzat"
 
   # Knowledgebase
-  written_by: "Written By"
-  last_edited: "Last Edited"
+  # written_by: "Written By"
+  # last_edited: "Last Edited"
 
   # Tickets
   tickets: "Tiquets"
   no_tickets: "Encara no has creat cap tiquet"
-  ticket_number: "Ticket Number"
-  assigned_to_label: "Assigned to"
-  created_on: "Created on"
+  # ticket_number: "Ticket Number"
+  # assigned_to_label: "Assigned to"
+  # created_on: "Created on"
 
   # Get Help
   get_help_header: "Encara necessites ajuda?"
@@ -75,6 +79,7 @@ ca:
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: Iniciar sessió
@@ -141,6 +146,7 @@ ca:
   assigned_message: "El debat ha estat transferit a %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: Contacte
   social_info: Social
   edit_user:
@@ -151,6 +157,15 @@ ca:
   users_found:
     one: "1 usuari trobat amb nom %{query}"
     other: "%{count} usuaris trobats amb nom %{query}"
+
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
 
   # Discussion View
   asked_a_question: "%{user_name} ha preguntat..."
@@ -185,10 +200,16 @@ ca:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Crea una nova comunitat
   create_new_community: Crea una nova comunitat
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -198,6 +219,13 @@ ca:
   message_id: "Message ID"
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -210,6 +238,7 @@ ca:
         cell_phone: Mòbil
         city: Ciutat
         state: Estat o província
+        # signature: Signature
       topic:
         name: Assumpte
       post:
@@ -233,7 +262,10 @@ ca:
       forum:
         name: Nom
         description: Descripció
-        private: Private
+        # private: Private
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:
