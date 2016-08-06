@@ -38,8 +38,8 @@ Helpy.ready = function(){
         .append( "<div class='ui-menu-item-content' >" + item.content + "</div>" )
         .appendTo( ul );
   };
-  
-  
+
+
   $(".autosearch").keyup(function () {
       var that = $(this);
       value = $(this).val();
@@ -65,7 +65,7 @@ Helpy.ready = function(){
         }
 
       });
-    
+
   });
 
   $('.stats').on('click', function(){
@@ -163,7 +163,7 @@ Helpy.ready = function(){
   $('.post-menu span').off().on('click', function(){
     $(this).closest('.post-container').css('z-index','99999');
   });
-  
+
   function updateMessage(){
     var output;
     var messages = $('.topic-checkbox:checked').size();
@@ -255,7 +255,7 @@ Helpy.ready = function(){
   $('.forgot-link').off().on('click', function() {
     $('.login-form').hide();
     $('.forgot-form').show();
-    $(ClientSideValidations.selectors.forms).validate(); 
+    $(ClientSideValidations.selectors.forms).validate();
     $('.modal-title').text($('.forgot-form').data("title"));
     $('.modal-links').hide();
   });
@@ -314,6 +314,7 @@ Helpy.didthisHelp = function(yesno){
     contactus = "<div class='col-md-3 align-right'><h3>" + Helpy.contactUs + "</h3></div>";
   } else {
     message = "<h3>" + Helpy.yesHelped + "</h3>";
+    contactus = '';
   }
 
   message = "<div class='col-md-9'>" + message + "</div>" + contactus;
@@ -326,7 +327,7 @@ $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);
 
 $(document).on('page:change', function () {
-  
+
   //Truncate Q&A responses
   $('.shorten').jTruncate({
     length: 200,
@@ -349,6 +350,3 @@ $(document).on('page:change', function () {
   });
 
 });
-
-
-
