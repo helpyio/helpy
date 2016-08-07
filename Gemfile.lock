@@ -256,6 +256,7 @@ GEM
       listen (~> 2.2)
       mail (>= 2.0.3)
       maildir (>= 0.5.0)
+    method_source (0.8.2)
     mime-types (2.99.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
@@ -316,6 +317,13 @@ GEM
       arel
     pkg-config (1.1.7)
     powerpack (0.1.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.3.0)
+      byebug (~> 8.0)
+      pry (~> 0.10)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -439,6 +447,7 @@ GEM
     slim (3.0.6)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
+    slop (3.6.0)
     spring (1.4.4)
     sprockets (3.6.3)
       concurrent-ruby (~> 1.0)
@@ -563,6 +572,8 @@ DEPENDENCIES
   permalink_fu
   pg
   pg_search
+  pry
+  pry-byebug
   rails (= 4.2.7)
   rails-i18n (~> 4.0.0)
   rails-settings-cached (~> 0.5)

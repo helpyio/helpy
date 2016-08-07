@@ -11,13 +11,14 @@ require 'rails/test_help'
 # Requiring this library causes your jobs to run everything inline. So a call to the following
 # will actually be SYNCHRONOUS
 require 'sucker_punch/testing/inline'
+require 'pry'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  Settings.send_email = false
+  # Settings.send_email = false
 end
 
 class ActionController::TestCase

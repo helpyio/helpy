@@ -124,6 +124,8 @@ group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
   gem 'byebug'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
   gem 'brakeman', require: false

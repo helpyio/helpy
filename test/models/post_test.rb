@@ -151,6 +151,7 @@ class PostTest < ActiveSupport::TestCase
         body: "This is the first post",
         kind: "first"
       )
+      binding.pry
     end
 
     User.first.settings.notify_on_private = "0"

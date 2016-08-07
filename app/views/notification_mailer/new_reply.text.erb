@@ -1,0 +1,9 @@
+<%= t('above_this_line', default: "Make sure your reply appears above this line") %>
+=================================================================
+<%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
+
+<%= t('notify_new_reply', default: "A new customer reply has been received:") %>
+
+<%= simple_format(@topic.posts.last.body) %>
+
+<%= t('to_reply', default: 'Reply directly to this email or view this online:') %> <%= admin_topic_posts_url(@topic, host: AppSettings['settings.site_url']) %>

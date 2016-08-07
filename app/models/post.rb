@@ -81,8 +81,11 @@ class Post < ActiveRecord::Base
   end
 
   # send notification to agents/admins if configured
+  # this logic resides in the modal because we want the same actions
+  # regardless of how the post is created (web, email, api, etc)
   def notify
     logger.info("Ready to Notify")
+
     # Handle new private ticket notification:
     if self.kind == "first" && self.topic.private?
       NotificationMailer.new_private(self.topic).deliver_later
@@ -95,9 +98,20 @@ class Post < ActiveRecord::Base
     elsif self.kind == "reply" && self.user_id == self.topic.user_id && self.topic.private?
       NotificationMailer.new_reply(self.topic).deliver_later
 
+    # Reply from user back to the system
+    elsif self.kind == "reply" && self.user_id != self.topic.user_id && self.topic.private?
+      I18n.with_locale(self.email_locale) do
+        # NOTE New ticket is misnamed, it should be new-reply
+        TopicMailer.new_ticket(self.topic).deliver_later
+      end
     else
       logger.info("Did not meet conditions to notify")
     end
+  end
+
+  def email_locale
+    return I18n.locale if self.kind == 'first'
+    self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
   end
 
 end
