@@ -156,7 +156,7 @@ GEM
     ffi (1.9.10)
     font-awesome-sass (4.5.0)
       sass (>= 3.2)
-    globalid (0.3.6)
+    globalid (0.3.7)
       activesupport (>= 4.1.0)
     globalize (5.0.1)
       activemodel (>= 4.2.0, < 4.3)
@@ -173,8 +173,6 @@ GEM
       htmlentities
       rails (>= 3.2.0)
     griddler-mailgun (1.0.2)
-      griddler
-    griddler-mailin (0.0.1)
       griddler
     griddler-mandrill (1.1.3)
       griddler (>= 1.2.1)
@@ -439,7 +437,7 @@ GEM
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     spring (1.4.4)
-    sprockets (3.6.3)
+    sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.1.1)
@@ -464,7 +462,7 @@ GEM
     timecop (0.8.1)
     timers (4.0.4)
       hitimes
-    trix (0.9.5)
+    trix (0.9.7)
       rails
     turbolinks (2.5.3)
       coffee-rails
@@ -532,7 +530,6 @@ DEPENDENCIES
   gravtastic
   griddler
   griddler-mailgun
-  griddler-mailin
   griddler-mandrill
   griddler-postmark
   griddler-sendgrid
