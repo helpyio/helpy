@@ -25,6 +25,8 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_css?("div.add-form")
 
     fill_in('post_body', with: "Added a comment!")
+    click_on('Post Reply', disabled: true)
+
     assert page.has_content?('Added a comment!')
 
     clear_comments
@@ -37,6 +39,8 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
     assert page.has_css?("div.add-form")
 
     fill_in('post_body', with: "Added a comment!")
+    click_on('Start Discussion', disabled: true)
+
     assert page.has_content?('Added a comment!')
 
   end
