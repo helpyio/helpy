@@ -44,8 +44,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (3.5.0)
-      activerecord (>= 3.2, < 5)
+    acts-as-taggable-on (4.0.0)
+      activerecord (>= 4.0)
     addressable (2.4.0)
     annotate (2.7.0)
       activerecord (>= 3.2, < 6.0)
@@ -501,7 +501,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 3.5)
+  acts-as-taggable-on (~> 4.0)
   annotate
   attachinary
   awesome_print
