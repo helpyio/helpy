@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7'
+ruby "2.2.5"
+
+gem 'rails', '5.0.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -44,7 +46,7 @@ gem "rails-settings-cached", '~> 0.5'
 gem 'sucker_punch', '~> 2.0'
 
 # Auth Gems
-gem 'devise'
+gem 'devise', '~> 4.0.0'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'omniauth'
@@ -62,7 +64,7 @@ gem 'http_accept_language'
 gem 'permalink_fu'
 gem 'paper_trail'
 
-gem 'acts-as-taggable-on', '~>3.5'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
@@ -94,7 +96,6 @@ gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
 gem 'griddler-mailgun'
 gem 'griddler-postmark'
-gem 'griddler-mailin'
 gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
@@ -163,5 +164,3 @@ group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
-
-ruby "2.2.1"

@@ -1,3 +1,9 @@
+IMPORTANT NOTE: This is the Official Rails 5 Dev Branch
+=======================================================
+
+It is definetly not suitable for use yet, but is all patches are being merged
+for Rails 5!
+
 Helpy: A Modern Helpdesk Alternative
 ====================================
 
