@@ -62,7 +62,7 @@ gem 'http_accept_language'
 gem 'permalink_fu'
 gem 'paper_trail'
 
-gem 'acts-as-taggable-on', '~>3.5'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
