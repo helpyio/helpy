@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  include ActsAsTaggableOn::TagsHelper
+
   # include TagsHelper
 
   # Sets the page title and outputs title if container is passed in.
@@ -82,6 +84,12 @@ module ApplicationHelper
       form_tag('#', id: "locale-change", method: 'get') do
         tag.html_safe
       end
+    end
+  end
+
+  def tag_listing(tags)
+    tags.each do |tag|
+      concat content_tag(:span, tag, class: "label label-tagging")
     end
   end
 
