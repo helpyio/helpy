@@ -82,7 +82,7 @@ class Post < ActiveRecord::Base
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
-      all.each do |post|
+      all.find_each do |post|
         csv << post.attributes.values_at(*column_names)
       end
     end
