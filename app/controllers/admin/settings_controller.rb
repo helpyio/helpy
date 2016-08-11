@@ -14,6 +14,9 @@ class Admin::SettingsController < Admin::BaseController
             type: 'image/png', disposition: 'inline', stream: false
   end
 
+  def backup
+  end
+
   def update_settings
     # NOTE: We iterate through settings here to establish our universe of settings to save
     # this means if you add a setting, you MUST declare a default value in the "default_settings intializer"
@@ -31,6 +34,4 @@ class Admin::SettingsController < Admin::BaseController
       }
     end
   end
-
-
 end

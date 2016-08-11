@@ -157,6 +157,15 @@ class Topic < ActiveRecord::Base
     forum_id >= 3 && !private?
   end
 
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |post|
+        csv << post.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   private
 
   def cache_user_name

@@ -1,6 +1,7 @@
 class Admin::PostsController < Admin::BaseController
 
   before_action :verify_agent
+  before_action :verify_admin, only: ['export']
   after_action :send_message, :only => 'create'
   respond_to :js
 
@@ -50,6 +51,13 @@ class Admin::PostsController < Admin::BaseController
     @post.body = params[:post][:body]
     @post.active = params[:post][:active]
     render action: 'update' if @post.save
+  end
+
+  def export
+    @posts = Post.all.order(:id)
+    respond_to do |format|
+      format.csv { send_data @posts.to_csv, :filename => "posts_#{DateTime.now.to_i}.csv" }
+    end
   end
 
   protected

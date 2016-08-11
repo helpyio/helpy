@@ -47,7 +47,7 @@
 class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :verify_admin, only: ['invite','invite_users']
+  before_action :verify_admin, only: ['invite','invite_users', 'export']
   before_action :fetch_counts, :only => ['show']
   respond_to :html, :js
 
@@ -99,6 +99,13 @@ class Admin::UsersController < Admin::BaseController
       }
       format.js {
       }
+    end
+  end
+
+  def export
+    @users = User.all.order(:id)
+    respond_to do |format|
+      format.csv { send_data @users.to_csv, :filename => "users_#{DateTime.now.to_i}.csv" }
     end
   end
 

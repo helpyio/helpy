@@ -30,6 +30,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
   before_action :pipeline, :only => ['index', 'show', 'update_topic']
   before_action :remote_search, :only => ['index', 'show', 'update_topic']
+  before_action :verify_admin, only: ['export']
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -254,6 +255,13 @@ class Admin::TopicsController < Admin::BaseController
     #   }
     # end
 
+  end
+
+  def export
+    @topics = Topic.all.order(:id)
+    respond_to do |format|
+      format.csv { send_data @topics.to_csv, :filename => "topics_#{DateTime.now.to_i}.csv" }
+    end
   end
 
   private
