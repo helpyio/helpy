@@ -103,7 +103,7 @@ Rails.application.routes.draw do
     resources :posts
     get '/dashboard' => 'dashboard#index', as: :dashboard
     get '/stats' => 'dashboard#stats', as: :stats
-    root to: 'dashboard#index'
+    root to: 'topics#index'
   end
 
   # Receive email from Griddler
