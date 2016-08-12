@@ -3,7 +3,7 @@
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body <%= 'dir="rtl"' if rtl?(@locale) %>>
+  <body <%= 'dir=rtl' if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(@locale) %>>
   <p>
     <%= t('hello', user_name: @user.name) %>,
   </p>
