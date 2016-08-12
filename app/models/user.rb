@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :votes
   has_many :docs
+  has_many :backups
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
@@ -175,12 +176,4 @@ class User < ActiveRecord::Base
     devise_mailer.send(notification, self, *args).deliver_later
   end
   
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.find_each do |user|
-        csv << user.attributes.values_at(*column_names)
-      end
-    end
-  end
 end

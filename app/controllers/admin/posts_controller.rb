@@ -53,13 +53,6 @@ class Admin::PostsController < Admin::BaseController
     render action: 'update' if @post.save
   end
 
-  def export
-    @posts = Post.all.order(:id)
-    respond_to do |format|
-      format.csv { send_data @posts.to_csv, :filename => "posts_#{DateTime.now.to_i}.csv" }
-    end
-  end
-
   protected
 
   def send_message

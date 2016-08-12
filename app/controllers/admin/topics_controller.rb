@@ -257,13 +257,6 @@ class Admin::TopicsController < Admin::BaseController
 
   end
 
-  def export
-    @topics = Topic.all.order(:id)
-    respond_to do |format|
-      format.csv { send_data @topics.to_csv, :filename => "topics_#{DateTime.now.to_i}.csv" }
-    end
-  end
-
   private
 
   def get_tickets

@@ -102,13 +102,6 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def export
-    @users = User.all.order(:id)
-    respond_to do |format|
-      format.csv { send_data @users.to_csv, :filename => "users_#{DateTime.now.to_i}.csv" }
-    end
-  end
-
   private
 
   def user_params

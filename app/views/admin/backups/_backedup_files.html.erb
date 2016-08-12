@@ -1,0 +1,22 @@
+<div id= "files">
+  <table id="topics" class="forum table-hover">
+
+    <col width="80px" class="checkbox-col">
+    <col>
+    <col width="20%" class="hidden-xs">
+
+    <tr>
+      <th><%= t(:type, default: "Type") %></th>
+      <th><%= t(:created_at, default: "Created_at") %></th>
+      <th><%= t(:file_name, default: "File Name") %></th>
+      <th class="text-right hidden-xs"><%= t(:download, default: "Download") %></th>
+    </tr>
+    <tbody>
+      <%= render partial: 'admin/backups/file', collection: @files %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= paginate @files, remote: true %>
+  </div>
+</div>>  
+

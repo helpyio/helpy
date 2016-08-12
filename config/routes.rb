@@ -77,8 +77,7 @@ Rails.application.routes.draw do
     get 'settings' => 'settings#index', as: :settings
     get 'settings/preview' => 'settings#preview', as: :preview
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
-    get 'settings/backup' => 'settings#backup', as: :backup
-
+    
     # Onboarding Routes
     get '/onboarding/index' => 'onboarding#index', as: :onboarding
     patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
@@ -92,9 +91,9 @@ Rails.application.routes.draw do
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
     
     # Export Routes
-    get 'users/export' => "users/export", as: :users_export
-    get 'posts/export' => "posts/export", as: :posts_export
-    get 'topics/export' => "topics/export", as: :topics_export
+    get 'backups/index' => 'backups#index', as: :backups
+    get 'backups/export' => "backups/export", as: :export_backup
+    get  'backups/download' => "backups/download", as: :download
 
     resources :categories do
       resources :docs, except: [:index, :show]

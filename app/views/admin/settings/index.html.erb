@@ -17,7 +17,7 @@
         <%= settings_item('glyphicon glyphicon-envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
         <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
         <%= settings_item('glyphicon glyphicon-user', "users", "View and Add Users", admin_users_path) %>
-        <%= settings_item('glyphicon glyphicon-download-alt',"backup", "Export data for backup.", admin_backup_path) %>
+        <%= settings_item('glyphicon glyphicon-download-alt',"backup", "Export data for backup.", admin_backups_path) %>
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
       <%= settings_menu_item('glyphicon glyphicon-envelope', 'email') %>
       <%= settings_menu_item('glyphicon glyphicon-cloud', 'cloudinary') %>
       <%= settings_menu_item('glyphicon glyphicon-user', 'users', admin_users_path) %>
-      <%= settings_menu_item('glyphicon glyphicon-download-alt', "backup", admin_backup_path) %>
+      <%= settings_menu_item('glyphicon glyphicon-download-alt', "backup", admin_backups_path) %>
     </ul>
   </div>
   <div class="col-md-9 col-sm-8 col-xs-10">
