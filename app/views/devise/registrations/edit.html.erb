@@ -1,13 +1,6 @@
-<div id="page-title" class="row">
-  <div class="col-md-8" id="page-title-left">
-    <span class="hidden-xs">
-      <%= render_breadcrumbs('') %>
-    </span>
-    <h1><%= t(:your_profile) %></h1>
-  </div>
-  <div class="col-md-4" id="page-title-right">
-  </div>
-</div>
+<% content_for :page_title do %>
+<h1><%= t(:your_profile) %></h1>
+<% end %>
 
 <div class="row content-row">
 
@@ -34,7 +27,7 @@
     <%= f.input :current_password, autocomplete: "off" %>
 
     <br/><br/>
-    <h4><%= t(:change_password) %></h4>
+    <h4><%= t('devise.passwords.edit.change_your_password') %></h4>
     <br/>
     <span class="password-fields">
       <%= f.input :password, autocomplete: "off" %>

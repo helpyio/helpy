@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Felipe Martins
+
 pt-br:
   language_name: 'Português-BR' # The name of the translation file, in that language
   root: &root 'Início'
@@ -25,6 +27,8 @@ pt-br:
   did_this_help: "Isto ajudou o seu problema?"
   yes_button: 'Sim'
   no_button: 'Não'
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Insira uma palavra-chave, tópico ou questão"
@@ -75,6 +79,7 @@ pt-br:
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: "Log in"
@@ -136,11 +141,12 @@ pt-br:
 
   # Discussion messages
   reopen_message: "Esta mensagem foi reaberta pelo suporte."
-  close_message: "Esta mensagem foi fechada pelo suporte."
+  closed_message: "Esta mensagem foi fechada pelo suporte."
   trash_message: "Esta mensagem foi apagada pelo suporte."
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: "Contato"
   social_info: "Social"
   edit_user: "Editar Usuário"
@@ -152,6 +158,15 @@ pt-br:
     one: "1 usuário encontrado com o nome %{query}"
     other: "%{count} utilizadores encontrados com o nome %{query}"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} fez uma questão..."
   replied: "%{user_name} respondeu..."
@@ -160,6 +175,7 @@ pt-br:
   select_common: "Selecione uma Resposta Predefinida"
   reply: "Responder"
   internal_note: "Nota Interna"
+  # mark_as_resolved: Mark as resolved
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
@@ -185,10 +201,16 @@ pt-br:
   published_content: "Publicado"
   additional_settings: "Configurações Adicionais"
   content_status: "Estado do Conteúdo"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: "Criar uma Nova Comunidade"
   create_new_community: "Criar uma Nova Comunidade"
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Olá %{user_name}"
@@ -198,6 +220,13 @@ pt-br:
   message_id: "Id da Mensagem"
   message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
   view_online: "Ver isto online:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -210,6 +239,7 @@ pt-br:
         cell_phone: "Celular"
         city: "Cidade"
         state: "Estado"
+        # signature: Signature
       topic:
         name: "Assunto"
       post:
@@ -234,6 +264,9 @@ pt-br:
         name: "Nome"
         description: "Descrição"
         private: "Privado"
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     helpers:
       submit:

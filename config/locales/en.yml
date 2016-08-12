@@ -1,3 +1,5 @@
+# MAINTAINER: SCOTT MILLER
+
 en:
   language_name: 'English' # The name of the translation file, in that language
   root: &root 'Home'
@@ -77,6 +79,7 @@ en:
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on Github"
+  version: "Version:"
 
   # devise/sessions/new
   login: Log in
@@ -138,11 +141,12 @@ en:
 
   # Discussion messages
   reopen_message: "This message has been reopened by the support staff"
-  close_message: "This ticket has been closed by the support staff."
+  closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
   assigned_message: "Discussion has been transferred to %{assigned_to}."
 
   # User Admin
+  users: Users
   contact_info: Contact
   social_info: Social
   edit_user: Edit User
@@ -154,6 +158,15 @@ en:
     one: "1 user was found named %{query}"
     other: "%{count} users were found named %{query}"
 
+  # Invite users
+  invite_users: "Invite New Users"
+  invite_emails: "Email Addresses"
+  invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  invite_message: "Message"
+  invite_message_placeholder: "An optional message that will be sent to the new users"
+  invite_role: "Role for Invited Users"
+  send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} asked a question..."
   replied: "%{user_name} replied..."
@@ -162,6 +175,7 @@ en:
   select_common: Select Common Reply
   reply: Reply
   internal_note: Internal Note
+  mark_as_resolved: Mark as resolved
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
@@ -187,10 +201,16 @@ en:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
+  convert_content: 'Turn post into content'
+  upload_image: 'Upload Image'
 
   # Communities
   new_community: Create New Community
   create_new_community: Create New Community
+  layout_select: Select Format
+  layout_table: Table
+  layout_grid: Grid
+  layout_qna: Q&A
 
   # Mail messages
   hello: "Hello %{user_name}"
@@ -219,6 +239,7 @@ en:
         cell_phone: Cell
         city: City
         state: State
+        signature: Signature
       topic:
         name: Subject
       post:
@@ -243,6 +264,9 @@ en:
         name: Name
         description: Description
         private: Private
+        layout: Layout
+        allow_topic_voting: Allow topic voting?
+        allow_post_voting: Allow post voting?
 
     helpers:
       submit:

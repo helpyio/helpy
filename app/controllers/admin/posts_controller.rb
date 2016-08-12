@@ -2,14 +2,7 @@ class Admin::PostsController < Admin::BaseController
 
   before_action :verify_agent
   after_action :send_message, :only => 'create'
-  # respond_to :html, only: ['destroy']
   respond_to :js
-
-  # def new
-  #   @topic = Topic.find(params[:topic_id], :include => :forum)
-  #   @post = Post.new
-  #   @forums = Forum.all
-  # end
 
   def edit
     @post = Post.where(id: params[:id]).first
@@ -30,16 +23,19 @@ class Admin::PostsController < Admin::BaseController
     respond_to do |format|
       if @post.save
         format.js {
+          if params[:post][:resolved] == "1"
+            @topic.close(current_user.id)
+            tracker("Agent: #{current_user.name}", "Closed", @topic.to_param) #TODO: Need minutes
+          end
           fetch_counts
-
           @posts = @topic.posts.chronologic
           @admins = User.agents
           #@post = Post.new
           case @post.kind
           when "reply"
-            @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Replied", label: @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{current_user.name}", "Agent Replied", @topic.to_param) #TODO: Need minutes
           when "note"
-            @tracker.event(category: "Agent: #{current_user.name}", action: "Agent Posted Note", label: @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{current_user.name}", "Agent Posted Note", @topic.to_param) #TODO: Need minutes
           end
           render 'admin/topics/show'
         }
@@ -56,17 +52,11 @@ class Admin::PostsController < Admin::BaseController
     render action: 'update' if @post.save
   end
 
-  # def destroy
-  #   @post = Post.find(params[:id])
-  #   @post.destroy
-  #   respond_to do |format|
-  #      format.html { redirect_to topic_posts_path(@post.topic) }
-  #   end
-  # end
-
   protected
 
   def send_message
+   return if @post.kind == 'note'
+
     #Should only send when admin posts, not when user replies
     if @post.kind == 'first'
       email_locale = I18n.locale

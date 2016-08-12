@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   respond_to :js, only: [:up_vote]
   layout "clean", only: :index
+  theme :theme_chosen
 
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
@@ -50,7 +51,7 @@ class PostsController < ApplicationController
           @posts = @topic.posts.ispublic.chronologic.active
           unless @topic.assigned_user_id.nil?
             agent = User.find(@topic.assigned_user_id)
-            @tracker.event(category: "Agent: #{agent.name}", action: "User Replied", label: @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
           end
         }
       else

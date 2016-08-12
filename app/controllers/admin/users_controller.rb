@@ -47,6 +47,7 @@
 class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
+  before_action :verify_admin, only: ['invite','invite_users']
   before_action :fetch_counts, :only => ['show']
   respond_to :html, :js
 
@@ -61,13 +62,13 @@ class Admin::UsersController < Admin::BaseController
 
     # We still have to grab the first topic for the user to use the same user partial
     @topic = Topic.where(user_id: @user.id).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed User Profile", label: @user.name)
+    tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
     render 'admin/topics/index'
   end
 
   def edit
     @user = User.where(id: params[:id]).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Editing User Profile", label: @user.name)
+    tracker("Agent: #{current_user.name}", "Editing User Profile", @user.name)
   end
 
   def update
@@ -80,8 +81,25 @@ class Admin::UsersController < Admin::BaseController
 
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Edited User Profile", label: @user.name)
+    tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
+
+    # TODO: Refactor this to use an index method/view on the users model
     render 'admin/topics/index'
+  end
+
+  def invite
+  end
+
+  def invite_users
+    User.bulk_invite(params["invite.emails"], params["invite.message"], params["role"]) if params["invite.emails"].present?
+
+    respond_to do |format|
+      format.html {
+        redirect_to admin_users_path
+      }
+      format.js {
+      }
+    end
   end
 
   private

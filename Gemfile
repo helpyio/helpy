@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -9,6 +9,9 @@ gem 'pg_search'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+
+# Explicitly include Nokogiri to control version
+gem 'nokogiri', '>= 1.6.8'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -37,7 +40,7 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached"
+gem "rails-settings-cached", '~> 0.5'
 gem 'sucker_punch', '~> 2.0'
 
 # Auth Gems
@@ -96,6 +99,8 @@ gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
 
+gem 'devise_invitable', '~> 1.6'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -112,6 +117,7 @@ gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
 
+gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
 
 group :development, :test do
@@ -123,11 +129,14 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'rubocop'
   gem 'scss-lint'
+  gem 'awesome_print'
 end
+
+gem 'bulk_insert'
 
 group :development do
   gem "better_errors"
-  gem "quiet_assets"
+  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
@@ -140,7 +149,6 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'rspec'
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'capybara'

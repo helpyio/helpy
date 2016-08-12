@@ -1,4 +1,4 @@
-<h2>Admin Communities <span class="admin-options pull-right">
+<h2><%= t('communities') %> <span class="admin-options pull-right">
   <%= link_to t(:new_community, default: "Create New Community"), new_admin_forum_path, class: 'btn btn-primary' %>
 </span></h2>
 
@@ -10,7 +10,7 @@
       <col width="15%">
       <tbody id="categories">
       <tr>
-        <td colspan="2" class='tiny-header'>Community</td>
+        <td colspan="2" class='tiny-header'><%= t('community') %></td>
       </tr>
       <%= render partial: 'forum', collection: @forums %>
       <tr>

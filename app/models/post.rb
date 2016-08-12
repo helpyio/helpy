@@ -29,7 +29,6 @@ class Post < ActiveRecord::Base
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
   after_save  :update_topic_cache
-  #after_save :send_message
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
   scope :active, -> { where(active: true) }
@@ -37,6 +36,7 @@ class Post < ActiveRecord::Base
   scope :chronologic, -> { order('created_at ASC') }
   scope :reverse, -> { order('created_at DESC') }
   scope :by_votes, -> { order('points DESC')}
+  attr_accessor :resolved
 
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache

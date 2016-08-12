@@ -393,12 +393,20 @@ ul.dropdown-menu li a.strong {
    color: white;
 }
 
-.topic-placeholder::-moz-placeholder {  
+.topic-placeholder::-moz-placeholder {
    color: white;
 }
 
 .topic-placeholder:-ms-input-placeholder {
    color: white;
+}
+
+.social-icons {
+  margin-top: 15px;
+
+  span {
+    font-size: 150%;
+  }
 }
 
 //  == MODAL ===
@@ -675,6 +683,12 @@ h5.category-header {
   a {
     color: #004084;
   }
+  img {
+    width: 90%;
+    height: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
 
 //  === SEARCH  ===
@@ -884,7 +898,6 @@ h4.qna {
     label{
       padding: 0px;
     }
-    
-  }  
-}
 
+  }
+}

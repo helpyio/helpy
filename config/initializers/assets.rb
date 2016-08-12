@@ -13,3 +13,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( base.css )
 Rails.application.config.assets.precompile += %w( admin.css )
 Rails.application.config.assets.precompile += %w( admin.js )
+Rails.application.config.assets.precompile += %w( onboard.css )
+Rails.application.config.assets.precompile += %w( rtl.css )
+Rails.application.config.assets.precompile += %w( rtl.js )

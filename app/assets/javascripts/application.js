@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui/sortable
 //= require jquery-ui/effect-highlight
+//= require jquery-ui/autocomplete
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery.turbolinks
@@ -42,7 +43,7 @@
 // modified by Scott Miller- remove animation, newline for more link
 
 (function($){
-  $.fn.jTruncate = function(options) {
+  $.fn.jTruncate = function(opts) {
     var defaults = {
       length: 300,
       minTrail: 20,
@@ -51,7 +52,7 @@
       ellipsisText: "..."
     };
 
-    var options = $.extend(defaults, options);
+    var options = $.extend(defaults, opts);
 
     return this.each(function() {
       obj = $(this);
@@ -61,7 +62,6 @@
         var splitLocation = body.indexOf(' ', options.length);
         if(splitLocation != -1) {
           // truncate tip
-          var splitLocation = body.indexOf(' ', options.length);
           var str1 = body.substring(0, splitLocation);
           var str2 = body.substring(splitLocation, body.length - 1);
           obj.html(str1 + '<span class="truncate_ellipsis">' + options.ellipsisText +
@@ -69,7 +69,7 @@
           obj.find('.truncate_more').css("display", "none");
 
           // insert more link
-          $('<a href="#" class="truncate_more_link">' + options.moreText + '</a>').insertAfter(obj.find('.truncate_more'))
+          $('<a href="#" class="truncate_more_link">' + options.moreText + '</a>').insertAfter(obj.find('.truncate_more'));
         }
       } // end if
 

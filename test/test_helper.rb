@@ -60,5 +60,6 @@ def set_default_settings
   AppSettings['email.mail_domain'] = Settings.mail_domain
   AppSettings['cloudinary.cloud_name'] = ''
   AppSettings['cloudinary.api_key'] = ''
-  AppSettings['cloudinary.api_secret'] = ''  
+  AppSettings['cloudinary.api_secret'] = ''
+  AppSettings['theme.active'] = 'helpy'
 end

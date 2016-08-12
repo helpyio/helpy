@@ -116,7 +116,7 @@ ul.dropdown-menu {
 }
 
 #user-tickets ul li {
-	height: 25px;
+	margin-bottom: 7px;
 	color: #666;
 }
 
@@ -301,6 +301,22 @@ ul.settings-menu {
 	margin-right: 5px;
 	font-size: 110%;
 	color: #333;
+}
+
+.theme {
+
+	label {
+		font-size: 18px;
+		font-weight: bold;
+		color: black;
+	}
+
+	img {
+		max-width: 100%;
+		margin-bottom: 20px;
+	}
+
+
 }
 
 @media(max-width:767px){

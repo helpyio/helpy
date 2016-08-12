@@ -53,11 +53,21 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def rtl_tags
+    stylesheet_link_tag('//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css', "data-turbolinks-track" => true) +
+    stylesheet_link_tag('rtl') +
+    javascript_include_tag('rtl', "data-turbolinks-track" => true)
+  end
+
+  def rtl?
+    rtl_locale?(params[:locale] || @browser_locale)
+  end
+
   def locale_select
     # options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
 
     tag = "<select name='lang' class='form-control' id='lang'>"
-    tag += "<option value='#{I18n.locale}'>Translate to a different language...</option>"
+    tag += "<option value='#{I18n.locale}'>#{t('translate', default: 'Translate to a different language')}...</option>"
 
     AppSettings['i18n.available_locales'].sort.each do |locale|
       selected = "selected" if "#{locale}" == params[:lang]

@@ -1,0 +1,49 @@
+//	=== ONBOARDING ===
+
+#onboard-footer-wrapper {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.onboard-pager {
+	background-color: #feffe9;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.onboard-message {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.number-circle {
+  border-radius: 50%;
+
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+
+  //background: #fff;
+  border: 1px solid #666;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #666;
+  text-align: center;
+}
+
+.active-step {
+  border: 2px solid #000;
+  color: #000;
+  font-weight: bold;
+}
+
+.filled-circle {
+  color: #fff;
+  background-color: #ff8300;
+  border: 1px solid #ff8300;
+}
+
+.onboard-submit-section {
+  margin-top: 50px;
+}

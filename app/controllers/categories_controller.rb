@@ -19,6 +19,7 @@
 
 class CategoriesController < ApplicationController
   respond_to :html
+  theme :theme_chosen
 
   def index
     @categories = Category.active.ordered.with_translations(I18n.locale)
@@ -33,7 +34,7 @@ class CategoriesController < ApplicationController
     else
       @docs = @category.docs.ordered.active.page params[:page]
     end
-    @categories = Category.active.alpha.with_translations(I18n.locale)
+    @categories = Category.active.ordered.with_translations(I18n.locale)
     @related = Doc.in_category(@doc.category_id) if @doc
 
     @page_title = @category.name

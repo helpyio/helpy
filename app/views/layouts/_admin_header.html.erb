@@ -16,7 +16,7 @@
                 <% end %>
               <% end %>
             <% end %>
-            <%= menu_item glyph(:cog), admin_settings_path, class: 'pull-right visible-lg visible-md visible-sm hidden-xs' if current_user.is_admin? %>
+            <%= menu_item glyph(:cog), admin_settings_path, class: 'pull-right visible-lg visible-md visible-sm hidden-xs settings-cog' if current_user.is_admin? %>
             <%= menu_item t(:settings, default: "Settings"), admin_settings_path, class: 'visible-xs hidden-lg hidden-md hidden-sm' if current_user.is_admin? %>
           <% end %>
 

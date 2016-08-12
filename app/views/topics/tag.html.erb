@@ -1,3 +1,11 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
 
 <div id="breadcrumbs">
   <%= link_to 'Forums', forums_path -%> > <strong>Tagged with <%= h params[:id] -%></strong>
@@ -8,18 +16,18 @@
 </div>
 
 <table id="topics">
-	
+
   <col width="55%">
   <col width="5%">
   <col width="10%">
-  <col width="5%">	
-  <col width="20%">		
-	
+  <col width="5%">
+  <col width="20%">
+
   <tr>
     <th colspan="2">Topic</th>
     <th>Status</th>
     <th>Replies</th>
-	<th>Last Post</th>	
+	<th>Last Post</th>
   </tr>
   <%= render :partial => 'topic', :collection => @topics %>
 </table>

@@ -25,6 +25,12 @@
 			<div class="col-md-12">
 				<div id="main-body" >
 					<%#= bootstrap_flash %>
+					<div id="page-title">
+				    <span>
+				      <%= render_breadcrumbs('') %>
+				    </span>
+				    <%= yield :page_title %>
+					</div>
 					<div id="main-content">
 						<%= yield %>
 					</div>

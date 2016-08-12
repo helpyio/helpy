@@ -54,17 +54,18 @@ class Admin::TopicsController < Admin::BaseController
       topics_raw = topics_raw.where(current_status: @status)
     end
     @topics = topics_raw.page params[:page]
-    @tracker.event(category: "Admin-Nav", action: "Click", label: @status.titleize)
+    tracker("Admin-Nav", "Click", @status.titleize)
   end
 
   def show
     @topic = Topic.where(id: params[:id]).first
     if @topic.current_status == 'new'
-      @tracker.event(category: "Agent: #{current_user.name}", action: "Opened Ticket", label: @topic.to_param, value: @topic.id)
+      tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
       @topic.open
     end
     @posts = @topic.posts.chronologic
-    @tracker.event(category: "Agent: #{current_user.name}", action: "Viewed Ticket", label: @topic.to_param, value: @topic.id)
+
+    tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
   end
 
@@ -117,8 +118,8 @@ class Admin::TopicsController < Admin::BaseController
         UserMailer.new_user(@user, @token).deliver_later
 
         # track event in GA
-        @tracker.event(category: 'Request', action: 'Post', label: 'New Topic')
-        @tracker.event(category: 'Agent: Unassigned', action: 'New', label: @topic.to_param)
+        tracker('Request', 'Post', 'New Topic')
+        tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
           @topics = Topic.recent.page params[:page]
@@ -138,32 +139,41 @@ class Admin::TopicsController < Admin::BaseController
     logger.info("Starting update")
 
     #handle array of topics
-    params[:topic_ids].each do |id|
+    @topics = Topic.where(id: params[:topic_ids])
 
-      @topic = Topic.where(id: id).first
-      @minutes = 0
+    bulk_post_attributes = []
 
-      # actions for each status change
-      unless params[:change_status].blank?
+    if params[:change_status].present?
+
+      if ["closed", "reopen", "trash"].include?(params[:change_status])
+        user_id = current_user.id || 2
+        @topics.each do |topic|
+          # prepare bulk params
+          bulk_post_attributes << {body: I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name), kind: 'note', user_id: user_id, topic_id: topic.id}
+        end
+
         case params[:change_status]
         when 'closed'
-          @topic.close(current_user.id)
+          @topics.bulk_close(bulk_post_attributes)
         when 'reopen'
-          @topic.reopen(current_user.id)
+          @topics.bulk_reopen(bulk_post_attributes)
         when 'trash'
-          @topic.trash(current_user.id)
-        else
-          @topic.current_status = params[:change_status] unless params[:change_status].blank?
-          @topic.save
-        end
-        @action_performed = "Marked #{params[:change_status].titleize}"
+          @topics.bulk_trash(bulk_post_attributes)
+        end 
+      else
+        @topics.update_all(current_status: params[:change_status])
       end
-
-      # Calls to GA for close, reopen, assigned
-      @tracker.event(category: "Agent: #{current_user.name}", action: @action_performed, label: @topic.to_param, value: @minutes)
-
+      
+      @action_performed = "Marked #{params[:change_status].titleize}"
+      # Calls to GA for close, reopen, assigned.
+      tracker("Agent: #{current_user.name}", @action_performed, @topics.to_param, 0)
+      
     end
-    @posts = @topic.posts.chronologic
+    
+    if params[:topic_ids].present?
+      @topic = Topic.find(params[:topic_ids].last) 
+      @posts = @topic.posts.chronologic
+    end
 
     fetch_counts
     respond_to do |format|
@@ -181,37 +191,28 @@ class Admin::TopicsController < Admin::BaseController
 
   # Assigns a discussion to another agent
   def assign_agent
-
-    @count = 0
-    #handle array of topics
-    params[:topic_ids].each do |id|
-
-      @topic = Topic.where(id: id).first
-
-      @minutes = 0
-#      logger.info("inside loop")
-#      logger.info(params[:assigned_user_id])
-      unless params[:assigned_user_id].blank?
-
+    assigned_user = User.find(params[:assigned_user_id])
+    @topics = Topic.where(id: params[:topic_ids])
+    bulk_post_attributes = []
+    unless params[:assigned_user_id].blank?
+      #handle array of topics
+      @topics.each do |topic|
         # if message was unassigned previously, use the new assignee
         # this is to give note attribution below
-        previous_assigned_id = @topic.assigned_user_id? ? @topic.assigned_user_id : params[:assigned_user_id]
-        assigned_user = User.find(params[:assigned_user_id])
-        @topic.assign(previous_assigned_id, assigned_user.id)
-
-        # Create internal note
-#        @topic.posts.create(user_id: previous_assigned_id, body: "Discussion has been transferred to #{assigned_user.name}.", kind: "note")
+        previous_assigned_id = topic.assigned_user_id || params[:assigned_user_id]
+        bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: assigned_user.name), kind: 'note', user_id: previous_assigned_id, topic_id: topic.id}
 
         # Calls to GA
-        @tracker.event(category: "Agent: #{current_user.name}", action: "Assigned to #{assigned_user.name.titleize}", label: @topic.to_param, value: @minutes)
-
+        tracker("Agent: #{current_user.name}", "Assigned to #{assigned_user.name.titleize}", @topic.to_param, 0)
       end
-      @count = @count + 1
-    end
+    end 
+    
+    @topics.bulk_assign(bulk_post_attributes, assigned_user.id) if bulk_post_attributes.present?
 
     if params[:topic_ids].count > 1
       get_tickets
     else
+      @topic = Topic.find(@topics.first.id)
       @posts = @topic.posts.chronologic
     end
 
@@ -229,23 +230,17 @@ class Admin::TopicsController < Admin::BaseController
         end
       }
     end
-
-
   end
 
   # Toggle privacy of a topic
   def toggle_privacy
 
     #handle array of topics
-    params[:topic_ids].each do |id|
+    @topics = Topic.where(id: params[:topic_ids])
 
-      @topic = Topic.where(id: id).first
-      @topic.private = params[:private]
-      @topic.forum_id = params[:forum_id]
-      @topic.save
+    @topics.update_all(private: params[:private], forum_id: params[:forum_id])
 
-
-    end
+    @topic = @topics.last
     @posts = @topic.posts.chronologic
 
     fetch_counts
