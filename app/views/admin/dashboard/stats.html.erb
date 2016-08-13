@@ -3,22 +3,26 @@
 
   <div class="col-md-12">
     <h2>
-      Team Insights for <%= AppSettings['settings.site_name'] %>
-
+      Team Insights <span class="hidden-sm hidden-xs">for <%= AppSettings['settings.site_name'] %></span>
+      <small>
       <div class="pull-right">
-        <%= link_to 'Last 7 days', admin_stats_path(interval: 7), class: "btn btn-#{params[:interval] == '7' ? 'primary' : 'default'}" %>
-        <%= link_to 'Last 28 days', admin_stats_path(interval: 28), class: "btn btn-#{params[:interval] == '28' ? 'primary' : 'default'}" %>
-        <%= link_to 'Last 90 days', admin_stats_path(interval: 90), class: "btn btn-#{params[:interval] == '90' ? 'primary' : 'default'}" %>
+        <ul class="list-inline">
+          <li class="less-important activity-menu-item"><%= link_to "Today", admin_stats_path(start_date: Time.zone.today.midnight, label: 'today') %></li>
+          <li class="activity-menu-item"><%= link_to "Yesterday", admin_stats_path(start_date: Time.zone.yesterday.midnight, end_date: Time.zone.yesterday.at_end_of_day, label: 'yesterday') %></li>
+          <li class="activity-menu-item"><%= link_to "This Week", admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_week, end_date: Time.zone.today.midnight.at_end_of_week, label: 'this week') %></li>
+          <li class="activity-menu-item"><%= link_to "This Month", admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this month') %></li>
+        </ul>
       </div>
+      </small>
     </h2>
   </div>
   <div class="col-md-12" style="margin-top: 0;">
     <h2 style="margin-top: 0;">
     <small>
       <% if @topic_count > 0 %>
-        In the last
-        <strong><%= pluralize @interval, 'day' %></strong>
-        your users started
+        <!-- In the last
+        <strong><%= pluralize @interval, 'day' %></strong> -->
+        <strong><%= @interval.sentence_case %></strong> your users started
         <strong><%= pluralize @topic_count, 'new conversation' %></strong>
         of which your team replied to
         <strong><%= @responded_topics.count %> (<%= number_to_percentage(@responded_topics.count.to_f / @topic_count.to_f * 100.00, precision: 1)  %>)</strong>
@@ -27,7 +31,8 @@
           <strong><%= distance_of_time_in_words @median_first_response_time %></strong>.
         <% end %>
       <% else %>
-        No new conversations have been started in the last <strong><%= pluralize @interval, 'day' %></strong>.
+        <!-- No new conversations have been started in the last <strong><%= pluralize @interval, 'day' %></strong>. -->
+        No new conversations have been started <strong><%= @interval %></strong>
       <% end %>
     </small>
     </h2>
@@ -54,76 +59,7 @@
       2
     end
   %>
-
-  <div class="col-md-<%= @cols %> col-sm-<%= @cols+1 %> text-center agent">
-
-    <div class="agent-id">
-      <div class="agent-image">
-        <%= link_to avatar_image(t.assigned_user, size=80), admin_user_path(id: t.assigned_user_id) if t.assigned_user.present? %>
-      </div>
-      <div class="agent-name">
-        <% topic_count = @topics.where(assigned_user: t.assigned_user).count %>
-        <h3>
-          <%= t.assigned_user.try(:name).split(' ')[0].titleize || 'No Agent'.html_safe %><br/>
-          <small><%= t.assigned_user.try(:role).titleize %></small>
-        </h3>
-      </div>
-    </div>
-
-    <div class="agent-assigned-count agent-stat">
-      <h4><%= topic_count.zero? ? '-' : topic_count %><br/>
-      <small>Assigned Topics</small>
-    </div>
-
-    <div class="agent-responded agent-stat">
-      <% responded_topic_count = @responded_topics.where(assigned_user: t.assigned_user).length %>
-      <h4 title="Responded to <%= responded_topic_count %> / <%= topic_count %>">
-        <% if topic_count.zero? %>
-          -
-        <% else %>
-          <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
-        <% end %>
-        <br/>
-        <small>Responded</small>
-      </h4>
-    </div>
-
-    <div class="agent-closed agent-stat">
-      <% closed_topic_count = Topic.undeleted.where(user: t.assigned_user).closed.count %>
-      <h4 title="<%= closed_topic_count %> / <%= topic_count %> Closed">
-        <% if topic_count.zero? %>
-          -
-        <% else %>
-          <%= number_to_percentage(closed_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
-        <% end %>
-        <br/>
-        <small>Closed</small>
-      </h4>
-    </div>
-
-    <div class="agent-replies agent-stat">
-      <% posts_count = @posts.where(user: t.assigned_user).count %>
-      <h4><%= posts_count.zero? ? '-' : posts_count %>
-      <br/><small>Replies</small></h4>
-    </div>
-
-    <div class="agent-response-time agent-stat">
-      <% delays = @responded_topics.where(assigned_user: t.assigned_user).map { |t| t.posts.second.created_at - t.created_at } %>
-      <h4>
-        <% if delays.empty? %>
-          N/A
-        <% else %>
-          <%= distance_of_time_in_words median(delays) %>
-        <% end %>
-        <br/>
-        <small>Median Time to first response</small>
-      </h4>
-    </div>
-
-    <div class="agent-stat" data-hook="agent-stat">
-    </div>
-
-  </div>
+  <%= render partial: 'agent_stats', object: t %>
   <% end %>
 
   <div class="col-md-<%= @cols %> col-sm-<%= @cols+1 %> text-center agent invite-cn">
