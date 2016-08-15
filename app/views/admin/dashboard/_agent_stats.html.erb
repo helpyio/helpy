@@ -32,7 +32,7 @@
   </div>
 
   <div class="agent-closed agent-stat">
-    <% closed_topic_count = Topic.undeleted.where(user: agent_stats.assigned_user).closed.count %>
+    <% closed_topic_count = Topic.undeleted.where(assigned_user: agent_stats.assigned_user).closed.count %>
     <h4 title="<%= closed_topic_count %> / <%= topic_count %> Closed">
       <% if topic_count.zero? %>
         -
