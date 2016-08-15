@@ -111,7 +111,6 @@ class Topic < ActiveRecord::Base
     self.posts.create(body: I18n.t(:closed_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "closed"
     self.closed_date = Time.current
-    self.assigned_user_id = nil
     self.save
   end
 
