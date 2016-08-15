@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_action :set_vars
-
   before_action :configure_permitted_parameters, if: :devise_controller?
+  around_action :set_time_zone, if: :current_user
 
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
@@ -142,6 +142,12 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
+  end
+
+  private
+
+  def set_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
   end
 
 end
