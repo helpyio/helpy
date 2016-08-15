@@ -116,7 +116,7 @@ class Topic < ActiveRecord::Base
 
   def self.bulk_close(post_attributes)
     Post.bulk_insert values: post_attributes
-    self.update_all(current_status: 'closed', assigned_user_id: nil, closed_date: Time.current)
+    self.update_all(current_status: 'closed', closed_date: Time.current)
   end
 
   def trash(user_id = 2)
