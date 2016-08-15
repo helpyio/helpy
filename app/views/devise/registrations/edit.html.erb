@@ -17,6 +17,7 @@
       <%= f.input :bio, input_html: {:rows => 4, :cols => 60} %>
       <%= f.input :company %>
       <%= f.input :title %>
+      <%= f.input :time_zone %>
       <%= f.input :signature, input_html: {:rows => 4, :cols => 60} if current_user.is_admin? %>
       <% if @user.provider.nil? %>
         <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
