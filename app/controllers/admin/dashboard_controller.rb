@@ -2,6 +2,7 @@ class Admin::DashboardController < Admin::BaseController
 
   include StatsHelper
   skip_before_action :verify_agent
+  before_action :date_from_params, only: :stats
 
   # Routes to different views depending on role of user
   def index
@@ -18,12 +19,7 @@ class Admin::DashboardController < Admin::BaseController
 
   def stats
 
-    @start_date = params[:start_date] || Time.zone.today.at_beginning_of_week
-    @end_date = params[:end_date] || Time.zone.today.at_end_of_day
-
-    # @interval = params[:interval].try(:to_i) || 7
     @interval = params[:label] || 'this week'
-
     @topics = Topic.undeleted.where('topics.created_at >= ? AND topics.created_at <= ?', @start_date, @end_date)
     @topic_count = @topics.count
 
@@ -32,7 +28,7 @@ class Admin::DashboardController < Admin::BaseController
       .joins(:posts)
       .where(posts: { kind: 'reply' })
       .group('topics.id')
-      .having('COUNT(posts.id) > 1')
+      .having('COUNT(posts.id) > 0')
       .ids
     @responded_topics = Topic.where(id: responded_topic_ids)
     @closed_topic_count = @topics.closed.count

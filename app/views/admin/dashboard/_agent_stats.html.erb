@@ -45,7 +45,7 @@
   </div>
 
   <div class="agent-replies agent-stat">
-    <% posts_count = @posts.where(user: agent_stats.assigned_user).count %>
+    <% posts_count = @posts.where(user: agent_stats.assigned_user, kind: 'reply').count %>
     <h4><%= posts_count.zero? ? '-' : posts_count %>
     <br/><small>Replies</small></h4>
   </div>
