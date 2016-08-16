@@ -26,6 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
         :company,
         :title,
         :password,
+        :time_zone,
         :password_confirmation,
         :current_password
       )
