@@ -4,7 +4,6 @@
 require 'devise/custom_failure'
 Devise.setup do |config|
 
-
   #This sets up a cookie to generate the above_header with javascript
 
   Warden::Manager.after_set_user do |user,auth,_opts|
