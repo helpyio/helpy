@@ -12,8 +12,8 @@
 var element = document.querySelector("trix-editor");
 element.editor.setSelectedRange([0, 0]);
 <% if @post.nil? %>
-element.editor.insertHTML('<%= @doc.body.html_safe if @doc.body? %>');
+element.editor.insertHTML('<%= @doc.body if @doc.body? %>');
 <% else %>
-element.editor.insertHTML('<%= @post.body.html_safe unless @post.nil? %>');
+element.editor.insertHTML('<%= @post.body unless @post.nil? %>');
 <% end %>
 </script>
