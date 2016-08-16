@@ -2,8 +2,8 @@
 =================================================================
 <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
 
-<%= t('notify_new_public', default: 'A new public customer message has been posted:') %>
+<%= t('notify_new_public', user_name: @topic.user.name, default: "A new public customer message has been posted by %{user_name}:") %>
 
 <%= simple_format(@topic.posts.last.body) %>
 
-<%= t('to_reply', default: 'To reply, please view this online:') %> <%= admin_topic_posts_url(@topic, host: AppSettings['settings.site_url']) %>
+<%= t('to_reply', default: 'Reply to this message directly or online:') %> <%= admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>
