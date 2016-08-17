@@ -141,8 +141,6 @@ class PostTest < ActiveSupport::TestCase
   # Notifications Specs
 
   test "Should send an admin notification of a new private topic created, if enabled" do
-    User.first.settings.notify_on_private = "1"
-
     assert_difference('ActionMailer::Base.deliveries.size', 1) do
       @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
       @topic.posts.create!(
@@ -151,13 +149,9 @@ class PostTest < ActiveSupport::TestCase
         kind: "first"
       )
     end
-
-    User.first.settings.notify_on_private = "0"
   end
 
   test "Should send an admin notification of a new public topic, if enabled" do
-    User.first.settings.notify_on_public = "1"
-
     assert_difference('ActionMailer::Base.deliveries.size', 1) do
       @topic = Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: false)
       @topic.posts.create!(
@@ -166,13 +160,9 @@ class PostTest < ActiveSupport::TestCase
         kind: "first"
       )
     end
-    User.first.settings.notify_on_public = "0"
   end
 
   test "Should send an admin notification of a new private reply, if enabled" do
-    User.first.settings.notify_on_reply = "1"
-
-
     # We expect three notifications- one goes to the agent to tell them there is a
     # new private discussion, the second notifies the customer of the agents
     # reply and the final notifies the agent of the final customer reply
@@ -194,8 +184,6 @@ class PostTest < ActiveSupport::TestCase
         kind: "reply"
       )
     end
-
-    User.first.settings.notify_on_reply = "0"
   end
 
   test "Should NOT send any notifications if a new internal note" do

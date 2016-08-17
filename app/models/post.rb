@@ -87,7 +87,6 @@ class Post < ActiveRecord::Base
     # Handle new private ticket notification:
     if self.kind == "first" && self.topic.private?
       NotificationMailer.new_private(self.topic).deliver_later
-
     # Handles new public ticket notification:
     elsif self.kind == "first" && self.topic.public?
       NotificationMailer.new_public(self.topic).deliver_later
