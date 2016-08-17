@@ -84,8 +84,6 @@ class Post < ActiveRecord::Base
   # this logic resides in the modal because we want the same actions
   # regardless of how the post is created (web, email, api, etc)
   def notify
-    logger.info("Ready to Notify")
-
     # Handle new private ticket notification:
     if self.kind == "first" && self.topic.private?
       NotificationMailer.new_private(self.topic).deliver_later
@@ -104,8 +102,6 @@ class Post < ActiveRecord::Base
         # NOTE New ticket is misnamed, it should be new-reply
         TopicMailer.new_ticket(self.topic).deliver_later
       end
-    else
-      logger.info("Did not meet conditions to notify")
     end
   end
 

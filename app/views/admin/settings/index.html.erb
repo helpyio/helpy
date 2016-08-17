@@ -1,19 +1,32 @@
-<div class="admin-header">
+<div class="agent-header">
   <h2 id="setting-header">
-    Settings
+    <%= t('agent_settings', default: 'Agent Settings') %>
   </h2>
 </div>
 
 <div class="settings-grid">
   <div class="settings-grid-row row">
-    <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
-    <div class="grids col-md-10 col-sm-12">
-      <div class="row" data-hook="admin_settings_grid">
-        <%= settings_item('glyphicon glyphicon-bell', "notifications", "Select what notifications you would like to receive.", admin_notifications_path) %>
+    <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
+    <div class="grids col-md-11 col-sm-12">
+      <div class="row" data-hook="agent_settings_grid">
+        <%= settings_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), "Select when you would like to receive email notifications.", admin_notifications_path) %>
       </div>
+    </div>
+  </div>
+</div>
 
-      <% if current_user.is_admin? %>
-      <h3>System Settings:</h3>
+<% if current_user.is_admin? %>
+
+<div class="admin-header">
+  <h2 id="setting-header">
+    <%= t('settings', default: 'System Settings') %>
+  </h2>
+</div>
+
+<div class="settings-grid">
+  <div class="settings-grid-row row">
+    <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
+    <div class="grids col-md-11 col-sm-12">
       <div class="row" data-hook="admin_settings_grid">
         <%= settings_item('glyphicon glyphicon-cog', "general", "Manage general system settings like your Helpy name, what company to link back to.") %>
         <%= settings_item('glyphicon glyphicon-pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
@@ -24,11 +37,9 @@
         <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
         <%= settings_item('glyphicon glyphicon-user', "users", "View and Add Users", admin_users_path) %>
       </div>
-      <% end %>
     </div>
   </div>
 </div>
-<% if current_user.is_admin? %>
 <div class="settings-panel row hidden">
   <div class="col-md-3 col-sm-4 col-xs-2">
     <ul class="settings-menu list-unstyled" data-hook="admin_settings_menu">
