@@ -462,6 +462,8 @@ GEM
       concurrent-ruby (~> 1.0.0)
     temple (0.7.6)
     terminal-table (1.5.2)
+    test_after_commit (1.1.0)
+      activerecord (>= 3.2)
     themes_on_rails (0.4.0)
       rails (>= 3.2)
     thin (1.5.1)
@@ -595,6 +597,7 @@ DEPENDENCIES
   spring (~> 1.4.0)
   staccato
   sucker_punch (~> 2.0)
+  test_after_commit
   themes_on_rails
   timecop
   trix

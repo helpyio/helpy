@@ -39,7 +39,6 @@ class PostTest < ActiveSupport::TestCase
     end
 
     assert @post.topic.post_cache == " #{@post.body}"
-
   end
 
   test "marking a post inactive should remove it from the topic cache" do
@@ -151,7 +150,6 @@ class PostTest < ActiveSupport::TestCase
         body: "This is the first post",
         kind: "first"
       )
-      binding.pry
     end
 
     User.first.settings.notify_on_private = "0"
@@ -171,19 +169,28 @@ class PostTest < ActiveSupport::TestCase
     User.first.settings.notify_on_public = "0"
   end
 
-  test "Should send an admin notification pf a new private reply, if enabled" do
+  test "Should send an admin notification of a new private reply, if enabled" do
     User.first.settings.notify_on_reply = "1"
 
-    assert_difference('ActionMailer::Base.deliveries.size', 1) do
-      @topic = Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: true)
+
+    # We expect three notifications- one goes to the agent to tell them there is a
+    # new private discussion, the second notifies the customer of the agents
+    # reply and the final notifies the agent of the final customer reply
+    assert_difference('ActionMailer::Base.deliveries.size', 3) do
+      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
       @topic.posts.create!(
         user_id: 2,
-        body: "This is the first message",
+        body: "This is the first message from the customer",
         kind: "first"
       )
       @topic.posts.create!(
         user_id: 1,
-        body: "This is the first reply",
+        body: "This is the first reply from admin",
+        kind: "reply"
+      )
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the second reply from the customer",
         kind: "reply"
       )
     end
