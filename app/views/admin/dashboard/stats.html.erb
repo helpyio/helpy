@@ -1,27 +1,28 @@
 
 <div class="team-header row">
 
-  <div class="col-md-12">
+  <div class="col-md-12 clearfix">
     <h2>
       Team Insights <span class="hidden-sm hidden-xs">for <%= AppSettings['settings.site_name'] %></span>
-      <small>
-      <div class="pull-right">
-        <ul class="list-inline">
-          <li class="less-important activity-menu-item"><%= link_to "Today", admin_stats_path(start_date: Time.zone.today.midnight, label: 'today') %></li>
-          <li class="activity-menu-item"><%= link_to "Yesterday", admin_stats_path(start_date: Time.zone.yesterday.midnight, end_date: Time.zone.yesterday.at_end_of_day, label: 'yesterday') %></li>
-          <li class="activity-menu-item"><%= link_to "This Week", admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_week, end_date: Time.zone.today.midnight.at_end_of_week, label: 'this week') %></li>
-          <li class="activity-menu-item"><%= link_to "This Month", admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this month') %></li>
+
+      <div class="dropdown pull-right">
+        <button class="btn btn-default dropdown-toggle less-important" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= @interval.sentence_case %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><%= link_to "Today", admin_stats_path(start_date: Time.zone.today.midnight, label: 'today') %></li>
+          <li><%= link_to "Yesterday", admin_stats_path(start_date: Time.zone.yesterday.midnight, end_date: Time.zone.yesterday.at_end_of_day, label: 'yesterday') %></li>
+          <li><%= link_to "This Week", admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_week, end_date: Time.zone.today.midnight.at_end_of_week, label: 'this week') %></li>
+          <li><%= link_to "This Month", admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this month') %></li>
         </ul>
       </div>
-      </small>
     </h2>
   </div>
   <div class="col-md-12" style="margin-top: 0;">
     <h2 style="margin-top: 0;">
     <small>
       <% if @topic_count > 0 %>
-        <!-- In the last
-        <strong><%= pluralize @interval, 'day' %></strong> -->
         <strong><%= @interval.sentence_case %></strong> your users started
         <strong><%= pluralize @topic_count, 'new conversation' %></strong>
         of which your team replied to
@@ -49,12 +50,14 @@
     # figure out ideal column width
     # this could (and maybe should) be done with javascript
     @cols = case @agents.count
+    when 1
+      5
     when 2
-      6
-    when 3
       4
-    when 4
+    when 3
       3
+    when 4
+      2
     else
       2
     end
@@ -62,7 +65,7 @@
   <%= render partial: 'agent_stats', object: t %>
   <% end %>
 
-  <div class="col-md-<%= @cols %> col-sm-<%= @cols+1 %> text-center agent invite-cn">
+  <div class="col-md-<%= @cols %> col-sm-<%= @cols %> text-center agent invite-cn">
     <div class="add-team-member">
       <%= link_to admin_invite_path do %>
         <i class='fa fa-user-plus'></i><br/>

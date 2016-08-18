@@ -3,6 +3,7 @@ class Admin::DashboardController < Admin::BaseController
   include StatsHelper
   skip_before_action :verify_agent
   before_action :date_from_params, only: :stats
+  before_action :verify_admin, only: :stats
 
   # Routes to different views depending on role of user
   def index

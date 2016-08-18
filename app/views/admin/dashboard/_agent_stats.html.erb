@@ -1,4 +1,4 @@
-<div class="col-md-<%= @cols %> col-sm-<%= @cols+1 %> text-center agent">
+<div class="col-md-<%= @cols %> col-sm-<%= @cols %> text-center agent">
 
   <div class="agent-id">
     <div class="agent-image">
@@ -6,10 +6,10 @@
     </div>
     <div class="agent-name">
       <% topic_count = @topics.where(assigned_user: agent_stats.assigned_user).count %>
-      <h3>
+      <h4>
         <%= agent_stats.assigned_user.try(:name).split(' ')[0].titleize || 'No Agent'.html_safe %><br/>
         <small><%= agent_stats.assigned_user.try(:role).titleize %></small>
-      </h3>
+      </h4>
     </div>
   </div>
 
