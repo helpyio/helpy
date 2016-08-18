@@ -90,6 +90,7 @@ class User < ActiveRecord::Base
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
+  after_create :enable_notifications_for_agents
 
   ROLES = %w[admin agent editor user]
 
@@ -104,6 +105,14 @@ class User < ActiveRecord::Base
     end
     self.active = true
     self.save
+  end
+
+  def enable_notifications_for_agents
+    if self.role == "agent" || self.role == "admin"
+      self.settings.notify_on_private = "1"
+      self.settings.notify_on_public = "1"
+      self.settings.notify_on_reply = "1"
+    end
   end
 
   def active_assigned_count
