@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
+  # Add preferences to user model
+  include RailsSettings::Extend
+
   TEMP_EMAIL_PREFIX = 'change@me'
 
   validates :name, presence: true, format: { with: /\A\D+\z/ }
@@ -87,6 +90,7 @@ class User < ActiveRecord::Base
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
+  after_create :enable_notifications_for_agents
 
   ROLES = %w[admin agent editor user]
 
@@ -101,6 +105,14 @@ class User < ActiveRecord::Base
     end
     self.active = true
     self.save
+  end
+
+  def enable_notifications_for_agents
+    if self.role == "agent" || self.role == "admin"
+      self.settings.notify_on_private = "1"
+      self.settings.notify_on_public = "1"
+      self.settings.notify_on_reply = "1"
+    end
   end
 
   def active_assigned_count

@@ -124,6 +124,8 @@ group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
   gem 'byebug'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
   gem 'brakeman', require: false
@@ -156,6 +158,9 @@ group :test do
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
+
+  # remove this for Rails 5 because the function is already included
+  gem 'test_after_commit'
 end
 
 group :production do

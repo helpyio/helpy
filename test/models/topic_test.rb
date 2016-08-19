@@ -139,4 +139,9 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal 1, topic.assigned_user_id
     assert_equal t_posts_count + 1, topic.posts.count
   end
+
+  test "public? should return true for a public topic, false if private" do
+    assert_equal Topic.find(1).public?, false
+    assert_equal Topic.find(4).public?, true
+  end
 end

@@ -28,6 +28,7 @@ class Post < ActiveRecord::Base
 
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
+  after_commit  :notify, on: :create
   after_save  :update_topic_cache
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -78,6 +79,35 @@ class Post < ActiveRecord::Base
     if self.topic.assigned_user_id.nil?
       self.topic.assigned_user_id = self.user.is_agent? ? self.user_id : nil
     end
+  end
+
+  # send notification to agents/admins if configured
+  # this logic resides in the modal because we want the same actions
+  # regardless of how the post is created (web, email, api, etc)
+  def notify
+    # Handle new private ticket notification:
+    if self.kind == "first" && self.topic.private?
+      NotificationMailer.new_private(self.topic).deliver_later
+    # Handles new public ticket notification:
+    elsif self.kind == "first" && self.topic.public?
+      NotificationMailer.new_public(self.topic).deliver_later
+
+    # Handles customer reply notification:
+    elsif self.kind == "reply" && self.user_id == self.topic.user_id && self.topic.private?
+      NotificationMailer.new_reply(self.topic).deliver_later
+
+    # Reply from user back to the system
+    elsif self.kind == "reply" && self.user_id != self.topic.user_id && self.topic.private?
+      I18n.with_locale(self.email_locale) do
+        # NOTE New ticket is misnamed, it should be new-reply
+        TopicMailer.new_ticket(self.topic).deliver_later
+      end
+    end
+  end
+
+  def email_locale
+    return I18n.locale if self.kind == 'first'
+    self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
   end
 
 end

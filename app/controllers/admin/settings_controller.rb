@@ -1,11 +1,25 @@
 class Admin::SettingsController < Admin::BaseController
 
-  before_action :verify_admin
+  before_action :verify_admin, except: ['index', 'notifications','update_notifications']
+  before_action :verify_agent, only: ['index', 'notifications', 'update_notifications']
   skip_before_action :verify_authenticity_token
 
   def index
     @settings = AppSettings.get_all
     @themes = Theme.find_all
+  end
+
+  # Show notification settings for current agent/admin
+  def notifications
+  end
+
+  # Save notification preference for current agent/admin
+  def update_notifications
+    current_user.settings.notify_on_private = params['notify_on_private']
+    current_user.settings.notify_on_public = params['notify_on_public']
+    current_user.settings.notify_on_reply = params['notify_on_reply']
+
+    redirect_to admin_topics_path
   end
 
   def preview
@@ -22,7 +36,7 @@ class Admin::SettingsController < Admin::BaseController
     @settings.each do |setting|
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
-    
+
     respond_to do |format|
       format.html {
         redirect_to admin_settings_path
