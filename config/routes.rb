@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
 
+
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
 
@@ -100,7 +101,8 @@ Rails.application.routes.draw do
       resources :posts
     end
     resources :posts
-    # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
+    get '/dashboard' => 'dashboard#index', as: :dashboard
+    get '/team' => 'dashboard#stats', as: :stats
     root to: 'dashboard#index'
   end
 

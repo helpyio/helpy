@@ -56,6 +56,7 @@ class Topic < ActiveRecord::Base
   scope :mine, -> (user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
   scope :spam, -> { where(current_status: "spam")}
+  scope :assigned, -> { where.not(assigned_user_id: nil) }
 
   scope :chronologic, -> { order('updated_at DESC') }
   scope :reverse, -> { order('updated_at ASC') }
@@ -110,13 +111,12 @@ class Topic < ActiveRecord::Base
     self.posts.create(body: I18n.t(:closed_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "closed"
     self.closed_date = Time.current
-    self.assigned_user_id = nil
     self.save
   end
 
   def self.bulk_close(post_attributes)
     Post.bulk_insert values: post_attributes
-    self.update_all(current_status: 'closed', assigned_user_id: nil, closed_date: Time.current)
+    self.update_all(current_status: 'closed', closed_date: Time.current)
   end
 
   def trash(user_id = 2)
