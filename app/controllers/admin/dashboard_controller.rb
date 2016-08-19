@@ -20,7 +20,19 @@ class Admin::DashboardController < Admin::BaseController
 
   def stats
 
-    @interval = params[:label] || 'this week'
+    @interval = case params[:label]
+    when 'today'
+      t('today')
+    when 'yesterday'
+      t('yesterday')
+    when 'this_week'
+      t('this_week')
+    when 'this_month'
+      t('this_month')
+    else
+      t('this_week')
+    end
+
     @topics = Topic.undeleted.where('topics.created_at >= ? AND topics.created_at <= ?', @start_date, @end_date)
     @topic_count = @topics.count
 
