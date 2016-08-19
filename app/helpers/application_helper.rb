@@ -59,8 +59,8 @@ module ApplicationHelper
     javascript_include_tag('rtl', "data-turbolinks-track" => true)
   end
 
-  def rtl?
-    rtl_locale?(params[:locale] || @browser_locale)
+  def rtl?(locale_to_check = params[:locale])
+    rtl_locale?(locale_to_check || @browser_locale)
   end
 
   def locale_select
