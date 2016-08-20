@@ -10,6 +10,7 @@
     <div class="grids col-md-11 col-sm-12">
       <div class="row" data-hook="agent_settings_grid">
         <%= settings_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), "Select when you would like to receive email notifications.", admin_notifications_path) %>
+        <%= settings_item('glyphicon glyphicon-cloud', "API Keys", "Create and Manage API Keys", admin_api_keys_path) %>
       </div>
     </div>
   </div>
@@ -35,7 +36,6 @@
         <%= settings_item('glyphicon glyphicon-modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
         <%= settings_item('glyphicon glyphicon-envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
         <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
-        <%= settings_item('glyphicon glyphicon-cloud', "API Keys", "Create and Manage API Keys", admin_api_keys_path) %>
         <%= settings_item('glyphicon glyphicon-user', "users", "View and Add Users", admin_users_path) %>
       </div>
     </div>
