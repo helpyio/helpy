@@ -34,6 +34,8 @@ module Helpy
       Doorkeeper::ApplicationsController.layout "application"
       Doorkeeper::AuthorizationsController.layout "application"
       Doorkeeper::AuthorizedApplicationsController.layout "application"
+
+      Devise::Mailer.layout "mailer" # email.haml or email.erb
     end
 
   end

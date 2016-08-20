@@ -1,3 +1,5 @@
+# TRANSLATOR(s): Anna Prosvirova, Dmitry Zuev, Oleg Bovykin
+
 ru:
   language_name: 'Русский' # The name of the translation file, in that language
   root: &root 'Главная'
@@ -25,6 +27,8 @@ ru:
   did_this_help: "Ваша проблема решена?"
   yes_button: 'Да'
   no_button: 'Нет'
+  # yes_helped: 'Great!! Thanks for the feedback!'
+  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
   search_placeholder: "Введите ключевое слово, тему или вопрос"
@@ -78,6 +82,7 @@ ru:
   # footer
   powered_by: "Создано с помощью Helpy. Сервис поддержки с открытым исходным кодом."
   get_your_copy: "Получите свою копию на Github"
+  # version: "Version:"
 
   # devise/sessions/new
   login: "Войти"
@@ -140,11 +145,12 @@ ru:
 
   # Discussion messages
   reopen_message: "Это сообщение было снова открыто поддержкой."
-  close_message: "Этот тикет был закрыт поддержкой."
+  closed_message: "Этот тикет был закрыт поддержкой."
   trash_message: "Этот тикет был удалён."
   assigned_message: "Обсуждение было перенесено в %{assigned_to}."
 
   # User Admin
+  # users: Users
   contact_info: Контакт
   social_info: Социальные сети
   edit_user: Редактировать пользователя
@@ -158,6 +164,15 @@ ru:
     few: "%{count} пользователя найдено по запросу %{query}"
     many: "%{count} пользователей найдено по запросу %{query}"
 
+  # Invite users
+  # invite_users: "Invite New Users"
+  # invite_emails: "Email Addresses"
+  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
+  # invite_message: "Message"
+  # invite_message_placeholder: "An optional message that will be sent to the new users"
+  # invite_role: "Role for Invited Users"
+  # send_invite: "Send Invite"
+
   # Discussion View
   asked_a_question: "%{user_name} задал вопрос..."
   replied: "%{user_name} ответил..."
@@ -166,6 +181,7 @@ ru:
   select_common: Выберите Общий Ответ
   reply: Ответьте
   internal_note: Внутренняя заметка
+  # mark_as_resolved: Mark as resolved
   upvote:
     zero: "Голосовать | %{count}"
     one: "Голосовать | %{count}"
@@ -193,10 +209,16 @@ ru:
   published_content: "Опубликовано"
   additional_settings: "Дополнительные настройки"
   content_status: "Статус контента"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
 
   # Communities
   new_community: Создать сообщество
   create_new_community: Создать сообщество
+  # layout_select: Select Format
+  # layout_table: Table
+  # layout_grid: Grid
+  # layout_qna: Q&A
 
   # Mail messages
   hello: "Привет %{user_name}"
@@ -206,6 +228,13 @@ ru:
   message_id: "№ тикета"
   message_response: "Следующее сообщение было размещено в ответ на ваш вопрос:"
   view_online: "Посмотреть это онлайн:"
+
+  # settings
+  # settings: "Settings"
+  # general: "General"
+  # design: "Design"
+  # international: "International"
+  # widget: "Embeddable Widget"
 
   activerecord:
     attributes:
@@ -218,6 +247,7 @@ ru:
         cell_phone: номер мобильного телефона
         city: Город
         state: Область
+        # signature: Signature
       topic:
         name: Тема
       post:
@@ -242,6 +272,9 @@ ru:
         name: Имя
         description: Описание
         private: Приватный
+        # layout: Layout
+        # allow_topic_voting: Allow topic voting?
+        # allow_post_voting: Allow post voting?
 
     # helpers:
       submit:

@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  include ActsAsTaggableOn::TagsHelper
+
   # include TagsHelper
 
   # Sets the page title and outputs title if container is passed in.
@@ -59,15 +61,15 @@ module ApplicationHelper
     javascript_include_tag('rtl', "data-turbolinks-track" => true)
   end
 
-  def rtl?
-    rtl_locale?(params[:locale] || @browser_locale)
+  def rtl?(locale_to_check = params[:locale])
+    rtl_locale?(locale_to_check || @browser_locale)
   end
 
   def locale_select
     # options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
 
     tag = "<select name='lang' class='form-control' id='lang'>"
-    tag += "<option value='#{I18n.locale}'>Translate to a different language...</option>"
+    tag += "<option value='#{I18n.locale}'>#{t('translate', default: 'Translate to a different language')}...</option>"
 
     AppSettings['i18n.available_locales'].sort.each do |locale|
       selected = "selected" if "#{locale}" == params[:lang]
@@ -82,6 +84,12 @@ module ApplicationHelper
       form_tag('#', id: "locale-change", method: 'get') do
         tag.html_safe
       end
+    end
+  end
+
+  def tag_listing(tags)
+    tags.each do |tag|
+      concat content_tag(:span, tag, class: "label label-tagging")
     end
   end
 

@@ -36,7 +36,7 @@ class TopicTest < ActiveSupport::TestCase
 
   should validate_presence_of(:name)
   should validate_length_of(:name).is_at_most(255)
-  
+
 #forum 1 should exist and be private
 #forum 2 should exist and be private
 
@@ -75,17 +75,16 @@ class TopicTest < ActiveSupport::TestCase
     end
   end
 
-  test "closed messages should be unassigned" do
+  test "closing a discussion should not unassign it" do
 
-    Topic.all.each do |topic|
+    topic = Topic.find(1)
 
-      topic.close
+    topic.close
 
-      assert topic.assigned_user_id.nil?
-      assert topic.current_status == 'closed'
-      assert_not_nil topic.closed_date
+    assert_not_nil topic.assigned_user_id
+    assert topic.current_status == 'closed'
+    assert_not_nil topic.closed_date
 
-    end
   end
 
   test "creating new lowercase name should be saved in sentence_case" do
@@ -129,10 +128,20 @@ class TopicTest < ActiveSupport::TestCase
 
   test "#assign should set the current_status of the topic to pending, assigned_user_id to specified user_id, and should create a closed_message post belonging to that topic" do
     topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    bulk_post_attributes = []
     t_posts_count = topic.posts.count
-    topic.assign(2, 1)
+    bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id}
+    topics = Topic.where(id: topic.id)
+    topics.bulk_assign(bulk_post_attributes, 1)
+
+    topic = Topic.find(topic.id)
     assert_equal 'pending', topic.current_status
     assert_equal 1, topic.assigned_user_id
     assert_equal t_posts_count + 1, topic.posts.count
+  end
+
+  test "public? should return true for a public topic, false if private" do
+    assert_equal Topic.find(1).public?, false
+    assert_equal Topic.find(4).public?, true
   end
 end

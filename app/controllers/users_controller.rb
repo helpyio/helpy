@@ -42,6 +42,16 @@
 #  last_sign_in_ip        :inet
 #  provider               :string
 #  uid                    :string
+#  invitation_token       :string
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string
+#  invitations_count      :integer          default(0)
+#  invitation_message     :text
+#  time_zone              :string           default("UTC")
 #
 
 class UsersController < ApplicationController
@@ -78,7 +88,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [ :name, :email, :bio, :company, :title ] # extend with your own params
+      accessible = [ :name, :email, :bio, :company, :title, :time_zone ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

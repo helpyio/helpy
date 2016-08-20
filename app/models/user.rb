@@ -42,6 +42,16 @@
 #  last_sign_in_ip        :inet
 #  provider               :string
 #  uid                    :string
+#  invitation_token       :string
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string
+#  invitations_count      :integer          default(0)
+#  invitation_message     :text
+#  time_zone              :string           default("UTC")
 #
 
 class User < ActiveRecord::Base
@@ -50,6 +60,9 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
+
+  # Add preferences to user model
+  include RailsSettings::Extend
 
   TEMP_EMAIL_PREFIX = 'change@me'
 
@@ -78,17 +91,28 @@ class User < ActiveRecord::Base
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
+  after_create :enable_notifications_for_agents
 
   ROLES = %w[admin agent editor user]
 
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
+  scope :active, -> { where('active = ?', true)}
 
   def set_role_on_invitation_accept
     if self.role.nil?
       self.role = "agent"
-      self.save
+    end
+    self.active = true
+    self.save
+  end
+
+  def enable_notifications_for_agents
+    if self.role == "agent" || self.role == "admin"
+      self.settings.notify_on_private = "1"
+      self.settings.notify_on_public = "1"
+      self.settings.notify_on_reply = "1"
     end
   end
 
@@ -163,6 +187,7 @@ class User < ActiveRecord::Base
           user.invitation_message = message
           user.name = "Invited User: #{email}"
           user.role = role
+          user.active = false
         end
       end
     end

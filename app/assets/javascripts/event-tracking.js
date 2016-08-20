@@ -51,7 +51,7 @@ Helpy.track = function(){
 
   $('.label-collapsed').off().on("click", function(){
     ga('send', 'event', 'Inpage-Nav','Click', 'Show Hidden');
-  })
+  });
 
   $('.topic-box').on("click", function(){
     ga('send', 'event', 'Inpage-Nav','Click', $(this).find('h5').text());

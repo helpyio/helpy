@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7'
+gem 'rails', '4.2.7.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -93,6 +93,7 @@ gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
+gem 'selectize-rails'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
@@ -135,6 +136,8 @@ group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
   gem 'byebug'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'spring', '~> 1.4.0'
   gem 'annotate'
   gem 'brakeman', require: false
@@ -142,6 +145,8 @@ group :development, :test do
   gem 'scss-lint'
   gem 'awesome_print'
 end
+
+gem 'bulk_insert'
 
 group :development do
   gem "better_errors"
@@ -165,6 +170,9 @@ group :test do
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
+
+  # remove this for Rails 5 because the function is already included
+  gem 'test_after_commit'
 end
 
 group :production do

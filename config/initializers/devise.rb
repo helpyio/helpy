@@ -4,7 +4,6 @@
 require 'devise/custom_failure'
 Devise.setup do |config|
 
-
   #This sets up a cookie to generate the above_header with javascript
 
   Warden::Manager.after_set_user do |user,auth,_opts|
@@ -30,7 +29,7 @@ Devise.setup do |config|
   config.mailer_sender = Settings.from_email
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'Devise::Mailer'
+  config.mailer = 'DeviseMailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and

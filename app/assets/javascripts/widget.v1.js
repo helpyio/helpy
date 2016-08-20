@@ -14,7 +14,7 @@
     var allScripts = document.getElementsByTagName('script');
     var targetScripts = [];
     for (var i in allScripts) {
-        var name = allScripts[i].src
+        var name = allScripts[i].src;
         if(name && name.indexOf(scriptName) > 0)
             targetScripts.push(allScripts[i]);
     }

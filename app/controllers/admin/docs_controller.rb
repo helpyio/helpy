@@ -33,6 +33,7 @@ class Admin::DocsController < Admin::BaseController
     end
     @doc = Doc.where(id: params[:id]).first
     @category = @doc.category
+    # @doc.tag_list = params[:doc][:tag_list]
     if @doc.update_attributes(doc_params)
       redirect_to(admin_category_path(@category.id))
     else
@@ -64,7 +65,8 @@ class Admin::DocsController < Admin::BaseController
     :front_page,
     :user_id,
     :allow_comments,
-    {screenshots: []}
+    {screenshots: []},
+    :tag_list
   )
   end
 
