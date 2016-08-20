@@ -221,12 +221,48 @@ en:
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
 
+  # Admin notifications
+  notify_new_private: "A new private customer message has been received from %{user_name}:"
+  notify_new_public: "A new public customer message has been posted by %{user_name}:"
+  notify_new_reply: "A new customer reply has been received from %{user_name}:"
+  to_reply: 'Reply to this message directly or online:'
+
+  # Notifications settings panel
+  notify_on_private: "Email me when a private customer question has been received"
+  notify_on_public: "Email me when a public customer question has been posted"
+  notify_on_reply: "Email me when a new reply to a private discussion has been received"
+
   # settings
-  settings: "Settings"
+  agent_settings: "Agent Settings"
+  notifications: "Notifications"
+  settings: "System Settings"
   general: "General"
   design: "Design"
   international: "International"
   widget: "Embeddable Widget"
+
+  # Insights
+  team_insights: "Team insights for %{site_name}"
+  filter_by_date: "Filter by date"
+  today: "Today"
+  yesterday: "Yesterday"
+  this_week: "This week"
+  last_week: "Last week"
+  this_month: "This month"
+  date_range: "Date Range"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> your users started 1 new conversation"
+    other: "<strong>%{period}</strong> your users started <strong>%{count} new conversations</strong>"
+  insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+  no_discussions: "No new conversations have been started <strong>%{period}</strong>"
+  assigned_topics: "Assigned Topics"
+  responded: "Responded"
+  closed: "Closed"
+  replies: "Replies"
+  median_time: "Median time to frst response"
+
+
 
   activerecord:
     attributes:

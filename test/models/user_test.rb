@@ -42,6 +42,16 @@
 #  last_sign_in_ip        :inet
 #  provider               :string
 #  uid                    :string
+#  invitation_token       :string
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string
+#  invitations_count      :integer          default(0)
+#  invitation_message     :text
+#  time_zone              :string           default("UTC")
 #
 
 require 'test_helper'
@@ -64,7 +74,7 @@ class UserTest < ActiveSupport::TestCase
       bulk_post_attributes = []
       bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id}
       topics = Topic.where(id: topic.id)
-      topics.bulk_assign(bulk_post_attributes, 1) 
+      topics.bulk_assign(bulk_post_attributes, 1)
     end
   end
 
@@ -185,6 +195,43 @@ class UserTest < ActiveSupport::TestCase
                                   })
     user = User.find_for_oauth(oath)
     assert_equal user.email, user.temp_email(oath)
+  end
+
+  test "An agent should be enabled for notifications after they are created" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: 'test agent',
+      password: '12345678',
+      role: 'agent'
+    )
+    assert_equal u.settings.notify_on_private, "1"
+    assert_equal u.settings.notify_on_public, "1"
+    assert_equal u.settings.notify_on_reply, "1"
+  end
+
+  test "An admin should be enabled for notifications after they are created" do
+    u = User.create!(
+      email: 'admin@temp.com',
+      name: 'test admin',
+      password: '12345678',
+      role: 'admin'
+    )
+    assert_equal u.settings.notify_on_private, "1"
+    assert_equal u.settings.notify_on_public, "1"
+    assert_equal u.settings.notify_on_reply, "1"
+  end
+
+  test "An user should NOT be enabled for notifications after they are created" do
+    u = User.create!(
+      email: 'user@temp.com',
+      name: 'test user',
+      password: '12345678',
+      role: 'user'
+    )
+    assert_equal u.settings.notify_on_private, nil
+    assert_equal u.settings.notify_on_public, nil
+    assert_equal u.settings.notify_on_reply, nil
+
   end
 
 end

@@ -1,7 +1,9 @@
 class TopicMailer < ActionMailer::Base
+  add_template_helper(ApplicationHelper)
 
   def new_ticket(topic)
     @topic = topic
+    @locale = @topic.locale
     email_with_name = %("#{topic.user.name}" <#{topic.user.email}>)
     mail(
       to: email_with_name,

@@ -1,13 +1,32 @@
-<div class="admin-header">
+<div class="agent-header">
   <h2 id="setting-header">
-    Settings
+    <%= t('agent_settings', default: 'Agent Settings') %>
   </h2>
 </div>
 
 <div class="settings-grid">
   <div class="settings-grid-row row">
-    <%= content_tag :div, nil, class: 'col-md-2 hidden-xs hidden-sm' %>
-    <div class="grids col-md-10 col-sm-12">
+    <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
+    <div class="grids col-md-11 col-sm-12">
+      <div class="row" data-hook="agent_settings_grid">
+        <%= settings_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), "Select when you would like to receive email notifications.", admin_notifications_path) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if current_user.is_admin? %>
+
+<div class="admin-header">
+  <h2 id="setting-header">
+    <%= t('settings', default: 'System Settings') %>
+  </h2>
+</div>
+
+<div class="settings-grid">
+  <div class="settings-grid-row row">
+    <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
+    <div class="grids col-md-11 col-sm-12">
       <div class="row" data-hook="admin_settings_grid">
         <%= settings_item('glyphicon glyphicon-cog', "general", "Manage general system settings like your Helpy name, what company to link back to.") %>
         <%= settings_item('glyphicon glyphicon-pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
@@ -36,6 +55,7 @@
   </div>
   <div class="col-md-9 col-sm-8 col-xs-10">
     <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', remote: true do |f| %>
+
       <div class="settings-section general">
         <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
         <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: "Site URL" %>
@@ -101,7 +121,11 @@
       <div class="settings-section widget hidden" data-hook="admin_settings_widget">
         <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: "Show Widget on Support Site" } %>
         <p>Add the embed widget to your site using the following URL:<br/>
-          <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code>
+          <code><%= "<script>" %></code><br/>
+          <code>&nbsp;&nbsp;<%= "var Helpy = Helpy || {};" %></code><br/>
+          <code>&nbsp;&nbsp;<%= "Helpy.domain = '#{AppSettings['settings.site_url']}';" %></code><br/>
+          <code><%= "</script>" %></code><br/>
+          <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code><br/>
         </p>
       </div>
       <div class="settings-section email hidden" data-hook="admin_settings_email">
@@ -121,6 +145,7 @@
           <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: "SMTP Domain" %>
         </div>
       </div>
+
       <div class="settings-section cloudinary hidden" data-hook="admin_settings_cloudinary">
         <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
         <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
@@ -132,3 +157,4 @@
     <% end %>
   </div>
 </div>
+<% end %>

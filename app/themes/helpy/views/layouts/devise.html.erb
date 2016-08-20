@@ -3,9 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 	<head>
 		<%= render 'layouts/head' %>
+		<%= rtl_tags if rtl? %>		
 	</head>
 
-<body>
+<body class="<%= 'rtl' if rtl? %>">
 <script>
   ga('set', 'location', location.href.split('#')[0]);
   ga('send', 'pageview', { "title": document.title });
@@ -24,7 +25,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div id="main-body" >
-					<%#= bootstrap_flash %>
+					<%= bootstrap_flash %>
 					<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
 					<div id="main-content">
 						<%= yield %>
