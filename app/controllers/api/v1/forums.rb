@@ -49,13 +49,15 @@ module API
         }
         params do
           requires :name, type: String, desc: "The name of the forum"
-          requires :allow_post_voting, type: Boolean, desc: "Should topic replies be voteable?"
-          requires :allow_topic_voting, type: Boolean, desc: "Should topics be voteable?"
-          requires :layout, type: String, desc: "The author of the article"
+          requires :description, type: String, desc: "The description of the forum"
+          optional :allow_post_voting, type: Boolean, desc: "Should topic replies be voteable?"
+          optional :allow_topic_voting, type: Boolean, desc: "Should topics be voteable?"
+          optional :layout, type: String, desc: "The layout used by the forum"
         end
         post "", root: :forums do
           forum = Forum.create!(
             name: permitted_params[:name],
+            description: permitted_params[:description],
             allow_topic_voting: permitted_params[:allow_topic_voting],
             allow_post_voting: permitted_params[:allow_post_voting],
             layout: permitted_params[:layout]
@@ -71,14 +73,16 @@ module API
         params do
           requires :id, type: Integer, desc: "The ID of the forum you are updating"
           requires :name, type: String, desc: "The name of the forum"
-          requires :allow_post_voting, type: Boolean, desc: "Should topic replies be voteable?"
-          requires :allow_topic_voting, type: Boolean, desc: "Should topics be voteable?"
-          requires :layout, type: String, desc: "The author of the article"
+          requires :description, type: String, desc: "The description of the forum"
+          optional :allow_post_voting, type: Boolean, desc: "Should topic replies be voteable?"
+          optional :allow_topic_voting, type: Boolean, desc: "Should topics be voteable?"
+          optional :layout, type: String, desc: "The layout used by the forum"
         end
         patch ":id", root: :forums do
-          forum = Forum.where(id: permitted_params[:id])
+          forum = Forum.find(permitted_params[:id])
           forum.update!(
             name: permitted_params[:name],
+            description: permitted_params[:description],
             allow_topic_voting: permitted_params[:allow_topic_voting],
             allow_post_voting: permitted_params[:allow_post_voting],
             layout: permitted_params[:layout]

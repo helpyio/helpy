@@ -33,7 +33,7 @@ module API
           requires :key, type: String
           requires :value, type: String
         end
-        put "", root: :settings do
+        post "", root: :settings do
           AppSettings[params[:key]] = params[:value]
           present AppSettings[params[:key]]
         end

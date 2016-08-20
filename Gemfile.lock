@@ -639,6 +639,7 @@ DEPENDENCIES
   pg_search
   pry
   pry-byebug
+  rack-cors
   rails (= 4.2.7.1)
   rails-i18n (~> 4.0.0)
   rails-settings-cached (~> 0.5)

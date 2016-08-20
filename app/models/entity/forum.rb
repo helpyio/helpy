@@ -2,6 +2,7 @@ module Entity
   class Forum < Base
     expose :id
     expose :name, documentation: {type: 'String', desc: 'The name of the forum'}
+    expose :description, documentation: {type: 'String', desc: 'A description for the forum'}
     expose :topics_count
     expose :last_post_id
     expose :last_post_date

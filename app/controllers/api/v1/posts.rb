@@ -26,7 +26,7 @@ module API
           requires :user_id, type: Integer, desc: "The User ID of the poster"
           requires :kind, type: String, desc: "The kind of post, either 'reply' or 'note'"
         end
-        post "create", root: :posts do
+        post "", root: :posts do
           post = Post.create!(
             topic_id: permitted_params[:topic_id],
             body: permitted_params[:body],

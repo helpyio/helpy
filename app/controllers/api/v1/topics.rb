@@ -179,10 +179,10 @@ module API
             user_id: permitted_params[:user_id],
             kind: 'first'
           )
-          present ticket, with: Entity::Topic, posts: true
+          present topic, with: Entity::Topic, posts: true
         end
 
-        # UPDATE SINGLE TICKET (PRIVACY, STATUS, ASSIGNED, ETC)
+        # UPDATE SINGLE TOPIC (PRIVACY, STATUS, ASSIGNED, ETC)
         desc "Update the status, assigned user, etc of a community topic"
         params do
           requires :id, type: Integer, desc: "The topic ID to update"
@@ -193,14 +193,14 @@ module API
         end
 
         patch ":id", root: :topics do
-          ticket = Topic.where(id: permitted_params[:id]).first
-          ticket.update!(
+          topic = Topic.where(id: permitted_params[:id]).first
+          topic.update!(
             forum_id: permitted_params[:forum_id],
             current_status: permitted_params[:current_status],
             private: permitted_params[:private],
             assigned_user_id: permitted_params[:assigned_user_id]
           )
-          present ticket, with: Entity::Topic, posts: true
+          present topic, with: Entity::Topic, posts: true
         end
 
         # VOTE FOR A TOPIC
