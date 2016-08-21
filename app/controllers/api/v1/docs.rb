@@ -15,7 +15,7 @@ module API
       end
 
       include API::V1::Defaults
-      resource :docs do
+      resource :docs, desc: "Manage knowledgebase documents" do
 
         throttle max: 200, per: 1.minute
 

@@ -14,7 +14,7 @@ module API
       end
 
       include API::V1::Defaults
-      resource :categories do
+      resource :categories, desc: 'Manage knowledgebase categories' do
 
         throttle max: 200, per: 1.minute
 

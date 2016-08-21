@@ -12,8 +12,10 @@ module Entity
     expose :rank, documentation: {type: 'Integer', desc: 'The rank can be used to determine the ordering of categories'}
     expose :front_page, documentation: {type: 'Boolean', desc: 'Whether or not the category should appear on the front page'}
     expose :active, documentation: {type: 'Boolean', desc: 'Whether or not the category is live on the site'}
-    expose :created_at
-    expose :updated_at
+    with_options(format_with: :iso_timestamp) do
+      expose :created_at
+      expose :updated_at
+    end
     expose :docs, using: Entity::Doc, if: { docs: true } do |category, options|
       category.docs.includes(:translations).ordered.limit(options[:docs_limit])
     end

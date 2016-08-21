@@ -18,7 +18,7 @@ module API
       throttle max: 200, per: 1.minute
 
       # PRIVATE TICKET ENDPOINTS
-      resource :tickets do
+      resource :tickets, desc: "Create and Manage private discussions" do
 
         # LIST BY STATUS
         desc "List all PRIVATE tickets by status", {
@@ -142,7 +142,7 @@ module API
       end
 
       # PUBLIC TOPIC ENDPOINTS
-      resource :topics do
+      resource :topics, desc: "Create and manage public discussions" do
 
         # SHOW ONE TOPIC AND ITS THREAD
         desc "Show a single ticket", {

@@ -14,10 +14,10 @@ module API
       end
 
       include API::V1::Defaults
-      resource :search do
+      resource :search, desc: "Search the KB or community discussions" do
 
         throttle max: 200, per: 1.minute
-        
+
         ## SEARCH PUBLIC KNOWLEDGEBASE
         desc "Search the knowledgebase", {
           notes: "Search for docs, posts, and topics by query"

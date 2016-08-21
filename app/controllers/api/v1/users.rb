@@ -16,7 +16,7 @@ module API
 
       include API::V1::Defaults
 
-      resource :users do
+      resource :users, desc: "View and edit users" do
 
         throttle max: 200, per: 1.minute
 

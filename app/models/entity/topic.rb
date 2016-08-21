@@ -1,23 +1,25 @@
 module Entity
   class Topic < Base
-    expose :id
-    expose :forum_id
-    expose :user_id
+    expose :id, documentation: { type: "Integer" }
+    expose :forum_id, documentation: { type: "Integer", desc: "The Forum this topic belongs to." }
+    expose :user_id, documentation: { type: "Integer", desc: "The ID representing the creator of the topic."  }
     expose :user_name
-    expose :name
-    expose :posts_count
-    expose :waiting_on
+    expose :name, documentation: { type: "String", desc: "The title or subject of the Topic thread." }
+    expose :posts_count, documentation: { type: "Integer" }
+    # expose :waiting_on, documentation: { type: "String", desc: "Maintained by system, currently unused" }
     expose :last_post_date
     expose :closed_date
-    expose :last_post_id
-    expose :current_status
-    expose :private
-    expose :assigned_user_id
-    expose :points
-    expose :created_at
-    expose :updated_at
-    expose :doc_id
-    expose :locale
+    expose :last_post_id, documentation: { type: "Integer", desc: "Cached ID of the most recent post." }
+    expose :current_status, documentation: { type: "String", desc: "The status of the Topic. Can be 'new', 'open', 'pending', 'closed', 'spam', 'trash'" }
+    expose :private, documentation: { type: "String", desc: "Whether or not the Topic is private (a ticket). Tickets must also have forum_ID 1" }
+    expose :assigned_user_id, documentation: { type: "Integer" }
+    expose :points, documentation: { type: "Integer" }
+    with_options(format_with: :iso_timestamp) do
+      expose :created_at
+      expose :updated_at
+    end
+    expose :doc_id, documentation: { type: "Integer" }
+    expose :locale, documentation: { type: "String", desc: "The locale used when the author created the Topic." }
     expose :posts, using: Entity::Post, if: { posts: true }
   end
 end

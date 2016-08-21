@@ -112,7 +112,7 @@ Rails.application.routes.draw do
   end
 
   mount API::Base, at: "/"
-  mount GrapeSwaggerRails::Engine => '/swagger'
+  mount GrapeSwaggerRails::Engine => '/api/v1/api_doc'
 
   # Receive email from Griddler
   mount_griddler

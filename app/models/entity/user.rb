@@ -1,6 +1,6 @@
 module Entity
   class User < Base
-    expose :id
+    expose :id, documentation: { type: "Integer" }
     expose :login
     expose :name
     # expose :admin
@@ -22,12 +22,14 @@ module Entity
     expose :medium_image
     expose :large_image
     expose :language
-    expose :assigned_ticket_count
-    expose :topics_count
-    expose :active
-    expose :created_at
-    expose :updated_at
+    expose :assigned_ticket_count, documentation: { type: "Integer" }
+    expose :topics_count, documentation: { type: "Integer" }
+    expose :active, documentation: { type: "Boolean", desc: "Whether or not the user is active." }
+    with_options(format_with: :iso_timestamp) do
+      expose :created_at
+      expose :updated_at
+    end
     expose :email
-    expose :sign_in_count
+    expose :sign_in_count, documentation: { type: "Integer" }
   end
 end

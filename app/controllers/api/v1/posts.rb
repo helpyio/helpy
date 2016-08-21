@@ -14,12 +14,12 @@ module API
       end
 
       include API::V1::Defaults
-      resource :posts do
+      resource :posts, desc: "Post replies to topics" do
 
         throttle max: 200, per: 1.minute
 
         # CREATE NEW POST. THIS REPLIES TO BOTH COMMUNITY TOPICS AND PRIVATE TICKETS
-        desc "Add a new post to an existing topic"
+        desc "Add a new reply to an existing discussion"
         params do
           requires :topic_id, type: Integer, desc: "Topic to add post to"
           requires :body, type: String, desc: "The post body"
@@ -37,7 +37,7 @@ module API
         end
 
         # UPDATE POST. THIS REPLIES TO BOTH COMMUNITY TOPICS AND PRIVATE TICKETS
-        desc "Update existing post"
+        desc "Update a post"
         params do
           requires :id, type: Integer, desc: "The Post ID"
           requires :body, type: String, desc: "The post body"

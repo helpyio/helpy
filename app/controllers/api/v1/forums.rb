@@ -14,7 +14,7 @@ module API
       end
 
       include API::V1::Defaults
-      resource :forums do
+      resource :forums, desc: "Manage community forums." do
 
         throttle max: 200, per: 1.minute
 

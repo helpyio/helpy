@@ -14,7 +14,7 @@ module API
       end
 
       include API::V1::Defaults
-      resource :settings do
+      resource :settings, desc: "See and edit site settings" do
 
         throttle max: 200, per: 1.minute
 

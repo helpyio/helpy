@@ -15,7 +15,21 @@ module API
       mount API::V1::Users
       mount API::V1::Search
       mount API::V1::Settings
-      add_swagger_documentation
+
+      add_swagger_documentation \
+        info: {
+          title: "Helpy API",
+          description: "The Helpy API provides programmatic access to most functionality
+           in Helpy.  Administrators and Agents can create an API key or register an OAuth2
+           application through the admin settings control panel to authenticate and gain
+           access to the API endpoints.",
+          # contact_name: "Contact name",
+          # contact_email: "Contact@email.com",
+          contact_url: "https://api.helpy.io/",
+          # license: "MIT.",
+          # license_url: "www.The-URL-of-the-license.org",
+          # terms_of_service_url: "www.The-URL-of-the-terms-and-service.com",
+        }
     end
   end
 end
