@@ -68,7 +68,7 @@ gem 'grape-swagger-entity'
 gem 'grape-attack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'doorkeeper'
-gem 'wine_bouncer', '~> 0.5.1'
+#gem 'wine_bouncer', '~> 0.5.1'
 
 gem 'permalink_fu'
 gem 'paper_trail'
