@@ -241,6 +241,15 @@ en:
   international: "International"
   widget: "Embeddable Widget"
 
+  # API Key Managmeent
+  api_keys: "API Keys"
+  key_name: "Key Name"
+  token: "Token"
+  add_key: "Add a New Key"
+  expire_token: "Expire Token"
+  expired: "Expired"
+  expire_confirm: "Please confirm your really want to expire this token."
+
   # Insights
   team_insights: "Team insights for %{site_name}"
   filter_by_date: "Filter by date"

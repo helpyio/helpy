@@ -19,7 +19,7 @@ class Admin::ApiKeysController < Admin::BaseController
   before_action :verify_agent
 
   def index
-    @api_keys = @user.api_keys.active.all.order(created_at: :desc)
+    @api_keys = @user.api_keys.all.order(date_expired: :desc)
     @api_key = ApiKey.new
   end
 
@@ -34,8 +34,6 @@ class Admin::ApiKeysController < Admin::BaseController
   def destroy
     @api_key = @user.api_keys.where(id: params[:id]).first
     @api_key.update! date_expired: Time.current
-
-    render js: "$('.api_key_#{@api_key.id}').remove();"
   end
 
   protected

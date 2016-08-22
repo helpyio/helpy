@@ -1,6 +1,6 @@
 <div class="admin-header">
   <h2 id="setting-header">
-    API Keys
+    <%= t('api_key', default: "API Keys") %>
   </h2>
 </div>
 <div class="row content-row">
@@ -14,15 +14,15 @@
       <col width="5%">
       <thead>
         <tr>
-          <td class="tiny-header">Name</td>
-          <td class="tiny-header">Token</td>
+          <td class="tiny-header"><%= t('key_name', default: 'Key Name') %></td>
+          <td class="tiny-header"><%= t('token', default: 'Token') %></td>
         </tr>
       </thead>
       <%= render partial: 'api_key', collection: @api_keys %>
     </table>
 
     <div class="add-form">
-    <h4>Add a New Key</h4>
+    <h4><%= t('add_key', default: 'Add a New Key') %></h4>
     <%= simple_form_for(@api_key, url: admin_api_keys_path, validate: true, remote: true, :html => { role: 'form'}) do |f| %>
       <span class="api_key-fields">
         <%= f.input :name %>
