@@ -105,6 +105,4 @@ module AdminHelper
     "settings-link" if link.blank? || link == '#'
   end
 
-
-
 end

@@ -99,6 +99,7 @@ Rails.application.routes.draw do
     resources :docs, except: [:index, :show]
     resources :forums# , except: [:index, :show]
     resources :users
+    resources :api_keys, except: [:show, :edit, :update]
     resources :topics, except: [:delete, :edit, :update] do
       resources :posts
     end
@@ -107,6 +108,9 @@ Rails.application.routes.draw do
     get '/team' => 'dashboard#stats', as: :stats
     root to: 'dashboard#index'
   end
+
+  mount API::Base, at: "/"
+  mount GrapeSwaggerRails::Engine => '/api/v1/api_doc'
 
   # Receive email from Griddler
   mount_griddler

@@ -10,6 +10,7 @@
     <div class="grids col-md-11 col-sm-12">
       <div class="row" data-hook="agent_settings_grid">
         <%= settings_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), "Select when you would like to receive email notifications.", admin_notifications_path) %>
+        <%= settings_item('glyphicon glyphicon-cloud', "API Keys", "Create and Manage API Keys", admin_api_keys_path) %>
       </div>
     </div>
   </div>

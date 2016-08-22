@@ -86,6 +86,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :votes
   has_many :docs
+  has_many :api_keys
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 

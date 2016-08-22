@@ -1,6 +1,6 @@
 # Simplecov to give a report of the test coverage on local development environment
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start 'rails'
 
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
