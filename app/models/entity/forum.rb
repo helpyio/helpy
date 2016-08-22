@@ -7,10 +7,8 @@ module Entity
     expose :last_post_id, documentation: { type: "Integer" }
     expose :last_post_date
     expose :private, documentation: {type: 'Boolean', desc: 'Whether the forum is publically accessible'}
-    with_options(format_with: :iso_timestamp) do
-      expose :created_at
-      expose :updated_at
-    end
+    expose :created_at
+    expose :updated_at
     expose :allow_topic_voting, documentation: {type: 'Boolean', desc: 'Whether or not to allow topic voting'}
     expose :allow_post_voting, documentation: {type: 'Boolean', desc: 'Whether or not to allow voting of reply posts'}
     expose :layout, documentation: {type: 'String', desc: 'The layout the forum uses. Can be Table, Grid, or Q&A'}

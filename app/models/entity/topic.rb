@@ -13,11 +13,9 @@ module Entity
     expose :current_status, documentation: { type: "String", desc: "The status of the Topic. Can be 'new', 'open', 'pending', 'closed', 'spam', 'trash'" }
     expose :private, documentation: { type: "String", desc: "Whether or not the Topic is private (a ticket). Tickets must also have forum_ID 1" }
     expose :assigned_user_id, documentation: { type: "Integer" }
-    expose :points, documentation: { type: "Integer" }
-    with_options(format_with: :iso_timestamp) do
-      expose :created_at
-      expose :updated_at
-    end
+    expose :points, documentation: { type: "Integer", desc: "The number of times this Topic has been voted for." }
+    expose :created_at
+    expose :updated_at
     expose :doc_id, documentation: { type: "Integer" }
     expose :locale, documentation: { type: "String", desc: "The locale used when the author created the Topic." }
     expose :posts, using: Entity::Post, if: { posts: true }
