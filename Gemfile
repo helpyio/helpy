@@ -66,6 +66,7 @@ gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 gem 'grape-attack'
+gem 'grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'permalink_fu'

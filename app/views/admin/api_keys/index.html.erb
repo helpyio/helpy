@@ -31,5 +31,10 @@
       <%= f.button :submit, t("save_changes"), class: 'btn btn-warning' %>
     <% end %>
     </div>
+    <br/>
+    <div>
+      <%= t('spec-note', default: "You can read and test out an interactive API spec at") %>:
+      <%= link_to("#{request.protocol + request.host_with_port}/api/v1/api_doc", "#{request.protocol + request.host_with_port}/api/v1/api_doc") %>
+    </div>
   </div>
 </div>

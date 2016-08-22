@@ -8,11 +8,14 @@ module API
       end
 
       include API::V1::Defaults
+      include Grape::Kaminari
 
       # throttle max: 200, per: 1.minute
 
       # PRIVATE TICKET ENDPOINTS
       resource :tickets, desc: "Create and Manage private discussions" do
+
+        paginate per_page: 20
 
         # LIST BY STATUS
         desc "List all PRIVATE tickets by status", {
@@ -26,7 +29,7 @@ module API
           topics = Forum.find(1).topics.where(
             current_status: permitted_params[:status]
           )
-          present topics, with: Entity::Topic
+          present paginate(topics), with: Entity::Topic
         end
 
         # LIST BY USER
@@ -39,7 +42,7 @@ module API
         end
         get "user/:user_id", root: :topics do
           topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
-          present topics, with: Entity::Topic
+          present paginate(topics), with: Entity::Topic
         end
 
         # SHOW ONE TICKET AND ITS THREAD

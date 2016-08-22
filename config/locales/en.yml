@@ -249,6 +249,7 @@ en:
   expire_token: "Expire Token"
   expired: "Expired"
   expire_confirm: "Please confirm your really want to expire this token."
+  spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
   team_insights: "Team insights for %{site_name}"

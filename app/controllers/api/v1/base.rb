@@ -20,10 +20,10 @@ module API
 
       add_swagger_documentation \
         info: {
-          title: "Helpy API",
+          title: "Helpy API Spec",
           description: "The Helpy API provides programmatic access to most functionality
-           in Helpy.  Administrators and Agents can create an API key or register an OAuth2
-           application through the admin settings control panel to authenticate and gain
+           in Helpy.  Administrators and Agents can create an API key through the
+           admin settings control panel to authenticate and gain
            access to the API endpoints.",
           # contact_name: "Contact name",
           # contact_email: "Contact@email.com",
