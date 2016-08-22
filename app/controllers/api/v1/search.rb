@@ -4,10 +4,6 @@ module API
   module V1
     class Search < Grape::API
       helpers Doorkeeper::Grape::Helpers
-      #
-      # before do
-      #   doorkeeper_authorize!
-      # end
 
       before do
         authenticate!
@@ -16,7 +12,7 @@ module API
       include API::V1::Defaults
       resource :search, desc: "Search the KB or community discussions" do
 
-        throttle max: 200, per: 1.minute
+        # throttle max: 200, per: 1.minute
 
         ## SEARCH PUBLIC KNOWLEDGEBASE
         desc "Search the knowledgebase", {

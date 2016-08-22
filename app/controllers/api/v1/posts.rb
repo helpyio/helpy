@@ -4,10 +4,7 @@ module API
   module V1
     class Posts < Grape::API
       helpers Doorkeeper::Grape::Helpers
-      #
-      # before do
-      #   doorkeeper_authorize!
-      # end
+
       before do
         authenticate!
         restrict_to_role %w(admin agent)
@@ -16,7 +13,7 @@ module API
       include API::V1::Defaults
       resource :posts, desc: "Post replies to topics" do
 
-        throttle max: 200, per: 1.minute
+        # throttle max: 200, per: 1.minute
 
         # CREATE NEW POST. THIS REPLIES TO BOTH COMMUNITY TOPICS AND PRIVATE TICKETS
         desc "Add a new reply to an existing discussion"

@@ -4,10 +4,6 @@ module API
   module V1
     class Users < Grape::API
       helpers Doorkeeper::Grape::Helpers
-      #
-      # before do
-      #   doorkeeper_authorize!
-      # end
 
       before do
         authenticate!
@@ -18,7 +14,7 @@ module API
 
       resource :users, desc: "View and edit users" do
 
-        throttle max: 200, per: 1.minute
+        # throttle max: 200, per: 1.minute
 
         # LIST ALL USERS
         desc "List all users", {

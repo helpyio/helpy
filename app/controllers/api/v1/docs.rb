@@ -4,10 +4,6 @@ module API
   module V1
     class Docs < Grape::API
       helpers Doorkeeper::Grape::Helpers
-      #
-      # before do
-      #   doorkeeper_authorize!
-      # end
 
       before do
         authenticate!
@@ -17,7 +13,7 @@ module API
       include API::V1::Defaults
       resource :docs, desc: "Manage knowledgebase documents" do
 
-        throttle max: 200, per: 1.minute
+        # throttle max: 200, per: 1.minute
 
         # SHOW A SINGLE DOC
         desc "Shows a single doc", {

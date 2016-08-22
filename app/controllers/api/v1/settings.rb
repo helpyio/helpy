@@ -4,10 +4,7 @@ module API
   module V1
     class Settings < Grape::API
       helpers Doorkeeper::Grape::Helpers
-      #
-      # before do
-      #   doorkeeper_authorize!
-      # end
+
       before do
         authenticate!
         restrict_to_role %w(admin)
@@ -16,7 +13,7 @@ module API
       include API::V1::Defaults
       resource :settings, desc: "See and edit site settings" do
 
-        throttle max: 200, per: 1.minute
+        # throttle max: 200, per: 1.minute
 
         # LIST ALL SETTINGS
         desc "List all settings and their values"

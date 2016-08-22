@@ -4,8 +4,10 @@ module API
   module V1
     class Base < Grape::API
       format :json
-      # use ::WineBouncer::OAuth2
-      use Grape::Attack::Throttle
+
+      # Uncomment to use rate limiting. Requires a Redis instance.
+      # Set env['REDIS_URL'] (See: https://github.com/gottfrois/grape-attack)
+      # use Grape::Attack::Throttle
 
       mount API::V1::Categories
       mount API::V1::Docs

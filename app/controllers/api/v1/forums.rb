@@ -4,10 +4,7 @@ module API
   module V1
     class Forums < Grape::API
       helpers Doorkeeper::Grape::Helpers
-      #
-      # before do
-      #   doorkeeper_authorize!
-      # end
+
       before do
         authenticate!
         restrict_to_role %w(admin agent)
@@ -16,7 +13,7 @@ module API
       include API::V1::Defaults
       resource :forums, desc: "Manage community forums." do
 
-        throttle max: 200, per: 1.minute
+        # throttle max: 200, per: 1.minute
 
         # LIST ALL FORUMS
         desc "List all forums", {
