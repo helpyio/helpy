@@ -15,8 +15,6 @@ Rails.application.routes.draw do
 
   localized do
 
-    use_doorkeeper
-
     root to: "home#index"
 
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth

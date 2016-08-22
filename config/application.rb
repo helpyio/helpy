@@ -31,10 +31,6 @@ module Helpy
     config.active_job.queue_adapter = :sucker_punch
 
     config.to_prepare do
-      Doorkeeper::ApplicationsController.layout "application"
-      Doorkeeper::AuthorizationsController.layout "application"
-      Doorkeeper::AuthorizedApplicationsController.layout "application"
-
       Devise::Mailer.layout "mailer" # email.haml or email.erb
     end
 

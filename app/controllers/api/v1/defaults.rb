@@ -20,27 +20,17 @@ module API
           end
 
           def authenticate!
-            
-            if doorkeeper_token
-              doorkeeper_authorize!
-            else
-              error!('Unauthorized. Invalid or expired token.', 401) unless current_user #||
-            end
+            error!('Unauthorized. Invalid or expired token.', 401) unless current_user
           end
 
           def current_user
-            # find token. Check if valid.
-            if doorkeeper_token
-              User.find(doorkeeper_token.resource_owner_id)
-            else
-              passed_token = request.headers["X-Token"] || params["token"]
-              token = ApiKey.where(access_token: passed_token).first
+            passed_token = request.headers["X-Token"] || params["token"]
+            token = ApiKey.where(access_token: passed_token).first
 
-              if token && !token.expired?
-                @current_user = User.find(token.user_id)
-              else
-                false
-              end
+            if token && !token.expired?
+              @current_user = User.find(token.user_id)
+            else
+              false
             end
           end
 

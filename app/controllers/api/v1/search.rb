@@ -1,9 +1,6 @@
-require 'doorkeeper/grape/helpers'
-
 module API
   module V1
     class Search < Grape::API
-      helpers Doorkeeper::Grape::Helpers
 
       before do
         authenticate!
