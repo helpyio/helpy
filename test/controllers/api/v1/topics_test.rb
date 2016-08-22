@@ -108,21 +108,20 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
   end
 
   test "an API user should be able to assign a ticket" do
-    user = User.find(2)
+    user = User.find(1)
     ticket = Topic.find(2)
 
     params = {
-      status: 'closed'
+      assigned_user_id: user.id
     }
 
     post "/api/v1/tickets/assign/#{ticket.id}.json", @default_params.merge(params)
 
     object = JSON.parse(last_response.body)
-    assert object['status'] == params['status']
+    assert object['assigned_user_id'] == 1
   end
 
   test "an API user should be able to move a private ticket to a public forum" do
-    user = User.find(1)
     ticket = Topic.find(2)
 
     params = {
@@ -173,7 +172,6 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
   end
 
   test "an API user should be able to update a public topic" do
-    user = User.find(1)
     topic = Topic.find(4)
 
     params = {
