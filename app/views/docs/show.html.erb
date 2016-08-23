@@ -30,6 +30,10 @@
       <div class="more-important meta-header"><%= I18n.t("last_edited", default: "Last Edited") %>:</div>
       <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
     </div>
+    <div id="doc-tags" class="doc-meta">
+      <div class="more-important meta-header"><%= I18n.t("Tagged", default: "Tagged") %>:</div>
+      <div class="more-important meta-header"><% tag_listing(@doc.tag_list) %></div>
+    </div>
   </div>
     <div class="col-md-9 text-content">
     <%= @doc.content.html_safe %>

@@ -7,6 +7,7 @@
   <td class="user-link">
     <span class="more-important">
       <%= link_to user.name.titleize, admin_user_path(user.id), remote: true, class: 'user-link' unless user.name.nil? %>
+      <%= content_tag('span', user.role.titleize, class: 'label label-default') if user.is_agent? %>
     </span><br/>
     <span class="less-important last-active">Last Seen: <%= last_active_time(user.last_sign_in_at) %></span>
   </td>

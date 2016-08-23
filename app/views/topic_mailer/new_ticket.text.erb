@@ -8,7 +8,7 @@
 
 <%= simple_format(@topic.posts.last.body) %>
 
-<%= t('view_online', default: 'View this online:') %> <%= topic_posts_url(@topic, host: AppSettings['settings.site_url']) %>
+<%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
 -----------
 Powered by Helpy
 Get a Free Helpy Support System for your Site at http://helpy.io/

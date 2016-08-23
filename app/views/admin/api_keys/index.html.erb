@@ -1,0 +1,40 @@
+<div class="admin-header">
+  <h2 id="setting-header">
+    <%= t('api_key', default: "API Keys") %>
+  </h2>
+</div>
+<div class="row content-row">
+
+  <div class="col-md-12">
+
+    <table id="forums" class="api_keys table-hover">
+      <col width="15%">
+      <col width="40%">
+      <col width="40%">
+      <col width="5%">
+      <thead>
+        <tr>
+          <td class="tiny-header"><%= t('key_name', default: 'Key Name') %></td>
+          <td class="tiny-header"><%= t('token', default: 'Token') %></td>
+        </tr>
+      </thead>
+      <%= render partial: 'api_key', collection: @api_keys %>
+    </table>
+
+    <div class="add-form">
+    <h4><%= t('add_key', default: 'Add a New Key') %></h4>
+    <%= simple_form_for(@api_key, url: admin_api_keys_path, validate: true, remote: true, :html => { role: 'form'}) do |f| %>
+      <span class="api_key-fields">
+        <%= f.input :name %>
+        <%= f.input :user_id, input_html: { value: @user.id }, as: :hidden %>
+      </span>
+      <%= f.button :submit, t("save_changes"), class: 'btn btn-warning' %>
+    <% end %>
+    </div>
+    <br/>
+    <div>
+      <%= t('spec-note', default: "You can read and test out an interactive API spec at") %>:
+      <%= link_to("#{request.protocol + request.host_with_port}/api/v1/api_doc", "#{request.protocol + request.host_with_port}/api/v1/api_doc") %>
+    </div>
+  </div>
+</div>

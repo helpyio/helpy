@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions' }
+    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
 
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
 
+
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
 
@@ -77,7 +78,10 @@ Rails.application.routes.draw do
     get 'settings' => 'settings#index', as: :settings
     get 'settings/preview' => 'settings#preview', as: :preview
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
-    
+
+    get 'notifications' => 'settings#notifications', as: :notifications
+    put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
+
     # Onboarding Routes
     get '/onboarding/index' => 'onboarding#index', as: :onboarding
     patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
@@ -101,13 +105,18 @@ Rails.application.routes.draw do
     resources :docs, except: [:index, :show]
     resources :forums# , except: [:index, :show]
     resources :users
+    resources :api_keys, except: [:show, :edit, :update]
     resources :topics, except: [:delete, :edit, :update] do
       resources :posts
     end
     resources :posts
-    # get '/dashboard' => 'admin#dashboard', as: :admin_dashboard
+    get '/dashboard' => 'dashboard#index', as: :dashboard
+    get '/team' => 'dashboard#stats', as: :stats
     root to: 'dashboard#index'
   end
+
+  mount API::Base, at: "/"
+  mount GrapeSwaggerRails::Engine => '/api/v1/api_doc'
 
   # Receive email from Griddler
   mount_griddler

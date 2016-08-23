@@ -1,3 +1,59 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  login                  :string
+#  identity_url           :string
+#  name                   :string
+#  admin                  :boolean          default(FALSE)
+#  bio                    :text
+#  signature              :text
+#  role                   :string           default("user")
+#  home_phone             :string
+#  work_phone             :string
+#  cell_phone             :string
+#  company                :string
+#  street                 :string
+#  city                   :string
+#  state                  :string
+#  zip                    :string
+#  title                  :string
+#  twitter                :string
+#  linkedin               :string
+#  thumbnail              :string
+#  medium_image           :string
+#  large_image            :string
+#  language               :string           default("en")
+#  assigned_ticket_count  :integer          default(0)
+#  topics_count           :integer          default(0)
+#  active                 :boolean          default(TRUE)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  provider               :string
+#  uid                    :string
+#  invitation_token       :string
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :string
+#  invitations_count      :integer          default(0)
+#  invitation_message     :text
+#  time_zone              :string           default("UTC")
+#
+
 class UsersController < ApplicationController
   before_action :set_user
   before_action :check_auth
@@ -32,7 +88,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [ :name, :email, :bio, :company, :title ] # extend with your own params
+      accessible = [ :name, :email, :bio, :company, :title, :time_zone ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

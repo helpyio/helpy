@@ -20,4 +20,18 @@ class Admin::BaseController < ApplicationController
     @remote_search = true
   end
 
+  def date_from_params
+    if params[:start_date].present?
+      @start_date = params[:start_date].to_datetime
+    else
+      @start_date = Time.zone.today.at_beginning_of_week
+    end
+
+    if params[:end_date].present?
+      @end_date = params[:end_date].to_datetime
+    else
+      @end_date = Time.zone.today.at_end_of_day
+    end
+  end
+
 end

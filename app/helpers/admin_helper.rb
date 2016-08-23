@@ -1,4 +1,6 @@
 module AdminHelper
+
+  include StatsHelper
   def assigned_to(topic)
     if topic.assigned_user.present?
       t(:assigned_to, agent: topic.assigned_user.name, default: "assigned to #{topic.assigned_user.name}")
@@ -102,7 +104,5 @@ module AdminHelper
   def settings_link(link)
     "settings-link" if link.blank? || link == '#'
   end
-
-
 
 end

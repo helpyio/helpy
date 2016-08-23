@@ -1,8 +1,9 @@
 class Admin::PostsController < Admin::BaseController
 
   before_action :verify_agent
+
   before_action :verify_admin, only: ['export']
-  after_action :send_message, :only => 'create'
+  
   respond_to :js
 
   def edit
@@ -51,23 +52,6 @@ class Admin::PostsController < Admin::BaseController
     @post.body = params[:post][:body]
     @post.active = params[:post][:active]
     render action: 'update' if @post.save
-  end
-
-  protected
-
-  def send_message
-   return if @post.kind == 'note'
-
-    #Should only send when admin posts, not when user replies
-    if @post.kind == 'first'
-      email_locale = I18n.locale
-    else
-      email_locale = @topic.locale.nil? ? I18n.locale : @topic.locale.to_sym
-    end
-    I18n.with_locale(email_locale) do
-      TopicMailer.new_ticket(@post.topic).deliver_later if @topic.private?
-    end
-
   end
 
 end

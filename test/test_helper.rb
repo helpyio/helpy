@@ -1,6 +1,6 @@
 # Simplecov to give a report of the test coverage on local development environment
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start 'rails'
 
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
@@ -11,13 +11,14 @@ require 'rails/test_help'
 # Requiring this library causes your jobs to run everything inline. So a call to the following
 # will actually be SYNCHRONOUS
 require 'sucker_punch/testing/inline'
+require 'pry'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  Settings.send_email = false
+  # Settings.send_email = false
 end
 
 class ActionController::TestCase
@@ -55,8 +56,8 @@ def set_default_settings
   AppSettings['email.mail_service'] = Settings.mail_service
   AppSettings['email.smtp_mail_username'] = Settings.smtp_mail_username
   AppSettings['email.smtp_mail_password'] = Settings.smtp_mail_password
-  AppSettings['email.mail_smtp'] = Settings.mail_smtp
-  AppSettings['email.mail_port'] = Settings.mail_port
+  AppSettings['email.mail_smtp'] = '127.0.0.1' # Settings.mail_smtp
+  AppSettings['email.mail_port'] = 1025 # Settings.mail_port
   AppSettings['email.mail_domain'] = Settings.mail_domain
   AppSettings['cloudinary.cloud_name'] = ''
   AppSettings['cloudinary.api_key'] = ''
