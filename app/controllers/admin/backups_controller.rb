@@ -18,4 +18,11 @@ class Admin::BackupsController < Admin::BaseController
     end
   end
 
+  def destroy
+    file = Backup.find(params[:id])
+    
+    file.destroy 
+    redirect_to admin_backups_path   
+  end
+
 end

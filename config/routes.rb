@@ -95,9 +95,10 @@ Rails.application.routes.draw do
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
     
     # Export Routes
-    get 'backups/index' => 'backups#index', as: :backups
+    get 'backups' => 'backups#index', as: :backups
     get 'backups/export' => "backups/export", as: :export_backup
     get  'backups/download' => "backups/download", as: :download
+    delete 'backups/:id(.:format)', :to => 'backups#destroy', as: :delete_backup
 
     resources :categories do
       resources :docs, except: [:index, :show]

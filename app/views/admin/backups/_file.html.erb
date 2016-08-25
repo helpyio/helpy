@@ -14,4 +14,8 @@
   <td class="last-active less-important text-right hidden-xs">
     <%= link_to "download", admin_download_path(file_id: file, format: "csv") %>
   </td>
+
+  <td class="last-active less-important text-right hidden-xs">
+    <%= link_to "delete", admin_delete_backup_path(file), method: :delete, data: {confirm: "Are you really want to delete this csv?"} %>
+  </td>
 </tr>
