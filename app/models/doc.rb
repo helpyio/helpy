@@ -52,6 +52,7 @@ class Doc < ActiveRecord::Base
   ranks :rank
 
   acts_as_taggable
+  acts_as_taggable_on :tags
 
   scope :alpha, -> { order('title ASC') }
   scope :by_category, -> { order(:category_id) }

@@ -39,7 +39,6 @@ class PostTest < ActiveSupport::TestCase
     end
 
     assert @post.topic.post_cache == " #{@post.body}"
-
   end
 
   test "marking a post inactive should remove it from the topic cache" do
@@ -138,4 +137,69 @@ class PostTest < ActiveSupport::TestCase
     assert_equal(1, Topic.find(4).assigned_user_id, "Topic should be assigned to user 1")
 
   end
+
+  # Notifications Specs
+
+  test "Should send an admin notification of a new private topic created, if enabled" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first post",
+        kind: "first"
+      )
+    end
+  end
+
+  test "Should send an admin notification of a new public topic, if enabled" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      @topic = Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: false)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first message",
+        kind: "first"
+      )
+    end
+  end
+
+  test "Should send an admin notification of a new private reply, if enabled" do
+    # We expect three notifications- one goes to the agent to tell them there is a
+    # new private discussion, the second notifies the customer of the agents
+    # reply and the final notifies the agent of the final customer reply
+    assert_difference('ActionMailer::Base.deliveries.size', 3) do
+      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first message from the customer",
+        kind: "first"
+      )
+      @topic.posts.create!(
+        user_id: 1,
+        body: "This is the first reply from admin",
+        kind: "reply"
+      )
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the second reply from the customer",
+        kind: "reply"
+      )
+    end
+  end
+
+  test "Should NOT send any notifications if a new internal note" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic.posts.create!(
+        user_id: 2,
+        body: "This is the first message",
+        kind: "first"
+      )
+      @topic.posts.create!(
+        user_id: 1,
+        body: "This is the first note",
+        kind: "note"
+      )
+    end
+  end
+
 end

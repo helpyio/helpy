@@ -3,9 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 	<head>
 		<%= render partial: 'layouts/head' %>
+		<%= rtl_tags if rtl? %>
 	</head>
 
-<body>
+<body class="<%= 'rtl' if rtl? %>">
 <script>
   ga('set', 'location', location.href.split('#')[0]);
   ga('send', 'pageview', { "title": document.title });

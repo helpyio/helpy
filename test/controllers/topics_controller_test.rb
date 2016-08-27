@@ -70,7 +70,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'a browsing user should be able to sign up and post a new message at the same time, and receive an email' do
 
     assert_difference 'Topic.count', 1 do
-      assert_difference 'ActionMailer::Base.deliveries.size', 1 do
+      assert_difference 'ActionMailer::Base.deliveries.size', 2 do
         post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
       end
     end
@@ -132,7 +132,7 @@ class TopicsControllerTest < ActionController::TestCase
     assert_difference 'Post.count', 1, 'A post should have been created' do
       post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
     end
-    
+
     assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
@@ -180,8 +180,8 @@ class TopicsControllerTest < ActionController::TestCase
     # Make sure recaptcha site_key is set
     AppSettings['settings.recaptcha_site_key'] = "some-key"
     AppSettings['settings.recaptcha_api_key'] = "some-key"
-   
-    #TopicsController.expects(:verify_recaptcha).returns(true)   
+
+    #TopicsController.expects(:verify_recaptcha).returns(true)
 
     # Get new topics page
     get :new, locale: :en
@@ -196,10 +196,9 @@ class TopicsControllerTest < ActionController::TestCase
     assert_difference 'Post.count', 1, 'The new topic should have had a post' do
       post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
     end
-    
+
     assert_redirected_to topic_posts_path(assigns(:topic)), 'Did not redirect to new private topic'
 
-  end  
+  end
 
 end
-                                                                                                                                                                    

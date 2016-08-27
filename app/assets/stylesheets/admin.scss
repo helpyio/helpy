@@ -319,6 +319,33 @@ ul.settings-menu {
 
 }
 
+// === TEAM INSIGHTS ===
+
+.team-members {
+	margin-top: 40px;
+}
+
+.agent {
+
+	margin-bottom: 50px;
+
+	.agent-stat {
+		margin-bottom: 25px;
+	}
+	.agent-id {
+		margin-bottom: 35px;
+	}
+	.add-team-member {
+		margin-top: 200px;
+
+		i {
+			font-size: 48px;
+			color: #ccc;
+		}
+	}
+
+}
+
 @media(max-width:767px){
 	h1 {
 		font-size: 150%;
@@ -346,6 +373,11 @@ ul.settings-menu {
 	}
 	.settings-menu-icon {
 		font-size: 20px;
+	}
+	.agent {
+		.add-team-member {
+			margin-top: 20px;
+		}
 	}
 }
 
