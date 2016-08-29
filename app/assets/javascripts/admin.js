@@ -44,7 +44,7 @@ Helpy.admin = function(){
     $('a[data-target=' + showthis + ']').addClass('active-settings-link');
     $('.settings-section').addClass('hidden');
     $('.settings-section.' + showthis).removeClass('hidden');
-    $('.agent-header').hide();
+    $('.agent-header').addClass('hidden');
     $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
     return false;
   });
