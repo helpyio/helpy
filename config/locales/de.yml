@@ -3,7 +3,7 @@
 de:
   language_name: 'Deutsch' # The name of the translation file, in that language
   root: &root 'Home'
-  how_can_we_help: "Wie können wir Ihnen helfen?"
+  how_can_we_help: "Wie können wir helfen?"
   browse_topics: "Themen durchsuchen"
   support_team: "Support Team"
   nothing_here: "Noch nichts hier!"
@@ -24,18 +24,18 @@ de:
   change_your_locale: "Sprache ändern"
 
   # Voting widget
-  did_this_help: "Hat das Ihr Problem gelöst?"
+  did_this_help: "Hat das Ihre Problem gelöst?"
   yes_button: 'Ja'
   no_button: 'Nein'
-  yes_helped: 'Toll! Danke für Ihnen Bewertung!'
-  no_helped: 'Es tüt uns Leid, dass wir Ihnen helfen könten. Bitte kontaktieren Sie uns für weitere Hilfe'
+  yes_helped: 'Toll!! Danke für Irhe Bewertung!'
+  no_helped: 'Es tut uns Leid, das wir nicht helfen konnten. Bitte kontaktieren Sie uns für weitere Hilfe!'
 
   # Search
-  search_placeholder: "Geben Sie ein Stichwort, ein Thema oder eine Frage ein"
-  no_results: "Keine Ergebnisse gefunden, bitte suchen Sie erneut!"
+  search_placeholder: "Geben Sie ein Stichwort, Thema, oder Frage ein"
+  no_results: "Keine Suchergebnisse, bitte suchen Sie erneut!"
   results_found:
-    one: "Es wurde ein Ergebnis für Ihre Suche gefunden "
-    other: "Es wurden %{count} Ergebnisse für Ihre Suche gefunden "
+    one: "ein Ergebnis für Ihr Suche gefunden "
+    other: "%{count} Ergebnisse für Ihr Suche gefunden "
 
   # Community
   forum_name: "Foren"
@@ -43,7 +43,7 @@ de:
   last_activity: "Zuletzt gesehen"
   topic: "Thema"
   replies: "Antworten"
-  last_post: "Letzte Beiträge"
+  last_post: "Letzte Beitrag"
   started_by: "Eröffnet durch %{username}"
   reply: "Auf dieses Thema antworten"
   submit_reply: "Antwort abschicken"
