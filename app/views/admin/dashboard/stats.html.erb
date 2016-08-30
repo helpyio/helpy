@@ -35,27 +35,8 @@
 </div>
 
 <div class="team-members row">
-
-  <% @agents = Topic.undeleted.select(:assigned_user_id).where('assigned_user_id IS NOT NULL').distinct %>
   <% @agents.each do |t| %>
-
-  <%
-    # figure out ideal column width
-    # this could (and maybe should) be done with javascript
-    @cols = case @agents.count
-    when 1
-      5
-    when 2
-      4
-    when 3
-      3
-    when 4
-      2
-    else
-      2
-    end
-  %>
-  <%= render partial: 'agent_stats', object: t %>
+    <%= render partial: 'agent_stats', object: t %>
   <% end %>
 
   <div class="col-md-<%= @cols %> col-sm-<%= @cols %> text-center agent invite-cn">

@@ -51,6 +51,23 @@ class Admin::DashboardController < Admin::BaseController
     delays = @responded_topics.map { |t| t.posts.second.created_at - t.created_at }
 
     @median_first_response_time = median(delays) unless delays.empty?
+
+    @agents = Topic.undeleted.select(:assigned_user_id).where('assigned_user_id IS NOT NULL').distinct
+
+    # figure out ideal column width
+    # this could (and maybe should) be done with javascript
+    @cols = case @agents.count
+              when 1
+                5
+              when 2
+                4
+              when 3
+                3
+              when 4
+                2
+              else
+                2
+            end
   end
 
 
