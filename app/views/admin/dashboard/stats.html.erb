@@ -35,8 +35,8 @@
 </div>
 
 <div class="team-members row">
-  <% @agents.each do |t| %>
-    <%= render partial: 'agent_stats', object: t %>
+  <% @agents.each do |agent| %>
+    <%= render partial: 'agent_stats', object: agent %>
   <% end %>
 
   <div class="col-md-<%= @cols %> col-sm-<%= @cols %> text-center agent invite-cn">
