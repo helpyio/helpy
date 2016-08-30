@@ -57,16 +57,16 @@ class Admin::DashboardController < Admin::BaseController
     # figure out ideal column width
     # this could (and maybe should) be done with javascript
     @cols = case @agents.count
-      when 1
-        5
-      when 2
-        4
-      when 3
-        3
-      when 4
-        2
-      else
-        2
-    end
+              when 1
+                5
+              when 2
+                4
+              when 3
+                3
+              when 4
+                2
+              else
+                2
+            end
   end
 end
