@@ -7,8 +7,6 @@ class Admin::DashboardController < Admin::BaseController
 
   # Routes to different views depending on role of user
   def index
-    #@topics = Topic.mine(current_user.id).pending.page params[:page]
-
     if current_user.is_admin? || current_user.is_agent?
       redirect_to admin_topics_path
     elsif current_user.is_editor?
@@ -20,7 +18,7 @@ class Admin::DashboardController < Admin::BaseController
 
   def stats
     @interval = i18n_interval_label(params[:label])
-    @topics = Topic.undeleted.where('topics.created_at >= ? AND topics.created_at <= ?', @start_date, @end_date)
+    @topics = Topic.undeleted.where(created_at: @start_date..@end_date)
     @topic_count = @topics.count
 
     # Note: Cannot use 'posts_count' counter cache; we only count posts with kind='reply' (not 'first' or 'note').
@@ -33,7 +31,7 @@ class Admin::DashboardController < Admin::BaseController
     @responded_topics = Topic.where(id: responded_topic_ids)
     @closed_topic_count = @topics.closed.count
 
-    @posts = Post.where('created_at >= ? AND created_at <= ?', @start_date, @end_date)
+    @posts = Post.where(created_at: @start_date..@end_date)
 
     delays = @responded_topics.map { |t| t.posts.second.created_at - t.created_at }
 
