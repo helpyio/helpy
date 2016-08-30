@@ -454,8 +454,8 @@ GEM
     ruser (3.0.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    sass-rails (5.0.4)
-      railties (>= 4.0.0, < 5.0)
+    sass-rails (5.0.6)
+      railties (>= 4.0.0, < 6)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
@@ -649,7 +649,7 @@ DEPENDENCIES
   route_translator
   rubocop
   ruser (~> 3.0)
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.6)
   scss-lint
   sdoc (~> 0.4.0)
   selectize-rails
