@@ -24,7 +24,7 @@ de:
   change_your_locale: "Sprache ändern"
 
   # Voting widget
-  did_this_help: "Hat das Ihre Problem gelöst?"
+  did_this_help: "Hat das Ihr Problem gelöst?"
   yes_button: 'Ja'
   no_button: 'Nein'
   yes_helped: 'Toll!! Danke für Irhe Bewertung!'
@@ -146,7 +146,7 @@ de:
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
 
   # User Admin
-  # users: Users
+  users: Benutzer 
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
@@ -159,13 +159,13 @@ de:
     other: "%{count} Benutzer mit dem Namen %{query} wurden gefunden"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
+  invite_users: "Neue Benutzer einladen"
+  invite_emails: "E-mail-Adressen"
   # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
   # invite_message: "Message"
   # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_role: "Rolle der eingeladenen Benutzer"
+  send_invite: "Einladung senden"
 
   # Discussion View
   asked_a_question: "%{user_name} hat eine Frage gestellt..."
