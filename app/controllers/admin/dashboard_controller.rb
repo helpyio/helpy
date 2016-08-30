@@ -19,20 +19,7 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def stats
-
-    @interval = case params[:label]
-                  when 'today'
-                    t('today')
-                  when 'yesterday'
-                    t('yesterday')
-                  when 'this_week'
-                    t('this_week')
-                  when 'this_month'
-                    t('this_month')
-                  else
-                    t('this_week')
-                end
-
+    @interval = i18n_interval_label(params[:label])
     @topics = Topic.undeleted.where('topics.created_at >= ? AND topics.created_at <= ?', @start_date, @end_date)
     @topic_count = @topics.count
 
@@ -56,17 +43,18 @@ class Admin::DashboardController < Admin::BaseController
 
     # figure out ideal column width
     # this could (and maybe should) be done with javascript
-    @cols = case @agents.count
-              when 1
-                5
-              when 2
-                4
-              when 3
-                3
-              when 4
-                2
-              else
-                2
-            end
+    @cols = number_of_cols(@agents.count)
+  end
+
+  private
+
+  def number_of_cols(agent_count)
+    cols = 6 - agent_count
+    return cols >= 2 ? cols : 2
+  end
+
+  def i18n_interval_label(label)
+    labels = %w(today yesterday this_week this_month)
+    return labels.include?(label) ? t(label) : t('this_week')
   end
 end
