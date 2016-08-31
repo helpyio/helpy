@@ -49,12 +49,13 @@ class Admin::DashboardController < Admin::BaseController
     # Agents hashes
     @agents_stats = {}
     @agents.each do |agent|
-      @agents_stats[agent.id] = {}
-      @agents_stats[agent.id][:topic_count] =           @topics.where(assigned_user: agent).count
-      @agents_stats[agent.id][:responded_topic_count] = @responded_topics.where(assigned_user: agent).count
-      @agents_stats[agent.id][:closed_topic_count] =    Topic.undeleted.where(assigned_user: agent).closed.count
-      @agents_stats[agent.id][:post_count] =            @posts.where(user: agent, kind: 'reply').count
-      @agents_stats[agent.id][:delay] =                median(@responded_topics.where(assigned_user: agent).map { |t| t.posts.second.created_at - t.created_at })
+      @agents_stats[agent.id] = {
+        topic_count: @topics.where(assigned_user: agent).count,
+        responded_topic_count: @responded_topics.where(assigned_user: agent).count,
+        closed_topic_count: Topic.undeleted.where(assigned_user: agent).closed.count,
+        post_count: @posts.where(user: agent, kind: 'reply').count,
+        delay: median(@responded_topics.where(assigned_user: agent).map { |t| t.posts.second.created_at - t.created_at })
+      }
     end
   end
 
