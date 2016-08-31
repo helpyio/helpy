@@ -22,6 +22,9 @@ class Admin::DashboardController < Admin::BaseController
     @topic_count = @topics.count
 
     # Note: Cannot use 'posts_count' counter cache; we only count posts with kind='reply' (not 'first' or 'note').
+    # TODO: Look at making this prettier,
+    # Query gets ids of all topics with at least one post of type 'reply'
+    # Perhaps create Topic#replies, or Topic#has_reply? methods
     responded_topic_ids = @topics
       .joins(:posts)
       .where(posts: { kind: 'reply' })
@@ -44,15 +47,11 @@ class Admin::DashboardController < Admin::BaseController
     @cols = number_of_cols(@agents.count)
 
     # Agents hashes
-    # topic_count = @topics.where(assigned_user: agent.assigned_user).count
-    # @agents_topic_count = @agents.each.map { |agent|  agent.id =>  @topics.where(assigned_user: agent).count }
-    # => TODO from @agents array, create hash with key of agent.id and value of @topics.where(assigned_user: agent).count
-
-
-    # responded_topic_count = @responded_topics.where(assigned_user: agent.assigned_user).length
-    # closed_topic_count = Topic.undeleted.where(assigned_user: agent.assigned_user).closed.count
-    # posts_count = @posts.where(user: agent.assigned_user, kind: 'reply').count
-    # delays = @responded_topics.where(assigned_user: agent.assigned_user).map { |t| t.posts.second.created_at - t.created_at }
+    @agents_topic_count =           @agents.each.map { |agent|  [agent.id, @topics.where(assigned_user: agent).count] }.to_h
+    @agents_responded_topic_count = @agents.each.map { |agent|  [agent.id, @responded_topics.where(assigned_user: agent).count] }.to_h
+    @agents_closed_topic_count =    @agents.each.map { |agent|  [agent.id, Topic.undeleted.where(assigned_user: agent).closed.count] }.to_h
+    @agents_post_count =            @agents.each.map { |agent|  [agent.id, @posts.where(user: agent, kind: 'reply').count] }.to_h
+    @agents_delays =                @agents.each.map { |agent|  [agent.id, median(@responded_topics.where(assigned_user: agent).map { |t| t.posts.second.created_at - t.created_at })] }.to_h
   end
 
   private

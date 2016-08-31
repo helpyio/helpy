@@ -5,7 +5,7 @@
       <%= link_to avatar_image(agent, size=80), admin_user_path(id: agent.id) if agent.present? %>
     </div>
     <div class="agent-name">
-      <% topic_count = @topics.where(assigned_user: agent).count %>
+      <% topic_count = @agents_topic_count[agent.id] %>
       <h4>
         <%= agent.try(:name).split(' ')[0].titleize || 'No Agent'.html_safe %><br/>
         <small><%= agent.try(:role).titleize %></small>
@@ -19,7 +19,7 @@
   </div>
 
   <div class="agent-responded agent-stat">
-    <% responded_topic_count = @responded_topics.where(assigned_user: agent).length %>
+    <% responded_topic_count = @agents_responded_topic_count[agent.id] %>
     <h4 title="Responded to <%= responded_topic_count %> / <%= topic_count %>">
       <% if topic_count.zero? %>
         -
@@ -32,7 +32,7 @@
   </div>
 
   <div class="agent-closed agent-stat">
-    <% closed_topic_count = Topic.undeleted.where(assigned_user: agent).closed.count %>
+    <% closed_topic_count = @agents_closed_topic_count[agent.id] %>
     <h4 title="<%= closed_topic_count %> / <%= topic_count %> Closed">
       <% if topic_count.zero? %>
         -
@@ -45,18 +45,18 @@
   </div>
 
   <div class="agent-replies agent-stat">
-    <% posts_count = @posts.where(user: agent, kind: 'reply').count %>
+    <% posts_count = @agents_post_count[agent.id] %>
     <h4><%= posts_count.zero? ? '-' : posts_count %>
     <br/><small><%= t('replies', default: "Replies") %></small></h4>
   </div>
 
   <div class="agent-response-time agent-stat">
-    <% delays = @responded_topics.where(assigned_user: agent).map { |t| t.posts.second.created_at - t.created_at } %>
+    <% delays = @agents_delays[agent.id] %>
     <h4>
-      <% if delays.empty? %>
+      <% if delays.nil? %>
         -
       <% else %>
-        <%= distance_of_time_in_words median(delays) %>
+        <%= distance_of_time_in_words delays %>
       <% end %>
       <br/>
       <small><%= t('median_time', default: "Median time to first response") %></small>
