@@ -34,6 +34,9 @@ module Helpy
       Devise::Mailer.layout "mailer" # email.haml or email.erb
     end
 
+    # whitelist for sanitize
+    config.action_view.sanitized_allowed_tags = ['strong', 'em', 'a']
+    config.action_view.sanitized_allowed_attributes = ['href', 'title']
   end
 end
 
