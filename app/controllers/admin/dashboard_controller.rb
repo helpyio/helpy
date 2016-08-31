@@ -37,7 +37,7 @@ class Admin::DashboardController < Admin::BaseController
 
     @median_first_response_time = median(delays) unless delays.empty?
 
-    @agents = Topic.undeleted.select(:assigned_user_id).where.not(assigned_user_id: nil).map(&:assigned_user)
+    @agents = Topic.undeleted.select(:assigned_user_id).where.not(assigned_user_id: nil).distinct.map(&:assigned_user)
 
     # figure out ideal column width
     # this could (and maybe should) be done with javascript
@@ -45,6 +45,10 @@ class Admin::DashboardController < Admin::BaseController
 
     # Agents hashes
     # topic_count = @topics.where(assigned_user: agent.assigned_user).count
+    # @agents_topic_count = @agents.each.map { |agent|  agent.id =>  @topics.where(assigned_user: agent).count }
+    # => TODO from @agents array, create hash with key of agent.id and value of @topics.where(assigned_user: agent).count
+
+
     # responded_topic_count = @responded_topics.where(assigned_user: agent.assigned_user).length
     # closed_topic_count = Topic.undeleted.where(assigned_user: agent.assigned_user).closed.count
     # posts_count = @posts.where(user: agent.assigned_user, kind: 'reply').count
