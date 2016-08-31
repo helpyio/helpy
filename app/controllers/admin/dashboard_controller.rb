@@ -47,11 +47,15 @@ class Admin::DashboardController < Admin::BaseController
     @cols = number_of_cols(@agents.count)
 
     # Agents hashes
-    @agents_topic_count =           @agents.each.map { |agent|  [agent.id, @topics.where(assigned_user: agent).count] }.to_h
-    @agents_responded_topic_count = @agents.each.map { |agent|  [agent.id, @responded_topics.where(assigned_user: agent).count] }.to_h
-    @agents_closed_topic_count =    @agents.each.map { |agent|  [agent.id, Topic.undeleted.where(assigned_user: agent).closed.count] }.to_h
-    @agents_post_count =            @agents.each.map { |agent|  [agent.id, @posts.where(user: agent, kind: 'reply').count] }.to_h
-    @agents_delays =                @agents.each.map { |agent|  [agent.id, median(@responded_topics.where(assigned_user: agent).map { |t| t.posts.second.created_at - t.created_at })] }.to_h
+    @agents_stats = {}
+    @agents.each do |agent|
+      @agents_stats[agent.id] = {}
+      @agents_stats[agent.id][:topic_count] =           @topics.where(assigned_user: agent).count
+      @agents_stats[agent.id][:responded_topic_count] = @responded_topics.where(assigned_user: agent).count
+      @agents_stats[agent.id][:closed_topic_count] =    Topic.undeleted.where(assigned_user: agent).closed.count
+      @agents_stats[agent.id][:post_count] =            @posts.where(user: agent, kind: 'reply').count
+      @agents_stats[agent.id][:delay] =                median(@responded_topics.where(assigned_user: agent).map { |t| t.posts.second.created_at - t.created_at })
+    end
   end
 
   private
