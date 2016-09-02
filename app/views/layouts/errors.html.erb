@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<%= render partial: 'layouts/head' %>
+	</head>
+	<%= css_overrides %>
+
+<body>
+<script>
+  ga('set', 'location', location.href.split('#')[0]);
+  ga('send', 'pageview', { "title": document.title });
+</script>
+
+
+<div id="contact" class="full-screen" style="margin-top: 77px;min-height: 500px;">
+  <div class="container" id="contact-header">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+				<%= yield %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
