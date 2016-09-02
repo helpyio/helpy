@@ -53,21 +53,19 @@
   }
 
   .ui-menu-item-heading{
-    text-align: left; 
-    margin-left: 5px; 
-    font-weight: bold; 
-    font-size: 105%; 
+    text-align: left;
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 105%;
   }
 
   .ui-menu-item-content{
-    text-align: left; 
-    margin-left: 5px; 
+    text-align: left;
+    margin-left: 5px;
     color: #666;
   }
 
   .ui-menu-item{
-    margin-bottom: 1%; 
+    margin-bottom: 1%;
   }
 }
-
-
