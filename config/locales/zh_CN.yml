@@ -59,8 +59,9 @@ zh-cn:
     other: "%{count}个已摺叠讯息"
 
   # Knowledgebase
-  written_by:
-  last_edited:
+  # written_by:
+  # last_edited:
+  asked_before: "贵的问题被回答过了？我们认为，这些可能是类似"  
 
   # Tickets
   tickets: "要求协助"
@@ -268,7 +269,7 @@ zh-cn:
         # layout: Layout
         # allow_topic_voting: Allow topic voting?
         # allow_post_voting: Allow post voting?
-          
+
     helpers: #帮手
       submit: #送出
         topic: #标题

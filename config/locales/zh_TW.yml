@@ -61,6 +61,7 @@ zh-tw:
   # Knowledgebase
   written_by:
   last_edited:
+  asked_before: "貴的問題被回答過了？我們認為，這些可能是類似"
 
   # Tickets
   tickets: "要求協助"

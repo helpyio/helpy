@@ -61,6 +61,7 @@ ja:
   # Knowledgebase
   written_by:
   last_edited:
+  asked_before: "あなたの質問は、前に回答されていますか？我々は、これらは似ているかもしれないと思います"
 
   # Tickets
   tickets: "サポットチケット"
