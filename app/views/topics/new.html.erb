@@ -33,7 +33,7 @@
       <%= f.hidden_field :forum_id, value: 1 %>
     <% end %>
 
-    <%= f.input :name, :size => 40, placeholder: I18n.t(:subject), label: 'Subject', class: 'disable-empty topic-placeholder' -%>
+    <%= f.input :name, input_html: { value: params[:q] }, :size => 40,  placeholder: I18n.t(:subject), label: I18n.t(:subject), class: 'disable-empty topic-placeholder' %>
 
     <div class="suggestion-results-container hidden">
       <strong><%= t(:asked_before, default: 'Has your question been answered before? We think these may be similar') %>:</strong>
