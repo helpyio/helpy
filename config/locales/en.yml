@@ -61,6 +61,7 @@ en:
   # Knowledgebase
   written_by: "Written By"
   last_edited: "Last Edited"
+  asked_before: "Has your question been answered before? We think these may be similar"
 
   # Tickets
   tickets: "Tickets"
@@ -287,7 +288,7 @@ en:
         state: State
         signature: Signature
       topic:
-        name: Subject
+        name: Question
       post:
         kind: Genre
       category:

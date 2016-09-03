@@ -61,6 +61,7 @@ ca:
   # Knowledgebase
   # written_by: "Written By"
   # last_edited: "Last Edited"
+  asked_before: "la seva pregunta ha estat resposta abans? Creiem que aquests poden ser similars"
 
   # Tickets
   tickets: "Tiquets"

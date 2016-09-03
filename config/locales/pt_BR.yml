@@ -61,6 +61,7 @@ pt-br:
   # Knowledgebase
   written_by: "Escrito por"
   last_edited: "última Edição"
+  asked_before: "A sua pergunta foi respondida antes? Achamos que estes podem ser semelhantes"
 
   # Tickets
   tickets: "Tickets"
