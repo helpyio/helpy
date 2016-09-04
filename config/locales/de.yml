@@ -1,4 +1,4 @@
-# TRANSLATOR(s): @zefanja
+# TRANSLATOR(s): @zefanja, jcambass
 
 de:
   language_name: 'Deutsch' # The name of the translation file, in that language
@@ -27,15 +27,15 @@ de:
   did_this_help: "Hat das Ihr Problem gelöst?"
   yes_button: 'Ja'
   no_button: 'Nein'
-  yes_helped: 'Toll!! Danke für Irhe Bewertung!'
-  no_helped: 'Es tut uns Leid, das wir nicht helfen konnten. Bitte kontaktieren Sie uns für weitere Hilfe!'
+  yes_helped: 'Toll!! Danke für Ihre Bewertung!'
+  no_helped: 'Es tut uns Leid, dass wir nicht helfen konnten. Bitte kontaktieren Sie uns für weitere Hilfe!'
 
   # Search
-  search_placeholder: "Geben Sie ein Stichwort, Thema, oder Frage ein"
+  search_placeholder: "Geben Sie ein Stichwort, Thema oder eine Frage ein"
   no_results: "Keine Suchergebnisse, bitte suchen Sie erneut!"
   results_found:
-    one: "ein Ergebnis für Ihr Suche gefunden "
-    other: "%{count} Ergebnisse für Ihr Suche gefunden "
+    one: "ein Ergebnis wurde für Ihre Suche gefunden "
+    other: "%{count} Ergebnisse wurden für Ihre Suche gefunden "
 
   # Community
   forum_name: "Foren"
@@ -43,7 +43,7 @@ de:
   last_activity: "Zuletzt gesehen"
   topic: "Thema"
   replies: "Antworten"
-  last_post: "Letzte Beitrag"
+  last_post: "Letzte Beiträge"
   started_by: "Eröffnet durch %{username}"
   reply: "Auf dieses Thema antworten"
   submit_reply: "Antwort abschicken"
@@ -59,15 +59,15 @@ de:
       other: "%{count} verborgene Nachrichten"
 
   # Knowledgebase
-  written_by: "Uberrichtete von"
+  written_by: "Geschrieben von"
   last_edited: "Zuletzt bearbeitet"
 
   # Tickets
   tickets: "Tickets"
   no_tickets: "Du hast noch keine Tickets erstellt"
   ticket_number: "Ticket Nummer"
-  assigned_to_label: "Zugewiesen werden"
-  created_on: "Hat gebuiltet an"
+  assigned_to_label: "Zugewiesen an"
+  created_on: "Erstellt"
 
   # Get Help
   get_help_header: "Brauchen Sie noch Hilfe??"
@@ -194,7 +194,7 @@ de:
   select_icon_helptext: "Symbol für die Kategorie auswählen (optional)"
   translate: "In eine andere Sprache übersetzen"
   # view_on_site: "View on Site"
-  written_on: "Geschreiben an %{date_written}"
+  written_on: "Geschrieben am %{date_written}"
   # content_last_updated: "Last Updated on %{date_updated}"
   # featured_content: "Featured"
   # draft_content: "Draft"
@@ -214,12 +214,12 @@ de:
 
   # Mail messages
   hello: "Hallo %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  new_user: "Vielen Dank, dass Sie uns kontaktieren. Ihre Nachricht wurde von unserem Support Team empfangen, wir werden und in Kürze mit einer Antwort melden."
+  account_generated: "Ein Konto wurde für Sie erstellt. Benutzten Sie diesen Link um sich anzumelden::"
+  above_this_line: "Stellen Sie sicher, dass Ihre Antwort oberhalb dieser Linie erscheint"
+  message_id: "Nachrichten ID"
+  message_response: "Die folgende Nachricht wurde als Antwort auf Ihre Frage gepostet:"
+  view_online: "Online ansehen:"
 
   # settings
   # settings: "Settings"
