@@ -36,9 +36,7 @@ class Admin::DashboardController < Admin::BaseController
 
     @posts = Post.where(created_at: @start_date..@end_date)
 
-    delays = @responded_topics.map { |t| t.posts.second.created_at - t.created_at }
-
-    @median_first_response_time = median(delays) unless delays.empty?
+    @median_first_response_time = median_delay(@responded_topics)
 
     @agents = Topic.undeleted.select(:assigned_user_id).where.not(assigned_user_id: nil).distinct.map(&:assigned_user)
 
@@ -54,12 +52,17 @@ class Admin::DashboardController < Admin::BaseController
         responded_topic_count: @responded_topics.where(assigned_user: agent).count,
         closed_topic_count: Topic.undeleted.where(assigned_user: agent).closed.count,
         post_count: @posts.where(user: agent, kind: 'reply').count,
-        delay: median(@responded_topics.where(assigned_user: agent).map { |t| t.posts.second.created_at - t.created_at })
+        delay: median_delay(@responded_topics.where(assigned_user: agent))
       }
     end
   end
 
   private
+
+  def median_delay(topics)
+    delays = topics.map { |t| t.posts.second.created_at - t.created_at }
+    delays.empty? ? nil : median(delays)
+  end
 
   def number_of_cols(agent_count)
     cols = 6 - agent_count
