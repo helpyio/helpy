@@ -34,4 +34,13 @@ class Admin::DashboardControllerTest < ActionController::TestCase
       assert_redirected_to root_path
     end
   end
+
+  test 'sets @interval correctly'
+  test 'sets @topics correctly'
+  test 'sets @responded_topics correctly'
+  test 'sets @posts correctly'
+  test 'sets @median_first_response_time correctly'
+  test 'sets @agents correctly'
+  test 'sets @cols correctly'
+  test 'sets @agents_stats correctly'
 end
