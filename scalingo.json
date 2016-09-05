@@ -1,0 +1,9 @@
+{
+	"name": "Helpy Support",
+	"description": "An Open Source Help Desk",
+	"repository": "https://github.com/EtienneM/helpy",
+	"ref": "staging",
+	"website": "https://helpy.io",
+	"logo": "https://helpy.io/images/logo.png",
+	"addons": ["scalingo-postgresql"]
+}
