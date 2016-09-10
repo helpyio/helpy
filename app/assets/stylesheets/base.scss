@@ -291,7 +291,7 @@ div.admin-tools {
 
 .label-count {
 	position: relative;
-	top:  .5em;
+	top:  -0.2em;
 	border: 1px solid #999;
 	background-color: #fff;
 	color: #999;
@@ -345,8 +345,8 @@ span.category-icon {
 }
 
 .status-label {
-	margin-left: 5px;
-	margin-bottom: -15px;
+  display: table-cell;
+  margin: 1px 0px 0px 5px;
 }
 
 .no-side-pad {
