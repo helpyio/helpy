@@ -137,6 +137,15 @@ textarea {
   }
 }
 
+.truncate-ellipsis .status-label {
+    display: table-cell;
+}
+
+.topic time {
+  display: table-cell;
+  padding-top: 3px;
+}
+
 #page-title {
 	padding-top: 30px;
 	background-color: #feffe9;
@@ -345,8 +354,7 @@ span.category-icon {
 }
 
 .status-label {
-  display: table-cell;
-  margin: 1px 0px 0px 5px;
+  margin: 0px 0px 0px 5px;
 }
 
 .no-side-pad {
