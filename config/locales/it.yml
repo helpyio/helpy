@@ -78,7 +78,7 @@ it:
   my_profile: 'Mio profilo'
 
   # footer
-  powered_by: "Vente Helpdesk - grazie a Helpy."
+  powered_by: "Grazie a Helpy."
   get_your_copy: "Visualizza Helpy su Github"
   version: "Version:"
 
