@@ -1,4 +1,4 @@
-pt_BR:
+pt-br:
   devise:
     failure:
       invited: 'Você tem um convite pendente, aceite para finalizar sua conta.'

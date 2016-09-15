@@ -9,8 +9,9 @@
     <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
     <div class="grids col-md-11 col-sm-12">
       <div class="row" data-hook="agent_settings_grid">
-        <%= settings_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), "Select when you would like to receive email notifications.", admin_notifications_path) %>
-        <%= settings_item('glyphicon glyphicon-cloud', "API Keys", "Create and Manage API Keys", admin_api_keys_path) %>
+        <%= settings_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"),
+          t('notifications_description', default: "Select when you would like to receive email notifications."), admin_notifications_path) %>
+        <%= settings_item('glyphicon glyphicon-cloud', t('api_keys', default: "API Keys"), t('api_description',default: "Create and Manage API Keys"), admin_api_keys_path) %>
       </div>
     </div>
   </div>
@@ -29,14 +30,14 @@
     <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
     <div class="grids col-md-11 col-sm-12">
       <div class="row" data-hook="admin_settings_grid">
-        <%= settings_item('glyphicon glyphicon-cog', "general", "Manage general system settings like your Helpy name, what company to link back to.") %>
-        <%= settings_item('glyphicon glyphicon-pencil', "design", "Control the logos and colors and other design aspects of your Helpy") %>
-        <%= settings_item('fa fa-clone', "theme", "Select a theme for your Helpy") %>
-        <%= settings_item('glyphicon glyphicon-globe', "international", "Select what languages your Helpy will speak be able to speak.") %>
-        <%= settings_item('glyphicon glyphicon-modal-window', "widget", "Find out how to deploy the Helpy widget on your site.") %>
-        <%= settings_item('glyphicon glyphicon-envelope', "email", "Set up SMTP and Inbound email for your Helpy.") %>
-        <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", "Set up Cloudinary to enable your Helpy to accept image attachments.") %>
-        <%= settings_item('glyphicon glyphicon-user', "users", "View and Add Users", admin_users_path) %>
+        <%= settings_item('glyphicon glyphicon-cog', "general", t('general_description', default: "Manage general system settings like your Helpy name, what company to link back to.")) %>
+        <%= settings_item('glyphicon glyphicon-pencil', "design", t('design_description', default: "Control the logos and colors and other design aspects of your Helpy")) %>
+        <%= settings_item('fa fa-clone', "theme", t('theme_description', default: "Select a theme for your Helpy")) %>
+        <%= settings_item('glyphicon glyphicon-globe', "international", t('international_description', default: "Select what languages your Helpy will speak be able to speak.")) %>
+        <%= settings_item('glyphicon glyphicon-modal-window', "widget", t('widget_description', default: "Find out how to deploy the Helpy widget on your site.")) %>
+        <%= settings_item('glyphicon glyphicon-envelope', "email", t('email_description', default: "Set up SMTP and Inbound email for your Helpy.")) %>
+        <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", t('cloudinary_description', default: "Set up Cloudinary to enable your Helpy to accept image attachments.")) %>
+        <%= settings_item('glyphicon glyphicon-user', "users", t('users_description', default: "View and Add Users"), admin_users_path) %>
       </div>
     </div>
   </div>
@@ -58,14 +59,14 @@
     <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', remote: true do |f| %>
 
       <div class="settings-section general">
-        <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: "Site Name" %>
-        <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: "Site URL" %>
-        <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: "Parent Site" %>
-        <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: "Parent Company" %>
-        <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: "Site Tagline" %>
+        <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: t('site_name', default: "Site Name") %>
+        <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: t('site_url', default: "Site URL") %>
+        <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: t('parent_site', default: "Parent Site") %>
+        <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: t('parent_company', default: "Parent Company") %>
+        <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: t('site_tagline', default: "Site Tagline") %>
         <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
-        <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: "Recaptcha Site Key" %>
-        <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: "Recaptcha API Key" %>
+        <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
+        <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
       </div>
       <div class="settings-section design hidden">
           <div class="row">
@@ -73,7 +74,7 @@
               <%= image_tag(AppSettings['design.header_logo'], width: 40, class: 'pull-left') %>
             </div>
             <div class="col-md-11 col-sm-10 col-xs-10">
-              <%= f.text_field 'design.header_logo', value: AppSettings['design.header_logo'], label: "Header Logo" %>
+              <%= f.text_field 'design.header_logo', value: AppSettings['design.header_logo'], label: t('header_logo', default: "Header Logo") %>
             </div>
           </div>
           <div class="row">
@@ -81,7 +82,7 @@
               <%= image_tag(AppSettings['design.footer_mini_logo'], width: 20, class: 'pull-left') %>
             </div>
             <div class="col-md-11 col-sm-10 col-xs-10">
-              <%= f.text_field 'design.footer_mini_logo', value: AppSettings['design.footer_mini_logo'], label: "Footer Logo" %>
+              <%= f.text_field 'design.footer_mini_logo', value: AppSettings['design.footer_mini_logo'], label: t('footer_logo', default: "Footer Logo") %>
             </div>
           </div>
           <div class="row">
@@ -93,11 +94,11 @@
             </div>
           </div>
         <% if AppSettings['theme.active'] == 'helpy' %>
-        <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: "Search Background Color", class: 'pick-a-color' %>
-        <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: "Header Accent", class: 'pick-a-color' %>
-        <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: "Link Color", class: 'pick-a-color' %>
-        <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: "Add Form Background", class: 'pick-a-color' %>
-        <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: "Still Need Help Background", class: 'pick-a-color' %>
+        <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
+        <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
+        <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
+        <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
+        <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
         <% end %>
       </div>
       <div class="settings-section theme hidden">
@@ -112,7 +113,7 @@
         </div>
       </div>
       <div class="settings-section international hidden" data-hook="admin_settings_international">
-        Supported Locales:
+        <%= t('supported_locales', default: 'Supported Locales:') %>
         <% I18n.available_locales.each do |locale| %>
           <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
         <% end %>
@@ -120,8 +121,8 @@
         <%= select_default_locale %>
       </div>
       <div class="settings-section widget hidden" data-hook="admin_settings_widget">
-        <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: "Show Widget on Support Site" } %>
-        <p>Add the embed widget to your site using the following URL:<br/>
+        <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: t('show_widget', default: "Show Widget on Support Site") } %>
+        <p><%= t('add_embed_widget_message', default: "Add the embed widget to your site using the following URL:") %><br/>
           <code><%= "<script>" %></code><br/>
           <code>&nbsp;&nbsp;<%= "var Helpy = Helpy || {};" %></code><br/>
           <code>&nbsp;&nbsp;<%= "Helpy.domain = '#{AppSettings['settings.site_url']}';" %></code><br/>
@@ -130,20 +131,22 @@
         </p>
       </div>
       <div class="settings-section email hidden" data-hook="admin_settings_email">
-        <%= f.select 'email.mail_service', options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']), label: "Inbound Mail Service Provider" %>
+        <%= f.select 'email.mail_service',
+          options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']),
+          label: t('mail_service', default: "Inbound Mail Service Provider") %>
 
-        <%= f.form_group 'email.send_email', label: { text: "Enable Outbound (SMTP) Email" }, class: 'send-email-toggle' do %>
-          <%= f.radio_button 'email.send_email', false, label: "No", checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
-          <%= f.radio_button 'email.send_email', true, label: "Yes", checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
+        <%= f.form_group 'email.send_email', label: { text: t('send_email', default: "Enable Outbound (SMTP) Email") }, class: 'send-email-toggle' do %>
+          <%= f.radio_button 'email.send_email', false, label: t('boolean_no', default: "No"), checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
+          <%= f.radio_button 'email.send_email', true, label: t('boolean_yes', default: "Yes"), checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
         <% end %>
         <div class="smtp-settings <%= "hidden" if "#{AppSettings['email.send_email']}" == 'false' %>">
-          <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: "Admin Email" %>
-          <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: "From Email" %>
-          <%= f.text_field 'email.smtp_mail_username', value: AppSettings['email.smtp_mail_username'], label: "SMTP Username" %>
-          <%= f.password_field 'email.smtp_mail_password', value: AppSettings['email.smtp_mail_password'], label: "SMTP Password" %>
-          <%= f.text_field 'email.mail_smtp', value: AppSettings['email.mail_smtp'], label: "SMTP Server" %>
-          <%= f.text_field 'email.mail_port', value: AppSettings['email.mail_port'], label: "SMTP Port" %>
-          <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: "SMTP Domain" %>
+          <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: t('admin_email', default: "Admin Email") %>
+          <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: t('from_email', default: "From Email") %>
+          <%= f.text_field 'email.smtp_mail_username', value: AppSettings['email.smtp_mail_username'], label: t('smtp_mail_username', default: "SMTP Username") %>
+          <%= f.password_field 'email.smtp_mail_password', value: AppSettings['email.smtp_mail_password'], label: t('smtp_mail_password', default: "SMTP Password") %>
+          <%= f.text_field 'email.mail_smtp', value: AppSettings['email.mail_smtp'], label: t('mail_smtp', default: "SMTP Server") %>
+          <%= f.text_field 'email.mail_port', value: AppSettings['email.mail_port'], label: t('mail_port', default: "SMTP Port") %>
+          <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: t('mail_domain', default: "SMTP Domain") %>
         </div>
       </div>
 
