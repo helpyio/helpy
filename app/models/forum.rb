@@ -33,10 +33,6 @@ class Forum < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 1000 }
 
-  def total_posts
-    self.posts.count
-  end
-
   def to_param
     "#{id}-#{name.parameterize}" unless name.nil?
   end
