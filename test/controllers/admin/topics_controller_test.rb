@@ -157,16 +157,19 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       end
     end
 
-    test "an #{admin}viewing a new discussion should change the status to PENDING" do
-      sign_in users(admin.to_sym)
-      @ticket = Topic.find(6)
-
-      xhr :get, :show, { id: @ticket.id }
-
-      #reload object:
-      @ticket = Topic.find(6)
-      assert @ticket.current_status == "pending", "ticket status did not change to pending"
-    end
+    # NOTE: THIS BEHAVIOR WAS REVERSED BASED ON USER FEEDBACK THAT IT WAS HARD TO
+    # FIND DISCUSSIONS AFTER THEY WERE VIEWED, LEFT TEST JUST IN CASE 
+    #
+    # test "an #{admin}viewing a new discussion should change the status to PENDING" do
+    #   sign_in users(admin.to_sym)
+    #   @ticket = Topic.find(6)
+    #
+    #   xhr :get, :show, { id: @ticket.id }
+    #
+    #   #reload object:
+    #   @ticket = Topic.find(6)
+    #   assert @ticket.current_status == "pending", "ticket status did not change to pending"
+    # end
   end
 
   %w(user editor).each do |unauthorized|
