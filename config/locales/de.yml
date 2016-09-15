@@ -61,6 +61,7 @@ de:
   # Knowledgebase
   written_by: "Uberrichtete von"
   last_edited: "Zuletzt bearbeitet"
+  asked_before: "Wurde die Frage vor beantwortet? Wir denken, dass diese ähnlich sein kann"
 
   # Tickets
   tickets: "Tickets"

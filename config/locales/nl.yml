@@ -61,6 +61,7 @@ nl:
   # Knowledgebase
   written_by: "Geschreven door"
   last_edited: "Laatst bewerkt"
+  asked_before: "Is uw vraag al eerder beantwoord? We denken dat deze kunnen gelijkaardig zijn"
 
   # Tickets
   tickets: "Vragen"
@@ -77,7 +78,7 @@ nl:
   my_profile: 'Mijn Profiel'
 
   # footer
-  powered_by: "Vente Helpdesk - Met dank aan Helpy."
+  powered_by: "Met dank aan Helpy."
   get_your_copy: "Bekijk dit project op Github"
   # version: "Version:"
 
@@ -267,7 +268,7 @@ nl:
         # layout: Layout
         # allow_topic_voting: Allow topic voting?
         # allow_post_voting: Allow post voting?
-        
+
     helpers:
       submit:
         topic:
