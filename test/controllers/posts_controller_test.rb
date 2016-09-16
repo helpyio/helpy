@@ -82,4 +82,10 @@ class PostsControllerTest < ActionController::TestCase
     end
   end
 
+  test "a browsing user should not get index of posts for a given topic, if forums are disabled" do
+    AppSettings['settings.forums'] = "0"
+    assert_raises(ActionController::RoutingError) do
+      get :index, topic_id: topics(:public).id, locale: :en
+    end
+  end
 end

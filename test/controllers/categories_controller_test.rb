@@ -51,4 +51,20 @@ class CategoriesControllerTest < ActionController::TestCase
     # should be able to see Documents
     assert_select "li.article", true
   end
+
+  test "a browsing user should not be able to load the index if KB features are not enabled" do
+    AppSettings['settings.knowledgebase'] = "0"
+    assert_raises(ActionController::RoutingError) do
+      get :index, locale: :en
+    end
+  end
+
+  test "a browsing user should not be able to see a category page if KB features are not enabled" do
+    AppSettings['settings.knowledgebase'] = "0"
+    assert_raises(ActionController::RoutingError) do
+      get :show, id: 1, locale: :en
+    end
+  end
+
+
 end

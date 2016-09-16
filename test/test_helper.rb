@@ -39,6 +39,9 @@ def set_default_settings
   AppSettings['settings.product_name'] = Settings.product_name
   AppSettings['settings.support_phone'] = Settings.support_phone
   AppSettings['settings.google_analytics_id'] = Settings.google_analytics_id
+  AppSettings["settings.forums"] = true
+  AppSettings["settings.tickets"] = true
+  AppSettings["settings.knowledgebase"] = true  
   AppSettings['design.favicon'] = Settings.app_favicon
   AppSettings['design.header_logo'] = Settings.app_mini_logo
   AppSettings['design.footer_mini_logo'] = Settings.app_large_logo
