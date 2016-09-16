@@ -64,6 +64,11 @@
         <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: t('parent_site', default: "Parent Site") %>
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: t('parent_company', default: "Parent Company") %>
         <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: t('site_tagline', default: "Site Tagline") %>
+        <%= f.check_box 'settings.forums', { checked: AppSettings['settings.forums'] == true, label: t('enable_forums', default: "Enable Community Forums") } %>
+        <%= f.check_box 'settings.knowledgebase', { checked: AppSettings['settings.knowledgebase'] == true, label: t('enable_knowledgebase', default: "Enable Knowledgebase") } %>
+        <%= f.check_box 'settings.tickets', { checked: AppSettings['settings.tickets'] == true, label: t('enable_tickets', default: "Enable Private Tickets") } %>
+
+        <strong>Integrations:</strong>
         <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
         <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
         <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>

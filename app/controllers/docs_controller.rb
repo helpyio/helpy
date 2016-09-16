@@ -25,6 +25,7 @@
 
 class DocsController < ApplicationController
 
+  before_filter :knowledgebase_enabled?, only: ['show']
   theme :theme_chosen
 
   respond_to :html
