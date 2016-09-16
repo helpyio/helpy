@@ -64,17 +64,17 @@ class ApplicationController < ActionController::Base
   helper_method :rtl_locale?
 
   def forums?
-    AppSettings['settings.forums'] == "1"
+    AppSettings['settings.forums'] == "1" || AppSettings['settings.forums'] == true
   end
   helper_method :forums?
 
   def knowledgebase?
-    AppSettings['settings.knowledgebase'] == "1"
+    AppSettings['settings.knowledgebase'] == "1" || AppSettings['settings.knowledgebase'] == true
   end
   helper_method :knowledgebase?
 
   def tickets?
-    AppSettings['settings.tickets'] == "1"
+    AppSettings['settings.tickets'] == "1" || AppSettings['settings.tickets'] == true
   end
   helper_method :tickets?
 
@@ -90,7 +90,9 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found') unless tickets?
   end
 
-
+  def topic_creation_enabled?
+    raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
+  end
 
   private
 
