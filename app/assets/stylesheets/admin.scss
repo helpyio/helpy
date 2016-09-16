@@ -259,8 +259,12 @@ a.stats.active {
 	margin-top: 13px !important;
 }
 
+.topic time {
+	padding-top: 0;
+}
+
 .topic span.label-count {
-	margin-top: -11px;
+	margin-top: -4px;
 	margin-right: 10px;
 	margin-left:10px;
 }

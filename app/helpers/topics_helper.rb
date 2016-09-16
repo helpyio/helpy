@@ -26,12 +26,12 @@
 
 module TopicsHelper
 
-  def badge_for_status(status)
-    content_tag(:span, status_label(status).upcase, class: "hidden-xs pull-right status-label label #{status_class(status)}")
+  def badge_for_status(status, badge_orientation = "right")
+    content_tag(:span, status_label(status).upcase, class: "hidden-xs pull-#{badge_orientation} status-label label #{status_class(status)}")
   end
 
-  def badge_for_private
-    content_tag(:span, t(:private, default: 'PRIVATE').upcase, class: 'hidden-xs pull-right status-label label label-private')
+  def badge_for_private(badge_orientation = "right")
+    content_tag(:span, t(:private, default: 'PRIVATE').upcase, class: "hidden-xs pull-#{badge_orientation} status-label label label-private")
   end
 
   def control_for_status(status)
