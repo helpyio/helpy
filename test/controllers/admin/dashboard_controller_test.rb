@@ -35,7 +35,12 @@ class Admin::DashboardControllerTest < ActionController::TestCase
     end
   end
 
-  test 'sets @interval correctly'
+  test 'sets @interval correctly' do
+    sign_in users(:admin)
+    get :stats, locale: :en, start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this_month'
+    assert_equal 'This month', assigns(:interval)
+  end
+
   test 'sets @topics correctly'
   test 'sets @responded_topics correctly'
   test 'sets @posts correctly'
