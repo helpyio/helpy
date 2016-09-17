@@ -64,6 +64,7 @@ ru:
   # Knowledgebase
   written_by: "Автор"
   last_edited: "Последняя редакция"
+  asked_before: "Был ваш вопрос был дан ответ раньше? Мы считаем, что они могут быть похожи"
 
   # Tickets
   tickets: "Тикеты"

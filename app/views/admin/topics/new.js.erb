@@ -1,6 +1,6 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/new_ticket') %>");
-$('#ticket-page-title').html("<%= "#{t(:discussion_management, default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
-$(document).prop('title', "<%= "#{t(:discussion_management, default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
+$('#ticket-page-title').html("<%= "#{t('discussion_management', default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
+$(document).prop('title', "<%= "#{t('discussion_management', default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
 window.location.hash = 'new-discussion';
 
 // Hook validations

@@ -61,6 +61,7 @@ hi:
   # Knowledgebase
   written_by: "लिखित द्वारा"
   last_edited: "पिछले संपादित"
+  asked_before: "आपके सवाल से पहले जवाब दिया गया है? हमें लगता है कि इन समान हो सकता है"
 
   # Tickets
   tickets: "टिकट्स"

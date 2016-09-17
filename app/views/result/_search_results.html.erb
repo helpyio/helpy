@@ -22,7 +22,10 @@
   <% end %>
 <% end %>
 <% if @results.total_count == 0 %>
-  <li class="text-center verticalness"><%= t(:no_results) %></li>
+  <li class="text-center verticalness">
+    <%#= t(:no_results) %><br/>
+    <%= link_to t(:get_help_button, default: "Start a Discussion with Us"), new_topic_path(q: params[:q] ), class: 'btn btn-primary get-help-button' %>
+  </li>
 <% end %>
 </ul>
 <div class="text-center paginate-links">

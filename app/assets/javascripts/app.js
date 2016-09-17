@@ -68,6 +68,33 @@ Helpy.ready = function(){
 
   });
 
+  $("#topic_name").blur(function () {
+      var that = $(this);
+      var $results = $('.suggestion-results');
+      var $container = $('.suggestion-results-container');
+      $query = $(this).val();
+
+      if ($query.length >= 3) {
+        $.getJSON( "/"+location.href.split("/")[3]+"/search.json?depth=5&query=" + $query, function( data ) {
+          var items = [];
+          $.each( data, function( key, val ) {
+            items.push( "<li id='" + key + "'><a href='" + val.link + "' target='blank'>" + val.name + "</a></li>" );
+          });
+
+          var $html = $( "<ul/>", {
+          "class": "suggested-results list-unstyled",
+          html: items.join( "" )}
+          );
+
+          if (items.length > 0) {
+            $results.html($html);
+            $container.removeClass("hidden");
+            $container.fadeIn();
+          }
+        });
+      }
+  });
+
   $('.stats').on('click', function(){
 
 

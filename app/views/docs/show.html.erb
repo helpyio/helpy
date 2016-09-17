@@ -17,6 +17,14 @@
   Helpy.contactUs = '<a href="<%= new_topic_path(doc_id: @doc.id) %>" class="btn btn-primary btn-lg get-help-button"><%= j t(:start_discussion) %></a>';
 </script>
 
+<style>
+/* Added style to handle new h1 header in trix.js */
+.text-content h1 {
+  font-size: 160%;
+  background-color: transparent;
+}
+</style>
+
 <div class="row content-row">
   <div class="col-md-3 hidden-xs hidden-sm">
     <div id="written-by" class="doc-meta">

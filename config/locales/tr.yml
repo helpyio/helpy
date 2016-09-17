@@ -61,6 +61,7 @@ tr:
   # Knowledgebase
   written_by: "Yazan:"
   last_edited: "Son Düzenlenen"
+  asked_before: "Sorunuzun daha önce yanıtlandı? Biz bu benzer olabilir düşünüyorum"
 
   # Tickets
   tickets: "Destek Talepleri"
@@ -267,7 +268,7 @@ tr:
         # layout: Layout
         # allow_topic_voting: Allow topic voting?
         # allow_post_voting: Allow post voting?
-        
+
     helpers:
       submit:
         topic:

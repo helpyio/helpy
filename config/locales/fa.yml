@@ -61,6 +61,7 @@ fa:
   # Knowledgebase
   written_by: "نوشته"
   last_edited: "آخرین ویرایش"
+  asked_before: "سوال خود را قبل از پاسخ داده شده است؟ ما فکر می کنیم این ممکن است شبیه"
 
   # Tickets
   tickets: "تیکت ها"

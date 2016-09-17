@@ -23,7 +23,7 @@
 
 
     <div id="user-tickets" class="user-info">
-      <div class="tiny-header">Discussions:</div>
+      <div class="tiny-header"><%= t(:discussions, default: "Discussions") %>:</div>
       <ul class='list-unstyled'>
       <% @topic.user.topics.isprivate.each do |ticket| %>
         <li><%= link_to("##{ticket.id}- #{ticket.name}", admin_topic_path(ticket), remote: true) %><span class="status pull-right"><%#= badge_for_status(ticket.current_status) %></span>

@@ -28,7 +28,8 @@ module AdminHelper
           select += "<optgroup label='#{I18n.translate("i18n_languages.#{locale}")}'>"
         end
         Doc.replies.with_translations(locale).all.each do |doc|
-          select += "<option value='#{strip_tags(doc.body)}'>#{doc.title}</option>"
+            body = (strip_tags(doc.body)).gsub(/\'/, '&#39;')
+            select += "<option value='#{body}'>#{doc.title}</option>"
         end
         select += "</optgroup>"
       end
@@ -57,9 +58,9 @@ module AdminHelper
 
   def select_default_locale
     tag = "<div class='form-group'>"
-    tag += "<label class='control-label' for='i18n.default_locale'>Default Locale</label>"
+    tag += "<label class='control-label' for='i18n.default_locale'>#{t('default_locale', default: "Default Locale")}</label>"
     tag += "<select name='i18n.default_locale' class='form-control' id='i18n.default_locale'>"
-    tag += "<option value=''>Select Default Locale...</option>"
+    tag += "<option value=''>#{t('select_default_locale', default: "Select Default Locale...")}</option>"
     I18n.available_locales.sort.each do |locale|
       selected = "selected" if "#{locale}" == AppSettings['i18n.default_locale'].to_s
       I18n.with_locale(locale) do

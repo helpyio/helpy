@@ -1,12 +1,16 @@
-# TRANSLATOR(s): Felipe Martins
-
 pt-br:
-  language_name: 'Português-BR' # The name of the translation file, in that language
+  language_name: 'Português brasileiro' # The name of the translation file, in that language
   root: &root 'Início'
   how_can_we_help: "Como podemos ajudar?"
   browse_topics: "Procurar Tópicos"
   support_team: "Equipe de Suporte"
   nothing_here: "A pasta está vazia!"
+
+  boolean_yes: "Sim"
+  boolean_no: "Não"
+  save_settings: "Salvar configurações"
+
+  last_seen: "Visto última vez:"
 
   # Navigation
   knowledgebase: "Base de Conhecimento"
@@ -27,8 +31,8 @@ pt-br:
   did_this_help: "Isto ajudou o seu problema?"
   yes_button: 'Sim'
   no_button: 'Não'
-  # yes_helped: 'Great!! Thanks for the feedback!'
-  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  yes_helped: 'Ótimo! Obrigado pelo feedback!'
+  no_helped: "Isto não lhe ajudou? Entre em contato conosco para uma melhor ajuda!"
 
   # Search
   search_placeholder: "Insira uma palavra-chave, tópico ou questão"
@@ -60,7 +64,8 @@ pt-br:
 
   # Knowledgebase
   written_by: "Escrito por"
-  last_edited: "última Edição"
+  last_edited: "Última Edição"
+  asked_before: "A sua pergunta foi respondida antes? Achamos que estes podem ser semelhantes"
 
   # Tickets
   tickets: "Tickets"
@@ -70,25 +75,25 @@ pt-br:
   created_on: "Criado a"
 
   # Get Help
-  get_help_header: "Ainda Necessita de Ajuda??"
+  get_help_header: "Ainda Necessita de Ajuda ?"
   get_help_button: "Inicie uma Discussão Conosco"
 
   # Profile
-  my_profile: 'O Meu Perfil'
+  my_profile: 'Meu Perfil'
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
-  # version: "Version:"
+  powered_by: "Powered by Helpy. Um projeto de Helpdesk Open Source."
+  get_your_copy: "Garanta uma cópia pelo Github"
+  version: "Versão:"
 
   # devise/sessions/new
-  login: "Log in"
+  login: "Autenticar"
 
   # devise/shared/links
-  forgot_password: "Esqueceu-se da senha?"
+  forgot_password: "Esqueceu sua senha?"
 
   # devise/passwords/new
-  send_instructions: "Enviem-me Instruções"
+  send_instructions: "Me envie instruções"
 
   # devise/passwords/edit
   change_password: "Alterar Senha"
@@ -96,20 +101,37 @@ pt-br:
   new_password_confirmation: "Confirmar Nova Senha"
 
   # devise/confirmations/new
-  resend: "Reenviar confirmação de Intruções"
+  resend: "Reenviar confirmação de instruções"
 
   # devise/registrations/new
   sign_up: "Registar"
 
+  # Onboarding
+  welcome_to_helpy: "Bem vindo ao Helpy"
+  around_the_globe: "Empresas por todo o mundo estão usando o Helpy para prover os melhores serviços de atendimento ao cliente. É muito bom ver você conosco! :)"
+  start_setup: "Vamos começar a configurar seu Helpy"
+  lets_customize: "Legal! Vamos começar a customizar seu Helpdesk"
+
+  site_name_placeholder: "Geralmente é o nome de sua empresa, ou do seu produto"
+  site_url_placeholder: "A URL do seu Helpy (suporte.seudominio.com)"
+  parent_site_placeholder: "Link de volta para seu site, a partir do Helpy"
+  parent_company_placeholder: "Nome da sua empresa"
+
+  login_setup: "Vamos customizar seu login!"
+
+  setup_complete: "Seu Helpy está pronto!"
+  setup_complete_message: "Seu Helpy está pronto para uso! Você pode customizar ainda mais seu Helpy no painel de configurações. Fique ligado em nossas mídias sociais para ficar por dentro das últimas notícias, e também sobre novas features, correções de bugs, e atualizações de segurança."
+  get_started: "Vamos começar!"
   # Admin menu
   discussions: "Discussões"
   content: "Conteúdo"
+  team: "Equipe"
   communities: "Comunidades"
-  app_store: App Store
+  app_store: Loja do aplicativo
   search: "Procurar"
 
   # Admin main/statuses
-  support_pipeline: "Conduta de Suporte"
+  support_pipeline: "Fluxo de suporte"
   new: "Novo"
   active: "Ativo"
   open: "Aberto"
@@ -117,7 +139,7 @@ pt-br:
   pending: "Pendente"
   closed: "Resolvido"
   spam: Spam
-  trash: Trash
+  trash: Lixo
   discussion_managment: "Gestão de Discussões"
   open_new_discussion: "Nova Discussão"
   assigned_to: "associado a %{agent}"
@@ -138,6 +160,8 @@ pt-br:
     one: "1 mensagem selecionada"
     two: "2 mensagens selecionadas"
     other: "%{count} mensagens selecionadas"
+  mark_as: "Marcar como"
+  move_to: "Mover para"
 
   # Discussion messages
   reopen_message: "Esta mensagem foi reaberta pelo suporte."
@@ -146,7 +170,7 @@ pt-br:
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
 
   # User Admin
-  # users: Users
+  users: "Usuários"
   contact_info: "Contato"
   social_info: "Social"
   edit_user: "Editar Usuário"
@@ -159,26 +183,26 @@ pt-br:
     other: "%{count} utilizadores encontrados com o nome %{query}"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
-  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
-  # invite_message: "Message"
-  # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_users: "Convide novos usuários"
+  invite_emails: "Endereços de e-mail"
+  invite_emails_placeholder: "Digite um ou mais endereços de e-mail para enviar os convites"
+  invite_message: "Mensagem"
+  invite_message_placeholder: "Uma mensagem opcional que poderá ser enviada aos novos usuários"
+  invite_role: "Nível para os usuários convidados"
+  send_invite: "Enviar convite"
 
   # Discussion View
-  asked_a_question: "%{user_name} fez uma questão..."
+  asked_a_question: "%{user_name} fez uma pergunta..."
   replied: "%{user_name} respondeu..."
   posted_note: "%{user_name} criou uma nota interna..."
   type_reply: "Escreva a sua resposta, ou selecione uma predefinida em baixo"
   select_common: "Selecione uma Resposta Predefinida"
   reply: "Responder"
   internal_note: "Nota Interna"
-  # mark_as_resolved: Mark as resolved
+  mark_as_resolved: Marcar como resolvido
   upvote:
-    one: "Upvote | %{count}"
-    other: "Upvote | %{count}"
+    one: "Positivar | %{count}"
+    other: "Positivar | %{count}"
 
   # Content
   new_category: "Nova Categoria"
@@ -201,16 +225,16 @@ pt-br:
   published_content: "Publicado"
   additional_settings: "Configurações Adicionais"
   content_status: "Estado do Conteúdo"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
+  convert_content: 'Transformar postagem em conteúdo'
+  upload_image: 'Carregar imagem'
 
   # Communities
   new_community: "Criar uma Nova Comunidade"
   create_new_community: "Criar uma Nova Comunidade"
-  # layout_select: Select Format
-  # layout_table: Table
-  # layout_grid: Grid
-  # layout_qna: Q&A
+  layout_select: Selecionar formato
+  layout_table: Tabela
+  layout_grid: Grade
+  layout_qna: FAQ
 
   # Mail messages
   hello: "Olá %{user_name}"
@@ -221,25 +245,115 @@ pt-br:
   message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
   view_online: "Ver isto online:"
 
-  # settings
-  # settings: "Settings"
-  # general: "General"
-  # design: "Design"
-  # international: "International"
-  # widget: "Embeddable Widget"
+  # Insights
+  team_insights: "Percepções de desempenho da equipe do %{site_name}"
+  filter_by_date: "Filtrar por data"
+  today: Hoje
+  yesterday: Ontem
+  this_week: "Essa semana"
+  last_week: "Última semana"
+  this_month: "Esse mês"
+  date_range: "Período de tempo"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> seus usuários iniciaram 1 nova interação"
+    other: "<strong>%{period}</strong> seus usuários iniciaram <strong>%{count} novas interações</strong>"
+  insights_blurb_two: "do modo em que seu time respondeu <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "com uma média de tempo de resposta de <strong>%{response_time}</strong>"
+  no_discussions: "Não há novas interações iniciadas <strong>%{period}</strong>"
+  assigned_topics: "Tópicos assinados"
+  responded: "Respondido"
+  closed: "Fechado"
+  replies: "Respostas"
+  median_time: "Média de tempo para a primeira resposta"
+  add_more_agents: "Adicionar novos agentes"
+
+  # Settings
+  agent_settings: "Configurações dos agentes"
+
+  notifications: "Notificações"
+  api_keys: "Chaves da API"
+  settings: "Configurações"
+  theme: Tema
+  general: "Geral"
+  design: "Design"
+  international: "Internacionalização"
+  widget: "Widget embarcado"
+
+  notifications_description: "Escolha em que momento deseja ser notificado via e-mail"
+  api_description: "Crie e gerencie suas chaves de acesso a API Helpy!"
+  general_description: "Gerencie de maneira geral seu sistema, elementos como o nome da aplicação Helpy, e links de retorno."
+  design_description: "Gerencie o logo do site, cores e outros elementos referentes a beleza do seu Helpy!"
+  theme_description: "Selecione um tema para seu Helpy!"
+  international_description: "Selecione qual idioma seu Helpy será capaz de falar !"
+  widget_description: "Descubra como acoplar o widget Helpy em seu site!"
+  email_description: "Configure o SMTP e a caixa de recebimento de e-mails para seu Helpy."
+  cloudinary_description: "Configure o Cloudinary para que seu Helpy usufrua de um adorável sistema de hospedagem de arquivos."
+  users_description: "Visualize e adicione novos usuários!"
+
+  # Notifications Area
+  notify_on_private: "Me envie um e-mail quando uma pergunta PRIVADA de cliente for recebida."
+  notify_on_public: "Me envie um e-mail quando uma pergunta PÚBLICA de cliente for postada."
+  notify_on_reply: "Me envie um e-mail quando uma resposta a uma pergunta PRIVADA for recebida."
+
+  # API Keys Area
+  expired: Expirada
+  expire: Expirar
+  expire_confirm: "Por favor confirme se tem certeza que deseja expirar esta chave de API."
+  key_name: "Nomeação da chave"
+  add_key: "Adicionar uma nova chave"
+  spec-note: "Você pode ler a spec, e testar de forma interativa a API Helpy em"
+
+  # General Area
+  site_name: "Nome do site"
+  site_url: "URL do site"
+  parent_site: "Site (pai) relacionado"
+  parent_company: "Nome da empresa relacionada"
+  site_tagline: "Frase do site"
+  recaptcha_site_key: "Chave Recaptcha do site"
+  recaptcha_api_key: "Chave da API Recaptcha"
+
+  # Design Area
+  header_logo: "Logo do cabeçalho"
+  footer_logo: "Logo do rodapé"
+  search_background: "Cor de fundo da pesquisa"
+  top_bar: "Cor da barra superior ao cabeçalho"
+  link_color: "Cor dos links"
+  form_background: "Cor de fundo dos formulários"
+  still_need_help: "Cor de fundo do \"Ainda precisa de ajuda?\""
+
+  # Widget Area
+  show_widget: "Habilitar uso do widget no site de suporte"
+  add_embed_widget_message: "Adicione o widget embarcado em seu site utilizado o seguinte script:"
+
+  # International Area
+  supported_locales: "Idiomas disponíveis:"
+  default_locale: "Idioma padrão"
+  select_default_locale: "Selecionar idioma padrão..."
+
+  # Email Area
+  mail_service: "Provedor do serviço de e-mail de entrada"
+  send_email: "Habilitar saída de e-mail (SMTP)"
+  admin_email: "E-mail administrativo"
+  smtp_mail_username: "Usuário SMTP"
+  smtp_mail_password: "Senha SMTP"
+  mail_smtp: "Servidor SMTP"
+  mail_port: "Porta SMTP"
+  mail_domain: "Domínio SMTP"
 
   activerecord:
     attributes:
       user:
         email: "Email"
-        password: "Password"
+        password: "Senha"
         name: "Nome"
         company: "Empresa"
+        bio: "Biografia"
+        title: "Título / Cargo"
         work_phone: "Trabalho"
         cell_phone: "Celular"
         city: "Cidade"
         state: "Estado"
-        # signature: Signature
+        signature: Assinatura
       topic:
         name: "Assunto"
       post:
@@ -248,25 +362,27 @@ pt-br:
         name: "Nome"
         icon: "Ícone"
         keywords: "Palavras-Chave"
-        title_tag: "Meta Title"
-        meta_description: "Meta Description"
+        title_tag: "Meta Título"
+        meta_description: "Meta Descrição"
         front_page: "Página Frontal"
-        active: "Activo"
+        active: "Ativo"
       doc:
         title: "Título"
-        meta_description: Meta Description
-        title_tag: "Meta Title"
-        keywords: "Pa"
+        meta_description: Meta Descrição
+        title_tag: "Meta Título"
+        keywords: "Palavras chaves"
         category_id: "Categoria"
+        time_zone: "Fuso horário"
         active: "Estado"
         front_page: "Em Destaque na página Inicial?"
+        allow_comments: "Permitir comentários"
       forum:
         name: "Nome"
         description: "Descrição"
         private: "Privado"
-        # layout: Layout
-        # allow_topic_voting: Allow topic voting?
-        # allow_post_voting: Allow post voting?
+        layout: Layout
+        allow_topic_voting: Permitir votação no tópico?
+        allow_post_voting: Permitir votação na postagem?
 
     helpers:
       submit:
@@ -291,7 +407,7 @@ pt-br:
     result:
       root: *root
   helpers:
-    actions: "acções"
+    actions: "Ações"
     links:
       back: "Voltar"
       cancel: "Cancelar"

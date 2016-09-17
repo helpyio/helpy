@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root to: "locales#redirect_on_locale"
   get 'widget/' => 'widget#index', as: :widget
   get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
     put "/users/invitation" => "devise/invitations#update", as: nil
     patch "/users/invitation" => "devise/invitations#update", as: nil
   end
+
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 
   localized do
 

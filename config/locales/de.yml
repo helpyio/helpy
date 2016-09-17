@@ -27,8 +27,8 @@ de:
   did_this_help: "Hat das Ihr Problem gelöst?"
   yes_button: 'Ja'
   no_button: 'Nein'
-  # yes_helped: 'Great!! Thanks for the feedback!'
-  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  yes_helped: 'Toll! Danke für Ihnen Bewertung!'
+  no_helped: 'Es tüt uns Leid, dass wir Ihnen helfen könten. Bitte kontaktieren Sie uns für weitere Hilfe'
 
   # Search
   search_placeholder: "Geben Sie ein Stichwort, ein Thema oder eine Frage ein"
@@ -59,15 +59,16 @@ de:
       other: "%{count} verborgene Nachrichten"
 
   # Knowledgebase
-  # written_by: "Written By"
-  # last_edited: "Last Edited"
+  written_by: "Uberrichtete von"
+  last_edited: "Zuletzt bearbeitet"
+  asked_before: "Wurde die Frage vor beantwortet? Wir denken, dass diese ähnlich sein kann"
 
   # Tickets
   tickets: "Tickets"
   no_tickets: "Du hast noch keine Tickets erstellt"
-  # ticket_number: "Ticket Number"
-  # assigned_to_label: "Assigned to"
-  # created_on: "Created on"
+  ticket_number: "Ticket Nummer"
+  assigned_to_label: "Zugewiesen werden"
+  created_on: "Hat gebuiltet an"
 
   # Get Help
   get_help_header: "Brauchen Sie noch Hilfe??"
@@ -194,7 +195,7 @@ de:
   select_icon_helptext: "Symbol für die Kategorie auswählen (optional)"
   translate: "In eine andere Sprache übersetzen"
   # view_on_site: "View on Site"
-  # written_on: "Written on %{date_written}"
+  written_on: "Geschreiben an %{date_written}"
   # content_last_updated: "Last Updated on %{date_updated}"
   # featured_content: "Featured"
   # draft_content: "Draft"
@@ -225,7 +226,7 @@ de:
   # settings: "Settings"
   # general: "General"
   # design: "Design"
-  # international: "International"
+  international: "International"
   # widget: "Embeddable Widget"
 
   activerecord:
@@ -239,7 +240,7 @@ de:
         cell_phone: Handy
         city: Stadt
         state: Bundesland
-        # signature: Signature
+        signature: Unterschrift
       topic:
         name: Betreff
       post:
@@ -263,7 +264,7 @@ de:
       forum:
         name: Name
         description: Beschreibung
-        # private: Private
+        private: Privat
         # layout: Layout
         # allow_topic_voting: Allow topic voting?
         # allow_post_voting: Allow post voting?
