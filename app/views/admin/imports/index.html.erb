@@ -1,0 +1,18 @@
+<h2 id="ticket-page-title">
+  Imports:
+</h2>
+
+<div class="settings-panel row">
+  <div class="col-md-9 col-sm-8 col-xs-10">
+    <%= form_tag admin_import_restore_path, multipart: true do %>
+      User: <%= file_field_tag :user %>
+      Topic: <%= file_field_tag :topic %>
+      Post: <%= file_field_tag :post %>
+      <!-- Doc: <%= file_field_tag :doc %>
+      Category: <%= file_field_tag :category %>
+      Forum: <%= file_field_tag :forum %> -->
+      <%= submit_tag "Import" %>
+    <% end %>
+  </div>
+</div>
+
