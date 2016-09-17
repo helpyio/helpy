@@ -28,7 +28,7 @@
 		<%= content_tag :li, link_to(t(:community), forums_path) if Settings.forums %>
 		<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' } %>
 		<%#= content_tag :li, link_to("#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'] %>
-		<%= content_tag :li, link_to(t(:locale), select_locale_path) if AppSettings['i18n.available_locales'].count > 1 %>
+		<%= content_tag :li, link_to(t(:locale), select_locale_path) %>
 		<li class="search-li">
 			<div class="form-group has-feedback right-inner-addon">
 			  <%= form_tag result_path, method: :get, id: 'search-form', remote: (params[:controller] == 'result') do %>

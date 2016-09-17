@@ -137,11 +137,6 @@ textarea {
   }
 }
 
-.topic time {
-  display: table-cell;
-  padding-top: 3px;
-}
-
 #page-title {
 	padding-top: 30px;
 	background-color: #feffe9;
@@ -296,7 +291,7 @@ div.admin-tools {
 
 .label-count {
 	position: relative;
-	top:  -0.2em;
+	top:  .5em;
 	border: 1px solid #999;
 	background-color: #fff;
 	color: #999;
@@ -350,7 +345,8 @@ span.category-icon {
 }
 
 .status-label {
-  margin: 0px 0px 0px 5px;
+	margin-left: 5px;
+	margin-bottom: -15px;
 }
 
 .no-side-pad {
