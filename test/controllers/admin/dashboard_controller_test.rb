@@ -35,10 +35,33 @@ class Admin::DashboardControllerTest < ActionController::TestCase
     end
   end
 
-  test 'sets @interval correctly' do
+  %w(today yesterday this_week this_month).each do |label|
+    test "sets @interval for #{label} correctly" do
+      sign_in users(:admin)
+      get :stats, locale: :en, label: label
+      assert_equal I18n.t(label), assigns(:interval)
+    end
+
+    # test "sets @start_date for #{label} correctly"
+    # test "sets @end_date for #{label} correctly"
+  end
+
+  test "@interval defaults to 'This week'" do
     sign_in users(:admin)
-    get :stats, locale: :en, start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this_month'
-    assert_equal 'This month', assigns(:interval)
+    get :stats, locale: :en, label: 'should_default_to_this_week'
+    assert_equal I18n.t('this_week'), assigns(:interval)
+  end
+
+  test "@start_date default to start of week" do
+    sign_in users(:admin)
+    get :stats, locale: :en, label: 'should_default_to_this_week'
+    assert_equal Time.zone.today.at_beginning_of_week, assigns(:start_date)
+  end
+
+  test "@end_date defaults to today at end of day" do
+    sign_in users(:admin)
+    get :stats, locale: :en, label: 'should_default_to_this_week'
+    assert_equal Time.zone.today.at_end_of_day, assigns(:end_date)
   end
 
   test 'sets @topics correctly'
