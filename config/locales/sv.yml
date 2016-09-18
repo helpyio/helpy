@@ -1,4 +1,4 @@
-en:
+sv:
   language_name: 'Svenska' # The name of the translation file, in that language
   root: &root 'Home'
   how_can_we_help: "Vad kan vi hjälpa till med?"
@@ -18,7 +18,7 @@ en:
   welcome_back: "Välkommen tillbaka %{username}"
   your_profile: "Din profil"
   your_tickets: "Dina ärendnen"
-  locale: "Lokal"
+  locale: "Lokalisering"
   change_your_locale: "Byt lokalisering"
 
   # Voting widget
@@ -26,229 +26,229 @@ en:
   yes_button: 'Ja'
   no_button: 'Nej'
   yes_helped: 'Toppen! Tack för din återkoppling.'
-  no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  no_helped: 'Tråkigt att du inte hittade svaret du letade efter. Kontakta oss så hjälper vi dig!'
 
   # Search
-  search_placeholder: "Enter a keyword, topic, or question"
-  no_results: "No Results Found, Please try your search again!"
+  search_placeholder: "Fyll i en sökfråga."
+  no_results: "Inga sökresultat. Prova en annan sökning."
   results_found:
-    one: "one result found for your search "
-    other: "%{count} results found for your search "
+    one: "din sökning gav ett resultat "
+    other: "din sökning gav %{count} resultat "
 
   # Community
-  forum_name: "Topic"
-  subject: "Subject"
-  last_activity: "Last Active"
-  topic: "Discussion"
-  replies: "Replies"
-  last_post: "Last Post"
-  started_by: "Started by %{username}"
-  reply: "Reply to this topic"
-  submit_reply: "Post Reply"
-  posted: "Posted"
-  start_discussion: "Start a New Discussion"
-  submit_start_discussion: "Start Discussion"
-  should_message_be_private: "Should this message be private?"
-  only_support_can_respond: "Only support can respond (creates a private ticket)"
-  responses_can_come_from_everyone: "Responses can come from support or the community (recommended)"
+  forum_name: "Kategori"
+  subject: "Ämne"
+  last_activity: "Senaste aktiva"
+  topic: "Inlägg"
+  replies: "Svar"
+  last_post: "Senaste inlägg"
+  started_by: "Startad av %{username}"
+  reply: "Svara på det här inlägget"
+  submit_reply: "Skicka svar"
+  posted: "Skickat"
+  start_discussion: "Skapa ett nytt inlägg"
+  submit_start_discussion: "Skicka inlägg"
+  should_message_be_private: "Ska meddelandet vara privat?"
+  only_support_can_respond: "Endast supportpersonal kan svara (skapar en privat konversation)"
+  responses_can_come_from_everyone: "Svar kan komma från supportpersonal eller andra användare (publik konversation)"
   collapsed_messages:
-      one: "1 collapsed message"
-      two: "2 collapsed messages"
-      other: "%{count} collapsed messages"
+      one: "1 gömt meddelande"
+      two: "2 gömda meddelanden"
+      other: "%{count} gömda meddelanden"
 
   # Knowledgebase
-  written_by: "Written By"
-  last_edited: "Last Edited"
+  written_by: "Skriven av"
+  last_edited: "Senast ändrad"
 
   # Tickets
-  tickets: "Tickets"
-  no_tickets: "You have not created any tickets yet"
-  ticket_number: "Ticket Number"
-  assigned_to_label: "Assigned to"
-  created_on: "Created on"
+  tickets: "Ärenden"
+  no_tickets: "Du har inte öppnat några ärenden"
+  ticket_number: "Ärendenummer"
+  assigned_to_label: "Hanteras av"
+  created_on: "Skapad"
 
   # Get Help
-  get_help_header: "Still Need Help??"
-  get_help_button: "Start a Discussion with Us"
+  get_help_header: "Behöver du mer hjälp?"
+  get_help_button: "Starta en konversation."
 
   # Profile
-  my_profile: 'My Profile'
+  my_profile: 'Min profil'
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  powered_by: "Drivs av Helpy, ett infotält med öppen källkod."
+  get_your_copy: "Hämta din kopia på Github."
 
   # devise/sessions/new
-  login: Log in
+  login: 'Logga in'
 
   # devise/shared/links
-  forgot_password: Forgot your password?
+  forgot_password: 'Glömt lösenordet?'
 
   # devise/passwords/new
-  send_instructions: Send me instructions
+  send_instructions: 'Skicka instruktioner'
 
   # devise/passwords/edit
-  change_password: Change password
-  new_password: New password
-  new_password_confirmation: Confirm new password
+  change_password: "Byt lösenord"
+  new_password: 'Nytt lösenord'
+  new_password_confirmation: 'Bekräfta nytt lösenord'
 
   # devise/confirmations/new
-  resend: Resend confirmation instructions
+  resend: 'Skicka bekräftelseinstruktioner igen'
 
   # devise/registrations/new
-  sign_up: Sign Up
+  sign_up: 'Registrera konto'
 
   # Admin menu
-  discussions: Discussions
-  content: Content
-  communities: Communities
-  app_store: App Store
-  search: Search
+  discussions: 'Konversationer'
+  content: 'Innehåll'
+  communities: 'Samhällen'
+  app_store: 'Butik'
+  search: 'Sök'
 
   # Admin main/statuses
-  support_pipeline: Support Pipeline
-  new: New
-  active: Active
-  open: Open
-  mine: Mine
-  pending: Pending
-  closed: Resolved
-  spam: Spam
-  trash: Trash
-  discussion_managment: Discussion Management
-  open_new_discussion: New Discussion
-  assigned_to: "assigned to %{agent}"
-  unassigned: unassigned
-  private: private
-  public: public
-  save_changes: Save Changes
+  support_pipeline: 'Supportflöde'
+  new: 'Nya'
+  active: 'Aktiva'
+  open: 'Öppna'
+  mine: 'Mina'
+  pending: 'Väntar på svar'
+  closed: 'Lösta'
+  spam: 'Spam'
+  trash: 'Papperskorg'
+  discussion_managment: 'Diskussionshantering'
+  open_new_discussion: 'Ny diskussion'
+  assigned_to: "tilldelad till %{agent}"
+  unassigned: 'inte tilldelad till någon'
+  private: 'privat'
+  public: 'publik'
+  save_changes: 'Spara ändringar'
 
   # Discussion controls
-  change_status: Change Status
-  status: Status
-  mark_closed: Mark Resolved
-  reopen: Reopen
-  mark_spam: Mark Spam
-  mark_new: Mark New
-  assign_agent: Assign Agent
+  change_status: 'Ändra Status'
+  status: 'Status'
+  mark_closed: 'Markera som färdighanterat'
+  reopen: 'Öppna igen'
+  mark_spam: 'Markera som spam'
+  mark_new: 'Markera som nyinkommet'
+  assign_agent: 'Tilldela till agent'
   selected_messages:
-    one: "1 selected message"
-    two: "2 selected messages"
-    other: "%{count} selected messages"
+    one: "1 markerat meddelande"
+    two: "2 markerade meddelanden"
+    other: "%{count} markerade meddelanden"
 
   # Discussion messages
-  reopen_message: "This message has been reopened by the support staff"
-  close_message: "This ticket has been closed by the support staff."
-  trash_message: "This ticket has been deleted."
-  assigned_message: "Discussion has been transferred to %{assigned_to}."
+  reopen_message: "Det här ärendet har återöppnats av supportpersonalen."
+  close_message: "Det här ärendet har avslutats av supportpersonalen."
+  trash_message: "Det här ärendet har raderats."
+  assigned_message: "Ärendet har tilldelats %{assigned_to}."
 
   # User Admin
-  contact_info: Contact
-  social_info: Social
-  edit_user: Edit User
-  work_phone: work
-  cell_phone: cell
+  contact_info: Kontakt
+  social_info: Sociala medier
+  edit_user: Redigera användarkonto
+  work_phone: arbete
+  cell_phone: mobil
 
   # User search results
   users_found:
-    one: "1 user was found named %{query}"
-    other: "%{count} users were found named %{query}"
+    one: "Det finns en användare som heter %{query}"
+    other: "%{count} användare heter %{query}"
 
   # Discussion View
-  asked_a_question: "%{user_name} asked a question..."
-  replied: "%{user_name} replied..."
-  posted_note: "%{user_name} posted an internal note..."
-  type_reply: Type your reply, or select from a common message below
-  select_common: Select Common Reply
-  reply: Reply
-  internal_note: Internal Note
-  mark_as_resolved: Mark as resolved
+  asked_a_question: "%{user_name} ställde en fråga..."
+  replied: "%{user_name} svarade..."
+  posted_note: "%{user_name} postade en intern anteckning..."
+  type_reply: 'Skriv ett svar, eller skicka ett sparat'
+  select_common: 'Välj sparat svar'
+  reply: 'Svar'
+  internal_note: 'Intern anteckning'
+  mark_as_resolved: 'Markera som löst'
   upvote:
-    one: "Upvote | %{count}"
-    other: "Upvote | %{count}"
+    one: "Lajk | %{count}"
+    other: "Lajks | %{count}"
 
   # Content
-  new_category: New Category
-  new_content: New Content
-  front_page_categories: Front Page Categories
-  other_categories: Other Categories
-  edit: Edit
-  edit_category: Edit Category
-  select_category: Select Category
-  delete: Delete
-  view_and_edit: "View and Edit Content"
-  delete_confirm: "Please confirm you want to DELETE this!"
-  select_icon_helptext: "Select an icon to associate with this category (optional)"
-  translate: "Translate to a different language"
-  view_on_site: "View on Site"
-  written_on: "Written on %{date_written}"
-  content_last_updated: "Last Updated on %{date_updated}"
-  featured_content: "Featured"
-  draft_content: "Draft"
-  published_content: "Published"
-  additional_settings: "Additional Settings"
-  content_status: "Content Status"
+  new_category: 'Ny kategori'
+  new_content: 'Nytt innehåll'
+  front_page_categories:  'Förstasideskategorier'
+  other_categories: 'Andra kategorier'
+  edit: 'Redigera'
+  edit_category: 'Redigera kategori'
+  select_category: 'Välj kategori'
+  delete: 'Radera'
+  view_and_edit: "Visa och redigera innehåll"
+  delete_confirm: "Är du säker på att du vill radera detta?"
+  select_icon_helptext: "Välj en ikon att koppla till den här kategorin (ej obligatoriskt)"
+  translate: "Översätt till ett annat språk"
+  view_on_site: "Visa på webbplatsen"
+  written_on: "Skriven %{date_written}"
+  content_last_updated: "Senast uppdaterad %{date_updated}"
+  featured_content: "Pinnat"
+  draft_content: "Utkast"
+  published_content: "Publicerat"
+  additional_settings: "Fler inställningar"
+  content_status: "Innehållets status"
 
   # Communities
-  new_community: Create New Community
-  create_new_community: Create New Community
+  new_community: 'Skapa ny grupp'
+  create_new_community: 'Skapa ny grupp'
 
   # Mail messages
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  hello: "Hej %{user_name}"
+  new_user: "Tack för att du kontaktar oss. Supportgruppen har fått ditt meddelande och återkommer inom kort med ett svar."
+  account_generated: "Ett konto har skapats åt dig. För att logga in , följ den här länken:"
+  above_this_line: "Skriv ditt svar ovanför den här raden:"
+  message_id: "Meddelande-ID"
+  message_response: "Din fråga har besvarats:"
+  view_online: "Visa på webbplatsen:"
 
   # settings
-  settings: "Settings"
-  general: "General"
+  settings: "Inställningar"
+  general: "Generellt"
   design: "Design"
-  international: "International"
-  widget: "Embeddable Widget"
+  international: "Internationellt"
+  widget: "Inbäddningsbar Widget"
 
   activerecord:
     attributes:
       user:
-        email: Email
-        password: Password
-        name: Name
-        company: Company
-        work_phone: Work
-        cell_phone: Cell
-        city: City
-        state: State
+        email: 'Email'
+        password: 'Lösenord'
+        name: 'Namn'
+        company: 'Företag'
+        work_phone: 'Arbete'
+        cell_phone: 'Mobil'
+        city: 'Ort'
+        state: 'Land'
       topic:
-        name: Subject
+        name: 'Ämne'
       post:
-        kind: Genre
+        kind: 'Kategori'
       category:
-        name: Name
-        icon: Icon
-        keywords: Keywords
-        title_tag: Title Tag
-        meta_description: Meta Description
-        front_page: Front Page
-        active: Active
+        name: 'Namn'
+        icon: 'Ikon'
+        keywords: 'Nyckelord'
+        title_tag: 'Titeltagg'
+        meta_description: 'Metabeskrivning'
+        front_page: 'Försatsidan'
+        active: 'Aktiv'
       doc:
-        title: Title
-        meta_description: Meta Description
-        title_tag: Title Tag
-        keywords: Keywords
-        category_id: Category
-        active: Status
-        front_page: Featured on front page?
+        title: 'Titel'
+        meta_description: 'Metabeskrivning'
+        title_tag: 'Titeltagg'
+        keywords: 'Nyckelord'
+        category_id: 'Kategori'
+        active: 'Status'
+        front_page: 'Visas på förstasidan?'
       forum:
-        name: Name
-        description: Description
-        private: Private
+        name: 'Namn'
+        description: 'Beskrivning'
+        private: 'Privat'
 
     helpers:
       submit:
         topic:
-          create: Start New Discussion
+          create: 'Skapa ny konversation'
         post:
           create:
 
@@ -268,16 +268,17 @@ en:
     result:
       root: *root
   helpers:
-    actions: "Actions"
+    actions: "Åtgärder"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      back: "Tillbaka"
+      cancel: "Avbryt"
+      confirm: "Är du säker?"
+      destroy: "Radera"
+      new: "Ny"
+      edit: "Redigera"
     titles:
-      edit: "Edit %{model}"
-      save: "Save %{model}"
-      new: "New %{model}"
-      delete: "Delete %{model}"
+      edit: "Redigera %{model}"
+      save: "Spara %{model}"
+      new: "Ny %{model}"
+      delete: "Radera %{model}"
+      
