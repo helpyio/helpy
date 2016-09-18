@@ -138,8 +138,7 @@ textarea {
 }
 
 .topic time {
-  display: table-cell;
-  padding-top: 3px;
+  line-height: 25px;
 }
 
 #page-title {
@@ -296,18 +295,18 @@ div.admin-tools {
 
 .label-count {
 	position: relative;
-	top:  -0.2em;
 	border: 1px solid #999;
 	background-color: #fff;
 	color: #999;
-  	display: inline;
-  	font-size: 100%;
-  	font-weight: normal;
-  	line-height: 1;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
+	display: inline;
+	font-size: 100%;
+	font-weight: normal;
+	line-height: 1;
+  margin-top: -1px;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
 }
 
 .active {
@@ -328,6 +327,7 @@ div.admin-tools {
 span.more-important a {
 	font-weight: bold;
 	font-size: 105%;
+  vertical-align: middle;
 }
 
 span.more-important a:link {
