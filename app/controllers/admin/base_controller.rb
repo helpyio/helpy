@@ -21,17 +21,22 @@ class Admin::BaseController < ApplicationController
   end
 
   def date_from_params
-    if params[:start_date].present?
-      @start_date = params[:start_date].to_datetime
+    case params[:label]
+    when 'today'
+      @start_date = Time.zone.today.midnight
+      @end_date = Time.zone.today.at_end_of_day
+    when 'yesterday'
+      @start_date = Time.zone.yesterday.midnight
+      @end_date = Time.zone.yesterday.at_end_of_day
+    when 'this_week'
+      @start_date = Time.zone.today.midnight.at_beginning_of_week
+      @end_date = Time.zone.today.midnight.at_end_of_week
+    when 'this_month'
+      @start_date = Time.zone.today.midnight.at_beginning_of_month
+      @end_date = Time.zone.today.midnight.at_end_of_month
     else
       @start_date = Time.zone.today.at_beginning_of_week
-    end
-
-    if params[:end_date].present?
-      @end_date = params[:end_date].to_datetime
-    else
       @end_date = Time.zone.today.at_end_of_day
     end
   end
-
 end
