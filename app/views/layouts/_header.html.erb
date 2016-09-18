@@ -5,7 +5,7 @@
 			</div>
 			<%= nav_bar brand: image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", responsive: true do %>
 					<%= menu_group pull: :right do %>
-							<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
+							<span class="hidden-lg hidden-sm hidden-md hidden-xs"><%= render('result/search_form') %></span>
 							<%= menu_divider %>
 
 							<%= menu_item t(:your_tickets), tickets_path, Settings.tickets if user_signed_in? %>
