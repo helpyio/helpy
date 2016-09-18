@@ -51,7 +51,7 @@ class Topic < ActiveRecord::Base
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
   scope :open, -> { where(current_status: "open") }
-  scope :unread, -> { where(current_status: "new") }
+  scope :unread, -> { where("assigned_user_id = ? OR current_status = ?", nil, "new").where.not(current_status: 'closed') }
   scope :pending, -> { where(current_status: "pending") }
   scope :mine, -> (user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
@@ -85,6 +85,10 @@ class Topic < ActiveRecord::Base
 
   def email_subject
     "##{self.id} | #{self.name}"
+  end
+
+  def assigned?
+    self.assigned_user_id.present?
   end
 
   def open?
