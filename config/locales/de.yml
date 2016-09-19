@@ -283,6 +283,8 @@ de:
       root: *root
     docs:
       root: *root
+    locales:
+      root: *root
     forums:
       root: *root
     topics:

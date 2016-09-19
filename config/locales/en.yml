@@ -331,6 +331,8 @@ en:
       root: *root
     forums:
       root: *root
+    locales:
+      root: *root
     topics:
       root: *root
     posts:
