@@ -261,6 +261,8 @@ sv:
       root: *root
     forums:
       root: *root
+    locales:
+      root: *root
     topics:
       root: *root
     posts:
@@ -281,4 +283,4 @@ sv:
       save: "Spara %{model}"
       new: "Ny %{model}"
       delete: "Radera %{model}"
-      
+
