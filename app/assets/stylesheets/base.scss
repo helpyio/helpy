@@ -906,3 +906,26 @@ h4.qna {
 
   }
 }
+
+@media print {
+  #footer-wrapper {
+    display: none;
+  }
+
+  #pipeline-wrapper {
+    display: none;
+  }
+
+  #upper-wrapper {
+    display: none;
+  }
+
+  #tickets {
+    width: 100%;
+    margin: 0;
+  }
+
+  .add-form {
+    display: none;
+  }
+}
