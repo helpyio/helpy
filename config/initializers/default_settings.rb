@@ -10,6 +10,9 @@ AppSettings.defaults["settings.support_phone"] = Settings.support_phone
 AppSettings.defaults["settings.google_analytics_id"] = Settings.google_analytics_id
 AppSettings.defaults["settings.recaptcha_site_key"] = Settings.recaptcha_site_key
 AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
+AppSettings.defaults["settings.forums"] = Settings.forums
+AppSettings.defaults["settings.tickets"] = Settings.tickets
+AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 
 
 # Design: (Colors etc.)

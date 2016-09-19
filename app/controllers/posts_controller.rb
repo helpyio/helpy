@@ -15,6 +15,9 @@
 
 class PostsController < ApplicationController
 
+  # Make sure forums are enabled
+  before_action :forums_enabled?, only: ['index','show']
+
   respond_to :js, only: [:up_vote]
   layout "clean", only: :index
   theme :theme_chosen

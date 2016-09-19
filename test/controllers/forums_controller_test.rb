@@ -30,4 +30,11 @@ class ForumsControllerTest < ActionController::TestCase
     assert_equal(3, assigns(:forums).count)
   end
 
+  test "a browsing user should not be able to see index of forums if forums are not enabled" do
+    AppSettings['settings.forums'] = "0"
+    assert_raises(ActionController::RoutingError) do
+      get :index, locale: :en
+    end
+  end
+
 end

@@ -36,7 +36,7 @@
         <%= settings_item('glyphicon glyphicon-globe', "international", t('international_description', default: "Select what languages your Helpy will speak be able to speak.")) %>
         <%= settings_item('glyphicon glyphicon-modal-window', "widget", t('widget_description', default: "Find out how to deploy the Helpy widget on your site.")) %>
         <%= settings_item('glyphicon glyphicon-envelope', "email", t('email_description', default: "Set up SMTP and Inbound email for your Helpy.")) %>
-        <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", t('cloudinary_description', default: "Set up Cloudinary to enable your Helpy to accept image attachments.")) %>
+        <%= settings_item('fa fa-cogs', "integrations", t('integrations_description', default: "Configure integrations with external services.")) %>
         <%= settings_item('glyphicon glyphicon-user', "users", t('users_description', default: "View and Add Users"), admin_users_path) %>
       </div>
     </div>
@@ -51,7 +51,7 @@
       <%= settings_menu_item('glyphicon glyphicon-globe', 'international') %>
       <%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget') %>
       <%= settings_menu_item('glyphicon glyphicon-envelope', 'email') %>
-      <%= settings_menu_item('glyphicon glyphicon-cloud', 'cloudinary') %>
+      <%= settings_menu_item('fa fa-cogs', 'integrations') %>
       <%= settings_menu_item('glyphicon glyphicon-user', 'users', admin_users_path) %>
     </ul>
   </div>
@@ -64,9 +64,10 @@
         <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: t('parent_site', default: "Parent Site") %>
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: t('parent_company', default: "Parent Company") %>
         <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: t('site_tagline', default: "Site Tagline") %>
-        <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
-        <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
-        <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
+        <span>Helpy Functions</span>
+        <%= f.check_box 'settings.forums', { checked: forums?, label: t('enable_forums', default: "Enable Community Forums") } %>
+        <%= f.check_box 'settings.knowledgebase', { checked: knowledgebase?, label: t('enable_knowledgebase', default: "Enable Knowledgebase") } %>
+        <%= f.check_box 'settings.tickets', { checked: tickets?, label: t('enable_tickets', default: "Enable Private Tickets") } %>
       </div>
       <div class="settings-section design hidden">
           <div class="row">
@@ -150,7 +151,12 @@
         </div>
       </div>
 
-      <div class="settings-section cloudinary hidden" data-hook="admin_settings_cloudinary">
+      <div class="settings-section integrations hidden" data-hook="admin_settings_integrations">
+
+        <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
+        <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
+        <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
+
         <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
         <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
         <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
