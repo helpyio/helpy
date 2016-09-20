@@ -452,3 +452,21 @@ ul.settings-menu {
 		margin-bottom: 20px;
 	}
 }
+
+@media print {
+  .add-team-member {
+    display: none;
+  }
+
+  .admin-options {
+    display: none;
+  }
+
+  .btn-group {
+    display: none;
+  }
+
+  .label {
+    display: none;
+  }
+}

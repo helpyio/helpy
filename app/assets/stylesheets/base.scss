@@ -76,7 +76,7 @@ h1 {
 	// background-color: #ffdf91;
 }
 
-@media(max-width:767px){
+@media screen and (max-width:767px){
 	h1 {
 		font-size: 150%;
 	}
@@ -88,20 +88,20 @@ h1 {
 	}
 }
 
-@media(min-width:768px){
+@media screen and (min-width:768px){
 	h1 {
 		font-size: 190%;
 	}
 
 }
 
-@media(min-width:992px){
+@media screen and (min-width:992px){
 	h1 {
 		font-size: 200%;
 	}
 }
 
-@media(min-width:1200px){
+@media screen and (min-width:1200px){
 	h1 {
 		font-size: 220%;
 	}
@@ -874,7 +874,7 @@ h4.qna {
 
 //  === OTHER MEDIA QUERIES ===
 
-@media(max-width:767px){
+@media screen and (max-width:767px){
 	.dummy {
     	margin-top: 110px;
 	}
@@ -908,24 +908,16 @@ h4.qna {
 }
 
 @media print {
-  #footer-wrapper {
-    display: none;
-  }
-
-  #pipeline-wrapper {
-    display: none;
-  }
-
   #upper-wrapper {
     display: none;
   }
 
-  #tickets {
-    width: 100%;
-    margin: 0;
-  }
-
-  .add-form {
+  #footer-wrapper {
     display: none;
   }
+
+  #did-this-help {
+    display: none;
+  }
+
 }
