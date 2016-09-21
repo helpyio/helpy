@@ -108,6 +108,7 @@ module ApplicationHelper
     styles += "   #get-help-wrapper {\n background-color: ##{AppSettings['css.still_need_help']};\n  }\n" if AppSettings['css.top_bar'] != 'FFDF91'
     styles += "   div.add-form {\n background-color: ##{AppSettings['css.form_background']};\n  }\n" if AppSettings['css.form_background'] != 'F0FFF0'
     styles += "   .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {\n color: ##{AppSettings['css.link_color']};\n  }\n" if AppSettings['css.link_color'] != '004084'
+    styles += AppSettings['design.css'] if AppSettings['design.css'] != ""
     styles += "</style>"
     styles.html_safe
   end

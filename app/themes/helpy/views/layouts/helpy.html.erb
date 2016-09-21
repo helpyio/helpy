@@ -4,8 +4,8 @@
 	<head>
 		<%= render partial: 'layouts/head' %>
 		<%= rtl_tags if rtl? %>
+		<%= css_overrides %>
 	</head>
-	<%= css_overrides %>
 
 <body class="<%= 'rtl' if rtl? %>">
 <script>

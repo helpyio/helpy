@@ -94,6 +94,7 @@
               <%= f.text_field 'design.favicon', value: AppSettings['design.favicon'], label: "Favicon" %>
             </div>
           </div>
+          <%= f.text_area 'design.css', value: AppSettings['design.css'], label: "Custom CSS Overrides", rows: 10 %>
         <% if AppSettings['theme.active'] == 'helpy' %>
         <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
         <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
@@ -107,8 +108,8 @@
           <% @themes.each do |theme| %>
           <div class="col-md-4" class="theme-item">
             <%= f.radio_button 'theme.active', theme.name, checked: theme.name == AppSettings['theme.active'], label: theme.name.titleize %>
-            <%= link_to(image_tag(url_for(action: 'preview', theme: theme.name)), root_url(theme: theme.name), target: '_blank')  %>
-            <%= theme.description %>
+            <%= image_tag(url_for(action: 'preview', theme: theme.name))  %>
+            <%= theme.description %> <%= link_to "[Preview]", root_url(theme: theme.name), target: '_blank' %>
           </div>
           <% end %>
         </div>
@@ -157,9 +158,9 @@
         <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
         <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
 
-        <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
-        <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
-        <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
+        <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloudinary Cloud Name" %>
+        <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "Cloudinary API Key" %>
+        <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "Cloudinary API Secret" %>
       </div>
       <div class="submit-section">
         <%= f.submit "Save Settings", class: 'btn btn-warning' %>
