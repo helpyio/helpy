@@ -1,3 +1,5 @@
+<% title "#{admin_title} #{t(:edit, default:'Edit')}: #{@doc.title}" %>
+
 <h2 class="form-subhead"><%= t(:edit, default:'Edit') %>: <%= @doc.title %></h2>
 <%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
 
