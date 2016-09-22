@@ -9,6 +9,10 @@ module AdminHelper
     end
   end
 
+  def admin_title
+    "[Helpy Admin]"
+  end
+
   def i18n_reply
     # Builds the nested selector for common replies
 
