@@ -1,7 +1,10 @@
+<% title "#{admin_title} #{t(:setup_complete, default: "Your Helpy is ready!")}" %>
+
 <script>
   ga('create', 'UA-50151-26', 'auto', 'installPinger');
   ga('installPinger.send', 'pageview', { 'title': 'Onboard Completed: ' + Helpy.domain });
 </script>
+
 <div id="panel-4" class="onboard-panel text-center">
   <div class="onboard-message">
     <h2><%= t(:setup_complete, default: "Your Helpy is ready!") %></h2>
