@@ -320,22 +320,25 @@ ul.settings-menu {
 
 #post-images {
 	margin-top: 30px;
-}
 
-#post-images > ul > li.image img {
-	margin-top: -20px;
-}
+	ul {
 
-#post-images > ul > li.raw {
-	border: 1px solid #ddd;
-	width: 125px;
-	padding-top: 45px;
-	padding-bottom: 45px;
-	text-align: center;
+		li.image img {
+			margin-top: -20px;
+		}
 
-	i {
-		font-size: 36px;
-		color: #ccc;
+		li.raw {
+			border: 1px solid #ddd;
+			width: 125px;
+			padding-top: 45px;
+			padding-bottom: 45px;
+			text-align: center;
+
+			i {
+				font-size: 36px;
+				color: #ccc;
+			}
+		}
 	}
 }
 
