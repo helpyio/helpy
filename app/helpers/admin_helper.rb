@@ -117,7 +117,7 @@ module AdminHelper
       when 'doc', 'docx'
         return "fa fa-file-word-o"
       when 'xls', 'xlsx'
-        "fa fa-file-xls-o"
+        "fa fa-file-excel-o"
       when 'zip', 'tar'
         "fa fa-file-archive-o"
       when 'ppt', 'pptx'
