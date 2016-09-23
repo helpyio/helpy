@@ -110,4 +110,23 @@ module AdminHelper
     "settings-link" if link.blank? || link == '#'
   end
 
+  def attachment_icon(filename)
+    return 'fa fa-file-text-o' unless filename.include?('.')
+    extension = filename.split(".").last.downcase
+    case extension
+      when 'doc', 'docx'
+        return "fa fa-file-word-o"
+      when 'xls', 'xlsx'
+        "fa fa-file-xls-o"
+      when 'zip', 'tar'
+        "fa fa-file-archive-o"
+      when 'ppt', 'pptx'
+        "fa fa-file-powerpoint-o"
+      when 'html', 'htm'
+        "fa fa-file-code-o"
+      else
+        "fa fa-file-o"
+    end
+  end
+
 end
