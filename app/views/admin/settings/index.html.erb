@@ -97,12 +97,14 @@
               <%= f.text_field 'design.favicon', value: AppSettings['design.favicon'], label: "Favicon" %>
             </div>
           </div>
-        <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
-        <%= f.text_area 'design.css', value: AppSettings['design.css'], label: "Custom CSS Styles", rows: 10, class: 'css-editor' %>
+          <% if AppSettings['theme.active'] == 'helpy' %>
+            <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
+          <% end %>
+          <%= f.text_area 'design.css', value: AppSettings['design.css'], label: "Custom CSS Styles", rows: 10, class: 'css-editor' %>
       </div>
       <div class="settings-section theme hidden">
         <div class="row">

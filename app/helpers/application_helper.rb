@@ -104,13 +104,19 @@ module ApplicationHelper
   def css_overrides
     styles = "<style>\n"
     styles += "   #top-bar, header {\n background-color: #{AppSettings['css.top_bar']};\n  }\n" if AppSettings['css.top_bar'] != '3cceff'
-    styles += "   .flat-main-panel, #home-search, #page-title, h1, ul.breadcrumb {\n background-color: #{AppSettings['css.search_background']};\n  }\n" #if AppSettings['css.search_background'] != 'feffe9'
+    styles += "   .flat-main-panel, #home-search, #page-title, h1, ul.breadcrumb {\n background-color: #{AppSettings['css.search_background']};\n  }\n" if AppSettings['css.search_background'] != 'feffe9'
     styles += "   #get-help-wrapper {\n background-color: #{AppSettings['css.still_need_help']};\n  }\n" if AppSettings['css.top_bar'] != 'FFDF91'
     styles += "   div.add-form {\n background-color: #{AppSettings['css.form_background']};\n  }\n" if AppSettings['css.form_background'] != 'F0FFF0'
     styles += "   .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {\n color: #{AppSettings['css.link_color']};\n  }\n" if AppSettings['css.link_color'] != '004084'
-    styles += AppSettings['design.css'] if AppSettings['design.css'] != ""
     styles += "</style>"
     styles.html_safe
+  end
+
+  def css_injector
+    styles = "<style>\n"
+    styles += "#{AppSettings['design.css']}"
+    styles += "\n</style>"
+    styles.html_safe if AppSettings['design.css'] != ""
   end
 
   def get_path(screenshot)
