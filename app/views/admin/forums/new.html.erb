@@ -1,3 +1,5 @@
+<% title "#{admin_title} #{t(:create_new_community, default:'Create New Community')}" %>
+
 <h2><%= t(:create_new_community, default:'Create New Community') %></h2>
 <%= simple_form_for([:admin, @forum], validate: true) do |f| %>
   	<%= render :partial => 'form', :locals => {:f => f} -%>

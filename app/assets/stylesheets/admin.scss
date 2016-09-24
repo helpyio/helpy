@@ -316,7 +316,28 @@ ul.settings-menu {
 		margin-bottom: 20px;
 	}
 
+}
 
+#post-images {
+	margin-top: 30px;
+
+	ul li.image img {
+		margin-top: -20px;
+	}
+
+	ul li.raw {
+		border: 1px solid #ddd;
+		width: 125px;
+		padding-top: 45px;
+		padding-bottom: 45px;
+		text-align: center;
+
+		i {
+			font-size: 36px;
+			color: #ccc;
+		}
+
+	}
 }
 
 // === TEAM INSIGHTS ===
@@ -451,4 +472,22 @@ ul.settings-menu {
 	.settings-grid-row {
 		margin-bottom: 20px;
 	}
+}
+
+@media print {
+  .add-team-member {
+    display: none;
+  }
+
+  .admin-options {
+    display: none;
+  }
+
+  .btn-group {
+    display: none;
+  }
+
+  .label {
+    display: none;
+  }
 }

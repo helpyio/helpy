@@ -40,5 +40,5 @@
 <div class="col-md-6 hidden-lg hidden-md">
 </div>
 <div class="col-md-6 modal-links">
-  <%= link_to I18n.t('devise.registrations.new.sign_up'), new_registration_path(resource_name) %> | <%= link_to I18n.t('devise.passwords.new.forgot_your_password', default: "Forgot your password?"), '#', class: 'forgot-link' %>
+  <%= link_to I18n.t('devise.registrations.new.sign_up'), new_registration_path(resource_name) if forums? || tickets? %> | <%= link_to I18n.t('devise.passwords.new.forgot_your_password', default: "Forgot your password?"), '#', class: 'forgot-link' %>
 </div>

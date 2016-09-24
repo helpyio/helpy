@@ -5,13 +5,13 @@
 			</div>
 			<%= nav_bar brand: image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", responsive: true do %>
 					<%= menu_group pull: :right do %>
-							<span class="hidden-lg hidden-sm hidden-md"><%= render('result/search_form') %></span>
+							<span class="hidden-lg hidden-sm hidden-md hidden-xs"><%= render('result/search_form') %></span>
 							<%= menu_divider %>
 
-							<%= menu_item t(:your_tickets), tickets_path, Settings.tickets if user_signed_in? %>
-							<%= menu_item t(:knowledgebase), categories_path, class:'kblink' if Settings.knowledgebase %>
-							<%= menu_item t(:community), forums_path if Settings.forums %>
-							<%= menu_item t(:ask_a_question), new_topic_path %>
+							<%= menu_item t(:your_tickets), tickets_path if user_signed_in? && tickets?%>
+							<%= menu_item t(:knowledgebase), categories_path, class:'kblink' if knowledgebase? %>
+							<%= menu_item t(:community), forums_path if forums? %>
+							<%= menu_item t(:ask_a_question), new_topic_path if tickets? || forums? %>
 							<%= menu_divider %>
 							<%= menu_item "#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'], :class => 'hidden-lg hidden-md hidden-sm border-bottom' %>
 
