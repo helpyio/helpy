@@ -116,7 +116,7 @@ class User < ActiveRecord::Base
     else
       self.settings.notify_on_private = nil
       self.settings.notify_on_public = nil
-      self.settings.notify_on_reply = nil     
+      self.settings.notify_on_reply = nil
     end
   end
 
