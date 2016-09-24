@@ -41,9 +41,6 @@ class Admin::DashboardControllerTest < ActionController::TestCase
       get :stats, locale: :en, label: label
       assert_equal I18n.t(label), assigns(:interval)
     end
-
-    # test "sets @start_date for #{label} correctly"
-    # test "sets @end_date for #{label} correctly"
   end
 
   test "@interval defaults to 'This week'" do
@@ -63,12 +60,4 @@ class Admin::DashboardControllerTest < ActionController::TestCase
     get :stats, locale: :en, label: 'should_default_to_this_week'
     assert_equal Time.zone.today.at_end_of_day, assigns(:end_date)
   end
-
-  test 'sets @topics correctly'
-  test 'sets @responded_topics correctly'
-  test 'sets @posts correctly'
-  test 'sets @median_first_response_time correctly'
-  test 'sets @agents correctly'
-  test 'sets @cols correctly'
-  test 'sets @agents_stats correctly'
 end
