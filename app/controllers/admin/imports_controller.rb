@@ -4,7 +4,7 @@ class Admin::ImportsController < Admin::BaseController
 
   before_action :available_file_details, only: [:restore]
   def restore
-    ImportJob.perform_later(@files_detail, current_user.id) 
+    ImportJob.perform_later(@files_detail, current_user) 
     redirect_to admin_imports_path
   end
 
