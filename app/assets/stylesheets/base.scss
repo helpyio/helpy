@@ -909,7 +909,7 @@ h4.qna {
 
 @media print {
   a[href]:after {
-    content: none !important;
+    content: none;
   }
   
   #upper-wrapper {
