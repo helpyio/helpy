@@ -13,7 +13,7 @@
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
       <%= f.select(:role, [['Select Role',''],['Admin','admin'],['Agent','agent'],['Editor','editor'],['User','user']]) if current_user.is_admin? %>
-      <%= f.text_field :team_list, class: 'selectize' if Settings.teams and current_user.is_admin?%>
+      <%= f.text_field :team_list, class: 'selectize' if AppSettings['settings.teams'] and current_user.is_admin?%>
       <%= f.check_box :active, inline: true %> <%#= f.check_box :admin, inline: true %>
     </span>
   </div>
