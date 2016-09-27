@@ -320,6 +320,87 @@ div.admin-tools {
   	border-radius: .25em;
 }
 
+// Tag background colors
+.label-a {
+  background-color: #1abc9c;
+}
+.label-b {
+  background-color: #16a085;
+}
+.label-c {
+  background-color: #f1c40f;
+}
+.label-d {
+  background-color: #f39c12;
+}
+.label-e {
+  background-color: #2ecc71;
+}
+.label-f {
+  background-color: #27ae60;
+}
+.label-g {
+  background-color: #e67e22;
+}
+.label-h {
+  background-color: #d35400;
+}
+.label-i {
+  background-color: #3498db;
+}
+.label-j {
+  background-color: #2980b9;
+}
+.label-k {
+  background-color: #e74c3c;
+}
+.label-l {
+  background-color: #e74c3c;
+}
+.label-m {
+  background-color: #9b59b6;
+}
+.label-n {
+  background-color: #8e44ad;
+}
+.label-o {
+  background-color: #bdc3c7;
+}
+.label-p {
+  background-color: #34495e;
+}
+.label-q {
+  background-color: #2c3e50;
+}
+.label-r {
+  background-color: #95a5a6;
+}
+.label-s {
+  background-color: #7f8c8d;
+}
+.label-t {
+  background-color: #ec87bf;
+}
+.label-u {
+  background-color: #d870ad;
+}
+.label-v {
+  background-color: #f69785;
+}
+.label-w {
+  background-color: #9ba37e;
+}
+.label-x {
+  background-color: #b49255;
+}
+.label-y {
+  background-color: #b49255;
+}
+.label-z {
+  background-color: #a94136;
+}
+
+
 .active {
   // scss-lint:disable ImportantRule
 	background-color: #fff !important;
@@ -585,7 +666,6 @@ ul.dropdown-menu li a.strong {
 }
 
 .label-tagging {
-  background-color: #6ECBEC;
   margin-right: 2px;
 }
 

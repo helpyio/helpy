@@ -89,7 +89,7 @@ module ApplicationHelper
 
   def tag_listing(tags)
     tags.each do |tag|
-      concat content_tag(:span, tag, class: "label label-tagging")
+      concat content_tag(:span, tag, class: "label label-tagging label-#{tag.first}")
     end
   end
 
