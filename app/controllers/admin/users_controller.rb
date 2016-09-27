@@ -121,6 +121,7 @@ class Admin::UsersController < Admin::BaseController
       :twitter,
       :linkedin,
       :language,
+      :team_list,
       :active
     )
   end

@@ -7,11 +7,13 @@
   <div id="user-contact-info" class="col-md-4 col-sm-6 col-xs-12 user-info">
     <div class="tiny-header"><%= @user.name %></div>
     <span class="small">
+
       <%= f.text_field :name %>
       <%= f.text_field :company %>
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
       <%= f.select(:role, [['Select Role',''],['Admin','admin'],['Agent','agent'],['Editor','editor'],['User','user']]) if current_user.is_admin? %>
+      <%= f.text_field :team_list, class: 'selectize' if Settings.teams and current_user.is_admin?%>
       <%= f.check_box :active, inline: true %> <%#= f.check_box :admin, inline: true %>
     </span>
   </div>
@@ -28,3 +30,22 @@
 
   <% end %>
 <!-- </div> -->
+<script type="text/javascript">
+  var data = [ <%== ActsAsTaggableOn::Tagging.all.where(context: "teams").map{|tagging| '"' + tagging.tag.name + '"' }.join(',')  %> ];
+  var items = data.map(function(x) { return { item: x }; });
+  $('.selectize').selectize({
+      plugins: ['remove_button'],
+      delimiter: ',',
+      persist: true,
+      options: items,
+      labelField: "item",
+      valueField: "item",
+      sortField: 'item',
+      searchField: 'item',
+      create: function(input) {
+          return {
+              item: input
+          }
+      }
+  });
+</script>

@@ -36,7 +36,12 @@ class Admin::TopicsController < Admin::BaseController
 
   def index
     @status = params[:status] || "pending"
-    topics_raw = Topic.includes(user: :avatar_files).chronologic
+    if current_user.is_restricted?
+      topics_raw = Topic.all.tagged_with(current_user.team_list, :any => true)
+    else
+      topics_raw = Topic
+    end
+    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
     case @status
     when 'all'
       topics_raw = topics_raw.all
@@ -61,10 +66,12 @@ class Admin::TopicsController < Admin::BaseController
     @topic = Topic.where(id: params[:id]).first
 
     # REVIEW: Try not opening message on view unless assigned
+    check_current_user_is_allowed? @topic
     if @topic.current_status == 'new' && @topic.assigned?
       tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
       @topic.open
     end
+    get_all_teams
     @posts = @topic.posts.chronologic
 
     tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
@@ -178,6 +185,7 @@ class Admin::TopicsController < Admin::BaseController
     end
 
     fetch_counts
+    get_all_teams
     respond_to do |format|
       format.js {
         if params[:topic_ids].count > 1
@@ -221,6 +229,7 @@ class Admin::TopicsController < Admin::BaseController
     logger.info("Count: #{params[:topic_ids].count}")
 
     fetch_counts
+    get_all_teams
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
       format.js {
@@ -246,6 +255,7 @@ class Admin::TopicsController < Admin::BaseController
     @posts = @topic.posts.chronologic
 
     fetch_counts
+    get_all_teams
     # respond_to do |format|
     #   format.js {
         if params[:topic_ids].count > 1
@@ -258,7 +268,46 @@ class Admin::TopicsController < Admin::BaseController
 
   end
 
+  def assign_team
+    @count = 0
+    #handle array of topics
+    params[:topic_ids].each do |id|
+      @topic = Topic.where(id: id).first
+      @minutes = 0
+      @topic.team_list = params[:team]
+      @topic.save
+
+      @count = @count + 1
+    end
+
+    if params[:topic_ids].count > 1
+      get_tickets
+    else
+      @posts = @topic.posts.chronologic
+    end
+
+    logger.info("Count: #{params[:topic_ids].count}")
+
+    fetch_counts
+    get_all_teams
+    respond_to do |format|
+      format.html #render action: 'ticket', id: @topic.id
+      format.js {
+        if params[:topic_ids].count > 1
+          get_tickets
+          render 'index'
+        else
+          render 'update_ticket', id: @topic.id
+        end
+      }
+    end
+  end
+
   private
+
+  def get_all_teams
+    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").map{|tagging| tagging.tag.name }.uniq  #TODO: get all teams
+  end
 
   def get_tickets
     if params[:status].nil?

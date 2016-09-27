@@ -5,6 +5,7 @@ site_url: http://support.yourdomain.com # This is the URL of your support site
 tickets: true
 forums: true
 knowledgebase: true
+teams: true
 
 # Site Settings (These have been moved into the admin UI and you should change them there!)
 parent_site: /parent-redirect.html # This tells Helpy how to provide a link back to your main site
