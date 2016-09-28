@@ -320,6 +320,23 @@ div.admin-tools {
   	border-radius: .25em;
 }
 
+.label-message-tagging {
+  margin-right: 2px;
+  margin-bottom: -15px;
+  text-transform: uppercase;
+}
+
+.label-user-tagging {
+  margin-right: 2px;
+  text-transform: uppercase;
+}
+
+.label-doc-tagging {
+  margin-left: 2px;
+  margin-right: 2px;
+  text-transform: uppercase;
+}
+
 // Tag background colors
 .label-a {
   background-color: #1abc9c;
@@ -663,17 +680,6 @@ ul.dropdown-menu li a.strong {
 
 .dropdown-menu {
 	min-width: 300px;
-}
-
-.label-message-tagging {
-  margin-right: 2px;
-  margin-bottom: -15px;
-  text-transform: uppercase;
-}
-
-.label-user-tagging {
-  margin-right: 2px;
-  text-transform: uppercase;
 }
 
 //  === HOME PAGE ===
