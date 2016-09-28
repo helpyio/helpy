@@ -78,6 +78,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :tickets?
 
+  def teams?
+    AppSettings['settings.teams'] == "1" || AppSettings['settings.teams'] == true
+  end
+  helper_method :teams?
+
   def forums_enabled?
     raise ActionController::RoutingError.new('Not Found') unless forums?
   end
@@ -145,7 +150,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_counts
-    if current_user.is_restricted?
+    if current_user.is_restricted? and teams?
       topics = Topic.tagged_with(current_user.team_list, :any => true)
       @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else

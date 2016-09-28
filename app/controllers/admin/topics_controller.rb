@@ -36,7 +36,7 @@ class Admin::TopicsController < Admin::BaseController
 
   def index
     @status = params[:status] || "pending"
-    if current_user.is_restricted?
+    if current_user.is_restricted? && teams?
       topics_raw = Topic.all.tagged_with(current_user.team_list, :any => true)
     else
       topics_raw = Topic
@@ -73,7 +73,6 @@ class Admin::TopicsController < Admin::BaseController
     end
     get_all_teams
     @posts = @topic.posts.chronologic
-
     tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
   end

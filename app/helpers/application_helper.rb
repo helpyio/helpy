@@ -88,6 +88,7 @@ module ApplicationHelper
   end
 
   def tag_listing(tags, tagging_type = "message")
+    return unless teams?
     tags.each do |tag|
       concat content_tag(:span, tag, class: "label label-#{tagging_type}-tagging label-#{tag.first} #{'pull-right' if tagging_type == 'message'}")
     end
