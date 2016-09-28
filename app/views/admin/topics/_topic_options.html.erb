@@ -38,10 +38,11 @@
     </ul>
   </span>
 
-  <% if @topic.team_list.length > 0 || AppSettings['settings.teams'] %>
+  <%# if @topic.team_list.length > 0 or teams? %>
+  <% if teams? %>
     <span class="status btn-group left-col-dropdown">
       <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-        <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.first.first if @topic.team_list.present?}") do %>
+        <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.present? ? @topic.team_list.first.first : 'default'}") do %>
           <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'no team assigned') %>
           <%= icon('caret-down') + ' ' %>
         <% end %>
@@ -51,7 +52,7 @@
           <li>
             <% unless @topic.current_status == "closed" %>
             <%#= content_tag :span, class: "label label-user-tagging label-#{team.first}" do %>
-              <%= link_to "#{team}", admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true %>
+              <%= link_to("#{content_tag(:div, '', class: 'color-sample label-' + team.first)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
             <%# end %>
             <% end %>
           </li>
