@@ -87,9 +87,9 @@ module ApplicationHelper
     end
   end
 
-  def tag_listing(tags)
+  def tag_listing(tags, tagging_type = "message")
     tags.each do |tag|
-      concat content_tag(:span, tag, class: "label label-tagging label-#{tag.first}")
+      concat content_tag(:span, tag, class: "label label-#{tagging_type}-tagging label-#{tag.first} #{'pull-right' if tagging_type == 'message'}")
     end
   end
 

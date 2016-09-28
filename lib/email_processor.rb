@@ -55,9 +55,17 @@ class EmailProcessor
     else # this is a new direct message
 
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
-      if @email.header['X-Helpy-Teams'].present?
-        topic.team_list = @email.header['X-Helpy-Teams']
+      # if @email.header['X-Helpy-Teams'].present?
+      #   topic.team_list = @email.header['X-Helpy-Teams']
+
+      if @email.to[0][:token].include?("+")
+        topic.team_list.add(@email.to[0][:token].split('+')[1])
+        topic.save
+      elsif @email.to[0][:token] != 'support'
+        topic.team_list.add(@email.to[0][:token])
+        topic.save
       end
+
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(:body => message, :user_id => @user.id, :kind => "first")

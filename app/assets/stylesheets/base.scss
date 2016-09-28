@@ -665,8 +665,15 @@ ul.dropdown-menu li a.strong {
 	min-width: 300px;
 }
 
-.label-tagging {
+.label-message-tagging {
   margin-right: 2px;
+  margin-bottom: -15px;
+  text-transform: uppercase;
+}
+
+.label-user-tagging {
+  margin-right: 2px;
+  text-transform: uppercase;
 }
 
 //  === HOME PAGE ===
