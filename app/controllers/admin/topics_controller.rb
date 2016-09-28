@@ -42,6 +42,7 @@ class Admin::TopicsController < Admin::BaseController
       topics_raw = Topic
     end
     topics_raw = topics_raw.includes(user: :avatar_files).chronologic
+    get_all_teams
     case @status
     when 'all'
       topics_raw = topics_raw.all
