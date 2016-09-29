@@ -67,7 +67,7 @@
         <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: t('parent_site', default: "Parent Site") %>
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: t('parent_company', default: "Parent Company") %>
         <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: t('site_tagline', default: "Site Tagline") %>
-        <%= f.check_box 'settings.teams', { checked: teams?, label: t('enable_teams', default: "Enable Organizations") } %>
+        <%= f.check_box 'settings.teams', { checked: teams?, label: t('enable_teams', default: "Enable Team Groups") } %>
         <span>Helpy Functions</span>
         <%= f.check_box 'settings.forums', { checked: forums?, label: t('enable_forums', default: "Enable Community Forums") } %>
         <%= f.check_box 'settings.knowledgebase', { checked: knowledgebase?, label: t('enable_knowledgebase', default: "Enable Knowledgebase") } %>

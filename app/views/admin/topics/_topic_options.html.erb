@@ -43,7 +43,7 @@
     <span class="status btn-group left-col-dropdown">
       <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
         <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.present? ? @topic.team_list.first.first : 'default'}") do %>
-          <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'no team assigned') %>
+          <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'no group assigned') %>
           <%= icon('caret-down') + ' ' %>
         <% end %>
       </span>
@@ -55,7 +55,7 @@
             <% end %>
           </li>
         <% end %>
-        <li><%= link_to "Unassign from team", admin_assign_team_path(topic_ids: { "":@topic.id }, team: ''), :remote => true unless @topic.current_status == "closed" %></li>
+        <li><%= link_to "Unassign from group", admin_assign_team_path(topic_ids: { "":@topic.id }, team: ''), :remote => true unless @topic.current_status == "closed" %></li>
 
       </ul>
     </span>

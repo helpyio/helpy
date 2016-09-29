@@ -123,8 +123,8 @@ en:
   open_new_discussion: New Discussion
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
-  no_team_assigned: no team assigned
-  unassign_from_team: unassign from team
+  no_team_assigned: No group assigned
+  unassign_from_team: Unassign from group
   private: private
   public: public
   save_changes: Save Changes
@@ -255,7 +255,7 @@ en:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
-  team_insights: "Team insights for %{site_name}"
+  team_insights: "Insights for %{site_name}"
   filter_by_date: "Filter by date"
   today: "Today"
   yesterday: "Yesterday"
