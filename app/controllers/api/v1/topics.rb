@@ -26,9 +26,15 @@ module API
           requires :status, type: String, desc: "Status group (New, Open, Pending, etc.)"
         end
         get "status/:status", root: :topics do
-          topics = Forum.find(1).topics.where(
-            current_status: permitted_params[:status]
-          )
+          if current_user.is_restricted?
+            topics = Forum.find(1).topics.where(
+              current_status: permitted_params[:status]
+            ).all.tagged_with(current_user.team_list)
+          else
+            topics = Forum.find(1).topics.where(
+              current_status: permitted_params[:status]
+            )
+          end
           present paginate(topics), with: Entity::Topic
         end
 
@@ -41,7 +47,11 @@ module API
           requires :user_id, type: Integer, desc: "ID of the user"
         end
         get "user/:user_id", root: :topics do
-          topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
+          if current_user.is_restricted?
+            topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all.tagged_with(current_user.team_list)
+          else
+            topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
+          end
           present paginate(topics), with: Entity::Topic
         end
 
@@ -54,8 +64,16 @@ module API
           requires :id, type: Integer, desc: "Ticket ID"
         end
         get ":id", root: :topics do
-          topic = Topic.includes(:posts).find(permitted_params[:id])#
-          present topic, with: Entity::Topic, posts: true
+          if current_user.is_restricted?
+            topic = Topic.includes(:posts).where(id: permitted_params[:id]).tagged_with(current_user.team_list)
+          else
+            topic = Topic.includes(:posts).find(permitted_params[:id])
+          end
+          if topic.present?
+            present topic, with: Entity::Topic, posts: true
+          else
+            error!('Unauthorized. Insufficient access priviledges.', 401)
+          end
         end
 
         # CREATE A NEW PRIVATE TICKET
@@ -90,34 +108,50 @@ module API
         end
 
         post "assign/:id", root: :topics do
-          ticket = Topic.where(id: permitted_params[:id]).first
-          previous_assigned_id = ticket.assigned_user_id? ? ticket.assigned_user_id : params[:assigned_user_id]
-          assigned_user = User.find(params[:assigned_user_id])
-          ticket.assign(previous_assigned_id, assigned_user.id)
-          present ticket, with: Entity::Topic, posts: true
+          if current_user.is_restricted?
+            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+          else
+            ticket = Topic.where(id: permitted_params[:id]).first
+          end
+          if ticket.present?
+            previous_assigned_id = ticket.assigned_user_id? ? ticket.assigned_user_id : params[:assigned_user_id]
+            assigned_user = User.find(params[:assigned_user_id])
+            ticket.assign(previous_assigned_id, assigned_user.id)
+            present ticket, with: Entity::Topic, posts: true
+          else
+            error!('Unauthorized. Insufficient access priviledges.', 401)
+          end
         end
 
         # CHANGE TICKET STATUS
-        desc "Assign ticket to an agent"
+        desc "Change the status of a ticket"
         params do
           requires :id, type: Integer, desc: "The ticket ID to update"
           requires :status, type: String, desc: "The status of the topic (New, Open, Pending, Resolved)"
         end
 
         post "update_status/:id", root: :topics do
-          ticket = Topic.where(id: permitted_params[:id]).first
-          case params[:status]
-          when 'closed'
-            ticket.close(current_user.id)
-          when 'reopen'
-            ticket.reopen(current_user.id)
-          when 'trash'
-            ticket.trash(current_user.id)
+          if current_user.is_restricted?
+            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
           else
-            ticket.current_status = params[:status]
-            ticket.save
+            ticket = Topic.where(id: permitted_params[:id]).first
           end
-          present ticket, with: Entity::Topic, posts: true
+          if ticket.present?
+            case params[:status]
+            when 'closed'
+              ticket.close(current_user.id)
+            when 'reopen'
+              ticket.reopen(current_user.id)
+            when 'trash'
+              ticket.trash(current_user.id)
+            else
+              ticket.current_status = params[:status]
+              ticket.save
+            end
+            present ticket, with: Entity::Topic, posts: true
+          else
+            error!('Unauthorized. Insufficient access priviledges.', 401)
+          end
         end
 
         # MOVE FORUMS, BETWEEN PRIVATE/PUBLIC
@@ -128,12 +162,20 @@ module API
         end
 
         post "update_forum/:id", root: :topics do
-          ticket = Topic.where(id: permitted_params[:id]).first
-          is_private = (permitted_params[:forum_id] == 1) ? true : false
-          ticket.private = is_private
-          ticket.forum_id = params[:forum_id]
-          ticket.save
-          present ticket, with: Entity::Topic, posts: true
+          if current_user.is_restricted?
+            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+          else
+            ticket = Topic.where(id: permitted_params[:id]).first
+          end
+          if ticket.present?
+            is_private = (permitted_params[:forum_id] == 1) ? true : false
+            ticket.private = is_private
+            ticket.forum_id = params[:forum_id]
+            ticket.save
+            present ticket, with: Entity::Topic, posts: true
+          else
+            error!('Unauthorized. Insufficient access priviledges.', 401)
+          end
         end
 
 
