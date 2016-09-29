@@ -33,7 +33,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Trix is the wysiwyg editor
 gem 'trix'
-gem 'jquery-minicolors-rails'
 
 # Ranked model gives the ability to rank articles and categories
 gem 'ranked-model'

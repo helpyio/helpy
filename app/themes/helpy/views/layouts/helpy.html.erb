@@ -4,9 +4,8 @@
 	<head>
 		<%= render partial: 'layouts/head' %>
 		<%= rtl_tags if rtl? %>
-		<%= css_overrides %>
-		<%= css_injector %>
 	</head>
+	<%= css_overrides %>
 
 <body class="<%= 'rtl' if rtl? %>">
 <script>
@@ -44,20 +43,18 @@
 
 <div id="footer-wrapper">
 
-	<% if forums? || tickets? %>
-		<div id="get-help-wrapper" class="wrapper">
-			<div class="row">
-				<div class="container">
-					<div class="col-md-6 text-center">
-						<h3><%= t(:get_help_header, default: "Still Need Help??") %></h3>
-					</div>
-					<div class="col-md-6 text-center">
-						<%= link_to t(:get_help_button, default: "Start a Discussion with Us"), new_topic_path, class: 'btn btn-primary btn-lg get-help-button' %>
-					</div>
+	<div id="get-help-wrapper" class="wrapper">
+		<div class="row">
+			<div class="container">
+				<div class="col-md-6 text-center">
+					<h3><%= t(:get_help_header, default: "Still Need Help??") %></h3>
+				</div>
+				<div class="col-md-6 text-center">
+					<%= link_to t(:get_help_button, default: "Start a Discussion with Us"), new_topic_path, class: 'btn btn-primary btn-lg get-help-button' %>
 				</div>
 			</div>
 		</div>
-	<% end %>
+	</div>
 
 	<div class="container">
 		<%= render :partial => 'layouts/footer' %>

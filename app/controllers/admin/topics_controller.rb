@@ -59,9 +59,7 @@ class Admin::TopicsController < Admin::BaseController
 
   def show
     @topic = Topic.where(id: params[:id]).first
-
-    # REVIEW: Try not opening message on view unless assigned
-    if @topic.current_status == 'new' && @topic.assigned?
+    if @topic.current_status == 'new'
       tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
       @topic.open
     end
@@ -161,19 +159,19 @@ class Admin::TopicsController < Admin::BaseController
           @topics.bulk_reopen(bulk_post_attributes)
         when 'trash'
           @topics.bulk_trash(bulk_post_attributes)
-        end
+        end 
       else
         @topics.update_all(current_status: params[:change_status])
       end
-
+      
       @action_performed = "Marked #{params[:change_status].titleize}"
       # Calls to GA for close, reopen, assigned.
       tracker("Agent: #{current_user.name}", @action_performed, @topics.to_param, 0)
-
+      
     end
-
+    
     if params[:topic_ids].present?
-      @topic = Topic.find(params[:topic_ids].last)
+      @topic = Topic.find(params[:topic_ids].last) 
       @posts = @topic.posts.chronologic
     end
 
@@ -207,8 +205,8 @@ class Admin::TopicsController < Admin::BaseController
         # Calls to GA
         tracker("Agent: #{current_user.name}", "Assigned to #{assigned_user.name.titleize}", @topic.to_param, 0)
       end
-    end
-
+    end 
+    
     @topics.bulk_assign(bulk_post_attributes, assigned_user.id) if bulk_post_attributes.present?
 
     if params[:topic_ids].count > 1

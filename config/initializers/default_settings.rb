@@ -10,9 +10,6 @@ AppSettings.defaults["settings.support_phone"] = Settings.support_phone
 AppSettings.defaults["settings.google_analytics_id"] = Settings.google_analytics_id
 AppSettings.defaults["settings.recaptcha_site_key"] = Settings.recaptcha_site_key
 AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
-AppSettings.defaults["settings.forums"] = Settings.forums
-AppSettings.defaults["settings.tickets"] = Settings.tickets
-AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 
 
 # Design: (Colors etc.)
@@ -21,7 +18,6 @@ AppSettings.defaults["design.favicon"] = Settings.app_favicon
 AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo
 # Note: the contributer accidentally reversed these in the code
 AppSettings.defaults["design.footer_mini_logo"] = Settings.app_large_logo
-AppSettings.defaults["design.css"] = ""
 AppSettings.defaults["css.search_background"] = "feffe9"
 AppSettings.defaults["css.top_bar"] = "3cceff"
 AppSettings.defaults["css.link_color"] = "004084"
@@ -30,7 +26,7 @@ AppSettings.defaults["css.still_need_help"] = "ffdf91"
 
 # Theme:
 
-AppSettings.defaults["theme.active"] = "light"
+AppSettings.defaults["theme.active"] = "helpy"
 
 # i18n:
 

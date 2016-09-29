@@ -32,7 +32,8 @@
 //= require initial.js/initial.js
 //= require trix
 //= require autolink/autolink-min.js
-//= require jquery.minicolors
+//= require pick-a-color/build/1.2.3/js/pick-a-color-1.2.3.min.js
+//= require tinycolor/dist/tinycolor-min.js
 //= require app
 //= require rails.validations
 //= require rails.validations.simple_form

@@ -221,16 +221,16 @@ class UserTest < ActiveSupport::TestCase
     assert_equal u.settings.notify_on_reply, "1"
   end
 
-  test "A user should NOT be enabled for notifications after they are created" do
+  test "An user should NOT be enabled for notifications after they are created" do
     u = User.create!(
       email: 'user@temp.com',
       name: 'test user',
       password: '12345678',
       role: 'user'
     )
-    assert_equal nil, u.settings.notify_on_private, "Should not be enabled for private notifications"
-    assert_equal nil, u.settings.notify_on_public, "Should not be enabled for public notifications"
-    assert_equal nil, u.settings.notify_on_reply, "Should not be enabled for reply notifications"
+    assert_equal u.settings.notify_on_private, nil
+    assert_equal u.settings.notify_on_public, nil
+    assert_equal u.settings.notify_on_reply, nil
 
   end
 

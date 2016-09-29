@@ -11,15 +11,9 @@
 <%= content_tag(:div, id: 'post-images')  do %>
     <%= content_tag(:ul, class: 'list-inline') do %>
         <%- model_name.screenshots.each do |screenshot| %>
-          <%= content_tag(:li, class: screenshot.resource_type) do %>
-            <% if screenshot.resource_type == "raw" %>
-                <%= link_to "https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/raw/upload/#{screenshot.path}", title: screenshot.path do %>
-                  <%= content_tag(:i, '', class: attachment_icon(screenshot.path)) %>
-                <% end %>
-            <% else %>
+            <%= content_tag(:li) do %>
               <%= link_to cl_image_tag(get_path(screenshot), { size: '125x125', crop: :fit }), "https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/#{screenshot.path}", class: 'screenshot-link' %>
             <% end %>
-          <% end %>
         <% end %>
     <% end %>
 <% end %>

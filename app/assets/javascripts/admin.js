@@ -49,8 +49,8 @@ Helpy.admin = function(){
     return false;
   });
 
-  $('.pick-a-color').minicolors({
-    theme: 'bootstrap'
+  $('.pick-a-color').pickAColor({
+    inlineDropdown: true //display underneath field
   });
 
   // Onboarding flow

@@ -24,17 +24,10 @@
     <% end %>
 
     <% if (user_signed_in? && !@widget) || (!user_signed_in? && recaptcha_enabled? && !@widget) %>
-      <% if forums? && tickets? %>
-        <label class="control-label" for="doc_active"> <%= t(:should_message_be_private) %> </label>
-        <%= f.collection_radio_buttons :private, [[true, t(:only_support_can_respond)] ,[false, t(:responses_can_come_from_everyone)]], :first, :last, item_wrapper_class: 'radio', item_label_class: 'radio-label', collection_wrapper_tag: :div %>
-        <%= f.input(:forum_id, collection: @forums, :label => t(:forum_name), locale: I18n.locale, prompt: nil) %>
-      <% elsif forums? && !tickets? %>
-        <%= f.input(:forum_id, collection: @forums, :label => t(:forum_name), locale: I18n.locale, prompt: nil) %>
-        <%= f.hidden_field :private, value: false %>
-      <% elsif tickets? && !forums? %>
-        <%= f.hidden_field :private, value: true %>
-        <%= f.hidden_field :forum_id, value: 1 %>
-      <% end %>
+      <label class="control-label" for="doc_active"> <%= t(:should_message_be_private) %> </label>
+      <%= f.collection_radio_buttons :private, [[true, t(:only_support_can_respond)] ,[false, t(:responses_can_come_from_everyone)]], :first, :last, item_wrapper_class: 'radio', item_label_class: 'radio-label', collection_wrapper_tag: :div %>
+
+      <%= f.input(:forum_id, collection: @forums, :label => t(:forum_name), locale: I18n.locale, prompt: nil) %>
     <% else %>
       <%= f.hidden_field :private, value: true %>
       <%= f.hidden_field :forum_id, value: 1 %>

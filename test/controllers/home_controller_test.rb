@@ -99,24 +99,4 @@ class HomeControllerTest < ActionController::TestCase
     get :index, locale: :en, theme: 'flat'
     assert_template layout: 'flat'
   end
-
-  test "a browsing user should not get the get-help section if forums and tickets are disabled" do
-    AppSettings['settings.forums'] = "0"
-    AppSettings['settings.tickets'] = "0"
-    get :index, locale: :en
-    assert_select 'div#get-help-wrapper', false
-  end
-
-  test "a browsing user should get the get-help section if tickets are disabled" do
-    AppSettings['settings.tickets'] = "0"
-    get :index, locale: :en
-    assert_select 'div#get-help-wrapper', true
-  end
-
-  test "a browsing user should get the get-help section if forums are disabled" do
-    AppSettings['settings.forums'] = "0"
-    get :index, locale: :en
-    assert_select 'div#get-help-wrapper', true
-  end
-
 end

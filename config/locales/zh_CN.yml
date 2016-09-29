@@ -61,7 +61,7 @@ zh-cn:
   # Knowledgebase
   # written_by:
   # last_edited:
-  asked_before: "贵的问题被回答过了？我们认为，这些可能是类似"
+  asked_before: "贵的问题被回答过了？我们认为，这些可能是类似"  
 
   # Tickets
   tickets: "要求协助"
@@ -285,8 +285,6 @@ zh-cn:
     docs:
       root: *root
     forums:
-      root: *root
-    locales:
       root: *root
     topics:
       root: *root
