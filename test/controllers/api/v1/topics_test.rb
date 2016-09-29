@@ -83,7 +83,6 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     # Check returned value
     object = JSON.parse(last_response.body)
-    binding.pry
     assert object['id'] == ticket.id
     assert object['name'] == ticket.name
     assert object['posts'].count == ticket.posts.count
