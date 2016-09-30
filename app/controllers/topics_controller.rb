@@ -30,6 +30,7 @@ class TopicsController < ApplicationController
   before_action :allow_iframe_requests
   before_action :forums_enabled?, only: ['index','show']
   before_action :topic_creation_enabled?, only: ['new', 'create']
+  before_action :get_all_teams, only: 'new'
 
   layout "clean", only: [:new, :index, :thanks]
   theme :theme_chosen
@@ -80,7 +81,6 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").map{|tagging| tagging.tag.name.capitalize }.uniq
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     @forums = Forum.ispublic.all
     @topic = Topic.new

@@ -30,6 +30,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
   before_action :pipeline, :only => ['index', 'show', 'update_topic']
   before_action :remote_search, :only => ['index', 'show', 'update_topic']
+  before_action :get_all_teams, only: 'new'
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -93,7 +94,9 @@ class Admin::TopicsController < Admin::BaseController
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
-      private: true )
+      private: true,
+      team_list: params[:topic][:team_list]
+    )
 
     if @user.nil?
 
@@ -304,10 +307,6 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   private
-
-  def get_all_teams
-    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").map{|tagging| tagging.tag.name }.uniq  #TODO: get all teams
-  end
 
   def get_tickets
     if params[:status].nil?
