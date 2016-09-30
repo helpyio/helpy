@@ -81,6 +81,7 @@ module API
         params do
           requires :name, type: String, desc: "The subject of the ticket"
           requires :body, type: String, desc: "The post body"
+          optional :team_list, type: String, desc: "The group that this ticket is assigned to"
           requires :user_id, type: Integer, desc: "the User ID"
         end
 
@@ -90,7 +91,8 @@ module API
             name: params[:name],
             user_id: params[:user_id],
             current_status: 'new',
-            private: true
+            private: true,
+            team_list: params[:team_list]
           )
           ticket.posts.create!(
             body: params[:body],
