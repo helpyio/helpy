@@ -51,7 +51,7 @@
         <% @all_teams.to_a.each do |team| %>
           <li>
             <% unless @topic.current_status == "closed" %>
-              <%= link_to("#{content_tag(:div, '', class: 'color-sample label-' + team.first)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
+              <%= link_to("#{content_tag(:div, '', class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
             <% end %>
           </li>
         <% end %>

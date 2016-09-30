@@ -57,13 +57,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
+    get_all_teams
     @user = User.where(id: params[:id]).first
     @topics = Topic.where(user_id: @user.id).page params[:page]
 
     # We still have to grab the first topic for the user to use the same user partial
     @topic = Topic.where(user_id: @user.id).first
     tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
-    #render 'admin/topics/index'
   end
 
   def edit
