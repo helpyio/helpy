@@ -362,7 +362,7 @@ Helpy.showGroup = function() {
   } else {
     $('#topic_team_list').parent().removeClass('hidden');
   }
-}
+};
 
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);
