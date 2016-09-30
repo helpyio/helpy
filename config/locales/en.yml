@@ -123,7 +123,8 @@ en:
   open_new_discussion: New Discussion
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
-  no_team_assigned: No group assigned
+  no_team_assigned: Assign to group
+  assign_to: Group/Team
   unassign_from_team: Unassign from group
   private: private
   public: public

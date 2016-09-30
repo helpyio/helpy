@@ -39,7 +39,15 @@
       <%= f.hidden_field :private, value: true %>
       <%= f.hidden_field :forum_id, value: 1 %>
     <% end %>
+    <% if teams? and tickets? %>
+    <script>
+      $(document).ready(function(){
+        Helpy.showGroup();
+      });
+    </script>
+    <% end %>
 
+    <%= f.input(:team_list, collection: @all_teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? %>
     <%= f.input :name, input_html: { value: params[:q] }, :size => 40,  placeholder: I18n.t(:subject), label: I18n.t(:subject), class: 'disable-empty topic-placeholder' %>
 
     <div class="suggestion-results-container hidden">

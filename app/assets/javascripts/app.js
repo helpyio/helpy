@@ -3,6 +3,7 @@
 var Helpy = Helpy || {};
 
 Helpy.ready = function(){
+
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
@@ -149,11 +150,14 @@ Helpy.ready = function(){
   $('#topic_private_true').click(function(){
     $("#topic_forum_id").parent().hide();
     $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>");
+    Helpy.showGroup();
   });
   $('#topic_private_false').click(function(){
     $("#topic_forum_id").parent().show();
     $("#new_topic_forum_id").remove();
+    Helpy.showGroup();
   });
+
 
   // Hide/replace last child of breadcrumbs since I don't have time to hack gem right now
   $("ul.breadcrumb li:last-child").html("");
@@ -349,6 +353,16 @@ Helpy.didthisHelp = function(yesno){
   $('#did-this-help').html(message);
   return true;
 };
+
+Helpy.showGroup = function() {
+  if ($('#topic_private_true').is(':checked')) {
+    $('#topic_team_list').parent().removeClass('hidden');
+  } else if ($('#topic_private_false').is(':checked')) {
+    $('#topic_team_list').parent().addClass('hidden');
+  } else {
+    $('#topic_team_list').parent().removeClass('hidden');
+  }
+}
 
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);

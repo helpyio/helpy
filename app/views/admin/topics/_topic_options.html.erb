@@ -43,7 +43,7 @@
     <span class="status btn-group left-col-dropdown">
       <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
         <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.present? ? @topic.team_list.first.first : 'default'}") do %>
-          <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'no group assigned') %>
+          <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
           <%= icon('caret-down') + ' ' %>
         <% end %>
       </span>

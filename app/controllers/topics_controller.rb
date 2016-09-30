@@ -80,6 +80,7 @@ class TopicsController < ApplicationController
   end
 
   def new
+    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").map{|tagging| tagging.tag.name.capitalize }.uniq
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     @forums = Forum.ispublic.all
     @topic = Topic.new
@@ -103,7 +104,8 @@ class TopicsController < ApplicationController
     @topic = @forum.topics.new(
       name: params[:topic][:name],
       private: params[:topic][:private],
-      doc_id: params[:topic][:doc_id] )
+      doc_id: params[:topic][:doc_id],
+      team_list: params[:topic][:team_list])
     @forums = Forum.ispublic.all
 
     unless user_signed_in?
