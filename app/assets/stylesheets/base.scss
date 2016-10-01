@@ -137,6 +137,10 @@ textarea {
   }
 }
 
+.topic time {
+  line-height: 25px;
+}
+
 #page-title {
 	padding-top: 30px;
 	background-color: #feffe9;
@@ -291,18 +295,18 @@ div.admin-tools {
 
 .label-count {
 	position: relative;
-	top:  .5em;
 	border: 1px solid #999;
 	background-color: #fff;
 	color: #999;
-  	display: inline;
-  	font-size: 100%;
-  	font-weight: normal;
-  	line-height: 1;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
+	display: inline;
+	font-size: 100%;
+	font-weight: normal;
+	line-height: 1;
+  margin-top: -1px;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
 }
 
 .active {
@@ -323,6 +327,7 @@ div.admin-tools {
 span.more-important a {
 	font-weight: bold;
 	font-size: 105%;
+  vertical-align: middle;
 }
 
 span.more-important a:link {
@@ -345,8 +350,7 @@ span.category-icon {
 }
 
 .status-label {
-	margin-left: 5px;
-	margin-bottom: -15px;
+  margin: 0px 0px 0px 5px;
 }
 
 .no-side-pad {

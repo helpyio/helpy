@@ -8,7 +8,7 @@
 
   <td>
     <span class="topic-link more-important truncate-ellipsis">
-      <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic), remote: true -%><%= badge_for_status(topic.current_status) %><%= badge_for_private if topic.private? %>
+      <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic), remote: true -%>
     </span>
     <span class="less-important user-link">
       <%= link_to t(:started_by, username: topic.user.name? ? topic.user.name.titleize : topic.user.email, default: "Started by #{topic.user.name? ? topic.user.name.titleize : topic.user.email}"), admin_user_path(topic.user.id), remote: true %>
@@ -17,7 +17,11 @@
   </td>
 
   <td class="last-active less-important text-right hidden-xs">
-    <span class="label label-count hidden-xs pull-left"><%= topic.posts_count %></span>
+    <%= badge_for_status(topic.current_status, "left") %>
+    <%= badge_for_private("left") if topic.private? %>
+    <span class="label label-count hidden-xs pull-right"><%= topic.posts_count %></span>
+  </td>
+  <td class="last-active less-important text-right hidden-xs">
     <%= last_active_time(topic.updated_at) %>
   </td>
 </tr>
