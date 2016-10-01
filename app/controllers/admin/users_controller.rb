@@ -84,7 +84,7 @@ class Admin::UsersController < Admin::BaseController
     tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
 
     # TODO: Refactor this to use an index method/view on the users model
-    render 'admin/topics/index'
+    render 'admin/users/show'
   end
 
   def invite

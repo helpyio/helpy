@@ -1,16 +1,18 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
 <h2 id="ticket-page-title">
-  <%= t(:discussions, default: "Discussions") %>:
-  <span class='label <%= status_class(@status) %>' style='text-transform: uppercase'>
-    <%= status_label(@status) if @status %>
+  <%= @user.name.titleize %>
+  <span class='hidden-xs pull-right'>
+    <%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path, remote: true, class: 'btn btn-primary' %>
+  </span>
+  <span class='edit-user hidden-xs pull-right'>
+    <%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: true, class: 'btn btn-primary' %>
   </span>
   <%= render 'admin/topics/ticket_nav_dropdown' %>
-  <span class="hidden-xs pull-right">
-    <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path, remote: true, class: 'btn btn-primary' %>
-  </span>
 </h2>
-
+<div id="user-info">
+  <%= render 'admin/users/user_info_horizontal' %>
+</div>
 <div class="row">
   <div class="col-md-12" id="tickets">
     <%= render 'admin/topics/tickets' %>
