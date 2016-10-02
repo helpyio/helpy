@@ -2,10 +2,10 @@
 
 one:
   post_id: 
-  topic_id: 
+  generated_topic_id: 
   reason: MyText
 
 two:
   post_id: 
-  topic_id: 
+  generated_topic_id: 
   reason: MyText

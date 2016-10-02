@@ -9,14 +9,8 @@ class FlagsController < ApplicationController
     	name: "Flagged for review: #{@topic.name}",
     	private: true)
 
-    puts "Topics: #{@topics.inspect}"
-
     @user = current_user
-
-    puts "User: #{@user.inspect}"
     @topics.user_id = @user.id
-
-    puts "Topics: #{@topics.inspect}"
 
     if @topics.save
       @flag = Flag.new(
