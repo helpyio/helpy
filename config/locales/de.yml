@@ -24,7 +24,7 @@ de:
   change_your_locale: "Sprache ändern"
 
   # Voting widget
-  did_this_help: "Hat das ihr Problem gelöst?"
+  did_this_help: "Hat das Ihr Problem gelöst?"
   yes_button: 'Ja'
   no_button: 'Nein'
   yes_helped: 'Toll!! Danke für Ihre Bewertung!'
@@ -64,7 +64,7 @@ de:
 
   # Tickets
   tickets: "Tickets"
-  no_tickets: "Du hast noch keine Tickets erstellt"
+  no_tickets: "Sie haben noch keine Tickets erstellt"
   ticket_number: "Ticket Nummer"
   assigned_to_label: "Zugewiesen an"
   created_on: "Erstellt"
