@@ -80,7 +80,7 @@ fa:
   # footer
   powered_by: "نیرو گرفته از Helpy. سیستم پشتیبانی اوپن سورس."
   get_your_copy: "یک کپی از روی گیت هاب بردار"
-  # version: "Version:"
+  version: "نسخه:"
 
   # devise/sessions/new
   login: ورود
@@ -132,7 +132,7 @@ fa:
   status: وضعیت
   mark_closed: حل شد
   reopen: دوباره باز کن
-  mark_spam: آشغاله
+  mark_spam: اسپم
   mark_new: جدیده
   assign_agent: بسپر به
   selected_messages:
@@ -147,7 +147,7 @@ fa:
   assigned_message: "این بحث منتقل شد به %{assigned_to}."
 
   # User Admin
-  # users: Users
+  users: کاربران
   contact_info: تماس
   social_info: سوشال
   edit_user: ویرایش کاربر
@@ -160,13 +160,13 @@ fa:
     other: "%{count} کاربر با اسم %{query} پیدا شد"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
-  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
-  # invite_message: "Message"
-  # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_users: "دعوت کاربر جدید"
+  invite_emails: "آدرس های ایمیل"
+  invite_emails_placeholder: "یک یا چند ایمیل برای ارسال دعوت نامه وارد کنید"
+  invite_message: "پیغام"
+  invite_message_placeholder: "پیغام اختیاری که برای کاربران فرستاده میشود"
+  invite_role: "نقش کاربران دعوت شده"
+  send_invite: "ارسال دعوت نامه"
 
   # Discussion View
   asked_a_question: "%{user_name} یک سوال پرسیده..."
@@ -202,16 +202,16 @@ fa:
   published_content: "منتشر شده"
   additional_settings: "تنظیمات بیشتر"
   content_status: "وضعیت محتوا"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
+  convert_content: 'تبدیل پست به محتوا'
+  upload_image: 'بارگزاری عکس'
 
   # Communities
   new_community: انجمن جدید بساز
   create_new_community: انجمن جدید بساز
-  # layout_select: Select Format
-  # layout_table: Table
-  # layout_grid: Grid
-  # layout_qna: Q&A
+  layout_select: انتخاب فرمت
+  layout_table: جدول
+  layout_grid: توری
+  layout_qna: سوالات متداول
 
   # Mail messages
   hello: "سلام %{user_name}"
@@ -222,12 +222,57 @@ fa:
   message_response: "این پیغام در پاسخ به سوال شما نوشته شده:"
   view_online: "در سایت ببینید:"
 
+  # Admin notifications
+  notify_new_private: "یک پیغام خصوصی از طرف مشتری %{user_name} دریافت شده:"
+  notify_new_public: "یک پیغام عمومی از طرف مشتری %{user_name} دریافت شده:"
+  notify_new_reply: "یک پاسخ از طرف مشتری %{user_name} دریافت شده:"
+  to_reply: 'به این پیغام متاسفیم با ایمیل یا آنلاین پاسخ دهید:'
+
+  # Notifications settings panel
+  notify_on_private: "وقتی یک سوال خصوصی از طرف مشتری پرسیده شد، به من ایمیل بده"
+  notify_on_public: "وقتی یک سوال عمومی از طرف مشتری پرسیده شد، به من ایمیل بده"
+  notify_on_reply: "وقتی یک پاسخ به سوال خصوصی داده شد، به من ایمیل بده"
+
   # settings
+  agent_settings: "تنظیمات پشتیبان"
+  notifications: "اطلاع رسانی"
   settings: "تنظیمات"
   general: "عمومی"
   design: "طراحی"
   international: "زبان و تنظیمات محلی"
-  widget: "Embeddable Widget"
+  widget: "کد قابل ادغام"
+
+  # API Key Managmeent
+  api_keys: "کلیدهای API"
+  key_name: "نام کلید"
+  token: "توکن"
+  add_key: "کلید جدید اضافه کن"
+  expire_token: "انقضاء توکن"
+  expired: "منقضی شده"
+  expire_confirm: "لطفا تایید کنید که واقعا میخواهید این کلید منقضی میکنید."
+  spec_note: "میتوانید در مورد API و روش کار آن را اینجا بخوانید: "
+
+  # Insights
+  team_insights: "کارکرد تیم برای %{site_name}"
+  filter_by_date: "فیلتر با تاریخ"
+  today: "امروز"
+  yesterday: "دیروز"
+  this_week: "این هفته"
+  last_week: "هفته قبل"
+  this_month: "این ماه"
+  date_range: "بازه زمانی"
+  insights_blurb_one:
+    one: "در <strong>%{period}</strong> کاربران شما یک بحث شروع کردند"
+    other: "در <strong>%{period}</strong> کاربران شما <strong>%{count} بحث شروع کردند</strong>"
+  insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "با متوسط زمان پاسخ <strong>%{response_time}</strong>"
+  no_discussions: "هیچ بحث جدیدی در <strong>%{period}</strong> شروع نشده"
+  assigned_topics: "موضوع های واگذار شده"
+  responded: "پاسخ داده"
+  closed: "بسته شده"
+  replies: "پاسخ ها"
+  median_time: "متوسط زمان تا اولین پاسخ"
+
 
   activerecord:
     attributes:
@@ -240,7 +285,7 @@ fa:
         cell_phone: موبایل
         city: شهر
         state: استان
-        # signature: Signature
+        signature: امضاء
       topic:
         name: عنوان
       post:
@@ -265,9 +310,9 @@ fa:
         name: نام
         description: توضیحات
         private: خصوصی
-        # layout: Layout
-        # allow_topic_voting: Allow topic voting?
-        # allow_post_voting: Allow post voting?
+        layout: طرح
+        allow_topic_voting: رای گیری برای موضوع؟
+        allow_post_voting: رای گیری برای پست؟
 
     helpers:
       submit:
