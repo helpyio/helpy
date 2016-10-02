@@ -1,6 +1,6 @@
 # MAINTAINER: Joel Ambass
 
-en:
+de:
   language_name: 'Deutsch' # The name of the translation file, in that language
   root: &root 'Home'
   how_can_we_help: "Wie können wir helfen?"
