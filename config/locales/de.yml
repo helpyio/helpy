@@ -1,9 +1,9 @@
-# TRANSLATOR(s): @zefanja
+# MAINTAINER: Joel Ambass
 
 de:
   language_name: 'Deutsch' # The name of the translation file, in that language
   root: &root 'Home'
-  how_can_we_help: "Wie können wir Ihnen helfen?"
+  how_can_we_help: "Wie können wir helfen?"
   browse_topics: "Themen durchsuchen"
   support_team: "Support Team"
   nothing_here: "Noch nichts hier!"
@@ -16,7 +16,7 @@ de:
   login: "Anmelden"
   logout: "Abmelden"
   register: "Registrieren"
-  back_to: "Zurück zur"
+  back_to: "Zurück zu"
   welcome_back: "Willkommen zurück %{username}"
   your_profile: "Dein Profil"
   your_tickets: "Deine Tickets"
@@ -27,20 +27,20 @@ de:
   did_this_help: "Hat das Ihr Problem gelöst?"
   yes_button: 'Ja'
   no_button: 'Nein'
-  yes_helped: 'Toll! Danke für Ihnen Bewertung!'
-  no_helped: 'Es tüt uns Leid, dass wir Ihnen helfen könten. Bitte kontaktieren Sie uns für weitere Hilfe'
+  yes_helped: 'Toll!! Danke für Ihre Bewertung!'
+  no_helped: 'Es tut uns Leid, dass wir nicht helfen konnten. Bitte kontaktieren Sie uns für weitere Hilfe!'
 
   # Search
-  search_placeholder: "Geben Sie ein Stichwort, ein Thema oder eine Frage ein"
-  no_results: "Keine Ergebnisse gefunden, bitte suchen Sie erneut!"
+  search_placeholder: "Geben Sie ein Stichwort, Thema oder eine Frage ein"
+  no_results: "Keine Suchergebnisse, bitte suchen Sie erneut!"
   results_found:
-    one: "Es wurde ein Ergebnis für Ihre Suche gefunden "
-    other: "Es wurden %{count} Ergebnisse für Ihre Suche gefunden "
+    one: "ein Ergebnis wurde für Ihre Suche gefunden "
+    other: "%{count} Ergebnisse wurden für Ihre Suche gefunden "
 
   # Community
   forum_name: "Foren"
   subject: "Betreff"
-  last_activity: "Zuletzt gesehen"
+  last_activity: "Zuletzt aktiv"
   topic: "Thema"
   replies: "Antworten"
   last_post: "Letzte Beiträge"
@@ -48,8 +48,8 @@ de:
   reply: "Auf dieses Thema antworten"
   submit_reply: "Antwort abschicken"
   posted: "Abgeschickt"
-  start_discussion: "Ein neues Thema beginnen"
-  submit_start_discussion: "Thema beginnen"
+  start_discussion: "Eine neue Diskusion beginnen"
+  submit_start_discussion: "Diskusion beginnen"
   should_message_be_private: "Soll diese Nachricht privat sein?"
   only_support_can_respond: "Nur der Support kann antworten (ein privates Ticket erstellen)"
   responses_can_come_from_everyone: "Antworten können vom Support oder der Community kommen (empfohlen)"
@@ -59,16 +59,16 @@ de:
       other: "%{count} verborgene Nachrichten"
 
   # Knowledgebase
-  written_by: "Uberrichtete von"
+  written_by: "Geschrieben von"
   last_edited: "Zuletzt bearbeitet"
   asked_before: "Wurde die Frage vor beantwortet? Wir denken, dass diese ähnlich sein kann"
 
   # Tickets
   tickets: "Tickets"
-  no_tickets: "Du hast noch keine Tickets erstellt"
+  no_tickets: "Sie haben noch keine Tickets erstellt"
   ticket_number: "Ticket Nummer"
-  assigned_to_label: "Zugewiesen werden"
-  created_on: "Hat gebuiltet an"
+  assigned_to_label: "Zugewiesen an"
+  created_on: "Erstellt"
 
   # Get Help
   get_help_header: "Brauchen Sie noch Hilfe??"
@@ -78,9 +78,9 @@ de:
   my_profile: 'Mein Profil'
 
   # footer
-  # powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  # get_your_copy: "Grab your copy on Github"
-  # version: "Version:"
+  powered_by: "Betrieben mit Helpy. Ein Open Source Helpdesk."
+  get_your_copy: "Hol dir deine Version auf Github"
+  version: "Version:"
 
   # devise/sessions/new
   login: Anmelden
@@ -103,7 +103,7 @@ de:
   sign_up: Registrieren
 
   # Admin menu
-  discussions: Themen
+  discussions: Diskusionen
   content: Inhalte
   communities: Foren
   app_store: App Store
@@ -119,8 +119,8 @@ de:
   closed: Abgeschlossen
   spam: Spam
   trash: Papierkorb
-  discussion_managment: Themenverwaltung
-  open_new_discussion: Neues Thema
+  discussion_managment: Diskusions Verwaltung
+  open_new_discussion: Neue Diskusion
   assigned_to: "zugeordnet an %{agent}"
   unassigned: nicht zugeordnet
   private: privat
@@ -147,7 +147,7 @@ de:
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
 
   # User Admin
-  # users: Users
+  users: Benutzer
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
@@ -160,13 +160,13 @@ de:
     other: "%{count} Benutzer mit dem Namen %{query} wurden gefunden"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
-  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
-  # invite_message: "Message"
-  # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_users: "Neue Benutzer einladen"
+  invite_emails: "E-mail-Adressen"
+  invite_emails_placeholder: "Gib ein oder mehrere E-Mail Adressen ein um Einladungen an sie zu verschicken."
+  invite_message: "Nachricht"
+  invite_message_placeholder: "Eine optionale Nachricht die an neue Benutzer verschickt wird."
+  invite_role: "Rolle für eingeladene Benutzer"
+  send_invite: "Einladung senden"
 
   # Discussion View
   asked_a_question: "%{user_name} hat eine Frage gestellt..."
@@ -176,14 +176,14 @@ de:
   select_common: Textvorlage auswählen
   reply: Antworten
   internal_note: Interne Notiz
-  # mark_as_resolved: Mark as resolved
+  mark_as_resolved: Als gelöst markieren
   upvote:
     one: "Upvote | %{count}"
     other: "Upvote | %{count}"
 
   # Content
   new_category: Neue Kategorie
-  new_content: Neuer Inhalt
+  new_content: Neue Kategorie
   front_page_categories: Kategorien Startseite
   other_categories: Andere Kategorien
   edit: Bearbeiten
@@ -194,46 +194,92 @@ de:
   delete_confirm: "Bitte bestätigen Sie, dass Sie dies LÖSCHEN wollen!"
   select_icon_helptext: "Symbol für die Kategorie auswählen (optional)"
   translate: "In eine andere Sprache übersetzen"
-  # view_on_site: "View on Site"
-  written_on: "Geschreiben an %{date_written}"
-  # content_last_updated: "Last Updated on %{date_updated}"
-  # featured_content: "Featured"
-  # draft_content: "Draft"
-  # published_content: "Published"
-  # additional_settings: "Additional Settings"
-  # content_status: "Content Status"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
+  view_on_site: "Ansehen auf Seite"
+  written_on: "Geschrieben am %{date_written}"
+  content_last_updated: "Zuletzt aktualisiert %{date_updated}"
+  featured_content: "Featured"
+  draft_content: "Entwurf"
+  published_content: "Veröffentlicht"
+  additional_settings: "Zusätzliche Einstellungen"
+  content_status: "Inhalts Status"
+  convert_content: 'Konvertiere Post in Inhalt'
+  upload_image: 'Foto hochladen'
 
   # Communities
   new_community: Ein neues Forum erstellen
   create_new_community: Ein neues Forum erstellen
-  # layout_select: Select Format
-  # layout_table: Table
-  # layout_grid: Grid
-  # layout_qna: Q&A
+  layout_select: Format auswählen
+  layout_table: Tabelle
+  layout_grid: Gitter
+  layout_qna: Frage & Antwort
 
   # Mail messages
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  hello: "Hallo %{user_name}"
+  new_user: "Vielen Dank, dass Sie uns kontaktieren. Ihre Nachricht wurde von unserem Support Team empfangen, wir werden und in Kürze mit einer Antwort melden."
+  account_generated: "Ein Konto wurde für Sie erstellt. Benutzten Sie diesen Link um sich anzumelden::"
+  above_this_line: "Stellen Sie sicher, dass Ihre Antwort oberhalb dieser Linie erscheint"
+  message_id: "Nachrichten ID"
+  message_response: "Die folgende Nachricht wurde als Antwort auf Ihre Frage gepostet:"
+  view_online: "Online ansehen:"
+
+  # Admin notifications
+  notify_new_private: "Eine neue private Kundennachricht wurde von %{user_name} empfangen:"
+  notify_new_public: "Eine neue öffentliche Kundennachricht wurde von %{user_name} veröffentlicht:"
+  notify_new_reply: "Eine neue Kundenantwort wurde von %{user_name} empfangen:"
+  to_reply: 'Antworte direkt oder online auf diese Nachricht:'
+
+  # Notifications settings panel
+  notify_on_private: "Sende eine E-Mail wenn eine private Kundenfrage empfangen wurde"
+  notify_on_public: "Sende eine E-Mail wenn eine öffentliche Kundenfrage veröffentlicht wurde"
+  notify_on_reply: "Sende eine E-Mail wenn eine neue Antwort auf eine private Diskussion empfangen wurde"
 
   # settings
-  # settings: "Settings"
-  # general: "General"
-  # design: "Design"
+  agent_settings: "Agent Einstellungen"
+  notifications: "Benachrichtigungen"
+  settings: "System Einstellungen"
+  general: "Generell"
+  design: "Design"
   international: "International"
-  # widget: "Embeddable Widget"
+  widget: "Einbindbares Widget"
+
+  # API Key Managmeent
+  api_keys: "API Keys"
+  key_name: "Key Name"
+  token: "Token"
+  add_key: "Neuen Key hinzufügen"
+  expire_token: "Token ablaufen lassen"
+  expired: "Abgelaufen"
+  expire_confirm: "Bitte bestätigen Sie, dass Sie diesen Token wirklick ablaufen lassen wollen."
+  spec_note: "Sie können unsere interaktive API Spezifikation hier lesen und testen: "
+
+  # Insights
+  team_insights: "Team insights für %{site_name}"
+  filter_by_date: "Filtern anhand des Datums"
+  today: "Heute"
+  yesterday: "Gestern"
+  this_week: "Diese Woche"
+  last_week: "Letzte Woche"
+  this_month: "Diesen Monat"
+  date_range: "Datums Spannweite"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> Ihr Benutzer begann 1 neue Konversation"
+    other: "<strong>%{period}</strong> Ihr Benutzer begann <strong>%{count} neue Konversationen</strong>"
+  insights_blurb_two: " von welchen Ihr Tem auf <strong>%{number_replied} (%{percentage_replied})</strong> antwortete."
+  insights_blurb_three: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
+  no_discussions: "Keine neuen Konversationen wurde gestarted<strong>%{period}</strong>"
+  assigned_topics: "Zugewiesene Themen"
+  responded: "Geantworted"
+  closed: "Geschlossen"
+  replies: "Antworten"
+  median_time: "Durschnittliche Zeit bis zur ersten Antwort"
+
+
 
   activerecord:
     attributes:
       user:
         email: Email
-        password: Passwort
+        password: Password
         name: Name
         company: Firma
         work_phone: Arbeit
@@ -249,30 +295,30 @@ de:
         name: Name
         icon: Symbol
         keywords: Stichworte
-        title_tag: Titel Stichwort
-        meta_description: Beschreibung
+        title_tag: Title Stichwort
+        meta_description: Meta Beschreibung
         front_page: Startseite
         active: Aktiv
       doc:
-        title: Titel
-        meta_description: Beschreibung
-        title_tag: Titel Stichwort
+        title: Title
+        meta_description: Meta Beschreibung
+        title_tag: Title Stichwort
         keywords: Stichworte
         category_id: Kategorie
         active: Status
-        front_page: Auf die Startseite setzen?
+        front_page: Auf die Startseite setzten?
       forum:
         name: Name
         description: Beschreibung
         private: Privat
-        # layout: Layout
-        # allow_topic_voting: Allow topic voting?
-        # allow_post_voting: Allow post voting?
+        layout: Layout
+        allow_topic_voting: Erlaube Themen voting??
+        allow_post_voting: Erlaube Beitrags voting?
 
     helpers:
       submit:
         topic:
-          create: Ein neues Thema starten
+          create: Eine neue Diskussion starten
         post:
           create:
 
