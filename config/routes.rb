@@ -47,7 +47,8 @@ Rails.application.routes.draw do
       resources :topics
     end
     resources :topics do
-      resources :posts
+      resources :posts 
+      resources :flags, only: [:create]
     end
     resources :posts
 
