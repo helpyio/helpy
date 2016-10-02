@@ -105,6 +105,19 @@ I am happy to accept contributions of any kind, including feedback and ideas, tr
 4. Submit a pull request
 
 
+Team Features (experimental)
+====================
+There is an experimental support for teams in this branch. The basic changes:
+[x] Users can be restricted to teams
+[x] Topics can be assigned to a team
+
+TODO
+====
+[ ] Add and fix Tests
+[x] Throw 502 for unauthorized access
+[x] If mail with a certain header is received it will assign team on creation
+[ ] Implement search for restricted agents
+
 License
 =======
 

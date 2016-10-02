@@ -24,17 +24,40 @@
 </span>
 
 <% unless @topic.current_status == "closed" %>
-<span class="status btn-group left-col-dropdown">
-  <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-    <%= content_tag :span, class: 'btn status-label label label-warning' do %>
-      <%= @topic.assigned_user.try(:name).try(:upcase) || t(:unassigned, default: 'UNASSIGNED') %>
-      <%= icon('caret-down') + ' ' %>
-    <% end %>
+  <span class="status btn-group left-col-dropdown">
+    <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
+      <%= content_tag :span, class: 'btn status-label label label-warning' do %>
+        <%= @topic.assigned_user.try(:name).try(:upcase) || t(:unassigned, default: 'UNASSIGNED') %>
+        <%= icon('caret-down') + ' ' %>
+      <% end %>
+    </span>
+    <ul class="dropdown-menu ticket-controls" role="menu">
+      <% @admins.each do |admin| %>
+      <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: admin.id), :remote => true unless @topic.current_status == "closed" %></li>
+      <% end %>
+    </ul>
   </span>
-  <ul class="dropdown-menu ticket-controls" role="menu">
-    <% @admins.each do |admin| %>
-    <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: admin.id), :remote => true unless @topic.current_status == "closed" %></li>
-    <% end %>
-  </ul>
-</span>
+
+  <%# if @topic.team_list.length > 0 or teams? %>
+  <% if teams? %>
+    <span class="status btn-group left-col-dropdown">
+      <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
+        <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.present? ? @topic.team_list.first.first : 'default'}") do %>
+          <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
+          <%= icon('caret-down') + ' ' %>
+        <% end %>
+      </span>
+      <ul class="dropdown-menu ticket-controls" role="menu">
+        <% @all_teams.to_a.each do |team| %>
+          <li>
+            <% unless @topic.current_status == "closed" %>
+              <%= link_to("#{content_tag(:div, '', class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
+            <% end %>
+          </li>
+        <% end %>
+        <li><%= link_to "Unassign from group", admin_assign_team_path(topic_ids: { "":@topic.id }, team: ''), :remote => true unless @topic.current_status == "closed" %></li>
+
+      </ul>
+    </span>
+  <% end %>
 <% end %>

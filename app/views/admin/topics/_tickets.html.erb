@@ -1,6 +1,6 @@
 <div id="user-info">
 </div>
-<% if @topics.count > 0 %>
+<% if @topics.present? %>
 <table id="topics" class="forum table-hover">
 
   <col width="80px" class="checkbox-col">
@@ -44,6 +44,22 @@
               <% end %>
             </ul>
           </span>
+
+          <span class="btn btn-group left-col-dropdown">
+            <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
+              <%= t(:no_team_assigned, default: 'Assign to group') %> <span class='caret'></span>
+            </span>
+            <ul class="dropdown-menu ticket-controls" role="menu">
+              <% @all_teams.to_a.each do |team| %>
+              <li>
+                <%= link_to("#{content_tag(:div, '', class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(team: team), :remote => true, class: 'multiple-update') %>
+              </li>
+              <% end %>
+              <li><%= link_to "Unassign from group", admin_assign_team_path(team: ''), :remote => true %></li>
+
+            </ul>
+          </span>
+
         </span>
       </td>
     </tr>

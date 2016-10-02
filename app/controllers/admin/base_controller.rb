@@ -20,6 +20,13 @@ class Admin::BaseController < ApplicationController
     @remote_search = true
   end
 
+  def check_current_user_is_allowed? topic
+    return if !topic.private or current_user.is_admin? or current_user.team_list.include?(topic.team_list.first)
+    if topic.team_list.count > 0 and current_user.is_restricted? and (topic.team_list + current_user.team_list).count > 0
+      render status: :forbidden
+    end
+  end
+
   def date_from_params
     if params[:start_date].present?
       @start_date = params[:start_date].to_datetime
