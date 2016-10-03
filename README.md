@@ -90,33 +90,23 @@ Helpy uses a service called Cloudinary to host and manipulate images.  If you do
 Contributing
 ============
 
-We have a contributors Slack room, click below to get access. Before you embark on anything too ambitious you should chat us up to make sure no one else is already working on it, and to coordinate your efforts.
+Welcome, and thanks for contributing to Helpy.  Together we are building the best customer support platform in the world.  Here are some of the ways you can contribute:
 
-[![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
-There is also a project roadmap available at [Trello](https://trello.com/b/NuiWsdmK/helpy)
+- Report or fix Bugs
+- Refactoring
+- Improve test coverage-  As with any large and growing codebase, test coverage is not always as good as it could be.  Help improving test coverage is always welcome and will help you learn how Helpy works.  We use Minitest exclusively.
+- Translate the project- The community has already translated Helpy into 18 languages, but there are many more waiting.  We need help getting Helpy translated into as many locales as possible! [please see the guide to translation](http://support.helpy.io/en/knowledgebase/12-Using-Helpy/docs/4-Supported-locales-How-to-Contribute)
+- Build new features.  There is a backlog of new features that we’d like to see built.  Check out our roadmap for more insight on this, and if you would like to take one on, please get in touch with us to make sure someone is not already working on it.
 
-**Helpy needs your help spreading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
+**General Guidelines:**
 
-I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality. To submit translations, [please see the guide to translation](http://support.helpy.io/en/knowledgebase/12-Using-Helpy/docs/4-Supported-locales-How-to-Contribute) and send me a gist to your translation file.  For new functionality, follow the standard approach:
-
-1. Fork the project
-2. Create a Branch for your contribution
-3. Write tests to cover your enhancements, and documentation describing what your feature is/does
-4. Submit a pull request
-
-
-Team Features (experimental)
-====================
-There is an experimental support for teams in this branch. The basic changes:
-[x] Users can be restricted to teams
-[x] Topics can be assigned to a team
-
-TODO
-====
-[ ] Add and fix Tests
-[x] Throw 502 for unauthorized access
-[x] If mail with a certain header is received it will assign team on creation
-[ ] Implement search for restricted agents
+- Join us on Slack.  Let me know you wish to contribute. [![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
+- Make your PRs granular.  They should only include one piece of functionality per PR.
+- Check the roadmap: [Trello](https://trello.com/b/NuiWsdmK/helpy) If you want to build a feature, contact us to make sure no one else is already working on it
+- You must provide passing test coverage.  We use minitest, see http://www.rubypigeon.com/posts/minitest-cheat-sheet/?utm_source=rubyweekly&utm_medium=email
+- You also must expose functionality to the API.  We use Grape.  API methods should be tested as well.
+- If your feature/bug fix/enhancement adds or changes text in the project, please create i18n strings in `en.yml` and any other locales you can.
+- We are hugely concerned with user experience, and a nice UI.  Oftentimes that means we may take what you have contributed and “dress it up” or as you to do the same.
 
 License
 =======
