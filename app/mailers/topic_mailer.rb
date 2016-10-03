@@ -3,7 +3,6 @@ class TopicMailer < ActionMailer::Base
 
   def new_ticket(topic)
     @topic = topic
-    @locale = @topic.locale
     email_with_name = %("#{topic.user.name}" <#{topic.user.email}>)
     mail(
       to: email_with_name,
