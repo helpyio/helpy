@@ -214,6 +214,7 @@ fa:
   layout_qna: سوالات متداول
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "سلام %{user_name}"
   new_user: "مرسی از تماس شما. پیغام شما دریافت شد توسط تیم پشتیبانی و در اسرع وقت به شما پاسخ میدیم."
   account_generated: "یک حساب کاربر برای شما ساخته شد. برای ورود از این لینک استفاده کنید"

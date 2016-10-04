@@ -214,6 +214,7 @@ de:
   layout_qna: Frage & Antwort
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hallo %{user_name}"
   new_user: "Vielen Dank, dass Sie uns kontaktieren. Ihre Nachricht wurde von unserem Support Team empfangen, wir werden und in Kürze mit einer Antwort melden."
   account_generated: "Ein Konto wurde für Sie erstellt. Benutzten Sie diesen Link um sich anzumelden::"

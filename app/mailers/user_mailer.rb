@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
     mail(
       to: email_with_name,
       from: %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>),
-      subject: "Welcome to #{AppSettings['settings.site_name']}"
+      subject: t('new_user_subject', site_name: AppSettings['settings.site_name'])
       )
   end
 

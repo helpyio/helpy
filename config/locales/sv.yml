@@ -194,6 +194,7 @@ sv:
   create_new_community: 'Skapa ny grupp'
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hej %{user_name}"
   new_user: "Tack för att du kontaktar oss. Supportgruppen har fått ditt meddelande och återkommer inom kort med ett svar."
   account_generated: "Ett konto har skapats åt dig. För att logga in , följ den här länken:"
@@ -283,4 +284,3 @@ sv:
       save: "Spara %{model}"
       new: "Ny %{model}"
       delete: "Radera %{model}"
-
