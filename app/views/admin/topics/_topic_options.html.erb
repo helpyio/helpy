@@ -39,7 +39,7 @@
   </span>
 
   <%# if @topic.team_list.length > 0 or teams? %>
-  <% if teams? %>
+  <% if teams? and @all_teams.count > 0 %>
     <span class="status btn-group left-col-dropdown">
       <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
         <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.present? ? @topic.team_list.first.first : 'default'}") do %>

@@ -45,6 +45,7 @@
             </ul>
           </span>
 
+          <% if teams? and @all_teams.count > 0 %>
           <span class="btn btn-group left-col-dropdown">
             <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
               <%= t(:no_team_assigned, default: 'Assign to group') %> <span class='caret'></span>
@@ -59,7 +60,8 @@
 
             </ul>
           </span>
-
+          <% end %>
+          
         </span>
       </td>
     </tr>
