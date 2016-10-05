@@ -32,6 +32,13 @@ Helpy.ready = function(){
     $(this).closest('.has-arrow').addClass('over');
   });
 
+  $('.thumbnail, .stats').on('click',function(){
+    $(this).css('cursor','pointer');
+    $(this).css('border','1px solid #666');
+    $(this).css('box-shadow', '0px 0px 10px #eee');
+    $(this).closest('.has-arrow').addClass('over');
+  });
+
   $.ui.autocomplete.prototype._renderItem = function( ul, item) {
     return $( "<li></li>" )
         .data( "item.autocomplete", item.name )
