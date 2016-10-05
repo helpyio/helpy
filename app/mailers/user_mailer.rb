@@ -2,6 +2,7 @@ class UserMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 
   def new_user(user, token)
+    return unless (AppSettings['settings.welcome_email'] == "1" || AppSettings['settings.welcome_email'] == true)
     @user = user
     @token = token
     @locale = I18n.locale.to_s
