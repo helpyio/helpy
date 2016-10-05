@@ -14,7 +14,7 @@ AppSettings.defaults["settings.forums"] = Settings.forums
 AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 AppSettings.defaults["settings.teams"] = Settings.teams
-
+AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
 
 # Design: (Colors etc.)
 
