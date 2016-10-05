@@ -356,7 +356,15 @@ ul.settings-menu {
   border: 1px solid rgba(0, 0, 0, .2);
 }
 
+.new-tag {
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 
+	input {
+		width: 90%;
+	}
+}
 // === TEAM INSIGHTS ===
 
 .team-members {

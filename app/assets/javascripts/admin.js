@@ -49,6 +49,24 @@ Helpy.admin = function(){
     return false;
   });
 
+  // You have to delegate this to the document or it does not work reliably
+  // See http://stackoverflow.com/questions/18545941/jquery-on-submit-event
+  $(document).on('submit','form.new-group-form', function(){
+    var $field = $('#new_group');
+    var newGroup = $field.val();
+    var $newItem = $('<li/>');
+    var $newLink = $('<a class="link-tag" data-remote="true" href="/admin/topics/assign_team?team=' + newGroup + '&topic_ids[]=' + Helpy.topicID + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a></li>');
+    //var $newLink = $('<a data-remote="true" href="/admin/topics/assign_team?team=' + newGroup + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a>');
+    // if ($field.hasClass('multiple')) {
+      // $newLink.addClass('multiple-update');
+    // }
+
+    $('.new-tag').before($newItem.append($newLink));
+    $('#new_group').val('');
+    $('.link-tag').off().click();
+    return false;
+  });
+
   $('.pick-a-color').minicolors({
     theme: 'bootstrap'
   });

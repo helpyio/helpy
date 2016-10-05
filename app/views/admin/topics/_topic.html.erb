@@ -9,9 +9,6 @@
   <td>
       <span class="topic-link more-important truncate-ellipsis">
         <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic), remote: true -%><%= badge_for_status(topic.current_status) %><%= badge_for_private if topic.private? %><% tag_listing(topic.team_list) %>
-
-        <% # if topic.team_list.length > 0 %>
-        <% # end %>
       </span>
     <span class="less-important user-link">
       <%= link_to t(:started_by, username: topic.user.name? ? topic.user.name.titleize : topic.user.email, default: "Started by #{topic.user.name? ? topic.user.name.titleize : topic.user.email}"), admin_user_path(topic.user.id), remote: true %>
