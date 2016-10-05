@@ -63,6 +63,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :rtl_locale?
 
+  def welcome_email?
+    return true;
+  end
+  helper_method :welcome_email?
+
   def forums?
     AppSettings['settings.forums'] == "1" || AppSettings['settings.forums'] == true
   end

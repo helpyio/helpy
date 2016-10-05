@@ -72,6 +72,7 @@
         <%= f.check_box 'settings.forums', { checked: forums?, label: t('enable_forums', default: "Enable Community Forums") } %>
         <%= f.check_box 'settings.knowledgebase', { checked: knowledgebase?, label: t('enable_knowledgebase', default: "Enable Knowledgebase") } %>
         <%= f.check_box 'settings.tickets', { checked: tickets?, label: t('enable_tickets', default: "Enable Private Tickets") } %>
+        <%= f.check_box 'settings.welcome_email', { checked: welcome_email?, label: t('enable_welcome_email', default: "Enable Welcome Email") } %>
       </div>
       <div class="settings-section design hidden">
           <div class="row">
