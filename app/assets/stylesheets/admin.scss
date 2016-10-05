@@ -125,6 +125,14 @@ ul.dropdown-menu {
 	padding-bottom: 0px;
 }
 
+.edit-user {
+	margin-right: 4px;
+}
+
+.user-section {
+	margin-bottom: 40px;
+}
+
 .navbar.navbar-default {
 	background-color: #222;
 }
@@ -340,6 +348,23 @@ ul.settings-menu {
 	}
 }
 
+.color-sample {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.new-tag {
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	input {
+		width: 90%;
+	}
+}
 // === TEAM INSIGHTS ===
 
 .team-members {
@@ -490,4 +515,8 @@ ul.settings-menu {
   .label {
     display: none;
   }
+}
+
+.selectize-control.form-control {
+	border: 0;
 }

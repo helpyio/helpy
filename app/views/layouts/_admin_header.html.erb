@@ -4,7 +4,7 @@
       <%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo") + content_tag(:span, "Helpy Support", class: 'hidden-sm'), responsive: true, inverse: true do %>
 
           <%= menu_group pull: :right do %>
-            <% if current_user.is_agent? %>
+            <% if ((current_user.is_agent? and !current_user.is_restricted?) or current_user.is_admin?) # NOTE: this seems to be a bit of tech debt, need to scope search by organization %>
               <% if @remote_search == true %>
                 <%= form_tag admin_topic_search_path, method: :get, remote: true, class: 'navbar-form navbar-left' do %>
                   <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control full-width') %>

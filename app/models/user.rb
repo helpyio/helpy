@@ -92,6 +92,7 @@ class User < ActiveRecord::Base
 
   after_invitation_accepted :set_role_on_invitation_accept
   after_create :enable_notifications_for_agents
+  acts_as_taggable_on :teams
 
   ROLES = %w[admin agent editor user]
 
@@ -120,8 +121,13 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
+  end
+
+  def is_restricted?
+    self.team_list.count > 0 && !self.is_admin?
   end
 
   def self.create_password

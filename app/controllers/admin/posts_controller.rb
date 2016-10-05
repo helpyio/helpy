@@ -28,6 +28,7 @@ class Admin::PostsController < Admin::BaseController
           end
           fetch_counts
           @posts = @topic.posts.chronologic
+
           @admins = User.agents
           #@post = Post.new
           case @post.kind

@@ -29,5 +29,6 @@ module Entity
     expose :updated_at
     expose :email
     expose :sign_in_count, documentation: { type: "Integer" }
+    expose :team_list
   end
 end

@@ -14,7 +14,7 @@
         <td>
           <span class="more-important">
             <%= link_to doc.title, edit_admin_category_doc_path(doc.category.id, doc.id, lang: I18n.locale)  %>
-            <% tag_listing(doc.tag_list) %>
+            <% tag_listing(doc.tag_list, "doc") %>
             <%= " - #{I18n.t('featured_content', default: 'Featured')}" if doc.front_page == true %>
             <%= " - #{I18n.t('draft_content', default: 'Draft')}" if doc.active == false %>
           </span>

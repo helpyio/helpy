@@ -10,6 +10,8 @@ namespace :db do
   number_threads = rand(20..50)
   number_tickets = rand(20..50)
 
+  groups = [[0, ''],[1, 'equipment'],[2, 'onboarding'],[3, 'billing'],[4, '']]
+
   unless User.where(email: 'admin@test.com')
     admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
     puts "Created Admin: #{admin_user.name}"
@@ -19,7 +21,7 @@ namespace :db do
   company = RUser.new
   company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
 
-  number_support_team.times do
+  number_support_team.times.each_with_index do |item, index|
     user = RUser.new
     u = User.create(
       name: "#{user.first_name} #{user.last_name}",
@@ -27,7 +29,7 @@ namespace :db do
       login: user.username,
       password: '12345678',
       admin: true,
-      role: 'admin',
+      role: 'agent',
       company: company_name,
       street: company.street,
       city: company.city,
@@ -37,9 +39,9 @@ namespace :db do
       cell_phone: user.cell,
       thumbnail: user.profile_thumbnail_url,
       medium_image: user.profile_medium_url,
-      large_image: user.profile_large_url
+      large_image: user.profile_large_url,
+      team_list: groups[index][1]
     )
-
     puts "Created Agent: #{u.name}"
   end
 
@@ -197,7 +199,7 @@ namespace :db do
 
   # Create back and forth private threads with support staff
   f = Forum.find(1)
-  number_tickets.times do
+  number_tickets.times.each_with_index do |item, index|
 
       timeseed = rand(1..30)
       Timecop.travel(Date.today-timeseed.days)
@@ -209,7 +211,8 @@ namespace :db do
         name: question,
         user_id: User.where(admin: false).sample.id,
         private: true,
-        assigned_user_id: User.where(admin: true).sample.id
+        assigned_user_id: User.where(admin: true).sample.id,
+        team_list: groups.sample[1]
       )
 
       # create first post in thread
