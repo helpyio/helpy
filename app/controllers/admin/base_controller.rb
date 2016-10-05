@@ -2,6 +2,7 @@ class Admin::BaseController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_user!
+  before_action :get_all_teams
   helper_method :show_onboarding?
 
   # Here we are just checking if the onboarding should be shown, based on the

@@ -192,6 +192,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_all_teams
+    return unless teams?
     @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").map{|tagging| tagging.tag.name.capitalize }.uniq
   end
 

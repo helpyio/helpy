@@ -1,3 +1,6 @@
+<script>
+  Helpy.topicID = <%= @topic.id %>;
+</script>
 <span class="btn-group left-col-dropdown">
   <span class="status dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
     <%= control_for_status(@topic.current_status) %>
@@ -38,23 +41,27 @@
     </ul>
   </span>
 
-  <%# if @topic.team_list.length > 0 or teams? %>
   <% if teams? %>
     <span class="status btn-group left-col-dropdown">
       <span class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-        <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.present? ? @topic.team_list.first.first : 'default'}") do %>
+        <%= content_tag(:span, class: "btn status-label label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
           <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
           <%= icon('caret-down') + ' ' %>
         <% end %>
       </span>
-      <ul class="dropdown-menu ticket-controls" role="menu">
+      <ul class="dropdown-menu ticket-controls team-list" role="menu">
         <% @all_teams.to_a.each do |team| %>
-          <li>
+          <li class='team-item'>
             <% unless @topic.current_status == "closed" %>
               <%= link_to("#{content_tag(:div, '', class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
             <% end %>
           </li>
         <% end %>
+        <li class="new-tag">
+          <%= form_tag '#', class: 'new-group-form' do %>
+          <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+          <% end %>
+        </li>
         <li><%= link_to "Unassign from group", admin_assign_team_path(topic_ids: { "":@topic.id }, team: ''), :remote => true unless @topic.current_status == "closed" %></li>
 
       </ul>
