@@ -1,5 +1,12 @@
+// First, turn off any updaters running
+clearTimeout(Helpy.refreshList);
+
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/ticket') %>");
-$('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
+//$('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
+<% ['new','active','open','mine','pending','closed'].each do |status| %>
+$('.stats-<%= status %>').text("<%= instance_variable_get("@#{status}") %>");
+<% end %>
+
 $('#ticket-page-title').html("").hide();
 $(document).prop('title', "<%= admin_title %> <%= t(:discussions, default: 'Discussions') %>: #<%= @topic.id %> <%= @topic.name.titleize %>");
 window.location.hash = '<%= "#{@topic.id} #{@topic.name}" %>';
@@ -16,3 +23,29 @@ Helpy.track();
 
 // RTL changes?
 <%= "Helpy.rtl();" if rtl? %>
+
+// Polling
+Helpy.topicID= <%= @topic.id %>;
+Helpy.refreshTopic(Helpy.topicID);
+// Helpy.cancelRefresh();
+
+$('.dropdown').off().on('shown.bs.dropdown', function(){
+  console.log('open menu, pause poll');
+  Helpy.cancelRefresh();
+});
+$('.dropdown').on('hidden.bs.dropdown', function(){
+  console.log('closed, resume poll');
+  Helpy.refreshTopic(Helpy.topicID);
+});
+// Current status
+// Helpy.topicID= <%= @topic.id %>;
+// function refreshTopic(){
+//     $.get('/admin/topics/refresh_topic?id=' + Helpy.topicID, function(data) {
+//         Helpy.refreshTopic = setTimeout(refreshTopic,10000);
+//     });
+// }
+// refreshTopic();
+
+// Set up listeners to disable polling while page interactions are taking place
+// $('.nopoll, .ticket-controls').off().on('click focus mouseover hover', Helpy.cancelRefresh());
+// $('.nopoll, .ticket-controls').off().on('mouseout blur', Helpy.refreshTopic(<%= @topic.id %>));

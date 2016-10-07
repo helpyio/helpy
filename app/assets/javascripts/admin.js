@@ -115,6 +115,30 @@ Helpy.admin = function(){
 
 };
 
+Helpy.refreshList = function(status) {
+  Helpy.cancelRefresh();
+
+  $.get('/admin/topics/refresh_list?status=' + status, function() {
+      Helpy.refreshListHook = setTimeout(Helpy.refreshList, 60000, status);
+  });
+  return true;
+}
+
+Helpy.refreshTopic = function(topic) {
+  Helpy.cancelRefresh();
+
+  $.get('/admin/topics/refresh_topic?id=' + topic, function() {
+      Helpy.refreshTopicHook = setTimeout(Helpy.refreshTopic, 5000, topic);
+  });
+  return true;
+};
+
+Helpy.cancelRefresh = function() {
+  clearTimeout(Helpy.refreshListHook);
+  clearTimeout(Helpy.refreshTopicHook);
+  return true;
+};
+
 Helpy.showPanel = function(panel) {
   var currentPanel = panel-1;
   $('.onboard-panel').addClass('hidden');

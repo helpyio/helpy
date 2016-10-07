@@ -185,6 +185,7 @@ Helpy.ready = function(){
     // add listener to expand messages
     $('.collapsed-posts').on('click', function(){
       $thread.show();
+      Helpy.cancelRefresh();
       $('.collapsed-posts').hide();
     });
 
@@ -226,9 +227,14 @@ Helpy.ready = function(){
       $('#multiple-edit').fadeIn();
       updateMessage();
 
+      // Cancel Polling
+      Helpy.cancelRefresh();
     } else {
       $('.topic-checkbox').prop('checked', false);
       $('#multiple-edit').fadeOut();
+
+      // Resume Polling
+      Helpy.refreshList(Helpy.current_status_view);
     }
   });
 
@@ -238,9 +244,14 @@ Helpy.ready = function(){
       $('#multiple-edit').fadeIn();
       updateMessage();
 
+      // Cancel Polling
+      Helpy.cancelRefresh();
     } else {
       if ($('.topic-checkbox:checked').size() === 0) {
         $('#multiple-edit').fadeOut();
+
+        // Resume Polling
+        Helpy.refreshList(Helpy.current_status_view);
       } else {
         updateMessage();
       }

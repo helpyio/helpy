@@ -27,7 +27,7 @@
 class Admin::TopicsController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
+  before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile', 'refresh_list', 'refresh_topic']
   before_action :pipeline, :only => ['index', 'show', 'update_topic']
   before_action :remote_search, :only => ['index', 'show', 'update_topic']
 
@@ -304,6 +304,52 @@ class Admin::TopicsController < Admin::BaseController
       }
     end
   end
+
+  def refresh_list
+#    @status = params[:status]
+#    get_tickets if params[:status].present?
+
+    @status = params[:status] || "pending"
+    if current_user.is_restricted? && teams?
+      topics_raw = Topic.all.tagged_with(current_user.team_list, :any => true)
+    else
+      topics_raw = Topic
+    end
+    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
+    get_all_teams
+    case @status
+    when 'all'
+      topics_raw = topics_raw.all
+    when 'new'
+      topics_raw = topics_raw.unread
+    when 'active'
+      topics_raw = topics_raw.active
+    when 'unread'
+      topics_raw = topics_raw.unread.all
+    when 'assigned'
+      topics_raw = topics_raw.mine(current_user.id)
+    when 'pending'
+      topics_raw = topics_raw.pending.mine(current_user.id)
+    else
+      topics_raw = topics_raw.where(current_status: @status)
+    end
+    @topics = topics_raw.page params[:page]
+
+
+
+
+    render 'refresh_list'
+  end
+
+  def refresh_topic
+    @topic = Topic.where(id: params[:id]).first
+    get_all_teams
+    @posts = @topic.posts.chronologic
+
+    render 'refresh_topic'
+  end
+
+
 
   private
 

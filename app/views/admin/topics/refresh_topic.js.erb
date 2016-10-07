@@ -1,0 +1,24 @@
+<% ['new','active','open','mine','pending','closed'].each do |status| %>
+$('.stats-<%= status %>').text("<%= instance_variable_get("@#{status}") %>");
+<% end %>
+// $('#tickets').html("<%= escape_javascript(render 'admin/topics/ticket') %>");
+$('#posts').html("<%= escape_javascript(render :partial => 'admin/topics/post', :collection => @posts) %>")
+$('.profile').initial();
+
+$('.dropdown').off().on('shown.bs.dropdown', function(){
+  console.log('open menu, pause poll');
+  Helpy.cancelRefresh();
+});
+$('.dropdown').on('hidden.bs.dropdown', function(){
+  console.log('closed, resume poll');
+  Helpy.refreshTopic(Helpy.topicID);
+});
+
+// Update timestamps
+$('.last-active time[data-time-ago]').timeago();
+
+// jQuery hook
+Helpy.ready();
+Helpy.track();
+
+console.log('Updated Topic');

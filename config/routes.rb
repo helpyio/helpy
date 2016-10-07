@@ -74,7 +74,9 @@ Rails.application.routes.draw do
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
-    
+    get 'topics/refresh_list' => 'topics#refresh_list', as: :refresh_list
+    get 'topics/refresh_topic' => 'topics#refresh_topic', as: :refresh_topic
+
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
 

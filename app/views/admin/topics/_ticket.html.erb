@@ -21,7 +21,7 @@
     </div>
 
 
-    <div class="add-form">
+    <div class="add-form nopoll">
       <h4><%= t(:reply_to_this_topic, default: 'Reply to this Topic') %>:</h4>
 
       <%#= error_messages_for :post -%>
@@ -36,7 +36,7 @@
 
         <%= hidden_field_tag :client_id %>
         <%= hidden_field_tag :from, 'admin' %>
-        <%= f.text_area :body, :rows => 8, :cols => 160, hide_label: true, placeholder: t(:type_reply, default: "Type your reply, or select from a common message below"), class: 'disable-empty' %>
+        <%= f.text_area :body, :rows => 8, :cols => 160, hide_label: true, placeholder: t(:type_reply, default: "Type your reply, or select from a common message below"), class: 'nopoll disable-empty' %>
         <%= i18n_reply %>
         <br/>
         <%= f.attachinary_file_field :screenshots unless Cloudinary.config.cloud_name.nil? %>

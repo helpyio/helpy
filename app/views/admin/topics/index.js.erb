@@ -34,5 +34,11 @@ ga('send', 'pageview');
 Helpy.ready();
 Helpy.track();
 
+// Current status
+Helpy.current_status_view = '<%= @status %>';
+Helpy.refreshList('<%= @status %>');
+
 // RTL changes?
 <%= "Helpy.rtl();" if rtl? %>
+
+$('.topic-checkbox').off().on('change', Helpy.cancelRefresh());

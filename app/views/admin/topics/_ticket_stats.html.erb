@@ -1,3 +1,7 @@
+<script>
+</script>
+
+
 <div id="discussion-flow" class="hidden-xs">
   <div class="tiny-header"><%= t(:support_pipeline, default: "Support Pipeline") %>:</div>
 
@@ -21,7 +25,7 @@
       </div>
     </div>
 
-    <div class="bottom-arrow col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
       <div class="dummy"></div>
       <div class="stats">
 
@@ -46,9 +50,9 @@
         <%= link_to t(:mine, default: "Mine"), admin_topics_path(:status => 'assigned', :assigned_user_id => current_user), :remote => true, class: 'tiny-header admin-discussion-nav' %>
       </div>
     </div>
-    <div class="has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
+    <div class="over has-arrow col-md-2 col-sm-2 col-xs-2 text-center">
       <div class="dummy"></div>
-      <div class="stats">
+      <div class="stats stats-default">
 
         <h2 class="stats-pending"><%= @pending %></h2>
         <%= link_to t(:pending, default:"Pending"), admin_topics_path(:status => 'pending'), :remote => true, class: 'tiny-header admin-discussion-nav' %>
