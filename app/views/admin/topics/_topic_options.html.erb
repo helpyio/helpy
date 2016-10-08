@@ -14,17 +14,19 @@
   </ul>
 </span>
 
-<span class="status privacy btn-group left-col-dropdown">
-  <span class="privacy-toggle dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-    <%= control_for_privacy(@topic.private?) %>
+<% if forums? %>
+  <span class="status privacy btn-group left-col-dropdown">
+    <span class="privacy-toggle dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
+      <%= control_for_privacy(@topic.private?) %>
+    </span>
+    <ul class="dropdown-menu ticket-controls" role="menu">
+      <% Forum.where(private: false).alpha.each do |forum| %>
+      <li><%= link_to "#{t(:move_to, default: "Move")}: #{forum.name}", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'false', forum_id: forum.id), :remote => true %></li>
+      <% end %>
+      <li><%= link_to "#{t(:mark_as, default: "Mark")}: Private", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 1), :remote => true %></li>
+    </ul>
   </span>
-  <ul class="dropdown-menu ticket-controls" role="menu">
-    <% Forum.where(private: false).alpha.each do |forum| %>
-    <li><%= link_to "#{t(:move_to, default: "Move")}: #{forum.name}", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'false', forum_id: forum.id), :remote => true %></li>
-    <% end %>
-    <li><%= link_to "#{t(:mark_as, default: "Mark")}: Private", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 1), :remote => true %></li>
-  </ul>
-</span>
+<% end %>
 
 <% unless @topic.current_status == "closed" %>
   <span class="status btn-group left-col-dropdown">
