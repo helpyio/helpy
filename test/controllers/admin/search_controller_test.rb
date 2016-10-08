@@ -18,7 +18,7 @@ class Admin::SearchControllerTest < ActionController::TestCase
     test "an #{admin} should be able to search by topic ID by ajax" do
       sign_in users(admin.to_sym)
       xhr :get, :topic_search, q: "1"
-      assert_not_nil assigns(:topics)
+      assert_not_nil assigns(:topic)
       assert_response :success
     end
 
@@ -48,7 +48,7 @@ class Admin::SearchControllerTest < ActionController::TestCase
     test "an #{admin} should be able to search by topic ID" do
       sign_in users(admin.to_sym)
       get :topic_search, q: "1"
-      assert_not_nil assigns(:topics)
+      assert_not_nil assigns(:topic)
       assert_response :success
     end
 

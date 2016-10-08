@@ -122,7 +122,7 @@ Helpy.refreshList = function(status) {
       Helpy.refreshListHook = setTimeout(Helpy.refreshList, 60000, status);
   });
   return true;
-}
+};
 
 Helpy.refreshTopic = function(topic) {
   Helpy.cancelRefresh();

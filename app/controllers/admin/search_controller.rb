@@ -17,12 +17,23 @@ class Admin::SearchController < Admin::BaseController
       users = User.user_search(params[:q])
     end
 
-    if users.size == 0 # not a user search, so look for a topic
+    ticketID = Integer(params[:q]) rescue false
+
+    # Searching for a single ticket, by ID should load the ticket page
+    if users.size == 0 and ticketID != false # not a user search, so look for a topic
       @topics = Topic.admin_search(params[:q]).page params[:page]
       @topic = @topics.first
       template = "admin/topics/show"
+      tracker("Admin Search", "Jump to topic", params[:q])
+
+    # Searching for a topic by string, should display a list of matching topics
+    elsif users.size == 0
+      @topics = Topic.admin_search(params[:q]).page params[:page]
+      @topic = @topics.first
+      template = "admin/search/results"
       tracker("Admin Search", "Topic Search", params[:q])
 
+    # Searching for a specific user should display that users profile
     elsif users.size == 1
       @user = users.first
       @topics = Topic.admin_search(params[:q]).page params[:page]
@@ -32,6 +43,7 @@ class Admin::SearchController < Admin::BaseController
       tracker("Admin Search", "User Search", params[:q])
       tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
 
+    # Finally, search all users for matches
     else
       @users = users.page params[:page]
       template = 'admin/users/users'
