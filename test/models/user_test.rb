@@ -231,7 +231,18 @@ class UserTest < ActiveSupport::TestCase
     assert_equal nil, u.settings.notify_on_private, "Should not be enabled for private notifications"
     assert_equal nil, u.settings.notify_on_public, "Should not be enabled for public notifications"
     assert_equal nil, u.settings.notify_on_reply, "Should not be enabled for reply notifications"
+  end
 
+  test "Should be able to assign an agent to a group" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: 'test agent',
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'something', u.team_list.first
   end
 
 end
