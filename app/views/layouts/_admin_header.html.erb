@@ -1,32 +1,31 @@
 <div id="header-wrapper">
-      <div id="above-header" class="hidden-xs small">
-      </div>
-      <%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo") + content_tag(:span, "Helpy Support", class: 'hidden-sm'), responsive: true, inverse: true do %>
+  <div id="above-header" class="hidden-xs small">
+  </div>
+  <%= nav_bar brand: image_tag("logo.png", width: 40, class: "pull-left logo") + content_tag(:span, "Helpy Support", class: 'hidden-sm'), responsive: true, inverse: true do %>
 
-          <%= menu_group pull: :right do %>
-            <%# if ((current_user.is_agent? and !current_user.is_restricted?) or current_user.is_admin?) # NOTE: this seems to be a bit of tech debt, need to scope search by organization %>
-              <% if @remote_search == true %>
-                <%= form_tag admin_topic_search_path, method: :get, remote: true, class: 'navbar-form navbar-left' do %>
-                  <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control full-width') %>
-                <% end %>
-              <% else %>
-                <%= form_tag admin_topic_search_path, method: :get, class: 'navbar-form navbar-left' do %>
-                  <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control full-width') %>
-                <% end %>
-              <% end %>
-            <%# end %>
-            <%= menu_item glyph(:cog), admin_settings_path, class: 'pull-right visible-lg visible-md visible-sm hidden-xs settings-cog' if current_user.is_agent? %>
-            <%= menu_item t(:settings, default: "Settings"), admin_settings_path, class: 'visible-xs hidden-lg hidden-md hidden-sm' if current_user.is_agent? %>
-          <% end %>
-
-          <%= menu_group pull: :right do %>
-              <%#= menu_item "Dashboard", admin_dashboard_path %>
-              <%= menu_item t(:discussions, default: "Discussions"), admin_topics_path if current_user.is_agent? %>
-              <%= menu_item t(:team, default: 'Team'), admin_stats_path(interval: 7) if current_user.is_admin? %>
-              <%= menu_item t(:content, default: "Content"), admin_categories_path, class:'kblink' if Settings.knowledgebase if current_user.is_editor? %>
-              <%= menu_item t(:communities, default: "Communities"), admin_forums_path if Settings.forums if current_user.is_agent? %>
-              <%= menu_item t(:app_store, default: "App Store"), "http://helpy.io/store/", class: "hidden-sm" %>
-          <% end %>
-
+    <%= menu_group pull: :right do %>
+      <% if @remote_search == true %>
+        <%= form_tag admin_topic_search_path, method: :get, remote: true, class: 'navbar-form navbar-left' do %>
+          <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control full-width') %>
+        <% end %>
+      <% else %>
+        <%= form_tag admin_topic_search_path, method: :get, class: 'navbar-form navbar-left' do %>
+          <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control full-width') %>
+        <% end %>
       <% end %>
+      <%= menu_item content_tag(:span, nil, class: 'fa fa-question-circle'), "http://support.helpy.io/", class: 'pull-right visible-lg visible-md visible-sm hidden-xs settings-cog', target: 'blank' %>
+      <%= menu_item glyph(:cog), admin_settings_path, class: 'pull-right visible-lg visible-md visible-sm hidden-xs settings-cog' if current_user.is_agent? %>
+    <% end %>
+
+    <%= menu_group pull: :right do %>
+        <%= menu_item t(:discussions, default: "Discussions"), admin_topics_path if current_user.is_agent? %>
+        <%= menu_item t(:team, default: 'Team'), admin_stats_path(interval: 7) if current_user.is_admin? %>
+        <%= menu_item t(:content, default: "Content"), admin_categories_path, class:'kblink' if Settings.knowledgebase if current_user.is_editor? %>
+        <%= menu_item t(:communities, default: "Communities"), admin_forums_path if Settings.forums if current_user.is_agent? %>
+        <%= menu_item t(:app_store, default: "App Store"), "http://helpy.io/store/", class: "hidden-sm" %>
+        <%= menu_item t(:settings, default: "Settings"), admin_settings_path, class: 'visible-xs hidden-lg hidden-md hidden-sm' if current_user.is_agent? %>
+        <%= menu_item t(:get_help, default: "Help"), "http://support.helpy.io/", class: 'visible-xs hidden-lg hidden-md hidden-sm', target: 'blank' %>
+    <% end %>
+
+  <% end %>
 </div>
