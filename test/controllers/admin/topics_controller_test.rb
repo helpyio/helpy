@@ -158,7 +158,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     end
 
     # NOTE: THIS BEHAVIOR WAS REVERSED BASED ON USER FEEDBACK THAT IT WAS HARD TO
-    # FIND DISCUSSIONS AFTER THEY WERE VIEWED, LEFT TEST JUST IN CASE 
+    # FIND DISCUSSIONS AFTER THEY WERE VIEWED, LEFT TEST JUST IN CASE
     #
     # test "an #{admin}viewing a new discussion should change the status to PENDING" do
     #   sign_in users(admin.to_sym)
@@ -170,6 +170,63 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     #   @ticket = Topic.find(6)
     #   assert @ticket.current_status == "pending", "ticket status did not change to pending"
     # end
+  end
+
+  test "an agent that is assigned to a group should only see search topics from that group" do
+    sign_in users(:agent)
+
+    # Assign agent and topic to a group
+    agent = users(:agent)
+    agent.team_list = "test"
+    agent.save!
+
+    topic = topics(:private)
+    topic.current_status = "open"
+    topic.team_list = "test"
+    topic.save!
+
+    get :index, { status: "open" }
+    assert_not_nil assigns(:topics)
+    assert_equal 1, assigns(:topics).size
+    assert_template "admin/topics/index"
+    assert_response :success
+  end
+
+  test "an agent that is assigned to a group should not see topics from another group" do
+    sign_in users(:agent)
+
+    # Assign agent and topic to a group
+    agent = users(:agent)
+    agent.team_list = "test"
+    agent.save!
+
+    topic = topics(:private)
+    topic.current_status = "open"
+    topic.team_list = "aomething else"
+    topic.save!
+
+    get :index, { status: "open" }
+    assert_equal 0, assigns(:topics).size
+    assert_template "admin/topics/index"
+    assert_response :success
+  end
+
+  test "an agent that is assigned to a group should not be able to view a topic from another group" do
+    sign_in users(:agent)
+
+    # Assign agent and topic to a group
+    agent = users(:agent)
+    agent.team_list = "test"
+    agent.save!
+
+    topic = topics(:private)
+    topic.current_status = "open"
+    topic.team_list = "aomething else"
+    topic.save!
+
+    get :show, { id: topic.id }
+    assert_template "admin/topics/show"
+    assert_response 403
   end
 
   %w(user editor).each do |unauthorized|
