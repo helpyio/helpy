@@ -41,7 +41,8 @@ def set_default_settings
   AppSettings['settings.google_analytics_id'] = Settings.google_analytics_id
   AppSettings["settings.forums"] = true
   AppSettings["settings.tickets"] = true
-  AppSettings["settings.knowledgebase"] = true  
+  AppSettings["settings.knowledgebase"] = true
+  AppSettings["settings.welcome_email"] = true
   AppSettings['design.favicon'] = Settings.app_favicon
   AppSettings['design.header_logo'] = Settings.app_mini_logo
   AppSettings['design.footer_mini_logo'] = Settings.app_large_logo
