@@ -150,7 +150,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_counts
-    if current_user.is_restricted? and teams?
+    if current_user.is_restricted? && teams?
       topics = Topic.tagged_with(current_user.team_list, :any => true)
       @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else

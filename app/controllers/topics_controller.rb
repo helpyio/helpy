@@ -114,7 +114,7 @@ class TopicsController < ApplicationController
       @user = User.where(email: params[:topic][:user][:email]).first
 
       if recaptcha_enabled? && params[:from] != 'widget'
-        render :new and return unless verify_recaptcha(model: @topic)
+        render :new && return unless verify_recaptcha(model: @topic)
       end
 
       if @user
