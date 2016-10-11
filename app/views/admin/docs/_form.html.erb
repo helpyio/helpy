@@ -39,7 +39,7 @@
 
   <%#= f.text_field :rank %>
   <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %>
-  <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if params[:lang] == "#{I18n.locale}"  %>
+  <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{I18n.locale}"  %>
   <hr/>
   <% if params[:lang] == "#{I18n.locale}" %>
     <div class= "form_group no-translate">

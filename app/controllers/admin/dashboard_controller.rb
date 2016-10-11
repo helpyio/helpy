@@ -9,9 +9,9 @@ class Admin::DashboardController < Admin::BaseController
   def index
     #@topics = Topic.mine(current_user.id).pending.page params[:page]
 
-    if current_user.is_admin? || current_user.is_agent?
+    if (current_user.is_admin? || current_user.is_agent?) && (forums? || tickets?)
       redirect_to admin_topics_path
-    elsif current_user.is_editor?
+    elsif current_user.is_editor? && knowledgebase?
       redirect_to admin_categories_path
     else
       redirect_to root_url
