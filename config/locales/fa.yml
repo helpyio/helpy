@@ -105,7 +105,7 @@ fa:
   # Admin menu
   discussions: بحث ها
   content: محتوا
-  communities: انحمن
+  communities: انجمن
   app_store: اپ استور
   search: جستجو
 
@@ -142,7 +142,7 @@ fa:
 
   # Discussion messages
   reopen_message: "این درخواست توسط پشتیبانی دوباره باز شد"
-  close_message: "این تیکت توسط پشتیبانی بسته شد."
+  closed_message: "این تیکت توسط پشتیبانی بسته شد."
   trash_message: "این تیکت پاک شده."
   assigned_message: "این بحث منتقل شد به %{assigned_to}."
 
@@ -214,7 +214,7 @@ fa:
   layout_qna: سوالات متداول
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
+  new_user_subject: "خوش آمدی به %{site_name}"
   hello: "سلام %{user_name}"
   new_user: "مرسی از تماس شما. پیغام شما دریافت شد توسط تیم پشتیبانی و در اسرع وقت به شما پاسخ میدیم."
   account_generated: "یک حساب کاربر برای شما ساخته شد. برای ورود از این لینک استفاده کنید"
