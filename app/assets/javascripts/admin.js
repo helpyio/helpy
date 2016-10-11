@@ -62,10 +62,6 @@ Helpy.admin = function(){
       return false;
   });
 
-  $('form.new-group-form').off().on('focus', function(){
-    Helpy.groupCount = 0;
-  })
-
   $('.pick-a-color').minicolors({
     theme: 'bootstrap'
   });
