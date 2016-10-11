@@ -365,6 +365,35 @@ ul.settings-menu {
 		width: 90%;
 	}
 }
+
+.checkbox {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+
+	label {
+		padding-left: 0;
+	}
+}
+
+.bootstrap-switch {
+	float: right;
+	margin-left: 20px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.settings-subsection {
+	margin-bottom: 40px;
+}
+
+.subitem {
+	margin-left: 3%;
+	width: 97%;
+}
+
 // === TEAM INSIGHTS ===
 
 .team-members {

@@ -13,8 +13,6 @@ AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
 AppSettings.defaults["settings.forums"] = Settings.forums
 AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
-AppSettings.defaults["settings.teams"] = Settings.teams
-
 
 # Design: (Colors etc.)
 

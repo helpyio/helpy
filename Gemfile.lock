@@ -74,6 +74,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.3.0)
     brakeman (3.2.1)
       erubis (~> 2.6)
@@ -576,6 +577,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   bootstrap-sass
+  bootstrap-switch-rails
   bootstrap_form
   brakeman
   bulk_insert
