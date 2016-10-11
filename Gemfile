@@ -84,7 +84,7 @@ gem 'globalize-accessors'
 gem 'gravtastic'
 
 gem 'cloudinary', '1.1.2'
-gem 'attachinary'
+gem 'attachinary', git: 'https://github.com/scott/attachinary.git', branch: 'fix-invalid-message'
 
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
