@@ -71,6 +71,8 @@ Helpy.admin = function(){
     theme: 'bootstrap'
   });
 
+  $('.bs-toggle').bootstrapSwitch();
+
   // Onboarding flow
   $('.panel-link').off().on('click', function(){
     $('.onboard-panel').addClass('hidden');

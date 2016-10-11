@@ -38,6 +38,7 @@
 //= require rails.validations.simple_form
 //= require rails.validations.callbacks
 //= require selectize
+//= require bootstrap-switch
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link
