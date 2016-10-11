@@ -83,7 +83,7 @@ pt-br:
 
   # footer
   powered_by: "Powered by Helpy. Um projeto de Helpdesk Open Source."
-  get_your_copy: "Garanta uma cópia pelo Github"
+  get_your_copy: "Garanta uma cópia pelo GitHub"
   version: "Versão:"
 
   # devise/sessions/new

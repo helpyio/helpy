@@ -27,7 +27,7 @@ et:
   did_this_help: "Kas said selle probleemi lahendatud?"
   yes_button: 'Jah'
   no_button: 'Ei'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,12 +71,12 @@ et:
   # created_on: "Created on"
 
   # Get Help
-  get_help_header: "Vajad ikka abi??"
+  get_help_header: "Vajad ikka abi?"
   get_help_button: "Algata arutelu meiega"
 
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
   # Profile

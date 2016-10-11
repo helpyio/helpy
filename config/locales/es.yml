@@ -79,7 +79,7 @@ es:
 
   # footer
   powered_by: "Provisto por Helpy. Un software libre para soporte tecnico"
-  get_your_copy: "Obtén tu copia en Github"
+  get_your_copy: "Obtén tu copia en GitHub"
   version: "Versión:"
 
   # devise/sessions/new

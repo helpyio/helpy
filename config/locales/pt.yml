@@ -27,7 +27,7 @@ pt:
   did_this_help: "Resolveu o seu problema?"
   yes_button: 'Sim'
   no_button: 'Não'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,7 +71,7 @@ pt:
   created_on: "Criado a"
 
   # Get Help
-  get_help_header: "Ainda Necessita de Ajuda??"
+  get_help_header: "Ainda Necessita de Ajuda?"
   get_help_button: "Inicie uma Discussão Conosco"
 
   # Profile

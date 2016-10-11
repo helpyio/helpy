@@ -76,7 +76,7 @@ sv:
 
   # footer
   powered_by: "Drivs av Helpy, ett infotält med öppen källkod."
-  get_your_copy: "Hämta din kopia på Github."
+  get_your_copy: "Hämta din kopia på GitHub."
 
   # devise/sessions/new
   login: 'Logga in'
