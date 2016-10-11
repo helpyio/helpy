@@ -83,9 +83,12 @@ gem 'globalize-accessors'
 
 gem 'gravtastic'
 
+# File handling
 gem 'cloudinary', '1.1.2'
 gem 'attachinary'
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 
+# Bootstrap/UI Gems
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
@@ -98,6 +101,7 @@ gem "bootstrap-switch-rails"
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
+# Email/Mail Handling
 gem 'daemons'
 gem 'mailman'#, require: false
 gem 'mail_extract'

@@ -103,6 +103,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.0.0.beta)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     childprocess (0.5.9)
@@ -585,6 +589,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara
+  carrierwave (>= 1.0.0.beta, < 2.0)
   client_side_validations
   client_side_validations-simple_form
   cloudinary (= 1.1.2)
