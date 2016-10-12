@@ -27,7 +27,7 @@ en:
   did_this_help: "Did this solve your problem?"
   yes_button: 'Yes'
   no_button: 'No'
-  yes_helped: 'Great!! Thanks for the feedback!'
+  yes_helped: 'Great! Thanks for the feedback!'
   no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,7 +71,7 @@ en:
   created_on: "Created on"
 
   # Get Help
-  get_help_header: "Still Need Help??"
+  get_help_header: "Still Need Help?"
   get_help_button: "Start a Discussion with Us"
 
   # Profile
@@ -79,7 +79,7 @@ en:
 
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  get_your_copy: "Grab your copy on GitHub"
   version: "Version:"
 
   # devise/sessions/new

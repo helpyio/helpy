@@ -27,7 +27,7 @@ ja:
   did_this_help: "このヘルプは役に立ちましたか？"
   yes_button: '役に立った'
   no_button: '役に立たなかった'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search　検索
@@ -79,7 +79,7 @@ ja:
 
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
   # devise/sessions/new
