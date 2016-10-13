@@ -1,9 +1,9 @@
 <!-- Admin post partial -->
-<div id="post-<%= post.id %>" class="media post-container disallow-post-voting <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %>">
+<div id="post-<%= post.id %>" class="media post-container disallow-post-voting <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %> overflow-visible">
 	<div class="pull-left">
 		<%= avatar_image(post.user, size=40) %>
 	</div>
-	<div class="media-body media-right">
+	<div class="media-body media-right overflow-visible">
 		<span class="hidden-sm hidden-md hidden-lg"><%= last_active_time(post.created_at) %><br/></span>
 		<span id="row-<%= post.id %>"  class="post-menu post-menu-<%= post.id %> btn-group">
 			<%= post_message(post,true) %>

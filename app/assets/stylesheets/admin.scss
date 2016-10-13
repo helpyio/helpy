@@ -366,7 +366,7 @@ ul.settings-menu {
 	}
 }
 
-.checkbox {
+.settings-panel .checkbox {
 	padding-top: 5px;
 	padding-bottom: 5px;
 	border-bottom: 1px solid #eee;
@@ -548,4 +548,8 @@ ul.settings-menu {
 
 .selectize-control.form-control {
 	border: 0;
+}
+
+.overflow-visible {
+  overflow: visible;
 }
