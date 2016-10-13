@@ -155,7 +155,8 @@ class TopicsController < ApplicationController
         :body => body_param, # params[:topic][:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
-        :screenshots => params[:topic][:screenshots])
+        :screenshots => params[:topic][:screenshots],
+        :attachments => params[:topic][:posts_attributes]["0"][:attachments])
 
       if built_user == true && !user_signed_in?
         UserMailer.new_user(@user, @token).deliver_later

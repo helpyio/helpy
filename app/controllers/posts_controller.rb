@@ -38,11 +38,14 @@ class PostsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new(:body => params[:post][:body],
-                     :topic_id => @topic.id,
-                     :user_id => current_user.id,
-                     :kind => params[:post][:kind],
-                     :screenshots => params[:post][:screenshots])
+    # @post = Post.new(:body => params[:post][:body],
+    #                  :topic_id => @topic.id,
+    #                  :user_id => current_user.id,
+    #                  :kind => params[:post][:kind],
+    #                  :screenshots => params[:post][:screenshots])
+    @post = Post.new(post_params)
+    @post.topic_id = @topic.id
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
@@ -72,4 +75,14 @@ class PostsController < ApplicationController
       @post.reload
     end
   end
+
+  def post_params
+    params.require(:post).permit(
+      :body,
+      :kind,
+      { screenshots: [] },
+      { attachments: [] }
+    )
+  end
+
 end

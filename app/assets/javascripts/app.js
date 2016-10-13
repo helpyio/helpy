@@ -7,6 +7,20 @@ Helpy.ready = function(){
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
+
+
+
+  $('.uploader').fileupload({
+      dataType: 'script',
+      done: function (e, data) {
+          $.each(data.result.files, function (index, file) {
+              $('<p/>').text(file.name).appendTo(document.body);
+          });
+      },
+
+  });
+
+
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
 
   // make sure dropdowns close after click of link

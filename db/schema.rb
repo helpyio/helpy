@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814221258) do
+ActiveRecord::Schema.define(version: 20161012174311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160814221258) do
     t.datetime "updated_at",                       null: false
     t.integer  "topics_count",     default: 0
     t.boolean  "allow_comments",   default: true
+    t.string   "attachments",      default: [],                 array: true
   end
 
   create_table "forums", force: :cascade do |t|
@@ -216,10 +217,11 @@ ActiveRecord::Schema.define(version: 20160814221258) do
     t.integer  "user_id"
     t.text     "body"
     t.string   "kind"
-    t.boolean  "active",     default: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "points",     default: 0
+    t.boolean  "active",      default: true
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "points",      default: 0
+    t.string   "attachments", default: [],                array: true
   end
 
   create_table "searches", force: :cascade do |t|
@@ -335,6 +337,7 @@ ActiveRecord::Schema.define(version: 20160814221258) do
     t.integer  "invitations_count",      default: 0
     t.text     "invitation_message"
     t.string   "time_zone",              default: "UTC"
+    t.string   "profile_image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
