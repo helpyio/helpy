@@ -21,6 +21,7 @@ class Post < ActiveRecord::Base
   belongs_to :user, touch: true
   has_many :votes, :as => :voteable
   has_attachments :screenshots, accept: [:jpg, :png, :gif, :pdf]
+  mount_uploaders :attachments, AttachmentUploader
 
   validates :body, presence: true, length: { maximum: 10_000 }
   validates :kind, presence: true
