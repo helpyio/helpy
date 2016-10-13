@@ -192,7 +192,7 @@ Helpy.ready = function(){
 
     // append new line if some text already exists
     if( post_body.val() && common_reply.val() ) {
-      post_body.val(post_body.val() + "\n\n")
+      post_body.val(post_body.val() + "\n\n");
     }
 
     // add content of selected reply
