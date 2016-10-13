@@ -25,6 +25,33 @@
     <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
     <%= cl_image_upload_tag(:image_id) %>
   </div>
+  <% else %>
+    <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
+    <%#= f.simple_fields_for :attachments do |a| %>
+       <%#= a.file_field :files, multiple: true, class: 'uploader' %>
+    <%# end %>
+
+    <%= f.file_field :attachments, multiple: true, class: 'uploader', validate: false  %>
+
+    <ul class="list-inline" id="attachments">
+      <%= render partial: 'admin/docs/attachment', locals: { doc: @doc } %>
+    </ul>
+
+    <!-- <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span> -->
+            <!-- The file input field used as target for the file upload widget -->
+            <!-- <input id="fileupload" type="file" name="files[]" multiple>
+        </span>
+        <br>
+        <br> -->
+        <!-- The global progress bar -->
+        <!-- <div id="progress" class="progress">
+            <div class="progress-bar progress-bar-success"></div>
+        </div> -->
+        <!-- The container for the uploaded files -->
+        <!-- <div id="files" class="files"></div> -->
+
   <% end %>
   <hr/>
   <h4 class="form-subhead"><%= t('additional_settings', default: 'Additional Settings') %>:</h4>

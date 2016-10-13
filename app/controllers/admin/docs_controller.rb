@@ -20,10 +20,18 @@ class Admin::DocsController < Admin::BaseController
   def create
     @doc = Doc.new(doc_params)
     @doc.user_id = current_user.id
-    if @doc.save
-      redirect_to(admin_category_path(@doc.category.id))
-    else
-      render 'new'
+
+    respond_to do |format|
+      if @doc.save
+        format.html {
+          redirect_to(admin_category_path(@doc.category.id))
+        }
+        format.js
+      else
+        format.html {
+          render 'new'
+        }
+      end
     end
   end
 
@@ -35,10 +43,21 @@ class Admin::DocsController < Admin::BaseController
     @category = @doc.category
     # @doc.tag_list = params[:doc][:tag_list]
     if @doc.update_attributes(doc_params)
-      redirect_to(admin_category_path(@category.id))
+      respond_to do |format|
+        format.html {
+          redirect_to(admin_category_path(@category.id))
+        }
+        format.js {
+        }
+      end
     else
-      render 'edit', id: @doc
+      respond_to do |format|
+        format.html {
+          render 'edit', id: @doc
+        }
+      end
     end
+
   end
 
   def destroy
@@ -66,6 +85,7 @@ class Admin::DocsController < Admin::BaseController
     :user_id,
     :allow_comments,
     {screenshots: []},
+    {attachments: []},
     :tag_list
   )
   end
