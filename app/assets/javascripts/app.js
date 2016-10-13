@@ -185,9 +185,18 @@ Helpy.ready = function(){
     $thread.hide().last().show();
   }
 
-  // Use common reply
+  // Use or append common reply
   $('#post_reply_id').on('change', function(){
-    $('#post_body').val($('#post_reply_id option:selected').val());
+    var post_body = $('#post_body');
+    var common_reply = $('#post_reply_id option:selected');
+
+    // append new line if some text already exists
+    if( post_body.val() && common_reply.val() ) {
+      post_body.val(post_body.val() + "\n\n")
+    }
+
+    // add content of selected reply
+    post_body.val( post_body.val() + common_reply.val() );
     $('.disableable').attr('disabled', false);
   });
 
