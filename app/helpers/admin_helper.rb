@@ -16,7 +16,7 @@ module AdminHelper
   def i18n_reply
     # Builds the nested selector for common replies
 
-    select = "<label class='control-label' for='post_reply_id'>#{t(:select_common, default: 'Insert Common Reply')}</label>"
+    select = "<label class='control-label' for='post_reply_id'>#{t(:select_common, default: 'Insert Common Reply')} (#{ link_to "or edit common replies", admin_category_path(1), target: 'blank' })</label>"
     select += "<select name='post[reply_id]' class='form-control' id='post_reply_id'>"
     select += "<option value=''></option>"
 
