@@ -15,6 +15,7 @@
 //= require jquery-ui/sortable
 //= require jquery-ui/effect-highlight
 //= require jquery-ui/autocomplete
+//= require jquery-fileupload/basic-plus
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery.turbolinks

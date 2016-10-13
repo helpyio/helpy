@@ -86,7 +86,8 @@ gem 'gravtastic'
 # File handling
 gem 'cloudinary', '1.1.2'
 gem 'attachinary'
-gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem "jquery-fileupload-rails"
 
 # Bootstrap/UI Gems
 gem 'font-awesome-sass'

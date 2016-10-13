@@ -17,6 +17,7 @@ config/cloudinary.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
 config/settings_bu.yml
+public/uploads
 
 /coverage
 
