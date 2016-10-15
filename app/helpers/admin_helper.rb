@@ -13,36 +13,28 @@ module AdminHelper
     "[Helpy Admin]"
   end
 
-  def i18n_reply
-    # Builds the nested selector for common replies
-
-    select = "<label class='control-label' for='post_reply_id'>#{t(:select_common, default: 'Insert Common Reply')}</label>"
-    select += "<select name='post[reply_id]' class='form-control' id='post_reply_id'>"
-    select += "<option value=''></option>"
-
+  def i18n_reply_grouped_options
+    grouped_options = {}
     AppSettings['i18n.available_locales'].each do |locale|
       Globalize.with_locale(locale) do
         # TODO THIS IS A HACK because there appears to be no difference in language files for chinese simple and traditional
         # This could be changed to display the language names in english fairly easily
         # but in another language we are missing the translations
 
-        if "#{locale}" == 'zh-cn' || "#{locale}" == 'zh-tw'
-          select += "<optgroup label='#{I18n.translate("i18n_languages.zh")}'>"
-        else
-          select += "<optgroup label='#{I18n.translate("i18n_languages.#{locale}")}'>"
-        end
+        key = if ['zh-cn', 'zh-tw'].include? locale
+                I18n.translate("i18n_languages.zh")
+              else
+                I18n.translate("i18n_languages.#{locale}")
+              end
+        val = []
         Doc.replies.with_translations(locale).all.each do |doc|
             body = (strip_tags(doc.body)).gsub(/\'/, '&#39;')
-            select += "<option value='#{body}'>#{doc.title}</option>"
+            val.push([doc.title, body])
         end
-        select += "</optgroup>"
+        grouped_options[key] = val
       end
     end
-
-    select += "</select>"
-
-    # TODO: Replace this ugly string concatenation with Rails' / ActionView's "grouped_options_for_select" helper
-    select.html_safe
+    grouped_options
   end
 
   def i18n_icons(object)
