@@ -8,9 +8,16 @@ class FlagsControllerTest < ActionController::TestCase
   test "a signed user should be able to flag post for review" do
     sign_in users(:user)
 
-    get :index, topic_id: 4, locale: :en
     assert_difference 'Flag.count', 1, 'A flag should have been created' do
-      xhr :post, topic_id: 4, reason: 'test', locale: :en
+      xhr :post, :create, topic_id: 4, flag: { reason: 'test' }, locale: :en
+    end
+  end
+
+  test "a flagged post should create a new private topic" do
+    sign_in users(:user)
+
+    assert_difference "Topic.where('name like ?', 'Flagged%').count", 1, 'A new topic should be created' do 
+      xhr :post, :create, topic_id: 4, flag: { reason: 'test' }, locale: :en
     end
   end
 end

@@ -1,7 +1,5 @@
 require 'test_helper'
 
 class FlagTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  should belong_to(:post)
 end
