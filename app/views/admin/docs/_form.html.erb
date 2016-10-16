@@ -21,17 +21,17 @@
   </body>
   <hr/>
   <% unless Cloudinary.config.cloud_name.nil? %>
-  <div class="doc-form-files">
-    <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
-    <%= cl_image_upload_tag(:image_id) %>
-  </div>
+    <div class="doc-form-files">
+      <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
+      <%= cl_image_upload_tag(:image_id) %>
+    </div>
   <% else %>
     <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
     <%#= f.simple_fields_for :attachments do |a| %>
        <%#= a.file_field :files, multiple: true, class: 'uploader' %>
     <%# end %>
 
-    <%= f.file_field :attachments, multiple: true, class: 'uploader', validate: false  %>
+    <%= f.file_field :attachments, multiple: true, class: 'uploader' %>
 
     <ul class="list-inline" id="attachments">
       <%= render partial: 'admin/docs/attachment', locals: { doc: @doc } %>
@@ -75,6 +75,7 @@
     </div>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>
+  <%= hidden_field_tag :obj_id, '' %>
   <br/><br/>
   <%= f.submit t('save_changes', default: "Save Changes"), class: 'btn btn-warning' %>
   <script type="text/javascript">

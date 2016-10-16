@@ -8,17 +8,26 @@ Helpy.ready = function(){
 
   $('.attachinary-input').attachinary();
 
-
-
   $('.uploader').fileupload({
-      dataType: 'script',
-      done: function (e, data) {
-          $.each(data.result.files, function (index, file) {
-              $('<p/>').text(file.name).appendTo(document.body);
-          });
-      },
+    dataType: 'script',
+    singleFileUploads: false
+  })
 
-  });
+
+  // $('.uploader').fileupload({
+  //     dataType: 'script',
+  //     done: function (e, data) {
+  //         $.each(data.result.files, function (index, file) {
+  //             $('<p/>').text(file.name).appendTo(document.body);
+  //         });
+  //     },
+  //
+  // }).on('fileuploadsubmit', function (e, data) {
+  //
+  //     alert("submit triggered");
+  //     //Code which needs to comes after submit
+  //
+  // });
 
 
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
