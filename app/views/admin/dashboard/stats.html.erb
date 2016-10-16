@@ -17,6 +17,17 @@
           <li><%= link_to t("last_week", default: "Last Week"), admin_stats_path(start_date: Time.zone.today.last_week.midnight.at_beginning_of_week, end_date: Time.zone.today.last_week.midnight.at_end_of_week, label: 'last_week') %></li>
           <li><%= link_to t("this_month", default: "This Month"), admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this_month') %></li>
           <li><%= link_to t("last_month", default: "Last Month"), admin_stats_path(start_date: Time.zone.today.last_month.midnight.at_beginning_of_month, end_date: Time.zone.today.last_month.midnight.at_end_of_month, label: 'last_month') %></li>
+          <hr>
+          <%= simple_form_for :stats, url: admin_stats_path, wrapper: :horizontal_form, method: :get, html: { class: 'form-horizontal' } do |f| %>
+            <div class="form-inputs">
+              <%= f.input :start_date, label: t('start', default: 'Start'), input_html: { name: 'start_date', type: 'date' } %>
+              <%= f.input :end_dat, label: t('end', default: 'End'), input_html: { name: 'end_date', type: 'date' } %>
+            </div>
+
+            <div class="form-actions col-sm-offset-3">
+              <%= f.button :submit, t('filter', default: 'Filter') %>
+            </div>
+        <% end %>
         </ul>
       </div>
     </h2>
