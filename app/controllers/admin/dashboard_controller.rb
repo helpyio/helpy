@@ -31,6 +31,8 @@ class Admin::DashboardController < Admin::BaseController
                     t('last_week')
                   when 'this_month'
                     t('this_month')
+                  when 'last_month'
+                    t('last_month')
                   else
                     t('this_week')
                 end

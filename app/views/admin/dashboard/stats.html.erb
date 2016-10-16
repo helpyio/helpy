@@ -16,6 +16,7 @@
           <li><%= link_to t("this_week", default: "This Week"), admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_week, end_date: Time.zone.today.midnight.at_end_of_week, label: 'this_week') %></li>
           <li><%= link_to t("last_week", default: "Last Week"), admin_stats_path(start_date: Time.zone.today.last_week.midnight.at_beginning_of_week, end_date: Time.zone.today.last_week.midnight.at_end_of_week, label: 'last_week') %></li>
           <li><%= link_to t("this_month", default: "This Month"), admin_stats_path(start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this_month') %></li>
+          <li><%= link_to t("last_month", default: "Last Month"), admin_stats_path(start_date: Time.zone.today.last_month.midnight.at_beginning_of_month, end_date: Time.zone.today.last_month.midnight.at_end_of_month, label: 'last_month') %></li>
         </ul>
       </div>
     </h2>
