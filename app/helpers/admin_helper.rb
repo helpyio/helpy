@@ -52,20 +52,15 @@ module AdminHelper
     output.html_safe
   end
 
-  def select_default_locale
-    tag = "<div class='form-group'>"
-    tag += "<label class='control-label' for='i18n.default_locale'>#{t('default_locale', default: "Default Locale")}</label>"
-    tag += "<select name='i18n.default_locale' class='form-control' id='i18n.default_locale'>"
-    tag += "<option value=''>#{t('select_default_locale', default: "Select Default Locale...")}</option>"
+  def default_locale_options
+    options = {}
+    options[t('select_default_locale', default: "Select Default Locale...")] = ''
     I18n.available_locales.sort.each do |locale|
-      selected = "selected" if "#{locale}" == AppSettings['i18n.default_locale'].to_s
       I18n.with_locale(locale) do
-        tag += "<option value='#{locale}' #{selected}>#{I18n.translate('language_name').mb_chars.capitalize}</option>"
+        options[I18n.translate('language_name').mb_chars.capitalize] = locale
       end
     end
-    tag += "</select></div>"
-
-    tag.html_safe
+    options_for_select(options, AppSettings['i18n.default_locale'].to_s )
   end
 
   def settings_item(icon, title, description, link = "")
