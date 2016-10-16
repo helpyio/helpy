@@ -18,7 +18,7 @@
 		<div id="posts">
 			<%= render :partial => 'post', :collection => @posts %>
 		</div>
-        <%= link_to 'Flag for Review', '#', data: {toggle: "modal", target: user_signed_in? ? "#flag-modal" : "#login-modal"} %>
+        	<%= render :partial => 'flag' %>
 		<%
 		# NOTE: this is a bit of confusing logic- basically if the forum does not
 		# allow reply (post) voting, the form should be shown beneath all posts.
