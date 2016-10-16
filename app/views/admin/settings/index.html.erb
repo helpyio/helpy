@@ -128,8 +128,8 @@
         <% end %>
         <br/>
         <div class='form-group'>
-        <%= label_tag 'i18n.default_locale', t('default_locale', default: "Default Locale"), class: 'control-label' %>
-        <%= f.select_tag 'i18n.default_locale', default_locale_options, class: 'form-control', id: 'i18n.default_locale' %>
+          <%= label_tag 'i18n.default_locale', t('default_locale', default: "Default Locale"), class: 'control-label' %>
+          <%= f.select_tag 'i18n.default_locale', default_locale_options, class: 'form-control', id: 'i18n.default_locale' %>
         </div>
       </div>
       <div class="settings-section widget hidden" data-hook="admin_settings_widget">
