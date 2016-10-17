@@ -11,7 +11,7 @@ hu:
   # Navigation
   knowledgebase: "Tudásbázis"
   community: "Közösség"
-  ask_a_question: "Tégy fel egy kérdést"
+  ask_a_question: "Tegyél fel egy kérdést"
   home: "Kezdőlap"
   login: "Bejelentkezés"
   logout: "Kilépés"
@@ -34,8 +34,8 @@ hu:
   search_placeholder: "Írj be egy kulcsszót, témát, vagy kérdést"
   no_results: "Nincs találat, Kérjük, probálkozz újra!"
   results_found:
-    one: "egy eredményt hozott keresésed "
-    other: "%{count} eredményt hozott keresésed "
+    one: "egy találat erre: "
+    other: "%{count} találat erre: "
 
   # Community
   forum_name: "Téma"
@@ -49,7 +49,7 @@ hu:
   submit_reply: "Válasz küldése"
   posted: "Elküldve"
   start_discussion: "Új beszélgetés indítása"
-  submit_start_discussion: "Beszélgetés kezdése"
+  submit_start_discussion: "Beszélgetés indítása"
   should_message_be_private: "Legyen privát ez az üzenet?"
   only_support_can_respond: "Csak az ügyfélszolgálat válaszolhat rá (privát hibajegy)"
   responses_can_come_from_everyone: "Az ügyfélszolgálat és a közösség egyaránt válaszolhat (ajánlott)"
@@ -60,7 +60,7 @@ hu:
 
   # Knowledgebase
   written_by: "Írta"
-  last_edited: "Utoljára Szerkesztette"
+  last_edited: "Utoljára Szerkesztve"
   asked_before: "Született már válasz a kérdésedre? Szerintünk ezek hasonlítanak rá"
 
   # Tickets
@@ -150,7 +150,7 @@ hu:
   assigned_message: "A beszélgetés át lett irányítva hozzá: %{assigned_to}."
 
   # User Admin
-  users: Felhasználük
+  users: Felhasználók
   contact_info: Kapcsolat
   social_info: Social
   edit_user: Felhasználó szerkesztés
@@ -238,21 +238,21 @@ hu:
   notify_on_reply: "Email me when a new reply to a private discussion has been received"
 
   # settings
-  agent_settings: "Agent Settings"
-  notifications: "Notifications"
-  settings: "System Settings"
-  general: "General"
-  design: "Design"
-  international: "International"
-  widget: "Embeddable Widget"
+  agent_settings: "Ügynök Beállítások"
+  notifications: "Értesítések"
+  settings: "Rendszer Beállítások"
+  general: "Általános"
+  design: "Dizájn"
+  international: "Nemzetközi"
+  widget: "Beágyazható Widget"
 
   # API Key Managmeent
-  api_keys: "API Keys"
-  key_name: "Key Name"
+  api_keys: "API Kulcsok"
+  key_name: "Kulcs Neve"
   token: "Token"
-  add_key: "Add a New Key"
-  expire_token: "Expire Token"
-  expired: "Expired"
+  add_key: "Új Kulcs Hozzáadása"
+  expire_token: "Járjon Le a Token"
+  expired: "Lejárt"
   expire_confirm: "Please confirm your really want to expire this token."
   spec_note: "You can read and test out an interactive API spec at: "
 
@@ -283,34 +283,34 @@ hu:
     attributes:
       user:
         email: Email
-        password: Password
-        name: Name
-        company: Company
-        work_phone: Work
-        cell_phone: Cell
-        city: City
-        state: State
-        signature: Signature
+        password: Jelszó
+        name: Név
+        company: Cég
+        work_phone: Munka
+        cell_phone: Mobil
+        city: Város
+        state: Megye
+        signature: Aláírás
       topic:
-        name: Question
+        name: Kérdés
       post:
-        kind: Genre
+        kind: Nem
       category:
-        name: Name
-        icon: Icon
-        keywords: Keywords
-        title_tag: Title Tag
-        meta_description: Meta Description
-        front_page: Front Page
-        active: Active
+        name: Név
+        icon: Ikon
+        keywords: Kulcsszavak
+        title_tag: Cím Cimkéi
+        meta_description: Magyarázó Leírás
+        front_page: Kezdő Lap
+        active: Aktív
       doc:
-        title: Title
-        meta_description: Meta Description
-        title_tag: Title Tag
-        keywords: Keywords
-        category_id: Category
-        active: Status
-        front_page: Featured on front page?
+        title: Cím
+        meta_description: Magyarázó Leírás
+        title_tag: Cím Cimkéi
+        keywords: Kulcsszavak
+        category_id: Kategória
+        active: Státusz
+        front_page: Szerepeljen a kezőlapon?
       forum:
         name: Name
         description: Description
@@ -322,7 +322,7 @@ hu:
     helpers:
       submit:
         topic:
-          create: Start New Discussion
+          create: Új Beszélgetés Indítása
         post:
           create:
 
@@ -346,14 +346,14 @@ hu:
   helpers:
     actions: "Actions"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      back: "Vissza"
+      cancel: "Mégse"
+      confirm: "Biztos vagy benne?"
+      destroy: "Törlés"
+      new: "Új"
+      edit: "Szerkesztés"
     titles:
-      edit: "Edit %{model}"
-      save: "Save %{model}"
-      new: "New %{model}"
-      delete: "Delete %{model}"
+      edit: "%{model} szerkesztése"
+      save: "%{model} mentése"
+      new: "Új %{model}"
+      delete: "%{model} törlése"
