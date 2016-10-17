@@ -23,9 +23,11 @@ class Admin::PostsController < Admin::BaseController
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
 
-    # binding.pry
     respond_to do |format|
       if @post.save
+        format.html {
+          redirect_to admin_topic_path(@post.topic_id)
+        }
         format.js {
           if params[:post][:resolved] == "1"
             @topic.close(current_user.id)
@@ -47,7 +49,7 @@ class Admin::PostsController < Admin::BaseController
       else
         format.html { render :action => "new" }
         format.js {
-          render 'admin/topics/show'          
+          render 'admin/topics/show'
         }
       end
     end
@@ -64,7 +66,8 @@ class Admin::PostsController < Admin::BaseController
     params.require(:post).permit(
       :body,
       :kind,
-      { attachments: [] }
+      {screenshots: []},
+      {attachments: []}
     )
   end
 

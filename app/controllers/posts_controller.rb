@@ -2,15 +2,16 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  topic_id   :integer
-#  user_id    :integer
-#  body       :text
-#  kind       :string
-#  active     :boolean          default(TRUE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  points     :integer          default(0)
+#  id          :integer          not null, primary key
+#  topic_id    :integer
+#  user_id     :integer
+#  body        :text
+#  kind        :string
+#  active      :boolean          default(TRUE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  points      :integer          default(0)
+#  attachments :string           default([]), is an Array
 #
 
 class PostsController < ApplicationController
@@ -51,7 +52,15 @@ class PostsController < ApplicationController
       if @post.save
         format.html {
           @posts = @topic.posts.ispublic.chronologic.active
-          redirect_to @topic.doc.nil? ? topic_posts_path(@topic.id) : doc_path(@topic.doc_id)
+          if @topic.public?
+            # This is a forum post
+            redirect_to @topic.doc.nil? ? topic_posts_path(@topic.id) : doc_path(@topic.doc_id)
+          else
+            # This post belongs to a ticket
+            agent = User.find(@topic.assigned_user_id)
+            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
+            redirect_to ticket_path(@topic.id)
+          end
         }
         format.js {
           @posts = @topic.posts.ispublic.chronologic.active
