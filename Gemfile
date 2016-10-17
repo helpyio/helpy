@@ -88,6 +88,7 @@ gem 'cloudinary', '1.1.2'
 gem 'attachinary'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem "jquery-fileupload-rails"
+gem 'mini_magick'
 
 # Bootstrap/UI Gems
 gem 'font-awesome-sass'

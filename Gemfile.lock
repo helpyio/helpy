@@ -315,6 +315,7 @@ GEM
       maildir (>= 0.5.0)
     method_source (0.8.2)
     mime-types (2.99.2)
+    mini_magick (4.2.10)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     minitest-reporters (1.1.8)
@@ -644,6 +645,7 @@ DEPENDENCIES
   mail_extract
   mailcatcher
   mailman
+  mini_magick
   minitest
   minitest-reporters
   newrelic_rpm

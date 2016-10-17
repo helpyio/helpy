@@ -66,13 +66,14 @@ class User < ActiveRecord::Base
 
   TEMP_EMAIL_PREFIX = 'change@me'
 
+  attr_accessor :opt_in
+
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
-  attr_accessor :opt_in
-
 
   include Gravtastic
+  mount_uploader :profile_image, ProfileImageUploader
 
   include PgSearch
   pg_search_scope :user_search,

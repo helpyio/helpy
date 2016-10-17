@@ -6,10 +6,11 @@
 
   <div class="col-md-3 text-center">
     <%= avatar_image(@user, size=150) %>
+
   </div>
 
   <div class="col-md-9">
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, html: { method: :put }) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, multipart: true, html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
     <span class="user-fields">
       <%= f.input :email, autofocus: true %>
@@ -22,6 +23,7 @@
       <% if @user.provider.nil? %>
         <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
       <% end %>
+      <%= f.file_field :profile_image if Cloudinary.config.cloud_name.nil? %>
     </span>
 
     <% if @user.provider.nil? %>
