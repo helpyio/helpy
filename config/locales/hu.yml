@@ -78,7 +78,7 @@ hu:
   my_profile: 'Profilom'
 
   # footer
-  powered_by: "Powered by Helpy. Egy Open Source Ügyélszolgálat."
+  powered_by: "Az oldalt a Helpy, egy nyílt forráskódú ügyélszolgálat hajtja."
   get_your_copy: "Töltsd le magadnak a GitHubról"
   version: "Verzió:"
 
@@ -89,7 +89,7 @@ hu:
   forgot_password: Elfelejtetted jelszavad?
 
   # devise/passwords/new
-  send_instructions: Küldj útmutatót
+  send_instructions: Útmutató küldése
 
   # devise/passwords/edit
   change_password: Jelszó cseréje
@@ -115,7 +115,7 @@ hu:
   active: Aktív
   open: Nyitott
   mine: Hozzám tartozik
-  pending: Függő
+  pending: Függőben
   closed: Megoldva
   spam: Levélszemét
   trash: Kuka
@@ -218,7 +218,7 @@ hu:
 
   # Mail messages
   new_user_subject: "A(z) %{site_name} üdvözöl Téged"
-  hello: "Hello %{user_name}"
+  hello: "Helló %{user_name}"
   new_user: "Köszönjük, hogy felkerestél minket.  Ügyfélszolgálatunk megkapta üzeneted, válaszunkkal rövidesen jelentezünk."
   account_generated: "Létrehoztunk egy felhasználói fiókot Neked. Bejelentkezéshez használd ezt a linket:"
   above_this_line: "Kérjük, ügyelj rá, hogy válaszodat a vonal felett írd meg"
@@ -227,15 +227,15 @@ hu:
   view_online: "Tekintsd meg honlapunkon:"
 
   # Admin notifications
-  notify_new_private: "A new private customer message has been received from %{user_name}:"
-  notify_new_public: "A new public customer message has been posted by %{user_name}:"
-  notify_new_reply: "A new customer reply has been received from %{user_name}:"
-  to_reply: 'Reply to this message directly or online:'
+  notify_new_private: "Egy új privát kérdés érekezett erről a címről: %{user_name}:"
+  notify_new_public: "Egy új publikus kérdést fel %{user_name}:"
+  notify_new_reply: "Egy új ügyfélválaszt kaptunk %{user_name} felhasználótól:"
+  to_reply: 'Válaszolj erre az üzenetre közvetlenül, vagy online:'
 
   # Notifications settings panel
-  notify_on_private: "Email me when a private customer question has been received"
-  notify_on_public: "Email me when a public customer question has been posted"
-  notify_on_reply: "Email me when a new reply to a private discussion has been received"
+  notify_on_private: "E-mail küldése, ha privát kérdést kapunk egy ügyféltől"
+  notify_on_public: "E-mail küldése, ha egy ügyfél publikus kérdést tesz fel"
+  notify_on_reply: "E-mail küldése, ha új válasz érkezik egy privát beszélgetésre"
 
   # settings
   agent_settings: "Ügynök Beállítások"
@@ -253,36 +253,36 @@ hu:
   add_key: "Új Kulcs Hozzáadása"
   expire_token: "Járjon Le a Token"
   expired: "Lejárt"
-  expire_confirm: "Please confirm your really want to expire this token."
-  spec_note: "You can read and test out an interactive API spec at: "
+  expire_confirm: "Kérjük, erősítsd meg, hogy tényleg azt szeretnéd, lejárjon ez a token."
+  spec_note: "Olvashatsz az interaktív API-ról, valamint ki is próbálhatod a következő címen: "
 
   # Insights
-  team_insights: "Insights for %{site_name}"
-  filter_by_date: "Filter by date"
-  today: "Today"
-  yesterday: "Yesterday"
-  this_week: "This week"
-  last_week: "Last week"
-  this_month: "This month"
-  date_range: "Date Range"
+  team_insights: "Áttekintés: %{site_name}"
+  filter_by_date: "Szűrés dátumra"
+  today: "Ma"
+  yesterday: "Tegnap"
+  this_week: "Ezen a héten"
+  last_week: "Előző héten"
+  this_month: "Ebben a hónapban"
+  date_range: "Dátumtartomány"
   insights_blurb_one:
-    one: "<strong>%{period}</strong> your users started 1 new conversation"
-    other: "<strong>%{period}</strong> your users started <strong>%{count} new conversations</strong>"
-  insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
-  no_discussions: "No new conversations have been started <strong>%{period}</strong>"
-  assigned_topics: "Assigned Topics"
-  responded: "Responded"
-  closed: "Closed"
-  replies: "Replies"
-  median_time: "Median time to frst response"
+    one: "<strong>%{period}</strong> a felhasználók egy új beszélgetést kezdtek"
+    other: "<strong>%{period}</strong> a felhasználók <strong>%{count} új beszélgetést kezdtek</strong>"
+  insights_blurb_two: "melyből munkatársaid <strong>%{number_replied} (%{percentage_replied}) kérdést megválaszoltak</strong>"
+  insights_blurb_three: "a válaszidő mediánja <strong>%{response_time}</strong> volt"
+  no_discussions: "Nincs új beszélgetés erre az időszakra: <strong>%{period}</strong>"
+  assigned_topics: "Hozzárendelt Témák"
+  responded: "Megválaszolt"
+  closed: "Lezárt"
+  replies: "Válaszok"
+  median_time: "Az első válasz idejének mediánja"
 
 
 
   activerecord:
     attributes:
       user:
-        email: Email
+        email: E-mail
         password: Jelszó
         name: Név
         company: Cég
@@ -294,7 +294,7 @@ hu:
       topic:
         name: Kérdés
       post:
-        kind: Nem
+        kind: Fajtája
       category:
         name: Név
         icon: Ikon
@@ -312,12 +312,12 @@ hu:
         active: Státusz
         front_page: Szerepeljen a kezőlapon?
       forum:
-        name: Name
-        description: Description
-        private: Private
-        layout: Layout
-        allow_topic_voting: Allow topic voting?
-        allow_post_voting: Allow post voting?
+        name: Név
+        description: Leírás
+        private: Privát
+        layout: Elrendezés
+        allow_topic_voting: Lehessen témára szavazni?
+        allow_post_voting: Lehessen bejegyzésre szavazni?
 
     helpers:
       submit:
@@ -344,7 +344,7 @@ hu:
     result:
       root: *root
   helpers:
-    actions: "Actions"
+    actions: "Műveletek"
     links:
       back: "Vissza"
       cancel: "Mégse"
