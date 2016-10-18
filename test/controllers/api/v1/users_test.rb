@@ -101,10 +101,9 @@ class API::V1::UsersTest < ActiveSupport::TestCase
   end
 
   test "an API user should be able to create a user" do
-    user = RUser.new
     params = {
-      name: "#{user.first_name} #{user.last_name}",
-      email: user.email,
+      name: "Tom Brady",
+      email: "tom@test.com",
       password: "12345678"
     }
 
@@ -116,9 +115,8 @@ class API::V1::UsersTest < ActiveSupport::TestCase
   end
 
   test "an API user should not be able to create an invalid user" do
-    user = RUser.new
     params = {
-      name: "#{user.first_name} #{user.last_name}",
+      name: "Tom Brandy",
       email: nil,
       password: "12345678"
     }

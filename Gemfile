@@ -86,7 +86,9 @@ gem 'gravtastic'
 # File handling
 gem 'cloudinary', '1.1.2'
 gem 'attachinary'
-gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+# TODO NOTE Carrierwave currently requires master to use multiple files functionality
+# This should be changed as soon as a stable branch is available
+gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
