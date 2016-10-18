@@ -314,10 +314,10 @@ GEM
       mail (>= 2.0.3)
       maildir (>= 0.5.0)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
     mini_magick (4.2.10)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     minitest-reporters (1.1.8)
       ansi
       builder

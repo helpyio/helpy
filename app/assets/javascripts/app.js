@@ -11,7 +11,7 @@ Helpy.ready = function(){
   $('.uploader').fileupload({
     dataType: 'script',
     singleFileUploads: false
-  })
+  });
 
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
 

@@ -93,7 +93,7 @@
             <%= bootstrap_form_for(@newtopic) do |f| -%>
               <%= text_area :post, :body, :rows => 8, :cols => 160, label: 'Message', class: 'disable-empty'  -%>
               <% if Cloudinary.config.cloud_name.nil? %>
-      				    <%= file_field_tag :post, :attachments, multiple: true %>
+      				    <%= file_field_tag 'post[attachments]', multiple: true %>
               <% else %>
                 <div class="add-screenshots">
                   <%= attachinary_file_field_tag 'topic[screenshots]', @newtopic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
