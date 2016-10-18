@@ -18,37 +18,12 @@ class Admin::DocsController < Admin::BaseController
   end
 
   def create
-
-    @doc = Doc.find(params[:obj_id]) if params[:obj_id].present?
-
-    if @doc
-      #updated
-      @doc.update_attributes(doc_params)
-      logger.info("/// Updated #{@doc.id}")
-
+    @doc = Doc.new(doc_params)
+    @doc.user_id = current_user.id
+    if @doc.save
+      redirect_to(admin_category_path(@doc.category.id))
     else
-      @doc = Doc.new(doc_params)
-      # @doc.tag_list = params[:doc][:tag_list]
-      @doc.user_id = current_user.id
-      @doc.active = false
-      # @doc.attachments = params[:doc][:attachments]
-      #@doc.save_attachments(params) if params[:doc_attachments]
-      @doc.save!
-
-      logger.info("/// Saved #{@doc.id}")
-    end
-
-    respond_to do |format|
-      #if @doc.save
-        format.html {
-          redirect_to(admin_category_path(@doc.category.id))
-        }
-        format.js
-      # else
-      #   format.html {
-      #     render 'new'
-      #   }
-      # end
+      render 'new'
     end
   end
 
@@ -101,7 +76,6 @@ class Admin::DocsController < Admin::BaseController
     :front_page,
     :allow_comments,
     {screenshots: []},
-    {attachments: []},
     :tag_list
   )
   end

@@ -39,9 +39,6 @@ class Doc < ActiveRecord::Base
 
   include PgSearch
   multisearchable :against => [:title, :body, :keywords], :if => :active
-
-  mount_uploaders :attachments, AttachmentUploader
-
   has_paper_trail
 
   translates :title, :body, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: false, versioning: :paper_trail

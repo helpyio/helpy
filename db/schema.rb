@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012174311) do
+ActiveRecord::Schema.define(version: 20161017170305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,15 @@ ActiveRecord::Schema.define(version: 20161012174311) do
     t.boolean  "allow_topic_voting", default: false
     t.boolean  "allow_post_voting",  default: false
     t.string   "layout",             default: "table"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "key"
+    t.string   "name"
+    t.string   "extension"
+    t.text     "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|

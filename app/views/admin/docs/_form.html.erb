@@ -5,6 +5,77 @@
     background-color: transparent;
   }
   </style>
+  <% if Cloudinary.config.cloud_name.nil? %>
+  <script>
+  (function() {
+    var createStorageKey, host, uploadAttachment;
+
+    document.addEventListener("trix-attachment-add", function(event) {
+      var attachment;
+      attachment = event.attachment;
+      if (attachment.file) {
+        return uploadAttachment(attachment);
+      }
+    });
+    document.addEventListener('trix-attachment-remove', function(event) {
+      var attachment;
+      attachment = event.attachment;
+      return deleteFile(attachment);
+    });
+
+    host = "<%= admin_images_path(format: :json) %>";
+
+    uploadAttachment = function(attachment) {
+      var file, form, key, xhr;
+      file = attachment.file;
+      key = createStorageKey(file);
+      form = new FormData;
+      form.append("key", key);
+      form.append("Content-Type", file.type);
+      form.append("image[file]", file);
+      xhr = new XMLHttpRequest;
+      xhr.responseType = 'json';
+      xhr.open("POST", host, true);
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      xhr.upload.onprogress = function(event) {
+        var progress;
+        progress = event.loaded / event.total * 100;
+        return attachment.setUploadProgress(progress);
+      };
+      xhr.onload = function() {
+        var href, url;
+        if (xhr.status === 200) {
+          return attachment.setAttributes({
+            url: xhr.response.url,
+            href: xhr.response.url,
+            image_id: xhr.response.image_id
+          });
+        }
+      };
+      return xhr.send(form);
+    };
+
+    deleteFile = function(n) {
+      return $.ajax({
+        type: 'DELETE',
+        url: '/admin/images/' + n.attachment.attributes.values.image_id,
+        cache: false,
+        contentType: false,
+        processData: false
+      });
+    };
+
+    createStorageKey = function(file) {
+      var date, day, time;
+      date = new Date();
+      day = date.toISOString().slice(0, 10);
+      time = date.getTime();
+      return "tmp/" + day + "/" + time + "-" + file.name;
+    };
+
+  }).call(this);
+  </script>
+  <% end %>
 
   <%= f.input :title, label: I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale), value: @doc.read_translated_attribute(:title) %>
   <% if params[:lang] == "#{I18n.locale}" %>
@@ -25,33 +96,6 @@
       <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
       <%= cl_image_upload_tag(:image_id) %>
     </div>
-  <% else %>
-    <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
-    <%#= f.simple_fields_for :attachments do |a| %>
-       <%#= a.file_field :files, multiple: true, class: 'uploader' %>
-    <%# end %>
-
-    <%= f.file_field :attachments, multiple: true, class: 'uploader' %>
-
-    <ul class="list-inline" id="attachments">
-      <%= render partial: 'admin/docs/attachment', locals: { doc: @doc } %>
-    </ul>
-
-    <!-- <span class="btn btn-success fileinput-button">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span>Add files...</span> -->
-            <!-- The file input field used as target for the file upload widget -->
-            <!-- <input id="fileupload" type="file" name="files[]" multiple>
-        </span>
-        <br>
-        <br> -->
-        <!-- The global progress bar -->
-        <!-- <div id="progress" class="progress">
-            <div class="progress-bar progress-bar-success"></div>
-        </div> -->
-        <!-- The container for the uploaded files -->
-        <!-- <div id="files" class="files"></div> -->
-
   <% end %>
   <hr/>
   <h4 class="form-subhead"><%= t('additional_settings', default: 'Additional Settings') %>:</h4>
