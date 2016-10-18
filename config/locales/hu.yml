@@ -20,8 +20,8 @@ hu:
   welcome_back: "Üdv újra itt %{username}"
   your_profile: "Profilod"
   your_tickets: "Hibajegyeid"
-  locale: "Terület"
-  change_your_locale: "Terület módosítása"
+  locale: "Nyelv"
+  change_your_locale: "Nyelv módosítása"
 
   # Voting widget
   did_this_help: "Megoldotta ez a problémádat?"
