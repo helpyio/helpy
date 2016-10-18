@@ -52,6 +52,7 @@
 #  invitations_count      :integer          default(0)
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
+#  profile_image          :string
 #
 
 class User < ActiveRecord::Base

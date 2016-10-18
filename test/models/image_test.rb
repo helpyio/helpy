@@ -11,8 +11,10 @@
 #  updated_at :datetime         not null
 #
 
-class Image < ActiveRecord::Base
+require 'test_helper'
 
-  mount_uploader :file, ImageUploader
-
+class ImageTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

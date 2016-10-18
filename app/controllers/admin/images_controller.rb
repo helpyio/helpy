@@ -1,5 +1,7 @@
 class Admin::ImagesController < ApplicationController
 
+  before_action :verify_editor
+
   def create
     @image = Image.new(image_params)
     @image.save

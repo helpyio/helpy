@@ -150,13 +150,14 @@ class TopicsController < ApplicationController
       # of a gap in test coverage.
 
       body_param = params[:topic][:posts_attributes].present? ? params[:topic][:posts_attributes]["0"][:body] : params[:post][:body]
+      att_param = params[:topic][:posts_attributes].present? ? params[:topic][:posts_attributes]["0"][:attachments] : params[:topic][:posts_attributes]
 
       @post = @topic.posts.create(
         :body => body_param, # params[:topic][:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
         :screenshots => params[:topic][:screenshots],
-        :attachments => params[:topic][:posts_attributes]["0"][:attachments])
+        :attachments => att_param)
 
       if built_user == true && !user_signed_in?
         UserMailer.new_user(@user, @token).deliver_later

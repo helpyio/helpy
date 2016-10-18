@@ -35,6 +35,7 @@ class Doc < ActiveRecord::Base
   has_many :posts, through: :topic
 
   validates :title, presence: true
+  validates :body, presence: true
   validates :category_id, presence: true
 
   include PgSearch

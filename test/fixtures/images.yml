@@ -11,8 +11,14 @@
 #  updated_at :datetime         not null
 #
 
-class Image < ActiveRecord::Base
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-  mount_uploader :file, ImageUploader
-
-end
+# one:
+#   name: MyString
+#   extension: MyString
+#   file: MyText
+#
+# two:
+#   name: MyString
+#   extension: MyString
+#   file: MyText
