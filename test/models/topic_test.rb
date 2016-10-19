@@ -149,4 +149,11 @@ class TopicTest < ActiveSupport::TestCase
     topic = Topic.create!(name: name, user_id: 1, forum_id: 1, team_list: 'something')
     assert_equal 'something', topic.team_list.first
   end
+
+  test "Should create a comment thread" do
+    assert_difference 'Topic.count', +1 do
+      Topic.create_comment_thread(1, 1)
+    end
+  end
+
 end

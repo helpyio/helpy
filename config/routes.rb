@@ -42,7 +42,9 @@ Rails.application.routes.draw do
       resources :docs, except: [:new, :edit, :create, :update]
     end
 
-    resources :docs, except: [:new, :edit]
+    resources :docs, except: [:new, :edit] do
+      resources :comments, only: :create
+    end
     resources :community, :as => 'forums', :controller => "forums" do
       resources :topics
     end
