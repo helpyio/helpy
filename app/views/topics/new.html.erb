@@ -59,7 +59,7 @@
 
     <%= f.simple_fields_for :posts do |p| %>
       <%= p.input :body, input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
-      <% if Cloudinary.config.cloud_name.nil? %>
+      <% unless cloudinary_enabled? %>
         <%= p.file_field :attachments, multiple: true %>
         <ul class="list-inline" id="attachments">
           <%#= render partial: 'posts/attachment', locals: { :model_name => @post } %>
@@ -69,7 +69,7 @@
 
     <div class="add-screenshots">
       <% if !@widget %>
-      <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+      <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
       <% end %>
     </div>
 

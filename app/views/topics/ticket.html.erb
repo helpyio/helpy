@@ -47,8 +47,8 @@
         <%= f.hidden_field 'kind', value: 'reply' %>
         <%= hidden_field_tag :client_id %>
         <%= f.text_area :body, :rows => 8, :cols => 160, skip_label: true, class: 'disable-empty' -%></p>
-        <%= f.attachinary_file_field :screenshots unless Cloudinary.config.cloud_name.nil? %>
-        <%= f.file_field :attachments, multiple: true if Cloudinary.config.cloud_name.nil? %>				
+        <%= f.attachinary_file_field :screenshots if cloudinary_enabled? %>
+        <%= f.file_field :attachments, multiple: true unless cloudinary_enabled? %>				
         <%= f.submit I18n.t('submit_reply', default: 'Post Reply'), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
       <% end -%>
       </div>

@@ -71,27 +71,7 @@
   		</table>
 
   		<% if user_signed_in? # show a form to reply or start discussion %>
-        <div class="add-form">
-    			<h4><%= @posts.nil? ? t(:start_discussion) : t(:reply) %></h4>
-    			<%= bootstrap_form_for :post, :url => doc_comments_path(@doc) do |f| -%>
-    			  <%= f.text_area :body, rows: 8, cols: 160, skip_label: true, class: 'disable-empty' %></p>
-    			  <%= f.hidden_field 'kind', value: 'reply' %>
-
-            <% if Cloudinary.config.cloud_name.nil? %>
-              <%= f.file_field :attachments, multiple: true %>
-            <% else %>
-              <div class="add-screenshots">
-      				  <%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots unless Cloudinary.config.cloud_name.nil? %>
-      				</div>
-            <% end %>
-    				<%= hidden_field_tag :client_id %>
-            <% if @posts.nil? %>
-              <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
-            <% else %>
-              <%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
-            <% end %>
-    			<% end -%>
-        </div>
+        <%= render partial: 'docs/comment_form' %>
   		<% else # show a button to reply or start the discussion %>
         <div>
           <% if @posts.nil? %>

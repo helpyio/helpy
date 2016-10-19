@@ -5,7 +5,7 @@
     background-color: transparent;
   }
   </style>
-  <% if Cloudinary.config.cloud_name.nil? %>
+  <% unless cloudinary_enabled? %>
   <script>
   (function() {
     var createStorageKey, host, uploadAttachment;
@@ -91,7 +91,7 @@
   <% end %>
   </body>
   <hr/>
-  <% unless Cloudinary.config.cloud_name.nil? %>
+  <% if cloudinary_enabled? %>
     <div class="doc-form-files">
       <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
       <%= cl_image_upload_tag(:image_id) %>
