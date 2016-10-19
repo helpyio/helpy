@@ -103,7 +103,7 @@ class API::V1::UsersTest < ActiveSupport::TestCase
   test "an API user should be able to create a user" do
     params = {
       name: "Tom Brady",
-      email: user.email,
+      email: "tom@test.com",
       password: "12345678"
     }
 
