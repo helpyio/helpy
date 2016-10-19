@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
     end
     @post = @topic.posts.new(comment_params)
     @post.user_id = current_user.id
+    @post.screenshots = params[:post][:screenshots]
 
     if @post.save
       redirect_to doc_path(@doc)
