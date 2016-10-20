@@ -19,7 +19,7 @@ namespace :db do
 
   # Get random user data from https://randomuser.me/documentation#results
   def get_user
-    url = 'https://api.randomuser.me/1.1/?nat=us,es,dk,fr,gb'
+    url = 'https://api.randomuser.me/1.1/?nat=us'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     return JSON.parse(response)['results'][0]
