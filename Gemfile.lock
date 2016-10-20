@@ -455,7 +455,6 @@ GEM
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
-    ruser (3.0.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -654,7 +653,6 @@ DEPENDENCIES
   recaptcha
   route_translator
   rubocop
-  ruser (~> 3.0)
   sass-rails (~> 5.0)
   scss-lint
   sdoc (~> 0.4.0)
