@@ -17,29 +17,36 @@ namespace :db do
     puts "Created Admin: #{admin_user.name}"
   end
 
-  # Add Support Team
-  company = RUser.new
-  company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
+  # Get random user data from https://randomuser.me/documentation#results
+  def get_user
+    url = 'https://api.randomuser.me/1.1/?nat=us,es,dk,fr,gb'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    return JSON.parse(response)['results'][0]
+  end
 
+  # Add Support Team
+  company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
   number_support_team.times.each_with_index do |item, index|
-    user = RUser.new
+
+    user = get_user
     u = User.create(
-      name: "#{user.first_name} #{user.last_name}",
-      email: user.email,
-      login: user.username,
+      name: "#{user['name']['first']} #{user['name']['last']}" ,
+      email: user['email'],
+      login: '',
       password: '12345678',
       admin: true,
       role: 'agent',
-      company: company_name,
-      street: company.street,
-      city: company.city,
-      state: company.state,
-      zip: company.postal,
-      work_phone: company.phone,
-      cell_phone: user.cell,
-      thumbnail: user.profile_thumbnail_url,
-      medium_image: user.profile_medium_url,
-      large_image: user.profile_large_url,
+      company: Faker::Company.name,
+      street: user['location']['street'],
+      city: user['location']['city'],
+      state: user['location']['state'],
+      zip: user['location']['postcode'],
+      work_phone: user['phone'],
+      cell_phone: user['cell'],
+      thumbnail: user['picture']['thumbnail'],
+      medium_image: user['picture']['medium'],
+      large_image: user['picture']['large'],
       team_list: groups[index][1]
     )
     puts "Created Agent: #{u.name}"
@@ -48,22 +55,22 @@ namespace :db do
   # Create users with avatars
   number_users.times do
 
-    user = RUser.new
+    user = get_user
     u = User.create(
-      name: "#{user.first_name} #{user.last_name}",
-      email: user.email,
-      login: user.username,
+      name: "#{user['name']['first']} #{user['name']['last']}" ,
+      email: user['email'],
+      login: '',
       password: '12345678',
-      company: "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}",
-      street: user.street,
-      city: user.city,
-      state: user.state,
-      zip: user.postal,
-      work_phone: user.phone,
-      cell_phone: user.cell,
-      thumbnail: user.profile_thumbnail_url,
-      medium_image: user.profile_medium_url,
-      large_image: user.profile_large_url
+      company: Faker::Company.name,
+      street: user['location']['street'],
+      city: user['location']['city'],
+      state: user['location']['state'],
+      zip: user['location']['postcode'],
+      work_phone: user['phone'],
+      cell_phone: user['cell'],
+      thumbnail: user['picture']['thumbnail'],
+      medium_image: user['picture']['medium'],
+      large_image: user['picture']['large'],
     )
 
     puts "Created User: #{u.name}"
@@ -72,19 +79,19 @@ namespace :db do
   # Create users without avatars
   number_users.times do
 
-    user = RUser.new
+    user = get_user
     u = User.create(
-      name: "#{user.first_name} #{user.last_name}",
-      email: user.email,
-      login: user.username,
+      name: "#{user['name']['first']} #{user['name']['last']}" ,
+      email: user['email'],
+      login: '',
       password: '12345678',
-      company: "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}",
-      street: user.street,
-      city: user.city,
-      state: user.state,
-      zip: user.postal,
-      work_phone: user.phone,
-      cell_phone: user.cell
+      company: Faker::Company.name,
+      street: user['location']['street'],
+      city: user['location']['city'],
+      state: user['location']['state'],
+      zip: user['location']['postcode'],
+      work_phone: user['phone'],
+      cell_phone: user['cell'],
     )
 
     puts "Created User: #{u.name}"
