@@ -82,6 +82,7 @@ Rails.application.routes.draw do
     get 'settings' => 'settings#index', as: :settings
     get 'settings/preview' => 'settings#preview', as: :preview
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
+
     get 'notifications' => 'settings#notifications', as: :notifications
     put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
 
@@ -96,6 +97,16 @@ Rails.application.routes.draw do
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
+    
+    # Export Routes
+    get 'backups' => 'backups#index', as: :backups
+    get 'backups/export' => "backups/export", as: :export_backup
+    get  'backups/download' => "backups/download", as: :download
+    delete 'backups/:id(.:format)', :to => 'backups#destroy', as: :delete_backup
+    
+    # Import Routes
+    get 'imports' => 'imports#index', as: :imports
+    post 'imports/restore' => "importz/restore", as: :import_restore
 
     resources :categories do
       resources :docs, except: [:index, :show]

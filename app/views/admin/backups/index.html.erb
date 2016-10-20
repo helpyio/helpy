@@ -1,0 +1,27 @@
+<h2 id="ticket-page-title">
+  Backup:
+</h2>
+
+<div class="settings-panel row">
+  <div class="col-md-9 col-sm-8 col-xs-10">
+    <%= bootstrap_form_tag url: admin_export_backup_path, method: 'get', format: :csv do |f| %>
+      <div class="settings-section widget" data-hook="admin_settings_widget">
+        <%= f.check_box 'User', {label: "create users csv file" } %>
+        <%= f.check_box 'Topic', {label: "create topics csv file" } %>
+        <%= f.check_box 'Post', {label: "create posts csv file" } %>
+        <%= f.check_box 'Doc', {label: "create doc's csv file" } %>
+        <%= f.check_box 'Category', {label: "create category csv file" } %>
+        <%= f.check_box 'Forum', {label: "create forum csv file" } %>
+      </div>
+      <div class="submit-section">
+        <%= f.submit "Create CSV", class: 'btn btn-warning' %>
+      </div>
+    <% end %>
+  </div>
+</div>  
+
+<div class="row">
+  <div class="col-md-12" id="backups">
+    <%= render 'admin/backups/backedup_files' %>
+  </div>
+</div>

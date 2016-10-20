@@ -47,7 +47,7 @@
 class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :verify_admin, only: ['invite','invite_users']
+  before_action :verify_admin, only: ['invite','invite_users', 'export']
   before_action :fetch_counts, :only => ['show']
   respond_to :html, :js
 

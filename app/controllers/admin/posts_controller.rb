@@ -1,6 +1,9 @@
 class Admin::PostsController < Admin::BaseController
 
   before_action :verify_agent
+
+  before_action :verify_admin, only: ['export']
+  
   respond_to :js
 
   def edit

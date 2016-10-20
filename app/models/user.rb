@@ -86,7 +86,9 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :votes
   has_many :docs
+  has_many :backups
   has_many :api_keys
+
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
@@ -221,5 +223,5 @@ class User < ActiveRecord::Base
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end
-
+  
 end

@@ -31,6 +31,7 @@
     <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
     <div class="grids col-md-11 col-sm-12">
       <div class="row" data-hook="admin_settings_grid">
+
         <%= settings_item('glyphicon glyphicon-cog', "general", t('general_description', default: "Manage general system settings like your Helpy name, what company to link back to.")) %>
         <%= settings_item('glyphicon glyphicon-pencil', "design", t('design_description', default: "Control the logos and colors and other design aspects of your Helpy")) %>
         <%= settings_item('fa fa-clone', "theme", t('theme_description', default: "Select a theme for your Helpy")) %>
@@ -39,6 +40,8 @@
         <%= settings_item('glyphicon glyphicon-envelope', "email", t('email_description', default: "Set up SMTP and Inbound email for your Helpy.")) %>
         <%= settings_item('fa fa-cogs', "integrations", t('integrations_description', default: "Configure integrations with external services.")) %>
         <%= settings_item('glyphicon glyphicon-user', "users", t('users_description', default: "View and Add Users"), admin_users_path) %>
+        <%= settings_item('glyphicon glyphicon-download-alt',"backup", "Export data for backup.", admin_backups_path) %>
+        <%= settings_item('glyphicon glyphicon-download-alt',"Import", "Import data for restore.", admin_imports_path) %>
       </div>
     </div>
   </div>
@@ -54,6 +57,8 @@
       <%= settings_menu_item('glyphicon glyphicon-envelope', 'email') %>
       <%= settings_menu_item('fa fa-cogs', 'integrations') %>
       <%= settings_menu_item('glyphicon glyphicon-user', 'users', admin_users_path) %>
+      <%= settings_menu_item('glyphicon glyphicon-download-alt', "backup", admin_backups_path) %>
+      <%= settings_menu_item('glyphicon glyphicon-download-alt', "Import", admin_imports_path) %>
     </ul>
   </div>
   <div class="col-md-9 col-sm-8 col-xs-10">
