@@ -16,7 +16,7 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def new_public(topic)
-    notifiable = User.notifiable_on_private
+    notifiable = User.notifiable_on_public
     return if notifiable.count == 0
 
     @topic = topic
@@ -31,7 +31,7 @@ class NotificationMailer < ActionMailer::Base
   end
 
   def new_reply(topic)
-    notifiable = User.notifiable_on_private
+    notifiable = User.notifiable_on_reply
     return if notifiable.count == 0
 
     @topic = topic
