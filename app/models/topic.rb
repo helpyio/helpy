@@ -37,7 +37,7 @@ class Topic < ActiveRecord::Base
   accepts_nested_attributes_for :posts
 
   has_many :votes, :as => :voteable
-  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf]
+  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
   paginates_per 25
 
