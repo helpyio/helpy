@@ -1,0 +1,38 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+<% meta_tag :description, "#{@category.meta_description}" %>
+<% meta_tag :keywords, "#{@category.keywords}" %>
+
+<div class="row content-row">
+  <div id="left-col" class="col-md-3 hidden-sm hidden-xs affix affix-top">
+    <%= render 'categories/left_nav' %>
+  </div>
+  <div id="category-col" class="text-content col-md-9 col-sm-12 col-xs-12">
+    <div id="page-title-left">
+      <h2><%= @category.name %></h2>
+    </div>
+    <p><%= @category.meta_description %></p>
+    <div class="articles">
+      <ul class='list-unstyled'>
+        <% @docs.each do |doc| %>
+            <%= render ("docs/doc"), doc: doc %>
+        <% end %>
+        <% if @docs.count == 0 %>
+
+          <div class="text-center verticalness">
+            <%= t(:nothing_here) %>
+          </div>
+
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 text-left">
+      <%= paginate @docs %>
+    </div>
+  </div>
+
+  </div>
+
+</div>

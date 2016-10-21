@@ -1,0 +1,19 @@
+  <ul class="list-unstyled">
+  <% @categories.with_translations(I18n.locale).each do |category| %>
+    <% if category.docs.with_translations(I18n.locale).count > 0 %>
+      <li class="left-nav-category">
+        <div class="left-nav-doc category-name"><%= category.name %><%#= link_to category.name, category_path(category), "data-target" => "#category-#{category.id}"  %></div>
+        <ul class="list-unstyled">
+        <% category.docs.with_translations(I18n.locale).ordered.active.each_with_index do |doc| -%>
+          <% active = 'active-nav' if params[:id].present? && doc.id.to_s == params[:id].split('-')[0] %>
+          <li class="left-nav-doc <%= active %>">
+            <%# binding.pry %>
+            <% active = 'active-nav' if params[:id].present? && doc.id.to_s == params[:id].split('-')[0] %>
+            <%= link_to doc.title, category_doc_path(doc.category, doc), class: active  %>
+          </li>
+        <% end %>
+        </ul>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
