@@ -26,7 +26,7 @@
   <p>
     <%= simple_format(@topic.posts.last.body) %>
   </p>
-  <%= render :partial => 'posts/thumbnail', locals: { :model_name => @topic.posts.last } unless Cloudinary.config.cloud_name.nil? %>
+  <%= render :partial => 'posts/thumbnail', locals: { :model_name => @topic.posts.last } %>
   <p>
     <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
   </p>
