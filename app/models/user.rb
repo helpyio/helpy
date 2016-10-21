@@ -121,6 +121,20 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.notifiable_on_public
+    # Iterates through agents, selecting those with notifications on
+    User.agents.order('id asc').map { |a| a.settings.notify_on_public == "1" ? a.email : '' }.select {|x| x.present?}
+  end
+
+  def self.notifiable_on_private
+    # Iterates through agents, selecting those with notifications on
+    User.agents.order('id asc').map { |a| a.settings.notify_on_private == "1" ? a.email : '' }.select {|x| x.present?}
+  end
+
+  def self.notifiable_on_reply
+    # Iterates through agents, selecting those with notifications on
+    User.agents.order('id asc').map { |a| a.settings.notify_on_reply == "1" ? a.email : '' }.select {|x| x.present?}
+  end
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count

@@ -127,7 +127,10 @@
           <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' }, checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
         <% end %>
         <br/>
-        <%= select_default_locale %>
+        <div class='form-group'>
+          <%= label_tag 'i18n.default_locale', t('default_locale', default: "Default Locale"), class: 'control-label' %>
+          <%= f.select_tag 'i18n.default_locale', default_locale_options, class: 'form-control', id: 'i18n.default_locale' %>
+        </div>
       </div>
       <div class="settings-section widget hidden" data-hook="admin_settings_widget">
         <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: t('show_widget', default: "Show Widget on Support Site") } %>

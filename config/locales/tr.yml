@@ -79,7 +79,7 @@ tr:
 
   # footer
   powered_by: "Helpy tarafından güçlendirilmiştir. Bir Açık Kaynak Destek Sistemi."
-  get_your_copy: "Github'dan bir kopyasını alın"
+  get_your_copy: "GitHub'dan bir kopyasını alın"
   # version: "Version:"
 
   # devise/sessions/new

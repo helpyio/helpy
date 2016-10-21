@@ -123,10 +123,8 @@ gem 'devise_invitable', '~> 1.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Faker is used for the populate script to create demo data
 gem 'faker'
-
-# RandomUser.me API
-gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
 
