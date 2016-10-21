@@ -21,6 +21,7 @@
 #  updated_at       :datetime         not null
 #  topics_count     :integer          default(0)
 #  allow_comments   :boolean          default(TRUE)
+#  attachments      :string           default([]), is an Array
 #
 
 class Doc < ActiveRecord::Base
@@ -39,7 +40,6 @@ class Doc < ActiveRecord::Base
 
   include PgSearch
   multisearchable :against => [:title, :body, :keywords], :if => :active
-
   has_paper_trail
 
   translates :title, :body, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: false, versioning: :paper_trail

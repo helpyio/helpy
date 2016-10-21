@@ -21,6 +21,7 @@
 #  updated_at       :datetime         not null
 #  topics_count     :integer          default(0)
 #  allow_comments   :boolean          default(TRUE)
+#  attachments      :string           default([]), is an Array
 #
 
 class DocsController < ApplicationController
@@ -41,6 +42,7 @@ class DocsController < ApplicationController
       @post = @topic.posts.new unless @topic.nil?
       @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
       @forum = Forum.for_docs.first
+      @comment = @forum.topics.new
       @user = User.new unless user_signed_in?
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
       add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name

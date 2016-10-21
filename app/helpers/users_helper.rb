@@ -52,6 +52,7 @@
 #  invitations_count      :integer          default(0)
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
+#  profile_image          :string
 #
 
 module UsersHelper
@@ -68,13 +69,15 @@ module UsersHelper
 
   def avatar_image(user, size=40)
 
-    if user.avatar.nil? == false
+    if user.avatar.present?
       unless Cloudinary.config.cloud_name.nil?
         image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')
       else
         image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => '16', 'char-count' => 2}, class: 'profile img-circle')
       end
-    elsif !user.thumbnail.nil?
+    elsif user.profile_image.present?
+      image_tag(user.profile_image.url, width: "#{size}px", class: 'img-circle')
+    elsif user.thumbnail.present?
       image_tag(user.thumbnail, width: "#{size}px", class: 'img-circle')
     else
       image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => '16', 'char-count' => 2}, class: 'profile img-circle')

@@ -11,15 +11,16 @@ Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2
 Features
 ========
 
-- **Private Support Discussions (aka tickets):**
-Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
-- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum. You can choose to make forums or posts voteable, and select from 3 layout templates (table, grid or Q&A format). Attach images to posts and tickets using Cloudinary.
-- **Voting**: Discussion topics and replies support voting.  This lets you easily create a "feature requests" forum or allow registered users to vote up the best replies to a question similar to Quora or Stack Exchange
-- **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
-- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
+Helpy is an integrated support solution- combining and leveraging synergies between support ticketing, Knowledgebase and a public community.  Each feature is optional however, and can be easily disabled.
+
+- **Private Support Discussions (aka tickets):** Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
+- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum.
+- **Voting**: Discussion topics and replies support voting.
+- **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you.
+- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing.
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
 - **Embed Widget:** Helpy Includes a lightweight javascript widget that allows your users to contact you from just about anywhere.
-- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, German, Spanish, Catalan, Portuguese, Nederlands, Chinese, Japanese, Russian and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
+- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for 19 languages and is easy to translate.
 - **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
 
 Test it Out
@@ -42,18 +43,15 @@ Helpy was designed to run on on modern cloud providers like Digital Ocean or Her
 
 Requirements are:
 
-- Ruby 2.2
-- Rails 4.2
+- Ruby 2.2+
+- Rails 4.2.x
 - Postgres
 - A server like Unicorn, Puma or Passenger
 
-Helpy leverages three external services to help out:
+Helpy leverages two external services to help out:
 
-- an email provider like Mailgun
-- an image manipulation and host (Cloudinary)
-- Google Analytics for stats
-
-Mailgun and Cloudinary have a free tier that should get you started.
+- an email provider like Sendgrid
+- Google Analytics for stats (optional)
 
 There is a full guide to installing Helpy at http://support.helpy.io/en/knowledgebase/11-installing-helpy
 
@@ -81,11 +79,6 @@ Helpy has the ability to receive email at your support email addresses and impor
 **Configure oAuth (optional)**
 
 Helpy supports Omniauth login capabilities.  This means you can allow your support users to sign in with a single click via any Omniauth provider- ie. Facebook, Twitter, Gmail, or many others. Read [Setting Up Oauth For Your Helpy](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/19-Setting-Up-OAUTH-for-your-Helpy) to see how.
-
-**Set up Cloudinary (optional)**
-
-Helpy uses a service called Cloudinary to host and manipulate images.  If you do not provide an API key in the admin settings, Helpy will not give users the option to attach images to their support tickets, and you will not be able to easily add images to your knowledge base documents.
-
 
 Contributing
 ============

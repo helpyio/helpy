@@ -101,6 +101,8 @@ module AdminHelper
     return 'fa fa-file-text-o' unless filename.include?('.')
     extension = filename.split(".").last.downcase
     case extension
+      when 'pdf'
+        return 'fa fa-file-pdf-o'
       when 'doc', 'docx'
         return "fa fa-file-word-o"
       when 'xls', 'xlsx'

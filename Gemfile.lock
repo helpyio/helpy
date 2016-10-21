@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/carrierwaveuploader/carrierwave
+  revision: ec850831eeaf0f2f45c002bcec9b90698b78d0d8
+  specs:
+    carrierwave (1.0.0.beta)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
+GIT
   remote: https://github.com/railsconfig/config.git
   revision: 813e504f47d370bc9b5847dce772828445e9dad7
   specs:
@@ -243,6 +252,10 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jquery-fileupload-rails (0.4.7)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
     jquery-minicolors-rails (2.2.3.0)
       jquery-rails
       rails (>= 3.2.8)
@@ -301,9 +314,10 @@ GEM
       mail (>= 2.0.3)
       maildir (>= 0.5.0)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
+    mini_magick (4.2.10)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     minitest-reporters (1.1.8)
       ansi
       builder
@@ -584,6 +598,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara
+  carrierwave!
   client_side_validations
   client_side_validations-simple_form
   cloudinary (= 1.1.2)
@@ -617,6 +632,7 @@ DEPENDENCIES
   http_accept_language
   i18n-country-translations
   jbuilder (~> 2.0)
+  jquery-fileupload-rails
   jquery-minicolors-rails
   jquery-rails
   jquery-turbolinks (~> 2.1.0)
@@ -627,6 +643,7 @@ DEPENDENCIES
   mail_extract
   mailcatcher
   mailman
+  mini_magick
   minitest
   minitest-reporters
   newrelic_rpm

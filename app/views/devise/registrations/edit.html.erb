@@ -3,13 +3,19 @@
 <% end %>
 
 <div class="row content-row">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, multipart: true, html: { method: :put }) do |f| %>
 
   <div class="col-md-3 text-center">
     <%= avatar_image(@user, size=150) %>
+    <div class="select-image text-center">
+    <% if @user.provider.nil? %>
+      <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
+    <% end %>
+    <%= f.file_field :profile_image unless cloudinary_enabled? %>
+    </div>
   </div>
 
   <div class="col-md-9">
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
     <span class="user-fields">
       <%= f.input :email, autofocus: true %>
@@ -19,9 +25,6 @@
       <%= f.input :title %>
       <%= f.input :time_zone %>
       <%= f.input :signature, input_html: {:rows => 4, :cols => 60} if current_user.is_admin? %>
-      <% if @user.provider.nil? %>
-        <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
-      <% end %>
     </span>
 
     <% if @user.provider.nil? %>
@@ -37,8 +40,10 @@
     <% end %>
 
     <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
+  </div>
+
 
   <% end %>
 
-  </div>
+
 </div>

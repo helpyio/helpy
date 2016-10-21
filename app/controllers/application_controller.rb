@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
     AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
   end
 
+  def cloudinary_enabled?
+    AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+  end
+  helper_method :cloudinary_enabled?
+
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
   # agent is next and admin has access to everything:
 

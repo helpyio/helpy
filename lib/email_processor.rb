@@ -87,6 +87,9 @@ class EmailProcessor
         array_of_files << File.open(attachment.tempfile.path, 'r')
       end
       post.screenshots = array_of_files
+    elsif email.attachments.present?
+      post.attachments = email.attachments
+      post.save!
     end
   end
 
