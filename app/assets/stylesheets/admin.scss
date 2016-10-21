@@ -553,3 +553,15 @@ ul.settings-menu {
 .overflow-visible {
   overflow: visible;
 }
+
+.dropdown-form {
+ padding-left: 20px;
+}
+
+.datepicker.datepicker-dropdown {
+ min-width: 0;
+
+ tr{
+   height: 0;
+ }
+}

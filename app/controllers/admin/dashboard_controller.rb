@@ -33,6 +33,8 @@ class Admin::DashboardController < Admin::BaseController
                     t('this_month')
                   when 'last_month'
                     t('last_month')
+                  when 'interval'
+                    "Between #{@start_date.to_date} and #{@end_date.to_date}"
                   else
                     t('this_week')
                 end
