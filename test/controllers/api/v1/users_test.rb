@@ -116,7 +116,7 @@ class API::V1::UsersTest < ActiveSupport::TestCase
 
   test "an API user should not be able to create an invalid user" do
     params = {
-      name: "Tom Brandy",
+      name: "Tom Brady",
       email: nil,
       password: "12345678"
     }

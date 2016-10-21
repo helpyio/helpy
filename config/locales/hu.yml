@@ -1,0 +1,359 @@
+# TRANSLATOR: Tamas Csizmadia
+
+hu:
+  language_name: 'Magyar' # The name of the translation file, in that language
+  root: &root 'Kezdőlap'
+  how_can_we_help: "Miben segíthetünk?"
+  browse_topics: "Témák Böngészése"
+  support_team: "Ügyfélszolgálati Csoport"
+  nothing_here: "Itt még nincs semmi!"
+
+  # Navigation
+  knowledgebase: "Tudásbázis"
+  community: "Közösség"
+  ask_a_question: "Tegyél fel egy kérdést"
+  home: "Kezdőlap"
+  login: "Bejelentkezés"
+  logout: "Kilépés"
+  register: "Regisztráció"
+  back_to: "Vissza a(z)"
+  welcome_back: "Üdv újra itt %{username}"
+  your_profile: "Profilod"
+  your_tickets: "Hibajegyeid"
+  locale: "Nyelv"
+  change_your_locale: "Nyelv módosítása"
+
+  # Voting widget
+  did_this_help: "Megoldotta ez a problémádat?"
+  yes_button: 'Igen'
+  no_button: 'Nem'
+  yes_helped: 'Nagyszerű! Köszönjük a visszajelzésed!'
+  no_helped: "Sajnáljuk, hogy nem oldotta meg a problémádat. Lépj kapcsolatba velünk, hogy segíthessünk!"
+
+  # Search
+  search_placeholder: "Írj be egy kulcsszót, témát, vagy kérdést"
+  no_results: "Nincs találat, Kérjük, probálkozz újra!"
+  results_found:
+    one: "egy találat erre: "
+    other: "%{count} találat erre: "
+
+  # Community
+  forum_name: "Téma"
+  subject: "Tárgy"
+  last_activity: "Utolsó Aktivitás"
+  topic: "Beszélgetés"
+  replies: "Válaszok"
+  last_post: "Utolsó Bejegyzés"
+  started_by: "Indította %{username}"
+  reply: "Válasz erre a témára"
+  submit_reply: "Válasz küldése"
+  posted: "Elküldve"
+  start_discussion: "Új beszélgetés indítása"
+  submit_start_discussion: "Beszélgetés indítása"
+  should_message_be_private: "Legyen privát ez az üzenet?"
+  only_support_can_respond: "Csak az ügyfélszolgálat válaszolhat rá (privát hibajegy)"
+  responses_can_come_from_everyone: "Az ügyfélszolgálat és a közösség egyaránt válaszolhat (ajánlott)"
+  collapsed_messages:
+      one: "1 becsukott üzenet"
+      two: "2 becsukott üzenet"
+      other: "%{count} becsukott üzenet"
+
+  # Knowledgebase
+  written_by: "Írta"
+  last_edited: "Utoljára Szerkesztve"
+  asked_before: "Született már válasz a kérdésedre? Szerintünk ezek hasonlítanak rá"
+
+  # Tickets
+  tickets: "Hibajegyek"
+  no_tickets: "Nincs még hibajegyed"
+  ticket_number: "Hibajegy száma"
+  assigned_to_label: "Felelőse"
+  created_on: "Létrehozva"
+
+  # Get Help
+  get_help_header: "További segítség kell?"
+  get_help_button: "Indíts új beszélgetést velünk"
+
+  # Profile
+  my_profile: 'Profilom'
+
+  # footer
+  powered_by: "Az oldalt a Helpy, egy nyílt forráskódú ügyélszolgálat hajtja."
+  get_your_copy: "Töltsd le magadnak a GitHubról"
+  version: "Verzió:"
+
+  # devise/sessions/new
+  login: Bejelentkezés
+
+  # devise/shared/links
+  forgot_password: Elfelejtetted jelszavad?
+
+  # devise/passwords/new
+  send_instructions: Útmutató küldése
+
+  # devise/passwords/edit
+  change_password: Jelszó cseréje
+  new_password: Új jelszó
+  new_password_confirmation: Jelszó megerősítése
+
+  # devise/confirmations/new
+  resend: Megerősítő információk újraküldése
+
+  # devise/registrations/new
+  sign_up: Feliratkozás
+
+  # Admin menu
+  discussions: Beszélgetések
+  content: Tartalom
+  communities: Közösségek
+  app_store: Áruház
+  search: Keresés
+
+  # Admin main/statuses
+  support_pipeline: Ügyfélszolgálati ügymenet
+  new: Új
+  active: Aktív
+  open: Nyitott
+  mine: Hozzám tartozik
+  pending: Függőben
+  closed: Megoldva
+  spam: Levélszemét
+  trash: Kuka
+  discussion_managment: Beszélgetések Kezelése
+  open_new_discussion: Új Beszélgetés
+  assigned_to: "%{agent} foglalkozik vele"
+  unassigned: nincs hozzárendelve
+  no_team_assigned: Csoporthoz rendelés
+  assign_to: Csoport/Csapat
+  unassign_from_team: Elveszem a csoporttól
+  private: privát
+  public: publikus
+  save_changes: Mentés
+
+  # Discussion controls
+  change_status: Státusz Módosítása
+  status: Státusz
+  mark_closed: Megoldottnak jelölés
+  reopen: Újranyitás
+  mark_spam: Levélszemét
+  mark_new: Újnak jelölés
+  assign_agent: Ügynökhöz rendelés
+  selected_messages:
+    one: "1 kiválasztott üzenet"
+    two: "2 kiválasztott üzenet"
+    other: "%{count} kiválasztott üzenet"
+
+  # Discussion messages
+  reopen_message: "Ezt az üzenetet az ügyfélszolgálat nyitotta meg újra"
+  closed_message: "Ezt a hibajegyet az ügyfélszogálat zárta le."
+  trash_message: "Ez a hibajegy le lett törölve."
+  assigned_message: "A beszélgetés át lett irányítva hozzá: %{assigned_to}."
+
+  # User Admin
+  users: Felhasználók
+  contact_info: Kapcsolat
+  social_info: Social
+  edit_user: Felhasználó szerkesztés
+  work_phone: munka
+  cell_phone: mobil
+
+  # User search results
+  users_found:
+    one: "1 felhasználó található ez alapján: %{query}"
+    other: "%{count} felhasználó található ez alapján: %{query}"
+
+  # Invite users
+  invite_users: "Új felhasználó meghívása"
+  invite_emails: "Email Címek"
+  invite_emails_placeholder: "Adj meg egy, vagy több e-mail címet, ahova a meghívót küldhetjük"
+  invite_message: "Üzenet"
+  invite_message_placeholder: "Egy opcionális üzenet, amely az új felhasználóknak kerül kiküldésre"
+  invite_role: "A meghívott felhasználók szerepköre"
+  send_invite: "Meghívó Küldése"
+
+  # Discussion View
+  asked_a_question: "%{user_name} feltett egy kérdést..."
+  replied: "%{user_name} válaszolt..."
+  posted_note: "%{user_name} belső jegyzetet írt..."
+  type_reply: Írd meg a válaszod, vagy válassz egyet az általános válaszok közül
+  select_common: Válasz kijelölése
+  reply: Válasz
+  internal_note: Belső Jegyzet
+  mark_as_resolved: Megoldottnak jelölés
+  upvote:
+    one: "Szavazat | %{count}"
+    other: "Szavazat | %{count}"
+
+  # Content
+  new_category: Új Kategória
+  new_content: Új Tartalom
+  front_page_categories: Nyitólap Kategóriák
+  other_categories: Egyéb Kategóriák
+  edit: Szerkesztés
+  edit_category: Kategória Szerkesztése
+  select_category: Kategória Kiválasztása
+  delete: Törlés
+  view_and_edit: "Tartalom Megtekintése vagy Szerkesztése"
+  delete_confirm: "Kérlek, erősítsd meg, hogy TÖRÖLNI akarod ezt!"
+  select_icon_helptext: "Válassz ki egy (opcionális) ikont ehhez a kategóriához"
+  translate: "Fordítás egy másik nyelvre"
+  view_on_site: "Megtekintés a Honlapon"
+  written_on: "Készült %{date_written}"
+  content_last_updated: "Utoljára módosítva %{date_updated}"
+  featured_content: "Kiemelt"
+  draft_content: "Piszkozat"
+  published_content: "Közzétéve"
+  additional_settings: "További Beállítások"
+  content_status: "Tartalom Állapota"
+  convert_content: 'Hozzászólás tartalommá alakítása'
+  upload_image: 'Kép Feltöltése'
+
+  # Communities
+  new_community: Új Közösség Létrehozása
+  create_new_community: Új Közösség Létrehozása
+  layout_select: Formátum Megadása
+  layout_table: Táblázat
+  layout_grid: Rács
+  layout_qna: K&V
+
+  # Mail messages
+  new_user_subject: "A(z) %{site_name} üdvözöl Téged"
+  hello: "Helló %{user_name}"
+  new_user: "Köszönjük, hogy felkerestél minket.  Ügyfélszolgálatunk megkapta üzeneted, válaszunkkal rövidesen jelentezünk."
+  account_generated: "Létrehoztunk egy felhasználói fiókot Neked. Bejelentkezéshez használd ezt a linket:"
+  above_this_line: "Kérjük, ügyelj rá, hogy válaszodat a vonal felett írd meg"
+  message_id: "Üzenet azonosítója"
+  message_response: "Kérdésedre a következő választ küldjük:"
+  view_online: "Tekintsd meg honlapunkon:"
+
+  # Admin notifications
+  notify_new_private: "Egy új privát kérdés érekezett erről a címről: %{user_name}:"
+  notify_new_public: "Egy új publikus kérdést fel %{user_name}:"
+  notify_new_reply: "Egy új ügyfélválaszt kaptunk %{user_name} felhasználótól:"
+  to_reply: 'Válaszolj erre az üzenetre közvetlenül, vagy online:'
+
+  # Notifications settings panel
+  notify_on_private: "E-mail küldése, ha privát kérdést kapunk egy ügyféltől"
+  notify_on_public: "E-mail küldése, ha egy ügyfél publikus kérdést tesz fel"
+  notify_on_reply: "E-mail küldése, ha új válasz érkezik egy privát beszélgetésre"
+
+  # settings
+  agent_settings: "Ügynök Beállítások"
+  notifications: "Értesítések"
+  settings: "Rendszer Beállítások"
+  general: "Általános"
+  design: "Dizájn"
+  international: "Nemzetközi"
+  widget: "Beágyazható Widget"
+
+  # API Key Managmeent
+  api_keys: "API Kulcsok"
+  key_name: "Kulcs Neve"
+  token: "Token"
+  add_key: "Új Kulcs Hozzáadása"
+  expire_token: "Járjon Le a Token"
+  expired: "Lejárt"
+  expire_confirm: "Kérjük, erősítsd meg, hogy tényleg azt szeretnéd, lejárjon ez a token."
+  spec_note: "Olvashatsz az interaktív API-ról, valamint ki is próbálhatod a következő címen: "
+
+  # Insights
+  team_insights: "Áttekintés: %{site_name}"
+  filter_by_date: "Szűrés dátumra"
+  today: "Ma"
+  yesterday: "Tegnap"
+  this_week: "Ezen a héten"
+  last_week: "Előző héten"
+  this_month: "Ebben a hónapban"
+  date_range: "Dátumtartomány"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> a felhasználók egy új beszélgetést kezdtek"
+    other: "<strong>%{period}</strong> a felhasználók <strong>%{count} új beszélgetést kezdtek</strong>"
+  insights_blurb_two: "melyből munkatársaid <strong>%{number_replied} (%{percentage_replied}) kérdést megválaszoltak</strong>"
+  insights_blurb_three: "a válaszidő mediánja <strong>%{response_time}</strong> volt"
+  no_discussions: "Nincs új beszélgetés erre az időszakra: <strong>%{period}</strong>"
+  assigned_topics: "Hozzárendelt Témák"
+  responded: "Megválaszolt"
+  closed: "Lezárt"
+  replies: "Válaszok"
+  median_time: "Az első válasz idejének mediánja"
+
+
+
+  activerecord:
+    attributes:
+      user:
+        email: E-mail
+        password: Jelszó
+        name: Név
+        company: Cég
+        work_phone: Munka
+        cell_phone: Mobil
+        city: Város
+        state: Megye
+        signature: Aláírás
+      topic:
+        name: Kérdés
+      post:
+        kind: Fajtája
+      category:
+        name: Név
+        icon: Ikon
+        keywords: Kulcsszavak
+        title_tag: Cím Cimkéi
+        meta_description: Magyarázó Leírás
+        front_page: Kezdő Lap
+        active: Aktív
+      doc:
+        title: Cím
+        meta_description: Magyarázó Leírás
+        title_tag: Cím Cimkéi
+        keywords: Kulcsszavak
+        category_id: Kategória
+        active: Státusz
+        front_page: Szerepeljen a kezőlapon?
+      forum:
+        name: Név
+        description: Leírás
+        private: Privát
+        layout: Elrendezés
+        allow_topic_voting: Lehessen témára szavazni?
+        allow_post_voting: Lehessen bejegyzésre szavazni?
+
+    helpers:
+      submit:
+        topic:
+          create: Új Beszélgetés Indítása
+        post:
+          create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    locales:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+  helpers:
+    actions: "Műveletek"
+    links:
+      back: "Vissza"
+      cancel: "Mégse"
+      confirm: "Biztos vagy benne?"
+      destroy: "Törlés"
+      new: "Új"
+      edit: "Szerkesztés"
+    titles:
+      edit: "%{model} szerkesztése"
+      save: "%{model} mentése"
+      new: "Új %{model}"
+      delete: "%{model} törlése"

@@ -85,4 +85,12 @@ def set_default_settings
   AppSettings['cloudinary.api_key'] = ''
   AppSettings['cloudinary.api_secret'] = ''
   AppSettings['theme.active'] = 'helpy'
+
+  # assign all agents to receive notifications
+  User.agents.each do |a|
+    a.settings.notify_on_private = "1"
+    a.settings.notify_on_public = "1"
+    a.settings.notify_on_reply = "1"
+  end
+
 end
