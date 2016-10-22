@@ -158,7 +158,7 @@ class TopicsController < ApplicationController
         :screenshots => params[:topic][:screenshots])
 
       if built_user == true && !user_signed_in?
-        UserMailer.new_user(@user, @token).deliver_later
+        UserMailer.new_user(@user.id, @token).deliver_later
       end
 
       # track event in GA
