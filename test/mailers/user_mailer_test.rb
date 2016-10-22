@@ -9,7 +9,7 @@ class TopicMailerTest < ActionMailer::TestCase
   test 'No mail sent if setting disabled' do
     AppSettings['settings.welcome_email'] = false
     user = users(:user)
-    email = UserMailer.new_user(user, 'token')
+    email = UserMailer.new_user(user.id, 'token')
 
     assert_emails 0 do
       email.deliver_now
