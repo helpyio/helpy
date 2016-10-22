@@ -4,6 +4,8 @@ class Admin::DashboardController < Admin::BaseController
   skip_before_action :verify_agent
   before_action :date_from_params, only: :stats
   before_action :verify_admin, only: :stats
+  before_action :get_all_teams
+
 
   # Routes to different views depending on role of user
   def index

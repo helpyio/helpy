@@ -4,6 +4,8 @@ class Admin::SearchController < Admin::BaseController
   before_action :fetch_counts
   before_action :pipeline
   before_action :remote_search
+  before_action :get_all_teams
+
   respond_to :html, :js
 
   # simple search tickets by # and user
