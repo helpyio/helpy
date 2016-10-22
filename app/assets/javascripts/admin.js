@@ -110,6 +110,8 @@ Helpy.admin = function(){
     }
   });
 
+  // Start logging history from first pageload
+  Helpy.logHistory();
 };
 
 Helpy.showPanel = function(panel) {
@@ -135,6 +137,20 @@ Helpy.showGrid = function() {
 
   $('h2#setting-header').text('Settings');
 
+};
+
+// Enables correct URL in browser, history
+Helpy.logHistory = function() {
+  $('a').on('click', function(){
+    var url = $(this).attr('href');
+    console.log("Clicked: " + url);
+    history.pushState(null, '', url);
+  });
+
+  $(window).off().on("popstate", function(){
+    console.log("Popstate fired: " + location.href);
+    $.getScript(location.href);
+  });
 };
 
 $(document).on('page:change', Helpy.admin);
