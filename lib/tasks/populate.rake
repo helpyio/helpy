@@ -44,7 +44,7 @@ namespace :db do
       zip: user['location']['postcode'],
       work_phone: user['phone'],
       cell_phone: user['cell'],
-      thumbnail: user['picture']['thumbnail'],
+      thumbnail: user['picture']['large'],
       medium_image: user['picture']['medium'],
       large_image: user['picture']['large'],
       team_list: groups[index][1]
@@ -75,7 +75,7 @@ namespace :db do
       zip: user['location']['postcode'],
       work_phone: user['phone'],
       cell_phone: user['cell'],
-      thumbnail: user['picture']['thumbnail'],
+      thumbnail: user['picture']['large'],
       medium_image: user['picture']['medium'],
       large_image: user['picture']['large'],
     )
