@@ -30,6 +30,9 @@ AppSettings.defaults["css.top_bar"] = "3cceff"
 AppSettings.defaults["css.link_color"] = "004084"
 AppSettings.defaults["css.form_background"] = "F0FFF0"
 AppSettings.defaults["css.still_need_help"] = "ffdf91"
+AppSettings.defaults["css.main_color"] = ""
+AppSettings.defaults["css.accent_color"] = ""
+AppSettings.defaults["css.form_color"] = ""
 
 # Theme:
 
