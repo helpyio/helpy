@@ -9,7 +9,7 @@ class FlagsControllerTest < ActionController::TestCase
     sign_in users(:user)
 
     assert_difference 'Flag.count', 1, 'A flag should have been created' do
-      xhr :post, :create, topic_id: 4, flag: { reason: 'test' }, locale: :en
+      xhr :post, :create, post_id: 7, flag: { reason: 'test' }, locale: :en
     end
   end
 
@@ -17,7 +17,7 @@ class FlagsControllerTest < ActionController::TestCase
     sign_in users(:user)
 
     assert_difference "Topic.where('name like ?', 'Flagged%').count", 1, 'A new topic should be created' do 
-      xhr :post, :create, topic_id: 4, flag: { reason: 'test' }, locale: :en
+      xhr :post, :create, post_id: 7, flag: { reason: 'test' }, locale: :en
     end
   end
 end
