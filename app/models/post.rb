@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true
   has_many :votes, :as => :voteable
-  has_attachments :screenshots, accept: [:jpg, :png, :gif, :pdf]
+  has_attachments :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
   validates :body, presence: true, length: { maximum: 10_000 }
   validates :kind, presence: true
