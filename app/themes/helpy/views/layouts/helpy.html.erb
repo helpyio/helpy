@@ -65,7 +65,6 @@
 	</div>
 </div>
 <%= "<script src='/assets/widget.v1.js'></script>".html_safe if AppSettings['widget.show_on_support_site'] == '1' %>
-
-<%= "<script>\n#{AppSettings['design.footer_js']}\n</script>".html_safe %>
+<%= "#{AppSettings['design.footer_js']}".html_safe %>
 </body>
 </html>

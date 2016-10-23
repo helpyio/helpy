@@ -109,7 +109,7 @@
             <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
           <% end %>
           <%= f.text_area 'design.css', value: AppSettings['design.css'], label: "Custom CSS Styles", rows: 10, class: 'css-editor' %>
-          <%= f.text_area 'design.head_js', value: AppSettings['design.head_js'], label: "Head Javascript", rows: 10, class: 'css-editor' %>
+          <%= f.text_area 'design.header_js', value: AppSettings['design.header_js'], label: "Head Javascript", rows: 10, class: 'css-editor' %>
           <%= f.text_area 'design.footer_js', value: AppSettings['design.footer_js'], label: "Footer Javascript", rows: 10, class: 'css-editor' %>
       </div>
       <div class="settings-section theme hidden">
