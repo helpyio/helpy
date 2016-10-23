@@ -110,6 +110,20 @@ Helpy.admin = function(){
     }
   });
 
+  $('.settings-uploader').off().on('change', function(){
+    var $this = $(this);
+    var f = $this.val().split("\\");
+    var filename = f[f.length-1];
+    $('.hidden-header-logo').val(filename);
+  });
+
+  $('.favicon-uploader').off().on('change', function(){
+    var $this = $(this);
+    var f = $this.val().split("\\");
+    var filename = f[f.length-1];
+    $('.hidden-favicon').val(filename);
+  });
+
   // Start logging history from first pageload
   Helpy.logHistory();
 };
