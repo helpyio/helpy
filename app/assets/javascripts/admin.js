@@ -112,6 +112,13 @@ Helpy.admin = function(){
 
   // Start logging history from first pageload
   Helpy.logHistory();
+
+  $('.input-group.date').datepicker({
+    format: "yyyy-mm-dd",
+    orientation: "auto left",
+    autoclose: true,
+    todayHighlight: true
+  });
 };
 
 Helpy.showPanel = function(panel) {
