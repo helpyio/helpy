@@ -5,8 +5,9 @@
 		<%= render partial: 'layouts/head' %>
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css">
 		<%= css_injector %>
+		<%= "#{AppSettings['design.header_js']}".html_safe %>
 	</head>
-<body>
+<body class="<%#= (request.fullpath.gsub("/#{I18n.locale}/","").gsub("/","-")) %><%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
 	<script>
 	  ga('set', 'location', location.href.split('#')[0]);
 	  ga('send', 'pageview', { "title": document.title });
@@ -109,6 +110,7 @@ $('ul.nav').off().on('click', function(){
  $.sidr('close', 'nav');
 });
 </script>
+<%= "#{AppSettings['design.footer_js']}".html_safe %>
 
 
 </body>
