@@ -1,13 +1,13 @@
 class TopicMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 
-  def new_ticket(topic)
-    @topic = topic
-    email_with_name = %("#{topic.user.name}" <#{topic.user.email}>)
+  def new_ticket(topic_id)
+    @topic = Topic.find(topic_id)
+    email_with_name = %("#{@topic.user.name}" <#{@topic.user.email}>)
     mail(
       to: email_with_name,
       from: %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>),
-      subject: "[#{AppSettings['settings.site_name']}] ##{topic.id}-#{topic.name}"
+      subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end
 

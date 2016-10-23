@@ -71,6 +71,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -455,7 +457,6 @@ GEM
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
-    ruser (3.0.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -576,6 +577,7 @@ DEPENDENCIES
   attachinary
   awesome_print
   better_errors
+  bootstrap-datepicker-rails
   bootstrap-sass
   bootstrap-switch-rails
   bootstrap_form
@@ -654,7 +656,6 @@ DEPENDENCIES
   recaptcha
   route_translator
   rubocop
-  ruser (~> 3.0)
   sass-rails (~> 5.0)
   scss-lint
   sdoc (~> 0.4.0)
@@ -681,4 +682,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.13.1
+   1.13.3

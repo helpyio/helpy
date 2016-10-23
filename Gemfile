@@ -95,6 +95,7 @@ gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 gem 'selectize-rails'
 gem "bootstrap-switch-rails"
+gem 'bootstrap-datepicker-rails'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
@@ -123,10 +124,8 @@ gem 'devise_invitable', '~> 1.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Faker is used for the populate script to create demo data
 gem 'faker'
-
-# RandomUser.me API
-gem 'ruser', '~> 3.0'
 
 gem 'timecop' #used to populate
 

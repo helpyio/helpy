@@ -245,4 +245,34 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'something', u.team_list.first
   end
 
+  test "notifiable_on_private should return private scope" do
+    User.agents.each do |a|
+      a.settings.notify_on_private = "1"
+    end
+
+    assert_equal 3, User.notifiable_on_private.count, "Should return the number of notifiable users"
+    User.agents.last.settings.notify_on_private = "0"
+    assert_equal 2, User.notifiable_on_private.count, "Should return one less notifiable users"
+  end
+
+  test "notifiable_on_public should return public scope" do
+    User.agents.each do |a|
+      a.settings.notify_on_public = "1"
+    end
+
+    assert_equal 3, User.notifiable_on_public.count, "Should return the number of notifiable users"
+    User.agents.last.settings.notify_on_public = "0"
+    assert_equal 2, User.notifiable_on_public.count, "Should return one less notifiable users"
+  end
+
+  test "notifiable_on_reply should return reply scope" do
+    User.agents.each do |a|
+      a.settings.notify_on_reply = "1"
+    end
+
+    assert_equal 3, User.notifiable_on_reply.count, "Should return the number of notifiable users"
+    User.agents.last.settings.notify_on_reply = "0"
+    assert_equal 2, User.notifiable_on_reply.count, "Should return one less notifiable users"
+  end
+
 end

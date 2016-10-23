@@ -205,7 +205,7 @@ en:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
-  convert_content: 'Turn post into content'
+  convert_content: 'Save as an article or common reply'
   upload_image: 'Upload Image'
 
   # Communities
@@ -264,6 +264,7 @@ en:
   this_week: "This week"
   last_week: "Last week"
   this_month: "This month"
+  last_month: "Last month"
   date_range: "Date Range"
   insights_blurb_one:
     one: "<strong>%{period}</strong> your users started 1 new conversation"
