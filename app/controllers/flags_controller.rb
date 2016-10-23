@@ -1,12 +1,13 @@
 class FlagsController < ApplicationController
   def create
-    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:post_id])
+    @topic = Topic.find(@post.topic_id)
     @forum = Forum.isprivate.first
     @reason = params[:flag][:reason]
     @user = current_user
     
     @flag = Flag.new(
-          post_id: @topic.id,
+          post_id: @post.id,
           reason: @reason
           )
 
@@ -26,7 +27,7 @@ class FlagsController < ApplicationController
 
         @flag.update_attribute(:generated_topic_id, @topics.id)
 
-        redirect_to topic_posts_path(@topic)
+        redirect_to posts_path(@post)
         flash[:success] = "This post has now been flagged."
       end
     end

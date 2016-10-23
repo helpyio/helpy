@@ -48,9 +48,10 @@ Rails.application.routes.draw do
     end
     resources :topics do
       resources :posts 
+    end
+    resources :posts do 
       resources :flags, only: [:create]
     end
-    resources :posts
 
     post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }

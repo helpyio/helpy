@@ -18,7 +18,6 @@
 		<div id="posts">
 			<%= render :partial => 'post', :collection => @posts %>
 		</div>
-        	<%= render :partial => 'flag' %>
 		<%
 		# NOTE: this is a bit of confusing logic- basically if the forum does not
 		# allow reply (post) voting, the form should be shown beneath all posts.
@@ -48,23 +47,3 @@
 	</div>
 
 </div>
-
-<div id="flag-modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Flag Post for Review</h3>
-      </div>
-
-      <div class="modal-body row">
-        <div class="col-md-12">
-        <%= bootstrap_form_for :flag, :url => topic_flags_path(@topic) do |f| -%>
-          <%= f.text_field :reason -%>
-          <%= f.submit 'Flag', class: 'btn btn-warning' -%>
-        <% end -%>
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog --> 
-</div><!-- /.modal --> 
