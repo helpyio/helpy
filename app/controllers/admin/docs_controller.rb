@@ -35,10 +35,21 @@ class Admin::DocsController < Admin::BaseController
     @category = @doc.category
     # @doc.tag_list = params[:doc][:tag_list]
     if @doc.update_attributes(doc_params)
-      redirect_to(admin_category_path(@category.id))
+      respond_to do |format|
+        format.html {
+          redirect_to(admin_category_path(@category.id))
+        }
+        format.js {
+        }
+      end
     else
-      render 'edit', id: @doc
+      respond_to do |format|
+        format.html {
+          render 'edit', id: @doc
+        }
+      end
     end
+
   end
 
   def destroy
@@ -63,7 +74,6 @@ class Admin::DocsController < Admin::BaseController
     :rank,
     :active,
     :front_page,
-    :user_id,
     :allow_comments,
     {screenshots: []},
     :tag_list

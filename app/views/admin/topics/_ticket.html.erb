@@ -20,13 +20,12 @@
     <%= render :partial => 'admin/topics/post', :collection => @posts %>
     </div>
 
-
     <div class="add-form">
       <h4><%= t(:reply_to_this_topic, default: 'Reply to this Topic') %>:</h4>
 
       <%#= error_messages_for :post -%>
 
-      <%= bootstrap_form_for @topic.posts.new, url: admin_topic_posts_path(@topic), remote: true do |f| %>
+      <%= bootstrap_form_for @topic.posts.new, url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
 
         <%= f.form_group :kind  do %>
@@ -40,8 +39,8 @@
         <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
         <%= f.select_tag 'post[reply_id]', grouped_options_for_select(i18n_reply_grouped_options, nil, prompt: ''), class: 'form-control', id: 'post_reply_id' %>
         <br/>
-        <%= f.attachinary_file_field :screenshots unless Cloudinary.config.cloud_name.nil? %>
-
+        <%= f.attachinary_file_field :screenshots if cloudinary_enabled? %>
+        <%= f.file_field :attachments, multiple: true unless cloudinary_enabled? %>
         <%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: true -%>
         <%= f.check_box :resolved, label: t(:mark_as_resolved, default: "Mark as resolved"), inline: true unless @topic.current_status == 'closed' %>
       <% end -%>

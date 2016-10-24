@@ -1,7 +1,7 @@
 <% title "#{admin_title} #{t(:new_content, default: 'New Content')}" %>
 
 <div class="row">
-  <%= simple_form_for([:admin, @doc], validate: true) do |f| %>
+  <%= simple_form_for([:admin, @doc], validate: true, multipart: true ) do |f| %>
   <div class="col-md-12">
     <h2 class="form-subhead"><%= t(:new_content, default: 'New Content') %></h2>
       <%= render 'shared/error_messages', object: f.object %>

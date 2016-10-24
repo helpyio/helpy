@@ -143,6 +143,41 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
+  # A user who is signed in should be able to create a new private or public topic and attach a file
+  test 'a signed in user should be able to create a new private topic and attach a file' do
+    sign_in users(:user)
+
+    get :new, locale: :en
+    assert_response :success
+
+    assert_difference 'Topic.count', 1, 'A topic should have been created' do
+      assert_difference 'Post.count', 1, 'A post should have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a user',
+              email: 'anon@test.com'
+              },
+            name: 'some new public topic',
+            body: 'some body text',
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body",
+              attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+              }
+            }
+          },
+          locale: :en
+      end
+    end
+
+    assert_equal "logo.png", Post.last.attachments.first.file.file.split("/").last
+    assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
+  end
+
+
   # A user who is registered, but not signed in currently should be able to create a new private
   # or public topic
   test 'an unsigned in user with an account should be able to create a new private topic' do
@@ -234,11 +269,29 @@ class TopicsControllerTest < ActionController::TestCase
     get :new, locale: :en
     assert_response :success
 
-    assert_difference 'Topic.count', 1, "A topic should not have been created" do
-      post :create, topic: {name: "some new private topic", body: "some body text", forum_id: 1, private: true}, post: {body: 'this is the body'}, locale: :en
-    end
-    assert_difference 'Post.count', 1, "A post should not have been created" do
-      post :create, topic: { user: {name: 'a user', email: 'anon@test.com'}, name: "some new public topic", body: "some body text", forum_id: 1, private: true}, post: {body: 'this is the body'}, locale: :en
+    assert_difference 'Topic.count', 1, "A topic should have been created" do
+      assert_difference 'Post.count', 1, "A post should have been created" do
+
+        # TODO: refactor this into a method and DRY up tests
+
+        post :create,
+          topic: {
+            user: {
+              name: 'a user',
+              email: 'anon@test.com'
+            },
+            name: "some new public topic",
+            body: "some body text",
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+                body: "this is the body"
+              }
+            }
+          },
+          locale: :en
+      end
     end
 
     assert_redirected_to topic_thanks_path, "Did not redirect to thanks view"
@@ -253,13 +306,29 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_difference 'Topic.count', 1, "A topic should have been created" do
-      post :create, topic: {name: "some new private topic", body: "some body text", forum_id: 4, private: false}, post: {body: 'this is the body'}, locale: :en
-    end
-    assert_difference 'Post.count', 1, "A post should have been created" do
-      post :create, topic: { user: {name: 'a user', email: 'anon@test.com'}, name: "some new public topic", body: "some body text", forum_id: 4, private: true}, post: {body: 'this is the body'}, locale: :en
+      assert_difference 'Post.count', 1, "A post should have been created" do
+        post :create,
+          topic: {
+            user: {
+              name: 'a user',
+              email: 'anon@test.com'
+            },
+            name: "some new public topic",
+            body: "some body text",
+            forum_id: 4,
+            private: false,
+            posts_attributes: {
+              :"0" => {
+                body: "this is the body"
+              }
+            }
+          },
+          locale: :en
+      end
     end
 
-    assert_redirected_to topic_thanks_path, "Did not redirect to thanks view"
+
+    assert_redirected_to topic_posts_path(Topic.last), "Did not redirect to forum topic view"
   end
 
   test "a signed in user should not be able to create a new private or public topic if tickets and forums are not enabled" do
@@ -271,6 +340,5 @@ class TopicsControllerTest < ActionController::TestCase
       get :new, locale: :en
     end
   end
-
 
 end

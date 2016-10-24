@@ -168,6 +168,18 @@ class Topic < ActiveRecord::Base
     forum_id >= 3 && !private?
   end
 
+  def self.create_comment_thread(doc_id, user_id)
+    @doc = Doc.find(doc_id)
+    @user = User.find(user_id)
+    Topic.create!(
+      name: "Discussion on #{@doc.title}",
+      private: false,
+      forum_id: Forum.for_docs.first.id,
+      user_id: @user.id,
+      doc_id: @doc.id
+    )
+  end
+
   private
 
   def cache_user_name

@@ -83,9 +83,16 @@ gem 'globalize-accessors'
 
 gem 'gravtastic'
 
+# File handling
 gem 'cloudinary', '1.1.2'
 gem 'attachinary'
+# TODO NOTE Carrierwave currently requires master to use multiple files functionality
+# This should be changed as soon as a stable branch is available
+gem 'carrierwave', git: 'https://github.com/carrierwaveuploader/carrierwave'
+gem "jquery-fileupload-rails"
+gem 'mini_magick'
 
+# Bootstrap/UI Gems
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
@@ -99,6 +106,7 @@ gem 'bootstrap-datepicker-rails'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
+# Email/Mail Handling
 gem 'daemons'
 gem 'mailman'#, require: false
 gem 'mail_extract'

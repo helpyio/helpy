@@ -124,7 +124,9 @@ class Admin::TopicsController < Admin::BaseController
           :body => params[:topic][:post][:body],
           :user_id => @user.id,
           :kind => 'first',
-          :screenshots => params[:topic][:screenshots])
+          :screenshots => params[:topic][:screenshots],
+          :attachments => params[:topic][:post][:attachments]
+        )
 
         # Send email
         UserMailer.new_user(@user.id, @token).deliver_later
@@ -134,6 +136,10 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
+          @topics = Topic.recent.page params[:page]
+          render action: 'index'
+        }
+        format.html {
           @topics = Topic.recent.page params[:page]
           render action: 'index'
         }
