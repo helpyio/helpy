@@ -9,7 +9,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_private = "0"
     end
 
-    notification = NotificationMailer.new_private(Topic.last)
+    notification = NotificationMailer.new_private(Topic.last.id)
 
     assert_emails 0 do
       notification.deliver_now
@@ -21,7 +21,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_private = "1"
     end
 
-    notification = NotificationMailer.new_private(Topic.last)
+    notification = NotificationMailer.new_private(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now
@@ -36,7 +36,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_public = "0"
     end
 
-    notification = NotificationMailer.new_public(Topic.last)
+    notification = NotificationMailer.new_public(Topic.last.id)
     assert_emails 0 do
       notification.deliver_now
     end
@@ -47,7 +47,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_public = "1"
     end
 
-    notification = NotificationMailer.new_public(Topic.last)
+    notification = NotificationMailer.new_public(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now
@@ -62,7 +62,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_reply = "0"
     end
 
-    notification = NotificationMailer.new_reply(Topic.last)
+    notification = NotificationMailer.new_reply(Topic.last.id)
     assert_emails 0 do
       notification.deliver_now
     end
@@ -73,7 +73,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_reply = "1"
     end
 
-    notification = NotificationMailer.new_reply(Topic.last)
+    notification = NotificationMailer.new_reply(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now
@@ -90,7 +90,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_public = "1"
     end
 
-    notification = NotificationMailer.new_public(Topic.last)
+    notification = NotificationMailer.new_public(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now
@@ -105,7 +105,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       a.settings.notify_on_reply = "1"
     end
 
-    notification = NotificationMailer.new_reply(Topic.last)
+    notification = NotificationMailer.new_reply(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now
@@ -123,7 +123,7 @@ class NotificationMailerTest < ActionMailer::TestCase
     end
     User.agents.first.settings.notify_on_private = "1"
 
-    notification = NotificationMailer.new_private(Topic.last)
+    notification = NotificationMailer.new_private(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now
@@ -139,7 +139,7 @@ class NotificationMailerTest < ActionMailer::TestCase
     end
     User.agents.first.settings.notify_on_public = "1"
 
-    notification = NotificationMailer.new_public(Topic.last)
+    notification = NotificationMailer.new_public(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now
@@ -155,7 +155,7 @@ class NotificationMailerTest < ActionMailer::TestCase
     end
     User.agents.first.settings.notify_on_reply = "1"
 
-    notification = NotificationMailer.new_reply(Topic.last)
+    notification = NotificationMailer.new_reply(Topic.last.id)
 
     assert_emails 1 do
       notification.deliver_now

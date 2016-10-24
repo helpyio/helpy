@@ -82,4 +82,12 @@
 <div class="text-center">
   <%= paginate @topics, remote: true %>
 </div>
+<% else %>
+
+<div class="row">
+  <div class="col-md-12 text-center no-tickets">
+    <span><i class="fa fa-inbox"></i><br/><%= t('nothing_here')  %></span>
+  </div>
+</div>
+
 <% end %>

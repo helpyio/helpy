@@ -116,6 +116,7 @@ Helpy.ready = function(){
     $(this).closest('.has-arrow').addClass('over');
 
     var form = $("<form></form>");
+    var url = $(this).find('a').attr('href');
     form.attr(
     {
         id     : "formform",
@@ -128,6 +129,13 @@ Helpy.ready = function(){
     $("body").append(form);
     $("#formform").submit();
     $("#formform").remove();
+
+    // Ensure history is captured in the browser
+    history.pushState(null, '', url);
+    $(window).off().on("popstate", function(){
+      console.log("Popstate fired: " + location.href);
+      $.getScript(location.href);
+    });
 
     // Prevent the link from opening normally
     return false;

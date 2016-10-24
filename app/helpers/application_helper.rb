@@ -113,6 +113,14 @@ module ApplicationHelper
     styles.html_safe
   end
 
+  def theme_css
+    styles = "<style>\n"
+    styles += "   #top-bar, header {\n background-color: #{AppSettings['css.accent_color']};\n  }\n" unless AppSettings['css.accent_color'].blank?
+    styles += "   .flat-main-panel, #home-search, #page-title, h1, ul.breadcrumb {\n background-color: #{AppSettings['css.main_color']};\n  }\n" unless AppSettings['css.main_color'].blank?
+    styles += "\n</style>"
+    styles.html_safe #if AppSettings['design.css'] != ""
+  end
+
   def css_injector
     styles = "<style>\n"
     styles += "#{AppSettings['design.css']}"

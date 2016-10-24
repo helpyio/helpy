@@ -2,6 +2,14 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+
+    <script>
+    .list-inline {
+    	padding-left: 0;
+    	list-style: none;
+    }
+    </script>
+
   </head>
   <body <%= 'dir=rtl' if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(@topic.locale) %>>
   <p>
@@ -21,8 +29,9 @@
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @topic.posts.last } %>
   <p>
     <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
-  </p><br/>
-    <p>
+  </p>
+  <br/>
+  <p>
     <strong>Powered by Helpy</strong><br/>
     Get a Free Helpy Support System for your Site at http://helpy.io/
   </p>

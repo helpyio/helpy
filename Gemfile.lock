@@ -80,6 +80,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -589,6 +591,7 @@ DEPENDENCIES
   attachinary
   awesome_print
   better_errors
+  bootstrap-datepicker-rails
   bootstrap-sass
   bootstrap-switch-rails
   bootstrap_form
@@ -696,4 +699,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.13.1
+   1.13.3
