@@ -79,7 +79,7 @@ es:
 
   # footer
   powered_by: "Provisto por Helpy. Un software libre para soporte tecnico"
-  get_your_copy: "Obtén tu copia en Github"
+  get_your_copy: "Obtén tu copia en GitHub"
   version: "Versión:"
 
   # devise/sessions/new
@@ -214,6 +214,7 @@ es:
   layout_qna: Preguntas y respuestas
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hola %{user_name}"
   new_user: "Gracias por contactarnos. Tu mensaje ha sido recibido por nuestro equipo de soporte y pronto se pondrán en contacto."
   account_generated: "Se te ha creado una cuenta. Para iniciar sesión, usa el siguiente enlace:"

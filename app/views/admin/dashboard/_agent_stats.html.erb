@@ -11,6 +11,9 @@
         <small><%= agent_stats.assigned_user.try(:role).titleize %></small>
       </h4>
     </div>
+    <div class="tag-list">
+      <% tag_listing(agent_stats.assigned_user.team_list, "user") %>
+    </div>
   </div>
 
   <div class="agent-assigned-count agent-stat">

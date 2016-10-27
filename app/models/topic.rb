@@ -37,7 +37,7 @@ class Topic < ActiveRecord::Base
   accepts_nested_attributes_for :posts
 
   has_many :votes, :as => :voteable
-  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf]
+  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
   paginates_per 25
 
@@ -76,6 +76,7 @@ class Topic < ActiveRecord::Base
   before_create :add_locale
 
   # acts_as_taggable
+  acts_as_taggable_on :teams
 
   validates :name, presence: true, length: { maximum: 255 }
 
@@ -165,6 +166,18 @@ class Topic < ActiveRecord::Base
   def public?
     # Note: We assume forum_ids 1,2,3 are seed data
     forum_id >= 3 && !private?
+  end
+
+  def self.create_comment_thread(doc_id, user_id)
+    @doc = Doc.find(doc_id)
+    @user = User.find(user_id)
+    Topic.create!(
+      name: "Discussion on #{@doc.title}",
+      private: false,
+      forum_id: Forum.for_docs.first.id,
+      user_id: @user.id,
+      doc_id: @doc.id
+    )
   end
 
   private

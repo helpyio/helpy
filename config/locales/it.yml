@@ -24,10 +24,10 @@ it:
   change_your_locale: "Cambiare lingua"
 
   # Voting widget
-  did_this_help: "Queste informazioni sono state utili??"
+  did_this_help: "Queste informazioni sono state utili?"
   yes_button: "Sì"
   no_button: "No"
-  yes_helped: 'Great!! Thanks for the feedback!'
+  yes_helped: 'Great! Thanks for the feedback!'
   no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -79,7 +79,7 @@ it:
 
   # footer
   powered_by: "Grazie a Helpy."
-  get_your_copy: "Visualizza Helpy su Github"
+  get_your_copy: "Visualizza Helpy su GitHub"
   version: "Version:"
 
   # devise/sessions/new
@@ -214,6 +214,7 @@ it:
   layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
   new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   account_generated: "An account has been generated for you. To sign in, please use this link:"

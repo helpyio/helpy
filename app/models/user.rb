@@ -52,6 +52,7 @@
 #  invitations_count      :integer          default(0)
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
+#  profile_image          :string
 #
 
 class User < ActiveRecord::Base
@@ -66,13 +67,14 @@ class User < ActiveRecord::Base
 
   TEMP_EMAIL_PREFIX = 'change@me'
 
+  attr_accessor :opt_in
+
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
-  attr_accessor :opt_in
-
 
   include Gravtastic
+  mount_uploader :profile_image, ProfileImageUploader
 
   include PgSearch
   pg_search_scope :user_search,
@@ -92,6 +94,7 @@ class User < ActiveRecord::Base
 
   after_invitation_accepted :set_role_on_invitation_accept
   after_create :enable_notifications_for_agents
+  acts_as_taggable_on :teams
 
   ROLES = %w[admin agent editor user]
 
@@ -120,8 +123,27 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.notifiable_on_public
+    # Iterates through agents, selecting those with notifications on
+    User.agents.order('id asc').map { |a| a.settings.notify_on_public == "1" ? a.email : '' }.select {|x| x.present?}
+  end
+
+  def self.notifiable_on_private
+    # Iterates through agents, selecting those with notifications on
+    User.agents.order('id asc').map { |a| a.settings.notify_on_private == "1" ? a.email : '' }.select {|x| x.present?}
+  end
+
+  def self.notifiable_on_reply
+    # Iterates through agents, selecting those with notifications on
+    User.agents.order('id asc').map { |a| a.settings.notify_on_reply == "1" ? a.email : '' }.select {|x| x.present?}
+  end
+
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
+  end
+
+  def is_restricted?
+    self.team_list.count > 0 && !self.is_admin?
   end
 
   def self.create_password

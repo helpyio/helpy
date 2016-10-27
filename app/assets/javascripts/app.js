@@ -3,9 +3,16 @@
 var Helpy = Helpy || {};
 
 Helpy.ready = function(){
+
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
+
+  $('.uploader').fileupload({
+    dataType: 'script',
+    singleFileUploads: false
+  });
+
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
 
   // make sure dropdowns close after click of link
@@ -109,6 +116,7 @@ Helpy.ready = function(){
     $(this).closest('.has-arrow').addClass('over');
 
     var form = $("<form></form>");
+    var url = $(this).find('a').attr('href');
     form.attr(
     {
         id     : "formform",
@@ -121,6 +129,13 @@ Helpy.ready = function(){
     $("body").append(form);
     $("#formform").submit();
     $("#formform").remove();
+
+    // Ensure history is captured in the browser
+    history.pushState(null, '', url);
+    $(window).off().on("popstate", function(){
+      console.log("Popstate fired: " + location.href);
+      $.getScript(location.href);
+    });
 
     // Prevent the link from opening normally
     return false;
@@ -149,11 +164,14 @@ Helpy.ready = function(){
   $('#topic_private_true').click(function(){
     $("#topic_forum_id").parent().hide();
     $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>");
+    Helpy.showGroup();
   });
   $('#topic_private_false').click(function(){
     $("#topic_forum_id").parent().show();
     $("#new_topic_forum_id").remove();
+    Helpy.showGroup();
   });
+
 
   // Hide/replace last child of breadcrumbs since I don't have time to hack gem right now
   $("ul.breadcrumb li:last-child").html("");
@@ -181,9 +199,18 @@ Helpy.ready = function(){
     $thread.hide().last().show();
   }
 
-  // Use common reply
+  // Use or append common reply
   $('#post_reply_id').on('change', function(){
-    $('#post_body').val($('#post_reply_id option:selected').val());
+    var post_body = $('#post_body');
+    var common_reply = $('#post_reply_id option:selected');
+
+    // append new line if some text already exists
+    if( post_body.val() && common_reply.val() ) {
+      post_body.val(post_body.val() + "\n\n");
+    }
+
+    // add content of selected reply
+    post_body.val( post_body.val() + common_reply.val() );
     $('.disableable').attr('disabled', false);
   });
 
@@ -348,6 +375,16 @@ Helpy.didthisHelp = function(yesno){
 
   $('#did-this-help').html(message);
   return true;
+};
+
+Helpy.showGroup = function() {
+  if ($('#topic_private_true').is(':checked')) {
+    $('#topic_team_list').parent().removeClass('hidden');
+  } else if ($('#topic_private_false').is(':checked')) {
+    $('#topic_team_list').parent().addClass('hidden');
+  } else {
+    $('#topic_team_list').parent().removeClass('hidden');
+  }
 };
 
 $(document).ready(Helpy.ready);

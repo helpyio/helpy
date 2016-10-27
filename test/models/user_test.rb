@@ -52,6 +52,7 @@
 #  invitations_count      :integer          default(0)
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
+#  profile_image          :string
 #
 
 require 'test_helper'
@@ -231,7 +232,48 @@ class UserTest < ActiveSupport::TestCase
     assert_equal nil, u.settings.notify_on_private, "Should not be enabled for private notifications"
     assert_equal nil, u.settings.notify_on_public, "Should not be enabled for public notifications"
     assert_equal nil, u.settings.notify_on_reply, "Should not be enabled for reply notifications"
+  end
 
+  test "Should be able to assign an agent to a group" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: 'test agent',
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'something', u.team_list.first
+  end
+
+  test "notifiable_on_private should return private scope" do
+    User.agents.each do |a|
+      a.settings.notify_on_private = "1"
+    end
+
+    assert_equal 3, User.notifiable_on_private.count, "Should return the number of notifiable users"
+    User.agents.last.settings.notify_on_private = "0"
+    assert_equal 2, User.notifiable_on_private.count, "Should return one less notifiable users"
+  end
+
+  test "notifiable_on_public should return public scope" do
+    User.agents.each do |a|
+      a.settings.notify_on_public = "1"
+    end
+
+    assert_equal 3, User.notifiable_on_public.count, "Should return the number of notifiable users"
+    User.agents.last.settings.notify_on_public = "0"
+    assert_equal 2, User.notifiable_on_public.count, "Should return one less notifiable users"
+  end
+
+  test "notifiable_on_reply should return reply scope" do
+    User.agents.each do |a|
+      a.settings.notify_on_reply = "1"
+    end
+
+    assert_equal 3, User.notifiable_on_reply.count, "Should return the number of notifiable users"
+    User.agents.last.settings.notify_on_reply = "0"
+    assert_equal 2, User.notifiable_on_reply.count, "Should return one less notifiable users"
   end
 
 end

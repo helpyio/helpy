@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
     AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
   end
 
+  def cloudinary_enabled?
+    AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+  end
+  helper_method :cloudinary_enabled?
+
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
   # agent is next and admin has access to everything:
 
@@ -63,6 +68,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :rtl_locale?
 
+  def welcome_email?
+    AppSettings['settings.welcome_email'] == "1" || AppSettings['settings.welcome_email'] == true
+  end
+  helper_method :welcome_email?
+
   def forums?
     AppSettings['settings.forums'] == "1" || AppSettings['settings.forums'] == true
   end
@@ -77,6 +87,11 @@ class ApplicationController < ActionController::Base
     AppSettings['settings.tickets'] == "1" || AppSettings['settings.tickets'] == true
   end
   helper_method :tickets?
+
+  def teams?
+    AppSettings['settings.teams'] == "1" || AppSettings['settings.teams'] == true
+  end
+  helper_method :teams?
 
   def forums_enabled?
     raise ActionController::RoutingError.new('Not Found') unless forums?
@@ -145,16 +160,21 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_counts
-    @new = Topic.unread.count
-    @unread = Topic.unread.count
-    @pending = Topic.mine(current_user.id).pending.count
-    @open = Topic.open.count
-    @active = Topic.active.count
-    @mine = Topic.mine(current_user.id).count
-    @closed = Topic.closed.count
-    @spam = Topic.spam.count
-
-    @admins = User.agents
+    if current_user.is_restricted? && teams?
+      topics = Topic.tagged_with(current_user.team_list, :any => true)
+      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
+    else
+      topics = Topic.all
+      @admins = User.agents
+    end
+    @new = topics.unread.count
+    @unread = topics.unread.count
+    @pending = topics.mine(current_user.id).pending.count
+    @open = topics.open.count
+    @active = topics.active.count
+    @mine = topics.mine(current_user.id).count
+    @closed = topics.closed.count
+    @spam = topics.spam.count
   end
 
   def allow_iframe_requests
@@ -179,6 +199,11 @@ class ApplicationController < ActionController::Base
 
   def set_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
+  end
+
+  def get_all_teams
+    return unless teams?
+    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.name.capitalize }.uniq
   end
 
 end

@@ -75,4 +75,23 @@ class Admin::SearchControllerTest < ActionController::TestCase
       assert_response :success
     end
   end
+
+  test "an agent that is assigned to a group should only see search results from that group" do
+    sign_in users(:agent)
+
+    # Assign agent and topic to a group
+    agent = users(:agent)
+    agent.team_list = "test"
+    agent.save!
+    topic = topics(:private)
+    topic.team_list = "test"
+    topic.save!
+
+    get :topic_search, q: "private"
+    assert_not_nil assigns(:topics)
+    assert_equal 1, assigns(:topics).size
+    assert_equal "test", assigns(:topics).first.team_list[0]
+    assert_response :success
+  end
+
 end

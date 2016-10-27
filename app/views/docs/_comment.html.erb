@@ -40,7 +40,8 @@
 				<% end %>
 			</div>
 			<% end %>
-      <%= render :partial => 'posts/thumbnail', locals: { :model_name => comment } unless Cloudinary.config.cloud_name.nil? %>
+			<%= render partial: 'posts/thumbnail', locals: { :model_name => comment } %>
+			<%= render partial: 'posts/attachment', locals: { :model_name => comment } %>
 	  </div>
 
 	</div>

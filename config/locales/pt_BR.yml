@@ -83,7 +83,7 @@ pt-br:
 
   # footer
   powered_by: "Powered by Helpy. Um projeto de Helpdesk Open Source."
-  get_your_copy: "Garanta uma cópia pelo Github"
+  get_your_copy: "Garanta uma cópia pelo GitHub"
   version: "Versão:"
 
   # devise/sessions/new
@@ -237,6 +237,7 @@ pt-br:
   layout_qna: FAQ
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Olá %{user_name}"
   new_user: "Obrigado pelo seu contato. A sua mensagem foi recebida pela nossa equipe de suporte e iremos entrar em contato o mais rapidamente possível."
   account_generated: "Foi criada uma nova conta para voce. Para fazer login, use este link:"

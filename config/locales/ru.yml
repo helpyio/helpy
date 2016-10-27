@@ -27,7 +27,7 @@ ru:
   did_this_help: "Ваша проблема решена?"
   yes_button: 'Да'
   no_button: 'Нет'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -82,7 +82,7 @@ ru:
 
   # footer
   powered_by: "Создано с помощью Helpy. Сервис поддержки с открытым исходным кодом."
-  get_your_copy: "Получите свою копию на Github"
+  get_your_copy: "Получите свою копию на GitHub"
   # version: "Version:"
 
   # devise/sessions/new
@@ -222,6 +222,7 @@ ru:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Привет %{user_name}"
   new_user: "Благодарим Вас за обращение к нам. Ваше сообщение было получено нашей службой поддержки, и мы ответим Вам ближайшее время."
   account_generated: "Учетная запись была создана для вас. Чтобы войти в систему, пожалуйста, используйте эту ссылку:"

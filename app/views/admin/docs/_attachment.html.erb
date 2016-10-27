@@ -1,0 +1,20 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<% doc.attachments.each do |att| %>
+  <%= content_tag(:li, class: "#{att.file.extension}") do %>
+    <% if %w(png jpg jpeg gif).include?(att.file.extension) %>
+      <%= link_to image_tag(att, style: "width: 125px; height: 125px"), att.url, class: 'screenshot-link', target: 'blank' %>
+    <% else %>
+      <%= link_to att.url, title: att.url, target: 'blank' do %>
+        <%= content_tag(:i, '', class: attachment_icon(att.url)) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

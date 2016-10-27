@@ -144,4 +144,16 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal Topic.find(1).public?, false
     assert_equal Topic.find(4).public?, true
   end
+
+  test "Should be able to assign a topic to a group" do
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1, team_list: 'something')
+    assert_equal 'something', topic.team_list.first
+  end
+
+  test "Should create a comment thread" do
+    assert_difference 'Topic.count', +1 do
+      Topic.create_comment_thread(1, 1)
+    end
+  end
+
 end

@@ -13,7 +13,8 @@ AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
 AppSettings.defaults["settings.forums"] = Settings.forums
 AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
-
+AppSettings.defaults["settings.teams"] = Settings.teams
+AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
 
 # Design: (Colors etc.)
 
@@ -22,11 +23,16 @@ AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo
 # Note: the contributer accidentally reversed these in the code
 AppSettings.defaults["design.footer_mini_logo"] = Settings.app_large_logo
 AppSettings.defaults["design.css"] = ""
+AppSettings.defaults["design.header_js"] = ""
+AppSettings.defaults["design.footer_js"] = ""
 AppSettings.defaults["css.search_background"] = "feffe9"
 AppSettings.defaults["css.top_bar"] = "3cceff"
 AppSettings.defaults["css.link_color"] = "004084"
 AppSettings.defaults["css.form_background"] = "F0FFF0"
 AppSettings.defaults["css.still_need_help"] = "ffdf91"
+AppSettings.defaults["css.main_color"] = ""
+AppSettings.defaults["css.accent_color"] = ""
+AppSettings.defaults["css.form_color"] = ""
 
 # Theme:
 

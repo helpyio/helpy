@@ -1,2 +1,13 @@
 $('#user-info-horizontal').html("<%= j render partial: 'edit' %>");
-window.location.hash = 'edit_<%= @user.id %>';
+$('#topics').hide();
+
+// Send ping to GA
+ga('send', 'pageview');
+
+// jQuery hook
+Helpy.ready();
+Helpy.track();
+Helpy.logHistory();
+
+// RTL changes?
+<%= "Helpy.rtl();" if rtl? %>

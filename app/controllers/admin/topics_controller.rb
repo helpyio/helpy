@@ -30,13 +30,20 @@ class Admin::TopicsController < Admin::BaseController
   before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
   before_action :pipeline, :only => ['index', 'show', 'update_topic']
   before_action :remote_search, :only => ['index', 'show', 'update_topic']
+  before_action :get_all_teams
 
   respond_to :js, :html, only: :show
   respond_to :js
 
   def index
     @status = params[:status] || "pending"
-    topics_raw = Topic.includes(user: :avatar_files).chronologic
+    if current_user.is_restricted? && teams?
+      topics_raw = Topic.all.tagged_with(current_user.team_list, :any => true)
+    else
+      topics_raw = Topic
+    end
+    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
+    get_all_teams
     case @status
     when 'all'
       topics_raw = topics_raw.all
@@ -61,12 +68,13 @@ class Admin::TopicsController < Admin::BaseController
     @topic = Topic.where(id: params[:id]).first
 
     # REVIEW: Try not opening message on view unless assigned
+    check_current_user_is_allowed? @topic
     if @topic.current_status == 'new' && @topic.assigned?
       tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
       @topic.open
     end
+    get_all_teams
     @posts = @topic.posts.chronologic
-
     tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
   end
@@ -86,7 +94,9 @@ class Admin::TopicsController < Admin::BaseController
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
-      private: true )
+      private: true,
+      team_list: params[:topic][:team_list]
+    )
 
     if @user.nil?
 
@@ -114,16 +124,22 @@ class Admin::TopicsController < Admin::BaseController
           :body => params[:topic][:post][:body],
           :user_id => @user.id,
           :kind => 'first',
-          :screenshots => params[:topic][:screenshots])
+          :screenshots => params[:topic][:screenshots],
+          :attachments => params[:topic][:post][:attachments]
+        )
 
         # Send email
-        UserMailer.new_user(@user, @token).deliver_later
+        UserMailer.new_user(@user.id, @token).deliver_later
 
         # track event in GA
         tracker('Request', 'Post', 'New Topic')
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
+          @topics = Topic.recent.page params[:page]
+          render action: 'index'
+        }
+        format.html {
           @topics = Topic.recent.page params[:page]
           render action: 'index'
         }
@@ -178,6 +194,7 @@ class Admin::TopicsController < Admin::BaseController
     end
 
     fetch_counts
+    get_all_teams
     respond_to do |format|
       format.js {
         if params[:topic_ids].count > 1
@@ -221,6 +238,7 @@ class Admin::TopicsController < Admin::BaseController
     logger.info("Count: #{params[:topic_ids].count}")
 
     fetch_counts
+    get_all_teams
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
       format.js {
@@ -246,6 +264,7 @@ class Admin::TopicsController < Admin::BaseController
     @posts = @topic.posts.chronologic
 
     fetch_counts
+    get_all_teams
     # respond_to do |format|
     #   format.js {
         if params[:topic_ids].count > 1
@@ -256,6 +275,41 @@ class Admin::TopicsController < Admin::BaseController
     #   }
     # end
 
+  end
+
+  def assign_team
+    @count = 0
+    #handle array of topics
+    params[:topic_ids].each do |id|
+      @topic = Topic.where(id: id).first
+      @minutes = 0
+      @topic.team_list = params[:team]
+      @topic.save
+
+      @count = @count + 1
+    end
+
+    if params[:topic_ids].count > 1
+      get_tickets
+    else
+      @posts = @topic.posts.chronologic
+    end
+
+    logger.info("Count: #{params[:topic_ids].count}")
+
+    fetch_counts
+    get_all_teams
+    respond_to do |format|
+      format.html #render action: 'ticket', id: @topic.id
+      format.js {
+        if params[:topic_ids].count > 1
+          get_tickets
+          render 'index'
+        else
+          render 'update_ticket', id: @topic.id
+        end
+      }
+    end
   end
 
   private

@@ -5,6 +5,77 @@
     background-color: transparent;
   }
   </style>
+  <% unless cloudinary_enabled? %>
+  <script>
+  (function() {
+    var createStorageKey, host, uploadAttachment;
+
+    document.addEventListener("trix-attachment-add", function(event) {
+      var attachment;
+      attachment = event.attachment;
+      if (attachment.file) {
+        return uploadAttachment(attachment);
+      }
+    });
+    document.addEventListener('trix-attachment-remove', function(event) {
+      var attachment;
+      attachment = event.attachment;
+      return deleteFile(attachment);
+    });
+
+    host = "<%= admin_images_path(format: :json) %>";
+
+    uploadAttachment = function(attachment) {
+      var file, form, key, xhr;
+      file = attachment.file;
+      key = createStorageKey(file);
+      form = new FormData;
+      form.append("key", key);
+      form.append("Content-Type", file.type);
+      form.append("image[file]", file);
+      xhr = new XMLHttpRequest;
+      xhr.responseType = 'json';
+      xhr.open("POST", host, true);
+      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      xhr.upload.onprogress = function(event) {
+        var progress;
+        progress = event.loaded / event.total * 100;
+        return attachment.setUploadProgress(progress);
+      };
+      xhr.onload = function() {
+        var href, url;
+        if (xhr.status === 200) {
+          return attachment.setAttributes({
+            url: xhr.response.url,
+            href: xhr.response.url,
+            image_id: xhr.response.image_id
+          });
+        }
+      };
+      return xhr.send(form);
+    };
+
+    deleteFile = function(n) {
+      return $.ajax({
+        type: 'DELETE',
+        url: '/admin/images/' + n.attachment.attributes.values.image_id,
+        cache: false,
+        contentType: false,
+        processData: false
+      });
+    };
+
+    createStorageKey = function(file) {
+      var date, day, time;
+      date = new Date();
+      day = date.toISOString().slice(0, 10);
+      time = date.getTime();
+      return "tmp/" + day + "/" + time + "-" + file.name;
+    };
+
+  }).call(this);
+  </script>
+  <% end %>
 
   <%= f.input :title, label: I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale), value: @doc.read_translated_attribute(:title) %>
   <% if params[:lang] == "#{I18n.locale}" %>
@@ -20,11 +91,11 @@
   <% end %>
   </body>
   <hr/>
-  <% unless Cloudinary.config.cloud_name.nil? %>
-  <div class="doc-form-files">
-    <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
-    <%= cl_image_upload_tag(:image_id) %>
-  </div>
+  <% if cloudinary_enabled? %>
+    <div class="doc-form-files">
+      <h4 class="form-subhead"><%= t('upload_image') %>:</h4>
+      <%= cl_image_upload_tag(:image_id) %>
+    </div>
   <% end %>
   <hr/>
   <h4 class="form-subhead"><%= t('additional_settings', default: 'Additional Settings') %>:</h4>
@@ -39,7 +110,7 @@
 
   <%#= f.text_field :rank %>
   <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %>
-  <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if params[:lang] == "#{I18n.locale}"  %>
+  <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{I18n.locale}"  %>
   <hr/>
   <% if params[:lang] == "#{I18n.locale}" %>
     <div class= "form_group no-translate">
@@ -48,6 +119,7 @@
     </div>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>
+  <%= hidden_field_tag :obj_id, '' %>
   <br/><br/>
   <%= f.submit t('save_changes', default: "Save Changes"), class: 'btn btn-warning' %>
   <script type="text/javascript">
@@ -59,6 +131,14 @@
               value: input,
               text: input
               }
-          }
+          },
+      // onItemAdd: function(value, $item) {
+      //   char = $item.text().charAt(0);
+      //   alert(char);
+      //   //$item.parent().removeClass('selectize-input');
+      //   $item.addClass('label');
+      //   $item.addClass('label-doc-tagging');
+      //   $item.addClass('label-' + char);
+      // }
     });
   </script>

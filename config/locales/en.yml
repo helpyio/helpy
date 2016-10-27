@@ -27,7 +27,7 @@ en:
   did_this_help: "Did this solve your problem?"
   yes_button: 'Yes'
   no_button: 'No'
-  yes_helped: 'Great!! Thanks for the feedback!'
+  yes_helped: 'Great! Thanks for the feedback!'
   no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,7 +71,7 @@ en:
   created_on: "Created on"
 
   # Get Help
-  get_help_header: "Still Need Help??"
+  get_help_header: "Still Need Help?"
   get_help_button: "Start a Discussion with Us"
 
   # Profile
@@ -79,7 +79,7 @@ en:
 
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  get_your_copy: "Grab your copy on GitHub"
   version: "Version:"
 
   # devise/sessions/new
@@ -123,6 +123,9 @@ en:
   open_new_discussion: New Discussion
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
+  no_team_assigned: Assign to group
+  assign_to: Group/Team
+  unassign_from_team: Unassign from group
   private: private
   public: public
   save_changes: Save Changes
@@ -202,7 +205,7 @@ en:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
-  convert_content: 'Turn post into content'
+  convert_content: 'Save as an article or common reply'
   upload_image: 'Upload Image'
 
   # Communities
@@ -214,6 +217,7 @@ en:
   layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
   new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   account_generated: "An account has been generated for you. To sign in, please use this link:"
@@ -253,13 +257,14 @@ en:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
-  team_insights: "Team insights for %{site_name}"
+  team_insights: "Insights for %{site_name}"
   filter_by_date: "Filter by date"
   today: "Today"
   yesterday: "Yesterday"
   this_week: "This week"
   last_week: "Last week"
   this_month: "This month"
+  last_month: "Last month"
   date_range: "Date Range"
   insights_blurb_one:
     one: "<strong>%{period}</strong> your users started 1 new conversation"

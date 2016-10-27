@@ -7,11 +7,14 @@
 
     <%= f.input :email, autofocus: true %>
     <%= f.input :name %>
+    <div class="select-image text-center">
+      <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
+      <%= f.file_field :profile_image, label: "Avatar" unless cloudinary_enabled? %>
+    </div>
     <%= f.input :bio, input_html: {:rows => 4, :cols => 60} %>
     <%= f.input :company %>
     <%= f.input :title %>
     <%= f.input :signature, input_html: {:rows => 4, :cols => 60} %>
-    <%= f.attachinary_file_field :avatar unless Cloudinary.config.cloud_name.nil? %>
 
     <% if @validatable %>
     <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->

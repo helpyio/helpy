@@ -260,15 +260,30 @@ div.admin-tools {
 .label-private {
 	border: 2px dashed #666;
 	color: #666;
-  	display: inline;
-  	padding: .2em .6em .3em;
-  	font-size: 75%;
-  	font-weight: bold;
-  	line-height: 1;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
+	display: inline;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+	font-weight: bold;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
+}
+
+.label-team {
+	border: 2px dashed gray;
+	color: #666;
+    background-color: lightgray;
+	display: inline;
+	padding: .2em .6em .3em;
+	font-size: 75%;
+	font-weight: bold;
+	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: .25em;
 }
 
 .label-collapsed {
@@ -303,6 +318,103 @@ div.admin-tools {
   	white-space: nowrap;
   	vertical-align: baseline;
   	border-radius: .25em;
+}
+
+.label-message-tagging {
+  margin-right: 2px;
+  margin-bottom: -15px;
+  text-transform: uppercase;
+}
+
+.label-user-tagging {
+  margin-right: 2px;
+  text-transform: uppercase;
+}
+
+.label-doc-tagging {
+  margin-left: 2px;
+  margin-right: 2px;
+  text-transform: uppercase;
+}
+
+// Tag background colors
+.label-a {
+  background-color: #1abc9c;
+}
+.label-b {
+  background-color: #16a085;
+}
+.label-c {
+  background-color: #f1c40f;
+}
+.label-d {
+  background-color: #f39c12;
+}
+.label-e {
+  background-color: #2ecc71;
+}
+.label-f {
+  background-color: #27ae60;
+}
+.label-g {
+  background-color: #e67e22;
+}
+.label-h {
+  background-color: #d35400;
+}
+.label-i {
+  background-color: #3498db;
+}
+.label-j {
+  background-color: #2980b9;
+}
+.label-k {
+  background-color: #e74c3c;
+}
+.label-l {
+  background-color: #e74c3c;
+}
+.label-m {
+  background-color: #9b59b6;
+}
+.label-n {
+  background-color: #8e44ad;
+}
+.label-o {
+  background-color: #bdc3c7;
+}
+.label-p {
+  background-color: #34495e;
+}
+.label-q {
+  background-color: #2c3e50;
+}
+.label-r {
+  background-color: #95a5a6;
+}
+.label-s {
+  background-color: #7f8c8d;
+}
+.label-t {
+  background-color: #ec87bf;
+}
+.label-u {
+  background-color: #d870ad;
+}
+.label-v {
+  background-color: #f69785;
+}
+.label-w {
+  background-color: #9ba37e;
+}
+.label-x {
+  background-color: #b49255;
+}
+.label-y {
+  background-color: #b49255;
+}
+.label-z {
+  background-color: #a94136;
 }
 
 .active {
@@ -347,6 +459,7 @@ span.category-icon {
 .status-label {
 	margin-left: 5px;
 	margin-bottom: -15px;
+  text-transform: uppercase;
 }
 
 .no-side-pad {
@@ -428,6 +541,7 @@ ul.dropdown-menu li a.strong {
 .locale-badges {
   padding-right: 20px;
   padding-top: 10px;
+  text-transform: uppercase;
 }
 
 //  === LAYOUT ===
@@ -567,11 +681,6 @@ ul.dropdown-menu li a.strong {
 
 .dropdown-menu {
 	min-width: 300px;
-}
-
-.label-tagging {
-  background-color: #6ECBEC;
-  margin-right: 2px;
 }
 
 //  === HOME PAGE ===
@@ -908,6 +1017,10 @@ h4.qna {
 }
 
 @media print {
+  a[href]:after {
+    content: none;
+  }
+
   #upper-wrapper {
     display: none;
   }
