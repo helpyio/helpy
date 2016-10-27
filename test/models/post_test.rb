@@ -30,9 +30,9 @@ class PostTest < ActiveSupport::TestCase
 
     # assign all agents to receive notifications
     User.agents.each do |a|
-      a.settings.notify_on_private = "1"
-      a.settings.notify_on_public = "1"
-      a.settings.notify_on_reply = "1"
+      a.notify_on_private = true
+      a.notify_on_public = true
+      a.notify_on_reply = true
     end
 
   end

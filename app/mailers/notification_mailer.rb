@@ -6,9 +6,9 @@ class NotificationMailer < ActionMailer::Base
 
     @topic = Topic.find(topic_id)
     @recipient = notifiable_users.first
-    @bcc = notifiable_users.last(notifiable_users.count-1)
+    @bcc = notifiable_users.last(notifiable_users.count-1).collect {|u| u.email}
     mail(
-      to: @recipient,
+      to: @recipient.email,
       bcc: @bcc,
       from: AppSettings['email.admin_email'],
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
@@ -21,9 +21,9 @@ class NotificationMailer < ActionMailer::Base
 
     @topic = Topic.find(topic_id)
     @recipient = notifiable_users.first
-    @bcc = notifiable_users.last(notifiable_users.count-1)
+    @bcc = notifiable_users.last(notifiable_users.count-1).collect {|u| u.email}
     mail(
-      to: @recipient,
+      to: @recipient.email,
       bcc: @bcc,
       from: AppSettings['email.admin_email'],
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
@@ -36,9 +36,9 @@ class NotificationMailer < ActionMailer::Base
 
     @topic = Topic.find(topic_id)
     @recipient = notifiable_users.first
-    @bcc = notifiable_users.last(notifiable_users.count-1)
+    @bcc = notifiable_users.last(notifiable_users.count-1).collect {|u| u.email}
     mail(
-      to: @recipient,
+      to: @recipient.email,
       bcc: @bcc,
       from: AppSettings['email.admin_email'],
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
