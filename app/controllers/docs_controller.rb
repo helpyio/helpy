@@ -37,9 +37,8 @@ class DocsController < ApplicationController
     unless @doc.nil?
       @page_title = @doc.title
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
-      @topic = @doc.topic
-      @newtopic = Topic.new
-      @post = @topic.posts.new unless @topic.nil?
+      @topic = @doc.topic.present? ? @doc.topic : Topic.new
+      @post = @doc.topic.present? ? @topic.posts.new : Post.new
       @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
       @forum = Forum.for_docs.first
       @comment = @forum.topics.new
