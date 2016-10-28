@@ -113,27 +113,21 @@ class User < ActiveRecord::Base
 
   def enable_notifications_for_admin
     if self.role == "admin"
-      self.settings.notify_on_private = "1"
-      self.settings.notify_on_public = "1"
-      self.settings.notify_on_reply = "1"
+      self.notify_on_private = true
+      self.notify_on_public = true
+      self.notify_on_reply = true
     end
   end
 
   def self.notifiable_on_public
-    # Iterates through agents, selecting those with notifications on
-    # User.agents.order('id asc').map { |a| a.settings.notify_on_public == "1" ? a.email : '' }.select {|x| x.present?}
     User.agents.where(notify_on_public: true).order('id asc')
   end
 
   def self.notifiable_on_private
-    # Iterates through agents, selecting those with notifications on
-    # User.agents.order('id asc').map { |a| a.settings.notify_on_private == "1" ? a.email : '' }.select {|x| x.present?}
     User.agents.where(notify_on_private: true).order('id asc')
   end
 
   def self.notifiable_on_reply
-    # Iterates through agents, selecting those with notifications on
-    # User.agents.order('id asc').map { |a| a.settings.notify_on_reply == "1" ? a.email : '' }.select {|x| x.present?}
     User.agents.where(notify_on_reply: true).order('id asc')
   end
 

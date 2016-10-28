@@ -26,18 +26,6 @@ class PostTest < ActiveSupport::TestCase
   should validate_presence_of(:kind)
   should validate_length_of(:body).is_at_most(10_000)
 
-  setup do
-
-    # assign all agents to receive notifications
-    User.agents.each do |a|
-      a.notify_on_private = true
-      a.notify_on_public = true
-      a.notify_on_reply = true
-    end
-
-  end
-
-
   # first post should be kind first
   # post belonging to a topic with multiple posts should be a reply
 

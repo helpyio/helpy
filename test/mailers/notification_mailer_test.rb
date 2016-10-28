@@ -27,11 +27,6 @@ class NotificationMailerTest < ActionMailer::TestCase
   end
 
   test 'Should send one private message notification if there are agents with notifications on' do
-    # User.agents.each do |a|
-    #   a.notify_on_private = true
-    #   a.save!
-    # end
-
     notification = NotificationMailer.new_private(Topic.last.id)
 
     assert_emails 1 do
@@ -52,10 +47,6 @@ class NotificationMailerTest < ActionMailer::TestCase
   end
 
   test 'Should send one notification if there are agents with public notifications on' do
-    # User.agents.each do |a|
-    #   a.notify_on_public = true
-    #   a.save!
-    # end
     notification = NotificationMailer.new_public(Topic.last.id)
 
     assert_emails 1 do
@@ -76,11 +67,6 @@ class NotificationMailerTest < ActionMailer::TestCase
   end
 
   test 'Should send one notification if there are agents with reply notifications on' do
-    # User.agents.each do |a|
-    #   a.notify_on_reply = true
-    #   a.save!
-    # end
-
     notification = NotificationMailer.new_reply(Topic.last.id)
 
     assert_emails 1 do
@@ -94,10 +80,6 @@ class NotificationMailerTest < ActionMailer::TestCase
   # These tests make sure that notifications are sent out to all agents with them
   # turned on.
   test 'Should send one public message notification if there are agents with notifications on' do
-    # User.agents.each do |a|
-    #   a.notify_on_public = true
-    #   a.save!
-    # end
     notification = NotificationMailer.new_public(Topic.last.id)
 
     assert_emails 1 do
@@ -109,10 +91,6 @@ class NotificationMailerTest < ActionMailer::TestCase
   end
 
   test 'Should send one reply message notification if there are agents with notifications on' do
-    # User.agents.each do |a|
-    #   a.notify_on_reply = true
-    #   a.save!
-    # end
     notification = NotificationMailer.new_reply(Topic.last.id)
 
     assert_emails 1 do
