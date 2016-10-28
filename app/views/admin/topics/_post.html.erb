@@ -18,7 +18,7 @@
 			<%= last_active_time(post.created_at) %>
 			</span>
 		</span>
-
+		<br/><%= content_tag :span, "cc'd: #{post.cc}", class: 'post-cc' if post.cc.present? %>
 		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
 			<%= simple_format(post.body) -%>
       <%= render partial: 'posts/thumbnail', locals: { :model_name => post } %>
