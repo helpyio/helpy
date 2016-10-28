@@ -41,7 +41,8 @@ Installation
 
 Helpy was designed to run on on modern cloud providers like Digital Ocean or Heroku, although it should work just about anywhere.  For a quick trial you can get set up on Heroku by clicking this button:
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy on Scalingo](https://cdn.scalingo.com/deploy/button.svg)](https://my.scalingo.com/deploy)
 
 Requirements are:
 
