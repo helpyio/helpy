@@ -114,14 +114,14 @@ Helpy.admin = function(){
     var $this = $(this);
     var f = $this.val().split("\\");
     var filename = f[f.length-1];
-    $('.hidden-header-logo').val(filename);
+    $('.hidden-header-logo').val("/uploads/logos/" + filename);
   });
 
   $('.favicon-uploader').off().on('change', function(){
     var $this = $(this);
     var f = $this.val().split("\\");
     var filename = f[f.length-1];
-    $('.hidden-favicon').val(filename);
+    $('.hidden-favicon').val("/uploads/logos/" + filename);
   });
 
   // Start logging history from first pageload

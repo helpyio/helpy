@@ -83,7 +83,7 @@
             </div>
             <div class="col-md-11 col-sm-10 col-xs-10">
               <%= f.file_field 'uploader.design.header_logo', class: "settings-uploader", label: t('header_logo', default: "Header Logo") %>
-              <%= f.text_field 'design.header_logo', class: "hidden-header-logo", value: AppSettings['design.header_logo'] %>
+              <%= f.text_field 'design.header_logo', class: "hidden-header-logo", value: AppSettings['design.header_logo'], hide_label: true %>
             </div>
           </div>
           <!-- <div class="row">
@@ -100,7 +100,7 @@
             </div>
             <div class="col-md-11 col-sm-10 col-xs-10">
               <%= f.file_field 'uploader.design.favicon', class: "favicon-uploader", label: "Favicon" %>
-              <%= f.text_field 'design.favicon', class: "hidden-favicon", value: AppSettings['design.favicon'] %>
+              <%= f.text_field 'design.favicon', class: "hidden-favicon", value: AppSettings['design.favicon'], hide_label: true %>
             </div>
           </div>
           <% if AppSettings['theme.active'] == 'helpy' %>
