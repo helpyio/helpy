@@ -4,6 +4,8 @@ class Admin::DashboardController < Admin::BaseController
   skip_before_action :verify_agent
   before_action :date_from_params, only: :stats
   before_action :verify_admin, only: :stats
+  before_action :get_all_teams
+
 
   # Routes to different views depending on role of user
   def index
@@ -27,8 +29,14 @@ class Admin::DashboardController < Admin::BaseController
                     t('yesterday')
                   when 'this_week'
                     t('this_week')
+                  when 'last_week'
+                    t('last_week')
                   when 'this_month'
                     t('this_month')
+                  when 'last_month'
+                    t('last_month')
+                  when 'interval'
+                    "Between #{@start_date.to_date} and #{@end_date.to_date}"
                   else
                     t('this_week')
                 end

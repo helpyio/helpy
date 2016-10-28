@@ -175,11 +175,21 @@ trix-editor {
 	border-bottom: 1px solid #eee;
 }
 
+.no-tickets {
+	margin-top: 20%;
+
+	span {
+		color: #ccc;
+
+		i {
+			font-size: 48px;
+		}
+	}
+}
 
 .dummy {
     margin-top: 110%;
 }
-
 
 .stats {
   display: block;
@@ -552,4 +562,16 @@ ul.settings-menu {
 
 .overflow-visible {
   overflow: visible;
+}
+
+.dropdown-form {
+ padding-left: 20px;
+}
+
+.datepicker.datepicker-dropdown {
+ min-width: 0;
+
+ tr{
+   height: 0;
+ }
 }

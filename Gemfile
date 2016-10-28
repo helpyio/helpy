@@ -102,6 +102,7 @@ gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 gem 'selectize-rails'
 gem "bootstrap-switch-rails"
+gem 'bootstrap-datepicker-rails'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 

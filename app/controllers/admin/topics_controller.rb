@@ -30,6 +30,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
   before_action :pipeline, :only => ['index', 'show', 'update_topic']
   before_action :remote_search, :only => ['index', 'show', 'update_topic']
+  before_action :get_all_teams
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -128,7 +129,7 @@ class Admin::TopicsController < Admin::BaseController
         )
 
         # Send email
-        UserMailer.new_user(@user, @token).deliver_later
+        UserMailer.new_user(@user.id, @token).deliver_later
 
         # track event in GA
         tracker('Request', 'Post', 'New Topic')

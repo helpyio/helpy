@@ -40,6 +40,7 @@
 //= require rails.validations.callbacks
 //= require selectize
 //= require bootstrap-switch
+//= require bootstrap-datepicker
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link

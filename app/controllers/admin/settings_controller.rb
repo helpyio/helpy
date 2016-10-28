@@ -19,7 +19,7 @@ class Admin::SettingsController < Admin::BaseController
     current_user.settings.notify_on_public = params['notify_on_public']
     current_user.settings.notify_on_reply = params['notify_on_reply']
 
-    redirect_to admin_topics_path
+    redirect_to admin_settings_path
   end
 
   def preview

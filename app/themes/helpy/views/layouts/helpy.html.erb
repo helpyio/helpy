@@ -6,9 +6,10 @@
 		<%= rtl_tags if rtl? %>
 		<%= css_overrides %>
 		<%= css_injector %>
+		<%= "#{AppSettings['design.header_js']}".html_safe %>
 	</head>
 
-<body class="<%= 'rtl' if rtl? %>">
+<body class="<%= 'rtl' if rtl? %> <%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
 <script>
   ga('set', 'location', location.href.split('#')[0]);
   ga('send', 'pageview', { "title": document.title });
@@ -64,5 +65,6 @@
 	</div>
 </div>
 <%= "<script src='/assets/widget.v1.js'></script>".html_safe if AppSettings['widget.show_on_support_site'] == '1' %>
+<%= "#{AppSettings['design.footer_js']}".html_safe %>
 </body>
 </html>

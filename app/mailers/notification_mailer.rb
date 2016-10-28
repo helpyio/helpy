@@ -1,47 +1,47 @@
 class NotificationMailer < ActionMailer::Base
 
-  def new_private(topic)
-    notifiable = User.notifiable_on_private
-    return if notifiable.count == 0
+  def new_private(topic_id)
+    notifiable_users = User.notifiable_on_private
+    return if notifiable_users.count == 0
 
-    @topic = topic
-    @recipient = notifiable.first
-    @bcc = notifiable.last(notifiable.count-1)
+    @topic = Topic.find(topic_id)
+    @recipient = notifiable_users.first
+    @bcc = notifiable_users.last(notifiable_users.count-1)
     mail(
       to: @recipient,
       bcc: @bcc,
       from: AppSettings['email.admin_email'],
-      subject: "[#{AppSettings['settings.site_name']}] ##{topic.id}-#{topic.name}"
+      subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end
 
-  def new_public(topic)
-    notifiable = User.notifiable_on_public
-    return if notifiable.count == 0
+  def new_public(topic_id)
+    notifiable_users = User.notifiable_on_public
+    return if notifiable_users.count == 0
 
-    @topic = topic
-    @recipient = notifiable.first
-    @bcc = notifiable.last(notifiable.count-1)
+    @topic = Topic.find(topic_id)
+    @recipient = notifiable_users.first
+    @bcc = notifiable_users.last(notifiable_users.count-1)
     mail(
       to: @recipient,
       bcc: @bcc,
       from: AppSettings['email.admin_email'],
-      subject: "[#{AppSettings['settings.site_name']}] ##{topic.id}-#{topic.name}"
+      subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end
 
-  def new_reply(topic)
-    notifiable = User.notifiable_on_reply
-    return if notifiable.count == 0
+  def new_reply(topic_id)
+    notifiable_users = User.notifiable_on_reply
+    return if notifiable_users.count == 0
 
-    @topic = topic
-    @recipient = notifiable.first
-    @bcc = notifiable.last(notifiable.count-1)
+    @topic = Topic.find(topic_id)
+    @recipient = notifiable_users.first
+    @bcc = notifiable_users.last(notifiable_users.count-1)
     mail(
       to: @recipient,
       bcc: @bcc,
       from: AppSettings['email.admin_email'],
-      subject: "[#{AppSettings['settings.site_name']}] ##{topic.id}-#{topic.name}"
+      subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end
 
