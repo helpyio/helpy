@@ -27,7 +27,7 @@ hi:
   did_this_help: "इसने आपकी समस्या का समाधान किया?"
   yes_button: 'हाँ'
   no_button: 'नहीं'
-  yes_helped: 'वाह !! प्रतिक्रिया के लिए धन्यवाद!'
+  yes_helped: 'वाह ! प्रतिक्रिया के लिए धन्यवाद!'
   no_helped: "मदद नहीं करने के लिए माफी मांगते हैं. कृपया हमसे सम्पर्क करें!"
 
   # Search
@@ -71,7 +71,7 @@ hi:
   # created_on: "Created on"
 
   # Get Help
-  get_help_header: "अभी भी सहायता चाहिए??"
+  get_help_header: "अभी भी सहायता चाहिए?"
   get_help_button: "हमारे साथ एक चर्चा शुरू करिये"
 
   # Profile
@@ -79,7 +79,7 @@ hi:
 
   # footer
   # powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  # get_your_copy: "Grab your copy on Github"
+  # get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
   # devise/sessions/new
@@ -214,6 +214,7 @@ hi:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
   new_user: "हमसे संपर्क करने के लिए धन्यवाद। आपका संदेश हमारे सपोर्ट टीम द्वारा प्राप्त किया गया है और हम आपको जल्दी जवाब देंगे."
   account_generated: "एक अकाउंट आप के लिए बनाया गया है। साइन इन के लिए, इस लिंक का उपयोग करें:"
@@ -285,6 +286,8 @@ hi:
     docs:
       root: *root
     forums:
+      root: *root
+    locales:
       root: *root
     topics:
       root: *root

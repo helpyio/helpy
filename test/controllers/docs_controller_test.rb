@@ -21,6 +21,7 @@
 #  updated_at       :datetime         not null
 #  topics_count     :integer          default(0)
 #  allow_comments   :boolean          default(TRUE)
+#  attachments      :string           default([]), is an Array
 #
 
 require 'test_helper'
@@ -50,6 +51,13 @@ class DocsControllerTest < ActionController::TestCase
 
     get :show, id: 6, locale: "en"
     assert_response :success
+  end
+
+  test "a browsing user should not be able to see a doc page if KB features are not enabled" do
+    AppSettings['settings.knowledgebase'] = "0"
+    assert_raises(ActionController::RoutingError) do
+      get :show, id: 1, locale: :en
+    end
   end
 
 end

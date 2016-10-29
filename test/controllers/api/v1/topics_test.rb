@@ -38,6 +38,15 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     @user = users(:admin)
     @api_key = ApiKey.create(name: "Test Topics Key", user: @user)
     @default_params = { token: @api_key.access_token }
+
+    # Create a group restricted agent and topic
+
+    @group_agent = users(:agent)
+    @group_agent.team_list = "something"
+    @group_agent.save!
+
+    @group_agent_key = ApiKey.create(name: "Restricted Agent Key", user: @group_agent)
+    @group_agent_default_params = { token: @group_agent_key.access_token }
   end
 
   # TEST TICKET ENDPOINTS
@@ -60,6 +69,32 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert objects.length == Topic.pending.count, "Only #{objects.length} returned out of #{Topic.active.count} topics"
   end
 
+  test "a group restricted agent should only see tickets their group is assigned to" do
+    Topic.create!(name: "Something interesting", user_id: 1, forum_id: 1, team_list: "something")
+
+    get '/api/v1/tickets/status/new.json', @group_agent_default_params
+
+    # Check OK
+    assert last_response.ok?, "Response was #{last_response.status}, expected 200"
+
+    # Check returned value
+    objects = JSON.parse(last_response.body)
+    assert objects.length == 1, "Only #{objects.length} returned out of #{Topic.active.count} topics"
+  end
+
+  test "a group restricted agent should not see tickets not assigned to their group" do
+    Topic.create!(name: "Something interesting", user_id: 1, forum_id: 1, team_list: "somethingelse")
+
+    get '/api/v1/tickets/status/new.json', @group_agent_default_params
+
+    # Check OK
+    assert last_response.ok?, "Response was #{last_response.status}, expected 200"
+
+    # Check returned value
+    objects = JSON.parse(last_response.body)
+    assert objects.length == 0, "Only #{objects.length} returned out of #{Topic.active.count} topics"
+  end
+
   test "an API user should be able to return tickets for a user" do
     user = User.find(2)
 
@@ -74,6 +109,15 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
   end
 
   test "an API user should be able to return a specific ticket and its thread by ID" do
+    ticket = Topic.create!(name: "Something interesting", user_id: 1, forum_id: 1, team_list: "somethingelse")
+
+    get "/api/v1/tickets/#{ticket.id}.json", @group_agent_default_params
+
+    # Check OK
+    assert_equal 401, last_response.status, "Response was #{last_response.status}, expected 401"
+  end
+
+  test "a group restricted agent should not see a ticket not assigned to their group" do
     ticket = Topic.find(2)
 
     get "/api/v1/tickets/#{ticket.id}.json", @default_params

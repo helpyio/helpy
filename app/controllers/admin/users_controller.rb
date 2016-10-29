@@ -49,6 +49,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :verify_agent
   before_action :verify_admin, only: ['invite','invite_users']
   before_action :fetch_counts, :only => ['show']
+  before_action :get_all_teams
   respond_to :html, :js
 
   def index
@@ -57,13 +58,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
+    get_all_teams
     @user = User.where(id: params[:id]).first
     @topics = Topic.where(user_id: @user.id).page params[:page]
 
     # We still have to grab the first topic for the user to use the same user partial
     @topic = Topic.where(user_id: @user.id).first
     tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
-    render 'admin/topics/index'
   end
 
   def edit
@@ -84,7 +85,7 @@ class Admin::UsersController < Admin::BaseController
     tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
 
     # TODO: Refactor this to use an index method/view on the users model
-    render 'admin/topics/index'
+    render 'admin/users/show'
   end
 
   def invite
@@ -121,6 +122,7 @@ class Admin::UsersController < Admin::BaseController
       :twitter,
       :linkedin,
       :language,
+      :team_list,
       :active
     )
   end

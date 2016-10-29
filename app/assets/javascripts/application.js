@@ -15,6 +15,7 @@
 //= require jquery-ui/sortable
 //= require jquery-ui/effect-highlight
 //= require jquery-ui/autocomplete
+//= require jquery-fileupload
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery.turbolinks
@@ -32,13 +33,14 @@
 //= require initial.js/initial.js
 //= require trix
 //= require autolink/autolink-min.js
-//= require pick-a-color/build/1.2.3/js/pick-a-color-1.2.3.min.js
-//= require tinycolor/dist/tinycolor-min.js
+//= require jquery.minicolors
 //= require app
 //= require rails.validations
 //= require rails.validations.simple_form
 //= require rails.validations.callbacks
 //= require selectize
+//= require bootstrap-switch
+//= require bootstrap-datepicker
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link

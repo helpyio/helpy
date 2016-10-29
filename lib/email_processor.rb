@@ -55,6 +55,16 @@ class EmailProcessor
     else # this is a new direct message
 
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
+      # if @email.header['X-Helpy-Teams'].present?
+      #   topic.team_list = @email.header['X-Helpy-Teams']
+
+      if @email.to[0][:token].include?("+")
+        topic.team_list.add(@email.to[0][:token].split('+')[1])
+        topic.save
+      elsif @email.to[0][:token] != 'support'
+        topic.team_list.add(@email.to[0][:token])
+        topic.save
+      end
 
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
@@ -77,6 +87,9 @@ class EmailProcessor
         array_of_files << File.open(attachment.tempfile.path, 'r')
       end
       post.screenshots = array_of_files
+    elsif email.attachments.present?
+      post.attachments = email.attachments
+      post.save!
     end
   end
 
@@ -96,7 +109,7 @@ class EmailProcessor
     @user.name = @email.from[:name].blank? ? @email.from[:token] : @email.from[:name]
     @user.password = User.create_password
     if @user.save
-      UserMailer.new_user(@user, @token).deliver_later
+      UserMailer.new_user(@user.id, @token).deliver_later
     end
   end
 end

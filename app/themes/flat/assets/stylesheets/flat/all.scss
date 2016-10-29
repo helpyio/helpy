@@ -22,6 +22,7 @@
 @import "jquery-ui";
 
 // Import all other custom Helpy stylesheets
+@import "shared";
 @import "flat";
 
 // Note: admin.scss is included separately via `layouts/admin.html.erb`.

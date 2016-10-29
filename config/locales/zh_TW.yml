@@ -27,7 +27,7 @@ zh-tw:
   did_this_help: "這是否解決你的問題？"
   yes_button: "是"
   no_button: "否"
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,7 +71,7 @@ zh-tw:
   created_on:
 
   # Get Help
-  get_help_header: "需要更多協助??"
+  get_help_header: "需要更多協助?"
   get_help_button: "與我們討論"
 
   # Profile
@@ -79,7 +79,7 @@ zh-tw:
 
   # footer
   # powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  # get_your_copy: "Grab your copy on Github"
+  # get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
   # devise/sessions/new
@@ -214,6 +214,7 @@ zh-tw:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   # hello: "Hello %{user_name}"
   # new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   # account_generated: "An account has been generated for you. To sign in, please use this link:"
@@ -285,6 +286,8 @@ zh-tw:
     docs:
       root: *root
     forums:
+      root: *root
+    locales:
       root: *root
     topics:
       root: *root

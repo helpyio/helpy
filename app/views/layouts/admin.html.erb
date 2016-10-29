@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 	<head>
 	<%= render partial: 'layouts/head' %>
-	<%= stylesheet_link_tag 'admin', "data-turbolinks-track" => false  %>
+	<%= stylesheet_link_tag 'admin', "data-turbolinks-track" => false, media: 'all'  %>
 	<%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
 	<%= rtl_tags if rtl? %>
 	</head>

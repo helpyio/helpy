@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/carrierwaveuploader/carrierwave
+  revision: ec850831eeaf0f2f45c002bcec9b90698b78d0d8
+  specs:
+    carrierwave (1.0.0.beta)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
+GIT
   remote: https://github.com/railsconfig/config.git
   revision: 813e504f47d370bc9b5847dce772828445e9dad7
   specs:
@@ -71,9 +80,12 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.3.0)
     brakeman (3.2.1)
       erubis (~> 2.6)
@@ -242,6 +254,13 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jquery-fileupload-rails (0.4.7)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
+    jquery-minicolors-rails (2.2.3.0)
+      jquery-rails
+      rails (>= 3.2.8)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -297,9 +316,10 @@ GEM
       mail (>= 2.0.3)
       maildir (>= 0.5.0)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
+    mini_magick (4.2.10)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     minitest-reporters (1.1.8)
       ansi
       builder
@@ -451,7 +471,6 @@ GEM
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
-    ruser (3.0.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
     sass-rails (5.0.4)
@@ -572,7 +591,9 @@ DEPENDENCIES
   attachinary
   awesome_print
   better_errors
+  bootstrap-datepicker-rails
   bootstrap-sass
+  bootstrap-switch-rails
   bootstrap_form
   brakeman
   bulk_insert
@@ -580,6 +601,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara
+  carrierwave!
   client_side_validations
   client_side_validations-simple_form
   cloudinary (= 1.1.2)
@@ -613,6 +635,8 @@ DEPENDENCIES
   http_accept_language
   i18n-country-translations
   jbuilder (~> 2.0)
+  jquery-fileupload-rails
+  jquery-minicolors-rails
   jquery-rails
   jquery-turbolinks (~> 2.1.0)
   jquery-ui-rails
@@ -622,6 +646,7 @@ DEPENDENCIES
   mail_extract
   mailcatcher
   mailman
+  mini_magick
   minitest
   minitest-reporters
   newrelic_rpm
@@ -648,7 +673,6 @@ DEPENDENCIES
   recaptcha
   route_translator
   rubocop
-  ruser (~> 3.0)
   sass-rails (~> 5.0)
   scss-lint
   sdoc (~> 0.4.0)
@@ -671,5 +695,8 @@ DEPENDENCIES
   unicorn
   web-console (~> 2.0)
 
+RUBY VERSION
+   ruby 2.2.1p85
+
 BUNDLED WITH
-   1.12.5
+   1.13.3

@@ -1,3 +1,4 @@
+<% title "#{admin_title} #{t('settings', default: 'System Settings')}" %>
 <div class="agent-header">
   <h2>
     <%= t('agent_settings', default: 'Agent Settings') %>
@@ -36,7 +37,7 @@
         <%= settings_item('glyphicon glyphicon-globe', "international", t('international_description', default: "Select what languages your Helpy will speak be able to speak.")) %>
         <%= settings_item('glyphicon glyphicon-modal-window', "widget", t('widget_description', default: "Find out how to deploy the Helpy widget on your site.")) %>
         <%= settings_item('glyphicon glyphicon-envelope', "email", t('email_description', default: "Set up SMTP and Inbound email for your Helpy.")) %>
-        <%= settings_item('glyphicon glyphicon-cloud', "cloudinary", t('cloudinary_description', default: "Set up Cloudinary to enable your Helpy to accept image attachments.")) %>
+        <%= settings_item('fa fa-cogs', "integrations", t('integrations_description', default: "Configure integrations with external services.")) %>
         <%= settings_item('glyphicon glyphicon-user', "users", t('users_description', default: "View and Add Users"), admin_users_path) %>
       </div>
     </div>
@@ -51,7 +52,7 @@
       <%= settings_menu_item('glyphicon glyphicon-globe', 'international') %>
       <%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget') %>
       <%= settings_menu_item('glyphicon glyphicon-envelope', 'email') %>
-      <%= settings_menu_item('glyphicon glyphicon-cloud', 'cloudinary') %>
+      <%= settings_menu_item('fa fa-cogs', 'integrations') %>
       <%= settings_menu_item('glyphicon glyphicon-user', 'users', admin_users_path) %>
     </ul>
   </div>
@@ -59,14 +60,21 @@
     <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', remote: true do |f| %>
 
       <div class="settings-section general">
+        <h4 class="settings-subsection">Self Service Site</h4>
         <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: t('site_name', default: "Site Name") %>
         <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: t('site_url', default: "Site URL") %>
         <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: t('parent_site', default: "Parent Site") %>
         <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: t('parent_company', default: "Parent Company") %>
         <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: t('site_tagline', default: "Site Tagline") %>
-        <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
-        <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
-        <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
+        <br/><br/>
+
+        <h4 class="settings-subsection">Helpy Functions</h4>
+        <%= f.check_box 'settings.forums', { checked: forums?, label: t('enable_forums', default: "Enable Community Forums"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+        <%= f.check_box 'settings.knowledgebase', { checked: knowledgebase?, label: t('enable_knowledgebase', default: "Enable Knowledgebase"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+        <%= f.check_box 'settings.tickets', { checked: tickets?, label: t('enable_tickets', default: "Enable Private Tickets"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+        <%= f.check_box 'settings.teams', { checked: teams?, label: t('enable_teams', default: "Enable Team Groups"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+        <%= f.check_box 'settings.welcome_email', { checked: welcome_email?, label: t('enable_welcome_email', default: "Send a welcome email to new users"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+
       </div>
       <div class="settings-section design hidden">
           <div class="row">
@@ -93,32 +101,44 @@
               <%= f.text_field 'design.favicon', value: AppSettings['design.favicon'], label: "Favicon" %>
             </div>
           </div>
-        <% if AppSettings['theme.active'] == 'helpy' %>
-        <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
-        <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
-        <% end %>
+          <% if AppSettings['theme.active'] == 'helpy' %>
+            <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
+          <% else %>
+            <%= f.text_field 'css.main_color', value: AppSettings['css.main_color'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.accent_color', value: AppSettings['css.accent_color'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
+            <%#= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
+            <%= f.text_field 'css.form_color', value: AppSettings['css.form_color'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
+            <%#= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
+          <% end %>
+          <%= f.text_area 'design.css', value: AppSettings['design.css'], label: "Custom CSS Styles", rows: 10, class: 'css-editor' %>
+          <%= f.text_area 'design.header_js', value: AppSettings['design.header_js'], label: "Head Javascript", rows: 10, class: 'css-editor' %>
+          <%= f.text_area 'design.footer_js', value: AppSettings['design.footer_js'], label: "Footer Javascript", rows: 10, class: 'css-editor' %>
       </div>
       <div class="settings-section theme hidden">
         <div class="row">
           <% @themes.each do |theme| %>
           <div class="col-md-4" class="theme-item">
             <%= f.radio_button 'theme.active', theme.name, checked: theme.name == AppSettings['theme.active'], label: theme.name.titleize %>
-            <%= link_to(image_tag(url_for(action: 'preview', theme: theme.name)), root_url(theme: theme.name), target: '_blank')  %>
-            <%= theme.description %>
+            <%= image_tag(url_for(action: 'preview', theme: theme.name))  %>
+            <%= theme.description %> <%= link_to "[Preview]", root_url(theme: theme.name), target: '_blank' %>
           </div>
           <% end %>
         </div>
       </div>
       <div class="settings-section international hidden" data-hook="admin_settings_international">
         <%= t('supported_locales', default: 'Supported Locales:') %>
-        <% I18n.available_locales.each do |locale| %>
-          <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
+        <% I18n.available_locales.sort.each do |locale| %>
+          <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' }, checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
         <% end %>
         <br/>
-        <%= select_default_locale %>
+        <div class='form-group'>
+          <%= label_tag 'i18n.default_locale', t('default_locale', default: "Default Locale"), class: 'control-label' %>
+          <%= f.select_tag 'i18n.default_locale', default_locale_options, class: 'form-control', id: 'i18n.default_locale' %>
+        </div>
       </div>
       <div class="settings-section widget hidden" data-hook="admin_settings_widget">
         <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: t('show_widget', default: "Show Widget on Support Site") } %>
@@ -150,10 +170,15 @@
         </div>
       </div>
 
-      <div class="settings-section cloudinary hidden" data-hook="admin_settings_cloudinary">
-        <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloud Name" %>
-        <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "API Key" %>
-        <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "API Secret" %>
+      <div class="settings-section integrations hidden" data-hook="admin_settings_integrations">
+
+        <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
+        <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
+        <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
+
+        <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloudinary Cloud Name" %>
+        <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "Cloudinary API Key" %>
+        <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "Cloudinary API Secret" %>
       </div>
       <div class="submit-section">
         <%= f.submit "Save Settings", class: 'btn btn-warning' %>

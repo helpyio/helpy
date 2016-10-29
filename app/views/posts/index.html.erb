@@ -33,8 +33,14 @@
 			  <%= f.text_area :body, :rows => 8, :cols => 160, label: 'Type your response:', class: 'disable-empty' -%></p>
 			  <%= f.hidden_field 'kind', value: 'reply' %>
 				<div class="add-screenshots">
-				<%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots unless Cloudinary.config.cloud_name.nil? %>
+				<%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots if cloudinary_enabled? %>
 				</div>
+				<% unless cloudinary_enabled? %>
+					<%= f.file_field :attachments, multiple: true %>
+					<ul class="list-inline" id="attachments">
+						<%= render partial: 'posts/attachment', locals: { :model_name => @post } %>
+					</ul>
+				<% end %>
 				<%= hidden_field_tag :client_id %>
 				<%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
 			<% end -%>

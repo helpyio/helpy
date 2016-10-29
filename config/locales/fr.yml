@@ -27,7 +27,7 @@ fr:
   did_this_help: "Cela at-il aidé à résoudre votre problème?"
   yes_button: 'Oui'
   no_button: 'Non'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -79,7 +79,7 @@ fr:
 
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
   # devise/sessions/new
@@ -214,6 +214,7 @@ fr:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
   new_user: "Merci de nous avoir contacté. Votre message a été reçu par notre équipe de support et nous allons revenir vers vous au plus vite."
   account_generated: "Un compte a été créé pour vous. Pour s'inscrire, veuillez suivre ce lien :"
@@ -285,6 +286,8 @@ fr:
     docs:
       root: *root
     forums:
+      root: *root
+    locales:
       root: *root
     topics:
       root: *root
