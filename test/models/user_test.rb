@@ -276,4 +276,28 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 2, User.notifiable_on_reply.count, "Should return one less notifiable users"
   end
 
+  test "Reject single quotes from user name" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: %['test agent'],
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'test agent', u.name
+  end
+
+  test "Reject double quotes from user name" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: %["test agent"],
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'test agent', u.name
+  end
+
 end
