@@ -335,10 +335,20 @@ Helpy.ready = function(){
 
   // Post CC and BCC
   $('.cc-bcc-toggle').off().on('click', function() {
-    if ($('.cc-bcc').hasClass('hidden')){
-      $('.cc-bcc').removeClass('hidden');
+    $fieldContainer = $('.cc-bcc');
+
+    if ($fieldContainer.hasClass('hidden')){
+      $fieldContainer.removeClass('hidden');
+      var previousCC = $('.post-cc').last().text().split(": ")[1];
+      var previousBCC = $('.post-bcc').last().text().split(": ")[1];
+      $('#post_cc').val(previousCC);
+      $('#post_bcc').val(previousBCC);
+      $('.cc-bcc-toggle').addClass('fa-angle-up').removeClass('fa-angle-down');
     } else {
-      $('.cc-bcc').addClass('hidden');
+      $fieldContainer.addClass('hidden');
+      $('#post_cc').val("");
+      $('#post_bcc').val("");
+      $('.cc-bcc-toggle').removeClass('fa-angle-up').addClass('fa-angle-down');
     }
   });
 
