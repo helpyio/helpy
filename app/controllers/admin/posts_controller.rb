@@ -62,6 +62,11 @@ class Admin::PostsController < Admin::BaseController
     render action: 'update' if @post.save
   end
 
+  def raw
+    @post = Post.find(params[:id])
+    render layout: false
+  end
+
   def post_params
     params.require(:post).permit(
       :body,
