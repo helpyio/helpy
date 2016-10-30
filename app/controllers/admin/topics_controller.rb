@@ -151,16 +151,6 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
-  def update
-    @topic = Topic.find(params[:id])
-
-    if @topic.update_attributes(topic_params)
-      redirect_to(@topic)
-    else
-      logger.info("error")
-    end
-  end
-
   # Updates discussion status
   def update_topic
 
@@ -348,10 +338,6 @@ class Admin::TopicsController < Admin::BaseController
     else
       @topics = Topic.where(current_status: @status).page params[:page]
     end
-  end
-
-  def topic_params
-    params.require(:topic).permit(:name)
   end
 
 

@@ -74,6 +74,9 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -455,8 +458,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rest_in_place (2.5.0)
-      rails (>= 3.1)
     route_translator (4.3.0)
       actionpack (>= 3.2, < 5.0)
       activesupport (>= 3.2, < 5.0)
@@ -592,6 +593,7 @@ DEPENDENCIES
   annotate
   attachinary
   awesome_print
+  best_in_place (~> 3.0.1)
   better_errors
   bootstrap-datepicker-rails
   bootstrap-sass
@@ -673,7 +675,6 @@ DEPENDENCIES
   ranked-model
   rdiscount
   recaptcha
-  rest_in_place
   route_translator
   rubocop
   sass-rails (~> 5.0)

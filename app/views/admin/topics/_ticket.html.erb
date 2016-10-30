@@ -6,7 +6,7 @@
 
   <div id="ticket-controls" class="col-md-8 col-xs-12 col-lg-8">
     <h2>
-      <%= render 'admin/topics/ticket_nav_dropdown' %> #<%= @topic.id %>- <span class="rest-in-place" data-url=<%= admin_topic_path(@topic) %> data-object="topic" data-attribute="name"> <%= @topic.name -%></span>
+      <%= render 'admin/topics/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= best_in_place @topic, :name, as: :input, activator: :span -%><span class="btn" id="btn_edit_topic_name">Edit</span>
     </h2>
     <div id="topic-options">
     <%= render :partial => 'admin/topics/topic_options' %>

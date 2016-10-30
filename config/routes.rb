@@ -76,7 +76,6 @@ Rails.application.routes.draw do
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
-    put 'topics/update/:id' => 'topic#update'
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
@@ -109,7 +108,7 @@ Rails.application.routes.draw do
     resources :forums# , except: [:index, :show]
     resources :users
     resources :api_keys, except: [:show, :edit, :update]
-    resources :topics, except: [:delete, :edit, :update] do
+    resources :topics, except: [:delete, :edit] do
       resources :posts
     end
     resources :posts
