@@ -41,6 +41,7 @@
 //= require selectize
 //= require bootstrap-switch
 //= require bootstrap-datepicker
+//= require rest_in_place
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link
