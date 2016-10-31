@@ -78,6 +78,9 @@ class EmailProcessor
       @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
 
     end
+
+  # rescue
+  #   render status: 200
   end
 
   def handle_attachments(email, post)
