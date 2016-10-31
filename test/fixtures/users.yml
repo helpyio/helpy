@@ -66,6 +66,9 @@ admin:
   admin: true
   role: admin
   encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+  notify_on_private: true
+  notify_on_public: true
+  notify_on_reply: true
 
 user:
   id: 2
@@ -105,6 +108,9 @@ another_admin:
   admin: false
   role: admin
   encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+  notify_on_private: true
+  notify_on_public: true
+  notify_on_reply: true
 
 agent:
   id: 6
@@ -115,6 +121,9 @@ agent:
   admin: false
   role: agent
   encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+  notify_on_private: true
+  notify_on_public: true
+  notify_on_reply: true
 
 editor:
   id: 7

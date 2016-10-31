@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
-  after_create :enable_notifications_for_agents
+  after_create :enable_notifications_for_admin
   acts_as_taggable_on :teams
 
   ROLES = %w[admin agent editor user]
@@ -111,31 +111,24 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def enable_notifications_for_agents
-    if self.role == "agent" || self.role == "admin"
-      self.settings.notify_on_private = "1"
-      self.settings.notify_on_public = "1"
-      self.settings.notify_on_reply = "1"
-    else
-      self.settings.notify_on_private = nil
-      self.settings.notify_on_public = nil
-      self.settings.notify_on_reply = nil
+  def enable_notifications_for_admin
+    if self.role == "admin"
+      self.notify_on_private = true
+      self.notify_on_public = true
+      self.notify_on_reply = true
     end
   end
 
   def self.notifiable_on_public
-    # Iterates through agents, selecting those with notifications on
-    User.agents.order('id asc').map { |a| a.settings.notify_on_public == "1" ? a.email : '' }.select {|x| x.present?}
+    User.agents.where(notify_on_public: true).reorder('id asc')
   end
 
   def self.notifiable_on_private
-    # Iterates through agents, selecting those with notifications on
-    User.agents.order('id asc').map { |a| a.settings.notify_on_private == "1" ? a.email : '' }.select {|x| x.present?}
+    User.agents.where(notify_on_private: true).reorder('id asc')
   end
 
   def self.notifiable_on_reply
-    # Iterates through agents, selecting those with notifications on
-    User.agents.order('id asc').map { |a| a.settings.notify_on_reply == "1" ? a.email : '' }.select {|x| x.present?}
+    User.agents.where(notify_on_reply: true).reorder('id asc')
   end
 
   def active_assigned_count
