@@ -52,13 +52,6 @@ namespace :db do
     puts "Created Agent: #{u.name}"
   end
 
-  # Disable notifications for our new agents
-  User.agents.each do |a|
-    a.settings.notify_on_reply = "0"
-    a.settings.notify_on_private = "0"
-    a.settings.notify_on_public = "0"
-  end
-
   # Create users with avatars
   number_users.times do
 
