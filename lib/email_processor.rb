@@ -14,6 +14,7 @@ class EmailProcessor
 
     sitename = AppSettings["settings.site_name"]
     message = @email.body
+    raw = @email.raw_body
     subject = @email.subject
     attachments = @email.attachments
 
@@ -25,7 +26,12 @@ class EmailProcessor
 
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create(:body => message, :user_id => @user.id, :kind => "reply")
+      post = topic.posts.create(
+        :body => message,
+        :raw_email => raw,
+        :user_id => @user.id,
+        :kind => "reply"
+      )
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
@@ -39,11 +45,19 @@ class EmailProcessor
       # message = MailExtract.new(message).body
 
       #parse_forwarded_message(message)
-      topic = Forum.first.topics.create!(:name => subject, :user_id => @user.id, :private => true)
+      topic = Forum.first.topics.create!(
+        :name => subject,
+        :user_id => @user.id,
+        :private => true
+      )
 
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create!(:body => @email.raw_body, :user_id => @user.id, kind: 'first')
+      post = topic.posts.create!(
+        :body => @email.raw_body,
+        :user_id => @user.id,
+        kind: 'first'
+      )
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
@@ -68,7 +82,12 @@ class EmailProcessor
 
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create(:body => message, :user_id => @user.id, :kind => "first")
+      post = topic.posts.create(
+        :body => message,
+        :raw_email => raw,        
+        :user_id => @user.id,
+        :kind => "first"
+      )
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
