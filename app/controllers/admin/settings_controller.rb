@@ -38,6 +38,11 @@ class Admin::SettingsController < Admin::BaseController
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
 
+    @logo = Logo.new
+    @logo.file = params['uploader.design.header_logo']
+    # binding.pry
+    @logo.save
+
     respond_to do |format|
       format.html {
         redirect_to admin_settings_path
