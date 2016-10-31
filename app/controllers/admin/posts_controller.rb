@@ -72,7 +72,9 @@ class Admin::PostsController < Admin::BaseController
       :body,
       :kind,
       {screenshots: []},
-      {attachments: []}
+      {attachments: []},
+      :cc,
+      :bcc
     )
   end
 
