@@ -112,6 +112,7 @@ Rails.application.routes.draw do
       resources :posts
     end
     resources :posts
+    get '/posts/:id/raw' => 'posts#raw', as: :post_raw
     get '/dashboard' => 'dashboard#index', as: :dashboard
     get '/team' => 'dashboard#stats', as: :stats
     root to: 'dashboard#index'
