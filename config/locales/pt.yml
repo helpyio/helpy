@@ -27,7 +27,7 @@ pt:
   did_this_help: "Resolveu o seu problema?"
   yes_button: 'Sim'
   no_button: 'Não'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,7 +71,7 @@ pt:
   created_on: "Criado a"
 
   # Get Help
-  get_help_header: "Ainda Necessita de Ajuda??"
+  get_help_header: "Ainda Necessita de Ajuda?"
   get_help_button: "Inicie uma Discussão Conosco"
 
   # Profile
@@ -214,6 +214,7 @@ pt:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Olá %{user_name}"
   new_user: "Obrigado pelo seu contacto. A sua mensagem foi recebida pela nossa equipa de suporte e iremos entrar em contacto consigo o mais rapidamente possível."
   account_generated: "Foi criada uma nova conta para si. Para entrar, use este link:"
@@ -284,6 +285,8 @@ pt:
     docs:
       root: *root
     forums:
+      root: *root
+    locales:
       root: *root
     topics:
       root: *root

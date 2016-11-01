@@ -125,6 +125,14 @@ ul.dropdown-menu {
 	padding-bottom: 0px;
 }
 
+.edit-user {
+	margin-right: 4px;
+}
+
+.user-section {
+	margin-bottom: 40px;
+}
+
 .navbar.navbar-default {
 	background-color: #222;
 }
@@ -167,11 +175,21 @@ trix-editor {
 	border-bottom: 1px solid #eee;
 }
 
+.no-tickets {
+	margin-top: 20%;
+
+	span {
+		color: #ccc;
+
+		i {
+			font-size: 48px;
+		}
+	}
+}
 
 .dummy {
     margin-top: 110%;
 }
-
 
 .stats {
   display: block;
@@ -316,9 +334,88 @@ ul.settings-menu {
 		margin-bottom: 20px;
 	}
 
-
 }
 
+#post-images {
+	margin-top: 30px;
+
+	ul li.image img {
+		margin-top: -20px;
+	}
+
+	ul li.raw {
+		border: 1px solid #ddd;
+		width: 125px;
+		padding-top: 45px;
+		padding-bottom: 45px;
+		text-align: center;
+
+		i {
+			font-size: 36px;
+			color: #ccc;
+		}
+
+	}
+}
+
+.color-sample {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.new-tag {
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	input {
+		width: 90%;
+	}
+}
+
+.settings-panel .checkbox {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+
+	label {
+		padding-left: 0;
+	}
+}
+
+.bootstrap-switch {
+	float: right;
+	margin-left: 20px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.settings-subsection {
+	margin-bottom: 40px;
+}
+
+.subitem {
+	margin-left: 3%;
+	width: 97%;
+}
+
+.btn.post-dropdown {
+	padding: 6px 0px;
+}
+
+.btn-group.open .dropdown-toggle {
+	-webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.post-cc-style {
+	color: #999;
+}
 // === TEAM INSIGHTS ===
 
 .team-members {
@@ -451,4 +548,42 @@ ul.settings-menu {
 	.settings-grid-row {
 		margin-bottom: 20px;
 	}
+}
+
+@media print {
+  .add-team-member {
+    display: none;
+  }
+
+  .admin-options {
+    display: none;
+  }
+
+  .btn-group {
+    display: none;
+  }
+
+  .label {
+    display: none;
+  }
+}
+
+.selectize-control.form-control {
+	border: 0;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.dropdown-form {
+ padding-left: 20px;
+}
+
+.datepicker.datepicker-dropdown {
+ min-width: 0;
+
+ tr{
+   height: 0;
+ }
 }

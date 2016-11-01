@@ -27,7 +27,7 @@ ca:
   did_this_help: "Això ha solucionat el teu problema?"
   yes_button: 'Si'
   no_button: 'No'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -79,7 +79,7 @@ ca:
 
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
   # devise/sessions/new
@@ -213,6 +213,7 @@ ca:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
   new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   account_generated: "An account has been generated for you. To sign in, please use this link:"
@@ -281,6 +282,8 @@ ca:
     categories:
       root: *root
     docs:
+      root: *root
+    locales:
       root: *root
     forums:
       root: *root

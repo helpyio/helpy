@@ -1,0 +1,31 @@
+// This stylesheet is for common rules that are used by all themes.  Typically this
+// would mean infrastructure type styles: things like how attachments are shown.
+// They can always be overwritten by styles in the themes .scss
+
+
+#post-images {
+	margin-top: 30px;
+
+	ul li.image img {
+		margin-top: -20px;
+	}
+
+	ul li.raw {
+		border: 1px solid #ddd;
+		width: 125px;
+		padding-top: 45px;
+		padding-bottom: 45px;
+		text-align: center;
+
+		i {
+			font-size: 36px;
+			color: #ccc;
+		}
+
+	}
+}
+
+.select-image {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}

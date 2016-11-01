@@ -4,12 +4,16 @@ class Admin::DashboardController < Admin::BaseController
   skip_before_action :verify_agent
   before_action :date_from_params, only: :stats
   before_action :verify_admin, only: :stats
+  before_action :get_all_teams
+
 
   # Routes to different views depending on role of user
   def index
-    if current_user.is_admin? || current_user.is_agent?
+    #@topics = Topic.mine(current_user.id).pending.page params[:page]
+
+    if (current_user.is_admin? || current_user.is_agent?) && (forums? || tickets?)
       redirect_to admin_topics_path
-    elsif current_user.is_editor?
+    elsif current_user.is_editor? && knowledgebase?
       redirect_to admin_categories_path
     else
       redirect_to root_url
@@ -70,7 +74,8 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def i18n_interval_label(label)
-    labels = %w(today yesterday this_week this_month)
+    return "Between #{@start_date.to_date} and #{@end_date.to_date}" if (label == 'interval')
+    labels = %w(today yesterday this_week last_week this_month last_month)
     return labels.include?(label) ? t(label) : t('this_week')
   end
 end

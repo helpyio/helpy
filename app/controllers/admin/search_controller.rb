@@ -4,6 +4,8 @@ class Admin::SearchController < Admin::BaseController
   before_action :fetch_counts
   before_action :pipeline
   before_action :remote_search
+  before_action :get_all_teams
+
   respond_to :html, :js
 
   # simple search tickets by # and user
@@ -18,12 +20,12 @@ class Admin::SearchController < Admin::BaseController
     end
 
     if users.size == 0 # not a user search, so look for topics
-      @topics = Topic.admin_search(params[:q]).page params[:page]
+      search_topics
       template = 'admin/topics/index'
       tracker("Admin Search", "Topic Search", params[:q])
     elsif users.size == 1
       @user = users.first
-      @topics = Topic.admin_search(params[:q]).page params[:page]
+      search_topics
       @topic = Topic.where(user_id: @user.id).first unless @user.nil?
       template = 'admin/topics/index'
 
@@ -38,5 +40,14 @@ class Admin::SearchController < Admin::BaseController
     render template
   end
 
+  protected
+
+  def search_topics
+    if current_user.is_restricted? && teams?
+      @topics = Topic.admin_search(params[:q]).tagged_with(current_user.team_list, :any => true).page params[:page]
+    else
+      @topics = Topic.admin_search(params[:q]).page params[:page]
+    end
+  end
 
 end

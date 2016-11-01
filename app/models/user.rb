@@ -52,6 +52,7 @@
 #  invitations_count      :integer          default(0)
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
+#  profile_image          :string
 #
 
 class User < ActiveRecord::Base
@@ -66,13 +67,14 @@ class User < ActiveRecord::Base
 
   TEMP_EMAIL_PREFIX = 'change@me'
 
+  attr_accessor :opt_in
+
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
-  attr_accessor :opt_in
-
 
   include Gravtastic
+  mount_uploader :profile_image, ProfileImageUploader
 
   include PgSearch
   pg_search_scope :user_search,
@@ -91,7 +93,8 @@ class User < ActiveRecord::Base
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
-  after_create :enable_notifications_for_agents
+  after_create :enable_notifications_for_admin
+  acts_as_taggable_on :teams
 
   ROLES = %w[admin agent editor user]
 
@@ -108,16 +111,32 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def enable_notifications_for_agents
-    if self.role == "agent" || self.role == "admin"
-      self.settings.notify_on_private = "1"
-      self.settings.notify_on_public = "1"
-      self.settings.notify_on_reply = "1"
+  def enable_notifications_for_admin
+    if self.role == "admin"
+      self.notify_on_private = true
+      self.notify_on_public = true
+      self.notify_on_reply = true
     end
+  end
+
+  def self.notifiable_on_public
+    User.agents.where(notify_on_public: true).reorder('id asc')
+  end
+
+  def self.notifiable_on_private
+    User.agents.where(notify_on_private: true).reorder('id asc')
+  end
+
+  def self.notifiable_on_reply
+    User.agents.where(notify_on_reply: true).reorder('id asc')
   end
 
   def active_assigned_count
     Topic.where(assigned_user_id: self.id).active.count
+  end
+
+  def is_restricted?
+    self.team_list.count > 0 && !self.is_admin?
   end
 
   def self.create_password

@@ -14,7 +14,11 @@
 <script>
   Helpy.yesHelped = '<%= j t(:yes_helped) %>';
   Helpy.noHelped = '<%= j t(:no_helped) %>';
-  Helpy.contactUs = '<a href="<%= new_topic_path(doc_id: @doc.id) %>" class="btn btn-primary btn-lg get-help-button"><%= j t(:start_discussion) %></a>';
+  <% if tickets? %>
+    Helpy.contactUs = '<a href="<%= new_topic_path(doc_id: @doc.id) %>" class="btn btn-primary btn-lg get-help-button"><%= j t(:start_discussion) %></a>';
+  <% else %>
+    Helpy.contactUs = '';
+  <% end %>
 </script>
 
 <style>
@@ -40,7 +44,7 @@
     </div>
     <div id="doc-tags" class="doc-meta">
       <div class="more-important meta-header"><%= I18n.t("Tagged", default: "Tagged") %>:</div>
-      <div class="more-important meta-header"><% tag_listing(@doc.tag_list) %></div>
+      <div class="more-important meta-header"><% tag_listing(@doc.tag_list, "doc") %></div>
     </div>
   </div>
     <div class="col-md-9 text-content">
@@ -48,12 +52,12 @@
   </div>
 </div>
 
-<% if @doc.allow_comments %>
+<% if @doc.allow_comments && forums? %>
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm"></div>
     <div class="col-md-9">
       <hr/>
-      <h4><%= @posts.nil? ? "" : t(:topic) %></h4>
+      <h4><%= @posts.blank? ? "" : t(:topic) %></h4>
     </div>
 
     <div class="col-md-3 hidden-xs hidden-sm"></div>
@@ -67,37 +71,10 @@
   		</table>
 
   		<% if user_signed_in? # show a form to reply or start discussion %>
-        <div class="add-form">
-    			<h4><%= @posts.nil? ? t(:start_discussion) : t(:reply) %></h4>
-          <% if @topic # This is the reply form  %>
-      			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
-      			  <%= f.text_area :body, rows: 8, cols: 160, skip_label: true, class: 'disable-empty' %></p>
-      			  <%= f.hidden_field 'kind', value: 'reply' %>
-      				<div class="add-screenshots">
-      				  <%= attachinary_file_field_tag 'post[screenshots]', @post, :screenshots unless Cloudinary.config.cloud_name.nil? %>
-      				</div>
-      				<%= hidden_field_tag :client_id %>
-      				<%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
-      			<% end -%>
-
-          <% else # Show the new form %>
-            <%= bootstrap_form_for(@newtopic) do |f| -%>
-              <%= text_area :post, :body, :rows => 8, :cols => 160, label: 'Message', class: 'disable-empty'  -%>
-              <div class="add-screenshots">
-                <%= attachinary_file_field_tag 'topic[screenshots]', @newtopic, :screenshots unless Cloudinary.config.cloud_name.nil? %>
-              </div>
-              <%= hidden_field_tag :client_id %>
-              <%= f.hidden_field :name, value: "Discussion on #{@doc.title}" %>
-              <%= f.hidden_field :doc_id, value: @doc.id %>
-              <%= f.hidden_field :private, value: false %>
-              <%= f.hidden_field :forum_id, value: @forum.id %>
-              <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
-            <% end -%>
-          <% end %>
-        </div>
+        <%= render partial: 'docs/comment_form', locals: {post: @post} %>
   		<% else # show a button to reply or start the discussion %>
         <div>
-          <% if @posts.nil? %>
+          <% if @posts.blank? %>
           <span class="hidden-xs pull-right"><%= link_to t(:start_discussion, default: "Start Discussion"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
           <% else %>
           <span class="hidden-xs pull-right"><%= link_to t(:reply, default: "Reply"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>

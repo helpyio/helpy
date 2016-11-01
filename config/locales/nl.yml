@@ -27,7 +27,7 @@ nl:
   did_this_help: "Was dit antwoord nuttig?"
   yes_button: "Ja"
   no_button: "Nee"
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,7 +71,7 @@ nl:
   created_on: "Aangemaakt op"
 
   # Get Help
-  get_help_header: "Meer hulp nodig??"
+  get_help_header: "Meer hulp nodig?"
   get_help_button: "Stel ons je vraag"
 
   # Profile
@@ -79,7 +79,7 @@ nl:
 
   # footer
   powered_by: "Met dank aan Helpy."
-  get_your_copy: "Bekijk dit project op Github"
+  get_your_copy: "Bekijk dit project op GitHub"
   # version: "Version:"
 
   # devise/sessions/new
@@ -214,6 +214,7 @@ nl:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Hallo %{user_name}"
   new_user: "Bedankt voor je bericht! We hebben je vraag ontvangen en onze helpdesk zal hier zo snel mogelijk op antwoorden."
   account_generated: "Er is een helpdesk account voor je aangemaakt. Gebruik de volgende link om in te loggen:"
@@ -284,6 +285,8 @@ nl:
     docs:
       root: *root
     forums:
+      root: *root
+    locales:
       root: *root
     topics:
       root: *root

@@ -4,64 +4,73 @@ namespace :db do
   require 'faker'
 
   # How many fake objects to create
-  number_support_team = 4
+  number_support_team = 3
   number_users = 10
   number_docs = rand(5..10)
-  number_threads = rand(20..50)
+  number_threads = rand(5..15)
   number_tickets = rand(20..50)
+
+  groups = [[0, 'billing'],[1, 'shipping'],[2, 'returns'],[3, '']]
 
   unless User.where(email: 'admin@test.com')
     admin_user = User.create!(name: 'Admin', login:'admin', email: 'admin@test.com', password:'12345678', admin: true)
     puts "Created Admin: #{admin_user.name}"
   end
 
-  # Add Support Team
-  company = RUser.new
-  company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
+  # Get random user data from https://randomuser.me/documentation#results
+  def get_user
+    url = 'https://api.randomuser.me/1.1/?nat=us'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    return JSON.parse(response)['results'][0]
+  end
 
-  number_support_team.times do
-    user = RUser.new
+  # Add Support Team
+  company_name = "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}"
+  number_support_team.times.each_with_index do |item, index|
+
+    user = get_user
     u = User.create(
-      name: "#{user.first_name} #{user.last_name}",
-      email: user.email,
-      login: user.username,
+      name: "#{user['name']['first']} #{user['name']['last']}" ,
+      email: user['email'],
+      login: '',
       password: '12345678',
       admin: true,
-      role: 'admin',
-      company: company_name,
-      street: company.street,
-      city: company.city,
-      state: company.state,
-      zip: company.postal,
-      work_phone: company.phone,
-      cell_phone: user.cell,
-      thumbnail: user.profile_thumbnail_url,
-      medium_image: user.profile_medium_url,
-      large_image: user.profile_large_url
+      role: 'agent',
+      company: "#{company_name}",
+      street: user['location']['street'],
+      city: user['location']['city'],
+      state: user['location']['state'],
+      zip: user['location']['postcode'],
+      work_phone: user['phone'],
+      cell_phone: user['cell'],
+      thumbnail: user['picture']['large'],
+      medium_image: user['picture']['medium'],
+      large_image: user['picture']['large'],
+      team_list: groups[index][1]
     )
-
     puts "Created Agent: #{u.name}"
   end
 
   # Create users with avatars
   number_users.times do
 
-    user = RUser.new
+    user = get_user
     u = User.create(
-      name: "#{user.first_name} #{user.last_name}",
-      email: user.email,
-      login: user.username,
+      name: "#{user['name']['first']} #{user['name']['last']}" ,
+      email: user['email'],
+      login: '',
       password: '12345678',
-      company: "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}",
-      street: user.street,
-      city: user.city,
-      state: user.state,
-      zip: user.postal,
-      work_phone: user.phone,
-      cell_phone: user.cell,
-      thumbnail: user.profile_thumbnail_url,
-      medium_image: user.profile_medium_url,
-      large_image: user.profile_large_url
+      company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
+      street: user['location']['street'],
+      city: user['location']['city'],
+      state: user['location']['state'],
+      zip: user['location']['postcode'],
+      work_phone: user['phone'],
+      cell_phone: user['cell'],
+      thumbnail: user['picture']['large'],
+      medium_image: user['picture']['medium'],
+      large_image: user['picture']['large'],
     )
 
     puts "Created User: #{u.name}"
@@ -70,19 +79,19 @@ namespace :db do
   # Create users without avatars
   number_users.times do
 
-    user = RUser.new
+    user = get_user
     u = User.create(
-      name: "#{user.first_name} #{user.last_name}",
-      email: user.email,
-      login: user.username,
+      name: "#{user['name']['first']} #{user['name']['last']}" ,
+      email: user['email'],
+      login: '',
       password: '12345678',
-      company: "#{Faker::Hacker.noun} #{Faker::Hacker.ingverb} #{company_type}",
-      street: user.street,
-      city: user.city,
-      state: user.state,
-      zip: user.postal,
-      work_phone: user.phone,
-      cell_phone: user.cell
+      company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
+      street: user['location']['street'],
+      city: user['location']['city'],
+      state: user['location']['state'],
+      zip: user['location']['postcode'],
+      work_phone: user['phone'],
+      cell_phone: user['cell'],
     )
 
     puts "Created User: #{u.name}"
@@ -197,7 +206,7 @@ namespace :db do
 
   # Create back and forth private threads with support staff
   f = Forum.find(1)
-  number_tickets.times do
+  number_tickets.times.each_with_index do |item, index|
 
       timeseed = rand(1..30)
       Timecop.travel(Date.today-timeseed.days)
@@ -206,10 +215,11 @@ namespace :db do
       question = build_question(q)
 
       topic = f.topics.create!(
-        name: question,
+        name: ticket_issue.split("|")[0],
         user_id: User.where(admin: false).sample.id,
         private: true,
-        assigned_user_id: User.where(admin: true).sample.id
+        assigned_user_id: User.where(admin: true).sample.id,
+        team_list: ticket_issue.split("|")[1]
       )
 
       # create first post in thread
@@ -258,6 +268,45 @@ namespace :db do
       "Need Help!",
       "Setting up #{q}",
       "#{q} initial questions"
+    ].sample
+  end
+
+  def issue
+    [
+      "was late|",
+      "is damaged|returns",
+      "never came|shipping",
+      "has something wrong with it|",
+      "was not delivered|shipping",
+      "is missing a part|",
+      "is the wrong color|"
+    ].sample
+  end
+
+  def question
+    [
+      "update my billing information?|billing",
+      "change my credit card?|billing",
+      "request a refund?|",
+      "change my address?|",
+      "cancel my account?|"
+    ].sample
+  end
+
+  def ticket_issue
+    [
+      "Order ##{Faker::Number.number(8)} #{issue}",
+      "My order for a '#{Faker::Commerce.product_name}' #{issue}",
+      "I ordered something from you guys and it #{issue}",
+      "Late order|shipping",
+      "Where is my order!?|",
+      "Missing parts|",
+      "No packing slip|shipping",
+      "what is your phone number?|",
+      "I need to return something|returns",
+      "Help!|",
+      "Do you have a store anywhere?|",
+      "How can I #{question}"
     ].sample
   end
 

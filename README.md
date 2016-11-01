@@ -11,15 +11,16 @@ Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2
 Features
 ========
 
-- **Private Support Discussions (aka tickets):**
-Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
-- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum. You can choose to make forums or posts voteable, and select from 3 layout templates (table, grid or Q&A format). Attach images to posts and tickets using Cloudinary.
-- **Voting**: Discussion topics and replies support voting.  This lets you easily create a "feature requests" forum or allow registered users to vote up the best replies to a question similar to Quora or Stack Exchange
-- **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you. Supports images hosted on your own CDN or via Cloudinary.
-- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing. [95% implemented]
+Helpy is an integrated support solution- combining and leveraging synergies between support ticketing, Knowledgebase and a public community.  Each feature is optional however, and can be easily disabled.
+
+- **Private Support Discussions (aka tickets):** Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
+- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum.
+- **Voting**: Discussion topics and replies support voting.
+- **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you.
+- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing.
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
 - **Embed Widget:** Helpy Includes a lightweight javascript widget that allows your users to contact you from just about anywhere.
-- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for English, French, German, Spanish, Catalan, Portuguese, Nederlands, Chinese, Japanese, Russian and Estonian and is easy to translate.  Helpy provides tools for translating your support content and the multilingual support site feature means your customers will only see content translated into their own locale.
+- **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for 19 languages and is easy to translate.
 - **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
 
 Test it Out
@@ -38,22 +39,21 @@ Installation
 
 Helpy was designed to run on on modern cloud providers like Digital Ocean or Heroku, although it should work just about anywhere.  For a quick trial you can get set up on Heroku by clicking this button:
 
+*Heads up!! We are making some improvements that may break some parts of the one-click Heroku installation.  Specifically this includes storing files on the filesystem (not available via Heroku), removing the 12factor gem, using sidekiq and more.  As a result, we no longer recommend the one click Heroku install. Instead, clone the repo, configure it for Heroku and then push to Heroku.*
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 Requirements are:
 
-- Ruby 2.2
-- Rails 4.2
+- Ruby 2.2+
+- Rails 4.2.x
 - Postgres
 - A server like Unicorn, Puma or Passenger
 
-Helpy leverages three external services to help out:
+Helpy leverages two external services to help out:
 
-- an email provider like Mailgun
-- an image manipulation and host (Cloudinary)
-- Google Analytics for stats
-
-Mailgun and Cloudinary have a free tier that should get you started.
+- an email provider like Sendgrid
+- Google Analytics for stats (optional)
 
 There is a full guide to installing Helpy at http://support.helpy.io/en/knowledgebase/11-installing-helpy
 
@@ -82,28 +82,26 @@ Helpy has the ability to receive email at your support email addresses and impor
 
 Helpy supports Omniauth login capabilities.  This means you can allow your support users to sign in with a single click via any Omniauth provider- ie. Facebook, Twitter, Gmail, or many others. Read [Setting Up Oauth For Your Helpy](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/19-Setting-Up-OAUTH-for-your-Helpy) to see how.
 
-**Set up Cloudinary (optional)**
-
-Helpy uses a service called Cloudinary to host and manipulate images.  If you do not provide an API key in the admin settings, Helpy will not give users the option to attach images to their support tickets, and you will not be able to easily add images to your knowledge base documents.
-
-
 Contributing
 ============
 
-We have a contributors Slack room, click below to get access. Before you embark on anything too ambitious you should chat us up to make sure no one else is already working on it, and to coordinate your efforts.
+Welcome, and thanks for contributing to Helpy.  Together we are building the best customer support platform in the world.  Here are some of the ways you can contribute:
 
-[![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
-There is also a project roadmap available at [Trello](https://trello.com/b/NuiWsdmK/helpy)
+- Report or fix Bugs
+- Refactoring
+- Improve test coverage-  As with any large and growing codebase, test coverage is not always as good as it could be.  Help improving test coverage is always welcome and will help you learn how Helpy works.  We use Minitest exclusively.
+- Translate the project- The community has already translated Helpy into 18 languages, but there are many more waiting.  We need help getting Helpy translated into as many locales as possible! [please see the guide to translation](http://support.helpy.io/en/knowledgebase/12-Using-Helpy/docs/4-Supported-locales-How-to-Contribute)
+- Build new features.  There is a backlog of new features that we’d like to see built.  Check out our roadmap for more insight on this, and if you would like to take one on, please get in touch with us to make sure someone is not already working on it.
 
-**Helpy needs your help spreading the word.  The #1 contribution you could make is to blog, share, post, tweet, and tell people about Helpy.  This will go a long ways towards helping build a sustainable community.**
+**General Guidelines:**
 
-I am happy to accept contributions of any kind, including feedback and ideas, translations for other locales, and functionality. To submit translations, [please see the guide to translation](http://support.helpy.io/en/knowledgebase/12-Using-Helpy/docs/4-Supported-locales-How-to-Contribute) and send me a gist to your translation file.  For new functionality, follow the standard approach:
-
-1. Fork the project
-2. Create a Branch for your contribution
-3. Write tests to cover your enhancements, and documentation describing what your feature is/does
-4. Submit a pull request
-
+- Join us on Slack.  Let me know you wish to contribute. [![Slack Status](https://helpyioslackin.herokuapp.com/badge.svg)](https://helpyioslackin.herokuapp.com)
+- Make your PRs granular.  They should only include one piece of functionality per PR.
+- Check the roadmap: [Trello](https://trello.com/b/NuiWsdmK/helpy) If you want to build a feature, contact us to make sure no one else is already working on it
+- You must provide passing test coverage.  We use minitest, see http://www.rubypigeon.com/posts/minitest-cheat-sheet/?utm_source=rubyweekly&utm_medium=email
+- You also must expose functionality to the API.  We use Grape.  API methods should be tested as well.
+- If your feature/bug fix/enhancement adds or changes text in the project, please create i18n strings in `en.yml` and any other locales you can.
+- We are hugely concerned with user experience, and a nice UI.  Oftentimes that means we may take what you have contributed and “dress it up” or as you to do the same.
 
 License
 =======

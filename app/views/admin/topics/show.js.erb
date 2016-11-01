@@ -1,11 +1,13 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/ticket') %>");
 $('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
 $('#ticket-page-title').html("").hide();
-$(document).prop('title', "<%= t('discussion_management', default: 'Discussion Management')%>: #<%= @topic.id %> <%= @topic.name.titleize %>");
-window.location.hash = '<%= "#{@topic.id} #{@topic.name}" %>';
+$(document).prop('title', "<%= admin_title %> <%= t(:discussions, default: 'Discussions') %>: #<%= @topic.id %> <%= @topic.name.titleize %>");
 
 // Update timestamps
 $('.last-active time[data-time-ago]').timeago();
+
+// Empty ticket search field
+$('q').val('');
 
 // Send ping to GA
 ga('send', 'pageview');
@@ -13,6 +15,7 @@ ga('send', 'pageview');
 // jQuery hook
 Helpy.ready();
 Helpy.track();
+Helpy.logHistory();
 
 // RTL changes?
 <%= "Helpy.rtl();" if rtl? %>

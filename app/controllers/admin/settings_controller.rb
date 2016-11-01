@@ -15,11 +15,12 @@ class Admin::SettingsController < Admin::BaseController
 
   # Save notification preference for current agent/admin
   def update_notifications
-    current_user.settings.notify_on_private = params['notify_on_private']
-    current_user.settings.notify_on_public = params['notify_on_public']
-    current_user.settings.notify_on_reply = params['notify_on_reply']
-
-    redirect_to admin_topics_path
+    user = current_user
+    user.notify_on_private = params[:notify_on_private]
+    user.notify_on_public = params[:notify_on_public]
+    user.notify_on_reply = params[:notify_on_reply]
+    user.save!
+    redirect_to admin_settings_path
   end
 
   def preview
@@ -36,6 +37,11 @@ class Admin::SettingsController < Admin::BaseController
     @settings.each do |setting|
       AppSettings[setting[0]] = params[setting[0].to_sym]
     end
+
+    @logo = Logo.new
+    @logo.file = params['uploader.design.header_logo']
+    # binding.pry
+    @logo.save
 
     respond_to do |format|
       format.html {

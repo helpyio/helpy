@@ -1,30 +1,48 @@
-
-<!-- <div id="edit-user-info-horizontal" class="row">-->
-  <%= bootstrap_form_for(:user, url: admin_user_path, remote: true, method: 'patch', layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
-  <div class='col-md-4 col-sm-12 col-xs-12 text-center' id='user-info-image'>
+<%= bootstrap_form_for(:user, url: admin_user_path, remote: true, method: 'patch') do |f| %>
+  <div class='col-md-12 col-sm-12 col-xs-12 text-center' id='user-info-image'>
     <%= avatar_image(@user, size=150) %>
   </div>
-  <div id="user-contact-info" class="col-md-4 col-sm-6 col-xs-12 user-info">
-    <div class="tiny-header"><%= @user.name %></div>
-    <span class="small">
+  <div id="user-contact-info" class="col-md-12 col-sm-12 col-xs-12 user-info">
+    <div class="user-section">
       <%= f.text_field :name %>
       <%= f.text_field :company %>
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
       <%= f.select(:role, [['Select Role',''],['Admin','admin'],['Agent','agent'],['Editor','editor'],['User','user']]) if current_user.is_admin? %>
-      <%= f.check_box :active, inline: true %> <%#= f.check_box :admin, inline: true %>
-    </span>
-  </div>
-  <div id="user-contact-info" class="col-md-4 col-sm-6 col-xs-12  user-info">
-    <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
-    <%= f.text_field :work_phone %>
-    <%= f.text_field :cell_phone %>
-    <%= f.email_field :email %><br/>
-    <div class="tiny-header"><%= t(:social_info, default: "Social") %>:</div>
-    <%= f.text_field :twitter %>
-    <%= f.text_field :linkedin %>
+      <%= f.text_field :team_list, value: @user.team_list.to_s, class: 'selectize form-control', label: "Group Membership" if AppSettings['settings.teams'] && current_user.is_admin? && @user.is_agent? %>
+      <%= f.check_box :active %> <%#= f.check_box :admin, inline: true %>
+    </div>
+    <div class="user-section">
+      <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
+      <%= f.text_field :work_phone %>
+      <%= f.text_field :cell_phone %>
+      <%= f.email_field :email %>
+    </div>
+    <div class="user-section">
+      <div class="tiny-header"><%= t(:social_info, default: "Social") %>:</div>
+      <%= f.text_field :twitter %>
+      <%= f.text_field :linkedin %>
+    </div>
+    <% if current_user.is_admin? && @user.is_agent? %>
+    <div class="user-section">
+      <div class="tiny-header"><%= t(:notifications, default: "Notifications") %>:</div>
+      <%= f.check_box 'notify_on_private', { checked: @user.notify_on_private?, label: t('notify_on_private', default: "Email me when a private customer question has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'notify_on_public', { checked: @user.notify_on_public?, label: t('notify_on_public', default: "Email me when a public customer question has been posted"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'notify_on_reply', { checked: @user.notify_on_reply?, label: t('notify_on_reply', default: "Email me when a new reply to a private discussion has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+    </div>
+    <% end %>
     <%= f.submit "Save", class: 'btn btn-warning' %>
   </div>
-
-  <% end %>
-<!-- </div> -->
+<% end %>
+<script type="text/javascript">
+  $('.selectize').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+            }
+        }
+  });
+</script>

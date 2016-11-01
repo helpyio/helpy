@@ -14,6 +14,7 @@ class EmailProcessor
 
     sitename = AppSettings["settings.site_name"]
     message = @email.body
+    raw = @email.raw_body
     subject = @email.subject
     attachments = @email.attachments
 
@@ -25,7 +26,12 @@ class EmailProcessor
 
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create(:body => message, :user_id => @user.id, :kind => "reply")
+      post = topic.posts.create(
+        :body => message,
+        :raw_email => raw,
+        :user_id => @user.id,
+        :kind => "reply"
+      )
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
@@ -39,11 +45,19 @@ class EmailProcessor
       # message = MailExtract.new(message).body
 
       #parse_forwarded_message(message)
-      topic = Forum.first.topics.create!(:name => subject, :user_id => @user.id, :private => true)
+      topic = Forum.first.topics.create!(
+        :name => subject,
+        :user_id => @user.id,
+        :private => true
+      )
 
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create!(:body => @email.raw_body, :user_id => @user.id, kind: 'first')
+      post = topic.posts.create!(
+        :body => @email.raw_body,
+        :user_id => @user.id,
+        kind: 'first'
+      )
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
@@ -55,10 +69,25 @@ class EmailProcessor
     else # this is a new direct message
 
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
+      # if @email.header['X-Helpy-Teams'].present?
+      #   topic.team_list = @email.header['X-Helpy-Teams']
+
+      if @email.to[0][:token].include?("+")
+        topic.team_list.add(@email.to[0][:token].split('+')[1])
+        topic.save
+      elsif @email.to[0][:token] != 'support'
+        topic.team_list.add(@email.to[0][:token])
+        topic.save
+      end
 
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create(:body => message, :user_id => @user.id, :kind => "first")
+      post = topic.posts.create(
+        :body => message,
+        :raw_email => raw,        
+        :user_id => @user.id,
+        :kind => "first"
+      )
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
@@ -77,6 +106,9 @@ class EmailProcessor
         array_of_files << File.open(attachment.tempfile.path, 'r')
       end
       post.screenshots = array_of_files
+    elsif email.attachments.present?
+      post.attachments = email.attachments
+      post.save!
     end
   end
 
@@ -96,7 +128,7 @@ class EmailProcessor
     @user.name = @email.from[:name].blank? ? @email.from[:token] : @email.from[:name]
     @user.password = User.create_password
     if @user.save
-      UserMailer.new_user(@user, @token).deliver_later
+      UserMailer.new_user(@user.id, @token).deliver_later
     end
   end
 end

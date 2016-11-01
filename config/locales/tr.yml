@@ -79,7 +79,7 @@ tr:
 
   # footer
   powered_by: "Helpy tarafından güçlendirilmiştir. Bir Açık Kaynak Destek Sistemi."
-  get_your_copy: "Github'dan bir kopyasını alın"
+  get_your_copy: "GitHub'dan bir kopyasını alın"
   # version: "Version:"
 
   # devise/sessions/new
@@ -214,6 +214,7 @@ tr:
   # layout_qna: Q&A
 
   # Mail messages
+  new_user_subject: "Welcome to %{site_name}"
   hello: "Merhaba %{user_name}"
   new_user: "Bizimle iletişime geçtiğiniz için teşekkür ederiz. Mesajınız destek ekibimiz tarafından alındı, sizinle en kısa zamanda iletişime geçeceğiz."
   account_generated: "Sizin için bir hesap oluşturuldu. Giriş yapmak için lütfen bu bağlantıyı kullanın:"
@@ -284,6 +285,8 @@ tr:
     docs:
       root: *root
     forums:
+      root: *root
+    locales:
       root: *root
     topics:
       root: *root

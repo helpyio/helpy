@@ -49,9 +49,24 @@ Helpy.admin = function(){
     return false;
   });
 
-  $('.pick-a-color').pickAColor({
-    inlineDropdown: true //display underneath field
+  // You have to delegate this to the document or it does not work reliably
+  // See http://stackoverflow.com/questions/18545941/jquery-on-submit-event
+  $(document).off('submit','form.new-group-form').on('submit','form.new-group-form', function(){
+      var $field = $('#new_group');
+      var newGroup = $field.val();
+      var $newItem = $('<li/>');
+      var $newLink = $('<a class="link-tag" data-remote="true" href="/admin/topics/assign_team?team=' + newGroup + '&topic_ids[]=' + Helpy.topicID + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a></li>');
+      $('.new-tag').before($newItem.append($newLink));
+      $('#new_group').val('');
+      $('.link-tag').off().click();
+      return false;
   });
+
+  $('.pick-a-color').minicolors({
+    theme: 'bootstrap'
+  });
+
+  $('.bs-toggle').bootstrapSwitch();
 
   // Onboarding flow
   $('.panel-link').off().on('click', function(){
@@ -95,6 +110,29 @@ Helpy.admin = function(){
     }
   });
 
+  $('.settings-uploader').off().on('change', function(){
+    var $this = $(this);
+    var f = $this.val().split("\\");
+    var filename = f[f.length-1];
+    $('.hidden-header-logo').val("/uploads/logos/" + filename);
+  });
+
+  $('.favicon-uploader').off().on('change', function(){
+    var $this = $(this);
+    var f = $this.val().split("\\");
+    var filename = f[f.length-1];
+    $('.hidden-favicon').val("/uploads/logos/" + filename);
+  });
+
+  // Start logging history from first pageload
+  Helpy.logHistory();
+
+  $('.input-group.date').datepicker({
+    format: "yyyy-mm-dd",
+    orientation: "auto left",
+    autoclose: true,
+    todayHighlight: true
+  });
 };
 
 Helpy.showPanel = function(panel) {
@@ -120,6 +158,20 @@ Helpy.showGrid = function() {
 
   $('h2#setting-header').text('Settings');
 
+};
+
+// Enables correct URL in browser, history
+Helpy.logHistory = function() {
+  $('a').on('click', function(){
+    var url = $(this).attr('href');
+    console.log("Clicked: " + url);
+    history.pushState(null, '', url);
+  });
+
+  $(window).off().on("popstate", function(){
+    console.log("Popstate fired: " + location.href);
+    $.getScript(location.href);
+  });
 };
 
 $(document).on('page:change', Helpy.admin);

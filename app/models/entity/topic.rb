@@ -18,6 +18,7 @@ module Entity
     expose :updated_at
     expose :doc_id, documentation: { type: "Integer" }
     expose :locale, documentation: { type: "String", desc: "The locale used when the author created the Topic." }
+    expose :team_list
     expose :posts, using: Entity::Post, if: { posts: true }
   end
 end

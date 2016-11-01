@@ -87,9 +87,10 @@ module ApplicationHelper
     end
   end
 
-  def tag_listing(tags)
+  def tag_listing(tags, tagging_type = "message")
+    return unless teams? || tagging_type == "doc"
     tags.each do |tag|
-      concat content_tag(:span, tag, class: "label label-tagging")
+      concat content_tag(:span, tag, class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
     end
   end
 
@@ -103,13 +104,28 @@ module ApplicationHelper
   # Overrides any styles that are changed in AppSettings
   def css_overrides
     styles = "<style>\n"
-    styles += "   #top-bar {\n background-color: ##{AppSettings['css.top_bar']};\n  }\n" if AppSettings['css.top_bar'] != '3cceff'
-    styles += "   #home-search, #page-title, h1, ul.breadcrumb {\n background-color: ##{AppSettings['css.search_background']};\n  }\n" if AppSettings['css.search_background'] != 'feffe9'
-    styles += "   #get-help-wrapper {\n background-color: ##{AppSettings['css.still_need_help']};\n  }\n" if AppSettings['css.top_bar'] != 'FFDF91'
-    styles += "   div.add-form {\n background-color: ##{AppSettings['css.form_background']};\n  }\n" if AppSettings['css.form_background'] != 'F0FFF0'
-    styles += "   .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {\n color: ##{AppSettings['css.link_color']};\n  }\n" if AppSettings['css.link_color'] != '004084'
+    styles += "   #top-bar, header {\n background-color: #{AppSettings['css.top_bar']};\n  }\n" if AppSettings['css.top_bar'] != '3cceff'
+    styles += "   .flat-main-panel, #home-search, #page-title, h1, ul.breadcrumb {\n background-color: #{AppSettings['css.search_background']};\n  }\n" if AppSettings['css.search_background'] != 'feffe9'
+    styles += "   #get-help-wrapper {\n background-color: #{AppSettings['css.still_need_help']};\n  }\n" if AppSettings['css.top_bar'] != 'FFDF91'
+    styles += "   div.add-form {\n background-color: #{AppSettings['css.form_background']};\n  }\n" if AppSettings['css.form_background'] != 'F0FFF0'
+    styles += "   .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {\n color: #{AppSettings['css.link_color']};\n  }\n" if AppSettings['css.link_color'] != '004084'
     styles += "</style>"
     styles.html_safe
+  end
+
+  def theme_css
+    styles = "<style>\n"
+    styles += "   #top-bar, header {\n background-color: #{AppSettings['css.accent_color']};\n  }\n" unless AppSettings['css.accent_color'].blank?
+    styles += "   .flat-main-panel, #home-search, #page-title, h1, ul.breadcrumb {\n background-color: #{AppSettings['css.main_color']};\n  }\n" unless AppSettings['css.main_color'].blank?
+    styles += "\n</style>"
+    styles.html_safe #if AppSettings['design.css'] != ""
+  end
+
+  def css_injector
+    styles = "<style>\n"
+    styles += "#{AppSettings['design.css']}"
+    styles += "\n</style>"
+    styles.html_safe if AppSettings['design.css'] != ""
   end
 
   def get_path(screenshot)

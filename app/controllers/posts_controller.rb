@@ -2,18 +2,22 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  topic_id   :integer
-#  user_id    :integer
-#  body       :text
-#  kind       :string
-#  active     :boolean          default(TRUE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  points     :integer          default(0)
+#  id          :integer          not null, primary key
+#  topic_id    :integer
+#  user_id     :integer
+#  body        :text
+#  kind        :string
+#  active      :boolean          default(TRUE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  points      :integer          default(0)
+#  attachments :string           default([]), is an Array
 #
 
 class PostsController < ApplicationController
+
+  # Make sure forums are enabled
+  before_action :forums_enabled?, only: ['index','show']
 
   respond_to :js, only: [:up_vote]
   layout "clean", only: :index
@@ -35,17 +39,24 @@ class PostsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new(:body => params[:post][:body],
-                     :topic_id => @topic.id,
-                     :user_id => current_user.id,
-                     :kind => params[:post][:kind],
-                     :screenshots => params[:post][:screenshots])
+    @post = @topic.posts.new(post_params)
+    @post.topic_id = @topic.id
+    @post.user_id = current_user.id
+    @post.screenshots = params[:post][:screenshots]
 
     respond_to do |format|
       if @post.save
         format.html {
           @posts = @topic.posts.ispublic.chronologic.active
-          redirect_to @topic.doc.nil? ? topic_posts_path(@topic.id) : doc_path(@topic.doc_id)
+          if @topic.public?
+            # This is a forum post
+            redirect_to @topic.doc.nil? ? topic_posts_path(@topic.id) : doc_path(@topic.doc_id)
+          else
+            # This post belongs to a ticket
+            agent = User.find(@topic.assigned_user_id)
+            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
+            redirect_to ticket_path(@topic.id)
+          end
         }
         format.js {
           @posts = @topic.posts.ispublic.chronologic.active
@@ -69,4 +80,13 @@ class PostsController < ApplicationController
       @post.reload
     end
   end
+
+  def post_params
+    params.require(:post).permit(
+      :body,
+      :kind,
+      {attachments: []}
+    )
+  end
+
 end

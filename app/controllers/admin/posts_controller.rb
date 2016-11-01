@@ -13,14 +13,21 @@ class Admin::PostsController < Admin::BaseController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = Post.new(:body => params[:post][:body],
-                     :topic_id => @topic.id,
-                     :user_id => current_user.id,
-                     :kind => params[:post][:kind],
-                     :screenshots => params[:post][:screenshots])
+    # @post = Post.new(:body => params[:post][:body],
+    #                  :topic_id => @topic.id,
+    #                  :user_id => current_user.id,
+    #                  :kind => params[:post][:kind],
+    #                  :screenshots => params[:post][:screenshots])
+
+    @post = Post.new(post_params)
+    @post.topic_id = @topic.id
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
+        format.html {
+          redirect_to admin_topic_path(@post.topic_id)
+        }
         format.js {
           if params[:post][:resolved] == "1"
             @topic.close(current_user.id)
@@ -28,6 +35,7 @@ class Admin::PostsController < Admin::BaseController
           end
           fetch_counts
           @posts = @topic.posts.chronologic
+
           @admins = User.agents
           #@post = Post.new
           case @post.kind
@@ -40,6 +48,9 @@ class Admin::PostsController < Admin::BaseController
         }
       else
         format.html { render :action => "new" }
+        format.js {
+          render 'admin/topics/show'
+        }
       end
     end
   end
@@ -49,6 +60,22 @@ class Admin::PostsController < Admin::BaseController
     @post.body = params[:post][:body]
     @post.active = params[:post][:active]
     render action: 'update' if @post.save
+  end
+
+  def raw
+    @post = Post.find(params[:id])
+    render layout: false
+  end
+
+  def post_params
+    params.require(:post).permit(
+      :body,
+      :kind,
+      {screenshots: []},
+      {attachments: []},
+      :cc,
+      :bcc
+    )
   end
 
 end

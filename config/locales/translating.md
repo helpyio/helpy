@@ -36,7 +36,7 @@ de:
   nothing_here: "Noch nichts hier!"
 ```
 
-4. Submit your translation: How you submit your new translations depends on whether you forked the project or not.  If you forked, go ahead and commit your changes, push to Github and create a pull request.  The other option is to use http://gist.github.com and cut and paste your file into a gist and then submit it (create a ticket, email, twitter etc.)
+4. Submit your translation: How you submit your new translations depends on whether you forked the project or not.  If you forked, go ahead and commit your changes, push to GitHub and create a pull request.  The other option is to use http://gist.github.com and cut and paste your file into a gist and then submit it (create a ticket, email, twitter etc.)
 
 ### Maintaining or bringing and existing locale up to date
 
@@ -46,7 +46,7 @@ Because Helpy is constantly adding new features, it is common for the `.yml` fil
 
 2. Update and Translate: Next go line by line and look for strings that are missing from your target locale.  In some cases they will already be present but will not be translated and will be commented out to indicate that they need translation.  Make your changes, and then be sure to add your name to the list of translators in the comment at the top of the page.
 
-3. Submit your translation: How you submit your new translations depends on whether you forked the project or not.  If you forked, go ahead and commit your changes, push to Github and create a pull request.  The other option is to use http://gist.github.com and cut and paste your file into a gist and then submit it (create a ticket, email, twitter etc.)
+3. Submit your translation: How you submit your new translations depends on whether you forked the project or not.  If you forked, go ahead and commit your changes, push to GitHub and create a pull request.  The other option is to use http://gist.github.com and cut and paste your file into a gist and then submit it (create a ticket, email, twitter etc.)
 
 ### A note about getting your new translation file to work
 
