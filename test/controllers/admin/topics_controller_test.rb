@@ -10,6 +10,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
   %w(admin agent).each do |admin|
 
+    ### Topic split
+    test "an #{admin} should be able to split a ticket" do
+      sign_in users(admin.to_sym)
+
+      post :split_topic, topic_id: 101, post_id: 101
+      assert_response :redirect
+    end
+
     ### Topic Views
 
     test "an #{admin} should be able to see a list of topics via standard request" do

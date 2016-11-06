@@ -27,9 +27,9 @@
 class Admin::TopicsController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
-  before_action :pipeline, :only => ['index', 'show', 'update_topic']
-  before_action :remote_search, :only => ['index', 'show', 'update_topic']
+  before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
+  before_action :pipeline, only: ['index', 'show', 'update_topic']
+  before_action :remote_search, only: ['index', 'show', 'update_topic']
   before_action :get_all_teams
 
   respond_to :js, :html, only: :show
@@ -38,7 +38,7 @@ class Admin::TopicsController < Admin::BaseController
   def index
     @status = params[:status] || "pending"
     if current_user.is_restricted? && teams?
-      topics_raw = Topic.all.tagged_with(current_user.team_list, :any => true)
+      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
     else
       topics_raw = Topic
     end
@@ -121,11 +121,11 @@ class Admin::TopicsController < Admin::BaseController
       if (@user.save || !@user.nil?) && @topic.save
 
         @post = @topic.posts.create(
-          :body => params[:topic][:post][:body],
-          :user_id => @user.id,
-          :kind => 'first',
-          :screenshots => params[:topic][:screenshots],
-          :attachments => params[:topic][:post][:attachments]
+          body: params[:topic][:post][:body],
+          user_id: @user.id,
+          kind: 'first',
+          screenshots: params[:topic][:screenshots],
+          attachments: params[:topic][:post][:attachments]
         )
 
         # Send email
@@ -310,6 +310,10 @@ class Admin::TopicsController < Admin::BaseController
         end
       }
     end
+  end
+
+  def split_topic
+    redirect_to admin_topic_path(params[:topic_id])
   end
 
   private
