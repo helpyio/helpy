@@ -46,11 +46,6 @@
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link
 
-$(document).ready(function() {
-  /* Activating Best In Place */
-  jQuery(".best_in_place").best_in_place();
-});
-
 (function($){
   $.fn.jTruncate = function(opts) {
     var defaults = {

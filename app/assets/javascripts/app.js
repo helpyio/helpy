@@ -4,6 +4,8 @@ var Helpy = Helpy || {};
 
 Helpy.ready = function(){
 
+  $(".best_in_place").best_in_place();
+
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
