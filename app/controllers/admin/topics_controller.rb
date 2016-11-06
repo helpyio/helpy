@@ -313,7 +313,31 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def split_topic
-    redirect_to admin_topic_path(params[:topic_id])
+    parent_topic = Topic.find(params[:topic_id])
+    parent_post = Post.find(params[:post_id])
+
+    topic = parent_topic.forum.topics.new(
+      name: "Split from #{parent_topic.name}",
+      user: parent_topic.user
+    )
+
+    if topic.save
+      topic.posts.create(
+        body: parent_post.body,
+        user: parent_post.user,
+        kind: 'first',
+        screenshots: parent_post.screenshots,
+        attachments: parent_post.attachments,
+      )
+
+      parent_topic.posts.create(
+        body: 'A new discussion was created from this one',
+        user: current_user,
+        kind: 'note'
+      )
+    end
+
+    redirect_to admin_topic_path(topic)
   end
 
   private
@@ -343,6 +367,4 @@ class Admin::TopicsController < Admin::BaseController
       @topics = Topic.where(current_status: @status).page params[:page]
     end
   end
-
-
 end

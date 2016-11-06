@@ -14,8 +14,24 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to split a ticket" do
       sign_in users(admin.to_sym)
 
-      post :split_topic, topic_id: 101, post_id: 101
+      post :split_topic, topic_id: 1, post_id: 1
       assert_response :redirect
+    end
+
+    test "an #{admin} splitting a topic should create a new topic" do
+      sign_in users(admin.to_sym)
+
+      assert_difference "Topic.count", 1 do
+        post :split_topic, topic_id: 1, post_id: 1
+      end
+    end
+
+    test "an #{admin} splitting a topic should create 2 new posts" do
+      sign_in users(admin.to_sym)
+
+      assert_difference "Post.count", 2 do
+        post :split_topic, topic_id: 1, post_id: 1
+      end
     end
 
     ### Topic Views
