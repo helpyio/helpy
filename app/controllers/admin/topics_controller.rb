@@ -74,7 +74,7 @@ class Admin::TopicsController < Admin::BaseController
       @topic.open
     end
     get_all_teams
-    @posts = @topic.posts.chronologic
+    @posts = @topic.posts.chronologic.includes(:user)
     tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
   end
