@@ -277,6 +277,23 @@ class Admin::TopicsController < Admin::BaseController
 
   end
 
+  def update
+    @topic = Topic.find(params[:id])
+
+    if @topic.update_attributes(topic_params)
+      respond_to do |format|
+        format.html {
+          redirect_to(@topic)
+        }
+        format.json {
+          respond_with_bip(@topic)
+        }
+      end
+    else
+      logger.info("error")
+    end
+  end
+
   def assign_team
     @count = 0
     #handle array of topics
@@ -340,5 +357,7 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
-
+  def topic_params
+    params.require(:topic).permit(:name)
+  end
 end
