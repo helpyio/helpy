@@ -180,7 +180,47 @@ module API
           end
         end
 
+        # SPLIT A TOPIC
+        desc "Create a new discussion from a ticket"
+        params do
+          requires :post_id, type: Integer, desc: "The post to split into new topic"
+        end
 
+        post "split/:post_id", root: :topics do
+          post = Post.where(id: permitted_params[:post_id]).first
+
+          # Check that the post_id exists, and that it is private.
+          error!('Not Found.', 404) unless post.present?
+
+          parent_topic = post.topic
+
+          error!('Forbidden. Cannot split non-private topic', 403) unless parent_topic.forum_id == 1
+
+          topic = Topic.new(
+            name: I18n.t('new_discussion_topic_title', original_topic: parent_topic.name, default: "Split from #{parent_topic.name}"),
+            user: parent_topic.user,
+            forum_id: 1,
+          )
+
+          if topic.save
+            parent_topic.posts.create(
+              body: I18n.t('new_discussion_post', default: 'A new discussion was created from this one'),
+              user: current_user,
+              kind: 'note',
+            )
+
+            topic.posts.create(
+              body: post.body,
+              user: post.user,
+              kind: 'first',
+              screenshots: post.screenshots,
+              attachments: post.attachments,
+            )
+            topic
+          else
+            error!('Unknown Error!', 500)
+          end
+        end
       end
 
       # PUBLIC TOPIC ENDPOINTS

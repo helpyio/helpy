@@ -232,6 +232,46 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['forum_id'] == 3
   end
 
+  # TEST topic splitting
+  test "an API user should be able to split a topic" do
+    post = Post.find(1)
 
+    params = {
+      post_id: post.id,
+    }
 
+    post "api/v1/tickets/split/#{post.id}.json", @default_params.merge(params)
+
+    new_topic =  JSON.parse(last_response.body)
+    new_topic_object = Topic.find(new_topic['id'])
+
+    # Check new topic title correctly set.
+    assert_equal new_topic['name'], I18n.t('new_discussion_topic_title', original_topic: post.topic.name)
+
+    # Check that first post in new topic is same as post which it was split from
+    assert_equal new_topic_object.posts.first.body, post.body
+
+    # Check that a reply was left in old topic
+    assert_equal post.topic.posts.last.body, I18n.t('new_discussion_post')
+  end
+
+  test "attempting to split a non existent post 404s (Not Found)" do
+    params = {
+      post_id: 'breh',
+    }
+
+    post "api/v1/tickets/split/10000.json", @default_params.merge(params)
+
+    assert_equal 404, last_response.status
+  end
+
+  test "attempting to split a public post 403s (Forbidden)" do
+    params = {
+      post_id: 3,
+    }
+
+    post "api/v1/tickets/split/3.json", @default_params.merge(params)
+
+    assert_equal 403, last_response.status
+  end
 end
