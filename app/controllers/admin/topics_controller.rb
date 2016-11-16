@@ -316,9 +316,10 @@ class Admin::TopicsController < Admin::BaseController
     parent_topic = Topic.find(params[:topic_id])
     parent_post = Post.find(params[:post_id])
 
-    topic = parent_topic.forum.topics.new(
+    topic = Topic.new(
       name: t('new_discussion_topic_title', original_topic: parent_topic.name, default: "Split from #{parent_topic.name}"),
-      user: parent_topic.user
+      user: parent_topic.user,
+      forum_id: 1,
     )
 
     if topic.save
@@ -333,7 +334,7 @@ class Admin::TopicsController < Admin::BaseController
       parent_topic.posts.create(
         body: t('new_discussion_post', default: 'A new discussion was created from this one'),
         user: current_user,
-        kind: 'note'
+        kind: 'note',
       )
     end
 
