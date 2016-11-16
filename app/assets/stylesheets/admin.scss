@@ -89,6 +89,18 @@ td > img {
 	padding-top: 30px;
 }
 
+.edit-topic-name:hover {
+	cursor: pointer;
+}
+
+input[type="submit"].save-topic-btn {
+	margin-left: 4px;
+}
+
+input[type="button"].cancel-topic-btn {
+	margin-left: 4px;
+}
+
 #btn-edit-topic-name {
 	background-color: #f0f0f0;
 	font-size: 10px;
