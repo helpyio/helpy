@@ -316,14 +316,16 @@ class Admin::TopicsController < Admin::BaseController
     parent_topic = Topic.find(params[:topic_id])
     parent_post = Post.find(params[:post_id])
 
-    topic = Topic.new(
+    @topic = Topic.new(
       name: t('new_discussion_topic_title', original_topic: parent_topic.name, default: "Split from #{parent_topic.name}"),
       user: parent_topic.user,
       forum_id: 1,
     )
 
-    if topic.save
-      topic.posts.create(
+    @posts = @topic.posts
+
+    if @topic.save
+      @posts.create(
         body: parent_post.body,
         user: parent_post.user,
         kind: 'first',
@@ -338,7 +340,13 @@ class Admin::TopicsController < Admin::BaseController
       )
     end
 
-    redirect_to admin_topic_path(topic)
+    fetch_counts
+    get_all_teams
+
+    respond_to do |format|
+      format.html { redirect_to admin_topic_path(@topic) }
+      format.js { render 'update_ticket', id: @topic.id }
+    end
   end
 
   private
