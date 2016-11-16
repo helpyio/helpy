@@ -188,6 +188,11 @@ sv:
   published_content: "Publicerat"
   additional_settings: "Fler inställningar"
   content_status: "Innehållets status"
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'A new discussion was created from this one'
+  # new_discussion_topic_title: 'Split from %{original_topic}'
 
   # Communities
   new_community: 'Skapa ny grupp'

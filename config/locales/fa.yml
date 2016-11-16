@@ -204,6 +204,9 @@ fa:
   content_status: "وضعیت محتوا"
   convert_content: 'تبدیل پست به محتوا'
   upload_image: 'بارگزاری عکس'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'A new discussion was created from this one'
+  # new_discussion_topic_title: 'Split from %{original_topic}'
 
   # Communities
   new_community: انجمن جدید بساز
