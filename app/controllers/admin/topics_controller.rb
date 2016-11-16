@@ -319,7 +319,8 @@ class Admin::TopicsController < Admin::BaseController
     @topic = Topic.new(
       name: t('new_discussion_topic_title', original_topic: parent_topic.name, default: "Split from #{parent_topic.name}"),
       user: parent_topic.user,
-      forum_id: 1,
+      forum_id: parent_topic.forum_id,
+      private: parent_topic.private,
     )
 
     @posts = @topic.posts

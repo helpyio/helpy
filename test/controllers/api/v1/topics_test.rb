@@ -253,6 +253,9 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     # Check that a reply was left in old topic
     assert_equal post.topic.posts.last.body, I18n.t('new_discussion_post')
+
+    # Assert Forum is same
+    assert_equal new_topic['forum_id'], post.topic.forum_id
   end
 
   test "attempting to split a non existent post 404s (Not Found)" do
@@ -263,15 +266,5 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     post "api/v1/tickets/split/10000.json", @default_params.merge(params)
 
     assert_equal 404, last_response.status
-  end
-
-  test "attempting to split a public post 403s (Forbidden)" do
-    params = {
-      post_id: 3,
-    }
-
-    post "api/v1/tickets/split/3.json", @default_params.merge(params)
-
-    assert_equal 403, last_response.status
   end
 end

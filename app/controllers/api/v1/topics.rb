@@ -194,12 +194,11 @@ module API
 
           parent_topic = post.topic
 
-          error!('Forbidden. Cannot split non-private topic', 403) unless parent_topic.forum_id == 1
-
           topic = Topic.new(
             name: I18n.t('new_discussion_topic_title', original_topic: parent_topic.name, default: "Split from #{parent_topic.name}"),
             user: parent_topic.user,
-            forum_id: 1,
+            forum_id: parent_topic.forum_id,
+            private: parent_topic.private,
           )
 
           if topic.save
