@@ -246,13 +246,13 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     new_topic_object = Topic.find(new_topic['id'])
 
     # Check new topic title correctly set.
-    assert_equal new_topic['name'], I18n.t('new_discussion_topic_title', original_topic: post.topic.name)
+    assert_equal new_topic['name'], I18n.t('new_discussion_topic_title', original_name: post.topic.name, original_id: post.topic.id)
 
     # Check that first post in new topic is same as post which it was split from
     assert_equal new_topic_object.posts.first.body, post.body
 
     # Check that a reply was left in old topic
-    assert_equal post.topic.posts.last.body, I18n.t('new_discussion_post')
+    assert_equal post.topic.posts.last.body, I18n.t('new_discussion_post', topic_id: new_topic['id'])
 
     # Assert Forum is same
     assert_equal new_topic['forum_id'], post.topic.forum_id
