@@ -195,7 +195,7 @@ module API
           parent_topic = post.topic
 
           topic = Topic.new(
-            name: I18n.t('new_discussion_topic_title', original_topic: parent_topic.name, default: "Split from #{parent_topic.name}"),
+            name: I18n.t('new_discussion_topic_title', original_name: parent_topic.name, original_id: parent_topic.id, default: "Split from #{parent_topic.id}-#{parent_topic.name}"),
             user: parent_topic.user,
             forum_id: parent_topic.forum_id,
             private: parent_topic.private,
@@ -203,7 +203,7 @@ module API
 
           if topic.save
             parent_topic.posts.create(
-              body: I18n.t('new_discussion_post', default: 'A new discussion was created from this one'),
+              body: I18n.t('new_discussion_post', topic_id: topic.id, default: "Discussion ##{topic.id} was created from this one"),
               user: current_user,
               kind: 'note',
             )
