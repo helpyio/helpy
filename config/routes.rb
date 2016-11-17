@@ -108,7 +108,7 @@ Rails.application.routes.draw do
     resources :forums# , except: [:index, :show]
     resources :users
     resources :api_keys, except: [:show, :edit, :update]
-    resources :topics, except: [:delete, :edit, :update] do
+    resources :topics, except: [:delete, :edit] do
       resources :posts
     end
     resources :posts

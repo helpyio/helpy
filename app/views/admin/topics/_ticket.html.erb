@@ -6,7 +6,7 @@
 
   <div id="ticket-controls" class="col-md-8 col-xs-12 col-lg-8">
     <h2>
-      <%= render 'admin/topics/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= @topic.name -%>
+      <%= render 'admin/topics/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= best_in_place @topic, :name, as: :input, url: admin_topic_path(@topic), activator: :span, :class => "edit-topic-name", :ok_button => 'Save', :ok_button_class => 'btn btn-default', :cancel_button => 'Cancel', :cancel_button_class => 'btn btn-default' -%>&nbsp;
     </h2>
     <div id="topic-options">
     <%= render :partial => 'admin/topics/topic_options' %>
