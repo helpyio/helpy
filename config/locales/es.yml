@@ -204,6 +204,9 @@ es:
   content_status: "Estado del contenido"
   convert_content: 'Convertir esta discusión en contenido'
   upload_image: 'Subir imagen'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
 
   # Communities
   new_community: Crea una nueva comunidad

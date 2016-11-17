@@ -227,6 +227,9 @@ pt-br:
   content_status: "Estado do Conteúdo"
   convert_content: 'Transformar postagem em conteúdo'
   upload_image: 'Carregar imagem'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
 
   # Communities
   new_community: "Criar uma Nova Comunidade"
