@@ -172,6 +172,21 @@ Helpy.ready = function(){
     Helpy.showGroup();
   });
 
+  // used by admin create topic form
+  $("#topic_user_work_phone").parent().hide();
+  $('#topic_channel_email').click(function(){
+    $("#topic_user_email").parent().show();
+    $("#topic_user_work_phone").parent().hide();
+  });
+  $('#topic_channel_phone').click(function(){
+    $("#topic_user_email").parent().hide();
+    $("#topic_user_work_phone").parent().show();
+    //$('#new_topic').append("<input type='hidden' id='topic_user_email' name='topic[user][email]' value=''/>");
+    $("#topic_user_work_phone").off().on('keyup', function(){
+      $('#topic_user_email').val($("#topic_user_work_phone").val()+'.change@me');
+    });
+  });
+
 
   // Hide/replace last child of breadcrumbs since I don't have time to hack gem right now
   $("ul.breadcrumb li:last-child").html("");

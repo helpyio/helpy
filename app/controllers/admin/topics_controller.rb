@@ -128,7 +128,7 @@ class Admin::TopicsController < Admin::BaseController
           :screenshots => params[:topic][:screenshots],
           :attachments => params[:topic][:post][:attachments]
         )
-
+        binding.pry
         # Send email
         UserMailer.new_user(@user.id, @token).deliver_later
 
