@@ -89,16 +89,23 @@ td > img {
 	padding-top: 30px;
 }
 
-.edit-topic-name:hover {
-	cursor: pointer;
-}
-
-input[type="submit"].save-topic-btn {
-	margin-left: 4px;
-}
-
-input[type="button"].cancel-topic-btn {
-	margin-left: 4px;
+.edit-topic-name {
+	input[type="text"] {
+		width: 76%;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+	input[type="submit"] {
+		margin-left: 4px;
+		height: 37px;
+		vertical-align: top;
+	}
+	input[type="button"] {
+		margin-left: 4px;
+		height: 37px;
+		vertical-align: top;
+	}
 }
 
 
@@ -475,6 +482,17 @@ ul.settings-menu {
 			margin-top: 20px;
 		}
 	}
+	.edit-topic-name {
+		input[type="text"] {
+			width: 57%;
+		}
+		input[type="submit"] {
+			height: 30px;
+		}
+		input[type="button"] {
+			height: 30px;
+		}
+	}
 }
 
 @media(min-width:768px){
@@ -505,7 +523,11 @@ ul.settings-menu {
 	.settings-grid-row {
 		margin-bottom: 20px;
 	}
-
+	.edit-topic-name {
+		input[type="text"] {
+			width: 74%;
+		}
+	}
 }
 
 @media(min-width:992px){
@@ -524,6 +546,11 @@ ul.settings-menu {
 	#pipeline-wrapper {
 		padding-bottom: 0;
 		padding-top: 10px;
+	}
+	.edit-topic-name {
+		input[type="text"] {
+			width: 70%;
+		}
 	}
 }
 
@@ -546,6 +573,11 @@ ul.settings-menu {
 	}
 	.settings-grid-row {
 		margin-bottom: 20px;
+	}
+	.edit-topic-name {
+		input[type="text"] {
+			width: 75%;
+		}
 	}
 }
 
