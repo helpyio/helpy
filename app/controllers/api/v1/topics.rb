@@ -82,6 +82,7 @@ module API
           requires :name, type: String, desc: "The subject of the ticket"
           requires :body, type: String, desc: "The post body"
           optional :team_list, type: String, desc: "The group that this ticket is assigned to"
+          optional :channel, type: String, desc: "The source channel the ticket was created from"
           requires :user_id, type: Integer, desc: "the User ID"
         end
 
@@ -92,7 +93,8 @@ module API
             user_id: params[:user_id],
             current_status: 'new',
             private: true,
-            team_list: params[:team_list]
+            team_list: params[:team_list],
+            channel: params[:channel]
           )
           ticket.posts.create!(
             body: params[:body],

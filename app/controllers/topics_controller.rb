@@ -99,13 +99,17 @@ class TopicsController < ApplicationController
     # @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
+    channel = params[:from] == 'widget' ? 'widget' : 'web'
     logger.info(@forum.name)
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id],
-      team_list: params[:topic][:team_list])
+      team_list: params[:topic][:team_list],
+      channel: channel
+      )
+      
     @forums = Forum.ispublic.all
 
     unless user_signed_in?

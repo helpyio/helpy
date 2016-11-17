@@ -95,7 +95,8 @@ class Admin::TopicsController < Admin::BaseController
     @topic = @forum.topics.new(
       name: params[:topic][:name],
       private: true,
-      team_list: params[:topic][:team_list]
+      team_list: params[:topic][:team_list],
+      channel: 'admin'
     )
 
     if @user.nil?
