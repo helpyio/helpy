@@ -234,7 +234,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
   # TEST topic splitting
   test "an API user should be able to split a topic" do
-    post = Post.find(1)
+    post = Post.find(4)
 
     params = {
       post_id: post.id,
@@ -256,6 +256,9 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     # Assert Forum is same
     assert_equal new_topic['forum_id'], post.topic.forum_id
+
+    # Assert topic owner is post owner
+    assert_equal new_topic['user_id'], post.user_id
   end
 
   test "attempting to split a non existent post 404s (Not Found)" do

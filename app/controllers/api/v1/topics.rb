@@ -196,7 +196,7 @@ module API
 
           topic = Topic.new(
             name: I18n.t('new_discussion_topic_title', original_name: parent_topic.name, original_id: parent_topic.id, default: "Split from #{parent_topic.id}-#{parent_topic.name}"),
-            user: parent_topic.user,
+            user: post.user,
             forum_id: parent_topic.forum_id,
             private: parent_topic.private,
           )

@@ -34,6 +34,12 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       end
     end
 
+    test "#{admin}: split topic owner should be owner of post split from" do
+      sign_in users(admin.to_sym)
+      post :split_topic, topic_id: 4, post_id: 4
+      assert_equal Topic.all.last.user_id, Post.find(4).user_id
+    end
+
     ### Topic Views
 
     test "an #{admin} should be able to see a list of topics via standard request" do
