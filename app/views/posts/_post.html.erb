@@ -35,6 +35,9 @@
 				<% end %>
 			</div>
 			<% end %>
+			<div class="public-post-options pull-right less-important">
+				<%= render :partial => 'posts/flag' %>
+			</div>
       <%= render partial: 'posts/thumbnail', locals: { :model_name => post } %>
       <%= render partial: 'posts/attachment', locals: { :model_name => post } %>
     </div>
@@ -61,7 +64,6 @@
 		<% end -%>
 
 	</div>
-	<%= render :partial => 'posts/flag' %>
 </div>
 
 <div id="flag-modal" class="modal fade">
@@ -69,17 +71,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Flag Post for Review</h3>
+        <h4 class="modal-title">Flag Post for Review</h4>
       </div>
 
       <div class="modal-body row">
         <div class="col-md-12">
         <%= bootstrap_form_for :flag, :url => post_flags_path(post) do |f| -%>
-          <%= f.text_field :reason -%>
+          <%= f.text_area :reason, rows: 6, cols: 160, placeholder: "Describe the reason for flagging this post", skip_label: true -%>
           <%= f.submit 'Flag', class: 'btn btn-warning' -%>
         <% end -%>
         </div>
       </div>
     </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog --> 
-</div><!-- /.modal --> 
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
