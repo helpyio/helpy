@@ -103,8 +103,7 @@ class Post < ActiveRecord::Base
     # Reply from user back to the system
     elsif self.kind == "reply" && self.user_id != self.topic.user_id && self.topic.private?
       I18n.with_locale(self.email_locale) do
-        # NOTE New ticket is misnamed, it should be new-reply
-        PostMailer.new_post(self).deliver_later
+        PostMailer.new_post(id).deliver_later
       end
     end
   end
