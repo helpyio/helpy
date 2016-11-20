@@ -41,10 +41,13 @@
 
         <div class="modal-body row">
           <div class="col-md-12">
-            <%= bootstrap_form_for :post, url: admin_post_path(post.id), method: 'patch', remote: true do |f| -%>
-              <%= f.text_field :user_id -%>
-              <%= f.submit 'Flag', class: 'btn btn-warning change-owner-submit' -%>
+            <%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true do |f| -%>
+              <%= hidden_field_tag 'post_id', post.id %>
+              <%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email' -%>
             <% end -%>
+
+            <div class="search-results">
+            </div>
           </div>
         </div>
       </div><!-- /.modal-content -->

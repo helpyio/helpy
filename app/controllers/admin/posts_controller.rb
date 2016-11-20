@@ -74,6 +74,12 @@ class Admin::PostsController < Admin::BaseController
     end
   end
 
+  def search
+    search_string = params[:user_search]
+    @post_id = params[:post_id]
+    @users = User.where("name LIKE ? OR email LIKE ?", "%#{search_string}%", "%#{search_string}%")
+  end
+
   def raw
     @post = Post.find(params[:id])
     render layout: false

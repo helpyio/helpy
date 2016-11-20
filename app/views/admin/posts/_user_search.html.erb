@@ -1,0 +1,11 @@
+<% if users.count == 0 %>
+  <p>No Results</p>
+<% else %>
+
+<% users.each do |user| %>
+  <div class='user-result'>
+    <%= link_to (user.name ? "#{user.name} <#{user.email}>" : "#{user.email}"), admin_post_path(id: post_id, post: { user_id: user.id }), method: :patch, remote: true %>
+  </div>
+<% end %>
+
+<% end %>
