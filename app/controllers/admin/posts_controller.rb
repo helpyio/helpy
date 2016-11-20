@@ -58,7 +58,13 @@ class Admin::PostsController < Admin::BaseController
   def update
     @post = Post.find(params[:id])
 
+    fetch_counts
+    get_all_teams
+    @topic = @post.topic
+    @posts = @topic.posts.chronologic
+
     if @post.update_attributes(post_params)
+      @post.topic.update(user: @post.user) if @post.kind == 'first'
       respond_to do |format|
         format.js {}
       end
