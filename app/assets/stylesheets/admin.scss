@@ -635,15 +635,13 @@ ul.settings-menu {
   max-height: 400px;
   overflow-y: scroll;
   .change-user-result {
-    &:hover,
-    &:focus {
-      background-color: #ccc;
-      cursor: pointer;
-      cursor: hand;
-    }
     padding: 5px;
     min-height: 40px;
     position: relative;
+    &:hover,
+    &:focus {
+      background-color: #ccc;
+    }
     .centering {
       position: absolute;
       top: 50%;
