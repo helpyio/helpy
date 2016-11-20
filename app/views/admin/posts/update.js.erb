@@ -1,1 +1,20 @@
-$('#post-body-<%= @post.id %>').html("<%= j simple_format(@post.body) %>");
+// Force removal of modal
+$('#change-user-modal-<%= @post.id %>').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+
+// Update Post
+$('#post-<%= @post.id %>').html("<%= escape_javascript render 'admin/topics/post', post: @post %>")
+
+// Set profile images
+$('.profile').initial();
+
+// Update timestamps
+$('.last-active time[data-time-ago]').timeago();
+
+// jQuery hook
+Helpy.ready();
+Helpy.track();
+
+// RTL changes?
+<%= "Helpy.rtl();" if rtl? %>

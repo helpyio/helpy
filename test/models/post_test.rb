@@ -25,6 +25,7 @@ class PostTest < ActiveSupport::TestCase
 
   should validate_presence_of(:body)
   should validate_presence_of(:kind)
+  should validate_presence_of(:user)
   should validate_length_of(:body).is_at_most(10_000)
 
   # first post should be kind first

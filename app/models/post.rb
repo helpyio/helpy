@@ -25,9 +25,9 @@ class Post < ActiveRecord::Base
   has_many :flags
   mount_uploaders :attachments, AttachmentUploader
 
-  validates :body, presence: true, length: { maximum: 10_000 }
-  validates :kind, presence: true
-  validates :user_id, presence: true
+  validates :body, length: { maximum: 10_000 }
+  validates :kind, :user, :user_id, :body, presence: true
+
 
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply

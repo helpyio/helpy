@@ -57,15 +57,23 @@ class Admin::PostsController < Admin::BaseController
 
   def update
     @post = Post.find(params[:id])
-    @post.body = params[:post][:body]
-    @post.active = params[:post][:active]
-    render action: 'update' if @post.save
+
+    if @post.update_attributes(post_params)
+      respond_to do |format|
+        format.js {}
+      end
+    else
+      render json: nil, status: 404
+      logger.info("error")
+    end
   end
 
   def raw
     @post = Post.find(params[:id])
     render layout: false
   end
+
+  private
 
   def post_params
     params.require(:post).permit(
@@ -74,8 +82,8 @@ class Admin::PostsController < Admin::BaseController
       {screenshots: []},
       {attachments: []},
       :cc,
-      :bcc
+      :bcc,
+      :user_id,
     )
   end
-
 end
