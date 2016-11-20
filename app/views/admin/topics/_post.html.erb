@@ -43,9 +43,8 @@
           <div class="col-md-12">
             <%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true do |f| -%>
               <%= hidden_field_tag 'post_id', post.id %>
-              <%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off -%>
+              <%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off, onkeyup: "search_user(#{post.id})" -%>
             <% end -%>
-
             <div class="search-results">
             </div>
           </div>
