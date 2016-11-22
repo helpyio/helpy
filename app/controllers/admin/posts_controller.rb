@@ -108,7 +108,7 @@ class Admin::PostsController < Admin::BaseController
       topic.update(user: post.user)
       topic.posts.create(
         user: current_user,
-        body: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}",
+        body: I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}"),
         kind: "note",
       )
 
