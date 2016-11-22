@@ -57,6 +57,7 @@ class Admin::PostsController < Admin::BaseController
 
   def update
     @post = Post.find(params[:id])
+    old_user = @post.user
 
     fetch_counts
     get_all_teams
@@ -64,7 +65,7 @@ class Admin::PostsController < Admin::BaseController
     @posts = @topic.posts.chronologic
 
     if @post.update_attributes(post_params)
-      @post.topic.update(user: @post.user) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.kind == 'first'
       respond_to do |format|
         format.js {}
       end
@@ -98,5 +99,18 @@ class Admin::PostsController < Admin::BaseController
       :bcc,
       :user_id,
     )
+  end
+
+  def update_topic_owner(old_owner, post)
+      return if old_owner == post.user
+
+      topic = post.topic
+      topic.update(user: post.user)
+      topic.posts.create(
+        user: current_user,
+        body: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}",
+        kind: "note",
+      )
+
   end
 end
