@@ -10,7 +10,7 @@
       <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %></br>
     </p>
     <p>
-      <%= t('notify_new_public', user_name: @topic.user.name, default: "A new public customer message has been posted by %{user_name}:") %>
+      <%= t('notify_new_public', user_name: @topic.user_name, default: "A new public customer message has been posted by %{user_name}:") %>
     </p>
     <p>
       <%= simple_format(@topic.posts.last.body) %>
