@@ -74,6 +74,7 @@ class Topic < ActiveRecord::Base
   # before_save :check_for_private
   before_create :cache_user_name
   before_create :add_locale
+  after_save :notify_assignee, if: :assigned_user_id_changed?
 
   # acts_as_taggable
   acts_as_taggable_on :teams
@@ -178,6 +179,13 @@ class Topic < ActiveRecord::Base
       user_id: @user.id,
       doc_id: @doc.id
     )
+  end
+
+  def notify_assignee
+    auto_assigned_on_response = self.posts.select{ |p| p.user.is_agent? }.count == 1
+
+    return true if !self.private or auto_assigned_on_response
+    NotificationMailer.ticket_assigned(self.id, self.assigned_user_id).deliver_later
   end
 
   private

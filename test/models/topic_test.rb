@@ -156,4 +156,17 @@ class TopicTest < ActiveSupport::TestCase
     end
   end
 
+  #Notifications Specs
+  test "Should notify the assignee when a new ticket is created" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: true, assigned_user_id: 2)
+    end
+  end
+
+  test "Should notify new assignee when a user is assigned to an existing ticket" do
+    assert_difference('ActionMailer::Base.deliveries.size', 1) do
+      ticket = Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: true)
+      ticket.update_attribute(:assigned_user_id, 2)
+    end
+  end
 end

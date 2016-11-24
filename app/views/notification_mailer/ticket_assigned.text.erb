@@ -1,0 +1,7 @@
+<%= t('above_this_line', default: "Make sure your reply appears above this line") %>
+=================================================================
+<%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
+
+<%= t('notify_ticket_assigned', name: @topic.name, default: 'You have been newly assigned to a ticket( %{name} ):') %>
+
+<%= t('to_reply', default: 'Reply directly to this email or view this online:') %> <%= admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>

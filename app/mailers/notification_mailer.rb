@@ -13,6 +13,10 @@ class NotificationMailer < ActionMailer::Base
     new_notification(topic_id, User.notifiable_on_reply)
   end
 
+  def ticket_assigned(topic_id, assignee_id)
+    new_notification(topic_id, User.where(id: assignee_id))
+  end
+
   private
 
   def new_notification(topic_id, notifiable_users)
