@@ -9,5 +9,8 @@ module Entity
     expose :created_at
     expose :updated_at
     expose :points, documentation: { type: "Integer" }
+    expose :cc, documentation: { type: "String", desc: "Comma separated list of emails to CC" }
+    expose :bcc, documentation: { type: "String", desc: "Comma separated list of emails to BCC" }
+    expose :raw_email, documentation: { desc: "The original full raw email body" }
   end
 end

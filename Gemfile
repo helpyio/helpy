@@ -140,6 +140,8 @@ gem 'timecop' #used to populate
 gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
 
+gem 'best_in_place', '~> 3.0.1'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false

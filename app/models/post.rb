@@ -22,6 +22,7 @@ class Post < ActiveRecord::Base
   belongs_to :user, touch: true
   has_many :votes, :as => :voteable
   has_attachments :screenshots, accept: [:jpg, :png, :gif, :pdf]
+  has_many :flags
   mount_uploaders :attachments, AttachmentUploader
 
   validates :body, presence: true, length: { maximum: 10_000 }
@@ -103,7 +104,7 @@ class Post < ActiveRecord::Base
     elsif self.kind == "reply" && self.user_id != self.topic.user_id && self.topic.private?
       I18n.with_locale(self.email_locale) do
         # NOTE New ticket is misnamed, it should be new-reply
-        TopicMailer.new_ticket(self.topic_id).deliver_later
+        PostMailer.new_post(self).deliver_later
       end
     end
   end

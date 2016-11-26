@@ -207,6 +207,9 @@ en:
   content_status: "Content Status"
   convert_content: 'Save as an article or common reply'
   upload_image: 'Upload Image'
+  new_discussion: 'Create new discussion from this'
+  new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
 
   # Communities
   new_community: Create New Community

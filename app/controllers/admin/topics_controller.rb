@@ -27,9 +27,9 @@
 class Admin::TopicsController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
-  before_action :pipeline, :only => ['index', 'show', 'update_topic']
-  before_action :remote_search, :only => ['index', 'show', 'update_topic']
+  before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
+  before_action :pipeline, only: ['index', 'show', 'update_topic']
+  before_action :remote_search, only: ['index', 'show', 'update_topic']
   before_action :get_all_teams
 
   respond_to :js, :html, only: :show
@@ -38,7 +38,7 @@ class Admin::TopicsController < Admin::BaseController
   def index
     @status = params[:status] || "pending"
     if current_user.is_restricted? && teams?
-      topics_raw = Topic.all.tagged_with(current_user.team_list, :any => true)
+      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
     else
       topics_raw = Topic
     end
@@ -121,11 +121,11 @@ class Admin::TopicsController < Admin::BaseController
       if (@user.save || !@user.nil?) && @topic.save
 
         @post = @topic.posts.create(
-          :body => params[:topic][:post][:body],
-          :user_id => @user.id,
-          :kind => 'first',
-          :screenshots => params[:topic][:screenshots],
-          :attachments => params[:topic][:post][:attachments]
+          body: params[:topic][:post][:body],
+          user_id: @user.id,
+          kind: 'first',
+          screenshots: params[:topic][:screenshots],
+          attachments: params[:topic][:post][:attachments]
         )
 
         # Send email
@@ -277,6 +277,23 @@ class Admin::TopicsController < Admin::BaseController
 
   end
 
+  def update
+    @topic = Topic.find(params[:id])
+
+    if @topic.update_attributes(topic_params)
+      respond_to do |format|
+        format.html {
+          redirect_to(@topic)
+        }
+        format.json {
+          respond_with_bip(@topic)
+        }
+      end
+    else
+      logger.info("error")
+    end
+  end
+
   def assign_team
     @count = 0
     #handle array of topics
@@ -312,6 +329,44 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
+  def split_topic
+    parent_topic = Topic.find(params[:topic_id])
+    parent_post = Post.find(params[:post_id])
+
+    @topic = Topic.new(
+      name: t('new_discussion_topic_title', original_name: parent_topic.name, original_id: parent_topic.id, default: "Split from #{parent_topic.id}-#{parent_topic.name}"),
+      user: parent_post.user,
+      forum_id: parent_topic.forum_id,
+      private: parent_topic.private,
+    )
+
+    @posts = @topic.posts
+
+    if @topic.save
+      @posts.create(
+        body: parent_post.body,
+        user: parent_post.user,
+        kind: 'first',
+        screenshots: parent_post.screenshots,
+        attachments: parent_post.attachments,
+      )
+
+      parent_topic.posts.create(
+        body: t('new_discussion_post', topic_id: @topic.id, default: "Discussion ##{@topic.id} was created from this one"),
+        user: current_user,
+        kind: 'note',
+      )
+    end
+
+    fetch_counts
+    get_all_teams
+
+    respond_to do |format|
+      format.html { redirect_to admin_topic_path(@topic) }
+      format.js { render 'update_ticket', id: @topic.id }
+    end
+  end
+
   private
 
   def get_tickets
@@ -340,5 +395,7 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
-
+  def topic_params
+    params.require(:topic).permit(:name)
+  end
 end

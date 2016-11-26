@@ -10,6 +10,36 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
   %w(admin agent).each do |admin|
 
+    ### Topic split
+    test "an #{admin} should be able to split a ticket" do
+      sign_in users(admin.to_sym)
+
+      post :split_topic, topic_id: 1, post_id: 1
+      assert_response :redirect
+    end
+
+    test "an #{admin} splitting a topic should create a new topic" do
+      sign_in users(admin.to_sym)
+
+      assert_difference "Topic.count", 1 do
+        post :split_topic, topic_id: 1, post_id: 1
+      end
+    end
+
+    test "an #{admin} splitting a topic should create 2 new posts" do
+      sign_in users(admin.to_sym)
+
+      assert_difference "Post.count", 2 do
+        post :split_topic, topic_id: 1, post_id: 1
+      end
+    end
+
+    test "#{admin}: split topic owner should be owner of post split from" do
+      sign_in users(admin.to_sym)
+      post :split_topic, topic_id: 4, post_id: 4
+      assert_equal Topic.all.last.user_id, Post.find(4).user_id
+    end
+
     ### Topic Views
 
     test "an #{admin} should be able to see a list of topics via standard request" do
