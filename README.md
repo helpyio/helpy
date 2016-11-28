@@ -23,10 +23,10 @@ Helpy is an integrated support solution- combining and leveraging synergies betw
 - **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for 19 languages and is easy to translate.
 - **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
 
-Test it Out
+Hosting
 =========
 
-We offer a hosted version of Helpy for businesses that don't want to worry about self installing and maintaining their Helpy.  You can get an instant free trial of the hosted version to see if Helpy is right for you: [Test it Out for Free](https://helpy.io/hosted)
+We offer a hosted version of Helpy for businesses that don't want to worry about self installing and maintaining their Helpy.  You can get an instant free trial of the hosted version to see if Helpy is right for you: [Test it Out for Free](https://goo.gl/Jbrx0m)
 
 Live Demo
 =========
@@ -37,11 +37,8 @@ Admin User: `admin@test.com` and password: `12345678`
 Installation
 ============
 
-Helpy was designed to run on on modern cloud providers like Digital Ocean or Heroku, although it should work just about anywhere.  For a quick trial you can get set up on Heroku by clicking this button:
-
-*Heads up!! We are making some improvements that may break some parts of the one-click Heroku installation.  Specifically this includes storing files on the filesystem (not available via Heroku), removing the 12factor gem, using sidekiq and more.  As a result, we no longer recommend the one click Heroku install. Instead, clone the repo, configure it for Heroku and then push to Heroku.*
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+Helpy was designed to run on on modern cloud providers, although it should work on
+any linux based system.  There is a full guide to installing Helpy at http://support.helpy.io/en/knowledgebase/11-installing-helpy
 
 Requirements are:
 
@@ -55,7 +52,6 @@ Helpy leverages two external services to help out:
 - an email provider like Sendgrid
 - Google Analytics for stats (optional)
 
-There is a full guide to installing Helpy at http://support.helpy.io/en/knowledgebase/11-installing-helpy
 
 Getting Started:
 ----------------
