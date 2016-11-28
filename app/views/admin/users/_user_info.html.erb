@@ -6,7 +6,7 @@
 <div class="row">
   <div class='col-md-12' id='user-info-info'>
     <div id="user-contact-info" class="user-info">
-      <div class="tiny-header"><%= @topic.user.name? ? @topic.user.name.titleize : @topic.user.email %></div>
+      <div class="tiny-header"><%= @topic.user_name? ? @topic.user_name.titleize : @topic.user.email %></div>
       <span class="small">
         <%= @topic.user.company.titleize unless @topic.user.company.nil? %><br/>
         <%= @topic.user.city.titleize + ', ' unless @topic.user.city.nil? %> <%= @topic.user.state.titleize unless @topic.user.state.nil? %>
