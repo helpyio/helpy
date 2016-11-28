@@ -183,7 +183,11 @@ class Topic < ActiveRecord::Base
   private
 
   def cache_user_name
-    self.user_name = self.user.name
+    if self.user.name.present?
+      self.user_name = self.user.name
+    else
+      "NA"
+    end
   end
 
   def add_locale

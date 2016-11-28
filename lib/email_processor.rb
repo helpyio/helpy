@@ -84,7 +84,7 @@ class EmailProcessor
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
         :body => message,
-        :raw_email => raw,        
+        :raw_email => raw,
         :user_id => @user.id,
         :kind => "first"
       )
@@ -128,7 +128,7 @@ class EmailProcessor
     @user.reset_password_sent_at = Time.now.utc
 
     @user.email = @email.from[:email]
-    @user.name = @email.from[:name].blank? ? @email.from[:token] : @email.from[:name]
+    @user.name = @email.from[:name].blank? ? @email.from[:token].gsub(/[^a-zA-Z]/, '') : @email.from[:name]
     @user.password = User.create_password
     if @user.save
       UserMailer.new_user(@user.id, @token).deliver_later
