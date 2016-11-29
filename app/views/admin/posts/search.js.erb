@@ -1,0 +1,5 @@
+// Display Results
+$('#change-user-modal-<%= @post_id %> .search-results').html("<%= escape_javascript render 'admin/posts/user_search', users: @users, post_id: @post_id %>");
+
+// Reload Avatars
+$('.profile').initial();

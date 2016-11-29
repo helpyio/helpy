@@ -215,6 +215,7 @@ ru:
   # new_discussion: 'Create new discussion from this'
   # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
   # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Создать сообщество

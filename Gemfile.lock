@@ -334,7 +334,6 @@ GEM
     mustermann19 (0.4.4)
       enumerable-lazy
     netrc (0.11.0)
-    newrelic_rpm (3.15.1.316)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
@@ -424,11 +423,6 @@ GEM
     rails-timeago (2.13.0)
       actionpack (>= 3.1)
       activesupport (>= 3.1)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (4.2.7.1)
       actionpack (= 4.2.7.1)
       activesupport (= 4.2.7.1)
@@ -476,8 +470,8 @@ GEM
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    sass-rails (5.0.4)
-      railties (>= 4.0.0, < 5.0)
+    sass-rails (5.0.6)
+      railties (>= 4.0.0, < 6)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
@@ -653,7 +647,6 @@ DEPENDENCIES
   mini_magick
   minitest
   minitest-reporters
-  newrelic_rpm
   nokogiri (>= 1.6.8)
   omniauth
   omniauth-facebook
@@ -671,13 +664,12 @@ DEPENDENCIES
   rails-i18n (~> 4.0.0)
   rails-settings-cached (~> 0.5)
   rails-timeago
-  rails_12factor
   ranked-model
   rdiscount
   recaptcha
   route_translator
   rubocop
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.6)
   scss-lint
   sdoc (~> 0.4.0)
   selectize-rails

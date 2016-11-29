@@ -49,9 +49,9 @@ Rails.application.routes.draw do
       resources :topics
     end
     resources :topics do
-      resources :posts 
+      resources :posts
     end
-    resources :posts do 
+    resources :posts do
       resources :flags, only: [:create]
     end
 
@@ -101,6 +101,8 @@ Rails.application.routes.draw do
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
+
+    post 'search/users' => 'posts#search', as: :user_search
 
     resources :categories do
       resources :docs, except: [:index, :show]

@@ -72,9 +72,9 @@ class Topic < ActiveRecord::Base
 
   # may want to get rid of this filter:
   # before_save :check_for_private
-  before_create :cache_user_name
   before_create :add_locale
 
+  before_save :cache_user_name
   # acts_as_taggable
   acts_as_taggable_on :teams
 
@@ -183,7 +183,11 @@ class Topic < ActiveRecord::Base
   private
 
   def cache_user_name
-    self.user_name = self.user.name
+    if self.user.name.present?
+      self.user_name = self.user.name
+    else
+      "NA"
+    end
   end
 
   def add_locale

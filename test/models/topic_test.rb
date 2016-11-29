@@ -60,6 +60,13 @@ class TopicTest < ActiveSupport::TestCase
 
   end
 
+  test "updating the topic should update the owner name cache" do
+    new_user = User.find(7)
+    Topic.find(2).update(user: new_user)
+
+    assert_equal Topic.find(2).user_name, new_user.name
+  end
+
   test "trashed messages should be in forum 2, and unassigned" do
 
     Topic.all.each do |topic|

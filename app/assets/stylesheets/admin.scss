@@ -630,3 +630,23 @@ ul.settings-menu {
    height: 0;
  }
 }
+
+.search-results {
+  max-height: 400px;
+  overflow-y: scroll;
+  .change-user-result {
+    padding: 5px;
+    min-height: 40px;
+    position: relative;
+    &:hover,
+    &:focus {
+      background-color: #ccc;
+    }
+    .centering {
+      position: absolute;
+      top: 50%;
+      left: 40px;
+      transform: translateY(-50%);
+    }
+  }
+}

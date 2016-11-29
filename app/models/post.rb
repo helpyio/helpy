@@ -25,9 +25,9 @@ class Post < ActiveRecord::Base
   has_many :flags
   mount_uploaders :attachments, AttachmentUploader
 
-  validates :body, presence: true, length: { maximum: 10_000 }
-  validates :kind, presence: true
-  validates :user_id, presence: true
+  validates :body, length: { maximum: 10_000 }
+  validates :kind, :user, :user_id, :body, presence: true
+
 
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
@@ -103,8 +103,7 @@ class Post < ActiveRecord::Base
     # Reply from user back to the system
     elsif self.kind == "reply" && self.user_id != self.topic.user_id && self.topic.private?
       I18n.with_locale(self.email_locale) do
-        # NOTE New ticket is misnamed, it should be new-reply
-        PostMailer.new_post(self).deliver_later
+        PostMailer.new_post(id).deliver_later
       end
     end
   end

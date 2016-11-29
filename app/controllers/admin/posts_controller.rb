@@ -57,15 +57,37 @@ class Admin::PostsController < Admin::BaseController
 
   def update
     @post = Post.find(params[:id])
-    @post.body = params[:post][:body]
-    @post.active = params[:post][:active]
-    render action: 'update' if @post.save
+    old_user = @post.user
+
+    fetch_counts
+    get_all_teams
+    @topic = @post.topic
+    @posts = @topic.posts.chronologic
+
+    if @post.update_attributes(post_params)
+      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      respond_to do |format|
+        format.js {}
+      end
+    else
+      render json: nil, status: 404
+      logger.info("error")
+    end
+  end
+
+  def search
+    search_string = params[:user_search].downcase
+    @post_id = params[:post_id]
+    @users = User.where("lower(name) LIKE ? OR lower(email) LIKE ?", "%#{search_string}%", "%#{search_string}%")
+    @users = nil if search_string.blank? || @users.empty?
   end
 
   def raw
     @post = Post.find(params[:id])
     render layout: false
   end
+
+  private
 
   def post_params
     params.require(:post).permit(
@@ -74,8 +96,21 @@ class Admin::PostsController < Admin::BaseController
       {screenshots: []},
       {attachments: []},
       :cc,
-      :bcc
+      :bcc,
+      :user_id,
     )
   end
 
+  def update_topic_owner(old_owner, post)
+      return if old_owner == post.user
+
+      topic = post.topic
+      topic.update(user: post.user)
+      topic.posts.create(
+        user: current_user,
+        body: I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}"),
+        kind: "note",
+      )
+
+  end
 end
