@@ -26,6 +26,7 @@ class Post < ActiveRecord::Base
   mount_uploaders :attachments, AttachmentUploader
 
   validates :body, length: { maximum: 10_000 }
+  before_validation :truncate_body
   validates :kind, :user, :user_id, :body, presence: true
 
 
@@ -112,5 +113,13 @@ class Post < ActiveRecord::Base
     return I18n.locale if self.kind == 'first'
     self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
   end
+
+  private
+
+    def truncate_body
+      if not self.body.blank?
+        self.body = self.body.truncate(10_000)
+      end
+    end
 
 end
