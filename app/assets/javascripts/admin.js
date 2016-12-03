@@ -133,6 +133,10 @@ Helpy.admin = function(){
     autoclose: true,
     todayHighlight: true
   });
+
+  $('.change-user-modal').on('shown.bs.modal', function() {
+    $('#user_search').focus();
+  });
 };
 
 Helpy.showPanel = function(panel) {
