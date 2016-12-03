@@ -211,7 +211,7 @@ class PostTest < ActiveSupport::TestCase
     @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
     @post = @topic.posts.create(body: body, kind: "first", user_id: @user.id)
 
-    assert @post.body.size == 10000
+    assert_equal @post.body.size, 10_000
   end
 
 end
