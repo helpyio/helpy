@@ -117,9 +117,7 @@ class Post < ActiveRecord::Base
   private
 
     def truncate_body
-      if not self.body.blank?
-        self.body = self.body.truncate(10_000)
-      end
+      self.body = body.truncate(10_000) unless body.blank?
     end
 
 end
