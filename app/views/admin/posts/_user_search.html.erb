@@ -1,6 +1,6 @@
 <% if users.nil? %>
 <div class="text-center more-important">
-  No Results
+  No Matching Users Found. <%= link_to 'Create New User', admin_new_user_path(post_id: post_id), remote: true  %>
 </div>
 <% else %>
 

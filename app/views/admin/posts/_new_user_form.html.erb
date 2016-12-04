@@ -1,0 +1,8 @@
+<h3>Create new user</h3>
+
+<%= simple_form_for(@user, url: admin_new_user_path, remote: true, validate: true, authenticity_token: true, html: { class: 'form-vertical', method: 'post' }) do |f| -%>
+  <%= hidden_field_tag 'post_id', post_id %>
+  <%= f.input :email, autofocus: true, class: 'disable-empty' %>
+  <%= f.input :name, class: 'disable-empty' %>
+  <%= f.submit 'Create & Set owner' %>
+<% end %>

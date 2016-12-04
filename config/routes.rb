@@ -103,6 +103,8 @@ Rails.application.routes.draw do
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
 
     post 'search/users' => 'posts#search', as: :user_search
+    get  'search/new_user' => 'posts#new_user', as: :new_user
+    post  'search/new_user' => 'posts#change_owner_new_user'
 
     resources :categories do
       resources :docs, except: [:index, :show]
