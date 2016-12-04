@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :user_search,
-                  against: [:name, :login, :email, :company]
+                  against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
   paginates_per 15
 
