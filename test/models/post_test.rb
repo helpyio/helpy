@@ -12,6 +12,9 @@
 #  updated_at  :datetime         not null
 #  points      :integer          default(0)
 #  attachments :string           default([]), is an Array
+#  cc          :string
+#  bcc         :string
+#  raw_email   :text
 #
 
 require 'test_helper'
