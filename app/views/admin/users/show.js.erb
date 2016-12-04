@@ -1,7 +1,7 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/tickets') %>");
 $('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
 $('#user-info').html("<%= j render 'admin/users/user_info_horizontal' if @user %>");
-$('#ticket-page-title').show().html("<%= @user.name.titleize %><%= " - #{@user.account_number}" if @user.account_number.present? %> <span class='hidden-xs pull-right'> <%= j link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path, remote: true, class: 'btn btn-primary' %></span> <span class='edit-user hidden-xs pull-right'><%= j link_to link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: true, class: 'btn btn-primary edit-user-button' %></span> <%= escape_javascript(render 'admin/topics/ticket_nav_dropdown') %>");
+$('#ticket-page-title').show().html("<%= @user.name.titleize %><%= " - #{@user.account_number}" if @user.account_number.present? %> <span class='hidden-xs pull-right'> <%= j link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: 'btn btn-primary' %></span> <span class='edit-user hidden-xs pull-right'><%= j link_to link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: true, class: 'btn btn-primary edit-user-button' %></span> <%= escape_javascript(render 'admin/topics/ticket_nav_dropdown') %>");
 
 // TODO: replace this hack with a better direct link or modal slide over
 <% if params[:mode] == 'edit' %>$('.edit-user-button').click();<% end %>

@@ -59,6 +59,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
+      account_number: Faker::Number.number(10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
@@ -83,6 +84,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
+      account_number: Faker::Number.number(10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
