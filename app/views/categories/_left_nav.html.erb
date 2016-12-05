@@ -10,7 +10,6 @@
 <div id="left-col" class="col-md-3 hidden-sm hidden-xs affix affix-top">
   <ul class="list-unstyled border-right">
   <% @categories.with_translations(I18n.locale).each do |category| %>
-    <% unless category.name == "Common Replies" %>
       <% if category.docs.with_translations(I18n.locale).count > 0 %>
         <li class="">
           <% if @category.nil? %>
@@ -20,7 +19,6 @@
           <% end %>
         </li>
       <% end %>
-    <% end %>
   <% end %>
   </ul>
 </div>

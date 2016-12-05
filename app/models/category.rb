@@ -33,6 +33,9 @@ class Category < ActiveRecord::Base
   scope :ordered, -> { order('rank ASC') }
   scope :ranked, -> { order('rank ASC') }
   scope :featured, -> { where(front_page: true) }
+  scope :viewable, -> { where.not(name: 'Common Replies')}
+
+  before_destroy :is_not_common_replies?
 
   include RankedModel
   ranks :rank
@@ -47,5 +50,8 @@ class Category < ActiveRecord::Base
     globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
   end
 
+  def is_not_common_replies?
+    return false if name == "Common Replies"
+  end
 
 end

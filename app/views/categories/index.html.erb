@@ -24,7 +24,6 @@
 			<div class="col-md-3"><!-- this div is a spacer --></div>
 			<div id="category-col" class="col-md-9">
 				<% @categories.each do |category| %>
-					<% unless category.name == "Common Replies" %>
 					<% if category.docs.all.with_translations(I18n.locale).count > 0 %>
 					<div class="row">
 						<div class="col-md-9">
@@ -40,7 +39,6 @@
 							</ul>
 						</div>
 					</div>
-					<% end %>
 					<% end %>
 				<% end %>
 			</div>
