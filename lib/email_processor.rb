@@ -6,6 +6,13 @@ class EmailProcessor
   end
 
   def process
+
+    # Guard clause to prevent ESPs like Sendgrid from posting over and over again
+    # if the email presented is invalid and generates a 500.  Returns a 200
+    # error as discussed on https://sendgrid.com/docs/API_Reference/Webhooks/parse.html
+    # This error happened with invalid email addresses from PureChat
+    return if @email.from[:email].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
+
     # scan users DB for sender email
     @user = User.where(email: @email.from[:email]).first
     if @user.nil?
@@ -133,5 +140,6 @@ class EmailProcessor
     if @user.save
       UserMailer.new_user(@user.id, @token).deliver_later
     end
+
   end
 end
