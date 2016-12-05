@@ -179,7 +179,7 @@ Helpy.logHistory = function() {
 };
 
 var search_user = function(post_id) {
-  $('#change-user-modal-' + post_id + ' form').submit();
+  $('#change-user-modal-' + post_id + ' .search_form').submit();
 };
 
 $(document).on('page:change', Helpy.admin);
