@@ -157,6 +157,14 @@ en:
   work_phone: work
   cell_phone: cell
 
+  # Roles
+  select_role: Select Role
+  admin_role: Admin
+  agent_role: Agent
+  editor_role: Editor
+  user_role: User
+  add_more_agents: "Add more users"
+
   # User search results
   users_found:
     one: "1 user was found named %{query}"
