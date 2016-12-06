@@ -31,18 +31,23 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.active.where(id: params[:id]).first
-    if I18n.available_locales.count > 1
-      @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
+    @category = Category.viewable.active.where(id: params[:id]).first
+    if @category
+      if I18n.available_locales.count > 1
+        @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
+      else
+        @docs = @category.docs.ordered.active.page params[:page]
+      end
+
+      @categories = Category.viewable.active.ordered.with_translations(I18n.locale)
+      @related = Doc.in_category(@doc.category_id) if @doc
+
+      @page_title = @category.name
+      add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
+      add_breadcrumb @page_title, category_path(@category)
     else
-      @docs = @category.docs.ordered.active.page params[:page]
+      redirect_to root_path
+      flash[:error] = 'This category cannot be viewed on the front page'
     end
-
-    @categories = Category.viewable.active.ordered.with_translations(I18n.locale)
-    @related = Doc.in_category(@doc.category_id) if @doc
-
-    @page_title = @category.name
-    add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
-    add_breadcrumb @page_title, category_path(@category)
   end
 end
