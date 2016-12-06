@@ -370,3 +370,6 @@ en:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+  errors:
+    messages:
+      extension_whitelist_error: 'format is not valid'

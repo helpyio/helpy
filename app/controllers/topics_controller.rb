@@ -148,7 +148,11 @@ class TopicsController < ApplicationController
         :kind => 'first',
         :screenshots => params[:topic][:screenshots],
         :attachments => params[:topic][:posts_attributes]["0"][:attachments])
+    end
 
+    @topic.errors.add(:attachments, "Not valid format") unless @post.errors.empty?
+
+    if @topic.save
       if built_user == true && !user_signed_in?
         UserMailer.new_user(@user.id, @token).deliver_later
       end
@@ -167,7 +171,8 @@ class TopicsController < ApplicationController
         @widget = true
         render 'new', layout: 'widget'
       else
-        render 'new'
+        flash[:error] = @topic.errors.full_messages.first
+        redirect_to new_topic_path
       end
     end
 

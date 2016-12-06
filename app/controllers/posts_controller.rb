@@ -53,8 +53,10 @@ class PostsController < ApplicationController
             redirect_to @topic.doc.nil? ? topic_posts_path(@topic.id) : doc_path(@topic.doc_id)
           else
             # This post belongs to a ticket
-            agent = User.find(@topic.assigned_user_id)
-            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
+            if @topic.try(:assigned_user_id)
+              agent = User.find(@topic.assigned_user_id)
+              tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
+            end
             redirect_to ticket_path(@topic.id)
           end
         }
@@ -66,7 +68,16 @@ class PostsController < ApplicationController
           end
         }
       else
-        format.html { render :action => "new" }
+        format.html {
+          flash[:error] = @post.errors.full_messages.first
+          if @topic.public?
+            # This is a forum post
+            redirect_to @topic.doc.nil? ? topic_posts_path(@topic.id) : doc_path(@topic.doc_id)
+          else
+            # This post belongs to a ticket
+            redirect_to ticket_path(@topic.id)
+          end
+          }
       end
     end
   end
