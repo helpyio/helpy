@@ -106,6 +106,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "an #{admin} assigning tickets to a user should notify the user by mail" do
+      sign_in users(admin.to_sym)
+      assert_difference('ActionMailer::Base.deliveries.size', 1) do
+        xhr :get, :assign_agent, { topic_ids: [3,2], assigned_user_id: 1 }
+      end
+      assert_response :success
+    end
+
     test "an #{admin} assigning a discussion to a different agent should create a note" do
       sign_in users(admin.to_sym)
       assert_difference "Post.count", 1 do

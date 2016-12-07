@@ -227,6 +227,7 @@ class Admin::TopicsController < Admin::BaseController
     end
 
     @topics.bulk_assign(bulk_post_attributes, assigned_user.id) if bulk_post_attributes.present?
+    NotificationMailer.ticket_assigned(params[:topic_ids], assigned_user.id).deliver_later
 
     if params[:topic_ids].count > 1
       get_tickets

@@ -2,6 +2,6 @@
 =================================================================
 <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
 
-<%= t('notify_ticket_assigned', name: @topic.name, default: 'You have been newly assigned to a ticket( %{name} ):') %>
+<%= t('notify_ticket_assigned', bulk: @bulk ? ', and some others' : '', name: @topic.name, default: 'You have been newly assigned to a ticket( %{name} ) %{bulk}:') %>
 
 <%= t('to_reply', default: 'Reply directly to this email or view this online:') %> <%= admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>
