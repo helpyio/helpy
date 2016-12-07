@@ -185,7 +185,7 @@ class Topic < ActiveRecord::Base
     auto_assigned_on_response = self.posts.select{ |p| p.user.is_agent? }.count == 1
 
     return true if !self.private || auto_assigned_on_response
-    NotificationMailer.ticket_assigned(self.id, self.assigned_user_id).deliver_later
+    NotificationMailer.ticket_assigned([ self.id ], self.assigned_user_id).deliver_later
   end
 
   private
