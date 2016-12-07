@@ -180,6 +180,10 @@ class Topic < ActiveRecord::Base
     )
   end
 
+  def validate_attachment_format(post_errors)
+    errors.add(:attachments, "Not valid format") if post_errors.present?
+  end
+
   private
 
   def cache_user_name

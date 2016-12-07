@@ -150,7 +150,7 @@ class TopicsController < ApplicationController
         :attachments => params[:topic][:posts_attributes]["0"][:attachments])
     end
 
-    @topic.errors.add(:attachments, "Not valid format") unless @post.errors.empty?
+    @topic.validate_attachment_format(@post.errors)
 
     if @topic.save
       if built_user == true && !user_signed_in?
