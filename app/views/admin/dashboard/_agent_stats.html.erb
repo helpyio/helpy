@@ -8,7 +8,7 @@
       <% topic_count = @topics.where(assigned_user: agent_stats.assigned_user).count %>
       <h4>
         <%= agent_stats.assigned_user.try(:name).split(' ')[0].titleize || t('no_agent', default: 'No Agent').html_safe %><br/>
-        <small><%= agent_stats.assigned_user.try(:role).titleize %></small>
+        <small><%= t("#{agent_stats.assigned_user.try(:role)}_role") %></small>
       </h4>
     </div>
     <div class="tag-list">
