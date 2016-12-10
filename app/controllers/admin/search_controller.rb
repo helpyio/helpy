@@ -2,7 +2,6 @@ class Admin::SearchController < Admin::BaseController
 
   before_action :verify_agent
   before_action :fetch_counts
-  before_action :pipeline
   before_action :remote_search
   before_action :get_all_teams
 
