@@ -80,7 +80,7 @@ class Admin::TopicsController < Admin::BaseController
 
   def new
     @topic = Topic.new
-    @user = User.new
+    @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
 
   # TODO: Still need to refactor this method and the update methods into one

@@ -53,6 +53,10 @@
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
 #  profile_image          :string
+#  notify_on_private      :boolean          default(FALSE)
+#  notify_on_public       :boolean          default(FALSE)
+#  notify_on_reply        :boolean          default(FALSE)
+#  account_number         :string
 #
 
 class User < ActiveRecord::Base
@@ -80,7 +84,7 @@ class User < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :user_search,
-                  against: [:name, :login, :email, :company]
+                  against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
   paginates_per 15
 

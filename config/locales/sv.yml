@@ -143,6 +143,8 @@ sv:
   assigned_message: "Ärendet har tilldelats %{assigned_to}."
 
   # User Admin
+  # users: Users
+  # account: Account    
   contact_info: Kontakt
   social_info: Sociala medier
   edit_user: Redigera användarkonto

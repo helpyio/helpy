@@ -148,6 +148,7 @@ es:
 
   # User Admin
   users: Usuarios
+  # account: Account  
   contact_info: Contacto
   social_info: Social
   edit_user:

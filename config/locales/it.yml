@@ -147,7 +147,8 @@ it:
   assigned_message: "Discussione assegnata a %{assigned_to}."
 
   # User Admin
-  users: Users
+  # users: Users
+  # account: Account
   contact_info: Contacto
   social_info: Medie Sociale
   edit_user: Modifica utente

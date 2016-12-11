@@ -148,6 +148,7 @@ zh-cn:
 
   # User Admin
   # users: Users
+  # account: Account    
   contact_info: 联络
   social_info: 社交网站
   edit_user: 修改使用者
