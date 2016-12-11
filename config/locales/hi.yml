@@ -148,6 +148,7 @@ hi:
 
   # User Admin
   # users: Users
+  # account: Account  
   contact_info: संपर्क करें
   social_info: सोशियल
   edit_user: Edit User

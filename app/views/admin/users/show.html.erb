@@ -1,7 +1,8 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
 <h2 id="ticket-page-title">
-  <%= @user.name.titleize %><%= " - #{@user.account_number}" if @user.account_number.present? %>
+  <%= @user.name.titleize %>
+  <%= "<br/>#{content_tag(:small, "Account: " + @user.account_number)}".html_safe if @user.account_number.present? %>
   <span class='hidden-xs pull-right'>
     <%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: 'btn btn-primary' %>
   </span>

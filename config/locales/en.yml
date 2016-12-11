@@ -151,6 +151,7 @@ en:
 
   # User Admin
   users: Users
+  account: Account
   contact_info: Contact
   social_info: Social
   edit_user: Edit User

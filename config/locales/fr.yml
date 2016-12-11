@@ -148,6 +148,7 @@ fr:
 
   # User Admin
   # users: Users
+  # account: Account  
   contact_info: Informations de contact
   social_info: Réseaux sociaux
   edit_user:

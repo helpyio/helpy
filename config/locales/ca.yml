@@ -148,6 +148,7 @@ ca:
 
   # User Admin
   # users: Users
+  # account: Account
   contact_info: Contacte
   social_info: Social
   edit_user:

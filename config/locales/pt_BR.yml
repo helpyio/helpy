@@ -171,6 +171,7 @@ pt-br:
 
   # User Admin
   users: "Usuários"
+  # account: Account  
   contact_info: "Contato"
   social_info: "Social"
   edit_user: "Editar Usuário"

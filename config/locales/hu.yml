@@ -151,6 +151,7 @@ hu:
 
   # User Admin
   users: Felhasználók
+  # account: Account  
   contact_info: Kapcsolat
   social_info: Social
   edit_user: Felhasználó szerkesztés

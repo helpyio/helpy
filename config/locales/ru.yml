@@ -152,6 +152,7 @@ ru:
 
   # User Admin
   # users: Users
+  # account: Account  
   contact_info: Контакт
   social_info: Социальные сети
   edit_user: Редактировать пользователя

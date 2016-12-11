@@ -148,6 +148,7 @@ ja:
 
   # User Admin
   # users: Users
+  # account: Account  
   contact_info: "連絡先"
   social_info: "SNS"
   edit_user:

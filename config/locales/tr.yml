@@ -148,6 +148,7 @@ tr:
 
   # User Admin
   # users: Users
+  # account: Account
   contact_info: İletişim
   social_info: Sosyal
   edit_user: Kullanıcıyı Düzenle

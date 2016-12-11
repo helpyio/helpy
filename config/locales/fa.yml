@@ -148,6 +148,7 @@ fa:
 
   # User Admin
   users: کاربران
+  # account: Account  
   contact_info: تماس
   social_info: سوشال
   edit_user: ویرایش کاربر

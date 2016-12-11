@@ -148,6 +148,7 @@ pt:
 
   # User Admin
   # users: Users
+  # account: Account  
   contact_info: "Contacto"
   social_info: "Social"
   edit_user: "Editar Utilizador"
