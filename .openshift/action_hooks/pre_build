@@ -1,0 +1,11 @@
+#!/bin/bash
+# This is a simple script and will be executed on your CI system if
+# available.  Otherwise it will execute while your application is stopped
+# before the build step.  This script gets executed directly, so it
+# could be python, php, ruby, etc.
+
+if [[ "$RUBY_VERSION" == "1.8" ]]; then
+  echo "ERROR: This quickstart is not compatible with Ruby 1.8"
+  echo "ERROR: Please use ruby-1.9 or ruby-2.0 application type."
+  exit 1
+fi

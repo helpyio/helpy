@@ -1,0 +1,38 @@
+#!/bin/bash
+# This deploy hook gets executed after dependencies are resolved and the
+# build hook has been run but before the application has been started back
+# up again.  This script gets executed directly, so it could be python, php,
+# ruby, etc.
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+source ${OPENSHIFT_RUBY_DIR}/lib/ruby_context
+
+set -e
+
+if [ ! -z "$OPENSHIFT_POSTGRESQL_DB_HOST" ]; then
+  export RAILS_DB="postgresql"
+fi
+
+if [ ! -z "$OPENSHIFT_MYSQL_DB_HOST" ]; then
+  export RAILS_DB="mysql"
+fi
+
+if [ -z "$RAILS_DB" ]; then
+  echo 1>&2
+  echo "Could not find the database cartridge.  Please run:" 1>&2
+  echo "rhc cartridge add -a $OPENSHIFT_APP_NAME -c mysql-5.5" 1>&2
+  echo "or"
+  echo "rhc cartridge add -a $OPENSHIFT_APP_NAME -c postgresql-9.2" 1>&2
+  echo "then make a sample commit (add whitespace somewhere) and re-push" 1>&2
+  echo 1>&2
+  exit 5
+else
+  if [ "$(type -t set_env_var)" == "function" ]; then
+    set_env_var 'RAILS_DB' $RAILS_DB $OPENSHIFT_HOMEDIR/.env/user_vars
+  fi
+fi
+
+pushd ${OPENSHIFT_REPO_DIR} > /dev/null
+echo "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
+ruby_with_nodejs_context "bundle exec rake db:migrate RAILS_ENV=${RAILS_ENV:-production}"
+popd > /dev/null
