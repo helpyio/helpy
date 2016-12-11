@@ -40,11 +40,7 @@ class Admin::TopicsController < Admin::BaseController
     if current_user.is_restricted? && teams?
       topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
     else
-      if params[:team].present?
-        topics_raw = Topic.all.tagged_with(params[:team], any: true)
-      else
-        topics_raw = Topic
-      end
+      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
     end
     topics_raw = topics_raw.includes(user: :avatar_files).chronologic
     get_all_teams
