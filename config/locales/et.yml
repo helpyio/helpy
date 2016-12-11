@@ -148,6 +148,7 @@ et:
 
   # User Admin
   # users: Users
+  # account: Account  
   contact_info: Kontakt
   social_info: Sotsiaalne
   edit_user:

@@ -51,6 +51,23 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "an #{admin} should be able to filter topics by providing a group parameter" do
+      sign_in users(admin.to_sym)
+
+      # Assign agent and topic to a group
+      agent = users(admin)
+      topic = topics(:private)
+      topic.current_status = "open"
+      topic.team_list = "test"
+      topic.save!
+
+      get :index, { status: "open", team: 'test' }
+      assert_not_nil assigns(:topics)
+      assert_equal 1, assigns(:topics).size
+      assert_template "admin/topics/index"
+      assert_response :success
+    end
+
     test "an #{admin} should be able to see a list of topics via ajax" do
       sign_in users(admin.to_sym)
 

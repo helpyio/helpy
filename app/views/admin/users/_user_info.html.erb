@@ -8,6 +8,7 @@
     <div id="user-contact-info" class="user-info">
       <div class="tiny-header"><%= @topic.user_name? ? @topic.user_name.titleize : @topic.user.email %></div>
       <span class="small">
+        <%= "#{t(:account_number, default: 'Account:')} #{@topic.user.account_number}<br/>".html_safe if @topic.user.account_number.present? %>
         <%= @topic.user.company.titleize unless @topic.user.company.nil? %><br/>
         <%= @topic.user.city.titleize + ', ' unless @topic.user.city.nil? %> <%= @topic.user.state.titleize unless @topic.user.state.nil? %>
       </span>

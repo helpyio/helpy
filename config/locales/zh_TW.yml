@@ -148,6 +148,7 @@ zh-tw:
 
   # User Admin
   # users: Users
+  # account: Account    
   contact_info: 聯絡
   social_info: 社交網站
   edit_user: 修改使用者

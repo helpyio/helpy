@@ -2,7 +2,6 @@ class Admin::SearchController < Admin::BaseController
 
   before_action :verify_agent
   before_action :fetch_counts
-  before_action :pipeline
   before_action :remote_search
   before_action :get_all_teams
 
@@ -25,10 +24,9 @@ class Admin::SearchController < Admin::BaseController
       tracker("Admin Search", "Topic Search", params[:q])
     elsif users.size == 1
       @user = users.first
-      search_topics
+      @topics = Topic.where(user_id: @user.id).page params[:page]
       @topic = Topic.where(user_id: @user.id).first unless @user.nil?
-      template = 'admin/topics/index'
-
+      template = 'admin/users/show'
       tracker("Admin Search", "User Search", params[:q])
       tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
     else
