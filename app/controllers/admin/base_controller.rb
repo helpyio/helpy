@@ -12,10 +12,6 @@ class Admin::BaseController < ApplicationController
 
   protected
 
-  def pipeline
-    @pipeline = true
-  end
-
   def remote_search
     @remote_search = true
   end

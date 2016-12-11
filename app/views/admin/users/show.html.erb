@@ -1,5 +1,9 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
+<% content_for :pipeline do %>
+<%= render partial: 'admin/shared/pipeline' %>
+<% end %>
+
 <h2 id="ticket-page-title">
   <%= @user.name.titleize %>
   <span class='hidden-xs pull-right'>

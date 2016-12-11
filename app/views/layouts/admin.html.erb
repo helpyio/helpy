@@ -22,17 +22,7 @@
 		</div>
 	</div>
 	</div>
-	<% if @pipeline == true %>
-	<div id="pipeline-wrapper" class="jumbotron hidden-xs">
-		<div class="container">
-			<div class="row">
-				<div class="ticket-stats col-md-12">
-					<%= render partial: 'admin/topics/ticket_stats' %>
-				</div>
-			</div>
-		</div>
-	</div>
-	<% end %>
+	<%= yield :pipeline %>
 	<div id="body-wrapper" class="container">
 		<div class="row white-bg">
 			<div class="col-md-12">
