@@ -1,7 +1,11 @@
 <%= t('above_this_line', default: "Make sure your reply appears above this line") %>
 =================================================================
-<%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
+<%= t('message_ids', default: 'Message ID(s)') %>:<%= @bulk_topics.collect(&:id).join(', ') %>
 
-<%= t('notify_ticket_assigned', bulk: @bulk ? ', and some others' : '', name: @topic.name, default: 'You have been newly assigned to a ticket( %{name} ) %{bulk}:') %>
+<%= t('notify_ticket_assigned', default: 'You have recently been assigned to the following topic(s):') %>
+
+<% @bulk_topics.each do |topic| %>
+  <%= topic.name %>
+<% end %>
 
 <%= t('to_reply', default: 'Reply directly to this email or view this online:') %> <%= admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>

@@ -226,6 +226,7 @@ en:
   account_generated: "An account has been generated for you. To sign in, please use this link:"
   above_this_line: "Make sure your reply appears above this line"
   message_id: "Message ID"
+  message_ids: "Message ID(s)"
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
 
