@@ -14,7 +14,7 @@
     </p>
     <ol>
       <% @bulk_topics.each do |topic| %>
-        <li><%= topic.name + '  '%><%= link_to 'View', topic %></li>
+        <li><%= topic.name + '  '%><%= link_to t('view_on_site', default: "View on Site"), topic %></li>
       <% end %>
     </ol>
     <p>

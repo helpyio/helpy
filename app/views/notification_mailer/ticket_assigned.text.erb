@@ -5,7 +5,7 @@
 <%= t('notify_ticket_assigned', default: 'You have recently been assigned to the following topic(s):') %>
 
 <% @bulk_topics.each do |topic| %>
-  <%= topic.name %>
+  <%= topic.name + '  '%><%= link_to t('view_on_site', default: "View on Site"), topic %>
 <% end %>
 
 <%= t('to_reply', default: 'Reply directly to this email or view this online:') %> <%= admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>
