@@ -150,8 +150,6 @@ class TopicsController < ApplicationController
         :attachments => params[:topic][:posts_attributes]["0"][:attachments])
     end
 
-    @topic.validate_attachment_format(@post.errors)
-
     if @topic.save
       if built_user == true && !user_signed_in?
         UserMailer.new_user(@user.id, @token).deliver_later
