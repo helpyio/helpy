@@ -79,7 +79,6 @@ class Topic < ActiveRecord::Base
   acts_as_taggable_on :teams
 
   validates :name, presence: true, length: { maximum: 255 }
-  validate :validate_attachment_format, on: :create
 
   def to_param
     "#{id}-#{name.parameterize}"
@@ -179,12 +178,6 @@ class Topic < ActiveRecord::Base
       user_id: @user.id,
       doc_id: @doc.id
     )
-  end
-
-  def validate_attachment_format
-    if self.posts.any? && self.posts.last.errors[:attachments].any?
-      errors.add(:attachments, "attachment format is not valid")
-    end
   end
 
   private
