@@ -25,6 +25,19 @@ module API
           present users, with: Entity::User
         end
 
+        # SEARCH USERS
+        desc "Search users by name, email, account number, phone, etc.", {
+          entity: Entity::User,
+          notes: "Returns a list of matching users"
+        }
+        params do
+          requires :q, type: String, desc: "User search query"
+        end
+        get "search", root: :users do
+          users = User.user_search(params[:q])
+          present users, with: Entity::User
+        end
+
         # SHOW USER
         desc "Show details of a user", {
           entity: Entity::User,
