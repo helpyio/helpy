@@ -76,9 +76,9 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def search
-    search_string = params[:user_search].downcase
+    search_string = params[:user_search]
     @post_id = params[:post_id]
-    @users = User.where("lower(name) LIKE ? OR lower(email) LIKE ?", "%#{search_string}%", "%#{search_string}%")
+    @users = User.user_search(search_string)
     @users = nil if search_string.blank? || @users.empty?
   end
 
