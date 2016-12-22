@@ -141,8 +141,8 @@ class TopicsController < ApplicationController
       @topic.user_id = @user.id
     end
 
-    if @user.save && @topic.save
-      @post = @topic.posts.create(
+    if @user.save && @topic.valid?
+      @post = @topic.posts.build(
         :body => params[:topic][:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
@@ -150,7 +150,7 @@ class TopicsController < ApplicationController
         :attachments => params[:topic][:posts_attributes]["0"][:attachments])
     end
 
-    if @topic.save
+    if @topic.save && @post.save
       if built_user == true && !user_signed_in?
         UserMailer.new_user(@user.id, @token).deliver_later
       end
@@ -169,8 +169,7 @@ class TopicsController < ApplicationController
         @widget = true
         render 'new', layout: 'widget'
       else
-        flash[:error] = @topic.errors.full_messages.first
-        redirect_to new_topic_path
+        render :new
       end
     end
 
