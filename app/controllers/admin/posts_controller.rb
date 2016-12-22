@@ -111,14 +111,10 @@ class Admin::PostsController < Admin::BaseController
       @user.login = params[:user][:email].split("@")[0]
       @user.email = params[:user][:email]
       @user.password = User.create_password
-
-      if @user.save
-        puts "NEW USER CREATED..."
-      end
     end
 
     # assign user
-    if @post.update(user: @user)
+    if @user.save && @post.update(user: @user)
       update_topic_owner(old_user, @post) if @post.kind == 'first'
     end
 
