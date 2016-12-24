@@ -71,14 +71,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"><%= t(:flag_post_for_review) %></h4>
+        <h4 class="modal-title"><%= t(:flag_post_for_review, default: "Flag For Review") %></h4>
       </div>
 
       <div class="modal-body row">
         <div class="col-md-12">
         <%= bootstrap_form_for :flag, :url => post_flags_path(post) do |f| -%>
           <%= f.text_area :reason, rows: 6, cols: 160, placeholder: t(:flag_post_placeholder), skip_label: true -%>
-          <%= f.submit t(:flag), class: 'btn btn-warning' -%>
+          <%= f.submit t(:flag, default: "Flag"), class: 'btn btn-warning' -%>
         <% end -%>
         </div>
       </div>
