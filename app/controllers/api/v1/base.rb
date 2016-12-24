@@ -27,7 +27,7 @@ module API
            access to the API endpoints.",
           # contact_name: "Contact name",
           # contact_email: "Contact@email.com",
-          contact_url: "https://api.helpy.io/",
+          contact_url: "https://support.helpy.io/api",
           # license: "MIT.",
           # license_url: "www.The-URL-of-the-license.org",
           # terms_of_service_url: "www.The-URL-of-the-terms-and-service.com",
