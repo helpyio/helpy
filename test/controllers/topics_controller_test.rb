@@ -177,6 +177,38 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
+  # A user who is signed in should not be able to attach file with not supported format to new topic
+  test 'a signed in user should not be able to attach file with not supported format to new topic' do
+    sign_in users(:user)
+
+    get :new, locale: :en
+    assert_response :success
+
+    assert_difference 'Topic.count', 0, 'A topic should not have been created' do
+      assert_difference 'Post.count', 0, 'A post should not have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a user',
+              email: 'anon@test.com'
+              },
+            name: 'some new public topic',
+            body: 'some body text',
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body",
+              attachments: Array.wrap(uploaded_file_object(Post, :attachments, File.open(File.expand_path('test/fixtures/files/upload_test.rb'))))
+              }
+            }
+          },
+          locale: :en
+      end
+    end
+
+    assert_template :new
+  end
 
   # A user who is registered, but not signed in currently should be able to create a new private
   # or public topic

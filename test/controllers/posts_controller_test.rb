@@ -107,4 +107,19 @@ class PostsControllerTest < ActionController::TestCase
     assert :success
     assert_equal "logo.png", Post.last.attachments.first.file.file.split("/").last
   end
+
+  test "a signed in user should not be able to add an attachment with not supported format" do
+    sign_in users(:user)
+    assert_difference "Post.count", 0 do
+      post :create,
+        topic_id: 1,
+        locale: :en,
+        post: {
+          user_id: User.find(2).id,
+          body: "new reply",
+          kind: "reply",
+          attachments: Array.wrap(uploaded_file_object(Post, :attachments, File.open(File.expand_path('test/fixtures/files/upload_test.rb'))))
+        }
+    end
+  end
 end
