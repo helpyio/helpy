@@ -170,6 +170,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "an #{admin} should be able to merge multiple topics into one" do
+      sign_in users(admin.to_sym)
+      assert_difference("Topic.count",1) do
+        xhr :get, :merge_tickets, { topic_ids: [2,3] }
+      end
+      assert_response :redirect
+    end
+
     ### testing new discussion creation and lifecycle
 
     test "an #{admin} should be able to open a new discussion for a new user" do
