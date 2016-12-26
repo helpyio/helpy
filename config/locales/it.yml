@@ -126,6 +126,7 @@ it:
   private: "Privato"
   public: pubblico
   save_changes: Aggiorna
+  #merge: Merge
 
   # Discussion controls
   change_status: Cambiare stato

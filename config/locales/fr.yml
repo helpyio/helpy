@@ -126,6 +126,7 @@ fr:
   private: confidentiel
   public: public
   save_changes: Enregistrez les modifications
+  #merge: Merge
 
   # Multiple Discussion controls
   change_status: Changer le Statut

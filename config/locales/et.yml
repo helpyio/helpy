@@ -126,6 +126,7 @@ et:
   private: privaatne
   public: avalik
   save_changes: Salvesta muudatused
+  #merge: Merge
 
   # Discussion controls
   change_status: Muuda staatus

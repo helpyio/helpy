@@ -126,6 +126,7 @@ de:
   private: privat
   public: öffentlich
   save_changes: Änderungen speichern
+  #merge: Merge
 
   # Discussion controls
   change_status: Status ändern

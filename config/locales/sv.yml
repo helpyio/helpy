@@ -122,6 +122,7 @@ sv:
   private: 'privat'
   public: 'publik'
   save_changes: 'Spara ändringar'
+  #merge: Merge
 
   # Discussion controls
   change_status: 'Ändra Status'

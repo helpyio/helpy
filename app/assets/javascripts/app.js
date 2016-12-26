@@ -224,17 +224,24 @@ Helpy.ready = function(){
     var output;
     var messages = $('.topic-checkbox:checked').size();
 
+    $('.merge-span').hide();
+    console.log("Update");
+
     switch(messages) {
       case 1:
         output = Helpy.selected[1];
+        $('.merge-span').hide();
         break;
       case 2:
         output = Helpy.selected[2];
+        $('.merge-span').show();
         break;
       default:
         output = Helpy.selected[3].replace("9", messages);
+        $('.merge-span').show();
         break;
     }
+
     $('.selected-message').text(output);
   }
 

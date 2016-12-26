@@ -126,6 +126,7 @@ ja:
   private: "非公開"
   public: "公開済み"
   save_changes: "変更を保存"
+  #merge: Merge
 
   # Discussion controls
   change_status: "状態を変更する"

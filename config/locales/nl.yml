@@ -126,6 +126,7 @@ nl:
   private: "Privé"
   public: Openbaar
   save_changes: Bijwerken
+  #merge: Merge
 
   # Discussion controls
   change_status: Status Wijzigen

@@ -129,6 +129,7 @@ ru:
   private: приватный
   public: публичный
   save_changes: Сохранить изменения
+  #merge: Merge
 
   # Discussion controls
   change_status: Изменить статус

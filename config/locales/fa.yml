@@ -126,6 +126,7 @@ fa:
   private: خصوصی
   public: عمومی
   save_changes: ذخیره تغییرات
+  #merge: Merge
 
   # Discussion controls
   change_status: تغییر وضعیت

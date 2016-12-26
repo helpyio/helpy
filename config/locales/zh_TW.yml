@@ -126,6 +126,7 @@ zh-tw:
   private: 私人
   public: 公開
   save_changes: 儲存變更
+  #merge: Merge
 
   # Discussion controls
   change_status: 修改狀態

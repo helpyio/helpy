@@ -147,6 +147,7 @@ pt-br:
   private: "privado"
   public: "público"
   save_changes: "Guardar Alterações"
+  #merge: Merge
 
   # Discussion controls
   change_status: "Alterar Estado"

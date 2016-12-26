@@ -126,6 +126,7 @@ ca:
   private: privat
   public: public
   save_changes: Guardar canvis
+  #merge: Merge
 
   # Discussion controls
   change_status: Canviar estat

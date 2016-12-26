@@ -126,6 +126,7 @@ tr:
   private: gizli
   public: herkese açık
   save_changes: Değişiklikleri Kaydet
+  #merge: Merge
 
   # Discussion controls
   change_status: Durumu Değiştir

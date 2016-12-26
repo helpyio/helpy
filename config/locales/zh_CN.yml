@@ -126,6 +126,7 @@ zh-cn:
   private: 私人
   public: 公开
   save_changes: 保存修改
+  #merge: Merge
 
   # Discussion controls
   change_status: 修改状态

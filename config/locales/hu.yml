@@ -129,6 +129,7 @@ hu:
   private: privát
   public: publikus
   save_changes: Mentés
+  #merge: Merge
 
   # Discussion controls
   change_status: Státusz Módosítása

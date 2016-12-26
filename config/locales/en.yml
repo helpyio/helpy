@@ -129,6 +129,7 @@ en:
   private: private
   public: public
   save_changes: Save Changes
+  merge: Merge
 
   # Discussion controls
   change_status: Change Status

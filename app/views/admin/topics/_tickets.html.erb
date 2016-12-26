@@ -68,7 +68,7 @@
           <% end %>
 
         </span>
-        <span><%= link_to "Merge", admin_merge_tickets_path(merge:''), remote: true, class: 'multiple-update' %></span>
+        <span class="merge-span" style="display: none;"><%= link_to t(:merge, default: "Merge"), admin_merge_tickets_path(merge:''), remote: true, class: 'multiple-update merge', data: { confirm: "Are you sure you want to merge these tickets?" } %></span>
       </td>
     </tr>
   </tbody>

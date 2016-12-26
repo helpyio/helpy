@@ -126,6 +126,7 @@ hi:
   private: प्राइवेट
   public: पब्लिक
   save_changes: जो भी बदली सेव करो
+  #merge: Merge
 
   # Discussion controls
   change_status: स्टेटस बदलो
