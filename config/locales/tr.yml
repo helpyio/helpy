@@ -313,3 +313,16 @@ tr:
       save: "%{model} Kaydet"
       new: "Yeni %{model}"
       delete: "%{model} Sil"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q
+      

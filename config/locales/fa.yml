@@ -148,7 +148,7 @@ fa:
 
   # User Admin
   users: کاربران
-  # account: Account  
+  # account: Account
   contact_info: تماس
   social_info: سوشال
   edit_user: ویرایش کاربر
@@ -358,3 +358,15 @@ fa:
       save: "ذخیره %{model}"
       new: "%{model} جدید"
       delete: "حذف %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

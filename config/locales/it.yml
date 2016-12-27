@@ -359,3 +359,15 @@ it:
       save: "salva %{model}"
       new: "crea %{model}"
       delete: "cancella %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      
