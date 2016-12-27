@@ -15,6 +15,14 @@ Helpy.ready = function(){
     singleFileUploads: false
   });
 
+  var loader = function(){
+    $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
+  }
+
+  $('.submit-loader').off('submit', loader).on('submit', loader);
+  $('.click-loader').off('click', loader).on('click', loader);
+
+
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
 
   // make sure dropdowns close after click of link
@@ -131,6 +139,9 @@ Helpy.ready = function(){
     $("body").append(form);
     $("#formform").submit();
     $("#formform").remove();
+
+    // Show loader
+    loader();
 
     // Ensure history is captured in the browser
     history.pushState(null, '', url);
