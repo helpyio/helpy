@@ -35,12 +35,12 @@ module TopicsHelper
   end
 
   def control_for_status(status)
-    content_tag(:span, "#{status_label(status)} <span class='caret'></span> ".html_safe, class: "btn status-label label #{status_class(status)}")
+    content_tag(:span, "#{status_label(status)} <span class='caret'></span> ".html_safe, class: "change-status btn status-label-button label #{status_class(status)}")
   end
 
   def control_for_privacy(private_flag)
     str = private_flag ? t(:private, default: 'PRIVATE') : t(:public, default: 'PUBLIC')
-    content_tag(:span, "#{str} <span class='caret'></span> ".html_safe, class: 'btn privacy-label label label-info')
+    content_tag(:span, "#{str} <span class='caret'></span> ".html_safe, class: 'btn change-privacy privacy-label label label-info')
   end
 
   def status_label(status)

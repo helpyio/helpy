@@ -16,7 +16,7 @@
       <%#= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path, remote: true, class: 'btn btn-primary' %>
       <%= menu_item content_tag(:span, nil, class: 'fa fa-question-circle'), "http://support.helpy.io/", class: 'pull-right visible-lg visible-md visible-sm hidden-xs settings-cog', target: 'blank' %>
       <%= menu_item glyph(:cog), admin_settings_path, class: 'pull-right visible-lg visible-md visible-sm hidden-xs settings-cog' if current_user.is_agent? %>
-      <%= menu_item glyph(:plus), new_admin_topic_path, remote: true, class: 'pull-right visible-lg visible-md visible-sm hidden-xs click-loader' if current_user.is_agent? %>
+      <%= menu_item glyph(:plus), new_admin_topic_path, remote: true, class: 'pull-right visible-lg visible-md visible-sm hidden-xs click-loader new-discussion' if current_user.is_agent? %>
       <%#= content_tag :li, link_to("#{content_tag(:i, nil, class: 'fa fa-plus')} #{t(:open_new_discussion, default: 'Open Discussion')}".html_safe, new_admin_topic_path, class: 'btn btn-primary', remote: true) if current_user.is_agent? %>
     <% end %>
 
