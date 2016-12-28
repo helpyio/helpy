@@ -15,13 +15,9 @@ Helpy.ready = function(){
     singleFileUploads: false
   });
 
-  var loader = function(){
-    $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
-  }
-
-  $('.submit-loader').off('submit', loader).on('submit', loader);
-  $('.click-loader').off('click', loader).on('click', loader);
-
+  $('.submit-loader').off('submit', Helpy.loader).on('submit', Helpy.loader);
+  $('.click-loader').off('click').on('click', Helpy.loader);
+  $('ul.pagination li a').off('click').on('click', Helpy.loader);
 
   $('.screenshot-link').magnificPopup({type:'image', gallery:{enabled:true}});
 
@@ -141,7 +137,7 @@ Helpy.ready = function(){
     $("#formform").remove();
 
     // Show loader
-    loader();
+    Helpy.loader();
 
     // Ensure history is captured in the browser
     history.pushState(null, '', url);
@@ -418,6 +414,10 @@ Helpy.showGroup = function() {
     $('#topic_team_list').parent().removeClass('hidden');
   }
 };
+
+Helpy.loader = function(){
+  $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
+}
 
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);

@@ -1,5 +1,5 @@
 <div class="add-form">
-<%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical', method: 'post' }) do |f| -%>
+<%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical submit-loader', method: 'post' }) do |f| -%>
   <%= f.simple_fields_for @user do |u| %>
     <%= u.input :email, autofocus: true, class: 'disable-empty' %>
     <%= u.input :name, class: 'disable-empty' %>
