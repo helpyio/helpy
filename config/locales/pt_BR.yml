@@ -86,6 +86,12 @@ pt-br:
   get_your_copy: "Garanta uma cópia pelo GitHub"
   version: "Versão:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: "Autenticar"
 

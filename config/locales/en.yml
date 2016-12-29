@@ -82,6 +82,12 @@ en:
   get_your_copy: "Grab your copy on GitHub"
   version: "Version:"
 
+  # flag
+  flag_for_review: "Flag for Review"
+  flag_post_for_review: "Flag Post for Review"
+  flag_post_placeholder: "Describe the reason for flagging this post"
+  flag: "Flag"
+
   # devise/sessions/new
   login: Log in
 
