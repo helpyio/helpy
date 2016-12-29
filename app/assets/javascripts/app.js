@@ -417,7 +417,7 @@ Helpy.showGroup = function() {
 
 Helpy.loader = function(){
   $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
-}
+};
 
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);
