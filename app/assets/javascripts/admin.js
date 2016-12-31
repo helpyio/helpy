@@ -229,7 +229,7 @@ Helpy.admin = function(){
   // s s - mark spam
   // s t - mark trash
 
-  Mousetrap.bind('s r', function() {
+  Mousetrap.bind(['s r','s c'], function() {
     $('.key-sr').click();
   });
   Mousetrap.bind('s o', function() {
@@ -283,7 +283,21 @@ Helpy.admin = function(){
     }
   });
 
+  // Show help screen
+  Mousetrap.bind('?', function() {
 
+    if ($('#shortcutmodal').size() == 0) {
+      $('body').append(" \
+        <div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\"> \
+      		<div class=\"modal-dialog modal-lg\"> \
+      			<div class=\"modal-content\"> \
+      				<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"no\"></iframe> \
+      			</div> \
+      		</div> \
+      	</div>");
+    };
+    $('#shortcutmodal').modal();
+  });
 
 };
 

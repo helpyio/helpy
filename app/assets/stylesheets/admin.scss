@@ -443,6 +443,31 @@ ul.settings-menu {
 .post-cc-style {
 	color: #999;
 }
+
+// === KEYBOARD SHORTCUTS ===
+
+.shortcut-row {
+	height: 50px;
+	padding-top: 15px;
+	border-bottom: 1px solid #eee;
+
+	.key{
+		border: 1px #ddd solid;
+		padding: 5px;
+		font-weight: bold;
+	}
+}
+.keyboard-shortcuts {
+	h3 {
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	h4 {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+}
+
 // === TEAM INSIGHTS ===
 
 .team-members {
