@@ -257,7 +257,7 @@ Helpy.admin = function(){
   Mousetrap.bind('.', function() {
     var $currentSelected = $('.selected');
 
-    if ($('.selected').size() == 0) {
+    if ($('.selected').size() === 0) {
       $('.topic').first().addClass('selected');
       pressEnter($('.topic').first().find('a.topic-link'));
     } else {
@@ -272,7 +272,7 @@ Helpy.admin = function(){
   Mousetrap.bind(',', function() {
     var $currentSelected = $('.selected');
 
-    if ($('.selected').size() == 0) {
+    if ($('.selected').size() === 0) {
       $('.topic').last().addClass('selected');
       pressEnter($('.topic').last().find('a.topic-link'));
     } else {
@@ -286,16 +286,15 @@ Helpy.admin = function(){
   // Show help screen
   Mousetrap.bind('?', function() {
 
-    if ($('#shortcutmodal').size() == 0) {
-      $('body').append(" \
-        <div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\"> \
-      		<div class=\"modal-dialog modal-lg\"> \
-      			<div class=\"modal-content\"> \
-      				<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"no\"></iframe> \
-      			</div> \
-      		</div> \
-      	</div>");
-    };
+    if ($('#shortcutmodal').size() === 0) {
+      $('body').append("<div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\">" +
+      		"<div class=\"modal-dialog modal-lg\">" +
+      		"	<div class=\"modal-content\">" +
+      		"		<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"no\"></iframe>" +
+      		"	</div>" +
+      		"</div>" +
+      	"</div>");
+    }
     $('#shortcutmodal').modal();
   });
 
