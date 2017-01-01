@@ -79,6 +79,12 @@ et:
   get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # Profile
   my_profile: 'Minu profiil'
 

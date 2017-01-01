@@ -17,6 +17,7 @@ module API
       mount API::V1::Users
       mount API::V1::Search
       mount API::V1::Settings
+      mount API::V1::Flags
 
       add_swagger_documentation \
         info: {

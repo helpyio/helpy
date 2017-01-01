@@ -78,6 +78,12 @@ sv:
   powered_by: "Drivs av Helpy, ett infotält med öppen källkod."
   get_your_copy: "Hämta din kopia på GitHub."
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: 'Logga in'
 

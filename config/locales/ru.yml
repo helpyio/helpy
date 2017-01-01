@@ -85,6 +85,12 @@ ru:
   get_your_copy: "Получите свою копию на GitHub"
   # version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: "Войти"
 
