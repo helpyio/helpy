@@ -3,7 +3,9 @@
 <% content_for :pipeline do %>
 <%= render partial: 'admin/shared/pipeline' %>
 <% end %>
-
+<div class="topic-search" style="display: none;">
+<%= render partial: 'admin/search/topic_search' %>
+</div>
 <div class="row">
   <div id="tickets" class="col-md-12">
     <%= render 'ticket' %>

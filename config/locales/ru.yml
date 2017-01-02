@@ -158,7 +158,7 @@ ru:
 
   # User Admin
   # users: Users
-  # account: Account  
+  # account: Account
   contact_info: Контакт
   social_info: Социальные сети
   edit_user: Редактировать пользователя
@@ -327,3 +327,15 @@ ru:
       save: "Сохранить %{model}"
       new: "Новый %{model}"
       delete: "Удалить %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: тыс.
+          million: млн.
+          billion: B
+          trillion: T
+          quadrillion: Q

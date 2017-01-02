@@ -150,7 +150,7 @@ sv:
 
   # User Admin
   # users: Users
-  # account: Account    
+  # account: Account
   contact_info: Kontakt
   social_info: Sociala medier
   edit_user: Redigera användarkonto
@@ -298,3 +298,15 @@ sv:
       save: "Spara %{model}"
       new: "Ny %{model}"
       delete: "Radera %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

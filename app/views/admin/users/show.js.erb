@@ -6,8 +6,9 @@ $('#ticket-page-title').show().html("<%= @user.name.titleize %><span class='hidd
 // TODO: replace this hack with a better direct link or modal slide over
 <% if params[:mode] == 'edit' %>$('.edit-user-button').click();<% end %>
 
-// Empty ticket search field
+// Empty ticket search field and hidden-xs
 $('q').val('');
+$('.topic-search').hide();
 
 // Update timestamps
 $('.last-active time[data-time-ago]').timeago();

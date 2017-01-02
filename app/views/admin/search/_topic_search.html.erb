@@ -1,0 +1,22 @@
+<%= form_tag admin_topic_search_path, method: :get, remote: true, class: 'admin-search submit-loader form-inline form-horizontal' do %>
+  <div class="form-group">
+    <div class="col-xs-12 col-sm-7 col-md-7">
+      <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control', style: "width: 100%;", autofocus: true )%>
+    </div>
+    <div class="col-sm-2 col-md-2 hidden-xs text-center">
+      <div class="input-group date">
+        <%= text_field_tag :start_date, nil, class: 'form-control' %>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+      </div>
+    </div>
+    <div class="col-sm-2 col-md-2 hidden-xs text-center">
+      <div class="input-group date">
+        <%= text_field_tag :end_date, nil, class: 'form-control' %>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+      </div>
+    </div>
+    <div class="submit-group col-sm-1 col-md-1 text-right">
+      <%= submit_tag t('search', default: 'Search'), class: 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

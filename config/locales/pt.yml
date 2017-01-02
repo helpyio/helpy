@@ -154,7 +154,7 @@ pt:
 
   # User Admin
   # users: Users
-  # account: Account  
+  # account: Account
   contact_info: "Contacto"
   social_info: "Social"
   edit_user: "Editar Utilizador"
@@ -319,3 +319,15 @@ pt:
       save: "Guardar %{model}"
       new: "Novo %{model}"
       delete: "Apagar    %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

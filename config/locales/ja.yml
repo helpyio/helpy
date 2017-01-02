@@ -154,7 +154,7 @@ ja:
 
   # User Admin
   # users: Users
-  # account: Account  
+  # account: Account
   contact_info: "連絡先"
   social_info: "SNS"
   edit_user:
@@ -320,3 +320,15 @@ ja:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

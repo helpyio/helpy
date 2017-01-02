@@ -46,7 +46,10 @@ class Topic < ActiveRecord::Base
                   :if => :public?
 
   pg_search_scope :admin_search,
-                  against: [:id, :name, :user_name, :current_status, :post_cache]
+                  against: [:id, :name, :user_name, :current_status, :post_cache],
+                  associated_against: {
+                    teams: [:name]
+                  }
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }

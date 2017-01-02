@@ -290,6 +290,13 @@ a.stats.active {
   }
 }
 
+.no-arrow {
+	position: relative;
+	border: 0px solid #333;
+	height: 100px;
+}
+
+
 .topic-checkbox {
 	// scss-lint:disable ImportantRule
 	margin-top: 13px !important;
