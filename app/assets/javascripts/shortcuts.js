@@ -156,7 +156,7 @@ Helpy.initShortcuts = function() {
       $('body').append("<div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\">" +
           "<div class=\"modal-dialog modal-lg\">" +
           "	<div class=\"modal-content\">" +
-          "		<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"no\"></iframe>" +
+          "		<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"auto\"></iframe>" +
           "	</div>" +
           "</div>" +
         "</div>");
