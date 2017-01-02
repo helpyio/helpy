@@ -145,7 +145,7 @@ Helpy.refreshList = function(status) {
   Helpy.cancelRefresh();
 
   $.get('/admin/topics/refresh_list?status=' + status, function() {
-      Helpy.refreshListHook = setTimeout(Helpy.refreshList, 60000, status);
+      Helpy.refreshListHook = setTimeout(Helpy.refreshList, 10000, status);
   });
   return true;
 };
