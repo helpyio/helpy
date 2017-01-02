@@ -29,7 +29,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :verify_agent
   before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
   before_action :remote_search, only: ['index', 'show', 'update_topic']
-  before_action :get_all_teams
+  before_action :get_all_teams, except: ['shortcuts']
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -364,6 +364,10 @@ class Admin::TopicsController < Admin::BaseController
       format.html { redirect_to admin_topic_path(@topic) }
       format.js { render 'update_ticket', id: @topic.id }
     end
+  end
+
+  def shortcuts
+    render layout: 'admin-plain'
   end
 
   private

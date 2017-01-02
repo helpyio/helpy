@@ -14,6 +14,15 @@
   </tr>
   <tbody>
   <%= render partial: 'admin/topics/topic', collection: @topics.includes(:assigned_user) %>
+
+  <script>
+    <% @topics.each_with_index do |topic,i| %>
+    Mousetrap.bind('g <%= topic.id.to_s.split('').join(" ") %>', function() {
+      $('.topic-link-<%= topic.id %>').click();
+    });
+    <% end %>
+  </script>
+
   </tbody>
   <tbody id="multiple-edit" style="display:none;">
     <tr>

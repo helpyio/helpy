@@ -21,5 +21,11 @@ Helpy.ready();
 Helpy.track();
 Helpy.logHistory();
 
+// escape from fields
+newtopic = document.getElementById('new_topic');
+Mousetrap(newtopic).bind('escape', function(e, combo) {
+  $('#topic_user_email, #topic_user_name, #topic_name, #topic_post_body').blur();
+});
+
 // RTL changes?
 <%= "Helpy.rtl();" if rtl? %>

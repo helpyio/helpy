@@ -5,8 +5,6 @@
 	<%= render partial: 'layouts/head' %>
 	<%= stylesheet_link_tag 'admin', "data-turbolinks-track" => false, media: 'all'  %>
 	<%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "mousetrap.min.js", "data-turbolinks-track" => true %>
-	<%= javascript_include_tag "shortcuts.js", "data-turbolinks-track" => true %>
 	<%= rtl_tags if rtl? %>
 	</head>
 
@@ -15,16 +13,6 @@
 	  ga('set', 'location', location.href.split('#')[0]);
 	  ga('send', 'pageview', { "title": document.title });
 	</script>
-	<div id="upper-wrapper" class="jumbotron">
-		<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<%= render :partial => 'layouts/admin_header' %>
-			</div>
-		</div>
-	</div>
-	</div>
-	<%= yield :pipeline %>
 	<div id="body-wrapper" class="container">
 		<div class="row white-bg">
 			<div class="col-md-12">
@@ -37,10 +25,5 @@
 		</div>
 	</div>
 
-	<div id="footer-wrapper">
-		<div class="container">
-				<%= render :partial => 'layouts/footer' %>
-		</div>
-	</div>
 </body>
 </html>

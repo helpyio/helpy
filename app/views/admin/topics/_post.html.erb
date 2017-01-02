@@ -11,7 +11,7 @@
 				<li><%= link_to t('edit', default: "Edit"), edit_admin_post_path(post), remote: true %></li>
 				<li><%= link_to t('convert_content', default: 'Turn post into content'), new_admin_doc_path(post_id: post.id, lang: I18n.locale) %></li>
         <li><%= link_to t('new_discussion', default: 'Create new discussion from this'), admin_split_topic_path(topic_id: post.topic_id, post_id: post.id), method: :post, remote: true %></li>
-        <li><%= link_to t('change_owner', default: 'Change Post Owner'), '#', data: { toggle: "modal", target: "#change-user-modal-#{post.id}" } %></li>
+        <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{post.id}" } %></li>
         <%= content_tag :li, link_to(t('Show Raw Email', default: 'Raw Email'), admin_post_raw_path(post), target: 'blank') if post.raw_email.present? %>
 			</ul>
 		</span>
@@ -36,7 +36,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title"><%= t('change_owner', default: 'Change Post Owner') %></h4>
+          <h4 class="modal-title"><%= t('change_owner', default: 'Change author') %></h4>
         </div>
 
         <div class="modal-body row">

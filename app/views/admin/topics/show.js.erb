@@ -18,5 +18,11 @@ Helpy.ready();
 Helpy.track();
 Helpy.logHistory();
 
+// Escape from reply field
+newpost = document.getElementById('new_post');
+Mousetrap(newpost).bind('escape', function(e, combo) {
+  $('#post_body').blur();
+});
+
 // RTL changes?
 <%= "Helpy.rtl();" if rtl? %>
