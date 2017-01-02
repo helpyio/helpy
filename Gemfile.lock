@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/carrierwaveuploader/carrierwave
+  revision: ec850831eeaf0f2f45c002bcec9b90698b78d0d8
+  specs:
+    carrierwave (1.0.0.beta)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
+
+GIT
   remote: https://github.com/railsconfig/config.git
   revision: 813e504f47d370bc9b5847dce772828445e9dad7
   specs:
@@ -65,15 +74,21 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.3.0)
     brakeman (3.2.1)
       erubis (~> 2.6)
@@ -150,7 +165,6 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
-    enumerable-lazy (0.0.1)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.9.1)
@@ -179,13 +193,13 @@ GEM
       activerecord (>= 3.2.0, < 5)
       globalize (>= 3.0.4, < 6)
       paper_trail (>= 3.0.0, < 5)
-    grape (0.16.2)
+    grape (0.18.0)
       activesupport
       builder
       hashie (>= 2.1.0)
       multi_json (>= 1.3.2)
       multi_xml (>= 0.5.2)
-      mustermann19 (~> 0.4.3)
+      mustermann-grape (~> 0.4.0)
       rack (>= 1.3.0)
       rack-accept
       virtus (>= 1.0.0)
@@ -194,19 +208,18 @@ GEM
       activesupport (>= 4.0)
       grape (~> 0.16)
       redis-namespace (~> 1.5)
-    grape-entity (0.5.1)
+    grape-entity (0.6.0)
       activesupport
       multi_json (>= 1.3.2)
     grape-kaminari (0.1.9)
       grape
       kaminari
-    grape-swagger (0.22.0)
+    grape-swagger (0.25.2)
       grape (>= 0.12.0)
-    grape-swagger-entity (0.1.4)
+    grape-swagger-entity (0.1.5)
       grape-entity
       grape-swagger (>= 0.20.4)
-    grape-swagger-rails (0.2.1)
-      grape-swagger (>= 0.7.2)
+    grape-swagger-rails (0.3.0)
       railties (>= 3.2.12)
     gravtastic (3.2.6)
     griddler (1.3.1)
@@ -227,7 +240,7 @@ GEM
       mail
     haml (4.0.7)
       tilt
-    hashie (3.4.4)
+    hashie (3.4.6)
     highline (1.7.8)
     hitimes (1.2.3)
     htmlentities (4.3.4)
@@ -242,6 +255,10 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jquery-fileupload-rails (0.4.7)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
     jquery-minicolors-rails (2.2.3.0)
       jquery-rails
       rails (>= 3.2.8)
@@ -300,24 +317,25 @@ GEM
       mail (>= 2.0.3)
       maildir (>= 0.5.0)
     method_source (0.8.2)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
+    mini_magick (4.2.10)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.10.1)
     minitest-reporters (1.1.8)
       ansi
       builder
       minitest (>= 5.0)
       ruby-progressbar
     multi_json (1.12.1)
-    multi_xml (0.5.5)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mustermann19 (0.4.4)
-      enumerable-lazy
+    mustermann (0.4.0)
+      tool (~> 0.2)
+    mustermann-grape (0.4.0)
+      mustermann (= 0.4.0)
     netrc (0.11.0)
-    newrelic_rpm (3.15.1.316)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     oauth (0.5.1)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
@@ -360,7 +378,6 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
-    pkg-config (1.1.7)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -369,7 +386,7 @@ GEM
     pry-byebug (3.3.0)
       byebug (~> 8.0)
       pry (~> 0.10)
-    rack (1.6.4)
+    rack (1.6.5)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-cors (0.4.0)
@@ -404,11 +421,6 @@ GEM
     rails-timeago (2.13.0)
       actionpack (>= 3.1)
       activesupport (>= 3.1)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (4.2.7.1)
       actionpack (= 4.2.7.1)
       activesupport (= 4.2.7.1)
@@ -454,11 +466,10 @@ GEM
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
-    ruser (3.0.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    sass-rails (5.0.4)
-      railties (>= 4.0.0, < 5.0)
+    sass-rails (5.0.6)
+      railties (>= 4.0.0, < 6)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
@@ -522,12 +533,13 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    thor (0.19.1)
+    thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.2)
     timecop (0.8.1)
     timers (4.0.4)
       hitimes
+    tool (0.2.3)
     trix (0.9.9)
       rails
     turbolinks (2.5.3)
@@ -574,8 +586,11 @@ DEPENDENCIES
   annotate
   attachinary
   awesome_print
+  best_in_place (~> 3.0.1)
   better_errors
+  bootstrap-datepicker-rails
   bootstrap-sass
+  bootstrap-switch-rails
   bootstrap_form
   brakeman
   bulk_insert
@@ -583,6 +598,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara
+  carrierwave!
   client_side_validations
   client_side_validations-simple_form
   cloudinary (= 1.1.2)
@@ -616,6 +632,7 @@ DEPENDENCIES
   http_accept_language
   i18n-country-translations
   jbuilder (~> 2.0)
+  jquery-fileupload-rails
   jquery-minicolors-rails
   jquery-rails
   jquery-turbolinks (~> 2.1.0)
@@ -626,9 +643,9 @@ DEPENDENCIES
   mail_extract
   mailcatcher
   mailman
+  mini_magick
   minitest
   minitest-reporters
-  newrelic_rpm
   nokogiri (>= 1.6.8)
   omniauth
   omniauth-facebook
@@ -646,14 +663,12 @@ DEPENDENCIES
   rails-i18n (~> 4.0.0)
   rails-settings-cached (~> 0.5)
   rails-timeago
-  rails_12factor
   ranked-model
   rdiscount
   recaptcha
   route_translator
   rubocop
-  ruser (~> 3.0)
-  sass-rails (~> 5.0)
+  sass-rails (~> 5.0.6)
   scss-lint
   sdoc (~> 0.4.0)
   selectize-rails
@@ -679,4 +694,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.13.1
+   1.13.6

@@ -27,7 +27,7 @@ hi:
   did_this_help: "इसने आपकी समस्या का समाधान किया?"
   yes_button: 'हाँ'
   no_button: 'नहीं'
-  yes_helped: 'वाह !! प्रतिक्रिया के लिए धन्यवाद!'
+  yes_helped: 'वाह ! प्रतिक्रिया के लिए धन्यवाद!'
   no_helped: "मदद नहीं करने के लिए माफी मांगते हैं. कृपया हमसे सम्पर्क करें!"
 
   # Search
@@ -71,7 +71,7 @@ hi:
   # created_on: "Created on"
 
   # Get Help
-  get_help_header: "अभी भी सहायता चाहिए??"
+  get_help_header: "अभी भी सहायता चाहिए?"
   get_help_button: "हमारे साथ एक चर्चा शुरू करिये"
 
   # Profile
@@ -79,8 +79,14 @@ hi:
 
   # footer
   # powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  # get_your_copy: "Grab your copy on Github"
+  # get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
+
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
 
   # devise/sessions/new
   login: लॉगिन
@@ -148,6 +154,7 @@ hi:
 
   # User Admin
   # users: Users
+  # account: Account
   contact_info: संपर्क करें
   social_info: सोशियल
   edit_user: Edit User
@@ -204,6 +211,10 @@ hi:
   content_status: "कंटेंट की स्थिति"
   # convert_content: 'Turn post into content'
   # upload_image: 'Upload Image'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: नया कम्युनिटी बनाओ
@@ -309,3 +320,15 @@ hi:
       save: "सेव %{model}"
       new: "नया %{model}"
       delete: "डिलीट %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

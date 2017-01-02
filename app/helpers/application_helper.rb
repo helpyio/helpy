@@ -88,7 +88,7 @@ module ApplicationHelper
   end
 
   def tag_listing(tags, tagging_type = "message")
-    return unless teams? or tagging_type == "doc"
+    return unless teams? || tagging_type == "doc"
     tags.each do |tag|
       concat content_tag(:span, tag, class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
     end
@@ -111,6 +111,14 @@ module ApplicationHelper
     styles += "   .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a {\n color: #{AppSettings['css.link_color']};\n  }\n" if AppSettings['css.link_color'] != '004084'
     styles += "</style>"
     styles.html_safe
+  end
+
+  def theme_css
+    styles = "<style>\n"
+    styles += "   #top-bar, header {\n background-color: #{AppSettings['css.accent_color']};\n  }\n" unless AppSettings['css.accent_color'].blank?
+    styles += "   .flat-main-panel, #home-search, #page-title, h1, ul.breadcrumb {\n background-color: #{AppSettings['css.main_color']};\n  }\n" unless AppSettings['css.main_color'].blank?
+    styles += "\n</style>"
+    styles.html_safe #if AppSettings['design.css'] != ""
   end
 
   def css_injector

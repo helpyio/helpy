@@ -27,7 +27,7 @@ en:
   did_this_help: "Did this solve your problem?"
   yes_button: 'Yes'
   no_button: 'No'
-  yes_helped: 'Great!! Thanks for the feedback!'
+  yes_helped: 'Great! Thanks for the feedback!'
   no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -71,7 +71,7 @@ en:
   created_on: "Created on"
 
   # Get Help
-  get_help_header: "Still Need Help??"
+  get_help_header: "Still Need Help?"
   get_help_button: "Start a Discussion with Us"
 
   # Profile
@@ -79,8 +79,14 @@ en:
 
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on Github"
+  get_your_copy: "Grab your copy on GitHub"
   version: "Version:"
+
+  # flag
+  flag_for_review: "Flag for Review"
+  flag_post_for_review: "Flag Post for Review"
+  flag_post_placeholder: "Describe the reason for flagging this post"
+  flag: "Flag"
 
   # devise/sessions/new
   login: Log in
@@ -151,11 +157,20 @@ en:
 
   # User Admin
   users: Users
+  account: Account
   contact_info: Contact
   social_info: Social
   edit_user: Edit User
   work_phone: work
   cell_phone: cell
+
+  # Roles
+  select_role: Select Role
+  admin_role: Admin
+  agent_role: Agent
+  editor_role: Editor
+  user_role: User
+  add_more_agents: "Add more users"
 
   # User search results
   users_found:
@@ -205,8 +220,12 @@ en:
   published_content: "Published"
   additional_settings: "Additional Settings"
   content_status: "Content Status"
-  convert_content: 'Turn post into content'
+  convert_content: 'Save as an article or common reply'
   upload_image: 'Upload Image'
+  new_discussion: 'Create new discussion from this'
+  new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Create New Community
@@ -264,6 +283,7 @@ en:
   this_week: "This week"
   last_week: "Last week"
   this_month: "This month"
+  last_month: "Last month"
   date_range: "Date Range"
   insights_blurb_one:
     one: "<strong>%{period}</strong> your users started 1 new conversation"
@@ -357,3 +377,15 @@ en:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

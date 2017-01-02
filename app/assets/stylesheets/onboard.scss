@@ -47,3 +47,22 @@
 .onboard-submit-section {
   margin-top: 50px;
 }
+
+.onboard-panel .checkbox {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #eee;
+
+	label {
+		padding-left: 0;
+	}
+}
+
+.bootstrap-switch {
+	float: right;
+	margin-left: 20px;
+}
+
+.full-width {
+	width: 100%;
+}

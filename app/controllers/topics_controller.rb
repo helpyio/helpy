@@ -114,7 +114,7 @@ class TopicsController < ApplicationController
       @user = User.where(email: params[:topic][:user][:email]).first
 
       if recaptcha_enabled? && params[:from] != 'widget'
-        render :new and return unless verify_recaptcha(model: @topic)
+        render :new && return unless verify_recaptcha(model: @topic)
       end
 
       if @user
@@ -142,23 +142,15 @@ class TopicsController < ApplicationController
     end
 
     if @user.save && @topic.save
-
-      # TODO the body copy params is different when the form is posted from the
-      # docs page (/app/view/docs/show.html.erb) so we detect it.  This should be
-      # fixed up with simple_form and fields_for on the above instead of this hack
-      # Once this is done, this comment can be deleted.  This was missed because
-      # of a gap in test coverage.
-
-      body_param = params[:topic][:posts_attributes].present? ? params[:topic][:posts_attributes]["0"][:body] : params[:post][:body]
-
       @post = @topic.posts.create(
-        :body => body_param, # params[:topic][:posts_attributes]["0"][:body],
+        :body => params[:topic][:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
-        :screenshots => params[:topic][:screenshots])
+        :screenshots => params[:topic][:screenshots],
+        :attachments => params[:topic][:posts_attributes]["0"][:attachments])
 
       if built_user == true && !user_signed_in?
-        UserMailer.new_user(@user, @token).deliver_later
+        UserMailer.new_user(@user.id, @token).deliver_later
       end
 
       # track event in GA
@@ -168,8 +160,7 @@ class TopicsController < ApplicationController
       if @topic.private?
         redirect_to params[:from] == 'widget' ? widget_thanks_path : topic_thanks_path
       else
-        redirect_to @topic.doc_id.nil? ? topic_posts_path(@topic) : doc_path(@topic.doc_id)
-        # redirect_to topic_posts_path(@topic)
+        redirect_to topic_posts_path(@topic)
       end
     else
       if params[:from] == 'widget'

@@ -82,6 +82,12 @@ fa:
   get_your_copy: "یک کپی از روی گیت هاب بردار"
   version: "نسخه:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: ورود
 
@@ -105,7 +111,7 @@ fa:
   # Admin menu
   discussions: بحث ها
   content: محتوا
-  communities: انحمن
+  communities: انجمن
   app_store: اپ استور
   search: جستجو
 
@@ -142,12 +148,13 @@ fa:
 
   # Discussion messages
   reopen_message: "این درخواست توسط پشتیبانی دوباره باز شد"
-  close_message: "این تیکت توسط پشتیبانی بسته شد."
+  closed_message: "این تیکت توسط پشتیبانی بسته شد."
   trash_message: "این تیکت پاک شده."
   assigned_message: "این بحث منتقل شد به %{assigned_to}."
 
   # User Admin
   users: کاربران
+  # account: Account
   contact_info: تماس
   social_info: سوشال
   edit_user: ویرایش کاربر
@@ -204,6 +211,10 @@ fa:
   content_status: "وضعیت محتوا"
   convert_content: 'تبدیل پست به محتوا'
   upload_image: 'بارگزاری عکس'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: انجمن جدید بساز
@@ -214,7 +225,7 @@ fa:
   layout_qna: سوالات متداول
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
+  new_user_subject: "خوش آمدی به %{site_name}"
   hello: "سلام %{user_name}"
   new_user: "مرسی از تماس شما. پیغام شما دریافت شد توسط تیم پشتیبانی و در اسرع وقت به شما پاسخ میدیم."
   account_generated: "یک حساب کاربر برای شما ساخته شد. برای ورود از این لینک استفاده کنید"
@@ -353,3 +364,15 @@ fa:
       save: "ذخیره %{model}"
       new: "%{model} جدید"
       delete: "حذف %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

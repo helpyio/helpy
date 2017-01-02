@@ -79,8 +79,14 @@ es:
 
   # footer
   powered_by: "Provisto por Helpy. Un software libre para soporte tecnico"
-  get_your_copy: "Obtén tu copia en Github"
+  get_your_copy: "Obtén tu copia en GitHub"
   version: "Versión:"
+
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
 
   # devise/sessions/new
   login: Iniciar sesión
@@ -148,6 +154,7 @@ es:
 
   # User Admin
   users: Usuarios
+  # account: Account
   contact_info: Contacto
   social_info: Social
   edit_user:
@@ -204,6 +211,10 @@ es:
   content_status: "Estado del contenido"
   convert_content: 'Convertir esta discusión en contenido'
   upload_image: 'Subir imagen'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Crea una nueva comunidad
@@ -308,3 +319,15 @@ es:
       save: "Guardar %{model}"
       new: "Nuevo %{model}"
       delete: "Eliminar %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

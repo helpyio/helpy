@@ -152,4 +152,12 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
+  test "a signed in user should be able to flag a post for review from the public discussion view" do
+    sign_in
+
+    visit '/en/topics/5-new-public-topic/posts'
+    click_on "Flag for Review"
+    assert find("div#flag-modal").visible?
+  end
+
 end

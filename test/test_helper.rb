@@ -25,6 +25,23 @@ class ActionController::TestCase
   include Devise::TestHelpers
 end
 
+def file
+  @file ||= File.open(File.expand_path('test/fixtures/files/logo.png'))
+end
+
+def uploaded_file_object(klass, attribute, file, content_type = 'image/png')
+
+  filename = File.basename(file.path)
+  klass_label = klass.to_s.underscore
+
+  ActionDispatch::Http::UploadedFile.new(
+    tempfile: file,
+    filename: filename,
+    head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},
+    content_type: content_type
+  )
+end
+
 def set_default_settings
   # Enable i18n locales in Rails
   I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
@@ -41,7 +58,9 @@ def set_default_settings
   AppSettings['settings.google_analytics_id'] = Settings.google_analytics_id
   AppSettings["settings.forums"] = true
   AppSettings["settings.tickets"] = true
-  AppSettings["settings.knowledgebase"] = true  
+  AppSettings["settings.knowledgebase"] = true
+  AppSettings["settings.teams"] = true
+  AppSettings["settings.welcome_email"] = true
   AppSettings['design.favicon'] = Settings.app_favicon
   AppSettings['design.header_logo'] = Settings.app_mini_logo
   AppSettings['design.footer_mini_logo'] = Settings.app_large_logo
@@ -66,4 +85,13 @@ def set_default_settings
   AppSettings['cloudinary.api_key'] = ''
   AppSettings['cloudinary.api_secret'] = ''
   AppSettings['theme.active'] = 'helpy'
+
+  # assign all agents to receive notifications
+  User.agents.each do |a|
+    a.notify_on_private = true
+    a.notify_on_public = true
+    a.notify_on_reply = true
+    a.save!
+  end
+
 end

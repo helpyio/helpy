@@ -18,36 +18,75 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
-  # Throws an error with having a Cloudinary config in place
-  # TODO: Mock Cloudinary
+  test 'an email to the support address with no name should create a new user and topic with status new' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 2) do
+            EmailProcessor.new(FactoryGirl.build(:email_from_unknown_name_missing)).process
+          end
+        end
+      end
+    end
+  end
 
-  # test 'an email with one attachment to the support address from an unknown user should create a new user and topic with status new' do
-  #   assert_difference('Topic.where(current_status: "new").count', 1) do
-  #     assert_difference('Post.count', 1) do
-  #       assert_difference('User.count', 1) do
-  #         assert_difference('Attachinary::File.all.count', 1) do
-  #           assert_difference('ActionMailer::Base.deliveries.size', 1) do
-  #             EmailProcessor.new(FactoryGirl.build(:email_from_unknown_with_attachments, :with_attachment)).process
-  #           end
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
+  test 'an email to the support address with email with numbers should create a new user and topic with status new' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 2) do
+            EmailProcessor.new(FactoryGirl.build(:email_from_known_token_numbers)).process
+          end
+        end
+      end
+    end
+  end
 
-  # test 'an email with multiple attachments to the support address from an unknown user should create a new user and topic with status new' do
-  #   assert_difference('Topic.where(current_status: "new").count', 1) do
-  #     assert_difference('Post.count', 1) do
-  #       assert_difference('User.count', 1) do
-  #         # assert_difference('Attachinary::File.all.count', 2) do
-  #           assert_difference('ActionMailer::Base.deliveries.size', 1) do
-  #             EmailProcessor.new(FactoryGirl.build(:email_from_unknown_with_attachments, :with_multiple_attachments)).process
-  #           end
-  #         # end
-  #       end
-  #     end
-  #   end
-  # end
+  test 'an email to the support address sent to multiple addresses create a new user and topic with status new' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 2) do
+            EmailProcessor.new(FactoryGirl.build(:email_to_multiple)).process
+          end
+        end
+      end
+    end
+  end
+
+  test 'an email to the support address using quotes should create a new user and topic with status new' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 2) do
+            EmailProcessor.new(FactoryGirl.build(:email_to_quoted)).process
+          end
+        end
+      end
+    end
+  end
+
+  test 'an email with one attachment should save that attachment' do
+
+    assert_difference('Topic.count', 1) do
+      assert_difference('Post.count', 1) do
+        EmailProcessor.new(FactoryGirl.build(:email_from_unknown_with_attachments, :with_attachment)).process
+      end
+    end
+
+    assert_equal "logo.png", Post.last.attachments.first.file.file.split("/").last
+    assert_equal 1, Topic.last.posts.first.attachments.count
+  end
+
+  test 'an email with multiple attachments should save those attachments' do
+    assert_difference('Topic.count', 1) do
+      assert_difference('Post.count', 1) do
+        EmailProcessor.new(FactoryGirl.build(:email_from_unknown_with_attachments, :with_multiple_attachments)).process
+      end
+    end
+    assert_equal "logo.png", Post.last.attachments.first.file.file.split("/").last
+    assert_equal 2, Topic.last.posts.first.attachments.count
+  end
 
   test 'an email to the support address from a known user should create a new ticket for the user' do
     assert_difference('Topic.count', 1) do

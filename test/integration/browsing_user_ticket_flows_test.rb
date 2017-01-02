@@ -119,5 +119,11 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
   end
 
+  test "a browsing user should be prompted to login when clicking flag for review from a public discussion view" do
+    visit '/en/topics/5-new-public-topic/posts'
+    click_on "Flag for Review"
+    assert find("div#login-modal").visible?
+  end
+
 
 end

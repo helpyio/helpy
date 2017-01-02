@@ -19,13 +19,17 @@ module API
           requires :body, type: String, desc: "The post body"
           requires :user_id, type: Integer, desc: "The User ID of the poster"
           requires :kind, type: String, desc: "The kind of post, either 'reply' or 'note'"
+          optional :cc, type: String, desc: "Comma separated list of emails to CC"
+          optional :bcc, type: String, desc: "Comma separated list of emails to BCC"
         end
         post "", root: :posts do
           post = Post.create!(
             topic_id: permitted_params[:topic_id],
             body: permitted_params[:body],
             user_id: permitted_params[:user_id],
-            kind: permitted_params[:kind]
+            kind: permitted_params[:kind],
+            cc: permitted_params[:cc],
+            bcc: permitted_params[:bcc]
           )
           present post, with: Entity::Post
         end

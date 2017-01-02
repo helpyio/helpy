@@ -1,2 +1,22 @@
 $('#post-body-<%= @post.id %>').html("<%= j simple_format(@post.body) %>");
 Helpy.refreshTopic(Helpy.topicID);
+
+// Retained after merge in case any of the needs to be kept
+// // Force removal of modal
+// $('#change-user-modal-<%= @post.id %>').modal('hide');
+// $('body').removeClass('modal-open');
+// $('.modal-backdrop').remove();
+//
+// // Reload Ticket
+// $('#tickets').html("<%= escape_javascript render 'admin/topics/ticket' %>");
+// $('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
+//
+// // Update timestamps
+// $('.last-active time[data-time-ago]').timeago();
+//
+// // jQuery hook
+// Helpy.ready();
+// Helpy.track();
+//
+// // RTL changes?
+// <%= "Helpy.rtl();" if rtl? %>

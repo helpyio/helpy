@@ -2,15 +2,19 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  topic_id   :integer
-#  user_id    :integer
-#  body       :text
-#  kind       :string
-#  active     :boolean          default(TRUE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  points     :integer          default(0)
+#  id          :integer          not null, primary key
+#  topic_id    :integer
+#  user_id     :integer
+#  body        :text
+#  kind        :string
+#  active      :boolean          default(TRUE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  points      :integer          default(0)
+#  attachments :string           default([]), is an Array
+#  cc          :string
+#  bcc         :string
+#  raw_email   :text
 #
 
 module PostsHelper
@@ -26,7 +30,7 @@ module PostsHelper
       message = t(:posted_note, user_name: post.user.name.titleize, default: "posted an internal note...")
     end
     if admin
-      content_tag(:a, class: 'btn dropdown-toggle more-important post-options', data: { toggle: 'dropdown'}, aria: {expanded: 'false'}) do
+      content_tag(:span, class: 'btn dropdown-toggle more-important post-dropdown', data: { toggle: 'dropdown'}, aria: {expanded: 'false'}) do
         "#{message} <span class='caret'></span>".html_safe
       end
     else

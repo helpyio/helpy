@@ -2,15 +2,19 @@
 #
 # Table name: posts
 #
-#  id         :integer          not null, primary key
-#  topic_id   :integer
-#  user_id    :integer
-#  body       :text
-#  kind       :string
-#  active     :boolean          default(TRUE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  points     :integer          default(0)
+#  id          :integer          not null, primary key
+#  topic_id    :integer
+#  user_id     :integer
+#  body        :text
+#  kind        :string
+#  active      :boolean          default(TRUE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  points      :integer          default(0)
+#  attachments :string           default([]), is an Array
+#  cc          :string
+#  bcc         :string
+#  raw_email   :text
 #
 
 require 'test_helper'
@@ -43,6 +47,13 @@ class PostsControllerTest < ActionController::TestCase
     assert_difference "Post.find(6).points", 0 do
       get :index, forum_id: 3, locale: :en
       xhr :post, :up_vote, { id: 6, locale: :en }
+    end
+  end
+
+  test "a browsing user should not get index of posts for a given topic, if forums are disabled" do
+    AppSettings['settings.forums'] = "0"
+    assert_raises(ActionController::RoutingError) do
+      get :index, topic_id: topics(:public).id, locale: :en
     end
   end
 
@@ -82,10 +93,21 @@ class PostsControllerTest < ActionController::TestCase
     end
   end
 
-  test "a browsing user should not get index of posts for a given topic, if forums are disabled" do
-    AppSettings['settings.forums'] = "0"
-    assert_raises(ActionController::RoutingError) do
-      get :index, topic_id: topics(:public).id, locale: :en
+  test "a signed in user should be able to add an attachment" do
+    sign_in users(:user)
+    assert_difference "Post.count", 1 do
+      post :create,
+        topic_id: 1,
+        locale: :en,
+        post: {
+          user_id: User.find(2).id,
+          body: "new reply",
+          kind: "reply",
+          attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+        }
     end
+    # binding.pry
+    assert :success
+    assert_equal "logo.png", Post.last.attachments.first.file.file.split("/").last
   end
 end

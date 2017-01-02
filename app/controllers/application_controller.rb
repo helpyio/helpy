@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
     AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
   end
 
+  def cloudinary_enabled?
+    AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+  end
+  helper_method :cloudinary_enabled?
+
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
   # agent is next and admin has access to everything:
 
@@ -62,6 +67,11 @@ class ApplicationController < ActionController::Base
     return false
   end
   helper_method :rtl_locale?
+
+  def welcome_email?
+    AppSettings['settings.welcome_email'] == "1" || AppSettings['settings.welcome_email'] == true
+  end
+  helper_method :welcome_email?
 
   def forums?
     AppSettings['settings.forums'] == "1" || AppSettings['settings.forums'] == true
@@ -115,11 +125,12 @@ class ApplicationController < ActionController::Base
     Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
 
     ActionMailer::Base.smtp_settings = {
-        :address   => AppSettings["email.mail_smtp"],
-        :port      => AppSettings["email.mail_port"],
-        :user_name => AppSettings["email.smtp_mail_username"],
-        :password  => AppSettings["email.smtp_mail_password"],
-        :domain    => AppSettings["email.mail_domain"]
+        :address              => AppSettings["email.mail_smtp"],
+        :port                 => AppSettings["email.mail_port"],
+        :user_name            => AppSettings["email.smtp_mail_username"].presence,
+        :password             => AppSettings["email.smtp_mail_password"].presence,
+        :domain               => AppSettings["email.mail_domain"],
+        :enable_starttls_auto => !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"])
     }
 
     ActionMailer::Base.perform_deliveries = to_boolean(AppSettings['email.send_email'])
@@ -150,7 +161,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_counts
-    if current_user.is_restricted? and teams?
+    if current_user.is_restricted? && teams?
       topics = Topic.tagged_with(current_user.team_list, :any => true)
       @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else
@@ -193,7 +204,7 @@ class ApplicationController < ActionController::Base
 
   def get_all_teams
     return unless teams?
-    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").map{|tagging| tagging.tag.name.capitalize }.uniq
+    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.name.capitalize }.uniq
   end
 
 end

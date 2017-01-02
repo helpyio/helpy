@@ -1,0 +1,20 @@
+<% if users.nil? %>
+<div class="text-center more-important">
+  No Matching Users Found. <%= link_to 'Create New User', admin_new_user_path(post_id: post_id), remote: true  %>
+</div>
+<% else %>
+
+<% users.each do |user| %>
+  <%= link_to admin_post_path(id: post_id, post: { user_id: user.id }), method: :patch, remote: true do %>
+    <div class="change-user-result media" user-id="<%= user.id %>" post-id="<%= post_id %>" >
+      <div class="pull-left">
+        <%= avatar_image(user, size=40)%>
+      </div>
+      <div class="media-right media-body more-important vertical-align centering">
+          <%= user.name ? "#{user.name} <#{user.email}>" : "#{user.email}" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% end %>

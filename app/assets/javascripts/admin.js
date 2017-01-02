@@ -1,4 +1,3 @@
-
 // Gives us a capitalize method
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -51,25 +50,22 @@ Helpy.admin = function(){
 
   // You have to delegate this to the document or it does not work reliably
   // See http://stackoverflow.com/questions/18545941/jquery-on-submit-event
-  $(document).on('submit','form.new-group-form', function(){
-    var $field = $('#new_group');
-    var newGroup = $field.val();
-    var $newItem = $('<li/>');
-    var $newLink = $('<a class="link-tag" data-remote="true" href="/admin/topics/assign_team?team=' + newGroup + '&topic_ids[]=' + Helpy.topicID + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a></li>');
-    //var $newLink = $('<a data-remote="true" href="/admin/topics/assign_team?team=' + newGroup + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a>');
-    // if ($field.hasClass('multiple')) {
-      // $newLink.addClass('multiple-update');
-    // }
-
-    $('.new-tag').before($newItem.append($newLink));
-    $('#new_group').val('');
-    $('.link-tag').off().click();
-    return false;
+  $(document).off('submit','form.new-group-form').on('submit','form.new-group-form', function(){
+      var $field = $('#new_group');
+      var newGroup = $field.val();
+      var $newItem = $('<li/>');
+      var $newLink = $('<a class="link-tag" data-remote="true" href="/admin/topics/assign_team?team=' + newGroup + '&topic_ids[]=' + Helpy.topicID + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a></li>');
+      $('.new-tag').before($newItem.append($newLink));
+      $('#new_group').val('');
+      $('.link-tag').off().click();
+      return false;
   });
 
   $('.pick-a-color').minicolors({
     theme: 'bootstrap'
   });
+
+  $('.bs-toggle').bootstrapSwitch();
 
   // Onboarding flow
   $('.panel-link').off().on('click', function(){
@@ -111,6 +107,36 @@ Helpy.admin = function(){
     else{
      $('input[type="submit"]').prop('disabled', false);
     }
+  });
+
+  $('.settings-uploader').off().on('change', function(){
+    var $this = $(this);
+    var f = $this.val().split("\\");
+    var filename = f[f.length-1];
+    $('.hidden-header-logo').val("/uploads/logos/" + filename);
+  });
+
+  $('.favicon-uploader').off().on('change', function(){
+    var $this = $(this);
+    var f = $this.val().split("\\");
+    var filename = f[f.length-1];
+    $('.hidden-favicon').val("/uploads/logos/" + filename);
+  });
+
+  // Start logging history from first pageload
+  Helpy.logHistory();
+
+  $('.input-group.date').datepicker({
+    format: "yyyy-mm-dd",
+    orientation: "auto left",
+    autoclose: true,
+    todayHighlight: true
+  });
+
+  Helpy.initShortcuts();
+
+  $('.change-user-modal').on('shown.bs.modal', function() {
+    $('#user_search').focus();
   });
 
 };
@@ -162,6 +188,24 @@ Helpy.showGrid = function() {
 
   $('h2#setting-header').text('Settings');
 
+};
+
+// Enables correct URL in browser, history
+Helpy.logHistory = function() {
+  $('a').on('click', function(){
+    var url = $(this).attr('href');
+    console.log("Clicked: " + url);
+    history.pushState(null, '', url);
+  });
+
+  $(window).off().on("popstate", function(){
+    console.log("Popstate fired: " + location.href);
+    $.getScript(location.href);
+  });
+};
+
+var search_user = function(post_id) {
+  $('#change-user-modal-' + post_id + ' .search_form').submit();
 };
 
 $(document).on('page:change', Helpy.admin);

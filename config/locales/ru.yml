@@ -27,7 +27,7 @@ ru:
   did_this_help: "Ваша проблема решена?"
   yes_button: 'Да'
   no_button: 'Нет'
-  # yes_helped: 'Great!! Thanks for the feedback!'
+  # yes_helped: 'Great! Thanks for the feedback!'
   # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
 
   # Search
@@ -82,8 +82,14 @@ ru:
 
   # footer
   powered_by: "Создано с помощью Helpy. Сервис поддержки с открытым исходным кодом."
-  get_your_copy: "Получите свою копию на Github"
+  get_your_copy: "Получите свою копию на GitHub"
   # version: "Version:"
+
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
 
   # devise/sessions/new
   login: "Войти"
@@ -152,6 +158,7 @@ ru:
 
   # User Admin
   # users: Users
+  # account: Account
   contact_info: Контакт
   social_info: Социальные сети
   edit_user: Редактировать пользователя
@@ -212,6 +219,10 @@ ru:
   content_status: "Статус контента"
   # convert_content: 'Turn post into content'
   # upload_image: 'Upload Image'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Создать сообщество
@@ -316,3 +327,15 @@ ru:
       save: "Сохранить %{model}"
       new: "Новый %{model}"
       delete: "Удалить %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: тыс.
+          million: млн.
+          billion: B
+          trillion: T
+          quadrillion: Q

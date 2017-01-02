@@ -49,6 +49,7 @@ class Admin::UsersController < Admin::BaseController
   before_action :verify_agent
   before_action :verify_admin, only: ['invite','invite_users']
   before_action :fetch_counts, :only => ['show']
+  before_action :get_all_teams
   respond_to :html, :js
 
   def index
@@ -122,7 +123,10 @@ class Admin::UsersController < Admin::BaseController
       :linkedin,
       :language,
       :team_list,
-      :active
+      :active,
+      :notify_on_private,
+      :notify_on_public,
+      :notify_on_reply
     )
   end
 

@@ -8,8 +8,8 @@
       <%= f.text_field :company %>
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
-      <%= f.select(:role, [['Select Role',''],['Admin','admin'],['Agent','agent'],['Editor','editor'],['User','user']]) if current_user.is_admin? %>
-      <%= f.text_field :team_list, value: @user.team_list.to_s, class: 'selectize form-control', label: "Group Membership" if AppSettings['settings.teams'] and current_user.is_admin? and @user.is_agent? %>
+      <%= f.select(:role, [[t('select_role'),''],[t('admin_role'),'admin'],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? %>
+      <%= f.text_field :team_list, value: @user.team_list.to_s, class: 'selectize form-control', label: "Group Membership" if AppSettings['settings.teams'] && current_user.is_admin? && @user.is_agent? %>
       <%= f.check_box :active %> <%#= f.check_box :admin, inline: true %>
     </div>
     <div class="user-section">
@@ -23,6 +23,14 @@
       <%= f.text_field :twitter %>
       <%= f.text_field :linkedin %>
     </div>
+    <% if current_user.is_admin? && @user.is_agent? %>
+    <div class="user-section">
+      <div class="tiny-header"><%= t(:notifications, default: "Notifications") %>:</div>
+      <%= f.check_box 'notify_on_private', { checked: @user.notify_on_private?, label: t('notify_on_private', default: "Email me when a private customer question has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'notify_on_public', { checked: @user.notify_on_public?, label: t('notify_on_public', default: "Email me when a public customer question has been posted"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'notify_on_reply', { checked: @user.notify_on_reply?, label: t('notify_on_reply', default: "Email me when a new reply to a private discussion has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+    </div>
+    <% end %>
     <%= f.submit "Save", class: 'btn btn-warning' %>
   </div>
 <% end %>

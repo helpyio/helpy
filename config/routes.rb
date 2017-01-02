@@ -42,14 +42,18 @@ Rails.application.routes.draw do
       resources :docs, except: [:new, :edit, :create, :update]
     end
 
-    resources :docs, except: [:new, :edit]
+    resources :docs, except: [:new, :edit] do
+      resources :comments, only: :create
+    end
     resources :community, :as => 'forums', :controller => "forums" do
       resources :topics
     end
     resources :topics do
       resources :posts
     end
-    resources :posts
+    resources :posts do
+      resources :flags, only: [:create]
+    end
 
     post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
@@ -76,6 +80,8 @@ Rails.application.routes.draw do
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
     get 'topics/refresh_list' => 'topics#refresh_list', as: :refresh_list
     get 'topics/refresh_topic' => 'topics#refresh_topic', as: :refresh_topic
+    post 'topics/:topic_id/split/:post_id' => 'topics#split_topic', as: :split_topic
+    get 'shortcuts' => 'topics#shortcuts', as: :shortcuts
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
@@ -99,17 +105,24 @@ Rails.application.routes.draw do
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
 
+    post 'posts/users' => 'posts#search', as: :user_search
+    get  'posts/new_user' => 'posts#new_user', as: :new_user
+    post  'posts/new_user' => 'posts#change_owner_new_user'
+
     resources :categories do
       resources :docs, except: [:index, :show]
     end
     resources :docs, except: [:index, :show]
+
+    resources :images, only: [:create, :destroy]
     resources :forums# , except: [:index, :show]
     resources :users
     resources :api_keys, except: [:show, :edit, :update]
-    resources :topics, except: [:delete, :edit, :update] do
+    resources :topics, except: [:delete, :edit] do
       resources :posts
     end
     resources :posts
+    get '/posts/:id/raw' => 'posts#raw', as: :post_raw
     get '/dashboard' => 'dashboard#index', as: :dashboard
     get '/team' => 'dashboard#stats', as: :stats
     root to: 'dashboard#index'

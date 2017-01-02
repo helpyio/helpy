@@ -9,10 +9,13 @@ $('.stats-<%= status %>').text("<%= instance_variable_get("@#{status}") %>");
 
 $('#ticket-page-title').html("").hide();
 $(document).prop('title', "<%= admin_title %> <%= t(:discussions, default: 'Discussions') %>: #<%= @topic.id %> <%= @topic.name.titleize %>");
-window.location.hash = '<%= "#{@topic.id} #{@topic.name}" %>';
 
 // Update timestamps
 $('.last-active time[data-time-ago]').timeago();
+
+// Empty ticket search field and hide
+$('q').val('');
+$('.topic-search').hide();
 
 // Send ping to GA
 ga('send', 'pageview');
@@ -20,6 +23,13 @@ ga('send', 'pageview');
 // jQuery hook
 Helpy.ready();
 Helpy.track();
+Helpy.logHistory();
+
+// Escape from reply field
+newpost = document.getElementById('new_post');
+Mousetrap(newpost).bind('escape', function(e, combo) {
+  $('#post_body').blur();
+});
 
 // RTL changes?
 <%= "Helpy.rtl();" if rtl? %>

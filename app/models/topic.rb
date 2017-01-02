@@ -37,7 +37,7 @@ class Topic < ActiveRecord::Base
   accepts_nested_attributes_for :posts
 
   has_many :votes, :as => :voteable
-  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf]
+  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
   paginates_per 25
 
@@ -46,7 +46,10 @@ class Topic < ActiveRecord::Base
                   :if => :public?
 
   pg_search_scope :admin_search,
-                  against: [:id, :name, :user_name, :current_status, :post_cache]
+                  against: [:id, :name, :user_name, :current_status, :post_cache],
+                  associated_against: {
+                    teams: [:name]
+                  }
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
@@ -72,9 +75,9 @@ class Topic < ActiveRecord::Base
 
   # may want to get rid of this filter:
   # before_save :check_for_private
-  before_create :cache_user_name
   before_create :add_locale
 
+  before_save :cache_user_name
   # acts_as_taggable
   acts_as_taggable_on :teams
 
@@ -168,10 +171,26 @@ class Topic < ActiveRecord::Base
     forum_id >= 3 && !private?
   end
 
+  def self.create_comment_thread(doc_id, user_id)
+    @doc = Doc.find(doc_id)
+    @user = User.find(user_id)
+    Topic.create!(
+      name: "Discussion on #{@doc.title}",
+      private: false,
+      forum_id: Forum.for_docs.first.id,
+      user_id: @user.id,
+      doc_id: @doc.id
+    )
+  end
+
   private
 
   def cache_user_name
-    self.user_name = self.user.name
+    if self.user.name.present?
+      self.user_name = self.user.name
+    else
+      "NA"
+    end
   end
 
   def add_locale

@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: flags
+#
+#  id                 :integer          not null, primary key
+#  post_id            :integer
+#  generated_topic_id :integer
+#  reason             :text
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_id: 
+  generated_topic_id: 
+  reason: MyText
+
+two:
+  post_id: 
+  generated_topic_id: 
+  reason: MyText
