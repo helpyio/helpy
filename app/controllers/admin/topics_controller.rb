@@ -101,26 +101,26 @@ class Admin::TopicsController < Admin::BaseController
 
     if @user.nil?
 
-      @user = @topic.build_user
-
       @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+
+      @user = @topic.build_user
       @user.reset_password_token = enc
       @user.reset_password_sent_at = Time.now.utc
 
       @user.name = params[:topic][:user][:name]
       @user.login = params[:topic][:user][:email].split("@")[0]
       @user.email = params[:topic][:user][:email]
+      @user.work_phone = params[:topic][:user][:work_phone]
       @user.password = User.create_password
 
     else
       @topic.user_id = @user.id
     end
+    @user.save
 
     fetch_counts
     respond_to do |format|
-
       if (@user.save || !@user.nil?) && @topic.save
-
         @post = @topic.posts.create(
           :body => params[:topic][:post][:body],
           :user_id => @user.id,
@@ -128,7 +128,7 @@ class Admin::TopicsController < Admin::BaseController
           :screenshots => params[:topic][:screenshots],
           :attachments => params[:topic][:post][:attachments]
         )
-        binding.pry
+
         # Send email
         UserMailer.new_user(@user.id, @token).deliver_later
 

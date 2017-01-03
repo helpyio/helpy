@@ -68,7 +68,7 @@ module UsersHelper
   end
 
   def avatar_image(user, size=40)
-
+    return if user.nil?
     if user.avatar.present?
       unless Cloudinary.config.cloud_name.nil?
         image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')

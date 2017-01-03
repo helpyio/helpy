@@ -79,6 +79,7 @@ class Topic < ActiveRecord::Base
   acts_as_taggable_on :teams
 
   validates :name, presence: true, length: { maximum: 255 }
+  # validates :user_id, presence: true
 
   def to_param
     "#{id}-#{name.parameterize}"

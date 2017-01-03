@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116233432) do
+ActiveRecord::Schema.define(version: 20161204162759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,14 @@ ActiveRecord::Schema.define(version: 20161116233432) do
     t.integer  "topics_count",     default: 0
     t.boolean  "allow_comments",   default: true
     t.string   "attachments",      default: [],                 array: true
+  end
+
+  create_table "flags", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "generated_topic_id"
+    t.text     "reason"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "forums", force: :cascade do |t|
@@ -217,7 +225,7 @@ ActiveRecord::Schema.define(version: 20161116233432) do
     t.datetime "updated_at",                         null: false
     t.string   "locale"
     t.integer  "doc_id",           default: 0
-    t.text     "channel",          default: "email"
+    t.string   "channel",          default: "email"
   end
 
   create_table "users", force: :cascade do |t|
@@ -274,6 +282,7 @@ ActiveRecord::Schema.define(version: 20161116233432) do
     t.boolean  "notify_on_private",      default: false
     t.boolean  "notify_on_public",       default: false
     t.boolean  "notify_on_reply",        default: false
+    t.string   "account_number"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

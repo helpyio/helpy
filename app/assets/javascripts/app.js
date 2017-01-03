@@ -183,7 +183,7 @@ Helpy.ready = function(){
     $("#topic_user_work_phone").parent().show();
     //$('#new_topic').append("<input type='hidden' id='topic_user_email' name='topic[user][email]' value=''/>");
     $("#topic_user_work_phone").off().on('keyup', function(){
-      $('#topic_user_email').val($("#topic_user_work_phone").val()+'.change@me');
+      $('#topic_user_email').val("change@me-" + $("#topic_user_work_phone").val() + '.com');
     });
   });
 
