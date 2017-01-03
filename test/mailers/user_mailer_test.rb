@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TopicMailerTest < ActionMailer::TestCase
+class UserMailerTest < ActionMailer::TestCase
 
   setup do
     set_default_settings

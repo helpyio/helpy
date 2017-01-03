@@ -6,7 +6,7 @@ gem 'rails', '4.2.7.1'
 gem 'pg'
 gem 'pg_search'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -140,6 +140,8 @@ gem 'timecop' #used to populate
 gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
 
+gem 'best_in_place', '~> 3.0.1'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
@@ -184,8 +186,8 @@ group :test do
 end
 
 group :production do
-  gem 'newrelic_rpm'
-  gem 'rails_12factor'
+  # Uncomment this gem for Heroku:
+  # gem 'rails_12factor'
   gem 'unicorn'
 end
 

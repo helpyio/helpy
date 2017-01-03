@@ -14,8 +14,9 @@ $('#ticket-page-title').show().html("<%= t(:discussions, default: 'Discussions')
 $(document).prop('title', "<%= admin_title %> <%= t(:discussions, default: 'Discussions') %>: <%= @status.titleize if @status %>");
 <% end %>
 
-// Empty ticket search field
-$('q').val('');
+// Empty ticket search field and show
+$('#q').val('');
+$('.topic-search').show();
 
 // Update timestamps
 $('.last-active time[data-time-ago]').timeago();

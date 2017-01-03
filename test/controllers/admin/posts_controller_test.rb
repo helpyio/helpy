@@ -94,6 +94,44 @@ class Admin::PostsControllerTest < ActionController::TestCase
       assert old_post_count == (Post.count - 2) # two post created one for "new reply" one for "closing" internel note
       assert Topic.find(2).current_status == "closed"
     end
+
+    test "an #{admin} can change the owner of a post" do
+      sign_in users(admin.to_sym)
+      xhr :patch, :update, id: 4, post: { user_id: 1 }
+      assert_equal Post.find(4).user_id, 1
+    end
+
+    test "an #{admin} can changing the owner of a post of kind 'first' should also update the topic owner" do
+      sign_in users(admin.to_sym)
+      post = Post.find(3)
+      xhr :patch, :update, id: post, post: { user_id: 1 }
+      assert_equal Post.find(3).topic.user_id, 1
+    end
+
+    test "an #{admin} should be able to search for Users" do
+      sign_in users(admin.to_sym)
+      xhr :post, :search,  user_search: 'scott', post_id: 1
+      assert_equal assigns['users'].count, 3
+    end
+
+    test "an #{admin} updating a topic owner should leave an internal note" do
+      user = users(admin.to_sym)
+      sign_in user
+      post = Post.find(7)
+      new_user = User.find(4)
+      xhr :patch, :update, id: post, post: { user_id: new_user.id }
+      updated_post = Post.find(7)
+      note = post.topic.posts.last
+
+      # Test note type
+      assert_equal note.kind, 'note'
+
+      # Test note owner
+      assert_equal note.user_id, user.id
+
+      # Test note body
+      assert_equal note.body, I18n.t('change_owner_note', old: post.user.name, new: updated_post.user.name, default: "The creator of this topic was changed from #{post.user.name} to #{updated_post.user.name}")
+    end
   end
 
 end

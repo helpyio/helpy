@@ -51,7 +51,9 @@ Rails.application.routes.draw do
     resources :topics do
       resources :posts
     end
-    resources :posts
+    resources :posts do
+      resources :flags, only: [:create]
+    end
 
     post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
     post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
@@ -76,6 +78,8 @@ Rails.application.routes.draw do
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
+    post 'topics/:topic_id/split/:post_id' => 'topics#split_topic', as: :split_topic
+    get 'shortcuts' => 'topics#shortcuts', as: :shortcuts
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
@@ -99,6 +103,10 @@ Rails.application.routes.draw do
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
 
+    post 'posts/users' => 'posts#search', as: :user_search
+    get  'posts/new_user' => 'posts#new_user', as: :new_user
+    post  'posts/new_user' => 'posts#change_owner_new_user'
+
     resources :categories do
       resources :docs, except: [:index, :show]
     end
@@ -108,7 +116,7 @@ Rails.application.routes.draw do
     resources :forums# , except: [:index, :show]
     resources :users
     resources :api_keys, except: [:show, :edit, :update]
-    resources :topics, except: [:delete, :edit, :update] do
+    resources :topics, except: [:delete, :edit] do
       resources :posts
     end
     resources :posts

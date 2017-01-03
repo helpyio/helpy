@@ -82,6 +82,12 @@ it:
   get_your_copy: "Visualizza Helpy su GitHub"
   version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: Accedi
 
@@ -147,7 +153,8 @@ it:
   assigned_message: "Discussione assegnata a %{assigned_to}."
 
   # User Admin
-  users: Users
+  # users: Users
+  # account: Account
   contact_info: Contacto
   social_info: Medie Sociale
   edit_user: Modifica utente
@@ -202,8 +209,12 @@ it:
   published_content: "Pubblicato"
   additional_settings: "impostazioni aggiuntive"
   content_status: "Stato del articolo"
-  convert_content: 'Turn post into content'
-  upload_image: 'Upload Image'
+  # convert_content: 'Turn post into content'
+  # upload_image: 'Upload Image'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Nuovo forum
@@ -354,3 +365,15 @@ it:
       save: "salva %{model}"
       new: "crea %{model}"
       delete: "cancella %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

@@ -60,6 +60,13 @@ class TopicTest < ActiveSupport::TestCase
 
   end
 
+  test "updating the topic should update the owner name cache" do
+    new_user = User.find(7)
+    Topic.find(2).update(user: new_user)
+
+    assert_equal Topic.find(2).user_name, new_user.name
+  end
+
   test "trashed messages should be in forum 2, and unassigned" do
 
     Topic.all.each do |topic|
@@ -114,7 +121,7 @@ class TopicTest < ActiveSupport::TestCase
     topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
     topic.close
     assert_equal 'closed', topic.current_status
-    assert_equal nil, topic.assigned_user_id
+    assert_nil topic.assigned_user_id
   end
 
   test "#trash should set the current_status of the topic to trash, assigned_user_id to nil, and should create a closed_message post belonging to that topic" do
@@ -122,7 +129,7 @@ class TopicTest < ActiveSupport::TestCase
     t_posts_count = topic.posts.count
     topic.trash
     assert_equal 'trash', topic.current_status
-    assert_equal nil, topic.assigned_user_id
+    assert_nil topic.assigned_user_id
     assert_equal t_posts_count + 1, topic.posts.count
   end
 

@@ -5,7 +5,7 @@
 <%= bootstrap_form_tag url: admin_invite_users_path, method: 'put' do |f| %>
   <%= f.text_area 'invite.emails', label: t(:invite_emails, default: "Email Addresses"), placeholder: t(:invite_emails_placeholder), rows: 10 %>
   <%= f.text_area 'invite.message', label: t(:invite_message, default: "Message"), placeholder: t(:invite_message_placeholder) %>
-  <%= f.select(:role, [['Select Role',''],['Agent','agent'],['Editor','editor'],['User','user']]) if current_user.is_admin? %>
+  <%= f.select(:role, [[t('select_role'),''],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? %>
 
   <%= f.submit t(:send_invite, default: "Send Invite"), class: 'btn btn-warning' %>
 <% end %>

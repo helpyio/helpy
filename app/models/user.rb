@@ -53,6 +53,10 @@
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
 #  profile_image          :string
+#  notify_on_private      :boolean          default(FALSE)
+#  notify_on_public       :boolean          default(FALSE)
+#  notify_on_reply        :boolean          default(FALSE)
+#  account_number         :string
 #
 
 class User < ActiveRecord::Base
@@ -61,6 +65,8 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
+
+  INVALID_NAME_CHARACTERS = /\A('|")|('|")\z/
 
   # Add preferences to user model
   include RailsSettings::Extend
@@ -78,7 +84,7 @@ class User < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :user_search,
-                  against: [:name, :login, :email, :company]
+                  against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
   paginates_per 15
 
@@ -94,6 +100,7 @@ class User < ActiveRecord::Base
 
   after_invitation_accepted :set_role_on_invitation_accept
   after_create :enable_notifications_for_admin
+  before_save :reject_invalid_characters_from_name
   acts_as_taggable_on :teams
 
   ROLES = %w[admin agent editor user]
@@ -215,6 +222,12 @@ class User < ActiveRecord::Base
   #when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  private
+
+  def reject_invalid_characters_from_name
+    self.name = name.gsub(INVALID_NAME_CHARACTERS, '') if !!name.match(INVALID_NAME_CHARACTERS)
   end
 
 end

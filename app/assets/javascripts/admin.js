@@ -1,4 +1,3 @@
-
 // Gives us a capitalize method
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -133,6 +132,13 @@ Helpy.admin = function(){
     autoclose: true,
     todayHighlight: true
   });
+
+  Helpy.initShortcuts();
+
+  $('.change-user-modal').on('shown.bs.modal', function() {
+    $('#user_search').focus();
+  });
+
 };
 
 Helpy.showPanel = function(panel) {
@@ -172,6 +178,10 @@ Helpy.logHistory = function() {
     console.log("Popstate fired: " + location.href);
     $.getScript(location.href);
   });
+};
+
+var search_user = function(post_id) {
+  $('#change-user-modal-' + post_id + ' .search_form').submit();
 };
 
 $(document).on('page:change', Helpy.admin);

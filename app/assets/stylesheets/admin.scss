@@ -89,6 +89,24 @@ td > img {
 	padding-top: 30px;
 }
 
+.edit-topic-name {
+	input[type="text"] {
+		width: 80%;
+	}
+	&:hover {
+		cursor: pointer;
+	}
+	input[type="submit"] {
+		margin-left: 4px;
+		height: 37px;
+		vertical-align: top;
+	}
+	input[type="button"] {
+		margin-left: 4px;
+		height: 37px;
+		vertical-align: top;
+	}
+}
 
 
 // === ADMIN STYLES ===
@@ -157,6 +175,8 @@ ul.dropdown-menu {
 
 .ticket-control {
 	text-transform: uppercase;
+	border: 0;
+	background-color: transparent;
 }
 
 #article-editor {
@@ -271,6 +291,13 @@ a.stats.active {
     transition: all 0.2s ease-in-out;
   }
 }
+
+.no-arrow {
+	position: relative;
+	border: 0px solid #333;
+	height: 100px;
+}
+
 
 .topic-checkbox {
 	// scss-lint:disable ImportantRule
@@ -416,6 +443,31 @@ ul.settings-menu {
 .post-cc-style {
 	color: #999;
 }
+
+// === KEYBOARD SHORTCUTS ===
+
+.shortcut-row {
+	height: 50px;
+	padding-top: 15px;
+	border-bottom: 1px solid #eee;
+
+	.key{
+		border: 1px #ddd solid;
+		padding: 5px;
+		font-weight: bold;
+	}
+}
+.keyboard-shortcuts {
+	h3 {
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	h4 {
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
+}
+
 // === TEAM INSIGHTS ===
 
 .team-members {
@@ -476,6 +528,17 @@ ul.settings-menu {
 			margin-top: 20px;
 		}
 	}
+	.edit-topic-name {
+		input[type="text"] {
+			width: 60%;
+		}
+		input[type="submit"] {
+			height: 30px;
+		}
+		input[type="button"] {
+			height: 30px;
+		}
+	}
 }
 
 @media(min-width:768px){
@@ -506,7 +569,11 @@ ul.settings-menu {
 	.settings-grid-row {
 		margin-bottom: 20px;
 	}
-
+	.edit-topic-name {
+		input[type="text"] {
+			width: 80%;
+		}
+	}
 }
 
 @media(min-width:992px){
@@ -525,6 +592,11 @@ ul.settings-menu {
 	#pipeline-wrapper {
 		padding-bottom: 0;
 		padding-top: 10px;
+	}
+	.edit-topic-name {
+		input[type="text"] {
+			width: 80%;
+		}
 	}
 }
 
@@ -547,6 +619,11 @@ ul.settings-menu {
 	}
 	.settings-grid-row {
 		margin-bottom: 20px;
+	}
+	.edit-topic-name {
+		input[type="text"] {
+			width: 80%;
+		}
 	}
 }
 
@@ -586,4 +663,24 @@ ul.settings-menu {
  tr{
    height: 0;
  }
+}
+
+.search-results {
+  max-height: 400px;
+  overflow-y: scroll;
+  .change-user-result {
+    padding: 5px;
+    min-height: 40px;
+    position: relative;
+    &:hover,
+    &:focus {
+      background-color: #ccc;
+    }
+    .centering {
+      position: absolute;
+      top: 50%;
+      left: 40px;
+      transform: translateY(-50%);
+    }
+  }
 }

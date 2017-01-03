@@ -53,6 +53,10 @@
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
 #  profile_image          :string
+#  notify_on_private      :boolean          default(FALSE)
+#  notify_on_public       :boolean          default(FALSE)
+#  notify_on_reply        :boolean          default(FALSE)
+#  account_number         :string
 #
 
 require 'test_helper'
@@ -271,6 +275,30 @@ class UserTest < ActiveSupport::TestCase
     u.notify_on_reply = false
     u.save!
     assert_equal 2, User.notifiable_on_reply.count, "Should return one less notifiable users"
+  end
+
+  test "Reject single quotes from user name" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: %['test agent'],
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'test agent', u.name
+  end
+
+  test "Reject double quotes from user name" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: %["test agent"],
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'test agent', u.name
   end
 
 end

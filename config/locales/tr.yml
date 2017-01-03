@@ -82,6 +82,12 @@ tr:
   get_your_copy: "GitHub'dan bir kopyasını alın"
   # version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: Giriş yap
 
@@ -148,6 +154,7 @@ tr:
 
   # User Admin
   # users: Users
+  # account: Account
   contact_info: İletişim
   social_info: Sosyal
   edit_user: Kullanıcıyı Düzenle
@@ -204,6 +211,10 @@ tr:
   content_status: "İçerik Durumu"
   # convert_content: 'Turn post into content'
   # upload_image: 'Upload Image'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Yeni Topluluk Oluştur
@@ -308,3 +319,16 @@ tr:
       save: "%{model} Kaydet"
       new: "Yeni %{model}"
       delete: "%{model} Sil"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q
+      
