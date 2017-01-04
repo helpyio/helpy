@@ -94,7 +94,7 @@ module API
             current_status: 'new',
             private: true,
             team_list: params[:team_list],
-            channel: params[:channel]
+            channel: params[:channel].present? ? params[:channel] : "api"
           )
           ticket.posts.create!(
             body: params[:body],
@@ -201,6 +201,7 @@ module API
             user: post.user,
             forum_id: parent_topic.forum_id,
             private: parent_topic.private,
+            channel: parent_topic.channel
           )
 
           if topic.save
@@ -248,6 +249,7 @@ module API
           requires :body, type: String, desc: "The post body"
           requires :user_id, type: Integer, desc: "the User ID"
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
+          optional :channel, type: String, desc: "The source channel the ticket was created from"
         end
 
         post "", root: :topics do
@@ -255,7 +257,8 @@ module API
             forum_id: permitted_params[:forum_id],
             name: permitted_params[:name],
             user_id: permitted_params[:user_id],
-            private: false
+            private: false,
+            channel: params[:channel].present? ? params[:channel] : "api"
           )
           topic.posts.create!(
             body: permitted_params[:body],

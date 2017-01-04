@@ -20,8 +20,9 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  doc_id           :integer          default(0)
 #  locale           :string
+#  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

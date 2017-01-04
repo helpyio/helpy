@@ -95,7 +95,7 @@ class Admin::TopicsController < Admin::BaseController
       name: params[:topic][:name],
       private: true,
       team_list: params[:topic][:team_list],
-      channel: 'admin'
+      channel: params[:topic][:channel]
     )
 
     if @user.nil?
@@ -338,6 +338,7 @@ class Admin::TopicsController < Admin::BaseController
       user: parent_post.user,
       forum_id: parent_topic.forum_id,
       private: parent_topic.private,
+      channel: parent_topic.channel
     )
 
     @posts = @topic.posts
