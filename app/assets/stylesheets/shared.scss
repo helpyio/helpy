@@ -29,3 +29,29 @@
   margin-top: 15px;
   margin-bottom: 30px;
 }
+
+.vcenter {
+  display: flex;
+  align-items: center;
+}
+
+// Helpcenter ticket row styling for 'Your Tickets'
+.ticket-header{
+	padding: 15px 5px 15px 5px;
+	font-size: 100%;
+	font-weight: bold;
+	color: #666;
+	border-bottom: 1px solid #ddd;
+	text-transform: uppercase;
+}
+
+.ticket {
+  height: 60px;
+
+  .status-label {
+    margin-bottom: 0;
+  }
+  .label-count {
+    top: 0;
+  }
+}

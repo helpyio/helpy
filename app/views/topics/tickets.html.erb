@@ -9,18 +9,21 @@
 
 <%- title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 
-<table id="topics" class="forum table-hover">
-
-  <col>
-  <col width="20%">
-
-  <tr>
-    <th><%= t(:topic) %></th>
-    <th class="text-right"><%= t(:last_activity) %></th>
-  </tr>
-  <%= render :partial => 'topics/ticket', :collection => @topics %>
-</table>
-
+<div class="ticket-header row vcenter">
+  <div class="col-md-8 text-left">
+    <span class="truncate-ellipsis">
+      <%= t(:topic) %>
+    </span>
+  </div>
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-1">
+  </div>
+  <div class="last-active less-important col-md-2 text-right">
+    <%= t(:last_activity) %>
+  </div>
+</div>
+<%= render :partial => 'topics/ticket', :collection => @topics %>
 <% if @topics.total_count == 0 %>
   <div class="text-center verticalness"><%= t(:no_tickets) %></div>
 <% end %>
