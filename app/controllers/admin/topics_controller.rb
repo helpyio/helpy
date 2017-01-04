@@ -112,10 +112,10 @@ class Admin::TopicsController < Admin::BaseController
       @user.work_phone = params[:topic][:user][:work_phone]
       @user.password = User.create_password
 
+      @user.save
     else
       @topic.user_id = @user.id
     end
-    @user.save
 
     fetch_counts
     respond_to do |format|

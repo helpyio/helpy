@@ -178,7 +178,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-    test "an #{admin} should be able to create a new private discussion for a new user" do
+    test "an #{admin} should be able to create a new private discussion for a new user with an email" do
       sign_in users(admin.to_sym)
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
@@ -189,6 +189,19 @@ class Admin::TopicsControllerTest < ActionController::TestCase
           end
         end
       end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for a new user with a phone number" do
+      sign_in users(admin.to_sym)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          assert_difference "User.count", 1 do
+            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+          end
+        end
+      end
+
+      assert_equal User.last.work_phone, "34526668"
     end
 
     test "an #{admin} should be able to create a new private discussion for an existing user" do
