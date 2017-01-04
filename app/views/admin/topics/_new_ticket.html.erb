@@ -1,6 +1,9 @@
 <div class="add-form">
 <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical submit-loader', method: 'post' }) do |f| -%>
-  <%= f.collection_radio_buttons :channel, [['email', 'Email'],['phone', 'Phone']], :first, :last, selected: 'email', item_wrapper_class: 'radio-inline channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
+  <div class="channel-wrapper">
+  <label>Type:</label><br/>
+   <%= f.collection_radio_buttons :channel, [['email', t('activerecord.attributes.user.email')],['phone', t('activerecord.attributes.user.work_phone')]], :first, :last, selected: 'email', item_wrapper_class: 'radio-inline channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
+  </div>
 
   <%= f.simple_fields_for @user do |u| %>
     <%= u.input :email, autofocus: true, class: 'disable-empty' %>
