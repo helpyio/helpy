@@ -135,12 +135,11 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
+
         }
         format.html {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
         }
       else
         format.html {
