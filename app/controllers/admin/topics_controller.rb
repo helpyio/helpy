@@ -79,6 +79,8 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def new
+    fetch_counts
+
     @topic = Topic.new
     @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
