@@ -29,9 +29,9 @@ class BrowsingUserDocFlowsTest < ActionDispatch::IntegrationTest
 
   test "when a doc allows commenting and there are no comments, a browsing user should see a start discussion button" do
     visit '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments'
-    assert page.has_content?('Start a New Discussion')
+    assert page.has_content?('Start a Discussion')
 
-    click_on "Start a New Discussion"
+    click_on "Start a Discussion"
     assert find("div#login-modal").visible?
   end
 

@@ -48,7 +48,7 @@ en:
   reply: "Reply to this ticket"
   submit_reply: "Post Reply"
   posted: "Posted"
-  start_discussion: "Open a New Ticket"
+  start_discussion: "Start a Discussion"
   submit_start_discussion: "Create Ticket"
   should_message_be_private: "Should this message be private?"
   only_support_can_respond: "Only support can respond (creates a private ticket)"
@@ -72,7 +72,7 @@ en:
 
   # Get Help
   get_help_header: "Still Need Help?"
-  get_help_button: "Open a Ticket"
+  get_help_button: "Open a ticket"
 
   # Profile
   my_profile: 'My Profile'
