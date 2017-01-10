@@ -82,7 +82,7 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @page_title = t(:start_discussion, default: "Start a New Discussion")
+    @page_title = t(:get_help_button, default: "Open a ticket")
     @forums = Forum.ispublic.all
     @topic = Topic.new
     @user = @topic.build_user unless user_signed_in?
