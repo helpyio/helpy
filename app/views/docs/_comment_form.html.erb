@@ -13,7 +13,7 @@
     <% end %>
     <%= hidden_field_tag :client_id %>
     <% if @posts.blank? %>
-      <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
+      <%= f.submit t(:start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
     <% else %>
       <%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
     <% end %>
