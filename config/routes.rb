@@ -70,7 +70,7 @@ Rails.application.routes.draw do
   namespace :widget do
     get 'index' => 'topics#new', as: :widget
     post 'topics' => 'topics#create', as: :create
-    get 'topics/thanks' => 'topics#thanks', as: :hanks
+    get 'topics/thanks' => 'topics#thanks', as: :thanks
   end
 
   # Admin Routes

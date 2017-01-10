@@ -8,7 +8,7 @@
 %>
 
 <% Globalize.with_locale(@locale) do %>
-  <div class="widget-form">
+  <div class="widget-form add-form">
   <%= bootstrap_form_for(@topic, url: widget_create_url) do |f| -%>
 
     <%#= f.alert_message "Please fix the errors below." %>
@@ -22,7 +22,7 @@
 
     <%= f.text_field :name, :size => 40, placeholder: I18n.t(:subject), hide_label: 'true' -%>
     <%= text_area :post, :body, :rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), class: 'form-control' -%>
-
+    <br/>
     <%= hidden_field_tag :client_id %>
     <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning' %>
 
