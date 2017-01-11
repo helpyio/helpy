@@ -8,24 +8,29 @@
 %>
 
 <% Globalize.with_locale(@locale) do %>
-  <div class="widget-form add-form">
-  <%= bootstrap_form_for(@topic, url: widget_create_url) do |f| -%>
+<div class="add-form row">
+  <div class="widget-form">
+  <%= simple_form_for(@topic, url: widget_create_url, validate: true) do |f| -%>
 
     <%#= f.alert_message "Please fix the errors below." %>
 
     <% unless user_signed_in? %>
-      <%= f.fields_for @user do |u| %>
-        <%= u.email_field :email, placeholder: I18n.t('activerecord.attributes.user.email'), hide_label: true %>
-        <%= u.text_field :name, placeholder: I18n.t('activerecord.attributes.user.name'), hide_label: true %>
+      <%= f.simple_fields_for @user do |u| %>
+        <%= u.input :email, placeholder: I18n.t('activerecord.attributes.user.email'), autofocus: true, class: 'topic-placeholder' %>
+        <%= u.input :name, placeholder: I18n.t('activerecord.attributes.user.name'), class: 'topic-placeholder' %>
       <% end %>
     <% end %>
 
-    <%= f.text_field :name, :size => 40, placeholder: I18n.t(:subject), hide_label: 'true' -%>
-    <%= text_area :post, :body, :rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), class: 'form-control' -%>
-    <br/>
+    <%= f.input :name, :size => 40,  placeholder: I18n.t(:subject), label: I18n.t(:subject), class: 'disable-empty topic-placeholder' %>
+
+    <%= f.simple_fields_for :posts do |p| %>
+      <%= p.input :body, input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
+    <% end %>
+
     <%= hidden_field_tag :client_id %>
-    <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning' %>
+    <%= f.submit t(:submit_start_discussion, default: 'Create Ticket'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
 
   <% end -%>
   </div>
+</div>
 <% end %>

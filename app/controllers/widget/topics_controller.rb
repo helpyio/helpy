@@ -29,7 +29,7 @@ class Widget::TopicsController < Widget::BaseController
     if @topic.create_topic_with_user(params, current_user)
       @user = @topic.user
       @post = @topic.posts.create(
-        :body => params[:post][:body],
+        :body => params[:topic][:posts_attributes]['0'][:body],
         :user_id => @user.id,
         :kind => 'first'
         )

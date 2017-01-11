@@ -113,8 +113,8 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
       fill_in('topic_user_email', with: 'joe@test.com')
       fill_in('topic_user_name', with: 'Joe Guy')
       fill_in('topic[name]', with: 'I got problems')
-      fill_in('post[body]', with: 'Please help me!!')
-      click_on('Create Ticket')
+      fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
+      click_on('Create Ticket', disabled: true)
     end
 
   end
