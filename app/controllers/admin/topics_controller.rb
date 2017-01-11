@@ -79,6 +79,8 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def new
+    fetch_counts
+
     @topic = Topic.new
     @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
@@ -135,12 +137,11 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
+
         }
         format.html {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
         }
       else
         format.html {
