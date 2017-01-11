@@ -33,11 +33,16 @@ class Widget::TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
-      post :create, topic: { name: 'some new private topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
+      assert_difference 'Post.count', 1, 'A post should have been created' do
+        post :create, topic: { name: 'some new private topic', body: 'some body text' }, post: { body: "this is the body" }, locale: :en
+      end
     end
-    assert_difference 'Post.count', 1, 'A post should have been created' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
-    end
+
+    ticket = Topic.last
+    assert_equal 1, ticket.forum_id, 'Forum should be 1'
+    assert_equal true, ticket.private, 'ticket should be marked private'
+    assert_equal "Some new private topic", ticket.name, 'ticket subject was not captured'
+    assert_equal "this is the body", ticket.posts.first.body, 'ticket boddy was not saved'
 
     assert_redirected_to widget_thanks_path, 'Did not redirect to thanks view'
   end

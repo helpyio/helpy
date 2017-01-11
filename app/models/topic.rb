@@ -177,8 +177,8 @@ class Topic < ActiveRecord::Base
     unless self.user #User not found, lets build it
       self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
     end
-    self.user.persisted? and self.save
-  end 
+    self.user.persisted? && self.save
+  end
 
   def self.create_comment_thread(doc_id, user_id)
     @doc = Doc.find(doc_id)

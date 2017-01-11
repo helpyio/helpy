@@ -24,6 +24,8 @@ class Widget::TopicsController < Widget::BaseController
       team_list: params[:topic][:team_list])#,
       # channel: 'widget')
 
+    @topic.private = true
+
     if @topic.create_topic_with_user(params, current_user)
       @user = @topic.user
       @post = @topic.posts.create(
@@ -33,7 +35,7 @@ class Widget::TopicsController < Widget::BaseController
         )
 
       if !user_signed_in?
-        UserMailer.new_user(@user, @user.reset_password_token).deliver_later
+        UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
       end
 
       # track event in GA

@@ -113,7 +113,7 @@ class TopicsController < ApplicationController
         :attachments => params[:topic][:posts_attributes]["0"][:attachments])
 
       if !user_signed_in?
-        UserMailer.new_user(@user, @user.reset_password_token).deliver_later
+        UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
       end
 
       # track event in GA
