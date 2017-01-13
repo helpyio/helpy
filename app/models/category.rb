@@ -50,7 +50,7 @@ class Category < ActiveRecord::Base
     globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
   end
 
-  def is_not_common_replies?
+  def non_deleteable?
     return false if name == "Common Replies"
   end
 
