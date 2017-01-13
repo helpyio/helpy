@@ -120,6 +120,7 @@ class Post < ActiveRecord::Base
   private
 
     def truncate_body
+      return unless self.body.is_utf8?
       self.body = body.truncate(10_000) unless body.blank?
     end
 
