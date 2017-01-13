@@ -35,7 +35,7 @@ class Category < ActiveRecord::Base
   scope :featured, -> { where(front_page: true) }
   scope :viewable, -> { where.not(name: 'Common Replies')}
 
-  before_destroy :is_not_common_replies?
+  before_destroy :non_deleteable?
 
   include RankedModel
   ranks :rank
