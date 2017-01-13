@@ -20,9 +20,9 @@
     <span class="user-fields">
       <%= f.input :email, autofocus: true %>
       <%= f.input :name %>
-      <%= f.input :bio, input_html: {:rows => 4, :cols => 60} %>
-      <%= f.input :company %>
-      <%= f.input :title %>
+      <%= f.input :bio, input_html: {:rows => 4, :cols => 60} if AppSettings['settings.profile_bio'] %>
+      <%= f.input :company if AppSettings['settings.profile_company'] %>
+      <%= f.input :title if AppSettings['settings.profile_title'] %>
       <%= f.input :time_zone %>
       <%= f.input :signature, input_html: {:rows => 4, :cols => 60} if current_user.is_admin? %>
     </span>

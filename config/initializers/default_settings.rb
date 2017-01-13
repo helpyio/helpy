@@ -15,6 +15,10 @@ AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 AppSettings.defaults["settings.teams"] = Settings.teams
 AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
+AppSettings.defaults["settings.profile_bio"] = Settings.profile_bio
+AppSettings.defaults["settings.profile_company"] = Settings.profile_company
+AppSettings.defaults["settings.profile_title"] = Settings.profile_title
+AppSettings.defaults["settings.profile_sig"] = Settings.profile_sig
 
 # Design: (Colors etc.)
 

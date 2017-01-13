@@ -41,6 +41,12 @@ mail_smtp: 'smtp.mandrillapp.com' #Enter the server address for your SMTP server
 mail_port: 587 #Enter the port of your SMTP server
 mail_domain: #Enter the heroku.com if you are on heroku, otherwise enter your domain
 
+# which fields to show in the user profile
+profile_bio: true
+profile_company: true
+profile_title: true
+profile_sig: true
+
 # Omniauth Config
 # You must sign up with each oauth provider you wish to support, uncomment and add the ID and secret
 # for each below.  See http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/19-Setting-Up-OAUTH-for-your-Helpy
