@@ -133,6 +133,7 @@ it:
   public: pubblico
   save_changes: Aggiorna
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Cambiare stato

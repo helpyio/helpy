@@ -133,6 +133,7 @@ ca:
   public: public
   save_changes: Guardar canvis
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Canviar estat

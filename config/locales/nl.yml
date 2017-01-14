@@ -133,6 +133,7 @@ nl:
   public: Openbaar
   save_changes: Bijwerken
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Status Wijzigen

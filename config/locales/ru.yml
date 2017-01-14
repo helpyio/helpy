@@ -136,6 +136,7 @@ ru:
   public: публичный
   save_changes: Сохранить изменения
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Изменить статус

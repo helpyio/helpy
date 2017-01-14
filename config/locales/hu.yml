@@ -136,6 +136,7 @@ hu:
   public: publikus
   save_changes: Mentés
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Státusz Módosítása

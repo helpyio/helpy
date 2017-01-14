@@ -129,6 +129,7 @@ sv:
   public: 'publik'
   save_changes: 'Spara ändringar'
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: 'Ändra Status'

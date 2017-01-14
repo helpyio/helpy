@@ -136,6 +136,7 @@ en:
   public: public
   save_changes: Save Changes
   merge: Merge
+  merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Change Status

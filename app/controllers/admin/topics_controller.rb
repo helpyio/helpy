@@ -381,19 +381,19 @@ class Admin::TopicsController < Admin::BaseController
     topics_merged = ''
 
     if @topic.save
-      @topics.each do |t|
+      @topics.each_with_index do |t, i|
         logger.info("Id #{t.id}")
         t.posts.each do |p|
           @posts.create(
           body: p.body,
-          kind: p.kind,
+          kind: i == 1 ? "first" : "reply",
           user: p.user,
           screenshots: p.screenshots,
           attachments: p.attachments,
           )
         end
 
-        topics_merged << "%#{t.id}-%#{t.name}\n"
+        topics_merged << "#{t.name}\n"
       end
 
       @posts.create(
@@ -408,6 +408,7 @@ class Admin::TopicsController < Admin::BaseController
 
       redirect_to admin_topic_path(@topic)
     end
+  end
 
   def shortcuts
     render layout: 'admin-plain'

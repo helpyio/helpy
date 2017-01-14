@@ -154,6 +154,7 @@ pt-br:
   public: "público"
   save_changes: "Guardar Alterações"
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: "Alterar Estado"

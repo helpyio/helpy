@@ -133,6 +133,7 @@ fa:
   public: عمومی
   save_changes: ذخیره تغییرات
   #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: تغییر وضعیت
