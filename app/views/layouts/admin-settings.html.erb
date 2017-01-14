@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+	<%= render partial: 'layouts/head' %>
+	<%= stylesheet_link_tag 'admin', "data-turbolinks-track" => false, media: 'all'  %>
+	<%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "mousetrap.min.js", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "shortcuts.js", "data-turbolinks-track" => true %>
+	<%= rtl_tags if rtl? %>
+	</head>
+
+<body class="<%= 'rtl' if rtl? %>">
+	<script>
+	  ga('set', 'location', location.href.split('#')[0]);
+	  ga('send', 'pageview', { "title": document.title });
+	</script>
+	<div id="upper-wrapper" class="jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<%= render :partial => 'layouts/admin_header' %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="body-wrapper" class="container">
+		<div class="row white-bg">
+			<div class="col-md-12">
+				<div id="main-body" >
+					<div id="main-content">
+						<div class="settings-panel row">
+						  <div class="col-md-3 col-sm-4 col-xs-2">
+								<ul class="settings-menu list-unstyled" data-hook="admin_settings_menu">
+									<%= settings_menu_item('glyphicon glyphicon-user', t('your_profile', default: "Your Profile"), admin_profile_settings_path(mode: 'settings')) %>
+									<%= settings_menu_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), admin_notifications_path) %>
+					        <%= settings_menu_item('glyphicon glyphicon-cloud', t('api_keys', default: "API Keys"), admin_api_keys_path) %>
+						    </ul>
+								<% if current_user.is_admin? %>
+						    <ul class="settings-menu list-unstyled" data-hook="admin_settings_menu">
+						      <%= settings_menu_item('glyphicon glyphicon-cog', 'general', admin_general_settings_path) %>
+						      <%= settings_menu_item('glyphicon glyphicon-pencil', 'design', admin_design_settings_path) %>
+						      <%= settings_menu_item('fa fa-clone', 'theme', admin_theme_settings_path) %>
+						      <%= settings_menu_item('glyphicon glyphicon-globe', 'international', admin_i18n_settings_path) %>
+						      <%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget', admin_widget_settings_path) %>
+						      <%= settings_menu_item('glyphicon glyphicon-envelope', 'email', admin_email_settings_path) %>
+						      <%= settings_menu_item('fa fa-cogs', 'integrations', admin_integration_settings_path) %>
+						      <%= settings_menu_item('glyphicon glyphicon-user', 'users', admin_users_path) %>
+						    </ul>
+								<% end %>
+						  </div>
+
+						  <div class="col-md-9 col-sm-8 col-xs-10">
+								<%= yield :settings %>
+						  </div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer-wrapper">
+		<div class="container">
+				<%= render :partial => 'layouts/footer' %>
+		</div>
+	</div>
+</body>
+</html>

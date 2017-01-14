@@ -94,6 +94,15 @@ Rails.application.routes.draw do
     get 'settings' => 'settings#index', as: :settings
     get 'settings/preview' => 'settings#preview', as: :preview
     put 'update_settings/' => 'settings#update_settings', as: :update_settings
+    get 'settings/general' => 'settings#general', as: :general_settings
+    get 'settings/design' => 'settings#design', as: :design_settings
+    get 'settings/theme' => 'settings#theme', as: :theme_settings
+    get 'settings/widget' => 'settings#widget', as: :widget_settings
+    get 'settings/i18n' => 'settings#i18n', as: :i18n_settings
+    get 'settings/email' => 'settings#email', as: :email_settings
+    get 'settings/integration' => 'settings#integration', as: :integration_settings
+    get 'settings/profile' => 'settings#profile', as: :profile_settings
+
     get 'notifications' => 'settings#notifications', as: :notifications
     put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
 
@@ -121,7 +130,9 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy]
     resources :forums# , except: [:index, :show]
     resources :users
-    resources :api_keys, except: [:show, :edit, :update]
+    scope 'settings' do
+      resources :api_keys, except: [:show, :edit, :update]
+    end
     resources :topics, except: [:delete, :edit] do
       resources :posts
     end

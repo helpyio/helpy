@@ -1,0 +1,17 @@
+<% content_for :settings do %>
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <div class="settings-section widget" data-hook="admin_settings_widget">
+      <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: t('show_widget', default: "Show Widget on Support Site") } %>
+      <p><%= t('add_embed_widget_message', default: "Add the embed widget to your site using the following URL:") %><br/>
+        <code><%= "<script>" %></code><br/>
+        <code>&nbsp;&nbsp;<%= "var Helpy = Helpy || {};" %></code><br/>
+        <code>&nbsp;&nbsp;<%= "Helpy.domain = '#{AppSettings['settings.site_url']}';" %></code><br/>
+        <code><%= "</script>" %></code><br/>
+        <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code><br/>
+      </p>
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+<% end %>

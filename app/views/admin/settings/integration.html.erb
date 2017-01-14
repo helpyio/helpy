@@ -1,0 +1,16 @@
+<% content_for :settings do %>
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <div class="settings-section integrations" data-hook="admin_settings_integrations">
+      <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
+      <%= f.text_field 'settings.recaptcha_site_key', value: AppSettings['settings.recaptcha_site_key'], label: t('recaptcha_site_key', default: "Recaptcha Site Key") %>
+      <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
+
+      <%= f.text_field 'cloudinary.cloud_name', value: AppSettings['cloudinary.cloud_name'], label: "Cloudinary Cloud Name" %>
+      <%= f.text_field 'cloudinary.api_key', value: AppSettings['cloudinary.api_key'], label: "Cloudinary API Key" %>
+      <%= f.password_field 'cloudinary.api_secret', value: AppSettings['cloudinary.api_secret'], label: "Cloudinary API Secret" %>
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+<% end %>

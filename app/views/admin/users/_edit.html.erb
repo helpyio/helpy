@@ -1,7 +1,19 @@
-<%= bootstrap_form_for(:user, url: admin_user_path, remote: true, method: 'patch') do |f| %>
+<%= bootstrap_form_for(@user, url: admin_user_path(@user), remote: (params[:mode] != 'settings'), method: 'patch') do |f| %>
+
   <div class='col-md-12 col-sm-12 col-xs-12 text-center' id='user-info-image'>
     <%= avatar_image(@user, size=150) %>
   </div>
+  <% if params[:mode] == 'settings' %>
+  <div class='col-md-2 col-md-offset-5'>
+    <div class="select-image text-center">
+    <% if @user.provider.nil? %>
+      <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
+    <% end %>
+    <%= f.file_field :profile_image, skip_label: true unless cloudinary_enabled? %>
+    </div>
+  </div>
+  <% end %>
+
   <div id="user-contact-info" class="col-md-12 col-sm-12 col-xs-12 user-info">
     <div class="user-section">
       <%= f.text_field :name %>

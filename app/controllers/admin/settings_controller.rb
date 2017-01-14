@@ -6,21 +6,52 @@ class Admin::SettingsController < Admin::BaseController
 
   def index
     @settings = AppSettings.get_all
+    render layout: "admin"
+  end
+
+  def general
+    render layout: 'admin-settings'
+  end
+
+  def design
+    render layout: 'admin-settings'
+  end
+
+  def theme
     @themes = Theme.find_all
+    render layout: 'admin-settings'
+  end
+
+  def widget
+    render layout: 'admin-settings'
+  end
+
+  def i18n
+    render layout: 'admin-settings'
+  end
+
+  def email
+    render layout: 'admin-settings'
+  end
+
+  def integration
+    render layout: 'admin-settings'
+  end
+
+  def profile
+    @user = User.find(current_user)
+    tracker("Agent: #{current_user.name}", "Editing User Profile", @user.name)
+    render layout: 'admin-settings'
   end
 
   # Show notification settings for current agent/admin
   def notifications
+    render layout: 'admin-settings'
   end
 
   # Save notification preference for current agent/admin
   def update_notifications
-    user = current_user
-    user.notify_on_private = params[:notify_on_private]
-    user.notify_on_public = params[:notify_on_public]
-    user.notify_on_reply = params[:notify_on_reply]
-    user.save!
-    redirect_to admin_settings_path
+    redirect_to :back # admin_settings_path
   end
 
   def preview
@@ -40,7 +71,6 @@ class Admin::SettingsController < Admin::BaseController
 
     @logo = Logo.new
     @logo.file = params['uploader.design.header_logo']
-    # binding.pry
     @logo.save
 
     respond_to do |format|

@@ -1,0 +1,18 @@
+<% content_for :settings do %>
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <div class="settings-section international" data-hook="admin_settings_international">
+      <%= t('supported_locales', default: 'Supported Locales:') %>
+      <% I18n.available_locales.sort.each do |locale| %>
+        <%= f.check_box 'i18n.available_locales', { multiple: true, label: I18n.translate("language_name", locale: locale.to_s), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' }, checked: AppSettings['i18n.available_locales'].include?(locale.to_s) }, "#{locale}", nil  %>
+      <% end %>
+      <br/>
+      <div class='form-group'>
+        <%= label_tag 'i18n.default_locale', t('default_locale', default: "Default Locale"), class: 'control-label' %>
+        <%= f.select_tag 'i18n.default_locale', default_locale_options, class: 'form-control', id: 'i18n.default_locale' %>
+      </div>
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+<% end %>
