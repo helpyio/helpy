@@ -35,11 +35,11 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
   test "when a doc allows commenting and there are no comments, a signed in user should see a start discussion form" do
 
     visit '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments'
-    assert page.has_content?('Start a New Discussion')
+    assert page.has_content?('Start a Discussion')
     assert page.has_css?("div.add-form")
 
     fill_in('post_body', with: "Added a comment!")
-    click_on('Start Discussion', disabled: true)
+    click_on('Start a Discussion', disabled: true)
 
     assert page.has_content?('Added a comment!')
 

@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/carrierwaveuploader/carrierwave
-  revision: ec850831eeaf0f2f45c002bcec9b90698b78d0d8
-  specs:
-    carrierwave (1.0.0.beta)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
-
-GIT
   remote: https://github.com/railsconfig/config.git
   revision: 813e504f47d370bc9b5847dce772828445e9dad7
   specs:
@@ -117,6 +108,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     childprocess (0.5.9)
@@ -165,7 +160,6 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20160310)
       unf (>= 0.0.5, < 1.0.0)
-    enumerable-lazy (0.0.1)
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.9.1)
@@ -194,13 +188,13 @@ GEM
       activerecord (>= 3.2.0, < 5)
       globalize (>= 3.0.4, < 6)
       paper_trail (>= 3.0.0, < 5)
-    grape (0.16.2)
+    grape (0.18.0)
       activesupport
       builder
       hashie (>= 2.1.0)
       multi_json (>= 1.3.2)
       multi_xml (>= 0.5.2)
-      mustermann19 (~> 0.4.3)
+      mustermann-grape (~> 0.4.0)
       rack (>= 1.3.0)
       rack-accept
       virtus (>= 1.0.0)
@@ -209,19 +203,18 @@ GEM
       activesupport (>= 4.0)
       grape (~> 0.16)
       redis-namespace (~> 1.5)
-    grape-entity (0.5.1)
+    grape-entity (0.6.0)
       activesupport
       multi_json (>= 1.3.2)
     grape-kaminari (0.1.9)
       grape
       kaminari
-    grape-swagger (0.22.0)
+    grape-swagger (0.25.2)
       grape (>= 0.12.0)
-    grape-swagger-entity (0.1.4)
+    grape-swagger-entity (0.1.5)
       grape-entity
       grape-swagger (>= 0.20.4)
-    grape-swagger-rails (0.2.1)
-      grape-swagger (>= 0.7.2)
+    grape-swagger-rails (0.3.0)
       railties (>= 3.2.12)
     gravtastic (3.2.6)
     griddler (1.3.1)
@@ -242,7 +235,7 @@ GEM
       mail
     haml (4.0.7)
       tilt
-    hashie (3.4.4)
+    hashie (3.4.6)
     highline (1.7.8)
     hitimes (1.2.3)
     htmlentities (4.3.4)
@@ -322,21 +315,22 @@ GEM
     mime-types (2.99.3)
     mini_magick (4.2.10)
     mini_portile2 (2.1.0)
-    minitest (5.9.1)
+    minitest (5.10.1)
     minitest-reporters (1.1.8)
       ansi
       builder
       minitest (>= 5.0)
       ruby-progressbar
     multi_json (1.12.1)
-    multi_xml (0.5.5)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
-    mustermann19 (0.4.4)
-      enumerable-lazy
+    mustermann (0.4.0)
+      tool (~> 0.2)
+    mustermann-grape (0.4.0)
+      mustermann (= 0.4.0)
     netrc (0.11.0)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     oauth (0.5.1)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
@@ -379,7 +373,6 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
-    pkg-config (1.1.7)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -388,7 +381,7 @@ GEM
     pry-byebug (3.3.0)
       byebug (~> 8.0)
       pry (~> 0.10)
-    rack (1.6.4)
+    rack (1.6.5)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-cors (0.4.0)
@@ -535,12 +528,13 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    thor (0.19.1)
+    thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.2)
     timecop (0.8.1)
     timers (4.0.4)
       hitimes
+    tool (0.2.3)
     trix (0.9.9)
       rails
     turbolinks (2.5.3)
@@ -599,7 +593,7 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara
-  carrierwave!
+  carrierwave (~> 1.0.0)
   client_side_validations
   client_side_validations-simple_form
   cloudinary (= 1.1.2)
@@ -695,4 +689,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.13.5
+   1.13.7

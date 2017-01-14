@@ -12,6 +12,9 @@
 #  updated_at  :datetime         not null
 #  points      :integer          default(0)
 #  attachments :string           default([]), is an Array
+#  cc          :string
+#  bcc         :string
+#  raw_email   :text
 #
 
 require 'test_helper'
@@ -26,7 +29,6 @@ class PostTest < ActiveSupport::TestCase
   should validate_presence_of(:body)
   should validate_presence_of(:kind)
   should validate_presence_of(:user)
-  should validate_length_of(:body).is_at_most(10_000)
 
   # first post should be kind first
   # post belonging to a topic with multiple posts should be a reply
@@ -203,6 +205,16 @@ class PostTest < ActiveSupport::TestCase
         kind: "note"
       )
     end
+  end
+
+  test "Should truncate body length if greater than 10,000" do
+    body = "0" * 10001
+    @user = User.first
+
+    @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
+    @post = @topic.posts.create(body: body, kind: "first", user_id: @user.id)
+
+    assert_equal @post.body.size, 10_000
   end
 
 end

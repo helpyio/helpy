@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
 
   root to: "locales#redirect_on_locale"
-  get 'widget/' => 'widget#index', as: :widget
-  get 'widget/thanks' => 'widget#thanks', as: :widget_thanks
 
   devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
@@ -67,6 +65,14 @@ Rails.application.routes.draw do
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale
 
+  # Widget Routes
+  get 'widget' => 'widget/topics#new', as: :widget
+  namespace :widget do
+    get 'index' => 'topics#new', as: :widget
+    post 'topics' => 'topics#create', as: :create
+    get 'topics/thanks' => 'topics#thanks', as: :thanks
+  end
+
   # Admin Routes
 
   namespace :admin do
@@ -79,6 +85,7 @@ Rails.application.routes.draw do
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
     post 'topics/:topic_id/split/:post_id' => 'topics#split_topic', as: :split_topic
+    get 'shortcuts' => 'topics#shortcuts', as: :shortcuts
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
@@ -102,7 +109,9 @@ Rails.application.routes.draw do
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
 
-    post 'search/users' => 'posts#search', as: :user_search
+    post 'posts/users' => 'posts#search', as: :user_search
+    get  'posts/new_user' => 'posts#new_user', as: :new_user
+    post  'posts/new_user' => 'posts#change_owner_new_user'
 
     resources :categories do
       resources :docs, except: [:index, :show]

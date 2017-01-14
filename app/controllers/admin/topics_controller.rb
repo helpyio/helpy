@@ -28,9 +28,8 @@ class Admin::TopicsController < Admin::BaseController
 
   before_action :verify_agent
   before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
-  before_action :pipeline, only: ['index', 'show', 'update_topic']
   before_action :remote_search, only: ['index', 'show', 'update_topic']
-  before_action :get_all_teams
+  before_action :get_all_teams, except: ['shortcuts']
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -40,7 +39,7 @@ class Admin::TopicsController < Admin::BaseController
     if current_user.is_restricted? && teams?
       topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
     else
-      topics_raw = Topic
+      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
     end
     topics_raw = topics_raw.includes(user: :avatar_files).chronologic
     get_all_teams
@@ -80,8 +79,10 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def new
+    fetch_counts
+
     @topic = Topic.new
-    @user = User.new
+    @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
 
   # TODO: Still need to refactor this method and the update methods into one
@@ -136,12 +137,11 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
+
         }
         format.html {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
         }
       else
         format.html {
@@ -365,6 +365,10 @@ class Admin::TopicsController < Admin::BaseController
       format.html { redirect_to admin_topic_path(@topic) }
       format.js { render 'update_ticket', id: @topic.id }
     end
+  end
+
+  def shortcuts
+    render layout: 'admin-plain'
   end
 
   private

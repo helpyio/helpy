@@ -27,7 +27,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       choose('Only support can respond (creates a private ticket)')
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Start Discussion', disabled: true)
+      click_on('Create Ticket', disabled: true)
     end
 
     visit '/en/tickets/'
@@ -50,7 +50,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       select('Public Forum', from: "topic[forum_id]")
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Start Discussion', disabled: true)
+      click_on('Create Ticket', disabled: true)
     end
 
     visit '/en/community/3-public-forum/topics'
@@ -88,7 +88,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     forums.each do |forum|
       visit forum
-      click_on "New Discussion"
+      click_on "Start a Discussion"
       assert current_path == "/en/topics/new"
     end
 
@@ -143,7 +143,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert_difference('Post.count', 1) do
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Start Discussion', disabled: true)
+      click_on('Create Ticket', disabled: true)
     end
 
     visit '/en/tickets/'

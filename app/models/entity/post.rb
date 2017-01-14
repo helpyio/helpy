@@ -4,7 +4,7 @@ module Entity
     expose :topic_id, documentation: { type: "Integer", desc: "The Topic this post belongs to." }
     expose :user_id, documentation: { type: "Integer", desc: "The ID representing the author of the post." }
     expose :body
-    expose :kind, documentation: { type: "String", desc: "The typo of Post this is- can be 'first', 'reply' or 'note'." }
+    expose :kind, documentation: { type: "String", desc: "The type of Post this is- can be 'first', 'reply' or 'note'." }
     expose :active, documentation: { type: "Boolean", desc: "Whether or not the post is visible onsite." }
     expose :created_at
     expose :updated_at

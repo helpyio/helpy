@@ -82,6 +82,12 @@ nl:
   get_your_copy: "Bekijk dit project op GitHub"
   # version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: Inloggen
 
@@ -148,6 +154,7 @@ nl:
 
   # User Admin
   # users: Users
+  # account: Account
   contact_info: Contact
   social_info: Social Media
   edit_user: Gebruiker bewerken
@@ -312,3 +319,15 @@ nl:
       save: "%{model} opslaan"
       new: "%{model} aanmaken"
       delete: "%{model} verwijderen"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

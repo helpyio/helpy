@@ -53,6 +53,10 @@
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
 #  profile_image          :string
+#  notify_on_private      :boolean          default(FALSE)
+#  notify_on_public       :boolean          default(FALSE)
+#  notify_on_reply        :boolean          default(FALSE)
+#  account_number         :string
 #
 
 class User < ActiveRecord::Base
@@ -80,7 +84,7 @@ class User < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :user_search,
-                  against: [:name, :login, :email, :company]
+                  against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
   paginates_per 15
 
@@ -181,6 +185,17 @@ class User < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
+
+  def signup_guest
+    enc = Devise.token_generator.generate(User, :reset_password_token)
+    self.reset_password_token = enc
+    self.reset_password_sent_at = Time.now.utc
+
+    self.login = self.email.split("@")[0]
+    self.password = User.create_password
+    self.save
+  end
+
 
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
   # and changing it could be painful for upgrading installed users. These are three

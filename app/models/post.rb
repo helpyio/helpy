@@ -12,6 +12,9 @@
 #  updated_at  :datetime         not null
 #  points      :integer          default(0)
 #  attachments :string           default([]), is an Array
+#  cc          :string
+#  bcc         :string
+#  raw_email   :text
 #
 
 class Post < ActiveRecord::Base
@@ -26,6 +29,7 @@ class Post < ActiveRecord::Base
   mount_uploaders :attachments, AttachmentUploader
 
   validates :body, length: { maximum: 10_000 }
+  before_validation :truncate_body
   validates :kind, :user, :user_id, :body, presence: true
 
 
@@ -112,5 +116,11 @@ class Post < ActiveRecord::Base
     return I18n.locale if self.kind == 'first'
     self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
   end
+
+  private
+
+    def truncate_body
+      self.body = body.truncate(10_000) unless body.blank?
+    end
 
 end

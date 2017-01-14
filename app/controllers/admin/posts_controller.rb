@@ -76,10 +76,50 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def search
-    search_string = params[:user_search].downcase
+    search_string = params[:user_search]
     @post_id = params[:post_id]
-    @users = User.where("lower(name) LIKE ? OR lower(email) LIKE ?", "%#{search_string}%", "%#{search_string}%")
+    @users = User.user_search(search_string)
     @users = nil if search_string.blank? || @users.empty?
+  end
+
+  def new_user
+    @post_id = params[:post_id]
+    @user = User.new
+  end
+
+  def change_owner_new_user
+    @post = Post.find(params[:post_id])
+    old_user = @post.user
+
+    fetch_counts
+    get_all_teams
+    @topic = @post.topic
+    @posts = @topic.posts.chronologic
+
+    # Check user doesnt exist
+    @user = User.find_by(email: params[:user][:email])
+
+    # create user
+    if @user.nil?
+      @user = User.new
+
+      @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+      @user.reset_password_token = enc
+      @user.reset_password_sent_at = Time.now.utc
+
+      @user.name = params[:user][:name]
+      @user.login = params[:user][:email].split("@")[0]
+      @user.email = params[:user][:email]
+      @user.password = User.create_password
+    end
+
+    # assign user
+    if @user.save && @post.update(user: @user)
+      update_topic_owner(old_user, @post) if @post.kind == 'first'
+    end
+
+    # re render topic
+    render 'admin/posts/update'
   end
 
   def raw
