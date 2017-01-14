@@ -16,7 +16,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'an admin should be able to modify site settings and see those changes on the support site' do
-    visit('/admin/settings')
+    visit('/admin/settings/general')
     assert page.has_content?('Settings'), 'Missing header'
 
     # Now make changes to all settings from defaults and make sure those changes are on the live site
@@ -37,7 +37,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'an admin should be able to enable or disable i18n and be able to browse to those locales on the site' do
-    visit('/admin/settings')
+    visit('/admin/settings/i18n')
 
     assert page.has_content?('Settings'), 'Missing header'
 
@@ -61,7 +61,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test 'an admin should be able to alter the logo images used' do
-    visit('/admin/settings')
+    visit('/admin/settings/design')
 
     assert page.has_content?('Design'), 'Missing header'
 
