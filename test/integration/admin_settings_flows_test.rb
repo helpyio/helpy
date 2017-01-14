@@ -23,7 +23,6 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     fill_in('settings.site_name', with: 'xyz')
     fill_in('settings.parent_site', with: 'xyz')
     fill_in('settings.parent_company', with: 'xyz')
-    fill_in('settings.google_analytics_id', with: 'xyz')
     click_on 'Save Settings'
 
     visit('/en')
