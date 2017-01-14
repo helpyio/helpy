@@ -82,6 +82,12 @@ it:
   get_your_copy: "Visualizza Helpy su GitHub"
   version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: Accedi
 
@@ -359,3 +365,15 @@ it:
       save: "salva %{model}"
       new: "crea %{model}"
       delete: "cancella %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

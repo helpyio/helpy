@@ -78,6 +78,12 @@ sv:
   powered_by: "Drivs av Helpy, ett infotält med öppen källkod."
   get_your_copy: "Hämta din kopia på GitHub."
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: 'Logga in'
 
@@ -144,7 +150,7 @@ sv:
 
   # User Admin
   # users: Users
-  # account: Account    
+  # account: Account
   contact_info: Kontakt
   social_info: Sociala medier
   edit_user: Redigera användarkonto
@@ -292,3 +298,15 @@ sv:
       save: "Spara %{model}"
       new: "Ny %{model}"
       delete: "Radera %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

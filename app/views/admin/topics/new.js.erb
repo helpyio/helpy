@@ -1,13 +1,14 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/new_ticket') %>");
-$('#ticket-page-title').html("<%= "#{t('discussion_management', default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
+$('#ticket-page-title').html("<%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>:").show();
 $(document).prop('title', "<%= admin_title %> <%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>");
 history.pushState(null, null, '<%= new_admin_topic_path %>');
 
 // Hook validations
 $('#new_topic').enableClientSideValidations();
 
-// Empty ticket search field
+// Empty ticket search field and hide
 $('q').val('');
+$('.topic-search').hide();
 
 // Update timestamps
 $('.last-active time[data-time-ago]').timeago();
@@ -19,6 +20,12 @@ ga('send', 'pageview');
 Helpy.ready();
 Helpy.track();
 Helpy.logHistory();
+
+// escape from fields
+newtopic = document.getElementById('new_topic');
+Mousetrap(newtopic).bind('escape', function(e, combo) {
+  $('#topic_user_email, #topic_user_name, #topic_name, #topic_post_body').blur();
+});
 
 // RTL changes?
 <%= "Helpy.rtl();" if rtl? %>

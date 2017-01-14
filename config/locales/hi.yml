@@ -82,6 +82,12 @@ hi:
   # get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: लॉगिन
 
@@ -148,7 +154,7 @@ hi:
 
   # User Admin
   # users: Users
-  # account: Account  
+  # account: Account
   contact_info: संपर्क करें
   social_info: सोशियल
   edit_user: Edit User
@@ -314,3 +320,15 @@ hi:
       save: "सेव %{model}"
       new: "नया %{model}"
       delete: "डिलीट %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

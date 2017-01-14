@@ -4,14 +4,14 @@ en:
   language_name: 'English' # The name of the translation file, in that language
   root: &root 'Home'
   how_can_we_help: "How can we help?"
-  browse_topics: "Browse Topics"
+  browse_topics: "Browse Knowledgebase"
   support_team: "Support Team"
   nothing_here: "Nothing here yet!"
 
   # Navigation
   knowledgebase: "Knowledgebase"
   community: "Community"
-  ask_a_question: "Ask a Question"
+  ask_a_question: "Open a Ticket"
   home: "Home"
   login: "Login"
   logout: "Logout"
@@ -45,11 +45,11 @@ en:
   replies: "Replies"
   last_post: "Last Post"
   started_by: "Started by %{username}"
-  reply: "Reply to this topic"
+  reply: "Reply to this ticket"
   submit_reply: "Post Reply"
   posted: "Posted"
-  start_discussion: "Start a New Discussion"
-  submit_start_discussion: "Start Discussion"
+  start_discussion: "Start a Discussion"
+  submit_start_discussion: "Create Ticket"
   should_message_be_private: "Should this message be private?"
   only_support_can_respond: "Only support can respond (creates a private ticket)"
   responses_can_come_from_everyone: "Responses can come from support or the community (recommended)"
@@ -72,7 +72,7 @@ en:
 
   # Get Help
   get_help_header: "Still Need Help?"
-  get_help_button: "Start a Discussion with Us"
+  get_help_button: "Open a ticket"
 
   # Profile
   my_profile: 'My Profile'
@@ -81,6 +81,12 @@ en:
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on GitHub"
   version: "Version:"
+
+  # flag
+  flag_for_review: "Flag for Review"
+  flag_post_for_review: "Flag Post for Review"
+  flag_post_placeholder: "Describe the reason for flagging this post"
+  flag: "Flag"
 
   # devise/sessions/new
   login: Log in
@@ -103,7 +109,7 @@ en:
   sign_up: Sign Up
 
   # Admin menu
-  discussions: Discussions
+  discussions: Tickets
   content: Content
   communities: Communities
   app_store: App Store
@@ -119,8 +125,8 @@ en:
   closed: Resolved
   spam: Spam
   trash: Trash
-  discussion_managment: Discussion Management
-  open_new_discussion: New Discussion
+  discussion_managment: Ticket Management
+  open_new_discussion: New Ticket
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
   no_team_assigned: Assign to group
@@ -240,15 +246,15 @@ en:
   view_online: "View this online:"
 
   # Admin notifications
-  notify_new_private: "A new private customer message has been received from %{user_name}:"
+  notify_new_private: "A new customer ticket has been received from %{user_name}:"
   notify_new_public: "A new public customer message has been posted by %{user_name}:"
   notify_new_reply: "A new customer reply has been received from %{user_name}:"
   to_reply: 'Reply to this message directly or online:'
 
   # Notifications settings panel
-  notify_on_private: "Email me when a private customer question has been received"
+  notify_on_private: "Email me when a new ticket has been received"
   notify_on_public: "Email me when a public customer question has been posted"
-  notify_on_reply: "Email me when a new reply to a private discussion has been received"
+  notify_on_reply: "Email me when a new reply to a ticket has been received"
 
   # settings
   agent_settings: "Agent Settings"
@@ -280,11 +286,11 @@ en:
   last_month: "Last month"
   date_range: "Date Range"
   insights_blurb_one:
-    one: "<strong>%{period}</strong> your users started 1 new conversation"
-    other: "<strong>%{period}</strong> your users started <strong>%{count} new conversations</strong>"
+    one: "<strong>%{period}</strong> your users opened 1 new ticket"
+    other: "<strong>%{period}</strong> your users opened <strong>%{count} new tickets</strong>"
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
   insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
-  no_discussions: "No new conversations have been started <strong>%{period}</strong>"
+  no_discussions: "No new tickets have been opened <strong>%{period}</strong>"
   assigned_topics: "Assigned Topics"
   responded: "Responded"
   closed: "Closed"
@@ -371,3 +377,15 @@ en:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

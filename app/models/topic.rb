@@ -46,7 +46,10 @@ class Topic < ActiveRecord::Base
                   :if => :public?
 
   pg_search_scope :admin_search,
-                  against: [:id, :name, :user_name, :current_status, :post_cache]
+                  against: [:id, :name, :user_name, :current_status, :post_cache],
+                  associated_against: {
+                    teams: [:name]
+                  }
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
@@ -166,6 +169,15 @@ class Topic < ActiveRecord::Base
   def public?
     # Note: We assume forum_ids 1,2,3 are seed data
     forum_id >= 3 && !private?
+  end
+
+  def create_topic_with_user(params, current_user)
+    self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email])
+
+    unless self.user #User not found, lets build it
+      self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
+    end
+    self.user.persisted? && self.save
   end
 
   def self.create_comment_thread(doc_id, user_id)

@@ -1,0 +1,36 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<% Globalize.with_locale(@locale) do %>
+<div class="add-form row">
+  <div class="widget-form">
+  <%= simple_form_for(@topic, url: widget_create_url, validate: true) do |f| -%>
+
+    <%#= f.alert_message "Please fix the errors below." %>
+
+    <% unless user_signed_in? %>
+      <%= f.simple_fields_for @user do |u| %>
+        <%= u.input :email, placeholder: I18n.t('activerecord.attributes.user.email'), autofocus: true, class: 'topic-placeholder' %>
+        <%= u.input :name, placeholder: I18n.t('activerecord.attributes.user.name'), class: 'topic-placeholder' %>
+      <% end %>
+    <% end %>
+
+    <%= f.input :name, :size => 40,  placeholder: I18n.t(:subject), label: I18n.t(:subject), class: 'disable-empty topic-placeholder' %>
+
+    <%= f.simple_fields_for :posts do |p| %>
+      <%= p.input :body, input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
+    <% end %>
+
+    <%= hidden_field_tag :client_id %>
+    <%= f.submit t(:submit_start_discussion, default: 'Create Ticket'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
+
+  <% end -%>
+  </div>
+</div>
+<% end %>
