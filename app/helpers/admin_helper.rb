@@ -85,7 +85,7 @@ module AdminHelper
 
   def settings_menu_item(icon, title, link='#')
     content_tag(:li, class: 'settings-menu-item') do
-      link_to(link, class: "#{settings_link(link)} #{'active-settings-link' if link == '#'}", "data-target" => title) do
+      link_to(link, class: "#{settings_link(link)} #{'active-settings-link' if current_page?(link)}", "data-target" => title) do
         concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
         concat content_tag(:span, t(title, default: title.capitalize), class: 'hidden-xs')
       end
