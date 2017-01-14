@@ -79,6 +79,12 @@ et:
   get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # Profile
   my_profile: 'Minu profiil'
 
@@ -149,7 +155,7 @@ et:
 
   # User Admin
   # users: Users
-  # account: Account  
+  # account: Account
   contact_info: Kontakt
   social_info: Sotsiaalne
   edit_user:
@@ -307,3 +313,15 @@ et:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

@@ -117,4 +117,17 @@ class EmailProcessorTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test 'an email to the with invalid utf8 should create a new user and topic with status new' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 2) do
+            EmailProcessor.new(FactoryGirl.build(:email_from_unknown_invalid_utf8)).process
+          end
+        end
+      end
+    end
+  end
+
 end

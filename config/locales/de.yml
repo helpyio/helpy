@@ -82,6 +82,12 @@ de:
   get_your_copy: "Hol dir deine Version auf GitHub"
   version: "Version:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: Anmelden
 
@@ -149,7 +155,7 @@ de:
 
   # User Admin
   users: Benutzer
-  # account: Account  
+  # account: Account
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
@@ -360,3 +366,15 @@ de:
       save: "%{model} speichern"
       new: "Neue oder neues %{model}"
       delete: "%{model} löschen"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

@@ -82,6 +82,12 @@ hu:
   get_your_copy: "Töltsd le magadnak a GitHubról"
   version: "Verzió:"
 
+  # flag
+  #flag_for_review: 
+  #flag_post_for_review: 
+  #flag_post_placeholder:
+  #flag: 
+
   # devise/sessions/new
   login: Bejelentkezés
 
@@ -152,7 +158,7 @@ hu:
 
   # User Admin
   users: Felhasználók
-  # account: Account  
+  # account: Account
   contact_info: Kapcsolat
   social_info: Social
   edit_user: Felhasználó szerkesztés
@@ -363,3 +369,15 @@ hu:
       save: "%{model} mentése"
       new: "Új %{model}"
       delete: "%{model} törlése"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q      

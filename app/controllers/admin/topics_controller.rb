@@ -29,7 +29,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :verify_agent
   before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
   before_action :remote_search, only: ['index', 'show', 'update_topic']
-  before_action :get_all_teams
+  before_action :get_all_teams, except: ['shortcuts']
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -79,6 +79,8 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def new
+    fetch_counts
+
     @topic = Topic.new
     @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
@@ -135,12 +137,11 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
+
         }
         format.html {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
         }
       else
         format.html {
@@ -407,6 +408,9 @@ class Admin::TopicsController < Admin::BaseController
 
       redirect_to admin_topic_path(@topic)
     end
+
+  def shortcuts
+    render layout: 'admin-plain'
   end
 
   private

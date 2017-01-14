@@ -124,6 +124,10 @@ textarea {
 
 //  === GLOBAL STYLES ===
 
+.selected {
+  background-color: #eee;
+}
+
 .truncate-ellipsis {
   display: table;
   table-layout: fixed;
@@ -459,6 +463,12 @@ span.category-icon {
 .status-label {
 	margin-left: 5px;
 	margin-bottom: -15px;
+  text-transform: uppercase;
+}
+
+.status-label-button {
+	margin-left: -7px;
+  margin-bottom: -15px;
   text-transform: uppercase;
 }
 

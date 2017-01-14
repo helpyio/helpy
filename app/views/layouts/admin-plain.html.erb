@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+	<%= render partial: 'layouts/head' %>
+	<%= stylesheet_link_tag 'admin', "data-turbolinks-track" => false, media: 'all'  %>
+	<%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
+	<%= rtl_tags if rtl? %>
+	</head>
+
+<body class="<%= 'rtl' if rtl? %>">
+	<script>
+	  ga('set', 'location', location.href.split('#')[0]);
+	  ga('send', 'pageview', { "title": document.title });
+	</script>
+	<div id="body-wrapper" class="container">
+		<div class="row white-bg">
+			<div class="col-md-12">
+				<div id="main-body" >
+					<div id="main-content">
+						<%= yield %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
