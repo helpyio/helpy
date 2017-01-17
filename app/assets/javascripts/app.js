@@ -186,7 +186,7 @@ Helpy.ready = function(){
     if ($('#topic_user_email').val() === '') {
       $('#topic_user_email').val("change@me-" + $("#topic_user_home_phone").val() + '-' + $("#topic_user_name").val().replace(" ","-") + '.com');
       return false;
-    };
+    }
   });
 
 
