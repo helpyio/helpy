@@ -136,6 +136,9 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Request', 'Post', 'New Topic')
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
+        # Now that we are rendering show, get the posts (just one)
+        # TODO probably can refactor this
+        @posts = @topic.posts.chronologic.includes(:user)
         format.js {
           render action: 'show', id: @topic
 
