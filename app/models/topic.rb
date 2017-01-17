@@ -20,8 +20,9 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  doc_id           :integer          default(0)
 #  locale           :string
+#  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 class Topic < ActiveRecord::Base
@@ -82,6 +83,7 @@ class Topic < ActiveRecord::Base
   acts_as_taggable_on :teams
 
   validates :name, presence: true, length: { maximum: 255 }
+  # validates :user_id, presence: true
 
   def to_param
     "#{id}-#{name.parameterize}"

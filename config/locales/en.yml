@@ -307,6 +307,7 @@ en:
         name: Name
         company: Company
         work_phone: Work
+        home_phone: Phone
         cell_phone: Cell
         city: City
         state: State

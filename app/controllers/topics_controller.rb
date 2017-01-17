@@ -22,6 +22,7 @@
 #  updated_at       :datetime         not null
 #  locale           :string
 #  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 class TopicsController < ApplicationController
@@ -96,8 +97,8 @@ class TopicsController < ApplicationController
       name: params[:topic][:name],
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id],
-      team_list: params[:topic][:team_list])#,
-      #channel: 'web')
+      team_list: params[:topic][:team_list],
+      channel: 'web')
 
     if recaptcha_enabled?
       render :new && return unless verify_recaptcha(model: @topic)
@@ -152,14 +153,6 @@ class TopicsController < ApplicationController
   end
 
   private
-
-  def post_params
-    params.require(:post).permit(
-      :body,
-      :kind,
-      {attachments: []}
-    )
-  end
 
   def post_params
     params.require(:post).permit(

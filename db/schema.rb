@@ -225,6 +225,7 @@ ActiveRecord::Schema.define(version: 20161204162759) do
     t.datetime "updated_at",                         null: false
     t.string   "locale"
     t.integer  "doc_id",           default: 0
+    t.string   "channel",          default: "email"
   end
 
   create_table "users", force: :cascade do |t|

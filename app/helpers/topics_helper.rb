@@ -22,6 +22,7 @@
 #  updated_at       :datetime         not null
 #  locale           :string
 #  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 module TopicsHelper
