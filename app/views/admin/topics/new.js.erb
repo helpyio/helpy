@@ -1,5 +1,5 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/new_ticket') %>");
-$('#ticket-page-title').html("<%= "#{t('discussion_management', default: 'Discussion Management')}: #{t(:open_new_discussion, default: 'New Discussion')}" %>");
+$('#ticket-page-title').html("<%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>:").show();
 $(document).prop('title', "<%= admin_title %> <%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>");
 history.pushState(null, null, '<%= new_admin_topic_path %>');
 

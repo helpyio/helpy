@@ -23,7 +23,6 @@
   <%= hidden_field_tag :client_id %>
   <div class="add-screenshots">
   <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
-
   </div>
   <!--<label>Tags:</label><br/>-->
   <%#= text_field_tag :tags %>

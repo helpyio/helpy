@@ -90,7 +90,7 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message,
+        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
         :raw_email => raw,
         :user_id => @user.id,
         :kind => "first"
@@ -117,8 +117,12 @@ class EmailProcessor
       end
       post.screenshots = array_of_files
     elsif email.attachments.present?
-      post.attachments = email.attachments
-      post.save!
+      post.update(
+        attachments: email.attachments
+      )
+      if post.valid?
+        post.save
+      end
     end
   end
 

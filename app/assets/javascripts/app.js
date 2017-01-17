@@ -81,7 +81,7 @@ Helpy.ready = function(){
 
   });
 
-  $("#topic_name").blur(function () {
+  $(".suggest-results").blur(function () {
       var that = $(this);
       var $results = $('.suggestion-results');
       var $container = $('.suggestion-results-container');
