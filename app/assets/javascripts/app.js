@@ -81,7 +81,7 @@ Helpy.ready = function(){
 
   });
 
-  $("#topic_name").blur(function () {
+  $(".suggest-results").blur(function () {
       var that = $(this);
       var $results = $('.suggestion-results');
       var $container = $('.suggestion-results-container');
@@ -181,19 +181,12 @@ Helpy.ready = function(){
     Helpy.showGroup();
   });
 
-  // used by admin create topic form
-  $("#topic_user_work_phone").parent().hide();
-  $('#topic_channel_email').click(function(){
-    $("#topic_user_email").parent().show();
-    $("#topic_user_work_phone").parent().hide();
-  });
-  $('#topic_channel_phone').click(function(){
-    $("#topic_user_email").parent().hide();
-    $("#topic_user_work_phone").parent().show();
-    //$('#new_topic').append("<input type='hidden' id='topic_user_email' name='topic[user][email]' value=''/>");
-    $("#topic_user_work_phone").off().on('keyup', function(){
-      $('#topic_user_email').val("change@me-" + $("#topic_user_work_phone").val() + '.com');
-    });
+  // Generate temp email address on demand, in case the user does not have an email
+  $('.generate-temp').off().on('click', function(){
+    if ($('#topic_user_email').val() === '') {
+      $('#topic_user_email').val("change@me-" + $("#topic_user_home_phone").val() + '-' + $("#topic_user_name").val().replace(" ","-") + '.com');
+      return false;
+    }
   });
 
 

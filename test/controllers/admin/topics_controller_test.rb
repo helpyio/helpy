@@ -40,10 +40,10 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_equal Topic.all.last.user_id, Post.find(4).user_id
     end
 
-    test "#{admin}: split topic channel should be owner of post split from" do
+    test "#{admin}: split topic should have the same channel as the original topic" do
       sign_in users(admin.to_sym)
       post :split_topic, topic_id: 4, post_id: 4
-      assert_equal Topic.all.last.channel, Topic.find(4).channel
+      assert_equal Topic.all.last.channel, Post.find(4).topic.channel
     end
 
     ### Topic Views
@@ -202,12 +202,12 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
-            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+            xhr :post, :create, topic: { user: { name: "a user", home_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
           end
         end
       end
 
-      assert_equal User.last.work_phone, "34526668"
+      assert_equal "34526668", User.last.home_phone
     end
 
     test "an #{admin} created private discussion should have channel" do

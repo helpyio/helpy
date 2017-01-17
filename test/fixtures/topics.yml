@@ -36,6 +36,7 @@ pending:
   current_status: open #because the user posted, we replied and now its open to a user response.
   private: true
   post_cache: This is a private post, should not be searchable This is a private reply, should not be searchable
+  channel: email
 
 open:
   id: 2
@@ -46,6 +47,7 @@ open:
   current_status: pending
   private: true
   post_cache:
+  channel: email
 
 closed:
   id: 3
@@ -55,6 +57,7 @@ closed:
   current_status: closed
   private: true
   post_cache:
+  channel: email
 
 public:
   id: 4
@@ -64,6 +67,7 @@ public:
   current_status: open
   private: false
   post_cache: This is a public post, should be searchable
+  channel: web
 
 new:
   id: 5
@@ -83,6 +87,7 @@ private:
   private: true
   post_cache: This is a new private post
   locale: nl
+  channel: email
 
 qna_post:
   id: 7
@@ -92,6 +97,7 @@ qna_post:
   current_status: new
   private: false
   post_cache: This is a new Q&A
+  channel: email
 
 grid_post:
   id: 8
@@ -101,6 +107,7 @@ grid_post:
   current_status: new
   private: false
   post_cache: This is a new Idea
+  channel: email
 
 article:
   id: 9
@@ -111,3 +118,4 @@ article:
   current_status: new
   private: false
   post_cache: Sample topic for doc
+  channel: email

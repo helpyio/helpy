@@ -214,6 +214,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['name'] == "Got a problem"
     assert object['posts'].count == 1
     assert object['posts'][0]['body'] == "This is some really profound question"
+    assert object['channel'] == 'api'
   end
 
   test "an API user should be able to update a public topic" do

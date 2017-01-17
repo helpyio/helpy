@@ -82,7 +82,7 @@ module API
           requires :name, type: String, desc: "The subject of the ticket"
           requires :body, type: String, desc: "The post body"
           optional :team_list, type: String, desc: "The group that this ticket is assigned to"
-          optional :channel, type: String, desc: "The source channel the ticket was created from"
+          optional :channel, type: String, desc: "The source channel the ticket was created from, Defaults to API if no value provided."
           requires :user_id, type: Integer, desc: "the User ID"
         end
 
@@ -249,7 +249,7 @@ module API
           requires :body, type: String, desc: "The post body"
           requires :user_id, type: Integer, desc: "the User ID"
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
-          optional :channel, type: String, desc: "The source channel the ticket was created from"
+          optional :channel, type: String, desc: "The source channel the ticket was created from. Defaults to API."
         end
 
         post "", root: :topics do

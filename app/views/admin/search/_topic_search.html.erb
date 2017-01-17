@@ -1,6 +1,6 @@
 <%= form_tag admin_topic_search_path, method: :get, remote: true, class: 'admin-search submit-loader form-inline form-horizontal', id: 'search-form' do %>
   <div class="form-group">
-    <div class="col-xs-12 col-sm-7 col-md-6">
+    <div class="col-xs-12 col-sm-7 col-md-7">
       <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control search-field', style: "width: 100%;" )%>
     </div>
     <div class="col-sm-2 col-md-2 hidden-xs text-center">

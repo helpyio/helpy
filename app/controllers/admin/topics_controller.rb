@@ -79,6 +79,8 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def new
+    fetch_counts
+
     @topic = Topic.new
     @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
@@ -109,7 +111,7 @@ class Admin::TopicsController < Admin::BaseController
       @user.name = params[:topic][:user][:name]
       @user.login = params[:topic][:user][:email].split("@")[0]
       @user.email = params[:topic][:user][:email]
-      @user.work_phone = params[:topic][:user][:work_phone]
+      @user.home_phone = params[:topic][:user][:home_phone]
       @user.password = User.create_password
 
       @user.save
@@ -136,12 +138,11 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
         format.js {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
+
         }
         format.html {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
         }
       else
         format.html {
