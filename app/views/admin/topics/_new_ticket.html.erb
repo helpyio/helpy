@@ -4,12 +4,12 @@
     <div><label class="control-label"> <%= t(:channel_source, default: 'Source') %> </label></div>
     <%= f.collection_radio_buttons :channel, [['email', t('activerecord.attributes.user.email')],['phone', t('activerecord.attributes.user.home_phone')],['person', t(:channel_in_person, default: 'In Person')]], :first, :last, selected: 'email', item_label_class: 'radio-label', item_wrapper_class: 'radio-inline channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
   </div>
-  <%= f.input :name, :size => 40, class: 'disable-empty' -%>
+  <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
 
   <%= f.simple_fields_for @user do |u| %>
     <%= u.input :name, class: 'disable-empty' %>
     <%= u.input :home_phone, class: 'disable-empty', label: "Phone" %>
-    <%= u.input :email, autofocus: true, class: 'disable-empty', label: "Email (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
+    <%= u.input :email, class: 'disable-empty', label: "Email (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
   <% end %>
   <%= f.input(:team_list, collection: @all_teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and @all_teams.count > 0 %>
   <%= f.simple_fields_for @topic.posts.new do |i| %>
