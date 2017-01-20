@@ -194,6 +194,38 @@ class Topic < ActiveRecord::Base
     )
   end
 
+  def self.merge_topics(topic_ids, user_id=2)
+
+    @merge_topics = Topic.where(id: topic_ids)
+    @topic = @merge_topics.first.dup
+    @topic.name = "MERGED: #{@merge_topics.first.name}"
+    topics_merged = ""
+
+    if @topic.save
+      @merge_topics.each_with_index do |t, i|
+
+        if i == 0
+          @topic.posts << t.posts
+        else
+          @topic.posts << t.posts.where.not(kind: 'first').all
+        end
+        topics_merged << "#{t.name}\n"
+      end
+
+      @topic.posts.create(
+          body: "#{topics_merged} were merged to create this discussion",
+          kind: "note",
+          user_id: user_id,
+      )
+
+      @merge_topics.each do |t|
+        t.trash
+      end
+
+      return @topic
+    end
+  end
+
   private
 
   def cache_user_name

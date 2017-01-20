@@ -373,46 +373,8 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def merge_tickets
-    @topics = Topic.where(id: params[:topic_ids])
-
-    @topic = Topic.new(
-      name: "MERGED: #{@topics.first.name}",
-      user: @topics.first.user,
-      forum_id: @topics.first.forum_id,
-      private: @topics.first.private,
-    )
-
-    @posts = @topic.posts
-    topics_merged = ''
-
-    if @topic.save
-      @topics.each_with_index do |t, i|
-        logger.info("Id #{t.id}")
-        t.posts.each do |p|
-          @posts.create(
-          body: p.body,
-          kind: i == 1 ? "first" : "reply",
-          user: p.user,
-          screenshots: p.screenshots,
-          attachments: p.attachments,
-          )
-        end
-
-        topics_merged << "#{t.name}\n"
-      end
-
-      @posts.create(
-          body: "#{topics_merged} were merged to create this discussion",
-          kind: "note",
-          user: current_user,
-      )
-
-      @topics.each do |t|
-        t.trash
-      end
-
-      redirect_to admin_topic_path(@topic)
-    end
+    @topic = Topic.merge_topics(params[:topic_ids], current_user.id)
+    redirect_to admin_topic_path(@topic)
   end
 
   def shortcuts
