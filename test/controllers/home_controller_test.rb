@@ -74,6 +74,14 @@ class HomeControllerTest < ActionController::TestCase
     assert_select "div.topic-box", true
   end
 
+  test "a browsing user should not see common replies on the home page even if they are featured" do
+    AppSettings['theme.active'] = 'flat'
+    get :index, locale: :en
+
+    #Should not be any category boxes
+    assert_select "#category-5", false
+  end
+
   # Theme tests, since there is no theme controller and this logic should exist helper_method
 
   test "a browsing user should see the designated theme" do

@@ -46,8 +46,7 @@ class CategoriesController < ApplicationController
       add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
       add_breadcrumb @page_title, category_path(@category)
     else
-      redirect_to root_path
-      flash[:error] = 'This category cannot be viewed on the front page'
+      redirect_to controller: 'errors', action: 'not_found'
     end
   end
 end
