@@ -87,10 +87,10 @@ pt-br:
   version: "Versão:"
 
   # flag
-  #flag_for_review: 
-  #flag_post_for_review: 
+  #flag_for_review:
+  #flag_post_for_review:
   #flag_post_placeholder:
-  #flag: 
+  #flag:
 
   # devise/sessions/new
   login: "Autenticar"
@@ -183,6 +183,13 @@ pt-br:
   edit_user: "Editar Usuário"
   work_phone: "trabalho"
   cell_phone: "celular"
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
@@ -445,4 +452,4 @@ pt-br:
           million: M
           billion: B
           trillion: T
-          quadrillion: Q      
+          quadrillion: Q

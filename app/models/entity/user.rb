@@ -31,5 +31,6 @@ module Entity
     expose :sign_in_count, documentation: { type: "Integer" }
     expose :team_list
     expose :account_number
+    expose :priority
   end
 end
