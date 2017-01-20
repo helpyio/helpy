@@ -96,31 +96,32 @@ class Admin::TopicsController < Admin::BaseController
     @topic = @forum.topics.new(
       name: params[:topic][:name],
       private: true,
-      team_list: params[:topic][:team_list]
+      team_list: params[:topic][:team_list],
+      channel: params[:topic][:channel]
     )
 
     if @user.nil?
 
-      @user = @topic.build_user
-
       @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+
+      @user = @topic.build_user
       @user.reset_password_token = enc
       @user.reset_password_sent_at = Time.now.utc
 
       @user.name = params[:topic][:user][:name]
       @user.login = params[:topic][:user][:email].split("@")[0]
       @user.email = params[:topic][:user][:email]
+      @user.home_phone = params[:topic][:user][:home_phone]
       @user.password = User.create_password
 
+      @user.save
     else
       @topic.user_id = @user.id
     end
 
     fetch_counts
     respond_to do |format|
-
       if (@user.save || !@user.nil?) && @topic.save
-
         @post = @topic.posts.create(
           body: params[:topic][:post][:body],
           user_id: @user.id,
@@ -136,6 +137,9 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Request', 'Post', 'New Topic')
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
+        # Now that we are rendering show, get the posts (just one)
+        # TODO probably can refactor this
+        @posts = @topic.posts.chronologic.includes(:user)
         format.js {
           render action: 'show', id: @topic
 
@@ -338,6 +342,7 @@ class Admin::TopicsController < Admin::BaseController
       user: parent_post.user,
       forum_id: parent_topic.forum_id,
       private: parent_topic.private,
+      channel: parent_topic.channel
     )
 
     @posts = @topic.posts
