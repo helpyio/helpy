@@ -83,10 +83,10 @@ hi:
   # version: "Version:"
 
   # flag
-  #flag_for_review: 
-  #flag_post_for_review: 
+  #flag_for_review:
+  #flag_post_for_review:
   #flag_post_placeholder:
-  #flag: 
+  #flag:
 
   # devise/sessions/new
   login: लॉगिन
@@ -160,6 +160,13 @@ hi:
   edit_user: Edit User
   work_phone: काम
   cell_phone: मोबाइल
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
@@ -331,4 +338,4 @@ hi:
           million: M
           billion: B
           trillion: T
-          quadrillion: Q      
+          quadrillion: Q

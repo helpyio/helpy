@@ -83,10 +83,10 @@ tr:
   # version: "Version:"
 
   # flag
-  #flag_for_review: 
-  #flag_post_for_review: 
+  #flag_for_review:
+  #flag_post_for_review:
   #flag_post_placeholder:
-  #flag: 
+  #flag:
 
   # devise/sessions/new
   login: Giriş yap
@@ -160,6 +160,13 @@ tr:
   edit_user: Kullanıcıyı Düzenle
   work_phone: İş
   cell_phone: Cep
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
@@ -331,4 +338,3 @@ tr:
           billion: B
           trillion: T
           quadrillion: Q
-      

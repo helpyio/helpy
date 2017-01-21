@@ -164,6 +164,13 @@ en:
   work_phone: work
   cell_phone: cell
 
+  # Priorities
+  select_priority: Select Priority
+  vip_priority: VIP
+  high_priority: High
+  normal_priority: Normal
+  low_priority: Low
+
   # Roles
   select_role: Select Role
   admin_role: Admin

@@ -83,10 +83,10 @@ zh-tw:
   # version: "Version:"
 
   # flag
-  #flag_for_review: 
-  #flag_post_for_review: 
+  #flag_for_review:
+  #flag_post_for_review:
   #flag_post_placeholder:
-  #flag: 
+  #flag:
 
   # devise/sessions/new
   login: 登入
@@ -160,6 +160,13 @@ zh-tw:
   edit_user: 修改使用者
   work_phone: 公司
   cell_phone: 行動電話
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
