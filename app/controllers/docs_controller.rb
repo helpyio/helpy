@@ -32,7 +32,7 @@ class DocsController < ApplicationController
   respond_to :html
 
   def show
-    @doc = Doc.where(id: params[:id]).active.first
+    @doc = Doc.where(id: params[:id], category_id: Category.viewable).active.first
 
     unless @doc.nil?
       @page_title = @doc.title
@@ -47,7 +47,7 @@ class DocsController < ApplicationController
       add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
       add_breadcrumb @doc.title
     else
-      redirect_to root_url
+      redirect_to controller: 'errors', action: 'not_found'
     end
   end
 
