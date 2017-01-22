@@ -181,7 +181,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference("Topic.count",1) do
         xhr :get, :merge_tickets, { topic_ids: [2,3] }
       end
-      assert_response :redirect
+      assert_response :success
     end
 
     ### testing new discussion creation and lifecycle

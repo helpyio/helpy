@@ -362,7 +362,7 @@ class Admin::TopicsController < Admin::BaseController
         kind: 'note',
       )
     end
-
+    
     fetch_counts
     get_all_teams
 
@@ -374,7 +374,13 @@ class Admin::TopicsController < Admin::BaseController
 
   def merge_tickets
     @topic = Topic.merge_topics(params[:topic_ids], current_user.id)
-    redirect_to admin_topic_path(@topic)
+
+    fetch_counts
+    get_all_teams
+
+    respond_to do |format|
+      format.js { render 'show', id: @topic }
+    end
   end
 
   def shortcuts
