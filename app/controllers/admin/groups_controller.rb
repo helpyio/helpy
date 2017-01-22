@@ -15,10 +15,13 @@ class Admin::GroupsController < Admin::BaseController
 
   # Restrict API token generation to admin only for now
   before_action :verify_admin
-  before_action :get_all_teams
-
+  
   def index
     @teams = ActsAsTaggableOn::Tag.all
+  end
+
+  def new
+    @team = ActsAsTaggableOn::Tag.new
   end
 
   def edit
@@ -27,7 +30,7 @@ class Admin::GroupsController < Admin::BaseController
 
   def update
     @team = ActsAsTaggableOn::Tag.find(params[:id])
-    if @team.update_columns(params[:acts_as_taggable_on_tag])
+    if @team.update_attributes(group_params)
       redirect_to admin_groups_path
     else
       render edit_admin_groups_path(@team) 
@@ -35,16 +38,17 @@ class Admin::GroupsController < Admin::BaseController
   end
 
   def create
-    @api_key = ApiKey.new(api_key_params)
-    # @api_key.user_id = @user.id
-    if @api_key.save
-      render
+    if ActsAsTaggableOn::Tag.create(group_params)
+      redirect_to admin_groups_path
+    else
+      render new_admin_group_path
     end
   end
 
   def destroy
-    @api_key = @user.api_keys.where(id: params[:id]).first
-    @api_key.update! date_expired: Time.current
+    @team = ActsAsTaggableOn::Tag.find(params[:id])
+    @team.destroy
+    redirect_to admin_groups_path
   end
 
   protected
@@ -60,12 +64,12 @@ class Admin::GroupsController < Admin::BaseController
 
   private
 
-  def api_key_params
-    params.require(:api_key).permit(
-    :name,
-    :user_id
-  )
+  def group_params
+    params.require(:acts_as_taggable_on_tag).permit(
+      :name,
+      :show_on_helpcenter,
+      :show_on_admin,
+      :show_on_dashboard
+    )
   end
-
-
 end

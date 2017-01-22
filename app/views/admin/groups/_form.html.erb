@@ -1,0 +1,10 @@
+
+  <div class="settings-section group">
+    <%= f.text_field 'name', label: t(:tag_name, default: "Group Name"), placeholder: t(:tag_name, default: 'Group Name') %>
+    <%= f.check_box 'show_on_helpcenter', { checked: @team.show_on_helpcenter, label: t('show_on_helpcenter', default: "Show on helpcenter"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+    <%= f.check_box 'show_on_admin', { checked: @team.show_on_admin, label: t('show_on_admin', default: "Show on admin"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+    <%= f.check_box 'show_on_dashboard', { checked: @team.show_on_dashboard, label: t('show_on_dashboard', default: "Show on dashboard"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+  </div>
+  <div class="submit-section">
+    <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+  </div>
