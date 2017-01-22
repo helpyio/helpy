@@ -37,7 +37,7 @@ td > img {
 
 #upper-wrapper {
   background-color: #222;
-
+	margin-bottom: 0;
   > div {
     padding-top: 0;
   }
@@ -108,7 +108,12 @@ td > img {
 	}
 }
 
-
+.topic-search-container {
+	background-color: #ddd;
+	height: 50px;
+	padding-top: 10px;
+	padding-bottom: 0;
+}
 // === ADMIN STYLES ===
 
 .white-bg {
