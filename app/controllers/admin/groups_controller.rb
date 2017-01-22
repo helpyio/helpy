@@ -39,7 +39,8 @@ class Admin::GroupsController < Admin::BaseController
   end
 
   def create
-    if ActsAsTaggableOn::Tag.create(group_params)
+    tag = ActsAsTaggableOn::Tag.create(group_params)
+    if ActsAsTaggableOn::Tagging.create(tag_id: tag.id, context: "teams") 
       redirect_to admin_groups_path
     else
       render new_admin_group_path

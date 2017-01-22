@@ -11,7 +11,9 @@
     <%= u.input :home_phone, class: 'disable-empty', label: "Phone" %>
     <%= u.input :email, class: 'disable-empty', label: "Email (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
   <% end %>
-  <%= f.input(:team_list, collection: @all_teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and @all_teams.count > 0 %>
+  <% if teams = all_teams %>
+    <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
+  <% end %>
   <%= f.simple_fields_for @topic.posts.new do |i| %>
     <%= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
     <% if !cloudinary_enabled? %>
