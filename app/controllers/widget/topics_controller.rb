@@ -21,8 +21,8 @@ class Widget::TopicsController < Widget::BaseController
       name: params[:topic][:name],
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id],
-      team_list: params[:topic][:team_list])#,
-      # channel: 'widget')
+      team_list: params[:topic][:team_list],
+      channel: 'widget')
 
     @topic.private = true
 

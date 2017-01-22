@@ -22,6 +22,7 @@
 #  updated_at       :datetime         not null
 #  locale           :string
 #  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 require 'test_helper'
@@ -94,6 +95,11 @@ class TopicsControllerTest < ActionController::TestCase
   test 'Helpy should capture the users locale when they create a new topic' do
     post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
     assert_not_nil Topic.last.locale, 'Did not capture locale when user created new topic'
+  end
+
+  test 'a new topic created though the web form should have channel "web"' do
+    post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
+    assert_equal "web", Topic.last.channel
   end
 
   test 'a user should see the option to attach files if cloudinary configured' do
