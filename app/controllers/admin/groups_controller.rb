@@ -17,7 +17,8 @@ class Admin::GroupsController < Admin::BaseController
   before_action :verify_admin
   
   def index
-    @teams = ActsAsTaggableOn::Tag.all
+    team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
+    @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
   end
 
   def new
@@ -47,6 +48,7 @@ class Admin::GroupsController < Admin::BaseController
 
   def destroy
     @team = ActsAsTaggableOn::Tag.find(params[:id])
+    @team.taggings.destroy_all
     @team.destroy
     redirect_to admin_groups_path
   end
