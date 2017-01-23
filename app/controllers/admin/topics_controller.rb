@@ -362,7 +362,7 @@ class Admin::TopicsController < Admin::BaseController
         kind: 'note',
       )
     end
-    
+
     fetch_counts
     get_all_teams
 
@@ -375,6 +375,7 @@ class Admin::TopicsController < Admin::BaseController
   def merge_tickets
     @topic = Topic.merge_topics(params[:topic_ids], current_user.id)
 
+    @posts = @topic.posts.chronologic
     fetch_counts
     get_all_teams
 
