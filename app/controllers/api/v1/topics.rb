@@ -223,6 +223,20 @@ module API
             error!('Unknown Error!', 500)
           end
         end
+
+        # MERGE TWO OR MORE TICKETS
+        desc "Merge two or more tickets together."
+        params do
+          requires :'topic_ids', type: Array[Integer], desc: "The topics to merge. Provide 2 ID in the format topic_ids[]=123&topic_ids[]=124"
+          requires :user_id, type: Integer, desc: "the User ID"
+        end
+
+        post "merge", root: :topics do
+          @ticket = Topic.merge_topics(params[:topic_ids], params[:user_id])
+          if @ticket.present?
+            present @ticket, with: Entity::Topic, posts: true
+          end
+        end
       end
 
       # PUBLIC TOPIC ENDPOINTS
