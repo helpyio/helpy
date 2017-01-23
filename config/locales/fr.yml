@@ -132,6 +132,8 @@ fr:
   private: confidentiel
   public: public
   save_changes: Enregistrez les modifications
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Multiple Discussion controls
   change_status: Changer le Statut

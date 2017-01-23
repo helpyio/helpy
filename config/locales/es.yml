@@ -132,6 +132,8 @@ es:
   private: privado
   public: publico
   save_changes: Guardar cambios
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Cambiar estado

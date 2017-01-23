@@ -132,6 +132,8 @@ tr:
   private: gizli
   public: herkese açık
   save_changes: Değişiklikleri Kaydet
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Durumu Değiştir

@@ -132,6 +132,8 @@ de:
   private: privat
   public: öffentlich
   save_changes: Änderungen speichern
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Status ändern

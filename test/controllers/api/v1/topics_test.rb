@@ -263,6 +263,31 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal new_topic['user_id'], post.user_id
   end
 
+  # TEST MERGING TOPICS
+  test "an API user should be able to merge tickets" do
+
+    # Build some topics to merge
+    topica = Topic.create(name: "message A", user_id: 1, forum_id: 1, private: true)
+    topica.posts.create(kind: 'first', body: 'message A first', user_id: 1)
+    topica.posts.create(kind: 'reply', body: 'message A reply', user_id: 1)
+    topicb = Topic.create(name: "message B", user_id: 1, forum_id: 1, private: true)
+    topicb.posts.create(kind: 'first', body: 'message B first', user_id: 1)
+    topicb.posts.create(kind: 'reply', body: 'message B reply', user_id: 1)
+
+    params = {
+      topic_ids: [topica.id, topicb.id],
+      user_id: 1
+    }
+
+    post '/api/v1/tickets/merge.json', @default_params.merge(params)
+    object = JSON.parse(last_response.body)
+
+    assert_equal('email', object['channel'])
+    assert_equal(4, object['posts'].count, "Should be 4 posts")
+    assert_equal("MERGED: Message A", object['name'], "New topic title is wrong")
+    assert_equal('note', object['posts'].last['kind'], "The last post should be a note")
+  end
+
   test "attempting to split a non existent post 404s (Not Found)" do
     params = {
       post_id: 'breh',

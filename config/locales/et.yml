@@ -132,6 +132,8 @@ et:
   private: privaatne
   public: avalik
   save_changes: Salvesta muudatused
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Muuda staatus

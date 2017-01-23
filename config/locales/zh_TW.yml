@@ -132,6 +132,8 @@ zh-tw:
   private: 私人
   public: 公開
   save_changes: 儲存變更
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: 修改狀態
