@@ -49,7 +49,7 @@ class Admin::GroupsController < Admin::BaseController
 
   def destroy
     @team = ActsAsTaggableOn::Tag.find(params[:id])
-    @team.taggings.destroy_all
+    @team.taggings.destroy_all if @team.taggings.present?
     @team.destroy
     redirect_to admin_groups_path
   end

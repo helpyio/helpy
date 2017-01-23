@@ -83,5 +83,8 @@ module TopicsHelper
     end
   end
 
+  def all_teams
+    ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).where("context = 'teams' and tags.show_on_dashboard = ?", 'true').references(:tags).map{|tagging| tagging.tag.name.capitalize }.uniq
+  end
 
 end
