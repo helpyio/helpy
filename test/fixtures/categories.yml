@@ -45,3 +45,10 @@ four:
   active: true
   front_page: true
   rank: 40
+
+common_replies:
+  id: 5
+  name: Common Replies
+  active: true
+  front_page: true
+  rank: 0

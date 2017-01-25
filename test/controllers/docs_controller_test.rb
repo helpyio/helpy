@@ -42,6 +42,11 @@ class DocsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "a browsing user should NOT be able to see a document from common replies" do
+    get :show, id: 8, locale: "en"
+    assert_response :redirect
+  end
+
   test "a browsing user should be able to show a document with comments if cloudinary is configured" do
 
     # Make sure cloudinary cloud name is setup

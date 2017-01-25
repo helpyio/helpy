@@ -2,35 +2,35 @@
 // === ADMIN GLOBAL OVERRIDES ===
 
 body {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 h1{
-	padding-top: 15px;
-	padding-bottom: 15px;
-	margin-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 h2 {
-	margin-top: 0px;
+    margin-top: 0px;
 }
 
 table {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 td > img {
-	padding-right: 20px;
-	padding-bottom: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
 }
 
 .status {
-	font-size: 120%;
+    font-size: 120%;
 }
 
 .first-post {
-	background-color: #eee;
-	margin-bottom: 20px;
+    background-color: #eee;
+    margin-bottom: 20px;
 }
 
 // === ADMIN LAYOUT ===
@@ -44,80 +44,90 @@ td > img {
 }
 
 #left-col-user-info {
-	margin-top: 30px;
-	padding-right: 30px;
-	border-right: 1px solid #eee;
+    margin-top: 30px;
+    padding-right: 30px;
+    border-right: 1px solid #eee;
 }
 
 #pipeline-wrapper {
-	background-color: #eee;
-	height: 160px;
+    background-color: #eee;
+    height: 160px;
 }
 
 #user-info-image {
-	padding-top: 0;
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-bottom: 30px;
+    padding-top: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 30px;
 }
 
 #user-info-info h4,
 #user-info-info span,
 #user-info-info .tiny-header {
-	color: #333;
+    color: #333;
 }
 
 #ticket-info {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #admin-stats {
-	height:  100px;
+    height:  100px;
 }
 
 
 #tickets {
-	// margin-top: 30px;
+    // margin-top: 30px;
 }
 
 #topic-options {
-	margin-bottom: 30px;
-	margin-top: 20px;
+    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 #user-info-horizontal {
-	padding-top: 30px;
+    padding-top: 30px;
 }
 
 .edit-topic-name {
-	input[type="text"] {
-		width: 80%;
-	}
-	&:hover {
-		cursor: pointer;
-	}
-	input[type="submit"] {
-		margin-left: 4px;
-		height: 37px;
-		vertical-align: top;
-	}
-	input[type="button"] {
-		margin-left: 4px;
-		height: 37px;
-		vertical-align: top;
-	}
+    input[type="text"] {
+        width: 80%;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    input[type="submit"] {
+        margin-left: 4px;
+        height: 37px;
+        vertical-align: top;
+    }
+    input[type="button"] {
+        margin-left: 4px;
+        height: 37px;
+        vertical-align: top;
+    }
 }
 
 
 // === ADMIN STYLES ===
 
 .white-bg {
-	background-color: white;
+    background-color: white;
+}
+
+.channel-wrapper {
+	margin-top: 10px;
+	margin-bottom: 10px;
+
+	label {
+		margin-top: 3px;
+		margin-right: 10px;
+	}
 }
 
 img.user-thumbnail {
-	padding-top: 0px;
-	padding-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 div.left-col-dropdown {
@@ -134,43 +144,43 @@ ul.dropdown-menu {
 }
 
 #user-tickets ul li {
-	margin-bottom: 7px;
-	color: #666;
+    margin-bottom: 7px;
+    color: #666;
 }
 
 .user-info {
-	padding-top: 20px;
-	padding-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 0px;
 }
 
 .edit-user {
-	margin-right: 4px;
+    margin-right: 4px;
 }
 
 .user-section {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .navbar.navbar-default {
-	background-color: #222;
+    background-color: #222;
 }
 
 .navbar-default .navbar-brand {
-	color: white;
-	font-weight: normal;
+    color: white;
+    font-weight: normal;
 }
 
 .navbar-brand {
-	padding-top: 15px;
+    padding-top: 15px;
 }
 
 .navbar-right {
-	margin-right: -28px;
+    margin-right: -28px;
 }
 
 .mailbox {
-	padding-right: 10px;
-	padding-bottom: 8px;
+    padding-right: 10px;
+    padding-bottom: 8px;
 }
 
 .ticket-control {
@@ -180,31 +190,31 @@ ul.dropdown-menu {
 }
 
 #article-editor {
-	border: 1px solid #eee;
+    border: 1px solid #eee;
 }
 
 #editor {
-	min-height: 500px;
+    min-height: 500px;
 }
 
 trix-editor {
-	min-height: 500px;
+    min-height: 500px;
 }
 
 #toolbar {
-	border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }
 
 .no-tickets {
-	margin-top: 20%;
+    margin-top: 20%;
 
-	span {
-		color: #ccc;
+    span {
+        color: #ccc;
 
-		i {
-			font-size: 48px;
-		}
-	}
+        i {
+            font-size: 48px;
+        }
+    }
 }
 
 .dummy {
@@ -252,9 +262,9 @@ a.stats.active {
 }
 
 .has-arrow {
-	position: relative;
-	border: 0px solid #333;
-	height: 100px;
+    position: relative;
+    border: 0px solid #333;
+    height: 100px;
 
   &:after,
   &:before {
@@ -300,18 +310,18 @@ a.stats.active {
 
 
 .topic-checkbox {
-	// scss-lint:disable ImportantRule
-	margin-top: 13px !important;
+    // scss-lint:disable ImportantRule
+    margin-top: 13px !important;
 }
 
 .topic span.label-count {
-	margin-top: -11px;
-	margin-right: 10px;
-	margin-left:10px;
+    margin-top: -11px;
+    margin-right: 10px;
+    margin-left:10px;
 }
 
 .settings-grid {
-	margin-top: 40px;
+    margin-top: 40px;
 }
 
 .settings-section {
@@ -321,12 +331,12 @@ a.stats.active {
   h2 {
     margin-bottom: 50px;
     margin-top: 30px;
-	}
+    }
 }
 
 .settings-menu-item {
-	margin-top: 5px;
-	margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .active-settings-link {
@@ -334,55 +344,55 @@ a.stats.active {
 }
 
 ul.settings-menu {
-	margin-top: 40px;
+    margin-top: 40px;
 }
 
 .settings-icon {
-	font-size: 20px;
-	color: #333;
+    font-size: 20px;
+    color: #333;
 }
 
 .settings-menu-icon {
-	margin-right: 5px;
-	font-size: 110%;
-	color: #333;
+    margin-right: 5px;
+    font-size: 110%;
+    color: #333;
 }
 
 .theme {
 
-	label {
-		font-size: 18px;
-		font-weight: bold;
-		color: black;
-	}
+    label {
+        font-size: 18px;
+        font-weight: bold;
+        color: black;
+    }
 
-	img {
-		max-width: 100%;
-		margin-bottom: 20px;
-	}
+    img {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
 
 }
 
 #post-images {
-	margin-top: 30px;
+    margin-top: 30px;
 
-	ul li.image img {
-		margin-top: -20px;
-	}
+    ul li.image img {
+        margin-top: -20px;
+    }
 
-	ul li.raw {
-		border: 1px solid #ddd;
-		width: 125px;
-		padding-top: 45px;
-		padding-bottom: 45px;
-		text-align: center;
+    ul li.raw {
+        border: 1px solid #ddd;
+        width: 125px;
+        padding-top: 45px;
+        padding-bottom: 45px;
+        text-align: center;
 
-		i {
-			font-size: 36px;
-			color: #ccc;
-		}
+        i {
+            font-size: 36px;
+            color: #ccc;
+        }
 
-	}
+    }
 }
 
 .color-sample {
@@ -394,54 +404,54 @@ ul.settings-menu {
 }
 
 .new-tag {
-	margin-left: 20px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-	input {
-		width: 90%;
-	}
+    input {
+        width: 90%;
+    }
 }
 
 .settings-panel .checkbox {
-	padding-top: 5px;
-	padding-bottom: 5px;
-	border-bottom: 1px solid #eee;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
 
-	label {
-		padding-left: 0;
-	}
+    label {
+        padding-left: 0;
+    }
 }
 
 .bootstrap-switch {
-	float: right;
-	margin-left: 20px;
+    float: right;
+    margin-left: 20px;
 }
 
 .full-width {
-	width: 100%;
+    width: 100%;
 }
 
 .settings-subsection {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .subitem {
-	margin-left: 3%;
-	width: 97%;
+    margin-left: 3%;
+    width: 97%;
 }
 
 .btn.post-dropdown {
-	padding: 6px 0px;
+    padding: 6px 0px;
 }
 
 .btn-group.open .dropdown-toggle {
-	-webkit-box-shadow: none;
+    -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 .post-cc-style {
-	color: #999;
+    color: #999;
 }
 
 // === KEYBOARD SHORTCUTS ===
@@ -471,160 +481,160 @@ ul.settings-menu {
 // === TEAM INSIGHTS ===
 
 .team-members {
-	margin-top: 40px;
+    margin-top: 40px;
 }
 
 .agent {
 
-	margin-bottom: 50px;
+    margin-bottom: 50px;
 
-	.agent-stat {
-		margin-bottom: 25px;
-	}
-	.agent-id {
-		margin-bottom: 35px;
-	}
-	.add-team-member {
-		margin-top: 200px;
+    .agent-stat {
+        margin-bottom: 25px;
+    }
+    .agent-id {
+        margin-bottom: 35px;
+    }
+    .add-team-member {
+        margin-top: 200px;
 
-		i {
-			font-size: 48px;
-			color: #ccc;
-		}
-	}
+        i {
+            font-size: 48px;
+            color: #ccc;
+        }
+    }
 
 }
 
 @media(max-width:767px){
-	h1 {
-		font-size: 150%;
-	}
-	h1#how-help {
-		font-size: 190%;
-	}
-	h2 {
-		font-size: 150%;
-		margin-top: 25px;
-	}
-	.checkbox-col {
-		width: 10px;
-	}
-	#status-mobile-dropdown {
-		margin-left: 5px;
-		margin-top: -5px;
+    h1 {
+        font-size: 150%;
+    }
+    h1#how-help {
+        font-size: 190%;
+    }
+    h2 {
+        font-size: 150%;
+        margin-top: 25px;
+    }
+    .checkbox-col {
+        width: 10px;
+    }
+    #status-mobile-dropdown {
+        margin-left: 5px;
+        margin-top: -5px;
 
-	}
-	.post-menu {
-		margin-top: 0px;
-	}
-	.settings-grid-block {
-		margin-bottom: 10px;
-	}
-	.settings-menu-icon {
-		font-size: 20px;
-	}
-	.agent {
-		.add-team-member {
-			margin-top: 20px;
-		}
-	}
-	.edit-topic-name {
-		input[type="text"] {
-			width: 60%;
-		}
-		input[type="submit"] {
-			height: 30px;
-		}
-		input[type="button"] {
-			height: 30px;
-		}
-	}
+    }
+    .post-menu {
+        margin-top: 0px;
+    }
+    .settings-grid-block {
+        margin-bottom: 10px;
+    }
+    .settings-menu-icon {
+        font-size: 20px;
+    }
+    .agent {
+        .add-team-member {
+            margin-top: 20px;
+        }
+    }
+    .edit-topic-name {
+        input[type="text"] {
+            width: 60%;
+        }
+        input[type="submit"] {
+            height: 30px;
+        }
+        input[type="button"] {
+            height: 30px;
+        }
+    }
 }
 
 @media(min-width:768px){
-	h1 {
-		font-size: 190%;
-	}
+    h1 {
+        font-size: 190%;
+    }
 
-	h2 {
-		margin-top: 45px;
-	}
-	.stats {
-		padding-top: 30%;
-	}
-	.stats h2 {
-		color: #666;
-		font-size: 200%;
-		margin-bottom: 0;
-		margin-top: 0;
-	}
-	#pipeline-wrapper {
-		padding-bottom: 20px;
-		padding-top: 10px;
-	}
-	.settings-grid-block {
-		min-height: 70px;
-		margin-bottom: 10px;
-	}
-	.settings-grid-row {
-		margin-bottom: 20px;
-	}
-	.edit-topic-name {
-		input[type="text"] {
-			width: 80%;
-		}
-	}
+    h2 {
+        margin-top: 45px;
+    }
+    .stats {
+        padding-top: 30%;
+    }
+    .stats h2 {
+        color: #666;
+        font-size: 200%;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    #pipeline-wrapper {
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+    .settings-grid-block {
+        min-height: 70px;
+        margin-bottom: 10px;
+    }
+    .settings-grid-row {
+        margin-bottom: 20px;
+    }
+    .edit-topic-name {
+        input[type="text"] {
+            width: 80%;
+        }
+    }
 }
 
 @media(min-width:992px){
-	h1 {
-		font-size: 200%;
-	}
-	.stats {
-		padding-top: 20%;
-	}
-	.stats h2 {
-		color: #666;
-		font-size: 300%;
-		margin-bottom: 0;
-		margin-top: 0;
-	}
-	#pipeline-wrapper {
-		padding-bottom: 0;
-		padding-top: 10px;
-	}
-	.edit-topic-name {
-		input[type="text"] {
-			width: 80%;
-		}
-	}
+    h1 {
+        font-size: 200%;
+    }
+    .stats {
+        padding-top: 20%;
+    }
+    .stats h2 {
+        color: #666;
+        font-size: 300%;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    #pipeline-wrapper {
+        padding-bottom: 0;
+        padding-top: 10px;
+    }
+    .edit-topic-name {
+        input[type="text"] {
+            width: 80%;
+        }
+    }
 }
 
 @media(min-width:1200px){
-	h1 {
-		font-size: 220%;
-	}
-	.stats {
-		padding-top: 10%;
-	}
-	.stats h2 {
-		color: #666;
-		font-size: 350%;
-		margin-top: 0px;
-		margin-bottom: 0;
-	}
-	#pipeline-wrapper {
-		padding-bottom: 0;
-		padding-top: 10px;
-	}
-	.settings-grid-row {
-		margin-bottom: 20px;
-	}
-	.edit-topic-name {
-		input[type="text"] {
-			width: 80%;
-		}
-	}
+    h1 {
+        font-size: 220%;
+    }
+    .stats {
+        padding-top: 10%;
+    }
+    .stats h2 {
+        color: #666;
+        font-size: 350%;
+        margin-top: 0px;
+        margin-bottom: 0;
+    }
+    #pipeline-wrapper {
+        padding-bottom: 0;
+        padding-top: 10px;
+    }
+    .settings-grid-row {
+        margin-bottom: 20px;
+    }
+    .edit-topic-name {
+        input[type="text"] {
+            width: 80%;
+        }
+    }
 }
 
 @media print {
@@ -646,7 +656,7 @@ ul.settings-menu {
 }
 
 .selectize-control.form-control {
-	border: 0;
+    border: 0;
 }
 
 .overflow-visible {

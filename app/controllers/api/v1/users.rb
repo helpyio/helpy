@@ -79,6 +79,7 @@ module API
           optional :linkedin, type: String, desc: "Users Linkedin username"
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated", default: true
+          optional :priority, type: String, desc: "Users Priority", values: ['low', 'normal', 'high', 'vip'], default: 'normal'
         end
         post "", root: :users do
           user = User.create!(
@@ -103,7 +104,8 @@ module API
             twitter: permitted_params[:twitter],
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
-            active: permitted_params[:active]
+            active: permitted_params[:active],
+            priority: permitted_params[:priority]
             )
           present user, with: Entity::User
         end
@@ -137,6 +139,7 @@ module API
           optional :linkedin, type: String, desc: "Users Linkedin username"
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated"
+          optional :priority, type: String, desc: "Users Priority- low, normal, high or vip", default: 'normal'
         end
         patch ":id", root: :users do
           user = User.where(id: permitted_params[:id]).first
@@ -162,7 +165,8 @@ module API
             twitter: permitted_params[:twitter],
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
-            active: permitted_params[:active]
+            active: permitted_params[:active],
+            priority: permitted_params[:priority]
             )
           present user, with: Entity::User
         end

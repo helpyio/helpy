@@ -83,10 +83,10 @@ pt:
   version: "Versão:"
 
   # flag
-  #flag_for_review: 
-  #flag_post_for_review: 
+  #flag_for_review:
+  #flag_post_for_review:
   #flag_post_placeholder:
-  #flag: 
+  #flag:
 
   # devise/sessions/new
   login: "Entrar"
@@ -132,6 +132,8 @@ pt:
   private: "privado"
   public: "público"
   save_changes: "Guardar Alterações"
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: "Alterar Estado"
@@ -160,6 +162,13 @@ pt:
   edit_user: "Editar Utilizador"
   work_phone: "trabalho"
   cell_phone: "telemóvel"
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
@@ -330,4 +339,4 @@ pt:
           million: M
           billion: B
           trillion: T
-          quadrillion: Q      
+          quadrillion: Q

@@ -129,7 +129,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
       assert_difference "Doc.count", 1 do
         post :create, doc: { title: "some name", body: "some body text", category_id: 1 }, locale: :en
       end
-      assert_redirected_to admin_category_path(Doc.last.category.id)
+      assert_redirected_to admin_category_path(Doc.find(1).category.id)
     end
 
     # TODO: Need to move this test to Integration, because it crosses from admin into front-end views
@@ -137,7 +137,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
     #   assert_difference "Doc.count", 1 do
     #     post :create, doc: { title: "some name", body: "some body text", category_id: 1 }, locale: :en
     #   end
-    #   lastdoc = Doc.last
+    #   lastdoc =
     #   get :show, id: lastdoc, locale: :en
     #   assert_response :success
     # end
@@ -145,14 +145,14 @@ class Admin::DocsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to update an article" do
       sign_in users(admin.to_sym)
       patch :update, { id: 1, doc: { title: "some name", body: "some body text", category_id: 1 }, locale: :en }
-      assert_redirected_to admin_category_path(Doc.last.category.id)
+      assert_redirected_to admin_category_path(Doc.find(1).category.id)
     end
 
     test "an #{admin} should be able to create a new translation via the update page" do
       sign_in users(admin.to_sym)
       patch :update, { id: 1, doc: { title: "En Francais", body: "Ceci est la version française", category_id: 1 }, locale: :en, lang: :fr }
       assert_equal Doc.find(1).translations.count, 2
-      assert_redirected_to admin_category_path(Doc.last.category.id)
+      assert_redirected_to admin_category_path(Doc.find(1).category.id)
     end
 
     # TODO: Need to move this test to Integration, because it crosses from admin into front-end views

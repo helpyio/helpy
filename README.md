@@ -13,12 +13,12 @@ Features
 
 Helpy is an integrated support solution- combining and leveraging synergies between support ticketing, Knowledgebase and a public community.  Each feature is optional however, and can be easily disabled.
 
-- **Private Support Discussions (aka tickets):** Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
-- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum.
-- **Voting**: Discussion topics and replies support voting.
+- **Multichannel ticketing:** Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you.
 - **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing.
 - **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
+- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum.
+- **Voting**: Discussion topics and replies support voting.
 - **Embed Widget:** Helpy Includes a lightweight javascript widget that allows your users to contact you from just about anywhere.
 - **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for 19 languages and is easy to translate.
 - **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
@@ -102,6 +102,6 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 License
 =======
 
-Copyright 2016, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2017, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)

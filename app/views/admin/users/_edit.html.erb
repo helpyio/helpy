@@ -22,6 +22,7 @@
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
       <%= f.select(:role, [[t('select_role'),''],[t('admin_role'),'admin'],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? %>
       <%= f.text_field :team_list, value: @user.team_list.to_s, class: 'selectize form-control', label: "Group Membership" if AppSettings['settings.teams'] && current_user.is_admin? && @user.is_agent? %>
+      <%= f.select(:priority, [[t('select_priority'),'Select Priority'],[t('low_priority'),'low'],[t('normal_priority'),'normal'],[t('high_priority'),'high'],[t('vip_priority'),'vip']]) if current_user.is_admin? %>
       <%= f.check_box :active %> <%#= f.check_box :admin, inline: true %>
     </div>
     <div class="user-section">

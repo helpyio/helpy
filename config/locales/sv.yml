@@ -79,10 +79,10 @@ sv:
   get_your_copy: "Hämta din kopia på GitHub."
 
   # flag
-  #flag_for_review: 
-  #flag_post_for_review: 
+  #flag_for_review:
+  #flag_post_for_review:
   #flag_post_placeholder:
-  #flag: 
+  #flag:
 
   # devise/sessions/new
   login: 'Logga in'
@@ -128,6 +128,8 @@ sv:
   private: 'privat'
   public: 'publik'
   save_changes: 'Spara ändringar'
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: 'Ändra Status'
@@ -156,6 +158,13 @@ sv:
   edit_user: Redigera användarkonto
   work_phone: arbete
   cell_phone: mobil
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:

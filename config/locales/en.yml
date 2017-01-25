@@ -135,6 +135,8 @@ en:
   private: private
   public: public
   save_changes: Save Changes
+  merge: Merge
+  merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Change Status
@@ -163,6 +165,13 @@ en:
   edit_user: Edit User
   work_phone: work
   cell_phone: cell
+
+  # Priorities
+  select_priority: Select Priority
+  vip_priority: VIP
+  high_priority: High
+  normal_priority: Normal
+  low_priority: Low
 
   # Roles
   select_role: Select Role
@@ -307,6 +316,7 @@ en:
         name: Name
         company: Company
         work_phone: Work
+        home_phone: Phone
         cell_phone: Cell
         city: City
         state: State

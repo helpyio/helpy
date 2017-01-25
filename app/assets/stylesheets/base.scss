@@ -808,8 +808,8 @@ h5.category-header {
     color: #004084;
   }
   img {
-    width: 90%;
-    height: 90%;
+    max-width: 90%;
+    height: auto;
     margin-left: 5%;
     margin-right: 5%;
   }

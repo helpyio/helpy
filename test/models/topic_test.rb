@@ -20,8 +20,9 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  doc_id           :integer          default(0)
 #  locale           :string
+#  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 require 'test_helper'
@@ -161,6 +162,21 @@ class TopicTest < ActiveSupport::TestCase
     assert_difference 'Topic.count', +1 do
       Topic.create_comment_thread(1, 1)
     end
+  end
+
+  test "Should be able to merge two topics and copy posts" do
+    topica = Topic.create(name: "message A", user_id: 1, forum_id: 1, private: true)
+    topica.posts.create(kind: 'first', body: 'message A first', user_id: 1)
+    topica.posts.create(kind: 'reply', body: 'message A reply', user_id: 1)
+    topicb = Topic.create(name: "message B", user_id: 1, forum_id: 1, private: true)
+    topicb.posts.create(kind: 'first', body: 'message B first', user_id: 1)
+    topicb.posts.create(kind: 'reply', body: 'message B reply', user_id: 1)
+
+    newtopic = Topic.merge_topics([topica.id, topicb.id])
+    assert_equal(4, newtopic.posts.count, "Should be 4 posts")
+    assert_equal("MERGED: Message A", newtopic.name, "New topic title is wrong")
+    assert_equal(1, newtopic.posts.where(kind: 'first').all.count, "There should only be one first post")
+    assert_equal('note', newtopic.posts.last.kind, "The last post should be a note")
   end
 
 end

@@ -181,6 +181,14 @@ Helpy.ready = function(){
     Helpy.showGroup();
   });
 
+  // Generate temp email address on demand, in case the user does not have an email
+  $('.generate-temp').off().on('click', function(){
+    if ($('#topic_user_email').val() === '') {
+      $('#topic_user_email').val("change@me-" + $("#topic_user_home_phone").val() + '-' + $("#topic_user_name").val().replace(" ","-") + '.com');
+      return false;
+    }
+  });
+
 
   // Hide/replace last child of breadcrumbs since I don't have time to hack gem right now
   $("ul.breadcrumb li:last-child").html("");
@@ -231,17 +239,24 @@ Helpy.ready = function(){
     var output;
     var messages = $('.topic-checkbox:checked').size();
 
+    $('.merge-span').hide();
+    console.log("Update");
+
     switch(messages) {
       case 1:
         output = Helpy.selected[1];
+        $('.merge-span').hide();
         break;
       case 2:
         output = Helpy.selected[2];
+        $('.merge-span').show();
         break;
       default:
         output = Helpy.selected[3].replace("9", messages);
+        $('.merge-span').show();
         break;
     }
+
     $('.selected-message').text(output);
   }
 
