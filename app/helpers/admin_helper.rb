@@ -92,6 +92,49 @@ module AdminHelper
     end
   end
 
+  def helpcenter_menu
+    content_tag :li, class: 'dropdown pull-left visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
+      concat helpcenter_link
+      concat helpcenter_items
+    end
+  end
+
+  def helpcenter_link
+    link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+      concat t(:helpcenter, default: 'Helpcenter')
+      concat content_tag(:span, '', class: 'caret')
+    end
+  end
+
+  def helpcenter_items
+    content_tag :ul, class: 'dropdown-menu' do
+      concat content_tag(:li, link_to(t(:content, default: "Content"), admin_categories_path), class:'kblink') if knowledgebase? && current_user.is_editor?
+      concat content_tag(:li, link_to(t(:communities, default: "Communities"), admin_forums_path)) if forums? && current_user.is_agent?
+    end
+  end
+
+  def admin_avatar_menu
+    content_tag :li, class: 'dropdown pull-right visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
+      concat admin_avatar_menu_link
+      concat admin_avatar_menu_items
+    end
+  end
+
+  def admin_avatar_menu_link
+    link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+      concat avatar_image(current_user, size=30) + current_user.name
+      concat content_tag(:span, '', class: 'caret')
+    end
+  end
+
+  def admin_avatar_menu_items
+    content_tag :ul, class: 'dropdown-menu' do
+      concat content_tag(:li, link_to(t(:your_profile, default: 'Your Profile'), admin_profile_settings_path(mode: 'settings')), class: 'visible-lg visible-md visible-sm hidden-xs')
+      concat content_tag(:li, link_to(t('notifications', default: "notifications"), admin_notifications_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
+      concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
+    end
+  end
+
   # Adds a settings-link class if no link is found.
   def settings_link(link)
     "settings-link" if link.blank? || link == '#'
