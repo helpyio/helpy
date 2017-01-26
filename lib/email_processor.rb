@@ -20,8 +20,8 @@ class EmailProcessor
     end
 
     sitename = AppSettings["settings.site_name"]
-    message = @email.body
-    raw = @email.raw_body
+    message = @email.body.encode('utf-8', invalid: :replace, replace: '?')
+    raw = @email.raw_body.encode('utf-8', invalid: :replace, replace: '?')
     subject = @email.subject
     attachments = @email.attachments
 
@@ -90,7 +90,7 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
+        :body => message,
         :raw_email => raw,
         :user_id => @user.id,
         :kind => "first"
