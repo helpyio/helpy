@@ -80,6 +80,7 @@ module API
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated", default: true
           optional :priority, type: String, desc: "Users Priority", values: ['low', 'normal', 'high', 'vip'], default: 'normal'
+          optional :extra_info, type: Hash, desc: "User extra infos"
         end
         post "", root: :users do
           user = User.create!(
@@ -105,7 +106,8 @@ module API
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
             active: permitted_params[:active],
-            priority: permitted_params[:priority]
+            priority: permitted_params[:priority],
+            extra_info: permitted_params[:extra_info]
             )
           present user, with: Entity::User
         end
@@ -140,6 +142,7 @@ module API
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated"
           optional :priority, type: String, desc: "Users Priority- low, normal, high or vip", default: 'normal'
+          optional :extra_info, type: Hash, desc: "User extra infos"
         end
         patch ":id", root: :users do
           user = User.where(id: permitted_params[:id]).first
@@ -166,7 +169,8 @@ module API
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
             active: permitted_params[:active],
-            priority: permitted_params[:priority]
+            priority: permitted_params[:priority],
+            extra_info: permitted_params[:extra_info]
             )
           present user, with: Entity::User
         end
