@@ -10,7 +10,7 @@ Helpy.showShortcuts = function() {
   }
   $('#shortcutmodal').modal();
   return false;
-}
+};
 
 Helpy.initShortcuts = function() {
 
