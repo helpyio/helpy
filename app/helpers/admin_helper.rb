@@ -97,7 +97,7 @@ module AdminHelper
   end
 
   def help_menu
-    content_tag :li, class: 'dropdown pull-left visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
+    content_tag :li, class: 'dropdown pull-left', role: 'presentation' do
       concat help_link
       concat help_items
     end
@@ -120,14 +120,14 @@ module AdminHelper
   end
 
   def helpcenter_menu
-    content_tag :li, class: 'dropdown pull-left visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
+    content_tag :li, class: 'dropdown' do
       concat helpcenter_link
       concat helpcenter_items
     end
   end
 
   def helpcenter_link
-    link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+    link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
       concat t(:helpcenter, default: 'Helpcenter')
       concat content_tag(:span, '', class: 'caret')
     end
