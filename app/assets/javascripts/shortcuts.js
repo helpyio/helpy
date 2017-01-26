@@ -1,3 +1,17 @@
+Helpy.showShortcuts = function() {
+  if ($('#shortcutmodal').size() === 0) {
+    $('body').append("<div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\">" +
+        "<div class=\"modal-dialog modal-lg\">" +
+        "	<div class=\"modal-content\">" +
+        "		<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"auto\"></iframe>" +
+        "	</div>" +
+        "</div>" +
+      "</div>");
+  }
+  $('#shortcutmodal').modal();
+  return false;
+}
+
 Helpy.initShortcuts = function() {
 
   // Keyboard Shortcut definition
@@ -151,16 +165,6 @@ Helpy.initShortcuts = function() {
 
   // Show help screen
   Mousetrap.bind('?', function() {
-
-    if ($('#shortcutmodal').size() === 0) {
-      $('body').append("<div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\">" +
-          "<div class=\"modal-dialog modal-lg\">" +
-          "	<div class=\"modal-content\">" +
-          "		<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"auto\"></iframe>" +
-          "	</div>" +
-          "</div>" +
-        "</div>");
-    }
-    $('#shortcutmodal').modal();
+    Helpy.showShortcuts();
   });
 };

@@ -1,6 +1,6 @@
 class Admin::SettingsController < Admin::BaseController
 
-  before_action :verify_admin, except: ['index', 'notifications','update_notifications']
+  before_action :verify_admin, except: ['index', 'notifications','update_notifications', 'profile']
   before_action :verify_agent, only: ['index', 'notifications', 'update_notifications']
   skip_before_action :verify_authenticity_token
 
@@ -66,7 +66,7 @@ class Admin::SettingsController < Admin::BaseController
     @settings = AppSettings.get_all
     # iterate through
     @settings.each do |setting|
-      AppSettings[setting[0]] = params[setting[0].to_sym]
+      AppSettings[setting[0]] = params[setting[0].to_sym] if params[setting[0].to_sym].present?
     end
 
     @logo = Logo.new

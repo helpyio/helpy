@@ -9,22 +9,20 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://helpy.local:3000/en"><img width="40" class="pull-left logo" src="/assets/logo-f63b1eddb33664833b4a5677abd5f482a2ee64d344bf22e6fb7566664541a399.png" alt="Logo">
-        <span class="hidden-sm">Helpy Support</span>
-      </a>
+      <%= link_to root_path, class: 'navbar-brand' do
+        image_tag('logo.png', width: '40', alt: 'Logo', class: 'pull-left logo') + content_tag(:span, "Helpy Support", class:'hidden-xs')
+      end %>
+
       <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <%= content_tag(:li, link_to(glyph(:plus), new_admin_topic_path, remote: (params[:controller] == 'admin/topics')), class: 'visible-lg visible-md visible-sm hidden-xs click-loader new-discussion') if current_user.is_agent? %>
-          <%= content_tag(:li, link_to(t(:get_help, default: "Help"), "http://support.helpy.io/", class: 'visible-lg visible-md visible-sm hidden-xs settings-cog', target: 'blank')) %>
-          <%= content_tag(:li, link_to(t(:settings, default: "Settings"), admin_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs settings-cog') if current_user.is_agent? %>
+        <ul class="nav navbar-nav navbar-right pull-right">
+          <%= content_tag(:li, navbar_expanding_link(new_admin_topic_path, "fa fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')), class: 'visible-lg visible-md visible-sm hidden-xs click-loader new-discussion') if current_user.is_agent? %>
+          <%= help_menu %>
           <%= admin_avatar_menu %>
         </ul>
         <ul class="nav navbar-nav navbar-left">
           <%= content_tag(:li, link_to(t(:discussions, default: "Discussions"), admin_topics_path)) if (forums? || tickets?) && current_user.is_agent? %>
           <%= content_tag(:li, link_to(t(:team, default: 'Team'), admin_stats_path(interval: 7))) if tickets? && current_user.is_admin? %>
-
-          <%= helpcenter_menu if knowledgebase? && current_user.is_editor? %>
-
+          <%= helpcenter_menu if (knowledgebase? || forums?) && current_user.is_editor? %>
           <%= content_tag(:li, link_to(t(:app_store, default: "App Store"), "http://helpy.io/store/"), class: "hidden-sm") %>
           <%= content_tag(:li, link_to(t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path), class: 'visible-xs hidden-lg hidden-md hidden-sm') if current_user.is_agent? %>
           <%= content_tag(:li, link_to(t(:settings, default: "Settings"), admin_settings_path), class: 'visible-xs hidden-lg hidden-md hidden-sm') if current_user.is_admin? %>

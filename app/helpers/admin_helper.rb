@@ -63,6 +63,10 @@ module AdminHelper
     options_for_select(options, AppSettings['i18n.default_locale'].to_s )
   end
 
+  def navbar_expanding_link(url, icon, text, target="", remote=false)
+    link_to(content_tag(:span, '', class: "#{icon} hidden-lg hidden-md", title: text) + content_tag(:span, text, class: "hidden-sm hidden-xs"), url, remote: remote, target: target)
+  end
+
   def settings_item(icon, title, description, link = "")
     content_tag(:div, class: 'col-md-6 col-sm-6 settings-grid-block') do
       content_tag(:div, class: 'media') do
@@ -92,6 +96,29 @@ module AdminHelper
     end
   end
 
+  def help_menu
+    content_tag :li, class: 'dropdown pull-left visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
+      concat help_link
+      concat help_items
+    end
+  end
+
+  def help_link
+    link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+      concat t(:get_help, default: 'Help')
+      concat content_tag(:span, '', class: 'caret')
+    end
+  end
+
+  def help_items
+    content_tag :ul, class: 'dropdown-menu' do
+      concat content_tag(:li, link_to(t(:get_help, default: "Get Help"), "http://support.helpy.io/"), target: "blank")
+      concat content_tag(:li, link_to(t(:report_bug, default: "Report a Bug"), "http://github.com/helpyio/helpy/issues"), target: "blank")
+      concat content_tag(:li, link_to(t(:suggest_feature, default: "Suggest a Feature"), "http://support.helpy.io/en/community/4-feature-requests/topics"), target: "blank")
+      concat content_tag(:li, link_to(t(:shortcuts, default: "Keyboard Shortcuts"), "#", class: 'keyboard-shortcuts-link'), target: "blank")
+    end
+  end
+
   def helpcenter_menu
     content_tag :li, class: 'dropdown pull-left visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
       concat helpcenter_link
@@ -114,7 +141,7 @@ module AdminHelper
   end
 
   def admin_avatar_menu
-    content_tag :li, class: 'dropdown pull-right visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
+    content_tag :li, class: 'dropdown visible-lg visible-md visible-sm hidden-xs', role: 'presentation' do
       concat admin_avatar_menu_link
       concat admin_avatar_menu_items
     end
@@ -122,7 +149,7 @@ module AdminHelper
 
   def admin_avatar_menu_link
     link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
-      concat avatar_image(current_user, size=30) + current_user.name
+      concat content_tag(:span, avatar_image(current_user, size=20) + current_user.name, class: 'admin-avatar')
       concat content_tag(:span, '', class: 'caret')
     end
   end
@@ -130,6 +157,10 @@ module AdminHelper
   def admin_avatar_menu_items
     content_tag :ul, class: 'dropdown-menu' do
       concat content_tag(:li, link_to(t(:your_profile, default: 'Your Profile'), admin_profile_settings_path(mode: 'settings')), class: 'visible-lg visible-md visible-sm hidden-xs')
+      concat content_tag(:li, link_to(t(:settings, default: 'Settings'), admin_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
+
+
+      concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
       concat content_tag(:li, link_to(t('notifications', default: "notifications"), admin_notifications_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
       concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
     end

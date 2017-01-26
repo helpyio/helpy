@@ -115,6 +115,10 @@ td > img {
     background-color: white;
 }
 
+.admin-avatar img {
+  margin-right: 8px;
+}
+
 .channel-wrapper {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -172,6 +176,7 @@ ul.dropdown-menu {
 
 .navbar-brand {
     padding-top: 15px;
+    margin-right: 40px;
 }
 
 .navbar-right {
