@@ -30,5 +30,6 @@ module Entity
     expose :email
     expose :sign_in_count, documentation: { type: "Integer" }
     expose :team_list
+    expose :extra_info
   end
 end

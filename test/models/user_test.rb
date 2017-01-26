@@ -69,7 +69,7 @@ class UserTest < ActiveSupport::TestCase
   test 'should assign values to extra_info json field' do
     @user = User.new(name: 'Foo bar', extra_info: { something: 'something' })
 
-    assert_equal @user.extra_info, { 'something' => 'something' }
+    assert_equal @user.extra_info, { something: 'something' }
   end
 
   test "should count number of assigned topics" do

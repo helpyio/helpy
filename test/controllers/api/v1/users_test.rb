@@ -114,6 +114,23 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     assert_equal params[:name], object['name']
   end
 
+  test "an API user should be able to create a user with extra infos" do
+    params = {
+      name: "Tom Brady",
+      email: "tom@test.com",
+      password: "12345678",
+      extra_info: {
+        something: 'something'
+      }
+    }
+
+    post '/api/v1/users.json', @default_params.merge(params)
+
+    object = JSON.parse(last_response.body)
+
+    assert_equal object['extra_info'], { 'something' => 'something' }
+  end
+
   test "an API user should not be able to create an invalid user" do
     params = {
       name: "Tom Brady",
