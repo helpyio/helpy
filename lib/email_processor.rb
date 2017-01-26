@@ -20,8 +20,9 @@ class EmailProcessor
     end
 
     sitename = AppSettings["settings.site_name"]
-    message = @email.body.encode('utf-8', invalid: :replace, replace: '?')
-    raw = @email.raw_body.encode('utf-8', invalid: :replace, replace: '?')
+    message = @email.body.nil? ? "" : @email.body
+    raw = @email.raw_body.nil? ? "" : @email.raw_body
+
     subject = @email.subject
     attachments = @email.attachments
 
@@ -34,8 +35,8 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message,
-        :raw_email => raw,
+        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
+        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
         :user_id => @user.id,
         :kind => "reply"
       )
@@ -61,7 +62,8 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create!(
-        :body => @email.raw_body,
+        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
+        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
         :user_id => @user.id,
         kind: 'first'
       )
@@ -90,8 +92,8 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message,
-        :raw_email => raw,
+        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
+        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
         :user_id => @user.id,
         :kind => "first"
       )
