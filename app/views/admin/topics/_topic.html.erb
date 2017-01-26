@@ -7,14 +7,14 @@
   </td>
 
   <td>
-      <span class="topic-link more-important truncate-ellipsis">
-        <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic), remote: true -%>
+      <span class="more-important truncate-ellipsis">
+        <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic), remote: true, class: "click-loader topic-link topic-link-#{topic.id}" -%>
         <%= badge_for_status(topic.current_status) %>
         <%= badge_for_private if forums? and topic.private? %>
         <% tag_listing(topic.team_list) %>
       </span>
     <span class="less-important user-link">
-      <%= link_to t(:started_by, username: topic.user.name? ? topic.user.name.titleize : topic.user.email, default: "Started by #{topic.user.name? ? topic.user.name.titleize : topic.user.email}"), admin_user_path(topic.user.id), remote: true %>
+      <%= link_to t(:started_by, username: topic.user_name? ? topic.user_name.titleize : topic.user.email, default: "Started by #{topic.user_name? ? topic.user_name.titleize : topic.user.email}"), admin_user_path(topic.user.id), remote: true %>
       - <%= assigned_to(topic) %>
     </span>
   </td>

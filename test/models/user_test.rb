@@ -53,6 +53,10 @@
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
 #  profile_image          :string
+#  notify_on_private      :boolean          default(FALSE)
+#  notify_on_public       :boolean          default(FALSE)
+#  notify_on_reply        :boolean          default(FALSE)
+#  account_number         :string
 #
 
 require 'test_helper'
@@ -211,9 +215,9 @@ class UserTest < ActiveSupport::TestCase
       password: '12345678',
       role: 'agent'
     )
-    assert_equal u.settings.notify_on_private, "1"
-    assert_equal u.settings.notify_on_public, "1"
-    assert_equal u.settings.notify_on_reply, "1"
+    assert_equal u.notify_on_private, false
+    assert_equal u.notify_on_public, false
+    assert_equal u.notify_on_reply, false
   end
 
   test "An admin should be enabled for notifications after they are created" do
@@ -223,9 +227,9 @@ class UserTest < ActiveSupport::TestCase
       password: '12345678',
       role: 'admin'
     )
-    assert_equal u.settings.notify_on_private, "1"
-    assert_equal u.settings.notify_on_public, "1"
-    assert_equal u.settings.notify_on_reply, "1"
+    assert_equal u.notify_on_private, true
+    assert_equal u.notify_on_public, true
+    assert_equal u.notify_on_reply, true
   end
 
   test "A user should NOT be enabled for notifications after they are created" do
@@ -235,9 +239,9 @@ class UserTest < ActiveSupport::TestCase
       password: '12345678',
       role: 'user'
     )
-    assert_equal nil, u.settings.notify_on_private, "Should not be enabled for private notifications"
-    assert_equal nil, u.settings.notify_on_public, "Should not be enabled for public notifications"
-    assert_equal nil, u.settings.notify_on_reply, "Should not be enabled for reply notifications"
+    assert_equal u.notify_on_private, false, "Should not be enabled for private notifications"
+    assert_equal u.notify_on_public, false, "Should not be enabled for public notifications"
+    assert_equal u.notify_on_reply, false, "Should not be enabled for reply notifications"
   end
 
   test "Should be able to assign an agent to a group" do
@@ -253,33 +257,54 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "notifiable_on_private should return private scope" do
-    User.agents.each do |a|
-      a.settings.notify_on_private = "1"
-    end
 
     assert_equal 3, User.notifiable_on_private.count, "Should return the number of notifiable users"
-    User.agents.last.settings.notify_on_private = "0"
+    u = User.agents.last
+    u.notify_on_private = false
+    u.save!
+
     assert_equal 2, User.notifiable_on_private.count, "Should return one less notifiable users"
   end
 
   test "notifiable_on_public should return public scope" do
-    User.agents.each do |a|
-      a.settings.notify_on_public = "1"
-    end
 
     assert_equal 3, User.notifiable_on_public.count, "Should return the number of notifiable users"
-    User.agents.last.settings.notify_on_public = "0"
+    u = User.agents.last
+    u.notify_on_public = false
+    u.save!
     assert_equal 2, User.notifiable_on_public.count, "Should return one less notifiable users"
   end
 
   test "notifiable_on_reply should return reply scope" do
-    User.agents.each do |a|
-      a.settings.notify_on_reply = "1"
-    end
-
     assert_equal 3, User.notifiable_on_reply.count, "Should return the number of notifiable users"
-    User.agents.last.settings.notify_on_reply = "0"
+    u = User.agents.last
+    u.notify_on_reply = false
+    u.save!
     assert_equal 2, User.notifiable_on_reply.count, "Should return one less notifiable users"
+  end
+
+  test "Reject single quotes from user name" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: %['test agent'],
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'test agent', u.name
+  end
+
+  test "Reject double quotes from user name" do
+    u = User.create!(
+      email: 'agent@temp.com',
+      name: %["test agent"],
+      password: '12345678',
+      role: 'agent',
+      team_list: 'something'
+    )
+
+    assert_equal 'test agent', u.name
   end
 
 end

@@ -125,11 +125,12 @@ class ApplicationController < ActionController::Base
     Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
 
     ActionMailer::Base.smtp_settings = {
-        :address   => AppSettings["email.mail_smtp"],
-        :port      => AppSettings["email.mail_port"],
-        :user_name => AppSettings["email.smtp_mail_username"],
-        :password  => AppSettings["email.smtp_mail_password"],
-        :domain    => AppSettings["email.mail_domain"]
+        :address              => AppSettings["email.mail_smtp"],
+        :port                 => AppSettings["email.mail_port"],
+        :user_name            => AppSettings["email.smtp_mail_username"].presence,
+        :password             => AppSettings["email.smtp_mail_password"].presence,
+        :domain               => AppSettings["email.mail_domain"],
+        :enable_starttls_auto => !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"])
     }
 
     ActionMailer::Base.perform_deliveries = to_boolean(AppSettings['email.send_email'])

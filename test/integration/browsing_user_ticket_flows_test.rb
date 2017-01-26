@@ -16,14 +16,14 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "a browsing user who is not registered should be able to create a private ticket via the web interface" do
-    
+
     # make sure recaptcha is disabled
     AppSettings['settings.recaptcha_site_key'] = ""
     AppSettings['settings.recaptcha_api_key'] = ""
 
     # create new private ticket
     visit '/en/topics/new/'
-    
+
     # a new user should be created
     assert_difference('User.count', 1) do
       assert_difference('Topic.count',1) do
@@ -31,7 +31,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic[user][name]', with: 'John Smith')
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-        click_on('Start Discussion', disabled: true)
+        click_on('Create Ticket', disabled: true)
       end
     end
     assert current_path == '/en/thanks'
@@ -39,14 +39,14 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "a browsing user who is not registered should be able to create a public ticket via the web interface when recaptcha enable" do
-    
+
     # make sure recaptcha is enabled
     AppSettings['settings.recaptcha_site_key'] = "some-key"
     AppSettings['settings.recaptcha_api_key'] = "some-key"
 
     # create new private ticket
     visit '/en/topics/new/'
-    
+
     # a new user should be created
     assert_difference('User.count', 1) do
       assert_difference('Topic.count',1) do
@@ -54,7 +54,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic[user][name]', with: 'John Smith')
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-        click_on('Start Discussion', disabled: true)
+        click_on('Create Ticket', disabled: true)
       end
     end
     assert current_path == "/en/topics/#{Topic.last.id}-i-got-problems/posts"
@@ -73,7 +73,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic[user][name]', with: 'Scott Miller')
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-        click_on('Start Discussion', disabled: true)
+        click_on('Create Ticket', disabled: true)
       end
     end
 
@@ -87,7 +87,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     forums.each do |forum|
       visit forum
-      click_on "New Discussion"
+      click_on "Start a Discussion"
       assert find("div#login-modal").visible?
     end
   end
@@ -114,9 +114,15 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
       fill_in('topic_user_name', with: 'Joe Guy')
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Start Discussion', disabled: true)
+      click_on('Create Ticket', disabled: true)
     end
 
+  end
+
+  test "a browsing user should be prompted to login when clicking flag for review from a public discussion view" do
+    visit '/en/topics/5-new-public-topic/posts'
+    click_on "Flag for Review"
+    assert find("div#login-modal").visible?
   end
 
 

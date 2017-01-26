@@ -53,6 +53,10 @@
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
 #  profile_image          :string
+#  notify_on_private      :boolean          default(FALSE)
+#  notify_on_public       :boolean          default(FALSE)
+#  notify_on_reply        :boolean          default(FALSE)
+#  account_number         :string
 #
 
 class User < ActiveRecord::Base
@@ -61,6 +65,8 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
+
+  INVALID_NAME_CHARACTERS = /\A('|")|('|")\z/
 
   # Add preferences to user model
   include RailsSettings::Extend
@@ -78,7 +84,7 @@ class User < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :user_search,
-                  against: [:name, :login, :email, :company]
+                  against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
   paginates_per 15
 
@@ -93,7 +99,8 @@ class User < ActiveRecord::Base
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
-  after_create :enable_notifications_for_agents
+  after_create :enable_notifications_for_admin
+  before_save :reject_invalid_characters_from_name
   acts_as_taggable_on :teams
 
   ROLES = %w[admin agent editor user]
@@ -111,31 +118,24 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def enable_notifications_for_agents
-    if self.role == "agent" || self.role == "admin"
-      self.settings.notify_on_private = "1"
-      self.settings.notify_on_public = "1"
-      self.settings.notify_on_reply = "1"
-    else
-      self.settings.notify_on_private = nil
-      self.settings.notify_on_public = nil
-      self.settings.notify_on_reply = nil
+  def enable_notifications_for_admin
+    if self.role == "admin"
+      self.notify_on_private = true
+      self.notify_on_public = true
+      self.notify_on_reply = true
     end
   end
 
   def self.notifiable_on_public
-    # Iterates through agents, selecting those with notifications on
-    User.agents.order('id asc').map { |a| a.settings.notify_on_public == "1" ? a.email : '' }.select {|x| x.present?}
+    User.agents.where(notify_on_public: true).reorder('id asc')
   end
 
   def self.notifiable_on_private
-    # Iterates through agents, selecting those with notifications on
-    User.agents.order('id asc').map { |a| a.settings.notify_on_private == "1" ? a.email : '' }.select {|x| x.present?}
+    User.agents.where(notify_on_private: true).reorder('id asc')
   end
 
   def self.notifiable_on_reply
-    # Iterates through agents, selecting those with notifications on
-    User.agents.order('id asc').map { |a| a.settings.notify_on_reply == "1" ? a.email : '' }.select {|x| x.present?}
+    User.agents.where(notify_on_reply: true).reorder('id asc')
   end
 
   def active_assigned_count
@@ -186,6 +186,17 @@ class User < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  def signup_guest
+    enc = Devise.token_generator.generate(User, :reset_password_token)
+    self.reset_password_token = enc
+    self.reset_password_sent_at = Time.now.utc
+
+    self.login = self.email.split("@")[0]
+    self.password = User.create_password
+    self.save
+  end
+
+
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
   # and changing it could be painful for upgrading installed users. These are three
   # Utility methods for checking the role of an admin:
@@ -222,6 +233,12 @@ class User < ActiveRecord::Base
   #when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  private
+
+  def reject_invalid_characters_from_name
+    self.name = name.gsub(INVALID_NAME_CHARACTERS, '') if !!name.match(INVALID_NAME_CHARACTERS)
   end
 
 end

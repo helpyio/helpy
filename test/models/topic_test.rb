@@ -20,8 +20,9 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  doc_id           :integer          default(0)
 #  locale           :string
+#  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 require 'test_helper'
@@ -58,6 +59,13 @@ class TopicTest < ActiveSupport::TestCase
 
     assert @topic.user_name == @user.name
 
+  end
+
+  test "updating the topic should update the owner name cache" do
+    new_user = User.find(7)
+    Topic.find(2).update(user: new_user)
+
+    assert_equal Topic.find(2).user_name, new_user.name
   end
 
   test "trashed messages should be in forum 2, and unassigned" do
@@ -114,7 +122,7 @@ class TopicTest < ActiveSupport::TestCase
     topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
     topic.close
     assert_equal 'closed', topic.current_status
-    assert_equal nil, topic.assigned_user_id
+    assert_nil topic.assigned_user_id
   end
 
   test "#trash should set the current_status of the topic to trash, assigned_user_id to nil, and should create a closed_message post belonging to that topic" do
@@ -122,7 +130,7 @@ class TopicTest < ActiveSupport::TestCase
     t_posts_count = topic.posts.count
     topic.trash
     assert_equal 'trash', topic.current_status
-    assert_equal nil, topic.assigned_user_id
+    assert_nil topic.assigned_user_id
     assert_equal t_posts_count + 1, topic.posts.count
   end
 
@@ -154,6 +162,21 @@ class TopicTest < ActiveSupport::TestCase
     assert_difference 'Topic.count', +1 do
       Topic.create_comment_thread(1, 1)
     end
+  end
+
+  test "Should be able to merge two topics and copy posts" do
+    topica = Topic.create(name: "message A", user_id: 1, forum_id: 1, private: true)
+    topica.posts.create(kind: 'first', body: 'message A first', user_id: 1)
+    topica.posts.create(kind: 'reply', body: 'message A reply', user_id: 1)
+    topicb = Topic.create(name: "message B", user_id: 1, forum_id: 1, private: true)
+    topicb.posts.create(kind: 'first', body: 'message B first', user_id: 1)
+    topicb.posts.create(kind: 'reply', body: 'message B reply', user_id: 1)
+
+    newtopic = Topic.merge_topics([topica.id, topicb.id])
+    assert_equal(4, newtopic.posts.count, "Should be 4 posts")
+    assert_equal("MERGED: Message A", newtopic.name, "New topic title is wrong")
+    assert_equal(1, newtopic.posts.where(kind: 'first').all.count, "There should only be one first post")
+    assert_equal('note', newtopic.posts.last.kind, "The last post should be a note")
   end
 
 end

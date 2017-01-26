@@ -149,6 +149,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['name'] == "Got a problem"
     assert object['posts'].count == 1
     assert object['posts'][0]['body'] == "This is some really profound question"
+    assert_equal "api", object['channel']
   end
 
   test "an API user should be able to assign a ticket" do
@@ -213,6 +214,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['name'] == "Got a problem"
     assert object['posts'].count == 1
     assert object['posts'][0]['body'] == "This is some really profound question"
+    assert object['channel'] == 'api'
   end
 
   test "an API user should be able to update a public topic" do
@@ -232,6 +234,67 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['forum_id'] == 3
   end
 
+  # TEST topic splitting
+  test "an API user should be able to split a topic" do
+    post = Post.find(4)
 
+    params = {
+      post_id: post.id,
+    }
 
+    post "api/v1/tickets/split/#{post.id}.json", @default_params.merge(params)
+
+    new_topic =  JSON.parse(last_response.body)
+    new_topic_object = Topic.find(new_topic['id'])
+
+    # Check new topic title correctly set.
+    assert_equal new_topic['name'], I18n.t('new_discussion_topic_title', original_name: post.topic.name, original_id: post.topic.id)
+
+    # Check that first post in new topic is same as post which it was split from
+    assert_equal new_topic_object.posts.first.body, post.body
+
+    # Check that a reply was left in old topic
+    assert_equal post.topic.posts.last.body, I18n.t('new_discussion_post', topic_id: new_topic['id'])
+
+    # Assert Forum is same
+    assert_equal new_topic['forum_id'], post.topic.forum_id
+
+    # Assert topic owner is post owner
+    assert_equal new_topic['user_id'], post.user_id
+  end
+
+  # TEST MERGING TOPICS
+  test "an API user should be able to merge tickets" do
+
+    # Build some topics to merge
+    topica = Topic.create(name: "message A", user_id: 1, forum_id: 1, private: true)
+    topica.posts.create(kind: 'first', body: 'message A first', user_id: 1)
+    topica.posts.create(kind: 'reply', body: 'message A reply', user_id: 1)
+    topicb = Topic.create(name: "message B", user_id: 1, forum_id: 1, private: true)
+    topicb.posts.create(kind: 'first', body: 'message B first', user_id: 1)
+    topicb.posts.create(kind: 'reply', body: 'message B reply', user_id: 1)
+
+    params = {
+      topic_ids: [topica.id, topicb.id],
+      user_id: 1
+    }
+
+    post '/api/v1/tickets/merge.json', @default_params.merge(params)
+    object = JSON.parse(last_response.body)
+
+    assert_equal('email', object['channel'])
+    assert_equal(4, object['posts'].count, "Should be 4 posts")
+    assert_equal("MERGED: Message A", object['name'], "New topic title is wrong")
+    assert_equal('note', object['posts'].last['kind'], "The last post should be a note")
+  end
+
+  test "attempting to split a non existent post 404s (Not Found)" do
+    params = {
+      post_id: 'breh',
+    }
+
+    post "api/v1/tickets/split/10000.json", @default_params.merge(params)
+
+    assert_equal 404, last_response.status
+  end
 end

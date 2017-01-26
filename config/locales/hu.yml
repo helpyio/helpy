@@ -82,6 +82,12 @@ hu:
   get_your_copy: "Töltsd le magadnak a GitHubról"
   version: "Verzió:"
 
+  # flag
+  #flag_for_review:
+  #flag_post_for_review:
+  #flag_post_placeholder:
+  #flag:
+
   # devise/sessions/new
   login: Bejelentkezés
 
@@ -129,6 +135,8 @@ hu:
   private: privát
   public: publikus
   save_changes: Mentés
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Státusz Módosítása
@@ -151,11 +159,19 @@ hu:
 
   # User Admin
   users: Felhasználók
+  # account: Account
   contact_info: Kapcsolat
   social_info: Social
   edit_user: Felhasználó szerkesztés
   work_phone: munka
   cell_phone: mobil
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
@@ -207,6 +223,10 @@ hu:
   content_status: "Tartalom Állapota"
   convert_content: 'Hozzászólás tartalommá alakítása'
   upload_image: 'Kép Feltöltése'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Új Közösség Létrehozása
@@ -357,3 +377,15 @@ hu:
       save: "%{model} mentése"
       new: "Új %{model}"
       delete: "%{model} törlése"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

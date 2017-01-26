@@ -52,13 +52,6 @@ namespace :db do
     puts "Created Agent: #{u.name}"
   end
 
-  # Disable notifications for our new agents
-  User.agents.each do |a|
-    a.settings.notify_on_reply = "0"
-    a.settings.notify_on_private = "0"
-    a.settings.notify_on_public = "0"
-  end
-
   # Create users with avatars
   number_users.times do
 
@@ -66,6 +59,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
+      account_number: Faker::Number.number(10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
@@ -90,6 +84,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
+      account_number: Faker::Number.number(10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",

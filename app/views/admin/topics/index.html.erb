@@ -1,5 +1,14 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
+<% content_for :pipeline do %>
+<%= render partial: 'admin/shared/pipeline' %>
+<% end %>
+
+<div class="topic-search">
+<%= render partial: 'admin/search/topic_search' %>
+</div>
+
+
 <h2 id="ticket-page-title">
   <%= t(:discussions, default: "Discussions") %>:
   <span class='label <%= status_class(@status) %>' style='text-transform: uppercase'>
@@ -7,7 +16,7 @@
   </span>
   <%= render 'admin/topics/ticket_nav_dropdown' %>
   <span class="hidden-xs pull-right">
-    <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path, remote: true, class: 'btn btn-primary' %>
+    <%#= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path, remote: true, class: 'btn btn-primary' %>
   </span>
 </h2>
 

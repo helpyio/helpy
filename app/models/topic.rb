@@ -20,8 +20,9 @@
 #  post_cache       :text
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  doc_id           :integer          default(0)
 #  locale           :string
+#  doc_id           :integer          default(0)
+#  channel          :string           default("email")
 #
 
 class Topic < ActiveRecord::Base
@@ -46,7 +47,10 @@ class Topic < ActiveRecord::Base
                   :if => :public?
 
   pg_search_scope :admin_search,
-                  against: [:id, :name, :user_name, :current_status, :post_cache]
+                  against: [:id, :name, :user_name, :current_status, :post_cache],
+                  associated_against: {
+                    teams: [:name]
+                  }
 
   # various scopes
   scope :recent, -> { order('created_at DESC').limit(8) }
@@ -72,13 +76,14 @@ class Topic < ActiveRecord::Base
 
   # may want to get rid of this filter:
   # before_save :check_for_private
-  before_create :cache_user_name
   before_create :add_locale
 
+  before_save :cache_user_name
   # acts_as_taggable
   acts_as_taggable_on :teams
 
   validates :name, presence: true, length: { maximum: 255 }
+  # validates :user_id, presence: true
 
   def to_param
     "#{id}-#{name.parameterize}"
@@ -168,6 +173,15 @@ class Topic < ActiveRecord::Base
     forum_id >= 3 && !private?
   end
 
+  def create_topic_with_user(params, current_user)
+    self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email])
+
+    unless self.user #User not found, lets build it
+      self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
+    end
+    self.user.persisted? && self.save
+  end
+
   def self.create_comment_thread(doc_id, user_id)
     @doc = Doc.find(doc_id)
     @user = User.find(user_id)
@@ -180,10 +194,46 @@ class Topic < ActiveRecord::Base
     )
   end
 
+  def self.merge_topics(topic_ids, user_id=2)
+
+    @merge_topics = Topic.where(id: topic_ids)
+    @topic = @merge_topics.first.dup
+    @topic.name = "MERGED: #{@merge_topics.first.name}"
+    topics_merged = ""
+
+    if @topic.save
+      @merge_topics.each_with_index do |t, i|
+
+        if i == 0
+          @topic.posts << t.posts
+        else
+          @topic.posts << t.posts.where.not(kind: 'first').all
+        end
+        topics_merged << "#{t.name}\n"
+      end
+
+      @topic.posts.create(
+          body: "#{topics_merged} were merged to create this discussion",
+          kind: "note",
+          user_id: user_id,
+      )
+
+      @merge_topics.each do |t|
+        t.trash
+      end
+
+      return @topic
+    end
+  end
+
   private
 
   def cache_user_name
-    self.user_name = self.user.name
+    if self.user.name.present?
+      self.user_name = self.user.name
+    else
+      "NA"
+    end
   end
 
   def add_locale

@@ -82,6 +82,7 @@ module API
           requires :name, type: String, desc: "The subject of the ticket"
           requires :body, type: String, desc: "The post body"
           optional :team_list, type: String, desc: "The group that this ticket is assigned to"
+          optional :channel, type: String, desc: "The source channel the ticket was created from, Defaults to API if no value provided."
           requires :user_id, type: Integer, desc: "the User ID"
         end
 
@@ -92,7 +93,8 @@ module API
             user_id: params[:user_id],
             current_status: 'new',
             private: true,
-            team_list: params[:team_list]
+            team_list: params[:team_list],
+            channel: params[:channel].present? ? params[:channel] : "api"
           )
           ticket.posts.create!(
             body: params[:body],
@@ -180,7 +182,61 @@ module API
           end
         end
 
+        # SPLIT A TOPIC
+        desc "Create a new discussion from a ticket"
+        params do
+          requires :post_id, type: Integer, desc: "The post to split into new topic"
+        end
 
+        post "split/:post_id", root: :topics do
+          post = Post.where(id: permitted_params[:post_id]).first
+
+          # Check that the post_id exists, and that it is private.
+          error!('Not Found.', 404) unless post.present?
+
+          parent_topic = post.topic
+
+          topic = Topic.new(
+            name: I18n.t('new_discussion_topic_title', original_name: parent_topic.name, original_id: parent_topic.id, default: "Split from #{parent_topic.id}-#{parent_topic.name}"),
+            user: post.user,
+            forum_id: parent_topic.forum_id,
+            private: parent_topic.private,
+            channel: parent_topic.channel
+          )
+
+          if topic.save
+            parent_topic.posts.create(
+              body: I18n.t('new_discussion_post', topic_id: topic.id, default: "Discussion ##{topic.id} was created from this one"),
+              user: current_user,
+              kind: 'note',
+            )
+
+            topic.posts.create(
+              body: post.body,
+              user: post.user,
+              kind: 'first',
+              screenshots: post.screenshots,
+              attachments: post.attachments,
+            )
+            topic
+          else
+            error!('Unknown Error!', 500)
+          end
+        end
+
+        # MERGE TWO OR MORE TICKETS
+        desc "Merge two or more tickets together."
+        params do
+          requires :'topic_ids', type: Array[Integer], desc: "The topics to merge. Provide 2 ID in the format topic_ids[]=123&topic_ids[]=124"
+          requires :user_id, type: Integer, desc: "the User ID"
+        end
+
+        post "merge", root: :topics do
+          @ticket = Topic.merge_topics(params[:topic_ids], params[:user_id])
+          if @ticket.present?
+            present @ticket, with: Entity::Topic, posts: true
+          end
+        end
       end
 
       # PUBLIC TOPIC ENDPOINTS
@@ -207,6 +263,7 @@ module API
           requires :body, type: String, desc: "The post body"
           requires :user_id, type: Integer, desc: "the User ID"
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
+          optional :channel, type: String, desc: "The source channel the ticket was created from. Defaults to API."
         end
 
         post "", root: :topics do
@@ -214,7 +271,8 @@ module API
             forum_id: permitted_params[:forum_id],
             name: permitted_params[:name],
             user_id: permitted_params[:user_id],
-            private: false
+            private: false,
+            channel: params[:channel].present? ? params[:channel] : "api"
           )
           topic.posts.create!(
             body: permitted_params[:body],

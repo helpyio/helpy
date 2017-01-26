@@ -79,6 +79,12 @@ et:
   get_your_copy: "Grab your copy on GitHub"
   # version: "Version:"
 
+  # flag
+  #flag_for_review:
+  #flag_post_for_review:
+  #flag_post_placeholder:
+  #flag:
+
   # Profile
   my_profile: 'Minu profiil'
 
@@ -126,6 +132,8 @@ et:
   private: privaatne
   public: avalik
   save_changes: Salvesta muudatused
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Muuda staatus
@@ -148,11 +156,19 @@ et:
 
   # User Admin
   # users: Users
+  # account: Account
   contact_info: Kontakt
   social_info: Sotsiaalne
   edit_user:
   work_phone: töö
   cell_phone: telefon
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
@@ -203,6 +219,10 @@ et:
   content_status: "Content Status"
   # convert_content: 'Turn post into content'
   # upload_image: 'Upload Image'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Loo uus kommuun
@@ -301,3 +321,15 @@ et:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

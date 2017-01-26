@@ -27,10 +27,9 @@
 class Admin::TopicsController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :fetch_counts, :only => ['index','show', 'update_topic', 'user_profile']
-  before_action :pipeline, :only => ['index', 'show', 'update_topic']
-  before_action :remote_search, :only => ['index', 'show', 'update_topic']
-  before_action :get_all_teams
+  before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
+  before_action :remote_search, only: ['index', 'show', 'update_topic']
+  before_action :get_all_teams, except: ['shortcuts']
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -38,9 +37,9 @@ class Admin::TopicsController < Admin::BaseController
   def index
     @status = params[:status] || "pending"
     if current_user.is_restricted? && teams?
-      topics_raw = Topic.all.tagged_with(current_user.team_list, :any => true)
+      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
     else
-      topics_raw = Topic
+      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
     end
     topics_raw = topics_raw.includes(user: :avatar_files).chronologic
     get_all_teams
@@ -74,14 +73,16 @@ class Admin::TopicsController < Admin::BaseController
       @topic.open
     end
     get_all_teams
-    @posts = @topic.posts.chronologic
+    @posts = @topic.posts.chronologic.includes(:user)
     tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
   end
 
   def new
+    fetch_counts
+
     @topic = Topic.new
-    @user = User.new
+    @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
 
   # TODO: Still need to refactor this method and the update methods into one
@@ -95,37 +96,38 @@ class Admin::TopicsController < Admin::BaseController
     @topic = @forum.topics.new(
       name: params[:topic][:name],
       private: true,
-      team_list: params[:topic][:team_list]
+      team_list: params[:topic][:team_list],
+      channel: params[:topic][:channel]
     )
 
     if @user.nil?
 
-      @user = @topic.build_user
-
       @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+
+      @user = @topic.build_user
       @user.reset_password_token = enc
       @user.reset_password_sent_at = Time.now.utc
 
       @user.name = params[:topic][:user][:name]
       @user.login = params[:topic][:user][:email].split("@")[0]
       @user.email = params[:topic][:user][:email]
+      @user.home_phone = params[:topic][:user][:home_phone]
       @user.password = User.create_password
 
+      @user.save
     else
       @topic.user_id = @user.id
     end
 
     fetch_counts
     respond_to do |format|
-
       if (@user.save || !@user.nil?) && @topic.save
-
         @post = @topic.posts.create(
-          :body => params[:topic][:post][:body],
-          :user_id => @user.id,
-          :kind => 'first',
-          :screenshots => params[:topic][:screenshots],
-          :attachments => params[:topic][:post][:attachments]
+          body: params[:topic][:post][:body],
+          user_id: @user.id,
+          kind: 'first',
+          screenshots: params[:topic][:screenshots],
+          attachments: params[:topic][:post][:attachments]
         )
 
         # Send email
@@ -135,13 +137,15 @@ class Admin::TopicsController < Admin::BaseController
         tracker('Request', 'Post', 'New Topic')
         tracker('Agent: Unassigned', 'New', @topic.to_param)
 
+        # Now that we are rendering show, get the posts (just one)
+        # TODO probably can refactor this
+        @posts = @topic.posts.chronologic.includes(:user)
         format.js {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
+
         }
         format.html {
-          @topics = Topic.recent.page params[:page]
-          render action: 'index'
+          render action: 'show', id: @topic
         }
       else
         format.html {
@@ -277,6 +281,23 @@ class Admin::TopicsController < Admin::BaseController
 
   end
 
+  def update
+    @topic = Topic.find(params[:id])
+
+    if @topic.update_attributes(topic_params)
+      respond_to do |format|
+        format.html {
+          redirect_to(@topic)
+        }
+        format.json {
+          respond_with_bip(@topic)
+        }
+      end
+    else
+      logger.info("error")
+    end
+  end
+
   def assign_team
     @count = 0
     #handle array of topics
@@ -312,6 +333,61 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
+  def split_topic
+    parent_topic = Topic.find(params[:topic_id])
+    parent_post = Post.find(params[:post_id])
+
+    @topic = Topic.new(
+      name: t('new_discussion_topic_title', original_name: parent_topic.name, original_id: parent_topic.id, default: "Split from #{parent_topic.id}-#{parent_topic.name}"),
+      user: parent_post.user,
+      forum_id: parent_topic.forum_id,
+      private: parent_topic.private,
+      channel: parent_topic.channel
+    )
+
+    @posts = @topic.posts
+
+    if @topic.save
+      @posts.create(
+        body: parent_post.body,
+        user: parent_post.user,
+        kind: 'first',
+        screenshots: parent_post.screenshots,
+        attachments: parent_post.attachments,
+      )
+
+      parent_topic.posts.create(
+        body: t('new_discussion_post', topic_id: @topic.id, default: "Discussion ##{@topic.id} was created from this one"),
+        user: current_user,
+        kind: 'note',
+      )
+    end
+
+    fetch_counts
+    get_all_teams
+
+    respond_to do |format|
+      format.html { redirect_to admin_topic_path(@topic) }
+      format.js { render 'update_ticket', id: @topic.id }
+    end
+  end
+
+  def merge_tickets
+    @topic = Topic.merge_topics(params[:topic_ids], current_user.id)
+
+    @posts = @topic.posts.chronologic
+    fetch_counts
+    get_all_teams
+
+    respond_to do |format|
+      format.js { render 'show', id: @topic }
+    end
+  end
+
+  def shortcuts
+    render layout: 'admin-plain'
+  end
+
   private
 
   def get_tickets
@@ -340,5 +416,7 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
-
+  def topic_params
+    params.require(:topic).permit(:name)
+  end
 end

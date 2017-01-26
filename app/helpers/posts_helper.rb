@@ -12,6 +12,9 @@
 #  updated_at  :datetime         not null
 #  points      :integer          default(0)
 #  attachments :string           default([]), is an Array
+#  cc          :string
+#  bcc         :string
+#  raw_email   :text
 #
 
 module PostsHelper
@@ -27,7 +30,7 @@ module PostsHelper
       message = t(:posted_note, user_name: post.user.name.titleize, default: "posted an internal note...")
     end
     if admin
-      content_tag(:span, class: 'btn dropdown-toggle more-important', data: { toggle: 'dropdown'}, aria: {expanded: 'false'}) do
+      content_tag(:span, class: 'btn dropdown-toggle more-important post-dropdown', data: { toggle: 'dropdown'}, aria: {expanded: 'false'}) do
         "#{message} <span class='caret'></span>".html_safe
       end
     else

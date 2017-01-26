@@ -36,6 +36,14 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_select "li.article", true
   end
 
+  test "a browsing user should not be able to load the index and see common replies" do
+    get :index, locale: :en
+    assert_response :success
+
+    # Should see at least once category
+    assert_select "a#category-5", false
+  end
+
   test "a browsing user in a locale without translations should be able to load the index and should see no categories" do
     get :index, locale: :fr
     assert_response :success
@@ -64,6 +72,11 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_raises(ActionController::RoutingError) do
       get :show, id: 1, locale: :en
     end
+  end
+
+  test "a browsing user should NOT be able to see the common replies category page" do
+    get :show, id: 5, locale: "en"
+    assert_response :redirect
   end
 
 

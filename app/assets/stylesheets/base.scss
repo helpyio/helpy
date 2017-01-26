@@ -124,6 +124,10 @@ textarea {
 
 //  === GLOBAL STYLES ===
 
+.selected {
+  background-color: #eee;
+}
+
 .truncate-ellipsis {
   display: table;
   table-layout: fixed;
@@ -459,6 +463,12 @@ span.category-icon {
 .status-label {
 	margin-left: 5px;
 	margin-bottom: -15px;
+  text-transform: uppercase;
+}
+
+.status-label-button {
+	margin-left: -7px;
+  margin-bottom: -15px;
   text-transform: uppercase;
 }
 
@@ -798,8 +808,8 @@ h5.category-header {
     color: #004084;
   }
   img {
-    width: 90%;
-    height: 90%;
+    max-width: 90%;
+    height: auto;
     margin-left: 5%;
     margin-right: 5%;
   }

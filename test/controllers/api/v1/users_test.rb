@@ -88,6 +88,20 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     assert objects.length == User.count, "Only #{objects.length} returned out of #{User.count} users"
   end
 
+  test "an API user should be able to search for a specific user" do
+    params = {
+      q: "Editor"
+    }
+    get '/api/v1/users/search.json', @default_params.merge(params)
+
+    # Check OK
+    assert last_response.ok?, "Response was #{last_response.status}, expected 200"
+
+    # Check returned value
+    objects = JSON.parse(last_response.body)
+    assert objects.length == 1, "#{objects.length} returned instead of one matching user"
+  end
+
   test "an API user should be able to return a specific user" do
     user = User.find(2)
     get "/api/v1/users/#{user.id}.json", @default_params

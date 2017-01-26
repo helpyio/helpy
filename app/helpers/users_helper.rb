@@ -53,6 +53,10 @@
 #  invitation_message     :text
 #  time_zone              :string           default("UTC")
 #  profile_image          :string
+#  notify_on_private      :boolean          default(FALSE)
+#  notify_on_public       :boolean          default(FALSE)
+#  notify_on_reply        :boolean          default(FALSE)
+#  account_number         :string
 #
 
 module UsersHelper
@@ -68,7 +72,7 @@ module UsersHelper
   end
 
   def avatar_image(user, size=40)
-
+    return if user.nil?
     if user.avatar.present?
       unless Cloudinary.config.cloud_name.nil?
         image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')

@@ -25,6 +25,19 @@ module API
           present users, with: Entity::User
         end
 
+        # SEARCH USERS
+        desc "Search users by name, email, account number, phone, etc.", {
+          entity: Entity::User,
+          notes: "Returns a list of matching users"
+        }
+        params do
+          requires :q, type: String, desc: "User search query"
+        end
+        get "search", root: :users do
+          users = User.user_search(params[:q])
+          present users, with: Entity::User
+        end
+
         # SHOW USER
         desc "Show details of a user", {
           entity: Entity::User,
@@ -55,6 +68,7 @@ module API
           optional :home_phone, type: String, desc: "Users home phone"
           optional :work_phone, type: String, desc: "Users work phone"
           optional :cell_phone, type: String, desc: "Users cell phone"
+          optional :account_number, type: String, desc: "Users account_number"
           optional :company, type: String, desc: "Users company"
           optional :street, type: String, desc: "Users street"
           optional :city, type: String, desc: "Users city"
@@ -65,12 +79,17 @@ module API
           optional :linkedin, type: String, desc: "Users Linkedin username"
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated", default: true
+<<<<<<< HEAD
           optional :extra_info, type: Hash, desc: "User extra infos"
+=======
+          optional :priority, type: String, desc: "Users Priority", values: ['low', 'normal', 'high', 'vip'], default: 'normal'
+>>>>>>> master
         end
         post "", root: :users do
           user = User.create!(
             login: permitted_params[:login],
             email: permitted_params[:email],
+            account_number: permitted_params[:account_number],
             password: permitted_params[:password],
             name: permitted_params[:name],
             # admin: permitted_params[:admin],
@@ -90,7 +109,11 @@ module API
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
             active: permitted_params[:active],
+<<<<<<< HEAD
             extra_info: permitted_params[:extra_info]
+=======
+            priority: permitted_params[:priority]
+>>>>>>> master
             )
           present user, with: Entity::User
         end
@@ -105,6 +128,7 @@ module API
           requires :name, type: String, desc: "Users full name"
           requires :email, type: String, desc: "Users email address"
           requires :password, type: String, desc: "Users password"
+          optional :account_number, type: String, desc: "Users account_number"
           optional :login, type: String, desc: "Users login (optional)"
           # optional :admin, type: Boolean, desc: "Admin Status"
           optional :bio, type: String, desc: "Users bio"
@@ -124,12 +148,14 @@ module API
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated"
           optional :extra_info, type: Hash, desc: "User extra infos"
+          optional :priority, type: String, desc: "Users Priority- low, normal, high or vip", default: 'normal'
         end
         patch ":id", root: :users do
           user = User.where(id: permitted_params[:id]).first
           user.update!(
             login: permitted_params[:login],
             email: permitted_params[:email],
+            account_number: permitted_params[:account_number],
             password: permitted_params[:password],
             name: permitted_params[:name],
             # admin: permitted_params[:admin],
@@ -149,7 +175,11 @@ module API
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
             active: permitted_params[:active],
+<<<<<<< HEAD
             extra_info: permitted_params[:extra_info]
+=======
+            priority: permitted_params[:priority]
+>>>>>>> master
             )
           present user, with: Entity::User
         end

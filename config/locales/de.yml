@@ -82,6 +82,12 @@ de:
   get_your_copy: "Hol dir deine Version auf GitHub"
   version: "Version:"
 
+  # flag
+  #flag_for_review:
+  #flag_post_for_review:
+  #flag_post_placeholder:
+  #flag:
+
   # devise/sessions/new
   login: Anmelden
 
@@ -126,6 +132,8 @@ de:
   private: privat
   public: öffentlich
   save_changes: Änderungen speichern
+  #merge: Merge
+  #merge_confirm: Are you sure you want to merge these tickets?
 
   # Discussion controls
   change_status: Status ändern
@@ -148,11 +156,19 @@ de:
 
   # User Admin
   users: Benutzer
+  # account: Account
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
   work_phone: Arbeit
   cell_phone: Handy
+
+  # Priorities
+  # select_priority: Select Priority
+  # vip_priority: VIP
+  # high_priority: High
+  # normal_priority: Normal
+  # low_priority: Low
 
   # User search results
   users_found:
@@ -204,6 +220,10 @@ de:
   content_status: "Inhalts Status"
   convert_content: 'Konvertiere Post in Inhalt'
   upload_image: 'Foto hochladen'
+  # new_discussion: 'Create new discussion from this'
+  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
+  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Communities
   new_community: Ein neues Forum erstellen
@@ -354,3 +374,15 @@ de:
       save: "%{model} speichern"
       new: "Neue oder neues %{model}"
       delete: "%{model} löschen"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q
