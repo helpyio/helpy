@@ -194,6 +194,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['id'] == topic.id
     assert object['name'] == topic.name
     assert object['posts'].count == topic.posts.count
+    assert_equal 'ticket', object['kind']
   end
 
   test "an API user should be able to create a topic" do
@@ -285,6 +286,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal('email', object['channel'])
     assert_equal(4, object['posts'].count, "Should be 4 posts")
     assert_equal("MERGED: Message A", object['name'], "New topic title is wrong")
+    assert_equal("ticket", object['kind'], "New topic kind is wrong")
     assert_equal('note', object['posts'].last['kind'], "The last post should be a note")
   end
 

@@ -23,6 +23,7 @@
 #  locale           :string
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
+#  kind             :string           default("ticket")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

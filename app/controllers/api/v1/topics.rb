@@ -83,6 +83,7 @@ module API
           requires :body, type: String, desc: "The post body"
           optional :team_list, type: String, desc: "The group that this ticket is assigned to"
           optional :channel, type: String, desc: "The source channel the ticket was created from, Defaults to API if no value provided."
+          optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
           requires :user_id, type: Integer, desc: "the User ID"
         end
 
@@ -94,12 +95,13 @@ module API
             current_status: 'new',
             private: true,
             team_list: params[:team_list],
-            channel: params[:channel].present? ? params[:channel] : "api"
+            channel: params[:channel].present? ? params[:channel] : "api",
+            kind: params[:kind].present? ? params[:kind] : 'ticket',
           )
           ticket.posts.create!(
             body: params[:body],
             user_id: params[:user_id],
-            kind: 'first'
+            kind: 'first',
           )
           present ticket, with: Entity::Topic, posts: true
         end
@@ -201,7 +203,8 @@ module API
             user: post.user,
             forum_id: parent_topic.forum_id,
             private: parent_topic.private,
-            channel: parent_topic.channel
+            channel: parent_topic.channel,
+            kind: parent_topic.kind
           )
 
           if topic.save
@@ -264,6 +267,7 @@ module API
           requires :user_id, type: Integer, desc: "the User ID"
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
           optional :channel, type: String, desc: "The source channel the ticket was created from. Defaults to API."
+          optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
         end
 
         post "", root: :topics do
@@ -272,7 +276,8 @@ module API
             name: permitted_params[:name],
             user_id: permitted_params[:user_id],
             private: false,
-            channel: params[:channel].present? ? params[:channel] : "api"
+            channel: params[:channel].present? ? params[:channel] : "api",
+            kind: params[:kind].present? ? params[:kind] : 'discussion'
           )
           topic.posts.create!(
             body: permitted_params[:body],
