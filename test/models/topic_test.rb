@@ -23,6 +23,7 @@
 #  locale           :string
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
+#  kind             :string           default("ticket")
 #
 
 require 'test_helper'
@@ -175,6 +176,7 @@ class TopicTest < ActiveSupport::TestCase
     newtopic = Topic.merge_topics([topica.id, topicb.id])
     assert_equal(4, newtopic.posts.count, "Should be 4 posts")
     assert_equal("MERGED: Message A", newtopic.name, "New topic title is wrong")
+    assert_equal("ticket", newtopic.kind, "New topic kind should be 'ticket'")
     assert_equal(1, newtopic.posts.where(kind: 'first').all.count, "There should only be one first post")
     assert_equal('note', newtopic.posts.last.kind, "The last post should be a note")
   end
