@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120154323) do
+ActiveRecord::Schema.define(version: 20170126000313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -302,6 +302,7 @@ ActiveRecord::Schema.define(version: 20170120154323) do
     t.text     "invitation_message"
     t.string   "time_zone",              default: "UTC"
     t.string   "profile_image"
+    t.jsonb    "extra_info"
     t.boolean  "notify_on_private",      default: false
     t.boolean  "notify_on_public",       default: false
     t.boolean  "notify_on_reply",        default: false
