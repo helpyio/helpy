@@ -13,9 +13,9 @@ user_admin = User.create!(
   email: 'admin@test.com',
   password:'12345678',
   role: 'admin',
-  thumbnail: 'logo.png',
-  medium_image: 'logo.png',
-  large_image: 'logo.png',
+  thumbnail: '',
+  medium_image: '',
+  large_image: '',
   admin: true
 )
 
@@ -56,7 +56,7 @@ Forum.create(
 )
 Forum.create(
   name: "Doc comments",
-  description: "Contains comments to docs", 
+  description: "Contains comments to docs",
   private: true
 )
 Forum.create(

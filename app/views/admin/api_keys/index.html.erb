@@ -1,5 +1,7 @@
 <% title "#{admin_title} #{t('api_keys', default: "API Keys")}" %>
 
+<% content_for :settings do %>
+
 <div class="admin-header">
   <h2 id="setting-header">
     <%= t('api_keys', default: "API Keys") %>
@@ -40,3 +42,5 @@
     </div>
   </div>
 </div>
+
+<% end %>
