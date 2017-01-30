@@ -115,7 +115,7 @@ module AdminHelper
       concat content_tag(:li, link_to(t(:get_help, default: "Get Help"), "http://support.helpy.io/"), target: "blank")
       concat content_tag(:li, link_to(t(:report_bug, default: "Report a Bug"), "http://github.com/helpyio/helpy/issues"), target: "blank")
       concat content_tag(:li, link_to(t(:suggest_feature, default: "Suggest a Feature"), "http://support.helpy.io/en/community/4-feature-requests/topics"), target: "blank")
-      concat content_tag(:li, link_to(t(:shortcuts, default: "Keyboard Shortcuts"), "#", class: 'keyboard-shortcuts-link'), target: "blank")
+      concat content_tag(:li, link_to(t(:shortcuts, default: "Keyboard Shortcuts"), "#", class: 'keyboard-shortcuts-link'), target: "blank") if current_user.is_agent?
     end
   end
 
@@ -162,7 +162,7 @@ module AdminHelper
 
       concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
       concat content_tag(:li, link_to(t('notifications', default: "notifications"), admin_notifications_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
-      concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
+      concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs')
     end
   end
 

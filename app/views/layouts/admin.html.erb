@@ -24,6 +24,7 @@
 			</div>
 		</div>
 	</div>
+	<% if current_user.is_agent? %>
 	<div class="topic-search-container jumbotron">
 		<div class="container">
 			<div class="row">
@@ -35,6 +36,7 @@
 			</div>
 		</div>
 	</div>
+	<% end %>
 	<%= yield :pipeline %>
 	<div id="body-wrapper" class="container">
 		<div class="row white-bg">
