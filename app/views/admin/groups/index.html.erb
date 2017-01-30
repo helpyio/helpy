@@ -1,14 +1,16 @@
 <% title "#{admin_title} #{t('groups', default: "Groups")}" %>
 
-<div class="admin-header">
-  <h2 id="setting-header">
-    <%= t('groups', default: 'Groups') %>
-    <span class="pull-right">
-	    <%= link_to t(:add_new_group, default: "Add New Group"), new_admin_group_path, remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
-	  </span>
-  </h2>
-</div>
+<% content_for :settings do %>
+  <div class="admin-header">
+    <h2 id="setting-header">
+      <%= t('groups', default: 'Groups') %>
+      <span class="pull-right">
+  	    <%= link_to t(:add_new_group, default: "Add New Group"), new_admin_group_path, remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
+  	  </span>
+    </h2>
+  </div>
 
-<div id="groups">
-  <%= render partial: 'admin/groups/groups' %>
-</div>
+  <div id="groups">
+    <%= render partial: 'admin/groups/groups' %>
+  </div>
+<% end %>

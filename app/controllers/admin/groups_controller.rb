@@ -12,10 +12,10 @@
 class Admin::GroupsController < Admin::BaseController
 
   before_action :set_user
-
-  # Restrict API token generation to admin only for now
   before_action :verify_admin
-  
+
+  layout 'admin-settings'
+
   def index
     team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
     @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
@@ -34,13 +34,13 @@ class Admin::GroupsController < Admin::BaseController
     if @team.update_attributes(group_params)
       redirect_to admin_groups_path
     else
-      render edit_admin_groups_path(@team) 
+      render edit_admin_groups_path(@team)
     end
   end
 
   def create
     tag = ActsAsTaggableOn::Tag.create(group_params)
-    if ActsAsTaggableOn::Tagging.create(tag_id: tag.id, context: "teams") 
+    if ActsAsTaggableOn::Tagging.create(tag_id: tag.id, context: "teams")
       redirect_to admin_groups_path
     else
       render new_admin_group_path
