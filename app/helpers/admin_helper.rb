@@ -149,7 +149,7 @@ module AdminHelper
 
   def admin_avatar_menu_link
     link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
-      concat content_tag(:span, avatar_image(current_user, size=20) + current_user.name, class: 'admin-avatar')
+      concat content_tag(:span, avatar_image(current_user, size=25, font=10) + current_user.name, class: 'admin-avatar')
       concat content_tag(:span, '', class: 'caret')
     end
   end
