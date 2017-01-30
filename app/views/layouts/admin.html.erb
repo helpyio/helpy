@@ -17,12 +17,23 @@
 	</script>
 	<div id="upper-wrapper" class="jumbotron">
 		<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<%= render :partial => 'layouts/admin_header' %>
+			<div class="row">
+				<div class="col-md-12">
+					<%= render :partial => 'layouts/admin_header' %>
+				</div>
 			</div>
 		</div>
 	</div>
+	<div class="topic-search-container jumbotron">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="topic-search">
+						<%= render partial: 'admin/search/topic_search' %>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<%= yield :pipeline %>
 	<div id="body-wrapper" class="container">
