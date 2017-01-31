@@ -78,7 +78,7 @@ class Admin::UsersController < Admin::BaseController
     fetch_counts
 
     # update role if admin only
-    @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin?
+    @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
 
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
