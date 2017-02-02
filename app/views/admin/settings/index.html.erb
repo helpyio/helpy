@@ -1,27 +1,5 @@
 <% title "#{admin_title} #{t('settings', default: 'System Settings')}" %>
-<!-- <div class="agent-header">
-  <h2>
-    <%= t('agent_settings', default: 'Agent Settings') %>
-  </h2>
-</div>
-
-<div class="settings-grid">
-  <div class="settings-grid-row row">
-    <%= content_tag :div, nil, class: 'col-md-1 hidden-xs hidden-sm' %>
-    <div class="grids col-md-11 col-sm-12">
-      <div class="row" data-hook="agent_settings_grid">
-        <%= settings_item('glyphicon glyphicon-user', t('your_profile', default: "Your Profile"), "Customize your agent profile", admin_profile_settings_path(mode: 'settings')) %>
-        <%= settings_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"),
-          t('notifications_description', default: "Select when you would like to receive email notifications."), admin_notifications_path) %>
-        <%= settings_item('glyphicon glyphicon-cloud', t('api_keys', default: "API Keys"), t('api_description',default: "Create and Manage API Keys"), admin_api_keys_path) %>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <% if current_user.is_admin? %>
-<%= bootstrap_flash %>
-
 <div class="admin-header">
   <h2 id="setting-header">
     <%= t('settings', default: 'System Settings') %>
