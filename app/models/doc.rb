@@ -40,7 +40,7 @@ class Doc < ActiveRecord::Base
 
   include PgSearch
   multisearchable :against => [:title, :body, :keywords],
-    :if => lambda { |record| record.category.public and record.active }
+    :if => lambda { |record| record.category.public && record.active }
 
   pg_search_scope :searchable_with_restriction,
     :against => [:title, :body, :keywords], :if => :active
