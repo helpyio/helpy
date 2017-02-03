@@ -1,0 +1,24 @@
+<% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
+
+<%# content_for :pipeline do %>
+<%#= render partial: 'admin/shared/pipeline' %>
+<%# end %>
+
+<h2 id="ticket-page-title">
+  <%= @user.name.titleize %>
+  <%= "<br/>#{content_tag(:small, "Account: " + @user.account_number)}".html_safe if @user.account_number.present? %>
+  <span class='hidden-xs pull-right'>
+    <%#= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: 'btn btn-primary' %>
+  </span>
+  <span class='edit-user hidden-xs pull-right'>
+    <%#= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: true, class: 'btn btn-primary' %>
+  </span>
+  <%#= render 'admin/topics/ticket_nav_dropdown' %>
+</h2>
+<div id="user-info">
+  <%= render 'admin/users/edit' %>
+</div>
+<div class="row">
+  <div class="col-md-12" id="tickets">
+  </div>
+</div>

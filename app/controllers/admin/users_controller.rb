@@ -78,14 +78,21 @@ class Admin::UsersController < Admin::BaseController
     fetch_counts
 
     # update role if admin only
-    @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin?
+    @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
 
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
     tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
 
     # TODO: Refactor this to use an index method/view on the users model
-    render 'admin/users/show'
+    respond_to do |format|
+      format.html {
+        redirect_to admin_settings_path
+      }
+      format.js {
+        render 'admin/users/show'
+      }
+    end
   end
 
   def invite
@@ -107,6 +114,7 @@ class Admin::UsersController < Admin::BaseController
 
   def user_params
     params.require(:user).permit(
+      :profile_image,
       :name,
       :bio,
       :signature,

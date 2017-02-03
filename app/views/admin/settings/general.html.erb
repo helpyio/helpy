@@ -1,0 +1,24 @@
+<% content_for :settings do %>
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <div class="settings-section">
+      <h4 class="settings-subsection">Self Service Site</h4>
+      <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: t('site_name', default: "Site Name") %>
+      <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: t('site_url', default: "Site URL") %>
+      <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: t('parent_site', default: "Parent Site") %>
+      <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: t('parent_company', default: "Parent Company") %>
+      <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: t('site_tagline', default: "Site Tagline") %>
+      <br/><br/>
+
+      <h4 class="settings-subsection">Helpy Functions</h4>
+      <%= f.check_box 'settings.forums', { checked: forums?, label: t('enable_forums', default: "Enable Community Forums"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'settings.knowledgebase', { checked: knowledgebase?, label: t('enable_knowledgebase', default: "Enable Knowledgebase"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'settings.tickets', { checked: tickets?, label: t('enable_tickets', default: "Enable Private Tickets"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'settings.teams', { checked: teams?, label: t('enable_teams', default: "Enable Team Groups"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.check_box 'settings.welcome_email', { checked: welcome_email?, label: t('enable_welcome_email', default: "Send a welcome email to new users"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+<% end %>

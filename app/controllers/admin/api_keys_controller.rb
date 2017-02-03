@@ -18,6 +18,8 @@ class Admin::ApiKeysController < Admin::BaseController
   # Restrict API token generation to admin and agents only for now
   before_action :verify_agent
 
+  layout 'admin-settings'
+
   def index
     @api_keys = @user.api_keys.all.order(date_expired: :desc)
     @api_key = ApiKey.new

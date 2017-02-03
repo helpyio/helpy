@@ -23,6 +23,7 @@
 #  locale           :string
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
+#  kind             :string           default("ticket")
 #
 
 class Topic < ActiveRecord::Base

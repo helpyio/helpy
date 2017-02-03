@@ -342,7 +342,8 @@ class Admin::TopicsController < Admin::BaseController
       user: parent_post.user,
       forum_id: parent_topic.forum_id,
       private: parent_topic.private,
-      channel: parent_topic.channel
+      channel: parent_topic.channel,
+      kind: parent_topic.kind,
     )
 
     @posts = @topic.posts

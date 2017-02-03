@@ -17,8 +17,6 @@ class Admin::InternalCategoriesController < Admin::BaseController
       @related = Doc.in_category(@doc.category_id) if @doc
 
       @page_title = @category.name
-      add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), admin_internal_categories_path
-      add_breadcrumb @page_title, admin_internal_category_path(@category)
     else
       redirect_to controller: 'errors', action: 'not_found'
     end

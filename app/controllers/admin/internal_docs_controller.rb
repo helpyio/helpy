@@ -14,10 +14,7 @@ class Admin::InternalDocsController < Admin::BaseController
       @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
       @forum = Forum.for_docs.first
       @comment = @forum.topics.new
-      @user = User.new unless user_signed_in?
-      add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), admin_internal_categories_path
-      add_breadcrumb @doc.category.name, admin_internal_category_path(@doc.category) if @doc.category.name
-      add_breadcrumb @doc.title
+      
     else
       redirect_to controller: 'errors', action: 'not_found'
     end

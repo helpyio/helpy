@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170127010804) do
+=======
+ActiveRecord::Schema.define(version: 20170128182239) do
+>>>>>>> upstream/master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,23 +215,26 @@ ActiveRecord::Schema.define(version: 20170127010804) do
     t.integer  "user_id"
     t.string   "user_name"
     t.string   "name"
-    t.integer  "posts_count",      default: 0,       null: false
-    t.string   "waiting_on",       default: "admin", null: false
+    t.integer  "posts_count",      default: 0,        null: false
+    t.string   "waiting_on",       default: "admin",  null: false
     t.datetime "last_post_date"
     t.datetime "closed_date"
     t.integer  "last_post_id"
-    t.string   "current_status",   default: "new",   null: false
+    t.string   "current_status",   default: "new",    null: false
     t.boolean  "private",          default: false
     t.integer  "assigned_user_id"
     t.boolean  "cheatsheet",       default: false
     t.integer  "points",           default: 0
     t.text     "post_cache"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "locale"
     t.integer  "doc_id",           default: 0
     t.string   "channel",          default: "email"
+    t.string   "kind",             default: "ticket"
   end
+
+  add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"

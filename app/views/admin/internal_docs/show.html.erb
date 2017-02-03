@@ -11,16 +11,6 @@
 <% meta_tag :description, "#{@doc.meta_description}" %>
 <% meta_tag :keywords, "#{@doc.keywords}" %>
 
-<script>
-  Helpy.yesHelped = '<%= j t(:yes_helped) %>';
-  Helpy.noHelped = '<%= j t(:no_helped) %>';
-  <% if tickets? %>
-    Helpy.contactUs = '<a href="<%= new_topic_path(doc_id: @doc.id) %>" class="btn btn-primary btn-lg get-help-button"><%= j t(:start_discussion) %></a>';
-  <% else %>
-    Helpy.contactUs = '';
-  <% end %>
-</script>
-
 <style>
 /* Added style to handle new h1 header in trix.js */
 .text-content h1 {
@@ -85,8 +75,3 @@
   	</div>
   </div>
 <% end %>
-
-<div class="col-md-3 hidden-xs hidden-sm"></div>
-<div class="col-md-9">
-  <%= render 'layouts/did_this_help' %>
-</div>
