@@ -6,9 +6,11 @@
   <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.category.meta_description", locale: I18n.locale), value: @category.read_translated_attribute(:meta_description) %>
   <% if params[:lang] == "#{I18n.locale}" %>
     <%= f.input :front_page, :label => I18n.translate("activerecord.attributes.category.front_page", locale: I18n.locale), :input_html => {:class => 'no-translate'} %>
+    <%= f.input :public, :label => I18n.translate("activerecord.attributes.category.public", locale: I18n.locale), :input_html => {:class => 'no-translate'} %>
     <%= f.input :active, :label => I18n.translate("activerecord.attributes.category.active", locale: I18n.locale), :input_html => {:class => 'no-translate'} %>
   <% else %>
     <%= f.hidden_field :front_page, value: @category.front_page %>
+    <%= f.hidden_field :public, value: @category.public %>
     <%= f.hidden_field :active, value: @category.active %>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>

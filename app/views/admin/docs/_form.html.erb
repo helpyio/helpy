@@ -76,7 +76,7 @@
   }).call(this);
   </script>
   <% end %>
-
+  
   <%= f.input :title, label: I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale), value: @doc.read_translated_attribute(:title) %>
   <% if params[:lang] == "#{I18n.locale}" %>
     <%= f.input("category_id", collection: Category.all.collect {|c| [ c.name, c.id ] }, prompt: t(:select_category, default: 'Select Category'), label: I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale), :input_html => { class: 'no-translate' })  %>

@@ -117,6 +117,9 @@ Rails.application.routes.draw do
     resources :categories do
       resources :docs, except: [:index, :show]
     end
+    resources :internal_categories, only: [:index, :show]
+    resources :internal_docs, only: :show
+
     resources :docs, except: [:index, :show]
 
     resources :images, only: [:create, :destroy]

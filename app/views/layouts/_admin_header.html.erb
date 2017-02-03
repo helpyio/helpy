@@ -12,6 +12,7 @@
     <%= menu_group pull: :right do %>
         <%= menu_item t(:discussions, default: "Discussions"), admin_topics_path if (forums? || tickets?) && current_user.is_agent? %>
         <%= menu_item t(:team, default: 'Team'), admin_stats_path(interval: 7) if tickets? && current_user.is_admin? %>
+        <%= menu_item t(:internal_content, default: "Internal Content"), admin_internal_categories_path, class:'kblink' if knowledgebase? && current_user.is_editor? %>
         <%= menu_item t(:content, default: "Content"), admin_categories_path, class:'kblink' if knowledgebase? && current_user.is_editor? %>
         <%= menu_item t(:communities, default: "Communities"), admin_forums_path if forums? && current_user.is_agent? %>
         <%= menu_item t(:app_store, default: "App Store"), "http://helpy.io/store/", class: "hidden-sm" %>

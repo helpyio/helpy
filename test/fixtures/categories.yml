@@ -24,6 +24,7 @@ one:
   active: true
   front_page: true
   rank: 10
+  public: true
 
 two:
   id: 2
@@ -31,6 +32,7 @@ two:
   active: true
   front_page: false
   rank: 20
+  public: true
 
 three:
   id: 3
@@ -38,6 +40,7 @@ three:
   active: false
   front_page: false
   rank: 30
+  public: true
 
 four:
   id: 4
@@ -45,6 +48,7 @@ four:
   active: true
   front_page: true
   rank: 40
+  public: true
 
 common_replies:
   id: 5
@@ -52,3 +56,4 @@ common_replies:
   active: true
   front_page: true
   rank: 0
+  public: true

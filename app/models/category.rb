@@ -24,6 +24,8 @@ class Category < ActiveRecord::Base
   has_many :docs
   has_paper_trail
 
+  acts_as_taggable_on :teams
+
   translates :name, :keywords, :title_tag, :meta_description, versioning: :paper_trail
   globalize_accessors #:locales => I18n.available_locales, :attributes => [:name, :keywords, :title_tag, :meta_description]
 
@@ -33,7 +35,11 @@ class Category < ActiveRecord::Base
   scope :ordered, -> { order('rank ASC') }
   scope :ranked, -> { order('rank ASC') }
   scope :featured, -> { where(front_page: true) }
+  scope :non_featured, -> { where(front_page: true) }
   scope :viewable, -> { where.not(name: 'Common Replies')}
+  scope :is_public, -> { where(public: true) }
+  scope :is_internal, -> { where(public: false) }
+
 
   before_destroy :non_deleteable?
 

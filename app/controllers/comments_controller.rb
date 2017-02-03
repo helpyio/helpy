@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @post.screenshots = params[:post][:screenshots]
 
     if @post.save
-      redirect_to doc_path(@doc)
+      redirect_to path_based_on_category_public_status(@doc)
     else
       render 'new'
     end
@@ -35,6 +35,10 @@ class CommentsController < ApplicationController
 
   def get_doc
     @doc = Doc.find(params[:doc_id])
+  end
+
+  def path_based_on_category_public_status(doc)
+    doc.category.public ? doc_path(doc) : admin_internal_doc_path(doc)
   end
 
 end

@@ -32,7 +32,7 @@ class DocsController < ApplicationController
   respond_to :html
 
   def show
-    @doc = Doc.where(id: params[:id], category_id: Category.viewable).active.first
+    @doc = Doc.where(id: params[:id], category_id: Category.is_public.viewable).active.first
 
     unless @doc.nil?
       @page_title = @doc.title

@@ -1,0 +1,19 @@
+
+<% if @categories.count > 0 && Doc.all.with_translations(I18n.locale).count > 0 && knowledgebase? %>
+  <div id="featured-categories" class="row">
+    <h2 class="text-center space-h2"><%= t(:internal_content, default: "Internal Content") %></h2>
+    <div id="home-topics" class="col-md-12">
+    <% @categories.each do |category| %>
+      <% if category.docs.with_translations(I18n.locale).count > 0 %>
+        <div class="topic-box col-lg-3 col-md-3 col-sm-4 col-xs-12" data-link="<%= admin_internal_category_path(category) %>">
+          <div class="dummy"></div>
+          <div class="thumbnail">
+            <h5 class="category-header text-center"><span class="category-icon glyphicon glyphicon-<%= category.icon %>"></span><br/><%= link_to category.name, admin_internal_category_path(category), id: "category-#{category.id}"  %><br/></h5>
+            <p class="text-center less-important hidden-xs"><%= category.meta_description %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+<% end %>
