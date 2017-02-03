@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cloudinary_enabled?
 
+  def attachments_enabled?
+    AppSettings['settings.allow_attachments']
+  end
+
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
   # agent is next and admin has access to everything:
 

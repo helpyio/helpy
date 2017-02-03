@@ -19,3 +19,5 @@ send_usage_data: true
 
 admin_email: inbound.support@yourdomain.com
 from_email: inbound.support@yourdomain.com # This is the email that will be used for email replies (reply to)
+
+allow_attachments: true

@@ -23,7 +23,6 @@ class EmailProcessor
     message = @email.body
     raw = @email.raw_body
     subject = @email.subject
-    attachments = @email.attachments
 
     if subject.include?("[#{sitename}]") # this is a reply to an existing topic
 
@@ -32,7 +31,9 @@ class EmailProcessor
       topic = Topic.find(ticket_number)
 
       #insert post to new topic
-      message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+      if attachments_enabled?
+        message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+      end
       post = topic.posts.create(
         :body => message,
         :raw_email => raw,
@@ -40,8 +41,10 @@ class EmailProcessor
         :kind => "reply"
       )
 
-      # Push array of attachments and send to Cloudinary
-      handle_attachments(@email, post)
+      if attachments_enabled?
+        # Push array of attachments and send to Cloudinary
+        handle_attachments(@email, post)
+      end
 
       @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
       @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
@@ -59,15 +62,19 @@ class EmailProcessor
       )
 
       #insert post to new topic
-      message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+      if attachments_enabled?
+        message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+      end
       post = topic.posts.create!(
         :body => @email.raw_body,
         :user_id => @user.id,
         kind: 'first'
       )
 
-      # Push array of attachments and send to Cloudinary
-      handle_attachments(@email, post)
+      if attachments_enabled?
+        # Push array of attachments and send to Cloudinary
+        handle_attachments(@email, post)
+      end
 
       # Call to GA
       @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
@@ -88,7 +95,9 @@ class EmailProcessor
       end
 
       #insert post to new topic
-      message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+      if attachments_enabled?
+        message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+      end
       post = topic.posts.create(
         :body => message.encode('utf-8', invalid: :replace, replace: '?'),
         :raw_email => raw,
@@ -96,8 +105,10 @@ class EmailProcessor
         :kind => "first"
       )
 
-      # Push array of attachments and send to Cloudinary
-      handle_attachments(@email, post)
+      if attachments_enabled?
+        # Push array of attachments and send to Cloudinary
+        handle_attachments(@email, post)
+      end
 
       # Call to GA
       @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
@@ -128,6 +139,10 @@ class EmailProcessor
 
   def cloudinary_enabled?
     AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+  end
+
+  def attachments_enabled?
+    AppSettings['settings.allow_attachments']
   end
 
   def create_user
