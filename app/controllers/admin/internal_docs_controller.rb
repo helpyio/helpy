@@ -1,12 +1,12 @@
 class Admin::InternalDocsController < Admin::BaseController
-  before_action :knowledgebase_enabled?, only: ['show']
+  before_action :knowledgebase_enabled?, only: [:show]
 
   respond_to :html
 
   def show
-    @doc = Doc.where(id: params[:id], category_id: Category.is_internal.viewable).active.first
+    @doc = Doc.find_by(id: params[:id], active: true)
 
-    unless @doc.nil?
+    if !@doc.nil? || @doc.category.is_internal_viewable?
       @page_title = @doc.title
       @custom_title = @doc.title_tag.blank? ? @page_title : @doc.title_tag
       @topic = @doc.topic.present? ? @doc.topic : Topic.new
@@ -14,7 +14,7 @@ class Admin::InternalDocsController < Admin::BaseController
       @posts = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
       @forum = Forum.for_docs.first
       @comment = @forum.topics.new
-      
+
     else
       redirect_to controller: 'errors', action: 'not_found'
     end

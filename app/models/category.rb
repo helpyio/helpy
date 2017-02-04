@@ -60,4 +60,12 @@ class Category < ActiveRecord::Base
     return false if name == "Common Replies"
   end
 
+  def is_public_viewable?
+    public && name != "Common Replies"
+  end
+
+  def is_internal_viewable?
+    !public && name != "Common Replies"
+  end
+
 end
