@@ -37,9 +37,8 @@ class Category < ActiveRecord::Base
   scope :featured, -> { where(front_page: true) }
   scope :non_featured, -> { where(front_page: true) }
   scope :viewable, -> { where.not(name: 'Common Replies')}
-  scope :is_public, -> { where(public: true) }
-  scope :is_internal, -> { where(public: false) }
-
+  scope :publicly, -> { where(public: true) }
+  scope :internally, -> { where(public: false) }
 
   before_destroy :non_deleteable?
 
@@ -60,11 +59,11 @@ class Category < ActiveRecord::Base
     return false if name == "Common Replies"
   end
 
-  def is_public_viewable?
+  def publicly_viewable?
     public && name != "Common Replies"
   end
 
-  def is_internal_viewable?
+  def internally_viewable?
     !public && name != "Common Replies"
   end
 

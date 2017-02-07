@@ -66,9 +66,9 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def set_categories_and_non_featured
-    @public_categories = Category.is_public.featured.ordered
+    @public_categories = Category.publicly.featured.ordered
     @public_nonfeatured_categories = Category.where(front_page: false, public: true).alpha
-    @internal_categories = Category.is_internal.ordered
+    @internal_categories = Category.internally.ordered
   end
 
 

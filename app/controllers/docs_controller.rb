@@ -43,7 +43,7 @@ class DocsController < ApplicationController
 
   def doc_available_to_view?
     @doc = Doc.find_by(id: params[:id], active: true)
-    redirect_to controller: 'errors', action: 'not_found' if @doc.nil? || !@doc.category.is_public_viewable?
+    redirect_to controller: 'errors', action: 'not_found' if @doc.nil? || !@doc.category.publicly_viewable?
   end
 
   def is_user_signed_in?
