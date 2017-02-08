@@ -25,7 +25,7 @@ class CategoriesController < ApplicationController
   theme :theme_chosen
 
   def index
-    @categories = Category.publicly_viewable.viewable.active.ordered.with_translations(I18n.locale)
+    @categories = Category.publicly.viewable.active.ordered.with_translations(I18n.locale)
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
     add_breadcrumb @page_title, categories_path
   end
