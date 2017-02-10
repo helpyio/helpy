@@ -34,8 +34,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         click_on('Create Ticket', disabled: true)
       end
     end
-    assert current_path == '/en/thanks'
-
+    assert current_path =~ %r(/en/ticket/.)
   end
 
   test "a browsing user who is not registered should be able to create a public ticket via the web interface when recaptcha enable" do

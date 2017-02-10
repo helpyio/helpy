@@ -27,7 +27,7 @@
 
 class TopicsController < ApplicationController
 
-  before_action :authenticate_user!, :only => ['tickets','ticket']
+  before_action :authenticate_user!, :only => ['tickets']
   before_action :allow_iframe_requests
   before_action :forums_enabled?, only: ['index','show']
   before_action :topic_creation_enabled?, only: ['new', 'create']
@@ -68,7 +68,13 @@ class TopicsController < ApplicationController
   end
 
   def ticket
-    @topic = current_user.topics.undeleted.where(id: params[:id]).first
+    if topic_id?
+      @topic = current_user.topics.undeleted.where(id: params[:id]).first
+    else
+      @topic = Topic.where(code: params[:id]).first
+      @access_by_code = true if @topic
+      flash.now[:info] = I18n.t(:ticket_secret_url_notice, default: "Secret link %{url}", url: request.url)
+    end
     if @topic
       @posts = @topic.posts.ispublic.chronologic.active.all.includes(:topic, :user, :screenshot_files)
       @page_title = "##{@topic.id} #{@topic.name}"
@@ -85,7 +91,9 @@ class TopicsController < ApplicationController
   def new
     @page_title = t(:get_help_button, default: "Open a ticket")
     @topic = Topic.new
-    @user = @topic.build_user unless user_signed_in?
+    unless user_signed_in?
+      @user = AutoUser.new
+    end
     @topic.posts.build
     add_breadcrumb @page_title
   end
@@ -113,7 +121,7 @@ class TopicsController < ApplicationController
         :screenshots => params[:topic][:screenshots],
         :attachments => params[:topic][:posts_attributes]["0"][:attachments])
 
-      if !user_signed_in?
+      if !user_signed_in? && @user.email_valid?
         UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
       end
 
@@ -122,11 +130,13 @@ class TopicsController < ApplicationController
       tracker('Agent: Unassigned', 'New', @topic.to_param)
 
       if @topic.private?
-        redirect_to topic_thanks_path
+        redirect_to ticket_path(@topic.code)
       else
         redirect_to topic_posts_path(@topic)
       end
     else
+      flash.now[:danger] = @topic.user.errors.full_messages
+      @user = @topic.user
       render 'new'
     end
   end
@@ -166,4 +176,19 @@ class TopicsController < ApplicationController
     @forums = Forum.ispublic.all
   end
 
+  #
+  # returns true if params[:id] is a topic id, false
+  # otherwise.
+  #
+  def topic_id?
+    param_id = params[:id]
+    if param_id.nil?
+      true
+    elsif param_id =~ /-/
+      int = param_id.split('-').first
+      int.to_i.to_s == int
+    else
+      param_id.to_i.to_s == param_id.to_s
+    end
+  end
 end

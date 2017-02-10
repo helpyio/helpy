@@ -38,17 +38,20 @@
     <div id="posts">
       <%= render :partial => 'posts/post', :collection => @posts %>
     </div>
-    <% if user_signed_in? %>
+    <% if user_signed_in? || @access_by_code %>
       <div class="add-form">
       <h4><%= I18n.t("reply", default: "Reply to this Topic") %></h4>
       <%#= error_messages_for :post -%>
       <%= bootstrap_form_for @topic.posts.new, :url => topic_posts_path(@topic), :remote => true do |f| -%>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+        <% if @access_by_code %>
+          <%= hidden_field_tag :topic_code, @topic.code -%>
+        <% end %>
         <%= f.hidden_field 'kind', value: 'reply' %>
         <%= hidden_field_tag :client_id %>
         <%= f.text_area :body, :rows => 8, :cols => 160, skip_label: true, class: 'disable-empty' -%></p>
         <%= f.attachinary_file_field :screenshots if cloudinary_enabled? %>
-        <%= f.file_field :attachments, multiple: true unless cloudinary_enabled? %>				
+        <%= f.file_field :attachments, multiple: true unless cloudinary_enabled? %>
         <%= f.submit I18n.t('submit_reply', default: 'Post Reply'), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
       <% end -%>
       </div>

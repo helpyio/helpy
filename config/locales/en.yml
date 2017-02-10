@@ -69,6 +69,9 @@ en:
   ticket_number: "Ticket Number"
   assigned_to_label: "Assigned to"
   created_on: "Created on"
+  ticket_secret_url_notice: |
+    You are viewing this ticket using the secret link %{url}.
+    Anyone with this link can view and reply to this ticket.
 
   # Get Help
   get_help_header: "Still Need Help?"

@@ -41,10 +41,22 @@ class PostsController < ApplicationController
   end
 
   def create
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.new(post_params)
+    if params[:topic_code]
+      @topic = Topic.find_by_code(params[:topic_code])
+      @post = @topic.posts.new(post_params)
+      if user_signed_in?
+        @post.user_id = current_user.id
+      else
+        @post.user_id = @topic.user.id
+      end
+    elsif params[:topic_id] && user_signed_in?
+      @topic = Topic.find(params[:topic_id])
+      @post = @topic.posts.new(post_params)
+      @post.user_id = current_user.id
+    else
+      raise ArgumentError, 'either topic_code or topic_id must be in params'
+    end
     @post.topic_id = @topic.id
-    @post.user_id = current_user.id
     @post.screenshots = params[:post][:screenshots]
 
     respond_to do |format|

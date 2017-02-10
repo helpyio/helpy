@@ -186,17 +186,6 @@ class User < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def signup_guest
-    enc = Devise.token_generator.generate(User, :reset_password_token)
-    self.reset_password_token = enc
-    self.reset_password_sent_at = Time.now.utc
-
-    self.login = self.email.split("@")[0]
-    self.password = User.create_password
-    self.save
-  end
-
-
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
   # and changing it could be painful for upgrading installed users. These are three
   # Utility methods for checking the role of an admin:
@@ -211,6 +200,12 @@ class User < ActiveRecord::Base
 
   def is_editor?
     %w( editor agent admin ).include?(self.role)
+  end
+
+  def email_valid?
+    self.email.present? &&
+    self.email !~ /\A#{Regexp.escape(TEMP_EMAIL_PREFIX)}/ &&
+    self.email !~ /@email.invalid\z/
   end
 
   def self.bulk_invite(emails, message, role)

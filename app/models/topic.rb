@@ -25,6 +25,8 @@
 #  channel          :string           default("email")
 #
 
+require 'securerandom'
+
 class Topic < ActiveRecord::Base
 
   include SentenceCase
@@ -77,6 +79,7 @@ class Topic < ActiveRecord::Base
   # may want to get rid of this filter:
   # before_save :check_for_private
   before_create :add_locale
+  before_create :set_code
 
   before_save :cache_user_name
   # acts_as_taggable
@@ -176,8 +179,10 @@ class Topic < ActiveRecord::Base
   def create_topic_with_user(params, current_user)
     self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email])
 
-    unless self.user #User not found, lets build it
-      self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
+    # User not found, lets build it
+    unless self.user
+      self.user = AutoUser.new(params[:topic].require(:user).permit(:email, :name))
+      self.user.save
     end
     self.user.persisted? && self.save
   end
@@ -206,5 +211,14 @@ class Topic < ActiveRecord::Base
 
   def add_locale
     self.locale = I18n.locale
+  end
+
+  #
+  # a topic's code is a random string used to access the topic via URL
+  # if the user does not have an account or email address.
+  #
+  CODE_LENGTH = 16
+  def set_code
+    self.code = SecureRandom.base64(CODE_LENGTH * 2).gsub(/[\/\+l01]/, '')[0, CODE_LENGTH]
   end
 end
