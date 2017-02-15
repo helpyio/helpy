@@ -90,12 +90,12 @@ class User < ActiveRecord::Base
   paginates_per 15
 
   # Relationships
-  has_and_belongs_to_many :roles
-  has_many :topics
-  has_many :posts
-  has_many :votes
-  has_many :docs
-  has_many :api_keys
+
+  has_many :topics, dependent: :delete_all
+  has_many :posts, dependent: :delete_all
+  has_many :votes, dependent: :delete_all
+  has_many :docs, dependent: :delete_all
+  has_many :api_keys, dependent: :delete_all
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 

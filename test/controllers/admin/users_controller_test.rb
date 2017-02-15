@@ -90,6 +90,23 @@ class Admin::UsersControllerTest < ActionController::TestCase
       xhr :get, :edit, { id: 2 }
       # assert_response :success
     end
+
+    test "an #{admin} should be able to destroy a user" do
+      sign_in users(admin.to_sym)
+      assert_difference "User.count", -1 do
+        xhr :delete, :destroy, id: 3, locale: :en
+      end
+      assert_response :success
+    end
+  end
+
+  %w(user editor).each do |unauthorized|
+    test "an #{unauthorized} should NOT be able to destroy a user" do
+      sign_in users(unauthorized.to_sym)
+      assert_difference("User.count", 0) do
+        xhr :delete, :destroy, id: 3, locale: :en
+      end
+    end
   end
 
   test "an admin should be able to update a user and make them an admin" do

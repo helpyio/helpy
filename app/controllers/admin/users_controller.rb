@@ -95,6 +95,16 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_users_path }
+      format.js { }
+    end
+  end
+
   def invite
   end
 
