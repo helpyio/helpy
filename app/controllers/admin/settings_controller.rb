@@ -73,7 +73,9 @@ class Admin::SettingsController < Admin::BaseController
     @logo.file = params['uploader.design.header_logo']
     @logo.save
 
-    flash[:success] = "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}"
+    flash[:success] = t(:settings_changes_saved,
+                        site_url: AppSettings['settings.site_url'],
+                        default: "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}")
     respond_to do |format|
       format.html {
         redirect_to admin_settings_path
