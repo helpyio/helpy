@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   root to: "locales#redirect_on_locale"
 
-  devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: {
+    omniauth_callbacks: 'omniauth_callbacks',
+    sessions: 'sessions'
+  }
 
   as :user do
     get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation

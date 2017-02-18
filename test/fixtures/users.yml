@@ -91,6 +91,7 @@ user2:
   identity_url: MyString
   name: Scott Smith
   email: scott.smith@test.com
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
   admin: false
   role: user
 
@@ -139,3 +140,14 @@ editor:
   admin: false
   role: editor
   encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+
+user3:
+  id: 8
+  login: waddup
+  identity_url: MyString
+  name: Not Active
+  email: not_active@test.com
+  admin: false
+  role: user
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+  active: false
