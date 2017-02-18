@@ -160,6 +160,7 @@ ja:
   contact_info: "連絡先"
   social_info: "SNS"
   edit_user:
+#  delete_user: Delete User
   work_phone: "職場の電話番号"
   cell_phone: "携帯電話番号"
 

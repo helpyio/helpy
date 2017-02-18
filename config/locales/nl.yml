@@ -160,6 +160,7 @@ nl:
   contact_info: Contact
   social_info: Social Media
   edit_user: Gebruiker bewerken
+#  delete_user: Delete User
   work_phone: Telefoon (zakelijk)
   cell_phone: Mobiel
 

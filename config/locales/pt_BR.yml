@@ -183,6 +183,7 @@ pt-br:
   contact_info: "Contato"
   social_info: "Social"
   edit_user: "Editar Usuário"
+#  delete_user: Delete User
   work_phone: "trabalho"
   cell_phone: "celular"
 

@@ -164,6 +164,7 @@ ru:
   contact_info: Контакт
   social_info: Социальные сети
   edit_user: Редактировать пользователя
+#  delete_user: Delete User
   work_phone: номер рабочего телефона
   cell_phone: номер мобильного телефона
 

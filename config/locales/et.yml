@@ -160,6 +160,7 @@ et:
   contact_info: Kontakt
   social_info: Sotsiaalne
   edit_user:
+#  delete_user: Delete User
   work_phone: töö
   cell_phone: telefon
 
