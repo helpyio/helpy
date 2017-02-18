@@ -160,6 +160,7 @@ fr:
   contact_info: Informations de contact
   social_info: Réseaux sociaux
   edit_user:
+#  delete_user: Delete User
   work_phone: téléphone professionnel
   cell_phone: portable
 

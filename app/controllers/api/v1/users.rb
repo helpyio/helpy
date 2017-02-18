@@ -171,6 +171,17 @@ module API
           present user, with: Entity::User
         end
 
+        # DELETE A USER
+        desc "Delete a user"
+        params do
+          requires :id, type: Integer, desc: "User ID"
+        end
+        delete ":id", root: :users do
+          user = User.find(permitted_params[:id])
+          user.destroy
+          body false
+        end
+
         # INVITE USER
         desc "Invite one or more users to create an account"
         params do
