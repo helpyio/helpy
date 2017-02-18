@@ -238,7 +238,7 @@ class User < ActiveRecord::Base
 
   # check if user is active or not
   def active_for_authentication?
-    super and self.active?
+    super && self.active?
   end
 
   # message to the user that is not allowed to login
