@@ -236,6 +236,16 @@ class User < ActiveRecord::Base
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  # check if user is active or not
+  def active_for_authentication?
+    super and self.active?
+  end
+
+  # message to the user that is not allowed to login
+  def inactive_message
+    "You are not allowed to log in!"
+  end
+
   private
 
   def reject_invalid_characters_from_name
