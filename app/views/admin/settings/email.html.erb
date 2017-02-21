@@ -1,0 +1,26 @@
+<% content_for :settings do %>
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <div class="settings-section email" data-hook="admin_settings_email">
+      <%= f.select 'email.mail_service',
+        options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']),
+        label: t('mail_service', default: "Inbound Mail Service Provider") %>
+
+      <%= f.form_group 'email.send_email', label: { text: t('send_email', default: "Enable Outbound (SMTP) Email") }, class: 'send-email-toggle' do %>
+        <%= f.radio_button 'email.send_email', false, label: t('boolean_no', default: "No"), checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
+        <%= f.radio_button 'email.send_email', true, label: t('boolean_yes', default: "Yes"), checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
+      <% end %>
+      <div class="smtp-settings <%= "hidden" if "#{AppSettings['email.send_email']}" == 'false' %>">
+        <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: t('admin_email', default: "Admin Email") %>
+        <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: t('from_email', default: "From Email") %>
+        <%= f.text_field 'email.smtp_mail_username', value: AppSettings['email.smtp_mail_username'], label: t('smtp_mail_username', default: "SMTP Username") %>
+        <%= f.password_field 'email.smtp_mail_password', value: AppSettings['email.smtp_mail_password'], label: t('smtp_mail_password', default: "SMTP Password") %>
+        <%= f.text_field 'email.mail_smtp', value: AppSettings['email.mail_smtp'], label: t('mail_smtp', default: "SMTP Server") %>
+        <%= f.text_field 'email.mail_port', value: AppSettings['email.mail_port'], label: t('mail_port', default: "SMTP Port") %>
+        <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: t('mail_domain', default: "SMTP Domain") %>
+      </div>
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+<% end %>

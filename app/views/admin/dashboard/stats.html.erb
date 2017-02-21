@@ -22,7 +22,7 @@
             <%= form_tag admin_stats_path, class: 'form-horizontal dropdown-form', method: :get do %>
               <%= hidden_field_tag :label, 'interval' %>
               <div class="form-group">
-                <%= label_tag 'Start:', nil, class: 'col-sm-2 control-label' %>
+                <%= label_tag t(:insight_start_range, default: 'Start:'), nil, class: 'col-sm-2 control-label' %>
                 <div class="col-sm-10">
                   <div class="input-group date">
                     <%= text_field_tag :start_date, nil, class: 'form-control' %>
@@ -32,7 +32,7 @@
               </div>
 
               <div class="form-group">
-                <%= label_tag 'End:', nil, class: 'col-sm-2 control-label' %>
+                <%= label_tag t(:insight_end_range, default: 'End:'), nil, class: 'col-sm-2 control-label' %>
                 <div class="col-sm-10">
                   <div class="input-group date">
                     <%= text_field_tag :end_date, nil, class: 'form-control' %>
@@ -43,7 +43,7 @@
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <%= submit_tag 'Filter', class: 'btn btn-default' %>
+                  <%= submit_tag t(:insight_filter, default: 'Filter'), class: 'btn btn-default' %>
                 </div>
               </div>
             <% end %>

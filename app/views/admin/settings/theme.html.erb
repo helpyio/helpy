@@ -1,0 +1,18 @@
+<% content_for :settings do %>
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <div class="settings-section theme">
+      <div class="row">
+        <% @themes.each do |theme| %>
+        <div class="col-md-4" class="theme-item">
+          <%= f.radio_button 'theme.active', theme.name, checked: theme.name == AppSettings['theme.active'], label: theme.name.titleize %>
+          <%= image_tag(url_for(action: 'preview', theme: theme.name))  %>
+          <%= theme.description %> <%= link_to "[Preview]", root_url(theme: theme.name), target: '_blank' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+<% end %>

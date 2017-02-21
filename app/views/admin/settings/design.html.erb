@@ -1,0 +1,52 @@
+<% content_for :settings do %>
+  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <div class="settings-section design">
+        <div class="row">
+          <div class="col-md-1 col-sm-2 col-xs-2">
+            <%= image_tag(AppSettings['design.header_logo'], width: 40, class: 'pull-left') %>
+          </div>
+          <div class="col-md-11 col-sm-10 col-xs-10">
+            <%= f.file_field 'uploader.design.header_logo', class: "settings-uploader", label: t('header_logo', default: "Header Logo") %>
+            <%= f.text_field 'design.header_logo', class: "hidden-header-logo", value: AppSettings['design.header_logo'], hide_label: true %>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-md-1 col-sm-2 col-xs-2">
+            <%= image_tag(AppSettings['design.footer_mini_logo'], width: 20, class: 'pull-left') %>
+          </div>
+          <div class="col-md-11 col-sm-10 col-xs-10">
+            <%= f.file_field 'design.footer_mini_logo', value: AppSettings['design.footer_mini_logo'], label: t('footer_logo', default: "Footer Logo") %>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-md-1 col-sm-2 col-xs-2">
+            <%= image_tag(AppSettings['design.favicon'], width: 32, class: 'pull-left') %>
+          </div>
+          <div class="col-md-11 col-sm-10 col-xs-10">
+            <%= f.file_field 'uploader.design.favicon', class: "favicon-uploader", label: "Favicon" %>
+            <%= f.text_field 'design.favicon', class: "hidden-favicon", value: AppSettings['design.favicon'], hide_label: true %>
+          </div>
+        </div>
+        <% if AppSettings['theme.active'] == 'helpy' %>
+          <%= f.text_field 'css.search_background', value: AppSettings['css.search_background'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
+          <%= f.text_field 'css.top_bar', value: AppSettings['css.top_bar'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
+          <%= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
+          <%= f.text_field 'css.form_background', value: AppSettings['css.form_background'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
+          <%= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
+        <% else %>
+          <%= f.text_field 'css.main_color', value: AppSettings['css.main_color'], label: t('search_background', default: "Search Background Color"), class: 'pick-a-color' %>
+          <%= f.text_field 'css.accent_color', value: AppSettings['css.accent_color'], label: t('top_bar', default: "Header Accent"), class: 'pick-a-color' %>
+          <%#= f.text_field 'css.link_color', value: AppSettings['css.link_color'], label: t('link_color', default: "Link Color"), class: 'pick-a-color' %>
+          <%= f.text_field 'css.form_color', value: AppSettings['css.form_color'], label: t('form_background', default: "Add Form Background"), class: 'pick-a-color' %>
+          <%#= f.text_field 'css.still_need_help', value: AppSettings['css.still_need_help'], label: t('still_need_help', default: "Still Need Help Background"), class: 'pick-a-color' %>
+        <% end %>
+        <%= f.text_area 'design.css', value: AppSettings['design.css'], label: "Custom CSS Styles", rows: 10, class: 'css-editor' %>
+        <%= f.text_area 'design.header_js', value: AppSettings['design.header_js'], label: "Head Javascript", rows: 10, class: 'css-editor' %>
+        <%= f.text_area 'design.footer_js', value: AppSettings['design.footer_js'], label: "Footer Javascript", rows: 10, class: 'css-editor' %>
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+    </div>
+
+  <% end %>
+<% end %>

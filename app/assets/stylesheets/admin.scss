@@ -37,7 +37,7 @@ td > img {
 
 #upper-wrapper {
   background-color: #222;
-
+	margin-bottom: 0;
   > div {
     padding-top: 0;
   }
@@ -108,11 +108,21 @@ td > img {
     }
 }
 
-
+.topic-search-container {
+	background-color: #ddd;
+	height: 50px;
+	padding-top: 10px;
+	padding-bottom: 0;
+}
 // === ADMIN STYLES ===
 
 .white-bg {
     background-color: white;
+}
+
+.admin-avatar img {
+  margin-right: 8px;
+  margin-top: -5px;
 }
 
 .channel-wrapper {
@@ -172,6 +182,7 @@ ul.dropdown-menu {
 
 .navbar-brand {
     padding-top: 15px;
+    margin-right: 40px;
 }
 
 .navbar-right {

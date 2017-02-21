@@ -349,6 +349,10 @@ Helpy.ready = function(){
     });
   });
 
+  $('.keyboard-shortcuts-link').off().on('click', function(){
+    Helpy.showShortcuts();
+  });
+
   // Autolink messages
   $('.post-body').each(function(){
     var that = $(this);

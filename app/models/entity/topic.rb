@@ -20,6 +20,7 @@ module Entity
     expose :locale, documentation: { type: "String", desc: "The locale used when the author created the Topic." }
     expose :team_list
     expose :channel, documentation: { type: "String", desc: "The channel that the topic was created from."}
+    expose :kind, documentation: { type: "String", desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc."}
     expose :posts, using: Entity::Post, if: { posts: true }
   end
 end

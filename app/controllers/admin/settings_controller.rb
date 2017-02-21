@@ -1,26 +1,57 @@
 class Admin::SettingsController < Admin::BaseController
 
-  before_action :verify_admin, except: ['index', 'notifications','update_notifications']
+  before_action :verify_admin, except: ['index', 'notifications','update_notifications', 'profile']
   before_action :verify_agent, only: ['index', 'notifications', 'update_notifications']
   skip_before_action :verify_authenticity_token
 
   def index
     @settings = AppSettings.get_all
+    render layout: "admin"
+  end
+
+  def general
+    render layout: 'admin-settings'
+  end
+
+  def design
+    render layout: 'admin-settings'
+  end
+
+  def theme
     @themes = Theme.find_all
+    render layout: 'admin-settings'
+  end
+
+  def widget
+    render layout: 'admin-settings'
+  end
+
+  def i18n
+    render layout: 'admin-settings'
+  end
+
+  def email
+    render layout: 'admin-settings'
+  end
+
+  def integration
+    render layout: 'admin-settings'
+  end
+
+  def profile
+    @user = User.find(current_user)
+    tracker("Agent: #{current_user.name}", "Editing User Profile", @user.name)
+    render layout: 'admin-settings'
   end
 
   # Show notification settings for current agent/admin
   def notifications
+    render layout: 'admin-settings'
   end
 
   # Save notification preference for current agent/admin
   def update_notifications
-    user = current_user
-    user.notify_on_private = params[:notify_on_private]
-    user.notify_on_public = params[:notify_on_public]
-    user.notify_on_reply = params[:notify_on_reply]
-    user.save!
-    redirect_to admin_settings_path
+    redirect_to :back # admin_settings_path
   end
 
   def preview
@@ -35,14 +66,16 @@ class Admin::SettingsController < Admin::BaseController
     @settings = AppSettings.get_all
     # iterate through
     @settings.each do |setting|
-      AppSettings[setting[0]] = params[setting[0].to_sym]
+      AppSettings[setting[0]] = params[setting[0].to_sym] if params[setting[0].to_sym].present?
     end
 
     @logo = Logo.new
     @logo.file = params['uploader.design.header_logo']
-    # binding.pry
     @logo.save
 
+    flash[:success] = t(:settings_changes_saved,
+                        site_url: AppSettings['settings.site_url'],
+                        default: "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}")
     respond_to do |format|
       format.html {
         redirect_to admin_settings_path
