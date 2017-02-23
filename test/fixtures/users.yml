@@ -139,3 +139,14 @@ editor:
   admin: false
   role: editor
   encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+
+user_inactive:
+  id: 8
+  login: user_inactive
+  identity_url: MyString
+  name: User Inactive
+  email: inactive@test.com
+  admin: false
+  role: user
+  active: false
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK

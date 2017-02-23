@@ -49,4 +49,9 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
     assert_equal '/en/users/sign_in', current_path
   end
 
+  test "a user should not be able to login if he is inactive" do
+    sign_in("user_inactive@test.com")
+    assert_equal '/en/users/sign_in', current_path
+  end
+
 end
