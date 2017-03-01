@@ -28,7 +28,7 @@ de:
   yes_button: 'Ja'
   no_button: 'Nein'
   yes_helped: 'Toll! Danke für Ihre Bewertung!'
-  no_helped: 'Es tut uns Leid, dass wir nicht helfen konnten. Bitte kontaktieren Sie uns für weitere Hilfe!'
+  no_helped: 'Es tut uns leid, dass wir nicht helfen konnten. Bitte kontaktieren Sie uns für weitere Hilfe!'
 
   # Search
   search_placeholder: "Geben Sie ein Stichwort, Thema oder eine Frage ein"
@@ -83,10 +83,10 @@ de:
   version: "Version:"
 
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: "Zur Überprüfung melden"
+  flag_post_for_review: "Diesen Beitrag zur Überprüfung melden"
+  flag_post_placeholder: "Beschreiben Sie den Grund für eine Überprüfung des Beitrages"
+  flag: "Melden"
 
   # devise/sessions/new
   login: Anmelden
@@ -103,7 +103,7 @@ de:
   new_password_confirmation: Passwort wiederholen
 
   # devise/confirmations/new
-  resend: Bestätigungsmail erneut schicken
+  resend: E-Mail-Bestätigung erneut schicken
 
   # devise/registrations/new
   sign_up: Registrieren
@@ -129,6 +129,9 @@ de:
   open_new_discussion: Neue Diskussion
   assigned_to: "zugeordnet an %{agent}"
   unassigned: nicht zugeordnet
+  no_team_assigned: Einer Gruppe zuordnen
+  assign_to: Gruppe/Team
+  unassign_from_team: Zuordnung zu einer Gruppe aufheben
   private: privat
   public: öffentlich
   save_changes: Änderungen speichern
@@ -156,7 +159,7 @@ de:
 
   # User Admin
   users: Benutzer
-  # account: Account
+  account: Benutzerkonto
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
@@ -164,11 +167,19 @@ de:
   cell_phone: Handy
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: Priorität auswählen
+  vip_priority: VIP
+  high_priority: Hoch
+  normal_priority: Normal
+  low_priority: Niedrig
+  
+  # Roles
+  select_role: Rolle auswählen
+  admin_role: Admininistrator
+  agent_role: Agent
+  editor_role: Bearbeiter
+  user_role: Benuter
+  add_more_agents: "Benutzer hinzufügen"
 
   # User search results
   users_found:
@@ -177,10 +188,10 @@ de:
 
   # Invite users
   invite_users: "Neue Benutzer einladen"
-  invite_emails: "E-mail-Adressen"
-  invite_emails_placeholder: "Gib ein oder mehrere E-Mail Adressen ein um Einladungen an sie zu verschicken."
+  invite_emails: "E-Mail-Adressen"
+  invite_emails_placeholder: "Gib eine oder mehrere E-Mail Adressen ein um Einladungen zu verschicken."
   invite_message: "Nachricht"
-  invite_message_placeholder: "Eine optionale Nachricht die an neue Benutzer verschickt wird."
+  invite_message_placeholder: "Eine optionale Nachricht eingeben, die an die neuen Benutzer verschickt wird."
   invite_role: "Rolle für eingeladene Benutzer"
   send_invite: "Einladung senden"
 
@@ -188,7 +199,7 @@ de:
   asked_a_question: "%{user_name} hat eine Frage gestellt..."
   replied: "%{user_name} hat geantwortet..."
   posted_note: "%{user_name} hat eine interne Notiz gesendet..."
-  type_reply: Schreiben Sie eine Antwort oder wählen Sie eine Textvorlage unten aus
+  type_reply: Schreiben Sie eine Antwort oder wählen Sie unten eine Textvorlage aus
   select_common: Textvorlage auswählen
   reply: Antworten
   internal_note: Interne Notiz
@@ -199,7 +210,7 @@ de:
 
   # Content
   new_category: Neue Kategorie
-  new_content: Neue Kategorie
+  new_content: Neuer Inhalt
   front_page_categories: Kategorien Startseite
   other_categories: Andere Kategorien
   edit: Bearbeiten
@@ -223,7 +234,7 @@ de:
   # new_discussion: 'Create new discussion from this'
   # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
   # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  change_owner_note: 'Der Ersteller dieser Diskussion wurde geändert von %{old} nach %{new}'
 
   # Communities
   new_community: Ein neues Forum erstellen
@@ -234,12 +245,12 @@ de:
   layout_qna: Frage & Antwort
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
+  new_user_subject: "Willkommen bei %{site_name}"
   hello: "Hallo %{user_name}"
   new_user: "Vielen Dank, dass Sie uns kontaktieren. Ihre Nachricht wurde von unserem Support Team empfangen und wir werden uns in Kürze mit einer Antwort bei Ihnen melden."
   account_generated: "Ein Benutzerkonto zur Einsicht der Kommunikation wurde für Sie erstellt. Um sich Anzumelden, benutzen Sie bitte diesen Link:"
   above_this_line: "Bitte antworten Sie ausschliesslich oberhalb dieser Zeile."
-  message_id: "Nachrichten ID"
+  message_id: "Nachrichten-ID"
   message_response: "Die folgende Nachricht wurde als Antwort auf Ihre Frage verfasst:"
   view_online: "Online ansehen:"
 
@@ -258,14 +269,14 @@ de:
   agent_settings: "Agent Einstellungen"
   notifications: "Benachrichtigungen"
   settings: "System Einstellungen"
-  general: "Generell"
+  general: "Allgemein"
   design: "Design"
   international: "International"
   widget: "Einbindbares Widget"
 
   # API Key Managmeent
   api_keys: "API Keys"
-  key_name: "Key Name"
+  key_name: "Key"
   token: "Token"
   add_key: "Neuen Key hinzufügen"
   expire_token: "Token ablaufen lassen"
@@ -274,22 +285,23 @@ de:
   spec_note: "Sie können unsere interaktive API Spezifikation hier lesen und testen: "
 
   # Insights
-  team_insights: "Team insights für %{site_name}"
+  team_insights: "Team Statistik für %{site_name}"
   filter_by_date: "Filtern anhand des Datums"
   today: "Heute"
   yesterday: "Gestern"
   this_week: "Diese Woche"
   last_week: "Letzte Woche"
-  this_month: "Diesen Monat"
-  date_range: "Datums Spannweite"
+  this_month: "Dieser Monat"
+  last_month: "Letzter Monat"
+  date_range: "Zeitspanne"
   insights_blurb_one:
-    one: "<strong>%{period}</strong> Ihr Benutzer begann 1 neue Konversation"
-    other: "<strong>%{period}</strong> Ihr Benutzer begann <strong>%{count} neue Konversationen</strong>"
-  insights_blurb_two: " von welchen Ihr Tem auf <strong>%{number_replied} (%{percentage_replied})</strong> antwortete."
+    one: "<strong>%{period}</strong> begannen Ihre Benutzer 1 neue Konversation"
+    other: "<strong>%{period}</strong> begannen Ihre Benutzer <strong>%{count} neue Konversationen</strong>"
+  insights_blurb_two: "von welchen Ihr Team auf <strong>%{number_replied} (%{percentage_replied})</strong> antwortete"
   insights_blurb_three: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
-  no_discussions: "Keine neuen Konversationen wurde gestarted<strong>%{period}</strong>"
+  no_discussions: "<strong>%{period}</strong> wurden keine neuen Konversationen gestarted"
   assigned_topics: "Zugewiesene Themen"
-  responded: "Geantworted"
+  responded: "Beantworted"
   closed: "Geschlossen"
   replies: "Antworten"
   median_time: "Durschnittliche Zeit bis zur ersten Antwort"
@@ -299,11 +311,12 @@ de:
   activerecord:
     attributes:
       user:
-        email: Email
-        password: Password
+        email: E-Mail
+        password: Passwort
         name: Name
         company: Firma
-        work_phone: Arbeit
+        work_phone: Telefon (Arbeit)
+        home_phone: Telefon (Privat)
         cell_phone: Handy
         city: Stadt
         state: Bundesland
@@ -316,14 +329,14 @@ de:
         name: Name
         icon: Symbol
         keywords: Stichworte
-        title_tag: Title Stichwort
-        meta_description: Meta Beschreibung
+        title_tag: Titel-Stichwort
+        meta_description: Meta-Beschreibung
         front_page: Startseite
         active: Aktiv
       doc:
         title: Title
-        meta_description: Meta Beschreibung
-        title_tag: Title Stichwort
+        meta_description: Meta-Beschreibung
+        title_tag: Titel-Stichwort
         keywords: Stichworte
         category_id: Kategorie
         active: Status
@@ -333,8 +346,8 @@ de:
         description: Beschreibung
         private: Privat
         layout: Layout
-        allow_topic_voting: Erlaube Themen voting?
-        allow_post_voting: Erlaube Beitrags voting?
+        allow_topic_voting: Erlaube Themenvoting?
+        allow_post_voting: Erlaube Beitragsvoting?
 
     helpers:
       submit:
@@ -372,7 +385,7 @@ de:
     titles:
       edit: "%{model} bearbeiten"
       save: "%{model} speichern"
-      new: "Neue oder neues %{model}"
+      new: "%{model} erstellen"
       delete: "%{model} löschen"
 
   number:
