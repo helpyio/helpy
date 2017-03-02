@@ -70,6 +70,8 @@ class Admin::GroupsController < Admin::BaseController
   def group_params
     params.require(:acts_as_taggable_on_tag).permit(
       :name,
+      :description,
+      :color,
       :show_on_helpcenter,
       :show_on_admin,
       :show_on_dashboard

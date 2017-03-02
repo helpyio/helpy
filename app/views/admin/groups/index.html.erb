@@ -1,6 +1,13 @@
 <% title "#{admin_title} #{t('groups', default: "Groups")}" %>
 
 <% content_for :settings do %>
+
+  <style>
+    .group {
+      height: 60px;
+    }
+  </style>
+
   <div class="admin-header">
     <h2 id="setting-header">
       <%= t('groups', default: 'Groups') %>
@@ -10,7 +17,14 @@
     </h2>
   </div>
 
-  <div id="groups">
-    <%= render partial: 'admin/groups/groups' %>
+  <div class="settings-section">
+    <div class="row group-header vcenter border-bottom">
+      <div class="pull-left tiny-header col-md-12">
+        Group
+      </div>
+    </div>
+
+    <%= render partial: 'admin/groups/group', collection: @teams if @teams %>
   </div>
+
 <% end %>

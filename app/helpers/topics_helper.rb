@@ -83,8 +83,25 @@ module TopicsHelper
     end
   end
 
+  # Lookup the user set color, if it exists
+  def badge_color_from_tag(tag_name)
+    tagging = ActsAsTaggableOn::Tag.where('lower(name) = ?', tag_name.downcase).first
+    tagging.present? && tagging.color.present? ? 'background-color: ' + tagging.color : ''
+  end
+
+  def badge_color_from_topic(topic)
+    return '' if topic.team_list.blank?
+
+    tagging = ActsAsTaggableOn::Tag.where('lower(name) = ?', topic.team_list.first.downcase)
+    return badge_color_from_tag(tagging.first.name) unless tagging.nil?
+  end
+
   def all_teams
     ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).where("context = 'teams' and tags.show_on_helpcenter = ?", 'true').references(:tags).map{|tagging| tagging.tag.name.capitalize }.uniq
+  end
+
+  def color_sample(tag_name)
+    content_tag(:div, '', style: badge_color_from_tag(tag_name), class: 'color-sample label-' + tag_name.first.downcase) + content_tag(:div, tag_name.try(:titleize))
   end
 
 end

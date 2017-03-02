@@ -46,7 +46,7 @@
   <% if teams? %>
     <span class="status btn-group left-col-dropdown">
       <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-        <%= content_tag(:span, class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
+        <%= content_tag(:span, style: badge_color_from_topic(@topic), class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
           <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
           <%= icon('caret-down') + ' ' %>
         <% end %>
@@ -55,7 +55,7 @@
         <% @all_teams.to_a.each do |team| %>
           <li class='team-item'>
             <% unless @topic.current_status == "closed" %>
-              <%= link_to("#{content_tag(:div, '', class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
+              <%= link_to(color_sample(team), admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
             <% end %>
           </li>
         <% end %>

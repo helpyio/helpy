@@ -7,8 +7,8 @@
     </h2>
   </div>
   <div class="settings-panel row">
-    <div class="col-md-9 col-sm-8 col-xs-10">
-      <%= bootstrap_form_for @team, url: admin_groups_path, method: 'post', remote: false do |f| %>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <%= simple_form_for @team, url: admin_groups_path, method: 'post', remote: false do |f| %>
         <%= render "form", f: f  %>
       <% end %>
     </div>
