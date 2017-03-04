@@ -54,7 +54,7 @@ Helpy.admin = function(){
       var $field = $('#new_group');
       var newGroup = $field.val();
       var $newItem = $('<li/>');
-      var $newLink = $('<a class="link-tag" data-remote="true" href="/admin/topics/assign_team?team=' + newGroup + '&topic_ids[]=' + Helpy.topicID + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a></li>');
+      var $newLink = $('<a class="link-tag" data-remote="true" href="<%= Rails.application.config.relative_url_root %>/admin/topics/assign_team?team=' + newGroup + '&topic_ids[]=' + Helpy.topicID + '"><div class="color-sample label-' + newGroup.charAt(0).toLowerCase() + '"></div> <div>' + newGroup + '</div></a></li>');
       $('.new-tag').before($newItem.append($newLink));
       $('#new_group').val('');
       $('.link-tag').off().click();
@@ -113,14 +113,14 @@ Helpy.admin = function(){
     var $this = $(this);
     var f = $this.val().split("\\");
     var filename = f[f.length-1];
-    $('.hidden-header-logo').val("/uploads/logos/" + filename);
+    $('.hidden-header-logo').val("<%= Rails.application.config.relative_url_root %>/uploads/logos/" + filename);
   });
 
   $('.favicon-uploader').off().on('change', function(){
     var $this = $(this);
     var f = $this.val().split("\\");
     var filename = f[f.length-1];
-    $('.hidden-favicon').val("/uploads/logos/" + filename);
+    $('.hidden-favicon').val("<%= Rails.application.config.relative_url_root %>/uploads/logos/" + filename);
   });
 
   // Start logging history from first pageload

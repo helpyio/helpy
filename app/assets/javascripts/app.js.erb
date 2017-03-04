@@ -58,7 +58,7 @@ Helpy.ready = function(){
       value = $(this).val();
       $(this).autocomplete({
         source: function (request, response) {
-          jQuery.get("/"+location.href.split("/")[3]+"/search.json", {
+          jQuery.get("<%= Rails.application.config.relative_url_root %>/"+location.href.split("/")[3]+"/search.json", {
               query: value
           }, function (data) {
             response(data);
@@ -388,19 +388,19 @@ Helpy.ready = function(){
 
 $.attachinary.config.template = '\
   <ul class="list-inline attachinary-thumbnails">\
-    <% for(var i=0; i<files.length; i++){ %>\
+    <%% for(var i=0; i<files.length; i++){ %>\
       <li>\
-        <% if(files[i].resource_type == "raw") { %>\
+        <%% if(files[i].resource_type == "raw") { %>\
           <div class="raw-file"></div>\
-        <% } else { %>\
+        <%% } else { %>\
           <img\
-            src="<%= $.cloudinary.url(files[i].public_id, { "version": files[i].version, "format": "jpg", "crop": "fill", "width": 250, "height": 250 }) %>"\
+            src="<%%= $.cloudinary.url(files[i].public_id, { "version": files[i].version, "format": "jpg", "crop": "fill", "width": 250, "height": 250 }) %>"\
             alt="" width="75" height="75" />\
-        <% } %>\
+        <%% } %>\
         <br/>\
-        <a href="#" data-remove="<%= files[i].public_id %>">Remove</a>\
+        <a href="#" data-remove="<%%= files[i].public_id %>">Remove</a>\
       </li>\
-    <% } %>\
+    <%% } %>\
   </ul>\
 ';
 
