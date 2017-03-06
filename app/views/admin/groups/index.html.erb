@@ -1,0 +1,30 @@
+<% title "#{admin_title} #{t('groups', default: "Groups")}" %>
+
+<% content_for :settings do %>
+
+  <style>
+    .group {
+      height: 60px;
+    }
+  </style>
+
+  <div class="admin-header">
+    <h2 id="setting-header">
+      <%= t('groups', default: 'Groups') %>
+      <span class="pull-right">
+  	    <%= link_to t(:add_new_group, default: "Add New Group"), new_admin_group_path, remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
+  	  </span>
+    </h2>
+  </div>
+
+  <div class="settings-section">
+    <div class="row group-header vcenter border-bottom">
+      <div class="pull-left tiny-header col-md-12">
+        Group
+      </div>
+    </div>
+
+    <%= render partial: 'admin/groups/group', collection: @teams if @teams %>
+  </div>
+
+<% end %>

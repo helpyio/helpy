@@ -90,7 +90,7 @@ module ApplicationHelper
   def tag_listing(tags, tagging_type = "message")
     return unless teams? || tagging_type == "doc"
     tags.each do |tag|
-      concat content_tag(:span, tag, class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
+      concat content_tag(:span, tag, style: badge_color_from_tag(tag),class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
     end
   end
 
