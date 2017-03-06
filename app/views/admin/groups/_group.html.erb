@@ -1,10 +1,10 @@
   <div class="row group vcenter border-bottom" id="group-<%= group.id %>">
-    <div class="text-left col-md-6">
+    <div class="text-left col-md-6 col-sm-6 col-xs-6">
       <div class="color-sample" style="background-color: <%= group.color %>"></div>
       <span class="more-important"><%= content_tag('span', group.name) %></span>
       <span class="less-important"><%= group.description %></span>
     </div>
-    <div class="text-right col-md-6">
+    <div class="text-right col-md-6 col-sm-6 col-xs-6">
       <div class="btn-group">
         <span id="row-<%= group.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle glyphicon glyphicon-align-justify'></span>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">

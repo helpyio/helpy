@@ -34,7 +34,7 @@ class Admin::GroupsController < Admin::BaseController
     if @team.update_attributes(group_params)
       redirect_to admin_groups_path
     else
-      render edit_admin_groups_path(@team)
+      render :edit
     end
   end
 
