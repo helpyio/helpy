@@ -1,5 +1,5 @@
 <div class="add-form">
-<%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical submit-loader', method: 'post' }) do |f| -%>
+<%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post' }) do |f| -%>
   <div class="channel-wrapper">
     <div><label class="control-label"> <%= t(:channel_source, default: 'Source') %> </label></div>
     <%= f.collection_radio_buttons :channel, [['email', t('activerecord.attributes.user.email')],['phone', t('activerecord.attributes.user.home_phone')],['person', t(:channel_in_person, default: 'In Person')]], :first, :last, selected: 'email', item_label_class: 'radio-label', item_wrapper_class: 'radio-inline channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
