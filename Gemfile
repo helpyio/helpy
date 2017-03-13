@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.8'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -189,4 +189,4 @@ group :production do
   gem 'unicorn'
 end
 
-ruby "2.2.1"
+ruby '>= 2.2', '< 2.4'

@@ -168,11 +168,17 @@ class User < ActiveRecord::Base
         u.save!
       end
     else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
-        u.provider = auth.provider
-        u.uid = auth.uid
+      # NOTE: this stopped working with the test, not sure why. Replaced with
+      # find_or_create_by and everything passed again:
+
+      # where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+      # it turns out that is not part of the public rails api, despite being
+      # used in the wild. https://github.com/rails/rails/issues/23495
+
+      find_or_create_by(provider: auth.provider, uid: auth.uid) do |u|
         u.email = auth.info.email.present? ? auth.info.email : u.temp_email(auth)
-        u.name = auth.info.name
+        u.name = auth.info.name.present? ? auth.info.name : "Name Missing"
+        u.role = 'agent'
         u.thumbnail = auth.info.image
         u.password = Devise.friendly_token[0,20]
       end
@@ -234,6 +240,16 @@ class User < ActiveRecord::Base
   #when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  # check if user is active or not
+  def active_for_authentication?
+    super && self.active?
+  end
+
+  # message to the user that is not allowed to login
+  def inactive_message
+    "You are not allowed to log in!"
   end
 
   private

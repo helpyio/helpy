@@ -46,8 +46,11 @@
       });
     </script>
     <% end %>
-
-    <%= f.input(:team_list, collection: @all_teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and !@widget and @all_teams.count > 0 %>
+    
+    <% if teams = all_teams %>
+      <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
+    <% end %>
+    
     <%= f.input :name, input_html: { value: params[:q], class: 'suggest-results' }, :size => 40,  placeholder: I18n.t(:subject), label: I18n.t(:subject), class: 'disable-empty topic-placeholder' %>
 
     <div class="suggestion-results-container hidden">

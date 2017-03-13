@@ -3,10 +3,10 @@
 ja:
   language_name: "日本語"
   root: &root 'ホーム'
-  how_can_we_help: "なにかお探しでしょうか？"
+  how_can_we_help: "なにかお探しでしょうか?"
   browse_topics: "トピックを検索"
-  support_team: "サポットチーム"
-  nothing_here: "ここには見るべきものは何もありません"
+  support_team: "サポートチーム"
+  nothing_here: "ここにお探しのものはありません"
 
   # Navigation
   knowledgebase: "知識ベース"
@@ -19,19 +19,19 @@ ja:
   back_to: "戻る"
   welcome_back: "ようこそ %{username}"
   your_profile: "プロフィール"
-  your_tickets: "あなたのサポットチケット"
-  locale:
-  change_your_locale:
+  your_tickets: "あなたのサポート・チケット"
+  locale: "ロケール"
+  change_your_locale: "ロケールの変更"
 
   # Voting widget
-  did_this_help: "このヘルプは役に立ちましたか？"
+  did_this_help: "このヘルプは役に立ちましたか?"
   yes_button: '役に立った'
   no_button: '役に立たなかった'
-  # yes_helped: 'Great! Thanks for the feedback!'
-  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  yes_helped: 'フィードバックのご提供，ありがとうございました!'
+  no_helped: "お役に立てず残念です。 お困りでしたらぜひお問い合わせください!"
 
   # Search　検索
-  search_placeholder: "ご質問．問題の内容は？"
+  search_placeholder: "ご質問．問題の内容は?"
   no_results: "一致する情報は見つかりませんでした, 別のキーワードを検索ください。"
   results_found:
     one: "一件のヒットがありました"
@@ -44,7 +44,7 @@ ja:
   topic: "掲示板"
   replies: "返信"
   last_post: "最終投稿"
-  started_by: "%{username} 開始"
+  started_by: "%{username} によって開始"
   reply: "コメントする"
   submit_reply: "投稿する"
   posted: "投稿した"
@@ -59,20 +59,20 @@ ja:
       other: "%{count} 折り畳みメッセージ"
 
   # Knowledgebase
-  written_by:
-  last_edited:
-  asked_before: "あなたの質問は、前に回答されていますか？我々は、これらは似ているかもしれないと思います"
+  written_by: "執筆者"
+  last_edited: "最終編集日時"
+  asked_before: "同じご質問が既にありますか? これらと似ているかもしれません"
 
   # Tickets
-  tickets: "サポットチケット"
-  no_tickets: "あなたはまだサポットチケットを作成しません"
-  ticket_number:
-  assigned_to_label:
-  created_on:
+  tickets: "サポート・チケット"
+  no_tickets: "作成なさったサポート・チケットは，ありません"
+  ticket_number: "チケット番号"
+  assigned_to_label: "割り当て"
+  created_on: "作成日時"
 
   # Get Help
-  get_help_header: "まだなにかお探しでしょうか？"
-  get_help_button: "私達とやり取りを始めましょう。"
+  get_help_header: "まだ問題は解決していませんか?"
+  get_help_button: "サポート・チケットを作成して，お問い合わせください"
 
   # Profile
   my_profile: 'プロフィール'
@@ -80,16 +80,16 @@ ja:
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on GitHub"
-  # version: "Version:"
+  version: "バージョン:"
 
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: "レビューのためのフラグを立てる"
+  #flag_post_for_review: 
+  flag_post_placeholder: "この投稿にフラグを立てた理由を記述"
+  flag: "フラグ"
 
   # devise/sessions/new
-  login: ログイン
+  login: "ログイン"
 
   # devise/shared/links
   forgot_password: "パスワードを忘れた場合はこちら"
@@ -116,7 +116,7 @@ ja:
   search: "検索"
 
   # Admin main/statuses
-  support_pipeline: "サポットパイポライン"
+  support_pipeline: "サポートパイプライン"
   new: "新規"
   active: "アクティブ"
   open: "開く"
@@ -132,9 +132,9 @@ ja:
   private: "非公開"
   public: "公開済み"
   save_changes: "変更を保存"
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
-
+  merge: "マージ"
+  merge_confirm: "本当にこれらのチケットをマージしますか?"
+  
   # Discussion controls
   change_status: "状態を変更する"
   status: "状態"
@@ -144,54 +144,54 @@ ja:
   mark_new: "新着にする"
   assign_agent: "委託するエージェント"
   selected_messages:
-    one: "1 選択されたメッセージ"
-    two: "2 選択されたメッセージ"
-    other: "%{count} 選択されたメッセージ"
+    one: "1 つの選択されたメッセージ"
+    two: "2 つの選択されたメッセージ"
+    other: "%{count} 個の選択されたメッセージ"
 
   # Discussion messages
-  reopen_message: "サポットスタッフにより再開されました"
-  closed_message: "このサポットチケットはサポットスタッフにより解決済みしました"
-  trash_message: "このサポットチケットは削除されました"
-  assigned_message: "やり取りは%{assigned_to}に転送されました"
+  reopen_message: "サポートスタッフにより再開されました"
+  closed_message: "このサポートチケットはサポットスタッフにより解決済みしました"
+  trash_message: "このサポートチケットは削除されました"
+  assigned_message: "やり取りは %{assigned_to} に転送されました"
 
   # User Admin
-  # users: Users
-  # account: Account
+  users: "ユーザ"
+  account: "アカウント"
   contact_info: "連絡先"
   social_info: "SNS"
-  edit_user:
+  edit_user: "ユーザの編集"
   work_phone: "職場の電話番号"
   cell_phone: "携帯電話番号"
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: "優先度の選択"
+  vip_priority: "最重要"
+  high_priority: "高"
+  normal_priority: "通常"
+  low_priority: "低"
 
   # User search results
   users_found:
-    one: "1 ユーザーを見つけました"
-    other: "%{count} ユーザーを見つけました： %{query}"
+    one: "1 人のユーザーを見つけました"
+    other: "%{count} 人のユーザーを見つけました： %{query}"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
-  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
-  # invite_message: "Message"
-  # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_users: "新規ユーザの招待"
+  invite_emails: "Email アドレス"
+  invite_emails_placeholder: "招待メッセージを送るための，一人以上の Email アドレスを入力"
+  invite_message: "メッセージ"
+  invite_message_placeholder: "新規ユーザに送られる追加のメッセージ"
+  invite_role: "招待ユーザのロール"
+  send_invite: "招待メッセージを送る"
 
   # Discussion View
   asked_a_question: "%{user_name}さんは質問しました"
   replied: "%{user_name}さんは返信しました"
-  posted_note: "%{user_name}さんは社内メモを投稿する"
+  posted_note: "%{user_name}さんは内部メモを投稿する"
   type_reply: "ご記入いただくか、下記のテンプレートより返信内容をお選びください。"
   select_common: "テンプレート選択"
   reply: "返信"
-  internal_note: "社内メモ"
+  internal_note: "内部メモ"
   # mark_as_resolved: Mark as resolved
   upvote:
     one: "いいね | %{count}"
@@ -206,49 +206,49 @@ ja:
   edit_category: 'カテゴリーの編集'
   select_category: 'カテゴリー選択'
   delete: "削除"
-  view_and_edit: "ビュー．編集"
+  view_and_edit: "ビューと編集"
   delete_confirm: "削除しますか？"
   select_icon_helptext: "カテゴリーと関係しているものをアイコンよりお選びください"
-  # translate: "Translate to a different language"
-  # view_on_site: "View on Site"
-  # written_on: "Written on %{date_written}"
-  # content_last_updated: "Last Updated on %{date_updated}"
+  translate: "異なる言語への翻訳"
+  view_on_site: "サイトで見る"
+  written_on: "%{date_written} に書かれました"
+  content_last_updated: "最終更新日: %{date_updated}"
   # featured_content: "Featured"
-  # draft_content: "Draft"
-  # published_content: "Published"
-  # additional_settings: "Additional Settings"
-  # content_status: "Content Status"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  draft_content: "下書き"
+  published_content: "公開済み"
+  additional_settings: "追加設定"
+  content_status: "コンテントの状態"
+  convert_content: '投稿をコンテントに変換'
+  upload_image: '画像アップロード'
+  new_discussion: 'ここから議論を作成する'
+  new_discussion_post: '議論 #%{topic_id} はここから作成されました'
+  new_discussion_topic_title: '#%{original_id}-%{original_name} から分割'
+  change_owner_note: 'この議論の作成者は %{old} から %{new} に変更になりました'
 
   # Communities
   new_community: "コミュニティの作成"
   create_new_community: "コミュニティの作成"
-  # layout_select: Select Format
-  # layout_table: Table
-  # layout_grid: Grid
-  # layout_qna: Q&A
+  layout_select: "フォーマット選択"
+  layout_table: "テーブル"
+  layout_grid: "グリッド"
+  layout_qna: Q&A
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
-  # hello: "Hello %{user_name}"
-  # new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  # account_generated: "An account has been generated for you. To sign in, please use this link:"
-  # above_this_line: "Make sure your reply appears above this line"
-  # message_id: "Message ID"
-  # message_response: "The following message has been posted in response to your question:"
-  # view_online: "View this online:"
+  new_user_subject: "ようこそ %{site_name} へ"
+  hello: "こんにちは，%{user_name} 様"
+  new_user: "お問い合わせありがとうございます。 頂いたメッセージはサポートチームが受信いたしました。速やかに応答できるよう努めます。"
+  account_generated: "このアカウントはあなたによって作成されました。サインインするには，このリンクをご利用ください :"
+  above_this_line: "作成なさった返信が上の行に現れていることをご確認ください"
+  message_id: "メッセージ ID"
+  message_response: "続くメッセージは頂いたご質問に対する応答です :"
+  view_online: "オンラインで閲覧する :"
 
   # settings
-  # settings: "Settings"
-  # general: "General"
-  # design: "Design"
-  # international: "International"
-  # widget: "Embeddable Widget"
+  settings: "設定"
+  general: "一般"
+  design: "デザイン"
+  international: "国際化"
+  widget: "埋め込みウィジェット"
 
   activerecord:
     attributes:
@@ -259,9 +259,9 @@ ja:
         company: "会社"
         work_phone: "代表番号"
         cell_phone: "携帯電話番号"
-        city: "都市"
-        state: "州"
-        # signature: Signature
+        city: "都市(市区町村)"
+        state: "州(都道府県)"
+        signature: "シグネチャ"
       topic:
         name: "題名"
       post:
@@ -271,32 +271,32 @@ ja:
         icon: "アイコン"
         keywords: "キーワード"
         title_tag: "タイトルタグ"
-        meta_description: "メタディスクリプション"
+        meta_description: "メタ・ディスクリプション"
         front_page: "フロントページ"
         active: "アクティブ"
       doc:
         title: "タイトル"
-        meta_description: "メタディスクリプション"
+        meta_description: "メタ・ディスクリプション"
         title_tag: "タイトルタグ"
         keywords: "キーワード"
         category_id: "カテゴリー"
         active: "アクティブ"
-        front_page: "フロントページを作成しますか？"
-        # allow_comments: Allow comments?
+        front_page: "フロントページを作成しますか?"
+        allow_comments: "コメントを許可しますか?"
       forum:
-        name: "名"
+        name: "名前"
         description: "説明"
-        # private:
-        # layout: Layout
-        # allow_topic_voting: Allow topic voting?
-        # allow_post_voting: Allow post voting?
+        private: "プライベート"
+        layout: "レイアウト"
+        allow_topic_voting: "トピックへの投票を許可しますか?"
+        allow_post_voting: "投稿への投票を許可しますか?"
 
     helpers:
       submit:
         topic:
           create: "作成する"
         post:
-          create:　"作成する"
+          create: "作成する"
 
   breadcrumbs:
     application:
@@ -316,19 +316,19 @@ ja:
     result:
       root: *root
   helpers:
-    actions: "Actions"
+    actions: "アクション"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      back: "戻る"
+      cancel: "キャンセル"
+      confirm: "本当に実行しますか?"
+      destroy: "削除"
+      new: "新規"
+      edit: "編集"
     titles:
-      edit: "Edit %{model}"
-      save: "Save %{model}"
-      new: "New %{model}"
-      delete: "Delete %{model}"
+      edit: "%{model} を編集"
+      save: "%{model} を保存"
+      new: "%{model} を新規作成"
+      delete: "%{model} を削除"
 
   number:
     human:

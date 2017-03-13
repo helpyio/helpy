@@ -133,6 +133,7 @@ Rails.application.routes.draw do
     resources :users
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
+      resources :groups
     end
     resources :topics, except: [:delete, :edit] do
       resources :posts

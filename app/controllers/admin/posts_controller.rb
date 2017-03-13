@@ -22,7 +22,8 @@ class Admin::PostsController < Admin::BaseController
     @post = Post.new(post_params)
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
-
+    get_all_teams
+    
     respond_to do |format|
       if @post.save
         format.html {

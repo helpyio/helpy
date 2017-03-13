@@ -114,4 +114,11 @@ FactoryGirl.define do
     body 'Hello!'
   end
 
+  factory :acts_as_taggable_on_tag, class: ActsAsTaggableOn::Tag do
+    name "test_tag"
+    show_on_admin false
+    show_on_helpcenter false
+    show_on_dashboard false
+  end
+
 end
