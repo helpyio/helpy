@@ -242,6 +242,9 @@ et:
   message_response: "The following message has been posted in response to your question:"
   view_online: "View this online:"
 
+  # Settings
+  # common_replies: "Common Replies"
+
   activerecord:
     attributes:
       user:

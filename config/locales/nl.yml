@@ -249,6 +249,7 @@ nl:
   # design: "Design"
   # international: "International"
   # widget: "Embeddable Widget"
+  # common_replies: "Common Replies"
 
   activerecord:
     attributes:

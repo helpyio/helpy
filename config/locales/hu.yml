@@ -265,6 +265,7 @@ hu:
   design: "Dizájn"
   international: "Nemzetközi"
   widget: "Beágyazható Widget"
+  # common_replies: "Common Replies"
 
   # API Key Managmeent
   api_keys: "API Kulcsok"

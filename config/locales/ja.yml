@@ -249,6 +249,7 @@ ja:
   design: "デザイン"
   international: "国際化"
   widget: "埋め込みウィジェット"
+  # common_replies: "Common Replies"
 
   activerecord:
     attributes:

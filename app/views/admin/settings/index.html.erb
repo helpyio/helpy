@@ -21,6 +21,7 @@
         <%= settings_item('glyphicon glyphicon-user', "users", t('users_description', default: "View and Add Users"), admin_users_path) %>
         <%= settings_item('glyphicon glyphicon-tags', t('team_group', default: "Groups"),
           t('group_description', default: "Edit, Delete, Create team list."), admin_groups_path) %>
+        <%= settings_item('fa fa-reply', t('common_replies', default: "Common Replies"), t('common_replies_description', default: "View Common Replies"), admin_category_path(1)) %>
       </div>
     </div>
   </div>
