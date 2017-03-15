@@ -16,6 +16,14 @@ Helpy.ready = function(){
   });
 
   $('.submit-loader').off('submit', Helpy.loader).on('submit', Helpy.loader);
+
+  $('.new-ticket-loader').off('submit', Helpy.loader).on('submit', function(){
+    var $form = $('form.new-ticket-loader');
+    $(document.body).append($form);
+    $form.addClass('hidden');
+    Helpy.loader();
+  });
+
   $('.click-loader').off('click').on('click', Helpy.loader);
   $('ul.pagination li a').off('click').on('click', Helpy.loader);
 

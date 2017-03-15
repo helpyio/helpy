@@ -2,24 +2,25 @@
 
 <% content_for :settings do %>
 
-<div class="admin-header">
-  <h2 id="setting-header">
-    <%= t('notifications', default: 'Notifications') %>
-  </h2>
-</div>
-<div class="settings-panel row">
-  <div class="col-md-9 col-sm-8 col-xs-10">
-    <%= bootstrap_form_tag url: admin_update_notifications_path, method: 'put', remote: false do |f| %>
-      <div class="settings-section notifications" data-hook="admin_settings_notifications">
-        <%= f.check_box 'notify_on_private', { checked: current_user.notify_on_private?, label: t('notify_on_private', default: "Email me when a private customer question has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
-        <%= f.check_box 'notify_on_public', { checked: current_user.notify_on_public?, label: t('notify_on_public', default: "Email me when a public customer question has been posted"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
-        <%= f.check_box 'notify_on_reply', { checked: current_user.notify_on_reply?, label: t('notify_on_reply', default: "Email me when a new reply to a private discussion has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
-      </div>
-      <div class="submit-section">
-        <%= f.submit "Save Settings", class: 'btn btn-warning' %>
-      </div>
-    <% end %>
+  <div class="admin-header">
+    <h2 id="setting-header">
+      <%= t('notifications', default: 'Notifications') %>
+    </h2>
   </div>
-</div>
+  
+  <div class="settings-panel row">
+    <div class="col-md-9 col-sm-8 col-xs-10">
+      <%= bootstrap_form_tag url: admin_update_notifications_path, method: 'put', remote: false do |f| %>
+        <div class="settings-section notifications" data-hook="admin_settings_notifications">
+          <%= f.check_box 'notify_on_private', { checked: current_user.notify_on_private?, label: t('notify_on_private', default: "Email me when a private customer question has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+          <%= f.check_box 'notify_on_public', { checked: current_user.notify_on_public?, label: t('notify_on_public', default: "Email me when a public customer question has been posted"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+          <%= f.check_box 'notify_on_reply', { checked: current_user.notify_on_reply?, label: t('notify_on_reply', default: "Email me when a new reply to a private discussion has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+        </div>
+        <div class="submit-section">
+          <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
 <% end %>

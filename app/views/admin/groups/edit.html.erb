@@ -1,0 +1,16 @@
+<% title "#{admin_title} #{t('group', default: "Group")}" %>
+
+<% content_for :settings do %>
+  <div class="admin-header">
+    <h2 id="setting-header">
+      <%= "#{@team.name} #{t('tag_group', default: 'Group')}" %>
+    </h2>
+  </div>
+  <div class="settings-panel row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <%= simple_form_for @team, url: admin_group_path(@team), method: 'put', remote: false do |f| %>
+        <%= render "form", f: f  %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
