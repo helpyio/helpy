@@ -333,7 +333,11 @@ en:
         meta_description: Meta Description
         front_page: Front Page
         active: Active
-        public: Public Category Content
+        visibility: Visibility
+        visibility_label:
+          all: All
+          public: Public
+          internal: Internal
       doc:
         title: Title
         meta_description: Meta Description
@@ -376,7 +380,9 @@ en:
       root: *root
     admin:
       internal_categories:
-        root: "Internal Categories"
+        root: *root
+      internal_docs:
+        root: *root
   helpers:
     actions: "Actions"
     links:

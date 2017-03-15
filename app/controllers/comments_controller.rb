@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
   end
 
   def path_based_on_category_public_status(doc)
-    doc.category.public ? doc_path(doc) : admin_internal_doc_path(doc)
+    doc.category.publicly_viewable? ? doc_path(doc) : admin_internal_category_internal_doc_path(doc.category.id, doc.id)
   end
 
 end

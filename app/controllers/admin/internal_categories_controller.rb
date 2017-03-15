@@ -5,7 +5,7 @@ class Admin::InternalCategoriesController < Admin::BaseController
   end
 
   def show
-    @category = Category.internally.viewable.active.where(id: params[:id]).first
+    @category = Category.internally.active.where(id: params[:id]).first
     if @category
       if I18n.available_locales.count > 1
         @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
@@ -13,13 +13,20 @@ class Admin::InternalCategoriesController < Admin::BaseController
         @docs = @category.docs.ordered.active.page params[:page]
       end
 
-      @categories = Category.internally.viewable.active.ordered.with_translations(I18n.locale)
-      @related = Doc.in_category(@doc.category_id) if @doc
-
       @page_title = @category.name
+
+      generate_page_breadcumbs
+
     else
       redirect_to controller: 'errors', action: 'not_found'
     end
+  end
+
+  private
+
+  def generate_page_breadcumbs
+    add_breadcrumb t(:internal_content, default: "Internal Content"), admin_internal_categories_path
+    add_breadcrumb @docs.category.name, category_path(@docs.first.category) if !@doc.nil? && @doc.first.category.name
   end
 
 end

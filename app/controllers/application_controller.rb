@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  add_breadcrumb :root
   helper_method :recaptcha_enabled?
 
+  before_action :add_root_breadcrumb
   before_action :set_locale
   before_action :set_vars
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -110,6 +110,18 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def add_root_breadcrumb
+    if controller_namespace_origin == 'admin'
+      add_breadcrumb :root, admin_root_url
+    else
+      add_breadcrumb :root
+    end
+  end
+
+  def controller_namespace_origin
+    controller_path.split('/').first
+  end
 
   def set_locale
     @browser_locale = http_accept_language.compatible_language_from(AppSettings['i18n.available_locales'])

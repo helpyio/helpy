@@ -1,11 +1,11 @@
 class Admin::CategoriesController < Admin::BaseController
 
-  before_action :verify_editor
   respond_to :html, only: ['index','show','new','edit','create']
   respond_to :js, only: ['destroy']
 
   # Make the instance vars available for when the create action fails
   before_action :set_categories_and_non_featured, only: [:index, :create]
+  before_action :verify_editor
 
   def index
   end
@@ -61,14 +61,14 @@ class Admin::CategoriesController < Admin::BaseController
     :section,
     :rank,
     :team_list,
-    :public
+    :visibility
   )
   end
 
   def set_categories_and_non_featured
     @public_categories = Category.publicly.featured.ordered
-    @public_nonfeatured_categories = Category.where(front_page: false, public: true).alpha
-    @internal_categories = Category.internally.ordered
+    @public_nonfeatured_categories = Category.publicly.unfeatured.alpha
+    @internal_categories = Category.only_internally.ordered
   end
 
 

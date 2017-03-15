@@ -33,8 +33,8 @@
               <li><%= link_to t(:edit, default: 'Edit'), edit_admin_category_doc_path(doc.category.id, doc.id, lang: I18n.locale) %></li>
               <li><%= link_to t(:delete, default: 'Delete'), admin_doc_path(doc.id), data: {confirm: t(:delete_confirm, default: 'Please confirm you really want to DELETE this')}, method: :delete, remote: true, class: 'less-important' %></li>
               <li>
-                <%= link_to t(:view_on_site, default: 'View on Site'), category_doc_path(doc.category, doc), {target: "_blank"} if doc.category.public %>
-                <%= link_to t(:view_on_internal_knowledge_base, default: 'View on Internal KB'), admin_internal_doc_path(doc), {target: "_blank"} unless doc.category.public %>
+                <%= link_to t(:view_on_site, default: 'View on Site'), category_doc_path(doc.category, doc), {target: "_blank"} if doc.category.publicly_viewable? %>
+                <%= link_to t(:view_on_internal_knowledge_base, default: 'View on Internal KB'), admin_internal_category_internal_doc_path(doc.category.id, doc.id), {target: "_blank"} if doc.category.internally_viewable? %>
               </li>
             </ul>
           </div>
