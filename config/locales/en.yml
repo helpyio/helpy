@@ -114,6 +114,7 @@ en:
   communities: Communities
   app_store: App Store
   search: Search
+  internal_content: Internal Content
 
   # Admin main/statuses
   support_pipeline: Support Pipeline
@@ -235,6 +236,10 @@ en:
   new_discussion_post: 'Discussion #%{topic_id} was created from this one'
   new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
   change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+
+  # Internal Content
+  no_internal_content_title: "There's no internal documentation written yet!"
+  no_internal_content_text: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!"
 
   # Communities
   new_community: Create New Community
