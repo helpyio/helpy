@@ -84,7 +84,7 @@ ja:
 
   # flag
   flag_for_review: "レビューのためのフラグを立てる"
-  #flag_post_for_review: 
+  #flag_post_for_review:
   flag_post_placeholder: "この投稿にフラグを立てた理由を記述"
   flag: "フラグ"
 
@@ -134,7 +134,7 @@ ja:
   save_changes: "変更を保存"
   merge: "マージ"
   merge_confirm: "本当にこれらのチケットをマージしますか?"
-  
+
   # Discussion controls
   change_status: "状態を変更する"
   status: "状態"
@@ -249,6 +249,34 @@ ja:
   design: "デザイン"
   international: "国際化"
   widget: "埋め込みウィジェット"
+
+  # Keyboard Shortcuts
+  # shortcut_then: "then"
+  # listing_views: "Listing views"
+  # keyboard_shortcuts: "Keyboard Shortcuts"
+  # show_new_tickets: "Show new tickets"
+  # show_all_tickets: "Show all tickets"
+  # show_open_tickets: "Show open tickets"
+  # show_tickets_assigned_to_you: "Show tickets assigned to you"
+  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
+  # show_closed_tickets: "Show closed tickets"
+  # search_for_tickets: "Search for tickets"
+  # viewing_tickets: "View tickets"
+  # select_previous_ticket: "Select previous ticket"
+  # select_next_ticket: "Select next ticket"
+  # view_selected_ticket: "View selected ticket"
+  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
+  # ticket_actions: "Ticket actions"
+  # assign_the_ticket: "Assign ticket"
+  # move_the_ticket: "Move ticket"
+  # expand_the_ticket_thread: "Expand ticket thread"
+  # reply_to_the_ticket: "Reply to the ticket"
+  # add_an_internal_note: "Add an internal note"
+  # change_ticket_status: "Change ticket status"
+  # associate_with_a_group: "Associate with a group"
+  # ticket_status: "Ticket status"
+  # mark_resolved: "Mark as resolved"
+  # reopen_ticket: "Reopen ticket"
 
   activerecord:
     attributes:
