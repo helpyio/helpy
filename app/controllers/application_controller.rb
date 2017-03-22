@@ -94,6 +94,12 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
   end
 
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
+  end
+
   private
 
   def set_locale
@@ -156,14 +162,6 @@ class ApplicationController < ActionController::Base
       AppSettings['theme.active'].present? ? AppSettings['theme.active'] : 'helpy'
     end
   end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
-  end
-
-  private
 
   def set_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
