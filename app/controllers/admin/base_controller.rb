@@ -12,6 +12,21 @@ class Admin::BaseController < ApplicationController
 
   protected
 
+  # These 3 methods provide feature authorization for admins. Editor is the most restricted,
+  # agent is next and admin has access to everything:
+
+  def verify_editor
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
+  end
+
+  def verify_agent
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
+  end
+
+  def verify_admin
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
+  end
+
   def remote_search
     @remote_search = true
   end
