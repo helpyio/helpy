@@ -37,4 +37,22 @@ class Admin::BaseController < ApplicationController
     end
   end
 
+  def fetch_counts
+    if current_user.is_restricted? && teams?
+      topics = Topic.tagged_with(current_user.team_list, :any => true)
+      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
+    else
+      topics = Topic.all
+      @admins = User.agents
+    end
+    @new = topics.unread.count
+    @unread = topics.unread.count
+    @pending = topics.mine(current_user.id).pending.count
+    @open = topics.open.count
+    @active = topics.active.count
+    @mine = topics.mine(current_user.id).count
+    @closed = topics.closed.count
+    @spam = topics.spam.count
+  end
+
 end
