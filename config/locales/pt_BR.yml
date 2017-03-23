@@ -1,3 +1,5 @@
+# MAINTAINER: HENRIQUE APARECIDO LAVEZZO (RYNARO)
+
 pt-br:
   language_name: 'Português brasileiro' # The name of the translation file, in that language
   root: &root 'Início'
@@ -87,10 +89,10 @@ pt-br:
   version: "Versão:"
 
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: "Marcar para revisão"
+  flag_post_for_review: "Marcar postagem para revisão"
+  flag_post_placeholder: "Justifique o motivo para revisar essa postagem"
+  flag: "Marca"
 
   # devise/sessions/new
   login: "Autenticar"
