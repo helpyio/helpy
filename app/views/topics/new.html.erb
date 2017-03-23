@@ -62,7 +62,7 @@
 
     <%= f.simple_fields_for :posts do |p| %>
       <%= p.input :body, input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
-      <% unless cloudinary_enabled? %>
+      <% if attachments_enabled? && !cloudinary_enabled? %>
         <%= p.file_field :attachments, multiple: true %>
         <ul class="list-inline" id="attachments">
           <%#= render partial: 'posts/attachment', locals: { :model_name => @post } %>
@@ -70,13 +70,13 @@
       <% end %>
     <% end %>
 
-    <div class="add-screenshots">
-      <% if !@widget %>
-      <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
-      <% end %>
-    </div>
-
-
+    <% if attachments_enabled? %>
+      <div class="add-screenshots">
+        <% if !@widget %>
+        <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
+        <% end %>
+      </div>
+    <% end %>
 
     <% if !user_signed_in? && recaptcha_enabled? && !@widget %>
       <div class="form-group">

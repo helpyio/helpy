@@ -45,7 +45,7 @@ class PostsController < ApplicationController
     @post = @topic.posts.new(post_params)
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
-    @post.screenshots = params[:post][:screenshots]
+    @post.screenshots = params[:post][:screenshots] if attachments_enabled?
 
     respond_to do |format|
       if @post.save
@@ -85,11 +85,15 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(
-      :body,
-      :kind,
-      {attachments: []}
-    )
+    if attachments_enabled?
+      params.require(:post).permit(
+        :body,
+        :kind,
+        {attachments: []}
+      )
+    else
+      params.require(:post).permit(:body, :kind)
+    end
   end
 
 end

@@ -131,4 +131,9 @@ module ApplicationHelper
   def get_path(screenshot)
     screenshot.format == "pdf" ? "#{screenshot.public_id}.png" : screenshot.path
   end
+
+  def attachments_enabled?
+    AppSettings['settings.allow_attachments']
+  end
+
 end

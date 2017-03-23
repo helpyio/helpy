@@ -107,12 +107,13 @@ class TopicsController < ApplicationController
 
     if @topic.create_topic_with_user(params, current_user)
       @user = @topic.user
+      post_params = get_post_params
       @post = @topic.posts.create(
-        :body => params[:topic][:posts_attributes]["0"][:body],
+        :body => post_params[:posts_attributes]["0"][:body],
         :user_id => @user.id,
         :kind => 'first',
-        :screenshots => params[:topic][:screenshots],
-        :attachments => params[:topic][:posts_attributes]["0"][:attachments])
+        :screenshots => post_params[:screenshots],
+        :attachments => post_params[:posts_attributes]["0"][:attachments])
 
       if !user_signed_in?
         UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
@@ -155,12 +156,17 @@ class TopicsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:post).permit(
-      :body,
-      :kind,
-      {attachments: []}
-    )
+  def get_post_params
+    if attachments_enabled?
+      params.require(:topic).permit([
+        :screenshots,
+        {posts_attributes: [:body, :attachments => []]}
+      ])
+    else
+      params.require(:topic).permit(
+        {post_attributes: :body}
+      )
+    end
   end
 
   def get_public_forums
