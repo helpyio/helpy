@@ -178,7 +178,7 @@ en:
   admin_role: Admin
   agent_role: Agent
   editor_role: Editor
-  user_role: User
+  user_role: Customer
   add_more_agents: "Add more users"
 
   # Keyboard Shortcuts

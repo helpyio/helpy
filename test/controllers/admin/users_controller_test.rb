@@ -72,6 +72,19 @@ class Admin::UsersControllerTest < ActionController::TestCase
   # admins
 
   %w(admin agent).each do |admin|
+
+    test "an #{admin} should be able to see a listing of users" do
+      sign_in users(admin.to_sym)
+      get :index
+      assert_equal 8, assigns(:users).count
+    end
+
+    test "an #{admin} should be able to see a filtered of users" do
+      sign_in users(admin.to_sym)
+      get :index, { role: 'user' }
+      assert_equal 4, assigns(:users).count
+    end
+
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
       assert_difference("User.find(2).name.length", -3) do
@@ -122,5 +135,14 @@ class Admin::UsersControllerTest < ActionController::TestCase
       end
     end
   end
+
+  %w(user editor).each do |unauthorized|
+    test "an #{unauthorized} should NOT be able to see the list of users" do
+      sign_in users(unauthorized.to_sym)
+      get :index
+      assert_nil assigns(:users)
+    end
+  end
+
 
 end

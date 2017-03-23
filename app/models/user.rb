@@ -109,7 +109,9 @@ class User < ActiveRecord::Base
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
+  scope :team, -> { where('admin = ? OR role = ? OR role = ? OR role = ?',true,'admin','agent','editor').order('name asc') }
   scope :active, -> { where('active = ?', true)}
+  scope :by_role, -> (role) { where('role = ?', role) }
 
   def set_role_on_invitation_accept
     if self.role.nil?

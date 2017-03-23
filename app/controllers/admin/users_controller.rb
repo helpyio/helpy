@@ -53,7 +53,16 @@ class Admin::UsersController < Admin::BaseController
   respond_to :html, :js
 
   def index
-    @users = User.all.page params[:page]
+    @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+    if params[:role].present?
+      if params[:role] == 'team'
+        @users = User.team.all.page params[:page]
+      else
+        @users = User.by_role(params[:role]).all.page params[:page]
+      end
+    else
+      @users = User.all.page params[:page]
+    end
     @user = User.new
   end
 
