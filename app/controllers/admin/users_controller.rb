@@ -80,6 +80,10 @@ class Admin::UsersController < Admin::BaseController
     # update role if admin only
     @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
 
+    # update team list
+    @user.team_list = params[:user][:team_list]
+    @user.save
+
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
     tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
@@ -131,6 +135,7 @@ class Admin::UsersController < Admin::BaseController
       :linkedin,
       :language,
       :team_list,
+      :priority,
       :active,
       :notify_on_private,
       :notify_on_public,
