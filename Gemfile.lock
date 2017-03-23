@@ -78,6 +78,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-select-rails (1.6.3)
     bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.3.0)
     brakeman (3.2.1)
@@ -584,6 +585,7 @@ DEPENDENCIES
   better_errors
   bootstrap-datepicker-rails
   bootstrap-sass
+  bootstrap-select-rails
   bootstrap-switch-rails
   bootstrap_form
   brakeman
