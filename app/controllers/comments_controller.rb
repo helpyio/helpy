@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @post.screenshots = params[:post][:screenshots]
 
     if @post.save
-      redirect_to doc_relative_path(@doc)
+      redirect_to doc_relative_path(params[:request][:origin], @doc)
     else
       render 'new'
     end
@@ -37,16 +37,12 @@ class CommentsController < ApplicationController
     @doc = Doc.find(params[:doc_id])
   end
 
-  def doc_relative_path(doc)
-    if request_origin[:controller] == 'admin/internal_docs'
+  def doc_relative_path(origin, doc)
+    if origin == 'internal'
       admin_internal_category_internal_doc_path(doc.category.id, doc.id)
     else
       doc_path(doc)
     end
-  end
-
-  def request_origin
-    Rails.application.routes.recognize_path(URI(request.referer).path)
   end
 
 end

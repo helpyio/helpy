@@ -17,6 +17,9 @@ class CommentsControllerTest < ActionController::TestCase
             body: "this is the body",
             kind: "first",
             attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+          },
+          request: {
+            origin: 'public'
           }
         }
       end
@@ -35,7 +38,10 @@ class CommentsControllerTest < ActionController::TestCase
           post: {
             body: "this is the body",
             kind: "first"
-          }
+          },
+          request: {
+            origin: 'public'
+          }          
         }
       end
     end
@@ -57,6 +63,9 @@ class CommentsControllerTest < ActionController::TestCase
             body: "this is the body",
             kind: "reply",
             attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+          },
+          request: {
+            origin: 'public'
           }
         }
       end
@@ -79,6 +88,9 @@ class CommentsControllerTest < ActionController::TestCase
           post: {
             body: "this is the body",
             kind: "reply"
+          },
+          request: {
+            origin: 'public'
           }
         }
       end
