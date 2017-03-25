@@ -14,7 +14,7 @@
 		<%= avatar_image(comment.user, size=40) %>
 	</div>
 	<div class="media-body media-right">
-		<span class="hidden-sm hidden-md hidden-lg"><%= comment.kind == "first" ? last_active_time(comment.created_at) : "#{distance_of_time_in_words(comment.created_at,comment.topic.created_at)} later" %><br/></span>
+		<span class="hidden-sm hidden-md hidden-lg"><%= last_active_time(comment.created_at) %><br/></span>
 		<span id="row-<%= comment.id %>"  class="post-menu post-menu-<%= comment.id %> btn-group">
 			<%=
 			content_tag(:span, class: 'more-important') do
@@ -25,7 +25,7 @@
 
 		<span class="last-active posted-at less-important pull-right">
 			<span class="hidden-xs">
-			<%= comment.kind == "first" ? last_active_time(comment.created_at) : "#{distance_of_time_in_words(comment.created_at,comment.topic.created_at)} later" %>
+			<%= last_active_time(comment.created_at) %>
 			</span>
 		</span>
 
