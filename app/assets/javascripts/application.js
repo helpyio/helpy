@@ -42,6 +42,9 @@
 //= require selectize
 //= require bootstrap-switch
 //= require bootstrap-datepicker
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link

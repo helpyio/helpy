@@ -30,21 +30,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cloudinary_enabled?
 
-  # These 3 methods provide feature authorization for admins. Editor is the most restricted,
-  # agent is next and admin has access to everything:
-
-  def verify_editor
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
-  end
-
-  def verify_agent
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
-  end
-
-  def verify_admin
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
-  end
-
   def tracker(ga_category, ga_action, ga_label, ga_value=nil)
     if AppSettings['settings.google_analytics_id'].present? && cookies['_ga'].present?
       ga_cookie = cookies['_ga'].split('.')
@@ -107,6 +92,12 @@ class ApplicationController < ActionController::Base
 
   def topic_creation_enabled?
     raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
   end
 
   private
@@ -172,24 +163,6 @@ class ApplicationController < ActionController::Base
     str == 'true'
   end
 
-  def fetch_counts
-    if current_user.is_restricted? && teams?
-      topics = Topic.tagged_with(current_user.team_list, :any => true)
-      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
-    else
-      topics = Topic.all
-      @admins = User.agents
-    end
-    @new = topics.unread.count
-    @unread = topics.unread.count
-    @pending = topics.mine(current_user.id).pending.count
-    @open = topics.open.count
-    @active = topics.active.count
-    @mine = topics.mine(current_user.id).count
-    @closed = topics.closed.count
-    @spam = topics.spam.count
-  end
-
   def allow_iframe_requests
     response.headers.delete('X-Frame-Options')
   end
@@ -201,14 +174,6 @@ class ApplicationController < ActionController::Base
       AppSettings['theme.active'].present? ? AppSettings['theme.active'] : 'helpy'
     end
   end
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
-  end
-
-  private
 
   def set_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)

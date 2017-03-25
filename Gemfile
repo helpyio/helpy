@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 
 # Explicitly include Nokogiri to control version
-gem 'nokogiri', '>= 1.6.8'
+gem 'nokogiri', '>= 1.7.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -102,6 +102,7 @@ gem 'rdiscount'
 gem 'selectize-rails'
 gem "bootstrap-switch-rails"
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-select-rails'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
@@ -189,4 +190,4 @@ group :production do
   gem 'unicorn'
 end
 
-ruby '>= 2.2', '< 2.4'
+ruby '>= 2.2', '< 3.0'

@@ -193,6 +193,49 @@ module AdminHelper
     end
   end
 
+  def user_page_title_text(role)
+    case role
+      when 'user'
+        "#{t(:user_role).pluralize(2)}"
+      when 'agent'
+        "#{t(:agent_role).pluralize(2)}"
+      when 'editor'
+        "#{t(:editor_role).pluralize(2)}"
+      when 'admin'
+        "#{t(:admin_role).pluralize(2)}"
+      when 'team'
+        "Team"
+      else
+        "#{t(:users)}"
+    end
+
+  end
+
+
+  def user_filter
+    content_tag :span, class: 'btn-group' do
+      concat user_filter_select
+      concat user_filter_options
+    end
+  end
+
+  def user_filter_select
+    content_tag :button, class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+      content_tag :span, class: 'btn' do
+        ("Filter " + icon('caret-down')).html_safe
+      end
+    end
+  end
+
+  def user_filter_options
+    content_tag :ul, class: 'dropdown-menu', role: 'menu' do
+      @roles.each do |u|
+        concat content_tag :li, link_to(u[0], admin_users_path(role: u[1]))
+      end
+    end
+  end
+
+
   def admin_teams
     ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).where("context = 'teams' and tags.show_on_admin = ?", 'true').references(:tags).map{|tagging| tagging.tag.name.capitalize }.uniq
   end

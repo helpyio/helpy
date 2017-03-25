@@ -191,6 +191,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user_count, User.count
     assert_equal 'facebook', user.provider
     assert_equal '123545', user.uid
+    assert_equal 'user', user.role
   end
 
   test "temp_email should be used if Oauth does not include an email address in response" do
