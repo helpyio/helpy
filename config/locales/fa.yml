@@ -262,6 +262,7 @@ fa:
   design: "طراحی"
   international: "زبان و تنظیمات محلی"
   widget: "کد قابل ادغام"
+  # common_replies: "Common Replies"
 
   # API Key Managmeent
   api_keys: "کلیدهای API"

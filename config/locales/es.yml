@@ -249,6 +249,7 @@ es:
   design: "Diseño"
   international: "Internacional"
   widget: "Incrustar widget"
+  # common_replies: "Common Replies"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

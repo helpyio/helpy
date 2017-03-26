@@ -336,6 +336,9 @@ et:
   # mark_resolved: "Mark as resolved"
   # reopen_ticket: "Reopen ticket"
 
+  # Settings
+  # common_replies: "Common Replies"
+
   activerecord:
     attributes:
       user:

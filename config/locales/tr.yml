@@ -249,6 +249,7 @@ tr:
   design: "Dizayn"
   international: "Uluslararası"
   widget: "Gömülebilir Bileşen"
+  # common_replies: "Common Replies"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

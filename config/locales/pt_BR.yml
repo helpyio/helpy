@@ -337,6 +337,7 @@ pt-br:
 
   # Settings
   agent_settings: "Configurações dos agentes"
+  # common_replies: "Common Replies"
 
   notifications: "Notificações"
   api_keys: "Chaves da API"

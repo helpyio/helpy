@@ -273,6 +273,7 @@ de:
   design: "Design"
   international: "International"
   widget: "Einbindbares Widget"
+  # common_replies: "Common Replies"
 
   # API Key Managmeent
   api_keys: "API Keys"
