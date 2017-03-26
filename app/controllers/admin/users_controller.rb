@@ -53,7 +53,16 @@ class Admin::UsersController < Admin::BaseController
   respond_to :html, :js
 
   def index
-    @users = User.all.page params[:page]
+    @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+    if params[:role].present?
+      if params[:role] == 'team'
+        @users = User.team.all.page params[:page]
+      else
+        @users = User.by_role(params[:role]).all.page params[:page]
+      end
+    else
+      @users = User.all.page params[:page]
+    end
     @user = User.new
   end
 
@@ -79,6 +88,10 @@ class Admin::UsersController < Admin::BaseController
 
     # update role if admin only
     @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
+
+    # update team list
+    @user.team_list = params[:user][:team_list]
+    @user.save
 
     @topics = @user.topics.page params[:page]
     @topic = Topic.where(user_id: @user.id).first
@@ -131,6 +144,7 @@ class Admin::UsersController < Admin::BaseController
       :linkedin,
       :language,
       :team_list,
+      :priority,
       :active,
       :notify_on_private,
       :notify_on_public,

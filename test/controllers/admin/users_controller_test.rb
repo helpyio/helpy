@@ -72,12 +72,29 @@ class Admin::UsersControllerTest < ActionController::TestCase
   # admins
 
   %w(admin agent).each do |admin|
+
+    test "an #{admin} should be able to see a listing of users" do
+      sign_in users(admin.to_sym)
+      get :index
+      assert_equal 8, assigns(:users).count
+    end
+
+    test "an #{admin} should be able to see a filtered of users" do
+      sign_in users(admin.to_sym)
+      get :index, { role: 'user' }
+      assert_equal 4, assigns(:users).count
+    end
+
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
       assert_difference("User.find(2).name.length", -3) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com"}, locale: :en}
+        patch :update, {id: 2, user: {name: "something", email:"scott.miller2@test.com", zip: '9999', team_list: 'something', priority: 'high'}, locale: :en}
       end
-      assert User.find(2).name == "something", "name does not update"
+      u = User.find(2)
+      assert u.name == "something", "name does not update"
+      assert_equal "9999", u.zip, "zip did not update"
+      assert_equal ["something"], u.team_list, "groups did not update"
+      assert_equal "high", u.priority, "priority did not update"
     end
 
     test "an #{admin} should be able to see a user profile" do
@@ -118,5 +135,14 @@ class Admin::UsersControllerTest < ActionController::TestCase
       end
     end
   end
+
+  %w(user editor).each do |unauthorized|
+    test "an #{unauthorized} should NOT be able to see the list of users" do
+      sign_in users(unauthorized.to_sym)
+      get :index
+      assert_nil assigns(:users)
+    end
+  end
+
 
 end

@@ -78,6 +78,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-select-rails (1.6.3)
     bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.3.0)
     brakeman (3.2.1)
@@ -328,7 +329,7 @@ GEM
     mustermann-grape (0.4.0)
       mustermann (= 0.4.0)
     netrc (0.11.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     oauth (0.5.1)
     oauth2 (1.1.0)
@@ -584,6 +585,7 @@ DEPENDENCIES
   better_errors
   bootstrap-datepicker-rails
   bootstrap-sass
+  bootstrap-select-rails
   bootstrap-switch-rails
   bootstrap_form
   brakeman
@@ -640,7 +642,7 @@ DEPENDENCIES
   mini_magick
   minitest
   minitest-reporters
-  nokogiri (>= 1.6.8)
+  nokogiri (>= 1.7.1)
   omniauth
   omniauth-facebook
   omniauth-github
