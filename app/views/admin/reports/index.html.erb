@@ -1,0 +1,102 @@
+<% title "Activity Report" %>
+
+<div class="team-header row">
+
+  <div class="col-md-12 clearfix">
+    <h2>
+      <%= t('activity_report', site_name: AppSettings['settings.site_name'], default: "Activity Report") %>: <%= content_tag :span, @interval.sentence_case, class: 'hidden-sm hidden-xs' %>
+      <div class="dropdown pull-right">
+        <button class="btn btn-default dropdown-toggle less-important" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= @interval.sentence_case %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><%= link_to t("today", default: "Today"), admin_reports_path(start_date: Time.zone.today.midnight, label: 'today') %></li>
+          <li><%= link_to t("yesterday", default: "Yesterday"), admin_reports_path(start_date: Time.zone.yesterday.midnight, end_date: Time.zone.yesterday.at_end_of_day, label: 'yesterday') %></li>
+          <li><%= link_to t("this_week", default: "This Week"), admin_reports_path(start_date: Time.zone.today.midnight.at_beginning_of_week, end_date: Time.zone.today.midnight.at_end_of_week, label: 'this_week') %></li>
+          <li><%= link_to t("last_week", default: "Last Week"), admin_reports_path(start_date: Time.zone.today.last_week.midnight.at_beginning_of_week, end_date: Time.zone.today.last_week.midnight.at_end_of_week, label: 'last_week') %></li>
+          <li><%= link_to t("this_month", default: "This Month"), admin_reports_path(start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this_month') %></li>
+          <li><%= link_to t("last_month", default: "Last Month"), admin_reports_path(start_date: Time.zone.today.last_month.midnight.at_beginning_of_month, end_date: Time.zone.today.last_month.midnight.at_end_of_month, label: 'last_month') %></li>
+          <hr>
+          <li>
+            <%= form_tag admin_reports_path, class: 'form-horizontal dropdown-form', method: :get do %>
+              <%= hidden_field_tag :label, 'interval' %>
+              <div class="form-group">
+                <%= label_tag t(:insight_start_range, default: 'Start:'), nil, class: 'col-sm-2 control-label' %>
+                <div class="col-sm-10">
+                  <div class="input-group date">
+                    <%= text_field_tag :start_date, nil, class: 'form-control' %>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= label_tag t(:insight_end_range, default: 'End:'), nil, class: 'col-sm-2 control-label' %>
+                <div class="col-sm-10">
+                  <div class="input-group date">
+                    <%= text_field_tag :end_date, nil, class: 'form-control' %>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <%= submit_tag t(:insight_filter, default: 'Filter'), class: 'btn btn-default' %>
+                </div>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </h2>
+  </div>
+
+
+</div>
+  <br/><br/><br/>
+<div class="row">
+  <div class="col-md-2">
+    <%= render partial: 'admin/reports/reports_nav' %>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="big-stats col-md-4 text-center">
+        <h2><%= @total_tickets %></h2>
+          <span class="tiny-header">Tickets</span>
+      </div>
+      <div class="big-stats col-md-4 text-center">
+        <h2><%= @total_replied %></h2>
+          <span class="tiny-header">Replied</span>
+      </div>
+      <div class="big-stats col-md-4 text-center">
+        <h2><%= @total_closed %></h2>
+          <span class="tiny-header">Closed</span>
+      </div>
+
+      <div class="col-md-12">
+        <%= area_chart [
+          { name: 'Tickets', data: @tickets },
+          { name: 'Closed', data: @closed },
+        ], title: "Tickets Received"
+          %>
+
+        <%#= pie_chart [
+          # ["Closed", @scoped_stats.sum(:number_closed)],
+          ["Unanswered", @scoped_stats.sum(:number_of_tickets)-@scoped_stats.sum(:number_closed)],
+          ["Responded", @scoped_stats.sum(:number_of_tickets)-@scoped_stats.sum(:responded)]
+          ], library: {cutoutPercentage: 50} %>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-6">
+        <%= pie_chart assigned_agent_stats(@scoped_stats), title: "Assigned Agents" %>
+      </div>
+      <div class="col-md-6">
+        <%= pie_chart tickets_by_group(@scoped_stats), title: "Groups" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,4 @@
+<ul class="list-unstyled" data-hook="reports-left-nav">
+  <%= content_tag :li, link_to("Tickets Report", admin_reports_path(start_date: @start_date, end_date: @end_date)) %>
+  <%= content_tag :li, link_to("Team Report", admin_team_reports_path(start_date: @start_date, end_date: @end_date)) %>
+</ul>
