@@ -19,7 +19,7 @@ class Admin::InternalDocsController < Admin::BaseController
 
   def generate_page_breadcumbs
     add_breadcrumb t(:internal_content, default: "Internal Content"), admin_internal_categories_path
-    add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
+    add_breadcrumb @doc.category.name, admin_internal_category_path(@doc.category) if @doc.category.name
     add_breadcrumb @doc.title
     @page_title = @doc.title
   end
