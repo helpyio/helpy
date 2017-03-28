@@ -62,24 +62,33 @@
   </div>
   <div class="col-md-10">
     <div class="row">
-      <div class="big-stats col-md-4 text-center">
-        <h2><%= @total_tickets %></h2>
-          <span class="tiny-header">Tickets</span>
+      <div class="big-stats">
+        <div class="col-md-3 text-center">
+          <h2><%= @total_tickets %></h2>
+            <span class="tiny-header">New Tickets</span>
+        </div>
+        <div class="col-md-3 text-center">
+          <h2><%= @total_replies %></h2>
+            <span class="tiny-header">Total Replies</span>
+        </div>
+        <div class="col-md-3 text-center">
+          <h2><%= @total_activities %></h2>
+            <span class="tiny-header">Actions</span>
+        </div>
+        <div class="col-md-3 text-center">
+          <h2><%= @total_closed %></h2>
+            <span class="tiny-header">Closed</span>
+        </div>
       </div>
-      <div class="big-stats col-md-4 text-center">
-        <h2><%= @total_replied %></h2>
-          <span class="tiny-header">Replied</span>
-      </div>
-      <div class="big-stats col-md-4 text-center">
-        <h2><%= @total_closed %></h2>
-          <span class="tiny-header">Closed</span>
-      </div>
-
       <div class="col-md-12">
         <%= area_chart [
           { name: 'Tickets', data: @tickets },
           { name: 'Closed', data: @closed },
-        ], title: "Tickets Received"
+          { name: 'Actions', data: @actions },
+          ],
+          legend: "bottom",
+          title: "Tickets Received",
+          library: { pointRadius: 0 }
           %>
 
         <%#= pie_chart [

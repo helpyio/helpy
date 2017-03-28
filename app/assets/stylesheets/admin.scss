@@ -516,6 +516,29 @@ ul.settings-menu {
 
 }
 
+// === REPORTS ====
+
+.big-stats {
+  margin-bottom: 40px;
+
+  div {
+    // border: 1px solid #eee;
+
+    h2 {
+      font-size: 48px;
+    }
+
+    span {
+      margin-bottom: 40px;
+
+    }
+  }
+}
+
+#chart-1 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 @media(max-width:767px){
     h1 {
         font-size: 150%;
