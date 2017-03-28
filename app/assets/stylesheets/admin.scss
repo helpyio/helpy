@@ -114,6 +114,18 @@ td > img {
 	padding-top: 10px;
 	padding-bottom: 0;
 }
+
+.kind-note {
+  background: #D9EDF7;
+  color: #31708F;
+  border: 1px solid #BCE8F1;
+  border-radius: 3px;
+
+  p, span {
+    color: #31708F;
+  }
+}
+
 // === ADMIN STYLES ===
 
 .white-bg {
