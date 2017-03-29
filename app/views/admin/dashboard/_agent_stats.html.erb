@@ -1,72 +1,80 @@
-<div class="col-md-<%= @cols %> col-sm-<%= @cols %> text-center agent">
-
-  <div class="agent-id">
-    <div class="agent-image">
-      <%= link_to avatar_image(agent_stats.assigned_user, size=80), admin_user_path(id: agent_stats.assigned_user_id) if agent_stats.assigned_user.present? %>
+<div class="col-xs-12 col-sm-6 agent agent-cardbox">
+  <div class="row">
+    <div class="col-xs-4 col-sm-2">
+      <div class="agent-id">
+        <div class="agent-image">
+          <%= link_to avatar_image(agent_stats.assigned_user, size=45), admin_user_path(id: agent_stats.assigned_user_id) if agent_stats.assigned_user.present? %>
+        </div>
+      </div>
     </div>
-    <div class="agent-name">
-      <% topic_count = @topics.where(assigned_user: agent_stats.assigned_user).count %>
-      <h4>
-        <%= agent_stats.assigned_user.try(:name).split(' ')[0].titleize || t('no_agent', default: 'No Agent').html_safe %><br/>
-        <small><%= t("#{agent_stats.assigned_user.try(:role)}_role") %></small>
-      </h4>
+    <div class="col-xs-8 col-sm-10">
+      <div class="agent-name">
+        <% topic_count = @topics.where(assigned_user: agent_stats.assigned_user).count %>
+        <h4>
+          <%= agent_stats.assigned_user.try(:name).split(' ')[0].titleize || t('no_agent', default: 'No Agent').html_safe %><br/>
+          <small><%= t("#{agent_stats.assigned_user.try(:role)}_role") %></small>
+        </h4>
+      </div>
+      <div class="tag-list pull-right">
+        <% tag_listing(agent_stats.assigned_user.team_list, "user") %>
+      </div>
     </div>
-    <div class="tag-list">
-      <% tag_listing(agent_stats.assigned_user.team_list, "user") %>
+  </div>
+
+  <div class="col-md-12">
+    <div class="row text-center">
+      <div class="col-xs-6 col-sm-3 agent-assigned-count agent-stat">
+        <h4><%= topic_count.zero? ? '-' : topic_count %><br/>
+        <small><%= t('assigned_topics', default: "Assigned Topics") %></small>
+      </div>
+
+      <div class="col-xs-6 col-sm-3 agent-responded agent-stat">
+        <% responded_topic_count = @responded_topics.where(assigned_user: agent_stats.assigned_user).length %>
+        <h4 title="Responded to <%= responded_topic_count %> / <%= topic_count %>">
+          <% if topic_count.zero? %>
+            -
+          <% else %>
+            <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
+          <% end %>
+          <br/>
+          <small><%= t('responded', default: "Responded") %></small>
+        </h4>
+      </div>
+
+      <div class="col-xs-6 col-sm-3 agent-closed agent-stat">
+        <% closed_topic_count = Topic.undeleted.where(assigned_user: agent_stats.assigned_user).closed.count %>
+        <h4 title="<%= closed_topic_count %> / <%= topic_count %> Closed">
+          <% if topic_count.zero? %>
+            -
+          <% else %>
+            <%= number_to_percentage(closed_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
+          <% end %>
+          <br/>
+          <small><%= t('closed', default: "Closed") %></small>
+        </h4>
+      </div>
+
+      <div class="col-xs-6 col-sm-3 agent-replies agent-stat">
+        <% posts_count = @posts.where(user: agent_stats.assigned_user, kind: 'reply').count %>
+        <h4><%= posts_count.zero? ? '-' : posts_count %>
+        <br/><small><%= t('replies', default: "Replies") %></small></h4>
+      </div>
+
+      <div class="col-xs-12 agent-response-time agent-stat">
+        <% delays = @responded_topics.where(assigned_user: agent_stats.assigned_user).map { |t| t.posts.second.created_at - t.created_at } %>
+        <h4>
+          <% if delays.empty? %>
+            -
+          <% else %>
+            <%= distance_of_time_in_words median(delays) %>
+          <% end %>
+          <br/>
+          <small><%= t('median_time', default: "Median Time to first response") %></small>
+        </h4>
+      </div>
+
+      <div class="agent-stat" data-hook="agent-stat">
+      </div>
     </div>
   </div>
-
-  <div class="agent-assigned-count agent-stat">
-    <h4><%= topic_count.zero? ? '-' : topic_count %><br/>
-    <small><%= t('assigned_topics', default: "Assigned Topics") %></small>
-  </div>
-
-  <div class="agent-responded agent-stat">
-    <% responded_topic_count = @responded_topics.where(assigned_user: agent_stats.assigned_user).length %>
-    <h4 title="Responded to <%= responded_topic_count %> / <%= topic_count %>">
-      <% if topic_count.zero? %>
-        -
-      <% else %>
-        <%= number_to_percentage(responded_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
-      <% end %>
-      <br/>
-      <small><%= t('responded', default: "Responded") %></small>
-    </h4>
-  </div>
-
-  <div class="agent-closed agent-stat">
-    <% closed_topic_count = Topic.undeleted.where(assigned_user: agent_stats.assigned_user).closed.count %>
-    <h4 title="<%= closed_topic_count %> / <%= topic_count %> Closed">
-      <% if topic_count.zero? %>
-        -
-      <% else %>
-        <%= number_to_percentage(closed_topic_count.to_f / topic_count.to_f * 100.00, precision: 1)  %>
-      <% end %>
-      <br/>
-      <small><%= t('closed', default: "Closed") %></small>
-    </h4>
-  </div>
-
-  <div class="agent-replies agent-stat">
-    <% posts_count = @posts.where(user: agent_stats.assigned_user, kind: 'reply').count %>
-    <h4><%= posts_count.zero? ? '-' : posts_count %>
-    <br/><small><%= t('replies', default: "Replies") %></small></h4>
-  </div>
-
-  <div class="agent-response-time agent-stat">
-    <% delays = @responded_topics.where(assigned_user: agent_stats.assigned_user).map { |t| t.posts.second.created_at - t.created_at } %>
-    <h4>
-      <% if delays.empty? %>
-        -
-      <% else %>
-        <%= distance_of_time_in_words median(delays) %>
-      <% end %>
-      <br/>
-      <small><%= t('median_time', default: "Median Time to first response") %></small>
-    </h4>
-  </div>
-
-  <div class="agent-stat" data-hook="agent-stat">
-  </div>
-
 </div>
