@@ -22,9 +22,10 @@
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
       <%= f.select(:role, [[t('select_role'),''],[t('admin_role'),'admin'],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.select 'team_list', options_for_select(@all_teams.map {|t| [t, t.downcase]}, @user.team_list.map {|g| g.downcase}),
-          { label: t(:assign_to, default: "Assign to group:") }, { class: "selectpicker", multiple: true } if AppSettings['settings.teams'] && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
+          { label: t(:assign_to, default: "Assign to group:") }, { class: "selectpicker", multiple: true } if teams? && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
       <%= f.select(:priority, [[t('select_priority'),'Select Priority'],[t('low_priority'),'low'],[t('normal_priority'),'normal'],[t('high_priority'),'high'],[t('vip_priority'),'vip']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.check_box :active if current_user.is_admin? && params[:controller] != 'admin/settings' %>
+      <%= f.select :time_zone, time_zone_options_for_select if current_user.is_admin? && params[:controller] == 'admin/settings' %>
     </div>
     <div class="user-section">
       <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
