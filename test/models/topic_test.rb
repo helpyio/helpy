@@ -135,17 +135,29 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal t_posts_count + 1, topic.posts.count
   end
 
-  test "#assign should set the current_status of the topic to pending, assigned_user_id to specified user_id, and should create a closed_message post belonging to that topic" do
+  test "#assign_agent should set the current_status of the topic to pending, assigned_user_id to specified user_id, and should create a closed_message post belonging to that topic" do
     topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
     bulk_post_attributes = []
     t_posts_count = topic.posts.count
     bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id}
     topics = Topic.where(id: topic.id)
-    topics.bulk_assign(bulk_post_attributes, 1)
+    topics.bulk_agent_assign(bulk_post_attributes, 1)
 
     topic = Topic.find(topic.id)
     assert_equal 'pending', topic.current_status
     assert_equal 1, topic.assigned_user_id
+    assert_equal t_posts_count + 1, topic.posts.count
+  end
+
+  test "#assign_group should create an internal note belonging to that topic" do
+    topic = Topic.create!(name: name, user_id: 1, forum_id: 1)
+    bulk_post_attributes = []
+    t_posts_count = topic.posts.count
+    bulk_post_attributes << {body: I18n.t(:assigned_group, assigned_group: 'test'), kind: 'note', user_id: 1, topic_id: topic.id}
+    topics = Topic.where(id: topic.id)
+    topics.bulk_group_assign(bulk_post_attributes, 'test')
+
+    topic = Topic.find(topic.id)
     assert_equal t_posts_count + 1, topic.posts.count
   end
 

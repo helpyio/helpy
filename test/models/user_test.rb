@@ -80,7 +80,7 @@ class UserTest < ActiveSupport::TestCase
       bulk_post_attributes = []
       bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id}
       topics = Topic.where(id: topic.id)
-      topics.bulk_assign(bulk_post_attributes, 1)
+      topics.bulk_agent_assign(bulk_post_attributes, 1)
     end
   end
 
