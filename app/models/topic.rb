@@ -183,6 +183,25 @@ class Topic < ActiveRecord::Base
     self.user.persisted? && self.save
   end
 
+  def create_topic_with_webhook_user(params)
+    self.user = User.find_by_email(params['customer']['emailAddress'])
+    unless self.user #User not found, lets craete it from olark params
+      @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+
+      @user = self.build_user
+      @user.reset_password_token = enc
+      @user.reset_password_sent_at = Time.now.utc
+
+      @user.name = params['customer']['fullName']
+      @user.login = params['customer']['emailAddress'].split("@")[0]
+      @user.email = params['customer']['emailAddress']
+      # @user.home_phone = params[:topic][:user][:home_phone]
+      @user.password = User.create_password
+      @user.save
+    end
+    self.user.persisted? && self.save
+  end
+
   def self.create_comment_thread(doc_id, user_id)
     @doc = Doc.find(doc_id)
     @user = User.find(user_id)

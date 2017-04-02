@@ -73,6 +73,11 @@ Rails.application.routes.draw do
     get 'topics/thanks' => 'topics#thanks', as: :thanks
   end
 
+  # Webhook Routes
+  namespace :webhook do
+    post 'form/:token' => 'inbound#form', as: :form
+  end
+
   # Admin Routes
 
   namespace :admin do
