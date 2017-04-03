@@ -153,6 +153,10 @@ fr:
   closed_message: "Ce message a été fermé par le support."
   trash_message: "Ce billet a été supprimé."
   assigned_message: "Cette discussion a été transférée à %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
 
   # User Admin
   # users: Users
