@@ -156,6 +156,10 @@ hu:
   closed_message: "Ezt a hibajegyet az ügyfélszogálat zárta le."
   trash_message: "Ez a hibajegy le lett törölve."
   assigned_message: "A beszélgetés át lett irányítva hozzá: %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
 
   # User Admin
   users: Felhasználók

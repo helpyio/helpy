@@ -156,6 +156,10 @@ de:
   closed_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
   trash_message: "Dieses Ticket wurde gelöscht."
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
 
   # User Admin
   users: Benutzer

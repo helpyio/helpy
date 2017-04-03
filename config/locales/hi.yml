@@ -153,6 +153,10 @@ hi:
   closed_message: "सपोर्ट स्टाफ से यह टिकट बंद कर दिया गया है."
   trash_message: "यह टिकट हटा दिया गया है."
   assigned_message: "%{assigned_to} को चर्चा करने के लिए स्थानांतरित कर दिया गया है ."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
 
   # User Admin
   # users: Users
