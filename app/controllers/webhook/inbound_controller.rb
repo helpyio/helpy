@@ -2,8 +2,8 @@ class Webhook::InboundController < Webhook::BaseController
 
   # We skip auth token for incoming webhooks
   skip_before_action :verify_authenticity_token
-  before_action :check_token
-
+  before_action(only: [:form]) { enabled?('form') }
+  before_action(only: [:form]) { check_token(AppSettings['webhook.form_key']) }
 
   # Accept a json object from a POST operation directly to your form webhook URL
   # This will attempt to recognize the user via their email address and will
@@ -44,7 +44,6 @@ class Webhook::InboundController < Webhook::BaseController
       channel: @params['message']['channel'],
       team_list: @params['message']['team'],
       )
-
     if @topic.create_topic_with_webhook_user(@params)
       @user = @topic.user
       @post = @topic.posts.create(

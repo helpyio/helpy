@@ -5,21 +5,18 @@
   <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section integrations" data-hook="admin_settings_integrations">
       <div class="row integration-item">
-        <div class="col-md-12">
-          <span class="more-important">Webform Webhook</span>
+        <div class="col-md-6">
+          <span class="more-important">Incoming Webhook</span>
           <p class="less-important">
             Create tickets from existing webforms by POSTing to a JSON webhook
-            URL. Your secret URL is:
+            URL. Your secret URL is:<br/>
 
-            <h4><%= "#{request.protocol}#{request.host_with_port}/webhook/form/#{AppSettings["settings.webhook_key"]}/" %></h4>
-
-            Sample Curl:  <br/><br/>
-            <code>
-            curl -X POST  <%= "#{request.protocol}#{request.host_with_port}/webhook/form/#{AppSettings["settings.webhook_key"]}/" %> --data-urlencode 'data={"message": {"kind": "ticket","subject": "Test Ticket from Webhook","body": "Hi there. I am a test sent by webhook.","channel": "web","team":"tier 1"},"customer": {"fullName": "Webhook Guy","emailAddress": "webhook@example.com","work_phone": "(555) 555-5555","home_phone": "(555) 555-5555","city": "Palo Alto","region": "CA","country": "United States","countryCode": "US","company": "Widgets Inc."}}'
-            </code>
+            <h4><%= "#{request.protocol}#{request.host_with_port}/webhook/form/#{AppSettings["webhook.form_key"]}/" %></h4>
           </p>
         </div>
-
+        <div class="col-md-6">
+          <%= f.check_box 'webhook.form_enabled', { checked: (AppSettings['webhook.form_enabled'] == '1'), label: t('enable_webhook_url', default: "Enable Incoming Webhooks"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+        </div>
       </div>
       <div class="row integration-item">
         <div class="col-md-6">
