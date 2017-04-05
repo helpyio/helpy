@@ -153,6 +153,10 @@ fa:
   closed_message: "این تیکت توسط پشتیبانی بسته شد."
   trash_message: "این تیکت پاک شده."
   assigned_message: "این بحث منتقل شد به %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
 
   # User Admin
   users: کاربران

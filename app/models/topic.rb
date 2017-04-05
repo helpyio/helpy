@@ -152,9 +152,17 @@ class Topic < ActiveRecord::Base
     self.save
   end
 
-  def self.bulk_assign(post_attributes, assigned_to)
+  def self.bulk_agent_assign(post_attributes, assigned_to)
     Post.bulk_insert values: post_attributes
     self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+  end
+
+  def self.bulk_group_assign(post_attributes, assigned_group)
+    Post.bulk_insert values: post_attributes
+    all.each do |t|
+      t.team_list = assigned_group
+      t.save
+    end
   end
 
   # DEPRECATED updates the last post date, called when a post is made

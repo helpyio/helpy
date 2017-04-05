@@ -73,6 +73,10 @@ class Admin::SettingsController < Admin::BaseController
     @logo.file = params['uploader.design.header_logo']
     @logo.save
 
+    @thumb = Logo.new
+    @thumb.file = params['uploader.design.favicon']
+    @thumb.save
+
     flash[:success] = t(:settings_changes_saved,
                         site_url: AppSettings['settings.site_url'],
                         default: "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}")

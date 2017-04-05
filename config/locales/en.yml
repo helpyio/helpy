@@ -155,7 +155,11 @@ en:
   reopen_message: "This message has been reopened by the support staff"
   closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
-  assigned_message: "Discussion has been transferred to %{assigned_to}."
+  assigned_message: "This ticket has been transferred to %{assigned_to}."
+  assigned_group: "This ticket has been assigned to %{assigned_group}."
+  converted_to_ticket: "This discussion was converted to a private ticket."
+  converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  tagged_with: "This ticket was tagged with %{tagged_with}"
 
   # User Admin
   users: Users

@@ -157,6 +157,10 @@ ru:
   closed_message: "Этот тикет был закрыт поддержкой."
   trash_message: "Этот тикет был удалён."
   assigned_message: "Обсуждение было перенесено в %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
 
   # User Admin
   # users: Users
