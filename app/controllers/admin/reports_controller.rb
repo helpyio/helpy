@@ -71,7 +71,7 @@ class Admin::ReportsController < Admin::BaseController
   def get_daily_stats
     unless @scoped_stats.nil?
       @tickets = @scoped_stats.group_by_day(:created_at).count
-      @closed = @scoped_stats.where(current_status: 'closed').group_by_day(:updated_at).count
+      @closed = @scoped_stats.where(current_status: 'closed').group_by_day(:created_at).count
       @actions = @scoped_posts.group_by_day(:created_at).count
     end
     get_total_stats
@@ -91,6 +91,9 @@ class Admin::ReportsController < Admin::BaseController
     @total_replies = @scoped_posts.where(kind: 'reply').count
     @total_closed = @scoped_stats.where(current_status: 'closed').count
     @total_activities = @scoped_posts.count
+    filtered_stats = @scoped_stats.where("current_status = ? AND closed_date IS NOT NULL", 'closed')
+    arr_time_differences = filtered_stats.map {|t| t.closed_date - t.created_at} unless filtered_stats.nil?
+    @median_close_time = median(arr_time_differences).round unless arr_time_differences.size == 0
   end
 
 
