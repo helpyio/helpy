@@ -4,9 +4,9 @@ class Admin::ReportsController < Admin::BaseController
   before_action :verify_admin
   before_action :get_all_teams
 
-  before_action :date_from_params, only: [:index, :team]
-  before_action :scope_data, only: [:index, :team]
-  before_action :set_interval, only: [:index, :team]
+  before_action :date_from_params, only: [:index, :team, :groups]
+  before_action :scope_data, only: [:index, :team, :groups]
+  before_action :set_interval, only: [:index, :team, :groups]
 
   def index
     number_of_days = @end_date.to_date - @start_date.to_date
@@ -38,6 +38,8 @@ class Admin::ReportsController < Admin::BaseController
     @median_first_response_time = median(delays) unless delays.empty?
   end
 
+  def groups
+  end
 
   private
 

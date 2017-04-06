@@ -21,11 +21,11 @@
   <div class="col-md-10">
     <div class="row">
       <div class="big-stats">
-        <div class="col-md-3 col-xs-4 text-left">
+        <div class="col-md-6 col-xs-6 text-right">
           <h2><%= number_to_percentage((@total_closed.to_f/@total_tickets.to_f)*100, precision: 0) %></h2>
             <span class="tiny-header">Percent Resolved</span>
         </div>
-        <div class="col-md-9 col-xs-8 text-left">
+        <div class="col-md-6 col-xs-6 text-left">
           <h2><%= distance_of_time_in_words(@median_close_time) unless @median_close_time.nil? %></h2>
             <span class="tiny-header">Average Resolution Time</span>
         </div>
@@ -78,7 +78,7 @@
             <td><span class="more-important">Tickets Closed</span><br/><span class="less-important">The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.</span></td>
             <td></td>
             <td><%= content_tag :h3, @total_closed, class: 'pull-right' %></td>
-          </td>
+          </tr>
         </table>
       </div>
     </div>

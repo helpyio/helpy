@@ -11,7 +11,13 @@ module Admin::ReportsHelper
   def tickets_by_group(scoped_stats)
     team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
     @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
-    @teams.map { |g| [g.name, scoped_stats.tagged_with(g.name).count] }
+    @teams.order('name asc').map { |g| [g.name, scoped_stats.tagged_with(g.name).count] }
+  end
+
+  def group_colors(scoped_stats)
+    team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
+    @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
+    @teams.map { |g| g.color }
   end
 
 end
