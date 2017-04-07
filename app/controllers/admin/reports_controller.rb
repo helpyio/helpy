@@ -7,10 +7,11 @@ class Admin::ReportsController < Admin::BaseController
   before_action :date_from_params, only: [:index, :team, :groups]
   before_action :scope_data, only: [:index, :team, :groups]
   before_action :set_interval, only: [:index, :team, :groups]
+  before_action :set_timezone
 
   def index
-    number_of_days = @end_date.to_date - @start_date.to_date
-    if number_of_days == 1
+    @number_of_days = (@end_date.to_date - @start_date.to_date).round
+    if @number_of_days == 1
       get_hourly_stats
     else
       get_daily_stats
@@ -83,7 +84,7 @@ class Admin::ReportsController < Admin::BaseController
     unless @scoped_stats.nil?
       @tickets = @scoped_stats.group_by_hour_of_day(:created_at).count
       @closed = @scoped_stats.where(current_status: 'closed').group_by_hour_of_day(:created_at).count
-      @actions = @scoped_posts.group_by_day(:created_at).count
+      @actions = @scoped_posts.group_by_hour_of_day(:created_at).count
     end
     get_total_stats
   end
@@ -98,5 +99,8 @@ class Admin::ReportsController < Admin::BaseController
     @median_close_time = median(arr_time_differences).round unless arr_time_differences.size == 0
   end
 
+  def set_timezone
+    Groupdate.time_zone = current_user.time_zone
+  end
 
 end

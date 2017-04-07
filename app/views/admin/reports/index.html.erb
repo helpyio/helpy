@@ -1,21 +1,13 @@
 <% title "Activity Report" %>
 
-<div class="report-header row">
-  <div class="col-md-12 clearfix">
-    <h2>
-      <%= t('activity_report', site_name: AppSettings['settings.site_name'], default: "Activity Report") %>: <%= content_tag :span, @interval.sentence_case, class: 'hidden-sm hidden-xs' %>
-      <div class="dropdown pull-right">
-        <button class="btn btn-default dropdown-toggle less-important" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          <%= @interval.sentence_case %>
-          <span class="caret"></span>
-        </button>
-        <%= render partial: 'admin/reports/date_selector', locals: { path: "admin_reports_path" } %>
-      </div>
-    </h2>
-  </div>
-</div>
+<%= render partial: 'admin/reports/report_header', locals:
+    {
+      report_name: t('activity_report', site_name: AppSettings['settings.site_name'], default: "Activity Report"),
+      report_path: "admin_reports_path"
+    } %>
+
 <div class="row">
-  <div class="col-md-2 reports-nav">
+  <div class="col-md-2">
     <%= render partial: 'admin/reports/reports_nav' %>
   </div>
   <div class="col-md-10">
@@ -60,6 +52,11 @@
             <td><%= content_tag :h3, @total_tickets, class: 'pull-right' %></td>
           </tr>
           <tr>
+            <td><span class="more-important">Tickets per day</span><br/><span class="less-important">The number of tickets your Helpy averages per day.</span></td>
+            <td></td>
+            <td><%= content_tag :h3, (@total_tickets.to_f/@number_of_days.to_f).round(1), class: 'pull-right' %></td>
+          </tr>
+          <tr>
             <td><span class="more-important">Replies</span><br/><span class="less-important">The number of replies your agents have written in this period.</span></td>
             <td></td>
             <td><%= content_tag :h3, @total_replies, class: 'pull-right' %></td>
@@ -68,11 +65,6 @@
             <td><span class="more-important">Total Actions</span><br/><span class="less-important">The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.</span></td>
             <td></td>
             <td><%= content_tag :h3, @total_activities, class: 'pull-right' %></td>
-          </tr>
-          <tr>
-            <td><span class="more-important">Open Tickets</span><br/><span class="less-important">The number of tickets that are still open during this period.</span></td>
-            <td></td>
-            <td></td>
           </tr>
           <tr>
             <td><span class="more-important">Tickets Closed</span><br/><span class="less-important">The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.</span></td>

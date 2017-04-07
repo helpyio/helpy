@@ -1,23 +1,12 @@
 <% title "#{admin_title} #{t('team_insights', site_name: AppSettings['settings.site_name'])}" %>
 
-<div class="report-header row">
 
-  <div class="col-md-12 clearfix">
-    <h2>
-      <%= t('team_insights', site_name: AppSettings['settings.site_name']) %>: <%= content_tag :span, @interval.sentence_case, class: 'hidden-sm hidden-xs' %>
-      <div class="dropdown pull-right">
-        <button class="btn btn-default dropdown-toggle less-important" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          <%= @interval.sentence_case %>
-          <span class="caret"></span>
-        </button>
-        <%= render partial: 'admin/reports/date_selector', locals: { path: "admin_team_reports_path" } %>
-      </div>
-    </h2>
-  </div>
-
-
-</div>
-
+<%= render partial: 'admin/reports/report_header', locals:
+    {
+      report_name: t('team_insights', site_name: AppSettings['settings.site_name']),
+      report_path: "admin_team_reports_path"
+    } %>
+    
 <div class="team-members row">
   <div class="col-md-2">
     <%= render partial: 'admin/reports/reports_nav' %>

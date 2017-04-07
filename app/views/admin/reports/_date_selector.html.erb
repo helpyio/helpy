@@ -1,6 +1,6 @@
 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-  <li><%= link_to t("today", default: "Today"), send(path, start_date: Time.zone.today.midnight, label: 'today') %></li>
-  <li><%= link_to t("yesterday", default: "Yesterday"), send(path, start_date: Time.zone.yesterday.midnight, end_date: Time.zone.yesterday.at_end_of_day, label: 'yesterday') %></li>
+  <li><%= link_to t("today", default: "Today"), send(path, start_date: Time.zone.today.at_beginning_of_day, end_date: Time.zone.tomorrow.at_beginning_of_day, label: 'today') %></li>
+  <li><%= link_to t("yesterday", default: "Yesterday"), send(path, start_date: Time.zone.yesterday.at_beginning_of_day, end_date: Time.zone.today.at_beginning_of_day, label: 'yesterday') %></li>
   <li><%= link_to t("this_week", default: "This Week"), send(path, start_date: Time.zone.today.midnight.at_beginning_of_week, end_date: Time.zone.today.midnight.at_end_of_week, label: 'this_week') %></li>
   <li><%= link_to t("last_week", default: "Last Week"), send(path, start_date: Time.zone.today.last_week.midnight.at_beginning_of_week, end_date: Time.zone.today.last_week.midnight.at_end_of_week, label: 'last_week') %></li>
   <li><%= link_to t("this_month", default: "This Month"), send(path, start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this_month') %></li>
