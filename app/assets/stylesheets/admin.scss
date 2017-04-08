@@ -114,6 +114,7 @@ td > img {
 	padding-top: 10px;
 	padding-bottom: 0;
 }
+
 // === ADMIN STYLES ===
 
 .white-bg {
@@ -514,6 +515,12 @@ ul.settings-menu {
         }
     }
 
+}
+
+.agent-cardbox {
+  border: 1px solid #DFDFDF;
+  border-radius: 3px;
+  padding: 15px;
 }
 
 @media(max-width:767px){
