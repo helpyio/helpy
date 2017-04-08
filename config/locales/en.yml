@@ -322,7 +322,7 @@ en:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
-  team_insights: "Insights for %{site_name}"
+  team_insights: "Team Insights"
   filter_by_date: "Filter by date"
   today: "Today"
   yesterday: "Yesterday"

@@ -146,7 +146,10 @@ Rails.application.routes.draw do
     resources :posts
     get '/posts/:id/raw' => 'posts#raw', as: :post_raw
     get '/dashboard' => 'dashboard#index', as: :dashboard
-    get '/team' => 'dashboard#stats', as: :stats
+    get '/reports/team' => 'reports#team', as: :team_reports
+    get '/reports/groups' => 'reports#groups', as: :group_reports
+    get '/reports' => 'reports#index', as: :reports
+
     root to: 'dashboard#index'
   end
 

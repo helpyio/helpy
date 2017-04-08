@@ -852,6 +852,7 @@ div.status {
 //  === FORUM ===
 
 table#forums,
+table#reports,
 table#topics,
 table#posts,
 table#users {
@@ -860,6 +861,7 @@ table#users {
 }
 
 #forums tbody tr,
+#reports tbody tr,
 #users tbody tr,
 #forums tbody tr td {
   border-bottom: 1px solid #eee;
