@@ -80,8 +80,7 @@ class Topic < ActiveRecord::Base
   before_create :add_locale
 
   before_save :cache_user_name
-  # acts_as_taggable
-  acts_as_taggable_on :teams
+  acts_as_taggable_on :tags, :teams
 
   validates :name, presence: true, length: { maximum: 255 }
   # validates :user_id, presence: true

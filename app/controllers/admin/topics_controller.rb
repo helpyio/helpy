@@ -97,7 +97,8 @@ class Admin::TopicsController < Admin::BaseController
       name: params[:topic][:name],
       private: true,
       team_list: params[:topic][:team_list],
-      channel: params[:topic][:channel]
+      channel: params[:topic][:channel],
+      tag_list: params[:topic][:tag_list],
     )
 
     if @user.nil?
@@ -312,6 +313,35 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
+  def update_tags
+    @topic = Topic.find(params[:id])
+
+    if @topic.update_attributes(topic_params)
+      @posts = @topic.posts.chronologic
+
+      fetch_counts
+      get_all_teams
+
+
+      @topic.posts.create(
+        body: t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list),
+        user: current_user,
+        kind: 'note',
+      )
+
+      respond_to do |format|
+        format.html {
+          redirect_to admin_topic_path(@topic)
+        }
+        format.js {
+          render 'update_ticket', id: @topic.id
+        }
+      end
+    else
+      logger.info("error")
+    end
+  end
+
   def assign_team
     assigned_group = params[:team]
     @topics = Topic.where(id: params[:topic_ids])
@@ -436,5 +466,6 @@ class Admin::TopicsController < Admin::BaseController
 
   def topic_params
     params.require(:topic).permit(:name)
+    params.require(:topic).permit(:tag_list)
   end
 end
