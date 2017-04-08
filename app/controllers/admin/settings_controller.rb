@@ -35,6 +35,8 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def integration
+    # Set the webhook key if its blank
+    AppSettings["webhook.form_key"] = SecureRandom.hex if AppSettings["webhook.form_key"].blank?
     render layout: 'admin-settings'
   end
 
