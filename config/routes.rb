@@ -80,6 +80,7 @@ Rails.application.routes.draw do
     # Extra topic Routes
     get 'topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: {format: 'js'}
     post 'topics/merge_tickets' => 'topics#merge_tickets', as: :merge_tickets
+    patch 'topics/update_tags' => 'topics#update_tags', as: :update_topic_tags
     get 'topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
     get 'topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy

@@ -234,9 +234,26 @@ module AdminHelper
     end
   end
 
-
   def admin_teams
     ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).where("context = 'teams' and tags.show_on_admin = ?", 'true').references(:tags).map{|tagging| tagging.tag.name.capitalize }.uniq
+  end
+
+  def formatted_tags(topic)
+    content_tag :ul, class: 'list-horizontal topic-tag-list', style: 'padding-left: 0; padding-top: 3px;' do
+      list_tags(topic)
+    end
+  end
+
+  def list_tags(topic)
+    topic.tag_list.each do |tag|
+      concat content_tag(:li, "#{tag}", class: 'label label-tag topic-tag', style: 'margin-right:3px;')
+    end
+  end
+
+  def add_tag_link
+    content_tag :li do
+      content_tag(:span, '', class: 'fa fa-tag add-tag-link')
+    end
   end
 
 end
