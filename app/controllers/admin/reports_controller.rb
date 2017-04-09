@@ -4,9 +4,9 @@ class Admin::ReportsController < Admin::BaseController
   before_action :verify_admin
   before_action :get_all_teams
 
-  before_action :date_from_params, only: [:index, :team, :groups]
-  before_action :scope_data, only: [:index, :team, :groups]
-  before_action :set_interval, only: [:index, :team, :groups]
+  before_action :date_from_params
+  before_action :scope_data
+  before_action :set_interval
   before_action :set_timezone
 
   def index
@@ -72,11 +72,9 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def get_daily_stats
-    unless @scoped_stats.nil?
-      @tickets = @scoped_stats.group_by_day(:created_at).count
-      @closed = @scoped_stats.where(current_status: 'closed').group_by_day(:created_at).count
-      @actions = @scoped_posts.group_by_day(:created_at).count
-    end
+    @tickets = Topic.group_by_day(:created_at, range: @start_date..@end_date).count
+    @closed = Topic.where(current_status: 'closed').group_by_day(:created_at, range: @start_date..@end_date).count
+    @actions = Post.group_by_day(:created_at, range: @start_date..@end_date).count
     get_total_stats
   end
 
