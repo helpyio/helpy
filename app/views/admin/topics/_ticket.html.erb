@@ -21,11 +21,14 @@
     </div>
     <% if @posts  %>
       <script>
-        Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
+        Helpy.messages = '<%= j t(:collapsed_messages, count: (@posts.count-@topic.posts.notes.count)-2) %>';
       </script>
     <% end %>
     <div id="posts">
     <%= render :partial => 'admin/topics/post', :collection => @posts %>
+      <div class="show-notes-container">
+        <%= "#{check_box_tag 'show-notes'} <span class='show-notes-label'>Display</span> #{@topic.posts.notes.count} internal notes.".html_safe if @topic.posts.notes.count > 0 %>
+      </div>
     </div>
 
     <div class="add-form">

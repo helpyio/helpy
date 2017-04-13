@@ -1,5 +1,5 @@
 <!-- Admin post partial -->
-<div id="post-<%= post.id %>" class="media post-container disallow-post-voting <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %> overflow-visible">
+<div id="post-<%= post.id %>" class="media post-container disallow-post-voting <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %> overflow-visible" <%= 'style="display:none;"' if post.kind == 'note' %>>
 	<div class="pull-left">
 		<%= avatar_image(post.user, size=40) %>
 	</div>
