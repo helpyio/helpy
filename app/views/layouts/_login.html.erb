@@ -24,6 +24,8 @@
       <%= f.submit t('devise.sessions.new.sign_in', default: "Login"), class: 'btn btn-warning' %>
     </div>
   <% end %>
+  <div class="agent-stat" data-hook="ldap_login">
+  </div>
 </div>
 <div class="col-md-12 forgot-form" style="display: none;" data-title="<%= t('devise.passwords.new.forgot_your_password') %>">
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, validate: true) do |f| %>
