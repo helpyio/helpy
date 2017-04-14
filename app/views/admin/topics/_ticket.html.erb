@@ -21,12 +21,14 @@
     </div>
     <% if @posts  %>
       <script>
-        Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
+        Helpy.messages = '<%= j t(:collapsed_messages, count: (@posts.count-@topic.posts.notes.count)-2) %>';
       </script>
     <% end %>
     <div id="posts">
     <%= render :partial => 'admin/topics/post', :collection => @posts %>
     </div>
+
+    <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.count > 0 %>
 
     <div class="add-form">
       <h4><%= t(:reply_to_this_topic, default: 'Reply to this Topic') %>:</h4>
@@ -63,6 +65,17 @@
 
 </div>
 <script type="text/javascript">
+Helpy.showhidenotes = function(){
+  $('.show-hide-notes').off().on('click', function(){
+    $('.kind-note').toggle();
+    $('.post-container.kind-reply.disallow-post-voting').show();
+    $('.collapsed-posts').hide();
+    return false;
+  });
+}
+
+
+$(document).ready(function(){
   $('.topic-tags li, .add-tag-link').on('click', function(){
     $('.topic-tag-list').toggle();
     $('.topic-tag-form').toggle();
@@ -76,7 +89,16 @@
               }
           }
     });
-  })
+  });
 
+  if ($('.kind-note').size() > 3) {
+    $('.sticky-note').show();
+    Helpy.showhidenotes();
 
+  } else {
+    $('.kind-note').show();
+    $('.sticky-note').hide();
+  }
+
+});
 </script>
