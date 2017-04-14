@@ -341,6 +341,18 @@ div.admin-tools {
   text-transform: uppercase;
 }
 
+.label-tag {
+  margin-left: 2px;
+  margin-right: 2px;
+  text-transform: uppercase;
+  background-color: #ddd;
+  color: #666;
+}
+
+.add-tag-link {
+  color: #666;
+}
+
 // Tag background colors
 .label-a {
   background-color: #1abc9c;
@@ -852,6 +864,7 @@ div.status {
 //  === FORUM ===
 
 table#forums,
+table#reports,
 table#topics,
 table#posts,
 table#users {
@@ -860,6 +873,7 @@ table#users {
 }
 
 #forums tbody tr,
+#reports tbody tr,
 #users tbody tr,
 #forums tbody tr td {
   border-bottom: 1px solid #eee;

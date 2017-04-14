@@ -114,6 +114,20 @@ td > img {
 	padding-top: 10px;
 	padding-bottom: 0;
 }
+
+.kind-note {
+  background: #D9EDF7;
+  color: #31708F;
+  border: 1px solid #BCE8F1;
+  border-radius: 3px;
+  display: none;
+
+  p,
+  span {
+    color: #31708F;
+  }
+}
+
 // === ADMIN STYLES ===
 
 .white-bg {
@@ -521,6 +535,38 @@ ul.settings-menu {
 
 }
 
+.insights-blurb {
+  margin-bottom: 25px;
+}
+// === REPORTS ====
+
+.report-link {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.big-stats {
+  margin-top: 0;
+
+  div {
+    // border: 1px solid #eee;
+
+    h2 {
+      font-size: 48px;
+    }
+
+    span {
+      margin-bottom: 40px;
+
+    }
+  }
+}
+
+#chart-1 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 @media(max-width:767px){
     h1 {
         font-size: 150%;
@@ -531,6 +577,15 @@ ul.settings-menu {
     h2 {
         font-size: 150%;
         margin-top: 25px;
+    }
+    .big-stats div h2 {
+      font-size: 24px;
+    }
+    .reports-nav {
+      margin-bottom: 40px;
+    }
+    .report-header {
+      margin-bottom: 0;
     }
     .checkbox-col {
         width: 10px;
@@ -584,6 +639,12 @@ ul.settings-menu {
         margin-bottom: 0;
         margin-top: 0;
     }
+    .big-stats div h2 {
+      font-size: 28px;
+    }
+    .report-header {
+      margin-bottom: 0;
+    }
     #pipeline-wrapper {
         padding-bottom: 20px;
         padding-top: 10px;
@@ -606,6 +667,9 @@ ul.settings-menu {
     h1 {
         font-size: 200%;
     }
+    .big-stats {
+      margin-top: -40px;
+    }
     .stats {
         padding-top: 20%;
     }
@@ -614,6 +678,12 @@ ul.settings-menu {
         font-size: 300%;
         margin-bottom: 0;
         margin-top: 0;
+    }
+    .big-stats div h2 {
+      font-size: 48px;
+    }
+    .report-header {
+      padding-bottom: 40px;
     }
     #pipeline-wrapper {
         padding-bottom: 0;
@@ -630,6 +700,9 @@ ul.settings-menu {
     h1 {
         font-size: 220%;
     }
+    .big-stats {
+      margin-top: -40px;
+    }
     .stats {
         padding-top: 10%;
     }
@@ -638,6 +711,12 @@ ul.settings-menu {
         font-size: 350%;
         margin-top: 0px;
         margin-bottom: 0;
+    }
+    .big-stats div h2 {
+      font-size: 48px;
+    }
+    .report-header {
+      padding-bottom: 40px;
     }
     #pipeline-wrapper {
         padding-bottom: 0;
@@ -709,4 +788,12 @@ ul.settings-menu {
       transform: translateY(-50%);
     }
   }
+}
+
+// === SETTINGS ====
+
+.integration-item {
+    padding:20px;
+    border: 1px solid #eee;
+    margin-bottom: 40px;
 }

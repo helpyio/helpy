@@ -16,6 +16,11 @@ AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 AppSettings.defaults["settings.teams"] = Settings.teams
 AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
 
+# Webhook Integrations
+
+AppSettings.defaults["webhook.form_enabled"] = "0"
+AppSettings.defaults["webhook.form_key"] = ""
+
 # Design: (Colors etc.)
 
 AppSettings.defaults["design.favicon"] = Settings.app_favicon

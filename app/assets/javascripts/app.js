@@ -204,7 +204,8 @@ Helpy.ready = function(){
   $("ul.breadcrumb li:last-child").html("");
 
   // compress thread if there are more than 4 messages
-  var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting');
+  // var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting');
+  var $thread = $('.post-container.kind-reply.disallow-post-voting');
   if ($thread.size() >= 2) {
 
     // insert expand thread message
@@ -225,6 +226,9 @@ Helpy.ready = function(){
     // hide thread, except for most recent message
     $thread.hide().last().show();
   }
+
+  
+
 
   // Use or append common reply
   $('#post_reply_id').on('change', function(){

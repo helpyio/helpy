@@ -153,6 +153,11 @@ es:
   closed_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
   trash_message: "Este mensaje ha sido eliminado."
   assigned_message: "La discusión ha sido transferida a %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
+  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
   users: Usuarios
@@ -249,6 +254,7 @@ es:
   design: "Diseño"
   international: "Internacional"
   widget: "Incrustar widget"
+  # common_replies: "Common Replies"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

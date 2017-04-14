@@ -138,7 +138,8 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     params = {
       name: "Got a problem",
       body: "This is some really profound question",
-      user_id: user.id
+      user_id: user.id,
+      tag_list: 'tag1, tag2',
     }
 
     post '/api/v1/tickets.json', @default_params.merge(params)
@@ -150,6 +151,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['posts'].count == 1
     assert object['posts'][0]['body'] == "This is some really profound question"
     assert_equal "api", object['channel']
+    assert_equal 2, object['tag_list'].count
   end
 
   test "an API user should be able to assign a ticket" do
@@ -164,6 +166,21 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     object = JSON.parse(last_response.body)
     assert object['assigned_user_id'] == 1
+  end
+
+  test "an API user should be able to add tags to a ticket" do
+    user = User.find(1)
+    ticket = Topic.find(2)
+
+    params = {
+      tag_list: 'tag1, tag2'
+    }
+
+    post "/api/v1/tickets/update_tags/#{ticket.id}.json", @default_params.merge(params)
+
+    object = JSON.parse(last_response.body)
+    assert_equal ['tag1', 'tag2'], object['tag_list']
+    assert_equal 2, object['tag_list'].count
   end
 
   test "an API user should be able to move a private ticket to a public forum" do

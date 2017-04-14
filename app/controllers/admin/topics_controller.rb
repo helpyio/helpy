@@ -97,7 +97,8 @@ class Admin::TopicsController < Admin::BaseController
       name: params[:topic][:name],
       private: true,
       team_list: params[:topic][:team_list],
-      channel: params[:topic][:channel]
+      channel: params[:topic][:channel],
+      tag_list: params[:topic][:tag_list],
     )
 
     if @user.nil?
@@ -230,7 +231,7 @@ class Admin::TopicsController < Admin::BaseController
       end
     end
 
-    @topics.bulk_assign(bulk_post_attributes, assigned_user.id) if bulk_post_attributes.present?
+    @topics.bulk_agent_assign(bulk_post_attributes, assigned_user.id) if bulk_post_attributes.present?
 
     if params[:topic_ids].count > 1
       get_tickets
@@ -261,8 +262,22 @@ class Admin::TopicsController < Admin::BaseController
 
     #handle array of topics
     @topics = Topic.where(id: params[:topic_ids])
-
     @topics.update_all(private: params[:private], forum_id: params[:forum_id])
+    bulk_post_attributes = []
+
+    @topics.each do |topic|
+      if topic.forum_id == 1
+        bulk_post_attributes << {body: I18n.t(:converted_to_ticket), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+      else
+        bulk_post_attributes << {body: I18n.t(:converted_to_topic, forum_name: topic.forum.name), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+      end
+
+      # Calls to GA
+      tracker("Agent: #{current_user.name}", "Moved to  #{topic.forum.name}", @topic.to_param, 0)
+    end
+
+    # Bulk insert notes
+    Post.bulk_insert values: bulk_post_attributes
 
     @topic = @topics.last
     @posts = @topic.posts.chronologic
@@ -298,25 +313,57 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
-  def assign_team
-    @count = 0
-    #handle array of topics
-    params[:topic_ids].each do |id|
-      @topic = Topic.where(id: id).first
-      @minutes = 0
-      @topic.team_list = params[:team]
-      @topic.save
+  def update_tags
+    @topic = Topic.find(params[:id])
 
-      @count = @count + 1
+    if @topic.update_attributes(topic_params)
+      @posts = @topic.posts.chronologic
+
+      fetch_counts
+      get_all_teams
+
+
+      @topic.posts.create(
+        body: t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list),
+        user: current_user,
+        kind: 'note',
+      )
+
+      respond_to do |format|
+        format.html {
+          redirect_to admin_topic_path(@topic)
+        }
+        format.js {
+          render 'update_ticket', id: @topic.id
+        }
+      end
+    else
+      logger.info("error")
     end
+  end
+
+  def assign_team
+    assigned_group = params[:team]
+    @topics = Topic.where(id: params[:topic_ids])
+    bulk_post_attributes = []
+    unless assigned_group.blank?
+      #handle array of topics
+      @topics.each do |topic|
+        bulk_post_attributes << {body: I18n.t(:assigned_group, assigned_group: assigned_group), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+
+        # Calls to GA
+        tracker("Agent: #{current_user.name}", "Assigned to #{assigned_group.titleize}", @topic.to_param, 0)
+      end
+    end
+
+    @topics.bulk_group_assign(bulk_post_attributes, assigned_group) if bulk_post_attributes.present?
 
     if params[:topic_ids].count > 1
       get_tickets
     else
+      @topic = Topic.find(@topics.first.id)
       @posts = @topic.posts.chronologic
     end
-
-    logger.info("Count: #{params[:topic_ids].count}")
 
     fetch_counts
     get_all_teams
@@ -419,5 +466,6 @@ class Admin::TopicsController < Admin::BaseController
 
   def topic_params
     params.require(:topic).permit(:name)
+    params.require(:topic).permit(:tag_list)
   end
 end

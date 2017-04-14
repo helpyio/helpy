@@ -184,6 +184,24 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    # Test assigning tags to a topic
+
+    test "an #{admin} should be able to assign and change tags for a topic" do
+      sign_in users(admin.to_sym)
+      xhr :patch, :update_tags, { id: 2, topic: { tag_list: 'hello, hi' } }
+      assert_equal 2, Topic.find(2).tag_list.count
+      assert_equal "hi", Topic.find(2).tag_list.first
+    end
+
+    test "an #{admin} should be able to remove tags for a topic" do
+      sign_in users(admin.to_sym)
+      t = Topic.find(2)
+      t.tag_list = "tag1, tag2"
+      t.save
+      xhr :patch, :update_tags, { id: 2, topic: { tag_list: '' } }
+      assert_equal 0, Topic.find(2).tag_list.count
+    end
+
     ### testing new discussion creation and lifecycle
 
     test "an #{admin} should be able to open a new discussion for a new user" do

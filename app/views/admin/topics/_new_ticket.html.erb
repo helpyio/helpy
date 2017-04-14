@@ -27,8 +27,7 @@
   <div class="add-screenshots">
   <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
   </div>
-  <!--<label>Tags:</label><br/>-->
-  <%#= text_field_tag :tags %>
+  <%= f.input :tag_list %>
   <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: true %>
 <% end -%>
 </div>

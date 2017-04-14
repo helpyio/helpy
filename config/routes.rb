@@ -73,6 +73,11 @@ Rails.application.routes.draw do
     get 'topics/thanks' => 'topics#thanks', as: :thanks
   end
 
+  # Webhook Routes
+  namespace :webhook do
+    post 'form/:token' => 'inbound#form', as: :form
+  end
+
   # Admin Routes
 
   namespace :admin do
@@ -80,6 +85,7 @@ Rails.application.routes.draw do
     # Extra topic Routes
     get 'topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: {format: 'js'}
     post 'topics/merge_tickets' => 'topics#merge_tickets', as: :merge_tickets
+    patch 'topics/update_tags' => 'topics#update_tags', as: :update_topic_tags
     get 'topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
     get 'topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
@@ -149,7 +155,10 @@ Rails.application.routes.draw do
     resources :posts
     get '/posts/:id/raw' => 'posts#raw', as: :post_raw
     get '/dashboard' => 'dashboard#index', as: :dashboard
-    get '/team' => 'dashboard#stats', as: :stats
+    get '/reports/team' => 'reports#team', as: :team_reports
+    get '/reports/groups' => 'reports#groups', as: :group_reports
+    get '/reports' => 'reports#index', as: :reports
+
     root to: 'dashboard#index'
   end
 

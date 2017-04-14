@@ -153,6 +153,11 @@ fa:
   closed_message: "این تیکت توسط پشتیبانی بسته شد."
   trash_message: "این تیکت پاک شده."
   assigned_message: "این بحث منتقل شد به %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
+  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
   users: کاربران
@@ -262,6 +267,7 @@ fa:
   design: "طراحی"
   international: "زبان و تنظیمات محلی"
   widget: "کد قابل ادغام"
+  # common_replies: "Common Replies"
 
   # API Key Managmeent
   api_keys: "کلیدهای API"

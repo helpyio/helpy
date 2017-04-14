@@ -146,6 +146,7 @@ class Admin::UsersController < Admin::BaseController
       :team_list,
       :priority,
       :active,
+      :time_zone,
       :notify_on_private,
       :notify_on_public,
       :notify_on_reply

@@ -1,0 +1,23 @@
+<!-- Admin post partial -->
+<div id="post-" class="media post-container disallow-post-voting kind-note sticky-note show-hide-notes">
+	<div class="pull-left">
+		<%= avatar_image(User.find(2), size=40) %>
+	</div>
+	<div class="media-body media-right overflow-visible">
+		<span class="hidden-sm hidden-md hidden-lg"><%= last_active_time(@topic.posts.notes.last.created_at) %><br/></span>
+		<span id="row-" class="post-menu post-menu- btn-group">
+			<%= content_tag(:span, class: 'btn dropdown-toggle more-important post-dropdown', data: { toggle: 'dropdown'}, aria: {expanded: 'false'}) do %>
+        <% t(:posted_note, user_name: "System", default: "System posted a note...") %>
+      <% end %>
+		</span>
+
+		<span class="last-active posted-at less-important pull-right">
+			<span class="hidden-xs">
+			<%= last_active_time(@topic.posts.notes.last.created_at) %>
+			</span>
+		</span>
+		<div id="post-body-" class="post-body text-left">
+			<%= t(:notes_hidden, hidden_notes: @topic.posts.notes.count) %>
+		</div>
+	</div>
+</div>

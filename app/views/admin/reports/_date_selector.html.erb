@@ -1,0 +1,39 @@
+<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  <li><%= link_to t("today", default: "Today"), send(path, start_date: Time.zone.today.at_beginning_of_day, end_date: Time.zone.tomorrow.at_beginning_of_day, label: 'today') %></li>
+  <li><%= link_to t("yesterday", default: "Yesterday"), send(path, start_date: Time.zone.yesterday.at_beginning_of_day, end_date: Time.zone.today.at_beginning_of_day, label: 'yesterday') %></li>
+  <li><%= link_to t("this_week", default: "This Week"), send(path, start_date: Time.zone.today.midnight.at_beginning_of_week, end_date: Time.zone.today.midnight.at_end_of_week, label: 'this_week') %></li>
+  <li><%= link_to t("last_week", default: "Last Week"), send(path, start_date: Time.zone.today.last_week.midnight.at_beginning_of_week, end_date: Time.zone.today.last_week.midnight.at_end_of_week, label: 'last_week') %></li>
+  <li><%= link_to t("this_month", default: "This Month"), send(path, start_date: Time.zone.today.midnight.at_beginning_of_month, end_date: Time.zone.today.midnight.at_end_of_month, label: 'this_month') %></li>
+  <li><%= link_to t("last_month", default: "Last Month"), send(path, start_date: Time.zone.today.last_month.midnight.at_beginning_of_month, end_date: Time.zone.today.last_month.midnight.at_end_of_month, label: 'last_month') %></li>
+  <hr>
+  <li>
+    <%= form_tag send(path), class: 'form-horizontal dropdown-form', method: :get do %>
+      <%= hidden_field_tag :label, 'interval' %>
+      <div class="form-group">
+        <%= label_tag t(:insight_start_range, default: 'Start:'), nil, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <div class="input-group date">
+            <%= text_field_tag :start_date, nil, class: 'form-control' %>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= label_tag t(:insight_end_range, default: 'End:'), nil, class: 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <div class="input-group date">
+            <%= text_field_tag :end_date, nil, class: 'form-control' %>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= submit_tag t(:insight_filter, default: 'Filter'), class: 'btn btn-default' %>
+        </div>
+      </div>
+    <% end %>
+  </li>
+</ul>
