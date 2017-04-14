@@ -39,7 +39,9 @@ class Doc < ActiveRecord::Base
   validates :category_id, presence: true
 
   include PgSearch
-  multisearchable :against => [:title, :body, :keywords], :if => :active
+  multisearchable :against => [:title, :body, :keywords],
+    :if => lambda { |record| record.category.publicly_viewable? && record.active }
+
   has_paper_trail
 
   translates :title, :body, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: false, versioning: :paper_trail

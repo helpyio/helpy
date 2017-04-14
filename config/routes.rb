@@ -129,9 +129,17 @@ Rails.application.routes.draw do
     get  'posts/new_user' => 'posts#new_user', as: :new_user
     post  'posts/new_user' => 'posts#change_owner_new_user'
 
+    get 'internal_docs/search' => 'internal_categories#search', as: :internal_docs_search
+
     resources :categories do
       resources :docs, except: [:index, :show]
     end
+
+
+    resources :internal_categories, only: [:index, :show] do
+      resources :internal_docs, only: :show
+    end
+
     resources :docs, except: [:index, :show]
 
     resources :images, only: [:create, :destroy]

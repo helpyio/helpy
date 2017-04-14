@@ -1,0 +1,35 @@
+
+  <div id="featured-categories" class="row">
+    <h2 class="text-center space-h2"><%= t(:internal_content, default: "Internal Content") %></h2>
+    <% if @categories.count > 0 && Doc.all.with_translations(I18n.locale).count > 0 && knowledgebase? %>
+      <div id="home-topics" class="col-md-12">
+      <% @categories.each do |category| %>
+        <% if category.docs.with_translations(I18n.locale).count > 0 %>
+          <div class="topic-box col-lg-3 col-md-3 col-sm-4 col-xs-12" data-link="<%= admin_internal_category_path(category) %>">
+            <div class="dummy"></div>
+            <div class="thumbnail">
+              <h5 class="category-header text-center"><span class="category-icon glyphicon glyphicon-<%= category.icon %>"></span><br/><%= link_to category.name, admin_internal_category_path(category), id: "category-#{category.id}"  %><br/></h5>
+              <p class="text-center less-important hidden-xs"><%= category.meta_description %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="alert alert-info" role="alert">
+          <div class="row text-center">
+            <i class="fa fa-exclamation-circle fa-3x" aria-hidden="true"></i>
+
+            <h4><%= t(:no_internal_content_title, default: "There's no internal documentation written yet!") %>"</h4>
+          </div>
+          <div class="row text-center">
+            <div class="col-xs-12">
+              <p><%= t(:no_internal_content_text,
+                        default: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!") %> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
