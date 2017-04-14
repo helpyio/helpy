@@ -227,13 +227,7 @@ Helpy.ready = function(){
     $thread.hide().last().show();
   }
 
-  $('#show-notes').on('change', function(){
-    if ($(this).is(':checked')) {
-      $('.kind-note').show();
-    } else {
-      $('.kind-note').hide();
-    }
-  });
+  
 
 
   // Use or append common reply
