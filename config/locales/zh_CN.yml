@@ -146,7 +146,7 @@ zh-cn:
   selected_messages:
     one: "1个已选讯息"
     two: "2个已选讯息"
-  other: "%{count}个已选讯息"
+    other: "%{count}个已选讯息"
 
   # Discussion messages
   reopen_message: "支援人员已回覆此讯息"
