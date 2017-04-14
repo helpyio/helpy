@@ -120,6 +120,7 @@ td > img {
   color: #31708F;
   border: 1px solid #BCE8F1;
   border-radius: 3px;
+  display: none;
 
   p,
   span {
@@ -478,9 +479,7 @@ ul.settings-menu {
     color: #999;
 }
 
-.kind-note {
-  display: none;
-}
+
 // === KEYBOARD SHORTCUTS ===
 
 .shortcut-row {
