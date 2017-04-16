@@ -171,6 +171,7 @@ ru:
   edit_user: Редактировать пользователя
   work_phone: номер рабочего телефона
   cell_phone: номер мобильного телефона
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

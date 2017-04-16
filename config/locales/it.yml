@@ -167,6 +167,7 @@ it:
   edit_user: Modifica utente
   work_phone: Telefono (Business)
   cell_phone: telefonine
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

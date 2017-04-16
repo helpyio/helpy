@@ -167,6 +167,7 @@ fa:
   edit_user: ویرایش کاربر
   work_phone: تلفن دفتر
   cell_phone: موبایل
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

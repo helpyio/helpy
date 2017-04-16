@@ -167,6 +167,7 @@ fr:
   edit_user:
   work_phone: téléphone professionnel
   cell_phone: portable
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

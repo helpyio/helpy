@@ -201,6 +201,7 @@ pt-br:
   edit_user: "Editar Usuário"
   work_phone: "trabalho"
   cell_phone: "celular"
+  # user_invited:
 
   # Priorities
   select_priority: Selecionar prioridade

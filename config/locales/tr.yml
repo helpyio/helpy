@@ -167,6 +167,7 @@ tr:
   edit_user: Kullanıcıyı Düzenle
   work_phone: İş
   cell_phone: Cep
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

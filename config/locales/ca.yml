@@ -168,6 +168,7 @@ ca:
   edit_user:
   work_phone: feina
   cell_phone: mòbil
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

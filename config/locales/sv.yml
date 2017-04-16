@@ -163,6 +163,7 @@ sv:
   edit_user: Redigera användarkonto
   work_phone: arbete
   cell_phone: mobil
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

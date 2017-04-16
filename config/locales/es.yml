@@ -167,6 +167,7 @@ es:
   edit_user:
   work_phone: trabajo
   cell_phone: móvil
+  # user_invited: 
 
   # Priorities
   # select_priority: Select Priority

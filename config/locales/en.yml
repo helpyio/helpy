@@ -171,6 +171,7 @@ en:
   edit_user: Edit User
   work_phone: work
   cell_phone: cell
+  user_invited: User Invited
 
   # Priorities
   select_priority: Select Priority

@@ -170,6 +170,7 @@ hu:
   edit_user: Felhasználó szerkesztés
   work_phone: munka
   cell_phone: mobil
+  # user_invited: 
 
   # Priorities
   # select_priority: Select Priority

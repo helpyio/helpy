@@ -167,6 +167,7 @@ nl:
   edit_user: Gebruiker bewerken
   work_phone: Telefoon (zakelijk)
   cell_phone: Mobiel
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority

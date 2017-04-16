@@ -167,6 +167,7 @@ zh-cn:
   edit_user: 修改使用者
   work_phone: 公司
   cell_phone: 行动电话
+  # user_invited:
 
   # Priorities
   # select_priority: Select Priority
