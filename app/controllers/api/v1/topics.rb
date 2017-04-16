@@ -85,6 +85,7 @@ module API
           optional :channel, type: String, desc: "The source channel the ticket was created from, Defaults to API if no value provided."
           optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
           requires :user_id, type: Integer, desc: "the User ID"
+          optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
         end
 
         post "", root: :topics do
@@ -95,6 +96,7 @@ module API
             current_status: 'new',
             private: true,
             team_list: params[:team_list],
+            tag_list: params[:tag_list],
             channel: params[:channel].present? ? params[:channel] : "api",
             kind: params[:kind].present? ? params[:kind] : 'ticket',
           )
@@ -154,6 +156,28 @@ module API
               ticket.current_status = params[:status]
               ticket.save
             end
+            present ticket, with: Entity::Topic, posts: true
+          else
+            error!('Unauthorized. Insufficient access priviledges.', 401)
+          end
+        end
+
+        # UPDATE A TICKETS TAGS
+        desc "Update tags for this ticket"
+        params do
+          requires :id, type: Integer, desc: "The ticket ID to update"
+          requires :tag_list, type: String, desc: "A list of tags to apply to this ticket"
+        end
+
+        post "update_tags/:id", root: :topics do
+          if current_user.is_restricted?
+            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+          else
+            ticket = Topic.where(id: permitted_params[:id]).first
+          end
+          if ticket.present?
+            ticket.tag_list = params[:tag_list]
+            ticket.save
             present ticket, with: Entity::Topic, posts: true
           else
             error!('Unauthorized. Insufficient access priviledges.', 401)

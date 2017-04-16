@@ -1,14 +1,22 @@
   <%= f.input :name, label: I18n.translate("activerecord.attributes.category.name", locale: I18n.locale), value: @category.read_translated_attribute(:name)  %>
-  <%= f.input :icon, placeholder: t(:select_icon_helptext, default: 'Select an icon to associate with this category (optional)'), :label => I18n.translate("activerecord.attributes.category.icon", locale: I18n.locale), :input_html => {:class => 'icon-picker no-translate'} %>
+  <%= f.input :icon, placeholder: t(:select_icon_helptext, default: 'Select an icon to associate with this category (optional)'), label: I18n.translate("activerecord.attributes.category.icon", locale: I18n.locale), input_html: { class: 'icon-picker no-translate'} %>
   <%#= f.text_field :section %>
   <%= f.input :keywords, label: I18n.translate("activerecord.attributes.category.keywords", locale: I18n.locale), value: @category.read_translated_attribute(:keywords) %>
   <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.category.title_tag", locale: I18n.locale), value: @category.read_translated_attribute(:title_tag) %>
   <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.category.meta_description", locale: I18n.locale), value: @category.read_translated_attribute(:meta_description) %>
   <% if params[:lang] == "#{I18n.locale}" %>
-    <%= f.input :front_page, :label => I18n.translate("activerecord.attributes.category.front_page", locale: I18n.locale), :input_html => {:class => 'no-translate'} %>
-    <%= f.input :active, :label => I18n.translate("activerecord.attributes.category.active", locale: I18n.locale), :input_html => {:class => 'no-translate'} %>
+    <%= f.input :front_page, label: I18n.translate("activerecord.attributes.category.front_page", locale: I18n.locale), input_html: { class: 'no-translate'} %>
+    <%= label_tag I18n.translate("activerecord.attributes.category.visibility", locale: I18n.locale), nil, class: 'form-label' %>
+    <div class="content-visibility-options">
+      <%= f.collection_radio_buttons :visibility, [
+          ['all', I18n.translate("activerecord.attributes.category.visibility_label.all", locale: I18n.locale)],
+          ['public', I18n.translate("activerecord.attributes.category.visibility_label.public", locale: I18n.locale)],
+          ['internal', I18n.translate("activerecord.attributes.category.visibility_label.internal", locale: I18n.locale)]], :first, :last %>
+    </div>
+    <%= f.input :active, label: I18n.translate("activerecord.attributes.category.active", locale: I18n.locale), input_html: { class: 'no-translate'} %>
   <% else %>
     <%= f.hidden_field :front_page, value: @category.front_page %>
+    <%= f.hidden_field :public, value: @category.visibility %>
     <%= f.hidden_field :active, value: @category.active %>
   <% end %>
   <%= hidden_field_tag :lang, params[:lang] unless params[:lang].nil? %>

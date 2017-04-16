@@ -84,8 +84,8 @@ Forum.create(
 )
 
 # Knowledgebase Categories
-Category.create(name:'Common Replies', title_tag: 'Common Agent Replies', meta_description: 'Common replies to questions (Visible only to agents)', front_page: false, active: false)
-Category.create(name:'Email templates', title_tag: 'Email Templates',  meta_description: 'Emails used by the system (Not implemented)', front_page: false, active: false)
+Category.create(name:'Common Replies', title_tag: 'Common Agent Replies', meta_description: 'Common replies to questions (Visible only to agents)', front_page: false, active: false, visibility: 'internal')
+Category.create(name:'Email templates', title_tag: 'Email Templates',  meta_description: 'Emails used by the system (Not implemented)', front_page: false, active: false, visibility: 'internal')
 Category.create(name:'Getting Started',icon: 'eye-open', title_tag: 'Getting Started',meta_description:'Learn how to get started with our solution', front_page: true)
 Category.create(name:'Top Issues',icon: 'exclamation-sign', title_tag: 'Solutions to Top Issues',meta_description:'Answers to our most frequent issues', front_page: true)
 Category.create(name:'General Questions', icon: 'question-sign', title_tag: 'Answers General Questions',meta_description:'If you have a question of a more general nature, you might find the answer here', front_page: true)

@@ -35,6 +35,8 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def integration
+    # Set the webhook key if its blank
+    AppSettings["webhook.form_key"] = SecureRandom.hex if AppSettings["webhook.form_key"].blank?
     render layout: 'admin-settings'
   end
 
@@ -72,6 +74,10 @@ class Admin::SettingsController < Admin::BaseController
     @logo = Logo.new
     @logo.file = params['uploader.design.header_logo']
     @logo.save
+
+    @thumb = Logo.new
+    @thumb.file = params['uploader.design.favicon']
+    @thumb.save
 
     flash[:success] = t(:settings_changes_saved,
                         site_url: AppSettings['settings.site_url'],

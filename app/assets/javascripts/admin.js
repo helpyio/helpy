@@ -65,6 +65,16 @@ Helpy.admin = function(){
     theme: 'bootstrap'
   });
 
+  $('.reports-menu-toggle').off().on('click', function(){
+    var $reports_nav = $('.reports-nav');
+    if ($reports_nav.is(":visible")) {
+      $reports_nav.addClass('hidden-xs').addClass('hidden-sm');
+    } else {
+      $reports_nav.removeClass('hidden-xs').removeClass('hidden-sm');
+    }
+
+  });
+
   $('.bs-toggle').bootstrapSwitch();
 
   // Onboarding flow

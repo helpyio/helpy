@@ -33,11 +33,11 @@ $(document).ready(function(){
         </tr>
       </thead>
       <tbody id="categories">
-        <%= render partial: 'cat', collection: @categories %>
+        <%= render partial: 'cat', collection: @public_categories %>
       </tbody>
     </table>
 
-    <% if @nonfeatured.count > 0 %>
+    <% if @public_nonfeatured_categories.count > 0 %>
     <table id="forums" class="table-hover">
       <col>
       <col width="5%">
@@ -48,10 +48,24 @@ $(document).ready(function(){
         <tr>
           <td colspan="2" class='tiny-header'><%= t(:other_categories, default: 'Other Categories') %></td>
         </tr>
-        <%= render partial: 'cat', collection: @nonfeatured %>
+        <%= render partial: 'cat', collection: @public_nonfeatured_categories %>
       </tbody>
     </table>
     <% end %>
+
+    <table id="forums" class="table-hover sortable">
+      <col>
+      <col width="5%">
+      <thead>
+        <tr>
+          <th colspan="2" class='tiny-header'><%= t(:internal_categories, default: 'Private/Internal Categories') %></th>
+        </tr>
+      </thead>
+      <tbody id="categories">
+        <%= render partial: 'cat', collection: @internal_categories %>
+      </tbody>
+    </table>
+
 
   </div>
 </div>

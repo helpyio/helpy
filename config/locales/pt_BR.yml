@@ -187,6 +187,11 @@ pt-br:
   closed_message: "Esta mensagem foi fechada pelo suporte."
   trash_message: "Esta mensagem foi apagada pelo suporte."
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
+  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
   users: "Usuários"
@@ -337,6 +342,7 @@ pt-br:
 
   # Settings
   agent_settings: "Configurações dos agentes"
+  # common_replies: "Common Replies"
 
   notifications: "Notificações"
   api_keys: "Chaves da API"

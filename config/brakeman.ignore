@@ -8,7 +8,7 @@
       "file": "app/views/docs/show.html.erb",
       "line": 51,
       "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
-      "code": "Doc.where(:id => params[:id], :category_id => Category.viewable).active.first.content",
+      "code": "Doc.where(:id => params[:id], :category_id => Category.publicly).active.first.content",
       "render_path": [{"type":"controller","class":"DocsController","method":"show","line":38,"file":"app/controllers/docs_controller.rb"}],
       "location": {
         "type": "template",

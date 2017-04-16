@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170302162152) do
     t.string   "section"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "visibility",       default: "all"
   end
 
   create_table "category_translations", force: :cascade do |t|

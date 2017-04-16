@@ -44,6 +44,10 @@ gem 'staccato'
 gem "rails-settings-cached", '~> 0.5'
 gem 'sucker_punch', '~> 2.0'
 
+# Charting
+gem "groupdate"
+gem "chartkick"
+
 # Auth Gems
 gem 'devise'
 gem 'devise-i18n'

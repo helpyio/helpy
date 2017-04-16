@@ -6,8 +6,8 @@ AllCops:
     - tmp/**/*
     - vendor/**/*
 
-  TargetRubyVersion: 2.0
-  DisabledByDefault: true 
+  TargetRubyVersion: 2.3
+  DisabledByDefault: true
 
 Rails:
   Enabled: true

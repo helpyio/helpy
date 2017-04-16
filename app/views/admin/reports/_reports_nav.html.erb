@@ -1,0 +1,9 @@
+<ul class="list-unstyled reports-nav hidden-sm hidden-xs" data-hook="reports-left-nav">
+  <%= content_tag :li, "Ticketing Reports", class: 'tiny-header' %>
+  <%= content_tag :li, link_to("Activity Report", admin_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link' %>
+  <%= content_tag :li, link_to("Group Report", admin_group_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link' %>
+  <br/>
+  <br/>
+  <%= content_tag :li, "Team Reports", class: 'tiny-header' %>
+  <%= content_tag :li, link_to("Team Report", admin_team_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link' %>
+</ul>

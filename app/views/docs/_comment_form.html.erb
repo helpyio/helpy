@@ -11,6 +11,7 @@
         <%= attachinary_file_field_tag 'post[screenshots]', post, :screenshots if cloudinary_enabled? %>
       </div>
     <% end %>
+    <%= hidden_field_tag 'request[origin]', 'public' %>
     <%= hidden_field_tag :client_id %>
     <% if @posts.blank? %>
       <%= f.submit t(:start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: 'disabled' %>

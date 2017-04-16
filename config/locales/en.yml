@@ -114,6 +114,7 @@ en:
   communities: Communities
   app_store: App Store
   search: Search
+  internal_content: Internal Content
 
   # Admin main/statuses
   support_pipeline: Support Pipeline
@@ -155,7 +156,12 @@ en:
   reopen_message: "This message has been reopened by the support staff"
   closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
-  assigned_message: "Discussion has been transferred to %{assigned_to}."
+  assigned_message: "This ticket has been transferred to %{assigned_to}."
+  assigned_group: "This ticket has been assigned to %{assigned_group}."
+  converted_to_ticket: "This discussion was converted to a private ticket."
+  converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  tagged_with: "This ticket was tagged with %{tagged_with}"
+  notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
   users: Users
@@ -268,6 +274,10 @@ en:
   new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
   change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
+  # Internal Content
+  no_internal_content_title: "There's no internal documentation written yet!"
+  no_internal_content_text: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!"
+
   # Communities
   new_community: Create New Community
   create_new_community: Create New Community
@@ -305,6 +315,7 @@ en:
   design: "Design"
   international: "International"
   widget: "Embeddable Widget"
+  common_replies: "Common Replies"
 
   # API Key Managmeent
   api_keys: "API Keys"
@@ -317,7 +328,7 @@ en:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
-  team_insights: "Insights for %{site_name}"
+  team_insights: "Team Insights"
   filter_by_date: "Filter by date"
   today: "Today"
   yesterday: "Yesterday"
@@ -368,6 +379,11 @@ en:
         meta_description: Meta Description
         front_page: Front Page
         active: Active
+        visibility: Visibility
+        visibility_label:
+          all: All
+          public: Public
+          internal: Internal
       doc:
         title: Title
         meta_description: Meta Description
@@ -408,6 +424,11 @@ en:
       root: *root
     result:
       root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
   helpers:
     actions: "Actions"
     links:

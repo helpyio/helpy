@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
   scope :chronologic, -> { order('created_at ASC') }
   scope :reverse, -> { order('created_at DESC') }
   scope :by_votes, -> { order('points DESC')}
+  scope :notes, -> { where(kind: 'note') }
 
   attr_accessor :resolved
 
