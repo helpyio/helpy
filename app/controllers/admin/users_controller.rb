@@ -47,7 +47,7 @@
 class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :verify_admin, only: ['invite','invite_users']
+  before_action :verify_admin, only: ['invite','invite_users','resend_invite']
   before_action :fetch_counts, :only => ['show']
   before_action :get_all_teams
   respond_to :html, :js
@@ -119,6 +119,20 @@ class Admin::UsersController < Admin::BaseController
         redirect_to admin_users_path
       }
       format.js {
+      }
+    end
+  end
+
+  def resend_invite
+    @user = User.find(params[:id])
+    User.invite!(email: @user.email)
+    respond_to do |format|
+      format.html {
+        redirect_to admin_users_path
+        flash[:info] = "Invitation Email has been resent to agent."
+      }
+      format.js {
+        render 'admin/users/show'
       }
     end
   end

@@ -168,6 +168,7 @@ tr:
   work_phone: İş
   cell_phone: Cep
   # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   # select_priority: Select Priority

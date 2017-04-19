@@ -172,6 +172,7 @@ ru:
   work_phone: номер рабочего телефона
   cell_phone: номер мобильного телефона
   # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   # select_priority: Select Priority

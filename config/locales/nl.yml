@@ -168,6 +168,7 @@ nl:
   work_phone: Telefoon (zakelijk)
   cell_phone: Mobiel
   # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   # select_priority: Select Priority

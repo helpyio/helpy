@@ -31,9 +31,12 @@
   </div>
 
   <% if @user.invited? %>
-    <div id="user-invited" class="col-md-3 col-sm-3 col-xs-6 user-info">
+    <br />
+    <div id="user-invited" class="col-md-9 col-sm-3 col-xs-6 user-info">
       <div class="tiny-header"><%= t(:user_invited, default: "User Invited") %>:</div>
       Invitation URL: <%= accept_invitation_url(@user, :invitation_token => @user.invitation_token, host: AppSettings['settings.site_url']) %>
+    <br />
+    <%= link_to t(:resend_invitation_email, default: "Resend Invitation Email"), admin_resend_invite_path(@user), method: :put, class: "btn btn-primary" %> 
     </div>
   <% end %>
 

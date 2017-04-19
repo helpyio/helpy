@@ -171,6 +171,7 @@ hu:
   work_phone: munka
   cell_phone: mobil
   # user_invited: 
+  # resend_invitation_email:
 
   # Priorities
   # select_priority: Select Priority

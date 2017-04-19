@@ -202,6 +202,7 @@ pt-br:
   work_phone: "trabalho"
   cell_phone: "celular"
   # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   select_priority: Selecionar prioridade

@@ -124,6 +124,7 @@ Rails.application.routes.draw do
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
+    put 'users/resend_invite/:id/' => 'users#resend_invite', as: :resend_invite
 
     post 'posts/users' => 'posts#search', as: :user_search
     get  'posts/new_user' => 'posts#new_user', as: :new_user

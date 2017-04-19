@@ -172,6 +172,7 @@ en:
   work_phone: work
   cell_phone: cell
   user_invited: User Invited
+  resend_invitation_email: Resend Invitation Email
 
   # Priorities
   select_priority: Select Priority

@@ -168,6 +168,7 @@ fa:
   work_phone: تلفن دفتر
   cell_phone: موبایل
   # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   # select_priority: Select Priority
