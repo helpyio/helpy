@@ -134,7 +134,8 @@ Helpy.admin = function(){
   });
 
   // Start logging history from first pageload
-  Helpy.logHistory();
+  // note: breaks back button so removed
+  // Helpy.logHistory();
 
   $('.input-group.date').datepicker({
     format: "yyyy-mm-dd",
