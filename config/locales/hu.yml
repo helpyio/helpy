@@ -271,6 +271,7 @@ hu:
   international: "Nemzetközi"
   widget: "Beágyazható Widget"
   # common_replies: "Common Replies"
+  # integrations: "Integrations"
 
   # API Key Managmeent
   api_keys: "API Kulcsok"

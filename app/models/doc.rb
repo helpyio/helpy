@@ -59,7 +59,7 @@ class Doc < ActiveRecord::Base
   scope :alpha, -> { order('title ASC') }
   scope :by_category, -> { order(:category_id) }
   scope :in_category, -> (cat) { where(category_id: cat).order('front_page DESC, rank ASC') }
-  scope :ordered, -> { order('rank ASC') }
+  scope :ordered, -> { rank(:rank) }
   scope :active, -> { where(active: true) }
   scope :recent, -> { order('last_updated DESC').limit(5) }
   scope :all_public_popular, -> { where(active: true).order('points DESC').limit(6) }

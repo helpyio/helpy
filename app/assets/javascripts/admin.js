@@ -6,7 +6,7 @@ String.prototype.capitalize = function() {
 var Helpy = Helpy || {};
 Helpy.admin = function(){
 
-  $('table.sortable').sortable({
+  $('div.sortable').sortable({
     items: '.item',
     axis: 'y',
     cursor: 'move',
@@ -134,7 +134,8 @@ Helpy.admin = function(){
   });
 
   // Start logging history from first pageload
-  Helpy.logHistory();
+  // note: breaks back button so removed
+  // Helpy.logHistory();
 
   $('.input-group.date').datepicker({
     format: "yyyy-mm-dd",

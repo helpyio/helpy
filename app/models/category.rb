@@ -36,8 +36,7 @@ class Category < ActiveRecord::Base
   scope :alpha, -> { order('name ASC') }
   scope :active, -> { where(active: true) }
   scope :main, -> { where(section: 'main') }
-  scope :ordered, -> { order('rank ASC') }
-  scope :ranked, -> { order('rank ASC') }
+  scope :ordered, -> { rank(:rank) }
   scope :featured, -> { where(front_page: true) }
   scope :unfeatured, -> { where(front_page: false) }
   scope :publicly, -> { where(visibility: PUBLIC_VIEWABLE) }
