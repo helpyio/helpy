@@ -255,6 +255,7 @@ ja:
   international: "国際化"
   widget: "埋め込みウィジェット"
   # common_replies: "Common Replies"
+  # integrations: "Integrations"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

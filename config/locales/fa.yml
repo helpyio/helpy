@@ -268,6 +268,7 @@ fa:
   international: "زبان و تنظیمات محلی"
   widget: "کد قابل ادغام"
   # common_replies: "Common Replies"
+  # integrations: "Integrations"
 
   # API Key Managmeent
   api_keys: "کلیدهای API"
