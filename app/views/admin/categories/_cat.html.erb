@@ -1,13 +1,14 @@
-<tr id="category-<%= cat.id %>" class="item <%#= 'hidden' if cat.front_page == false %>" data-obj-id="<%= "#{cat.id}" %>" data-obj='category'>
-  <td>
-    <span class="more-important">
-      <%= link_to cat.name, admin_category_path(cat.id) %>
-    </span><span class="label label-count pull-right"><%= cat.docs.count %></span>
-    <%= i18n_icons(cat) if AppSettings['i18n.available_locales'].count > 1 %>&nbsp;&nbsp;
+<div id="category-<%= cat.id %>" class="row vcenter hoversort border-bottom item" data-obj-id='<%= "#{cat.id}" %>' data-obj='category'>
+  <div class="text-left col-md-7 col-sm-11 col-xs-10">
+    <%= content_tag :span, link_to(cat.name, admin_category_path(cat.id)), class: 'more-important' %>
     <br/>
     <%= cat.meta_description %>
-  </td>
-  <td class="text-right">
+  </div>
+  <div class="text-right col-md-4 col-sm-4 col-xs-4 hidden-xs hidden-sm">
+    <span class="label label-count pull-right"><%= cat.docs.count %></span>
+    <%= i18n_icons(cat) if AppSettings['i18n.available_locales'].count > 1 %>
+  </div>
+  <div class="text-right col-md-1 col-sm-1 col-xs-2">
     <div class="btn-group">
       <span id="row-<%= cat.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle glyphicon glyphicon-align-justify'></span>
       <ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -17,5 +18,5 @@
         <li><%= link_to t(:new_content, default: 'New Content'), new_admin_category_doc_path(category_id: cat.id, lang: I18n.locale) %></li>
       </ul>
     </div>
-  </td>
-</tr>
+  </div>
+</div>

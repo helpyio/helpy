@@ -22,7 +22,7 @@ module API
           optional :docs_limit, type: Integer, desc: "How many docs to return with the category"
         end
         get "", root: :categories do
-          categories = Category.includes(:translations).active.ranked.all
+          categories = Category.includes(:translations).active.ordered.all
           present categories, with: Entity::Category, docs: permitted_params[:docs], docs_limit: permitted_params[:docs_limit]
         end
 

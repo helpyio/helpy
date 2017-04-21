@@ -227,7 +227,7 @@ Helpy.ready = function(){
     $thread.hide().last().show();
   }
 
-  
+
 
 
   // Use or append common reply
@@ -398,6 +398,15 @@ Helpy.ready = function(){
   // Add this in css.  There is probably a better way to do this?
   $("abbr[title='required']").hide();
 
+  // Add hoversort icon
+  $('.hoversort').off().on('mouseover', function(){
+    $(this).prepend('<span class="fa fa-arrows-v" style="color:#666; margin-right: 0;"></span>');
+    $(this).css("cursor","move");
+
+    $(this).on('mouseout', function(){
+      $(this).find('span.fa-arrows-v').remove();
+    });
+  });
 };
 
 $.attachinary.config.template = '\

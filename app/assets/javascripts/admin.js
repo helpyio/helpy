@@ -6,7 +6,7 @@ String.prototype.capitalize = function() {
 var Helpy = Helpy || {};
 Helpy.admin = function(){
 
-  $('table.sortable').sortable({
+  $('div.sortable').sortable({
     items: '.item',
     axis: 'y',
     cursor: 'move',
