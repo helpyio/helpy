@@ -11,10 +11,10 @@
       <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
       <%= f.file_field :profile_image, label: "Avatar" unless cloudinary_enabled? %>
     </div>
-    <%= f.input :bio, input_html: {:rows => 4, :cols => 60} %>
-    <%= f.input :company %>
-    <%= f.input :title %>
-    <%= f.input :signature, input_html: {:rows => 4, :cols => 60} %>
+    <%= f.input :bio, input_html: {:rows => 4, :cols => 60} if AppSettings['settings.profile_bio'] %>
+    <%= f.input :company if AppSettings['settings.profile_company'] %>
+    <%= f.input :title if AppSettings['settings.profile_title'] %>
+    <%= f.input :signature, input_html: {:rows => 4, :cols => 60} if AppSettings['settings.profile_sig'] %>
 
     <% if @validatable %>
     <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
