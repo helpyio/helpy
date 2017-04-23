@@ -2,7 +2,9 @@ class EmailProcessor
 
   def initialize(email)
     @email = email
-    @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'])
+    if AppSettings['settings.google_analytics_id'].present?
+      @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'])
+    end
   end
 
   def process
@@ -44,8 +46,10 @@ class EmailProcessor
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
 
-      @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
-      @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
+        @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
+      end
 
     elsif subject.include?("Fwd: ") # this is a forwarded message DOES NOT WORK CURRENTLY
 
@@ -72,8 +76,10 @@ class EmailProcessor
       handle_attachments(@email, post)
 
       # Call to GA
-      @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
+      end
 
     else # this is a new direct message
 
@@ -102,8 +108,10 @@ class EmailProcessor
       handle_attachments(@email, post)
 
       # Call to GA
-      @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
+      end
 
     end
 
