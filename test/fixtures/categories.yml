@@ -50,6 +50,14 @@ four:
   rank: 40
   visibility: 'all'
 
+six:
+  id: 6
+  name: internal title
+  active: true
+  front_page: true
+  rank: 40
+  visibility: 'internal'
+
 common_replies:
   id: 5
   name: Common Replies
