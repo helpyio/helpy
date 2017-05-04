@@ -137,22 +137,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-    ### test assign_team and unassign_team
-
-    test "an #{admin} should be able to assign_team of a topic" do
-      sign_in users(admin.to_sym)
-      xhr :get, :assign_team, { topic_ids: [1], team: "test"}
-      assert_equal ["test"], Topic.find(1).team_list
-    end
-
-    test "an #{admin} should be able to unassign_team of a topic" do
-      Topic.find(1).team_list = "test"
-      sign_in users(admin.to_sym)
-      xhr :get, :unassign_team, { topic_ids: [1]}
-      assert_equal [], Topic.find(1).team_list
-    end
-
-
     ### tests of changing status
 
     test "an #{admin} posting an internal note should not change status on its own" do
@@ -277,9 +261,20 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       end
     end
 
-    # Tests of team group assignment/unassignment
+    ### test assign_team and unassign_team
 
+    test "an #{admin} should be able to assign_team of a topic" do
+      sign_in users(admin.to_sym)
+      xhr :get, :assign_team, { topic_ids: [1], team: "test"}
+      assert_equal ["test"], Topic.find(1).team_list
+    end
 
+    test "an #{admin} should be able to unassign_team of a topic" do
+      Topic.find(1).team_list = "test"
+      sign_in users(admin.to_sym)
+      xhr :get, :unassign_team, { topic_ids: [1]}
+      assert_equal [], Topic.find(1).team_list
+    end
 
 
     # NOTE: THIS BEHAVIOR WAS REVERSED BASED ON USER FEEDBACK THAT IT WAS HARD TO
