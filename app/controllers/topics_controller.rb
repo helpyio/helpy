@@ -155,14 +155,6 @@ class TopicsController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:post).permit(
-      :body,
-      :kind,
-      {attachments: []}
-    )
-  end
-
   def get_public_forums
     @forums = Forum.ispublic.all
   end
