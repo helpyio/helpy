@@ -94,12 +94,7 @@ class TopicsController < ApplicationController
   def create
     params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
 
-    @topic = @forum.topics.new(
-      name: params[:topic][:name],
-      private: params[:topic][:private],
-      doc_id: params[:topic][:doc_id],
-      team_list: params[:topic][:team_list],
-      channel: 'web')
+    @topic = @forum.topics.new(topic_params)
 
     if recaptcha_enabled?
       render :new && return unless verify_recaptcha(model: @topic)
@@ -107,12 +102,7 @@ class TopicsController < ApplicationController
 
     if @topic.create_topic_with_user(params, current_user)
       @user = @topic.user
-      @post = @topic.posts.create(
-        :body => params[:topic][:posts_attributes]["0"][:body],
-        :user_id => @user.id,
-        :kind => 'first',
-        :screenshots => params[:topic][:screenshots],
-        :attachments => params[:topic][:posts_attributes]["0"][:attachments])
+      @post = @topic.posts.create(post_params)
 
       if !user_signed_in?
         UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
@@ -154,6 +144,23 @@ class TopicsController < ApplicationController
   end
 
   private
+
+  def topic_params
+    params.require(:topic)
+      .permit(:name, :private, :doc_id, :team_list)
+      .merge(:channel => 'web')
+  end
+
+  def post_params
+    params.require(:topic)
+      .require(:posts_attributes)
+      .require('0')
+      .permit(:body, attachments: [])
+      .merge(
+        :user_id => @user.id,
+        :kind => 'first',
+        :screenshots => params[:topic][:screenshots])
+  end
 
   def get_public_forums
     @forums = Forum.ispublic.all
