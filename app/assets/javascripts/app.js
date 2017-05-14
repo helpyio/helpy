@@ -478,6 +478,7 @@ $(document).on('page:change', function () {
   });
 
   // Allows image insertion into quill editor
+  // TODO: Need to handle with summernote or end support for attachinary (preferred)
   $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
     var element = document.querySelector("trix-editor");
     var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>";

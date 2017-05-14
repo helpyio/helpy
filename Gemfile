@@ -31,9 +31,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Trix is the wysiwyg editor
-gem 'trix'
+# Summernote is the wysiwyg editor
 gem 'jquery-minicolors-rails'
+gem 'summernote-rails'
+gem 'codemirror-rails'
 
 # Ranked model gives the ability to rank articles and categories
 gem 'ranked-model'
