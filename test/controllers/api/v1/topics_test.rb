@@ -176,6 +176,20 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal 2, object['tag_list'].count
   end
 
+  test "an API user should not be able to create a ticket if user_id or user.email not supplied" do
+    params = {
+      name: "Got a problem",
+      body: "This is some really profound question",
+      tag_list: 'tag1, tag2',
+    }
+
+    post '/api/v1/tickets.json', @default_params.merge(params)
+
+    object = JSON.parse(last_response.body)
+    assert_equal 403, last_response.status
+    assert object['error'] == 'Required fields not present.'
+  end
+
   test "an API user should be able to assign a ticket" do
     user = User.find(1)
     ticket = Topic.find(2)
