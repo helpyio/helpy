@@ -95,6 +95,7 @@ module API
           user_id = params[:user_id] # initialize user_id with nil or params[:user_id]
           if params[:user_email].present?
             user = User.find_by(email: params[:user_email])
+            error!('User not registered. Insufficient access priviledges.', 401) if user.nil? and params[:user_name].blank?
             user_id = user.id
           end
 
