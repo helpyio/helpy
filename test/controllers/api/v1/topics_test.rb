@@ -231,6 +231,26 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal 2, object['tag_list'].count
   end
 
+  test "a non-registered API user should not be registered and should not create a ticket by email if provided name is invalid" do
+    params = {
+      name: "Got a problem",
+      body: "This is some really profound question",
+      user_email: 'not-registered-test-user@my-test-domain.com',
+      user_name: 'User N0t R3gist3r3d',
+      tag_list: 'tag1, tag2',
+    }
+
+    assert_nil User.find_by(email: params[:user_email])
+
+    post '/api/v1/tickets.json', @default_params.merge(params)
+
+    assert_nil User.find_by(email: params[:user_email])
+    object = JSON.parse(last_response.body)
+
+    assert_equal 403, last_response.status
+    assert object['error'].include?('Ticket not created. User could not be registered')
+  end
+
   test "an API user should be able to assign a ticket" do
     user = User.find(1)
     ticket = Topic.find(2)
