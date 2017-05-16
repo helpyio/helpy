@@ -176,7 +176,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal 2, object['tag_list'].count
   end
 
-  test "an API user should not be able to create a ticket if user_id or user.email not supplied" do
+  test "an API user should not be able to create a ticket if user_id or user_email not supplied" do
     params = {
       name: "Got a problem",
       body: "This is some really profound question",
@@ -188,6 +188,23 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     object = JSON.parse(last_response.body)
     assert_equal 403, last_response.status
     assert object['error'] == 'Required fields not present. user_id or user_email is missing'
+  end
+
+  test "a non-registered API user should not be able to create a ticket by email if name not provided" do
+    params = {
+      name: "Got a problem",
+      body: "This is some really profound question",
+      user_email: 'not-registered-test-user@my-test-domain.com',
+      tag_list: 'tag1, tag2',
+    }
+
+    assert_nil User.find_by(email: params[:user_email])
+
+    post '/api/v1/tickets.json', @default_params.merge(params)
+
+    object = JSON.parse(last_response.body)
+    assert_equal 401, last_response.status
+    assert object['error'] == 'User not registered. Insufficient access priviledges.'
   end
 
   test "an API user should be able to assign a ticket" do
