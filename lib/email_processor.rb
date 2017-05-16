@@ -14,7 +14,7 @@ class EmailProcessor
     return if @email.from[:email].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
 
     # scan users DB for sender email
-    @user = User.where(email: @email.from[:email]).first
+    @user = User.where("lower(email) = ?", @email.from[:email].downcase).first
     if @user.nil?
       create_user
     end
