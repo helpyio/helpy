@@ -84,18 +84,22 @@ module API
           optional :team_list, type: String, desc: "The group that this ticket is assigned to"
           optional :channel, type: String, desc: "The source channel the ticket was created from, Defaults to API if no value provided."
           optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
-          optional :user_id, type: Integer, desc: "the User ID. Optional if user_email is supplied."
+          optional :user_id, type: Integer, desc: "the User ID. Required if user_email is not supplied."
           optional :user_email, type: String, desc: "The user who is creating a ticket. Can be either registered or non-registered. Required if user_id not supplied."
+          optional :user_name, type: String, desc: "The user name for register a non-registered user. Required if user_email is not registered."
           optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
         end
 
         post "", root: :topics do
-          error!('Required fields not present. user_id or user_email is missing', 403) if params[:user_id].blank? and params[:user_email].blank?
+          error!('Required field not present. user_id or user_email is missing', 403) if params[:user_id].blank? and params[:user_email].blank?
 
           user_id = params[:user_id] # initialize user_id with nil or params[:user_id]
           if params[:user_email].present?
             user = User.find_by(email: params[:user_email])
-            error!('User not registered. Insufficient access priviledges.', 401) if user.nil? and params[:user_name].blank?
+            if user.nil?
+              error!('User not registered. Insufficient access priviledges.', 401) if params[:user_name].blank?
+              user = User.register params[:user_email], params[:user_name]
+            end
             user_id = user.id
           end
 
