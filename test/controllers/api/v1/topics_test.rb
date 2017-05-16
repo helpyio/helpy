@@ -207,6 +207,30 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert object['error'] == 'User not registered. Insufficient access priviledges.'
   end
 
+  test "a non-registered API user should be registered and able to create a ticket by email if name provided" do
+    params = {
+      name: "Got a problem",
+      body: "This is some really profound question",
+      user_email: 'not-registered-test-user@my-test-domain.com',
+      user_name: 'User Not Registered',
+      tag_list: 'tag1, tag2',
+    }
+
+    assert_nil User.find_by(email: params[:user_email])
+
+    post '/api/v1/tickets.json', @default_params.merge(params)
+
+    assert_not_nil User.find_by(email: params[:user_email])
+    object = JSON.parse(last_response.body)
+
+    assert_equal 1, object['forum_id']
+    assert object['name'] == "Got a problem"
+    assert object['posts'].count == 1
+    assert object['posts'][0]['body'] == "This is some really profound question"
+    assert_equal "api", object['channel']
+    assert_equal 2, object['tag_list'].count
+  end
+
   test "an API user should be able to assign a ticket" do
     user = User.find(1)
     ticket = Topic.find(2)
