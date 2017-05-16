@@ -187,7 +187,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     object = JSON.parse(last_response.body)
     assert_equal 403, last_response.status
-    assert object['error'] == 'Required fields not present.'
+    assert object['error'] == 'Required fields not present. user_id or user_email is missing'
   end
 
   test "an API user should be able to assign a ticket" do
