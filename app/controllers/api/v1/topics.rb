@@ -99,6 +99,7 @@ module API
             if user.nil?
               error!('User not registered. Insufficient access priviledges.', 401) if params[:user_name].blank?
               user = User.register params[:user_email], params[:user_name]
+              error!("Ticket not created. User could not be registered: #{user.errors.full_messages.join('; ')}", 403) unless user.persisted?
             end
             user_id = user.id
           end
