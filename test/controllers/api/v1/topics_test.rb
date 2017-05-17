@@ -167,7 +167,6 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     post '/api/v1/tickets.json', @default_params.merge(params)
 
     object = JSON.parse(last_response.body)
-
     assert_equal 1, object['forum_id']
     assert object['name'] == "Got a problem"
     assert object['posts'].count == 1
@@ -221,8 +220,8 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     post '/api/v1/tickets.json', @default_params.merge(params)
 
     assert_not_nil User.find_by(email: params[:user_email])
-    object = JSON.parse(last_response.body)
 
+    object = JSON.parse(last_response.body)
     assert_equal 1, object['forum_id']
     assert object['name'] == "Got a problem"
     assert object['posts'].count == 1
@@ -245,8 +244,8 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     post '/api/v1/tickets.json', @default_params.merge(params)
 
     assert_nil User.find_by(email: params[:user_email])
-    object = JSON.parse(last_response.body)
 
+    object = JSON.parse(last_response.body)
     assert_equal 403, last_response.status
     assert object['error'].include?('Ticket not created. User could not be registered')
   end
