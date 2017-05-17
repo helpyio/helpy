@@ -91,7 +91,7 @@ module API
         end
 
         post "", root: :topics do
-          error!('Required field not present. user_id or user_email is missing', 403) if params[:user_id].blank? and params[:user_email].blank?
+          error!('Required field not present. user_id or user_email is missing', 403) if params[:user_id].blank? && params[:user_email].blank?
 
           user_id = params[:user_id] # initialize user_id with nil or params[:user_id]
           if params[:user_email].present?
