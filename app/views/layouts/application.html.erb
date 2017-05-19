@@ -7,10 +7,12 @@
 	<%= css_overrides %>
 
 <body>
-<script>
-  ga('set', 'location', location.href.split('#')[0]);
-  ga('send', 'pageview', { "title": document.title });
-</script>
+<% if AppSettings['settings.google_analytics_id'].present? %>
+	<script>
+		ga('set', 'location', location.href.split('#')[0]);
+		ga('send', 'pageview', { "title": document.title });
+	</script>
+<% end %>
 
 <div class="content">
 	<div id="top-bar"></div>

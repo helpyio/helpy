@@ -22,11 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def recaptcha_enabled?
-    AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
+    AppSettings['settings.recaptcha_enabled'] == '1' && AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
   end
 
   def cloudinary_enabled?
-    AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+    AppSettings['cloudinary.enabled'] == '1' && AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
   end
   helper_method :cloudinary_enabled?
 
@@ -46,6 +46,11 @@ class ApplicationController < ActionController::Base
       )
     end
   end
+
+  def google_analytics_enabled?
+    AppSettings['settings.google_analytics_enabled'] == '1'
+  end
+  helper_method :google_analytics_enabled?
 
   def rtl_locale?(locale)
     return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
