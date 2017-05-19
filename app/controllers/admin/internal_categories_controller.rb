@@ -1,11 +1,11 @@
 class Admin::InternalCategoriesController < Admin::BaseController
 
   def index
-    @categories = Category.internally.ordered
+    @categories = Category.internally.without_system_resource.ordered
   end
 
   def show
-    @category = Category.internally.active.where(id: params[:id]).first
+    @category = Category.internally.without_system_resource.active.where(id: params[:id]).first
     if @category
       if I18n.available_locales.count > 1
         @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]

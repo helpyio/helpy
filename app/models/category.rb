@@ -32,6 +32,7 @@ class Category < ActiveRecord::Base
 
   PUBLIC_VIEWABLE   = %w[all public]
   INTERNAL_VIEWABLE = %w[all internal]
+  SYSTEM_RESOURCES = ["Common Replies", "Email templates"]
 
   scope :alpha, -> { order('name ASC') }
   scope :active, -> { where(active: true) }
@@ -42,6 +43,7 @@ class Category < ActiveRecord::Base
   scope :publicly, -> { where(visibility: PUBLIC_VIEWABLE) }
   scope :internally, -> { where(visibility: INTERNAL_VIEWABLE) }
   scope :only_internally, -> { where(visibility: 'internal') }
+  scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
 
   before_destroy :non_deleteable?
 
