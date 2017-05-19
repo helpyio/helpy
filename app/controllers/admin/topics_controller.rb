@@ -380,6 +380,26 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
+  def unassign_team
+    @topic = Topic.where(id: params[:topic_ids]).first
+
+    @topic.team_list = ""
+    @topic.save
+
+    @topic.posts.create(
+      body: "This ticket was unassigned from all team groups",
+      user: current_user,
+      kind: 'note',
+    )
+
+    @posts = @topic.posts.chronologic
+
+    fetch_counts
+    get_all_teams
+
+    render 'update_ticket', id: @topic.id
+  end
+
   def split_topic
     parent_topic = Topic.find(params[:topic_id])
     parent_post = Post.find(params[:post_id])
