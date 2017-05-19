@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => Devise.omniauth_providers
+        :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
   INVALID_NAME_CHARACTERS = /\A('|")|('|")\z/
 
@@ -252,6 +252,10 @@ class User < ActiveRecord::Base
   # message to the user that is not allowed to login
   def inactive_message
     "You are not allowed to log in!"
+  end
+
+  def invited?
+    self.name.include? "Invited"
   end
 
   private

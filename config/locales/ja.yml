@@ -167,6 +167,8 @@ ja:
   edit_user: "ユーザの編集"
   work_phone: "職場の電話番号"
   cell_phone: "携帯電話番号"
+  # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   select_priority: "優先度の選択"

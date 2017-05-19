@@ -167,6 +167,8 @@ hi:
   edit_user: Edit User
   work_phone: काम
   cell_phone: मोबाइल
+  # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   # select_priority: Select Priority

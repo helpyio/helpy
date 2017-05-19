@@ -170,6 +170,8 @@ et:
   edit_user: Muuda kasutajat
   work_phone: töö
   cell_phone: telefon
+  # user_invited:
+  # resend_invitation_email:
 
   # Priorities
   select_priority: Vali prioriteet
