@@ -6,20 +6,21 @@
 
   <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section integrations" data-hook="admin_settings_integrations">
-      <div class="row integration-item">
+      <div class="row integration-item vcenter">
         <div class="col-md-6">
           <span class="more-important">Incoming Webhook</span>
           <p class="less-important">
             Create tickets from existing webforms by POSTing to a JSON webhook
             URL. Your secret URL is:<br/>
-            <h4><%= "#{request.protocol}#{request.host_with_port}/webhook/form/#{AppSettings["webhook.form_key"]}/" %></h4>
+            <%= f.check_box 'webhook.form_enabled', { checked: (AppSettings['webhook.form_enabled'] == '1'), label: t('enable_webhook_url', default: "Enable Incoming Webhooks"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+            <h4></h4>
           </p>
         </div>
         <div class="col-md-6">
-          <%= f.check_box 'webhook.form_enabled', { checked: (AppSettings['webhook.form_enabled'] == '1'), label: t('enable_webhook_url', default: "Enable Incoming Webhooks"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+          <%= text_field_tag 'URL', '', value: "#{request.protocol}#{request.host_with_port}/webhook/form/#{AppSettings["webhook.form_key"]}/", class: 'form-control' %>
         </div>
       </div>
-      <div class="row integration-item">
+      <div class="row integration-item vcenter">
         <div class="col-md-6">
           <span class="more-important">Google Analytics</span>
           <p class="less-important">
@@ -32,7 +33,7 @@
           <%= f.text_field 'settings.google_analytics_id', value: AppSettings['settings.google_analytics_id'], label: "Google Analytics ID" %>
         </div>
       </div>
-      <div class="row integration-item">
+      <div class="row integration-item vcenter">
         <div class="col-md-6">
           <span class="more-important">Recaptcha</span>
           <p class="less-important">
@@ -45,7 +46,7 @@
           <%= f.text_field 'settings.recaptcha_api_key', value: AppSettings['settings.recaptcha_api_key'], label: t('recaptcha_api_key', default: "Recaptcha API Key") %>
         </div>
       </div>
-      <div class="row integration-item">
+      <div class="row integration-item vcenter">
         <div class="col-md-6">
           <span class="more-important">Cloudinary</span>
           <p class="less-important">
