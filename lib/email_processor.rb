@@ -2,7 +2,7 @@ class EmailProcessor
 
   def initialize(email)
     @email = email
-    @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'])
+    @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id']) if google_analytics_enabled?
   end
 
   def process
@@ -44,9 +44,10 @@ class EmailProcessor
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
 
-      @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
-      @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
-
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
+        @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
+      end
     elsif subject.include?("Fwd: ") # this is a forwarded message DOES NOT WORK CURRENTLY
 
       #clean message
@@ -72,9 +73,10 @@ class EmailProcessor
       handle_attachments(@email, post)
 
       # Call to GA
-      @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
-
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
+      end
     else # this is a new direct message
 
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
@@ -102,9 +104,10 @@ class EmailProcessor
       handle_attachments(@email, post)
 
       # Call to GA
-      @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
-
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
+      end
     end
 
   # rescue
@@ -130,6 +133,10 @@ class EmailProcessor
 
   def cloudinary_enabled?
     AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+  end
+
+  def google_analytics_enabled?
+    AppSettings['settings.google_analytics_enabled'] == '1'
   end
 
   def create_user

@@ -12,7 +12,6 @@
           <p class="less-important">
             Create tickets from existing webforms by POSTing to a JSON webhook
             URL. Your secret URL is:<br/>
-
             <h4><%= "#{request.protocol}#{request.host_with_port}/webhook/form/#{AppSettings["webhook.form_key"]}/" %></h4>
           </p>
         </div>
@@ -26,6 +25,7 @@
           <p class="less-important">
             Send Helpdesk usage statistics into Google Analytics for reporting
             and visualization.
+            <%= f.check_box 'settings.google_analytics_enabled', { checked: (AppSettings['settings.google_analytics_enabled'] == '1'), label: t('enable_google_analytics', default: "Enable Google Analytics"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
           </p>
         </div>
         <div class="col-md-6">
@@ -37,6 +37,7 @@
           <span class="more-important">Recaptcha</span>
           <p class="less-important">
             Recaptcha helps protect your self service helpdesk from spam.
+            <%= f.check_box 'settings.recaptcha_enabled', { checked: (AppSettings['settings.recaptcha_enabled'] == '1'), label: t('enable_recaptcha', default: "Enable Recaptcha"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
           </p>
         </div>
         <div class="col-md-6">
@@ -49,6 +50,7 @@
           <span class="more-important">Cloudinary</span>
           <p class="less-important">
             Cloudinary offers image hosting and transformation services.
+            <%= f.check_box 'cloudinary.enabled', { checked: (AppSettings['cloudinary.enabled'] == '1'), label: t('enable_cloudinary', default: "Enable Cloudinary"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
           </p>
         </div>
         <div class="col-md-6">

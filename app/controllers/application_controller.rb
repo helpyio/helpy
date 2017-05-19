@@ -47,6 +47,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def google_analytics_enabled?
+    AppSettings['settings.google_analytics_enabled'] == '1'
+  end
+  helper_method :google_analytics_enabled?
+
   def rtl_locale?(locale)
     return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
     return false

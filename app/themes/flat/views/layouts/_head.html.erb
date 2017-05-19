@@ -24,7 +24,7 @@
 <%= favicon_link_tag "#{AppSettings['design.favicon']}" %>
 <%= cloudinary_js_config %>
 
-<%= render :partial => 'layouts/google_analytics' %>
+<%= render 'layouts/google_analytics' %>
 
 <script>
 Helpy.domain = '<%= "//" + request.host_with_port %>';
