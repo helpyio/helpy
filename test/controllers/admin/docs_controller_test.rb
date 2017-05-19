@@ -176,6 +176,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
       sign_in users(admin.to_sym)
 
       # Make sure cloudinary cloud name is setup
+      AppSettings['cloudinary.enabled'] = "1"
       AppSettings['cloudinary.cloud_name'] = "test-cloud"
       AppSettings['cloudinary.api_key'] = "some-key"
       AppSettings['cloudinary.api_secret'] = "test-cloud"
@@ -193,6 +194,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
       sign_in users(admin.to_sym)
 
       # Make sure cloudinary cloud name is setup
+      AppSettings['cloudinary.enabled'] = "1"
       AppSettings['cloudinary.cloud_name'] = ""
       AppSettings['cloudinary.api_key'] = ""
       AppSettings['cloudinary.api_secret'] = ""
