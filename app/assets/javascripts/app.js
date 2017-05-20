@@ -227,7 +227,7 @@ Helpy.ready = function(){
     $thread.hide().last().show();
   }
 
-  
+
 
 
   // Use or append common reply
@@ -398,6 +398,15 @@ Helpy.ready = function(){
   // Add this in css.  There is probably a better way to do this?
   $("abbr[title='required']").hide();
 
+  // Add hoversort icon
+  $('.hoversort').off().on('mouseover', function(){
+    $(this).prepend('<span class="fa fa-arrows-v" style="color:#666; margin-right: 0;"></span>');
+    $(this).css("cursor","move");
+
+    $(this).on('mouseout', function(){
+      $(this).find('span.fa-arrows-v').remove();
+    });
+  });
 };
 
 $.attachinary.config.template = '\
@@ -468,13 +477,9 @@ $(document).on('page:change', function () {
     lessAni: ""
   });
 
-  // Allows image insertion into quill editor
+  // Allows image insertion into editor
   $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-    var element = document.querySelector("trix-editor");
-    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>";
-    element.editor.insertHTML(thisImage);
-
-    $('.image_public_id').val(data.result.public_id);
+    $('#doc_body').summernote('editor.insertImage', $.cloudinary.image(data.result.public_id).attr('src'));
     return true;
   });
 

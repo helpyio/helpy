@@ -22,7 +22,7 @@ module API
           optional :category, type: Boolean, desc: "Whether to return the category object in full"
         end
         get ":id", root: "doc" do
-          doc = Doc.active.find(permitted_params[:id])
+          doc = Doc.active.publicly.find(permitted_params[:id])
           present doc, with: Entity::Doc, category: permitted_params[:category]
         end
 

@@ -238,6 +238,7 @@ sv:
   international: "Internationellt"
   widget: "Inbäddningsbar Widget"
   # common_replies: "Common Replies"
+  # integrations: "Integrations"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

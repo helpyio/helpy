@@ -83,28 +83,34 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    fetch_counts
 
-    # update role if admin only
-    @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
+    fetch_counts
 
     # update team list
     @user.team_list = params[:user][:team_list]
-    @user.save
 
-    @topics = @user.topics.page params[:page]
-    @topic = Topic.where(user_id: @user.id).first
-    tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
+    if @user.update(user_params)
 
-    # TODO: Refactor this to use an index method/view on the users model
-    respond_to do |format|
-      format.html {
-        redirect_to admin_settings_path
-      }
-      format.js {
-        render 'admin/users/show'
-      }
+      # update role if admin only
+      @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
+      # update password if current user
+      @user.update_attribute(:password, params[:user][:password]) if (current_user.id == @user.id) && (params[:user][:password] == params[:user][:password_confirmation])
+
+      @topics = @user.topics.page params[:page]
+      @topic = Topic.where(user_id: @user.id).first
+      tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
+
+      # TODO: Refactor this to use an index method/view on the users model
+      respond_to do |format|
+        format.html {
+          redirect_to admin_root_path
+        }
+        format.js {
+          render 'admin/users/show'
+        }
+      end
+    else
+      render :profile
     end
   end
 
@@ -149,7 +155,7 @@ class Admin::UsersController < Admin::BaseController
       :time_zone,
       :notify_on_private,
       :notify_on_public,
-      :notify_on_reply
+      :notify_on_reply,
     )
   end
 

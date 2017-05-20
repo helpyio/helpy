@@ -25,7 +25,7 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
   def app
     Rails.application
   end
-  
+
   setup do
     set_default_settings
     @user = users(:admin)
@@ -38,7 +38,7 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
 
     # Check not authorized
     assert_equal 401, last_response.status
-  end 
+  end
 
   test "an API user should be able to return categories" do
     get '/api/v1/categories.json', @default_params
@@ -48,7 +48,7 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
 
     # Check returned value
     objects = JSON.parse(last_response.body)
-    assert objects.length == Category.active.count, "Only #{objects.length} returned out of #{Category.active.count} categories"
+    assert objects.length == Category.active.publicly.count, "Only #{objects.length} returned out of #{Category.active.count} categories"
   end
 
   test "an API user should be able to return a specific category" do
@@ -59,13 +59,21 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
     assert last_response.ok?, "Response was #{last_response.status}, expected 200"
 
     # Check returned value
-    object = JSON.parse(last_response.body)  
+    object = JSON.parse(last_response.body)
     assert object['id'] == category.id
     assert object['name'] == category.name
   end
 
   test "an API user should not be able to return inactive categories" do
     category = Category.find_by(active: false)
+    get "/api/v1/categories/#{category.id}.json", @default_params
+
+    # Check not found
+    assert_equal 404, last_response.status
+  end
+
+  test "an API user should not be able to return internal categories" do
+    category = Category.find_by(active: true, visibility: 'internal')
     get "/api/v1/categories/#{category.id}.json", @default_params
 
     # Check not found

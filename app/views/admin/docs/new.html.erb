@@ -11,11 +11,9 @@
 </div>
 
 <script>
-var element = document.querySelector("trix-editor");
-element.editor.setSelectedRange([0, 0]);
 <% if @post.nil? %>
-element.editor.insertHTML('<%= @doc.body if @doc.body? %>');
+$('#summernote').summernote('code', '<%= @doc.body if @doc.body? %>');
 <% else %>
-element.editor.insertHTML('<%= @post.body unless @post.nil? %>');
+$('#summernote').summernote('code', '<%= @post.body unless @post.nil? %>');
 <% end %>
 </script>

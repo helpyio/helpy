@@ -108,6 +108,18 @@ seven:
   front_page: false
   allow_comments: true
 
+nine:
+  id: 9
+  title: Article inside internal category
+  body: This doc should allow comments
+  keywords:
+  category_id: 6
+  user_id: 1
+  active: true
+  rank: 67
+  front_page: false
+  allow_comments: true
+
 common:
   id: 8
   title: Common Reply

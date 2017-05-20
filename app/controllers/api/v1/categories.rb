@@ -22,7 +22,7 @@ module API
           optional :docs_limit, type: Integer, desc: "How many docs to return with the category"
         end
         get "", root: :categories do
-          categories = Category.includes(:translations).active.ranked.all
+          categories = Category.includes(:translations).active.publicly.ordered.all
           present categories, with: Entity::Category, docs: permitted_params[:docs], docs_limit: permitted_params[:docs_limit]
         end
 
@@ -35,7 +35,7 @@ module API
           requires :id, type: String, desc: "Category to list docs from"
         end
         get ":id", root: :categories do
-          category = Category.active.find(permitted_params[:id])
+          category = Category.active.publicly.find(permitted_params[:id])
           present category, with: Entity::Category, docs: true
         end
 

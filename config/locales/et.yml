@@ -278,6 +278,7 @@ et:
   design: "Disain"
   international: "Rahvusvaheline"
   widget: "Manustav vidin"
+  # integrations: "Integrations"
 
   # API Key Managmeent
   api_keys: "API võtmed"

@@ -25,8 +25,18 @@
           { label: t(:assign_to, default: "Assign to group:") }, { class: "selectpicker", multiple: true } if teams? && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
       <%= f.select(:priority, [[t('select_priority'),'Select Priority'],[t('low_priority'),'low'],[t('normal_priority'),'normal'],[t('high_priority'),'high'],[t('vip_priority'),'vip']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.check_box :active if current_user.is_admin? && params[:controller] != 'admin/settings' %>
-      <%= f.time_zone_select :time_zone, nil, include_blank: true if current_user.is_admin? && params[:controller] == 'admin/settings' %>
+      <%= f.time_zone_select :time_zone, nil, include_blank: true if current_user.is_admin? %>
     </div>
+    <% if current_user.id == @user.id %>
+    <div class="user-section">
+      <div class="tiny-header"><%= t('devise.passwords.edit.change_your_password') %></div>
+      <br/>
+      <span class="password-fields">
+        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off"  %>
+      </span>
+    </div>
+    <% end %>
     <div class="user-section">
       <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
       <%= f.text_field :work_phone %>
