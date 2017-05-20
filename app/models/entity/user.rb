@@ -14,6 +14,7 @@ module Entity
     expose :street
     expose :city
     expose :state
+    expose :country
     expose :zip
     expose :title
     expose :twitter
