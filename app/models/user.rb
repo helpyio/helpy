@@ -255,23 +255,13 @@ class User < ActiveRecord::Base
   end
 
   def self.register email, user_name
-    # this method is very similar to email_processor#create_user
-    # actually it was copyied from there.
-    # it should create an issue to properly refactor and
-    # preserve the DRY principle.
-
     # create user
     usr = User.new
-
-    token, enc = Devise.token_generator.generate(User, :reset_password_token)
-    usr.reset_password_token = enc
-    usr.reset_password_sent_at = Time.now.utc
-
     usr.email = email
     usr.name = user_name
-    usr.password = User.create_password
-    if usr.save
-      UserMailer.new_user(usr.id, token).deliver_later
+
+    if usr.signup_guest
+      UserMailer.new_user(usr.id, usr.reset_password_token).deliver_later
     end
 
     return usr

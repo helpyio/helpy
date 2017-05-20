@@ -140,19 +140,8 @@ class EmailProcessor
   end
 
   def create_user
-    # create user
-    @user = User.new
-
-    @token, enc = Devise.token_generator.generate(User, :reset_password_token)
-    @user.reset_password_token = enc
-    @user.reset_password_sent_at = Time.now.utc
-
-    @user.email = @email.from[:email]
-    @user.name = @email.from[:name].blank? ? @email.from[:token].gsub(/[^a-zA-Z]/, '') : @email.from[:name]
-    @user.password = User.create_password
-    if @user.save
-      UserMailer.new_user(@user.id, @token).deliver_later
-    end
-
+    usr_email = @email.from[:email]
+    usr_name  = @email.from[:name].blank? ? @email.from[:token].gsub(/[^a-zA-Z]/, '') : @email.from[:name]
+    @user = User.register usr_email, usr_name
   end
 end
