@@ -138,6 +138,7 @@ class Admin::UsersController < Admin::BaseController
       :street,
       :city,
       :state,
+      :country,
       :zip,
       :title,
       :twitter,
