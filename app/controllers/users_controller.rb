@@ -18,7 +18,7 @@
 #  city                   :string
 #  state                  :string
 #  zip                    :string
-#  country                :string
+#  country_code           :string
 #  title                  :string
 #  twitter                :string
 #  linkedin               :string

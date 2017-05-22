@@ -21,7 +21,7 @@
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %>
       <div class='form-group'>
         <%= f.label 'user_country', t("activerecord.attributes.user.country", default: "Country"), class: 'control-label' %>
-        <%= f.country_select :country, { include_blank: t(:select_country, default: "Select a country") }, { class: 'form-control' } %>
+        <%= f.country_select :country_code, { include_blank: t(:select_country, default: "Select a country") }, { class: 'form-control' } %>
       </div>
       <%= f.text_field :zip, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>

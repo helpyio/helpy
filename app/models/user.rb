@@ -17,7 +17,7 @@
 #  street                 :string
 #  city                   :string
 #  state                  :string
-#  country                :string
+#  country_code           :string
 #  zip                    :string
 #  title                  :string
 #  twitter                :string

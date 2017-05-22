@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 20170519164505) do
     t.string   "street"
     t.string   "city"
     t.string   "state"
-    t.string   "country"
+    t.string   "country_code"
     t.string   "zip"
     t.string   "title"
     t.string   "twitter"

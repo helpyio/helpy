@@ -17,6 +17,7 @@
 #  street                 :string
 #  city                   :string
 #  state                  :string
+#  country_code           :string
 #  zip                    :string
 #  title                  :string
 #  twitter                :string
@@ -88,14 +89,14 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
       assert_difference("User.find(2).name.length", -3) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller2@test.com", country: 'Ind', zip: '9999', team_list: 'something', priority: 'high'}, locale: :en}
+        patch :update, {id: 2, user: {name: "something", email:"scott.miller2@test.com", country_code: 'IN', zip: '9999', team_list: 'something', priority: 'high'}, locale: :en}
       end
       u = User.find(2)
       assert u.name == "something", "name does not update"
       assert_equal "9999", u.zip, "zip did not update"
       assert_equal ["something"], u.team_list, "groups did not update"
       assert_equal "high", u.priority, "priority did not update"
-      assert_equal "Ind", u.country, "country did not update"
+      assert_equal "IN", u.country_code, "country did not update"
     end
 
     test "an #{admin} should be able to see a user profile" do

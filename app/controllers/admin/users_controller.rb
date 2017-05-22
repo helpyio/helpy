@@ -17,6 +17,7 @@
 #  street                 :string
 #  city                   :string
 #  state                  :string
+#  country_code           :string
 #  zip                    :string
 #  title                  :string
 #  twitter                :string
@@ -138,7 +139,7 @@ class Admin::UsersController < Admin::BaseController
       :street,
       :city,
       :state,
-      :country,
+      :country_code,
       :zip,
       :title,
       :twitter,
