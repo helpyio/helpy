@@ -24,7 +24,7 @@ services:
       - back
     volumes:
       - rails-assets:/helpy/public
-    env_file: .env
+    env_file: docker/.env
     #environment:
     #  - DO_NOT_PREPARE=true
     depends_on:
@@ -34,7 +34,7 @@ services:
     restart: always
     networks:
       - back
-    env_file: .env
+    env_file: docker/.env
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
