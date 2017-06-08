@@ -477,14 +477,9 @@ $(document).on('page:change', function () {
     lessAni: ""
   });
 
-  // Allows image insertion into quill editor
-  // TODO: Need to handle with summernote or end support for attachinary (preferred)
+  // Allows image insertion into editor
   $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-    var element = document.querySelector("trix-editor");
-    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>";
-    element.editor.insertHTML(thisImage);
-
-    $('.image_public_id').val(data.result.public_id);
+    $('#doc_body').summernote('editor.insertImage', $.cloudinary.image(data.result.public_id).attr('src'));
     return true;
   });
 

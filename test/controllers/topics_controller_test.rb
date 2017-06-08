@@ -106,6 +106,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'a user should see the option to attach files if cloudinary configured' do
 
     # Make sure cloudinary cloud name is setup
+    AppSettings['cloudinary.enabled'] = "1"
     AppSettings['cloudinary.cloud_name'] = "test-cloud"
     AppSettings['cloudinary.api_key'] = "some-key"
     AppSettings['cloudinary.api_secret'] = "test-cloud"

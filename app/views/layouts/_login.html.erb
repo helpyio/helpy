@@ -14,6 +14,7 @@
 
 <div class="col-md-12 login-form" data-title="<%= t('devise.sessions.new.sign_in') %>">
 <% end %>
+  <div data-hook="login-form">
   <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= f.email_field :email, placeholder: I18n.t("activerecord.attributes.user.email"), skip_label: true %>
     <%= f.password_field :password, placeholder: I18n.t("activerecord.attributes.user.password"), autocomplete: "off", skip_label: true %>
@@ -24,6 +25,7 @@
       <%= f.submit t('devise.sessions.new.sign_in', default: "Login"), class: 'btn btn-warning' %>
     </div>
   <% end %>
+  </div>
 </div>
 <div class="col-md-12 forgot-form" style="display: none;" data-title="<%= t('devise.passwords.new.forgot_your_password') %>">
   <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, validate: true) do |f| %>

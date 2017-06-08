@@ -32,7 +32,7 @@ class API::V1::DocsTest < ActiveSupport::TestCase
   def app
     Rails.application
   end
-  
+
   setup do
     set_default_settings
     @user = users(:admin)
@@ -46,7 +46,7 @@ class API::V1::DocsTest < ActiveSupport::TestCase
 
     # Check not authorized
     assert_equal 401, last_response.status
-  end 
+  end
 
   test "an API user should be able to return a specific doc" do
     doc = Doc.first
@@ -56,13 +56,21 @@ class API::V1::DocsTest < ActiveSupport::TestCase
     assert last_response.ok?, "Response was #{last_response.status}, expected 200"
 
     # Check returned value
-    object = JSON.parse(last_response.body)  
+    object = JSON.parse(last_response.body)
     assert object['id'] == doc.id
     assert object['title'] == doc.title
   end
 
   test "an API user should not be able to return inactive docs" do
     doc = Doc.find_by(active: false)
+    get "/api/v1/docs/#{doc.id}.json", @default_params
+
+    # Check not found
+    assert_equal 404, last_response.status
+  end
+
+  test "an API user should not be able to return internal docs" do
+    doc = Doc.joins(:category).find_by(active: true, categories: { visibility: 'internal' })
     get "/api/v1/docs/#{doc.id}.json", @default_params
 
     # Check not found
