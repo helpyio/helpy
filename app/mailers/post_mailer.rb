@@ -14,7 +14,7 @@ class PostMailer < ActionMailer::Base
     end
     mail(
       to: email_with_name,
-      from: %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>),
+      from: @topic.from_email_address,
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end

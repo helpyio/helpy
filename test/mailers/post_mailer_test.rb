@@ -11,7 +11,7 @@ class PostMailerTest < ActionMailer::TestCase
     user = topic.user
     user.email = "change@me-something.com"
     user.save!
-    
+
     post = topic.posts.first
     email = PostMailer.new_post(post.id)
 

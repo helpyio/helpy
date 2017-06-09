@@ -72,6 +72,8 @@ class Admin::GroupsController < Admin::BaseController
       :name,
       :description,
       :color,
+      :email_address,
+      :email_name,
       :show_on_helpcenter,
       :show_on_admin,
       :show_on_dashboard
