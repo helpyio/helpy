@@ -16,7 +16,8 @@
     <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
   <% end %>
   <%= f.simple_fields_for @topic.posts.new do |i| %>
-    <%= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
+    <%#= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
+    <%= i.input :body, as: :summernote, label: false, class: 'disable-empty' %>
     <% if !cloudinary_enabled? %>
       <%= i.file_field :attachments, multiple: true %>
       <ul class="list-inline" id="attachments">
@@ -28,6 +29,53 @@
   <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
   </div>
   <%= f.input :tag_list %>
-  <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: true %>
+  <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable' %>
 <% end -%>
 </div>
+
+<script>
+$('[data-provider="summernote"]').each(function(){
+  $(this).summernote({
+    height: 150,
+    prettifyHtml: true,
+    toolbar: [
+      ['style', ['bold', 'italic', 'underline', 'clear']]
+    ],
+    codemirror: {
+      theme: 'monokai',
+      mode: "htmlmixed",
+      tabsize: 2,
+      smartIndent: true,
+      lineNumbers: true,
+      lineWrapping: true,
+      tabMode: 'indent'
+    },
+    hint: {
+      match: /:([\-+\w]+)$/,
+      search: function (keyword, callback) {
+        callback($.grep(emojis, function (item) {
+          return item.indexOf(keyword)  === 0;
+        }));
+      },
+      template: function (item) {
+        var content = emojiUrls[item];
+        return '<img src="' + content + '" width="20" /> :' + item + ':';
+      },
+      content: function (item) {
+        var url = emojiUrls[item];
+        if (url) {
+          return $('<img />').attr('src', url).css('width', 20)[0];
+        }
+        return '';
+      }
+    }
+  });
+});
+$.ajax({
+  url: 'https://api.github.com/emojis',
+  async: false
+}).then(function(data) {
+  window.emojis = Object.keys(data);
+  window.emojiUrls = data;
+});
+</script>
