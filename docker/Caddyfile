@@ -1,0 +1,21 @@
+0.0.0.0:80 {
+  tls off
+  root /helpy/public
+
+  header /assets {
+    gzip
+    Expires "Thu, 31 Dec 2037 23:55:55 GMT"
+    Cache-Control public
+  }
+
+  header /uploads
+
+  proxy / helpy:8080/ {
+    except /assets
+    except /uploads
+    header_upstream Host {host}
+    header_upstream X-Real-IP {remote}
+    header_upstream X-Forwarded-Proto {scheme}
+  }
+  log stdout
+}

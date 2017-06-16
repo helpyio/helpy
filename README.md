@@ -62,6 +62,15 @@ Although not required, installing locally is highly recommended and will make it
 
 `git clone https://github.com/helpyio/helpy.git`
 
+**Install Helpy via Docker**
+1) Install [Docker](https://get.docker.com/) and docker-compose
+2) Edit the `docker/.env` file with the neccessary information and passwords
+3) Edit `docker/Caddyfile` to include your URL or turn on SSL
+4) Run `docker-compose up -d` to start all of the services
+
+_Other notes_
+You can modify `docker/run.sh` and set `DO_NOT_PREPARE` to true, which will skip compiling the assets when the docker container loads. While this makes the container start faster, it is not reccommended because this is also the step where database migrations are run. If there's an update and the migrations don't run it could lead to issues with the website throwing a lot of errors.
+
 **Configure Basic Settings**
 
 There is a settings option in the admin panel to set up things like i18n, system names, colors, the embeddable widget, etc.  There is a full guide to getting set up at: [Configuring Your Helpy Settings](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/22-Configuring-your-Helpy-Settings)
