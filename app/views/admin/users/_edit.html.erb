@@ -48,6 +48,10 @@
       <%= f.text_field :twitter %>
       <%= f.text_field :linkedin %>
     </div>
+    <div class="user-section">
+      <div class="tiny-header"><%= t(:signature, default: "Signature") %>:</div>
+      <%= f.text_area :signature, skip_label: true, rows: 10 %>
+    </div>
     <% if current_user.is_admin? && @user.is_agent? %>
     <div class="user-section">
       <div class="tiny-header"><%= t(:notifications, default: "Notifications") %>:</div>
