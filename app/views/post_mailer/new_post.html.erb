@@ -2,16 +2,14 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-
-    <script>
-    .list-inline {
-    	padding-left: 0;
-    	list-style: none;
-    }
-    </script>
-
   </head>
   <body <%= 'dir=rtl' if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(@topic.locale) %>>
+  <style>
+  .list-inline {
+    padding-left: 0;
+    list-style: none;
+  }
+  </style>
   <p>
     <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
     =================================================================<br/>
@@ -24,7 +22,7 @@
     <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
   </p>
   <p>
-    <%= simple_format(@post.body) %>
+    <%= sanitize @post.body %>
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @post } %>
   <p>
