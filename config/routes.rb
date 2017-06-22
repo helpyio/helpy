@@ -111,9 +111,6 @@ Rails.application.routes.draw do
     get 'settings/integration' => 'settings#integration', as: :integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
 
-    get 'notifications' => 'settings#notifications', as: :notifications
-    put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
-
     # Onboarding Routes
     get '/onboarding/index' => 'onboarding#index', as: :onboarding
     patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user

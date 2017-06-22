@@ -1,7 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
-  before_action :verify_admin, except: ['index', 'notifications','update_notifications', 'profile']
-  before_action :verify_agent, only: ['index', 'notifications', 'update_notifications']
+  before_action :verify_admin, except: ['index', 'profile']
+  before_action :verify_agent, only: ['index']
   skip_before_action :verify_authenticity_token
 
   def index
@@ -44,16 +44,6 @@ class Admin::SettingsController < Admin::BaseController
     @user = User.find(current_user)
     tracker("Agent: #{current_user.name}", "Editing User Profile", @user.name)
     render layout: 'admin-settings'
-  end
-
-  # Show notification settings for current agent/admin
-  def notifications
-    render layout: 'admin-settings'
-  end
-
-  # Save notification preference for current agent/admin
-  def update_notifications
-    redirect_to :back # admin_settings_path
   end
 
   def preview
