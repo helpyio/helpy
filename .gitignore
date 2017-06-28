@@ -27,3 +27,7 @@ public/uploads
 /.ruby-version
 /.ruby-gemset
 /.rvmrc
+
+# Docker stuff
+.env
+certs

@@ -6,7 +6,7 @@
     var helpIcon = "helpy-logo.svg"; // 60x60 round icon, with 6px gutter
     var scriptName = "widget.v1.js"; //name of this script, used to get reference to own tag
     var jQuery; //noconflict reference to jquery
-    var jqueryPath = "http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js";
+    var jqueryPath = "//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js";
     var jqueryVersion = "1.8.3";
     var scriptTag; //reference to the html script tag
 
