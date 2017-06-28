@@ -256,4 +256,8 @@ module AdminHelper
     end
   end
 
+  def inbound_group_email(group, from_email)
+    "#{from_email.split('@')[0]}+#{group}@#{from_email.split('@')[1]}" if group.present? && from_email.present?
+  end
+
 end
