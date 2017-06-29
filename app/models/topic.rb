@@ -253,6 +253,18 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def from_email_address
+    system_from_email = %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>)
+    return system_from_email if self.team_list.blank?
+
+    team = ActsAsTaggableOn::Tag.where('lower(name) = ?', self.team_list.first.downcase).first
+    if team.email_address.present?
+      %("#{team.email_name}" <#{team.email_address}>)
+    else
+      system_from_email
+    end
+  end
+
   private
 
   def cache_user_name
