@@ -8,21 +8,20 @@
 %>
 
 <%- title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+<div class="dropdown">
+  <button class="btn btn-basic dropdown-toggle" data-toggle="dropdown">Sort By <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Created At : Descending (Newest - Oldest)", tickets_en_path(page: @page_number, sort: "created_asc") %></li>
+      <li><%= link_to "Created At : Ascending (Oldest - Newest)", tickets_en_path(page: @page_number, sort: "created_desc") %></li>
+      <li><%= link_to "Updated At : Descending (Newest - Oldest)", tickets_en_path(page: @page_number, sort: "updated_desc") %></li>
+      <li><%= link_to "Updated At : Ascending (Oldest - Newest)", tickets_en_path(page: @page_number, sort: "updated_asc") %></li>
+      <li><%= link_to "Ticket Number : Descending", tickets_en_path(page: @page_number, sort: "ticket_desc") %></li>
+      <li><%= link_to "Ticket Number : Ascending", tickets_en_path(page: @page_number, sort: "ticket_asc") %></li>
+</div>
 
 <div class="ticket-header row vcenter">
   <div class="col-md-8 text-left">
-    <div class="dropdown">
-      <button class="btn btn-basic dropdown-toggle" data-toggle="dropdown">Sort By <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><%= link_to "Created At : Descending", tickets_en_path(sort:"created_desc") %></li>
-        <li><%= link_to "Created At : Ascending", tickets_en_path(sort:"created_asc") %></li>
-        <li><%= link_to "Last Active : Descending", tickets_en_path(sort:"active_desc") %></li>
-        <li><%= link_to "Last Active : Ascending", tickets_en_path(sort:"active_asc") %></li>
-        <li><%= link_to "Ticket Number : Descending", tickets_en_path(sort:"ticket_desc") %></li>
-        <li><%= link_to "Ticket Number : Ascending", tickets_en_path(sort:"ticket_asc") %></li>
-    </div>
-    <br>
-    <span class="truncate-ellipsis">
+   <span class="truncate-ellipsis">
       <%= t(:subject) %>
     </span>
   </div>
