@@ -169,5 +169,10 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal 'something', Cloudinary.config.api_secret
   end
 
+  test "an agent should be able to update their profile" do
+    sign_in users(:agent)
+    get :profile
+    assert :success
+  end
 
 end
