@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
+    get 'topics/unassign_team' => 'topics#unassign_team', as: :unassign_team
     post 'topics/:topic_id/split/:post_id' => 'topics#split_topic', as: :split_topic
     get 'shortcuts' => 'topics#shortcuts', as: :shortcuts
 
@@ -109,9 +110,6 @@ Rails.application.routes.draw do
     get 'settings/email' => 'settings#email', as: :email_settings
     get 'settings/integration' => 'settings#integration', as: :integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
-
-    get 'notifications' => 'settings#notifications', as: :notifications
-    put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
 
     # Onboarding Routes
     get '/onboarding/index' => 'onboarding#index', as: :onboarding

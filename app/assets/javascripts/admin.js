@@ -1,3 +1,22 @@
+//= require codemirror
+//= require codemirror/modes/ruby
+//= require codemirror/modes/sass
+//= require codemirror/modes/shell
+//= require codemirror/modes/sql
+//= require codemirror/modes/slim
+//= require codemirror/modes/nginx
+//= require codemirror/modes/markdown
+//= require codemirror/modes/javascript
+//= require codemirror/modes/http
+//= require codemirror/modes/htmlmixed
+//= require codemirror/modes/haml
+//= require codemirror/modes/xml
+//= require codemirror/modes/css
+//= require codemirror/modes/yaml
+//= require codemirror/modes/slim
+//= require codemirror/modes/php
+//= require summernote
+
 // Gives us a capitalize method
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -6,7 +25,7 @@ String.prototype.capitalize = function() {
 var Helpy = Helpy || {};
 Helpy.admin = function(){
 
-  $('table.sortable').sortable({
+  $('div.sortable').sortable({
     items: '.item',
     axis: 'y',
     cursor: 'move',
@@ -134,7 +153,8 @@ Helpy.admin = function(){
   });
 
   // Start logging history from first pageload
-  Helpy.logHistory();
+  // note: breaks back button so removed
+  // Helpy.logHistory();
 
   $('.input-group.date').datepicker({
     format: "yyyy-mm-dd",

@@ -129,6 +129,8 @@ GEM
       rest-client
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
+    codemirror-rails (5.16.0)
+      railties (>= 3.0, < 6.0)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -326,7 +328,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99.3)
     mini_magick (4.2.10)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.2.0)
     minitest (5.10.1)
     minitest-reporters (1.1.8)
       ansi
@@ -343,8 +345,8 @@ GEM
     mustermann-grape (0.4.0)
       mustermann (= 0.4.0)
     netrc (0.11.0)
-    nokogiri (1.7.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
     oauth (0.5.1)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
@@ -535,6 +537,8 @@ GEM
     staccato (0.4.5)
     sucker_punch (2.0.1)
       concurrent-ruby (~> 1.0.0)
+    summernote-rails (0.8.3.0)
+      railties (>= 3.1)
     temple (0.7.6)
     terminal-table (1.5.2)
     test_after_commit (1.1.0)
@@ -552,8 +556,6 @@ GEM
     timers (4.0.4)
       hitimes
     tool (0.2.3)
-    trix (0.9.9)
-      rails
     turbolinks (2.5.3)
       coffee-rails
     twitter-bootstrap-rails (3.2.2)
@@ -618,6 +620,7 @@ DEPENDENCIES
   client_side_validations-simple_form
   cloudinary (= 1.1.2)
   codeclimate-test-reporter
+  codemirror-rails
   config (~> 1.1.0)!
   country_select
   daemons
@@ -663,7 +666,7 @@ DEPENDENCIES
   mini_magick
   minitest
   minitest-reporters
-  nokogiri (>= 1.7.1)
+  nokogiri (>= 1.7.2)
   omniauth
   omniauth-facebook
   omniauth-github
@@ -696,10 +699,10 @@ DEPENDENCIES
   spring (~> 1.4.0)
   staccato
   sucker_punch (~> 2.0)
+  summernote-rails
   test_after_commit
   themes_on_rails
   timecop
-  trix
   turbolinks (~> 2.5.3)
   twitter-bootstrap-rails
   twitter-bootstrap-rails-confirm
@@ -711,4 +714,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.14.6
+   1.15.1

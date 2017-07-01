@@ -256,6 +256,7 @@ hi:
   international: "International"
   widget: "Embeddable Widget"
   # common_replies: "Common Replies"
+  # integrations: "Integrations"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

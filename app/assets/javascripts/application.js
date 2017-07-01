@@ -32,7 +32,6 @@
 //= require attachinary
 //= require magnific-popup/dist/jquery.magnific-popup.min.js
 //= require initial.js/initial.js
-//= require trix
 //= require autolink/autolink-min.js
 //= require jquery.minicolors
 //= require app

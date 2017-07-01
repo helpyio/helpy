@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519164505) do
+ActiveRecord::Schema.define(version: 20170609170131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,8 @@ ActiveRecord::Schema.define(version: 20170519164505) do
     t.text    "description"
     t.string  "color"
     t.boolean "active",             default: true
+    t.string  "email_address"
+    t.string  "email_name"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
@@ -253,7 +255,6 @@ ActiveRecord::Schema.define(version: 20170519164505) do
     t.string   "street"
     t.string   "city"
     t.string   "state"
-    t.string   "country_code"
     t.string   "zip"
     t.string   "title"
     t.string   "twitter"
@@ -295,6 +296,7 @@ ActiveRecord::Schema.define(version: 20170519164505) do
     t.boolean  "notify_on_reply",        default: false
     t.string   "account_number"
     t.string   "priority",               default: "normal"
+    t.string   "country_code"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

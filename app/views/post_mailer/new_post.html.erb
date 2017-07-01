@@ -25,6 +25,7 @@
   </p>
   <p>
     <%= simple_format(@post.body) %>
+    <%= simple_format(@topic.assigned_user.signature) if @topic.assigned_user.signature.present? %>
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @post } %>
   <p>

@@ -162,7 +162,6 @@ module AdminHelper
 
 
       concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
-      concat content_tag(:li, link_to(t('notifications', default: "notifications"), admin_notifications_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
       concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs')
     end
   end
@@ -255,6 +254,10 @@ module AdminHelper
     content_tag :li do
       content_tag(:span, '', class: 'fa fa-tag add-tag-link')
     end
+  end
+
+  def inbound_group_email(group, from_email)
+    "#{from_email.split('@')[0]}+#{group}@#{from_email.split('@')[1]}" if group.present? && from_email.present?
   end
 
 end

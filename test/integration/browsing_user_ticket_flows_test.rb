@@ -41,6 +41,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
   test "a browsing user who is not registered should be able to create a public ticket via the web interface when recaptcha enable" do
 
     # make sure recaptcha is enabled
+    AppSettings['settings.recaptcha_enabled'] = "1"
     AppSettings['settings.recaptcha_site_key'] = "some-key"
     AppSettings['settings.recaptcha_api_key'] = "some-key"
 
