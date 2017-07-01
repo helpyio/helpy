@@ -41,7 +41,7 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def profile
-    @user = User.find(current_user)
+    @user = User.find(current_user.id)
     tracker("Agent: #{current_user.name}", "Editing User Profile", @user.name)
     render layout: 'admin-settings'
   end
