@@ -222,6 +222,39 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       end
     end
 
+    test "an #{admin} should be able to create a new private discussion for a new user with a mixed case email" do
+      sign_in users(admin.to_sym)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          assert_difference "User.count", 1 do
+            assert_difference "ActionMailer::Base.deliveries.size", 2 do
+              xhr :post, :create, topic: { user: { name: "a user", email: "Anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+            end
+          end
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for an existing user with an email" do
+      sign_in users(admin.to_sym)
+      existing_user = users(:user)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          xhr :post, :create, topic: { user: { name: "scott", email: "scott.miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for an existing user with a mixed case email" do
+      sign_in users(admin.to_sym)
+      existing_user = users(:user)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          xhr :post, :create, topic: { user: { name: "scott", email: "Scott.Miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+        end
+      end
+    end
+
     test "an #{admin} should be able to create a new private discussion for a new user with a phone number" do
       sign_in users(admin.to_sym)
       assert_difference "Topic.count", 1 do

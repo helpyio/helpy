@@ -91,7 +91,7 @@ class Admin::TopicsController < Admin::BaseController
     @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
     @forum = Forum.find(1)
-    @user = User.where(email: params[:topic][:user][:email]).first
+    @user = User.where("lower(email) = ?", params[:topic][:user][:email].downcase).first
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
