@@ -7,7 +7,7 @@
 <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
 
 <%= simple_format(@post.body) %>
-<%= simple_format(@topic.assigned_user.signature) if @topic.assigned_user.signature.present? %>
+<%= simple_format(@post.user.signature) if @post.user.signature.present? %>
 
 <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
 -----------
