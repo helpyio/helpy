@@ -87,26 +87,72 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
-      assert_difference("User.find(2).name.length", -3) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller2@test.com", zip: '9999', team_list: 'something', priority: 'high'}, locale: :en}
-      end
-      u = User.find(2)
+      patch :update, {
+        id: 6, user: {
+          name: "something",
+          email:"scott.miller2@test.com",
+          zip: '9999',
+          team_list: 'something',
+          priority: 'high',
+          notify_on_private: false,
+          notify_on_public: false,
+          notify_on_reply: false,
+          password: '11223344',
+          password_confirmation: '11223344',
+        },
+        locale: :en }
+      u = User.find(6)
+
+      # assert values changed
       assert u.name == "something", "name does not update"
       assert_equal "9999", u.zip, "zip did not update"
       assert_equal ["something"], u.team_list, "groups did not update"
       assert_equal "high", u.priority, "priority did not update"
+      assert_equal false, u.notify_on_private, "notification did not update"
+      assert_equal false, u.notify_on_public, "notification did not update"
+      assert_equal false, u.notify_on_reply, "notification did not update"
+      assert_not_equal '$2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK' == u.encrypted_password, "password did not update"
+    end
+
+    test "an #{admin} should be able to update a user and unchanged attributes should not change" do
+      sign_in users(admin.to_sym)
+      user_before_update = User.find(6)
+      # assign to team
+      user_before_update.team_list = "one"
+      user_before_update.save
+
+      patch :update, {
+        id: 6, user: {
+          name: "something else"
+        },
+        locale: :en }
+
+      u = User.find(6)
+      assert u.name == "something else", "name does not update"
+      assert_equal user_before_update.zip, u.zip, "zip updated"
+      assert_equal user_before_update.team_list, u.team_list, "groups updates"
+      assert_equal user_before_update.priority, u.priority, "priority updated"
+      assert_equal user_before_update.role, u.role, "priority updated"
+      assert_equal true, u.notify_on_private, "notification updated"
+      assert_equal true, u.notify_on_public, "notification updated"
+      assert_equal true, u.notify_on_reply, "notification updated"
+      assert_equal user_before_update.encrypted_password, u.encrypted_password, "password updated"
     end
 
     test "an #{admin} should be able to see a user profile" do
+      sign_in users(admin.to_sym)
       xhr :get, :show, { id: 2 }, format: 'js'
-      # assert_response :success
+      assert_response :success
       # assert_equal(6, assigns(:topics).count)
     end
 
     test "an #{admin} should be able to edit a user profile" do
+      sign_in users(admin.to_sym)
+
       xhr :get, :edit, { id: 2 }
-      # assert_response :success
+      assert_response :success
     end
+
   end
 
   test "an admin should be able to update a user and make them an admin" do
