@@ -175,6 +175,27 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal 2, object['tag_list'].count
   end
 
+  test "an API user should be able to create a ticket by mixed case email" do
+    user = User.find(2)
+
+    params = {
+      name: "Got a problem",
+      body: "This is some really profound question",
+      user_email: "Scott.Miller@test.com",
+      tag_list: 'tag1, tag2',
+    }
+
+    post '/api/v1/tickets.json', @default_params.merge(params)
+
+    object = JSON.parse(last_response.body)
+    assert_equal 1, object['forum_id']
+    assert object['name'] == "Got a problem"
+    assert object['posts'].count == 1
+    assert object['posts'][0]['body'] == "This is some really profound question"
+    assert_equal "api", object['channel']
+    assert_equal 2, object['tag_list'].count
+  end
+
   test "an API user should not be able to create a ticket if user_id or user_email not supplied" do
     params = {
       name: "Got a problem",
