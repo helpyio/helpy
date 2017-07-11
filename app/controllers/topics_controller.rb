@@ -60,8 +60,26 @@ class TopicsController < ApplicationController
   end
 
   def tickets
-    @topics = current_user.topics.isprivate.undeleted.chronologic.page params[:page]
+    sort_token = params[:sort]
+    case sort_token
+      when "created_desc"
+        @topics = current_user.topics.isprivate.undeleted.order("created_at ASC").page params[:page]
+      when "created_asc"
+        @topics = current_user.topics.isprivate.undeleted.order("created_at DESC").page params[:page]
+      when "updated_desc"
+        @topics = current_user.topics.isprivate.undeleted.order("updated_at DESC").page params[:page]
+      when "updated_asc"
+        @topics = current_user.topics.isprivate.undeleted.order("updated_at ASC").page params[:page]
+      when "ticket_desc"
+        @topics = current_user.topics.isprivate.undeleted.order("id DESC").page params[:page]
+      when "ticket_asc"
+        @topics = current_user.topics.isprivate.undeleted.order("id ASC").page params[:page]
+      else
+        @topics = current_user.topics.isprivate.undeleted.order("created_at DESC").page params[:page]
+    end
     @page_title = t(:tickets, default: 'Tickets')
+    @page_number = params[:page]
+    sort_type = params[:sort]
     add_breadcrumb @page_title
     respond_to do |format|
       format.html # index.rhtml
