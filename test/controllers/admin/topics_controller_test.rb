@@ -189,7 +189,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       sign_in users(admin.to_sym)
       xhr :patch, :update_tags, { id: 2, topic: { tag_list: 'hello, hi' } }
       assert_equal 2, Topic.find(2).tag_list.count
-      assert_equal "hi", Topic.find(2).tag_list.first
+      assert_equal true, Topic.find(2).tag_list.include?("hi")
     end
 
     test "an #{admin} should be able to remove tags for a topic" do
