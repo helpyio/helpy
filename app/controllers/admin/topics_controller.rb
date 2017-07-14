@@ -53,9 +53,9 @@ class Admin::TopicsController < Admin::BaseController
     when 'unread'
       topics_raw = topics_raw.unread.all
     when 'assigned'
-      topics_raw = topics_raw.mine(current_user.id)
+      topics_raw = Topic.mine(current_user.id)
     when 'pending'
-      topics_raw = topics_raw.pending.mine(current_user.id)
+      topics_raw = Topic.pending.mine(current_user.id)
     else
       topics_raw = topics_raw.where(current_status: @status)
     end

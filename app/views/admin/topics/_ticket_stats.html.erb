@@ -6,7 +6,7 @@
     <div class="pipeline-row col-md-12">
       <%= render partial: 'admin/topics/stat_box', locals: { box: 'new', stats: @new, class_name: 'has-arrow' } %>
       <%#= render partial: 'admin/topics/stat_box', locals: { box: 'active', stats: @active, class_name: 'has-arrow' } %>
-      <%= render partial: 'admin/topics/stat_box', locals: { box: 'open', stats: @open, class_name: 'has-arrow' } %>
+      <%= render partial: 'admin/topics/stat_box', locals: { box: 'active', stats: @active, class_name: 'has-arrow' } %>
       <%= render partial: 'admin/topics/stat_box', locals: { box: 'mine', stats: @mine, class_name: 'has-arrow' } %>
       <%= render partial: 'admin/topics/stat_box', locals: { box: 'pending', stats: @pending, class_name: 'has-arrow'} %>
       <%= render partial: 'admin/topics/stat_box', locals: { box: 'closed', stats: @closed, class_name: 'no-arrow'} %>
