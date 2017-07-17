@@ -87,8 +87,8 @@ class Admin::UsersController < Admin::BaseController
 
     fetch_counts
 
-    # update team list
-    @user.team_list = params[:user][:team_list]
+    # update team list if provided
+    @user.team_list = params[:user][:team_list] if  params[:user][:team_list].present?
 
     if @user.update(user_params)
 

@@ -189,7 +189,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       sign_in users(admin.to_sym)
       xhr :patch, :update_tags, { id: 2, topic: { tag_list: 'hello, hi' } }
       assert_equal 2, Topic.find(2).tag_list.count
-      assert_equal "hi", Topic.find(2).tag_list.first
+      assert_equal true, Topic.find(2).tag_list.include?("hi")
     end
 
     test "an #{admin} should be able to remove tags for a topic" do
@@ -218,6 +218,39 @@ class Admin::TopicsControllerTest < ActionController::TestCase
               xhr :post, :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
             end
           end
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for a new user with a mixed case email" do
+      sign_in users(admin.to_sym)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          assert_difference "User.count", 1 do
+            assert_difference "ActionMailer::Base.deliveries.size", 2 do
+              xhr :post, :create, topic: { user: { name: "a user", email: "Anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+            end
+          end
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for an existing user with an email" do
+      sign_in users(admin.to_sym)
+      existing_user = users(:user)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          xhr :post, :create, topic: { user: { name: "scott", email: "scott.miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for an existing user with a mixed case email" do
+      sign_in users(admin.to_sym)
+      existing_user = users(:user)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          xhr :post, :create, topic: { user: { name: "scott", email: "Scott.Miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
         end
       end
     end
