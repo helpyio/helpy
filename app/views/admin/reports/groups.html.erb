@@ -24,12 +24,12 @@
             <th class="text-right">Tickets</th>
           </thead>
           <%
-          @teams.order("name asc").each do |team|
+          @teams.each do |team|
           %>
           <tr>
-            <td><span class="more-important"><%= team.name %></span><br/><span class="less-important"></span></td>
+            <td><span class="more-important"><%= team[0].capitalize %></span><br/><span class="less-important"></span></td>
             <td></td>
-            <td><%= content_tag :h3, @scoped_stats.tagged_with(team.name).count, class: 'pull-right' %></td>
+            <td><%= content_tag :h3, team[1], class: 'pull-right' %></td>
           </tr>
           <% end %>
         </table>
