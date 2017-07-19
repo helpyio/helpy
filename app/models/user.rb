@@ -278,6 +278,11 @@ class User < ActiveRecord::Base
     return usr
   end
 
+  def country_name
+    return unless (country = ISO3166::Country[self.country_code])
+    country.translations[I18n.locale.to_s] || country.name
+  end
+
   private
 
   def reject_invalid_characters_from_name

@@ -304,4 +304,11 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'test agent', u.name
   end
 
+  test "country_name" do
+    assert_nil User.new.country_name
+    assert_nil User.new(:country_code => '').country_name
+    assert_equal 'India', User.new(:country_code => 'IN').country_name
+    assert_nil User.new(:country_code => 'INVALID').country_name
+  end
+
 end
