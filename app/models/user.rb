@@ -278,6 +278,10 @@ class User < ActiveRecord::Base
     return usr
   end
 
+  def address
+    [city, state, country_name, zip].select{|s| s.titleize if s.present?}.join(', ')
+  end
+
   def country_name
     return unless (country = ISO3166::Country[self.country_code])
     country.translations[I18n.locale.to_s] || country.name

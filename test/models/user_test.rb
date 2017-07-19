@@ -311,4 +311,22 @@ class UserTest < ActiveSupport::TestCase
     assert_nil User.new(:country_code => 'INVALID').country_name
   end
 
+  test "address" do
+    assert '', User.new.address
+    assert_equal('Chennai, Tamil Nadu, India, 600081',
+        User.new(country_code: 'IN', state: 'Tamil Nadu', city: 'Chennai', zip: '600081').address)
+    assert_equal('Chennai, 600081',
+        User.new(city: 'Chennai', zip: '600081').address)
+    assert_equal('Chennai, India, 600081',
+        User.new(country_code: 'IN', city: 'Chennai', zip: '600081').address)
+    assert_equal('Chennai, 600081',
+        User.new(city: 'Chennai', zip: '600081').address)
+    assert_equal('Tamil Nadu, India, 600081',
+        User.new(country_code: 'IN', state: 'Tamil Nadu', zip: '600081').address)
+    assert_equal('India, 600081',
+        User.new(country_code: 'IN', zip: '600081').address)
+    assert_equal('600081',
+        User.new(zip: '600081').address)
+  end
+
 end
