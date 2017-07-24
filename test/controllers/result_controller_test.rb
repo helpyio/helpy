@@ -18,6 +18,44 @@ class ResultControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "a browsing user searching doc should not return a result if its active flag changed" do
+    category = Category.create(name: "test title", active: true)
+    Doc.create(title: "test doc one", body: "some body text", category_id: category.id)
+    Doc.create(title: "test doc two", body: "some body text", category_id: category.id)
+
+    # Verify presence in search
+    get(:index, { q: "test", locale: :en }) do
+      assert_equal(2, assigns(:results).total_count)
+    end
+
+    # Now make the category inactive and expect zero results
+    category.update(active: false)
+
+    get(:index, { q: "test", locale: :en }) do
+      assert_equal(0, assigns(:results).total_count)
+    end
+    assert_response :success
+  end
+
+  test "a browsing user searching doc should not return a result if its visibility changed" do
+    category = Category.create(name: "test title", active: true, visibility: 'internal')
+    Doc.create(title: "test doc one", body: "some body text", category_id: category.id)
+    Doc.create(title: "test doc two", body: "some body text", category_id: category.id)
+
+    # Verify no results found
+    get(:index, { q: "test", locale: :en }) do
+      assert_equal(0, assigns(:results).total_count)
+    end
+
+    # Now make the category inactive and expect results
+    category.update(visibility: 'public')
+
+    get(:index, { q: "test", locale: :en }) do
+      assert_equal(2, assigns(:results).total_count)
+    end
+    assert_response :success
+  end
+
   test "a browsing user searching for something not in search should not return a result" do
     get(:index, { q: "somethingnotinsearch", locale: :en })
     assert_not_nil assigns(:results)

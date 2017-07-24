@@ -46,6 +46,7 @@ class Category < ActiveRecord::Base
   scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
 
   before_destroy :non_deleteable?
+  after_commit :rebuild_search, only: :update, if: -> { active_changed? || visibility_changed? }
 
   include RankedModel
   ranks :rank
@@ -70,6 +71,10 @@ class Category < ActiveRecord::Base
 
   def internally_viewable?
     INTERNAL_VIEWABLE.include?(visibility)
+  end
+
+  def rebuild_search
+    RebuildSearchJob.perform_later
   end
 
 end
