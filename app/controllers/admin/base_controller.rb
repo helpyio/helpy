@@ -58,7 +58,11 @@ class Admin::BaseController < ApplicationController
       @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else
       topics = Topic.all
-      @admins = User.agents
+      first = [current_user]
+      @admins = [*first, *(User.agents - first)]
+      #@admins = User.agents
+      #first = [current_user]
+      #puts [*first, *(@admins.sort - first)].inspect
     end
     @new = topics.unread.count
     @unread = topics.unread.count
