@@ -53,6 +53,11 @@ AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
 # Widget:
 
 AppSettings.defaults["widget.show_on_support_site"] = "true"
+AppSettings.defaults["widget.show_on_support_site"] = "true"
+AppSettings.defaults["widget.css_styles"] = "<script>/* Add custom styles here */</script>"
+AppSettings.defaults["widget.background_color"] = ""
+AppSettings.defaults["widget.button_color"] = ""
+AppSettings.defaults["widget.button_text_color"] = ""
 
 # Email specific:
 

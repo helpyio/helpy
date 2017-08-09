@@ -1,7 +1,7 @@
 Helpy: A Modern Helpdesk Alternative
 ====================================
 
-Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide an open source alternative to commercial helpdesk solutions like Zendesk or desk.com
+Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide a full featured open source helpdesk platform.
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
@@ -26,7 +26,7 @@ Helpy is an integrated support solution- combining and leveraging synergies betw
 Hosting
 =========
 
-We offer a hosted version of Helpy for businesses that don't want to worry about self installing and maintaining their Helpy.  You can get an instant free trial of the hosted version to see if Helpy is right for you: [Test it Out for Free](https://goo.gl/Jbrx0m)
+We offer a hosted version of Helpy that includes a variety of additional features for businesses that don't want to worry about self installing and maintaining their Helpy.  You can get an instant free trial of the hosted version to see if Helpy is right for you: [Test it Out for Free](https://goo.gl/Jbrx0m)
 
 Live Demo
 =========
@@ -38,7 +38,7 @@ Installation
 ============
 
 Helpy was designed to run on on modern cloud providers, although it should work on
-any linux based system.  There is a full guide to installing Helpy at http://support.helpy.io/en/knowledgebase/11-installing-helpy
+any linux based system.  There is a full guide to installing Helpy in the wiki: https://github.com/helpyio/helpy/wiki
 
 Requirements are:
 
@@ -63,6 +63,9 @@ Although not required, installing locally is highly recommended and will make it
 `git clone https://github.com/helpyio/helpy.git`
 
 **Install Helpy via Docker**
+
+Docker is the recommended way to quickly test or run Helpy in production.
+
 1) Install [Docker](https://get.docker.com/) and docker-compose
 2) Edit the `docker/.env` file with the neccessary information and passwords
 3) Edit `docker/Caddyfile` to include your URL or turn on SSL
@@ -85,7 +88,7 @@ Helpy has the ability to receive email at your support email addresses and impor
 
 **Configure oAuth (optional)**
 
-Helpy supports Omniauth login capabilities.  This means you can allow your support users to sign in with a single click via any Omniauth provider- ie. Facebook, Twitter, Gmail, or many others. Read [Setting Up Oauth For Your Helpy](http://support.helpy.io/en/knowledgebase/11-Installing-Helpy/docs/19-Setting-Up-OAUTH-for-your-Helpy) to see how.
+Helpy supports Omniauth login capabilities.  This means you can allow your support users to sign in with a single click via any Omniauth provider- ie. Facebook, Twitter, Gmail, or many others. Read [Setting Up Oauth For Your Helpy](https://github.com/helpyio/helpy/wiki/Configuring-OAUTH) to see how.
 
 Contributing
 ============
@@ -106,7 +109,7 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 - You must provide passing test coverage.  We use minitest, see http://www.rubypigeon.com/posts/minitest-cheat-sheet/?utm_source=rubyweekly&utm_medium=email
 - You also must expose functionality to the API.  We use Grape.  API methods should be tested as well.
 - If your feature/bug fix/enhancement adds or changes text in the project, please create i18n strings in `en.yml` and any other locales you can.
-- We are hugely concerned with user experience, and a nice UI.  Oftentimes that means we may take what you have contributed and “dress it up” or as you to do the same.
+- We are hugely concerned with user experience, and a nice UI.  Oftentimes that means we may take what you have contributed and “dress it up” or ask you to do the same.
 
 License
 =======
