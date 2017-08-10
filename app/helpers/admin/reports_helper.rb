@@ -9,15 +9,14 @@ module Admin::ReportsHelper
   end
 
   def tickets_by_group(scoped_stats)
-    team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
-    @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
-    @teams.order('name asc').map { |g| [g.name, scoped_stats.tagged_with(g.name).count] }
+    @teams = @all_teams.sort_by!{ |e| ActiveSupport::Inflector.transliterate(e.downcase) }.map { |name| [name, scoped_stats.tagged_with(name).count] }
   end
 
+  # NOTE Does not appear to be used currently.  Needs work to return the color.
   def group_colors(scoped_stats)
-    team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
-    @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
-    @teams.map { |g| g.color }
+    # team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
+    # @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
+    @all_teams.map { |g| g.color }
   end
 
 end
