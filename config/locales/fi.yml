@@ -31,7 +31,7 @@ fi:
   no_helped: "Pahoittelut, ettei tämä ratkaissut ongelmaasi. Ole ystävällinen ja ota yhteyttä uudestaan jatkaaksesi ongelman selvitystä!"
 
   # Search
-  search_placeholder: "Syötä avainsana, aihe tai kysymys"
+  search_placeholder: "Syötä hakusana, aihe tai kysymys"
   no_results: "Ei hakutuloksia, yritä uudestaan!"
   results_found:
     one: "Haullasi löytyi yksi osuma "
@@ -221,8 +221,8 @@ fi:
 
   # User search results
   users_found:
-    one: "1 käyttäjä löytyi nimellä %{query}"
-    other: "%{count} käyttäjää löytyio nimillä %{query}"
+    one: "1 käyttäjä löytyi haulla %{query}"
+    other: "%{count} käyttäjää löytyi haulla %{query}"
 
   # Invite users
   invite_users: "Kutsu uusia käyttäjiä"
@@ -275,31 +275,31 @@ fi:
   change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
   # Internal Content
-  no_internal_content_title: "There's no internal documentation written yet!"
-  no_internal_content_text: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!"
+  no_internal_content_title: "Sisältöä ei ole vielä tehty sisäiseen käyttöön!"
+  no_internal_content_text: "Älä huoli! Voit osallistua sisäisen dokumentaation tekemiseen menemällä Helpcenter > Sisältö."
 
   # Communities
   new_community: Uusi yhteisö
   create_new_community: Luo uusi yhteisö
   layout_select: Valitse sommittelu
-  layout_table: Table
-  layout_grid: Grid
+  layout_table: Taulukko
+  layout_grid: Ruudukko
   layout_qna: Q&A
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  new_user_subject: "Tervetuloa sivulle %{site_name}"
+  hello: "Moro %{user_name}"
+  new_user: "Kiitos yhteydenotosta. Viestisi on vastaanotettu ja tukitiimimme on teihin yhteydessä tuota pikaa."
+  account_generated: "Tilisi on nyt luotu. Kirjautuaksesi sisään, käytä seuraavaa osoitetta:"
+  above_this_line: "Pidäthän huolen, että vastaus ilmestyy tämän viivan yläpuolelle"
+  message_id: "Viestin ID"
+  message_response: "Seuraava viesti on lähetetty vastaukseksi kysymykseesi:"
+  view_online: "Näytä selaimessa:"
 
   # Admin notifications
-  notify_new_private: "A new customer ticket has been received from %{user_name}:"
-  notify_new_public: "A new public customer message has been posted by %{user_name}:"
-  notify_new_reply: "A new customer reply has been received from %{user_name}:"
+  notify_new_private: "Uusi palvelupyyntö on saapunut käyttäjältä %{user_name}:"
+  notify_new_public: "Uusi julkinen viesti on saapunut käyttäjältä %{user_name}:"
+  notify_new_reply: "Uusi vastaus on saapunut käyttäjältä %{user_name}:"
   to_reply: 'Reply to this message directly or online:'
 
   # Notifications settings panel
@@ -314,7 +314,7 @@ fi:
   general: "Yleinen"
   design: "Malli"
   international: "Kansainvälinen"
-  widget: "Embeddable Widget"
+  widget: "Upotettava liitännäinen"
   common_replies: "Yleiset vastaukset"
   integrations: "Integraatiot"
 
@@ -330,28 +330,28 @@ fi:
 
   # Insights
   team_insights: "Team Insights"
-  filter_by_date: "Filter by date"
-  today: "Today"
-  yesterday: "Yesterday"
-  this_week: "This week"
-  last_week: "Last week"
-  this_month: "This month"
-  last_month: "Last month"
-  date_range: "Date Range"
-  insight_start_range: "Start date:"
-  insight_end_range: "End date:"
-  insight_filter: "Filter"
+  filter_by_date: "Suodata päivämäärällä"
+  today: "Tänään"
+  yesterday: "Eilen"
+  this_week: "Tällä viikolla"
+  last_week: "Viime viikolla"
+  this_month: "Tässä kuussa"
+  last_month: "Viime kuussa"
+  date_range: "Ajanjakso"
+  insight_start_range: "Aloitus pvm:"
+  insight_end_range: "Lopetus pvm:"
+  insight_filter: "Suodata"
   insights_blurb_one:
-    one: "<strong>%{period}</strong> your users opened 1 new ticket"
-    other: "<strong>%{period}</strong> your users opened <strong>%{count} new tickets</strong>"
+    one: "<strong>%{period}</strong> käyttäjäsi avasi yhden uuden palvelupyynnön"
+    other: "<strong>%{period}</strong> käyttäjäsi avasi <strong>%{count} uutta palvelupyyntö</strong>"
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
   insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
-  no_discussions: "No new tickets have been opened <strong>%{period}</strong>"
-  assigned_topics: "Assigned Topics"
-  responded: "Responded"
-  closed: "Closed"
-  replies: "Replies"
-  median_time: "Median time to first response"
+  no_discussions: "Yhtään uutta palvelupyyntöä ei avattu ajanjaksolla <strong>%{period}</strong>"
+  assigned_topics: "Osoitetut aiheet"
+  responded: "Vastattu"
+  closed: "Suljettu"
+  replies: "Vastaukset"
+  median_time: "Keskiluku kaikista vastauksista"
 
 
 
