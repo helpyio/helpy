@@ -15,10 +15,16 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(_resource)
-    # If the user is an agent, redirect to admin panel
+    # If the user came from login page, redirect to root page if not, redirect
+    # to the last page requested
+    black_list = [new_user_session_path, root_path]
     redirect_url = current_user.is_agent? ? admin_root_url : root_url
     oauth_url = current_user.is_agent? ? admin_root_url : request.env['omniauth.origin']
-    oauth_url || redirect_url
+    if black_list.include?(URI(request.referrer).path)
+      oauth_url || redirect_url
+    else
+      request.referrer
+    end
   end
 
   def recaptcha_enabled?
