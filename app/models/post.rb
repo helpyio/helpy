@@ -32,7 +32,6 @@ class Post < ActiveRecord::Base
   before_validation :truncate_body
   validates :kind, :user, :user_id, :body, presence: true
 
-
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
   after_commit  :notify, on: :create

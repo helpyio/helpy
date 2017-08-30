@@ -54,6 +54,27 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
+  test 'a forwarded email to the support address creates a new user and topic with status new' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 2) do
+            EmailProcessor.new(FactoryGirl.build(:forwarded)).process
+          end
+        end
+      end
+    end
+    assert_equal '
+---------- Forwarded message ---------
+From: Test User <test@test.com>
+Date: Wed, Aug 30, 2017 at 10:02 AM
+Subject: Test opened your message
+To: Scott Miller <scott@helpy.io>
+
+blah blah blah
+', Post.last.body
+  end
+
   test 'an email to the support address using quotes should create a new user and topic with status new' do
     assert_difference('Topic.where(current_status: "new").count', 1) do
       assert_difference('Post.count', 1) do

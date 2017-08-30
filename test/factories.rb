@@ -6,6 +6,43 @@ FactoryGirl.define do
     subject 'email subject'
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
+  end
+
+  factory :forwarded, class: OpenStruct do
+    to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
+    from({ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' })
+    subject 'Fwd: Test user opened your message'
+    header {}
+    body '
+---------- Forwarded message ---------
+From: Test User <test@test.com>
+Date: Wed, Aug 30, 2017 at 10:02 AM
+Subject: Test opened your message
+To: Scott Miller <scott@helpy.io>
+
+blah blah blah
+'
+    raw_text '
+---------- Forwarded message ---------
+From: Test User <test@test.com>
+Date: Wed, Aug 30, 2017 at 10:02 AM
+Subject: Test opened your message
+To: Scott Miller <scott@helpy.io>
+
+blah blah blah
+'
+    raw_html '
+
+---------- Forwarded message ---------
+From: Test User <test@test.com>
+Date: Wed, Aug 30, 2017 at 10:02 AM
+Subject: Test opened your message
+To: Scott Miller <scott@helpy.io>
+
+blah blah blah
+'
   end
 
   factory :email_from_unknown_invalid_utf8, class: OpenStruct do
@@ -14,6 +51,8 @@ FactoryGirl.define do
     subject 'email subject'
     header {}
     body "hi \xAD"
+    raw_text "hi \xAD"
+    raw_html "hi \xAD"
   end
 
   factory :email_from_unknown_name_missing, class: OpenStruct do
@@ -22,6 +61,8 @@ FactoryGirl.define do
     subject 'email subject'
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
   end
 
   factory :email_from_known_token_numbers, class: OpenStruct do
@@ -30,6 +71,8 @@ FactoryGirl.define do
     subject 'email subject'
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
   end
 
   factory :email_to_multiple, class: OpenStruct do
@@ -38,6 +81,8 @@ FactoryGirl.define do
     subject 'email subject'
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
   end
 
   factory :email_to_quoted, class: OpenStruct do
@@ -46,6 +91,8 @@ FactoryGirl.define do
     subject 'email subject'
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
   end
 
   factory :email_from_unknown_with_attachments, class: OpenStruct do
@@ -53,6 +100,8 @@ FactoryGirl.define do
     from({ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' })
     subject 'email subject'
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
     attachments {[]}
 
     trait :with_attachment do
@@ -96,6 +145,8 @@ FactoryGirl.define do
     subject 'email subject'
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
   end
 
   factory :reply, class: OpenStruct do
@@ -104,6 +155,8 @@ FactoryGirl.define do
     subject "Re: [Helpy Support] #1-Pending private topic"
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
   end
 
   factory :reply_to_closed_ticket, class: OpenStruct do
@@ -112,6 +165,8 @@ FactoryGirl.define do
     subject "Re: [Helpy Support] #3-Closed private topic"
     header {}
     body 'Hello!'
+    raw_text 'Hello!'
+    raw_html 'Hello!'
   end
 
   factory :acts_as_taggable_on_tag, class: ActsAsTaggableOn::Tag do
