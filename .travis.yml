@@ -15,7 +15,7 @@ before_script:
   # Setup Test Database
   - psql -c 'create database helpy_test;' -U postgres
   # Prepare 'jshint' executable for JavaScript linting
-  - npm install jshint
+  - npm install -g jshint
 
 script:
   # Load database schema
