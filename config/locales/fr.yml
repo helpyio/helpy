@@ -5,8 +5,8 @@ fr:
   root: &root "Accueil"
   how_can_we_help: "Comment pouvons-nous aider?"
   browse_topics: "Parcourir"
-  support_team: "équipe De Support"
-  nothing_here: "Rien ici encore!"
+  support_team: "Equipe support"
+  nothing_here: "Rien à voir ici!"
 
   # Navigation
   knowledgebase: "Base de connaissances"
@@ -18,21 +18,21 @@ fr:
   register: "S'inscrire"
   back_to: "Retour à"
   welcome_back: "Bienvenue à nouveau %{username}"
-  your_profile: "Votre Profile"
-  your_tickets: "Vos billets"
+  your_profile: "Votre profil"
+  your_tickets: "Vos tickets"
   locale: "Langue"
   change_your_locale: "Changez votre langue"
 
   # Voting widget
-  did_this_help: "Cela at-il aidé à résoudre votre problème?"
+  did_this_help: "Cela a-t-il aidé à résoudre votre problème?"
   yes_button: 'Oui'
   no_button: 'Non'
-  # yes_helped: 'Great! Thanks for the feedback!'
-  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  yes_helped: 'Très bien! Merci de votre retour!'
+  no_helped: "Nous sommes désolés. Contactez-nous pour plus d'aide!"
 
   # Search
   search_placeholder: "Entrez un mot-clé, sujet ou une question"
-  no_results: "Aucun résultat, se il vous plaît essayer de nouveau votre recherche!"
+  no_results: "Aucun résultat, veuillez essayer à nouveau votre recherche!"
   results_found:
     one: "%{count} résultat trouvé pour votre recherche "
     other: "%{count} résultats trouvés pour votre recherche "
@@ -40,7 +40,7 @@ fr:
   # Community
   forum_name: "Sujet"
   subject: "Sujet"
-  last_activity: "Dernière Activité"
+  last_activity: "Dernière activité"
   topic: "Discussion"
   replies: "Réponses"
   last_post: "Dernier sujet"
@@ -51,7 +51,7 @@ fr:
   start_discussion: "Démarrer une nouvelle discussion"
   submit_start_discussion: "Lancer la discussion "
   should_message_be_private: "Ce message est-il privé?"
-  only_support_can_respond: "Seul le support peut répondre (crée un billet privé)"
+  only_support_can_respond: "Seul le support peut répondre (crée un ticket privé)"
   responses_can_come_from_everyone: "Les réponses peuvent venir du support ou de la communauté (recommandé)"
   collapsed_messages:
       one: "1 message caché"
@@ -61,25 +61,25 @@ fr:
   # Knowledgebase
   written_by: "écrit par"
   last_edited: "Dernière mise à jour"
-  asked_before: "Est-ce que votre question répondu avant? Nous pensons que ceux-ci peuvent être similaires"
+  asked_before: "Est-ce que votre question a déjà été posée? Nous pensons que celles-ci peuvent être similaires"
 
   # Tickets
-  tickets: "Billets"
-  no_tickets: "Vous n'avez pas encore créé de billets"
-  ticket_number: "Numéro de billet"
+  tickets: "Tickets"
+  no_tickets: "Vous n'avez pas encore créé de tickets"
+  ticket_number: "Numéro de ticket"
   assigned_to_label: "Assigné à"
   created_on: "Créé"
 
   # Get Help
-  get_help_header: "Encore besoin d'aide?"
+  get_help_header: "Encore besoin d'aide ?"
   get_help_button: "Lancer une discussion avec nous"
 
   # Profile
   my_profile: 'Mon profil'
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on GitHub"
+  powered_by: "Propulsé par Helpy. Un logiciel d'assistance Open Source."
+  get_your_copy: "Clonez ce projet sur GitHub"
   # version: "Version:"
 
   # flag
@@ -95,7 +95,7 @@ fr:
   forgot_password: Mot de passe oublié?
 
   # devise/passwords/new
-  send_instructions: Envoyer les instrctions
+  send_instructions: Envoyer les instructions
 
   # devise/passwords/edit
   change_password: Changer de mot de passe
@@ -116,52 +116,52 @@ fr:
   search: Recherche
 
   # Admin main/statuses
-  support_pipeline: Funnel Support
+  support_pipeline: File de Support
   new: Nouveaux
   active: Actifs
   open: Ouverts
-  mine: Miens
+  mine: Mes tickets
   pending: En attente
   closed: Résolus
   spam: Spam
-  trash: Poubelle
+  trash: Corbeille
   discussion_management: Gestion de Discussion
   open_new_discussion: Nouvelle Discussion
   assigned_to: "assigné à %{agent}"
   unassigned: Non assigné
-  private: confidentiel
+  private: privé
   public: public
   save_changes: Enregistrez les modifications
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  merge: Fusionner
+  merge_confirm: Etes vous sûr de vouloir fusionner ces tickets?
 
   # Multiple Discussion controls
-  change_status: Changer le Statut
+  change_status: Changer le statut
   status: Statut
-  mark_closed: Marquer Résolu
-  reopen: Rouvrir
-  mark_spam: Marquer Spam
-  mark_new: Marquer Nouveau
-  assign_agent: Assigner l'Agent
+  mark_closed: Marquer comme résolu
+  reopen: Réouvrir
+  mark_spam: Marquer comme Spam
+  mark_new: Marquer comme Nouveau
+  assign_agent: Assigner un Agent
   selected_messages:
     one: "1 message sélectionné"
     two: "2 messages sélectionnés"
     other: "%{count} messages sélectionnés"
 
   # Discussion messages
-  reopen_message: "Ce message a été rouvert par le support."
+  reopen_message: "Ce message a été réouvert par le support."
   closed_message: "Ce message a été fermé par le support."
-  trash_message: "Ce billet a été supprimé."
+  trash_message: "Ce ticket a été supprimé."
   assigned_message: "Cette discussion a été transférée à %{assigned_to}."
-  # assigned_group: "This ticket has been assigned to %{assigned_group}."
-  # converted_to_ticket: "This discussion was converted to a private ticket."
-  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
-  # tagged_with: "This ticket was tagged with %{tagged_with}"
-  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
+  assigned_group: "Ce ticket a été assigné au groupe %{assigned_group}."
+  converted_to_ticket: "Cette discussion a été convertie en ticket privé."
+  converted_to_topic: "Ce ticket a été converti en discussion publique et déplacé dans %{forum_name}."
+  tagged_with: "Ce ticket a été taggé avec %{tagged_with}"
+  notes_hidden: "Il y a %{hidden_notes} notes internes pour ce ticket. Vous pouvez les voir en cliquant n'importe où dans cette note!"
 
   # User Admin
-  # users: Users
-  # account: Account
+  users: Utilisateurs
+  account: Compte
   contact_info: Informations de contact
   social_info: Réseaux sociaux
   edit_user:
@@ -169,11 +169,11 @@ fr:
   cell_phone: portable
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: Choisir une priorité
+  vip_priority: Important
+  high_priority: Elevé
+  normal_priority: Normal
+  low_priority: Bas
 
   # User search results
   users_found:
@@ -181,13 +181,13 @@ fr:
     other: "%{count} utilisateurs nommés %{query} ont été trouvés"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
-  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
-  # invite_message: "Message"
-  # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_users: "Inviter de nouveaux utilisateurs"
+  invite_emails: "Adresses email"
+  invite_emails_placeholder: "Tapez une ou plusieurs adresses email à qui envoyer une invitation"
+  invite_message: "Message"
+  invite_message_placeholder: "Un message optionnel qui sera envoyé aux nouveaux utilisateurs"
+  invite_role: "Rôle des utilisateurs invités"
+  send_invite: "Envoyer invitation"
 
   # Discussion View
   asked_a_question: "%{user_name} a posé une question..."
@@ -196,17 +196,17 @@ fr:
   type_reply: "Saisissez votre réponse, ou sélectionnez une réponse type ci-dessous"
   select_common: Sélectionner une réponse type
   reply: Réponse
-  internal_note: Note Interne
-  # mark_as_resolved: Mark as resolved
+  internal_note: Note interne
+  mark_as_resolved: Marquer comme résolu
   upvote:
     one: "Vote | %{count}"
     other: "Votes | %{count}"
 
   # Content
-  new_category: Nouvelle Catégorie
+  new_category: Nouvelle catégorie
   new_content: Nouveau contenu
   front_page_categories: Catégories sur la page d'accueil
-  other_categories: Autres Catégories
+  other_categories: Autres catégories
   edit: Modifier
   edit_category: Modifier cette catégorie
   select_category: Sélectionner la catégorie
@@ -223,67 +223,67 @@ fr:
   published_content: "Publié"
   additional_settings: "Paramètres additionnels"
   content_status: "Statut de contenu"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  convert_content: 'Convertir en contenu'
+  upload_image: 'Uploader image'
+  new_discussion: 'Créer une nouvelle discussion à partir de ceci'
+  new_discussion_post: 'La discussion #%{topic_id} a été créée à partir de celle-ci'
+  new_discussion_topic_title: 'Scission de #%{original_id}-%{original_name}'
+  change_owner_note: 'Le créateur du sujet a été changé de %{old} à %{new}'
 
   # Communities
   new_community: Nouvelle Communauté
   create_new_community: Créer une Nouvelle Communauté
-  # layout_select: Select Format
-  # layout_table: Table
-  # layout_grid: Grid
-  # layout_qna: Q&A
+  layout_select: Choisir format
+  layout_table: Table
+  layout_grid: Grille
+  layout_qna: FAQ
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
-  hello: "Hello %{user_name}"
-  new_user: "Merci de nous avoir contacté. Votre message a été reçu par notre équipe de support et nous allons revenir vers vous au plus vite."
-  account_generated: "Un compte a été créé pour vous. Pour s'inscrire, veuillez suivre ce lien :"
-  above_this_line: "Assurez vous de laisser votre réponse au dessus de cette ligne"
+  new_user_subject: "Bienvenue sur %{site_name}"
+  hello: "Bonjour %{user_name}"
+  new_user: "Merci de nous avoir contacté. Votre message a été reçu par notre équipe de support et nous allons revenir vers vous rapidement."
+  account_generated: "Un compte a été créé pour vous. Pour vous inscrire, veuillez suivre ce lien :"
+  above_this_line: "Assurez-vous de laisser votre réponse au dessus de cette ligne"
   message_id: "Id du message"
   message_response: "Le message suivant a été posté en réponse à votre question:"
   view_online: "Voir en ligne:"
 
   # settings
-  settings: "Settings"
-  general: "General"
-  design: "Design"
+  settings: "Paramètres"
+  general: "Général"
+  design: "Apparence"
   international: "International"
-  widget: "Embeddable Widget"
-  # common_replies: "Common Replies"
-  # integrations: "Integrations"
+  widget: "Widget intégré"
+  common_replies: "Réponses standard"
+  integrations: "Intégrations"
 
   # Keyboard Shortcuts
-  # shortcut_then: "then"
-  # listing_views: "Listing views"
-  # keyboard_shortcuts: "Keyboard Shortcuts"
-  # show_new_tickets: "Show new tickets"
-  # show_all_tickets: "Show all tickets"
-  # show_open_tickets: "Show open tickets"
-  # show_tickets_assigned_to_you: "Show tickets assigned to you"
-  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
-  # show_closed_tickets: "Show closed tickets"
-  # search_for_tickets: "Search for tickets"
-  # viewing_tickets: "View tickets"
-  # select_previous_ticket: "Select previous ticket"
-  # select_next_ticket: "Select next ticket"
-  # view_selected_ticket: "View selected ticket"
-  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
-  # ticket_actions: "Ticket actions"
-  # assign_the_ticket: "Assign ticket"
-  # move_the_ticket: "Move ticket"
-  # expand_the_ticket_thread: "Expand ticket thread"
-  # reply_to_the_ticket: "Reply to the ticket"
-  # add_an_internal_note: "Add an internal note"
-  # change_ticket_status: "Change ticket status"
-  # associate_with_a_group: "Associate with a group"
-  # ticket_status: "Ticket status"
-  # mark_resolved: "Mark as resolved"
-  # reopen_ticket: "Reopen ticket"
+  shortcut_then: "puis"
+  listing_views: "Liste des vues"
+  keyboard_shortcuts: "Raccourcis clavier"
+  show_new_tickets: "Voir nouveaux tickets"
+  show_all_tickets: "Voir tous les tickets"
+  show_open_tickets: "Voir tickets ouverts"
+  show_tickets_assigned_to_you: "Voir tickets assignés"
+  show_pending_tickets_assigned_to_you: "Voir tickets en cours"
+  show_closed_tickets: "Voir tickets fermés"
+  search_for_tickets: "Recherche de tickets"
+  viewing_tickets: "Voir tickets"
+  select_previous_ticket: "Voir ticket précédent"
+  select_next_ticket: "Voir ticket suivant"
+  view_selected_ticket: "Voir ticket sélectionné"
+  jump_to_a_specific_ticket_number: "Aller à un numéro de ticket spécifique"
+  ticket_actions: "Actions de ticket"
+  assign_the_ticket: "Assigner ticket"
+  move_the_ticket: "Déplacer ticket"
+  expand_the_ticket_thread: "Développer la discussion"
+  reply_to_the_ticket: "Répondre au ticket"
+  add_an_internal_note: "Ajouter une note interne"
+  change_ticket_status: "Changer statut ticket"
+  associate_with_a_group: "Associer au groupe"
+  ticket_status: "Statut ticket"
+  mark_resolved: "Marquer comme résolu"
+  reopen_ticket: "Réouvrir ticket"
 
   activerecord:
     attributes:
@@ -321,7 +321,7 @@ fr:
       forum:
         name: Nom
         description: Description
-        private: Confidential
+        private: Privé
         # layout: Layout
         # allow_topic_voting: Allow topic voting?
         # allow_post_voting: Allow post voting?
@@ -355,7 +355,7 @@ fr:
     links:
       back: "Retour"
       cancel: "Annuler"
-      confirm: "Etes vous sûr?"
+      confirm: "Etes-vous sûr?"
       destroy: "Supprimer"
       new: "Nouveau"
       edit: "Editer"
