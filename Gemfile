@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 
 # Explicitly include Nokogiri to control version
-gem 'nokogiri', '>= 1.7.2'
+gem 'nokogiri', '>= 1.8.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
