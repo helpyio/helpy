@@ -319,7 +319,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99.3)
     mini_magick (4.2.10)
-    mini_portile2 (2.2.0)
+    mini_portile2 (2.3.0)
     minitest (5.10.1)
     minitest-reporters (1.1.8)
       ansi
@@ -334,8 +334,8 @@ GEM
     mustermann-grape (0.4.0)
       mustermann (= 0.4.0)
     netrc (0.11.0)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     oauth (0.5.1)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
@@ -650,7 +650,7 @@ DEPENDENCIES
   mini_magick
   minitest
   minitest-reporters
-  nokogiri (>= 1.7.2)
+  nokogiri (>= 1.8.1)
   omniauth
   omniauth-facebook
   omniauth-github
@@ -698,4 +698,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.15.1
+   1.15.4
