@@ -31,7 +31,7 @@ class Webhook::InboundController < Webhook::BaseController
   # }
 
   # You can test this out on your serer with the following curl
-  # curl -X POST http://helpy.local:3000/webhook/form/50be1e6071ee4e4727f5977689598ca0 --data-urlencode 'data={"message": {"kind": "ticket","subject": "Need Help","body": "Hi there. I need help.","channel": "web","team":"tier 1"},"customer": {"fullName": "Bob Doe","emailAddress": "bob@example.com","work_phone": "(555) 555-5555","home_phone": "(555) 555-5555","city": "Palo Alto","region": "CA","country": "United States","countryCode": "US","company": "Widgets Inc."}}'
+  # curl -X POST http://helpy.local:3000/webhook/form/50be1e6071ee4e4727f5977689598ca0 --data-urlencode 'data={"message": {"kind": "ticket","subject": "Need Help","body": "Hi there. I need help.","channel": "web","team":"tier 1", "tags":"hello, hi"},"customer": {"fullName": "Bob Doe","emailAddress": "bob@example.com","work_phone": "(555) 555-5555","home_phone": "(555) 555-5555","city": "Palo Alto","region": "CA","country": "United States","countryCode": "US","company": "Widgets Inc."}}'
 
   def form
     @params = JSON.parse(request.params[:data])
@@ -43,7 +43,9 @@ class Webhook::InboundController < Webhook::BaseController
       private: true,
       channel: @params['message']['channel'],
       team_list: @params['message']['team'],
+      tag_list: @params['message']['tags'],
       )
+      
     if @topic.create_topic_with_webhook_user(@params)
       @user = @topic.user
       @post = @topic.posts.create(

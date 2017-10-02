@@ -10,7 +10,8 @@ class Webhook::InboundControllerTest < ActionController::TestCase
             "kind": "ticket",
             "subject": "Need Help",
             "body": "I need help with my purchase.",
-            "channel": "web"
+            "channel": "web",
+            "tags": "hello, hi",
         },
         "customer": {
             "fullName": "Bob Doe",
@@ -47,6 +48,8 @@ class Webhook::InboundControllerTest < ActionController::TestCase
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
         post :form, token: AppSettings["webhook.form_key"], data: @data.to_json
+        assert_equal 2, Topic.last.tag_list.count
+        assert_equal true, Topic.last.tag_list.include?("hi")
       end
     end
   end
