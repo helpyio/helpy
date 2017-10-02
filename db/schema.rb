@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 20171002125050) do
   end
 
   add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree
+  add_index "topics", ["priority"], name: "index_topics_on_priority", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
