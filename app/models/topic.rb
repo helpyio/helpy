@@ -265,6 +265,19 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def check_attachments
+    attachments = false
+
+    self.posts.each do |post|
+      if post.attachments.present?
+        attachments = true
+        break
+      end
+    end
+
+    return attachments
+  end
+
   private
 
   def cache_user_name

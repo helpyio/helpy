@@ -19,7 +19,14 @@
     </td>
   <% end %>
   <td>
-    <span class="more-important truncate-ellipsis"><%= link_to h(topic.name), topic_posts_path(topic) -%></span>
+    <span class="more-important truncate-ellipsis">
+      <a href="<%= topic_posts_path(topic) %>">
+        <%= h(topic.name) %> 
+        <% if topic.check_attachments %>
+          <i class="glyphicon glyphicon-paperclip"></i>          
+        <% end %>
+      </a>
+    </span>
     <span class="less-important"><%= t(:started_by, :username => topic.user.name.titleize) %></span>
   </td>
   <td>
