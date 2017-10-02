@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609170131) do
+ActiveRecord::Schema.define(version: 20171002125050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,6 +236,7 @@ ActiveRecord::Schema.define(version: 20170609170131) do
     t.integer  "doc_id",           default: 0
     t.string   "channel",          default: "email"
     t.string   "kind",             default: "ticket"
+    t.string   "priority",         default: "normal"
   end
 
   add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree

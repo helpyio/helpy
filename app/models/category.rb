@@ -13,9 +13,9 @@
 #  active           :boolean          default(TRUE)
 #  permalink        :string
 #  section          :string
-#  visibility       :string           default('all')
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  visibility       :string           default("all")
 #
 
 class Category < ActiveRecord::Base
