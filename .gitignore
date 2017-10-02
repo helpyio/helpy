@@ -11,6 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
+.byebug_history
 
 config/settings.local.yml
 config/cloudinary.local.yml
