@@ -47,6 +47,8 @@ class Webhook::InboundControllerTest < ActionController::TestCase
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
         post :form, token: AppSettings["webhook.form_key"], data: @data.to_json
+        assert_equal 2, Topic.find(2).tag_list.count
+        assert_equal true, Topic.find(2).tag_list.include?("hi")
       end
     end
   end
