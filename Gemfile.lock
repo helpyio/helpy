@@ -6,6 +6,13 @@ GIT
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
 
+PATH
+  remote: vendor/helpy_onboarding
+  specs:
+    helpy_onboarding (1.0)
+      deface
+      rails (~> 4.2.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -146,6 +153,11 @@ GEM
     daemons (1.2.3)
     debug_inspector (0.0.2)
     deep_merge (1.0.1)
+    deface (1.2.0)
+      nokogiri (~> 1.6)
+      polyglot
+      rails (>= 4.1)
+      rainbow (>= 2.1.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (3.5.6)
@@ -378,6 +390,7 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
+    polyglot (0.3.5)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -633,6 +646,7 @@ DEPENDENCIES
   griddler-sendgrid
   griddler-sparkpost
   groupdate
+  helpy_onboarding!
   http_accept_language
   i18n-country-translations
   jbuilder (~> 2.0)
