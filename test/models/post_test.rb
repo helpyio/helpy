@@ -85,66 +85,38 @@ class PostTest < ActiveSupport::TestCase
   # Note: decided that public posts should assigned if an admin replies to the thread
 
   test "Should not AA when topic is already assigned" do
-
-    @topic = Topic.find(1) #already assigned topic
-    @topic.posts.create!(
-      user_id: 5,
-      body: "This is the reply",
-      kind: "reply"
-    )
-    assert_not_equal(5, Topic.find(1).assigned_user_id, "Topic assignment should not have changed")
-
+    topic = Topic.find(1) #already assigned topic
+    post = create :post, topic: topic, kind: "reply"
+    assert_not_equal(5, topic.assigned_user_id, "Topic assignment should not have changed")
   end
 
   test "Should not AA when an internal note is posted" do
+    topic = Topic.find(4) #unassigned public topic
+    post = create :post, topic: topic, kind: "note"
+    assert_not_equal(1, topic.assigned_user_id, "Internal note should not set assignment")
 
-    @topic = Topic.find(4) #unassigned public topic
-    @topic.posts.create!(
-      user_id: 1,
-      body: "This is a note",
-      kind: "note"
-    )
-    assert_not_equal(1, Topic.find(4).assigned_user_id, "Internal note should not set assignment")
-
-    @topic = Topic.find(6) #unassigned private topic
-    @topic.posts.create!(
-      user_id: 1,
-      body: "This is a note",
-      kind: "note"
-    )
-    assert_not_equal(1, Topic.find(6).assigned_user_id, "Internal note should not set assignment")
-
+    topic = Topic.find(6) #unassigned private topic
+    post = create :post, topic: topic, kind: "note"
+    assert_not_equal(1, topic.assigned_user_id, "Internal note should not set assignment")
   end
 
   test "Should not AA when the reply is posted by a non admin" do
-
-    @topic = Topic.find(6) #unassigned topic
-    @topic.posts.create!(
-      user_id: 2, #non admin user
-      body: "This is the reply",
-      kind: "reply"
-    )
-    assert_not_equal(2, Topic.find(6).assigned_user_id, "Topic assignment should not have changed")
-
+    topic = Topic.find(6) #unassigned topic
+    post = create :post, topic: topic, kind: "reply", user_id: 2 #non admin user
+    assert_not_equal(2, topic.assigned_user_id, "Topic assignment should not have changed")
   end
 
   test "Should AA when a reply is posted by an admin" do
-
-    @topic = Topic.find(4) #unassigned topic
-    @topic.posts.create!(
-      user_id: 1,
-      body: "This is the reply",
-      kind: "reply"
-    )
-    assert_equal(1, Topic.find(4).assigned_user_id, "Topic should be assigned to user 1")
-
+    topic = Topic.find(4) #unassigned topic
+    post = create :post, topic: topic, kind: "reply", user_id: 1
+    assert_equal(1, topic.assigned_user_id, "Topic should be assigned to user 1")
   end
 
   # Notifications Specs
 
   test "Should send an admin notification of a new private topic created, if enabled" do
     assert_difference('ActionMailer::Base.deliveries.size', 1) do
-      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic = create :topic, forum_id: 1, user_id: 2, name: "A test topic", private: true
       @topic.posts.create!(
         user_id: 2,
         body: "This is the first post",
@@ -155,7 +127,7 @@ class PostTest < ActiveSupport::TestCase
 
   test "Should send an admin notification of a new public topic, if enabled" do
     assert_difference('ActionMailer::Base.deliveries.size', 1) do
-      @topic = Topic.create!(forum_id: 4, user_id: 2, name: "A test topic", private: false)
+      @topic = create :topic, forum_id: 4, user_id: 2, name: "A test topic", private: false
       @topic.posts.create!(
         user_id: 2,
         body: "This is the first message",
@@ -169,7 +141,7 @@ class PostTest < ActiveSupport::TestCase
     # new private discussion, the second notifies the customer of the agents
     # reply and the final notifies the agent of the final customer reply
     assert_difference('ActionMailer::Base.deliveries.size', 3) do
-      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic = create :topic, forum_id: 1, user_id: 2, name: "A test topic", private: true
       @topic.posts.create!(
         user_id: 2,
         body: "This is the first message from the customer",
@@ -190,7 +162,7 @@ class PostTest < ActiveSupport::TestCase
 
   test "Should NOT send any notifications if a new internal note" do
     assert_difference('ActionMailer::Base.deliveries.size', 1) do
-      @topic = Topic.create!(forum_id: 1, user_id: 2, name: "A test topic", private: true)
+      @topic = create :topic, forum_id: 1, user_id: 2, name: "A test topic", private: true
       @topic.posts.create!(
         user_id: 2,
         body: "This is the first message",
@@ -205,9 +177,8 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "Should truncate body length if greater than 10,000" do
-    body = "0" * 10001
-    @user = User.first
-
+    body   = "0" * 10001
+    @user  = User.first
     @topic = create :topic, user: @user, forum_id: 1
     @post  = create :post, topic: @topic, user: @user, body: body
 

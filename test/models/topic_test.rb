@@ -199,7 +199,7 @@ class TopicTest < ActiveSupport::TestCase
     )
     ActsAsTaggableOn::Tagging.create(tag_id: tag.id, context: "teams")
 
-    topic = create :topic, team_list: 'tier1'
+    topic = create :topic, name: name, user_id: 1, forum_id: 1, team_list: 'tier1'
     assert_equal "\"tier one support\" <tier1@test.com>", topic.from_email_address
   end
 
@@ -215,7 +215,7 @@ class TopicTest < ActiveSupport::TestCase
     )
     ActsAsTaggableOn::Tagging.create(tag_id: tag.id, context: "teams")
 
-    topic = create :topic, team_list: 'noemailteam'
+    topic = create :topic, name: name, user_id: 1, forum_id: 1, team_list: 'noemailteam'
     assert_equal "\"Helpy Support\" <inbound.support@yourdomain.com>", topic.from_email_address
   end
 
