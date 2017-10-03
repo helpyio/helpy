@@ -20,8 +20,8 @@ class Forum < ActiveRecord::Base
 
   include SentenceCase
 
-  has_many :topics, :dependent => :delete_all
-  has_many :posts, :through => :topics
+  has_many :topics, dependent: :delete_all
+  has_many :posts, through: :topics
 
   scope :alpha, -> { order('name ASC') }
 

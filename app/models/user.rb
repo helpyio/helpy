@@ -110,13 +110,11 @@ class User < ActiveRecord::Base
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
   scope :team, -> { where('admin = ? OR role = ? OR role = ? OR role = ?',true,'admin','agent','editor').order('name asc') }
-  scope :active, -> { where('active = ?', true)}
-  scope :by_role, -> (role) { where('role = ?', role) }
+  scope :active, -> { where(active: true)}
+  scope :by_role, -> (role) { where(role: role) }
 
   def set_role_on_invitation_accept
-    if self.role.nil?
-      self.role = "agent"
-    end
+    self.role = self.role.presence || "agent"
     self.active = true
     self.save
   end
@@ -130,15 +128,15 @@ class User < ActiveRecord::Base
   end
 
   def self.notifiable_on_public
-    User.agents.where(notify_on_public: true).reorder('id asc')
+    self.agents.where(notify_on_public: true).reorder('id asc')
   end
 
   def self.notifiable_on_private
-    User.agents.where(notify_on_private: true).reorder('id asc')
+    self.agents.where(notify_on_private: true).reorder('id asc')
   end
 
   def self.notifiable_on_reply
-    User.agents.where(notify_on_reply: true).reorder('id asc')
+    self.agents.where(notify_on_reply: true).reorder('id asc')
   end
 
   def active_assigned_count
@@ -274,7 +272,7 @@ class User < ActiveRecord::Base
       UserMailer.new_user(usr.id, token).deliver_later
     end
 
-    return usr
+    usr
   end
 
   private
