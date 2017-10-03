@@ -34,30 +34,27 @@ class PostTest < ActiveSupport::TestCase
   # post belonging to a topic with multiple posts should be a reply
 
   test "a new post should also add to the topic cache field for searchability" do
-
     @user = User.first
     assert_difference 'Topic.count', 1 do
-      @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
+      @topic = create :topic, user: @user, forum_id: 1
     end
     assert_difference 'Post.count', 1 do
-      @post = @topic.posts.create(body: "this is a reply", kind: "first", user_id: @user.id)
+      @post  = create :post, topic: @topic, user: @user
     end
 
     assert @post.topic.post_cache == " #{@post.body}"
   end
 
   test "marking a post inactive should remove it from the topic cache" do
-
     @user = User.first
 
-    @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
-    @post = @topic.posts.create(body: "this is a reply", kind: "first", user_id: @user.id)
+    @topic = create :topic, user: @user, forum_id: 1
+    @post = create :post, topic: @topic, user: @user
     assert @post.topic.post_cache == " #{@post.body}"
 
     @post.active = false
     @post.save
     assert @post.topic.post_cache != " #{@post.body}"
-
   end
 
   test "marking a post active should add it to the topic cache" do
@@ -211,8 +208,8 @@ class PostTest < ActiveSupport::TestCase
     body = "0" * 10001
     @user = User.first
 
-    @topic = Topic.create(forum_id: 1, name: "Test topic", user_id: @user.id)
-    @post = @topic.posts.create(body: body, kind: "first", user_id: @user.id)
+    @topic = create :topic, user: @user, forum_id: 1
+    @post  = create :post, topic: @topic, user: @user, body: body
 
     assert_equal @post.body.size, 10_000
   end
