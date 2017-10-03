@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(version: 20171002125050) do
     t.integer  "doc_id",           default: 0
     t.string   "channel",          default: "email"
     t.string   "kind",             default: "ticket"
-    t.string   "priority",         default: "normal"
+    t.integer  "priority",         default: 0
   end
 
   add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree

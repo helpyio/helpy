@@ -24,7 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
-#  priority         :string           default("normal")
+#  priority         :integer          default(0)
 #
 
 require 'test_helper'
