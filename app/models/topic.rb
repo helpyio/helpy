@@ -24,7 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
-#  priority         :integer          default(0)
+#  priority         :integer          default(1)
 #
 
 class Topic < ActiveRecord::Base
@@ -86,7 +86,7 @@ class Topic < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 255 }
   # validates :user_id, presence: true
 
-  enum priority: { normal: 0, high: 1, very_high: 2 }
+  enum priority: { low: 0, normal: 1, high: 2, very_high: 3 }
 
   def to_param
     "#{id}-#{name.parameterize}"
