@@ -128,15 +128,15 @@ class User < ActiveRecord::Base
   end
 
   def self.notifiable_on_public
-    self.agents.where(notify_on_public: true).reorder('id asc')
+    agents.where(notify_on_public: true).reorder('id asc')
   end
 
   def self.notifiable_on_private
-    self.agents.where(notify_on_private: true).reorder('id asc')
+    agents.where(notify_on_private: true).reorder('id asc')
   end
 
   def self.notifiable_on_reply
-    self.agents.where(notify_on_reply: true).reorder('id asc')
+    agents.where(notify_on_reply: true).reorder('id asc')
   end
 
   def active_assigned_count
