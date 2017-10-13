@@ -139,6 +139,7 @@ sv:
   mark_spam: 'Markera som spam'
   mark_new: 'Markera som nyinkommet'
   assign_agent: 'Tilldela till agent'
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 markerat meddelande"
     two: "2 markerade meddelanden"

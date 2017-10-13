@@ -146,6 +146,7 @@ ru:
   mark_spam: Отметить как спам
   mark_new: Отметить как новое
   assign_agent: Назначить агента
+  # tag_with: Tag Ticket
   selected_messages:
     zero: "Нет выбранных сообщений"
     one: "1 выбранное сообщение"
