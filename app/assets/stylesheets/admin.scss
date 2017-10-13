@@ -143,6 +143,17 @@ td > img {
   min-height: 20px;
 }
 
+h2.topic-number-name {
+  font-weight: normal;
+
+  .topic-started-by {
+    font-size: 50%;
+  }
+
+  .topic-number {
+  }
+}
+
 // === ADMIN STYLES ===
 
 .white-bg {

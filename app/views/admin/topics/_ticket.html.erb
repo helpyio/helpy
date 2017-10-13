@@ -6,9 +6,15 @@
 
   <div id="ticket-controls" class="col-md-8 col-xs-12 col-lg-8">
     <div class="topic-tags hidden-lg hidden-md hidden-sm"><%= formatted_tags(@topic) %></div>
-    <h2>
-      <%= render 'admin/topics/ticket_nav_dropdown' %> #<%= @topic.id %>- <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
+
+    <h2 class="topic-number-name">
+
+      <%= render 'admin/topics/ticket_nav_dropdown' %><span class="topic-number">#<%= @topic.id %></span>- <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
+      <%= content_tag :div, class: 'pull-right hidden-xs' do %>
+        <%= link_to t(:started_by, username: @topic.user.name, default: 'started by %{name}'), '#', class: 'topic-started-by', data: { toggle: "modal", target: "#change-user-modal-#{@topic.posts.first.id}" } %>
+      <% end %>
     </h2>
+
     <div class="topic-tag-form" style="display: none;">
       <%= simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id), remote: true, html: { class: 'form-inline' } do |f| %>
         <%= f.input_field :tag_list, value: @topic.tag_list.to_s, class: 'selectize form-control', style: 'width: 80%;'%>
