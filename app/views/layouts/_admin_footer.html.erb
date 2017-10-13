@@ -1,13 +1,17 @@
-<div id="footer" class="row">
-	<div class="row">
-		<div class="col-md-6 col-sm-8 col-xs-12 text-left">
-			<%= image_tag "logo.png", width: 20 %> <%= link_to t(:powered_by), 'http://helpy.io/' %>
+<div id="footer-wrapper">
+	<div class="container-fluid">
+		<div id="footer">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 col-xs-12 text-left">
+					<%= image_tag "logo.png", width: 20 %> <%= link_to t(:powered_by), 'http://helpy.io/' %>
+				</div>
+				<div class="col-md-6 col-sm-4 text-right hidden-xs">
+					<%= link_to t(:get_your_copy), "http://github.com/helpyio/helpy" %>.<br/>
+		      <%= "#{t(:version)} #{APP_VERSION}" %>
+				</div>
+			<div>
 		</div>
-		<div class="col-md-6 col-sm-4 text-right hidden-xs">
-			<%= link_to t(:get_your_copy), "http://github.com/helpyio/helpy" %>.<br/>
-      <%= "#{t(:version)} #{APP_VERSION}" %>
-		</div>
-	<div>
+	</div>
 </div>
 
 <div id="login-modal" class="modal fade">
