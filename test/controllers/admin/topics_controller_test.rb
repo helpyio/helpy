@@ -11,6 +11,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
   %w(admin agent).each do |admin|
 
     ### Topic split
+
     test "an #{admin} should be able to split a ticket" do
       sign_in users(admin.to_sym)
 
@@ -61,7 +62,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       sign_in users(admin.to_sym)
 
       # Assign agent and topic to a group
-      agent = users(admin)
       topic = topics(:private)
       topic.current_status = "open"
       topic.team_list = "test"
@@ -139,9 +139,9 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     ### tests of changing status
 
-    test "an #{admin} posting an internal note should not change status on its own" do
-
-    end
+    # TODO
+    # test "an #{admin} posting an internal note should not change status on its own" do
+    # end
 
     test "an #{admin} should be able to change an open ticket to closed" do
       sign_in users(admin.to_sym)
@@ -237,7 +237,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to create a new private discussion for an existing user with an email" do
       sign_in users(admin.to_sym)
-      existing_user = users(:user)
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           xhr :post, :create, topic: { user: { name: "scott", email: "scott.miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
@@ -247,7 +246,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to create a new private discussion for an existing user with a mixed case email" do
       sign_in users(admin.to_sym)
-      existing_user = users(:user)
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           xhr :post, :create, topic: { user: { name: "scott", email: "Scott.Miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
@@ -298,14 +296,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to assign_team of a topic" do
       sign_in users(admin.to_sym)
-      xhr :get, :assign_team, { topic_ids: [1], team: "test"}
+      xhr :get, :assign_team, { topic_ids: [1], team: "test" }
       assert_equal ["test"], Topic.find(1).team_list
     end
 
     test "an #{admin} should be able to unassign_team of a topic" do
       Topic.find(1).team_list = "test"
       sign_in users(admin.to_sym)
-      xhr :get, :unassign_team, { topic_ids: [1]}
+      xhr :get, :unassign_team, { topic_ids: [1] }
       assert_equal [], Topic.find(1).team_list
     end
 
@@ -338,7 +336,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     topic.team_list = "test"
     topic.save!
 
-    get :index, { status: "open" }
+    get :index, status: "open"
     assert_not_nil assigns(:topics)
     assert_equal 1, assigns(:topics).size
     assert_template "admin/topics/index"
@@ -358,7 +356,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     topic.team_list = "aomething else"
     topic.save!
 
-    get :index, { status: "open" }
+    get :index, status: "open"
     assert_equal 0, assigns(:topics).size
     assert_template "admin/topics/index"
     assert_response :success
@@ -377,7 +375,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     topic.team_list = "aomething else"
     topic.save!
 
-    get :show, { id: topic.id }
+    get :show, id: topic.id
     assert_template "admin/topics/show"
     assert_response 403
   end
@@ -387,7 +385,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to see a list of topics via standard request" do
       sign_in users(unauthorized.to_sym)
 
-      get :index, { status: "open" }
+      get :index, status: "open"
       assert_nil assigns(:topics)
       assert_response :redirect
     end
@@ -395,7 +393,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to see a specific topic of each type via standard request" do
       sign_in users(unauthorized.to_sym)
       [3,7].each do |topic_id|
-        get :show, { id: topic_id }
+        get :show, id: topic_id
         assert_nil assigns(:topic)
         assert_response :redirect
       end

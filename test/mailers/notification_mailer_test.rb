@@ -149,5 +149,4 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal notification.bcc, []
   end
 
-
 end

@@ -50,7 +50,8 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
         name: "something",
         email: "something@test.com",
         company: "company",
-        password: "12345678" }
+        password: "12345678"
+      }
     }
 
     user = User.find(1)

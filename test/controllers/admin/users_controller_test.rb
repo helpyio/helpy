@@ -81,14 +81,15 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a filtered of users" do
       sign_in users(admin.to_sym)
-      get :index, { role: 'user' }
+      get :index, role: 'user'
       assert_equal 4, assigns(:users).count
     end
 
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
-      patch :update, {
-        id: 6, user: {
+      patch :update,
+        id: 6, 
+        user: {
           name: "something",
           email:"scott.miller2@test.com",
           zip: '9999',
@@ -100,7 +101,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
           password: '11223344',
           password_confirmation: '11223344',
         },
-        locale: :en }
+        locale: :en 
       u = User.find(6)
 
       # assert values changed
@@ -121,11 +122,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
       user_before_update.team_list = "one"
       user_before_update.save
 
-      patch :update, {
-        id: 6, user: {
-          name: "something else"
-        },
-        locale: :en }
+      patch :update, id: 6, user: { name: "something else" }, locale: :en
 
       u = User.find(6)
       assert u.name == "something else", "name does not update"
@@ -158,7 +155,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
+      patch :update, id: 2, user: { name: "something", email:"scott.miller@test.com", role: 'admin' }, locale: :en
     end
   end
 
@@ -177,7 +174,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.admins.count", 0) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
+        patch :update, id: 2, user: { name: "something", email:"scott.miller@test.com", role: "agent" }, locale: :en
       end
     end
   end

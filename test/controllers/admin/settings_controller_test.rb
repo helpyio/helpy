@@ -65,19 +65,19 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'design.footer_mini_logo' => 'logo2.png',
       'design.favicon' => 'favicon2.ico',
       'css.search_background' => '000000',
-      'css.top_bar' => '000000',
-      'css.link_color' => '000000',
-      'css.form_background' => '000000',
-      'css.still_need_help' => '000000'
+      'css.top_bar' => 'aaaaaa',
+      'css.link_color' => 'bbbbbb',
+      'css.form_background' => 'cccccc',
+      'css.still_need_help' => 'dddddd'
     assert_response :success
     assert_equal 'logo2.png', AppSettings['design.header_logo']
     assert_equal 'logo2.png', AppSettings['design.footer_mini_logo']
     assert_equal 'favicon2.ico', AppSettings['design.favicon']
     assert_equal '000000', AppSettings['css.search_background']
-    assert_equal '000000', AppSettings['css.top_bar']
-    assert_equal '000000', AppSettings['css.link_color']
-    assert_equal '000000', AppSettings['css.form_background']
-    assert_equal '000000', AppSettings['css.still_need_help']
+    assert_equal 'aaaaaa', AppSettings['css.top_bar']
+    assert_equal 'bbbbbb', AppSettings['css.link_color']
+    assert_equal 'cccccc', AppSettings['css.form_background']
+    assert_equal 'dddddd', AppSettings['css.still_need_help']
   end
 
   test 'an admin should be able to change the theme' do
@@ -146,27 +146,27 @@ class Admin::SettingsControllerTest < ActionController::TestCase
   test 'an admin should be able to add a cloudinary key' do
     sign_in users(:admin)
     xhr :put, :update_settings,
-      'cloudinary.cloud_name' => 'something',
-      'cloudinary.api_key' => 'something',
-      'cloudinary.api_secret' => 'something'
+      'cloudinary.cloud_name' => 'some_name',
+      'cloudinary.api_key' => 'some_key',
+      'cloudinary.api_secret' => 'some_secret'
     assert_response :success
-    assert_equal 'something', AppSettings['cloudinary.cloud_name']
-    assert_equal 'something', AppSettings['cloudinary.api_key']
-    assert_equal 'something', AppSettings['cloudinary.api_secret']
+    assert_equal 'some_name', AppSettings['cloudinary.cloud_name']
+    assert_equal 'some_key', AppSettings['cloudinary.api_key']
+    assert_equal 'some_secret', AppSettings['cloudinary.api_secret']
     get :index
   end
 
   test 'the updated cloudinary keys should be persisted into the api object' do
     sign_in users(:admin)
     xhr :put, :update_settings,
-      'cloudinary.cloud_name' => 'something',
-      'cloudinary.api_key' => 'something',
-      'cloudinary.api_secret' => 'something'
+      'cloudinary.cloud_name' => 'some_name',
+      'cloudinary.api_key' => 'some_key',
+      'cloudinary.api_secret' => 'some_secret'
     assert_response :success
     get :index
-    assert_equal 'something', Cloudinary.config.cloud_name
-    assert_equal 'something', Cloudinary.config.api_key
-    assert_equal 'something', Cloudinary.config.api_secret
+    assert_equal 'some_name', Cloudinary.config.cloud_name
+    assert_equal 'some_key', Cloudinary.config.api_key
+    assert_equal 'some_secret', Cloudinary.config.api_secret
   end
 
   test "an agent should be able to update their profile" do
