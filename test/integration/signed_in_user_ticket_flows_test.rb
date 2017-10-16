@@ -21,17 +21,17 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     visit '/en'
     visit '/en/topics/new/'
 
-    assert page.has_content?('Should this message be private?')
+    assert page.has_content?(I18n.t(:should_message_be_private))
 
     assert_difference('Topic.count', 1) do
-      choose('Only support can respond (creates a private ticket)')
+      choose(I18n.t(:only_support_can_respond))
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Create Ticket', disabled: true)
+      click_on(I18n.t(:submit_start_discussion), disabled: true)
     end
 
     visit '/en/tickets/'
-    assert page.has_content?('Tickets')
+    assert page.has_content?(I18n.t(:tickets))
     assert page.has_content?("##{Topic.last.id}- I got problems")
 
   end
@@ -43,14 +43,14 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     visit '/en'
     visit '/en/topics/new/'
 
-    assert page.has_content?('Should this message be private?')
+    assert page.has_content?(I18n.t(:should_message_be_private))
 
     assert_difference('Topic.count', 1) do
-      choose('Responses can come from support or the community (recommended)')
+      choose(I18n.t(:responses_can_come_from_everyone))
       select('Public Forum', from: "topic[forum_id]")
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Create Ticket', disabled: true)
+      click_on(I18n.t(:submit_start_discussion), disabled: true)
     end
 
     visit '/en/community/3-public-forum/topics'
@@ -71,7 +71,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == '/en/ticket/1-private-topic'
     assert_difference('Post.count', 1) do
       fill_in "post_body", with: "This is my reply"
-      click_on "Post Reply", disabled: true
+      click_on I18n.t(:submit_reply), disabled: true
     end
 
 #    assert page.has_content?('This is my reply'), "Reply not found"
@@ -88,7 +88,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     forums.each do |forum|
       visit forum
-      click_on "Start a Discussion"
+      click_on I18n.t(:start_discussion)
       assert current_path == "/en/topics/new"
     end
 
@@ -124,7 +124,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
       assert_difference('Post.count', 1) do
         fill_in "post_body", with: "This is my reply"
-        click_on "Post Reply"
+        click_on I18n.t(:submit_reply)
       end
 
       visit topic
@@ -143,11 +143,11 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert_difference('Post.count', 1) do
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Create Ticket', disabled: true)
+      click_on(I18n.t(:submit_start_discussion), disabled: true)
     end
 
     visit '/en/tickets/'
-    assert page.has_content?('Tickets')
+    assert page.has_content?(I18n.t(:tickets))
     assert page.has_content?("##{Topic.last.id}- I got problems")
 
   end
@@ -156,7 +156,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     sign_in
 
     visit '/en/topics/5-new-public-topic/posts'
-    click_on "Flag for Review"
+    click_on I18n.t(:flag_for_review)
     assert find("div#flag-modal").visible?
   end
 

@@ -17,12 +17,12 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
 
   test 'an admin should be able to modify site settings and see those changes on the support site' do
     visit('/admin/settings/general')
-    assert page.has_content?('Settings'), 'Missing header'
+    assert page.has_content?(I18n.t(:settings)), 'Missing header'
 
     # Now make changes to all settings from defaults and make sure those changes are on the live site
     fill_in('settings.site_name', with: 'xyz')
-    fill_in('settings.parent_site', with: 'xyz')
-    fill_in('settings.parent_company', with: 'xyz')
+    fill_in('settings.parent_site', with: 'parent_xyz.com')
+    fill_in('settings.parent_company', with: 'parent_xyz')
     click_on 'Save Settings'
 
     visit('/en')
@@ -30,7 +30,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     within('a.navbar-brand') do
       assert page.has_content?('xyz')
     end
-    assert page.has_content?('Back to xyz')
+    assert page.has_content?("#{I18n.t(:back_to)} parent_xyz")
 
     # TODO: Figure out how to test the change of GA token
   end
@@ -38,7 +38,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   test 'an admin should be able to enable or disable i18n and be able to browse to those locales on the site' do
     visit('/admin/settings/i18n')
 
-    assert page.has_content?('Settings'), 'Missing header'
+    assert page.has_content?(I18n.t(:settings)), 'Missing header'
 
     # Now make changes to all settings from defaults and make sure those changes are on the live site
     check('English')
@@ -62,7 +62,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
   test 'an admin should be able to alter the logo images used' do
     visit('/admin/settings/design')
 
-    assert page.has_content?('Design'), 'Missing header'
+    assert page.has_content?(I18n.t(:design)), 'Missing header'
 
     fill_in('design.header_logo', with: '/uploads/logos/logo-test.png')
     fill_in('design.favicon', with: '/uploads/logos/favicon-test.ico')

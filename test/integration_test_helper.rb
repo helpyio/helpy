@@ -11,18 +11,18 @@ def sign_in(email='scott.miller@test.com')
   within first('div.login-form') do
     fill_in("user[email]", with: email)
     fill_in("user[password]", with: '12345678')
-    click_on('Sign in')
+    click_on(I18n.t('devise.sessions.new.sign_in'))
   end
 end
 
 def sign_in_by_modal(email='scott.miller@test.com')
   within("div#above-header") do
-    click_on "Sign in", wait: 30
+    click_on I18n.t('devise.sessions.new.sign_in'), wait: 30
   end
   within('div#login-modal') do
     fill_in("user[email]", with: email)
     fill_in("user[password]", with: '12345678')
-    click_on('Sign in')
+    click_on(I18n.t('devise.sessions.new.sign_in'))
   end
 end
 

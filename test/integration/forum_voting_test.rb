@@ -33,29 +33,29 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     visit "/en/community/4-public-idea-board/topics"
     assert_difference('Topic.find(8).points') do
       within first('div#post-vote-8') do
-        click_link "Upvote | 0"
+        click_link I18n.t('upvote.other', count: '0')
       end
     end
     visit "/en/community/4-public-idea-board/topics"
     within first('a.topic-vote') do
-      assert page.has_content?("Upvote | 1")
+      assert page.has_content? I18n.t('upvote.one', count: '1')
     end
 
 
     visit "/en/community/5-public-q-a/topics"
     assert_difference('Topic.find(7).points') do
       within first('div#post-vote-7') do
-        click_link "Upvote | 0"
+        click_link I18n.t('upvote.other', count: '0')
       end
     end
     visit "/en/community/5-public-q-a/topics"
     within first('div#post-vote-7') do
-      assert page.has_content?("Upvote | 1")
+      assert page.has_content? I18n.t('upvote.one', count: '1')
     end
   end
 
-  test "a logged in user should be able to vote on a reply from the topic detail view" do
-
-  end
+  # TODO
+  # test "a logged in user should be able to vote on a reply from the topic detail view" do
+  # end
 
 end

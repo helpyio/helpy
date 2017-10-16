@@ -16,7 +16,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
   def sign_out
     visit '/'
     within("div#above-header") do
-      click_on("Logout")
+      click_on I18n.t(:logout)
     end
   end
 

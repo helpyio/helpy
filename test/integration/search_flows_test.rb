@@ -1,6 +1,5 @@
 require 'integration_test_helper'
 
-
 class SearchFlowsTest < ActionDispatch::IntegrationTest
 
   def setup

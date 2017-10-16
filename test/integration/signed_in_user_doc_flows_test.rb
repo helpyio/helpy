@@ -21,11 +21,11 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
     create_some_comments
     visit '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments'
     assert page.has_content?('test post')
-    assert page.has_content?('Reply')
+    assert page.has_content?(I18n.t(:reply))
     assert page.has_css?("div.add-form")
 
     fill_in('post_body', with: "Added a comment!")
-    click_on('Post Reply', disabled: true)
+    click_on(I18n.t(:submit_reply), disabled: true)
 
     assert page.has_content?('Added a comment!')
 
@@ -35,11 +35,11 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
   test "when a doc allows commenting and there are no comments, a signed in user should see a start discussion form" do
 
     visit '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments'
-    assert page.has_content?('Start a Discussion')
+    assert page.has_content?(I18n.t(:start_discussion))
     assert page.has_css?("div.add-form")
 
     fill_in('post_body', with: "Added a comment!")
-    click_on('Start a Discussion', disabled: true)
+    click_on(I18n.t(:start_discussion), disabled: true)
 
     assert page.has_content?('Added a comment!')
 
@@ -48,8 +48,8 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
   test "when a doc does not allow commenting, a signed in user should not see a reply or start discussion button" do
 
     visit '/en/knowledgebase/1-active-and-featured/docs/5-does-not-allow-comments'
-    assert page.has_no_content?('Start a New Discussion')
-    assert page.has_no_content?('Reply')
+    assert page.has_no_content?(I18n.t(:start_discussion))
+    assert page.has_no_content?(I18n.t(:reply))
     assert page.has_no_css?("div.add-form")
 
   end

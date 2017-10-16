@@ -31,7 +31,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic[user][name]', with: 'John Smith')
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-        click_on('Create Ticket', disabled: true)
+        click_on(I18n.t(:submit_start_discussion), disabled: true)
       end
     end
     assert current_path == '/en/thanks'
@@ -55,7 +55,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic[user][name]', with: 'John Smith')
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-        click_on('Create Ticket', disabled: true)
+        click_on(I18n.t(:submit_start_discussion), disabled: true)
       end
     end
     assert current_path == "/en/topics/#{Topic.last.id}-i-got-problems/posts"
@@ -74,7 +74,7 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
         fill_in('topic[user][name]', with: 'Scott Miller')
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-        click_on('Create Ticket', disabled: true)
+        click_on(I18n.t(:submit_start_discussion), disabled: true)
       end
     end
 
@@ -88,9 +88,10 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     forums.each do |forum|
       visit forum
-      click_on "Start a Discussion"
+      click_on I18n.t(:start_discussion)
       assert find("div#login-modal").visible?
     end
+
   end
 
   test "a browsing user should be prompted to login when clicking reply from a public discussion view" do
@@ -101,9 +102,10 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     topics.each do |topic|
       visit topic
-      click_on "Reply"
+      click_on I18n.t(:reply)
       assert find("div#login-modal").visible?
     end
+
   end
 
   test "a browsing user should be able to create a private ticket via widget" do
@@ -115,16 +117,15 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
       fill_in('topic_user_name', with: 'Joe Guy')
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Create Ticket', disabled: true)
+      click_on(I18n.t(:submit_start_discussion), disabled: true)
     end
 
   end
 
   test "a browsing user should be prompted to login when clicking flag for review from a public discussion view" do
     visit '/en/topics/5-new-public-topic/posts'
-    click_on "Flag for Review"
+    click_on I18n.t(:flag_for_review)
     assert find("div#login-modal").visible?
   end
-
 
 end
