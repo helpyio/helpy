@@ -200,6 +200,7 @@ ru:
   replied: "%{user_name} ответил..."
   posted_note: "%{user_name} опубликовал внутреннюю заметку..."
   type_reply: Введите ответ или выберите из общего сообщения ниже
+  # type_response: "Type your response:"
   select_common: Выберите Общий Ответ
   reply: Ответьте
   internal_note: Внутренняя заметка
@@ -264,6 +265,7 @@ ru:
   # widget: "Embeddable Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

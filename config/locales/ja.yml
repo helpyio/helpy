@@ -194,6 +194,7 @@ ja:
   replied: "%{user_name}さんは返信しました"
   posted_note: "%{user_name}さんは内部メモを投稿する"
   type_reply: "ご記入いただくか、下記のテンプレートより返信内容をお選びください。"
+  # type_response: "Type your response:"
   select_common: "テンプレート選択"
   reply: "返信"
   internal_note: "内部メモ"
@@ -256,6 +257,7 @@ ja:
   widget: "埋め込みウィジェット"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

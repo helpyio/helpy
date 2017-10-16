@@ -228,6 +228,7 @@ pt-br:
   replied: "%{user_name} respondeu..."
   posted_note: "%{user_name} criou uma nota interna..."
   type_reply: "Escreva a sua resposta, ou selecione uma predefinida em baixo"
+  # type_response: "Type your response:"
   select_common: "Selecione uma Resposta Predefinida"
   reply: "Responder"
   internal_note: "Nota Interna"
@@ -353,6 +354,7 @@ pt-br:
   international: "Internacionalização"
   widget: "Widget embarcado"
   integrations: Integrações
+  # save_settings: "Save Settings"
 
   notifications_description: "Escolha em que momento deseja ser notificado via e-mail"
   api_description: "Crie e gerencie suas chaves de acesso a API Helpy!"

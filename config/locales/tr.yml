@@ -194,6 +194,7 @@ tr:
   replied: "%{user_name} yanıtladı..."
   posted_note: "%{user_name} dahili bir not gönderdi..."
   type_reply: Yanıtınızı yazın, ya da aşağıdan genel bir mesaj seçin
+  # type_response: "Type your response:"
   select_common: Genel Cevap Seçin
   reply: Yanıtla
   internal_note: Dahili Not
@@ -256,6 +257,7 @@ tr:
   widget: "Gömülebilir Bileşen"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

@@ -194,6 +194,7 @@ pt:
   replied: "%{user_name} respondeu..."
   posted_note: "%{user_name} criou uma nota interna..."
   type_reply: "Escreva a sua resposta, ou selecione uma predefinida em baixo"
+  # type_response: "Type your response:"
   select_common: "Selecione uma Resposta Predefinida"
   reply: "Responder"
   internal_note: "Nota Interna"
@@ -256,6 +257,7 @@ pt:
   # widget: "Embeddable Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

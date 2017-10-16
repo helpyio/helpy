@@ -194,6 +194,7 @@ fr:
   replied: "%{user_name} a répondu..."
   posted_note: "%{user_name} a affiché une note interne..."
   type_reply: "Saisissez votre réponse, ou sélectionnez une réponse type ci-dessous"
+  # type_response: "Type your response:"
   select_common: Sélectionner une réponse type
   reply: Réponse
   internal_note: Note interne
@@ -256,6 +257,7 @@ fr:
   widget: "Widget intégré"
   common_replies: "Réponses standard"
   integrations: "Intégrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   shortcut_then: "puis"

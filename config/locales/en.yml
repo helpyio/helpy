@@ -238,6 +238,7 @@ en:
   replied: "%{user_name} replied..."
   posted_note: "%{user_name} posted an internal note..."
   type_reply: Type your reply, or select from a common message below
+  type_response: "Type your response:"
   select_common: Select Common Reply
   reply: Reply
   internal_note: Internal Note
@@ -317,6 +318,7 @@ en:
   widget: "Embeddable Widget"
   common_replies: "Common Replies"
   integrations: "Integrations"
+  save_settings: "Save Settings"
 
   # API Key Managmeent
   api_keys: "API Keys"

@@ -12,7 +12,7 @@
       <%= f.text_field 'widget.button_text_color', value: AppSettings['widget.button_text_color'], label: t('button_text_color', default: "Widget Text Color"), class: 'pick-a-color' %>
     </div>
     <div class="submit-section">
-      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+      <%= f.submit t(:save_settings, default: "Save Settings"), class: 'btn btn-warning' %>
     </div>
   <% end %>
   <br/><br/><br/>

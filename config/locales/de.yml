@@ -206,6 +206,7 @@ de:
   replied: "%{user_name} hat geantwortet..."
   posted_note: "%{user_name} hat eine interne Notiz gesendet..."
   type_reply: Schreiben Sie eine Antwort oder wählen Sie unten eine Textvorlage aus
+  # type_response: "Type your response:"
   select_common: Textvorlage auswählen
   reply: Antworten
   internal_note: Interne Notiz
@@ -281,6 +282,7 @@ de:
   widget: "Einbindbares Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
 
   # API Key Managmeent

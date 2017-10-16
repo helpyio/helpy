@@ -181,6 +181,7 @@ sv:
   replied: "%{user_name} svarade..."
   posted_note: "%{user_name} postade en intern anteckning..."
   type_reply: 'Skriv ett svar, eller skicka ett sparat'
+  # type_response: "Type your response:"
   select_common: 'Välj sparat svar'
   reply: 'Svar'
   internal_note: 'Intern anteckning'
@@ -239,6 +240,7 @@ sv:
   widget: "Inbäddningsbar Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

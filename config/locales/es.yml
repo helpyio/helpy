@@ -194,6 +194,7 @@ es:
   replied: "%{user_name} ha contestado..."
   posted_note: "%{user_name} ha enviado un mensaje interno..."
   type_reply: Escribe tu respuesta o selecciona una respuesta pre-definidida.
+  # type_response: "Type your response:"
   select_common: Selecciona una respuesta pre-definidida
   reply: Responder
   internal_note: Nota interna
@@ -256,6 +257,7 @@ es:
   widget: "Incrustar widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

@@ -194,6 +194,7 @@ it:
   replied: "%{user_name} rispondeva..."
   posted_note: "%{user_name} ha scritto una nota interna..."
   type_reply: Typ hier je antwoord of selecteer een van de standaard antwoorden
+  # type_response: "Type your response:"
   select_common: Standaard antwoord selecteren
   reply: Rispondere
   internal_note: Nota interna
@@ -269,6 +270,7 @@ it:
   widget: "Embeddable Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # API Key Managmeent
   api_keys: "API Keys"

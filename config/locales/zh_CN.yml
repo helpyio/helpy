@@ -194,6 +194,7 @@ zh-cn:
   replied: "%{user_name} 回覆…"
   posted_note: "%{user_name} 张贴了内部注解"
   type_reply: 输入你的回覆, 或选择以下常用回覆
+  # type_response: "Type your response:"
   select_common: 选择常用回覆
   reply: 回覆
   internal_note: 内部注解
@@ -256,6 +257,7 @@ zh-cn:
   # widget: "Embeddable Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

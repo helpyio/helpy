@@ -238,6 +238,7 @@ fi:
   replied: "%{user_name} vastasi..."
   posted_note: "%{user_name} lähetti vastauksen..."
   type_reply: Kirjoita vastauksesi tai valitse yleinen vastaus alta
+  # type_response: "Type your response:"
   select_common: Valitse yleinen vastaus
   reply: Vastaa
   internal_note: Sisäinen merkintä
@@ -317,6 +318,7 @@ fi:
   widget: "Upotettava liitännäinen"
   common_replies: "Yleiset vastaukset"
   integrations: "Integraatiot"
+  # save_settings: "Save Settings"
 
   # API Key Managmeent
   api_keys: "API-avaimet"

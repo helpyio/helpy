@@ -197,6 +197,7 @@ hu:
   replied: "%{user_name} válaszolt..."
   posted_note: "%{user_name} belső jegyzetet írt..."
   type_reply: Írd meg a válaszod, vagy válassz egyet az általános válaszok közül
+  # type_response: "Type your response:"
   select_common: Válasz kijelölése
   reply: Válasz
   internal_note: Belső Jegyzet
@@ -272,6 +273,7 @@ hu:
   widget: "Beágyazható Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # API Key Managmeent
   api_keys: "API Kulcsok"

@@ -194,6 +194,7 @@ nl:
   replied: "%{user_name} antwoordde..."
   posted_note: "%{user_name} heeft een interne notitie toegevoegd..."
   type_reply: Typ hier je antwoord of selecteer een van de standaard antwoorden
+  # type_response: "Type your response:"
   select_common: Standaard antwoord selecteren
   reply: Beantwoorden
   internal_note: Interne Notitie
@@ -256,6 +257,7 @@ nl:
   # widget: "Embeddable Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

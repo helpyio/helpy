@@ -23,7 +23,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     fill_in('settings.site_name', with: 'xyz')
     fill_in('settings.parent_site', with: 'parent_xyz.com')
     fill_in('settings.parent_company', with: 'parent_xyz')
-    click_on 'Save Settings'
+    click_on I18n.t(:save_settings)
 
     visit('/en')
     sleep(1)
@@ -44,7 +44,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     check('English')
     check('Español')
     check('Deutsch')
-    click_on 'Save Settings'
+    click_on I18n.t(:save_settings)
 
     visit('/en/locales/select')
     sleep(1)
@@ -66,7 +66,7 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
 
     fill_in('design.header_logo', with: '/uploads/logos/logo-test.png')
     fill_in('design.favicon', with: '/uploads/logos/favicon-test.ico')
-    click_on 'Save Settings'
+    click_on I18n.t(:save_settings)
 
     visit('/en')
     sleep(1)

@@ -105,7 +105,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     topics.each do |topic|
       visit topic
       assert page.has_no_css?('#reply-button'), message: "Reply button displayed when it shouldnt be (url: #{topic})"
-      assert page.has_content?('Type your response:')
+      assert page.has_content?(I18n.t(:type_response))
     end
 
   end

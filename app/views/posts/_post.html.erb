@@ -46,7 +46,7 @@
 			<div class="add-form inline-reply">
 			<h4><%= t(:reply) %></h4>
 			<%= bootstrap_form_for :post, :url => topic_posts_path(@topic) do |f| -%>
-			  <%= f.text_area :body, :rows => 4, :cols => 160, label: 'Type your response:' -%></p>
+			  <%= f.text_area :body, :rows => 4, :cols => 160, label: t(:type_response, default: 'Type your response:') -%></p>
 			  <%= f.hidden_field 'kind', value: 'reply' %>
 				<div class="add-screenshots">
 				<%= attachinary_file_field_tag 'post[screenshots]', @topic.posts.new, :screenshots if cloudinary_enabled? %>

@@ -50,7 +50,7 @@
         <%= f.text_area 'design.footer_js', value: AppSettings['design.footer_js'], label: "Footer Javascript", rows: 10, class: 'css-editor' %>
     </div>
     <div class="submit-section">
-      <%= f.submit "Save Settings", class: 'btn btn-warning' %>
+      <%= f.submit t(:save_settings, default: "Save Settings"), class: 'btn btn-warning' %>
     </div>
 
   <% end %>

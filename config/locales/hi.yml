@@ -194,6 +194,7 @@ hi:
   replied: "%{user_name} जवाब दिया..."
   posted_note: "%{user_name} एक आंतरिक नोट पोस्ट किए..."
   type_reply: आपके उत्तर टाइप करें, या नीचे एक आम संदेश से चुनें
+  # type_response: "Type your response:"
   select_common: एक आम जबाब चुनें
   reply: जवाब
   internal_note: आंतरिक नोट
@@ -257,6 +258,7 @@ hi:
   widget: "Embeddable Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # Keyboard Shortcuts
   # shortcut_then: "then"

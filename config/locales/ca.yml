@@ -194,7 +194,8 @@ ca:
   asked_a_question: "%{user_name} ha preguntat..."
   replied: "%{user_name} ha contestat..."
   posted_note: "%{user_name} ha penjat com a missatge intern..."
-  type_reply: Escriu la teva resposta, o selecciona des d'un missatge comú a sota
+  type_reply: "Escriu la teva resposta, o selecciona des d'un missatge comú a sota"
+  # type_response: "Type your response:"
   select_common: Selecciona una resposta comuna
   reply: Respon
   internal_note: Nota interna
@@ -256,6 +257,7 @@ ca:
   # widget: "Embeddable Widget"
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
 
   # Keyboard Shortcuts

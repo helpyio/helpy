@@ -194,6 +194,7 @@ fa:
   replied: "%{user_name} پاسخ داده..."
   posted_note: "%{user_name} نکته روش نوشته..."
   type_reply: پاسخ خود را بنویسید, یا از پاسخ‌های متداول زیر انتخاب کنید
+  # type_response: "Type your response:"
   select_common: انتخاب پاسخ متداول
   reply: پاسخ
   internal_note: نکته
@@ -269,6 +270,7 @@ fa:
   widget: "کد قابل ادغام"
   common_replies: "پاسخ های متداول"
   integrations: "درونی‌سازی"
+  # save_settings: "Save Settings"
 
   # API Key Managmeent
   api_keys: "کلیدهای API"

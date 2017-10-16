@@ -205,6 +205,7 @@ et:
   replied: "%{user_name} vastas..."
   posted_note: "%{user_name} postitas siseteatise..."
   type_reply: Kirjuta vastus või vali korduma kippuv vastus alt
+  # type_response: "Type your response:"
   select_common: Vali Korduma Kippuv Vastus
   reply: Vasta
   internal_note: Siseteatis
@@ -279,6 +280,7 @@ et:
   international: "Rahvusvaheline"
   widget: "Manustav vidin"
   # integrations: "Integrations"
+  # save_settings: "Save Settings"
 
   # API Key Managmeent
   api_keys: "API võtmed"
