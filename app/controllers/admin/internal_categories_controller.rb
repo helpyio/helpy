@@ -16,9 +16,8 @@ class Admin::InternalCategoriesController < Admin::BaseController
       @page_title = @category.name
 
       generate_page_breadcumbs
-
     else
-      redirect_to controller: 'errors', action: 'not_found'
+      redirect_to controller: '/errors', action: 'not_found'
     end
   end
 
@@ -28,5 +27,4 @@ class Admin::InternalCategoriesController < Admin::BaseController
     add_breadcrumb t(:internal_content, default: "Internal Content"), admin_internal_categories_path
     add_breadcrumb @docs.category.name, category_path(@docs.first.category) if !@doc.nil? && @doc.first.category.name
   end
-
 end

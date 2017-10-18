@@ -26,6 +26,20 @@ four_translation:
   created_at: 2015-10-30 03:04:05.157655
   updated_at: 2015-10-30 03:04:05.157655
 
+six_translation:
+  locale: en
+  category_id: 6
+  name: internal title
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655
+
+seven_translation:
+  locale: et
+  category_id: 7
+  name: estonian internal title
+  created_at: 2015-10-30 03:04:05.157655
+  updated_at: 2015-10-30 03:04:05.157655
+
 one_translation_et:
   locale: et
   category_id: 1
