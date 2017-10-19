@@ -7,7 +7,7 @@ AllCops:
     - vendor/**/*
 
   TargetRubyVersion: 2.3
-  DisabledByDefault: true
+  DisabledByDefault: false
 
 Rails:
   Enabled: true
@@ -42,3 +42,13 @@ Lint/HandleExceptions:
 
 Style/AndOr:
   Enabled: true
+
+Metrics/LineLength:
+  Enabled: true
+  Max: 150
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
