@@ -203,6 +203,10 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  # evaluates to true if they are a priority (high/vip) user
+  def priority?
+    self.priority == 'high' || self.priority == 'vip'
+  end
 
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
   # and changing it could be painful for upgrading installed users. These are three
