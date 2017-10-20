@@ -1,7 +1,7 @@
 # MAINTAINER: SERAVO OY
 
 fi:
-  language_name: 'Finnish' # The name of the translation file, in that language
+  language_name: 'Suomi' # The name of the translation file, in that language
   root: &root 'Koti'
   how_can_we_help: "Kuinka voimme auttaa?"
   browse_topics: "Selaa tietopankkia"
@@ -34,8 +34,8 @@ fi:
   search_placeholder: "Syötä hakusana, aihe tai kysymys"
   no_results: "Ei hakutuloksia, yritä uudestaan!"
   results_found:
-    one: "Haullasi löytyi yksi osuma "
-    other: "Haullasi löytyi %{count} osumaa  "
+    one: "haullasi löytyi yksi osuma "
+    other: "haullasi löytyi %{count} osumaa  "
 
   # Community
   forum_name: "Aihe"
@@ -78,9 +78,9 @@ fi:
   my_profile: 'Oma profiili'
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on GitHub"
-  version: "Version:"
+  powered_by: "Voimanlähteenä Helpy. Avoimen lähdekoodin tukipalveluohjelmisto."
+  get_your_copy: "Hanki omasi GitHubista"
+  version: "Versio:"
 
   # flag
   flag_for_review: "Merkitse tarkistettavaksi"
@@ -132,7 +132,7 @@ fi:
   unassigned: osoittamaton
   no_team_assigned: osoita ryhmälle
   assign_to: Ryhmä
-  unassign_from_team:
+  unassign_from_team: Poista ryhmästä
   private: yksityinen
   public: julkinen
   save_changes: Tallenna muutokset
@@ -141,7 +141,7 @@ fi:
 
   # Discussion controls
   change_status: Vaihda tila
-  status: Tula
+  status: Tila
   mark_closed: Merkitse ratkaistuksi
   reopen: Avaa uudelleen
   mark_spam: Merkitse roskapostiksi
@@ -161,8 +161,8 @@ fi:
   assigned_group: "Tämä palvelupyyntö on osoitettu ryhmälle %{assigned_group}."
   converted_to_ticket: "Tämä keskustelu on muutettu yksityiseksi."
   converted_to_topic: "Tämä keskustelu on muutettu julkiseksi ja siirretty keskusteluosioon %{forum_name}."
-  tagged_with: "This ticket was tagged with %{tagged_with}"
-  notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
+  tagged_with: "Tämä palvelupyyntö on merkitty seuraavasti: %{tagged_with}"
+  notes_hidden: "Palvelupyynnölle on %{hidden_notes} sisäisiä merkintöjä. Voit tarkastella niitä klikkaamalla tätä huomautusta!"
 
   # User Admin
   users: Käyttäjät
@@ -204,14 +204,14 @@ fi:
   select_next_ticket: "Valitse seuraava palvelupyyntö"
   view_selected_ticket: "Näytä valitut palvelupyynnöt"
   jump_to_a_specific_ticket_number: "Siirry tiettyyn palvelupyyntöön"
-  ticket_actions: "Palvelupyynnön toiminnat"
+  ticket_actions: "Palvelupyynnön toiminnot"
   assign_the_ticket: "Osoita palvelupyyntö"
   move_the_ticket: "Siirrä palvelupyyntö"
-  expand_the_ticket_thread: "Expand ticket thread"
+  expand_the_ticket_thread: "Laajenna palvelupyyntöketju"
   reply_to_the_ticket: "Vastaa palvelupyyntöön"
   add_an_internal_note: "Lisää sisäinen merkintä"
   change_ticket_status: "Vaihda palvelupyynnön tila"
-  associate_with_a_group: "Associate with a group"
+  associate_with_a_group: "Liitä ryhmään"
   ticket_status: "Palvelupyynnön tila"
   mark_resolved: "Merkitse ratkaistuksi"
   reopen_ticket: "Avaa palvelupyyntö uudelleen"
@@ -258,8 +258,8 @@ fi:
   delete: Poista
   view_and_edit: "Näytä ja muokkaa sisältöä"
   delete_confirm: "Oletko varma, että haluat poistaa tämän?"
-  select_icon_helptext: "Select an icon to associate with this category (optional)"
-  translate: "Translate to a different language"
+  select_icon_helptext: "Valitse tähän kategoriaan liitettävä kuva (valinnainen)"
+  translate: "Käännä toiselle kielelle"
   view_on_site: "Näytä sivustolla"
   written_on: "Kirjoitettu %{date_written}"
   content_last_updated: "Viimeksi päivitetty %{date_updated}"
@@ -272,8 +272,8 @@ fi:
   upload_image: 'Lisää kuva'
   new_discussion: 'Luo uusi keskustelu tästä'
   new_discussion_post: 'Keskustelu #%{topic_id} on nyt luotu tästä aiheesta'
-  new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  new_discussion_topic_title: 'Erotettu aiheesta #%{original_id}-%{original_name}'
+  change_owner_note: 'Tämän aiheen luojaksi vaihdettiin %{old} -> %{new}'
 
   # Internal Content
   no_internal_content_title: "Sisältöä ei ole vielä tehty sisäiseen käyttöön!"
@@ -301,7 +301,7 @@ fi:
   notify_new_private: "Uusi palvelupyyntö on saapunut käyttäjältä %{user_name}:"
   notify_new_public: "Uusi julkinen viesti on saapunut käyttäjältä %{user_name}:"
   notify_new_reply: "Uusi vastaus on saapunut käyttäjältä %{user_name}:"
-  to_reply: 'Reply to this message directly or online:'
+  to_reply: 'Vastaa tähän viestiin suoraan tai verkossa:'
 
   # Notifications settings panel
   notify_on_private: "Lähetä minulle sähköpostia kun uusi palvelupyyntö on vastaanotettu"
@@ -310,7 +310,7 @@ fi:
 
   # settings
   agent_settings: "Henkilöstön asetukset"
-  notifications: "Notifikaatiot"
+  notifications: "Ilmoitukset"
   settings: "Asetukset"
   general: "Yleinen"
   design: "Malli"
@@ -322,15 +322,15 @@ fi:
   # API Key Managmeent
   api_keys: "API-avaimet"
   key_name: "Avaimen nimi"
-  token: "API-token"
+  token: "API-tunnus"
   add_key: "Lisää uusi avain"
-  expire_token: "Mitätöi API-valtuutus"
+  expire_token: "Mitätöi API-tunnus"
   expired: "Vanhentunut"
-  expire_confirm: "Haluatko varmasti mitätöidä tämän API-valtuuden."
-  spec_note: "You can read and test out an interactive API spec at: "
+  expire_confirm: "Haluatko varmasti mitätöidä tämän API-tunnuksen."
+  spec_note: "Voit lukea ja testata interaktiivisia API-ominaisuuksia täällä: "
 
   # Insights
-  team_insights: "Team Insights"
+  team_insights: "Tiimin oivallukset"
   filter_by_date: "Suodata päivämäärällä"
   today: "Tänään"
   yesterday: "Eilen"
@@ -344,15 +344,15 @@ fi:
   insight_filter: "Suodata"
   insights_blurb_one:
     one: "<strong>%{period}</strong> käyttäjäsi avasi yhden uuden palvelupyynnön"
-    other: "<strong>%{period}</strong> käyttäjäsi avasi <strong>%{count} uutta palvelupyyntö</strong>"
-  insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+    other: "<strong>%{period}</strong> käyttäjäsi avasi <strong>%{count} uutta palvelupyyntöä</strong>"
+  insights_blurb_two: "josta tiiminne on vastannut <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
   no_discussions: "Yhtään uutta palvelupyyntöä ei avattu ajanjaksolla <strong>%{period}</strong>"
   assigned_topics: "Osoitetut aiheet"
   responded: "Vastattu"
   closed: "Suljettu"
   replies: "Vastaukset"
-  median_time: "Keskiluku kaikista vastauksista"
+  median_time: "Keskimääräinen aika ensimmäiseen vastaukseen"
 
 
 

@@ -98,7 +98,7 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 - Report or fix Bugs
 - Refactoring
 - Improve test coverage-  As with any large and growing codebase, test coverage is not always as good as it could be.  Help improving test coverage is always welcome and will help you learn how Helpy works.  We use Minitest exclusively.
-- Translate the project- The community has already translated Helpy into 18 languages, but there are many more waiting.  We need help getting Helpy translated into as many locales as possible! [please see the guide to translation](http://support.helpy.io/en/knowledgebase/12-Using-Helpy/docs/4-Supported-locales-How-to-Contribute)
+- Translate the project- The community has already translated Helpy into 18 languages, but there are many more waiting.  We need help getting Helpy translated into as many locales as possible! [Please see the guide to translation](https://github.com/helpyio/helpy/wiki/How-to-translate-Helpy-into-your-language) for more details.
 - Build new features.  There is a backlog of new features that we’d like to see built.  Check out our [roadmap](https://trello.com/b/NuiWsdmK/helpy) for more insight on this, and if you would like to take one on, please get in touch with us to make sure someone is not already working on it.
 
 **General Guidelines:**

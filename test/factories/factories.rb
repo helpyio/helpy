@@ -60,7 +60,7 @@ FactoryGirl.define do
         ActionDispatch::Http::UploadedFile.new({
           filename: 'logo.png',
           type: 'image/png',
-          tempfile: File.new("#{File.expand_path(File.dirname(__FILE__))}/fixtures/logo.png")
+          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
         })
       ]}
     end
@@ -69,7 +69,7 @@ FactoryGirl.define do
       attachments {[
         ActionDispatch::Http::UploadedFile.new({
           filename: 'test.odt',
-          tempfile: File.new("#{File.expand_path(File.dirname(__FILE__))}/fixtures/test.odt")
+          tempfile: File.new(Rails.root.join("test/fixtures/test.odt"))
         })
       ]}
     end
@@ -79,12 +79,12 @@ FactoryGirl.define do
         ActionDispatch::Http::UploadedFile.new({
           filename: 'logo.png',
           type: 'image/png',
-          tempfile: File.new("#{File.expand_path(File.dirname(__FILE__))}/fixtures/logo.png")
+          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
         }),
         ActionDispatch::Http::UploadedFile.new({
           filename: 'logo.png',
           type: 'image/png',
-          tempfile: File.new("#{File.expand_path(File.dirname(__FILE__))}/fixtures/logo.png")
+          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
         })
       ]}
     end
