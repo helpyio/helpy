@@ -143,6 +143,7 @@ zh-tw:
   mark_spam: 標記為垃圾訊息
   mark_new: 標記為新訊息
   assign_agent: 委託代理
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1個已選訊息"
     two: "2個已選訊息"

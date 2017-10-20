@@ -147,6 +147,7 @@ fi:
   mark_spam: Merkitse roskapostiksi
   mark_new: Merkitse uudeksi
   assign_agent: Osoita henkilölle
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 valittu viesti"
     two: "2 valittua viestiä"

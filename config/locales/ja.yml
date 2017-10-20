@@ -143,6 +143,7 @@ ja:
   mark_spam: "迷惑メールにする"
   mark_new: "新着にする"
   assign_agent: "委託するエージェント"
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 つの選択されたメッセージ"
     two: "2 つの選択されたメッセージ"

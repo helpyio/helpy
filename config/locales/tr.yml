@@ -143,6 +143,7 @@ tr:
   mark_spam: İstanmeyen olarak İşaretle
   mark_new: Yeni olarak İşaretle
   assign_agent: Personel Ata
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 mesaj seçildi"
     two: "2 mesaj seçildi"

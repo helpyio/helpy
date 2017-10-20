@@ -143,6 +143,7 @@ es:
   mark_spam: Marcar como spam
   mark_new: Marcar como nuevo
   assign_agent: Asignar agente
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 mensaje seleccionado"
     two: "2 mensajes seleccionados"

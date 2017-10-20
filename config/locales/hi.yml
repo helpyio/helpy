@@ -143,6 +143,7 @@ hi:
   mark_spam: स्पैम मार्क करो
   mark_new: नया  मार्क करो
   assign_agent: एजेंट नियुक्त करना
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 चुने हुए संदेश"
     two: "2 चुने हुए संदेश"

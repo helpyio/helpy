@@ -146,6 +146,7 @@ et:
   mark_spam: Märgi Spam
   mark_new: Märgi Uus
   assign_agent: Määra Agent
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 valitud sõnum"
     two: "2 valitud sõnumit"

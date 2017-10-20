@@ -143,6 +143,7 @@ zh-cn:
   mark_spam: 标记为垃圾讯息
   mark_new: 标记为新讯息
   assign_agent: 委托代理
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1个已选讯息"
     two: "2个已选讯息"
