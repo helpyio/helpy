@@ -58,11 +58,11 @@ class Admin::GroupsController < Admin::BaseController
 
   def set_user
     # An admin should be able to view others API keys
-    if current_user.is_admin?
-      @user = params[:api_key].present? ? User.find(params[:api_key][:user_id]) : current_user
-    else # An agent should be able to view their own API keys only
-      @user = current_user
-    end
+    @user = if current_user.is_admin?
+              params[:api_key].present? ? User.find(params[:api_key][:user_id]) : current_user
+            else # An agent should be able to view their own API keys only
+              current_user
+            end
   end
 
   private

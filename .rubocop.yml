@@ -1,5 +1,6 @@
-AllCops:
+inherit_from: .rubocop_todo.yml
 
+AllCops:
   Exclude:
     - db/**/*
     - lib/**/*
@@ -7,6 +8,7 @@ AllCops:
     - vendor/**/*
 
   TargetRubyVersion: 2.3
+  TargetRailsVersion: 4.2
   DisabledByDefault: false
 
 Rails:
@@ -45,7 +47,6 @@ Style/AndOr:
 
 Metrics/LineLength:
   Enabled: true
-  Max: 150
 
 Style/ClassAndModuleChildren:
   Enabled: false

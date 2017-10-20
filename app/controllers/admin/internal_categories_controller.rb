@@ -7,11 +7,11 @@ class Admin::InternalCategoriesController < Admin::BaseController
   def show
     @category = Category.internally.without_system_resource.active.where(id: params[:id]).first
     if @category
-      if I18n.available_locales.count > 1
-        @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
-      else
-        @docs = @category.docs.ordered.active.page params[:page]
-      end
+      @docs = if I18n.available_locales.count > 1
+                @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
+              else
+                @category.docs.ordered.active.page params[:page]
+              end
 
       @page_title = @category.name
 

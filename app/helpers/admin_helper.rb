@@ -41,11 +41,11 @@ module AdminHelper
     output = '<div class="locale-badges pull-right hidden-xs hidden-sm">'
     AppSettings['i18n.available_locales'].each do |locale|
       I18n.with_locale(locale) do
-        if object.translations.where(locale: locale).count > 0
-          output += "<span class='badge' title='#{I18n.t(:language_name)}'>#{locale}</span></a>"
-        else
-          output += "<span class='badge badge-light' title='#{I18n.t(:language_name)}'>#{locale}</span></a>"
-        end
+        output += if object.translations.where(locale: locale).count > 0
+          "<span class='badge' title='#{I18n.t(:language_name)}'>#{locale}</span></a>"
+                  else
+          "<span class='badge badge-light' title='#{I18n.t(:language_name)}'>#{locale}</span></a>"
+                  end
       end
     end
     output += '</div>'
