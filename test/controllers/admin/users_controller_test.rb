@@ -17,6 +17,7 @@
 #  street                 :string
 #  city                   :string
 #  state                  :string
+#  country_code           :string
 #  zip                    :string
 #  title                  :string
 #  twitter                :string
@@ -91,6 +92,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
         id: 6, user: {
           name: "something",
           email:"scott.miller2@test.com",
+          country_code: 'IN',
           zip: '9999',
           team_list: 'something',
           priority: 'high',
@@ -105,6 +107,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
       # assert values changed
       assert u.name == "something", "name does not update"
+      assert_equal "IN", u.country_code, "country did not update"
       assert_equal "9999", u.zip, "zip did not update"
       assert_equal ["something"], u.team_list, "groups did not update"
       assert_equal "high", u.priority, "priority did not update"

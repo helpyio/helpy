@@ -171,6 +171,7 @@ en:
   edit_user: Edit User
   work_phone: work
   cell_phone: cell
+  select_country: Select a country
 
   # Priorities
   select_priority: Select Priority
@@ -367,6 +368,7 @@ en:
         cell_phone: Cell
         city: City
         state: State
+        country: Country
         signature: Signature
       topic:
         name: Question

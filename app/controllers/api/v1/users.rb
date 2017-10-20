@@ -73,6 +73,7 @@ module API
           optional :street, type: String, desc: "Users street"
           optional :city, type: String, desc: "Users city"
           optional :state, type: String, desc: "Users state"
+          optional :country_code, type: String, desc: "Users country code"
           optional :zip, type: String, desc: "Users Postal Code"
           optional :title, type: String, desc: "Users title"
           optional :twitter, type: String, desc: "Users Twitter handle"
@@ -99,6 +100,7 @@ module API
             street: permitted_params[:street],
             city: permitted_params[:city],
             state: permitted_params[:state],
+            country_code: permitted_params[:country_code],
             zip: permitted_params[:zip],
             title: permitted_params[:title],
             twitter: permitted_params[:twitter],
@@ -133,6 +135,7 @@ module API
           optional :street, type: String, desc: "Users street"
           optional :city, type: String, desc: "Users city"
           optional :state, type: String, desc: "Users state"
+          optional :country_code, type: String, desc: "Users country code"
           optional :zip, type: String, desc: "Users Postal Code"
           optional :title, type: String, desc: "Users title"
           optional :twitter, type: String, desc: "Users Twitter handle"
@@ -160,6 +163,7 @@ module API
             street: permitted_params[:street],
             city: permitted_params[:city],
             state: permitted_params[:state],
+            country_code: permitted_params[:country_code],
             zip: permitted_params[:zip],
             title: permitted_params[:title],
             twitter: permitted_params[:twitter],

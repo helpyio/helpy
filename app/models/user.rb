@@ -17,6 +17,7 @@
 #  street                 :string
 #  city                   :string
 #  state                  :string
+#  country_code           :string
 #  zip                    :string
 #  title                  :string
 #  twitter                :string
@@ -273,6 +274,15 @@ class User < ActiveRecord::Base
     end
 
     usr
+  end
+
+  def address
+    [city, state, country_name, zip].select{|s| s.titleize if s.present?}.join(', ')
+  end
+
+  def country_name
+    return unless (country = ISO3166::Country[self.country_code])
+    country.translations[I18n.locale.to_s] || country.name
   end
 
   private

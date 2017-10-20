@@ -9,8 +9,7 @@
     <div class="tiny-header"><%= @user.name? ? @user.name.titleize : @user.email %> (<%= link_to t(:edit, default: 'Edit'), edit_admin_user_path(@user), remote: true %>)</div>
     <span class="small">
       <%= @user.company.titleize unless @user.company.nil? %><br/>
-      <%= @user.city.titleize + ', ' unless @user.city.nil? %> <%= @user.state.titleize unless @user.state.nil? %> <%= @user.zip %>
-      <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
+      <%= @user.address %>
     </span>
   </div>
   <div id="user-contact-info" class="col-md-3 col-sm-3 col-xs-6  user-info">
