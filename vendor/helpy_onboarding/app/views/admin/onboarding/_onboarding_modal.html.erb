@@ -1,0 +1,13 @@
+<% if show_onboarding? %>
+<div id='modal' class="modal" tabindex="-1" role="dialog" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <iframe src="/admin/onboarding/index" width="100%" frameborder="no" scrolling="no" style="min-height:680px;"></iframe>
+    </div>
+  </div>
+</div>
+<script>
+// Fire the onboarding modal if needed
+$('#modal').modal('toggle');
+</script>
+<% end %>

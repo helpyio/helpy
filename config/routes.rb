@@ -111,12 +111,6 @@ Rails.application.routes.draw do
     get 'settings/integration' => 'settings#integration', as: :integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
 
-    # Onboarding Routes
-    get '/onboarding/index' => 'onboarding#index', as: :onboarding
-    patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
-    patch '/onboarding/update_settings' => 'onboarding#update_settings', as: :onboard_settings
-    get '/onboarding/complete' => 'onboarding#complete', as: :complete_onboard
-
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post

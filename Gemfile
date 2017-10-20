@@ -147,6 +147,9 @@ gem "recaptcha", require: "recaptcha/rails"
 
 gem 'best_in_place', '~> 3.0.1'
 
+# Add onboarding component
+gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
