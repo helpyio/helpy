@@ -14,7 +14,7 @@ class Admin::InternalDocsController < Admin::BaseController
 
   def doc_available_to_view?
     @doc = Doc.find_by(id: params[:id], active: true)
-    redirect_to controller: 'errors', action: 'not_found' if @doc.nil? || !@doc.category.internally_viewable?
+    redirect_to controller: '/errors', action: 'not_found' if @doc.nil? || !@doc.category.internally_viewable?
   end
 
   def generate_page_breadcumbs
