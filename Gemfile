@@ -22,8 +22,8 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks', '~> 2.1.0'
+gem 'turbolinks', '~> 2.5.3'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -32,9 +32,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Summernote is the wysiwyg editor
+gem 'codemirror-rails'
 gem 'jquery-minicolors-rails'
 gem 'summernote-rails'
-gem 'codemirror-rails'
 
 # Ranked model gives the ability to rank articles and categories
 gem 'ranked-model'
@@ -46,82 +46,82 @@ gem "rails-settings-cached", '~> 0.5'
 gem 'sucker_punch', '~> 2.0'
 
 # Charting
-gem "groupdate"
 gem "chartkick"
+gem "groupdate"
 
 # Auth Gems
 gem 'devise'
-gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'devise-i18n'
 gem 'omniauth'
-gem 'omniauth-github'
-gem 'omniauth-twitter'
-gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 
 # i18n gems
-gem 'rails-i18n', '~> 4.0.0'
-gem 'i18n-country-translations'
-gem 'route_translator'
 gem 'http_accept_language'
+gem 'i18n-country-translations'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'route_translator'
 
 # API gems
 gem 'grape'
-gem 'grape-swagger'
-gem 'grape-entity'
-gem 'grape-swagger-rails'
-gem 'grape-swagger-entity'
 gem 'grape-attack'
+gem 'grape-entity'
 gem 'grape-kaminari'
+gem 'grape-swagger'
+gem 'grape-swagger-entity'
+gem 'grape-swagger-rails'
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'permalink_fu'
 gem 'paper_trail'
+gem 'permalink_fu'
 
 gem 'acts-as-taggable-on', '~>3.5'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
 
-gem 'globalize-versioning'
 gem 'globalize-accessors'
+gem 'globalize-versioning'
 
 gem 'gravtastic'
 
 # File handling
-gem 'cloudinary', '1.1.2'
 gem 'attachinary'
+gem 'cloudinary', '1.1.2'
 
 gem 'carrierwave', '~> 1.0.0'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
 # Bootstrap/UI Gems
-gem 'font-awesome-sass'
+gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap-select-rails'
+gem "bootstrap-switch-rails"
 gem 'bootstrap_form'
+gem 'font-awesome-sass'
+gem 'rdiscount'
+gem 'selectize-rails'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
-gem 'rdiscount'
-gem 'selectize-rails'
-gem "bootstrap-switch-rails"
-gem 'bootstrap-datepicker-rails'
-gem 'bootstrap-select-rails'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 # Email/Mail Handling
 gem 'daemons'
-gem 'mailman'#, require: false
 gem 'mail_extract'
+gem 'mailman'#, require: false
 
 gem 'griddler'
-gem 'griddler-mandrill'
-gem 'griddler-sendgrid'
 gem 'griddler-mailgun'
-gem 'griddler-postmark'
 gem 'griddler-mailin'
+gem 'griddler-mandrill'
+gem 'griddler-postmark'
+gem 'griddler-sendgrid'
 gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
@@ -142,8 +142,8 @@ gem 'faker'
 
 gem 'timecop' #used to populate
 
-gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
+gem 'themes_on_rails'
 
 gem 'best_in_place', '~> 3.0.1'
 
@@ -152,16 +152,16 @@ gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
+  gem 'annotate'
+  gem 'awesome_print'
+  gem 'brakeman', require: false
   gem 'bundler-audit', require: false
   gem 'byebug'
   gem 'pry'
   gem 'pry-byebug'
-  gem 'spring', '~> 1.4.0'
-  gem 'annotate'
-  gem 'brakeman', require: false
   gem 'rubocop'
   gem 'scss-lint'
-  gem 'awesome_print'
+  gem 'spring', '~> 1.4.0'
 end
 
 gem 'bulk_insert'
@@ -178,14 +178,14 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem "codeclimate-test-reporter",require: nil
+  gem 'factory_girl_rails'
+  gem 'launchy'
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'shoulda'
-  gem 'factory_girl_rails'
-  gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'launchy'
-  gem "codeclimate-test-reporter",require: nil
+  gem 'shoulda'
   gem 'simplecov', :require => false
 
   # remove this for Rails 5 because the function is already included
