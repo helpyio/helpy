@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
   end
 
   def is_restricted?
-    team_list.count.positive? && !is_admin?
+    team_list.count > 0 && !is_admin?
   end
 
   def self.create_password

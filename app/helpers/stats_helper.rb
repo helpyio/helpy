@@ -13,7 +13,7 @@ module StatsHelper
 
   def humanize(secs)
     [[60, :seconds], [60, :minutes], [24, :hours], [1000, :days]].map do |count, name|
-      if secs.positive?
+      if secs > 0
         secs, n = secs.divmod(count)
         "#{n.to_i} #{name}"
       end

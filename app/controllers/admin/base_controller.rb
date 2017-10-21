@@ -25,7 +25,7 @@ class Admin::BaseController < ApplicationController
 
   def check_current_user_is_allowed?(topic)
     return if !topic.private || current_user.is_admin? || current_user.team_list.include?(topic.team_list.first)
-    if topic.team_list.count.positive? && current_user.is_restricted? && (topic.team_list + current_user.team_list).count.positive?
+    if topic.team_list.count > 0 && current_user.is_restricted? && (topic.team_list + current_user.team_list).count > 0
       render status: :forbidden
     end
   end

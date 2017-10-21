@@ -63,3 +63,7 @@ Style/SymbolProc:
   Exclude:
     - 'app/models/entity/doc.rb'
     - 'app/models/entity/category.rb'
+
+Style/NumericPredicate:
+  Enabled: true
+  EnforcedStyle: comparison

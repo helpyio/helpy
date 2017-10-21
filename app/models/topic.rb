@@ -228,7 +228,7 @@ class Topic < ActiveRecord::Base
 
     if @topic.save
       @merge_topics.each_with_index do |t, i|
-        @topic.posts << if i.zero?
+        @topic.posts << if i == 0
                           t.posts
                         else
                           t.posts.where.not(kind: 'first').all

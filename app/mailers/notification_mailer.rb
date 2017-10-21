@@ -14,7 +14,7 @@ class NotificationMailer < ActionMailer::Base
   private
 
   def new_notification(topic_id, notifiable_users)
-    return if notifiable_users.count.zero?
+    return if notifiable_users.count == 0
 
     @topic = Topic.find(topic_id)
     @recipient = notifiable_users.first
