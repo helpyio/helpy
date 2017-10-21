@@ -16,57 +16,51 @@ module API
         paginate per_page: 20
 
         # LIST BY STATUS
-        desc "List all PRIVATE tickets by status", {
-          entity: Entity::Topic,
-          notes: "List all open tickets (private topics)"
-        }
+        desc "List all PRIVATE tickets by status", entity: Entity::Topic,
+                                                   notes: "List all open tickets (private topics)"
         params do
           requires :status, type: String, desc: "Status group (New, Open, Pending, etc.)"
         end
         get "status/:status", root: :topics do
-          if current_user.is_restricted?
-            topics = Forum.find(1).topics.where(
-              current_status: permitted_params[:status]
-            ).all.tagged_with(current_user.team_list)
-          else
-            topics = Forum.find(1).topics.where(
-              current_status: permitted_params[:status]
-            )
-          end
+          topics = if current_user.is_restricted?
+                     Forum.find(1).topics.where(
+                       current_status: permitted_params[:status]
+                     ).all.tagged_with(current_user.team_list)
+                   else
+                     Forum.find(1).topics.where(
+                       current_status: permitted_params[:status]
+                     )
+                   end
           present paginate(topics), with: Entity::Topic
         end
 
         # LIST BY USER
-        desc "List all PRIVATE tickets for a user", {
-          entity: Entity::Topic,
-          notes: "List all tickets (private topics) for a given user"
-        }
+        desc "List all PRIVATE tickets for a user", entity: Entity::Topic,
+                                                    notes: "List all tickets (private topics) for a given user"
         params do
           requires :user_id, type: Integer, desc: "ID of the user"
         end
         get "user/:user_id", root: :topics do
-          if current_user.is_restricted?
-            topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all.tagged_with(current_user.team_list)
-          else
-            topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
-          end
+          topics = if current_user.is_restricted?
+                     Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all.tagged_with(current_user.team_list)
+                   else
+                     Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
+                   end
           present paginate(topics), with: Entity::Topic
         end
 
         # SHOW ONE TICKET AND ITS THREAD
-        desc "Show a single ticket", {
-          entity: Entity::Topic,
-          notes: "Show one ticket (private topic)"
-        }
+        desc "Show a single ticket", entity: Entity::Topic,
+                                     notes: "Show one ticket (private topic)"
         params do
           requires :id, type: Integer, desc: "Ticket ID"
         end
         get ":id", root: :topics do
-          if current_user.is_restricted?
-            topic = Topic.includes(:posts).where(id: permitted_params[:id]).tagged_with(current_user.team_list)
-          else
-            topic = Topic.includes(:posts).find(permitted_params[:id])
-          end
+          topic = if current_user.is_restricted?
+                    Topic.includes(:posts).where(id: permitted_params[:id]).tagged_with(current_user.team_list)
+                  else
+                    Topic.includes(:posts).find(permitted_params[:id])
+                  end
           if topic.present?
             present topic, with: Entity::Topic, posts: true
           else
@@ -129,11 +123,11 @@ module API
         end
 
         post "assign/:id", root: :topics do
-          if current_user.is_restricted?
-            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
-          else
-            ticket = Topic.where(id: permitted_params[:id]).first
-          end
+          ticket = if current_user.is_restricted?
+                     Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+                   else
+                     Topic.where(id: permitted_params[:id]).first
+                   end
           if ticket.present?
             previous_assigned_id = ticket.assigned_user_id? ? ticket.assigned_user_id : params[:assigned_user_id]
             assigned_user = User.find(params[:assigned_user_id])
@@ -152,11 +146,11 @@ module API
         end
 
         post "update_status/:id", root: :topics do
-          if current_user.is_restricted?
-            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
-          else
-            ticket = Topic.where(id: permitted_params[:id]).first
-          end
+          ticket = if current_user.is_restricted?
+                     Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+                   else
+                     Topic.where(id: permitted_params[:id]).first
+                   end
           if ticket.present?
             case params[:status]
             when 'closed'
@@ -183,11 +177,11 @@ module API
         end
 
         post "update_tags/:id", root: :topics do
-          if current_user.is_restricted?
-            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
-          else
-            ticket = Topic.where(id: permitted_params[:id]).first
-          end
+          ticket = if current_user.is_restricted?
+                     Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+                   else
+                     Topic.where(id: permitted_params[:id]).first
+                   end
           if ticket.present?
             ticket.tag_list = params[:tag_list]
             ticket.save
@@ -205,11 +199,11 @@ module API
         end
 
         post "update_forum/:id", root: :topics do
-          if current_user.is_restricted?
-            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
-          else
-            ticket = Topic.where(id: permitted_params[:id]).first
-          end
+          ticket = if current_user.is_restricted?
+                     Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+                   else
+                     Topic.where(id: permitted_params[:id]).first
+                   end
           if ticket.present?
             is_private = (permitted_params[:forum_id] == 1) ? true : false
             ticket.private = is_private
@@ -273,19 +267,15 @@ module API
 
         post "merge", root: :topics do
           @ticket = Topic.merge_topics(params[:topic_ids], params[:user_id])
-          if @ticket.present?
-            present @ticket, with: Entity::Topic, posts: true
-          end
+          present @ticket, with: Entity::Topic, posts: true if @ticket.present?
         end
       end
 
       # PUBLIC TOPIC ENDPOINTS
       resource :topics, desc: "Create and manage public discussions" do
         # SHOW ONE TOPIC AND ITS THREAD
-        desc "Show a single ticket", {
-          entity: Entity::Topic,
-          notes: "Show one community topic"
-        }
+        desc "Show a single ticket",           entity: Entity::Topic,
+                                               notes: "Show one community topic"
         params do
           requires :id, type: Integer, desc: "Topic ID"
         end
@@ -344,10 +334,8 @@ module API
         end
 
         # VOTE FOR A TOPIC
-        desc "Vote for a topic", {
-          entity: Entity::Topic,
-          notes: "Vote for a given topic"
-        }
+        desc "Vote for a topic", entity: Entity::Topic,
+                                 notes: "Vote for a given topic"
         params do
           requires :id, type: Integer, desc: "The ID of the topic to vote for"
           # requires :user_id, type: Integer

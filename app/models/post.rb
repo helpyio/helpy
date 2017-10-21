@@ -49,41 +49,41 @@ class Post < ActiveRecord::Base
   # updates the last post date for both the forum and the topic
   # updates the waiting on cache
   def update_waiting_on_cache
-    status = self.topic.current_status
-    waiting_on = self.topic.waiting_on
+    status = topic.current_status
+    waiting_on = topic.waiting_on
 
     # unless status == 'closed' || status == 'trash'
     unless status == 'trash'
       logger.info('private message, update waiting on cache')
-      status = self.topic.current_status
-      if self.user && self.user.is_agent?
+      status = topic.current_status
+      if user && user.is_agent?
         logger.info('waiting on user')
         waiting_on = "user"
         status = "open"
       else
         logger.info('waiting on admin')
         waiting_on = "admin"
-        status = "pending" unless self.topic.current_status == 'new'
+        status = "pending" unless topic.current_status == 'new'
       end
     end
 
-    self.topic.update(last_post_date: Time.current, waiting_on: waiting_on, current_status: status)
-    self.topic.forum.update(last_post_date: Time.current)
+    topic.update(last_post_date: Time.current, waiting_on: waiting_on, current_status: status)
+    topic.forum.update(last_post_date: Time.current)
   end
 
   # updates cache of post content used in search
   def update_topic_cache
-    unless self.kind == 'note'
-      current_cache = self.topic.post_cache
-      self.topic.update(post_cache: "#{current_cache} #{self.body}")
+    unless kind == 'note'
+      current_cache = topic.post_cache
+      topic.update(post_cache: "#{current_cache} #{body}")
     end
   end
 
   # Assign the parent topic if not assigned and this is a reply by admin
   # or agents
   def assign_on_reply
-    if self.topic.assigned_user_id.nil?
-      self.topic.assigned_user_id = self.user.is_agent? ? self.user_id : nil
+    if topic.assigned_user_id.nil?
+      topic.assigned_user_id = user.is_agent? ? user_id : nil
     end
   end
 
@@ -92,27 +92,27 @@ class Post < ActiveRecord::Base
   # regardless of how the post is created (web, email, api, etc)
   def notify
     # Handle new private ticket notification:
-    if self.kind == "first" && self.topic.private?
-      NotificationMailer.new_private(self.topic_id).deliver_later
+    if kind == "first" && topic.private?
+      NotificationMailer.new_private(topic_id).deliver_later
     # Handles new public ticket notification:
-    elsif self.kind == "first" && self.topic.public?
-      NotificationMailer.new_public(self.topic_id).deliver_later
+    elsif kind == "first" && topic.public?
+      NotificationMailer.new_public(topic_id).deliver_later
 
     # Handles customer reply notification:
-    elsif self.kind == "reply" && self.user_id == self.topic.user_id && self.topic.private?
-      NotificationMailer.new_reply(self.topic_id).deliver_later
+    elsif kind == "reply" && user_id == topic.user_id && topic.private?
+      NotificationMailer.new_reply(topic_id).deliver_later
 
     # Reply from user back to the system
-    elsif self.kind == "reply" && self.user_id != self.topic.user_id && self.topic.private?
-      I18n.with_locale(self.email_locale) do
+    elsif kind == "reply" && user_id != topic.user_id && topic.private?
+      I18n.with_locale(email_locale) do
         PostMailer.new_post(id).deliver_later
       end
     end
   end
 
   def email_locale
-    return I18n.locale if self.kind == 'first'
-    self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
+    return I18n.locale if kind == 'first'
+    topic.locale.nil? ? I18n.locale : topic.locale.to_sym
   end
 
   private

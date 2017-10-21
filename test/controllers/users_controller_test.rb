@@ -108,7 +108,7 @@ class UsersControllerTest < ActionController::TestCase
       provider: 'twitter'
     )
 
-    patch :finish_signup, { user: { email: "new@email.com", name: "test user" }, locale: :en }
+    patch :finish_signup, user: { email: "new@email.com", name: "test user" }, locale: :en
 
     # Reload the user to pick up the changes
     u.reload

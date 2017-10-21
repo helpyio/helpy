@@ -78,7 +78,7 @@ class Doc < ActiveRecord::Base
   end
 
   def content
-    c = RDiscount.new(self.body)
+    c = RDiscount.new(body)
     c.to_html
   end
 end

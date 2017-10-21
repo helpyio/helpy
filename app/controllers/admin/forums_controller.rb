@@ -1,6 +1,6 @@
 class Admin::ForumsController < Admin::BaseController
   before_action :verify_agent
-  respond_to :html, only: ['index', 'show', 'new', 'edit', 'create']
+  respond_to :html, only: %w[index show new edit create]
   respond_to :js, only: :destroy
 
   def index

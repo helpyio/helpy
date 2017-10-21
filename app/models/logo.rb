@@ -4,6 +4,6 @@ class Logo
   mount_uploader :file, LogoUploader
 
   def save
-    self.store_file!
+    store_file!
   end
 end

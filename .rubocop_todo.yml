@@ -217,33 +217,6 @@ Style/BarePercentLiterals:
     - 'test/controllers/admin/users_controller_test.rb'
     - 'test/test_helper.rb'
 
-# Offense count: 31
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, ProceduralMethods, FunctionalMethods, IgnoredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# IgnoredMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'app/controllers/admin/docs_controller.rb'
-    - 'app/controllers/admin/onboarding_controller.rb'
-    - 'app/controllers/admin/posts_controller.rb'
-    - 'app/controllers/admin/settings_controller.rb'
-    - 'app/controllers/admin/topics_controller.rb'
-    - 'app/controllers/admin/users_controller.rb'
-    - 'app/controllers/posts_controller.rb'
-    - 'app/controllers/topics_controller.rb'
-    - 'app/helpers/stats_helper.rb'
-    - 'test/factories/factories.rb'
-
-# Offense count: 128
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: braces, no_braces, context_dependent
-Style/BracesAroundHashParameters:
-  Enabled: false
-
 # Offense count: 1
 Style/ClassVars:
   Exclude:
@@ -271,38 +244,10 @@ Style/CommentedKeyword:
     - 'app/helpers/application_helper.rb'
     - 'app/models/api_key.rb'
 
-# Offense count: 13
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, SingleLineConditionsOnly, IncludeTernaryExpressions.
-# SupportedStyles: assign_to_condition, assign_inside_condition
-Style/ConditionalAssignment:
-  Exclude:
-    - 'app/controllers/admin/base_controller.rb'
-    - 'app/controllers/admin/search_controller.rb'
-    - 'app/controllers/admin/topics_controller.rb'
-    - 'app/controllers/admin/users_controller.rb'
-    - 'app/controllers/api/v1/topics.rb'
-    - 'app/controllers/comments_controller.rb'
-    - 'app/controllers/topics_controller.rb'
-    - 'app/models/topic.rb'
-
 # Offense count: 1
 Style/DoubleNegation:
   Exclude:
     - 'app/models/user.rb'
-
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/admin/categories_controller.rb'
-    - 'app/controllers/admin/reports_controller.rb'
-    - 'app/controllers/admin/users_controller.rb'
-    - 'app/controllers/flags_controller.rb'
-    - 'app/helpers/posts_helper.rb'
-    - 'test/integration/search_flows_test.rb'
 
 # Offense count: 221
 # Cop supports --auto-correct.
@@ -335,17 +280,6 @@ Style/GuardClause:
 Style/HashSyntax:
   Enabled: false
 
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: MaxLineLength.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/controllers/admin/api_keys_controller.rb'
-    - 'app/controllers/admin/docs_controller.rb'
-    - 'app/controllers/admin/onboarding_controller.rb'
-    - 'app/controllers/api/v1/topics.rb'
-    - 'app/models/user.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
@@ -371,23 +305,6 @@ Style/MutableConstant:
     - 'app/models/category.rb'
     - 'app/models/user.rb'
     - 'config/environment.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: both, prefix, postfix
-Style/NegatedIf:
-  Exclude:
-    - 'app/controllers/topics_controller.rb'
-    - 'app/controllers/widget/topics_controller.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinBodyLength, SupportedStyles.
-# SupportedStyles: skip_modifier_ifs, always
-Style/Next:
-  Exclude:
-    - 'app/models/user.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -443,35 +360,6 @@ Style/Proc:
 # SupportedStyles: compact, exploded
 Style/RaiseArgs:
   EnforcedStyle: compact
-
-# Offense count: 4
-# Cop supports --auto-correct.
-Style/RedundantParentheses:
-  Exclude:
-    - 'app/controllers/admin/base_controller.rb'
-    - 'app/helpers/admin_helper.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowMultipleReturnValues.
-Style/RedundantReturn:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
-# Offense count: 93
-# Cop supports --auto-correct.
-Style/RedundantSelf:
-  Exclude:
-    - 'app/models/api_key.rb'
-    - 'app/models/concerns/sentence_case.rb'
-    - 'app/models/doc.rb'
-    - 'app/models/forum.rb'
-    - 'app/models/logo.rb'
-    - 'app/models/post.rb'
-    - 'app/models/topic.rb'
-    - 'app/models/user.rb'
-    - 'app/models/vote.rb'
-    - 'config/application.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -554,48 +442,6 @@ Style/TrailingCommaInLiteral:
     - 'test/controllers/admin/users_controller_test.rb'
     - 'test/controllers/api/v1/topics_test.rb'
     - 'test/controllers/webhook/inbound_controller_test.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-Style/UnlessElse:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/registrations_controller.rb'
-    - 'app/helpers/users_helper.rb'
-    - 'config/initializers/client_side_validations.rb'
-
-# Offense count: 22
-# Cop supports --auto-correct.
-Style/UnneededInterpolation:
-  Exclude:
-    - 'app/controllers/posts_controller.rb'
-    - 'app/helpers/admin_helper.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/docs_helper.rb'
-    - 'app/helpers/posts_helper.rb'
-    - 'app/helpers/users_helper.rb'
-
-# Offense count: 23
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, MinSize, WordRegex.
-# SupportedStyles: percent, brackets
-Style/WordArray:
-  Exclude:
-    - 'app/controllers/admin/categories_controller.rb'
-    - 'app/controllers/admin/docs_controller.rb'
-    - 'app/controllers/admin/forums_controller.rb'
-    - 'app/controllers/admin/settings_controller.rb'
-    - 'app/controllers/admin/topics_controller.rb'
-    - 'app/controllers/admin/users_controller.rb'
-    - 'app/controllers/api/v1/users.rb'
-    - 'app/controllers/categories_controller.rb'
-    - 'app/controllers/forums_controller.rb'
-    - 'app/controllers/posts_controller.rb'
-    - 'app/controllers/topics_controller.rb'
-    - 'config/initializers/default_settings.rb'
-    - 'test/controllers/api/v1/topics_test.rb'
-    - 'test/models/user_test.rb'
-    - 'test/test_helper.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.

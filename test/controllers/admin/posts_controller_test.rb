@@ -24,7 +24,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     test "a #{unauthorized} should NOT be able to edit a post" do
       sign_in users(unauthorized.to_sym)
       original_post = Post.find(1)
-      xhr :patch, :update, { id: 1, post: { body: "this has changed" }, locale: :en }
+      xhr :patch, :update, id: 1, post: { body: "this has changed" }, locale: :en
       assert original_post.body == Post.find(1).body
       assert :success
     end
@@ -71,7 +71,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to edit a post" do
       sign_in users(admin.to_sym)
       old = Post.find(1).body
-      xhr :patch, :update, { id: 1, locale: :en, post: { body: "this has changed" } }
+      xhr :patch, :update, id: 1, locale: :en, post: { body: "this has changed" }
       assert old != Post.find(1).body
       assert :success
     end

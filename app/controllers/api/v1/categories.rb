@@ -11,10 +11,8 @@ module API
         # throttle max: 200, per: 1.minute
 
         # LIST ALL CATEGORIES
-        desc "List all public categories", {
-          entity: Entity::Category,
-          notes: "Lists all active categories defined for the knowledgebase"
-        }
+        desc "List all public categories", entity: Entity::Category,
+                                           notes: "Lists all active categories defined for the knowledgebase"
         params do
           optional :docs, type: Boolean, desc: "Whether to include the documents in the response"
           optional :docs_limit, type: Integer, desc: "How many docs to return with the category"
@@ -25,10 +23,8 @@ module API
         end
 
         # SHOW CATEGORY
-        desc "Return a single category with listing of docs", {
-          entity: Entity::Category,
-          notes: "Lists all active categories defined for the knowledgebase"
-        }
+        desc "Return a single category with listing of docs", entity: Entity::Category,
+                                                              notes: "Lists all active categories defined for the knowledgebase"
         params do
           requires :id, type: String, desc: "Category to list docs from"
         end
@@ -38,10 +34,8 @@ module API
         end
 
         # CREATE NEW CATEGORY
-        desc "Create a new category", {
-          entity: Entity::Category,
-          notes: "Create a new category"
-        }
+        desc "Create a new category", entity: Entity::Category,
+                                      notes: "Create a new category"
         params do
           requires :name, type: String, desc: "The name of the category of articles"
           optional :icon, type: String, desc: "An icon that represents the category"
@@ -67,10 +61,8 @@ module API
         end
 
         # UPDATE CATEGORY
-        desc "Update a single category", {
-          entity: Entity::Category,
-          notes: "Edit a single category"
-        }
+        desc "Update a single category", entity: Entity::Category,
+                                         notes: "Edit a single category"
         params do
           requires :id, type: Integer, desc: "Category to update"
           requires :name, type: String, desc: "The name of the category of articles"

@@ -33,7 +33,7 @@ module PostsHelper
       end
     else
       content_tag(:span, class: 'more-important') do
-        "#{message}".html_safe
+        message.to_s.html_safe
       end
     end
   end
@@ -47,6 +47,5 @@ module PostsHelper
     end
   end
 
-  def post_admin
-  end
+  def post_admin; end
 end

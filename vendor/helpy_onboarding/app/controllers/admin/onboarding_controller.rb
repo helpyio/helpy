@@ -46,9 +46,9 @@ class Admin::OnboardingController < Admin::BaseController
 
     respond_to do |format|
       format.html { redirect_to(admin_settings_path) }
-      format.js {
+      format.js do
         render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
-      }
+      end
     end
   end
 
@@ -59,9 +59,7 @@ class Admin::OnboardingController < Admin::BaseController
   protected
 
   def allow_onboarding
-    unless show_onboarding?
-      redirect_to admin_complete_onboard_path
-    end
+    redirect_to admin_complete_onboard_path unless show_onboarding?
   end
 
   private

@@ -27,9 +27,7 @@ class Admin::ApiKeysController < Admin::BaseController
   def create
     @api_key = ApiKey.new(api_key_params)
     # @api_key.user_id = @user.id
-    if @api_key.save
-      render
-    end
+    render if @api_key.save
   end
 
   def destroy

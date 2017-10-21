@@ -27,12 +27,12 @@
 #
 
 class TopicsController < ApplicationController
-  before_action :authenticate_user!, :only => ['tickets', 'ticket']
+  before_action :authenticate_user!, :only => %w[tickets ticket]
   before_action :allow_iframe_requests
-  before_action :forums_enabled?, only: ['index', 'show']
-  before_action :topic_creation_enabled?, only: ['new', 'create']
+  before_action :forums_enabled?, only: %w[index show]
+  before_action :topic_creation_enabled?, only: %w[new create]
   before_action :get_all_teams, only: 'new'
-  before_action :get_public_forums, only: ['new', 'create']
+  before_action :get_public_forums, only: %w[new create]
 
   layout "clean", only: [:new, :index, :thanks]
   theme :theme_chosen
@@ -42,19 +42,19 @@ class TopicsController < ApplicationController
   def index
     @forum = Forum.ispublic.where(id: params[:forum_id]).first
     if @forum
-      if @forum.allow_topic_voting == true
-        @topics = @forum.topics.ispublic.by_popularity.page params[:page]
-      else
-        @topics = @forum.topics.ispublic.chronologic.page params[:page]
-      end
+      @topics = if @forum.allow_topic_voting == true
+                  @forum.topics.ispublic.by_popularity.page params[:page]
+                else
+                  @forum.topics.ispublic.chronologic.page params[:page]
+                end
       @page_title = @forum.name
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @forum.name
     end
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to root_path unless @forum
-      }
+      end
     end
   end
 
@@ -76,9 +76,9 @@ class TopicsController < ApplicationController
       add_breadcrumb @page_title
     end
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to root_path unless @topic
-      }
+      end
     end
   end
 
@@ -91,7 +91,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    params[:id].nil? ? @forum = Forum.find(params[:topic][:forum_id]) : @forum = Forum.find(params[:id])
+    @forum = params[:id].nil? ? Forum.find(params[:topic][:forum_id]) : Forum.find(params[:id])
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
@@ -115,7 +115,7 @@ class TopicsController < ApplicationController
         :attachments => params[:topic][:posts_attributes]["0"][:attachments]
       )
 
-      if !user_signed_in?
+      unless user_signed_in?
         UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
       end
 
@@ -160,7 +160,7 @@ class TopicsController < ApplicationController
     params.require(:post).permit(
       :body,
       :kind,
-      { attachments: [] }
+      attachments: []
     )
   end
 

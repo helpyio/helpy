@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
 
   def rtl_locale?(locale)
     return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
-    return false
+    false
   end
   helper_method :rtl_locale?
 
@@ -121,10 +121,10 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     @browser_locale = http_accept_language.compatible_language_from(AppSettings['i18n.available_locales'])
-    I18n.locale = unless params[:locale].blank?
-                    AppSettings['i18n.available_locales'].include?(params[:locale]) ? params[:locale] : AppSettings['i18n.default_locale']
-                  else
+    I18n.locale = if params[:locale].blank?
                     @browser_locale
+                  else
+                    AppSettings['i18n.available_locales'].include?(params[:locale]) ? params[:locale] : AppSettings['i18n.default_locale']
                   end
   end
 

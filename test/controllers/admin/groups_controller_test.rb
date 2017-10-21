@@ -44,14 +44,14 @@ class Admin::GroupsControllerTest < ActionController::TestCase
     sign_in users(:admin)
     tag = create(:acts_as_taggable_on_tag)
     assert_difference "ActsAsTaggableOn::Tag.count", -1 do
-      delete :destroy, { id: tag.id, locale: "en" }
+      delete :destroy, id: tag.id, locale: "en"
     end
   end
 
   test "an admin should be able to update group" do
     sign_in users(:admin)
     tag = create(:acts_as_taggable_on_tag)
-    put :update, { id: tag.id, acts_as_taggable_on_tag: { show_on_admin: true } }
+    put :update, id: tag.id, acts_as_taggable_on_tag: { show_on_admin: true }
     assert_equal ActsAsTaggableOn::Tag.last.show_on_admin, true
   end
 end

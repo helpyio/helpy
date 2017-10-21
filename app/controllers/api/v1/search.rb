@@ -10,9 +10,7 @@ module API
         # throttle max: 200, per: 1.minute
 
         ## SEARCH PUBLIC KNOWLEDGEBASE
-        desc "Search the knowledgebase", {
-          notes: "Search for docs, posts, and topics by query"
-        }
+        desc "Search the knowledgebase", notes: "Search for docs, posts, and topics by query"
         params do
           requires :q, type: String, desc: "The query term to search for"
           optional :type, type: String, desc: "The type of entity to search for"

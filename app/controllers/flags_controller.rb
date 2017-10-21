@@ -46,9 +46,7 @@ class FlagsController < ApplicationController
     end
   end
 
-  def new
-  end
+  def new; end
 
-  def index
-  end
+  def index; end
 end

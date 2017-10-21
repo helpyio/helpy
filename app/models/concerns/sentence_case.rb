@@ -8,10 +8,10 @@ module SentenceCase
   private
 
   def set_name_case
-    if self.is_a?(Doc)
-      self.title = self.title.sentence_case
+    if is_a?(Doc)
+      self.title = title.sentence_case
     else
-      self.name = self.name.sentence_case
+      self.name = name.sentence_case
     end
   end
 end

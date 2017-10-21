@@ -17,7 +17,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     @user = users(:user)
     sign_in @user
     assert_difference "User.find(2).name.length", -3 do
-      patch :update, { id: @user.id, user: { name: "something", current_password: "12345678" }, locale: :en }
+      patch :update, id: @user.id, user: { name: "something", current_password: "12345678" }, locale: :en
       assert User.find(2).name == "something", "name does not update"
     end
     assert_redirected_to root_path
@@ -28,15 +28,13 @@ class RegistrationsControllerTest < ActionController::TestCase
     sign_in @user
 
     assert_difference "User.find(2).name.length", -3 do
-      patch :update, {
-        id: @user.id,
-        user: {
-          name: "something",
-          profile_image: uploaded_file_object(User, :profile_image, file),
-          current_password: "12345678"
-        },
-        locale: :en
-      }
+      patch :update,         id: @user.id,
+                             user: {
+                               name: "something",
+                               profile_image: uploaded_file_object(User, :profile_image, file),
+                               current_password: "12345678"
+                             },
+                             locale: :en
     end
     # binding.pry
     assert_equal "logo.png", User.find(2).profile_image.file.file.split("/").last
@@ -48,7 +46,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     @user = users(:oauth_user)
     sign_in @user
     assert_difference "User.find(4).name.length", -3 do
-      patch :update, { id: @user.id, user: { name: "something" }, locale: :en }
+      patch :update, id: @user.id, user: { name: "something" }, locale: :en
       assert User.find(4).name == "something", "name does not update"
     end
     assert_redirected_to root_path
@@ -57,7 +55,7 @@ class RegistrationsControllerTest < ActionController::TestCase
   test "a signed in user should NOT be able to change their admin or active status" do
     sign_in users(:user)
 
-    patch :update, { id: 2, user: { role: 'admin', current_password: "12345678" }, locale: :en }
+    patch :update, id: 2, user: { role: 'admin', current_password: "12345678" }, locale: :en
     assert users(:user).is_admin? == false
 
     assert_redirected_to root_path

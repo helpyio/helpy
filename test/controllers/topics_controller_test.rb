@@ -86,7 +86,7 @@ class TopicsControllerTest < ActionController::TestCase
   test 'a browsing user should not be able to vote' do
     assert_difference 'Topic.find(5).points', 0 do
       get :index, forum_id: 3, locale: :en
-      xhr :post, :up_vote, { id: 5, locale: :en }
+      xhr :post, :up_vote, id: 5, locale: :en
     end
   end
 
@@ -209,7 +209,7 @@ class TopicsControllerTest < ActionController::TestCase
     sign_in users(:user)
     assert_difference 'Topic.find(5).points', 1 do
       get :index, forum_id: 3, locale: :en
-      xhr :post, :up_vote, { id: 5, locale: :en }
+      xhr :post, :up_vote, id: 5, locale: :en
     end
   end
 

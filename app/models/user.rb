@@ -113,13 +113,13 @@ class User < ActiveRecord::Base
   scope :by_role, ->(role) { where(role: role) }
 
   def set_role_on_invitation_accept
-    self.role = self.role.presence || "agent"
+    self.role = role.presence || "agent"
     self.active = true
-    self.save
+    save
   end
 
   def enable_notifications_for_admin
-    if self.role == "admin"
+    if role == "admin"
       self.notify_on_private = true
       self.notify_on_public = true
       self.notify_on_reply = true
@@ -139,11 +139,11 @@ class User < ActiveRecord::Base
   end
 
   def active_assigned_count
-    Topic.where(assigned_user_id: self.id).active.count
+    Topic.where(assigned_user_id: id).active.count
   end
 
   def is_restricted?
-    self.team_list.count > 0 && !self.is_admin?
+    team_list.count > 0 && !is_admin?
   end
 
   def self.create_password
@@ -151,11 +151,11 @@ class User < ActiveRecord::Base
   end
 
   def thumbnail_url
-    self.thumbnail.blank? ? self.gravatar_url(size: 60) : self.thumbnail
+    thumbnail.blank? ? gravatar_url(size: 60) : thumbnail
   end
 
   def image_url
-    self.medium_image || self.gravatar_url(size: 60)
+    medium_image || gravatar_url(size: 60)
   end
 
   def self.find_for_oauth(auth)
@@ -197,9 +197,9 @@ class User < ActiveRecord::Base
     self.reset_password_token = enc
     self.reset_password_sent_at = Time.now.utc
 
-    self.login = self.email.split("@")[0]
+    self.login = email.split("@")[0]
     self.password = User.create_password
-    self.save
+    save
   end
 
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
@@ -207,15 +207,15 @@ class User < ActiveRecord::Base
   # Utility methods for checking the role of an admin:
 
   def is_admin?
-    self.role == 'admin'
+    role == 'admin'
   end
 
   def is_agent?
-    %w(agent admin).include?(self.role)
+    %w(agent admin).include?(role)
   end
 
   def is_editor?
-    %w(editor agent admin).include?(self.role)
+    %w(editor agent admin).include?(role)
   end
 
   def self.bulk_invite(emails, message, role)
@@ -224,13 +224,12 @@ class User < ActiveRecord::Base
 
     emails.each do |email|
       is_valid_email = email.match('^.+@.+$')
-      if is_valid_email
-        User.invite!({ email: email }) do |user|
-          user.invitation_message = message
-          user.name = "Invited User: #{email}"
-          user.role = role
-          user.active = false
-        end
+      next unless is_valid_email
+      User.invite!(email: email) do |user|
+        user.invitation_message = message
+        user.name = "Invited User: #{email}"
+        user.role = role
+        user.active = false
       end
     end
   end
@@ -242,7 +241,7 @@ class User < ActiveRecord::Base
 
   # check if user is active or not
   def active_for_authentication?
-    super && self.active?
+    super && active?
   end
 
   # message to the user that is not allowed to login
@@ -266,9 +265,7 @@ class User < ActiveRecord::Base
     usr.email = email
     usr.name = user_name
     usr.password = User.create_password
-    if usr.save
-      UserMailer.new_user(usr.id, token).deliver_later
-    end
+    UserMailer.new_user(usr.id, token).deliver_later if usr.save
 
     usr
   end

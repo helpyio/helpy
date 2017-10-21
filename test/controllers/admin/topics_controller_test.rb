@@ -49,7 +49,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to see a list of topics via standard request" do
       sign_in users(admin.to_sym)
 
-      get :index, { status: "open" }
+      get :index, status: "open"
       assert_not_nil assigns(:topics)
       assert_template "admin/topics/index"
       assert_response :success
@@ -65,7 +65,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       topic.team_list = "test"
       topic.save!
 
-      get :index, { status: "open", team: 'test' }
+      get :index, status: "open", team: 'test'
       assert_not_nil assigns(:topics)
       assert_equal 1, assigns(:topics).size
       assert_template "admin/topics/index"
@@ -84,7 +84,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to see a specific topic of each type via standard request" do
       sign_in users(admin.to_sym)
       [3, 7].each do |topic_id|
-        get :show, { id: topic_id }
+        get :show, id: topic_id
         assert_not_nil assigns(:topic)
         assert_template "admin/topics/show"
         assert_response :success
@@ -94,7 +94,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to see a specific topic of each type via ajax" do
       sign_in users(admin.to_sym)
       [3, 7].each do |topic_id|
-        xhr :get, :show, { id: topic_id }
+        xhr :get, :show, id: topic_id
         assert_not_nil assigns(:topic)
         assert_template "admin/topics/show"
         assert_response :success
@@ -106,7 +106,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to assign an unassigned discussion" do
       sign_in users(admin.to_sym)
       assert_difference "Post.count", 1 do
-        xhr :get, :assign_agent, { topic_ids: [1], assigned_user_id: 1 }
+        xhr :get, :assign_agent, topic_ids: [1], assigned_user_id: 1
       end
       assert_response :success
     end
@@ -114,7 +114,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to assign a previously assigned discussion" do
       sign_in users(admin.to_sym)
       assert_difference "Post.count", 1 do
-        xhr :get, :assign_agent, { topic_ids: [3], assigned_user_id: 1 }
+        xhr :get, :assign_agent, topic_ids: [3], assigned_user_id: 1
       end
       assert_response :success
     end
@@ -122,7 +122,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to assign multiple tickets" do
       sign_in users(admin.to_sym)
       assert_difference "Post.count", 2 do
-        xhr :get, :assign_agent, { topic_ids: [3, 2], assigned_user_id: 1 }
+        xhr :get, :assign_agent, topic_ids: [3, 2], assigned_user_id: 1
       end
       assert_response :success
     end
@@ -130,7 +130,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} assigning a discussion to a different agent should create a note" do
       sign_in users(admin.to_sym)
       assert_difference "Post.count", 1 do
-        xhr :get, :assign_agent, { assigned_user_id: 1, topic_ids: [1] }
+        xhr :get, :assign_agent, assigned_user_id: 1, topic_ids: [1]
       end
       assert_response :success
     end
@@ -143,7 +143,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to change an open ticket to closed" do
       sign_in users(admin.to_sym)
       assert_difference("Post.count") do
-        xhr :get, :update_topic, { topic_ids: [2], change_status: "closed" }
+        xhr :get, :update_topic, topic_ids: [2], change_status: "closed"
       end
       assert_response :success
     end
@@ -151,7 +151,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to change a closed ticket to open" do
       sign_in users(admin.to_sym)
       assert_difference("Post.count") do
-        xhr :get, :update_topic, { topic_ids: [3], change_status: "reopen" }
+        xhr :get, :update_topic, topic_ids: [3], change_status: "reopen"
       end
       assert_response :success
       assert_template layout: nil
@@ -159,7 +159,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to change an open ticket to spam" do
       sign_in users(admin.to_sym)
-      xhr :get, :update_topic, { topic_ids: [2], change_status: "spam" }
+      xhr :get, :update_topic, topic_ids: [2], change_status: "spam"
       assert_response :success
       assert_template layout: nil
     end
@@ -167,7 +167,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to change the status of multiple topics at once" do
       sign_in users(admin.to_sym)
       assert_difference("Post.count", 2) do
-        xhr :get, :update_topic, { topic_ids: [2, 3], change_status: "closed" }
+        xhr :get, :update_topic, topic_ids: [2, 3], change_status: "closed"
       end
       assert_response :success
     end
@@ -175,7 +175,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to merge multiple topics into one" do
       sign_in users(admin.to_sym)
       assert_difference("Topic.count", 1) do
-        xhr :get, :merge_tickets, { topic_ids: [2, 3] }
+        xhr :get, :merge_tickets, topic_ids: [2, 3]
       end
       assert_response :success
     end
@@ -184,7 +184,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to assign and change tags for a topic" do
       sign_in users(admin.to_sym)
-      xhr :patch, :update_tags, { id: 2, topic: { tag_list: 'hello, hi' } }
+      xhr :patch, :update_tags, id: 2, topic: { tag_list: 'hello, hi' }
       assert_equal 2, Topic.find(2).tag_list.count
       assert_equal true, Topic.find(2).tag_list.include?("hi")
     end
@@ -194,7 +194,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       t = Topic.find(2)
       t.tag_list = "tag1, tag2"
       t.save
-      xhr :patch, :update_tags, { id: 2, topic: { tag_list: '' } }
+      xhr :patch, :update_tags, id: 2, topic: { tag_list: '' }
       assert_equal 0, Topic.find(2).tag_list.count
     end
 
@@ -295,14 +295,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to assign_team of a topic" do
       sign_in users(admin.to_sym)
-      xhr :get, :assign_team, { topic_ids: [1], team: "test" }
+      xhr :get, :assign_team, topic_ids: [1], team: "test"
       assert_equal ["test"], Topic.find(1).team_list
     end
 
     test "an #{admin} should be able to unassign_team of a topic" do
       Topic.find(1).team_list = "test"
       sign_in users(admin.to_sym)
-      xhr :get, :unassign_team, { topic_ids: [1] }
+      xhr :get, :unassign_team, topic_ids: [1]
       assert_equal [], Topic.find(1).team_list
     end
 
@@ -334,7 +334,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     topic.team_list = "test"
     topic.save!
 
-    get :index, { status: "open" }
+    get :index, status: "open"
     assert_not_nil assigns(:topics)
     assert_equal 1, assigns(:topics).size
     assert_template "admin/topics/index"
@@ -354,7 +354,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     topic.team_list = "aomething else"
     topic.save!
 
-    get :index, { status: "open" }
+    get :index, status: "open"
     assert_equal 0, assigns(:topics).size
     assert_template "admin/topics/index"
     assert_response :success
@@ -373,7 +373,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     topic.team_list = "aomething else"
     topic.save!
 
-    get :show, { id: topic.id }
+    get :show, id: topic.id
     assert_template "admin/topics/show"
     assert_response 403
   end
@@ -382,7 +382,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to see a list of topics via standard request" do
       sign_in users(unauthorized.to_sym)
 
-      get :index, { status: "open" }
+      get :index, status: "open"
       assert_nil assigns(:topics)
       assert_response :redirect
     end
@@ -390,7 +390,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to see a specific topic of each type via standard request" do
       sign_in users(unauthorized.to_sym)
       [3, 7].each do |topic_id|
-        get :show, { id: topic_id }
+        get :show, id: topic_id
         assert_nil assigns(:topic)
         assert_response :redirect
       end

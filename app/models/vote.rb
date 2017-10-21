@@ -21,7 +21,7 @@ class Vote < ActiveRecord::Base
   protected
 
   def increment_points_cache
-    votable_class = self.class.const_get(self.voteable_type.to_sym)
-    votable_class.update_counters(self.voteable_id, points: self.points)
+    votable_class = self.class.const_get(voteable_type.to_sym)
+    votable_class.update_counters(voteable_id, points: points)
   end
 end

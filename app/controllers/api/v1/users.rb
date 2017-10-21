@@ -14,20 +14,16 @@ module API
         paginate per_page: 20
 
         # LIST ALL USERS
-        desc "List all users", {
-          entity: Entity::User,
-          notes: "List all users"
-        }
+        desc "List all users", entity: Entity::User,
+                               notes: "List all users"
         get "", root: :users do
           users = User.all
           present users, with: Entity::User
         end
 
         # SEARCH USERS
-        desc "Search users by name, email, account number, phone, etc.", {
-          entity: Entity::User,
-          notes: "Returns a list of matching users"
-        }
+        desc "Search users by name, email, account number, phone, etc.", entity: Entity::User,
+                                                                         notes: "Returns a list of matching users"
         params do
           requires :q, type: String, desc: "User search query"
         end
@@ -37,10 +33,8 @@ module API
         end
 
         # SHOW USER
-        desc "Show details of a user", {
-          entity: Entity::User,
-          notes: "Show details of a user"
-        }
+        desc "Show details of a user", entity: Entity::User,
+                                       notes: "Show details of a user"
         params do
           requires :id, type: Integer, desc: "User ID"
         end
@@ -50,10 +44,8 @@ module API
         end
 
         # CREATE A USER
-        desc "Create a new user", {
-          entity: Entity::User,
-          notes: "Create a new user"
-        }
+        desc "Create a new user", entity: Entity::User,
+                                  notes: "Create a new user"
         params do
           requires :name, type: String, desc: "Users full name"
           requires :email, type: String, desc: "Users email address"
@@ -62,7 +54,7 @@ module API
           # optional :admin, type: Boolean, desc: "Admin Status"
           optional :bio, type: String, desc: "Users bio"
           optional :signature, type: String, desc: "Users signature"
-          optional :role, type: String, desc: "Users role", values: ['user', 'editor', 'agent', 'admin'], default: 'user'
+          optional :role, type: String, desc: "Users role", values: %w[user editor agent admin], default: 'user'
           optional :home_phone, type: String, desc: "Users home phone"
           optional :work_phone, type: String, desc: "Users work phone"
           optional :cell_phone, type: String, desc: "Users cell phone"
@@ -77,7 +69,7 @@ module API
           optional :linkedin, type: String, desc: "Users Linkedin username"
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated", default: true
-          optional :priority, type: String, desc: "Users Priority", values: ['low', 'normal', 'high', 'vip'], default: 'normal'
+          optional :priority, type: String, desc: "Users Priority", values: %w[low normal high vip], default: 'normal'
         end
         post "", root: :users do
           user = User.create!(
@@ -109,10 +101,8 @@ module API
         end
 
         # UPDATE A USER
-        desc "Update a user", {
-          entity: Entity::User,
-          notes: "Update a user"
-        }
+        desc "Update a user", entity: Entity::User,
+                              notes: "Update a user"
         params do
           requires :id, type: Integer, desc: "User ID"
           requires :name, type: String, desc: "Users full name"
@@ -123,7 +113,7 @@ module API
           # optional :admin, type: Boolean, desc: "Admin Status"
           optional :bio, type: String, desc: "Users bio"
           optional :signature, type: String, desc: "Users signature"
-          optional :role, type: String, desc: "Users role", values: ['user', 'editor', 'agent', 'admin'], default: 'user'
+          optional :role, type: String, desc: "Users role", values: %w[user editor agent admin], default: 'user'
           optional :home_phone, type: String, desc: "Users home phone"
           optional :work_phone, type: String, desc: "Users work phone"
           optional :cell_phone, type: String, desc: "Users cell phone"

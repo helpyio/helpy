@@ -11,7 +11,7 @@ module Helpy
   class Application < Rails::Application
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
     config.assets.paths << Rails.root.join("public", 'uploads', 'logos')
-    config.exceptions_app = self.routes
+    config.exceptions_app = routes
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]

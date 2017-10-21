@@ -74,17 +74,17 @@ module UsersHelper
   def avatar_image(user, size = 40, font = 16)
     return if user.nil?
     if user.avatar.present?
-      unless Cloudinary.config.cloud_name.nil?
-        image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')
+      if Cloudinary.config.cloud_name.nil?
+        image_tag('', data: { name: user.name.to_s, width: size.to_s, height: size.to_s, 'font-size' => font, 'char-count' => 2 }, class: 'profile img-circle')
       else
-        image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => font, 'char-count' => 2 }, class: 'profile img-circle')
+        image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')
       end
     elsif user.profile_image.present?
       image_tag(user.profile_image.url, width: "#{size}px", class: 'img-circle')
     elsif user.thumbnail.present?
       image_tag(user.thumbnail, width: "#{size}px", class: 'img-circle')
     else
-      image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => font, 'char-count' => 2 }, class: 'profile img-circle')
+      image_tag('', data: { name: user.name.to_s, width: size.to_s, height: size.to_s, 'font-size' => font, 'char-count' => 2 }, class: 'profile img-circle')
     end
   end
 end

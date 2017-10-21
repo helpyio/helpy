@@ -296,7 +296,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     post "/api/v1/tickets/update_tags/#{ticket.id}.json", @default_params.merge(params)
 
     object = JSON.parse(last_response.body)
-    assert_equal ['tag1', 'tag2'], object['tag_list']
+    assert_equal %w[tag1 tag2], object['tag_list']
     assert_equal 2, object['tag_list'].count
   end
 

@@ -25,10 +25,10 @@ class Admin::PostsController < Admin::BaseController
 
     respond_to do |format|
       if @post.save
-        format.html {
+        format.html do
           redirect_to admin_topic_path(@post.topic_id)
-        }
-        format.js {
+        end
+        format.js do
           if params[:post][:resolved] == "1"
             @topic.close(current_user.id)
             tracker("Agent: #{current_user.name}", "Closed", @topic.to_param) # TODO: Need minutes
@@ -45,12 +45,12 @@ class Admin::PostsController < Admin::BaseController
             tracker("Agent: #{current_user.name}", "Agent Posted Note", @topic.to_param) # TODO: Need minutes
           end
           render 'admin/topics/show'
-        }
+        end
       else
         format.html { render :action => "new" }
-        format.js {
+        format.js do
           render 'admin/topics/show'
-        }
+        end
       end
     end
   end

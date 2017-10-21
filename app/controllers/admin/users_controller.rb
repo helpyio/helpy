@@ -46,22 +46,22 @@
 
 class Admin::UsersController < Admin::BaseController
   before_action :verify_agent
-  before_action :verify_admin, only: ['invite', 'invite_users']
+  before_action :verify_admin, only: %w[invite invite_users]
   before_action :fetch_counts, :only => ['show']
   before_action :get_all_teams
   respond_to :html, :js
 
   def index
-    @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
-    if params[:role].present?
-      if params[:role] == 'team'
-        @users = User.team.all.page params[:page]
-      else
-        @users = User.by_role(params[:role]).all.page params[:page]
-      end
-    else
-      @users = User.all.page params[:page]
-    end
+    @roles = [%w[Team team], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+    @users = if params[:role].present?
+               if params[:role] == 'team'
+                 User.team.all.page params[:page]
+               else
+                 User.by_role(params[:role]).all.page params[:page]
+               end
+             else
+               User.all.page params[:page]
+             end
     @user = User.new
   end
 
@@ -101,28 +101,27 @@ class Admin::UsersController < Admin::BaseController
 
       # TODO: Refactor this to use an index method/view on the users model
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to admin_root_path
-        }
-        format.js {
+        end
+        format.js do
           render 'admin/users/show'
-        }
+        end
       end
     else
       render :profile
     end
   end
 
-  def invite
-  end
+  def invite; end
 
   def invite_users
     User.bulk_invite(params["invite.emails"], params["invite.message"], params["role"]) if params["invite.emails"].present?
 
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to admin_users_path
-      }
+      end
       format.js {}
     end
   end

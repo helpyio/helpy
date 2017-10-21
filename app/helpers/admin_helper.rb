@@ -27,7 +27,7 @@ module AdminHelper
               end
         val = []
         Doc.replies.with_translations(locale).all.each do |doc|
-          body = (strip_tags(doc.body)).gsub(/\'/, '&#39;')
+          body = strip_tags(doc.body).gsub(/\'/, '&#39;')
           val.push([doc.title, body])
         end
         grouped_options[key] = val
@@ -78,12 +78,12 @@ module AdminHelper
   def settings_blurb(title, description, link = "#")
     content_tag(:div, class: 'media-body') do
       concat content_tag(:h4, settings_title_link(title, link), class: "#{settings_link(link)} more-important media-heading")
-      concat content_tag(:p, "#{description}", class: 'less-important')
+      concat content_tag(:p, description.to_s, class: 'less-important')
     end
   end
 
   def settings_title_link(title, link = "#")
-    link_to t(title.to_sym, default: "#{title.capitalize}"), link, class: "#{settings_link(link)} active-settings-link", "data-target" => "#{title}"
+    link_to t(title.to_sym, default: title.capitalize.to_s), link, class: "#{settings_link(link)} active-settings-link", "data-target" => title.to_s
   end
 
   def settings_menu_item(icon, title, link = '#')
@@ -193,17 +193,17 @@ module AdminHelper
   def user_page_title_text(role)
     case role
     when 'user'
-      "#{t(:user_role).pluralize(2)}"
+      t(:user_role).pluralize(2).to_s
     when 'agent'
-      "#{t(:agent_role).pluralize(2)}"
+      t(:agent_role).pluralize(2).to_s
     when 'editor'
-      "#{t(:editor_role).pluralize(2)}"
+      t(:editor_role).pluralize(2).to_s
     when 'admin'
-      "#{t(:admin_role).pluralize(2)}"
+      t(:admin_role).pluralize(2).to_s
     when 'team'
       "Team"
     else
-      "#{t(:users)}"
+      t(:users).to_s
     end
   end
 
@@ -242,7 +242,7 @@ module AdminHelper
 
   def list_tags(topic)
     topic.tag_list.each do |tag|
-      concat content_tag(:li, "#{tag}", class: 'label label-tag topic-tag', style: 'margin-right:3px;')
+      concat content_tag(:li, tag.to_s, class: 'label label-tag topic-tag', style: 'margin-right:3px;')
     end
   end
 

@@ -48,7 +48,7 @@ AppSettings.defaults["theme.active"] = "light"
 # i18n:
 
 AppSettings.defaults["i18n.default_locale"] = "en"
-AppSettings.defaults["i18n.available_locales"] = ["en", "es", "fr", "de"]
+AppSettings.defaults["i18n.available_locales"] = %w[en es fr de]
 
 # Widget:
 

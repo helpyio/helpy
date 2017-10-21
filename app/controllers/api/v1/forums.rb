@@ -11,20 +11,16 @@ module API
         # throttle max: 200, per: 1.minute
 
         # LIST ALL FORUMS
-        desc "List all forums", {
-          entity: Entity::Forum,
-          notes: "List all Forums"
-        }
+        desc "List all forums", entity: Entity::Forum,
+                                notes: "List all Forums"
         get "", root: :forums do
           forums = Forum.all
           present forums, with: Entity::Forum
         end
 
         # SHOW ONE FORUM
-        desc "Show one forum", {
-          entity: Entity::Forum,
-          notes: "Returns details of one forum, including topics"
-        }
+        desc "Show one forum",           entity: Entity::Forum,
+                                         notes: "Returns details of one forum, including topics"
         params do
           requires :id, type: String, desc: "ID of the forum"
           optional :topics_limit, type: Integer, desc: "How many topics to return"
@@ -35,10 +31,8 @@ module API
         end
 
         # CREATE NEW FORUM
-        desc "Create a new forum", {
-          entity: Entity::Forum,
-          notes: "Create a new forum"
-        }
+        desc "Create a new forum", entity: Entity::Forum,
+                                   notes: "Create a new forum"
         params do
           requires :name, type: String, desc: "The name of the forum"
           requires :description, type: String, desc: "The description of the forum"
@@ -58,10 +52,8 @@ module API
         end
 
         # UPDATE EXISTING FORUM
-        desc "Update a forum", {
-          entity: Entity::Forum,
-          notes: "Update a forum"
-        }
+        desc "Update a forum", entity: Entity::Forum,
+                               notes: "Update a forum"
         params do
           requires :id, type: Integer, desc: "The ID of the forum you are updating"
           requires :name, type: String, desc: "The name of the forum"

@@ -33,7 +33,7 @@ class Forum < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 1000 }
 
   def total_posts
-    self.posts.count
+    posts.count
   end
 
   def to_param

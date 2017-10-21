@@ -89,70 +89,70 @@ class Topic < ActiveRecord::Base
   end
 
   def email_subject
-    "##{self.id} | #{self.name}"
+    "##{id} | #{name}"
   end
 
   def assigned?
-    self.assigned_user_id.present?
+    assigned_user_id.present?
   end
 
   def open?
-    self.current_status == "open"
+    current_status == "open"
   end
 
   def open
     self.current_status = "pending"
-    self.save
+    save
   end
 
   def reopen(user_id = 2)
-    self.posts.create(body: I18n.t(:reopen_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
+    posts.create(body: I18n.t(:reopen_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "open"
-    self.save
+    save
   end
 
   def self.bulk_reopen(post_attributes)
     Post.bulk_insert values: post_attributes
-    self.update_all(current_status: 'open')
+    update_all(current_status: 'open')
   end
 
   def close(user_id = 2)
-    self.posts.create(body: I18n.t(:closed_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
+    posts.create(body: I18n.t(:closed_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "closed"
     self.closed_date = Time.current
-    self.save
+    save
   end
 
   def self.bulk_close(post_attributes)
     Post.bulk_insert values: post_attributes
-    self.update_all(current_status: 'closed', closed_date: Time.current)
+    update_all(current_status: 'closed', closed_date: Time.current)
   end
 
   def trash(user_id = 2)
-    self.posts.create(body: I18n.t(:trash_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
+    posts.create(body: I18n.t(:trash_message, user_name: User.find(user_id).name), kind: 'note', user_id: user_id)
     self.current_status = "trash"
     self.closed_date = Time.current
     self.forum_id = 2
     self.private = true
     self.assigned_user_id = nil
-    self.save
+    save
   end
 
   def self.bulk_trash(post_attributes)
     Post.bulk_insert values: post_attributes
-    self.update_all(current_status: 'trash', forum_id: 2, private: true, assigned_user_id: nil, closed_date: Time.current)
+    update_all(current_status: 'trash', forum_id: 2, private: true, assigned_user_id: nil, closed_date: Time.current)
   end
 
   def assign(user_id = 2, assigned_to)
-    self.posts.create(body: I18n.t(:assigned_message, assigned_to: User.find(assigned_to).name), kind: 'note', user_id: user_id)
+    posts.create(body: I18n.t(:assigned_message, assigned_to: User.find(assigned_to).name), kind: 'note', user_id: user_id)
     self.assigned_user_id = assigned_to
     self.current_status = 'pending'
-    self.save
+    save
   end
 
   def self.bulk_agent_assign(post_attributes, assigned_to)
     Post.bulk_insert values: post_attributes
-    self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+    update_all(assigned_user_id: assigned_to, current_status: 'pending')
   end
 
   def self.bulk_group_assign(post_attributes, assigned_group)
@@ -171,7 +171,7 @@ class Topic < ActiveRecord::Base
   # Callback method to check and see if this topic is in a private forum
   def check_for_private
     # association is not working
-    f = Forum.find(self.forum_id)
+    f = Forum.find(forum_id)
     self.private = true if f.private?
   end
 
@@ -183,18 +183,18 @@ class Topic < ActiveRecord::Base
   def create_topic_with_user(params, current_user)
     self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email])
 
-    unless self.user # User not found, lets build it
-      self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
+    unless user # User not found, lets build it
+      build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
     end
-    self.user.persisted? && self.save
+    user.persisted? && save
   end
 
   def create_topic_with_webhook_user(params)
     self.user = User.find_by_email(params['customer']['emailAddress'])
-    unless self.user # User not found, lets craete it from olark params
+    unless user # User not found, lets craete it from olark params
       @token, enc = Devise.token_generator.generate(User, :reset_password_token)
 
-      @user = self.build_user
+      @user = build_user
       @user.reset_password_token = enc
       @user.reset_password_sent_at = Time.now.utc
 
@@ -205,7 +205,7 @@ class Topic < ActiveRecord::Base
       @user.password = User.create_password
       @user.save
     end
-    self.user.persisted? && self.save
+    user.persisted? && save
   end
 
   def self.create_comment_thread(doc_id, user_id)
@@ -228,11 +228,11 @@ class Topic < ActiveRecord::Base
 
     if @topic.save
       @merge_topics.each_with_index do |t, i|
-        if i == 0
-          @topic.posts << t.posts
-        else
-          @topic.posts << t.posts.where.not(kind: 'first').all
-        end
+        @topic.posts << if i == 0
+                          t.posts
+                        else
+                          t.posts.where.not(kind: 'first').all
+                        end
         topics_merged << "#{t.name}\n"
       end
 
@@ -252,9 +252,9 @@ class Topic < ActiveRecord::Base
 
   def from_email_address
     system_from_email = %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>)
-    return system_from_email if self.team_list.blank?
+    return system_from_email if team_list.blank?
 
-    team = ActsAsTaggableOn::Tag.where('lower(name) = ?', self.team_list.first.downcase).first
+    team = ActsAsTaggableOn::Tag.where('lower(name) = ?', team_list.first.downcase).first
     if team.email_address.present?
       %("#{team.email_name}" <#{team.email_address}>)
     else
@@ -265,8 +265,8 @@ class Topic < ActiveRecord::Base
   private
 
   def cache_user_name
-    if self.user.name.present?
-      self.user_name = self.user.name
+    if user.name.present?
+      self.user_name = user.name
     else
       "NA"
     end

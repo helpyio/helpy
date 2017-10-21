@@ -11,10 +11,8 @@ module API
         # throttle max: 200, per: 1.minute
 
         # SHOW A SINGLE DOC
-        desc "Shows a single doc", {
-          entity: Entity::Doc,
-          notes: "Returns the full content of one doc"
-        }
+        desc "Shows a single doc", entity: Entity::Doc,
+                                   notes: "Returns the full content of one doc"
         params do
           requires :id, type: String, desc: "ID of the doc to show"
           optional :category, type: Boolean, desc: "Whether to return the category object in full"
@@ -25,10 +23,8 @@ module API
         end
 
         # CREATE NEW DOC
-        desc "Create a new doc", {
-          entity: Entity::Doc,
-          notes: "Create a new doc"
-        }
+        desc "Create a new doc", entity: Entity::Doc,
+                                 notes: "Create a new doc"
         params do
           requires :title, type: String, desc: "The name of the articles"
           requires :category_id, type: Integer, desc: "The category the doc belongs to"
@@ -58,10 +54,8 @@ module API
         end
 
         # UPDATE EXISTING DOC
-        desc "Update a doc", {
-          entity: Entity::Doc,
-          notes: "Update a doc"
-        }
+        desc "Update a doc", entity: Entity::Doc,
+                             notes: "Update a doc"
         params do
           requires :id, type: Integer, desc: "The ID of the Doc being updated"
           optional :title, type: String, desc: "The name of the category of articles"

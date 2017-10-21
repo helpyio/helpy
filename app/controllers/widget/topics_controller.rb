@@ -32,7 +32,7 @@ class Widget::TopicsController < Widget::BaseController
         :kind => 'first'
       )
 
-      if !user_signed_in?
+      unless user_signed_in?
         UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
       end
 

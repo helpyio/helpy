@@ -45,7 +45,7 @@ class PostsControllerTest < ActionController::TestCase
   test "a browsing user should not be able to vote" do
     assert_difference "Post.find(6).points", 0 do
       get :index, forum_id: 3, locale: :en
-      xhr :post, :up_vote, { id: 6, locale: :en }
+      xhr :post, :up_vote, id: 6, locale: :en
     end
   end
 

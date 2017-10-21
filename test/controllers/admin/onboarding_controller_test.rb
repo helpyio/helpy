@@ -43,15 +43,13 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
   test "a new admin should be able to update their email and password" do
     sign_in users(:admin)
 
-    patch :update_user, {
-      id: 1,
-      user: {
-        name: "something",
-        email: "something@test.com",
-        company: "company",
-        password: "12345678"
-      }
-    }
+    patch :update_user, id: 1,
+                        user: {
+                          name: "something",
+                          email: "something@test.com",
+                          company: "company",
+                          password: "12345678"
+                        }
 
     user = User.find(1)
     assert user.name == "something", "name does not update"

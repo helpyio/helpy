@@ -19,7 +19,7 @@ class ApiKey < ActiveRecord::Base
   scope :active, -> { where(date_expired: nil) }
 
   def expired?
-    self.date_expired.present?
+    date_expired.present?
   end
 
   private

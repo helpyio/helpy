@@ -1,6 +1,6 @@
 class Admin::DocsController < Admin::BaseController
   before_action :verify_editor
-  respond_to :html, only: ['new', 'edit', 'create']
+  respond_to :html, only: %w[new edit create]
   respond_to :js, only: ['destroy']
 
   def new
@@ -27,24 +27,22 @@ class Admin::DocsController < Admin::BaseController
   end
 
   def update
-    unless params['lang'].nil?
-      I18n.locale = params['lang']
-    end
+    I18n.locale = params['lang'] unless params['lang'].nil?
     @doc = Doc.where(id: params[:id]).first
     @category = @doc.category
     # @doc.tag_list = params[:doc][:tag_list]
     if @doc.update_attributes(doc_params)
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to(admin_category_path(@category.id))
-        }
+        end
         format.js {}
       end
     else
       respond_to do |format|
-        format.html {
+        format.html do
           render 'edit', id: @doc
-        }
+        end
       end
     end
   end

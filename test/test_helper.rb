@@ -70,7 +70,7 @@ def set_default_settings
   AppSettings['css.form_background'] = 'F0FFF0'
   AppSettings['css.still_need_help'] = 'ffdf91'
   AppSettings['i18n.default_locale'] = 'en'
-  AppSettings['i18n.available_locales'] = ['en', 'fr', 'de', 'et']
+  AppSettings['i18n.available_locales'] = %w[en fr de et]
   AppSettings['widget.show_on_support_site'] = 'true'
   AppSettings['email.admin_email'] = Settings.admin_email
   AppSettings['email.from_email'] = Settings.from_email

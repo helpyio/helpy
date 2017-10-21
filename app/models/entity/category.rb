@@ -3,7 +3,8 @@ module Entity
     expose :id, documentation: { type: 'Integer', desc: 'Category ID' }
     expose :slug do |category|
       category.to_param
-    end # , documentation: {type: 'String', desc: 'Parameterised Category ID'}
+    end
+    # , documentation: {type: 'String', desc: 'Parameterised Category ID'}
     expose :name, documentation: { type: 'String', desc: 'The name of the category of articles' }
     expose :icon, documentation: { type: 'String', desc: 'An icon that represents the category' }
     expose :keywords, documentation: { type: 'String', desc: 'Keywords that will be used for internal search and SEO' }

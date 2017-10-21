@@ -26,8 +26,8 @@
 
 class Admin::TopicsController < Admin::BaseController
   before_action :verify_agent
-  before_action :fetch_counts, only: ['index', 'show', 'update_topic', 'user_profile']
-  before_action :remote_search, only: ['index', 'show', 'update_topic']
+  before_action :fetch_counts, only: %w[index show update_topic user_profile]
+  before_action :remote_search, only: %w[index show update_topic]
   before_action :get_all_teams, except: ['shortcuts']
 
   respond_to :js, :html, only: :show
@@ -35,29 +35,29 @@ class Admin::TopicsController < Admin::BaseController
 
   def index
     @status = params[:status] || "pending"
-    if current_user.is_restricted? && teams?
-      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
-    else
-      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
-    end
+    topics_raw = if current_user.is_restricted? && teams?
+                   Topic.all.tagged_with(current_user.team_list, any: true)
+                 else
+                   params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
+                 end
     topics_raw = topics_raw.includes(user: :avatar_files).chronologic
     get_all_teams
-    case @status
-    when 'all'
-      topics_raw = topics_raw.all
-    when 'new'
-      topics_raw = topics_raw.unread
-    when 'active'
-      topics_raw = topics_raw.active
-    when 'unread'
-      topics_raw = topics_raw.unread.all
-    when 'assigned'
-      topics_raw = Topic.mine(current_user.id)
-    when 'pending'
-      topics_raw = Topic.pending.mine(current_user.id)
-    else
-      topics_raw = topics_raw.where(current_status: @status)
-    end
+    topics_raw = case @status
+                 when 'all'
+                   topics_raw.all
+                 when 'new'
+                   topics_raw.unread
+                 when 'active'
+                   topics_raw.active
+                 when 'unread'
+                   topics_raw.unread.all
+                 when 'assigned'
+                   Topic.mine(current_user.id)
+                 when 'pending'
+                   Topic.pending.mine(current_user.id)
+                 else
+                   topics_raw.where(current_status: @status)
+                 end
     @topics = topics_raw.page params[:page]
     tracker("Admin-Nav", "Click", @status.titleize)
   end
@@ -140,16 +140,16 @@ class Admin::TopicsController < Admin::BaseController
         # Now that we are rendering show, get the posts (just one)
         # TODO probably can refactor this
         @posts = @topic.posts.chronologic.includes(:user)
-        format.js {
+        format.js do
           render action: 'show', id: @topic
-        }
-        format.html {
+        end
+        format.html do
           render action: 'show', id: @topic
-        }
+        end
       else
-        format.html {
+        format.html do
           render action: 'new'
-        }
+        end
       end
     end
   end
@@ -165,7 +165,7 @@ class Admin::TopicsController < Admin::BaseController
 
     if params[:change_status].present?
 
-      if ["closed", "reopen", "trash"].include?(params[:change_status])
+      if %w[closed reopen trash].include?(params[:change_status])
         user_id = current_user.id || 2
         @topics.each do |topic|
           # prepare bulk params
@@ -198,14 +198,14 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     respond_to do |format|
-      format.js {
+      format.js do
         if params[:topic_ids].count > 1
           get_tickets
           render 'admin/topics/index'
         else
           render 'admin/topics/update_ticket', id: @topic.id
         end
-      }
+      end
     end
   end
 
@@ -242,14 +242,14 @@ class Admin::TopicsController < Admin::BaseController
     get_all_teams
     respond_to do |format|
       format.html # render action: 'ticket', id: @topic.id
-      format.js {
+      format.js do
         if params[:topic_ids].count > 1
           get_tickets
           render 'index'
         else
           render 'update_ticket', id: @topic.id
         end
-      }
+      end
     end
   end
 
@@ -261,11 +261,11 @@ class Admin::TopicsController < Admin::BaseController
     bulk_post_attributes = []
 
     @topics.each do |topic|
-      if topic.forum_id == 1
-        bulk_post_attributes << { body: I18n.t(:converted_to_ticket), kind: 'note', user_id: current_user.id, topic_id: topic.id }
-      else
-        bulk_post_attributes << { body: I18n.t(:converted_to_topic, forum_name: topic.forum.name), kind: 'note', user_id: current_user.id, topic_id: topic.id }
-      end
+      bulk_post_attributes << if topic.forum_id == 1
+                                { body: I18n.t(:converted_to_ticket), kind: 'note', user_id: current_user.id, topic_id: topic.id }
+                              else
+                                { body: I18n.t(:converted_to_topic, forum_name: topic.forum.name), kind: 'note', user_id: current_user.id, topic_id: topic.id }
+                              end
 
       # Calls to GA
       tracker("Agent: #{current_user.name}", "Moved to  #{topic.forum.name}", @topic.to_param, 0)
@@ -295,12 +295,12 @@ class Admin::TopicsController < Admin::BaseController
 
     if @topic.update_attributes(topic_params)
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to(@topic)
-        }
-        format.json {
+        end
+        format.json do
           respond_with_bip(@topic)
-        }
+        end
       end
     else
       logger.info("error")
@@ -323,12 +323,12 @@ class Admin::TopicsController < Admin::BaseController
       )
 
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to admin_topic_path(@topic)
-        }
-        format.js {
+        end
+        format.js do
           render 'update_ticket', id: @topic.id
-        }
+        end
       end
     else
       logger.info("error")
@@ -362,14 +362,14 @@ class Admin::TopicsController < Admin::BaseController
     get_all_teams
     respond_to do |format|
       format.html # render action: 'ticket', id: @topic.id
-      format.js {
+      format.js do
         if params[:topic_ids].count > 1
           get_tickets
           render 'index'
         else
           render 'update_ticket', id: @topic.id
         end
-      }
+      end
     end
   end
 
@@ -452,29 +452,29 @@ class Admin::TopicsController < Admin::BaseController
   private
 
   def get_tickets
-    if params[:status].nil?
-      @status = "pending"
-    else
-      @status = params[:status]
-    end
+    @status = if params[:status].nil?
+                "pending"
+              else
+                params[:status]
+              end
 
-    case @status
+    @topics = case @status
 
-    when 'all'
-      @topics = Topic.all.page params[:page]
-    when 'new'
-      @topics = Topic.unread.page params[:page]
-    when 'active'
-      @topics = Topic.active.page params[:page]
-    when 'unread'
-      @topics = Topic.unread.all.page params[:page]
-    when 'assigned'
-      @topics = Topic.mine(current_user.id).page params[:page]
-    when 'pending'
-      @topics = Topic.pending.mine(current_user.id).page params[:page]
-    else
-      @topics = Topic.where(current_status: @status).page params[:page]
-    end
+              when 'all'
+                Topic.all.page params[:page]
+              when 'new'
+                Topic.unread.page params[:page]
+              when 'active'
+                Topic.active.page params[:page]
+              when 'unread'
+                Topic.unread.all.page params[:page]
+              when 'assigned'
+                Topic.mine(current_user.id).page params[:page]
+              when 'pending'
+                Topic.pending.mine(current_user.id).page params[:page]
+              else
+                Topic.where(current_status: @status).page params[:page]
+              end
   end
 
   def topic_params

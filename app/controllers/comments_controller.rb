@@ -5,11 +5,11 @@ class CommentsController < ApplicationController
   # This method handles the first comment and subsequent replies, storing them
   # as a Topic with Posts
   def create
-    if !@doc.topic.present?
-      @topic = Topic.create_comment_thread(@doc.id, current_user.id)
-    else
-      @topic = Topic.where(doc_id: @doc.id).first
-    end
+    @topic = if !@doc.topic.present?
+               Topic.create_comment_thread(@doc.id, current_user.id)
+             else
+               Topic.where(doc_id: @doc.id).first
+             end
     @post = @topic.posts.new(comment_params)
     @post.user_id = current_user.id
     @post.screenshots = params[:post][:screenshots]
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
       :body,
       :kind,
       :user_id,
-      { attachments: [] }
+      attachments: []
     )
   end
 

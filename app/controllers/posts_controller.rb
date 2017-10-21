@@ -19,7 +19,7 @@
 
 class PostsController < ApplicationController
   # Make sure forums are enabled
-  before_action :forums_enabled?, only: ['index', 'show']
+  before_action :forums_enabled?, only: %w[index show]
 
   respond_to :js, only: [:up_vote]
   layout "clean", only: :index
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     if @topic
       @posts = @topic.posts.ispublic.active.all.chronologic.includes(:user)
       @post = @topic.posts.new
-      @page_title = "#{@topic.name}"
+      @page_title = @topic.name.to_s
       add_breadcrumb t(:community, default: "Community"), forums_path
       add_breadcrumb @topic.forum.name, forum_topics_path(@topic.forum)
       add_breadcrumb @topic.name
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html {
+        format.html do
           @posts = @topic.posts.ispublic.chronologic.active
           if @topic.public?
             # This is a forum post
@@ -59,14 +59,14 @@ class PostsController < ApplicationController
             tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) # TODO: Need minutes
             redirect_to ticket_path(@topic.id)
           end
-        }
-        format.js {
+        end
+        format.js do
           @posts = @topic.posts.ispublic.chronologic.active
           unless @topic.assigned_user_id.nil?
             agent = User.find(@topic.assigned_user_id)
             tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) # TODO: Need minutes
           end
-        }
+        end
       else
         format.html { render :action => "new" }
       end
@@ -87,7 +87,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :body,
       :kind,
-      { attachments: [] }
+      attachments: []
     )
   end
 end

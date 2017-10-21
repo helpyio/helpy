@@ -38,8 +38,7 @@ class Admin::ReportsController < Admin::BaseController
     @median_first_response_time = median(delays) unless delays.empty?
   end
 
-  def groups
-  end
+  def groups; end
 
   private
 

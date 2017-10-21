@@ -10,15 +10,15 @@ class Admin::BaseController < ApplicationController
   # agent is next and admin has access to everything:
 
   def verify_editor
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
+    current_user.nil? ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
   end
 
   def verify_agent
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
+    current_user.nil? ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
   end
 
   def verify_admin
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
+    current_user.nil? ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
   end
 
   def remote_search
@@ -33,17 +33,17 @@ class Admin::BaseController < ApplicationController
   end
 
   def date_from_params
-    if params[:start_date].present?
-      @start_date = params[:start_date].to_datetime
-    else
-      @start_date = Time.zone.today.at_beginning_of_week
-    end
+    @start_date = if params[:start_date].present?
+                    params[:start_date].to_datetime
+                  else
+                    Time.zone.today.at_beginning_of_week
+                  end
 
-    if params[:end_date].present?
-      @end_date = params[:end_date].to_datetime
-    else
-      @end_date = Time.zone.today.at_end_of_day
-    end
+    @end_date = if params[:end_date].present?
+                  params[:end_date].to_datetime
+                else
+                  Time.zone.today.at_end_of_day
+                end
   end
 
   def fetch_counts

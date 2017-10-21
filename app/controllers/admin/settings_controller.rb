@@ -1,5 +1,5 @@
 class Admin::SettingsController < Admin::BaseController
-  before_action :verify_admin, except: ['index', 'profile']
+  before_action :verify_admin, except: %w[index profile]
   before_action :verify_agent, only: ['index']
   skip_before_action :verify_authenticity_token
 
@@ -72,9 +72,9 @@ class Admin::SettingsController < Admin::BaseController
                         site_url: AppSettings['settings.site_url'],
                         default: "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}")
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to admin_settings_path
-      }
+      end
       format.js {}
     end
   end

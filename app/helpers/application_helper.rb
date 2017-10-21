@@ -28,7 +28,7 @@ module ApplicationHelper
   def flash_messages
     messages = []
     %w(notice warning error).each do |msg|
-      messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => 'flash-message', :class => "#{msg}") unless flash[msg.to_sym].blank?
+      messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => 'flash-message', :class => msg.to_s) unless flash[msg.to_sym].blank?
     end
     messages
   end
@@ -71,7 +71,7 @@ module ApplicationHelper
     tag += "<option value='#{I18n.locale}'>#{t('translate', default: 'Translate to a different language')}...</option>"
 
     AppSettings['i18n.available_locales'].sort.each do |locale|
-      selected = "selected" if "#{locale}" == params[:lang]
+      selected = "selected" if locale.to_s == params[:lang]
       I18n.with_locale(locale) do
         tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize}</option>" # unless locale == I18n.locale
       end
@@ -95,8 +95,8 @@ module ApplicationHelper
 
   def login_with(with, redirect_to = "/#{I18n.locale}")
     provider = (with == "google_oauth2") ? "google" : with
-    link_to(user_omniauth_authorize_path(with.to_sym, origin: redirect_to), class: ["btn", "btn-block", "btn-social", "oauth", "btn-#{provider}"], style: "color:white;", data: { provider: "#{provider}" }) do
-      content_tag(:span, '', { class: ["fa", "fa-#{provider}"] }).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
+    link_to(user_omniauth_authorize_path(with.to_sym, origin: redirect_to), class: ["btn", "btn-block", "btn-social", "oauth", "btn-#{provider}"], style: "color:white;", data: { provider: provider.to_s }) do
+      content_tag(:span, '', class: ["fa", "fa-#{provider}"]).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
     end
   end
 
@@ -122,7 +122,7 @@ module ApplicationHelper
 
   def css_injector
     styles = "<style>\n"
-    styles += "#{AppSettings['design.css']}"
+    styles += (AppSettings['design.css']).to_s
     styles += "\n</style>"
     styles.html_safe if AppSettings['design.css'] != ""
   end

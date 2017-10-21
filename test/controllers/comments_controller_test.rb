@@ -10,15 +10,15 @@ class CommentsControllerTest < ActionController::TestCase
   test 'a signed in user should be able to add a new comment and attach a file' do
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: 1, locale: :en,
-                        post: {
-                          body: "this is the body",
-                          kind: "first",
-                          attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
-                        },
-                        request: {
-                          origin: 'public'
-                        } }
+        post :create, doc_id: 1, locale: :en,
+                      post: {
+                        body: "this is the body",
+                        kind: "first",
+                        attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+                      },
+                      request: {
+                        origin: 'public'
+                      }
       end
     end
 
@@ -30,14 +30,14 @@ class CommentsControllerTest < ActionController::TestCase
   test 'a signed in user should be able to reply to a comment' do
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: 1, locale: :en,
-                        post: {
-                          body: "this is the body",
-                          kind: "first"
-                        },
-                        request: {
-                          origin: 'public'
-                        } }
+        post :create, doc_id: 1, locale: :en,
+                      post: {
+                        body: "this is the body",
+                        kind: "first"
+                      },
+                      request: {
+                        origin: 'public'
+                      }
       end
     end
 
@@ -52,15 +52,15 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 0, 'A topic should NOT have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: doc.id, locale: :en,
-                        post: {
-                          body: "this is the body",
-                          kind: "reply",
-                          attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
-                        },
-                        request: {
-                          origin: 'public'
-                        } }
+        post :create, doc_id: doc.id, locale: :en,
+                      post: {
+                        body: "this is the body",
+                        kind: "reply",
+                        attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+                      },
+                      request: {
+                        origin: 'public'
+                      }
       end
     end
 
@@ -76,14 +76,14 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 0, 'A topic should NOT have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: doc.id, locale: :en,
-                        post: {
-                          body: "this is the body",
-                          kind: "reply"
-                        },
-                        request: {
-                          origin: 'public'
-                        } }
+        post :create, doc_id: doc.id, locale: :en,
+                      post: {
+                        body: "this is the body",
+                        kind: "reply"
+                      },
+                      request: {
+                        origin: 'public'
+                      }
       end
     end
 

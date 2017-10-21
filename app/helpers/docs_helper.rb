@@ -26,7 +26,7 @@
 
 module DocsHelper
   def sanitize_doc_content(content)
-    "#{content}".html_safe
+    content.to_s.html_safe
   end
 
   def renderize_doc_title(title_tag, original_title)
