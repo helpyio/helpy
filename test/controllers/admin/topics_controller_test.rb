@@ -7,7 +7,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     set_default_settings
   end
 
-  %w(admin agent).each do |admin|
+  %w[admin agent].each do |admin|
     ### Topic split
     test "an #{admin} should be able to split a ticket" do
       sign_in users(admin.to_sym)
@@ -378,7 +378,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     assert_response 403
   end
 
-  %w(user editor).each do |unauthorized|
+  %w[user editor].each do |unauthorized|
     test "an #{unauthorized} should NOT be able to see a list of topics via standard request" do
       sign_in users(unauthorized.to_sym)
 

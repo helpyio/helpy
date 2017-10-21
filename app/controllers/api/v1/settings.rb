@@ -3,7 +3,7 @@ module API
     class Settings < Grape::API
       before do
         authenticate!
-        restrict_to_role %w(admin)
+        restrict_to_role %w[admin]
       end
 
       include API::V1::Defaults

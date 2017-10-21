@@ -13,7 +13,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  %w(user agent editor).each do |unauthorized|
+  %w[user agent editor].each do |unauthorized|
     # TODO: Temporarily disabled these cause they were failing even thought the
     # functionality works okay in the browser
 

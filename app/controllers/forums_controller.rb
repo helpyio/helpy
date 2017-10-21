@@ -30,6 +30,6 @@ class ForumsController < ApplicationController
   end
 
   def show
-    redirect_to topics_path(:forum_id => params[:id])
+    redirect_to topics_path(forum_id: params[:id])
   end
 end

@@ -62,14 +62,14 @@ class Admin::UsersControllerTest < ActionController::TestCase
     ActionDispatch::Http::UploadedFile.new(
       tempfile: file,
       filename: filename,
-      head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},
+      head: %(Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"),
       content_type: content_type
     )
   end
 
   # admins
 
-  %w(admin agent).each do |admin|
+  %w[admin agent].each do |admin|
     test "an #{admin} should be able to see a listing of users" do
       sign_in users(admin.to_sym)
       get :index
@@ -94,7 +94,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
         notify_on_public: false,
         notify_on_reply: false,
         password: '11223344',
-        password_confirmation: '11223344',
+        password_confirmation: '11223344'
       },
                      locale: :en
       u = User.find(6)
@@ -107,7 +107,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
       assert_equal false, u.notify_on_private, "notification did not update"
       assert_equal false, u.notify_on_public, "notification did not update"
       assert_equal false, u.notify_on_reply, "notification did not update"
-      assert_not_equal '$2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK' == u.encrypted_password, "password did not update"
+      assert_not_equal u.encrypted_password == '$2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK', "password did not update"
     end
 
     test "an #{admin} should be able to update a user and unchanged attributes should not change" do
@@ -167,7 +167,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     end
   end
 
-  %w(user editor agent).each do |unauthorized|
+  %w[user editor agent].each do |unauthorized|
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.admins.count", 0) do
@@ -176,7 +176,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     end
   end
 
-  %w(user editor).each do |unauthorized|
+  %w[user editor].each do |unauthorized|
     test "an #{unauthorized} should NOT be able to see the list of users" do
       sign_in users(unauthorized.to_sym)
       get :index

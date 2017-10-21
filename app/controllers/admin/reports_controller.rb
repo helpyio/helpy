@@ -91,7 +91,7 @@ class Admin::ReportsController < Admin::BaseController
     @total_activities = @scoped_posts.count
     filtered_stats = @scoped_stats.where("current_status = ? AND closed_date IS NOT NULL", 'closed')
     arr_time_differences = filtered_stats.map { |t| t.closed_date - t.created_at } unless filtered_stats.nil?
-    @median_close_time = median(arr_time_differences).round unless arr_time_differences.size == 0
+    @median_close_time = median(arr_time_differences).round unless arr_time_differences.empty?
   end
 
   def set_timezone

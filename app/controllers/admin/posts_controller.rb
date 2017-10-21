@@ -47,7 +47,7 @@ class Admin::PostsController < Admin::BaseController
           render 'admin/topics/show'
         end
       else
-        format.html { render :action => "new" }
+        format.html { render action: "new" }
         format.js do
           render 'admin/topics/show'
         end
@@ -137,7 +137,7 @@ class Admin::PostsController < Admin::BaseController
       { attachments: [] },
       :cc,
       :bcc,
-      :user_id,
+      :user_id
     )
   end
 
@@ -149,7 +149,7 @@ class Admin::PostsController < Admin::BaseController
     topic.posts.create(
       user: current_user,
       body: I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}"),
-      kind: "note",
+      kind: "note"
     )
   end
 end

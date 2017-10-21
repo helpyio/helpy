@@ -47,7 +47,7 @@
 class Admin::UsersController < Admin::BaseController
   before_action :verify_agent
   before_action :verify_admin, only: %w[invite invite_users]
-  before_action :fetch_counts, :only => ['show']
+  before_action :fetch_counts, only: ['show']
   before_action :get_all_teams
   respond_to :html, :js
 
@@ -152,7 +152,7 @@ class Admin::UsersController < Admin::BaseController
       :time_zone,
       :notify_on_private,
       :notify_on_public,
-      :notify_on_reply,
+      :notify_on_reply
     )
   end
 end

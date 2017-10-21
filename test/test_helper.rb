@@ -37,7 +37,7 @@ def uploaded_file_object(klass, attribute, file, content_type = 'image/png')
   ActionDispatch::Http::UploadedFile.new(
     tempfile: file,
     filename: filename,
-    head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},
+    head: %(Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"),
     content_type: content_type
   )
 end

@@ -12,11 +12,11 @@
 #
 
 class Vote < ActiveRecord::Base
-  belongs_to :voteable, :polymorphic => true
+  belongs_to :voteable, polymorphic: true
   belongs_to :user
   after_create :increment_points_cache
 
-  validates :voteable_id, uniqueness: { scope: [:user_id, :voteable_type] }
+  validates :voteable_id, uniqueness: { scope: %i[user_id voteable_type] }
 
   protected
 

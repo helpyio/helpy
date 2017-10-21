@@ -10,7 +10,7 @@ class Webhook::InboundControllerTest < ActionController::TestCase
         "subject": "Need Help",
         "body": "I need help with my purchase.",
         "channel": "web",
-        "tags": "hello, hi",
+        "tags": "hello, hi"
       },
       "customer": {
         "fullName": "Bob Doe",

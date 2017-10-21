@@ -27,14 +27,14 @@
 #
 
 class TopicsController < ApplicationController
-  before_action :authenticate_user!, :only => %w[tickets ticket]
+  before_action :authenticate_user!, only: %w[tickets ticket]
   before_action :allow_iframe_requests
   before_action :forums_enabled?, only: %w[index show]
   before_action :topic_creation_enabled?, only: %w[new create]
   before_action :get_all_teams, only: 'new'
   before_action :get_public_forums, only: %w[new create]
 
-  layout "clean", only: [:new, :index, :thanks]
+  layout "clean", only: %i[new index thanks]
   theme :theme_chosen
 
   # TODO Still need to so a lot of refactoring here!
@@ -108,11 +108,11 @@ class TopicsController < ApplicationController
     if @topic.create_topic_with_user(params, current_user)
       @user = @topic.user
       @post = @topic.posts.create(
-        :body => params[:topic][:posts_attributes]["0"][:body],
-        :user_id => @user.id,
-        :kind => 'first',
-        :screenshots => params[:topic][:screenshots],
-        :attachments => params[:topic][:posts_attributes]["0"][:attachments]
+        body: params[:topic][:posts_attributes]["0"][:body],
+        user_id: @user.id,
+        kind: 'first',
+        screenshots: params[:topic][:screenshots],
+        attachments: params[:topic][:posts_attributes]["0"][:attachments]
       )
 
       unless user_signed_in?

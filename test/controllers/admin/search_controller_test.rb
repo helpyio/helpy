@@ -4,7 +4,7 @@ class Admin::SearchControllerTest < ActionController::TestCase
   setup do
   end
 
-  %w(user editor).each do |unauthorized|
+  %w[user editor].each do |unauthorized|
     test "an #{unauthorized} should not be able to search" do
       sign_in users(unauthorized.to_sym)
       get :topic_search, q: "1"
@@ -13,7 +13,7 @@ class Admin::SearchControllerTest < ActionController::TestCase
     end
   end
 
-  %w(admin agent).each do |admin|
+  %w[admin agent].each do |admin|
     test "an #{admin} should be able to search by topic ID by ajax" do
       sign_in users(admin.to_sym)
       xhr :get, :topic_search, q: "1"

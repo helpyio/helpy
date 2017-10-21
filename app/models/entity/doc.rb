@@ -1,9 +1,7 @@
 module Entity
   class Doc < Base
     expose :id, documentation: { type: "Integer" }
-    expose :slug do |doc|
-      doc.to_param
-    end
+    expose :slug do |d| d.to_param end
     expose :title
     expose :body
     expose :keywords

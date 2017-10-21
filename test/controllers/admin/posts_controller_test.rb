@@ -20,7 +20,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     set_default_settings
   end
 
-  %w(user editor).each do |unauthorized|
+  %w[user editor].each do |unauthorized|
     test "a #{unauthorized} should NOT be able to edit a post" do
       sign_in users(unauthorized.to_sym)
       original_post = Post.find(1)
@@ -30,7 +30,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     end
   end
 
-  %w(admin agent).each do |admin|
+  %w[admin agent].each do |admin|
     test "an #{admin} should be able to see inactive posts" do
     end
 

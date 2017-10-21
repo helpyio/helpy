@@ -11,9 +11,9 @@ module StatsHelper
     array.inject { |sum, el| sum + el }.to_f / array.size
   end
 
-  def humanize secs
+  def humanize(secs)
     [[60, :seconds], [60, :minutes], [24, :hours], [1000, :days]].map do |count, name|
-      if secs > 0
+      if secs.positive?
         secs, n = secs.divmod(count)
         "#{n.to_i} #{name}"
       end

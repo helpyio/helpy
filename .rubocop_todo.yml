@@ -12,33 +12,10 @@ Lint/AmbiguousBlockAssociation:
     - 'test/mailers/notification_mailer_test.rb'
 
 # Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleAlignWith, SupportedStylesAlignWith, AutoCorrect.
-# SupportedStylesAlignWith: keyword, variable, start_of_line
-Lint/EndAlignment:
-  Exclude:
-    - 'test/controllers/api/v1/flags_test.rb'
-
-# Offense count: 1
 Lint/RescueWithoutErrorClass:
   Exclude:
     - 'app/controllers/application_controller.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'test/factories/users.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
-Lint/UnusedMethodArgument:
-  Exclude:
-    - 'app/helpers/admin/reports_helper.rb'
-
-# Offense count: 12
 Lint/UselessAssignment:
   Exclude:
     - 'app/helpers/admin_helper.rb'
@@ -208,25 +185,10 @@ Style/AsciiComments:
   Exclude:
     - 'test/controllers/admin/docs_controller_test.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: percent_q, bare_percent
-Style/BarePercentLiterals:
-  Exclude:
-    - 'test/controllers/admin/users_controller_test.rb'
-    - 'test/test_helper.rb'
-
 # Offense count: 1
 Style/ClassVars:
   Exclude:
     - 'app/models/theme.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/ColonMethodCall:
-  Exclude:
-    - 'test/controllers/api/v1/flags_test.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -243,11 +205,6 @@ Style/CommentedKeyword:
     - 'app/helpers/admin_helper.rb'
     - 'app/helpers/application_helper.rb'
     - 'app/models/api_key.rb'
-
-# Offense count: 1
-Style/DoubleNegation:
-  Exclude:
-    - 'app/models/user.rb'
 
 # Offense count: 221
 # Cop supports --auto-correct.
@@ -273,31 +230,6 @@ Style/GuardClause:
     - 'app/models/topic.rb'
     - 'app/models/user.rb'
 
-# Offense count: 78
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-Style/HashSyntax:
-  Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: line_count_dependent, lambda, literal
-Style/Lambda:
-  Exclude:
-    - 'app/models/doc.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: require_parentheses, require_no_parentheses, require_no_parentheses_except_multiline
-Style/MethodDefParentheses:
-  Exclude:
-    - 'app/controllers/admin/base_controller.rb'
-    - 'app/helpers/stats_helper.rb'
-    - 'app/models/user.rb'
-
 # Offense count: 8
 # Cop supports --auto-correct.
 Style/MutableConstant:
@@ -307,59 +239,9 @@ Style/MutableConstant:
     - 'config/environment.rb'
 
 # Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: Strict.
-Style/NumericLiterals:
-  MinDigits: 6
-
-# Offense count: 11
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle, SupportedStyles.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'app/controllers/admin/base_controller.rb'
-    - 'app/controllers/admin/reports_controller.rb'
-    - 'app/controllers/admin/search_controller.rb'
-    - 'app/controllers/admin/shared_controller.rb'
-    - 'app/helpers/admin_helper.rb'
-    - 'app/helpers/stats_helper.rb'
-    - 'app/mailers/notification_mailer.rb'
-    - 'app/models/topic.rb'
-    - 'app/models/user.rb'
-    - 'test/controllers/api/v1/topics_test.rb'
-
-# Offense count: 1
 Style/OptionalArguments:
   Exclude:
     - 'app/models/topic.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AllowSafeAssignment.
-Style/ParenthesesAroundCondition:
-  Exclude:
-    - 'app/mailers/user_mailer.rb'
-
-# Offense count: 48
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/Proc:
-  Exclude:
-    - 'config/initializers/client_side_validations.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles.
-# SupportedStyles: compact, exploded
-Style/RaiseArgs:
-  EnforcedStyle: compact
 
 # Offense count: 2
 # Cop supports --auto-correct.
@@ -383,79 +265,3 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Exclude:
     - 'app/helpers/application_helper.rb'
-
-# Offense count: 27
-# Cop supports --auto-correct.
-# Configuration parameters: MinSize, SupportedStyles.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/SymbolLiteral:
-  Exclude:
-    - 'app/controllers/api/v1/topics.rb'
-
-# Offense count: 18
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoredMethods.
-# IgnoredMethods: respond_to, define_method
-Style/SymbolProc:
-  Exclude:
-    - 'app/helpers/admin/reports_helper.rb'
-    - 'app/mailers/notification_mailer.rb'
-    - 'app/models/entity/category.rb'
-    - 'app/models/entity/doc.rb'
-    - 'app/models/topic.rb'
-    - 'test/mailers/notification_mailer_test.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, AllowSafeAssignment.
-# SupportedStyles: require_parentheses, require_no_parentheses, require_parentheses_when_complex
-Style/TernaryParentheses:
-  Exclude:
-    - 'app/controllers/admin/base_controller.rb'
-    - 'app/controllers/api/v1/topics.rb'
-    - 'app/helpers/application_helper.rb'
-
-# Offense count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline, SupportedStylesForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArguments:
-  Exclude:
-    - 'app/controllers/admin/posts_controller.rb'
-    - 'app/controllers/admin/topics_controller.rb'
-    - 'app/controllers/admin/users_controller.rb'
-    - 'app/controllers/api/v1/topics.rb'
-    - 'app/controllers/webhook/inbound_controller.rb'
-    - 'app/models/topic.rb'
-
-# Offense count: 11
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline, SupportedStylesForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInLiteral:
-  Exclude:
-    - 'test/controllers/admin/users_controller_test.rb'
-    - 'test/controllers/api/v1/topics_test.rb'
-    - 'test/controllers/webhook/inbound_controller_test.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: all_comparison_operators, equality_operators_only
-Style/YodaCondition:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'test/controllers/admin/users_controller_test.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/ZeroLengthPredicate:
-  Exclude:
-    - 'app/controllers/admin/reports_controller.rb'
-    - 'app/controllers/admin/search_controller.rb'
-    - 'test/controllers/api/v1/topics_test.rb'

@@ -73,7 +73,7 @@ gem 'grape-kaminari'
 gem 'grape-swagger'
 gem 'grape-swagger-entity'
 gem 'grape-swagger-rails'
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 
 gem 'paper_trail'
 gem 'permalink_fu'
@@ -186,7 +186,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'selenium-webdriver'
   gem 'shoulda'
-  gem 'simplecov', :require => false
+  gem 'simplecov', require: false
 
   # remove this for Rails 5 because the function is already included
   gem 'test_after_commit'

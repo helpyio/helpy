@@ -2,8 +2,6 @@ class Admin::BaseController < ApplicationController
   layout 'admin'
   before_action :authenticate_user!
 
-
-
   protected
 
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
@@ -25,9 +23,9 @@ class Admin::BaseController < ApplicationController
     @remote_search = true
   end
 
-  def check_current_user_is_allowed? topic
+  def check_current_user_is_allowed?(topic)
     return if !topic.private || current_user.is_admin? || current_user.team_list.include?(topic.team_list.first)
-    if topic.team_list.count > 0 && current_user.is_restricted? && (topic.team_list + current_user.team_list).count > 0
+    if topic.team_list.count.positive? && current_user.is_restricted? && (topic.team_list + current_user.team_list).count.positive?
       render status: :forbidden
     end
   end
@@ -48,7 +46,7 @@ class Admin::BaseController < ApplicationController
 
   def fetch_counts
     if current_user.is_restricted? && teams?
-      topics = Topic.tagged_with(current_user.team_list, :any => true)
+      topics = Topic.tagged_with(current_user.team_list, any: true)
       @admins = User.agents # can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else
       topics = Topic.all

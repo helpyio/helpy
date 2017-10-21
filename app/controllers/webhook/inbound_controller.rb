@@ -42,7 +42,7 @@ class Webhook::InboundController < Webhook::BaseController
       private: true,
       channel: @params['message']['channel'],
       team_list: @params['message']['team'],
-      tag_list: @params['message']['tags'],
+      tag_list: @params['message']['tags']
     )
 
     if @topic.create_topic_with_webhook_user(@params)
@@ -50,7 +50,7 @@ class Webhook::InboundController < Webhook::BaseController
       @post = @topic.posts.create(
         body: @params['message']['body'],
         user_id: @user.id,
-        kind: 'first',
+        kind: 'first'
       )
     end
 

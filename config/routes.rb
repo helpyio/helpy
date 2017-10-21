@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "locales#redirect_on_locale"
 
-  devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, skip: %i[password registration confirmation invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   as :user do
     get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     patch "/users/invitation" => "devise/invitations#update", as: nil
   end
 
-  match "/404", :to => "errors#not_found", :via => :all
-  match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
 
   localized do
     root to: "home#index"
@@ -23,8 +23,8 @@ Rails.application.routes.draw do
     #      omniauth_callbacks: "callbacks"
     #    }
 
-    match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
+    match 'users/finish_signup' => 'users#finish_signup', via: %i[get patch], :as => :finish_signup
+    devise_for :users, skip: %i[omniauth_callbacks invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
 
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
@@ -33,14 +33,14 @@ Rails.application.routes.draw do
       patch "/users/invitation" => "devise/invitations#update", as: nil
     end
 
-    resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
-      resources :docs, except: [:new, :edit, :create, :update]
+    resources :knowledgebase, as: 'categories', controller: "categories", except: %i[new edit create update] do
+      resources :docs, except: %i[new edit create update]
     end
 
-    resources :docs, except: [:new, :edit] do
+    resources :docs, except: %i[new edit] do
       resources :comments, only: :create
     end
-    resources :community, :as => 'forums', :controller => "forums" do
+    resources :community, as: 'forums', controller: "forums" do
       resources :topics
     end
     resources :topics do
@@ -120,23 +120,23 @@ Rails.application.routes.draw do
     get 'internal_docs/search' => 'internal_categories#search', as: :internal_docs_search
 
     resources :categories do
-      resources :docs, except: [:index, :show]
+      resources :docs, except: %i[index show]
     end
 
-    resources :internal_categories, only: [:index, :show] do
+    resources :internal_categories, only: %i[index show] do
       resources :internal_docs, only: :show
     end
 
-    resources :docs, except: [:index, :show]
+    resources :docs, except: %i[index show]
 
-    resources :images, only: [:create, :destroy]
+    resources :images, only: %i[create destroy]
     resources :forums # , except: [:index, :show]
     resources :users
     scope 'settings' do
-      resources :api_keys, except: [:show, :edit, :update]
+      resources :api_keys, except: %i[show edit update]
       resources :groups
     end
-    resources :topics, except: [:delete, :edit] do
+    resources :topics, except: %i[delete edit] do
       resources :posts
     end
     resources :posts

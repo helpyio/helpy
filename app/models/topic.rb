@@ -34,20 +34,20 @@ class Topic < ActiveRecord::Base
   belongs_to :doc, counter_cache: true, touch: true
   belongs_to :assigned_user, class_name: 'User'
 
-  has_many :posts, :dependent => :delete_all
+  has_many :posts, dependent: :delete_all
   accepts_nested_attributes_for :posts
 
-  has_many :votes, :as => :voteable
-  has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
+  has_many :votes, as: :voteable
+  has_attachments  :screenshots, accept: %i[jpg png gif pdf txt rtf doc docx ppt pptx xls xlsx zip]
 
   paginates_per 25
 
   include PgSearch
-  multisearchable :against => [:id, :name, :post_cache],
-                  :if => :public?
+  multisearchable against: %i[id name post_cache],
+                  if: :public?
 
   pg_search_scope :admin_search,
-                  against: [:id, :name, :user_name, :current_status, :post_cache],
+                  against: %i[id name user_name current_status post_cache],
                   associated_against: {
                     teams: [:name]
                   }
@@ -65,7 +65,7 @@ class Topic < ActiveRecord::Base
   scope :chronologic, -> { order('updated_at DESC') }
   scope :reverse, -> { order('updated_at ASC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where(current_status: %w(open pending)) }
+  scope :active, -> { where(current_status: %w[open pending]) }
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
   scope :for_doc, -> { where("doc_id= ?", doc) }
@@ -165,7 +165,7 @@ class Topic < ActiveRecord::Base
 
   # DEPRECATED updates the last post date, called when a post is made
   def self.last_post
-    Topic.post(:first, :order => 'updated_at DESC')
+    Topic.post(:first, order: 'updated_at DESC')
   end
 
   # Callback method to check and see if this topic is in a private forum
@@ -228,7 +228,7 @@ class Topic < ActiveRecord::Base
 
     if @topic.save
       @merge_topics.each_with_index do |t, i|
-        @topic.posts << if i == 0
+        @topic.posts << if i.zero?
                           t.posts
                         else
                           t.posts.where.not(kind: 'first').all
@@ -239,12 +239,10 @@ class Topic < ActiveRecord::Base
       @topic.posts.create(
         body: "#{topics_merged} were merged to create this discussion",
         kind: "note",
-        user_id: user_id,
+        user_id: user_id
       )
 
-      @merge_topics.each do |t|
-        t.trash
-      end
+      @merge_topics.each(&:trash)
 
       return @topic
     end

@@ -32,8 +32,8 @@ class NotificationMailerTest < ActionMailer::TestCase
       notification.deliver_now
     end
 
-    assert_equal notification.to[0], User.notifiable_on_private.collect { |u| u.email }.first
-    assert_equal notification.bcc, User.notifiable_on_private.last(2).collect { |u| u.email }
+    assert_equal notification.to[0], User.notifiable_on_private.collect(&:email).first
+    assert_equal notification.bcc, User.notifiable_on_private.last(2).collect(&:email)
   end
 
   test 'Should not send if there are no agents with public notifications on' do
@@ -52,8 +52,8 @@ class NotificationMailerTest < ActionMailer::TestCase
       notification.deliver_now
     end
 
-    assert_equal notification.to[0], User.notifiable_on_public.collect { |u| u.email }.first
-    assert_equal notification.bcc, User.notifiable_on_public.last(2).collect { |u| u.email }
+    assert_equal notification.to[0], User.notifiable_on_public.collect(&:email).first
+    assert_equal notification.bcc, User.notifiable_on_public.last(2).collect(&:email)
   end
 
   test 'Should not send if there are no agents with reply notifications on' do
@@ -72,8 +72,8 @@ class NotificationMailerTest < ActionMailer::TestCase
       notification.deliver_now
     end
 
-    assert_equal notification.to[0], User.notifiable_on_reply.collect { |u| u.email }.first
-    assert_equal notification.bcc, User.notifiable_on_reply.last(2).collect { |u| u.email }
+    assert_equal notification.to[0], User.notifiable_on_reply.collect(&:email).first
+    assert_equal notification.bcc, User.notifiable_on_reply.last(2).collect(&:email)
   end
 
   # These tests make sure that notifications are sent out to all agents with them
@@ -85,8 +85,8 @@ class NotificationMailerTest < ActionMailer::TestCase
       notification.deliver_now
     end
 
-    assert_equal notification.to[0], User.notifiable_on_public.collect { |u| u.email }.first
-    assert_equal notification.bcc, User.notifiable_on_public.last(2).collect { |u| u.email }
+    assert_equal notification.to[0], User.notifiable_on_public.collect(&:email).first
+    assert_equal notification.bcc, User.notifiable_on_public.last(2).collect(&:email)
   end
 
   test 'Should send one reply message notification if there are agents with notifications on' do
@@ -96,8 +96,8 @@ class NotificationMailerTest < ActionMailer::TestCase
       notification.deliver_now
     end
 
-    assert_equal notification.to[0], User.notifiable_on_reply.collect { |u| u.email }.first
-    assert_equal notification.bcc, User.notifiable_on_reply.last(2).collect { |u| u.email }
+    assert_equal notification.to[0], User.notifiable_on_reply.collect(&:email).first
+    assert_equal notification.bcc, User.notifiable_on_reply.last(2).collect(&:email)
   end
 
   # These tests check to make sure it works if there is only one agent with a notification
@@ -112,7 +112,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       notification.deliver_now
     end
 
-    assert_equal notification.to[0], User.notifiable_on_private.collect { |u| u.email }.first
+    assert_equal notification.to[0], User.notifiable_on_private.collect(&:email).first
     assert_equal notification.bcc, []
   end
 
@@ -128,7 +128,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       notification.deliver_now
     end
 
-    assert_equal notification.to[0], User.notifiable_on_public.collect { |u| u.email }.first
+    assert_equal notification.to[0], User.notifiable_on_public.collect(&:email).first
     assert_equal notification.bcc, []
   end
 
@@ -143,7 +143,7 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_emails 1 do
       notification.deliver_now
     end
-    assert_equal notification.to[0], User.notifiable_on_reply.collect { |u| u.email }.first
+    assert_equal notification.to[0], User.notifiable_on_reply.collect(&:email).first
     assert_equal notification.bcc, []
   end
 end

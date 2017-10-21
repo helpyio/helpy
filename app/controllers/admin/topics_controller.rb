@@ -97,7 +97,7 @@ class Admin::TopicsController < Admin::BaseController
       private: true,
       team_list: params[:topic][:team_list],
       channel: params[:topic][:channel],
-      tag_list: params[:topic][:tag_list],
+      tag_list: params[:topic][:tag_list]
     )
 
     if @user.nil?
@@ -319,7 +319,7 @@ class Admin::TopicsController < Admin::BaseController
       @topic.posts.create(
         body: t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list),
         user: current_user,
-        kind: 'note',
+        kind: 'note'
       )
 
       respond_to do |format|
@@ -382,7 +382,7 @@ class Admin::TopicsController < Admin::BaseController
     @topic.posts.create(
       body: "This ticket was unassigned from all team groups",
       user: current_user,
-      kind: 'note',
+      kind: 'note'
     )
 
     @posts = @topic.posts.chronologic
@@ -403,7 +403,7 @@ class Admin::TopicsController < Admin::BaseController
       forum_id: parent_topic.forum_id,
       private: parent_topic.private,
       channel: parent_topic.channel,
-      kind: parent_topic.kind,
+      kind: parent_topic.kind
     )
 
     @posts = @topic.posts
@@ -414,13 +414,13 @@ class Admin::TopicsController < Admin::BaseController
         user: parent_post.user,
         kind: 'first',
         screenshots: parent_post.screenshots,
-        attachments: parent_post.attachments,
+        attachments: parent_post.attachments
       )
 
       parent_topic.posts.create(
         body: t('new_discussion_post', topic_id: @topic.id, default: "Discussion ##{@topic.id} was created from this one"),
         user: current_user,
-        kind: 'note',
+        kind: 'note'
       )
     end
 

@@ -53,3 +53,13 @@ Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Enabled: false
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'app/models/entity/doc.rb'
+    - 'app/models/entity/category.rb'
+
+Style/SymbolProc:
+  Exclude:
+    - 'app/models/entity/doc.rb'
+    - 'app/models/entity/category.rb'

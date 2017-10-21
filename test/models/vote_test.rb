@@ -16,7 +16,7 @@ require 'test_helper'
 class VoteTest < ActiveSupport::TestCase
   should belong_to(:voteable)
 
-  should validate_uniqueness_of(:voteable_id).scoped_to([:user_id, :voteable_type])
+  should validate_uniqueness_of(:voteable_id).scoped_to(%i[user_id voteable_type])
 
   test "a vote for a topic should increase its point count" do
     assert_difference('Topic.find(4).points', 1) do

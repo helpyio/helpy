@@ -1,14 +1,11 @@
 module Admin::TopicsHelper
-
   def ticket_page_title
     concat j ticket_status_label
     concat j new_ticket_button
     concat j ticket_nav_dropdown
   end
 
-  def user_page_title
-
-  end
+  def user_page_title; end
 
   def ticket_status_label
     content_tag :span, class: "label #{status_class(@status)}", style: 'text-transform: uppercase' do
@@ -25,5 +22,4 @@ module Admin::TopicsHelper
   def ticket_nav_dropdown
     render partial: 'admin/topics/ticket_nav_dropdown'
   end
-
 end

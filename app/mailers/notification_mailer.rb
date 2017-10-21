@@ -14,11 +14,11 @@ class NotificationMailer < ActionMailer::Base
   private
 
   def new_notification(topic_id, notifiable_users)
-    return if notifiable_users.count == 0
+    return if notifiable_users.count.zero?
 
     @topic = Topic.find(topic_id)
     @recipient = notifiable_users.first
-    @bcc = notifiable_users.last(notifiable_users.count - 1).collect { |u| u.email }
+    @bcc = notifiable_users.last(notifiable_users.count - 1).collect(&:email)
     mail(
       to: @recipient.email,
       bcc: @bcc,

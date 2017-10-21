@@ -94,7 +94,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
   end
 
   # Admin actions
-  %w(admin agent editor).each do |admin|
+  %w[admin agent editor].each do |admin|
     test "an #{admin} should be able to load new" do
       sign_in users(admin.to_sym)
       get :new, locale: :en
@@ -109,7 +109,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
 
     test "an #{admin} should see a translate dropdown when there are multiple available_locales" do
       sign_in users(admin.to_sym)
-      AppSettings["i18n.available_locales"] = %w(en es fr)
+      AppSettings["i18n.available_locales"] = %w[en es fr]
       get :edit, id: 1, category_id: 1, locale: "en"
       assert_select "select#lang", 1
     end

@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => Devise.omniauth_providers
+         :omniauthable, omniauth_providers: Devise.omniauth_providers
 
   INVALID_NAME_CHARACTERS = /\A('|")|('|")\z/
 
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :user_search,
-                  against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
+                  against: %i[name login email company account_number home_phone work_phone cell_phone]
 
   paginates_per 15
 
@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :docs
   has_many :api_keys
-  has_attachment :avatar, accept: [:jpg, :png, :gif]
+  has_attachment :avatar, accept: %i[jpg png gif]
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
   end
 
   def is_restricted?
-    team_list.count > 0 && !is_admin?
+    team_list.count.positive? && !is_admin?
   end
 
   def self.create_password
@@ -211,11 +211,11 @@ class User < ActiveRecord::Base
   end
 
   def is_agent?
-    %w(agent admin).include?(role)
+    %w[agent admin].include?(role)
   end
 
   def is_editor?
-    %w(editor agent admin).include?(role)
+    %w[editor agent admin].include?(role)
   end
 
   def self.bulk_invite(emails, message, role)
@@ -249,7 +249,7 @@ class User < ActiveRecord::Base
     "You are not allowed to log in!"
   end
 
-  def self.register email, user_name
+  def self.register(email, user_name)
     # this method is very similar to email_processor#create_user
     # actually it was copyied from there.
     # it should create an issue to properly refactor and
@@ -273,6 +273,6 @@ class User < ActiveRecord::Base
   private
 
   def reject_invalid_characters_from_name
-    self.name = name.gsub(INVALID_NAME_CHARACTERS, '') if !!name.match(INVALID_NAME_CHARACTERS)
+    self.name = name.gsub(INVALID_NAME_CHARACTERS, '') if name.match(INVALID_NAME_CHARACTERS)
   end
 end

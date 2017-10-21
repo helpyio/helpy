@@ -27,8 +27,8 @@ module ApplicationHelper
   # Outputs the corresponding flash message if any are set
   def flash_messages
     messages = []
-    %w(notice warning error).each do |msg|
-      messages << content_tag(:div, html_escape(flash[msg.to_sym]), :id => 'flash-message', :class => msg.to_s) unless flash[msg.to_sym].blank?
+    %w[notice warning error].each do |msg|
+      messages << content_tag(:div, html_escape(flash[msg.to_sym]), id: 'flash-message', class: msg.to_s) unless flash[msg.to_sym].blank?
     end
     messages
   end
@@ -38,8 +38,8 @@ module ApplicationHelper
   end
 
   def last_active_time(last_activity)
-    content_tag(:span, timeago_tag(last_activity, :limit => 7.days.ago), class: ['hidden-xs']) +
-      content_tag(:span, timeago_tag(last_activity, :limit => 0.days.ago), class: ['hidden-sm', 'hidden-md', 'hidden-lg'])
+    content_tag(:span, timeago_tag(last_activity, limit: 7.days.ago), class: ['hidden-xs']) +
+      content_tag(:span, timeago_tag(last_activity, limit: 0.days.ago), class: ['hidden-sm', 'hidden-md', 'hidden-lg'])
   end
 
   def resource_name
@@ -94,7 +94,7 @@ module ApplicationHelper
   end
 
   def login_with(with, redirect_to = "/#{I18n.locale}")
-    provider = (with == "google_oauth2") ? "google" : with
+    provider = with == "google_oauth2" ? "google" : with
     link_to(user_omniauth_authorize_path(with.to_sym, origin: redirect_to), class: ["btn", "btn-block", "btn-social", "oauth", "btn-#{provider}"], style: "color:white;", data: { provider: provider.to_s }) do
       content_tag(:span, '', class: ["fa", "fa-#{provider}"]).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
     end

@@ -12,7 +12,7 @@ class API::V1::FlagsTest < ActiveSupport::TestCase
     @user = users(:admin)
     @api_key = ApiKey.create(name: "Test Flags Key", user: @user)
     @default_params = { token: @api_key.access_token }
-    Rails::logger.debug "Interesting stuff"
+    Rails.logger.debug "Interesting stuff"
   end
 
   test "an unauthenticated user should receive an unauthorized message" do
@@ -41,4 +41,4 @@ class API::V1::FlagsTest < ActiveSupport::TestCase
 
     assert_equal params[:reason], object['reason']
   end
- end
+end

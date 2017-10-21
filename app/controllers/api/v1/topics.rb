@@ -3,7 +3,7 @@ module API
     class Topics < Grape::API
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
+        restrict_to_role %w[admin agent]
       end
 
       include API::V1::Defaults
@@ -105,12 +105,12 @@ module API
             team_list: params[:team_list],
             tag_list: params[:tag_list],
             channel: params[:channel].present? ? params[:channel] : "api",
-            kind: params[:kind].present? ? params[:kind] : 'ticket',
+            kind: params[:kind].present? ? params[:kind] : 'ticket'
           )
           ticket.posts.create!(
             body: params[:body],
             user_id: user_id,
-            kind: 'first',
+            kind: 'first'
           )
           present ticket, with: Entity::Topic, posts: true
         end
@@ -205,7 +205,7 @@ module API
                      Topic.where(id: permitted_params[:id]).first
                    end
           if ticket.present?
-            is_private = (permitted_params[:forum_id] == 1) ? true : false
+            is_private = permitted_params[:forum_id] == 1
             ticket.private = is_private
             ticket.forum_id = params[:forum_id]
             ticket.save
@@ -242,7 +242,7 @@ module API
             parent_topic.posts.create(
               body: I18n.t('new_discussion_post', topic_id: topic.id, default: "Discussion ##{topic.id} was created from this one"),
               user: current_user,
-              kind: 'note',
+              kind: 'note'
             )
 
             topic.posts.create(
@@ -250,7 +250,7 @@ module API
               user: post.user,
               kind: 'first',
               screenshots: post.screenshots,
-              attachments: post.attachments,
+              attachments: post.attachments
             )
             topic
           else
@@ -261,7 +261,7 @@ module API
         # MERGE TWO OR MORE TICKETS
         desc "Merge two or more tickets together."
         params do
-          requires :'topic_ids', type: Array[Integer], desc: "The topics to merge. Provide 2 ID in the format topic_ids[]=123&topic_ids[]=124"
+          requires :topic_ids, type: Array[Integer], desc: "The topics to merge. Provide 2 ID in the format topic_ids[]=123&topic_ids[]=124"
           requires :user_id, type: Integer, desc: "the User ID"
         end
 

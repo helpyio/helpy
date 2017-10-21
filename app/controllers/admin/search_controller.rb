@@ -17,7 +17,7 @@ class Admin::SearchController < Admin::BaseController
               User.user_search(params[:q])
             end
 
-    if users.size == 0 # not a user search, so look for topics
+    if users.empty? # not a user search, so look for topics
       search_topics
       template = 'admin/search/search'
       tracker("Admin Search", "Topic Search", params[:q])
@@ -42,7 +42,7 @@ class Admin::SearchController < Admin::BaseController
   def search_topics
     topics_to_search = Topic.where('created_at >= ?', @start_date).where('created_at <= ?', @end_date)
     @topics = if current_user.is_restricted? && teams?
-                topics_to_search.admin_search(params[:q]).tagged_with(current_user.team_list, :any => true).page params[:page]
+                topics_to_search.admin_search(params[:q]).tagged_with(current_user.team_list, any: true).page params[:page]
               else
                 topics_to_search.admin_search(params[:q]).page params[:page]
               end

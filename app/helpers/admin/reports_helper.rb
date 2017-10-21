@@ -12,9 +12,9 @@ module Admin::ReportsHelper
   end
 
   # NOTE Does not appear to be used currently.  Needs work to return the color.
-  def group_colors(scoped_stats)
+  def group_colors(_scoped_stats)
     # team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
     # @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
-    @all_teams.map { |g| g.color }
+    @all_teams.map(&:color)
   end
 end

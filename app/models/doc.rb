@@ -38,8 +38,8 @@ class Doc < ActiveRecord::Base
   validates :category_id, presence: true
 
   include PgSearch
-  multisearchable against: [:title, :body, :keywords],
-                  :if => lambda { |record| record.category.publicly_viewable? && record.active && record.category.active? }
+  multisearchable against: %i[title body keywords],
+                  if: ->(record) { record.category.publicly_viewable? && record.active && record.category.active? }
 
   has_paper_trail
 
@@ -47,7 +47,7 @@ class Doc < ActiveRecord::Base
   globalize_accessors
 
   paginates_per 25
-  has_attachments :screenshots, accept: [:jpg, :jpeg, :png, :gif, :pdf]
+  has_attachments :screenshots, accept: %i[jpg jpeg png gif pdf]
 
   include RankedModel
   ranks :rank

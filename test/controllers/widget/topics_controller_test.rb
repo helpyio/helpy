@@ -33,7 +33,7 @@ class Widget::TopicsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, topic: { name: 'some new private topic', body: 'some body text', posts_attributes: { :'0' => { body: "this is the body" } } }, locale: :en
+        post :create, topic: { name: 'some new private topic', body: 'some body text', posts_attributes: { '0': { body: "this is the body" } } }, locale: :en
       end
     end
 

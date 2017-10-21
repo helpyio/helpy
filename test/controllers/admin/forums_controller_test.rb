@@ -51,7 +51,7 @@ class Admin::ForumsControllerTest < ActionController::TestCase
   end
 
   # logged in as user, should not get these pages
-  %w(user editor).each do |unauthorized|
+  %w[user editor].each do |unauthorized|
     test "a #{unauthorized} should not get new" do
       sign_in users(unauthorized.to_sym)
       get :new, locale: :en
@@ -84,7 +84,7 @@ class Admin::ForumsControllerTest < ActionController::TestCase
   end
 
   # logged in as admin, should get these pages
-  %w(admin agent).each do |admin|
+  %w[admin agent].each do |admin|
     test "an #{admin} should get new" do
       sign_in users(admin.to_sym)
       get :new, locale: :en

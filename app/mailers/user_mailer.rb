@@ -2,7 +2,7 @@ class UserMailer < ActionMailer::Base
   add_template_helper(ApplicationHelper)
 
   def new_user(user_id, token)
-    return unless (AppSettings['settings.welcome_email'] == "1" || AppSettings['settings.welcome_email'] == true)
+    return unless AppSettings['settings.welcome_email'] == "1" || AppSettings['settings.welcome_email'] == true
     @user = User.find(user_id)
 
     # Do not send to temp email addresses

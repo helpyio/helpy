@@ -84,7 +84,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
   end
 
   # admin logged in, should get these pages
-  %w(admin agent editor).each do |admin|
+  %w[admin agent editor].each do |admin|
     test "an #{admin} should be able to access the index and get the featured categories" do
       sign_in users(admin.to_sym)
       get :index, locale: :en
@@ -113,7 +113,7 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
       sign_in users(admin.to_sym)
 
       # Ensure there are multiple locales
-      AppSettings["i18n.available_locales"] = %w(en es fr)
+      AppSettings["i18n.available_locales"] = %w[en es fr]
 
       get :edit, id: 1, locale: "en"
       assert_select "select#lang", 1

@@ -165,9 +165,9 @@ class UserTest < ActiveSupport::TestCase
   test "#find_for_oauth should not duplicate existing user, but should update the provider and the uid values and create records for new users" do
     user_count = User.count
     email = Faker::Internet.email
-    oath = OmniAuth::AuthHash.new(:provider => 'facebook',
-                                  :uid       => '123545',
-                                  :info      => { email: email })
+    oath = OmniAuth::AuthHash.new(provider: 'facebook',
+                                  uid: '123545',
+                                  info: { email: email })
     User.find_for_oauth(oath)
 
     assert_equal user_count + 1, User.count
@@ -184,9 +184,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "temp_email should be used if Oauth does not include an email address in response" do
-    oath = OmniAuth::AuthHash.new(:provider => 'facebook',
-                                  :uid       => '123545',
-                                  :info      => {})
+    oath = OmniAuth::AuthHash.new(provider: 'facebook',
+                                  uid: '123545',
+                                  info: {})
     user = User.find_for_oauth(oath)
     assert_equal user.email, user.temp_email(oath)
   end
@@ -243,12 +243,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "Reject single quotes from user name" do
-    u = (create :user, name: %['test agent'])
+    u = (create :user, name: %('test agent'))
     assert_equal 'test agent', u.name
   end
 
   test "Reject double quotes from user name" do
-    u = (create :user, name: %["test agent"])
+    u = (create :user, name: %("test agent"))
     assert_equal 'test agent', u.name
   end
 end

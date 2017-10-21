@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   helper_method :google_analytics_enabled?
 
   def rtl_locale?(locale)
-    return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
+    return true if %w[ar dv he iw fa nqo ps sd ug ur yi].include?(locale)
     false
   end
   helper_method :rtl_locale?
@@ -84,19 +84,19 @@ class ApplicationController < ActionController::Base
   helper_method :teams?
 
   def forums_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless forums?
+    raise ActionController::RoutingError, 'Not Found' unless forums?
   end
 
   def knowledgebase_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless knowledgebase?
+    raise ActionController::RoutingError, 'Not Found' unless knowledgebase?
   end
 
   def tickets_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets?
+    raise ActionController::RoutingError, 'Not Found' unless tickets?
   end
 
   def topic_creation_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
+    raise ActionController::RoutingError, 'Not Found' unless tickets? || forums?
   end
 
   protected
@@ -133,12 +133,12 @@ class ApplicationController < ActionController::Base
     Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
 
     ActionMailer::Base.smtp_settings = {
-      :address => AppSettings["email.mail_smtp"],
-      :port                 => AppSettings["email.mail_port"],
-      :user_name            => AppSettings["email.smtp_mail_username"].presence,
-      :password             => AppSettings["email.smtp_mail_password"].presence,
-      :domain               => AppSettings["email.mail_domain"],
-      :enable_starttls_auto => !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"])
+      address: AppSettings["email.mail_smtp"],
+      port: AppSettings["email.mail_port"],
+      user_name: AppSettings["email.smtp_mail_username"].presence,
+      password: AppSettings["email.smtp_mail_password"].presence,
+      domain: AppSettings["email.mail_domain"],
+      enable_starttls_auto: !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"])
     }
 
     ActionMailer::Base.perform_deliveries = to_boolean(AppSettings['email.send_email'])
