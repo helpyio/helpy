@@ -19,7 +19,6 @@
 require 'test_helper'
 
 class Admin::ForumsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -37,12 +36,12 @@ class Admin::ForumsControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should not get create" do
-    post :create, forum: {name: "some name", description: "some descrpition"}, locale: :en
+    post :create, forum: { name: "some name", description: "some descrpition" }, locale: :en
     assert_redirected_to new_user_session_path
   end
 
   test "a browsing user should not get update" do
-    patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"}, locale: :en }
+    patch :update, { id: 3, forum: { name: "some name", description: "some descrpition" }, locale: :en }
     assert_redirected_to new_user_session_path
   end
 
@@ -67,13 +66,13 @@ class Admin::ForumsControllerTest < ActionController::TestCase
 
     test "a #{unauthorized} should not get create" do
       sign_in users(unauthorized.to_sym)
-      post :create, forum: {name: "some name", description: "some descrpition"}, locale: :en
+      post :create, forum: { name: "some name", description: "some descrpition" }, locale: :en
       assert_redirected_to root_path
     end
 
     test "a #{unauthorized} should not get update" do
       sign_in users(unauthorized.to_sym)
-      patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"}, locale: :en }
+      patch :update, { id: 3, forum: { name: "some name", description: "some descrpition" }, locale: :en }
       assert_redirected_to root_path
     end
 
@@ -84,7 +83,7 @@ class Admin::ForumsControllerTest < ActionController::TestCase
     end
   end
 
-  #logged in as admin, should get these pages
+  # logged in as admin, should get these pages
   %w(admin agent).each do |admin|
     test "an #{admin} should get new" do
       sign_in users(admin.to_sym)
@@ -100,13 +99,13 @@ class Admin::ForumsControllerTest < ActionController::TestCase
 
     test "an #{admin} should get create" do
       sign_in users(admin.to_sym)
-      post :create, forum: {name: "some name", description: "some descrpition"}, locale: :en
+      post :create, forum: { name: "some name", description: "some descrpition" }, locale: :en
       assert_redirected_to admin_forums_path
     end
 
     test "an #{admin} should get update" do
       sign_in users(admin.to_sym)
-      patch :update, { id: 3, forum: {name: "some name", description: "some descrpition"}, locale: :en }
+      patch :update, { id: 3, forum: { name: "some name", description: "some descrpition" }, locale: :en }
       assert_redirected_to admin_forums_path
     end
 
@@ -116,5 +115,4 @@ class Admin::ForumsControllerTest < ActionController::TestCase
       assert_template 'destroy'
     end
   end
-
 end

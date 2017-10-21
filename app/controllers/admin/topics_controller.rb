@@ -25,9 +25,8 @@
 #
 
 class Admin::TopicsController < Admin::BaseController
-
   before_action :verify_agent
-  before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
+  before_action :fetch_counts, only: ['index', 'show', 'update_topic', 'user_profile']
   before_action :remote_search, only: ['index', 'show', 'update_topic']
   before_action :get_all_teams, except: ['shortcuts']
 
@@ -143,7 +142,6 @@ class Admin::TopicsController < Admin::BaseController
         @posts = @topic.posts.chronologic.includes(:user)
         format.js {
           render action: 'show', id: @topic
-
         }
         format.html {
           render action: 'show', id: @topic
@@ -158,10 +156,9 @@ class Admin::TopicsController < Admin::BaseController
 
   # Updates discussion status
   def update_topic
-
     logger.info("Starting update")
 
-    #handle array of topics
+    # handle array of topics
     @topics = Topic.where(id: params[:topic_ids])
 
     bulk_post_attributes = []
@@ -172,7 +169,7 @@ class Admin::TopicsController < Admin::BaseController
         user_id = current_user.id || 2
         @topics.each do |topic|
           # prepare bulk params
-          bulk_post_attributes << {body: I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name), kind: 'note', user_id: user_id, topic_id: topic.id}
+          bulk_post_attributes << { body: I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name), kind: 'note', user_id: user_id, topic_id: topic.id }
         end
 
         case params[:change_status]
@@ -210,7 +207,6 @@ class Admin::TopicsController < Admin::BaseController
         end
       }
     end
-
   end
 
   # Assigns a discussion to another agent
@@ -219,12 +215,12 @@ class Admin::TopicsController < Admin::BaseController
     @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless params[:assigned_user_id].blank?
-      #handle array of topics
+      # handle array of topics
       @topics.each do |topic|
         # if message was unassigned previously, use the new assignee
         # this is to give note attribution below
         previous_assigned_id = topic.assigned_user_id || params[:assigned_user_id]
-        bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: assigned_user.name), kind: 'note', user_id: previous_assigned_id, topic_id: topic.id}
+        bulk_post_attributes << { body: I18n.t(:assigned_message, assigned_to: assigned_user.name), kind: 'note', user_id: previous_assigned_id, topic_id: topic.id }
 
         # Calls to GA
         tracker("Agent: #{current_user.name}", "Assigned to #{assigned_user.name.titleize}", @topic.to_param, 0)
@@ -245,7 +241,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     respond_to do |format|
-      format.html #render action: 'ticket', id: @topic.id
+      format.html # render action: 'ticket', id: @topic.id
       format.js {
         if params[:topic_ids].count > 1
           get_tickets
@@ -259,17 +255,16 @@ class Admin::TopicsController < Admin::BaseController
 
   # Toggle privacy of a topic
   def toggle_privacy
-
-    #handle array of topics
+    # handle array of topics
     @topics = Topic.where(id: params[:topic_ids])
     @topics.update_all(private: params[:private], forum_id: params[:forum_id])
     bulk_post_attributes = []
 
     @topics.each do |topic|
       if topic.forum_id == 1
-        bulk_post_attributes << {body: I18n.t(:converted_to_ticket), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+        bulk_post_attributes << { body: I18n.t(:converted_to_ticket), kind: 'note', user_id: current_user.id, topic_id: topic.id }
       else
-        bulk_post_attributes << {body: I18n.t(:converted_to_topic, forum_name: topic.forum.name), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+        bulk_post_attributes << { body: I18n.t(:converted_to_topic, forum_name: topic.forum.name), kind: 'note', user_id: current_user.id, topic_id: topic.id }
       end
 
       # Calls to GA
@@ -286,14 +281,13 @@ class Admin::TopicsController < Admin::BaseController
     get_all_teams
     # respond_to do |format|
     #   format.js {
-        if params[:topic_ids].count > 1
-          render 'index'
-        else
-          render 'update_ticket', id: @topic.id
-        end
+    if params[:topic_ids].count > 1
+      render 'index'
+    else
+      render 'update_ticket', id: @topic.id
+    end
     #   }
     # end
-
   end
 
   def update
@@ -322,7 +316,6 @@ class Admin::TopicsController < Admin::BaseController
       fetch_counts
       get_all_teams
 
-
       @topic.posts.create(
         body: t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list),
         user: current_user,
@@ -347,9 +340,9 @@ class Admin::TopicsController < Admin::BaseController
     @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless assigned_group.blank?
-      #handle array of topics
+      # handle array of topics
       @topics.each do |topic|
-        bulk_post_attributes << {body: I18n.t(:assigned_group, assigned_group: assigned_group), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+        bulk_post_attributes << { body: I18n.t(:assigned_group, assigned_group: assigned_group), kind: 'note', user_id: current_user.id, topic_id: topic.id }
 
         # Calls to GA
         tracker("Agent: #{current_user.name}", "Assigned to #{assigned_group.titleize}", @topic.to_param, 0)
@@ -368,7 +361,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     respond_to do |format|
-      format.html #render action: 'ticket', id: @topic.id
+      format.html # render action: 'ticket', id: @topic.id
       format.js {
         if params[:topic_ids].count > 1
           get_tickets

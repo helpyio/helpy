@@ -1,5 +1,4 @@
 class Admin::SharedController < Admin::BaseController
-
   def update_order
     # Safely identify the model we're updating the position of
     klass = [Category, Doc].detect { |c| c.name.casecmp(params[:object]) == 0 }
@@ -9,5 +8,4 @@ class Admin::SharedController < Admin::BaseController
 
     render nothing: true
   end
-
 end

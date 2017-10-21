@@ -14,7 +14,6 @@
 require 'test_helper'
 
 class Admin::ApiKeysControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -36,5 +35,4 @@ class Admin::ApiKeysControllerTest < ActionController::TestCase
     get :index, locale: :en
     assert_response :success
   end
-
 end

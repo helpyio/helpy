@@ -1,1 +1,1 @@
-ActsAsTaggableOn.delimiter = ',' 
+ActsAsTaggableOn.delimiter = ','

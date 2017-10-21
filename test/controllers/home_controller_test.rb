@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class HomeControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -38,7 +37,7 @@ class HomeControllerTest < ActionController::TestCase
     get :index, locale: :en
     assert_not_nil assigns(:categories)
 
-    #Should be at least one category box
+    # Should be at least one category box
     assert_select "div.topic-box", true
   end
 
@@ -46,7 +45,7 @@ class HomeControllerTest < ActionController::TestCase
   test "a browsing user in a locale without translations should not see any category" do
     get :index, locale: :fr
 
-    #Should not be any category boxes
+    # Should not be any category boxes
     assert_select "div.topic-box", false
   end
 
@@ -55,13 +54,12 @@ class HomeControllerTest < ActionController::TestCase
   test "a browsing user in a locale with a translated category but without translated docs should not see any category" do
     get :index, locale: :et
 
-    #Should not be any category boxes
+    # Should not be any category boxes
     assert_select "div.topic-box", false
   end
 
   # If there is a translated category with at least one translated doc, a category box should be shown
   test "a browsing user in a locale with a translated category with translated docs should see a category" do
-
     # Add a translated doc to the category
     I18n.locale = :et
     @doc = Doc.where(category_id: 1).first
@@ -70,7 +68,7 @@ class HomeControllerTest < ActionController::TestCase
 
     get :index, locale: :et
 
-    #Should not be a category box
+    # Should not be a category box
     assert_select "div.topic-box", true
   end
 
@@ -78,7 +76,7 @@ class HomeControllerTest < ActionController::TestCase
     AppSettings['theme.active'] = 'flat'
     get :index, locale: :en
 
-    #Should not be any category boxes
+    # Should not be any category boxes
     assert_select "#category-5", false
   end
 
@@ -126,5 +124,4 @@ class HomeControllerTest < ActionController::TestCase
     get :index, locale: :en
     assert_select 'div#get-help-wrapper', true
   end
-
 end

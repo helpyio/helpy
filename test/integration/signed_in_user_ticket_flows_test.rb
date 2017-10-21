@@ -3,7 +3,6 @@ require 'integration_test_helper'
 include Warden::Test::Helpers
 
 class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     Warden.test_mode!
     set_default_settings
@@ -15,7 +14,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "a signed in user should be able to create a private ticket via the web interface" do
-
     sign_in
 
     visit '/en'
@@ -33,11 +31,9 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     visit '/en/tickets/'
     assert page.has_content?('Tickets')
     assert page.has_content?("##{Topic.last.id}- I got problems")
-
   end
 
   test "a signed in user should be able to create a public topic via the web interface" do
-
     sign_in
 
     visit '/en'
@@ -55,11 +51,9 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
     visit '/en/community/3-public-forum/topics'
     assert page.has_content?("I got problems")
-
   end
 
   test "a signed in user should be able to reply to a private ticket" do
-
     sign_in
 
     visit '/en'
@@ -74,52 +68,45 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       click_on "Post Reply", disabled: true
     end
 
-#    assert page.has_content?('This is my reply'), "Reply not found"
-
+    #    assert page.has_content?('This is my reply'), "Reply not found"
   end
 
   test "a logged in user should be prompted to create a new public topic" do
-
     sign_in
 
-    forums = [  "/en/community/3-public-forum/topics",
-                "/en/community/4-public-idea-board/topics",
-                "/en/community/5-public-q-a/topics" ]
+    forums = ["/en/community/3-public-forum/topics",
+              "/en/community/4-public-idea-board/topics",
+              "/en/community/5-public-q-a/topics"]
 
     forums.each do |forum|
       visit forum
       click_on "Start a Discussion"
       assert current_path == "/en/topics/new"
     end
-
   end
 
   test "a logged in user should not see the reply button when viewing a public topic" do
-
     sign_in
 
-    topics = [ "/en/topics/5-new-public-topic/posts",
-               "/en/topics/8-new-idea/posts",
-               "/en/topics/7-new-question/posts" ]
+    topics = ["/en/topics/5-new-public-topic/posts",
+              "/en/topics/8-new-idea/posts",
+              "/en/topics/7-new-question/posts"]
 
     topics.each do |topic|
       visit topic
       assert page.has_no_css?('#reply-button'), message: "Reply button displayed when it shouldnt be (url: #{topic})"
       assert page.has_content?('Type your response:')
     end
-
   end
 
   test "a signed in user should be able to reply to a public topic" do
-
     sign_in
 
-    topics = [ "/en/topics/5-new-public-topic/posts",
-               "/en/topics/8-new-idea/posts",
-               "/en/topics/7-new-question/posts" ]
+    topics = ["/en/topics/5-new-public-topic/posts",
+              "/en/topics/8-new-idea/posts",
+              "/en/topics/7-new-question/posts"]
 
     topics.each do |topic|
-
       visit topic
 
       assert_difference('Post.count', 1) do
@@ -129,13 +116,10 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
 
       visit topic
       assert page.has_content?('This is my reply'), "Reply not found"
-
     end
-
   end
 
   test "a signed in user should be able to create a private ticket via widget" do
-
     sign_in
 
     visit '/widget'
@@ -149,7 +133,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     visit '/en/tickets/'
     assert page.has_content?('Tickets')
     assert page.has_content?("##{Topic.last.id}- I got problems")
-
   end
 
   test "a signed in user should be able to flag a post for review from the public discussion view" do
@@ -159,5 +142,4 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     click_on "Flag for Review"
     assert find("div#flag-modal").visible?
   end
-
 end

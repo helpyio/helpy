@@ -25,7 +25,6 @@
 #
 
 module DocsHelper
-
   def sanitize_doc_content(content)
     "#{content}".html_safe
   end

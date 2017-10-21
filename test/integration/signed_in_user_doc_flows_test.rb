@@ -3,7 +3,6 @@ require 'integration_test_helper'
 include Warden::Test::Helpers
 
 class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     Warden.test_mode!
     set_default_settings
@@ -17,7 +16,6 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "when a doc allows commenting and there are comments, a signed in user should see comments and a reply form" do
-
     create_some_comments
     visit '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments'
     assert page.has_content?('test post')
@@ -33,7 +31,6 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "when a doc allows commenting and there are no comments, a signed in user should see a start discussion form" do
-
     visit '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments'
     assert page.has_content?('Start a Discussion')
     assert page.has_css?("div.add-form")
@@ -42,16 +39,13 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
     click_on('Start a Discussion', disabled: true)
 
     assert page.has_content?('Added a comment!')
-
   end
 
   test "when a doc does not allow commenting, a signed in user should not see a reply or start discussion button" do
-
     visit '/en/knowledgebase/1-active-and-featured/docs/5-does-not-allow-comments'
     assert page.has_no_content?('Start a New Discussion')
     assert page.has_no_content?('Reply')
     assert page.has_no_css?("div.add-form")
-
   end
 
   def create_some_comments
@@ -77,5 +71,4 @@ class SignedInUserDocFlowsTest < ActionDispatch::IntegrationTest
   def clear_comments
     Topic.where(doc_id: 6).first.destroy!
   end
-
 end

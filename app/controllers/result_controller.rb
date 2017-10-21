@@ -26,7 +26,7 @@ class ResultController < ApplicationController
                                name: result.searchable.name,
                                content: result.searchable.post_cache.nil? ? nil : result.searchable.post_cache.truncate_words(20),
                                link: topic_posts_path(Topic.find(result.searchable_id))
-                               }
+                             }
                            else
                              {
                                name: result.searchable.title,
@@ -37,5 +37,4 @@ class ResultController < ApplicationController
     end
     serialized_result
   end
-
 end

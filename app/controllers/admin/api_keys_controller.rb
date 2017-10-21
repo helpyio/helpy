@@ -12,7 +12,6 @@
 #
 
 class Admin::ApiKeysController < Admin::BaseController
-
   before_action :set_user
 
   # Restrict API token generation to admin and agents only for now
@@ -53,10 +52,8 @@ class Admin::ApiKeysController < Admin::BaseController
 
   def api_key_params
     params.require(:api_key).permit(
-    :name,
-    :user_id
-  )
+      :name,
+      :user_id
+    )
   end
-
-
 end

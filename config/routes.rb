@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-
   root to: "locales#redirect_on_locale"
 
   devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
@@ -16,12 +14,11 @@ Rails.application.routes.draw do
   match "/500", :to => "errors#internal_server_error", :via => :all
 
   localized do
-
     root to: "home#index"
 
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 
-    #devise_for :users, controllers: {
+    # devise_for :users, controllers: {
     #      registrations: 'registrations',
     #      omniauth_callbacks: "callbacks"
     #    }
@@ -81,9 +78,8 @@ Rails.application.routes.draw do
   # Admin Routes
 
   namespace :admin do
-
     # Extra topic Routes
-    get 'topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: {format: 'js'}
+    get 'topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: { format: 'js' }
     post 'topics/merge_tickets' => 'topics#merge_tickets', as: :merge_tickets
     patch 'topics/update_tags' => 'topics#update_tags', as: :update_topic_tags
     get 'topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
@@ -119,14 +115,13 @@ Rails.application.routes.draw do
 
     post 'posts/users' => 'posts#search', as: :user_search
     get  'posts/new_user' => 'posts#new_user', as: :new_user
-    post  'posts/new_user' => 'posts#change_owner_new_user'
+    post 'posts/new_user' => 'posts#change_owner_new_user'
 
     get 'internal_docs/search' => 'internal_categories#search', as: :internal_docs_search
 
     resources :categories do
       resources :docs, except: [:index, :show]
     end
-
 
     resources :internal_categories, only: [:index, :show] do
       resources :internal_docs, only: :show
@@ -135,7 +130,7 @@ Rails.application.routes.draw do
     resources :docs, except: [:index, :show]
 
     resources :images, only: [:create, :destroy]
-    resources :forums# , except: [:index, :show]
+    resources :forums # , except: [:index, :show]
     resources :users
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
@@ -162,5 +157,4 @@ Rails.application.routes.draw do
 
   # Mount attachinary
   mount Attachinary::Engine => "/attachinary"
-
 end

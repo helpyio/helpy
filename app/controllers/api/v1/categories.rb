@@ -1,7 +1,6 @@
 module API
   module V1
     class Categories < Grape::API
-
       before do
         authenticate!
         restrict_to_role %w(admin agent)
@@ -9,7 +8,6 @@ module API
 
       include API::V1::Defaults
       resource :categories, desc: 'Manage knowledgebase categories' do
-
         # throttle max: 200, per: 1.minute
 
         # LIST ALL CATEGORIES
@@ -98,9 +96,7 @@ module API
           )
           present category, with: Entity::Category
         end
-
       end
-
     end
   end
 end

@@ -6,7 +6,7 @@ class API::V1::FlagsTest < ActiveSupport::TestCase
   def app
     Rails.application
   end
-  
+
   setup do
     set_default_settings
     @user = users(:admin)

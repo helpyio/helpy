@@ -48,7 +48,7 @@ AppSettings.defaults["theme.active"] = "light"
 # i18n:
 
 AppSettings.defaults["i18n.default_locale"] = "en"
-AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
+AppSettings.defaults["i18n.available_locales"] = ["en", "es", "fr", "de"]
 
 # Widget:
 
@@ -70,7 +70,7 @@ AppSettings.defaults["email.smtp_mail_username"] = Settings.smtp_mail_username
 AppSettings.defaults["email.smtp_mail_password"] = Settings.smtp_mail_password
 AppSettings.defaults["email.mail_smtp"] = Settings.mail_smtp
 AppSettings.defaults["email.mail_port"] = Settings.mail_port
-AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
+AppSettings.defaults["email.mail_domain"] = Settings.mail_domain
 
 # notifications
 

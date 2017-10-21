@@ -114,7 +114,7 @@ gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 # Email/Mail Handling
 gem 'daemons'
 gem 'mail_extract'
-gem 'mailman'#, require: false
+gem 'mailman' # , require: false
 
 gem 'griddler'
 gem 'griddler-mailgun'
@@ -140,7 +140,7 @@ gem 'devise_invitable', '~> 1.6'
 # Faker is used for the populate script to create demo data
 gem 'faker'
 
-gem 'timecop' #used to populate
+gem 'timecop' # used to populate
 
 gem "recaptcha", require: "recaptcha/rails"
 gem 'themes_on_rails'
@@ -179,7 +179,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem "codeclimate-test-reporter",require: nil
+  gem "codeclimate-test-reporter", require: nil
   gem 'factory_girl_rails'
   gem 'launchy'
   gem 'minitest'

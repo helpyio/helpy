@@ -19,7 +19,6 @@
 #
 
 class Category < ActiveRecord::Base
-
   include SentenceCase
 
   has_many :docs
@@ -43,7 +42,7 @@ class Category < ActiveRecord::Base
   scope :publicly, -> { where(visibility: PUBLIC_VIEWABLE) }
   scope :internally, -> { where(visibility: INTERNAL_VIEWABLE) }
   scope :only_internally, -> { where(visibility: 'internal') }
-  scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
+  scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES) }
 
   before_destroy :non_deleteable?
   after_commit :rebuild_search, only: :update, if: -> { active_changed? || visibility_changed? }
@@ -76,5 +75,4 @@ class Category < ActiveRecord::Base
   def rebuild_search
     RebuildSearchJob.perform_later
   end
-
 end

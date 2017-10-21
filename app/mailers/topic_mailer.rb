@@ -14,7 +14,6 @@ class TopicMailer < ActionMailer::Base
       bcc: @post.bcc,
       from: @topic.from_email_address,
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
-      )
+    )
   end
-
 end

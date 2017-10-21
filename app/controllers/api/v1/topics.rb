@@ -1,7 +1,6 @@
 module API
   module V1
     class Topics < Grape::API
-
       before do
         authenticate!
         restrict_to_role %w(admin agent)
@@ -14,7 +13,6 @@ module API
 
       # PRIVATE TICKET ENDPOINTS
       resource :tickets, desc: "Create and Manage private discussions" do
-
         paginate per_page: 20
 
         # LIST BY STATUS
@@ -283,7 +281,6 @@ module API
 
       # PUBLIC TOPIC ENDPOINTS
       resource :topics, desc: "Create and manage public discussions" do
-
         # SHOW ONE TOPIC AND ITS THREAD
         desc "Show a single ticket", {
           entity: Entity::Topic,
@@ -293,10 +290,9 @@ module API
           requires :id, type: Integer, desc: "Topic ID"
         end
         get ":id", root: :topics do
-          topic = Topic.includes(:posts).find(permitted_params[:id])#
+          topic = Topic.includes(:posts).find(permitted_params[:id]) #
           present topic, with: Entity::Topic, posts: true
         end
-
 
         # CREATE A NEW PUBLIC TOPIC
         desc "Create a new public topic"
@@ -354,18 +350,16 @@ module API
         }
         params do
           requires :id, type: Integer, desc: "The ID of the topic to vote for"
-          #requires :user_id, type: Integer
+          # requires :user_id, type: Integer
         end
         patch ':id/vote', root: :topics do
           topic = Topic.where(id: permitted_params[:id]).first
           topic.votes.create!(
-            user_id: current_user #|| permitted_params[:user_id]
+            user_id: current_user # || permitted_params[:user_id]
           )
           present topic, with: Entity::Topic
         end
-
       end
-
     end
   end
 end

@@ -17,7 +17,6 @@
 #
 
 class Forum < ActiveRecord::Base
-
   include SentenceCase
 
   has_many :topics, dependent: :delete_all
@@ -26,8 +25,8 @@ class Forum < ActiveRecord::Base
   scope :alpha, -> { order('name ASC') }
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where(private: true)}
-  scope :ispublic, -> { where(private: false)}
+  scope :isprivate, -> { where(private: true) }
+  scope :ispublic, -> { where(private: false) }
   scope :for_docs, -> { where(name: 'Doc comments') }
 
   validates :name, presence: true, length: { maximum: 255 }
@@ -40,5 +39,4 @@ class Forum < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}" unless name.nil?
   end
-
 end

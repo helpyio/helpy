@@ -1,7 +1,6 @@
 module API
   module V1
     class Users < Grape::API
-
       before do
         authenticate!
         restrict_to_role %w(admin agent)
@@ -11,7 +10,6 @@ module API
       include Grape::Kaminari
 
       resource :users, desc: "View and edit users" do
-
         # throttle max: 200, per: 1.minute
         paginate per_page: 20
 
@@ -106,7 +104,7 @@ module API
             language: permitted_params[:language],
             active: permitted_params[:active],
             priority: permitted_params[:priority]
-            )
+          )
           present user, with: Entity::User
         end
 
@@ -167,7 +165,7 @@ module API
             language: permitted_params[:language],
             active: permitted_params[:active],
             priority: permitted_params[:priority]
-            )
+          )
           present user, with: Entity::User
         end
 
@@ -182,7 +180,6 @@ module API
           User.bulk_invite(permitted_params["emails"], permitted_params["message"], permitted_params["role"])
           present params[:emails]
         end
-
       end
     end
   end

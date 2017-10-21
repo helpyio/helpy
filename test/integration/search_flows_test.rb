@@ -1,8 +1,6 @@
 require 'integration_test_helper'
 
-
 class SearchFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     # Build PG search
     PgSearch::Multisearch.rebuild(Doc)
@@ -14,7 +12,6 @@ class SearchFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "a browsing user should be able to search from the home page" do
-
     visit '/en'
 
     within('div#body-wrapper') do
@@ -24,7 +21,5 @@ class SearchFlowsTest < ActionDispatch::IntegrationTest
 
     uri = URI.parse(current_url)
     assert "#{uri.path}?#{uri.query}" == '/en/result?utf8=%E2%9C%93&q=public'
-
   end
-
 end

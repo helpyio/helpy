@@ -12,7 +12,7 @@ module API
         helpers do
           def permitted_params
             @permitted_params ||= declared(params,
-               include_missing: false)
+                                           include_missing: false)
           end
 
           def logger
@@ -37,7 +37,6 @@ module API
           def restrict_to_role(role)
             error!('Unauthorized. Insufficient access priviledges.', 401) unless role.include?(current_user.role)
           end
-
         end
 
         rescue_from ActiveRecord::RecordNotFound do |e|

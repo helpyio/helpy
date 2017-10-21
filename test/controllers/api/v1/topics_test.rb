@@ -379,7 +379,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     post "api/v1/tickets/split/#{post.id}.json", @default_params.merge(params)
 
-    new_topic =  JSON.parse(last_response.body)
+    new_topic = JSON.parse(last_response.body)
     new_topic_object = Topic.find(new_topic['id'])
 
     # Check new topic title correctly set.
@@ -400,7 +400,6 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
   # TEST MERGING TOPICS
   test "an API user should be able to merge tickets" do
-
     # Build some topics to merge
     topica = Topic.create(name: "message A", user_id: 1, forum_id: 1, private: true)
     topica.posts.create(kind: 'first', body: 'message A first', user_id: 1)

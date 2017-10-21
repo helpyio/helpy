@@ -16,7 +16,6 @@
 require 'test_helper'
 
 class Admin::PostsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -25,16 +24,14 @@ class Admin::PostsControllerTest < ActionController::TestCase
     test "a #{unauthorized} should NOT be able to edit a post" do
       sign_in users(unauthorized.to_sym)
       original_post = Post.find(1)
-      xhr :patch, :update, { id: 1, post: { body: "this has changed" }, locale: :en}
+      xhr :patch, :update, { id: 1, post: { body: "this has changed" }, locale: :en }
       assert original_post.body == Post.find(1).body
       assert :success
     end
   end
 
   %w(admin agent).each do |admin|
-
     test "an #{admin} should be able to see inactive posts" do
-
     end
 
     test "an #{admin} should be able to reply to a private topic, and the system should send an email" do
@@ -74,7 +71,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to edit a post" do
       sign_in users(admin.to_sym)
       old = Post.find(1).body
-      xhr :patch, :update, {id: 1, locale: :en, post: { body: "this has changed" }  }
+      xhr :patch, :update, { id: 1, locale: :en, post: { body: "this has changed" } }
       assert old != Post.find(1).body
       assert :success
     end
@@ -110,7 +107,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to search for Users" do
       sign_in users(admin.to_sym)
-      xhr :post, :search,  user_search: 'scott', post_id: 1
+      xhr :post, :search, user_search: 'scott', post_id: 1
       assert_equal assigns['users'].count, 3
     end
 
@@ -133,5 +130,4 @@ class Admin::PostsControllerTest < ActionController::TestCase
       assert_equal note.body, I18n.t('change_owner_note', old: post.user.name, new: updated_post.user.name, default: "The creator of this topic was changed from #{post.user.name} to #{updated_post.user.name}")
     end
   end
-
 end

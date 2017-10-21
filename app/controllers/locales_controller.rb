@@ -1,5 +1,4 @@
 class LocalesController < ApplicationController
-
   respond_to :html
   theme :theme_chosen
 
@@ -16,5 +15,4 @@ class LocalesController < ApplicationController
   def redirect_on_locale
     redirect_to root_path, status: 301
   end
-
 end

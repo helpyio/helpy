@@ -6,7 +6,7 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 end
 
-def sign_in(email='scott.miller@test.com')
+def sign_in(email = 'scott.miller@test.com')
   visit "/en/users/sign_in"
   within first('div.login-form') do
     fill_in("user[email]", with: email)
@@ -15,7 +15,7 @@ def sign_in(email='scott.miller@test.com')
   end
 end
 
-def sign_in_by_modal(email='scott.miller@test.com')
+def sign_in_by_modal(email = 'scott.miller@test.com')
   within("div#above-header") do
     click_on "Sign in", wait: 30
   end

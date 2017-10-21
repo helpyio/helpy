@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class Admin::SettingsControllerTest < ActionController::TestCase
-
   setup do
     # login admin for all tests of admin functions
     @request.headers['Accepts'] = 'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript'
@@ -15,7 +14,6 @@ class Admin::SettingsControllerTest < ActionController::TestCase
   end
 
   %w(user agent editor).each do |unauthorized|
-
     # TODO: Temporarily disabled these cause they were failing even thought the
     # functionality works okay in the browser
 
@@ -45,11 +43,11 @@ class Admin::SettingsControllerTest < ActionController::TestCase
   test 'an admin should be able to modify settings' do
     sign_in users(:admin)
     xhr :put, :update_settings,
-      'settings.site_name' => 'Helpy Support 2',
-      'settings.parent_site' => 'http://helpy.io/2',
-      'settings.parent_company' => 'Helpy 2',
-      'settings.site_tagline' => 'Support',
-      'settings.google_analytics_id' => 'UA-0000-21'
+        'settings.site_name' => 'Helpy Support 2',
+        'settings.parent_site' => 'http://helpy.io/2',
+        'settings.parent_company' => 'Helpy 2',
+        'settings.site_tagline' => 'Support',
+        'settings.google_analytics_id' => 'UA-0000-21'
     assert_response :success
     assert_equal 'Helpy Support 2', AppSettings['settings.site_name']
     assert_equal 'http://helpy.io/2', AppSettings['settings.parent_site']
@@ -60,15 +58,15 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to modify design' do
     sign_in users(:admin)
-    xhr :put,:update_settings,
-      'design.header_logo' => 'logo2.png',
-      'design.footer_mini_logo' => 'logo2.png',
-      'design.favicon' => 'favicon2.ico',
-      'css.search_background' => '000000',
-      'css.top_bar' => '000000',
-      'css.link_color' => '000000',
-      'css.form_background' => '000000',
-      'css.still_need_help' => '000000'
+    xhr :put, :update_settings,
+        'design.header_logo' => 'logo2.png',
+        'design.footer_mini_logo' => 'logo2.png',
+        'design.favicon' => 'favicon2.ico',
+        'css.search_background' => '000000',
+        'css.top_bar' => '000000',
+        'css.link_color' => '000000',
+        'css.form_background' => '000000',
+        'css.still_need_help' => '000000'
     assert_response :success
     assert_equal 'logo2.png', AppSettings['design.header_logo']
     assert_equal 'logo2.png', AppSettings['design.footer_mini_logo']
@@ -85,7 +83,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
     sign_in users(:admin)
     put :update_settings,
-      'theme.active' => 'flat'
+        'theme.active' => 'flat'
     assert_redirected_to :admin_settings
     assert_equal 'flat', AppSettings['theme.active']
   end
@@ -96,7 +94,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     AppSettings['i18n.available_locales'] = ''
 
     xhr :put, :update_settings,
-      'i18n.available_locales' => ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl']
+        'i18n.available_locales' => ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl']
 
     assert_response :success
     assert_equal ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl'], AppSettings['i18n.available_locales']
@@ -112,7 +110,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to turn email delivery on and off' do
     put :update_settings,
-      'email.send_email' => 'false'
+        'email.send_email' => 'false'
 
     # TODO: Refactor this into an integration test
     # assert_no_difference 'ActionMailer::Base.deliveries.size' do
@@ -123,14 +121,14 @@ class Admin::SettingsControllerTest < ActionController::TestCase
   test 'an admin should be able to add mail settings' do
     sign_in users(:admin)
     xhr :put, :update_settings,
-      'email.admin_email' => 'test@test.com',
-      'email.from_email' => 'test@test.com',
-      'email.mail_service' => 'mailgun',
-      'email.mail_smtp' => 'mail.test.com',
-      'email.smtp_mail_username' => 'test-login',
-      'email.smtp_mail_password' => '1234',
-      'email.mail_port' => '587',
-      'email.mail_domain' => 'something.com'
+        'email.admin_email' => 'test@test.com',
+        'email.from_email' => 'test@test.com',
+        'email.mail_service' => 'mailgun',
+        'email.mail_smtp' => 'mail.test.com',
+        'email.smtp_mail_username' => 'test-login',
+        'email.smtp_mail_password' => '1234',
+        'email.mail_port' => '587',
+        'email.mail_domain' => 'something.com'
     assert_response :success
 
     assert_equal 'test@test.com', AppSettings['email.admin_email']
@@ -146,9 +144,9 @@ class Admin::SettingsControllerTest < ActionController::TestCase
   test 'an admin should be able to add a cloudinary key' do
     sign_in users(:admin)
     xhr :put, :update_settings,
-      'cloudinary.cloud_name' => 'something',
-      'cloudinary.api_key' => 'something',
-      'cloudinary.api_secret' => 'something'
+        'cloudinary.cloud_name' => 'something',
+        'cloudinary.api_key' => 'something',
+        'cloudinary.api_secret' => 'something'
     assert_response :success
     assert_equal 'something', AppSettings['cloudinary.cloud_name']
     assert_equal 'something', AppSettings['cloudinary.api_key']
@@ -159,9 +157,9 @@ class Admin::SettingsControllerTest < ActionController::TestCase
   test 'the updated cloudinary keys should be persisted into the api object' do
     sign_in users(:admin)
     xhr :put, :update_settings,
-      'cloudinary.cloud_name' => 'something',
-      'cloudinary.api_key' => 'something',
-      'cloudinary.api_secret' => 'something'
+        'cloudinary.cloud_name' => 'something',
+        'cloudinary.api_key' => 'something',
+        'cloudinary.api_secret' => 'something'
     assert_response :success
     get :index
     assert_equal 'something', Cloudinary.config.cloud_name
@@ -174,5 +172,4 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     get :profile
     assert :success
   end
-
 end

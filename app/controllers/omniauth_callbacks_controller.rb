@@ -1,5 +1,4 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
   skip_before_action :verify_authenticity_token
 
   def github
@@ -17,7 +16,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def handle_redirect(_session_variable, _kind)
-
     # Use the session locale set earlier; use the default if it isn't available.
     I18n.locale = session[:omniauth_login_locale] || I18n.default_locale
 
@@ -34,13 +32,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # render "users/finish_signup"
       redirect_to finish_signup_path
     else
-      sign_in_and_redirect user#, event: :authentication
+      sign_in_and_redirect user # , event: :authentication
     end
   end
 
   def user
     User.find_for_oauth(env['omniauth.auth'])
   end
-
-
 end

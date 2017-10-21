@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :email_from_unknown, class: OpenStruct do
     to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
     from({ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' })
@@ -53,40 +52,46 @@ FactoryGirl.define do
     from({ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' })
     subject 'email subject'
     body 'Hello!'
-    attachments {[]}
+    attachments { [] }
 
     trait :with_attachment do
-      attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        })
-      ]}
+      attachments {
+        [
+          ActionDispatch::Http::UploadedFile.new({
+                                                   filename: 'logo.png',
+                                                   type: 'image/png',
+                                                   tempfile: File.new(Rails.root.join("test/fixtures/files/logo.png"))
+                                                 })
+        ]
+      }
     end
 
     trait :with_invalid_attachment do
-      attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'test.odt',
-          tempfile: File.new(Rails.root.join("test/fixtures/test.odt"))
-        })
-      ]}
+      attachments {
+        [
+          ActionDispatch::Http::UploadedFile.new({
+                                                   filename: 'test.odt',
+                                                   tempfile: File.new(Rails.root.join("test/fixtures/test.odt"))
+                                                 })
+        ]
+      }
     end
 
     trait :with_multiple_attachments do
-      attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        }),
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        })
-      ]}
+      attachments {
+        [
+          ActionDispatch::Http::UploadedFile.new({
+                                                   filename: 'logo.png',
+                                                   type: 'image/png',
+                                                   tempfile: File.new(Rails.root.join("test/fixtures/files/logo.png"))
+                                                 }),
+          ActionDispatch::Http::UploadedFile.new({
+                                                   filename: 'logo.png',
+                                                   type: 'image/png',
+                                                   tempfile: File.new(Rails.root.join("test/fixtures/files/logo.png"))
+                                                 })
+        ]
+      }
     end
   end
 
@@ -120,5 +125,4 @@ FactoryGirl.define do
     show_on_helpcenter false
     show_on_dashboard false
   end
-
 end

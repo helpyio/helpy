@@ -1,5 +1,4 @@
 class Admin::OnboardingController < Admin::BaseController
-
   layout 'onboard'
   before_action :allow_onboarding, except: 'complete'
 
@@ -33,7 +32,6 @@ class Admin::OnboardingController < Admin::BaseController
   end
 
   def update_settings
-
     # NOTE: We iterate through settings here to establish our universe of settings to save
     # this means if you add a setting ie. in a plugin, you MUST declare a default value in the
     # "default_settings intializer".
@@ -49,7 +47,7 @@ class Admin::OnboardingController < Admin::BaseController
     respond_to do |format|
       format.html { redirect_to(admin_settings_path) }
       format.js {
-          render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
+        render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
       }
     end
   end
@@ -75,7 +73,4 @@ class Admin::OnboardingController < Admin::BaseController
       :company
     )
   end
-
-
-
 end

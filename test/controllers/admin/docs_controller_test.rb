@@ -26,7 +26,6 @@
 require 'test_helper'
 
 class Admin::DocsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -49,7 +48,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should not be able to load update" do
-    patch :update, { id: 1, doc: { title: "some name", body: "some body text", category_id: 1}, locale: "en" }
+    patch :update, { id: 1, doc: { title: "some name", body: "some body text", category_id: 1 }, locale: "en" }
     assert_redirected_to new_user_session_path
   end
 
@@ -68,21 +67,21 @@ class Admin::DocsControllerTest < ActionController::TestCase
 
   test "a signed in user should not be able to load edit" do
     sign_in users(:user)
-    get :edit, { id: 3, locale: :en}
+    get :edit, { id: 3, locale: :en }
     assert_redirected_to root_path
   end
 
   test "a signed in user should not be able to load create" do
     sign_in users(:user)
     assert_difference "Doc.count", 0 do
-      post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
+      post :create, doc: { title: "some name", body: "some body text", category_id: 1 }, locale: :en
     end
     assert_redirected_to root_path
   end
 
   test "a signed in user should not be able to load update" do
     sign_in users(:user)
-    patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en }
+    patch :update, { id: 1, doc: { title: "some name", body: "some body text", category_id: 1 }, locale: :en }
     assert_redirected_to root_path
   end
 
@@ -96,7 +95,6 @@ class Admin::DocsControllerTest < ActionController::TestCase
 
   # Admin actions
   %w(admin agent editor).each do |admin|
-
     test "an #{admin} should be able to load new" do
       sign_in users(admin.to_sym)
       get :new, locale: :en
@@ -187,7 +185,6 @@ class Admin::DocsControllerTest < ActionController::TestCase
       assert_response :success
 
       assert_select("input.cloudinary-fileupload", true)
-
     end
 
     test "an #{admin} should not see the option to attach files if cloudinary is not configured" do

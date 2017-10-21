@@ -19,7 +19,6 @@
 require 'test_helper'
 
 class ForumsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -36,5 +35,4 @@ class ForumsControllerTest < ActionController::TestCase
       get :index, locale: :en
     end
   end
-
 end

@@ -27,7 +27,6 @@
 require 'test_helper'
 
 class DocTest < ActiveSupport::TestCase
-
   should belong_to(:category)
   should have_one(:topic)
   should have_many(:posts)
@@ -56,5 +55,4 @@ class DocTest < ActiveSupport::TestCase
     doc = create :doc, title: title
     assert_equal title.sentence_case, doc.title
   end
-
 end

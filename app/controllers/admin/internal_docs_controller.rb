@@ -39,5 +39,4 @@ class Admin::InternalDocsController < Admin::BaseController
       @post   = Post.new
     end
   end
-
 end

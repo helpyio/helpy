@@ -1,5 +1,4 @@
 class Webhook::InboundController < Webhook::BaseController
-
   # We skip auth token for incoming webhooks
   skip_before_action :verify_authenticity_token
   before_action(only: [:form]) { enabled?('form') }
@@ -44,19 +43,17 @@ class Webhook::InboundController < Webhook::BaseController
       channel: @params['message']['channel'],
       team_list: @params['message']['team'],
       tag_list: @params['message']['tags'],
-      )
-      
+    )
+
     if @topic.create_topic_with_webhook_user(@params)
       @user = @topic.user
       @post = @topic.posts.create(
         body: @params['message']['body'],
         user_id: @user.id,
         kind: 'first',
-        )
+      )
     end
 
     render json: @topic
   end
-
-
 end

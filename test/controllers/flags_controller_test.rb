@@ -28,7 +28,7 @@ class FlagsControllerTest < ActionController::TestCase
   test "a flagged post should create a new private topic" do
     sign_in users(:user)
 
-    assert_difference "Topic.where('name like ?', 'Flagged%').count", 1, 'A new topic should be created' do 
+    assert_difference "Topic.where('name like ?', 'Flagged%').count", 1, 'A new topic should be created' do
       xhr :post, :create, post_id: 7, flag: { reason: 'test' }, locale: :en
     end
   end

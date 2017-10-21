@@ -1,14 +1,12 @@
 module API
   module V1
     class Search < Grape::API
-
       before do
         authenticate!
       end
 
       include API::V1::Defaults
       resource :search, desc: "Search the KB or community discussions" do
-
         # throttle max: 200, per: 1.minute
 
         ## SEARCH PUBLIC KNOWLEDGEBASE
@@ -22,7 +20,6 @@ module API
           optional :per_page, type: Integer, desc: "The number of results to return per page", default: 25
         end
         get "", root: :search do
-
           # Build initial results of the search
           results = PgSearch.multisearch(permitted_params[:q])
                             .page(permitted_params[:page])
@@ -38,7 +35,6 @@ module API
 
           # Grab total pagesnow in case we have to map the results array
           total_pages = results.total_pages
-
 
           # Check what kind of entity we are searching for and modify the Entity output accordingly
           entity = case type

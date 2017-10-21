@@ -2,7 +2,7 @@ module Entity
   class Topic < Base
     expose :id, documentation: { type: "Integer" }
     expose :forum_id, documentation: { type: "Integer", desc: "The Forum this topic belongs to." }
-    expose :user_id, documentation: { type: "Integer", desc: "The ID representing the creator of the topic."  }
+    expose :user_id, documentation: { type: "Integer", desc: "The ID representing the creator of the topic." }
     expose :user_name
     expose :name, documentation: { type: "String", desc: "The title or subject of the Topic thread." }
     expose :posts_count, documentation: { type: "Integer" }
@@ -20,8 +20,8 @@ module Entity
     expose :locale, documentation: { type: "String", desc: "The locale used when the author created the Topic." }
     expose :team_list
     expose :tag_list
-    expose :channel, documentation: { type: "String", desc: "The channel that the topic was created from."}
-    expose :kind, documentation: { type: "String", desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc."}
+    expose :channel, documentation: { type: "String", desc: "The channel that the topic was created from." }
+    expose :kind, documentation: { type: "String", desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc." }
     expose :posts, using: Entity::Post, if: { posts: true }
   end
 end

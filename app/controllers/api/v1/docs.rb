@@ -1,7 +1,6 @@
 module API
   module V1
     class Docs < Grape::API
-
       before do
         authenticate!
         restrict_to_role %w(admin agent)
@@ -9,7 +8,6 @@ module API
 
       include API::V1::Defaults
       resource :docs, desc: "Manage knowledgebase documents" do
-
         # throttle max: 200, per: 1.minute
 
         # SHOW A SINGLE DOC
@@ -93,7 +91,6 @@ module API
           )
           present doc, with: Entity::Doc
         end
-
       end
     end
   end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EmailProcessorTest < ActiveSupport::TestCase
-
   setup do
     set_default_settings
   end
@@ -67,7 +66,6 @@ class EmailProcessorTest < ActiveSupport::TestCase
   end
 
   test 'an email with one attachment should save that attachment' do
-
     assert_difference('Topic.count', 1) do
       assert_difference('Post.count', 1) do
         EmailProcessor.new(build(:email_from_unknown_with_attachments, :with_attachment)).process
@@ -91,7 +89,7 @@ class EmailProcessorTest < ActiveSupport::TestCase
   test 'an email to the support address from a known user should create a new ticket for the user' do
     assert_difference('Topic.count', 1) do
       assert_difference('Post.count', 1) do
-          EmailProcessor.new(build(:email_from_known)).process
+        EmailProcessor.new(build(:email_from_known)).process
       end
     end
   end
@@ -129,5 +127,4 @@ class EmailProcessorTest < ActiveSupport::TestCase
       end
     end
   end
-
 end

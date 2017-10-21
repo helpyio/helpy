@@ -1,7 +1,6 @@
 module API
   module V1
     class Settings < Grape::API
-
       before do
         authenticate!
         restrict_to_role %w(admin)
@@ -9,7 +8,6 @@ module API
 
       include API::V1::Defaults
       resource :settings, desc: "See and edit site settings" do
-
         # throttle max: 200, per: 1.minute
 
         # LIST ALL SETTINGS
@@ -31,9 +29,7 @@ module API
           AppSettings[params[:key]] = params[:value]
           present AppSettings[params[:key]]
         end
-
       end
-
     end
   end
 end

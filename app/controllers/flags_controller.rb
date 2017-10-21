@@ -17,16 +17,17 @@ class FlagsController < ApplicationController
     @forum = Forum.isprivate.first
     @reason = params[:flag][:reason]
     @user = current_user
-    
+
     @flag = Flag.new(
-          post_id: @post.id,
-          reason: @reason
-          )
+      post_id: @post.id,
+      reason: @reason
+    )
 
     if @flag.save
       @topics = @forum.topics.new(
-      name: "Flagged for review: #{@topic.name}",
-      private: true)
+        name: "Flagged for review: #{@topic.name}",
+        private: true
+      )
 
       @topics.user_id = @user.id
 
@@ -35,7 +36,7 @@ class FlagsController < ApplicationController
           :body => "Reason for flagging: #{@flag.reason}\nTo view this post #{view_context.link_to 'Click Here', admin_topic_path(@topic)}",
           :user_id => @user.id,
           :kind => 'first'
-          )
+        )
 
         @flag.update_attribute(:generated_topic_id, @topics.id)
 

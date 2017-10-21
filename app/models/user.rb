@@ -79,7 +79,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true, format: { with: /\A\D+\z/ }
   validates :email, presence: true
 
-
   include Gravtastic
   mount_uploader :profile_image, ProfileImageUploader
 
@@ -96,7 +95,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :docs
   has_many :api_keys
-  has_attachment  :avatar, accept: [:jpg, :png, :gif]
+  has_attachment :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
   after_invitation_accepted :set_role_on_invitation_accept
@@ -107,11 +106,11 @@ class User < ActiveRecord::Base
   ROLES = %w[admin agent editor user]
 
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
-  scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
-  scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
-  scope :team, -> { where('admin = ? OR role = ? OR role = ? OR role = ?',true,'admin','agent','editor').order('name asc') }
-  scope :active, -> { where(active: true)}
-  scope :by_role, -> (role) { where(role: role) }
+  scope :admins, -> { where('admin = ? OR role = ?', true, 'admin').order('name asc') }
+  scope :agents, -> { where('admin = ? OR role = ? OR role = ?', true, 'admin', 'agent').order('name asc') }
+  scope :team, -> { where('admin = ? OR role = ? OR role = ? OR role = ?', true, 'admin', 'agent', 'editor').order('name asc') }
+  scope :active, -> { where(active: true) }
+  scope :by_role, ->(role) { where(role: role) }
 
   def set_role_on_invitation_accept
     self.role = self.role.presence || "agent"
@@ -180,7 +179,7 @@ class User < ActiveRecord::Base
         u.name = auth.info.name.present? ? auth.info.name : "Name Missing"
         u.role = 'user'
         u.thumbnail = auth.info.image
-        u.password = Devise.friendly_token[0,20]
+        u.password = Devise.friendly_token[0, 20]
       end
     end
   end
@@ -203,7 +202,6 @@ class User < ActiveRecord::Base
     self.save
   end
 
-
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
   # and changing it could be painful for upgrading installed users. These are three
   # Utility methods for checking the role of an admin:
@@ -213,21 +211,21 @@ class User < ActiveRecord::Base
   end
 
   def is_agent?
-    %w( agent admin ).include?(self.role)
+    %w(agent admin).include?(self.role)
   end
 
   def is_editor?
-    %w( editor agent admin ).include?(self.role)
+    %w(editor agent admin).include?(self.role)
   end
 
   def self.bulk_invite(emails, message, role)
-    #below line merge comma saperated emails as well as emails saperated by new lines
+    # below line merge comma saperated emails as well as emails saperated by new lines
     emails = emails.each_line.reject { |l| l =~ /^\s+$/ }.map { |l| l.strip.split(', ') }.flatten
 
     emails.each do |email|
       is_valid_email = email.match('^.+@.+$')
       if is_valid_email
-        User.invite!({email: email}) do |user|
+        User.invite!({ email: email }) do |user|
           user.invitation_message = message
           user.name = "Invited User: #{email}"
           user.role = role
@@ -237,7 +235,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  #when using deliver_later attr_accessor :message becomes nil on mailer view
+  # when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end
@@ -280,5 +278,4 @@ class User < ActiveRecord::Base
   def reject_invalid_characters_from_name
     self.name = name.gsub(INVALID_NAME_CHARACTERS, '') if !!name.match(INVALID_NAME_CHARACTERS)
   end
-
 end

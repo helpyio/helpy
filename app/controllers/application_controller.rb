@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :cloudinary_enabled?
 
-  def tracker(ga_category, ga_action, ga_label, ga_value=nil)
+  def tracker(ga_category, ga_action, ga_label, ga_value = nil)
     if AppSettings['settings.google_analytics_id'].present? && cookies['_ga'].present?
       ga_cookie = cookies['_ga'].split('.')
       ga_client_id = ga_cookie[2] + '.' + ga_cookie[3]
@@ -133,12 +133,12 @@ class ApplicationController < ActionController::Base
     Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
 
     ActionMailer::Base.smtp_settings = {
-        :address              => AppSettings["email.mail_smtp"],
-        :port                 => AppSettings["email.mail_port"],
-        :user_name            => AppSettings["email.smtp_mail_username"].presence,
-        :password             => AppSettings["email.smtp_mail_password"].presence,
-        :domain               => AppSettings["email.mail_domain"],
-        :enable_starttls_auto => !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"])
+      :address => AppSettings["email.mail_smtp"],
+      :port                 => AppSettings["email.mail_port"],
+      :user_name            => AppSettings["email.smtp_mail_username"].presence,
+      :password             => AppSettings["email.smtp_mail_password"].presence,
+      :domain               => AppSettings["email.mail_domain"],
+      :enable_starttls_auto => !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"])
     }
 
     ActionMailer::Base.perform_deliveries = to_boolean(AppSettings['email.send_email'])
@@ -156,7 +156,6 @@ class ApplicationController < ActionController::Base
       # Uncomment the following line if you are using a proxy server:
       # config.proxy = 'http://myproxy.com.au:8080'
     end
-
   rescue
     logger.warn("WARNING!!! Error setting configs.")
     if AppSettings['email.mail_service'] == 'mailin'
@@ -186,7 +185,6 @@ class ApplicationController < ActionController::Base
 
   def get_all_teams
     return unless teams?
-    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').uniq.pluck(:name).map{|name| name}
+    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').uniq.pluck(:name).map { |name| name }
   end
-
 end

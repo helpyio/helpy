@@ -18,16 +18,15 @@
 #
 
 class PostsController < ApplicationController
-
   # Make sure forums are enabled
-  before_action :forums_enabled?, only: ['index','show']
+  before_action :forums_enabled?, only: ['index', 'show']
 
   respond_to :js, only: [:up_vote]
   layout "clean", only: :index
   theme :theme_chosen
 
   def index
-    @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
+    @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first # .includes(:forum)
     if @topic
       @posts = @topic.posts.ispublic.active.all.chronologic.includes(:user)
       @post = @topic.posts.new
@@ -57,7 +56,7 @@ class PostsController < ApplicationController
           else
             # This post belongs to a ticket
             agent = User.find(@topic.assigned_user_id)
-            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) # TODO: Need minutes
             redirect_to ticket_path(@topic.id)
           end
         }
@@ -65,7 +64,7 @@ class PostsController < ApplicationController
           @posts = @topic.posts.ispublic.chronologic.active
           unless @topic.assigned_user_id.nil?
             agent = User.find(@topic.assigned_user_id)
-            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{agent.name}", "User Replied", @topic.to_param) # TODO: Need minutes
           end
         }
       else
@@ -88,8 +87,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :body,
       :kind,
-      {attachments: []}
+      { attachments: [] }
     )
   end
-
 end

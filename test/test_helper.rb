@@ -2,8 +2,8 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-#require 'codeclimate-test-reporter'
-#CodeClimate::TestReporter.start
+# require 'codeclimate-test-reporter'
+# CodeClimate::TestReporter.start
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
@@ -31,7 +31,6 @@ def file
 end
 
 def uploaded_file_object(klass, attribute, file, content_type = 'image/png')
-
   filename = File.basename(file.path)
   klass_label = klass.to_s.underscore
 
@@ -94,5 +93,4 @@ def set_default_settings
     a.notify_on_reply = true
     a.save!
   end
-
 end

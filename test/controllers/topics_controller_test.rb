@@ -29,7 +29,6 @@
 require 'test_helper'
 
 class TopicsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -64,26 +63,24 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_difference 'User.count', 1, 'A user should be created' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
     assert_difference 'Post.count', 1, 'The new topic should have had a post' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
 
     assert_redirected_to topic_posts_path(assigns(:topic)), 'Did not redirect to new public topic'
   end
 
   test 'a browsing user should be able to sign up and post a new message at the same time, and receive an email' do
-
     assert_difference 'Topic.count', 1 do
       assert_difference 'ActionMailer::Base.deliveries.size', 2 do
-        post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+        post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
       end
     end
-
   end
 
   test 'a browsing user should not be able to vote' do
@@ -94,17 +91,16 @@ class TopicsControllerTest < ActionController::TestCase
   end
 
   test 'Helpy should capture the users locale when they create a new topic' do
-    post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
+    post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     assert_not_nil Topic.last.locale, 'Did not capture locale when user created new topic'
   end
 
   test 'a new topic created though the web form should have channel "web"' do
-    post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
+    post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     assert_equal "web", Topic.last.channel
   end
 
   test 'a user should see the option to attach files if cloudinary configured' do
-
     # Make sure cloudinary cloud name is setup
     AppSettings['cloudinary.enabled'] = "1"
     AppSettings['cloudinary.cloud_name'] = "test-cloud"
@@ -116,11 +112,9 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_select("input#topic_screenshots", true)
-
   end
 
   test 'a user should not see the option to attach files if cloudinary is not configured' do
-
     # Make sure cloudinary cloud name is setup
     AppSettings['cloudinary.cloud_name'] = ""
     AppSettings['cloudinary.api_key'] = ""
@@ -131,7 +125,6 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_select("input#topic_screenshots", false)
-
   end
 
   # A user who is signed in should be able to create a new private or public topic
@@ -142,10 +135,10 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
-      post :create, topic: { name: 'some new private topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
+      post :create, topic: { name: 'some new private topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
     assert_difference 'Post.count', 1, 'A post should have been created' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: {:"0" => {body: "this is the body"}} }, locale: :en
+      post :create, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new public topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
 
     assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
@@ -161,23 +154,23 @@ class TopicsControllerTest < ActionController::TestCase
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
         post :create,
-          topic: {
-            user: {
-              name: 'a user',
-              email: 'anon@test.com'
-              },
-            name: 'some new public topic',
-            body: 'some body text',
-            forum_id: 1,
-            private: true,
-            posts_attributes: {
-              :"0" => {
-              body: "this is the body",
-              attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
-              }
-            }
-          },
-          locale: :en
+             topic: {
+               user: {
+                 name: 'a user',
+                 email: 'anon@test.com'
+               },
+               name: 'some new public topic',
+               body: 'some body text',
+               forum_id: 1,
+               private: true,
+               posts_attributes: {
+                 :"0" => {
+                   body: "this is the body",
+                   attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+                 }
+               }
+             },
+             locale: :en
       end
     end
 
@@ -185,17 +178,15 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
-
   # A user who is registered, but not signed in currently should be able to create a new private
   # or public topic
   test 'an unsigned in user with an account should be able to create a new private topic' do
-
     get :new, locale: :en
     assert_response :success
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, topic: { user: { name: 'Scott Miller', email: 'scott.miller@test.com' }, name: 'some new private topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: {:"0" => { body: "this is the body" } } }, locale: :en
+        post :create, topic: { user: { name: 'Scott Miller', email: 'scott.miller@test.com' }, name: 'some new private topic', body: 'some body text', forum_id: 1, private: true, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
       end
     end
 
@@ -204,51 +195,46 @@ class TopicsControllerTest < ActionController::TestCase
 
   test 'a signed in user should not see trashed topics in a public forum' do
     sign_in users(:user)
-
   end
 
   test 'a signed in user should not see trashed tickets in tickets list ' do
     sign_in users(:user)
-
   end
 
   test 'a signed in user should not be able to display a trashed ticket' do
     sign_in users(:user)
-
   end
 
   test 'a signed in user should be able to vote' do
     sign_in users(:user)
     assert_difference 'Topic.find(5).points', 1 do
       get :index, forum_id: 3, locale: :en
-      xhr :post, :up_vote, { id: 5 , locale: :en }
+      xhr :post, :up_vote, { id: 5, locale: :en }
     end
   end
 
   test 'a browsing user should be able to create a new public topic without signing in when recaptcha enable' do
-
     # Make sure recaptcha site_key is set
     AppSettings['settings.recaptcha_site_key'] = "some-key"
     AppSettings['settings.recaptcha_api_key'] = "some-key"
 
-    #TopicsController.expects(:verify_recaptcha).returns(true)
+    # TopicsController.expects(:verify_recaptcha).returns(true)
 
     # Get new topics page
     get :new, locale: :en
     assert_response :success
 
     assert_difference 'User.count', 1, 'A user should be created' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+      post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+      post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
     assert_difference 'Post.count', 1, 'The new topic should have had a post' do
-      post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+      post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: { :"0" => { body: "this is the body" } } }, locale: :en
     end
 
     assert_redirected_to topic_posts_path(assigns(:topic)), 'Did not redirect to new private topic'
-
   end
 
   # test "a signed in user should not be able to create a new private ticket if tickets are not enabled" do
@@ -279,26 +265,25 @@ class TopicsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 1, "A topic should have been created" do
       assert_difference 'Post.count', 1, "A post should have been created" do
-
         # TODO: refactor this into a method and DRY up tests
 
         post :create,
-          topic: {
-            user: {
-              name: 'a user',
-              email: 'anon@test.com'
-            },
-            name: "some new public topic",
-            body: "some body text",
-            forum_id: 1,
-            private: true,
-            posts_attributes: {
-              :"0" => {
-                body: "this is the body"
-              }
-            }
-          },
-          locale: :en
+             topic: {
+               user: {
+                 name: 'a user',
+                 email: 'anon@test.com'
+               },
+               name: "some new public topic",
+               body: "some body text",
+               forum_id: 1,
+               private: true,
+               posts_attributes: {
+                 :"0" => {
+                   body: "this is the body"
+                 }
+               }
+             },
+             locale: :en
       end
     end
 
@@ -316,25 +301,24 @@ class TopicsControllerTest < ActionController::TestCase
     assert_difference 'Topic.count', 1, "A topic should have been created" do
       assert_difference 'Post.count', 1, "A post should have been created" do
         post :create,
-          topic: {
-            user: {
-              name: 'a user',
-              email: 'anon@test.com'
-            },
-            name: "some new public topic",
-            body: "some body text",
-            forum_id: 4,
-            private: false,
-            posts_attributes: {
-              :"0" => {
-                body: "this is the body"
-              }
-            }
-          },
-          locale: :en
+             topic: {
+               user: {
+                 name: 'a user',
+                 email: 'anon@test.com'
+               },
+               name: "some new public topic",
+               body: "some body text",
+               forum_id: 4,
+               private: false,
+               posts_attributes: {
+                 :"0" => {
+                   body: "this is the body"
+                 }
+               }
+             },
+             locale: :en
       end
     end
-
 
     assert_redirected_to topic_posts_path(Topic.last), "Did not redirect to forum topic view"
   end
@@ -348,5 +332,4 @@ class TopicsControllerTest < ActionController::TestCase
       get :new, locale: :en
     end
   end
-
 end

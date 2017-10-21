@@ -1,5 +1,4 @@
 class Admin::InternalCategoriesController < Admin::BaseController
-
   def index
     @categories = Category.internally.without_system_resource.ordered
   end

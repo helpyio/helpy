@@ -19,7 +19,6 @@
 require 'test_helper'
 
 class ForumTest < ActiveSupport::TestCase
-
   should have_many(:topics)
   should have_many(:posts)
 
@@ -48,5 +47,4 @@ class ForumTest < ActiveSupport::TestCase
     forum = create :forum, name: name
     assert_equal name.sentence_case, forum.name
   end
-
 end

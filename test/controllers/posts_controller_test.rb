@@ -20,7 +20,6 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -64,7 +63,7 @@ class PostsControllerTest < ActionController::TestCase
 
     # Loop through several test cases for different types of topic layout/voteability etc.
     # The Q&A format uses an inline reply form immediately beneath the original question
-    [4,5,7,8].each do |topic_id|
+    [4, 5, 7, 8].each do |topic_id|
       get :index, topic_id: topic_id, locale: :en
       assert_select "div.add-form", true, "failed on #{topic_id}"
       assert :success
@@ -74,7 +73,7 @@ class PostsControllerTest < ActionController::TestCase
   test "a signed in user should be able to reply to a topic" do
     sign_in users(:user)
     assert_difference "Post.count", 1 do
-      xhr :post, :create, topic_id: 1, locale: :en , post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
+      xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
     end
     assert :success
   end
@@ -97,14 +96,14 @@ class PostsControllerTest < ActionController::TestCase
     sign_in users(:user)
     assert_difference "Post.count", 1 do
       post :create,
-        topic_id: 1,
-        locale: :en,
-        post: {
-          user_id: User.find(2).id,
-          body: "new reply",
-          kind: "reply",
-          attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
-        }
+           topic_id: 1,
+           locale: :en,
+           post: {
+             user_id: User.find(2).id,
+             body: "new reply",
+             kind: "reply",
+             attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+           }
     end
     # binding.pry
     assert :success

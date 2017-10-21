@@ -1,5 +1,4 @@
 class Admin::ReportsController < Admin::BaseController
-
   include StatsHelper
   before_action :verify_admin
   before_action :get_all_teams
@@ -24,11 +23,11 @@ class Admin::ReportsController < Admin::BaseController
 
     # Note: Cannot use 'posts_count' counter cache; we only count posts with kind='reply' (not 'first' or 'note').
     responded_topic_ids = @topics
-      .joins(:posts)
-      .where(posts: { kind: 'reply' })
-      .group('topics.id')
-      .having('COUNT(posts.id) > 0')
-      .ids
+                          .joins(:posts)
+                          .where(posts: { kind: 'reply' })
+                          .group('topics.id')
+                          .having('COUNT(posts.id) > 0')
+                          .ids
     @responded_topics = Topic.where(id: responded_topic_ids)
     @closed_topic_count = @topics.closed.count
 
@@ -46,24 +45,23 @@ class Admin::ReportsController < Admin::BaseController
 
   def set_interval
     @interval = case params[:label]
-                  when 'today'
-                    t('today')
-                  when 'yesterday'
-                    t('yesterday')
-                  when 'this_week'
-                    t('this_week')
-                  when 'last_week'
-                    t('last_week')
-                  when 'this_month'
-                    t('this_month')
-                  when 'last_month'
-                    t('last_month')
-                  when 'interval'
-                    "Between #{@start_date.to_date} and #{@end_date.to_date}"
-                  else
-                    t('this_week')
+                when 'today'
+                  t('today')
+                when 'yesterday'
+                  t('yesterday')
+                when 'this_week'
+                  t('this_week')
+                when 'last_week'
+                  t('last_week')
+                when 'this_month'
+                  t('this_month')
+                when 'last_month'
+                  t('last_month')
+                when 'interval'
+                  "Between #{@start_date.to_date} and #{@end_date.to_date}"
+                else
+                  t('this_week')
                 end
-
   end
 
   def scope_data
@@ -93,12 +91,11 @@ class Admin::ReportsController < Admin::BaseController
     @total_closed = @scoped_stats.where(current_status: 'closed').count
     @total_activities = @scoped_posts.count
     filtered_stats = @scoped_stats.where("current_status = ? AND closed_date IS NOT NULL", 'closed')
-    arr_time_differences = filtered_stats.map {|t| t.closed_date - t.created_at} unless filtered_stats.nil?
+    arr_time_differences = filtered_stats.map { |t| t.closed_date - t.created_at } unless filtered_stats.nil?
     @median_close_time = median(arr_time_differences).round unless arr_time_differences.size == 0
   end
 
   def set_timezone
     Groupdate.time_zone = current_user.time_zone
   end
-
 end

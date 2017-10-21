@@ -20,7 +20,6 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -78,6 +77,4 @@ class CategoriesControllerTest < ActionController::TestCase
     get :show, id: 5, locale: "en"
     assert_response :redirect
   end
-
-
 end

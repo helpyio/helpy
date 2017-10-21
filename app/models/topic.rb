@@ -27,7 +27,6 @@
 #
 
 class Topic < ActiveRecord::Base
-
   include SentenceCase
 
   belongs_to :forum, counter_cache: true, touch: true
@@ -58,9 +57,9 @@ class Topic < ActiveRecord::Base
   scope :open, -> { where(current_status: "open") }
   scope :unread, -> { where("assigned_user_id = ? OR current_status = ?", nil, "new").where.not(current_status: 'closed') }
   scope :pending, -> { where(current_status: "pending") }
-  scope :mine, -> (user) { where(assigned_user_id: user) }
+  scope :mine, ->(user) { where(assigned_user_id: user) }
   scope :closed, -> { where(current_status: "closed") }
-  scope :spam, -> { where(current_status: "spam")}
+  scope :spam, -> { where(current_status: "spam") }
   scope :assigned, -> { where.not(assigned_user_id: nil) }
 
   scope :chronologic, -> { order('updated_at DESC') }
@@ -69,11 +68,11 @@ class Topic < ActiveRecord::Base
   scope :active, -> { where(current_status: %w(open pending)) }
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
-  scope :for_doc, -> { where("doc_id= ?", doc)}
+  scope :for_doc, -> { where("doc_id= ?", doc) }
 
   # provided both public and private instead of one method, for code readability
-  scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
-  scope :ispublic, -> { where.not(current_status: 'spam').where(private: false)}
+  scope :isprivate, -> { where.not(current_status: 'spam').where(private: true) }
+  scope :ispublic, -> { where.not(current_status: 'spam').where(private: false) }
 
   # may want to get rid of this filter:
   # before_save :check_for_private
@@ -144,7 +143,7 @@ class Topic < ActiveRecord::Base
     self.update_all(current_status: 'trash', forum_id: 2, private: true, assigned_user_id: nil, closed_date: Time.current)
   end
 
-  def assign(user_id=2, assigned_to)
+  def assign(user_id = 2, assigned_to)
     self.posts.create(body: I18n.t(:assigned_message, assigned_to: User.find(assigned_to).name), kind: 'note', user_id: user_id)
     self.assigned_user_id = assigned_to
     self.current_status = 'pending'
@@ -169,9 +168,9 @@ class Topic < ActiveRecord::Base
     Topic.post(:first, :order => 'updated_at DESC')
   end
 
-  #Callback method to check and see if this topic is in a private forum
+  # Callback method to check and see if this topic is in a private forum
   def check_for_private
-    #association is not working
+    # association is not working
     f = Forum.find(self.forum_id)
     self.private = true if f.private?
   end
@@ -184,7 +183,7 @@ class Topic < ActiveRecord::Base
   def create_topic_with_user(params, current_user)
     self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email])
 
-    unless self.user #User not found, lets build it
+    unless self.user # User not found, lets build it
       self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
     end
     self.user.persisted? && self.save
@@ -192,7 +191,7 @@ class Topic < ActiveRecord::Base
 
   def create_topic_with_webhook_user(params)
     self.user = User.find_by_email(params['customer']['emailAddress'])
-    unless self.user #User not found, lets craete it from olark params
+    unless self.user # User not found, lets craete it from olark params
       @token, enc = Devise.token_generator.generate(User, :reset_password_token)
 
       @user = self.build_user
@@ -221,8 +220,7 @@ class Topic < ActiveRecord::Base
     )
   end
 
-  def self.merge_topics(topic_ids, user_id=2)
-
+  def self.merge_topics(topic_ids, user_id = 2)
     @merge_topics = Topic.where(id: topic_ids)
     @topic = @merge_topics.first.dup
     @topic.name = "MERGED: #{@merge_topics.first.name}"
@@ -230,7 +228,6 @@ class Topic < ActiveRecord::Base
 
     if @topic.save
       @merge_topics.each_with_index do |t, i|
-
         if i == 0
           @topic.posts << t.posts
         else
@@ -240,9 +237,9 @@ class Topic < ActiveRecord::Base
       end
 
       @topic.posts.create(
-          body: "#{topics_merged} were merged to create this discussion",
-          kind: "note",
-          user_id: user_id,
+        body: "#{topics_merged} were merged to create this discussion",
+        kind: "note",
+        user_id: user_id,
       )
 
       @merge_topics.each do |t|

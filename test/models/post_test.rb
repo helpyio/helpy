@@ -20,7 +20,6 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-
   should belong_to(:topic)
   should belong_to(:user)
   should have_many(:votes)
@@ -58,20 +57,16 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "marking a post active should add it to the topic cache" do
-
     @post = Post.find(4)
     @post.active = true
     @post.save
 
     assert @post.topic.post_cache.include? @post.body
-
   end
 
   test "a post of kind internal note should not be added to the topic cache" do
-
     @post = Post.find(5)
     refute @post.topic.post_cache.include? @post.body
-
   end
 
   # Topics should be autoassigned(AA) when they are unassigned and a reply is made by an admin
@@ -85,29 +80,29 @@ class PostTest < ActiveSupport::TestCase
   # Note: decided that public posts should assigned if an admin replies to the thread
 
   test "Should not AA when topic is already assigned" do
-    topic = Topic.find(1) #already assigned topic
+    topic = Topic.find(1) # already assigned topic
     post = create :post, topic: topic, kind: "reply"
     assert_not_equal(5, topic.assigned_user_id, "Topic assignment should not have changed")
   end
 
   test "Should not AA when an internal note is posted" do
-    topic = Topic.find(4) #unassigned public topic
+    topic = Topic.find(4) # unassigned public topic
     post = create :post, topic: topic, kind: "note"
     assert_not_equal(1, topic.assigned_user_id, "Internal note should not set assignment")
 
-    topic = Topic.find(6) #unassigned private topic
+    topic = Topic.find(6) # unassigned private topic
     post = create :post, topic: topic, kind: "note"
     assert_not_equal(1, topic.assigned_user_id, "Internal note should not set assignment")
   end
 
   test "Should not AA when the reply is posted by a non admin" do
-    topic = Topic.find(6) #unassigned topic
-    post = create :post, topic: topic, kind: "reply", user_id: 2 #non admin user
+    topic = Topic.find(6) # unassigned topic
+    post = create :post, topic: topic, kind: "reply", user_id: 2 # non admin user
     assert_not_equal(2, topic.assigned_user_id, "Topic assignment should not have changed")
   end
 
   test "Should AA when a reply is posted by an admin" do
-    topic = Topic.find(4) #unassigned topic
+    topic = Topic.find(4) # unassigned topic
     post = create :post, topic: topic, kind: "reply", user_id: 1
     assert_equal(1, topic.assigned_user_id, "Topic should be assigned to user 1")
   end
@@ -184,5 +179,4 @@ class PostTest < ActiveSupport::TestCase
 
     assert_equal @post.body.size, 10_000
   end
-
 end

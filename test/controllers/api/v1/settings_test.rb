@@ -29,7 +29,6 @@ class API::V1::SettingsTest < ActiveSupport::TestCase
   end
 
   test "an API user should be able to update a setting" do
-
     params = {
       key: 'settings.site_name',
       value: 'Settings Tested'
@@ -37,9 +36,8 @@ class API::V1::SettingsTest < ActiveSupport::TestCase
 
     post "/api/v1/settings.json", @default_params.merge(params)
 
-    #object = JSON.parse(last_response.body)
+    # object = JSON.parse(last_response.body)
 
     assert_equal AppSettings['settings.site_name'], 'Settings Tested'
   end
-
 end

@@ -2,7 +2,6 @@ require 'integration_test_helper'
 include Warden::Test::Helpers
 
 class SignInFlowTest < ActionDispatch::IntegrationTest
-
   setup do
     Warden.test_mode!
     set_default_settings
@@ -53,5 +52,4 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
     sign_in("user_inactive@test.com")
     assert_equal '/en/users/sign_in', current_path
   end
-
 end

@@ -1,7 +1,6 @@
 require "test_helper"
 
 class Admin::TopicsControllerTest < ActionController::TestCase
-
   setup do
     # login admin for all tests of admin functions
     @request.headers["Accepts"] = "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
@@ -9,7 +8,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
   end
 
   %w(admin agent).each do |admin|
-
     ### Topic split
     test "an #{admin} should be able to split a ticket" do
       sign_in users(admin.to_sym)
@@ -85,7 +83,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a specific topic of each type via standard request" do
       sign_in users(admin.to_sym)
-      [3,7].each do |topic_id|
+      [3, 7].each do |topic_id|
         get :show, { id: topic_id }
         assert_not_nil assigns(:topic)
         assert_template "admin/topics/show"
@@ -95,7 +93,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a specific topic of each type via ajax" do
       sign_in users(admin.to_sym)
-      [3,7].each do |topic_id|
+      [3, 7].each do |topic_id|
         xhr :get, :show, { id: topic_id }
         assert_not_nil assigns(:topic)
         assert_template "admin/topics/show"
@@ -124,7 +122,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to assign multiple tickets" do
       sign_in users(admin.to_sym)
       assert_difference "Post.count", 2 do
-        xhr :get, :assign_agent, { topic_ids: [3,2], assigned_user_id: 1 }
+        xhr :get, :assign_agent, { topic_ids: [3, 2], assigned_user_id: 1 }
       end
       assert_response :success
     end
@@ -140,7 +138,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     ### tests of changing status
 
     test "an #{admin} posting an internal note should not change status on its own" do
-
     end
 
     test "an #{admin} should be able to change an open ticket to closed" do
@@ -169,16 +166,16 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to change the status of multiple topics at once" do
       sign_in users(admin.to_sym)
-      assert_difference("Post.count",2) do
-        xhr :get, :update_topic, { topic_ids: [2,3], change_status: "closed" }
+      assert_difference("Post.count", 2) do
+        xhr :get, :update_topic, { topic_ids: [2, 3], change_status: "closed" }
       end
       assert_response :success
     end
 
     test "an #{admin} should be able to merge multiple topics into one" do
       sign_in users(admin.to_sym)
-      assert_difference("Topic.count",1) do
-        xhr :get, :merge_tickets, { topic_ids: [2,3] }
+      assert_difference("Topic.count", 1) do
+        xhr :get, :merge_tickets, { topic_ids: [2, 3] }
       end
       assert_response :success
     end
@@ -298,17 +295,16 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to assign_team of a topic" do
       sign_in users(admin.to_sym)
-      xhr :get, :assign_team, { topic_ids: [1], team: "test"}
+      xhr :get, :assign_team, { topic_ids: [1], team: "test" }
       assert_equal ["test"], Topic.find(1).team_list
     end
 
     test "an #{admin} should be able to unassign_team of a topic" do
       Topic.find(1).team_list = "test"
       sign_in users(admin.to_sym)
-      xhr :get, :unassign_team, { topic_ids: [1]}
+      xhr :get, :unassign_team, { topic_ids: [1] }
       assert_equal [], Topic.find(1).team_list
     end
-
 
     # NOTE: THIS BEHAVIOR WAS REVERSED BASED ON USER FEEDBACK THAT IT WAS HARD TO
     # FIND DISCUSSIONS AFTER THEY WERE VIEWED, LEFT TEST JUST IN CASE
@@ -383,7 +379,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
   end
 
   %w(user editor).each do |unauthorized|
-
     test "an #{unauthorized} should NOT be able to see a list of topics via standard request" do
       sign_in users(unauthorized.to_sym)
 
@@ -394,12 +389,11 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{unauthorized} should NOT be able to see a specific topic of each type via standard request" do
       sign_in users(unauthorized.to_sym)
-      [3,7].each do |topic_id|
+      [3, 7].each do |topic_id|
         get :show, { id: topic_id }
         assert_nil assigns(:topic)
         assert_response :redirect
       end
     end
   end
-
 end

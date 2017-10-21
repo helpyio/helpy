@@ -3,19 +3,17 @@
 
 require 'devise/custom_failure'
 Devise.setup do |config|
+  # This sets up a cookie to generate the above_header with javascript
 
-  #This sets up a cookie to generate the above_header with javascript
-
-  Warden::Manager.after_set_user do |user,auth,_opts|
+  Warden::Manager.after_set_user do |user, auth, _opts|
     auth.cookies[:signed_in] = 1
     auth.cookies[:name] = user.name
   end
 
-  Warden::Manager.before_logout do |_user,auth,_opts|
+  Warden::Manager.before_logout do |_user, auth, _opts|
     auth.cookies.delete :signed_in
     auth.cookies.delete :name
   end
-
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -57,12 +55,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [ :email ]
+  config.case_insensitive_keys = [:email]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [ :email ]
+  config.strip_whitespace_keys = [:email]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -296,10 +294,10 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-#  config.omniauth :google_oauth2, 'APP_ID', 'APP_SECRET', scope: 'user:email'
+  #  config.omniauth :google_oauth2, 'APP_ID', 'APP_SECRET', scope: 'user:email'
   unless Settings.omniauth.nil? || Settings.omniauth.providers.nil?
     Settings.omniauth.providers.each do |provider|
-      config.omniauth provider[0], provider[1].id, provider[1].secret#, scope: 'user:email'
+      config.omniauth provider[0], provider[1].id, provider[1].secret # , scope: 'user:email'
     end
   end
   # ==> Warden configuration

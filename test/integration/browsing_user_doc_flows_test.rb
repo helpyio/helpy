@@ -3,7 +3,6 @@ require 'integration_test_helper'
 include Warden::Test::Helpers
 
 class BrowsingUserDocFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     Warden.test_mode!
     logout(:user)
@@ -63,5 +62,4 @@ class BrowsingUserDocFlowsTest < ActionDispatch::IntegrationTest
   def clear_comments
     Topic.where(doc_id: 6).first.destroy!
   end
-
 end

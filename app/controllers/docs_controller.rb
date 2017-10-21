@@ -25,7 +25,6 @@
 #
 
 class DocsController < ApplicationController
-
   before_action :knowledgebase_enabled?, only: ['show']
   before_action :doc_available_to_view?, only: ['show']
   after_action  :is_user_signed_in?
@@ -72,5 +71,4 @@ class DocsController < ApplicationController
       @post   = Post.new
     end
   end
-
 end

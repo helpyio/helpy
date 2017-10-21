@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class Admin::ImagesControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
     sign_in users(:admin)
@@ -10,11 +9,11 @@ class Admin::ImagesControllerTest < ActionController::TestCase
   test "Should be able to create an image" do
     assert_difference 'Image.count', +1 do
       post :create,
-        image: {
-          name: name,
-          file: uploaded_file_object(Image, :file, file)
-        },
-        format: 'json'
+           image: {
+             name: name,
+             file: uploaded_file_object(Image, :file, file)
+           },
+           format: 'json'
     end
   end
 
@@ -22,9 +21,8 @@ class Admin::ImagesControllerTest < ActionController::TestCase
     @image = Image.create(name: 'test')
     assert_difference 'Image.count', -1 do
       delete :destroy,
-        id: @image.id,
-        format: 'json'
+             id: @image.id,
+             format: 'json'
     end
   end
-
 end

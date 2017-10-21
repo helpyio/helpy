@@ -9,9 +9,8 @@ Bundler.require(*Rails.groups)
 
 module Helpy
   class Application < Rails::Application
-
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
-    config.assets.paths << Rails.root.join("public",'uploads','logos')
+    config.assets.paths << Rails.root.join("public", 'uploads', 'logos')
     config.exceptions_app = self.routes
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
@@ -27,7 +26,6 @@ module Helpy
     config.to_prepare do
       Devise::Mailer.layout "mailer" # email.haml or email.erb
     end
-
   end
 end
 
@@ -37,7 +35,7 @@ module Api
       allow do
         origins "*"
         resource "*", headers: :any, methods: [:get,
-            :post, :put, :delete, :options]
+                                               :post, :put, :delete, :options]
       end
     end
     config.active_record.raise_in_transactional_callbacks = true

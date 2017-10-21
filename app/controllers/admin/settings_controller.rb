@@ -1,5 +1,4 @@
 class Admin::SettingsController < Admin::BaseController
-
   before_action :verify_admin, except: ['index', 'profile']
   before_action :verify_agent, only: ['index']
   skip_before_action :verify_authenticity_token
@@ -49,7 +48,7 @@ class Admin::SettingsController < Admin::BaseController
   def preview
     theme = Theme.find(params[:theme])
     send_file File.join(theme.path, theme.thumbnail),
-            type: 'image/png', disposition: 'inline', stream: false
+              type: 'image/png', disposition: 'inline', stream: false
   end
 
   def update_settings
@@ -76,10 +75,7 @@ class Admin::SettingsController < Admin::BaseController
       format.html {
         redirect_to admin_settings_path
       }
-      format.js {
-      }
+      format.js {}
     end
   end
-
-
 end

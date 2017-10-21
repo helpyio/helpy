@@ -63,7 +63,6 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-
   should have_many(:topics)
   should have_many(:posts)
   should have_many(:docs)
@@ -78,7 +77,7 @@ class UserTest < ActiveSupport::TestCase
     assert_difference '@user.active_assigned_count', 1 do
       topic = Topic.find(5)
       bulk_post_attributes = []
-      bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id}
+      bulk_post_attributes << { body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id }
       topics = Topic.where(id: topic.id)
       topics.bulk_agent_assign(bulk_post_attributes, 1)
     end
@@ -93,7 +92,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should accept w3c example names" do
-
     names = [
       "Björk Guðmundsdóttir",
       "Isa bin Osman",
@@ -114,7 +112,6 @@ class UserTest < ActiveSupport::TestCase
       user = create(:user, name: name)
       assert_equal name, user.name
     end
-
   end
 
   test "should not accept names with numbers" do
@@ -225,7 +222,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "notifiable_on_private should return private scope" do
-
     assert_equal 3, User.notifiable_on_private.count, "Should return the number of notifiable users"
     u = User.agents.last
     u.notify_on_private = false
@@ -235,7 +231,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "notifiable_on_public should return public scope" do
-
     assert_equal 3, User.notifiable_on_public.count, "Should return the number of notifiable users"
     u = User.agents.last
     u.notify_on_public = false
@@ -260,5 +255,4 @@ class UserTest < ActiveSupport::TestCase
     u = (create :user, name: %["test agent"])
     assert_equal 'test agent', u.name
   end
-
 end

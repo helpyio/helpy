@@ -27,6 +27,4 @@ class TrackerJob < ActiveJob::Base
       @tracker = Staccato.tracker(ga_id)
     end
   end
-
-
 end

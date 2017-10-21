@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   theme :theme_chosen
   respond_to :html
 
@@ -11,5 +10,4 @@ class HomeController < ApplicationController
     @feed_link = "<link rel='alternate' type='application/rss+xml' title='RSS' href='#{root_url}index.rss' />"
     @categories = Category.publicly.active.ordered.featured.all.with_translations(I18n.locale)
   end
-
 end

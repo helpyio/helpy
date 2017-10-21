@@ -27,7 +27,6 @@
 #
 
 module TopicsHelper
-
   def badge_for_status(status)
     content_tag(:span, status_label(status), class: "hidden-xs pull-right status-label label #{status_class(status)}")
   end
@@ -47,39 +46,39 @@ module TopicsHelper
 
   def status_label(status)
     case status
-      when 'new'
-        t(:new, default: 'new')
-      when 'open'
-        t(:open, default: 'open')
-      when 'active'
-        t(:active, default: 'active')
-      when 'assigned'
-        t(:mine, default: 'mine')
-      when 'closed'
-        t(:closed, default: 'resolved')
-      when 'pending'
-        t(:pending, default: 'pending')
-      when 'spam'
-        t(:spam, default: 'spam')
-      when 'trash'
-        t(:trash, default: 'trash')
+    when 'new'
+      t(:new, default: 'new')
+    when 'open'
+      t(:open, default: 'open')
+    when 'active'
+      t(:active, default: 'active')
+    when 'assigned'
+      t(:mine, default: 'mine')
+    when 'closed'
+      t(:closed, default: 'resolved')
+    when 'pending'
+      t(:pending, default: 'pending')
+    when 'spam'
+      t(:spam, default: 'spam')
+    when 'trash'
+      t(:trash, default: 'trash')
     end
   end
 
   def status_class(status)
     case status
-      when 'new'
-        'label-info'
-      when 'open'
-        'label-success'
-      when 'closed'
-        'label-default'
-      when 'pending'
-        'label-warning'
-      when 'spam'
-        'label-danger'
-      when 'trash'
-        'label-danger'
+    when 'new'
+      'label-info'
+    when 'open'
+      'label-success'
+    when 'closed'
+      'label-default'
+    when 'pending'
+      'label-warning'
+    when 'spam'
+      'label-danger'
+    when 'trash'
+      'label-danger'
     end
   end
 
@@ -97,11 +96,10 @@ module TopicsHelper
   end
 
   def all_teams
-    ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).where("context = 'teams' and tags.show_on_helpcenter = ?", 'true').references(:tags).map{|tagging| tagging.tag.name.capitalize }.uniq
+    ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).where("context = 'teams' and tags.show_on_helpcenter = ?", 'true').references(:tags).map { |tagging| tagging.tag.name.capitalize }.uniq
   end
 
   def color_sample(tag_name)
     content_tag(:div, '', style: badge_color_from_tag(tag_name), class: 'color-sample label-' + tag_name.first.downcase) + content_tag(:div, tag_name.try(:titleize))
   end
-
 end

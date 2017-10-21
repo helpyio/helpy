@@ -45,9 +45,8 @@
 #
 
 class Admin::UsersController < Admin::BaseController
-
   before_action :verify_agent
-  before_action :verify_admin, only: ['invite','invite_users']
+  before_action :verify_admin, only: ['invite', 'invite_users']
   before_action :fetch_counts, :only => ['show']
   before_action :get_all_teams
   respond_to :html, :js
@@ -87,7 +86,7 @@ class Admin::UsersController < Admin::BaseController
     fetch_counts
 
     # update team list if provided
-    @user.team_list = params[:user][:team_list] if  params[:user][:team_list].present?
+    @user.team_list = params[:user][:team_list] if params[:user][:team_list].present?
 
     if @user.update(user_params)
 
@@ -124,8 +123,7 @@ class Admin::UsersController < Admin::BaseController
       format.html {
         redirect_to admin_users_path
       }
-      format.js {
-      }
+      format.js {}
     end
   end
 
@@ -158,5 +156,4 @@ class Admin::UsersController < Admin::BaseController
       :notify_on_reply,
     )
   end
-
 end

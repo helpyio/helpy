@@ -1,5 +1,4 @@
 class Admin::PostsController < Admin::BaseController
-
   before_action :verify_agent
   respond_to :js
 
@@ -23,7 +22,7 @@ class Admin::PostsController < Admin::BaseController
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
     get_all_teams
-    
+
     respond_to do |format|
       if @post.save
         format.html {
@@ -32,18 +31,18 @@ class Admin::PostsController < Admin::BaseController
         format.js {
           if params[:post][:resolved] == "1"
             @topic.close(current_user.id)
-            tracker("Agent: #{current_user.name}", "Closed", @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{current_user.name}", "Closed", @topic.to_param) # TODO: Need minutes
           end
           fetch_counts
           @posts = @topic.posts.chronologic
 
           @admins = User.agents
-          #@post = Post.new
+          # @post = Post.new
           case @post.kind
           when "reply"
-            tracker("Agent: #{current_user.name}", "Agent Replied", @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{current_user.name}", "Agent Replied", @topic.to_param) # TODO: Need minutes
           when "note"
-            tracker("Agent: #{current_user.name}", "Agent Posted Note", @topic.to_param) #TODO: Need minutes
+            tracker("Agent: #{current_user.name}", "Agent Posted Note", @topic.to_param) # TODO: Need minutes
           end
           render 'admin/topics/show'
         }
@@ -134,8 +133,8 @@ class Admin::PostsController < Admin::BaseController
     params.require(:post).permit(
       :body,
       :kind,
-      {screenshots: []},
-      {attachments: []},
+      { screenshots: [] },
+      { attachments: [] },
       :cc,
       :bcc,
       :user_id,
@@ -143,15 +142,14 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def update_topic_owner(old_owner, post)
-      return if old_owner == post.user
+    return if old_owner == post.user
 
-      topic = post.topic
-      topic.update(user: post.user)
-      topic.posts.create(
-        user: current_user,
-        body: I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}"),
-        kind: "note",
-      )
-
+    topic = post.topic
+    topic.update(user: post.user)
+    topic.posts.create(
+      user: current_user,
+      body: I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}"),
+      kind: "note",
+    )
   end
 end

@@ -1,5 +1,4 @@
 class CommentsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :get_doc
 
@@ -29,7 +28,7 @@ class CommentsController < ApplicationController
       :body,
       :kind,
       :user_id,
-      {attachments: []}
+      { attachments: [] }
     )
   end
 
@@ -44,5 +43,4 @@ class CommentsController < ApplicationController
       doc_path(doc)
     end
   end
-
 end

@@ -10,7 +10,6 @@
 require 'test_helper'
 
 class Admin::GroupsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -35,7 +34,7 @@ class Admin::GroupsControllerTest < ActionController::TestCase
 
   test "an admin should be able to create new group with dummy tagging" do
     sign_in users(:admin)
-    params = {acts_as_taggable_on_tag: {name: "test_tag", show_on_helpcenter: true, show_on_admin: true, show_on_dashboard: true}}
+    params = { acts_as_taggable_on_tag: { name: "test_tag", show_on_helpcenter: true, show_on_admin: true, show_on_dashboard: true } }
     assert_difference "ActsAsTaggableOn::Tag.count", 1 do
       post :create, params
     end
@@ -52,8 +51,7 @@ class Admin::GroupsControllerTest < ActionController::TestCase
   test "an admin should be able to update group" do
     sign_in users(:admin)
     tag = create(:acts_as_taggable_on_tag)
-    put :update, { id: tag.id, acts_as_taggable_on_tag: {show_on_admin: true}}
+    put :update, { id: tag.id, acts_as_taggable_on_tag: { show_on_admin: true } }
     assert_equal ActsAsTaggableOn::Tag.last.show_on_admin, true
   end
-
 end

@@ -1,7 +1,6 @@
 require "test_helper"
 
 class Admin::SearchControllerTest < ActionController::TestCase
-
   setup do
   end
 
@@ -84,7 +83,7 @@ class Admin::SearchControllerTest < ActionController::TestCase
       t.save!
 
       sign_in users(admin.to_sym)
-      xhr :get, :topic_search, q: "private post", start_date: Time.now-31.days, end_date: Time.now - 1.day
+      xhr :get, :topic_search, q: "private post", start_date: Time.now - 31.days, end_date: Time.now - 1.day
       assert_not_nil assigns(:topics)
       assert_equal 1, assigns(:topics).count
       assert_response :success
@@ -117,5 +116,4 @@ class Admin::SearchControllerTest < ActionController::TestCase
     assert_equal "test", assigns(:topics).first.team_list[0]
     assert_response :success
   end
-
 end

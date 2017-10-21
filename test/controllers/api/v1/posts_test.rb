@@ -13,7 +13,6 @@
 #  points     :integer          default(0)
 #
 
-
 require 'test_helper'
 
 class API::V1::PostsTest < ActiveSupport::TestCase
@@ -54,7 +53,6 @@ class API::V1::PostsTest < ActiveSupport::TestCase
       user_id: topic.user.id,
       kind: "reply"
     }
-
 
     post '/api/v1/posts.json', @default_params.merge(params)
 

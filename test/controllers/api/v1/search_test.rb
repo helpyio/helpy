@@ -6,13 +6,12 @@ class API::V1::SearchTest < ActiveSupport::TestCase
   def app
     Rails.application
   end
-  
+
   setup do
     set_default_settings
     @user = users(:admin)
     @api_key = ApiKey.create(name: "Test Search Key", user: @user)
     @default_params = { token: @api_key.access_token }
-
 
     @docs = []
     @docs << docs(:one)
@@ -29,14 +28,14 @@ class API::V1::SearchTest < ActiveSupport::TestCase
 
     # Check not authorized
     assert_equal 401, last_response.status
-  end 
+  end
 
   test "it should require a query parameter" do
     get "/api/v1/search.json", @default_params
 
     # Check 400 response
     assert_equal 400, last_response.status
-  end  
+  end
 
   test "an API user should be able to return some results" do
     get "/api/v1/search.json", @default_params.merge(q: 'Article')
@@ -57,10 +56,9 @@ class API::V1::SearchTest < ActiveSupport::TestCase
 
     # Check returned value
     objects = JSON.parse(last_response.body)
-    #raise objects.inspect
+    # raise objects.inspect
     assert_equal 4, objects['results'].count
   end
-
 
   test "results filtered by type should return the proper Entity" do
     get "/api/v1/search.json", @default_params.merge(q: @docs.first.title, type: 'docs')
@@ -75,6 +73,5 @@ class API::V1::SearchTest < ActiveSupport::TestCase
 
     # Check returned Entity
     assert_equal @docs.first.title, results.first['title']
-  end  
-
+  end
 end

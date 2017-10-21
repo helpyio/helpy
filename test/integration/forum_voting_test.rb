@@ -3,7 +3,6 @@ require 'integration_test_helper'
 include Warden::Test::Helpers
 
 class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     Warden.test_mode!
     set_default_settings
@@ -15,7 +14,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "a logged in user should be able to vote on a topic from the topic index view" do
-
     sign_in
 
     visit "/en/community/3-public-forum/topics"
@@ -29,7 +27,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       assert page.has_content?("1")
     end
 
-
     visit "/en/community/4-public-idea-board/topics"
     assert_difference('Topic.find(8).points') do
       within first('div#post-vote-8') do
@@ -40,7 +37,6 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     within first('a.topic-vote') do
       assert page.has_content?("Upvote | 1")
     end
-
 
     visit "/en/community/5-public-q-a/topics"
     assert_difference('Topic.find(7).points') do
@@ -55,7 +51,5 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "a logged in user should be able to vote on a reply from the topic detail view" do
-
   end
-
 end

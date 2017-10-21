@@ -2,7 +2,6 @@ require 'integration_test_helper'
 include Warden::Test::Helpers
 
 class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
-
   def setup
     Warden.test_mode!
     set_default_settings

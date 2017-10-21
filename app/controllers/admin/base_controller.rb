@@ -1,5 +1,4 @@
 class Admin::BaseController < ApplicationController
-
   layout 'admin'
   before_action :authenticate_user!
 
@@ -50,7 +49,7 @@ class Admin::BaseController < ApplicationController
   def fetch_counts
     if current_user.is_restricted? && teams?
       topics = Topic.tagged_with(current_user.team_list, :any => true)
-      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
+      @admins = User.agents # can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else
       topics = Topic.all
       @admins = User.agents.includes(:topics)
@@ -64,5 +63,4 @@ class Admin::BaseController < ApplicationController
     @closed = topics.closed.count
     @spam = topics.spam.count
   end
-
 end

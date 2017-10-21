@@ -18,8 +18,7 @@
 #
 
 class CategoriesController < ApplicationController
-
-  before_action :knowledgebase_enabled?, only: ['index','show']
+  before_action :knowledgebase_enabled?, only: ['index', 'show']
 
   respond_to :html
   theme :theme_chosen

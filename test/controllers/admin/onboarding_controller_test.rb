@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class Admin::OnboardingControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -29,10 +28,10 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
     sign_in users(:admin)
 
     xhr :patch, :update_settings,
-      'settings.site_name' => 'Helpy Support 2',
-      'settings.site_url' => 'http://support.site.com',
-      'settings.parent_site' => 'http://helpy.io/2',
-      'settings.parent_company' => 'Helpy 2'
+        'settings.site_name' => 'Helpy Support 2',
+        'settings.site_url' => 'http://support.site.com',
+        'settings.parent_site' => 'http://helpy.io/2',
+        'settings.parent_company' => 'Helpy 2'
 
     assert_response :success
     assert_equal 'Helpy Support 2', AppSettings['settings.site_name']
@@ -50,7 +49,8 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
         name: "something",
         email: "something@test.com",
         company: "company",
-        password: "12345678" }
+        password: "12345678"
+      }
     }
 
     user = User.find(1)
@@ -58,7 +58,4 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
     assert user.email == "something@test.com", "email does not update"
     assert user.company == "company", "company does not update"
   end
-
-
-
 end

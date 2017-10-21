@@ -18,7 +18,6 @@
 #
 
 class Post < ActiveRecord::Base
-
   attr_accessor :reply_id
 
   belongs_to :topic, counter_cache: true, touch: true
@@ -32,30 +31,28 @@ class Post < ActiveRecord::Base
   before_validation :truncate_body
   validates :kind, :user, :user_id, :body, presence: true
 
-
   after_create  :update_waiting_on_cache
   after_create  :assign_on_reply
   after_commit  :notify, on: :create
-  after_save  :update_topic_cache
+  after_save :update_topic_cache
 
-  scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
+  scope :all_by_topic, ->(topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
   scope :active, -> { where(active: true) }
   scope :ispublic, -> { where.not(kind: 'note') }
   scope :chronologic, -> { order('created_at ASC') }
   scope :reverse, -> { order('created_at DESC') }
-  scope :by_votes, -> { order('points DESC')}
+  scope :by_votes, -> { order('points DESC') }
   scope :notes, -> { where(kind: 'note') }
 
   attr_accessor :resolved
 
-  #updates the last post date for both the forum and the topic
-  #updates the waiting on cache
+  # updates the last post date for both the forum and the topic
+  # updates the waiting on cache
   def update_waiting_on_cache
-
     status = self.topic.current_status
     waiting_on = self.topic.waiting_on
 
-    #unless status == 'closed' || status == 'trash'
+    # unless status == 'closed' || status == 'trash'
     unless status == 'trash'
       logger.info('private message, update waiting on cache')
       status = self.topic.current_status
@@ -74,7 +71,7 @@ class Post < ActiveRecord::Base
     self.topic.forum.update(last_post_date: Time.current)
   end
 
-  #updates cache of post content used in search
+  # updates cache of post content used in search
   def update_topic_cache
     unless self.kind == 'note'
       current_cache = self.topic.post_cache
@@ -120,8 +117,7 @@ class Post < ActiveRecord::Base
 
   private
 
-    def truncate_body
-      self.body = body.truncate(10_000) unless body.blank?
-    end
-
+  def truncate_body
+    self.body = body.truncate(10_000) unless body.blank?
+  end
 end

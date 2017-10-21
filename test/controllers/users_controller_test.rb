@@ -63,7 +63,6 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -116,6 +115,4 @@ class UsersControllerTest < ActionController::TestCase
     # assert_response :success
     assert_equal u.email, "new@email.com"
   end
-
-
 end

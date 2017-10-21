@@ -47,17 +47,15 @@
 require 'test_helper'
 
 class Admin::UsersControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
 
   def file
-    @file ||= File.open(File.expand_path( '../logo.png', __FILE__))
+    @file ||= File.open(File.expand_path('../logo.png', __FILE__))
   end
 
   def uploaded_file_object(klass, attribute, file, content_type = 'text/plain')
-
     filename = File.basename(file.path)
     klass_label = klass.to_s.underscore
 
@@ -72,7 +70,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
   # admins
 
   %w(admin agent).each do |admin|
-
     test "an #{admin} should be able to see a listing of users" do
       sign_in users(admin.to_sym)
       get :index
@@ -90,7 +87,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
       patch :update, {
         id: 6, user: {
           name: "something",
-          email:"scott.miller2@test.com",
+          email: "scott.miller2@test.com",
           zip: '9999',
           team_list: 'something',
           priority: 'high',
@@ -100,7 +97,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
           password: '11223344',
           password_confirmation: '11223344',
         },
-        locale: :en }
+        locale: :en
+      }
       u = User.find(6)
 
       # assert values changed
@@ -125,7 +123,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
         id: 6, user: {
           name: "something else"
         },
-        locale: :en }
+        locale: :en
+      }
 
       u = User.find(6)
       assert u.name == "something else", "name does not update"
@@ -152,13 +151,12 @@ class Admin::UsersControllerTest < ActionController::TestCase
       xhr :get, :edit, { id: 2 }
       assert_response :success
     end
-
   end
 
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
+      patch :update, { id: 2, user: { name: "something", email: "scott.miller@test.com", role: 'admin' }, locale: :en }
     end
   end
 
@@ -167,8 +165,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_difference "ActionMailer::Base.deliveries.size", 3 do
       assert_difference("User.count", 3) do
         put :invite_users,
-          'invite.emails' => 'test1@mail.com, test2@mail.com, test3@mail.com',
-          'invite.message' => "this is the test invitation message"
+            'invite.emails' => 'test1@mail.com, test2@mail.com, test3@mail.com',
+            'invite.message' => "this is the test invitation message"
       end
     end
   end
@@ -177,7 +175,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.admins.count", 0) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
+        patch :update, { id: 2, user: { name: "something", email: "scott.miller@test.com", role: "agent" }, locale: :en }
       end
     end
   end
@@ -189,6 +187,4 @@ class Admin::UsersControllerTest < ActionController::TestCase
       assert_nil assigns(:users)
     end
   end
-
-
 end

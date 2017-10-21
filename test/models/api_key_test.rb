@@ -14,7 +14,6 @@
 require 'test_helper'
 
 class ApiKeyTest < ActiveSupport::TestCase
-
   should belong_to(:user)
 
   test "creating a new api key should generate an access token" do
@@ -39,5 +38,4 @@ class ApiKeyTest < ActiveSupport::TestCase
     api_key = create :api_key, :expired
     assert (api_key.expired? == true), "ApiKey#expired? should be true when date_expired is present"
   end
-
 end

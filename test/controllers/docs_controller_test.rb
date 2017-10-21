@@ -27,7 +27,6 @@
 require 'test_helper'
 
 class DocsControllerTest < ActionController::TestCase
-
   setup do
     set_default_settings
   end
@@ -48,7 +47,6 @@ class DocsControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should be able to show a document with comments if cloudinary is configured" do
-
     # Make sure cloudinary cloud name is setup
     AppSettings['cloudinary.cloud_name'] = "test-cloud"
     AppSettings['cloudinary.api_key'] = "some-key"
@@ -64,5 +62,4 @@ class DocsControllerTest < ActionController::TestCase
       get :show, id: 1, locale: :en
     end
   end
-
 end

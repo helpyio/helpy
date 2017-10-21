@@ -9,7 +9,7 @@ module API
       include API::V1::Defaults
       include Grape::Kaminari
 
-      resource :flags, desc: "Flag post for review" do 
+      resource :flags, desc: "Flag post for review" do
         desc "Flag a post for review"
         params do
           requires :post_id, type: Integer, desc: "The post to flag for review"

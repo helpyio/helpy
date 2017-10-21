@@ -45,6 +45,4 @@ Rails.application.configure do
   config.i18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
-
-
 end

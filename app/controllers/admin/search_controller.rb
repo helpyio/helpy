@@ -1,5 +1,4 @@
 class Admin::SearchController < Admin::BaseController
-
   before_action :verify_agent
   before_action :fetch_counts
   before_action :remote_search
@@ -10,7 +9,6 @@ class Admin::SearchController < Admin::BaseController
 
   # simple search tickets by # and user
   def topic_search
-
     # search for user, if [one] found, we'll give details on that person
     # if more than one found, we'll list them, if search is for "users" then show all
     if params[:q] == 'users'
@@ -54,7 +52,7 @@ class Admin::SearchController < Admin::BaseController
     if params[:start_date].present?
       @start_date = params[:start_date].to_datetime
     else
-      @start_date = Time.zone.today-1.month
+      @start_date = Time.zone.today - 1.month
     end
 
     if params[:end_date].present?
@@ -63,6 +61,4 @@ class Admin::SearchController < Admin::BaseController
       @end_date = Time.zone.today.at_end_of_day
     end
   end
-
-
 end

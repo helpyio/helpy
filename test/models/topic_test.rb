@@ -29,7 +29,6 @@
 require 'test_helper'
 
 class TopicTest < ActiveSupport::TestCase
-
   should belong_to(:forum)
   should belong_to(:user)
   should belong_to(:doc)
@@ -64,7 +63,6 @@ class TopicTest < ActiveSupport::TestCase
 
   test "trashed messages should be in forum 2, and unassigned" do
     Topic.all.each do |topic|
-
       topic.trash
 
       assert topic.assigned_user_id.nil?
@@ -127,7 +125,7 @@ class TopicTest < ActiveSupport::TestCase
     topic = create :topic
     bulk_post_attributes = []
     t_posts_count = topic.posts.count
-    bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id}
+    bulk_post_attributes << { body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id }
     topics = Topic.where(id: topic.id)
     topics.bulk_agent_assign(bulk_post_attributes, 1)
 
@@ -141,7 +139,7 @@ class TopicTest < ActiveSupport::TestCase
     topic = create :topic
     bulk_post_attributes = []
     t_posts_count = topic.posts.count
-    bulk_post_attributes << {body: I18n.t(:assigned_group, assigned_group: 'test'), kind: 'note', user_id: 1, topic_id: topic.id}
+    bulk_post_attributes << { body: I18n.t(:assigned_group, assigned_group: 'test'), kind: 'note', user_id: 1, topic_id: topic.id }
     topics = Topic.where(id: topic.id)
     topics.bulk_group_assign(bulk_post_attributes, 'test')
 
@@ -218,5 +216,4 @@ class TopicTest < ActiveSupport::TestCase
     topic = create :topic, name: name, user_id: 1, forum_id: 1, team_list: 'noemailteam'
     assert_equal "\"Helpy Support\" <inbound.support@yourdomain.com>", topic.from_email_address
   end
-
 end

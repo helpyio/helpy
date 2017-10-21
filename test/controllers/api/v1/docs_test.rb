@@ -23,7 +23,6 @@
 #  allow_comments   :boolean          default(TRUE)
 #
 
-
 require 'test_helper'
 
 class API::V1::DocsTest < ActiveSupport::TestCase

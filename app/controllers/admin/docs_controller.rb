@@ -1,7 +1,6 @@
 class Admin::DocsController < Admin::BaseController
-
   before_action :verify_editor
-  respond_to :html, only: ['new','edit','create']
+  respond_to :html, only: ['new', 'edit', 'create']
   respond_to :js, only: ['destroy']
 
   def new
@@ -39,8 +38,7 @@ class Admin::DocsController < Admin::BaseController
         format.html {
           redirect_to(admin_category_path(@category.id))
         }
-        format.js {
-        }
+        format.js {}
       end
     else
       respond_to do |format|
@@ -49,13 +47,12 @@ class Admin::DocsController < Admin::BaseController
         }
       end
     end
-
   end
 
   def destroy
     @doc = Doc.find(params[:id])
     @doc.destroy
-    render js:"
+    render js: "
       $('#doc-#{@doc.id}').fadeOut();
       Helpy.ready();
       Helpy.track();"
@@ -65,19 +62,18 @@ class Admin::DocsController < Admin::BaseController
 
   def doc_params
     params.require(:doc).permit(
-    :title,
-    :body,
-    :keywords,
-    :title_tag,
-    :meta_description,
-    :category_id,
-    :rank,
-    :active,
-    :front_page,
-    :allow_comments,
-    {screenshots: []},
-    :tag_list
-  )
+      :title,
+      :body,
+      :keywords,
+      :title_tag,
+      :meta_description,
+      :category_id,
+      :rank,
+      :active,
+      :front_page,
+      :allow_comments,
+      { screenshots: [] },
+      :tag_list
+    )
   end
-
 end

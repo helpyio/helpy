@@ -27,10 +27,9 @@
 #
 
 class TopicsController < ApplicationController
-
-  before_action :authenticate_user!, :only => ['tickets','ticket']
+  before_action :authenticate_user!, :only => ['tickets', 'ticket']
   before_action :allow_iframe_requests
-  before_action :forums_enabled?, only: ['index','show']
+  before_action :forums_enabled?, only: ['index', 'show']
   before_action :topic_creation_enabled?, only: ['new', 'create']
   before_action :get_all_teams, only: 'new'
   before_action :get_public_forums, only: ['new', 'create']
@@ -99,7 +98,8 @@ class TopicsController < ApplicationController
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id],
       team_list: params[:topic][:team_list],
-      channel: 'web')
+      channel: 'web'
+    )
 
     if recaptcha_enabled?
       render :new && return unless verify_recaptcha(model: @topic)
@@ -112,7 +112,8 @@ class TopicsController < ApplicationController
         :user_id => @user.id,
         :kind => 'first',
         :screenshots => params[:topic][:screenshots],
-        :attachments => params[:topic][:posts_attributes]["0"][:attachments])
+        :attachments => params[:topic][:posts_attributes]["0"][:attachments]
+      )
 
       if !user_signed_in?
         UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
@@ -133,7 +134,7 @@ class TopicsController < ApplicationController
   end
 
   def thanks
-     @page_title = t(:thank_you, default: 'Thank You!')
+    @page_title = t(:thank_you, default: 'Thank You!')
   end
 
   def up_vote
@@ -159,12 +160,11 @@ class TopicsController < ApplicationController
     params.require(:post).permit(
       :body,
       :kind,
-      {attachments: []}
+      { attachments: [] }
     )
   end
 
   def get_public_forums
     @forums = Forum.ispublic.all
   end
-
 end

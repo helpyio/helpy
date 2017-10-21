@@ -1,9 +1,7 @@
 require 'test_helper'
 
 class ResultControllerTest < ActionController::TestCase
-
   def setup
-
     # Build PG search
     PgSearch::Multisearch.rebuild(Doc)
     PgSearch::Multisearch.rebuild(Topic)
@@ -11,7 +9,6 @@ class ResultControllerTest < ActionController::TestCase
   end
 
   test "a browsing user searching for a doc should return a result" do
-
     get(:index, { q: "article1 text", locale: :en })
     assert_not_nil assigns(:results)
     assert_equal(2, assigns(:results).total_count)
@@ -79,7 +76,6 @@ class ResultControllerTest < ActionController::TestCase
   end
 
   test "a browsing user adding a public topic should add it to search" do
-
     @topic = Topic.create(forum_id: 3, user_id: 1, name: "My new post")
     @post = @topic.posts.create(user_id: 1, body: "This is something amazing", kind: "first")
 
@@ -93,11 +89,9 @@ class ResultControllerTest < ActionController::TestCase
     assert_equal(1, assigns(:results).total_count, "Did not find results for the search")
     assert_select "span.result-body", { text: "This is something amazing" }
     assert_response :success
-
   end
 
   test "a browsing user adding a private topic should NOT add it to search" do
-
     @topic = Topic.create(forum_id: 1, user_id: 1, name: "My new private post", private: true)
     @post = Post.create(topic_id: @topic.id, user_id: 1, body: "This is something private", kind: "first")
 
@@ -107,7 +101,6 @@ class ResultControllerTest < ActionController::TestCase
     get(:index, { q: "This is something private", locale: :en })
     assert_equal(0, assigns(:results).total_count, "Found results for the search when shouldn't have")
     assert_response :success
-
   end
 
   test "a browing user should be able to search and find a newly created article" do
@@ -138,8 +131,5 @@ class ResultControllerTest < ActionController::TestCase
     assert_not_nil assigns(:results)
     assert_select "span.result-body", { text: "new body text" }
     assert_response :success
-
   end
-
-
 end
