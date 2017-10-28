@@ -306,7 +306,8 @@ module API
           requires :user_id, type: Integer, desc: "the User ID"
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
           optional :channel, type: String, desc: "The source channel the ticket was created from. Defaults to API."
-          optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
+          optional :kind, type: String, desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc."
+          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: [ 'low', 'normal', 'high', 'very_high' ]
         end
 
         post "", root: :topics do
@@ -316,7 +317,8 @@ module API
             user_id: permitted_params[:user_id],
             private: false,
             channel: params[:channel].present? ? params[:channel] : "api",
-            kind: params[:kind].present? ? params[:kind] : 'discussion'
+            kind: params[:kind].present? ? params[:kind] : 'discussion',
+            priority: permitted_params[:priority] || 'normal'
           )
           topic.posts.create!(
             body: permitted_params[:body],
@@ -334,6 +336,7 @@ module API
           optional :current_status, type: String, desc: "The status of the topic (New, Open, Pending, Resolved)"
           optional :private, type: Boolean, desc: "Whether or not the topic is marked private"
           optional :assigned_user_id, type: Integer, desc: "The assigned agent for this topic"
+          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: [ 'low', 'normal', 'high', 'very_high' ]
         end
 
         patch ":id", root: :topics do
@@ -342,7 +345,8 @@ module API
             forum_id: permitted_params[:forum_id],
             current_status: permitted_params[:current_status],
             private: permitted_params[:private],
-            assigned_user_id: permitted_params[:assigned_user_id]
+            assigned_user_id: permitted_params[:assigned_user_id],
+            priority: permitted_params[:priority] || 'normal'
           )
           present topic, with: Entity::Topic, posts: true
         end
