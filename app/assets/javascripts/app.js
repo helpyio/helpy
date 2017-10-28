@@ -8,6 +8,10 @@ Helpy.ready = function(){
 
   $(".best_in_place").best_in_place();
 
+  $('.edit-topic-name-menu').on('click', function(){
+    $('.best_in_place').click();
+  });
+
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();

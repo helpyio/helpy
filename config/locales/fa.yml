@@ -143,6 +143,7 @@ fa:
   mark_spam: اسپم
   mark_new: جدیده
   assign_agent: بسپر به
+  # tag_with: Tag Ticket
   selected_messages:
     one: "۱ پیغام انتخاب شده"
     two: "۲ پیغام انتخاب شده"

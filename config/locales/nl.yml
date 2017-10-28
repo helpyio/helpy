@@ -143,6 +143,7 @@ nl:
   mark_spam: Als spam markeren
   mark_new: Als nieuw markeren
   assign_agent: Aan medewerker toewijzen
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 bericht geselecteerd"
     two: "2 berichten geselecteerd"
