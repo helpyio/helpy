@@ -99,7 +99,7 @@ class Admin::TopicsController < Admin::BaseController
       team_list: params[:topic][:team_list],
       channel: params[:topic][:channel],
       tag_list: params[:topic][:tag_list],
-      priority: params[:topic][:priority],
+      priority: params[:topic][:priority]
     )
 
     if @user.nil?
@@ -488,6 +488,5 @@ class Admin::TopicsController < Admin::BaseController
   def topic_params
     params.require(:topic).permit(:name)
     params.require(:topic).permit(:tag_list)
-    params.require(:topic).permit(:priority)
   end
 end
