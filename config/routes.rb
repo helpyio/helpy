@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
+    devise_for :users, skip: [:omniauth_callbacks], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords', invitations: 'invitations' }
 
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
