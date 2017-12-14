@@ -18,16 +18,14 @@ class EmailProcessor
     if @user.nil?
       create_user
     end
-
     sitename = AppSettings["settings.site_name"]
-    message = @email.body.nil? ? "" : @email.body
+    message =  get_content_from_mail
     raw = @email.raw_body.nil? ? "" : @email.raw_body
 
     subject = @email.subject
     attachments = @email.attachments
 
     if subject.include?("[#{sitename}]") # this is a reply to an existing topic
-
       complete_subject = subject.split("[#{sitename}]")[1].strip
       ticket_number = complete_subject.split("-")[0].split("#")[1].strip
       topic = Topic.find(ticket_number)
@@ -78,7 +76,6 @@ class EmailProcessor
         @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
       end
     else # this is a new direct message
-
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
       # if @email.header['X-Helpy-Teams'].present?
       #   topic.team_list = @email.header['X-Helpy-Teams']
@@ -147,12 +144,25 @@ class EmailProcessor
     @user.reset_password_token = enc
     @user.reset_password_sent_at = Time.now.utc
 
-    @user.email = @email.from[:email]
-    @user.name = @email.from[:name].blank? ? @email.from[:token].gsub(/[^a-zA-Z]/, '') : @email.from[:name]
+
+    @user.email = get_email_from_mail
+    @user.name = get_name_from_mail.blank? ? @user.email : get_name_from_mail
     @user.password = User.create_password
     if @user.save
       UserMailer.new_user(@user.id, @token).deliver_later
     end
 
+  end
+
+  def get_name_from_mail
+    @email[:from].addrs.first.display_name
+  end
+
+  def get_email_from_mail
+    @email[:from].addrs.first.address
+  end
+
+  def get_content_from_mail
+    plain_part = @email.multipart? ? (@email.text_part ? @email.text_part.body.decoded : nil) : @email.body.decoded
   end
 end

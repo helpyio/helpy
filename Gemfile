@@ -113,9 +113,9 @@ gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
 # Email/Mail Handling
 gem 'daemons'
-gem 'mailman'#, require: false
+gem 'mailman' #, require: false
 gem 'mail_extract'
-
+gem 'mail', '~> 2.6.4'
 gem 'griddler'
 gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
