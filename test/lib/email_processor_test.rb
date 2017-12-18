@@ -7,7 +7,7 @@ class EmailProcessorTest < ActiveSupport::TestCase
   end
 
   test 'an email to the support address from an unknown user should create a new user and topic with status new' do
-    assert_difference('Topic.where(current_status: "new").count', 1) do
+    assert_difference('Topic.where(current_status: "new").count', 2) do
       assert_difference('Post.count', 1) do
         assert_difference('User.count', 1) do
           assert_difference('ActionMailer::Base.deliveries.size', 1) do

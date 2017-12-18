@@ -14,7 +14,6 @@
         <%= f.password_field 'email.pop3_password', value: AppSettings['email.pop3_password'], label: "POP3 Password" %>
         <%= f.select 'email.pop3_security', options_for_select([['None', ''],['SSL', 'ssl'],['StartTLS','starttls']], AppSettings['email.pop3_security']), label: "POP3 Security" %>
         <%= f.text_field 'email.pop3_port', value: AppSettings['email.pop3_port'], label: "POP3 Port (if empty use default port)" %>
-
       </div>
       <div class="imap-settings <%= "hidden" if "#{AppSettings['email.mail_service']}" != 'imap' %>">
         <p>IMAP will require run 'rake helpy:mailman'. Also changes will require a restart of the rake task</p>
@@ -24,6 +23,10 @@
         <%= f.select 'email.imap_security', options_for_select([['None', ''],['SSL', 'ssl'],['StartTLS','starttls']], AppSettings['email.imap_security']), label: "IMAP Security" %>
         <%= f.text_field 'email.imap_port', value: AppSettings['email.imap_port'], label: "IMAP Port (if empty use default port)" %>
       </div>
+      <%= f.form_group 'email.send_email', label: { text: t('send_email', default: "Enable Outbound (SMTP) Email") }, class: 'send-email-toggle' do %>
+        <%= f.radio_button 'email.send_email', false, label: t('boolean_no', default: "No"), checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
+        <%= f.radio_button 'email.send_email', true, label: t('boolean_yes', default: "Yes"), checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
+      <% end %>
       <div class="smtp-settings <%= "hidden" if "#{AppSettings['email.send_email']}" == 'false' %>">
         <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: t('admin_email', default: "Admin Email") %>
         <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: t('from_email', default: "From Email") %>
