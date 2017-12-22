@@ -83,71 +83,71 @@ ar:
   version: "الإصدار:"
 
   # flag
-  flag_for_review: "الإبلاغ عن محتوى ما"
-  flag_post_for_review: "الإبلاغ عن الرسالة"
-  flag_post_placeholder: "اكتب سبب الإبلاغ"
-  flag: "الإبلاغ"
+  flag_for_review: الإبلاغ عن محتوى ما
+  flag_post_for_review: الإبلاغ عن الرسالة
+  flag_post_placeholder: اكتب سبب الإبلاغ
+  flag: الإبلاغ
 
   # devise/sessions/new
-  login: "تسجيل الدخول"
+  login: تسجيل الدخول
 
   # devise/shared/links
-  forgot_password: "هل نسيت كلمة المرور؟"
+  forgot_password: هل نسيت كلمة المرور؟
 
   # devise/passwords/new
-  send_instructions: "إرسال التعليمات"
+  send_instructions: إرسال التعليمات
 
   # devise/passwords/edit
-  change_password: "تغيير كلمة المرور"
-  new_password: "كلمة مرور جديدة"
-  new_password_confirmation: "تأكيد كلمة المرور الجديدة"
+  change_password: تغيير كلمة المرور
+  new_password: كلمة مرور جديدة
+  new_password_confirmation: تأكيد كلمة المرور الجديدة
 
   # devise/confirmations/new
-  resend: "إعادة إرسال تعليمات التأكيد"
+  resend: إعادة إرسال تعليمات التأكيد
 
   # devise/registrations/new
-  sign_up: "تسجيل"
+  sign_up: تسجيل
 
   # Admin menu
-  discussions: "مناقشات"
-  content: "المحتوى"
-  communities: "مجتمعات"
-  app_store: "آب ستور"
-  search: "بحث"
-  internal_content: "محتوى الداخلي"
+  discussions: مناقشات
+  content: المحتوى
+  communities: مجتمعات
+  app_store: آب ستور
+  search: بحث
+  internal_content: محتوى الداخلي
 
   # Admin main/statuses
-  support_pipeline: "تدفق المساعدة"
-  new: "جديد"
-  active: "نشط"
-  open: "فتح"
-  mine: "تذاكري"
-  pending: "انتظار"
-  closed: "حل"
-  spam: "بريد المزعج"
-  trash: "قمامة"
-  discussion_managment: "إدارة التذاكر"
-  open_new_discussion: "تذكرة جديدة"
+  support_pipeline: تدفق المساعدة
+  new: جديد
+  active: نشط
+  open: فتح
+  mine: تذاكري
+  pending: انتظار
+  closed: حل
+  spam: بريد المزعج
+  trash: قمامة
+  discussion_managment: إدارة التذاكر
+  open_new_discussion: تذكرة جديدة
   assigned_to: "تم تعيينه إلى %{agent}"
-  unassigned: "غير المعينة"
-  no_team_assigned: "تعيين للمجموعة"
-  assign_to: "المجموعة / فريق"
-  unassign_from_team: "إلغاء تعيين المجموعة"
-  private: "خاصة"
-  public: "عامة"
-  save_changes: "حفظ التغييرات"
-  merge: "دمج"
-  merge_confirm: "هل تريد بالتأكيد دمج هذه التذاكر؟"
+  unassigned: غير المعينة
+  no_team_assigned: تعيين للمجموعة
+  assign_to: المجموعة / فريق
+  unassign_from_team: إلغاء تعيين المجموعة
+  private: خاصة
+  public: عامة
+  save_changes: حفظ التغييرات
+  merge: دمج
+  merge_confirm: هل تريد بالتأكيد دمج هذه التذاكر؟
 
   # Discussion controls
-  change_status: "تغيير الحالة"
-  status: "حالة"
-  mark_closed: "حل"
-  reopen: "إعادة فتح"
-  mark_spam: "بريد المزعج"
-  mark_new: "جديد"
-  assign_agent: "تعيين الوكيل"
-  tag_with: "ضع علامة على التذكرة"
+  change_status: تغيير الحالة
+  status: حالة
+  mark_closed: حل
+  reopen: إعادة فتح
+  mark_spam: بريد المزعج
+  mark_new: جديد
+  assign_agent: تعيين الوكيل
+  tag_with: ضع علامة على التذكرة
   selected_messages:
     one: "رسالة مختارة (١)"
     two: "رسائل المحددة (٢)"
@@ -165,27 +165,27 @@ ar:
   notes_hidden: "هناك %{hidden_notes} ملاحظات داخلية لهذه التذكرة. يمكنك عرضها من خلال النقر في أي مكان في هذه الملاحظة!"
 
   # User Admin
-  users: "مستخدمين"
-  account: "حساب المستخدم"
-  contact_info: "اتصال"
-  social_info: "اجتماعي"
-  edit_user: "تعديل المستخدم"
-  work_phone: "هاتف المكتب"
-  cell_phone: "هاتف الخلوي"
+  users: مستخدمين
+  account: حساب المستخدم
+  contact_info: اتصال
+  social_info: اجتماعي
+  edit_user: تعديل المستخدم
+  work_phone: هاتف المكتب
+  cell_phone: هاتف الخلوي
 
   # Priorities
-  select_priority: "حدد الأولوية"
-  vip_priority: "VIP"
+  select_priority: حدد الأولوية
+  vip_priority: VIP
   high_priority: "مرتفعة"
-  normal_priority: "متوسطة"
-  low_priority: "منخفضة"
+  normal_priority: متوسطة
+  low_priority: منخفضة
 
   # Roles
-  select_role: "حدد الدور"
-  admin_role: "مشرف"
-  agent_role: "وكيل"
-  editor_role: "محرر"
-  user_role: "زبون"
+  select_role: حدد الدور
+  admin_role: مشرف
+  agent_role: وكيل
+  editor_role: محرر
+  user_role: زبون
   add_more_agents: "إضافة المزيد من المستخدمين"
 
   # Keyboard Shortcuts
@@ -238,24 +238,24 @@ ar:
   asked_a_question: "سأل %{user_name} سؤالا ..."
   replied: "أجاب %{user_name} ..."
   posted_note: "%{user_name} نشر مذكرة داخلية ..."
-  type_reply: "اكتب ردك، أو حدد من رسالة شائعة أدناه"
-  select_common: "حدد ردا شائعا"
-  reply: "رد"
-  internal_note: "مذكرة داخلية"
-  mark_as_resolved: "وضع علامة على أنه تم حلها"
+  type_reply: اكتب ردك، أو حدد من رسالة شائعة أدناه
+  select_common: حدد ردا شائعا
+  reply: رد
+  internal_note: مذكرة داخلية
+  mark_as_resolved: وضع علامة على أنه تم حلها
   upvote:
     one: "تصويت | %{count}"
     other: "تصويت | %{count}"
 
   # Content
-  new_category: "فئة جديدة"
-  new_content: "محتوى جديد"
-  front_page_categories: "فئات الصفحة الأمامية"
-  other_categories: "فئات أخرى"
-  edit: "Edit"
-  edit_category: "عدل الفئة"
-  select_category: "حدد الفئة"
-  delete: "حذف"
+  new_category: فئة جديدة
+  new_content: محتوى جديد
+  front_page_categories: فئات الصفحة الأمامية
+  other_categories: فئات أخرى
+  edit: تعديل
+  edit_category: عدل الفئة
+  select_category: حدد الفئة
+  delete: حذف
   view_and_edit: "عرض المحتوى وتعديله"
   delete_confirm: "الرجاء تأكيد رغبتك في حذف هذا!"
   select_icon_helptext: "حدد رمزا مقترنا بهذه الفئة (اختياري)"
@@ -280,12 +280,12 @@ ar:
   no_internal_content_text: "لا تقلق ! للمساهمة في التوثيق الداخلي، انتقل إلى مركز المساعدة > المحتوى. وإضافة نوع داخلي جديد من الفئة، ثم تبادل المعلومات الخاصة بك مع فريقك كتابة بعض المستندات!"
 
   # Communities
-  new_community: "مجتمع جديد"
-  create_new_community: "إنشاء مجتمع جديد"
-  layout_select: "حدد تنسيق"
-  layout_table: "جدول"
-  layout_grid: "شبكة"
-  layout_qna: "أسئلة وأجوبة"
+  new_community: مجتمع جديد
+  create_new_community: إنشاء مجتمع جديد
+  layout_select: حدد تنسيق
+  layout_table: جدول
+  layout_grid: شبكة
+  layout_qna: أسئلة وأجوبة
 
   # Mail messages
   new_user_subject: "مرحبا %{site_name}"
@@ -359,53 +359,53 @@ ar:
   activerecord:
     attributes:
       user:
-        email: "بريد إلكتروني"
-        password: "كلمة المرور"
-        name: "اسم"
-        company: "شركة"
-        work_phone: "هاتف المكتب"
-        home_phone: "هاتف المنزل"
-        cell_phone: "هاتف محمول"
-        city: "مدينة"
-        state: "مقاطعة"
-        signature: "توقيع"
+        email: بريد إلكتروني
+        password: كلمة المرور
+        name: اسم
+        company: شركة
+        work_phone: هاتف المكتب
+        home_phone: هاتف المنزل
+        cell_phone: هاتف محمول
+        city: مدينة
+        state: مقاطعة
+        signature: توقيع
       topic:
-        name: "سؤال"
+        name: سؤال
       post:
-        kind: "جنس"
+        kind: جنس
       category:
-        name: "اسم"
-        icon: "أيقونة"
-        keywords: "كلمات الرئيسية"
-        title_tag: "علامة العنوان"
-        meta_description: "ميتا الوصف"
-        front_page: "الصفحة الأمامية"
-        active: "نشط"
-        visibility: "رؤية"
+        name: اسم
+        icon: أيقونة
+        keywords: كلمات الرئيسية
+        title_tag: علامة العنوان
+        meta_description: ميتا الوصف
+        front_page: الصفحة الأمامية
+        active: نشط
+        visibility: رؤية
         visibility_label:
-          all: "الكل"
-          public: "عامة"
-          internal: "داخلي"
+          all: الكل
+          public: عامة
+          internal: داخلي
       doc:
-        title: "عنوان"
-        meta_description: "ميتا الوصف"
-        title_tag: "علامة العنوان"
-        keywords: "كلمات الرئيسية"
-        category_id: "فئة"
-        active: "حالة"
-        front_page: "ظهرت على الصفحة الأولى؟"
+        title: عنوان
+        meta_description: ميتا الوصف
+        title_tag: علامة العنوان
+        keywords: كلمات الرئيسية
+        category_id: فئة
+        active: حالة
+        front_page: ظهرت على الصفحة الأولى؟
       forum:
-        name: "اسم"
-        description: "وصف"
-        private: "خاص"
-        layout: "نسق"
-        allow_topic_voting: "هل تريد السماح بالتصويت على للموضوع؟"
-        allow_post_voting: "هل تريد السماح بالتصويت على المشاركة؟"
+        name: اسم
+        description: وصف
+        private: خاص
+        layout: نسق
+        allow_topic_voting: هل تريد السماح بالتصويت على للموضوع؟
+        allow_post_voting: هل تريد السماح بالتصويت على المشاركة؟
 
     helpers:
       submit:
         topic:
-          create: "ابدأ مناقشة"
+          create: ابدأ مناقشة
         post:
           create:
 
