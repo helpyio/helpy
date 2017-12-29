@@ -1,5 +1,3 @@
-# TRANSLATOR: BRAHIM
-
 ar:
   language_name: 'العربية' # The name of the translation file, in that language
   root: &root 'الرئيسيـة'
@@ -372,7 +370,7 @@ ar:
       topic:
         name: سؤال
       post:
-        kind: جنس
+        kind: نوع
       category:
         name: اسم
         icon: أيقونة
