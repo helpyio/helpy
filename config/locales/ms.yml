@@ -1,5 +1,3 @@
-# TRANSLATOR: BRAHIM
-
 ms:
   language_name: 'Bahasa Melayu' # The name of the translation file, in that language
   root: &root 'Laman Utama'
@@ -190,7 +188,7 @@ ms:
 
   # Keyboard Shortcuts
   shortcut_then: "kemudian"
-  listing_views: "Paparan senarai"
+  listing_views: "Senarai pandangan"
   keyboard_shortcuts: "Pintasan Papan Kekunci"
   show_new_tickets: "Tunjukkan tiket baru"
   show_all_tickets: "Tunjukkan semua tiket"
@@ -372,7 +370,7 @@ ms:
       topic:
         name: Soalan
       post:
-        kind: Genre
+        kind: Jenis
       category:
         name: Nama
         icon: Ikon
