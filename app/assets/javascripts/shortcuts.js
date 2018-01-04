@@ -141,7 +141,7 @@ Helpy.initShortcuts = function() {
       $('.topic').first().addClass('selected');
       pressEnter($('.topic').first().find('a.topic-link'));
     } else {
-      var $nowSelected = $('.selected').next('tr.topic');
+      var $nowSelected = $('.selected').next('.topic');
 
       $nowSelected.addClass('selected');
       $currentSelected.removeClass('selected');
@@ -156,7 +156,7 @@ Helpy.initShortcuts = function() {
       $('.topic').last().addClass('selected');
       pressEnter($('.topic').last().find('a.topic-link'));
     } else {
-      var $nowSelected = $('.selected').prev('tr.topic');
+      var $nowSelected = $('.selected').prev('.topic');
       $nowSelected.addClass('selected');
       $currentSelected.removeClass('selected');
       pressEnter($nowSelected.find('a.topic-link'));

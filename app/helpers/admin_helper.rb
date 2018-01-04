@@ -88,9 +88,9 @@ module AdminHelper
   end
 
   def settings_menu_item(icon, title, link='#')
-    content_tag(:li, class: 'settings-menu-item') do
+    content_tag(:li, class: 'nav-item') do
       link_to(link, class: "#{settings_link(link)} #{'active-settings-link' if current_page?(link)}", "data-target" => title) do
-        concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
+        # concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
         concat content_tag(:span, t(title, default: title.capitalize), class: 'hidden-xs')
       end
     end
@@ -158,7 +158,7 @@ module AdminHelper
   def admin_avatar_menu_items
     content_tag :ul, class: 'dropdown-menu' do
       concat content_tag(:li, link_to(t(:your_profile, default: 'Your Profile'), admin_profile_settings_path(mode: 'settings')), class: 'visible-lg visible-md visible-sm hidden-xs')
-      concat content_tag(:li, link_to(t(:settings, default: 'Settings'), admin_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
+      concat content_tag(:li, link_to(t(:settings, default: 'Settings'), admin_general_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
 
 
       concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?

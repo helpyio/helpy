@@ -1,3 +1,38 @@
+<style>
+#upper-wrapper {
+  background-color: <%= AppSettings['branding.ticketing_color'] %>;
+}
+
+#header-wrapper > nav > div > ul > li.open > a,
+.navbar.navbar-default,
+.nav {
+  background-color: transparent;
+}
+
+#header-wrapper > nav > div > ul > li > a {
+  color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
+}
+
+.topic-search-container.jumbotron {
+  background-color: <%= AppSettings['branding.ticketing_color'] %>;
+  -webkit-filter: opacity(.8);
+  filter: opacity(.8);
+}
+
+<% if !display_branding? %>
+a.navbar-brand {
+  display: none;
+}
+#header-wrapper > nav > div.navbar-collapse.collapse {
+  margin-left: -10px;
+}
+<% else %>
+#header-wrapper > nav > div.navbar-collapse.collapse {
+  margin-left: -15px;
+}
+<% end %>
+</style>
+
 <div id="upper-wrapper" class="jumbotron">
   <div class="container-fluid">
     <div class="row">

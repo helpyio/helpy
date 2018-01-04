@@ -119,11 +119,11 @@ en:
   # Admin main/statuses
   support_pipeline: Support Pipeline
   new: New
-  active: Active
+  active: All Tickets
   open: Open
   mine: Mine
   pending: Pending
-  closed: Resolved
+  closed: Closed
   spam: Spam
   trash: Trash
   discussion_managment: Ticket Management
@@ -142,7 +142,7 @@ en:
   # Discussion controls
   change_status: Change Status
   status: Status
-  mark_closed: Mark Resolved
+  mark_closed: Mark Closed/Resolved
   reopen: Reopen
   mark_spam: Mark Spam
   mark_new: Mark New
@@ -182,7 +182,7 @@ en:
 
   # Roles
   select_role: Select Role
-  admin_role: Admin
+  admin_role: Administrator
   agent_role: Agent
   editor_role: Editor
   user_role: Customer
@@ -213,7 +213,7 @@ en:
   change_ticket_status: "Change ticket status"
   associate_with_a_group: "Associate with a group"
   ticket_status: "Ticket status"
-  mark_resolved: "Mark as resolved"
+  mark_resolved: "Close Ticket"
   reopen_ticket: "Reopen ticket"
   set_to_new: "Mark as new"
   mark_as_spam: "Mark as spam"
@@ -235,7 +235,7 @@ en:
   send_invite: "Send Invite"
 
   # Discussion View
-  asked_a_question: "%{user_name} asked a question..."
+  asked_a_question: "%{user_name} wrote..."
   replied: "%{user_name} replied..."
   posted_note: "%{user_name} posted an internal note..."
   type_reply: Type your reply, or select from a common message below
@@ -370,7 +370,7 @@ en:
         state: State
         signature: Signature
       topic:
-        name: Question
+        name: Subject
       post:
         kind: Genre
       category:

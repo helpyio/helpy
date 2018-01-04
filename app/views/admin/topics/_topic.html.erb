@@ -8,7 +8,7 @@
 
   <td>
       <span class="more-important truncate-ellipsis">
-        <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic), remote: true, class: "click-loader topic-link topic-link-#{topic.id}" -%>
+        <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic, status: @status), remote: true, class: "click-loader topic-link topic-link-#{topic.id}" -%>
         <%= badge_for_status(topic.current_status) %>
         <%= badge_for_private if forums? and topic.private? %>
         <% tag_listing(topic.team_list) %>

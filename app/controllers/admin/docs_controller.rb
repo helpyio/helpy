@@ -1,8 +1,12 @@
 class Admin::DocsController < Admin::BaseController
 
   before_action :verify_editor
+  before_action :set_categories_and_non_featured
+
   respond_to :html, only: ['new','edit','create']
   respond_to :js, only: ['destroy']
+
+  layout 'admin-content'
 
   def new
     @doc = Doc.new

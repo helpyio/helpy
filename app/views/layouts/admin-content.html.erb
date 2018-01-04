@@ -17,25 +17,12 @@
 	</script>
 	<%= render partial: 'layouts/admin_header' %>
 
-	<% if current_user.is_agent? %>
-	<div class="topic-search-container jumbotron">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="topic-search">
-						<%= render partial: 'admin/search/topic_search' %>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<% end %>
-	<%= yield :pipeline %>
 	<div id="body-wrapper" class="container-fluid">
 		<div class="row white-bg">
 			<div class="col-md-12">
 				<div id="main-body" >
 					<div id="main-content">
+
 						<%= bootstrap_flash %>
 						<%= yield %>
 					</div>

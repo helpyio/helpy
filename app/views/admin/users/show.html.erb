@@ -5,11 +5,12 @@
 <% end %>
 
 <%= user_header %>
-<div id="user-info">
-  <%= render 'admin/users/user_info_horizontal' %>
-</div>
+
 <div class="row">
-  <div class="col-md-12" id="tickets">
+  <div id="user-info" class="col-md-3">
+    <%= render partial: 'admin/users/user_info', locals: { include_tickets: false } %>
+  </div>
+  <div class="col-md-9 main-panel" id="tickets">
     <%= render 'admin/topics/tickets' %>
   </div>
 </div>

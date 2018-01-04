@@ -1,4 +1,6 @@
-<div class="add-form">
+<div>
+<%= content_tag :h3, "#{t(:open_new_discussion, default: 'New Ticket')}", class: 'view-header' %>
+
 <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post' }) do |f| -%>
   <div class="channel-wrapper">
     <div><label class="control-label"> <%= t(:channel_source, default: 'Source') %> </label></div>

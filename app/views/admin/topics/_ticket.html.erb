@@ -1,15 +1,14 @@
 <div id="ticket-info" class="no-side-pad row">
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="left-col-user-info">
-    <%= render partial: 'admin/users/user_info' %>
+  <div class="col-md-3 col-lg-3 hidden-xs hidden-sm" id="left-col-user-info">
+    <%= render partial: 'admin/users/user_info_with_tickets' %>
   </div>
 
-  <div id="ticket-controls" class="col-md-9 col-xs-12 col-lg-8">
+  <div id="ticket-controls" class="col-md-9 col-xs-12 col-lg-9">
     <div class="topic-tags hidden-lg hidden-md hidden-sm"><%= formatted_tags(@topic) %></div>
 
-    <h2 class="topic-number-name">
+    <h3 class="topic-number-name">
 
-      <%= render 'admin/topics/ticket_nav_dropdown' %>
+      <small><span class="fa fa-toggle-down btn show-ticket-menu hidden-lg hidden-md"></span></small>
       <span class="topic-number">#<%= @topic.id %></span>-
       <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
 
@@ -22,7 +21,7 @@
           </ul>
         </span>
       </div>
-    </h2>
+    </h3>
 
     <div class="topic-tag-form" style="display: none;">
       <%= simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id), remote: true, html: { class: 'form-inline' } do |f| %>
@@ -51,7 +50,7 @@
     <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.count > 0 %>
 
     <div class="add-form">
-      <h4><%= t(:reply_to_this_topic, default: 'Reply to this Topic') %>:</h4>
+      <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>
 
       <%= bootstrap_form_for @topic.posts.new, url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
@@ -81,7 +80,6 @@
 
     </div>
   </div>
-
 
 </div>
 <script type="text/javascript">

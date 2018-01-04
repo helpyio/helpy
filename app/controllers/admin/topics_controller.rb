@@ -35,47 +35,27 @@ class Admin::TopicsController < Admin::BaseController
   respond_to :js
 
   def index
-    @status = params[:status] || "pending"
-    if current_user.is_restricted? && teams?
-      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
-    else
-      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
-    end
-    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
-    get_all_teams
-    case @status
-    when 'all'
-      topics_raw = topics_raw.all
-    when 'new'
-      topics_raw = topics_raw.unread
-    when 'active'
-      topics_raw = topics_raw.active
-    when 'unread'
-      topics_raw = topics_raw.unread.all
-    when 'assigned'
-      topics_raw = Topic.mine(current_user.id)
-    when 'pending'
-      topics_raw = Topic.pending.mine(current_user.id)
-    else
-      topics_raw = topics_raw.where(current_status: @status)
-    end
-    @topics = topics_raw.page params[:page]
+    get_tickets_by_status
+    team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
+    @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
     tracker("Admin-Nav", "Click", @status.titleize)
   end
 
   def show
+    get_tickets_by_status
     @topic = Topic.where(id: params[:id]).first
 
-    # REVIEW: Try not opening message on view unless assigned
     check_current_user_is_allowed? @topic
-    if @topic.current_status == 'new' && @topic.assigned?
-      tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
-      @topic.open
-    end
+    # REVIEW: Try not opening message on view unless assigned
+    # if @topic.current_status == 'new' && @topic.assigned?
+    #   tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
+    #   @topic.open
+    # end
     get_all_teams
     @posts = @topic.posts.chronologic.includes(:user)
     tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
     fetch_counts
+    @include_tickets = false
   end
 
   def new
@@ -200,10 +180,10 @@ class Admin::TopicsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
     respond_to do |format|
       format.js {
         if params[:topic_ids].count > 1
-          get_tickets
           render 'admin/topics/index'
         else
           render 'admin/topics/update_ticket', id: @topic.id
@@ -234,7 +214,7 @@ class Admin::TopicsController < Admin::BaseController
     @topics.bulk_agent_assign(bulk_post_attributes, assigned_user.id) if bulk_post_attributes.present?
 
     if params[:topic_ids].count > 1
-      get_tickets
+      get_tickets_by_status
     else
       @topic = Topic.find(@topics.first.id)
       @posts = @topic.posts.chronologic
@@ -244,11 +224,13 @@ class Admin::TopicsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
+
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
       format.js {
         if params[:topic_ids].count > 1
-          get_tickets
+          get_tickets_by_status
           render 'index'
         else
           render 'update_ticket', id: @topic.id
@@ -284,6 +266,8 @@ class Admin::TopicsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
+
     # respond_to do |format|
     #   format.js {
         if params[:topic_ids].count > 1
@@ -321,7 +305,7 @@ class Admin::TopicsController < Admin::BaseController
 
       fetch_counts
       get_all_teams
-
+      get_tickets_by_status
 
       @topic.posts.create(
         body: t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list),
@@ -359,7 +343,7 @@ class Admin::TopicsController < Admin::BaseController
     @topics.bulk_group_assign(bulk_post_attributes, assigned_group) if bulk_post_attributes.present?
 
     if params[:topic_ids].count > 1
-      get_tickets
+      get_tickets_by_status
     else
       @topic = Topic.find(@topics.first.id)
       @posts = @topic.posts.chronologic
@@ -367,11 +351,12 @@ class Admin::TopicsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
+
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
       format.js {
         if params[:topic_ids].count > 1
-          get_tickets
           render 'index'
         else
           render 'update_ticket', id: @topic.id
@@ -396,6 +381,7 @@ class Admin::TopicsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
 
     render 'update_ticket', id: @topic.id
   end
@@ -433,6 +419,7 @@ class Admin::TopicsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
 
     respond_to do |format|
       format.html { redirect_to admin_topic_path(@topic) }
@@ -458,6 +445,32 @@ class Admin::TopicsController < Admin::BaseController
 
   private
 
+  def get_tickets_by_status
+    @status = params[:status] || "active"
+    if current_user.is_restricted? && teams?
+      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
+    else
+      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
+    end
+    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
+
+    get_all_teams
+
+    case @status
+    when 'new'
+      topics_raw = topics_raw.unread
+    when 'active'
+      topics_raw = topics_raw.active
+    when 'mine'
+      topics_raw = Topic.active.mine(current_user.id)
+    when 'pending'
+      topics_raw = Topic.pending.mine(current_user.id)
+    else
+      topics_raw = topics_raw.where(current_status: @status)
+    end
+    @topics = topics_raw.page params[:page]
+  end
+
   def get_tickets
     if params[:status].nil?
       @status = "pending"
@@ -467,15 +480,15 @@ class Admin::TopicsController < Admin::BaseController
 
     case @status
 
-    when 'all'
-      @topics = Topic.all.page params[:page]
+    # when 'all'
+    #   @topics = Topic.all.page params[:page]
     when 'new'
       @topics = Topic.unread.page params[:page]
     when 'active'
       @topics = Topic.active.page params[:page]
-    when 'unread'
-      @topics = Topic.unread.all.page params[:page]
-    when 'assigned'
+    # when 'unread'
+    #   @topics = Topic.unread.all.page params[:page]
+    when 'mine'
       @topics = Topic.mine(current_user.id).page params[:page]
     when 'pending'
       @topics = Topic.pending.mine(current_user.id).page params[:page]

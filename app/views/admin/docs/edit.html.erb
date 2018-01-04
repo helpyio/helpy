@@ -1,18 +1,26 @@
 <% title "#{admin_title} #{t(:edit, default:'Edit')}: #{@doc.title}" %>
 
-<h2 class="form-subhead"><%= t(:edit, default:'Edit') %>: <%= @doc.title %></h2>
-<%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
+<div class="row">
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <%= render partial: 'admin/categories/cat_nav' %>
+  </div>
 
-<%= simple_form_for @doc, validate: true, url: admin_category_doc_path(category_id: @category.id, id: @doc.id), html: { method: :patch, id: :edit_doc } do |f| %>
-  <% Globalize.with_locale(params['lang']) do %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
-  <% end %>
-<% end %>
-<% unless params[:lang].nil? %>
-<script>
-//$(function(){
-//  $('.no-translate').attr("disabled", true);
-//});
-</script>
-<% end %>
+  <div class="col-md-9 col-sm-12 main-panel">
+    <h3 class="form-subhead view-header"><%= t(:edit, default:'Edit') %>: <%= @doc.title %></h3>
+    <%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
+
+    <%= simple_form_for @doc, validate: true, url: admin_category_doc_path(category_id: @category.id, id: @doc.id), html: { method: :patch, id: :edit_doc } do |f| %>
+      <% Globalize.with_locale(params['lang']) do %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
+      <% end %>
+    <% end %>
+    <% unless params[:lang].nil? %>
+    <script>
+    //$(function(){
+    //  $('.no-translate').attr("disabled", true);
+    //});
+    </script>
+    <% end %>
+  </div>
+</div>

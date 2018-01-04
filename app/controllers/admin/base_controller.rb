@@ -3,7 +3,14 @@ class Admin::BaseController < ApplicationController
   layout 'admin'
   before_action :authenticate_user!
 
+  def convert_to_brightness_value(background_hex_color)
+    (background_hex_color.scan(/../).map {|color| color.hex}).sum
+  end
 
+  def contrasting_text_color(background_hex_color)
+    convert_to_brightness_value(background_hex_color) > 382.5 ? '#000' : '#fff'
+  end
+  helper_method :contrasting_text_color
 
   protected
 
@@ -60,9 +67,15 @@ class Admin::BaseController < ApplicationController
     @pending = Topic.mine(current_user.id).pending.count
     @open = topics.open.count
     @active = topics.active.count
-    @mine = Topic.mine(current_user.id).count
-    @closed = topics.closed.count
-    @spam = topics.spam.count
+    @mine = Topic.active.mine(current_user.id).count
+    # @closed = topics.closed.count
+    # @spam = topics.spam.count
+  end
+  
+  def set_categories_and_non_featured
+    @public_categories = Category.publicly.featured.ordered
+    @public_nonfeatured_categories = Category.publicly.unfeatured.alpha
+    @internal_categories = Category.only_internally.ordered
   end
 
 end

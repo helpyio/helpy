@@ -83,6 +83,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :teams?
 
+  def display_branding?
+    AppSettings['branding.display_branding'] == "1" || AppSettings['branding.display_branding'] == true
+  end
+  helper_method :display_branding?
+
   def forums_enabled?
     raise ActionController::RoutingError.new('Not Found') unless forums?
   end
