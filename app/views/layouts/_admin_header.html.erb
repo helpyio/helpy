@@ -1,4 +1,11 @@
 <style>
+.nav-bg-color {
+  background-color: <%= AppSettings['branding.ticketing_color'] %>;
+}
+.nav-color {
+  color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
+}
+
 #upper-wrapper {
   background-color: <%= AppSettings['branding.ticketing_color'] %>;
 }
@@ -11,12 +18,6 @@
 
 #header-wrapper > nav > div > ul > li > a {
   color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
-}
-
-.topic-search-container.jumbotron {
-  background-color: <%= AppSettings['branding.ticketing_color'] %>;
-  -webkit-filter: opacity(.8);
-  filter: opacity(.8);
 }
 
 <% if !display_branding? %>

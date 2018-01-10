@@ -2,7 +2,7 @@
 </div>
 <%= content_tag :h3, class: 'view-header' do %>
   <small><span class="fa fa-toggle-down btn show-ticket-menu hidden-lg hidden-md"></span></small>
-  <%=  t(:discussions, default: "Discussions") + ": #{t(@status.to_sym) if @status.present?} " %>
+  <%=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
   <div class="pull-right nav-new-button">
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
         remote: true, class: 'btn btn-primary' %>

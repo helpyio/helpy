@@ -282,7 +282,6 @@ class Admin::TopicsController < Admin::BaseController
 
   def update
     @topic = Topic.find(params[:id])
-
     if @topic.update_attributes(topic_params)
       respond_to do |format|
         format.html {
@@ -318,7 +317,7 @@ class Admin::TopicsController < Admin::BaseController
           redirect_to admin_topic_path(@topic)
         }
         format.js {
-          render 'update_ticket', id: @topic.id
+          render 'update_ticket', id: @topic.id, status: params[:status]
         }
       end
     else
@@ -498,7 +497,9 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def topic_params
-    params.require(:topic).permit(:name)
-    params.require(:topic).permit(:tag_list)
+    params.require(:topic).permit(
+      :name,
+      :tag_list
+    )
   end
 end
