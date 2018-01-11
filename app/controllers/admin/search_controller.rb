@@ -38,7 +38,8 @@ class Admin::SearchController < Admin::BaseController
       template = 'admin/users/users'
       tracker("Admin Search", "User Search", params[:q])
     end
-    @header = "#{t(:results_found, count: number_to_human(@topics.total_count))} #{content_tag(:span, params[:q], class: 'more-important')}"
+    result_count = @topics.present? && @topics.total_count > 0 ? @topics.total_count : 0
+    @header = "#{t(:results_found, count: result_count)} #{content_tag(:span, params[:q], class: 'more-important')}"
 
     render template
   end

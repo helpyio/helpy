@@ -88,6 +88,8 @@ class Admin::SettingsController < Admin::BaseController
       url = admin_integration_settings_path
     when "widget"
       url = admin_widget_settings_path
+    else
+      url = admin_general_settings_path
     end
 
     respond_to do |format|
