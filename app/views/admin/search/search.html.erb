@@ -11,10 +11,6 @@
     <%= render 'admin/topics/ticket_stats' %>
   </div>
   <div class="col-md-9 main-panel" id="tickets">
-    <h4 id="ticket-page-title">
-      <%= t(:results_found, count: number_to_human(@topics.total_count)) %>
-      <span class='more-important'>"<%= params[:q] %>"</span>
-    </h4>
     <%= render 'admin/topics/tickets' %>
   </div>
 </div>

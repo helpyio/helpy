@@ -13,6 +13,17 @@ module AdminHelper
     "[Helpy Admin]"
   end
 
+  def upper_nav_item(label, path, controllers, actions)
+    # classname = controller_name == controller ? 'navbar-active' : ''
+    if controllers.include?(controller_name) && actions.include?(action_name)
+      classname = 'navbar-active'
+    else
+      classname = ''
+    end
+
+    content_tag(:li, link_to(label, path), class: classname)
+  end
+
   def i18n_reply_grouped_options
     grouped_options = {}
     AppSettings['i18n.available_locales'].each do |locale|

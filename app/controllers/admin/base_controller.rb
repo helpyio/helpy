@@ -12,6 +12,26 @@ class Admin::BaseController < ApplicationController
   end
   helper_method :contrasting_text_color
 
+  def lighten_color(hex_color, amount=0.6)
+    hex_color = hex_color.gsub('#','')
+    rgb = hex_color.scan(/../).map {|color| color.hex}
+    rgb[0] = [(rgb[0].to_i + 255 * amount).round, 255].min
+    rgb[1] = [(rgb[1].to_i + 255 * amount).round, 255].min
+    rgb[2] = [(rgb[2].to_i + 255 * amount).round, 255].min
+    "#%02x%02x%02x" % rgb
+  end
+  helper_method :lighten_color
+
+  def darken_color(hex_color, amount=0.4)
+    hex_color = hex_color.gsub('#','')
+    rgb = hex_color.scan(/../).map {|color| color.hex}
+    rgb[0] = (rgb[0].to_i * amount).round
+    rgb[1] = (rgb[1].to_i * amount).round
+    rgb[2] = (rgb[2].to_i * amount).round
+    "#%02x%02x%02x" % rgb
+  end
+  helper_method :darken_color
+
   protected
 
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
@@ -71,7 +91,7 @@ class Admin::BaseController < ApplicationController
     # @closed = topics.closed.count
     # @spam = topics.spam.count
   end
-  
+
   def set_categories_and_non_featured
     @public_categories = Category.publicly.featured.ordered
     @public_nonfeatured_categories = Category.publicly.unfeatured.alpha

@@ -2,8 +2,16 @@
 .nav-bg-color {
   background-color: <%= AppSettings['branding.ticketing_color'] %>;
 }
+.navbar-active {
+  background-color: <%= lighten_color(AppSettings['branding.ticketing_color'], 0.05) %>;
+  border-radius: 5px;
+
+}
 .nav-color {
   color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
+}
+.brand-color: {
+  color: <%= AppSettings['branding.ticketing_color'] %>;
 }
 
 #upper-wrapper {
@@ -60,9 +68,15 @@ a.navbar-brand {
                 <%= admin_avatar_menu %>
               </ul>
               <ul class="nav navbar-nav navbar-left" data-hook='admin-nav-left'>
-                <%= content_tag(:li, link_to(t(:discussions, default: "Discussions"), admin_topics_path)) if (forums? || tickets?) && current_user.is_agent? %>
-                <%= content_tag(:li, link_to(t(:reports, default: 'Reports'), admin_reports_path(interval: 7))) if tickets? && current_user.is_admin? %>
-                <%= content_tag(:li, link_to(t(:users, default: 'Customers'), admin_users_path(role: 'user'))) if current_user.is_admin? %>
+                <%= upper_nav_item(t(:discussions, default: "Discussions"), admin_topics_path,["topics"], ['index','show','new']) if (forums? || tickets?) && current_user.is_agent? %>
+                <%#= content_tag(:li, link_to(t(:discussions, default: "Discussions"), admin_topics_path), class: 'navbar-active') if (forums? || tickets?) && current_user.is_agent? %>
+
+                <%= upper_nav_item(t(:reports, default: 'Reports'), admin_reports_path(interval: 7), ["reports"], ['index', 'groups', 'team']) if tickets? && current_user.is_admin? %>
+                <%#= content_tag(:li, link_to(t(:reports, default: 'Reports'), admin_reports_path(interval: 7))) if tickets? && current_user.is_admin? %>
+
+                <%= upper_nav_item(t(:users, default: 'Customers'), admin_users_path(role: 'user'), ["users"], ["index","show","edit","update"]) if current_user.is_admin? %>
+                <%#= content_tag(:li, link_to(t(:users, default: 'Customers'), admin_users_path(role: 'user'))) if current_user.is_admin? %>
+
                 <%= helpcenter_menu if (knowledgebase? || forums?) && current_user.is_agent? %>
                 <%= content_tag(:li, link_to(t(:content, default: "Content"), admin_categories_path), class:'kblink') if knowledgebase? && current_user.role == 'editor' %>
                 <%= content_tag(:li, link_to(t(:app_store, default: "App Store"), "http://helpy.io/store/"), class: "hidden-sm hidden-xs") if current_user.is_agent? %>

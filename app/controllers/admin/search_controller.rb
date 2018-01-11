@@ -8,6 +8,9 @@ class Admin::SearchController < Admin::BaseController
 
   respond_to :html, :js
 
+  include ActionView::Helpers::NumberHelper
+  include ActionView::Helpers::TagHelper
+
   # simple search tickets by # and user
   def topic_search
 
@@ -35,6 +38,7 @@ class Admin::SearchController < Admin::BaseController
       template = 'admin/users/users'
       tracker("Admin Search", "User Search", params[:q])
     end
+    @header = "#{t(:results_found, count: number_to_human(@topics.total_count))} #{content_tag(:span, params[:q], class: 'more-important')}"
 
     render template
   end

@@ -52,6 +52,8 @@ class Admin::UsersController < Admin::BaseController
   before_action :get_all_teams
   respond_to :html, :js
 
+  include ActionView::Helpers::TagHelper
+
   def index
     @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
     if params[:role].present?
@@ -73,6 +75,7 @@ class Admin::UsersController < Admin::BaseController
 
     # We still have to grab the first topic for the user to use the same user partial
     @topic = Topic.where(user_id: @user.id).first
+    @header = content_tag :span, "#{@user.name.titleize}<small>#{view_context.user_priority(@user)}</small>".html_safe
     tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
   end
 
@@ -87,7 +90,7 @@ class Admin::UsersController < Admin::BaseController
     fetch_counts
 
     # update team list if provided
-    @user.team_list = params[:user][:team_list] if  params[:user][:team_list].present?
+    @user.team_list = params[:user][:team_list] if params[:user][:team_list].present?
 
     if @user.update(user_params)
 

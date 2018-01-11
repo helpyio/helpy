@@ -4,7 +4,7 @@
     <h3><%= "#{t(:settings, default: "Settings")}: #{t(:general, default: "General")}" %></h3>
   </div>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'general'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section">
       <h4>Admin Branding</h4>
       <div class="settings-section design">
