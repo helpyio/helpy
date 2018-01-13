@@ -74,6 +74,36 @@ class Admin::BaseController < ApplicationController
     end
   end
 
+  # Get a list of topics for a passed in status
+  # Used by topics#index and #show and called from other methods that need to
+  # refresh the UI
+  def get_tickets_by_status
+    @status = params[:status] || "active"
+    if current_user.is_restricted? && teams?
+      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
+    else
+      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
+    end
+    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
+
+    get_all_teams
+
+    case @status
+    when 'new'
+      topics_raw = topics_raw.unread
+    when 'active'
+      topics_raw = topics_raw.active
+    when 'mine'
+      topics_raw = Topic.active.mine(current_user.id)
+    when 'pending'
+      topics_raw = Topic.pending.mine(current_user.id)
+    else
+      topics_raw = topics_raw.where(current_status: @status)
+    end
+    @topics = topics_raw.page params[:page]
+  end
+
+
   def fetch_counts
     if current_user.is_restricted? && teams?
       topics = Topic.tagged_with(current_user.team_list, :any => true)

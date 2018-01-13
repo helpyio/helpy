@@ -22,8 +22,11 @@ class Admin::PostsController < Admin::BaseController
     @post = Post.new(post_params)
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
+
+    # refresh collections for UI
     get_all_teams
-    
+    get_tickets_by_status
+
     respond_to do |format|
       if @post.save
         format.html {
@@ -62,6 +65,8 @@ class Admin::PostsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
+    
     @topic = @post.topic
     @posts = @topic.posts.chronologic
 

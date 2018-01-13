@@ -298,7 +298,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to assign_team of a topic" do
       sign_in users(admin.to_sym)
-      xhr :get, :assign_team, { topic_ids: [1], team: "test"}
+      xhr :get, :assign_team, { topic_ids: [1], assign_team: "test"}
       assert_equal ["test"], Topic.find(1).team_list
     end
 

@@ -72,7 +72,7 @@
             <ul class="dropdown-menu ticket-controls" role="menu">
               <% @all_teams.to_a.each do |team| %>
               <li class='team-item'>
-                <%= link_to("#{content_tag(:div, '', style: badge_color_from_tag(team), class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(team: team, status: params[:status]), :remote => true, class: 'multiple-update') %>
+                <%= link_to("#{content_tag(:div, '', style: badge_color_from_tag(team), class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(assign_team: team, status: params[:status]), :remote => true, class: 'multiple-update') %>
               </li>
               <% end %>
               <!-- <li class="new-tag">

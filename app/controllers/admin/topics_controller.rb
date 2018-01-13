@@ -326,7 +326,7 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def assign_team
-    assigned_group = params[:team]
+    assigned_group = params[:assign_team]
     @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless assigned_group.blank?
@@ -443,32 +443,6 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   private
-
-  def get_tickets_by_status
-    @status = params[:status] || "active"
-    if current_user.is_restricted? && teams?
-      topics_raw = Topic.all.tagged_with(current_user.team_list, any: true)
-    else
-      topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
-    end
-    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
-
-    get_all_teams
-
-    case @status
-    when 'new'
-      topics_raw = topics_raw.unread
-    when 'active'
-      topics_raw = topics_raw.active
-    when 'mine'
-      topics_raw = Topic.active.mine(current_user.id)
-    when 'pending'
-      topics_raw = Topic.pending.mine(current_user.id)
-    else
-      topics_raw = topics_raw.where(current_status: @status)
-    end
-    @topics = topics_raw.page params[:page]
-  end
 
   def get_tickets
     if params[:status].nil?

@@ -55,7 +55,7 @@
         <% @all_teams.to_a.each do |team| %>
           <li class='team-item'>
             <% unless @topic.current_status == "closed" %>
-              <%= link_to(color_sample(team), admin_assign_team_path(topic_ids: { "":@topic.id }, team: team, status: @status), :remote => true) %>
+              <%= link_to(color_sample(team), admin_assign_team_path(topic_ids: { "":@topic.id }, assign_team: team, status: @status), :remote => true) %>
             <% end %>
           </li>
         <% end %>

@@ -25,6 +25,10 @@ String.prototype.capitalize = function() {
 var Helpy = Helpy || {};
 Helpy.admin = function(){
 
+  $(".alert").delay(2000).slideUp(500, function(){
+      $(".alert").alert('close');
+  });
+
   $('div.sortable').sortable({
     items: '.item',
     axis: 'y',

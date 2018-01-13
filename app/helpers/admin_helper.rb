@@ -63,6 +63,14 @@ module AdminHelper
     output.html_safe
   end
 
+  def new_active_class
+    if controller_name == "topics" && action_name == "new"
+      'navbar-active'
+    else
+      ''
+    end
+  end
+
   def default_locale_options
     options = {}
     options[t('select_default_locale', default: "Select Default Locale...")] = ''
@@ -75,7 +83,9 @@ module AdminHelper
   end
 
   def navbar_expanding_link(url, icon, text, target="", remote=false)
-    link_to(content_tag(:span, '', class: "#{icon} hidden-lg hidden-md", title: text) + content_tag(:span, text, class: "hidden-sm hidden-xs"), url, remote: remote, target: target)
+    link_to url, remote: remote, target: target do
+      content_tag(:span, '', class: "#{icon} hidden-lg hidden-md", title: text) + content_tag(:span, text, class: "hidden-sm hidden-xs")
+    end
   end
 
   def settings_item(icon, title, description, link = "")
