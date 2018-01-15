@@ -147,9 +147,8 @@ class Admin::TopicsController < Admin::BaseController
     bulk_post_attributes = []
 
     if params[:change_status].present?
-
+      user_id = current_user.id || 2
       if ["closed", "reopen", "trash"].include?(params[:change_status])
-        user_id = current_user.id || 2
         @topics.each do |topic|
           # prepare bulk params
           bulk_post_attributes << {body: I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name), kind: 'note', user_id: user_id, topic_id: topic.id}
@@ -168,6 +167,7 @@ class Admin::TopicsController < Admin::BaseController
       end
 
       @action_performed = "Marked #{params[:change_status].titleize}"
+      flash[:notice] = I18n.t("#{params[:change_status]}_message", user_name: User.find(user_id).name)
       # Calls to GA for close, reopen, assigned.
       tracker("Agent: #{current_user.name}", @action_performed, @topics.to_param, 0)
 
@@ -226,6 +226,8 @@ class Admin::TopicsController < Admin::BaseController
     get_all_teams
     get_tickets_by_status
 
+    flash[:notice] = I18n.t(:assigned_message, assigned_to: assigned_user.name)
+
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
       format.js {
@@ -250,8 +252,10 @@ class Admin::TopicsController < Admin::BaseController
     @topics.each do |topic|
       if topic.forum_id == 1
         bulk_post_attributes << {body: I18n.t(:converted_to_ticket), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+        flash[:notice] = I18n.t(:converted_to_ticket)
       else
         bulk_post_attributes << {body: I18n.t(:converted_to_topic, forum_name: topic.forum.name), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+        flash[:notice] = I18n.t(:converted_to_topic, forum_name: topic.forum.name)
       end
 
       # Calls to GA
@@ -312,6 +316,7 @@ class Admin::TopicsController < Admin::BaseController
         kind: 'note',
       )
 
+      flash[:notice] = t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list)
       respond_to do |format|
         format.html {
           redirect_to admin_topic_path(@topic)
@@ -340,6 +345,8 @@ class Admin::TopicsController < Admin::BaseController
     end
 
     @topics.bulk_group_assign(bulk_post_attributes, assigned_group) if bulk_post_attributes.present?
+
+    flash[:notice] = I18n.t(:assigned_group, assigned_group: assigned_group)
 
     if params[:topic_ids].count > 1
       get_tickets_by_status

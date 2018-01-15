@@ -108,6 +108,11 @@ en:
   # devise/registrations/new
   sign_up: Sign Up
 
+  # flash messages
+  model_created: "%{object_name} was saved"
+  model_updated: "%{object_name} was updated"
+  model_destroyed: "%{object_name} was deleted"
+
   # Admin menu
   discussions: Tickets
   content: Content
@@ -154,7 +159,9 @@ en:
     other: "%{count} selected messages"
 
   # Discussion messages
-  reopen_message: "This message has been reopened by the support staff"
+  new_message: "This ticket has been marked new by the support staff"
+  spam_message: "This ticket has been marked spam by the support staff"
+  reopen_message: "This ticket has been reopened by the support staff"
   closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
   assigned_message: "This ticket has been transferred to %{assigned_to}."

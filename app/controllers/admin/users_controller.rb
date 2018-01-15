@@ -103,6 +103,8 @@ class Admin::UsersController < Admin::BaseController
       @topic = Topic.where(user_id: @user.id).first
       tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
 
+      flash[:notice] = "#{@user.name} has been saved"
+
       # TODO: Refactor this to use an index method/view on the users model
       respond_to do |format|
         format.html {

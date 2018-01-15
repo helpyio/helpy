@@ -28,6 +28,7 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     if @category.save
+      flash[:notice] = t(:model_created, default: "%{object_name} was saved", object_name: @category.name)
       redirect_to(admin_categories_path)
     else
       render :new
@@ -38,6 +39,7 @@ class Admin::CategoriesController < Admin::BaseController
     I18n.locale = params['lang']
     @category = Category.find(params[:id])
     if @category.update(category_params)
+      flash[:notice] = t(:model_updated, default: "%{object_name} was updated", object_name: @category.name)
       redirect_to admin_categories_path
     else
       render :edit
@@ -47,6 +49,7 @@ class Admin::CategoriesController < Admin::BaseController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
+    flash[:notice] = t(:model_destroyed, default: "%{object_name} was deleted", object_name: @category.name)
   end
 
   private

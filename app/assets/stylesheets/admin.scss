@@ -123,6 +123,20 @@ ul.settings-menu {
 }
 // === ADMIN LAYOUT ===
 
+.flash-wrapper {
+  position: fixed;
+  width: 100%;
+  z-index: 999999999;
+
+  div {
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+  }
+}
+
 .main-panel {
   background-color: white;
   border: 1px solid #ddd;

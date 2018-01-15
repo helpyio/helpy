@@ -66,7 +66,7 @@ class Admin::PostsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
-    
+
     @topic = @post.topic
     @posts = @topic.posts.chronologic
 
@@ -122,6 +122,7 @@ class Admin::PostsController < Admin::BaseController
     # assign user
     if @user.save && @post.update(user: @user)
       update_topic_owner(old_user, @post) if @post.kind == 'first'
+      flash[:notice] = I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}")
     end
 
     # re render topic
@@ -157,6 +158,5 @@ class Admin::PostsController < Admin::BaseController
         body: I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}"),
         kind: "note",
       )
-
   end
 end
