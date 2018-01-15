@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :set_time_zone, if: :current_user
 
+  force_ssl if: :ssl_configured?
+
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
   end
@@ -45,6 +47,10 @@ class ApplicationController < ActionController::Base
         AppSettings['settings.google_analytics_id']
       )
     end
+  end
+
+  def ssl_configured?
+    AppSettings["settings.enforce_ssl"] == '1' && Rails.env.production?
   end
 
   def google_analytics_enabled?

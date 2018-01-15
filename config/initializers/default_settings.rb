@@ -3,6 +3,7 @@
 AppSettings.defaults["branding.ticketing_color"] = "#444444"
 AppSettings.defaults["branding.display_branding"] = "1"
 
+AppSettings.defaults["settings.enforce_ssl"] = "0"
 AppSettings.defaults["settings.parent_site"] = Settings.parent_site
 AppSettings.defaults["settings.parent_company"] = Settings.parent_company
 AppSettings.defaults["settings.site_url"] = Settings.site_url
