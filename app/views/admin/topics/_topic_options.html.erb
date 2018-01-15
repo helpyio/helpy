@@ -43,30 +43,28 @@
     </ul>
   </span>
 
-  <% if teams? %>
-    <span class="status btn-group left-col-dropdown">
-      <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-        <%= content_tag(:span, style: badge_color_from_topic(@topic), class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
-          <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
-          <%= icon('caret-down') + ' ' %>
-        <% end %>
-      </button>
-      <ul class="dropdown-menu ticket-controls team-list" role="menu">
-        <% @all_teams.to_a.each do |team| %>
-          <li class='team-item'>
-            <% unless @topic.current_status == "closed" %>
-              <%= link_to(color_sample(team), admin_assign_team_path(topic_ids: { "":@topic.id }, assign_team: team, status: @status), :remote => true) %>
-            <% end %>
-          </li>
-        <% end %>
-        <li class="new-tag">
-          <%= form_tag '#', class: 'new-group-form' do %>
-          <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+  <span class="status btn-group left-col-dropdown">
+    <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
+      <%= content_tag(:span, style: badge_color_from_topic(@topic), class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
+        <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
+        <%= icon('caret-down') + ' ' %>
+      <% end %>
+    </button>
+    <ul class="dropdown-menu ticket-controls team-list" role="menu">
+      <% @all_teams.to_a.each do |team| %>
+        <li class='team-item'>
+          <% unless @topic.current_status == "closed" %>
+            <%= link_to(color_sample(team), admin_assign_team_path(topic_ids: { "":@topic.id }, assign_team: team, status: @status), :remote => true) %>
           <% end %>
         </li>
-        <li><%= link_to "Unassign from group", admin_unassign_team_path(topic_ids: { "":@topic.id }, team: '', status: @status), :remote => true unless @topic.current_status == "closed" %></li>
+      <% end %>
+      <!-- <li class="new-tag">
+        <%= form_tag '#', class: 'new-group-form' do %>
+        <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+        <% end %>
+      </li> -->
+      <li><%= link_to "Unassign from group", admin_unassign_team_path(topic_ids: { "":@topic.id }, team: '', status: @status), :remote => true unless @topic.current_status == "closed" %></li>
 
-      </ul>
-    </span>
-  <% end %>
+    </ul>
+  </span>
 <% end %>

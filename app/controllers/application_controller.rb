@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   helper_method :tickets?
 
   def teams?
-    AppSettings['settings.teams'] == "1" || AppSettings['settings.teams'] == true
+    true
   end
   helper_method :teams?
 
