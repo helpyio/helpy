@@ -4,7 +4,7 @@ $('#user-info').html("<%= j render 'admin/users/user_info_horizontal' if @user %
 // $('#ticket-page-title').show().html("<%= t(:discussions, default: 'Discussions') %>: <% ticket_page_title %>");
 $(document).prop('title', "<%= admin_title %> <%= t(:discussions, default: 'Discussions') %>: <%= @status.titleize if @status %>");
 Helpy.current_status_view = '<%= @status %>';
-
+Helpy.current_page_view = '<%= params[:page] %>';
 // Empty ticket search field and show
 $('#q').val('');
 
