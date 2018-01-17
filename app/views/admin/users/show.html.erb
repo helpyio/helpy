@@ -8,9 +8,9 @@
 
 <div class="row">
   <div id="user-info" class="col-md-3">
-    <%= render partial: 'admin/users/user_info', locals: { include_tickets: false } %>
+    <%= render partial: 'admin/topics/ticket_stats', locals: { include_tickets: false } %>
   </div>
   <div class="col-md-9 main-panel" id="tickets">
-    <%= render 'admin/topics/tickets' %>
+    <%= render 'admin/users/tickets' %>
   </div>
 </div>

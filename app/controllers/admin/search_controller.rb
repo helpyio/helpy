@@ -35,7 +35,8 @@ class Admin::SearchController < Admin::BaseController
       tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
     else
       @users = users.page params[:page]
-      template = 'admin/users/users'
+      @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+      template = 'admin/users/index'
       tracker("Admin Search", "User Search", params[:q])
     end
     result_count = @topics.present? && @topics.total_count > 0 ? @topics.total_count : 0
