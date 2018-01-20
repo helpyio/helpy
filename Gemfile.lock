@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/railsconfig/config.git
-  revision: 813e504f47d370bc9b5847dce772828445e9dad7
-  specs:
-    config (1.1.0)
-      activesupport (>= 3.0)
-      deep_merge (~> 1.0.1)
-
 PATH
   remote: vendor/helpy_onboarding
   specs:
@@ -150,6 +142,9 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.5)
+    config (1.1.1)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.1)
     crass (1.0.2)
     daemons (1.2.3)
     debug_inspector (0.0.2)
@@ -621,7 +616,7 @@ DEPENDENCIES
   cloudinary (= 1.1.2)
   codeclimate-test-reporter
   codemirror-rails
-  config (~> 1.1.0)!
+  config (~> 1.1.0)
   daemons
   devise
   devise-bootstrap-views
@@ -714,4 +709,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
