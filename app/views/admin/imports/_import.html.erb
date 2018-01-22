@@ -1,0 +1,17 @@
+<tr id="import-<%= import.id %>" class="import border-bottom link-row admin-discussion">
+  <td>
+    <%= import.model.titleize %> on <%= import.created_at.strftime("%Y-%m-%d") %>
+  </td>
+
+  <td>
+    <%= import.status %>
+  </td>
+
+  <td class="hidden-xs">
+    <%= distance_of_time_in_words(import.started_at, import.completed_at) if import.completed_at.present? && import.started_at.present? %>
+  </td>
+
+  <td class="pull-right">
+    <%= link_to "details", admin_import_path(import) %>
+  </td>
+</tr>

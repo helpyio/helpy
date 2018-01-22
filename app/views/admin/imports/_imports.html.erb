@@ -1,0 +1,22 @@
+<div id= "import">
+  <table id="topics" class="forum table-hover">
+
+    <col width="50%">
+    <col width="15%">
+    <col width="15%">
+    <col width="20%">
+
+    <tr>
+      <th><%= t(:type, default: "Import") %></th>
+      <th class="hidden-xs"><%= t(:status, default: "Status") %></th>
+      <th><%= t(:run_time, default: "Run Time") %></th>
+      <th></th>
+    </tr>
+    <tbody>
+      <%= render partial: 'admin/imports/import', collection: @imports %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= paginate @imports %>
+  </div>
+</div>

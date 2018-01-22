@@ -165,6 +165,7 @@ group :development, :test do
 end
 
 gem 'bulk_insert'
+gem 'roo'
 
 group :development do
   gem "better_errors"

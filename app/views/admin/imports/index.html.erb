@@ -1,0 +1,29 @@
+<% content_for :settings do %>
+  <h2 id="ticket-page-title">
+    New Import:
+  </h2>
+
+  <div class="settings-panel row">
+    <div class="col-md-3 col-sm-4 col-xs-3">
+      <%= form_tag admin_import_restore_path, multipart: true, html: { class: 'form-vertical submit-loader' } do %>
+        <label>
+          <%= select_tag "type", options_for_select([ ["Users","User"], ["Tickets","Topic"], ["Replies","Post"], ["Docs","Doc"], ["Categories","Category"], ["Forums", "Forum"] ], "User"), class: "form-control" %>
+        </label>
+        <label>
+          <%= file_field_tag :file, class: "btn-file" %>
+        </label>
+        <br/><br/>
+        <%= submit_tag "Import", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <h2 id="ticket-page-title">
+    Past Imports:
+  </h2>
+  <div class="row">
+    <div class="col-md-12" id="backups">
+      <%= render 'admin/imports/imports' %>
+    </div>
+  </div>
+<% end %>
