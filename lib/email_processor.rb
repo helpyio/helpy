@@ -22,7 +22,7 @@ class EmailProcessor
     sitename = AppSettings["settings.site_name"]
     message = @email.body.nil? ? "" : @email.body
     raw = @email.raw_body.nil? ? "" : @email.raw_body
-    cc = @email.cc ? @email.cc.map { |e| e[:full] }.join(", ") : ""
+    cc = @email.cc ? @email.cc.map { |e| e[:full] }.join(", ") : nil
 
     subject = @email.subject
     attachments = @email.attachments
