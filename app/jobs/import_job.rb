@@ -96,7 +96,6 @@ class ImportJob < ActiveJob::Base
   def post_import(obj_hash, row_num, object=nil)
     @@submited_record_count += 1
     obj_hash.reject!{|k| k=="attachments" }
-
     if obj_hash["topic_id"].present? && obj_hash["user_id"].present?
       if Topic.find_by_id(obj_hash["topic_id"]).present? && User.find_by_id(obj_hash["user_id"]).present?
         begin
@@ -112,6 +111,7 @@ class ImportJob < ActiveJob::Base
             @@error_objs << obj_hash.merge!({error_message: object.errors.full_messages, row_number: row_num})
           end
         rescue
+          binding.pry
           @@error_objs << obj_hash
         end
       end
