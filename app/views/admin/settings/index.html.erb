@@ -23,8 +23,8 @@
         <%= settings_item('glyphicon glyphicon-tags', t('team_group', default: "Groups"),
           t('group_description', default: "Edit, Delete, Create team list."), admin_groups_path) %>
         <%= settings_item('fa fa-reply', t('common_replies', default: "Common Replies"), t('common_replies_description', default: "View Common Replies"), admin_category_path(1)) %>
-        <%= settings_item('glyphicon glyphicon-download-alt',"backup", "Export data for backup.", admin_backups_path) %>
-        <%= settings_item('glyphicon glyphicon-download-alt',"Import", "Import data for restore.", admin_imports_path) %>
+        <%= settings_item('fa fa-download',t("export", default: 'Export'), "Export tickets, users, knowledgebase in CSV.", admin_backups_path) %>
+        <%= settings_item('fa fa-upload',t("import", default: 'Import'), "Import tickets, users, knowledgebase in CSV.", admin_imports_path) %>
 
       </div>
     </div>

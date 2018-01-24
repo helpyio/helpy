@@ -26,11 +26,11 @@
     </tr>
   </table>
 </div>
-
+<br/><br/>
 <% if @error_log.present? %>
-  <h2 id="import-page-title">
-    Error Details:
-  </h2>
+  <h3 id="import-page-title">
+    <%= t('error_details') %>
+  </h3>
   <table id="topics" class="forum table-hover">
 
     <col width="80px" class="checkbox-col">
@@ -55,7 +55,7 @@
     </tbody>
   </table>
   <div class="row">
-    <div class="col-md-9 text-left">
+    <div class="col-md-12 text-center">
       <%= paginate @error_log %>
     </div>
   </div>

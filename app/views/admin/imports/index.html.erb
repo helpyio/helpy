@@ -1,10 +1,12 @@
 <% content_for :settings do %>
-  <h2 id="ticket-page-title">
-    New Import:
-  </h2>
+  <h3>
+    <%= t('imports', default: 'Imports') %>
+  </h3>
 
-  <div class="settings-panel row">
-    <div class="col-md-3 col-sm-4 col-xs-3">
+  <div class="settings-panel row add-form">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="more-important"><%= t('what_to_import', default: 'New Import') %>:</div>
+      <br/>
       <%= form_tag admin_import_restore_path, multipart: true, html: { class: 'form-vertical submit-loader' } do %>
         <label>
           <%= select_tag "type", options_for_select([ ["Users","User"], ["Tickets","Topic"], ["Replies","Post"], ["Docs","Doc"], ["Categories","Category"], ["Forums", "Forum"] ], "User"), class: "form-control" %>
@@ -13,17 +15,30 @@
           <%= file_field_tag :file, class: "btn-file" %>
         </label>
         <br/><br/>
-        <%= submit_tag "Import", class: "btn btn-primary" %>
+        <%= submit_tag t("import", default: 'Import'), class: "btn btn-default" %>
       <% end %>
     </div>
   </div>
-
-  <h2 id="ticket-page-title">
-    Past Imports:
-  </h2>
-  <div class="row">
-    <div class="col-md-12" id="backups">
-      <%= render 'admin/imports/imports' %>
+  <br/><br/>
+  <div class="imports-container main-panel">
+    <div class="row vcenter border-bottom item-header">
+      <div class="tiny-header col-md-3">
+        <%= t('import', default: 'import') %>
+      </div>
+      <div class="tiny-header col-md-3 hidden-xs hidden-sm">
+        <%= t('status', default: 'Status') %>
+      </div>
+      <div class="tiny-header col-md-3 hidden-xs hidden-sm text-right">
+        <%= t('run_time', default: 'Run Time') %>
+      </div>
+      <div class="tiny-header col-md-3 text-right">
+      </div>
     </div>
+
+    <%= render partial: 'admin/imports/import', collection: @imports if @imports %>
+
+  </div>
+  <div class="text-center">
+    <%= paginate @imports %>
   </div>
 <% end %>

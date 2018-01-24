@@ -1,10 +1,8 @@
 <% content_for :settings do %>
-  <h2 id="ticket-page-title">
-    #<%= @import.id %> Import Detail:
-  </h2>
+  <%= content_tag :h3, t('import_details', id: @import.id, default: '#%{id} Import Details') %>
 
   <div class="row">
-    <div class="col-md-12" id="backups">
+    <div class="col-md-12 main-panel" id="backups">
       <%= render 'admin/imports/detail' %>
     </div>
   </div>
