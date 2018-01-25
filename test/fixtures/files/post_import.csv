@@ -1,0 +1,2 @@
+id,topic_id,user_id,body,kind,active,created_at,updated_at,points,attachments,cc,bcc,raw_email
+100,1,8,test of the body,first,true,2018-01-22 18:58:59 UTC,2018-01-22 18:58:59 UTC,0,[],,,

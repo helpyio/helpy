@@ -52,6 +52,11 @@
 									<%= settings_menu_item('fa fa-clone', 'theme', admin_theme_settings_path) %>
 									<%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget', admin_widget_settings_path) %>
 						    </ul>
+								<div class="settings-nav-header"><span class="tiny-header">Data</span></div>
+								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_settings_menu" style="margin-top:10px;">
+									<%= settings_menu_item('fa fa-download',"export", admin_backups_path) %>
+									<%= settings_menu_item('fa fa-upload',"import", admin_imports_path) %>
+								</ul>
 								<% end %>
 						  </div>
 

@@ -361,7 +361,23 @@ en:
   replies: "Replies"
   median_time: "Median time to first response"
 
-
+  # IMPORT/EXPORT
+  import: 'Import CSV'
+  new_import: 'New Import'
+  export: 'Export CSV'
+  what_to_export: 'Select what you would like to export'
+  what_to_import: 'Select what you would like to import'
+  imports: 'Imports'
+  exports: 'Exports'
+  past_imports: 'Previous Imports'
+  run_time: 'Run Time'
+  clear_all: 'Remove All'
+  error_details: 'Error Details'
+  row_number: 'Row Number'
+  error_message: 'Error Message'
+  object: 'Object'
+  import_details: '#%{id} Import Details'
+  select_for_export: 'Export %{model} to .csv'
 
   activerecord:
     attributes:
