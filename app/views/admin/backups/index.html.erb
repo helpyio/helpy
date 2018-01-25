@@ -10,7 +10,7 @@
       </br>
       <%= bootstrap_form_tag url: admin_export_backup_path, method: 'get', format: :csv do |f| %>
         <div class="settings-section widget checkbox-section">
-          <%= f.check_box 'User', {label: t('select_for_export', model: 'users') }, class: 'checkbox' %>
+          <%= f.check_box 'User', {label: t('select_for_export', model: 'users') } %>
           <%= f.check_box 'Topic', {label: t('select_for_export', model: 'tickets') } %>
           <%= f.check_box 'Post', {label: t('select_for_export', model: 'posts') } %>
           <%= f.check_box 'Doc', {label: t('select_for_export', model: 'docs') } %>
