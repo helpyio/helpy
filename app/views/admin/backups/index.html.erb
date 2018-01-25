@@ -1,10 +1,15 @@
 <% content_for :settings do %>
-  <h3>
-    <%= t('exports', default: 'Exports') %>
-  </h3>
+  <div class="admin-header">
+    <h3 id="setting-header">
+      <%= t('exports', default: 'Exports') %>
+    </h3>
+  </div>
+  <div class="settings-section">
 
-  <div class="settings-panel row add-form">
-    <div class="col-md-9 col-sm-8 col-xs-10">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="add-form">
+
       <%= content_tag :span, t('what_to_export', default: 'Select what you would like to export'),
           class: 'more-important' %>
       </br>
@@ -21,12 +26,14 @@
           <%= f.submit t('export_csv', default: "Export CSV"), class: 'btn btn-default' %>
         </div>
       <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="row main-panel">
+  <div class="row">
     <div class="col-md-12" id="backups">
       <%= render 'admin/backups/backedup_files' %>
     </div>
   </div>
+</div>
 <% end %>
