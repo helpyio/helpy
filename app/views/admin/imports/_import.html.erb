@@ -1,0 +1,14 @@
+<div class="row import vcenter border-bottom item" id="import<%= import.id %>">
+  <div class="text-left col-md-3 ">
+    <%= import.model.titleize %> on <%= import.created_at.strftime("%Y-%m-%d") %>
+  </div>
+  <div class="text-left col-md-3 hidden-xs hidden-sm">
+    <%= import.status %>
+  </div>
+  <div class="text-right col-md-3 hidden-xs hidden-sm">
+    <%= distance_of_time_in_words(import.started_at, import.completed_at) if import.completed_at.present? && import.started_at.present? %>
+  </div>
+  <div class="text-right col-md-3">
+    <%= link_to "details", admin_import_path(import) %>
+  </div>
+</div>

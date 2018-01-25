@@ -467,6 +467,9 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
     route_translator (4.3.0)
       actionpack (>= 3.2, < 5.0)
       activesupport (>= 3.2, < 5.0)
@@ -688,6 +691,7 @@ DEPENDENCIES
   ranked-model
   rdiscount
   recaptcha
+  roo
   route_translator
   rubocop
   sass-rails (~> 5.0.6)
