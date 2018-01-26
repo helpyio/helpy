@@ -103,6 +103,7 @@ class ImportJob < ActiveJob::Base
             object.attributes = obj_hash
           else
             object = Post.new
+            object.importing = true
             object.attributes = obj_hash
           end
           if object.save
@@ -111,7 +112,6 @@ class ImportJob < ActiveJob::Base
             @@error_objs << obj_hash.merge!({error_message: object.errors.full_messages, row_number: row_num})
           end
         rescue
-          binding.pry
           @@error_objs << obj_hash
         end
       end
