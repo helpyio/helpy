@@ -1,4 +1,4 @@
-class ImportJob < ActiveJob::Base
+class ImportJob < ApplicationJob
   queue_as :import
   require 'roo'
   STATUS = {error: "Error", in_progress: "In Progress", completed: "Completed"}

@@ -11,7 +11,7 @@
 #  updated_at   :datetime         not null
 #
 
-class ApiKey < ActiveRecord::Base
+class ApiKey < ApplicationRecord
   before_validation :generate_access_token, on: :create
 
   belongs_to :user

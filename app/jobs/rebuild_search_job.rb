@@ -1,4 +1,4 @@
-class RebuildSearchJob < ActiveJob::Base
+class RebuildSearchJob < ApplicationJob
   queue_as :default
 
   # Calls a search rebuild, used when categories are updated
