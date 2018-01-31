@@ -1,32 +1,33 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.10'
+# gem 'rails', '4.2.10'
+gem 'rails', '~> 5.0.1'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21.0'
 gem 'pg_search'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Explicitly include Nokogiri to control version
-gem 'nokogiri', '>= 1.8.1'
+gem 'nokogiri'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 5.0'
 
 # Inline js validations
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
+gem 'client_side_validations', '~> 11.0'
+gem 'client_side_validations-simple_form', '~> 6.5'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -42,8 +43,8 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached", '~> 0.5'
-gem 'sucker_punch', '~> 2.0'
+gem "rails-settings-cached"
+gem 'sucker_punch'
 
 # Charting
 gem "groupdate"
@@ -60,7 +61,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
 # i18n gems
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n'
 gem 'i18n-country-translations'
 gem 'route_translator'
 gem 'http_accept_language'
@@ -72,27 +73,28 @@ gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 gem 'grape-attack'
-gem 'grape-kaminari'
+# gem 'grape-kaminari'
+gem 'grape-kaminari', :github => 'joshmn/grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'permalink_fu'
 gem 'paper_trail'
 
-gem 'acts-as-taggable-on', '~>3.5'
+gem 'acts-as-taggable-on'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
 
-gem 'globalize-versioning'
+# gem 'globalize-versioning', github: 'panyamin/globalize-versioning'
 gem 'globalize-accessors'
 
 gem 'gravtastic'
 
 # File handling
-gem 'cloudinary', '1.1.2'
+gem 'cloudinary'
 gem 'attachinary'
 
-gem 'carrierwave', '~> 1.0.0'
+gem 'carrierwave'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
@@ -109,7 +111,7 @@ gem "bootstrap-switch-rails"
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 
-gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
+gem 'config'
 
 # Email/Mail Handling
 gem 'daemons'
@@ -126,7 +128,7 @@ gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
 
-gem 'devise_invitable', '~> 1.6'
+gem 'devise_invitable'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -145,10 +147,10 @@ gem 'timecop' #used to populate
 gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
 
-gem 'best_in_place', '~> 3.0.1'
+gem 'best_in_place'
 
 # Add onboarding component
-gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+# gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
@@ -164,7 +166,7 @@ group :development, :test do
   gem 'awesome_print'
 end
 
-gem 'bulk_insert'
+gem 'bulk_insert', '~> 1.6'
 gem 'roo'
 
 group :development do
@@ -189,8 +191,6 @@ group :test do
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
 
-  # remove this for Rails 5 because the function is already included
-  gem 'test_after_commit'
 end
 
 group :production do
@@ -199,4 +199,4 @@ group :production do
   gem 'unicorn'
 end
 
-ruby '>= 2.2', '< 3.0'
+ruby '>= 2.3', '< 3.0'
