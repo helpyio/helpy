@@ -343,7 +343,7 @@ ar:
   insights_blurb_one:
     one: "<strong>%{period}</strong>، فتح المستخدمين الخاص بك ١ تذكرة جديدة"
     other: "<strong>%{period}</strong>، فتح المستخدمين <strong>%{count}</strong> تذاكر جديدة"
-  insights_blurb_two: "ورد فريقك على <strong>(%{percentage_replied}) %{number_replied}</strong>
+  insights_blurb_two: "ورد فريقك على <strong>(%{percentage_replied}) %{number_replied}</strong>"
   insights_blurb_three: "مع متوسط زمن الاستجابة من <strong>%{response_time}</strong>"
   no_discussions: "<strong>%{period}</strong>، لم يتم فتح أي تذاكر جديدة"
   assigned_topics: "المواضيع المنسوبة"
