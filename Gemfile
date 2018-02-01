@@ -68,7 +68,7 @@ gem 'http_accept_language'
 # API gems
 gem 'grape'
 gem 'grape-swagger'
-gem 'grape-entity'
+gem 'grape-entity', '~> 0.6.0'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 gem 'grape-attack'

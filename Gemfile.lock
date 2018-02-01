@@ -205,8 +205,8 @@ GEM
       activesupport (>= 4.0)
       grape (>= 0.10)
       redis-namespace
-    grape-entity (0.7.1)
-      activesupport (>= 4.0)
+    grape-entity (0.6.0)
+      activesupport
       multi_json (>= 1.3.2)
     grape-kaminari (0.1.9)
       grape
@@ -620,7 +620,7 @@ DEPENDENCIES
   globalize-versioning
   grape
   grape-attack
-  grape-entity
+  grape-entity (~> 0.6.0)
   grape-kaminari
   grape-swagger
   grape-swagger-entity
