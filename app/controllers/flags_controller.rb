@@ -17,7 +17,7 @@ class FlagsController < ApplicationController
     @forum = Forum.isprivate.first
     @reason = params[:flag][:reason]
     @user = current_user
-    
+
     @flag = Flag.new(
           post_id: @post.id,
           reason: @reason
@@ -39,7 +39,7 @@ class FlagsController < ApplicationController
 
         @flag.update_attribute(:generated_topic_id, @topics.id)
 
-        redirect_to posts_path(@post)
+        redirect_to posts_path(@post, locale: I18n.locale)
         flash[:success] = "This post has now been flagged."
       end
     end

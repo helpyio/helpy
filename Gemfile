@@ -43,7 +43,7 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached"
+gem "rails-settings-cached", "0.5.6"
 gem 'sucker_punch'
 
 # Charting
@@ -73,7 +73,6 @@ gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 gem 'grape-attack'
-# gem 'grape-kaminari'
 gem 'grape-kaminari', :github => 'joshmn/grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
@@ -150,7 +149,7 @@ gem "recaptcha", require: "recaptcha/rails"
 gem 'best_in_place'
 
 # Add onboarding component
-# gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
@@ -190,7 +189,7 @@ group :test do
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
-
+  gem 'rails-controller-testing'
 end
 
 group :production do

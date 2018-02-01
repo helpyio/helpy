@@ -7,7 +7,7 @@ class Admin::SharedController < Admin::BaseController
     @obj.rank_position = params[:row_order_position]
     @obj.save!
 
-    render nothing: true
+    head :ok
   end
 
 end

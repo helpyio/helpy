@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   root to: "locales#redirect_on_locale"
+  # root to: "home#index"
 
   devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
 
   localized do
 
-    root to: "home#index"
+    get '/:locale' => 'home#index', as: :home
 
     get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 

@@ -1,0 +1,64 @@
+defaults: &defaults
+  settings.parent_site: '/parent-redirect.html'
+  settings.parent_company: 'Main Site'
+  settings.site_url: 'http://support.yourdomain.com'
+  settings.site_name: 'Helpy Support 2'
+  settings.site_tagline: 'Support and Helpdesk Software'
+  settings.product_name: ''
+  settings.support_phone: ''
+  settings.google_analytics_id: ''
+  settings.google_analytics_enabled: 'false'
+  settings.recaptcha_site_key: ''
+  settings.recaptcha_api_key: ''
+  settings.recaptcha_enabled: 'false'
+  settings.forums: 'true'
+  settings.tickets: 'true'
+  settings.knowledgebase: 'true'
+  settings.teams: 'true'
+  settings.welcome_email: 'true'
+  webhook.form_enabled: 'false'
+  webhook.form_key: ''
+  design.favicon: favicon.ico
+  design.header_logo: logo.png
+  design.footer_mini_logo: logo.png
+  design.css: ''
+  design.header_js: ''
+  design.footer_js: ''
+  css.search_background:  "feffe9"
+  css.top_bar: "3cceff"
+  css.link_color: "004084"
+  css.form_background: "F0FFF0"
+  css.still_need_help: "ffdf91"
+  css.main_color: ''
+  css.accent_color: ''
+  css.form_color: ''
+  theme.active: 'light'
+  i18n.default_locale: 'en'
+  i18n.available_locales: ['en','fr']
+  widget.show_on_support_site: "false"
+  widget.css_styles: ''
+  widget.background_color: ''
+  widget.button_color: ''
+  widget.button_text_color: ''
+  email.admin_email: ''
+  email.from_email: ''
+  email.send_email: 'false'
+  email.mail_service: 'sendgrid'
+  email.smtp_mail_username: ''
+  email.smtp_mail_password: ''
+  email.mail_smtp: ''
+  email.mail_port: ''
+  email.mail_domain: ''
+  cloudinary.enabled: 'false'
+  cloudinary.cloud_name: ''
+  cloudinary.api_key: ''
+  cloudinary.api_secret: ''
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

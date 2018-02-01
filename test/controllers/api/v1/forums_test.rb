@@ -52,7 +52,7 @@ class API::V1::ForumsTest < ActiveSupport::TestCase
 
   test "an API user should be able to return a specific forum" do
     forum = Forum.find(3)
-    get "/api/v1/forums/#{forum.id}.json", @default_params
+    get "/api/v1/forums/#{forum.id}.json", @default_params.merge(topics_limit: 20)
 
     # Check OK
     assert last_response.ok?, "Response was #{last_response.status}, expected 200"

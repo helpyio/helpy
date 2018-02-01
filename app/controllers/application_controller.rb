@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :recaptcha_enabled?
 
+  before_action :set_paper_trail_whodunnit
   before_action :add_root_breadcrumb
   before_action :set_locale
   before_action :set_vars
@@ -102,7 +103,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
   end
 
   private
@@ -186,7 +187,7 @@ class ApplicationController < ActionController::Base
 
   def get_all_teams
     return unless teams?
-    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').uniq.pluck(:name).map{|name| name}
+    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').pluck('DISTINCT name').map{|name| name}
   end
 
 end

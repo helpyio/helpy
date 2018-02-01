@@ -81,13 +81,13 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a filtered of users" do
       sign_in users(admin.to_sym)
-      get :index, { role: 'user' }
+      get :index, params: { role: 'user' }
       assert_equal 4, assigns(:users).count
     end
 
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
-      patch :update, {
+      patch :update, params: {
         id: 6, user: {
           name: "something",
           email:"scott.miller2@test.com",
@@ -121,7 +121,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
       user_before_update.team_list = "one"
       user_before_update.save
 
-      patch :update, {
+      patch :update, params: {
         id: 6, user: {
           name: "something else"
         },
@@ -141,7 +141,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a user profile" do
       sign_in users(admin.to_sym)
-      xhr :get, :show, { id: 2 }, format: 'js'
+      get :show, params: { id: 2 }, format: 'js', xhr: true
       assert_response :success
       # assert_equal(6, assigns(:topics).count)
     end
@@ -149,7 +149,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{admin} should be able to edit a user profile" do
       sign_in users(admin.to_sym)
 
-      xhr :get, :edit, { id: 2 }
+      get :edit, params: { id: 2 }, xhr: true
       assert_response :success
     end
 
@@ -158,7 +158,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
+      patch :update, params: {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
     end
   end
 
@@ -166,9 +166,10 @@ class Admin::UsersControllerTest < ActionController::TestCase
     sign_in users(:admin)
     assert_difference "ActionMailer::Base.deliveries.size", 3 do
       assert_difference("User.count", 3) do
-        put :invite_users,
+        put :invite_users, params: {
           'invite.emails' => 'test1@mail.com, test2@mail.com, test3@mail.com',
           'invite.message' => "this is the test invitation message"
+        }
       end
     end
   end
@@ -177,7 +178,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.admins.count", 0) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
+        patch :update, params: {id: 2, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
       end
     end
   end

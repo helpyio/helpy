@@ -44,12 +44,13 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to modify settings' do
     sign_in users(:admin)
-    xhr :put, :update_settings,
+    put :update_settings, params: {
       'settings.site_name' => 'Helpy Support 2',
       'settings.parent_site' => 'http://helpy.io/2',
       'settings.parent_company' => 'Helpy 2',
       'settings.site_tagline' => 'Support',
       'settings.google_analytics_id' => 'UA-0000-21'
+    }, xhr: true
     assert_response :success
     assert_equal 'Helpy Support 2', AppSettings['settings.site_name']
     assert_equal 'http://helpy.io/2', AppSettings['settings.parent_site']
@@ -60,7 +61,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to modify design' do
     sign_in users(:admin)
-    xhr :put,:update_settings,
+    put :update_settings, params: {
       'design.header_logo' => 'logo2.png',
       'design.footer_mini_logo' => 'logo2.png',
       'design.favicon' => 'favicon2.ico',
@@ -69,6 +70,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'css.link_color' => '000000',
       'css.form_background' => '000000',
       'css.still_need_help' => '000000'
+    }, xhr: true
     assert_response :success
     assert_equal 'logo2.png', AppSettings['design.header_logo']
     assert_equal 'logo2.png', AppSettings['design.footer_mini_logo']
@@ -84,8 +86,9 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     AppSettings['theme.active'] = ''
 
     sign_in users(:admin)
-    put :update_settings,
+    put :update_settings, params: {
       'theme.active' => 'flat'
+    }
     assert_redirected_to :admin_settings
     assert_equal 'flat', AppSettings['theme.active']
   end
@@ -95,9 +98,9 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     # first, toggle off all locales
     AppSettings['i18n.available_locales'] = ''
 
-    xhr :put, :update_settings,
+    put :update_settings, params: {
       'i18n.available_locales' => ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl']
-
+    }, xhr: true
     assert_response :success
     assert_equal ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl'], AppSettings['i18n.available_locales']
   end
@@ -106,13 +109,16 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     sign_in users(:admin)
     # toggle it off
     AppSettings['widget.show_on_support_site'] = 0
-    xhr :put, :update_settings, 'widget.show_on_support_site' => '1'
+    put :update_settings, params: {
+      'widget.show_on_support_site' => '1'
+    }, xhr: true
     assert_equal '1', AppSettings['widget.show_on_support_site']
   end
 
   test 'an admin should be able to turn email delivery on and off' do
-    put :update_settings,
+    put :update_settings, params: {
       'email.send_email' => 'false'
+    }
 
     # TODO: Refactor this into an integration test
     # assert_no_difference 'ActionMailer::Base.deliveries.size' do
@@ -122,7 +128,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to add mail settings' do
     sign_in users(:admin)
-    xhr :put, :update_settings,
+    put :update_settings, params: {
       'email.admin_email' => 'test@test.com',
       'email.from_email' => 'test@test.com',
       'email.mail_service' => 'mailgun',
@@ -131,6 +137,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'email.smtp_mail_password' => '1234',
       'email.mail_port' => '587',
       'email.mail_domain' => 'something.com'
+    }, xhr: true
     assert_response :success
 
     assert_equal 'test@test.com', AppSettings['email.admin_email']
@@ -145,10 +152,11 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to add a cloudinary key' do
     sign_in users(:admin)
-    xhr :put, :update_settings,
+    put :update_settings, params: {
       'cloudinary.cloud_name' => 'something',
       'cloudinary.api_key' => 'something',
       'cloudinary.api_secret' => 'something'
+    }, xhr: true
     assert_response :success
     assert_equal 'something', AppSettings['cloudinary.cloud_name']
     assert_equal 'something', AppSettings['cloudinary.api_key']
@@ -158,10 +166,11 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'the updated cloudinary keys should be persisted into the api object' do
     sign_in users(:admin)
-    xhr :put, :update_settings,
+    put :update_settings, params: {
       'cloudinary.cloud_name' => 'something',
       'cloudinary.api_key' => 'something',
       'cloudinary.api_secret' => 'something'
+    }, xhr: true
     assert_response :success
     get :index
     assert_equal 'something', Cloudinary.config.cloud_name

@@ -8,14 +8,14 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
 
   # Browsers should be prevented from accessing onboarding
   test "a browser should not be able to view the onboarding process" do
-    get :index, locale: :en
+    get :index, params: { locale: :en }
     assert_redirected_to '/en/users/sign_in'
   end
 
   # Admin tests
   test "a new admin should be able to view the onboarding process" do
     sign_in users(:admin)
-    get :index, locale: :en
+    get :index, params: { locale: :en }
     assert_response :success
   end
 
@@ -27,13 +27,14 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
 
   test "a new admin should be able to update the name and domain of their helpy" do
     sign_in users(:admin)
+    @controller = OnboardingController.update_settings
 
-    xhr :patch, :update_settings,
+    xhr :patch, :update_settings, params: {
       'settings.site_name' => 'Helpy Support 2',
       'settings.site_url' => 'http://support.site.com',
       'settings.parent_site' => 'http://helpy.io/2',
       'settings.parent_company' => 'Helpy 2'
-
+    }
     assert_response :success
     assert_equal 'Helpy Support 2', AppSettings['settings.site_name']
     assert_equal 'http://support.site.com', AppSettings['settings.site_url']
@@ -43,8 +44,9 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
 
   test "a new admin should be able to update their email and password" do
     sign_in users(:admin)
+    @controller = OnboardingController.update_user
 
-    patch :update_user, {
+    patch :update_user, params: {
       id: 1,
       user: {
         name: "something",

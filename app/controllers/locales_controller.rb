@@ -14,7 +14,7 @@ class LocalesController < ApplicationController
   end
 
   def redirect_on_locale
-    redirect_to root_path, status: 301
+    redirect_to home_path, locale: I18n.locale, status: 301
   end
 
 end
