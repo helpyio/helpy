@@ -22,4 +22,11 @@ module Admin::TopicsHelper
   def ticket_nav_dropdown
     render partial: 'admin/topics/ticket_nav_dropdown'
   end
+
+  def user_priority(user)
+    return unless user.priority?
+    content_tag :span, class: 'label label-tag', style: 'text-transform: uppercase' do
+      user.priority
+    end
+  end
 end

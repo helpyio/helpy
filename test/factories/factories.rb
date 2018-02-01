@@ -117,4 +117,13 @@ FactoryGirl.define do
     show_on_helpcenter false
     show_on_dashboard false
   end
+  
+  factory :admin, class: User do
+    name "admin"
+    admin true
+    role 'admin'
+    email 'admin@admin.com'
+    password 'password'
+    account_number '123456'
+  end
 end

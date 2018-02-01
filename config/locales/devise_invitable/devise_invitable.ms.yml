@@ -1,0 +1,31 @@
+ms:
+  devise:
+    failure:
+      invited: "Anda mempunyai jemputan, sila terima untuk menyelesaikan membuat akaun anda."
+    invitations:
+      send_instructions: "E-mel jemputan telah dihantar ke %{email}."
+      invitation_token_invalid: "Token jemputan yang disediakan tidak sah!"
+      updated: "Kata laluan anda berjaya diganti. Anda juga dilog masuk."
+      updated_not_active: "Kata laluan anda telah ditukar."
+      no_invitations_remaining: "Tidak ada lagi jemputan"
+      invitation_removed: "Jemputan anda telah dipadamkan."
+      new:
+        header: "Hantar jemputan"
+        submit_button: "Hantar jemputan"
+      edit:
+        header: "Tukar kata laluan anda"
+        submit_button: "Tukar kata laluan"
+    mailer:
+      invitation_instructions:
+        subject: "Anda mendapat jemputan"
+        hello: "Hello %{email}"
+        someone_invited_you: "Anda dijemput ke %{url}. Gunakan pautan berikut untuk mengaktifkan akaun anda."
+        accept: "Terima jemputan"
+        accept_until: "Jemputan ini akan berakhir pada %{due_date}."
+        ignore: "Sekiranya anda tidak mahu menerima jemputan ini, hanya mengabaikannya. <br /> Akaun anda tidak akan dibuat jika anda tidak membuka pautan di atas dan membuat kata laluan."
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"

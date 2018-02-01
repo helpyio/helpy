@@ -14,11 +14,11 @@
     <div class="row">
       <div class="big-stats">
         <div class="col-md-6 col-xs-6 text-right">
-          <h2><%= number_to_percentage((@total_closed.to_f/@total_tickets.to_f)*100, precision: 0) %></h2>
-            <span class="tiny-header">Percent Resolved</span>
+          <h2><%= percent_resolved(@total_closed, @total_tickets) %></h2>
+          <span class="tiny-header">Percent Resolved</span>
         </div>
         <div class="col-md-6 col-xs-6 text-left">
-          <h2><%= distance_of_time_in_words(@median_close_time) unless @median_close_time.nil? %></h2>
+          <h2><%= @median_close_time.nil? ? distance_of_time_in_words(0) : distance_of_time_in_words(@median_close_time) %></h2>
             <span class="tiny-header">Average Resolution Time</span>
         </div>
       </div>
@@ -54,7 +54,7 @@
           <tr>
             <td><span class="more-important">Tickets per day</span><br/><span class="less-important">The number of tickets your Helpy averages per day.</span></td>
             <td></td>
-            <td><%= content_tag :h3, (@total_tickets.to_f/@number_of_days.to_f).round(1), class: 'pull-right' %></td>
+            <td><%= content_tag :h3, per_day(@total_tickets, @number_of_days), class: 'pull-right' %></td>
           </tr>
           <tr>
             <td><span class="more-important">Replies</span><br/><span class="less-important">The number of replies your agents have written in this period.</span></td>

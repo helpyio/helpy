@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :votes
   has_many :docs
+  has_many :backups
   has_many :api_keys
   has_attachment :avatar, accept: %i[jpg png gif]
   is_gravtastic
@@ -200,6 +201,11 @@ class User < ActiveRecord::Base
     self.login = email.split("@")[0]
     self.password = User.create_password
     save
+  end
+  
+  # evaluates to true if they are a priority (high/vip) user
+  def priority?
+    self.priority == 'high' || self.priority == 'vip'
   end
 
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
