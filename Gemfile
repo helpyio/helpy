@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.10'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '< 1.0.0'
 gem 'pg_search'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.6'
@@ -42,7 +42,7 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached", '~> 0.5'
+gem "rails-settings-cached", '~> 0.5.0'
 gem 'sucker_punch', '~> 2.0'
 
 # Charting
@@ -72,6 +72,7 @@ gem 'grape-entity', '~> 0.6.0'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity', '= 0.1.5'
 gem 'grape-attack'
+gem 'kaminari-grape'
 gem 'grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
