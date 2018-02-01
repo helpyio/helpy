@@ -213,8 +213,8 @@ GEM
       kaminari
     grape-swagger (0.27.3)
       grape (>= 0.16.2)
-    grape-swagger-entity (0.2.3)
-      grape-entity (>= 0.5.0)
+    grape-swagger-entity (0.1.5)
+      grape-entity
       grape-swagger (>= 0.20.4)
     grape-swagger-rails (0.3.0)
       railties (>= 3.2.12)
@@ -623,7 +623,7 @@ DEPENDENCIES
   grape-entity (~> 0.6.0)
   grape-kaminari
   grape-swagger
-  grape-swagger-entity
+  grape-swagger-entity (= 0.1.5)
   grape-swagger-rails
   gravtastic
   griddler
