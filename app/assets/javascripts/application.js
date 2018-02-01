@@ -13,9 +13,9 @@
 //= require jquery
 //= require best_in_place
 //= require jquery_ujs
-//= require jquery-ui/sortable
-//= require jquery-ui/effect-highlight
-//= require jquery-ui/autocomplete
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/effects/effect-highlight
+//= require jquery-ui/widgets/autocomplete
 //= require jquery-fileupload
 //= require bootstrap-sprockets
 //= require turbolinks
