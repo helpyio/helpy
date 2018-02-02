@@ -346,7 +346,7 @@ en:
     one: "<strong>%{period}</strong> your users opened 1 new ticket"
     other: "<strong>%{period}</strong> your users opened <strong>%{count} new tickets</strong>"
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+  insights_blurb_three_html_html: "with a median response time of <strong>%{response_time}</strong>"
   no_discussions: "No new tickets have been opened <strong>%{period}</strong>"
   assigned_topics: "Assigned Topics"
   responded: "Responded"
