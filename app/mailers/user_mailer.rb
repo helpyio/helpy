@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class UserMailer < ApplicationMailer
   add_template_helper(ApplicationHelper)
 
   def new_user(user_id, token)

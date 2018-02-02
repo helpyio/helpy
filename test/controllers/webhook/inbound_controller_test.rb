@@ -35,7 +35,9 @@ class Webhook::InboundControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 0, 'A topic should NOT have been created' do
       assert_difference 'Post.count', 0, 'A post should NOT have been created' do
-        post :form, token: 'something else', data: @data.to_json
+        post :form, params: {
+          token: 'something else', data: @data.to_json
+        }
       end
     end
   end
@@ -47,7 +49,9 @@ class Webhook::InboundControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :form, token: AppSettings["webhook.form_key"], data: @data.to_json
+        post :form, params: {
+          token: AppSettings["webhook.form_key"], data: @data.to_json
+        }
         assert_equal 2, Topic.last.tag_list.count
         assert_equal true, Topic.last.tag_list.include?("hi")
       end
@@ -61,7 +65,9 @@ class Webhook::InboundControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 0, 'A topic should NOT have been created' do
       assert_difference 'Post.count', 0, 'A post should NOT have been created' do
-        post :form, token: AppSettings["webhook.form_key"], data: @data.to_json
+        post :form, params: {
+          token: AppSettings["webhook.form_key"], data: @data.to_json
+        }
       end
     end
   end

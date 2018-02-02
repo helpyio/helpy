@@ -31,7 +31,7 @@ class LocalesControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should be able to change the locale with the locales view" do
-    get :select, locale: :en
+    get :select, params: { locale: :en }
     assert_response :success
   end
 

@@ -24,7 +24,7 @@
 #  attachments      :string           default([]), is an Array
 #
 
-class Doc < ActiveRecord::Base
+class Doc < ApplicationRecord
 
   include SentenceCase
 

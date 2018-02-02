@@ -17,7 +17,7 @@
 #  raw_email   :text
 #
 
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
 
   attr_accessor :reply_id
 

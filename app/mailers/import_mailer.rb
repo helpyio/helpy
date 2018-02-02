@@ -1,4 +1,4 @@
-class ImportMailer < ActionMailer::Base
+class ImportMailer < ApplicationMailer
 
   def notify_import_complition(user, model_name, notes)
   	@user = user

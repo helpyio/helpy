@@ -1,4 +1,4 @@
-class TrackerJob < ActiveJob::Base
+class TrackerJob < ApplicationJob
   queue_as :default
 
   def perform(category, action, label, value, client_id, ga_id)

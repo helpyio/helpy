@@ -14,26 +14,26 @@ class Admin::InternalCategoriesControllerTest < ActionController::TestCase
   end
 
   test "showing inactive category" do
-    get :show, id: 3
+    get :show, params: { id: 3 }
     assert_nil assigns(:category)
     assert_response :redirect
   end
 
   test "showing system category" do
-    get :show, id: 5
+    get :show, params: { id: 5 }
     assert_nil assigns(:category)
     assert_response :redirect
   end
 
   test "showing active category" do
-    get :show, id: 1
+    get :show, params: { id: 1 }
     refute_nil assigns(:category)
     assert_equal "active and featured", assigns(:page_title)
     assert_response :success
   end
 
   test "showing active internal category" do
-    get :show, id: 6
+    get :show, params: { id: 6 }
     refute_nil assigns(:category)
     assert_equal "internal title", assigns(:page_title)
     assert_response :success
