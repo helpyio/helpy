@@ -73,7 +73,7 @@ gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 gem 'grape-attack'
-gem 'grape-kaminari', :github => 'joshmn/grape-kaminari'
+gem 'grape-kaminari', git: 'https://github.com/joshmn/grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'permalink_fu'
@@ -163,6 +163,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'scss-lint'
   gem 'awesome_print'
+  gem 'puma'
 end
 
 gem 'bulk_insert', '~> 1.6'
@@ -170,11 +171,8 @@ gem 'roo'
 
 group :development do
   gem "better_errors"
-  gem 'mailcatcher'
-
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
