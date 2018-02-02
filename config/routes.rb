@@ -16,52 +16,54 @@ Rails.application.routes.draw do
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
 
-  localized do
+  scope '/:locale' do
+    localized do
 
-    get '/:locale' => 'home#index', as: :home
+      get '/' => 'home#index', as: :home
 
-    get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
+      get 'omniauth/:provider' => 'omniauth#localized', as: :localized_omniauth
 
-    #devise_for :users, controllers: {
-    #      registrations: 'registrations',
-    #      omniauth_callbacks: "callbacks"
-    #    }
+      #devise_for :users, controllers: {
+      #      registrations: 'registrations',
+      #      omniauth_callbacks: "callbacks"
+      #    }
 
-    match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
+      match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+      devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
 
-    as :user do
-      get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
-      post "/users/invitation" => "devise/invitations#create", as: :user_invitation
-      put "/users/invitation" => "devise/invitations#update", as: nil
-      patch "/users/invitation" => "devise/invitations#update", as: nil
+      as :user do
+        get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
+        post "/users/invitation" => "devise/invitations#create", as: :user_invitation
+        put "/users/invitation" => "devise/invitations#update", as: nil
+        patch "/users/invitation" => "devise/invitations#update", as: nil
+      end
+
+      resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
+        resources :docs, except: [:new, :edit, :create, :update]
+      end
+
+      resources :docs, except: [:new, :edit] do
+        resources :comments, only: :create
+      end
+      resources :community, :as => 'forums', :controller => "forums" do
+        resources :topics
+      end
+      resources :topics do
+        resources :posts
+      end
+      resources :posts do
+        resources :flags, only: [:create]
+      end
+
+      post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
+      post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
+      get 'thanks' => 'topics#thanks', as: :topic_thanks
+      get 'result' => 'result#index', as: :result
+      get 'search' => 'result#search', as: :search
+      get 'tickets' => 'topics#tickets', as: :tickets
+      get 'ticket/:id/' => 'topics#ticket', as: :ticket
+      get 'locales/select' => 'locales#select', as: :select_locale
     end
-
-    resources :knowledgebase, :as => 'categories', :controller => "categories", except: [:new, :edit, :create, :update] do
-      resources :docs, except: [:new, :edit, :create, :update]
-    end
-
-    resources :docs, except: [:new, :edit] do
-      resources :comments, only: :create
-    end
-    resources :community, :as => 'forums', :controller => "forums" do
-      resources :topics
-    end
-    resources :topics do
-      resources :posts
-    end
-    resources :posts do
-      resources :flags, only: [:create]
-    end
-
-    post 'topic/:id/vote' => 'topics#up_vote', as: :up_vote, defaults: { format: 'js' }
-    post 'post/:id/vote' => 'posts#up_vote', as: :post_vote, defaults: { format: 'js' }
-    get 'thanks' => 'topics#thanks', as: :topic_thanks
-    get 'result' => 'result#index', as: :result
-    get 'search' => 'result#search', as: :search
-    get 'tickets' => 'topics#tickets', as: :tickets
-    get 'ticket/:id/' => 'topics#ticket', as: :ticket
-    get 'locales/select' => 'locales#select', as: :select_locale
   end
 
   get '/switch_locale' => 'home#switch_locale', as: :switch_locale

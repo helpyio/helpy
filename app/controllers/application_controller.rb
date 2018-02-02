@@ -112,7 +112,7 @@ class ApplicationController < ActionController::Base
     if controller_namespace_origin == 'admin'
       add_breadcrumb :root, admin_root_url
     else
-      add_breadcrumb :root
+      add_breadcrumb :root, root_url(locale: I18n.locale)
     end
   end
 
