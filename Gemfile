@@ -73,7 +73,7 @@ gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 gem 'grape-attack'
-gem 'grape-kaminari', :github => 'joshmn/grape-kaminari'
+gem 'grape-kaminari', git: 'https://github.com/joshmn/grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'permalink_fu'
@@ -155,6 +155,7 @@ group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
   gem 'byebug'
+  gem 'puma'
   gem 'pry'
   gem 'pry-byebug'
   gem 'spring', '~> 1.4.0'
@@ -170,7 +171,6 @@ gem 'roo'
 
 group :development do
   gem "better_errors"
-  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
