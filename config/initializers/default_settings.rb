@@ -1,10 +1,9 @@
-# General Settings:
-
+# # General Settings:
 AppSettings.defaults["branding.ticketing_color"] = "#444444"
 AppSettings.defaults["branding.display_branding"] = "1"
 
 AppSettings.defaults["settings.enforce_ssl"] = "0"
-AppSettings.defaults["settings.parent_site"] = Settings.parent_site
+AppSettings.defaults["settings.parent_site"] = ''#Settings.parent_site
 AppSettings.defaults["settings.parent_company"] = Settings.parent_company
 AppSettings.defaults["settings.site_url"] = Settings.site_url
 AppSettings.defaults["settings.site_name"] = Settings.site_name
@@ -21,14 +20,14 @@ AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 AppSettings.defaults["settings.teams"] = Settings.teams
 AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
-
-# Webhook Integrations
-
+#
+# # Webhook Integrations
+#
 AppSettings.defaults["webhook.form_enabled"] = "0"
 AppSettings.defaults["webhook.form_key"] = ""
-
-# Design: (Colors etc.)
-
+#
+# # Design: (Colors etc.)
+#
 AppSettings.defaults["design.favicon"] = Settings.app_favicon
 AppSettings.defaults["design.header_logo"] = Settings.app_mini_logo
 # Note: the contributer accidentally reversed these in the code
@@ -44,27 +43,27 @@ AppSettings.defaults["css.still_need_help"] = "ffdf91"
 AppSettings.defaults["css.main_color"] = ""
 AppSettings.defaults["css.accent_color"] = ""
 AppSettings.defaults["css.form_color"] = ""
-
-# Theme:
-
+#
+# # Theme:
+#
 AppSettings.defaults["theme.active"] = "light"
-
-# i18n:
-
+#
+# # i18n:
+#
 AppSettings.defaults["i18n.default_locale"] = "en"
 AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
-
-# Widget:
-
+#
+# # Widget:
+#
 AppSettings.defaults["widget.show_on_support_site"] = "true"
 AppSettings.defaults["widget.show_on_support_site"] = "true"
 AppSettings.defaults["widget.css_styles"] = "<script>/* Add custom styles here */</script>"
 AppSettings.defaults["widget.background_color"] = ""
 AppSettings.defaults["widget.button_color"] = ""
 AppSettings.defaults["widget.button_text_color"] = ""
-
-# Email specific:
-
+#
+# # Email specific:
+#
 AppSettings.defaults["email.admin_email"] = Settings.admin_email
 AppSettings.defaults["email.from_email"] = Settings.from_email
 AppSettings.defaults["email.send_email"] = Settings.send_email
@@ -75,15 +74,15 @@ AppSettings.defaults["email.smtp_mail_password"] = Settings.smtp_mail_password
 AppSettings.defaults["email.mail_smtp"] = Settings.mail_smtp
 AppSettings.defaults["email.mail_port"] = Settings.mail_port
 AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
-
-# notifications
-
+#
+# # notifications
+#
 AppSettings.defaults["notify.on_private"] = "1"
 AppSettings.defaults["notify.on_public"] = "1"
 AppSettings.defaults["notify.on_reply"] = "1"
-
-# Cloudinary:
-
+#
+# # Cloudinary:
+#
 AppSettings.defaults['cloudinary.enabled'] = '0'
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''

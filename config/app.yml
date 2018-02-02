@@ -1,0 +1,73 @@
+defaults: &defaults
+  settings:
+    parent_site: '/parent-redirect.html'
+    parent_company: 'Main Site'
+    site_url: 'http://support.yourdomain.com'
+    site_name: 'Helpy Support'
+    site_tagline: 'Support and Helpdesk Software'
+    product_name: ''
+    support_phone: ''
+    google_analytics_id: ''
+    google_analytics_enabled: 'false'
+    recaptcha_site_key: ''
+    recaptcha_api_key: ''
+    recaptcha_enabled: 'false'
+    forums: 'true'
+    tickets: 'true'
+    knowledgebase: 'true'
+    teams: 'true'
+    welcome_email: 'true'
+  webhook:
+    form_enabled: 'false'
+    form_key: ''
+  design:
+    favicon: favicon.ico
+    header_logo: logo.png
+    footer_mini_logo: logo.png
+    css: ''
+    header_js: ''
+    footer_js: ''
+  css:
+    search_background:  "feffe9"
+    top_bar: "3cceff"
+    link_color: "004084"
+    form_background: "F0FFF0"
+    still_need_help: "ffdf91"
+    main_color: ''
+    accent_color: ''
+    form_color: ''
+  theme:
+    active: 'light'
+  i18n:
+    default_locale: 'en'
+    available_locales: ['en','fr']
+  widget:
+    show_on_support_site: "false"
+    css_styles: ''
+    background_color: ''
+    button_color: ''
+    button_text_color: ''
+  email:
+    admin_email: ''
+    from_email: ''
+    send_email: 'false'
+    mail_service: 'sendgrid'
+    smtp_mail_username: ''
+    smtp_mail_password: ''
+    mail_smtp: ''
+    mail_port: ''
+    mail_domain: ''
+  cloudinary:
+    enabled: 'false'
+    cloud_name: ''
+    api_key: ''
+    api_secret: ''
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

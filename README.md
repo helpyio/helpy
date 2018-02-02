@@ -1,7 +1,7 @@
 Helpy: A Modern Helpdesk Alternative
 ====================================
 
-Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide a full featured open source helpdesk platform.
+Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 5 and released under the MIT license.  The goal of Helpy is to provide a full featured open source helpdesk platform.
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
@@ -42,8 +42,8 @@ any linux based system.  There is a full guide to installing Helpy in the wiki: 
 
 Requirements are:
 
-- Ruby 2.2+
-- Rails 4.2.x
+- Ruby 2.3+
+- Rails 5.0.x
 - Postgres
 - A server like Unicorn, Puma or Passenger
 
@@ -114,6 +114,6 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 License
 =======
 
-Copyright 2017, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2018, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)

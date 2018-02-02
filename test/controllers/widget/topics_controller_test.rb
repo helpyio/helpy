@@ -29,12 +29,14 @@ class Widget::TopicsControllerTest < ActionController::TestCase
   test 'a signed in user should be able to create a new private topic' do
     sign_in users(:user)
 
-    get :new, locale: :en
+    get :new, params: { locale: :en }
     assert_response :success
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, topic: { name: 'some new private topic', body: 'some body text', posts_attributes: {:'0' => { body: "this is the body" } } }, locale: :en
+        post :create, params: {
+          topic: { name: 'some new private topic', body: 'some body text', posts_attributes: {:'0' => { body: "this is the body" } } }, locale: :en
+        }
       end
     end
 

@@ -10,5 +10,4 @@ class ErrorsControllerTest < ActionController::TestCase
     get :internal_server_error
     assert_response :error
   end
-
 end

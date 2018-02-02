@@ -26,7 +26,7 @@
 #  kind             :string           default("ticket")
 #
 
-class Topic < ActiveRecord::Base
+class Topic < ApplicationRecord
 
   include SentenceCase
 
