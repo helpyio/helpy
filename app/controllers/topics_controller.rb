@@ -156,9 +156,9 @@ class TopicsController < ApplicationController
   private
 
   def initialize_new_ticket_form_vars
-    @topic = Topic.new #unless @topic
+    @topic = Topic.new # unless @topic
     @user = @topic.build_user unless user_signed_in?
-    @topic.posts.build #unless @topic.posts
+    @topic.posts.build # unless @topic.posts
     get_all_teams
     get_public_forums
 

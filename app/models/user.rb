@@ -202,10 +202,10 @@ class User < ActiveRecord::Base
     self.password = User.create_password
     save
   end
-  
+
   # evaluates to true if they are a priority (high/vip) user
   def priority?
-    self.priority == 'high' || self.priority == 'vip'
+    priority == 'high' || priority == 'vip'
   end
 
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string

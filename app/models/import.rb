@@ -16,6 +16,6 @@
 #
 
 class Import < ActiveRecord::Base
-	serialize :error_log, Array
-	serialize :imported_ids, Array
+  serialize :error_log, Array
+  serialize :imported_ids, Array
 end

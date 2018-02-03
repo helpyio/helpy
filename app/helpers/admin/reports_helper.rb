@@ -11,15 +11,15 @@ module Admin::ReportsHelper
     @teams = @all_teams.sort_by! { |e| ActiveSupport::Inflector.transliterate(e.downcase) }.map { |name| [name, scoped_stats.tagged_with(name).count] }
   end
 
-  def percent_resolved(fraction, total, default=0)
-    total > 0 ? number_to_percentage((fraction.to_f/total.to_f)*100, precision: 0) : number_to_percentage(default, precision: 0)
+  def percent_resolved(fraction, total, default = 0)
+    total > 0 ? number_to_percentage((fraction.to_f / total.to_f) * 100, precision: 0) : number_to_percentage(default, precision: 0)
   end
 
-  def per_day(number, days, default=0)
+  def per_day(number, days, default = 0)
     if days == 0
       "-"
     else
-      (number.to_f/days.to_f).round(1)
+      (number.to_f / days.to_f).round(1)
     end
   end
 

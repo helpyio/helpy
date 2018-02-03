@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
   after_create  :update_waiting_on_cache, unless: :importing
   after_create  :assign_on_reply, unless: :importing
   after_commit  :notify, on: :create, unless: :importing
-  after_save  :update_topic_cache
+  after_save :update_topic_cache
 
   scope :all_by_topic, ->(topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
   scope :active, -> { where(active: true) }
@@ -49,8 +49,8 @@ class Post < ActiveRecord::Base
   scope :by_votes, -> { order('points DESC') }
   scope :notes, -> { where(kind: 'note') }
 
-  #updates the last post date for both the forum and the topic
-  #updates the waiting on cache
+  # updates the last post date for both the forum and the topic
+  # updates the waiting on cache
   def update_waiting_on_cache
     status = topic.current_status
     waiting_on = topic.waiting_on
@@ -119,7 +119,7 @@ class Post < ActiveRecord::Base
   end
 
   def importing?
-    self.importing || false
+    importing || false
   end
 
   private

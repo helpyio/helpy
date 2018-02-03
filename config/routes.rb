@@ -116,11 +116,11 @@ Rails.application.routes.draw do
     # Export Routes
     get 'backups' => 'backups#index', as: :backups
     get 'backups/export' => "backups/export", as: :export_backup
-    get  'backups/download' => "backups/download", as: :download
-    delete 'backups/:id(.:format)', :to => 'backups#destroy', as: :delete_backup
+    get 'backups/download' => "backups/download", as: :download
+    delete 'backups/:id(.:format)', to: 'backups#destroy', as: :delete_backup
 
     # Import Routes
-    resources :imports, only: [:index, :show]
+    resources :imports, only: %i[index show]
     post 'imports/restore' => "importz/restore", as: :import_restore
 
     post 'posts/users' => 'posts#search', as: :user_search

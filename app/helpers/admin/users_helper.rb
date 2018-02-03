@@ -1,5 +1,4 @@
 module Admin::UsersHelper
-
   def user_header
     content_tag :h2, id: 'ticket-page-title' do
       concat render 'admin/topics/ticket_nav_dropdown'
@@ -34,5 +33,4 @@ module Admin::UsersHelper
       "Account: " + @user.account_number if @user.account_number.present?
     end
   end
-
 end

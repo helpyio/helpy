@@ -117,7 +117,7 @@ FactoryGirl.define do
     show_on_helpcenter false
     show_on_dashboard false
   end
-  
+
   factory :admin, class: User do
     name "admin"
     admin true
