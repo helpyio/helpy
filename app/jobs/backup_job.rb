@@ -2,7 +2,7 @@ class BackupJob < ActiveJob::Base
   queue_as :default
 
   def perform(params, user_id)
-    params.select{|k| params[k] == "1"}.keys.each do |model_name|
+    params.select { |k| params[k] == "1" }.keys.each do |model_name|
       klass = Object.const_get model_name
       records = klass.all.order(:id)
       user = User.find(user_id)
@@ -13,7 +13,7 @@ class BackupJob < ActiveJob::Base
       else
         logger.info("backup error: #{backup.errors}")
       end
-    end  
+    end
   end
 
   def to_csv(records, options = {})
@@ -24,5 +24,4 @@ class BackupJob < ActiveJob::Base
       end
     end
   end
-
 end
