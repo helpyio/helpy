@@ -164,6 +164,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'scss-lint'
   gem 'awesome_print'
+  gem 'puma'
 end
 
 gem 'bulk_insert', '~> 1.6'
@@ -171,10 +172,8 @@ gem 'roo'
 
 group :development do
   gem "better_errors"
-
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
