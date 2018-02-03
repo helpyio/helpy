@@ -8,11 +8,11 @@ class Admin::ImportsController < Admin::BaseController
       row_count = CSV.read(params[:file].path, headers: true, encoding: 'iso-8859-1:utf-8').length - 1
       import = Import.create(model: params[:type].downcase, status: "In Progress", submited_record_count: row_count)
       ImportJob.perform_later(@files_detail, current_user, import)
-      redirect_to admin_imports_path
     else
       flash[:error] = "Please select file to import"
-      redirect_to admin_imports_path
     end
+
+    redirect_to admin_imports_path
   end
 
   def index

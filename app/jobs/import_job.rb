@@ -1,9 +1,9 @@
 class ImportJob < ActiveJob::Base
   queue_as :import
   require 'roo'
-  STATUS = { error: "Error", in_progress: "In Progress", completed: "Completed" }
-  FORMAT_ERROR_MSG = "“The import CSV file was incorrectly formatted.”"
-  SUCCESS_MSG = "Import completed"
+  STATUS = { error: "Error", in_progress: "In Progress", completed: "Completed" }.freeze
+  FORMAT_ERROR_MSG = "“The import CSV file was incorrectly formatted.”".freeze
+  SUCCESS_MSG = "Import completed".freeze
 
   @@error_objs = []
   @@imported_ids = []
@@ -19,7 +19,7 @@ class ImportJob < ActiveJob::Base
   end
 
   def import(file_path, file_name, klass, user, import)
-    started_at = Time.now
+    started_at = Time.current
     spreadsheet = open_spreadsheet(file_path, file_name)
     header = spreadsheet.row(1)
     if true # header == klass.new.attributes.keys
@@ -40,7 +40,7 @@ class ImportJob < ActiveJob::Base
     else
       import.update_attributes(status: STATUS[:error], notes: FORMAT_ERROR_MSG)
     end
-    import.update_attributes(error_log: @@error_objs, imported_ids: @@imported_ids, submited_record_count: @@submited_record_count, started_at: started_at, completed_at: Time.now)
+    import.update_attributes(error_log: @@error_objs, imported_ids: @@imported_ids, submited_record_count: @@submited_record_count, started_at: started_at, completed_at: Time.current)
     ImportMailer.notify_import_complition(user, klass.class_name.downcase, import.notes).deliver_later
     ActiveRecord::Base.connection.reset_pk_sequence!("#{klass.class_name.downcase}s")
   end
@@ -48,21 +48,21 @@ class ImportJob < ActiveJob::Base
   def user_import(obj_hash, row_num, object = nil)
     @@submited_record_count += 1
     begin
-      if object.present?
-        object.attributes = obj_hash
-      else
+      if object.blank?
         object = User.new
-        object.attributes = obj_hash
         object.password = User.create_password
         object.sign_in_count = 0
       end
+
+      object.attributes = obj_hash
+
       if object.save
         @@imported_ids << object.id
       else
-        @@error_objs << obj_hash.merge!({ error_message: object.errors.full_messages, row_number: row_num })
+        @@error_objs << obj_hash.merge!(error_message: object.errors.full_messages, row_number: row_num)
       end
     rescue
-      @@error_objs << obj_hash.merge!({ error_message: "error in saving.", row_number: row_num })
+      @@error_objs << obj_hash.merge!(error_message: "error in saving.", row_number: row_num)
     end
   end
 
@@ -71,18 +71,15 @@ class ImportJob < ActiveJob::Base
     obj_hash.reject! { |k| k == "posts_count" }
 
     if obj_hash["forum_id"].present? && obj_hash["user_id"].present?
-      if Forum.find_by_id(obj_hash["forum_id"]).present? && User.find_by_id(obj_hash["user_id"]).present?
+      if Forum.find_by(id: obj_hash["forum_id"]).present? && User.find_by(id: obj_hash["user_id"]).present?
         begin
-          if object.present?
-            object.attributes = obj_hash
-          else
-            object = Topic.new
-            object.attributes = obj_hash
-          end
+          object = Topic.new if object.blank?
+          object.attributes = obj_hash
+
           if object.save
             @@imported_ids << object.id
           else
-            @@error_objs << obj_hash.merge!({ error_message: object.errors.full_messages, row_number: row_num })
+            @@error_objs << obj_hash.merge!(error_message: object.errors.full_messages, row_number: row_num)
           end
         rescue
           @@error_objs << obj_hash
@@ -97,19 +94,19 @@ class ImportJob < ActiveJob::Base
     @@submited_record_count += 1
     obj_hash.reject! { |k| k == "attachments" }
     if obj_hash["topic_id"].present? && obj_hash["user_id"].present?
-      if Topic.find_by_id(obj_hash["topic_id"]).present? && User.find_by_id(obj_hash["user_id"]).present?
+      if Topic.find_by(id: obj_hash["topic_id"]).present? && User.find_by(id: obj_hash["user_id"]).present?
         begin
-          if object.present?
-            object.attributes = obj_hash
-          else
+          if object.blank?
             object = Post.new
             object.importing = true
-            object.attributes = obj_hash
           end
+
+          object.attributes = obj_hash
+
           if object.save
             @@imported_ids << object.id
           else
-            @@error_objs << obj_hash.merge!({ error_message: object.errors.full_messages, row_number: row_num })
+            @@error_objs << obj_hash.merge!(error_message: object.errors.full_messages, row_number: row_num)
           end
         rescue
           @@error_objs << obj_hash
@@ -123,16 +120,14 @@ class ImportJob < ActiveJob::Base
   def forum_import(obj_hash, row_num, object = nil)
     @@submited_record_count += 1
     begin
-      if object.present?
-        object.attributes = obj_hash
-      else
-        object = Forum.new
-        object.attributes = obj_hash
-      end
+      object = Forum.new if object.blank?
+
+      object.attributes = obj_hash
+
       if object.save
         @@imported_ids << object.id
       else
-        @@error_objs << obj_hash.merge!({ error_message: object.errors.full_messages, row_number: row_num })
+        @@error_objs << obj_hash.merge!(error_message: object.errors.full_messages, row_number: row_num)
       end
     rescue
       @@error_objs << obj_hash
@@ -142,16 +137,13 @@ class ImportJob < ActiveJob::Base
   def category_import(obj_hash, row_num, object = nil)
     @@submited_record_count += 1
     begin
-      if object.present?
-        object.attributes = obj_hash
-      else
-        object = Category.new
-        object.attributes = obj_hash
-      end
+      object = Category.new if object.blank?
+      object.attributes = obj_hash
+
       if object.save
         @@imported_ids << object.id
       else
-        @@error_objs << obj_hash.merge!({ error_message: object.errors.full_messages, row_number: row_num })
+        @@error_objs << obj_hash.merge!(error_message: object.errors.full_messages, row_number: row_num)
       end
     rescue
       @@error_objs << obj_hash
@@ -161,18 +153,15 @@ class ImportJob < ActiveJob::Base
   def doc_import(obj_hash, row_num, object = nil)
     @@submited_record_count += 1
     if obj_hash["user_id"].present? && obj_hash["category_id"].present?
-      if User.find_by_id(obj_hash["user_id"]).present? && Category.find_by_id(obj_hash["category_id"]).present?
+      if User.find_by(id: obj_hash["user_id"]).present? && Category.find_by(id: obj_hash["category_id"]).present?
         begin
-          if object.present?
-            object.attributes = obj_hash
-          else
-            object = Doc.new
-            object.attributes = obj_hash
-          end
+          object = Doc.new if object.blank?
+
+          object.attributes = obj_hash
           if object.save
             @@imported_ids << object.id
           else
-            @@error_objs << obj_hash.merge!({ error_message: object.errors.full_messages, row_number: row_num })
+            @@error_objs << obj_hash.merge!(error_message: object.errors.full_messages, row_number: row_num)
           end
         rescue
           @@error_objs << obj_hash
@@ -184,11 +173,9 @@ class ImportJob < ActiveJob::Base
   end
 
   def open_spreadsheet(file_path, file_name)
-    if File.extname(file_name) == ".csv"
-      csv = Roo::Spreadsheet.open(file_path)
-    else
-      raise "Unknown file type: #{file_name}"
-    end
+    raise "Unknown file type: #{file_name}" unless File.extname(file_name) == ".csv"
+
+    Roo::Spreadsheet.open(file_path)
   end
 
   def self.schedule_user_imoprt
@@ -202,17 +189,17 @@ class ImportJob < ActiveJob::Base
 
   def get_object_and_row(row, klass)
     object = nil
-    object = klass.find_by_id(row["id"]) if row["id"].present?
+    object = klass.find_by(id: row["id"]) if row["id"].present?
     { object: object, row: row }
   end
 
-  def topic_row(klass, row)
+  def topic_row(_klass, row)
     user = User.find(row["user_id"])
     row["user_id"] = user.id if user
     row
   end
 
-  def post_row(klass, row)
+  def post_row(_klass, row)
     # topic = Topic.find(row["topic_id"]) if row["topic_id"].present?
     # user = User.find(row["user_id"]) if row["user_id"].present?
     #

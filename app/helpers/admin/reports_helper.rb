@@ -15,7 +15,7 @@ module Admin::ReportsHelper
     total > 0 ? number_to_percentage((fraction.to_f / total.to_f) * 100, precision: 0) : number_to_percentage(default, precision: 0)
   end
 
-  def per_day(number, days, default = 0)
+  def per_day(number, days, _default = 0)
     if days == 0
       "-"
     else
