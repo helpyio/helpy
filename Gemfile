@@ -155,6 +155,7 @@ group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
   gem 'byebug'
+  gem 'puma'
   gem 'pry'
   gem 'pry-byebug'
   gem 'spring', '~> 1.4.0'

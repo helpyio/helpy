@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/joshmn/grape-kaminari.git
+  remote: https://github.com/joshmn/grape-kaminari
   revision: 5a7d7a8a6c01f3f8791ed3877aae0f3ed73cb915
   specs:
     grape-kaminari (0.1.9)
