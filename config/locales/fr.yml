@@ -534,6 +534,11 @@ fr:
       root: *root
     registrations:
       root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
   helpers:
     actions: "Actions"
     links:
