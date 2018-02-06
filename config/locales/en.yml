@@ -77,6 +77,9 @@ en:
   # Profile
   my_profile: 'My Profile'
 
+  # Locales
+  select_locale: "Change your Locale"
+
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on GitHub"
@@ -115,6 +118,8 @@ en:
   app_store: App Store
   search: Search
   internal_content: Internal Content
+  new_ticket: New Ticket
+  reports: Reports
 
   # Admin main/statuses
   support_pipeline: Support Pipeline
@@ -172,6 +177,7 @@ en:
   edit_user: Edit User
   work_phone: work
   cell_phone: cell
+  last_seen: "Last Seen"
 
   # Priorities
   select_priority: Select Priority
@@ -187,6 +193,19 @@ en:
   editor_role: Editor
   user_role: Customer
   add_more_agents: "Add more users"
+
+  # Groups
+  groups: "Groups"
+  add_new_group: "New Group"
+  group: "Group"
+  tag_group: ""
+  tag_name: "Group Name"
+  description: "Description"
+  color: "Color"
+  show_on_helpcenter: "Show on Helpcenter"
+  show_on_admin: "Show on Admin"
+  email_address: "Email Address"
+  from_name: "From Name"
 
   # Keyboard Shortcuts
   shortcut_then: "then"
@@ -313,11 +332,78 @@ en:
   notifications: "Notifications"
   settings: "Settings"
   general: "General"
+  general_description: "Manage general system settings like your Helpy name, what company to link back to."
   design: "Design"
+  design_description: "Control the logos and colors and other design aspects of your Helpy"
   international: "International"
+  international_description:
   widget: "Embeddable Widget"
+  widget_description:
   common_replies: "Common Replies"
+  common_replies_description:
   integrations: "Integrations"
+  integrations_description:
+  theme:
+  theme_description:
+  email: "Email"
+  email_description:
+  customers:
+  users_description:
+  team:
+  users_description:
+  team_group:
+  group_description:
+
+  # General
+  site_name:
+  site_url:
+  parent_site:
+  parent_company:
+  site_tagline:
+  enable_forums:
+  enable_knowledgebase:
+  enable_tickets:
+  enable_teams:
+  enable_welcome_email:
+
+  # Design
+  header_logo:
+  search_background:
+  top_bar:
+  link_color:
+  form_background:
+  still_need_help:
+
+  # Locales
+  supported_locales:
+  default_locale:
+
+  # Widget
+  show_widget:
+  widget_background:
+  button_color:
+  button_text_color:
+
+  # Integrations
+  enable_webhook_url:
+  enable_google_analytics:
+  enable_recaptcha:
+  recaptcha_site_key:
+  recaptcha_api_key:
+  enable_cloudinary:
+
+  # Email
+  mail_service:
+  send_email:
+  boolean_no:
+  boolean_yes:
+  admin_email:
+  from_email:
+  smtp_mail_username:
+  smtp_mail_password:
+  mail_smtp:
+  mail_port:
+  mail_domain:
 
   # API Key Managmeent
   api_keys: "API Keys"
@@ -330,6 +416,7 @@ en:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
+  activity_report:
   team_insights: "Team Insights"
   filter_by_date: "Filter by date"
   today: "Today"
@@ -354,7 +441,23 @@ en:
   replies: "Replies"
   median_time: "Median time to first response"
 
-
+  # IMPORT/EXPORT
+  import: 'Import CSV'
+  new_import: 'New Import'
+  export: 'Export CSV'
+  what_to_export: 'Select what you would like to export'
+  what_to_import: 'Select what you would like to import'
+  imports: 'Imports'
+  exports: 'Exports'
+  past_imports: 'Previous Imports'
+  run_time: 'Run Time'
+  clear_all: 'Remove All'
+  error_details: 'Error Details'
+  row_number: 'Row Number'
+  error_message: 'Error Message'
+  object: 'Object'
+  import_details: '#%{id} Import Details'
+  select_for_export: 'Export %{model} to .csv'
 
   activerecord:
     attributes:
@@ -369,10 +472,13 @@ en:
         city: City
         state: State
         signature: Signature
+        title:
+        time_zone:
       topic:
         name: Question
       post:
-        kind: Genre
+        kind: Type
+        body: Message
       category:
         name: Name
         icon: Icon
@@ -425,6 +531,8 @@ en:
     posts:
       root: *root
     result:
+      root: *root
+    registrations:
       root: *root
     admin:
       internal_categories:
