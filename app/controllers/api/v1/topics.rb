@@ -293,7 +293,7 @@ module API
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
           optional :channel, type: String, desc: "The source channel the ticket was created from. Defaults to API."
           optional :kind, type: String, desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc."
-          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: [ 'low', 'normal', 'high', 'very_high' ]
+          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: %w[low normal high very_high]
         end
 
         post "", root: :topics do
@@ -322,7 +322,7 @@ module API
           optional :current_status, type: String, desc: "The status of the topic (New, Open, Pending, Resolved)"
           optional :private, type: Boolean, desc: "Whether or not the topic is marked private"
           optional :assigned_user_id, type: Integer, desc: "The assigned agent for this topic"
-          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: [ 'low', 'normal', 'high', 'very_high' ]
+          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: %w[low normal high very_high]
         end
 
         patch ":id", root: :topics do

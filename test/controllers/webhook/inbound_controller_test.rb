@@ -5,25 +5,25 @@ class Webhook::InboundControllerTest < ActionController::TestCase
     set_default_settings
 
     @data = {
-        "message": {
-            "kind": "ticket",
-            "subject": "Need Help",
-            "body": "I need help with my purchase.",
-            "channel": "web",
-            "tags": "hello, hi",
-            "priority": "high"
-        },
-        "customer": {
-            "fullName": "Bob Doe",
-            "emailAddress": "bob@example.com",
-            "work_phone": "(555) 555-5555",
-            "home_phone": "(555) 555-5555",
-            "city": "Palo Alto",
-            "region": "CA",
-            "country": "United States",
-            "countryCode": "US",
-            "company": "Widgets Inc."
-        }
+      "message": {
+        "kind": "ticket",
+        "subject": "Need Help",
+        "body": "I need help with my purchase.",
+        "channel": "web",
+        "tags": "hello, hi",
+        "priority": "high"
+      },
+      "customer": {
+        "fullName": "Bob Doe",
+        "emailAddress": "bob@example.com",
+        "work_phone": "(555) 555-5555",
+        "home_phone": "(555) 555-5555",
+        "city": "Palo Alto",
+        "region": "CA",
+        "country": "United States",
+        "countryCode": "US",
+        "company": "Widgets Inc."
+      }
     }
   end
 

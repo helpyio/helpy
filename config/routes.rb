@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     #      omniauth_callbacks: "callbacks"
     #    }
 
-    match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+    match 'users/finish_signup' => 'users#finish_signup', via: %i[get patch], :as => :finish_signup
     devise_for :users, skip: [:omniauth_callbacks], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords', invitations: 'invitations' }
 
     as :user do
