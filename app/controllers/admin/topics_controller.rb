@@ -97,7 +97,8 @@ class Admin::TopicsController < Admin::BaseController
       private: true,
       team_list: params[:topic][:team_list],
       channel: params[:topic][:channel],
-      tag_list: params[:topic][:tag_list]
+      tag_list: params[:topic][:tag_list],
+      priority: params[:topic][:priority]
     )
 
     if @user.nil?
