@@ -130,4 +130,9 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
+  test 'an email with cc should create post containing same cc' do
+    email = build(:email_with_cc)
+    EmailProcessor.new(email).process
+    assert_equal(Post.last.cc, email[:cc].map{|e| e[:full]}.join(", "))
+  end
 end
