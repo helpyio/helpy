@@ -50,11 +50,11 @@ class ImportJob < ActiveJob::Base
     begin
       if object.blank?
         object = User.new
-        object.password = User.create_password
         object.sign_in_count = 0
       end
 
       object.attributes = obj_hash
+      object.password = User.create_password if object.password.nil?
 
       if object.save
         @@imported_ids << object.id
