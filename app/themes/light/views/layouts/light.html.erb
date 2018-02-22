@@ -39,7 +39,7 @@
 				    <div class="input-group">
 				      <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
 				      <div class="input-group-btn">
-				        <button type="submit" class="btn btn-default" aria-label="Search">
+				        <button type="submit" class="btn btn-default search-btn" aria-label="Search">
 				          <span class="glyphicon glyphicon-search"></span>
 				        </button>
 				      </div>
@@ -103,7 +103,16 @@
 $('#right-menu').sidr({
   name: 'nav',
   side: 'right',
-	source: '#menu'
+	source: '#menu',
+  onOpen: function(){
+    // Re-name font Icons to correct classnames
+    $("[class*='sidr-class-glyphicon'], [class*='sidr-class-btn']").attr('class',
+      function( i, c ) {
+        c = c.replace(/sidr-class-/g, '');
+        return c;
+      }
+    );
+  }
 });
 
 // Close menu on click
