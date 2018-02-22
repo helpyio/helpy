@@ -11,7 +11,7 @@
 				<li><%= link_to t('edit', default: "Edit"), edit_admin_post_path(post), remote: true %></li>
 				<li><%= link_to t('convert_content', default: 'Turn post into content'), new_admin_doc_path(post_id: post.id, lang: I18n.locale) %></li>
         <li><%= link_to t('new_discussion', default: 'Create new discussion from this'), admin_split_topic_path(topic_id: post.topic_id, post_id: post.id), method: :post, remote: true %></li>
-        <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{post.id}" } %></li>
+        <li><%= link_to t('change_owner', default: 'Change author'), '#', onclick: "openChangeUserModal(#{post.id})" %></li>
         <%= content_tag :li, link_to(t('Show Raw Email', default: 'Raw Email'), admin_post_raw_path(post), target: 'blank') if post.raw_email.present? %>
 			</ul>
 		</span>
@@ -28,28 +28,5 @@
       <%= render partial: 'posts/thumbnail', locals: { :model_name => post } %>
 			<%= render partial: 'posts/attachment', locals: { :model_name => post } %>
 		</div>
-
 	</div>
-
-  <div id="change-user-modal-<%= post.id %>" class="modal fade change-user-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title"><%= t('change_owner', default: 'Change author') %></h4>
-        </div>
-
-        <div class="modal-body row">
-          <div class="col-md-12">
-            <%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true, html: { class: 'search_form' } do |f| -%>
-              <%= hidden_field_tag 'post_id', post.id %>
-              <%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off, onkeyup: "search_user(#{post.id})" -%>
-            <% end -%>
-            <div class="search-results">
-            </div>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
 </div>
