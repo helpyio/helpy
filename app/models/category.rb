@@ -44,9 +44,7 @@ class Category < ActiveRecord::Base
   scope :internally, -> { where(visibility: INTERNAL_VIEWABLE) }
   scope :only_internally, -> { where(visibility: 'internal') }
   scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
-
-  before_destroy :non_deleteable?
-  after_commit :rebuild_search, only: :update, if: -> { active_changed? || visibility_changed? }
+  after_commit :rebuild_search, only: [:update, :destroy]
 
   include RankedModel
   ranks :rank
@@ -61,8 +59,8 @@ class Category < ActiveRecord::Base
     globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
   end
 
-  def non_deleteable?
-    name != "Common Replies"
+  def system_resource?
+    SYSTEM_RESOURCES.include?(name)
   end
 
   def publicly_viewable?
