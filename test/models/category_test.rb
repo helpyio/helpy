@@ -43,4 +43,32 @@ class CategoryTest < ActiveSupport::TestCase
     category = create :category, name: name
     assert_equal name.sentence_case, category.name
   end
+
+  test "deleting a category should remove all of its docs from search" do
+    seed
+    assert_difference 'PgSearch.multisearch("test doc").count', -2 do
+      @category.destroy!
+    end
+  end
+
+  test "marking a category inactive should remove all of its docs from search" do
+    seed
+    assert_difference 'PgSearch.multisearch("test doc").count', -2 do
+      @category.update(active: false)
+    end
+  end
+
+  test "marking a category internal should remove all of its docs from search" do
+    seed
+    assert_difference 'PgSearch.multisearch("test doc").count', -2 do
+      @category.update(visibility: 'internal')
+    end
+  end
+
+  def seed
+    @category = Category.create!(name: "test title", active: true, visibility: 'all')
+    Doc.create!(title: "test doc one", body: "some body text", category_id: @category.id)
+    Doc.create!(title: "test doc two", body: "some body text", category_id: @category.id)
+  end
+
 end
