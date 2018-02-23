@@ -77,21 +77,25 @@ module API
         end
 
         # CREATE A NEW PRIVATE TICKET
-        desc "Create a new ticket"
+        desc "Creates a new ticket." do
+          detail "You must provide a reference to the ticket creator
+          in one of two ways. Either with the `user_id` of an already instantiated user
+          object, or by supplying both an email address `user_email` along with a user name `user_name`."
+        end
         params do
           requires :name, type: String, desc: "The subject of the ticket"
           requires :body, type: String, desc: "The post body"
           optional :team_list, type: String, desc: "The group that this ticket is assigned to"
           optional :channel, type: String, desc: "The source channel the ticket was created from, Defaults to API if no value provided."
           optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
-          optional :user_id, type: Integer, desc: "the User ID. Required if user_email is not supplied."
-          optional :user_email, type: String, desc: "The user who is creating a ticket. Can be either registered or non-registered. Required if user_id not supplied."
-          optional :user_name, type: String, desc: "The user name for register a non-registered user. Required if user_email is not registered."
+          optional :user_id, type: Integer, desc: "the User ID. Required if `user_email` and `user_name` are not supplied."
+          optional :user_email, type: String, desc: "The user who is creating a ticket. Can be either registered or non-registered. Required if `user_id` not supplied."
+          optional :user_name, type: String, desc: "The user name for register a non-registered user. Required if `user_id` is not supplied."
           optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
         end
 
         post "", root: :topics do
-          error!('Required field not present. user_id or user_email is missing', 403) if params[:user_id].blank? && params[:user_email].blank?
+          error!('Required field not present. user_id or user_email and user_name is missing', 403) if params[:user_id].blank? && params[:user_email].blank?
 
           user_id = params[:user_id] # initialize user_id with nil or params[:user_id]
           if params[:user_email].present?
