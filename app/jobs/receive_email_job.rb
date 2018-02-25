@@ -1,7 +1,7 @@
 class ReceiveEmailJob < ActiveJob::Base
   queue_as :default
 
-  def perform(email, sitename, google_analytics_enabled, cloudinary_enabled, cloud_name, api_key, api_secret)
+  def perform(email, sitename, google_analytics_enabled, google_analytics_id, cloudinary_enabled, cloud_name, api_key, api_secret)
 
     # scan users DB for sender email
     @user = User.where("lower(email) = ?", email[:from][:email].downcase).first
@@ -10,23 +10,25 @@ class ReceiveEmailJob < ActiveJob::Base
     end
 
     # Initialize Google tracker
-    @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id']) if google_analytics_enabled
+    @tracker = Staccato.tracker(google_analytics_id) if google_analytics_enabled
 
     # Email attributes
     message = email[:body].nil? ? "" : email[:body]
     raw = email[:raw_text].nil? ? "" : email[:raw_text]
     subject = email[:subject]
     to = email[:to].first[:email]
+    cc = email[:cc] ? email[:cc].map { |e| e[:full] }.join(", ") : nil
     token = email[:to].first[:token]
     attachments = email[:attachments]
+    @number_of_attachments = attachments.present? ? attachments.size : 0
 
     # Split for different types of emails
     if subject.include?("[#{sitename}]") # this is a reply to an existing topic
-      create_reply(subject, raw, message, token, to, sitename)
+      create_reply(subject, raw, message, token, to, sitename, cc)
     elsif subject.include?("Fwd: ") # this is a forwarded message
-      create_forwarded_message(subject, raw, message, token, to)
+      create_forwarded_message(subject, raw, message, token, to, cc)
     else
-      create_new_topic(subject, raw, message, token, to)
+      create_new_topic(subject, raw, message, token, to, cc)
     end
 
     # Save attachments
@@ -57,7 +59,7 @@ class ReceiveEmailJob < ActiveJob::Base
     end
   end
 
-  def create_new_topic(subject, raw, message, token, to)
+  def create_new_topic(subject, raw, message, token, to, cc)
     topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
     # if @email.header['X-Helpy-Teams'].present?
     #   topic.team_list = @email.header['X-Helpy-Teams']
@@ -71,12 +73,13 @@ class ReceiveEmailJob < ActiveJob::Base
     end
 
     #insert post to new topic
-    # message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+    message = "-" if message.blank? && @number_of_attachments > 0
     @post = topic.posts.create(
       :body => message.encode('utf-8', invalid: :replace, replace: '?'),
       :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
       :user_id => @user.id,
-      :kind => "first"
+      :kind => "first",
+      :cc => cc
     )
 
     # Push array of attachments and send to Cloudinary
@@ -89,7 +92,7 @@ class ReceiveEmailJob < ActiveJob::Base
     end
   end
 
-  def create_forwarded_message(subject, raw, message, token, to)
+  def create_forwarded_message(subject, raw, message, token, to, cc)
     #clean message
     # message = MailExtract.new(message).body
 
@@ -101,12 +104,13 @@ class ReceiveEmailJob < ActiveJob::Base
     )
 
     #insert post to new topic
-    # message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+    message = "-" if message.blank? && @number_of_attachments > 0
     @post = topic.posts.create!(
       :body => raw.encode('utf-8', invalid: :replace, replace: '?'),
       :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
       :user_id => @user.id,
-      kind: 'first'
+      kind: 'first',
+      :cc => cc
     )
 
     # Push array of attachments and send to Cloudinary
@@ -120,18 +124,19 @@ class ReceiveEmailJob < ActiveJob::Base
 
   end
 
-  def create_reply(subject, raw, message, token, to, sitename)
+  def create_reply(subject, raw, message, token, to, sitename, cc)
     complete_subject = subject.split("[#{sitename}]")[1].strip
     ticket_number = complete_subject.split("-")[0].split("#")[1].strip
     topic = Topic.find(ticket_number)
 
     # insert post to new topic
-    # message = "Attachments:" if @email.attachments.present? && @email.body.blank?
+    message = "-" if message.blank? && @number_of_attachments > 0
     @post = topic.posts.create(
       :body => message.encode('utf-8', invalid: :replace, replace: '?'),
       :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
       :user_id => @user.id,
-      :kind => "reply"
+      :kind => "reply",
+      :cc => cc
     )
 
     # Push array of attachments and send to Cloudinary

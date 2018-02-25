@@ -151,4 +151,9 @@ blah blah blah
     end
   end
 
+  test 'an email with cc should create post containing same cc' do
+    email = FactoryGirl.build(:email_with_cc)
+    EmailProcessor.new(email).process
+    assert_equal(Post.last.cc, email[:cc].map{|e| e[:full]}.join(", "))
+  end
 end

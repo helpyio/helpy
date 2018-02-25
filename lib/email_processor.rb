@@ -8,15 +8,14 @@ class EmailProcessor
 
     # Create email JSON object to hand off to background job
     email = {
-                body: @email.body.encode('utf-8', invalid: :replace, replace: '?'),
-                raw_text: @email.raw_text.encode('utf-8', invalid: :replace, replace: '?'),
-                raw_html: @email.raw_html.encode('utf-8', invalid: :replace, replace: '?'),
+                body: encode_entity(@email.body),
+                raw_text: encode_entity(@email.raw_text),
+                raw_html: encode_entity(@email.raw_html),
                 from: @email.from,
                 subject: @email.subject,
                 to: @email.to,
                 cc: @email.cc
             }
-
     # Add attachments if their are any
     if @email.attachments.present?
       email[:attachments] = @email.attachments.map {|att| {
@@ -25,8 +24,16 @@ class EmailProcessor
           path: att.tempfile.path
           }}
     end
-    ReceiveEmailJob.perform_later(email, AppSettings["settings.site_name"],google_analytics_enabled?, cloudinary_enabled?, AppSettings['cloudinary.cloud_name'], AppSettings['cloudinary.api_key'], AppSettings['cloudinary.api_secret'])
+    ReceiveEmailJob.perform_later(email, AppSettings["settings.site_name"],google_analytics_enabled?, AppSettings['settings.google_analytics_id'], cloudinary_enabled?, AppSettings['cloudinary.cloud_name'], AppSettings['cloudinary.api_key'], AppSettings['cloudinary.api_secret'])
 
+  end
+
+  def encode_entity(entity)
+    if !entity.nil?
+      entity.encode('utf-8', invalid: :replace, replace: '?')
+    else
+      entity
+    end
   end
 
   def cloudinary_enabled?
