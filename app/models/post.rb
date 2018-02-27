@@ -125,6 +125,10 @@ class Post < ActiveRecord::Base
     self.importing || false
   end
 
+  def first?
+    self.topic.posts.first == self
+  end
+
   private
 
     def truncate_body
