@@ -10,60 +10,56 @@ class ResultControllerTest < ActionController::TestCase
     set_default_settings
   end
 
-  test "a browsing user searching for a doc should return a result" do
-
+  test "searching for a doc should return a result" do
     get(:index, { q: "article1 text", locale: :en })
     assert_not_nil assigns(:results)
     assert_equal(2, assigns(:results).total_count)
     assert_response :success
   end
 
-  test "a browsing user searching doc should not return a result if its active flag changed" do
+  test "asearching for a doc should not return a result if its marked inactive" do
     category = Category.create(name: "test title", active: true)
     Doc.create(title: "test doc one", body: "some body text", category_id: category.id)
     Doc.create(title: "test doc two", body: "some body text", category_id: category.id)
 
     # Verify presence in search
-    get(:index, { q: "test", locale: :en }) do
-      assert_equal(2, assigns(:results).total_count)
-    end
+    get(:index, { q: "test doc", locale: :en })
+    assert_equal(2, assigns(:results).total_count)
 
     # Now make the category inactive and expect zero results
     category.update(active: false)
 
-    get(:index, { q: "test", locale: :en }) do
-      assert_equal(0, assigns(:results).total_count)
-    end
+    get(:index, { q: "test doc", locale: :en })
+    assert_equal(0, assigns(:results).total_count)
     assert_response :success
   end
 
-  test "a browsing user searching doc should not return a result if its visibility changed" do
+  test "searching for a public doc should return a result" do
     category = Category.create(name: "test title", active: true, visibility: 'internal')
     Doc.create(title: "test doc one", body: "some body text", category_id: category.id)
     Doc.create(title: "test doc two", body: "some body text", category_id: category.id)
 
-    # Verify no results found
-    get(:index, { q: "test", locale: :en }) do
-      assert_equal(0, assigns(:results).total_count)
-    end
+    # Verify no results found when internal
+    get(:index, { q: "test doc one", locale: :en })
+    assert_equal(0, assigns(:results).total_count)
 
-    # Now make the category inactive and expect results
+    # Now make the category public and expect results
     category.update(visibility: 'public')
 
-    get(:index, { q: "test", locale: :en }) do
-      assert_equal(2, assigns(:results).total_count)
-    end
+    get(:index, { q: "test doc", locale: :en })
+    assert_equal(2, assigns(:results).total_count)
+
     assert_response :success
   end
 
-  test "a browsing user searching for something not in search should not return a result" do
+  test "searching for something not in search should not return a result" do
     get(:index, { q: "somethingnotinsearch", locale: :en })
     assert_not_nil assigns(:results)
     assert_equal(0, assigns(:results).total_count)
     assert_response :success
   end
 
-  test "a browsing user searching for a topic should return a result" do
+  test "searching for a topic should return a result" do
     get(:index, { q: "This is a public post", locale: :en })
     assert_not_nil assigns(:results)
     assert_operator assigns(:results).total_count, :>=, 1, "Did not find at least one result"
@@ -71,7 +67,7 @@ class ResultControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "a browsing user searching for a private topic should not return a result" do
+  test "searching for a private topic should not return a result" do
     get(:index, { q: "This is a private post", locale: :en })
     assert_not_nil assigns(:results)
     assert_equal(0, assigns(:results).total_count, "Found a result when searching for a private topic")

@@ -19,6 +19,7 @@ class NotificationMailer < ActionMailer::Base
     return if notifiable_users.count == 0
 
     @topic = Topic.find(topic_id)
+    @user = @topic.user
     @recipient = notifiable_users.first
     @bcc = notifiable_users.last(notifiable_users.count-1).collect {|u| u.email}
     mail(
