@@ -66,7 +66,7 @@ class Admin::PostsController < Admin::BaseController
     @posts = @topic.posts.chronologic
 
     if @post.update_attributes(post_params)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
       respond_to do |format|
         format.js {}
       end
@@ -116,7 +116,7 @@ class Admin::PostsController < Admin::BaseController
 
     # assign user
     if @user.save && @post.update(user: @user)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
     end
 
     # re render topic

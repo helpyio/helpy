@@ -117,12 +117,16 @@ class Post < ActiveRecord::Base
   end
 
   def email_locale
-    return I18n.locale if self.kind == 'first'
+    return I18n.locale if self.first?
     self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
   end
 
   def importing?
     self.importing || false
+  end
+
+  def first?
+    self.topic.posts.first == self
   end
 
   private
