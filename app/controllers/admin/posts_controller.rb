@@ -23,7 +23,7 @@ class Admin::PostsController < Admin::BaseController
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
     get_all_teams
-    
+
     respond_to do |format|
       if @post.save
         format.html {
@@ -139,6 +139,7 @@ class Admin::PostsController < Admin::BaseController
       :cc,
       :bcc,
       :user_id,
+      :active
     )
   end
 

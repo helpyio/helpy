@@ -66,7 +66,7 @@ class DocsController < ApplicationController
     if @doc.topic.present?
       @topic  = @doc.topic
       @post   = @topic.posts.new
-      @posts  = @topic.posts.ispublic.active.includes(:user) unless @topic.nil?
+      @posts  = @topic.posts.ispublic.chronologic.active.includes(:user) unless @topic.nil?
     else
       @topic  = Topic.new
       @post   = Post.new
