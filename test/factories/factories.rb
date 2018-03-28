@@ -113,6 +113,15 @@ FactoryGirl.define do
     body 'Hello!'
   end
 
+  factory :email_with_cc, class: OpenStruct do
+    to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
+    from({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' })
+    cc([{ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' }])
+    subject 'email subject'
+    header {}
+    body 'Hello!'
+  end
+
   factory :reply_to_closed_ticket, class: OpenStruct do
     to [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }]
     from({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' })
@@ -128,4 +137,13 @@ FactoryGirl.define do
     show_on_dashboard false
   end
 
+  factory :admin, class: User do
+    name "admin"
+    admin true
+    role 'admin'
+    email 'admin@admin.com'
+    password 'password'
+    account_number '123456'
+  end
+  
 end

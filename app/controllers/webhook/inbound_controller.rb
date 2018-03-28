@@ -44,6 +44,7 @@ class Webhook::InboundController < Webhook::BaseController
       channel: @params['message']['channel'],
       team_list: @params['message']['team'],
       tag_list: @params['message']['tags'],
+      priority: @params['message']['priority']
       )
       
     if @topic.create_topic_with_webhook_user(@params)

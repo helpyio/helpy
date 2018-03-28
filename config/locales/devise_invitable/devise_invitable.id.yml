@@ -1,0 +1,31 @@
+id:
+  devise:
+    failure:
+      invited: "Anda memiliki undangan, mohon diterima untuk menyelesaikan pembuatan akun Anda."
+    invitations:
+      send_instructions: "Email untuk sudah dikirim ke %{email}."
+      invitation_token_invalid: "Token undangan yang disediakan tidak sah!"
+      updated: "Password Anda berhasil diganti. Anda juga sudah login."
+      updated_not_active: "Password Anda saudah diganti."
+      no_invitations_remaining: "Tidak ada undangan lagi"
+      invitation_removed: "Undangan Anda sudah dihapus."
+      new:
+        header: "Kirim undangan"
+        submit_button: "Kirim undangan"
+      edit:
+        header: "Ganti password Anda"
+        submit_button: "Ganti password"
+    mailer:
+      invitation_instructions:
+        subject: "Anda mendapat udangan"
+        hello: "Halo %{email}"
+        someone_invited_you: "Anda diundang ke %{url}. Gunakan tautan berikut untuk mengaktifkan akun Anda."
+        accept: "Terima udangan"
+        accept_until: "Undangan ini akan berakhir pada %{due_date}."
+        ignore: "Jika Anda tidak ingin menerima udangan ini, abaikan saja.<br />Akun Anda tidak akan dibuat jika Anda tidak membuka tautan di atas dan membuat password."
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%d %b %Y %H:%M"
