@@ -1,10 +1,25 @@
 namespace :helpy do
-  desc "Run mailman"
+  desc "Run mailman, call with mail_interval=0 to run once"
   task :mailman => :environment do
 
+    interval = ENV['mail_interval'].to_i || 60
     require 'mailman'
-    # Mailman.config.poll_interval
+    Mailman.config.poll_interval = interval
 
+    configure_mailman
+
+    Mailman::Application.run do
+      default do
+        begin
+          EmailProcessor.new(message).process
+        rescue Exception => e
+          p e
+        end
+      end
+    end
+  end
+
+  def configure_mailman
     if AppSettings["email.mail_service"] == 'pop3'
       puts 'pop3 config found'
       pop3_port = AppSettings['email.pop3_port']
@@ -36,16 +51,6 @@ namespace :helpy do
         port: imap_port
       }
     end
-
-    Mailman::Application.run do
-      # to AppSettings["email.admin_email"] do
-      default do
-        begin
-          EmailProcessor.new(message).process
-        rescue Exception => e
-          p e
-        end
-      end
-    end
   end
+
 end

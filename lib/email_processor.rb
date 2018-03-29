@@ -16,7 +16,7 @@ class EmailProcessor
     # scan users DB for sender email
     @user = User.where("lower(email) = ?", get_email_from_mail.downcase).first
     if @user.nil?
-      create_user
+      create_user_from_email
     end
     sitename = AppSettings["settings.site_name"]
     message =  get_content_from_mail
@@ -145,7 +145,7 @@ class EmailProcessor
     AppSettings['settings.google_analytics_enabled'] == '1'
   end
 
-  def create_user
+  def create_user_from_email
     # create user
     @user = User.new
 
@@ -155,7 +155,7 @@ class EmailProcessor
 
 
     @user.email = get_email_from_mail
-    @user.name = get_name_from_mail.blank? ? get_token_from_mail : get_name_from_mail
+    @user.name = get_name_from_mail.blank? ? get_token_from_mail.gsub(/[^a-zA-Z]/, '') : get_name_from_mail
     @user.password = User.create_password
     if @user.save
       UserMailer.new_user(@user.id, @token).deliver_later
