@@ -11,16 +11,16 @@ class EmailProcessor
     # if the email presented is invalid and generates a 500.  Returns a 200
     # error as discussed on https://sendgrid.com/docs/API_Reference/Webhooks/parse.html
     # This error happened with invalid email addresses from PureChat
-    return if @email.from[:email].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
+    return if get_email_from_mail.match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
 
     # scan users DB for sender email
-    @user = User.where("lower(email) = ?", @email.from[:email].downcase).first
+    @user = User.where("lower(email) = ?", get_email_from_mail.downcase).first
     if @user.nil?
       create_user
     end
     sitename = AppSettings["settings.site_name"]
     message =  get_content_from_mail
-    raw = @email.raw_body.nil? ? "" : @email.raw_body
+    raw = raw_body_from_mail.nil? ? "" : raw_body_from_mail
     cc = @email.cc ? @email.cc.map { |e| e[:full] }.join(", ") : nil
 
     subject = @email.subject
@@ -80,14 +80,12 @@ class EmailProcessor
       end
     else # this is a new direct message
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
-      # if @email.header['X-Helpy-Teams'].present?
-      #   topic.team_list = @email.header['X-Helpy-Teams']
 
-      if @email.to[0][:token].include?("+")
-        topic.team_list.add(@email.to[0][:token].split('+')[1])
+      if get_to_from_mail.include?("+")
+        topic.team_list.add(get_to_from_mail.split('+')[1])
         topic.save
-      elsif @email.to[0][:token] != 'support'
-        topic.team_list.add(@email.to[0][:token])
+      elsif get_to_from_mail != 'support'
+        topic.team_list.add(get_to_from_mail)
         topic.save
       end
 
@@ -110,13 +108,16 @@ class EmailProcessor
         @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
       end
     end
-
-  # rescue
-  #   render status: 200
   end
 
   def encode_entity(entity)
-    !entity.nil? ? entity.encode('utf-8', invalid: :replace, replace: '?') : entity
+    return nil if entity.nil?
+    case entity.encoding.name
+    when "ASCII-8BIT"
+      entity.force_encoding("utf-8")
+    when "UTF-8"
+      entity.encode('utf-8', invalid: :replace, replace: '?')
+    end
   end
 
   def handle_attachments(email, post)
@@ -166,6 +167,10 @@ class EmailProcessor
     mail_is_mail ? @email[:from].addrs.first.display_name : @email.from[:name]
   end
 
+  def raw_body_from_mail
+    mail_is_mail ? @email.text_part.body.decoded : @email.raw_body
+  end
+
   def get_email_from_mail
     mail_is_mail ? @email[:from].addrs.first.address : @email.from[:email]
   end
@@ -173,6 +178,10 @@ class EmailProcessor
   def get_token_from_mail
     #this seems to only be there for griddler and co
     @email.from[:token]
+  end
+
+  def get_to_from_mail
+    mail_is_mail ? @email.to[0].split('@')[0] : @email.to[0][:token]
   end
 
   def get_content_from_mail

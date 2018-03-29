@@ -130,7 +130,7 @@ class ApplicationController < ActionController::Base
 
   def set_vars
     # Configure griddler, mailer, cloudinary, recaptcha
-    Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
+    set_griddler_service
 
     ActionMailer::Base.smtp_settings = {
         :address              => AppSettings["email.mail_smtp"],
@@ -162,6 +162,11 @@ class ApplicationController < ActionController::Base
     if AppSettings['email.mail_service'] == 'mailin'
       AppSettings['email.mail_service'] == ''
     end
+  end
+
+  def set_griddler_service
+    return if AppSettings["email.mail_service"].in?(["imap","pop3"])
+    Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
   end
 
   def to_boolean(str)
