@@ -94,9 +94,9 @@ class Admin::BaseController < ApplicationController
     when 'active'
       topics_raw = topics_raw.active
     when 'mine'
-      topics_raw = Topic.active.mine(current_user.id)
+      topics_raw = Topic.active.mine(current_user.id).chronologic
     when 'pending'
-      topics_raw = Topic.pending.mine(current_user.id)
+      topics_raw = Topic.pending.mine(current_user.id).chronologic
     else
       topics_raw = topics_raw.where(current_status: @status)
     end

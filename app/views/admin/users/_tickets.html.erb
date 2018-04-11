@@ -1,19 +1,20 @@
 <div id="user-info">
 </div>
+<div class="pull-right" style="margin-top: 15px;">
+  <span class="btn-group left-col-dropdown">
+    <%= link_to content_tag(:small, '', class: 'fa fa-ellipsis-v ticket-ellipsis btn'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }%>
+    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+      <li><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: false %></li>
+      <li><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: '' %></li>
+    </ul>
+  </span>
+</div>
 <%= content_tag :h3, class: 'view-header' do %>
-  <small><span class="fa fa-toggle-down btn show-ticket-menu hidden-lg hidden-md"></span></small>
+  <!-- <small><span class="fa fa-toggle-down btn show-ticket-menu hidden-lg hidden-md"></span></small> -->
   <%#=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
   <%= "#{t(:discussions, default: "Discussions")}: #{@user.name.titleize} " %>
-  <div class="pull-right">
-    <span class="btn-group left-col-dropdown">
-      <%= link_to content_tag(:span, '', class: 'fa fa-ellipsis-v ticket-ellipsis btn'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }%>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu">
-        <li><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: false %></li>
-        <li><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: 'btn btn-primary' %></li>
-      </ul>
-    </span>
-  </div>
 <% end %>
+
 <% if @topics.present? %>
 
 <table id="topics" class="forum table-hover">
