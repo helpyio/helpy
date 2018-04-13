@@ -330,9 +330,9 @@ en:
   to_reply: 'Reply to this message directly or online:'
 
   # Notifications settings panel
-  notify_on_private: "Email me when a new ticket has been received"
-  notify_on_public: "Email me when a public customer question has been posted"
-  notify_on_reply: "Email me when a new reply to a ticket has been received"
+  notify_on_private: "When a new ticket has been received"
+  notify_on_public: "When a public customer question has been posted"
+  notify_on_reply: "When a new reply to a ticket has been received"
 
   # settings
   agent_settings: "Agent Settings"

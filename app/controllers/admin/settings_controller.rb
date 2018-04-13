@@ -101,5 +101,4 @@ class Admin::SettingsController < Admin::BaseController
     end
   end
 
-
 end

@@ -53,7 +53,7 @@
       <%= f.text_area :signature, skip_label: true, rows: 10 %>
     </div>
     <% if current_user.is_admin? && @user.is_agent? || @user == current_user %>
-    <div class="user-section">
+    <div class="user-section user-notifications">
       <div class="tiny-header"><%= t(:notifications, default: "Notifications") %>:</div>
       <%= f.check_box 'notify_on_private', { checked: @user.notify_on_private?, label: t('notify_on_private', default: "Email me when a private customer question has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
       <%= f.check_box 'notify_on_public', { checked: @user.notify_on_public?, label: t('notify_on_public', default: "Email me when a public customer question has been posted"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
