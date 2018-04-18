@@ -1,4 +1,4 @@
-class NotificationMailer < ActionMailer::Base
+class NotificationMailer < ApplicationMailer
 
   def new_private(topic_id)
     new_notification(topic_id, User.notifiable_on_private)

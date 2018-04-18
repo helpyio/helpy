@@ -1,4 +1,4 @@
-class BackupMailer < ActionMailer::Base
+class BackupMailer < ApplicationMailer
 
   def notify_backup_complition(user, model_name)
   	@user = user

@@ -125,6 +125,10 @@ gem 'griddler-postmark'
 gem 'griddler-mailin'
 gem 'griddler-sparkpost'
 
+# html Email
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
+
 gem 'rails-timeago'
 
 gem 'devise_invitable', '~> 1.6'

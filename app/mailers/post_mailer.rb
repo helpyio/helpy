@@ -1,4 +1,5 @@
 class PostMailer < ActionMailer::Base
+
   add_template_helper(ApplicationHelper)
 
   def new_post(post_id)
