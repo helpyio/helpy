@@ -266,7 +266,7 @@ en:
   posted_note: "%{user_name} posted an internal note..."
   type_reply: Type your reply, or select from a common message below
   select_common: Select Common Reply
-  reply: Reply
+  reply_option: Reply
   internal_note: Internal Note
   mark_as_resolved: Mark as resolved
   upvote:

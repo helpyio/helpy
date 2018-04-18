@@ -39,7 +39,7 @@ module AdminHelper
               end
         val = []
         Doc.replies.with_translations(locale).all.each do |doc|
-            body = (strip_tags(doc.body)).gsub(/\'/, '&#39;')
+            body = ((doc.body))#.gsub(/\'/, '&#39;')
             val.push([doc.title, body])
         end
         grouped_options[key] = val

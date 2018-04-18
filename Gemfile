@@ -108,6 +108,7 @@ gem 'selectize-rails'
 gem "bootstrap-switch-rails"
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
+gem 'gemoji'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 

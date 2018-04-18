@@ -19,12 +19,11 @@
 
 class Post < ActiveRecord::Base
 
-  attr_accessor :reply_id
-
   # This is used to skip the callbacks when importing (ie. we don't want to send
   # emails to everyone while importing)
   attr_accessor :importing
   attr_accessor :resolved
+  attr_accessor :reply_id
 
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true

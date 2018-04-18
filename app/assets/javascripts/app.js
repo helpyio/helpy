@@ -236,16 +236,10 @@ Helpy.ready = function(){
 
   // Use or append common reply
   $('#post_reply_id').on('change', function(){
-    var post_body = $('#post_body');
     var common_reply = $('#post_reply_id option:selected');
 
-    // append new line if some text already exists
-    if( post_body.val() && common_reply.val() ) {
-      post_body.val(post_body.val() + "\n\n");
-    }
-
-    // add content of selected reply
-    post_body.val( post_body.val() + common_reply.val() );
+    // set value of summernote with existing value + common reply
+    $('#post_body').summernote('code', $('#post_body').summernote('code') + common_reply.val());
     $('.disableable').attr('disabled', false);
   });
 

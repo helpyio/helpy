@@ -197,6 +197,9 @@ GEM
     foundation_emails (2.2.1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    gemoji (3.0.0)
+    globalid (0.3.7)
+      activesupport (>= 4.1.0)
     globalize (5.0.1)
       activemodel (>= 4.2.0, < 4.3)
       activerecord (>= 4.2.0, < 4.3)
@@ -649,6 +652,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-sass
+  gemoji
   globalize-accessors
   globalize-versioning
   grape
