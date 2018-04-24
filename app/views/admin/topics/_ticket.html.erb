@@ -52,9 +52,10 @@
     <div class="add-form">
       <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>
 
-      <%= simple_form_for @topic.posts.new, url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
+      <%= simple_form_for @post, url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
 
+        <%= content_tag(:div, '', class: 'fa fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
         <div class="form-group">
         <%= collection_radio_buttons :post, :kind, [
             ['reply', t(:reply_option, default: "Reply")],
@@ -63,9 +64,7 @@
         <% end %>
         </div>
 
-        <%= content_tag(:span, '', class: 'fa fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
-
-        <span class="cc-bcc hidden">
+        <span class="cc-bcc <%= 'hidden' if @post.cc.blank? && @post.bcc.blank? %>">
         <%= f.input :cc, label: false, placeholder: 'cc:' %>
         <%= f.input :bcc, label: false, placeholder: 'bcc:' %>
         </span>
