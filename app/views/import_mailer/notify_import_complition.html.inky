@@ -1,8 +1,5 @@
 <container>
   <row>
-    <columns></columns>
-  </row>
-  <row>
     <columns class="callout panel">
       <spacer size="16"></spacer>
       <p>

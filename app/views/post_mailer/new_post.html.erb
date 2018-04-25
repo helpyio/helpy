@@ -10,29 +10,28 @@
     list-style: none;
   }
   </style>
-  <p>
+  <p style="color: #666;">
+    <small>
     <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
-    =================================================================<br/>
-    <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %></br>
+    </small>
   </p>
   <p>
-    <%= t('hello', user_name: @topic.user.login) %>,
+    <%= t('hello', user_name: @topic.user.name) if @topic.user.name.present? %>,
   </p>
-  <p>
-    <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
-  </p>
+
   <p>
     <%= simple_format(@post.body) %>
     <%= simple_format(@post.user.signature) if @post.user.signature.present? %>
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @post } %>
-  <p>
-    <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
-  </p>
+
   <br/>
-  <p>
+  <p style="color: #666;">
+    <small>
     <strong>Powered by Helpy</strong><br/>
-    Get a Free Helpy Support System for your Site at http://helpy.io/
+    Get a Free Helpy Support System for your Site at http://helpy.io/<br/>
+    <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
+    </small>
   </p>
   </body>
 </html>
