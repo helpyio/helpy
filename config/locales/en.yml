@@ -117,7 +117,7 @@ en:
   model_destroyed: "%{object_name} was deleted"
 
   # Admin menu
-  discussions: Tickets
+  discussions: Inbox
   content: Content
   communities: Communities
   app_store: App Store
@@ -129,7 +129,7 @@ en:
   # Admin main/statuses
   support_pipeline: Support Pipeline
   new: New
-  active: All Tickets
+  active: All
   open: Open
   mine: Mine
   pending: Pending
