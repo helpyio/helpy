@@ -33,4 +33,15 @@ module Admin::TopicsHelper
     end
   end
 
+  def agents_for_select
+    User.agents.all.map { |user| [user.name, user.id] }
+  end
+
+  def statuses_for_select
+    statuses = []
+    ['new','open','pending','closed'].each do |s|
+      statuses << ["#{t(s)}", s]
+    end
+  end
+
 end

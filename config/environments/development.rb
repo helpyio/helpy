@@ -54,6 +54,8 @@ Rails.application.configure do
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
+  config.active_job.queue_adapter = :inline
+
   config.after_initialize do
     # Bullet Configuration / https://github.com/flyerhzm/bullet
     Bullet.enable = true

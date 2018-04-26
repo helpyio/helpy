@@ -45,21 +45,22 @@ class Admin::TopicsController < Admin::BaseController
     get_tickets_by_status
     @topic = Topic.where(id: params[:id]).first
 
-    check_current_user_is_allowed? @topic
-    # REVIEW: Try not opening message on view unless assigned
-    # if @topic.current_status == 'new' && @topic.assigned?
-    #   tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
-    #   @topic.open
-    # end
-    get_all_teams
-    @posts = @topic.posts.chronologic.includes(:user)
-    @post = @topic.posts.new(
-      cc: @topic.posts.chronologic.last.cc,
-      bcc: @topic.posts.chronologic.last.bcc
-    )
-    tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
-    fetch_counts
-    @include_tickets = false
+    if check_current_user_is_allowed? @topic
+      # REVIEW: Try not opening message on view unless assigned
+      # if @topic.current_status == 'new' && @topic.assigned?
+      #   tracker("Agent: #{current_user.name}", "Opened Ticket", @topic.to_param, @topic.id)
+      #   @topic.open
+      # end
+      get_all_teams
+      @posts = @topic.posts.chronologic.includes(:user)
+      new_topic_post
+      tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
+      fetch_counts
+      @include_tickets = false
+    else
+      @post = @topic.posts.new
+      render status: :forbidden
+    end
   end
 
   def new
@@ -69,11 +70,18 @@ class Admin::TopicsController < Admin::BaseController
     @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
 
-  # TODO: Still need to refactor this method and the update methods into one
   def create
     @page_title = t(:start_discussion, default: "Start a New Discussion")
     @title_tag = "#{AppSettings['settings.site_name']}: #{@page_title}"
 
+    if params[:topic][:kind] == 'internal'
+      create_internal_ticket
+    else
+      create_customer_conversation
+    end
+  end
+
+  def create_customer_conversation
     @forum = Forum.find(1)
     @user = User.where("lower(email) = ?", params[:topic][:user][:email].downcase).first
 
@@ -83,24 +91,12 @@ class Admin::TopicsController < Admin::BaseController
       team_list: params[:topic][:team_list],
       channel: params[:topic][:channel],
       tag_list: params[:topic][:tag_list],
-      priority: params[:topic][:priority]
+      priority: params[:topic][:priority],
+      current_status: params[:topic][:current_status],
+      assigned_user_id: params[:topic][:assigned_user_id]
     )
-
     if @user.nil?
-
-      @token, enc = Devise.token_generator.generate(User, :reset_password_token)
-
-      @user = @topic.build_user
-      @user.reset_password_token = enc
-      @user.reset_password_sent_at = Time.now.utc
-
-      @user.name = params[:topic][:user][:name]
-      @user.login = params[:topic][:user][:email].split("@")[0]
-      @user.email = params[:topic][:user][:email]
-      @user.home_phone = params[:topic][:user][:home_phone]
-      @user.password = User.create_password
-
-      @user.save
+      create_ticket_user
     else
       @topic.user_id = @user.id
     end
@@ -113,11 +109,16 @@ class Admin::TopicsController < Admin::BaseController
           user_id: @user.id,
           kind: 'first',
           screenshots: params[:topic][:screenshots],
-          attachments: params[:topic][:post][:attachments]
+          attachments: params[:topic][:post][:attachments],
+          cc: params[:topic][:post][:cc],
+          bcc: params[:topic][:post][:bcc]
         )
 
-        # Send email
+        # Send welcome email
         UserMailer.new_user(@user.id, @token).deliver_later
+
+        # Send copy of message to user if selected
+        TopicMailer.new_ticket(@topic.id).deliver_later if params[:topic][:email_new_ticket] == "1"
 
         # track event in GA
         tracker('Request', 'Post', 'New Topic')
@@ -139,6 +140,78 @@ class Admin::TopicsController < Admin::BaseController
         }
       end
     end
+
+  end
+
+
+  # Internal ticket is created by the agent.  Does not send messages to customer
+  def create_internal_ticket
+    @forum = Forum.find(1)
+    @user = current_user
+
+    @topic = @forum.topics.new(
+      name: params[:topic][:name],
+      private: true,
+      team_list: params[:topic][:team_list],
+      channel: params[:topic][:channel],
+      tag_list: params[:topic][:tag_list],
+      priority: params[:topic][:priority],
+      current_status: params[:topic][:current_status],
+      assigned_user_id: params[:topic][:assigned_user_id],
+      kind: 'internal'
+    )
+    @topic.user_id = @user.id
+
+    fetch_counts
+    respond_to do |format|
+      if (@user.save || !@user.nil?) && @topic.save
+        @post = @topic.posts.create(
+          body: params[:topic][:post][:body],
+          user_id: @user.id,
+          kind: 'first',
+          screenshots: params[:topic][:screenshots],
+          attachments: params[:topic][:post][:attachments]
+        )
+
+        # track event in GA
+        tracker('Request', 'Post', 'New Internal Topic')
+        tracker('Agent: Unassigned', 'New', @topic.to_param)
+
+        # Now that we are rendering show, get the posts (just one)
+        # TODO probably can refactor this
+        @posts = @topic.posts.chronologic.includes(:user)
+        format.js {
+          render action: 'show', id: @topic
+
+        }
+        format.html {
+          render action: 'show', id: @topic
+        }
+      else
+        format.html {
+          render action: 'new'
+        }
+      end
+    end
+
+
+  end
+
+  def create_ticket_user
+    @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+
+    @user = @topic.build_user
+    @user.reset_password_token = enc
+    @user.reset_password_sent_at = Time.now.utc
+
+    @user.name = params[:topic][:user][:name]
+    @user.login = params[:topic][:user][:email].split("@")[0]
+    @user.email = params[:topic][:user][:email]
+    @user.home_phone = params[:topic][:user][:home_phone]
+    @user.password = User.create_password
+
+    @user.save
+
   end
 
   # Updates discussion status
@@ -186,6 +259,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
+    new_topic_post
     respond_to do |format|
       format.js {
         if params[:topic_ids].count > 1
@@ -230,6 +304,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
+    new_topic_post
 
     flash[:notice] = I18n.t(:assigned_message, assigned_to: assigned_user.name)
 
@@ -276,6 +351,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
+    new_topic_post
 
     # respond_to do |format|
     #   format.js {
@@ -314,6 +390,7 @@ class Admin::TopicsController < Admin::BaseController
       fetch_counts
       get_all_teams
       get_tickets_by_status
+      new_topic_post
 
       @topic.posts.create(
         body: t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list),
@@ -363,6 +440,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
+    new_topic_post
 
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
@@ -393,6 +471,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
+    new_topic_post
 
     render 'update_ticket', id: @topic.id
   end
@@ -431,6 +510,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
+    new_topic_post
 
     respond_to do |format|
       format.html { redirect_to admin_topic_path(@topic) }
@@ -444,6 +524,7 @@ class Admin::TopicsController < Admin::BaseController
     @posts = @topic.posts.chronologic
     fetch_counts
     get_all_teams
+    new_topic_post
 
     respond_to do |format|
       format.js { render 'show', id: @topic }
@@ -487,5 +568,17 @@ class Admin::TopicsController < Admin::BaseController
       :name,
       :tag_list
     )
+  end
+
+  def new_topic_post
+    return if @topic.nil?
+    if @topic.posts.blank?
+      @post = @topic.posts.new
+    else
+      @post = @topic.posts.new(
+        cc: @topic.posts.chronologic.last.cc,
+        bcc: @topic.posts.chronologic.last.bcc
+      )
+    end
   end
 end

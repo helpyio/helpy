@@ -8,6 +8,8 @@ class PostMailer < ActionMailer::Base
 
     # Do not send to temp email addresses
     return if @topic.user.email.split("@")[0] == "change"
+    # Do not send if internal
+    return if @topic.kind == 'internal'
 
     email_with_name = %("#{@topic.user_name}" <#{@topic.user.email}>)
     @post.attachments.each do |att|
