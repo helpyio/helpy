@@ -2,15 +2,25 @@ class Admin::BaseController < ApplicationController
 
   layout 'admin'
   before_action :authenticate_user!
-  helper_method :show_onboarding?
 
-  # Here we are just checking if the onboarding should be shown, based on the
-  # current admin username.
-  def show_onboarding?
-    User.first.email == 'admin@test.com' && current_user.email == 'admin@test.com' && current_user.is_admin?
-  end
+
 
   protected
+
+  # These 3 methods provide feature authorization for admins. Editor is the most restricted,
+  # agent is next and admin has access to everything:
+
+  def verify_editor
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
+  end
+
+  def verify_agent
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
+  end
+
+  def verify_admin
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
+  end
 
   def remote_search
     @remote_search = true
@@ -35,6 +45,24 @@ class Admin::BaseController < ApplicationController
     else
       @end_date = Time.zone.today.at_end_of_day
     end
+  end
+
+  def fetch_counts
+    if current_user.is_restricted? && teams?
+      topics = Topic.tagged_with(current_user.team_list, :any => true)
+      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
+    else
+      topics = Topic.all
+      @admins = User.agents.includes(:topics)
+    end
+    @new = topics.unread.count
+    @unread = topics.unread.count
+    @pending = Topic.mine(current_user.id).pending.count
+    @open = topics.open.count
+    @active = topics.active.count
+    @mine = Topic.mine(current_user.id).count
+    @closed = topics.closed.count
+    @spam = topics.spam.count
   end
 
 end

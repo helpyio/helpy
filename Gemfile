@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.10'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 
 # Explicitly include Nokogiri to control version
-gem 'nokogiri', '>= 1.6.8'
+gem 'nokogiri', '>= 1.8.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -31,9 +31,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# Trix is the wysiwyg editor
-gem 'trix'
+# Summernote is the wysiwyg editor
 gem 'jquery-minicolors-rails'
+gem 'summernote-rails'
+gem 'codemirror-rails'
 
 # Ranked model gives the ability to rank articles and categories
 gem 'ranked-model'
@@ -43,6 +44,10 @@ gem 'staccato'
 
 gem "rails-settings-cached", '~> 0.5'
 gem 'sucker_punch', '~> 2.0'
+
+# Charting
+gem "groupdate"
+gem "chartkick"
 
 # Auth Gems
 gem 'devise'
@@ -102,6 +107,7 @@ gem 'rdiscount'
 gem 'selectize-rails'
 gem "bootstrap-switch-rails"
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-select-rails'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
@@ -141,6 +147,9 @@ gem "recaptcha", require: "recaptcha/rails"
 
 gem 'best_in_place', '~> 3.0.1'
 
+# Add onboarding component
+gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
@@ -156,10 +165,10 @@ group :development, :test do
 end
 
 gem 'bulk_insert'
+gem 'roo'
 
 group :development do
   gem "better_errors"
-  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
@@ -189,4 +198,4 @@ group :production do
   gem 'unicorn'
 end
 
-ruby "2.2.1"
+ruby '>= 2.2', '< 3.0'

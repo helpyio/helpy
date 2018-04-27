@@ -113,6 +113,10 @@ i.circle-icon {
     margin-bottom: 20px;
   }
 
+  i.main-icon {
+    font-size: 24px;
+  }
+
   .article-icon {
     margin-bottom: 20px;
   }
@@ -130,6 +134,10 @@ i.circle-icon {
     font-size: 34px;
     padding: 25px;
     margin-bottom: 20px;
+  }
+
+  .main-icon {
+    font-size: 34px;
   }
 
   .article-icon {
@@ -153,6 +161,9 @@ i.circle-icon {
     padding: 25px;
     margin-bottom: 20px;
   }
+  i.main-icon {
+    font-size: 34px;
+  }
 }
 
 @media(min-width:1200px){
@@ -170,6 +181,9 @@ i.circle-icon {
     font-size: 44px;
     padding: 30px;
     margin-bottom: 20px;
+  }
+  i.main-icon {
+    font-size: 44px;
   }
 }
 
@@ -666,6 +680,14 @@ header {
   margin-top: 20px;
 }
 
+.search-btn {
+  width: 100%;
+
+  span {
+    color: #333 !important;
+  }
+}
+
 .nav {
   padding-top: 30px;
 
@@ -1095,4 +1117,16 @@ h4.qna {
 	    padding-top: 10px;
 	    max-height: 100px;
 	}
+}
+
+.bo-kb-section {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.main-option-container {
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
 }

@@ -94,8 +94,10 @@ class User < ActiveRecord::Base
   has_many :topics, dependent: :delete_all
   has_many :posts, dependent: :delete_all
   has_many :votes, dependent: :delete_all
-  has_many :docs, dependent: :delete_all
+  has_many :docs
+  has_many :backups
   has_many :api_keys, dependent: :delete_all
+  
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
@@ -109,12 +111,12 @@ class User < ActiveRecord::Base
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
-  scope :active, -> { where('active = ?', true)}
+  scope :team, -> { where('admin = ? OR role = ? OR role = ? OR role = ?',true,'admin','agent','editor').order('name asc') }
+  scope :active, -> { where(active: true)}
+  scope :by_role, -> (role) { where(role: role) }
 
   def set_role_on_invitation_accept
-    if self.role.nil?
-      self.role = "agent"
-    end
+    self.role = self.role.presence || "agent"
     self.active = true
     self.save
   end
@@ -128,15 +130,15 @@ class User < ActiveRecord::Base
   end
 
   def self.notifiable_on_public
-    User.agents.where(notify_on_public: true).reorder('id asc')
+    agents.where(notify_on_public: true).reorder('id asc')
   end
 
   def self.notifiable_on_private
-    User.agents.where(notify_on_private: true).reorder('id asc')
+    agents.where(notify_on_private: true).reorder('id asc')
   end
 
   def self.notifiable_on_reply
-    User.agents.where(notify_on_reply: true).reorder('id asc')
+    agents.where(notify_on_reply: true).reorder('id asc')
   end
 
   def active_assigned_count
@@ -168,11 +170,17 @@ class User < ActiveRecord::Base
         u.save!
       end
     else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
-        u.provider = auth.provider
-        u.uid = auth.uid
+      # NOTE: this stopped working with the test, not sure why. Replaced with
+      # find_or_create_by and everything passed again:
+
+      # where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+      # it turns out that is not part of the public rails api, despite being
+      # used in the wild. https://github.com/rails/rails/issues/23495
+
+      find_or_create_by(provider: auth.provider, uid: auth.uid) do |u|
         u.email = auth.info.email.present? ? auth.info.email : u.temp_email(auth)
-        u.name = auth.info.name
+        u.name = auth.info.name.present? ? auth.info.name : "Name Missing"
+        u.role = 'user'
         u.thumbnail = auth.info.image
         u.password = Devise.friendly_token[0,20]
       end
@@ -197,6 +205,10 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  # evaluates to true if they are a priority (high/vip) user
+  def priority?
+    self.priority == 'high' || self.priority == 'vip'
+  end
 
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
   # and changing it could be painful for upgrading installed users. These are three
@@ -234,6 +246,39 @@ class User < ActiveRecord::Base
   #when using deliver_later attr_accessor :message becomes nil on mailer view
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  # check if user is active or not
+  def active_for_authentication?
+    super && self.active?
+  end
+
+  # message to the user that is not allowed to login
+  def inactive_message
+    "You are not allowed to log in!"
+  end
+
+  def self.register email, user_name
+    # this method is very similar to email_processor#create_user
+    # actually it was copyied from there.
+    # it should create an issue to properly refactor and
+    # preserve the DRY principle.
+
+    # create user
+    usr = User.new
+
+    token, enc = Devise.token_generator.generate(User, :reset_password_token)
+    usr.reset_password_token = enc
+    usr.reset_password_sent_at = Time.now.utc
+
+    usr.email = email
+    usr.name = user_name
+    usr.password = User.create_password
+    if usr.save
+      UserMailer.new_user(usr.id, token).deliver_later
+    end
+
+    usr
   end
 
   private

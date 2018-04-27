@@ -15,6 +15,7 @@
 #  section          :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  visibility       :string           default("all")
 #
 
 class CategoriesController < ApplicationController
@@ -25,13 +26,13 @@ class CategoriesController < ApplicationController
   theme :theme_chosen
 
   def index
-    @categories = Category.viewable.active.ordered.with_translations(I18n.locale)
+    @categories = Category.publicly.active.ordered.with_translations(I18n.locale)
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
     add_breadcrumb @page_title, categories_path
   end
 
   def show
-    @category = Category.viewable.active.where(id: params[:id]).first
+    @category = Category.publicly.active.where(id: params[:id]).first
     if @category
       if I18n.available_locales.count > 1
         @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
@@ -39,7 +40,7 @@ class CategoriesController < ApplicationController
         @docs = @category.docs.ordered.active.page params[:page]
       end
 
-      @categories = Category.viewable.active.ordered.with_translations(I18n.locale)
+      @categories = Category.publicly.active.ordered.with_translations(I18n.locale)
       @related = Doc.in_category(@doc.category_id) if @doc
 
       @page_title = @category.name

@@ -1,38 +1,38 @@
-# TRANSLATOR(s): Martin Letellier
+# TRANSLATOR(s): Martin Letellier, Jean-Baptiste Alleaume
 
 fr:
   language_name: "Français"
   root: &root "Accueil"
   how_can_we_help: "Comment pouvons-nous aider?"
   browse_topics: "Parcourir"
-  support_team: "équipe De Support"
-  nothing_here: "Rien ici encore!"
+  support_team: "Equipe Support"
+  nothing_here: "Rien à voir ici !"
 
   # Navigation
   knowledgebase: "Base de connaissances"
   community: "Communauté"
   ask_a_question: "Poser une question"
-  home: *root
+  home: "Accueil"
   login: "Connexion"
   logout: "Déconnexion"
   register: "S'inscrire"
   back_to: "Retour à"
   welcome_back: "Bienvenue à nouveau %{username}"
-  your_profile: "Votre Profile"
-  your_tickets: "Vos billets"
+  your_profile: "Votre profil"
+  your_tickets: "Vos tickets"
   locale: "Langue"
   change_your_locale: "Changez votre langue"
 
   # Voting widget
-  did_this_help: "Cela at-il aidé à résoudre votre problème?"
+  did_this_help: "Cela vous a-t-il aidé à résoudre votre problème ?"
   yes_button: 'Oui'
   no_button: 'Non'
-  # yes_helped: 'Great! Thanks for the feedback!'
-  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  yes_helped: 'Très bien ! Merci de votre retour !'
+  no_helped: "Nous sommes désolés. Contactez-nous pour plus d'aide !"
 
   # Search
-  search_placeholder: "Entrez un mot-clé, sujet ou une question"
-  no_results: "Aucun résultat, se il vous plaît essayer de nouveau votre recherche!"
+  search_placeholder: "Entrez un mot-clé, un sujet ou une question"
+  no_results: "Aucun résultat, veuillez essayer avec une recherche différente."
   results_found:
     one: "%{count} résultat trouvé pour votre recherche "
     other: "%{count} résultats trouvés pour votre recherche "
@@ -40,7 +40,7 @@ fr:
   # Community
   forum_name: "Sujet"
   subject: "Sujet"
-  last_activity: "Dernière Activité"
+  last_activity: "Dernière activité"
   topic: "Discussion"
   replies: "Réponses"
   last_post: "Dernier sujet"
@@ -51,7 +51,7 @@ fr:
   start_discussion: "Démarrer une nouvelle discussion"
   submit_start_discussion: "Lancer la discussion "
   should_message_be_private: "Ce message est-il privé?"
-  only_support_can_respond: "Seul le support peut répondre (crée un billet privé)"
+  only_support_can_respond: "Seul le support peut répondre (crée un ticket privé)"
   responses_can_come_from_everyone: "Les réponses peuvent venir du support ou de la communauté (recommandé)"
   collapsed_messages:
       one: "1 message caché"
@@ -61,43 +61,46 @@ fr:
   # Knowledgebase
   written_by: "écrit par"
   last_edited: "Dernière mise à jour"
-  asked_before: "Est-ce que votre question répondu avant? Nous pensons que ceux-ci peuvent être similaires"
+  asked_before: "Est-ce que votre question a déjà été posée ? Nous pensons que celles-ci peuvent être similaires"
 
   # Tickets
-  tickets: "Billets"
-  no_tickets: "Vous n'avez pas encore créé de billets"
-  ticket_number: "Numéro de billet"
+  tickets: "Tickets"
+  no_tickets: "Vous n'avez pas encore créé de tickets"
+  ticket_number: "Numéro de ticket"
   assigned_to_label: "Assigné à"
   created_on: "Créé"
 
   # Get Help
-  get_help_header: "Encore besoin d'aide?"
+  get_help_header: "Encore besoin d'aide ?"
   get_help_button: "Lancer une discussion avec nous"
 
   # Profile
   my_profile: 'Mon profil'
 
+  # Locales
+  select_locale: "Choisissez votre langue"
+
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on GitHub"
-  # version: "Version:"
+  powered_by: "Propulsé par Helpy. Un logiciel d'assistance Open Source."
+  get_your_copy: "Clonez ce projet sur GitHub"
+  version: "Version :"
 
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: "Marquer pour Relecture"
+  flag_post_for_review: "Marquer le post pour Relecture"
+  flag_post_placeholder: "Décrivez les raisons de votre marquage"
+  flag: "Marquer"
 
   # devise/sessions/new
   login: Connexion
 
   # devise/shared/links
-  forgot_password: Mot de passe oublié?
+  forgot_password: Mot de passe oublié ?
 
   # devise/passwords/new
-  send_instructions: Envoyer les instrctions
+  send_instructions: Envoyer les instructions
 
-  # devise/passwords/edit
+  # devise/passwords/editx
   change_password: Changer de mot de passe
   new_password: Nouveau mot de passe
   new_password_confirmation: Confirmer le nouveau mot de passe
@@ -114,62 +117,127 @@ fr:
   communities: "Communautés"
   app_store: App Store
   search: Recherche
+  internal_content: Contenu interne
+  new_ticket: Nouveau ticket
+  reports: Rapports
 
   # Admin main/statuses
-  support_pipeline: Funnel Support
+  support_pipeline: Pipeline de support
   new: Nouveaux
   active: Actifs
   open: Ouverts
-  mine: Miens
+  mine: Mes tickets
   pending: En attente
   closed: Résolus
   spam: Spam
-  trash: Poubelle
+  trash: Corbeille
   discussion_management: Gestion de Discussion
   open_new_discussion: Nouvelle Discussion
   assigned_to: "assigné à %{agent}"
   unassigned: Non assigné
-  private: confidentiel
+  no_team_assigned: Assigner à un groupe
+  assign_to: Groupe/Équipe
+  unassign_from_team: Désassigner du groupe
+  private: privé
   public: public
-  save_changes: Enregistrez les modifications
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  save_changes: Enregistrer les modifications
+  merge: Fusionner
+  merge_confirm: Etes vous sûr de vouloir fusionner ces tickets?
 
   # Multiple Discussion controls
-  change_status: Changer le Statut
+  change_status: Changer le statut
   status: Statut
-  mark_closed: Marquer Résolu
-  reopen: Rouvrir
-  mark_spam: Marquer Spam
-  mark_new: Marquer Nouveau
-  assign_agent: Assigner l'Agent
+  mark_closed: Marquer comme résolu
+  reopen: Réouvrir
+  mark_spam: Marquer comme Spam
+  mark_new: Marquer comme Nouveau
+  assign_agent: Assigner un Agent
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 message sélectionné"
     two: "2 messages sélectionnés"
     other: "%{count} messages sélectionnés"
 
   # Discussion messages
-  reopen_message: "Ce message a été rouvert par le support."
+  reopen_message: "Ce message a été réouvert par le support."
   closed_message: "Ce message a été fermé par le support."
-  trash_message: "Ce billet a été supprimé."
+  trash_message: "Ce ticket a été supprimé."
   assigned_message: "Cette discussion a été transférée à %{assigned_to}."
+  assigned_group: "Ce ticket a été assigné au groupe %{assigned_group}."
+  converted_to_ticket: "Cette discussion a été convertie en ticket privé."
+  converted_to_topic: "Ce ticket a été converti en discussion publique et déplacé dans %{forum_name}."
+  tagged_with: "Ce ticket a été taggé avec %{tagged_with}"
+  notes_hidden: "Il y a %{hidden_notes} notes internes pour ce ticket. Vous pouvez les voir en cliquant n'importe où dans cette note!"
 
   # User Admin
-  # users: Users
-  # account: Account
+  users: Utilisateurs
+  account: Compte
   contact_info: Informations de contact
   social_info: Réseaux sociaux
-  edit_user:
-#  delete_user: Delete User
+  edit_user: Modifier l'utilisateur
   work_phone: téléphone professionnel
   cell_phone: portable
+  last_seen: "Dernière activité :"
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: Choisir une priorité
+  vip_priority: Important
+  high_priority: Elevé
+  normal_priority: Normal
+  low_priority: Bas
+
+  # Roles
+  select_role: Sélectionner un rôle
+  admin_role: Admin
+  agent_role: Agent
+  editor_role: Editeur
+  user_role: Client
+  add_more_agents: "Ajouter d'autres utilisateurs"
+
+  # Groups
+  groups: "Groupes"
+  add_new_group: "Nouveau groupe"
+  group: "Groupe"
+  tag_group: ""
+  tag_name: "Nom du groupe"
+  description: "Description"
+  color: "Couleur"
+  show_on_helpcenter: "Afficher sur le Helpcenter"
+  show_on_admin: "Afficher dans l'admin"
+  email_address: "Adresse email"
+  from_name: "Nom de l'expéditeur"
+
+  # Keyboard Shortcuts
+  shortcut_then: "puis"
+  listing_views: "Liste des vues"
+  keyboard_shortcuts: "Raccourcis clavier"
+  show_new_tickets: "Voir nouveaux tickets"
+  show_all_tickets: "Voir tous les tickets"
+  show_open_tickets: "Voir tickets ouverts"
+  show_tickets_assigned_to_you: "Voir tickets assignés"
+  show_pending_tickets_assigned_to_you: "Voir tickets en cours"
+  show_closed_tickets: "Voir tickets fermés"
+  search_for_tickets: "Recherche de tickets"
+  viewing_tickets: "Voir tickets"
+  select_previous_ticket: "Voir ticket précédent"
+  select_next_ticket: "Voir ticket suivant"
+  view_selected_ticket: "Voir ticket sélectionné"
+  jump_to_a_specific_ticket_number: "Aller à un numéro de ticket spécifique"
+  ticket_actions: "Actions de ticket"
+  assign_the_ticket: "Assigner ticket"
+  move_the_ticket: "Déplacer ticket"
+  expand_the_ticket_thread: "Développer la discussion"
+  reply_to_the_ticket: "Répondre au ticket"
+  add_an_internal_note: "Ajouter une note interne"
+  change_ticket_status: "Changer statut ticket"
+  associate_with_a_group: "Associer au groupe"
+  ticket_status: "Statut ticket"
+  mark_resolved: "Marquer comme résolu"
+  reopen_ticket: "Réouvrir ticket"
+  set_to_new: "Marquer comme nouveau"
+  mark_as_spam: "Marquer comme spam"
+  move_to_trash: "Déplacer à la corbeille"
+  ticket_number: "numéro de ticket"
 
   # User search results
   users_found:
@@ -177,13 +245,13 @@ fr:
     other: "%{count} utilisateurs nommés %{query} ont été trouvés"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
-  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
-  # invite_message: "Message"
-  # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_users: "Inviter de nouveaux utilisateurs"
+  invite_emails: "Adresses email"
+  invite_emails_placeholder: "Tapez une ou plusieurs adresses email à qui envoyer une invitation"
+  invite_message: "Message"
+  invite_message_placeholder: "Un message optionnel qui sera envoyé aux nouveaux utilisateurs"
+  invite_role: "Rôle des utilisateurs invités"
+  send_invite: "Envoyer invitation"
 
   # Discussion View
   asked_a_question: "%{user_name} a posé une question..."
@@ -192,17 +260,17 @@ fr:
   type_reply: "Saisissez votre réponse, ou sélectionnez une réponse type ci-dessous"
   select_common: Sélectionner une réponse type
   reply: Réponse
-  internal_note: Note Interne
-  # mark_as_resolved: Mark as resolved
+  internal_note: Note interne
+  mark_as_resolved: Marquer comme résolu
   upvote:
     one: "Vote | %{count}"
     other: "Votes | %{count}"
 
   # Content
-  new_category: Nouvelle Catégorie
+  new_category: Nouvelle catégorie
   new_content: Nouveau contenu
   front_page_categories: Catégories sur la page d'accueil
-  other_categories: Autres Catégories
+  other_categories: Autres catégories
   edit: Modifier
   edit_category: Modifier cette catégorie
   select_category: Sélectionner la catégorie
@@ -219,37 +287,177 @@ fr:
   published_content: "Publié"
   additional_settings: "Paramètres additionnels"
   content_status: "Statut de contenu"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  convert_content: 'Convertir en contenu'
+  upload_image: 'Uploader image'
+  new_discussion: 'Créer une nouvelle discussion à partir de ceci'
+  new_discussion_post: 'La discussion #%{topic_id} a été créée à partir de celle-ci'
+  new_discussion_topic_title: 'Scission de #%{original_id}-%{original_name}'
+  change_owner_note: 'Le créateur du sujet a été changé de %{old} à %{new}'
+
+  # Internal Content
+  no_internal_content_title: "Il n'y a pas de documentation interne pour l'instant !"
+  no_internal_content_text: "Ce n'est pas grave ! Pour contribuer à la documentation interne, allez sur Helpcenter > Contenu. Et ajouter une nouvelle catégorie et partager vos connaissances avec votre équipe !"
 
   # Communities
   new_community: Nouvelle Communauté
   create_new_community: Créer une Nouvelle Communauté
-  # layout_select: Select Format
-  # layout_table: Table
-  # layout_grid: Grid
-  # layout_qna: Q&A
+  layout_select: Choisir format
+  layout_table: Table
+  layout_grid: Grille
+  layout_qna: FAQ
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
-  hello: "Hello %{user_name}"
-  new_user: "Merci de nous avoir contacté. Votre message a été reçu par notre équipe de support et nous allons revenir vers vous au plus vite."
-  account_generated: "Un compte a été créé pour vous. Pour s'inscrire, veuillez suivre ce lien :"
-  above_this_line: "Assurez vous de laisser votre réponse au dessus de cette ligne"
+  new_user_subject: "Bienvenue sur %{site_name}"
+  hello: "Bonjour %{user_name}"
+  new_user: "Merci de nous avoir contacté. Votre message a été reçu par notre équipe de support et nous allons revenir vers vous rapidement."
+  account_generated: "Un compte a été créé pour vous. Pour vous inscrire, veuillez suivre ce lien :"
+  above_this_line: "Assurez-vous de laisser votre réponse au dessus de cette ligne"
   message_id: "Id du message"
   message_response: "Le message suivant a été posté en réponse à votre question:"
-  view_online: "Voir en ligne:"
+  view_online: "Voir en ligne :"
+
+  # Admin notifications
+  notify_new_private: "Un nouveau ticket client a été reçu de la part de %{user_name} :"
+  notify_new_public: "Un nouveau ticket client publique  a été posté par %{user_name} :"
+  notify_new_reply: "Une nouvelle réponse d'un client a été reçue de la part de %{user_name} :"
+  to_reply: 'Répondez à ce message directement ou en ligne :'
+
+  # Notifications settings panel
+  notify_on_private: "Envoyez-moi un email quand un nouveau ticket est reçu"
+  notify_on_public: "Envoyez-moi un email quand une question publique a été postée"
+  notify_on_reply: "Envoyez-moi un email quand une nouvelle réponse à un ticket a été reçue"
 
   # settings
-  settings: "Settings"
-  general: "General"
-  design: "Design"
-  international: "International"
-  widget: "Embeddable Widget"
+  agent_settings: "Paramètres Agent"
+  notifications: "Notifications"
+  settings: "Paramètres"
+  general: "Général"
+  general_description: "Gérer les paramètres généraux du système comme votre nom Helpy, la société vers laquelle renvoyer"
+  design: "Apparence"
+  design_description: "Personnaliser les logos, couleurs et d'autres aspects de votre Helpy"
+  international: "Localisation"
+  international_description: "Sélectionner quelles sont les langues de votre Helpy"
+  widget: "Widget intégré"
+  widget_description: "Déployer le widget Helpy sur votre site internet"
+  common_replies: "Réponses standardisées"
+  common_replies_description: "Voir et modifier les réponses standardisées"
+  integrations: "Intégrations"
+  integrations_description: "Configurer les intégrations avec les services externes"
+  theme: "Thème"
+  theme_description: "Sélectionner un thème pour votre Helpy"
+  email: "Email"
+  email_description: "Configurer le serveur SMTP et les emails entrants"
+  customers: "Utilisateurs"
+  users_description: "Voir et inviter vos utilisateus"
+  team: "Équipe"
+  users_description: "Voir et modifier votre équipe support"
+  team_group: "Groupes"
+  group_description: "Voir et modifier les groupes de votre équipe support"
+
+  # General
+  site_name: "Nom du site"
+  site_url: "Adresse URL du site"
+  parent_site: "Site parent"
+  parent_company: "Entreprise parente"
+  site_tagline: "Slogan du site"
+  enable_forums: "Activer les forums communautaires"
+  enable_knowledgebase: "Activer la base de connaissances"
+  enable_tickets: "Activer les tickets privés"
+  enable_teams: "Activer les groupes"
+  enable_welcome_email: "Envoyer un mail de bienvenue aux nouveaux utilisateus"
+
+  # Design
+  header_logo: "Logo de l'entête"
+  search_background: "Couleur de fond recherche"
+  top_bar: "Couleur de fond barre de navigation"
+  link_color: "Couleur des liens"
+  form_background: "Couleur de fond des formulaires"
+  still_need_help: "Couleur de fond de Still Need Help"
+
+  # Locales
+  supported_locales: "Langues supportées"
+  default_locale: "Langue par défaut"
+
+  # Widget
+  show_widget: "Afficher le widget sur le site du support"
+  widget_background: "Couleur de fond du widget"
+  button_color: "Couleur de fond du bouton"
+  button_text_color: "Couleur du texte du bouton"
+
+  # Integrations
+  enable_webhook_url: "Activer les webhooks entrants"
+  enable_google_analytics: "Activer Google Analytics"
+  enable_recaptcha: "Activer Recaptcha"
+  recaptcha_site_key: "Clé du site"
+  recaptcha_api_key: "Clé secrète"
+  enable_cloudinary: "Activer Cloudinary"
+
+  # Email
+  mail_service: "Fournisseur de service pour les emails entrants"
+  send_email: "Activer l'envoi d'email sortant (SMTP)"
+  boolean_no: "Non"
+  boolean_yes: "Oui"
+  admin_email: "Email de l'administrateur"
+  from_email: "Email de l'expéditeur"
+  smtp_mail_username: "Utilisateur SMTP"
+  smtp_mail_password: "Mot de passe SMTP"
+  mail_smtp: "Serveur SMTP"
+  mail_port: "Port SMTP"
+  mail_domain: "Nom de domaine SMTP"
+
+  # API Key Managmeent
+  api_keys: "Clés API"
+  key_name: "Nom de la clé"
+  token: "Jeton"
+  add_key: "Nouvelle clé"
+  expire_token: "Expirer le jeton"
+  expired: "Expiré"
+  expire_confirm: "Veuillez confirmer que vous voulez vraiment expirer ce jeton."
+  spec_note: "Vous pouvez lire et tester les spécifications de l'API interactive sur :"
+
+  # Reports
+  activity_report: "Rapport d'activité"
+  team_insights: "Insights Équipe"
+  filter_by_date: "Filtrer par date"
+  today: "Aujourd'hui"
+  yesterday: "Hier"
+  this_week: "Cette semaine"
+  last_week: "Semaine dernière"
+  this_month: "Ce mois"
+  last_month: "Mois dernier"
+  date_range: "Interval de dates"
+  insight_start_range: "Début"
+  insight_end_range: "Fin"
+  insight_filter: "Filtrer"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> vos utilisateurs ont ouvert 1 nouveau ticket"
+    other: "<strong>%{period}</strong> vos utilisateurs ont ouverts <strong>%{count} 1 nouveaux tickets</strong>"
+  insights_blurb_two: "auxquels votre équipe a répondu à <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "avec un temps moyen de <strong>%{response_time}</strong>"
+  no_discussions: "Aucun nouveau ticket sur <strong>%{period}</strong>"
+  assigned_topics: "Sujets Assignés"
+  responded: "Répondus"
+  closed: "Fermés"
+  replies: "Répondus"
+  median_time: "Temps moyens de la 1ère réponse"
+
+  # IMPORT/EXPORT
+  import: 'Import CSV'
+  new_import: 'Nouvel Import'
+  export: 'Export CSV'
+  what_to_export: 'Sélectionnez ce que vous voulez exporter'
+  what_to_import: 'Sélectionnez ce que vous voulez importer'
+  imports: 'Imports'
+  exports: 'Exports'
+  past_imports: 'Imports précédents'
+  run_time: "Temps d'exécution"
+  clear_all: 'Supprimer tout'
+  error_details: 'Détails des erreurs'
+  row_number: 'Num Ligne'
+  error_message: 'Message Erreur'
+  object: 'Objet'
+  import_details: '#%{id} Détails Import'
+  select_for_export: 'Exporter %{model} en .csv'
 
   activerecord:
     attributes:
@@ -257,16 +465,20 @@ fr:
         email: Email
         password: Mot de passe
         name: Nom
-        company: Compagnie
-        work_phone: Travail
+        company: Entreprise
+        work_phone: Bureau
+        home_phone: Domicile
         cell_phone: Portable
         city: Ville
         state: Région
-        # signature: Signature
+        signature: Signature
+        title: Titre
+        time_zone: Fuseau horaire
       topic:
         name: Sujet
       post:
         kind: Type
+        body: Message
       category:
         name: Nom
         icon: Icône
@@ -275,6 +487,11 @@ fr:
         meta_description: Meta Description
         front_page: Page d'accueil
         active: Actif
+        visibility: Visibilité
+        visibility_label:
+          all: Tous
+          public: Publique
+          internal: Interne
       doc:
         title: Nom
         meta_description: Meta Description
@@ -283,14 +500,13 @@ fr:
         category_id: Catégorie
         active: Status
         front_page: Page d'accueil
-        # allow_comments: Allow comments?
       forum:
         name: Nom
         description: Description
-        private: Confidential
-        # layout: Layout
-        # allow_topic_voting: Allow topic voting?
-        # allow_post_voting: Allow post voting?
+        private: Privé
+        layout: Disposition
+        allow_topic_voting: Autoriser le vote sur le sujet ?
+        allow_post_voting: Autoriser le vote sur les posts ?
 
     helpers:
       submit:
@@ -316,12 +532,19 @@ fr:
       root: *root
     result:
       root: *root
+    registrations:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
   helpers:
     actions: "Actions"
     links:
       back: "Retour"
       cancel: "Annuler"
-      confirm: "Etes vous sûr?"
+      confirm: "Etes-vous sûr?"
       destroy: "Supprimer"
       new: "Nouveau"
       edit: "Editer"

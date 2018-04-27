@@ -1,3 +1,5 @@
+# MAINTAINER: HENRIQUE APARECIDO LAVEZZO (RYNARO)
+
 pt-br:
   language_name: 'Português brasileiro' # The name of the translation file, in that language
   root: &root 'Início'
@@ -87,10 +89,10 @@ pt-br:
   version: "Versão:"
 
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: "Marcar para revisão"
+  flag_post_for_review: "Marcar postagem para revisão"
+  flag_post_placeholder: "Justifique o motivo para revisar essa postagem"
+  flag: "Marca"
 
   # devise/sessions/new
   login: "Autenticar"
@@ -153,8 +155,17 @@ pt-br:
   private: "privado"
   public: "público"
   save_changes: "Guardar Alterações"
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  merge: Mesclar
+  merge_confirm: Você tem certeza que deseja mesclar estes tickets?
+  settings_changes_saved: "Suas mudanças foram salvas. Algumas mudanças são visíveis somente diretamente no helpcenter: %{site_url}"
+
+  helpcenter: "Central de ajuda"
+  new_ticket: "Novo Ticket"
+  internal_content: "Conteúdo interno"
+  get_help: "Ajuda"
+  report_bug: "Reportar Bug"
+  suggest_feature: "Sugerir melhoria"
+  shortcuts: "Atalhos de teclado"
 
   # Discussion controls
   change_status: "Alterar Estado"
@@ -164,6 +175,7 @@ pt-br:
   mark_spam: "Marcar Spam"
   mark_new: "Marcar Novo"
   assign_agent: "Associar Agente"
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 mensagem selecionada"
     two: "2 mensagens selecionadas"
@@ -176,10 +188,15 @@ pt-br:
   closed_message: "Esta mensagem foi fechada pelo suporte."
   trash_message: "Esta mensagem foi apagada pelo suporte."
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
+  assigned_group: "Esta Discussão foi atribuida para %{assigned_group}."
+  converted_to_ticket: "Esta Discussão foi convertida para uma discussão privada."
+  converted_to_topic: "Esta Dicussão foi convertida para uma discussão pública e movida para %{forum_name}."
+  tagged_with: "Esta Discussão foi marcada com %{tagged_with}"
+  notes_hidden: "Existem %{hidden_notes} notas internas para esta Discussão. Você pode visualiza-las clicando em qualquer lugar nesta nota!"
 
   # User Admin
   users: "Usuários"
-  # account: Account
+  account: Conta
   contact_info: "Contato"
   social_info: "Social"
   edit_user: "Editar Usuário"
@@ -188,11 +205,11 @@ pt-br:
   cell_phone: "celular"
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: Selecionar prioridade
+  vip_priority: VIP
+  high_priority: Alta
+  normal_priority: Normal
+  low_priority: Baixa
 
   # User search results
   users_found:
@@ -244,10 +261,10 @@ pt-br:
   content_status: "Estado do Conteúdo"
   convert_content: 'Transformar postagem em conteúdo'
   upload_image: 'Carregar imagem'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  new_discussion: 'Criar nova discussão a partir deste conteúdo'
+  new_discussion_post: 'Discussão #%{topic_id} foi criada a partir deste conteúdo'
+  new_discussion_topic_title: 'Originada de #%{original_id}-%{original_name}'
+  change_owner_note: 'O criador deste tópico modificou o título de %{old} para %{new}'
 
   # Communities
   new_community: "Criar uma Nova Comunidade"
@@ -258,7 +275,7 @@ pt-br:
   layout_qna: FAQ
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
+  new_user_subject: "Bem vindo ao %{site_name}"
   hello: "Olá %{user_name}"
   new_user: "Obrigado pelo seu contato. A sua mensagem foi recebida pela nossa equipe de suporte e iremos entrar em contato o mais rapidamente possível."
   account_generated: "Foi criada uma nova conta para voce. Para fazer login, use este link:"
@@ -274,8 +291,12 @@ pt-br:
   yesterday: Ontem
   this_week: "Essa semana"
   last_week: "Última semana"
+  last_month: "Último mês"
   this_month: "Esse mês"
   date_range: "Período de tempo"
+  insight_start_range: "Início:"
+  insight_end_range: "Fim:"
+  insight_filter: "Filtar"
   insights_blurb_one:
     one: "<strong>%{period}</strong> seus usuários iniciaram 1 nova interação"
     other: "<strong>%{period}</strong> seus usuários iniciaram <strong>%{count} novas interações</strong>"
@@ -289,8 +310,41 @@ pt-br:
   median_time: "Média de tempo para a primeira resposta"
   add_more_agents: "Adicionar novos agentes"
 
+  # Keyboard Shortcuts
+  shortcut_then: "então"
+  listing_views: "Listar ações de visualização"
+  keyboard_shortcuts: "Atalhos de teclado"
+  show_new_tickets: "Mostrar novos tickets"
+  show_all_tickets: "Mostrar todos os tickets"
+  show_open_tickets: "Mostrar tickets em aberto"
+  show_tickets_assigned_to_you: "Mostrar tickets vínculados a você"
+  show_pending_tickets_assigned_to_you: "Mostrar tickets pendentes vínculados a você"
+  show_closed_tickets: "Mostrar tickets encerrados"
+  search_for_tickets: "Procurar por tickets"
+  viewing_tickets: "Visualizar tickets"
+  select_previous_ticket: "Selecionar ticket anterior"
+  select_next_ticket: "Selecionar próximo ticket"
+  view_selected_ticket: "Visualizer ticket selecionado"
+  jump_to_a_specific_ticket_number: "Ir para ticket de número especifíco"
+  ticket_actions: "Ações de tickets"
+  assign_the_ticket: "Víncular ticket"
+  move_the_ticket: "Mover ticket"
+  expand_the_ticket_thread: "Expandir discussão do ticket"
+  reply_to_the_ticket: "Responder ao ticket"
+  add_an_internal_note: "Adicionar nota interna"
+  change_ticket_status: "Mudar status do ticket"
+  associate_with_a_group: "Associar à um grupo de agentes"
+  ticket_status: "Status do ticket"
+  mark_resolved: "Marcar como resolvido"
+  reopen_ticket: "Reabrir ticket"
+  set_to_new: "Marcar como novo"
+  mark_as_spam: "Marcar como spam"
+  move_to_trash: "Mover ao lixo"
+  ticket_number: "numero do ticket"
+
   # Settings
   agent_settings: "Configurações dos agentes"
+  # common_replies: "Common Replies"
 
   notifications: "Notificações"
   api_keys: "Chaves da API"
@@ -300,6 +354,7 @@ pt-br:
   design: "Design"
   international: "Internacionalização"
   widget: "Widget embarcado"
+  integrations: Integrações
 
   notifications_description: "Escolha em que momento deseja ser notificado via e-mail"
   api_description: "Crie e gerencie suas chaves de acesso a API Helpy!"
@@ -311,6 +366,7 @@ pt-br:
   email_description: "Configure o SMTP e a caixa de recebimento de e-mails para seu Helpy."
   cloudinary_description: "Configure o Cloudinary para que seu Helpy usufrua de um adorável sistema de hospedagem de arquivos."
   users_description: "Visualize e adicione novos usuários!"
+  integrations_description: "Configure integrações com aplicativos externos!"
 
   # Notifications Area
   notify_on_private: "Me envie um e-mail quando uma pergunta PRIVADA de cliente for recebida."
@@ -388,6 +444,7 @@ pt-br:
         meta_description: "Meta Descrição"
         front_page: "Página Frontal"
         active: "Ativo"
+        public: "Acesso público"
       doc:
         title: "Título"
         meta_description: Meta Descrição

@@ -1,0 +1,459 @@
+# MAINTAINER: SERAVO OY
+
+fi:
+  language_name: 'Suomi' # The name of the translation file, in that language
+  root: &root 'Koti'
+  how_can_we_help: "Kuinka voimme auttaa?"
+  browse_topics: "Selaa tietopankkia"
+  support_team: "Tuki"
+  nothing_here: "Täällä ei ole vielä mitään!"
+
+  # Navigation
+  knowledgebase: "Tietopankki"
+  community: "Yhteisö"
+  ask_a_question: "Uusi palvelupyyntö"
+  home: "Koti"
+  login: "Kirjaudu"
+  logout: "Kirjaudu ulos"
+  register: "Rekisteröidy"
+  back_to: "Takaisin kohteeseen"
+  welcome_back: "Tervetuloa takaisin %{username}"
+  your_profile: "Oma profiilit"
+  your_tickets: "Omat palvelupyynnöt"
+  locale: "Kieli"
+  change_your_locale: "Vaihda kieli"
+
+  # Voting widget
+  did_this_help: "Ratkaisiko tämä ongelman?"
+  yes_button: 'Kyllä'
+  no_button: 'Ei'
+  yes_helped: 'Hienoa, kiitos palautteesta!'
+  no_helped: "Pahoittelut, ettei tämä ratkaissut ongelmaasi. Ole ystävällinen ja ota yhteyttä uudestaan jatkaaksesi ongelman selvitystä!"
+
+  # Search
+  search_placeholder: "Syötä hakusana, aihe tai kysymys"
+  no_results: "Ei hakutuloksia, yritä uudestaan!"
+  results_found:
+    one: "haullasi löytyi yksi osuma "
+    other: "haullasi löytyi %{count} osumaa  "
+
+  # Community
+  forum_name: "Aihe"
+  subject: "Otsikko"
+  last_activity: "Viimeksi aktiivinen"
+  topic: "Keskustelu"
+  replies: "Vastaukset"
+  last_post: "Viimeisin viesti"
+  started_by: "Aloitettu käyttäjän %{username} toimesta"
+  reply: "Vastaa tähän palvelupyyntöön"
+  submit_reply: "Lähetä vastaus"
+  posted: "Lähetetty"
+  start_discussion: "Aloita uusi keskustelu"
+  submit_start_discussion: "Luo uusi keskustelu"
+  should_message_be_private: "Merkitäänkö keskustelu yksityiseksi?"
+  only_support_can_respond: "Ainoastaan tuki voi vastata (yksityinen palvelupyyntö)"
+  responses_can_come_from_everyone: "Sallitaan vastaukset tuelta ja yhteisöltä (suositeltu)"
+  collapsed_messages:
+      one: "1 sisennetty viesti"
+      two: "2 sisennettyä viestiä"
+      other: "%{count} sisennettyä viestiä"
+
+  # Knowledgebase
+  written_by: "Kirjoittanut:"
+  last_edited: "Viimeksi muokattu"
+  asked_before: "Onko kysymykseesi vastattu jo aikasemmin? Näistä vastaavista palvelupyynnöistä saattaa olla apua"
+
+  # Tickets
+  tickets: "Palvelupyynnöt"
+  no_tickets: "Et ole luonut vielä yhtään palvelupyyntöä"
+  ticket_number: "Palvelupyynnön numero"
+  assigned_to_label: "Osoitettu henkilölle"
+  created_on: "Luontiaika"
+
+  # Get Help
+  get_help_header: "Tarvitseko vielä apua?"
+  get_help_button: "Avaa palvelupyyntö"
+
+  # Profile
+  my_profile: 'Oma profiili'
+
+  # footer
+  powered_by: "Voimanlähteenä Helpy. Avoimen lähdekoodin tukipalveluohjelmisto."
+  get_your_copy: "Hanki omasi GitHubista"
+  version: "Versio:"
+
+  # flag
+  flag_for_review: "Merkitse tarkistettavaksi"
+  flag_post_for_review: "Merkitse viesti tarkistettavaksi"
+  flag_post_placeholder: "Kuvaile miksi tämä viesti pitää tarkistaa"
+  flag: "Tarkista"
+
+  # devise/sessions/new
+  login: Kirjaudu sisään
+
+  # devise/shared/links
+  forgot_password: Unohditko salasanasi?
+
+  # devise/passwords/new
+  send_instructions: Lähetä ohjeet
+
+  # devise/passwords/edit
+  change_password: Vaihda salasana
+  new_password: Uusi salasana
+  new_password_confirmation: Vahvista uusi salasana
+
+  # devise/confirmations/new
+  resend: Lähetä uudestaan ohjeet vahvistamiseen
+
+  # devise/registrations/new
+  sign_up: Rekisteröidy
+
+  # Admin menu
+  discussions: Palvelupyynnöt
+  content: Sisältö
+  communities: Yhteisöt
+  app_store: Ohjelmistokauppa
+  search: Haku
+  internal_content: Yrityksen sisäinen sisältö
+
+  # Admin main/statuses
+  support_pipeline: Tukikeskus
+  new: Uusi
+  active: Aktiivinen
+  open: Avoin
+  mine: Minun
+  pending: Odottaa
+  closed: Ratkaistu
+  spam: Roskaposti
+  trash: Roskakori
+  discussion_managment: Palvelupyyntöjen hallinointi
+  open_new_discussion: Avaa uusi palvelupyyntö
+  assigned_to: "osoitettu henkilölle %{agent}"
+  unassigned: osoittamaton
+  no_team_assigned: osoita ryhmälle
+  assign_to: Ryhmä
+  unassign_from_team: Poista ryhmästä
+  private: yksityinen
+  public: julkinen
+  save_changes: Tallenna muutokset
+  merge: Yhdistä
+  merge_confirm: Oletko varma, että haluat yhdistää nämä palvelupyynnöt?
+
+  # Discussion controls
+  change_status: Vaihda tila
+  status: Tila
+  mark_closed: Merkitse ratkaistuksi
+  reopen: Avaa uudelleen
+  mark_spam: Merkitse roskapostiksi
+  mark_new: Merkitse uudeksi
+  assign_agent: Osoita henkilölle
+  # tag_with: Tag Ticket
+  selected_messages:
+    one: "1 valittu viesti"
+    two: "2 valittua viestiä"
+    other: "%{count} valittua viestiä"
+
+  # Discussion messages
+  reopen_message: "Tämä palvelupyyntö on avattu uudelleen tuen toimesta."
+  closed_message: "Tämä palvelupyyntö on suljettu tuen toimesta."
+  trash_message: "Tämä palvelupyyntö on poistettu."
+  assigned_message: "Tämä palvelupyyntö on osoitettu henkilölle %{assigned_to}."
+  assigned_group: "Tämä palvelupyyntö on osoitettu ryhmälle %{assigned_group}."
+  converted_to_ticket: "Tämä keskustelu on muutettu yksityiseksi."
+  converted_to_topic: "Tämä keskustelu on muutettu julkiseksi ja siirretty keskusteluosioon %{forum_name}."
+  tagged_with: "Tämä palvelupyyntö on merkitty seuraavasti: %{tagged_with}"
+  notes_hidden: "Palvelupyynnölle on %{hidden_notes} sisäisiä merkintöjä. Voit tarkastella niitä klikkaamalla tätä huomautusta!"
+
+  # User Admin
+  users: Käyttäjät
+  account: Tili
+  contact_info: Yhteystiedot
+  social_info: Sosiaalinen media
+  edit_user: Muokkaa käyttäjää
+  work_phone: työpuhelin
+  cell_phone: matkapuhelin
+
+  # Priorities
+  select_priority: Valitse prioriteetti
+  vip_priority: VIP
+  high_priority: Korkea
+  normal_priority: Normaali
+  low_priority: Matala
+
+  # Roles
+  select_role: Valitse rooli
+  admin_role: Ylläpitäjä
+  agent_role: Henkilöstö
+  editor_role: Muokkaaja
+  user_role: Asiakas
+  add_more_agents: "Lisää käyttäjiä"
+
+  # Keyboard Shortcuts
+  shortcut_then: "sitten"
+  listing_views: "Listaa näkymät"
+  keyboard_shortcuts: "Pikanäppäimet"
+  show_new_tickets: "Näytä uudet palvelupyynnöt"
+  show_all_tickets: "Näytä kaikki palvelupyynnöt"
+  show_open_tickets: "Näytä avoimet palvelupyynnöt"
+  show_tickets_assigned_to_you: "Näytä sinulle osoitetut palvelupyynnöt"
+  show_pending_tickets_assigned_to_you: "Näytä sinulle osoitetut odottavat palvelupyynnöt"
+  show_closed_tickets: "Näytä suljetut palvelupyynnöt"
+  search_for_tickets: "Etsi palvelupyyntöjä"
+  viewing_tickets: "Näytä palvelupyynnöt"
+  select_previous_ticket: "Valitse edellinen palvelupyyntö"
+  select_next_ticket: "Valitse seuraava palvelupyyntö"
+  view_selected_ticket: "Näytä valitut palvelupyynnöt"
+  jump_to_a_specific_ticket_number: "Siirry tiettyyn palvelupyyntöön"
+  ticket_actions: "Palvelupyynnön toiminnot"
+  assign_the_ticket: "Osoita palvelupyyntö"
+  move_the_ticket: "Siirrä palvelupyyntö"
+  expand_the_ticket_thread: "Laajenna palvelupyyntöketju"
+  reply_to_the_ticket: "Vastaa palvelupyyntöön"
+  add_an_internal_note: "Lisää sisäinen merkintä"
+  change_ticket_status: "Vaihda palvelupyynnön tila"
+  associate_with_a_group: "Liitä ryhmään"
+  ticket_status: "Palvelupyynnön tila"
+  mark_resolved: "Merkitse ratkaistuksi"
+  reopen_ticket: "Avaa palvelupyyntö uudelleen"
+  set_to_new: "Merkitse uudeksi"
+  mark_as_spam: "Siirrä roskapostiin"
+  move_to_trash: "Siirrä roskakoriin"
+  ticket_number: "palvelupyynnön ID"
+
+  # User search results
+  users_found:
+    one: "1 käyttäjä löytyi haulla %{query}"
+    other: "%{count} käyttäjää löytyi haulla %{query}"
+
+  # Invite users
+  invite_users: "Kutsu uusia käyttäjiä"
+  invite_emails: "Sähköpostiosoitteet"
+  invite_emails_placeholder: "Kirjoita yhden tai useamman kutsuttavan sähköpostiosoite"
+  invite_message: "Viesti"
+  invite_message_placeholder: "Lisätietoja jotka lähetetään uusille käyttäjille"
+  invite_role: "Kutsuttujen käyttäjien rooli"
+  send_invite: "Lähetä kutsu"
+
+  # Discussion View
+  asked_a_question: "%{user_name} kysyi kysymyksen..."
+  replied: "%{user_name} vastasi..."
+  posted_note: "%{user_name} lähetti vastauksen..."
+  type_reply: Kirjoita vastauksesi tai valitse yleinen vastaus alta
+  select_common: Valitse yleinen vastaus
+  reply: Vastaa
+  internal_note: Sisäinen merkintä
+  mark_as_resolved: Merkitse ratkaistuksi
+  upvote:
+    one: "Upvote | %{count}"
+    other: "Upvote | %{count}"
+
+  # Content
+  new_category: Uusi kategoria
+  new_content: Uusi sisältö
+  front_page_categories: Etusivun kategoriat
+  other_categories: Muut kategoriat
+  edit: Muokkaa
+  edit_category: Muokkaa kategoriaa
+  select_category: Valitse kategoria
+  delete: Poista
+  view_and_edit: "Näytä ja muokkaa sisältöä"
+  delete_confirm: "Oletko varma, että haluat poistaa tämän?"
+  select_icon_helptext: "Valitse tähän kategoriaan liitettävä kuva (valinnainen)"
+  translate: "Käännä toiselle kielelle"
+  view_on_site: "Näytä sivustolla"
+  written_on: "Kirjoitettu %{date_written}"
+  content_last_updated: "Viimeksi päivitetty %{date_updated}"
+  featured_content: "Kiinnitetty"
+  draft_content: "Luonnos"
+  published_content: "Julkaistu"
+  additional_settings: "Lisäasetukset"
+  content_status: "Sisällön tila"
+  convert_content: 'Tallenna artikkelina tai yleisenä vastauksena'
+  upload_image: 'Lisää kuva'
+  new_discussion: 'Luo uusi keskustelu tästä'
+  new_discussion_post: 'Keskustelu #%{topic_id} on nyt luotu tästä aiheesta'
+  new_discussion_topic_title: 'Erotettu aiheesta #%{original_id}-%{original_name}'
+  change_owner_note: 'Tämän aiheen luojaksi vaihdettiin %{old} -> %{new}'
+
+  # Internal Content
+  no_internal_content_title: "Sisältöä ei ole vielä tehty sisäiseen käyttöön!"
+  no_internal_content_text: "Älä huoli! Voit osallistua sisäisen dokumentaation tekemiseen menemällä Helpcenter > Sisältö."
+
+  # Communities
+  new_community: Uusi yhteisö
+  create_new_community: Luo uusi yhteisö
+  layout_select: Valitse sommittelu
+  layout_table: Taulukko
+  layout_grid: Ruudukko
+  layout_qna: Q&A
+
+  # Mail messages
+  new_user_subject: "Tervetuloa sivulle %{site_name}"
+  hello: "Moro %{user_name}"
+  new_user: "Kiitos yhteydenotosta. Viestisi on vastaanotettu ja tukitiimimme on teihin yhteydessä tuota pikaa."
+  account_generated: "Tilisi on nyt luotu. Kirjautuaksesi sisään, käytä seuraavaa osoitetta:"
+  above_this_line: "Pidäthän huolen, että vastaus ilmestyy tämän viivan yläpuolelle"
+  message_id: "Viestin ID"
+  message_response: "Seuraava viesti on lähetetty vastaukseksi kysymykseesi:"
+  view_online: "Näytä selaimessa:"
+
+  # Admin notifications
+  notify_new_private: "Uusi palvelupyyntö on saapunut käyttäjältä %{user_name}:"
+  notify_new_public: "Uusi julkinen viesti on saapunut käyttäjältä %{user_name}:"
+  notify_new_reply: "Uusi vastaus on saapunut käyttäjältä %{user_name}:"
+  to_reply: 'Vastaa tähän viestiin suoraan tai verkossa:'
+
+  # Notifications settings panel
+  notify_on_private: "Lähetä minulle sähköpostia kun uusi palvelupyyntö on vastaanotettu"
+  notify_on_public: "Lähetä minulle sähköpostia kun uusi julkinen keskustelu on avattu"
+  notify_on_reply: "Lähetä minulle sähköpostia kun asiakas vastaa palvelupyyntöön"
+
+  # settings
+  agent_settings: "Henkilöstön asetukset"
+  notifications: "Ilmoitukset"
+  settings: "Asetukset"
+  general: "Yleinen"
+  design: "Malli"
+  international: "Kansainvälinen"
+  widget: "Upotettava liitännäinen"
+  common_replies: "Yleiset vastaukset"
+  integrations: "Integraatiot"
+
+  # API Key Managmeent
+  api_keys: "API-avaimet"
+  key_name: "Avaimen nimi"
+  token: "API-tunnus"
+  add_key: "Lisää uusi avain"
+  expire_token: "Mitätöi API-tunnus"
+  expired: "Vanhentunut"
+  expire_confirm: "Haluatko varmasti mitätöidä tämän API-tunnuksen."
+  spec_note: "Voit lukea ja testata interaktiivisia API-ominaisuuksia täällä: "
+
+  # Insights
+  team_insights: "Tiimin oivallukset"
+  filter_by_date: "Suodata päivämäärällä"
+  today: "Tänään"
+  yesterday: "Eilen"
+  this_week: "Tällä viikolla"
+  last_week: "Viime viikolla"
+  this_month: "Tässä kuussa"
+  last_month: "Viime kuussa"
+  date_range: "Ajanjakso"
+  insight_start_range: "Aloitus pvm:"
+  insight_end_range: "Lopetus pvm:"
+  insight_filter: "Suodata"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> käyttäjäsi avasi yhden uuden palvelupyynnön"
+    other: "<strong>%{period}</strong> käyttäjäsi avasi <strong>%{count} uutta palvelupyyntöä</strong>"
+  insights_blurb_two: "josta tiiminne on vastannut <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
+  no_discussions: "Yhtään uutta palvelupyyntöä ei avattu ajanjaksolla <strong>%{period}</strong>"
+  assigned_topics: "Osoitetut aiheet"
+  responded: "Vastattu"
+  closed: "Suljettu"
+  replies: "Vastaukset"
+  median_time: "Keskimääräinen aika ensimmäiseen vastaukseen"
+
+
+
+  activerecord:
+    attributes:
+      user:
+        email: Sähköposti
+        password: Salasana
+        name: Nimi
+        company: Yritys
+        work_phone: Työpuhelin
+        home_phone: Kotipuhelin
+        cell_phone: Matkapuhelin
+        city: Kaupunki
+        state: Kunta
+        signature: Allekirjoitus
+      topic:
+        name: Kysymys
+      post:
+        kind: Tyyppi
+      category:
+        name: Nimi
+        icon: Ikoni
+        keywords: Avainsanat
+        title_tag: Otsikon merkintä
+        meta_description: Metakuvaus
+        front_page: Etusivu
+        active: Aktiivinen
+        visibility: Näkyvyys
+        visibility_label:
+          all: Kaikki
+          public: Julkinen
+          internal: Sisäinen
+      doc:
+        title: Otsikko
+        meta_description: Metakuvaus
+        title_tag: Otsikon merkintä
+        keywords: Avainsanat
+        category_id: Kategoria
+        active: Tila
+        front_page: Kiinnitä etusivulle?
+      forum:
+        name: Nimi
+        description: Kuvaus
+        private: Yksityinen
+        layout: Ulkoasu
+        allow_topic_voting: Salli aiheen arviointi?
+        allow_post_voting: Salli viestin arviointi?
+
+    helpers:
+      submit:
+        topic:
+          create: Aloita uusi keskustelu
+        post:
+          create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    locales:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
+  helpers:
+    actions: "Toiminnot"
+    links:
+      back: "Takaisin"
+      cancel: "Peruuta"
+      confirm: "Oletko varma?"
+      destroy: "Poista"
+      new: "Uusi"
+      edit: "Muokkaa"
+    titles:
+      edit: "Muokkaa %{model}"
+      save: "Tallenna %{model}"
+      new: "Uusi %{model}"
+      delete: "Poista %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

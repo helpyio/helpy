@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  add_breadcrumb :root
   helper_method :recaptcha_enabled?
 
+  before_action :add_root_breadcrumb
   before_action :set_locale
   before_action :set_vars
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -22,28 +22,13 @@ class ApplicationController < ActionController::Base
   end
 
   def recaptcha_enabled?
-    AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
+    AppSettings['settings.recaptcha_enabled'] == '1' && AppSettings['settings.recaptcha_site_key'].present? && AppSettings['settings.recaptcha_api_key'].present?
   end
 
   def cloudinary_enabled?
-    AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+    AppSettings['cloudinary.enabled'] == '1' && AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
   end
   helper_method :cloudinary_enabled?
-
-  # These 3 methods provide feature authorization for admins. Editor is the most restricted,
-  # agent is next and admin has access to everything:
-
-  def verify_editor
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
-  end
-
-  def verify_agent
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
-  end
-
-  def verify_admin
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
-  end
 
   def tracker(ga_category, ga_action, ga_label, ga_value=nil)
     if AppSettings['settings.google_analytics_id'].present? && cookies['_ga'].present?
@@ -61,6 +46,11 @@ class ApplicationController < ActionController::Base
       )
     end
   end
+
+  def google_analytics_enabled?
+    AppSettings['settings.google_analytics_enabled'] == '1'
+  end
+  helper_method :google_analytics_enabled?
 
   def rtl_locale?(locale)
     return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
@@ -109,7 +99,25 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
   end
 
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
+  end
+
   private
+
+  def add_root_breadcrumb
+    if controller_namespace_origin == 'admin'
+      add_breadcrumb :root, admin_root_url
+    else
+      add_breadcrumb :root
+    end
+  end
+
+  def controller_namespace_origin
+    controller_path.split('/').first
+  end
 
   def set_locale
     @browser_locale = http_accept_language.compatible_language_from(AppSettings['i18n.available_locales'])
@@ -160,24 +168,6 @@ class ApplicationController < ActionController::Base
     str == 'true'
   end
 
-  def fetch_counts
-    if current_user.is_restricted? && teams?
-      topics = Topic.tagged_with(current_user.team_list, :any => true)
-      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
-    else
-      topics = Topic.all
-      @admins = User.agents
-    end
-    @new = topics.unread.count
-    @unread = topics.unread.count
-    @pending = topics.mine(current_user.id).pending.count
-    @open = topics.open.count
-    @active = topics.active.count
-    @mine = topics.mine(current_user.id).count
-    @closed = topics.closed.count
-    @spam = topics.spam.count
-  end
-
   def allow_iframe_requests
     response.headers.delete('X-Frame-Options')
   end
@@ -190,21 +180,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
-  end
-
-  private
-
   def set_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
   end
 
   def get_all_teams
     return unless teams?
-    @all_teams = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.name.capitalize }.uniq
+    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').uniq.pluck(:name).map{|name| name}
   end
 
 end

@@ -32,7 +32,6 @@
 //= require attachinary
 //= require magnific-popup/dist/jquery.magnific-popup.min.js
 //= require initial.js/initial.js
-//= require trix
 //= require autolink/autolink-min.js
 //= require jquery.minicolors
 //= require app
@@ -42,6 +41,11 @@
 //= require selectize
 //= require bootstrap-switch
 //= require bootstrap-datepicker
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require Chart.bundle
+//= require chartkick
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link

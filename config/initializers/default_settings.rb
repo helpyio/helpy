@@ -8,13 +8,20 @@ AppSettings.defaults["settings.site_tagline"] = Settings.site_tagline
 AppSettings.defaults["settings.product_name"] = Settings.product_name
 AppSettings.defaults["settings.support_phone"] = Settings.support_phone
 AppSettings.defaults["settings.google_analytics_id"] = Settings.google_analytics_id
+AppSettings.defaults["settings.google_analytics_enabled"] = '0'
 AppSettings.defaults["settings.recaptcha_site_key"] = Settings.recaptcha_site_key
 AppSettings.defaults["settings.recaptcha_api_key"] = Settings.recaptcha_api_key
+AppSettings.defaults["settings.recaptcha_enabled"] = '0'
 AppSettings.defaults["settings.forums"] = Settings.forums
 AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 AppSettings.defaults["settings.teams"] = Settings.teams
 AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
+
+# Webhook Integrations
+
+AppSettings.defaults["webhook.form_enabled"] = "0"
+AppSettings.defaults["webhook.form_key"] = ""
 
 # Design: (Colors etc.)
 
@@ -46,6 +53,11 @@ AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
 # Widget:
 
 AppSettings.defaults["widget.show_on_support_site"] = "true"
+AppSettings.defaults["widget.show_on_support_site"] = "true"
+AppSettings.defaults["widget.css_styles"] = "<script>/* Add custom styles here */</script>"
+AppSettings.defaults["widget.background_color"] = ""
+AppSettings.defaults["widget.button_color"] = ""
+AppSettings.defaults["widget.button_text_color"] = ""
 
 # Email specific:
 
@@ -68,6 +80,7 @@ AppSettings.defaults["notify.on_reply"] = "1"
 
 # Cloudinary:
 
+AppSettings.defaults['cloudinary.enabled'] = '0'
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''
 AppSettings.defaults['cloudinary.api_secret'] = ''

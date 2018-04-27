@@ -1,0 +1,86 @@
+<% title "Activity Report" %>
+
+<%= render partial: 'admin/reports/report_header', locals:
+    {
+      report_name: t('activity_report', site_name: AppSettings['settings.site_name'], default: "Activity Report"),
+      report_path: "admin_reports_path"
+    } %>
+
+<div class="row">
+  <div class="col-md-2">
+    <%= render partial: 'admin/reports/reports_nav' %>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="big-stats">
+        <div class="col-md-6 col-xs-6 text-right">
+          <h2><%= percent_resolved(@total_closed, @total_tickets) %></h2>
+          <span class="tiny-header">Percent Resolved</span>
+        </div>
+        <div class="col-md-6 col-xs-6 text-left">
+          <h2><%= @median_close_time.nil? ? distance_of_time_in_words(0) : distance_of_time_in_words(@median_close_time) %></h2>
+            <span class="tiny-header">Average Resolution Time</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= area_chart [
+          { name: 'Tickets', data: @tickets },
+          { name: 'Closed', data: @closed },
+          { name: 'Actions', data: @actions },
+          ],
+          legend: "bottom",
+          # title: "Tickets Received",
+          library: { pointRadius: 0 }
+          %>
+
+        <%#= pie_chart [
+          # ["Closed", @scoped_stats.sum(:number_closed)],
+          ["Unanswered", @scoped_stats.sum(:number_of_tickets)-@scoped_stats.sum(:number_closed)],
+          ["Responded", @scoped_stats.sum(:number_of_tickets)-@scoped_stats.sum(:responded)]
+          ], library: {cutoutPercentage: 50} %>
+
+        <table width="100%" id="reports">
+          <col width="80%">
+          <col width="0%">
+          <col width="20%">
+
+          <tr>
+            <td><span class="more-important">New Tickets</span><br/><span class="less-important">The number of new tickets your Helpy has received in this period.</span></td>
+            <td></td>
+            <td><%= content_tag :h3, @total_tickets, class: 'pull-right' %></td>
+          </tr>
+          <tr>
+            <td><span class="more-important">Tickets per day</span><br/><span class="less-important">The number of tickets your Helpy averages per day.</span></td>
+            <td></td>
+            <td><%= content_tag :h3, per_day(@total_tickets, @number_of_days), class: 'pull-right' %></td>
+          </tr>
+          <tr>
+            <td><span class="more-important">Replies</span><br/><span class="less-important">The number of replies your agents have written in this period.</span></td>
+            <td></td>
+            <td><%= content_tag :h3, @total_replies, class: 'pull-right' %></td>
+          </tr>
+          <tr>
+            <td><span class="more-important">Total Actions</span><br/><span class="less-important">The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.</span></td>
+            <td></td>
+            <td><%= content_tag :h3, @total_activities, class: 'pull-right' %></td>
+          </tr>
+          <tr>
+            <td><span class="more-important">Tickets Closed</span><br/><span class="less-important">The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.</span></td>
+            <td></td>
+            <td><%= content_tag :h3, @total_closed, class: 'pull-right' %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-6">
+        <%#= pie_chart assigned_agent_stats(@scoped_stats), title: "Assigned Agents" %>
+      </div>
+      <div class="col-md-6">
+        <%#= pie_chart tickets_by_group(@scoped_stats), title: "Groups" %>
+      </div>
+    </div> -->
+  </div>
+</div>

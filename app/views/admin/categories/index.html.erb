@@ -21,38 +21,35 @@ $(document).ready(function(){
   </h2>
 </div>
 
-
-<div class="row">
-  <div class="col-md-12">
-    <table id="forums" class="table-hover sortable">
-      <col>
-      <col width="5%">
-      <thead>
-        <tr>
-          <th colspan="2" class='tiny-header'><%= t(:front_page_categories, default: 'Front Page Categories') %></th>
-        </tr>
-      </thead>
-      <tbody id="categories">
-        <%= render partial: 'cat', collection: @categories %>
-      </tbody>
-    </table>
-
-    <% if @nonfeatured.count > 0 %>
-    <table id="forums" class="table-hover">
-      <col>
-      <col width="5%">
-      <tbody id="categories">
-        <tr>
-          <td colspan="2"></td>
-        </tr>
-        <tr>
-          <td colspan="2" class='tiny-header'><%= t(:other_categories, default: 'Other Categories') %></td>
-        </tr>
-        <%= render partial: 'cat', collection: @nonfeatured %>
-      </tbody>
-    </table>
-    <% end %>
-
+<div class="settings-section">
+  <div class="row group-header vcenter border-bottom">
+    <div class="pull-left tiny-header col-md-12">
+      <%= t(:front_page_categories, default: 'Front Page Categories') %>
+    </div>
+  </div>
+  <div class="sortable">
+    <%= render partial: 'cat', collection: @public_categories %>
   </div>
 </div>
-<br/>
+
+<div class="settings-section">
+  <div class="row group-header vcenter border-bottom">
+    <div class="pull-left tiny-header col-md-12">
+      <%= t(:other_categories, default: 'Other Categories') %>
+    </div>
+  </div>
+  <div class="sortable">
+    <%= render partial: 'cat', collection: @public_nonfeatured_categories %>
+  </div>
+</div>
+
+<div class="settings-section">
+  <div class="row group-header vcenter border-bottom">
+    <div class="pull-left tiny-header col-md-12">
+      <%= t(:internal_categories, default: 'Private/Internal Categories') %>
+    </div>
+  </div>
+  <div class="sortable">
+    <%= render partial: 'cat', collection: @internal_categories %>
+  </div>
+</div>

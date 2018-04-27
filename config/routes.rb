@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
+    devise_for :users, skip: [:omniauth_callbacks], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords', invitations: 'invitations' }
 
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
@@ -73,6 +73,11 @@ Rails.application.routes.draw do
     get 'topics/thanks' => 'topics#thanks', as: :thanks
   end
 
+  # Webhook Routes
+  namespace :webhook do
+    post 'form/:token' => 'inbound#form', as: :form
+  end
+
   # Admin Routes
 
   namespace :admin do
@@ -80,11 +85,13 @@ Rails.application.routes.draw do
     # Extra topic Routes
     get 'topics/update_topic' => 'topics#update_topic', as: :update_topic, defaults: {format: 'js'}
     post 'topics/merge_tickets' => 'topics#merge_tickets', as: :merge_tickets
+    patch 'topics/update_tags' => 'topics#update_tags', as: :update_topic_tags
     get 'topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
     get 'topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
+    get 'topics/unassign_team' => 'topics#unassign_team', as: :unassign_team
     post 'topics/:topic_id/split/:post_id' => 'topics#split_topic', as: :split_topic
     get 'shortcuts' => 'topics#shortcuts', as: :shortcuts
 
@@ -104,28 +111,37 @@ Rails.application.routes.draw do
     get 'settings/integration' => 'settings#integration', as: :integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
 
-    get 'notifications' => 'settings#notifications', as: :notifications
-    put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
-
-    # Onboarding Routes
-    get '/onboarding/index' => 'onboarding#index', as: :onboarding
-    patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
-    patch '/onboarding/update_settings' => 'onboarding#update_settings', as: :onboard_settings
-    get '/onboarding/complete' => 'onboarding#complete', as: :complete_onboard
-
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
 
+    # Export Routes
+    get 'backups' => 'backups#index', as: :backups
+    get 'backups/export' => "backups/export", as: :export_backup
+    get  'backups/download' => "backups/download", as: :download
+    delete 'backups/:id(.:format)', :to => 'backups#destroy', as: :delete_backup
+
+    # Import Routes
+    resources :imports, only: [:index, :show]
+    post 'imports/restore' => "importz/restore", as: :import_restore
+
     post 'posts/users' => 'posts#search', as: :user_search
     get  'posts/new_user' => 'posts#new_user', as: :new_user
     post  'posts/new_user' => 'posts#change_owner_new_user'
 
+    get 'internal_docs/search' => 'internal_categories#search', as: :internal_docs_search
+
     resources :categories do
       resources :docs, except: [:index, :show]
     end
+
+
+    resources :internal_categories, only: [:index, :show] do
+      resources :internal_docs, only: :show
+    end
+
     resources :docs, except: [:index, :show]
 
     resources :images, only: [:create, :destroy]
@@ -133,6 +149,7 @@ Rails.application.routes.draw do
     resources :users
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
+      resources :groups
     end
     resources :topics, except: [:delete, :edit] do
       resources :posts
@@ -140,7 +157,10 @@ Rails.application.routes.draw do
     resources :posts
     get '/posts/:id/raw' => 'posts#raw', as: :post_raw
     get '/dashboard' => 'dashboard#index', as: :dashboard
-    get '/team' => 'dashboard#stats', as: :stats
+    get '/reports/team' => 'reports#team', as: :team_reports
+    get '/reports/groups' => 'reports#groups', as: :group_reports
+    get '/reports' => 'reports#index', as: :reports
+
     root to: 'dashboard#index'
   end
 

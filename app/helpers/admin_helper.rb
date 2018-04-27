@@ -113,6 +113,7 @@ module AdminHelper
   def help_items
     content_tag :ul, class: 'dropdown-menu' do
       concat content_tag(:li, link_to(t(:get_help, default: "Get Help"), "http://support.helpy.io/"), target: "blank")
+      concat content_tag(:li, link_to(t(:internal_content, default: "Internal Content"), admin_internal_categories_path), class:'kblink') if knowledgebase?
       concat content_tag(:li, link_to(t(:report_bug, default: "Report a Bug"), "http://github.com/helpyio/helpy/issues"), target: "blank")
       concat content_tag(:li, link_to(t(:suggest_feature, default: "Suggest a Feature"), "http://support.helpy.io/en/community/4-feature-requests/topics"), target: "blank")
       concat content_tag(:li, link_to(t(:shortcuts, default: "Keyboard Shortcuts"), "#", class: 'keyboard-shortcuts-link'), target: "blank") if current_user.is_agent?
@@ -161,7 +162,6 @@ module AdminHelper
 
 
       concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
-      concat content_tag(:li, link_to(t('notifications', default: "notifications"), admin_notifications_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
       concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs')
     end
   end
@@ -190,6 +190,74 @@ module AdminHelper
       else
         "fa fa-file-o"
     end
+  end
+
+  def user_page_title_text(role)
+    case role
+      when 'user'
+        "#{t(:user_role).pluralize(2)}"
+      when 'agent'
+        "#{t(:agent_role).pluralize(2)}"
+      when 'editor'
+        "#{t(:editor_role).pluralize(2)}"
+      when 'admin'
+        "#{t(:admin_role).pluralize(2)}"
+      when 'team'
+        "Team"
+      else
+        "#{t(:users)}"
+    end
+
+  end
+
+
+  def user_filter
+    content_tag :span, class: 'btn-group' do
+      concat user_filter_select
+      concat user_filter_options
+    end
+  end
+
+  def user_filter_select
+    content_tag :button, class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
+      content_tag :span, class: 'btn' do
+        ("Filter " + icon('caret-down')).html_safe
+      end
+    end
+  end
+
+  def user_filter_options
+    content_tag :ul, class: 'dropdown-menu', role: 'menu' do
+      @roles.each do |u|
+        concat content_tag :li, link_to(u[0], admin_users_path(role: u[1]))
+      end
+    end
+  end
+
+  def admin_teams
+    ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).where("context = 'teams' and tags.show_on_admin = ?", 'true').references(:tags).map{|tagging| tagging.tag.name.capitalize }.uniq
+  end
+
+  def formatted_tags(topic)
+    content_tag :ul, class: 'list-horizontal topic-tag-list', style: 'padding-left: 0; padding-top: 3px;' do
+      list_tags(topic)
+    end
+  end
+
+  def list_tags(topic)
+    topic.tag_list.each do |tag|
+      concat content_tag(:li, "#{tag}", class: 'label label-tag topic-tag', style: 'margin-right:3px;')
+    end
+  end
+
+  def add_tag_link
+    content_tag :li do
+      content_tag(:span, '', class: 'fa fa-tag add-tag-link')
+    end
+  end
+
+  def inbound_group_email(group, from_email)
+    "#{from_email.split('@')[0]}+#{group}@#{from_email.split('@')[1]}" if group.present? && from_email.present?
   end
 
 end

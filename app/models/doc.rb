@@ -30,7 +30,7 @@ class Doc < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :user
-  has_many :votes, :as => :voteable
+  has_many :votes, as: :voteable
   has_one :topic
   has_many :posts, through: :topic
 
@@ -39,7 +39,9 @@ class Doc < ActiveRecord::Base
   validates :category_id, presence: true
 
   include PgSearch
-  multisearchable :against => [:title, :body, :keywords], :if => :active
+  multisearchable against: [:title, :body, :keywords],
+    :if => lambda { |record| record.category.present? && record.category.publicly_viewable? && record.active && record.category.active? }
+
   has_paper_trail
 
   translates :title, :body, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: false, versioning: :paper_trail
@@ -57,23 +59,28 @@ class Doc < ActiveRecord::Base
   scope :alpha, -> { order('title ASC') }
   scope :by_category, -> { order(:category_id) }
   scope :in_category, -> (cat) { where(category_id: cat).order('front_page DESC, rank ASC') }
-  scope :ordered, -> { order('rank ASC') }
+  scope :ordered, -> { rank(:rank) }
   scope :active, -> { where(active: true) }
   scope :recent, -> { order('last_updated DESC').limit(5) }
   scope :all_public_popular, -> { where(active: true).order('points DESC').limit(6) }
   scope :replies, -> { where(category_id: 1) }
+  scope :publicly, -> { joins(:category).where(categories: { visibility: %w[all public] }) }
 
   def to_param
     "#{id}-#{title.parameterize}"
   end
 
   def read_translated_attribute(name)
-    globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
+    if globalize.stash.contains?(Globalize.locale, name)
+      globalize.stash.read(Globalize.locale, name)
+    else
+      translation_for(Globalize.locale).send(name)
+    end
   end
 
   def content
     c = RDiscount.new(self.body)
-    return c.to_html
+    c.to_html
   end
 
 end

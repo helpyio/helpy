@@ -80,12 +80,12 @@ class UserTest < ActiveSupport::TestCase
       bulk_post_attributes = []
       bulk_post_attributes << {body: I18n.t(:assigned_message, assigned_to: User.find(1).name), kind: 'note', user_id: 1, topic_id: topic.id}
       topics = Topic.where(id: topic.id)
-      topics.bulk_assign(bulk_post_attributes, 1)
+      topics.bulk_agent_assign(bulk_post_attributes, 1)
     end
   end
 
   test 'should only track validation errors once' do
-    user = User.new(email: User.first.email)
+    user = build :user, email: User.first.email
     user.validate
     errs = user.errors.full_messages
     # Verify there are no duplicate errors!
@@ -111,14 +111,8 @@ class UserTest < ActiveSupport::TestCase
     ]
 
     names.each do |name|
-      user = User.create!(
-        name: name,
-        email: "#{name.split(" ")[0]}@testing.com",
-        password: '12345678'
-      )
-
+      user = create(:user, name: name)
       assert_equal name, user.name
-
     end
 
   end
@@ -130,7 +124,7 @@ class UserTest < ActiveSupport::TestCase
     ]
 
     names.each do |name|
-      user = User.create(name: name, email: "#{name.split(" ")[0]}@testing.com", password: "12345678")
+      user = build :user, name: name
       assert_equal user.valid?, false
     end
   end
@@ -191,6 +185,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user_count, User.count
     assert_equal 'facebook', user.provider
     assert_equal '123545', user.uid
+    assert_equal 'user', user.role
   end
 
   test "temp_email should be used if Oauth does not include an email address in response" do
@@ -204,50 +199,28 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "An agent should be enabled for notifications after they are created" do
-    u = User.create!(
-      email: 'agent@temp.com',
-      name: 'test agent',
-      password: '12345678',
-      role: 'agent'
-    )
+    u = create :user, role: 'agent'
     assert_equal u.notify_on_private, false
     assert_equal u.notify_on_public, false
     assert_equal u.notify_on_reply, false
   end
 
   test "An admin should be enabled for notifications after they are created" do
-    u = User.create!(
-      email: 'admin@temp.com',
-      name: 'test admin',
-      password: '12345678',
-      role: 'admin'
-    )
+    u = create :user, role: 'admin'
     assert_equal u.notify_on_private, true
     assert_equal u.notify_on_public, true
     assert_equal u.notify_on_reply, true
   end
 
   test "A user should NOT be enabled for notifications after they are created" do
-    u = User.create!(
-      email: 'user@temp.com',
-      name: 'test user',
-      password: '12345678',
-      role: 'user'
-    )
+    u = create :user, role: 'user'
     assert_equal u.notify_on_private, false, "Should not be enabled for private notifications"
     assert_equal u.notify_on_public, false, "Should not be enabled for public notifications"
     assert_equal u.notify_on_reply, false, "Should not be enabled for reply notifications"
   end
 
   test "Should be able to assign an agent to a group" do
-    u = User.create!(
-      email: 'agent@temp.com',
-      name: 'test agent',
-      password: '12345678',
-      role: 'agent',
-      team_list: 'something'
-    )
-
+    u = create :user, role: 'agent', team_list: 'something'
     assert_equal 'something', u.team_list.first
   end
 
@@ -279,26 +252,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "Reject single quotes from user name" do
-    u = User.create!(
-      email: 'agent@temp.com',
-      name: %['test agent'],
-      password: '12345678',
-      role: 'agent',
-      team_list: 'something'
-    )
-
+    u = (create :user, name: %['test agent'])
     assert_equal 'test agent', u.name
   end
 
   test "Reject double quotes from user name" do
-    u = User.create!(
-      email: 'agent@temp.com',
-      name: %["test agent"],
-      password: '12345678',
-      role: 'agent',
-      team_list: 'something'
-    )
-
+    u = (create :user, name: %["test agent"])
     assert_equal 'test agent', u.name
   end
 

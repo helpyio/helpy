@@ -137,7 +137,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
-
     ### tests of changing status
 
     test "an #{admin} posting an internal note should not change status on its own" do
@@ -184,6 +183,24 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    # Test assigning tags to a topic
+
+    test "an #{admin} should be able to assign and change tags for a topic" do
+      sign_in users(admin.to_sym)
+      xhr :patch, :update_tags, { id: 2, topic: { tag_list: 'hello, hi' } }
+      assert_equal 2, Topic.find(2).tag_list.count
+      assert_equal true, Topic.find(2).tag_list.include?("hi")
+    end
+
+    test "an #{admin} should be able to remove tags for a topic" do
+      sign_in users(admin.to_sym)
+      t = Topic.find(2)
+      t.tag_list = "tag1, tag2"
+      t.save
+      xhr :patch, :update_tags, { id: 2, topic: { tag_list: '' } }
+      assert_equal 0, Topic.find(2).tag_list.count
+    end
+
     ### testing new discussion creation and lifecycle
 
     test "an #{admin} should be able to open a new discussion for a new user" do
@@ -201,6 +218,39 @@ class Admin::TopicsControllerTest < ActionController::TestCase
               xhr :post, :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
             end
           end
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for a new user with a mixed case email" do
+      sign_in users(admin.to_sym)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          assert_difference "User.count", 1 do
+            assert_difference "ActionMailer::Base.deliveries.size", 2 do
+              xhr :post, :create, topic: { user: { name: "a user", email: "Anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+            end
+          end
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for an existing user with an email" do
+      sign_in users(admin.to_sym)
+      existing_user = users(:user)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          xhr :post, :create, topic: { user: { name: "scott", email: "scott.miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
+        end
+      end
+    end
+
+    test "an #{admin} should be able to create a new private discussion for an existing user with a mixed case email" do
+      sign_in users(admin.to_sym)
+      existing_user = users(:user)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          xhr :post, :create, topic: { user: { name: "scott", email: "Scott.Miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1 }
         end
       end
     end
@@ -243,6 +293,22 @@ class Admin::TopicsControllerTest < ActionController::TestCase
         end
       end
     end
+
+    ### test assign_team and unassign_team
+
+    test "an #{admin} should be able to assign_team of a topic" do
+      sign_in users(admin.to_sym)
+      xhr :get, :assign_team, { topic_ids: [1], team: "test"}
+      assert_equal ["test"], Topic.find(1).team_list
+    end
+
+    test "an #{admin} should be able to unassign_team of a topic" do
+      Topic.find(1).team_list = "test"
+      sign_in users(admin.to_sym)
+      xhr :get, :unassign_team, { topic_ids: [1]}
+      assert_equal [], Topic.find(1).team_list
+    end
+
 
     # NOTE: THIS BEHAVIOR WAS REVERSED BASED ON USER FEEDBACK THAT IT WAS HARD TO
     # FIND DISCUSSIONS AFTER THEY WERE VIEWED, LEFT TEST JUST IN CASE

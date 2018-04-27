@@ -22,6 +22,7 @@ class Admin::PostsController < Admin::BaseController
     @post = Post.new(post_params)
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
+    get_all_teams
 
     respond_to do |format|
       if @post.save
@@ -65,7 +66,7 @@ class Admin::PostsController < Admin::BaseController
     @posts = @topic.posts.chronologic
 
     if @post.update_attributes(post_params)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
       respond_to do |format|
         format.js {}
       end
@@ -115,7 +116,7 @@ class Admin::PostsController < Admin::BaseController
 
     # assign user
     if @user.save && @post.update(user: @user)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
     end
 
     # re render topic
@@ -138,6 +139,7 @@ class Admin::PostsController < Admin::BaseController
       :cc,
       :bcc,
       :user_id,
+      :active
     )
   end
 

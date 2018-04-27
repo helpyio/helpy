@@ -1,5 +1,5 @@
   <style>
-  /* Added style to handle new h1 header in trix.js */
+  /* Restyle the h1 in the kb */
   .simple_form h1 {
     font-size: 160%;
     background-color: transparent;
@@ -7,73 +7,40 @@
   </style>
   <% unless cloudinary_enabled? %>
   <script>
-  (function() {
-    var createStorageKey, host, uploadAttachment;
-
-    document.addEventListener("trix-attachment-add", function(event) {
-      var attachment;
-      attachment = event.attachment;
-      if (attachment.file) {
-        return uploadAttachment(attachment);
+  var Helpy = Helpy || {};
+  Helpy.sendFile = function(file, toSummernote) {
+    var data;
+    data = new FormData;
+    data.append('image[file]', file);
+    return $.ajax({
+      data: data,
+      type: 'POST',
+      url: '/admin/images',
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        var img;
+        img = document.createElement('IMG');
+        img.src = data.url;
+        img.setAttribute('id', data.image_id);
+        return toSummernote.summernote("insertNode", img);
       }
     });
-    document.addEventListener('trix-attachment-remove', function(event) {
-      var attachment;
-      attachment = event.attachment;
-      return deleteFile(attachment);
+  };
+
+  Helpy.deleteFile = function(image_id) {
+    return $.ajax({
+      type: 'DELETE',
+      url: '/admin/images/' + image_id,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        console.log("Deleting Image....");
+      }
     });
-
-    host = "<%= admin_images_path(format: :json) %>";
-
-    uploadAttachment = function(attachment) {
-      var file, form, key, xhr;
-      file = attachment.file;
-      key = createStorageKey(file);
-      form = new FormData;
-      form.append("key", key);
-      form.append("Content-Type", file.type);
-      form.append("image[file]", file);
-      xhr = new XMLHttpRequest;
-      xhr.responseType = 'json';
-      xhr.open("POST", host, true);
-      xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-      xhr.upload.onprogress = function(event) {
-        var progress;
-        progress = event.loaded / event.total * 100;
-        return attachment.setUploadProgress(progress);
-      };
-      xhr.onload = function() {
-        var href, url;
-        if (xhr.status === 200) {
-          return attachment.setAttributes({
-            url: xhr.response.url,
-            href: xhr.response.url,
-            image_id: xhr.response.image_id
-          });
-        }
-      };
-      return xhr.send(form);
-    };
-
-    deleteFile = function(n) {
-      return $.ajax({
-        type: 'DELETE',
-        url: '/admin/images/' + n.attachment.attributes.values.image_id,
-        cache: false,
-        contentType: false,
-        processData: false
-      });
-    };
-
-    createStorageKey = function(file) {
-      var date, day, time;
-      date = new Date();
-      day = date.toISOString().slice(0, 10);
-      time = date.getTime();
-      return "tmp/" + day + "/" + time + "-" + file.name;
-    };
-
-  }).call(this);
+  };
   </script>
   <% end %>
 
@@ -83,10 +50,10 @@
   <% else %>
     <%= f.hidden_field("category_id", value: @doc.category_id) %>
   <% end %>
-  <%= f.trix_editor :body, value: @doc.read_translated_attribute(:body) %>
+  <%= f.input :body, as: :summernote %>
   <% unless params[:lang] == "#{I18n.locale}" || @doc.translations.where(locale: locale).count > 0 %>
   <script>
-    $('trix-editor').find('div').html('')
+    $('.panel-body').html('');
   </script>
   <% end %>
   </body>
@@ -99,18 +66,20 @@
   <% end %>
   <hr/>
   <h4 class="form-subhead"><%= t('additional_settings', default: 'Additional Settings') %>:</h4>
-  <div class= "form_group no-translate">
-    <label class="control-label" for="tag_list"><%= t('tags', default: 'Tags') %>: </label>
-    <%= f.text_field :tag_list, value: @doc.tag_list.to_s, class: 'selectize form-control' %>
-  </div>
+  <% if @doc.category_id != 1 %>
+    <div class= "form_group no-translate">
+      <label class="control-label" for="tag_list"><%= t('tags', default: 'Tags') %>: </label>
+      <%= f.text_field :tag_list, value: @doc.tag_list.to_s, class: 'selectize form-control' %>
+    </div>
 
-  <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale), value: @doc.read_translated_attribute(:meta_description)  %>
-  <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale), value: @doc.read_translated_attribute(:title_tag)  %>
-  <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale), value: @doc.read_translated_attribute(:keywords)  %>
+    <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale), value: @doc.read_translated_attribute(:meta_description)  %>
+    <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale), value: @doc.read_translated_attribute(:title_tag)  %>
+    <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale), value: @doc.read_translated_attribute(:keywords)  %>
+    <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %>
+    <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{I18n.locale}"  %>
+  <% end %>
 
   <%#= f.text_field :rank %>
-  <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %>
-  <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{I18n.locale}"  %>
   <hr/>
   <% if params[:lang] == "#{I18n.locale}" %>
     <div class= "form_group no-translate">
@@ -141,4 +110,60 @@
       //   $item.addClass('label-' + char);
       // }
     });
+
+      $('[data-provider="summernote"]').each(function(){
+        $(this).summernote({
+          height: 500,
+          prettifyHtml: true,
+          codemirror: {
+            theme: 'monokai',
+            mode: "htmlmixed",
+            tabsize: 2,
+            smartIndent: true,
+            lineNumbers: true,
+            lineWrapping: true,
+            tabMode: 'indent'
+          },
+          callbacks: {
+            onImageUpload: function(files) {
+              return Helpy.sendFile(files[0], $(this));
+            },
+            onMediaDelete: function(target, editor, editable) {
+              var image_id;
+              image_id = target[0].id;
+              if (!!image_id) {
+                Helpy.deleteFile(image_id);
+              }
+              return target.remove();
+            }
+          }
+
+          // hint: {
+          //   match: /:([\-+\w]+)$/,
+          //   search: function (keyword, callback) {
+          //     callback($.grep(emojis, function (item) {
+          //       return item.indexOf(keyword)  === 0;
+          //     }));
+          //   },
+          //   template: function (item) {
+          //     var content = emojiUrls[item];
+          //     return '<img src="' + content + '" width="20" /> :' + item + ':';
+          //   },
+          //   content: function (item) {
+          //     var url = emojiUrls[item];
+          //     if (url) {
+          //       return $('<img />').attr('src', url).css('width', 20)[0];
+          //     }
+          //     return '';
+          //   }
+          // }
+        });
+      });
+      $.ajax({
+        url: 'https://api.github.com/emojis',
+        async: false
+      }).then(function(data) {
+        window.emojis = Object.keys(data);
+        window.emojiUrls = data;
+      });
   </script>

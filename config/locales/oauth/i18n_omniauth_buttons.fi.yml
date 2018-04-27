@@ -1,0 +1,2 @@
+fi:
+  sign_in_with_omniauth_provider: "Kirjaudu sisään käyttäen %{provider}"

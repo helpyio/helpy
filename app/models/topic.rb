@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 class Topic < ActiveRecord::Base
@@ -80,11 +81,12 @@ class Topic < ActiveRecord::Base
   before_create :add_locale
 
   before_save :cache_user_name
-  # acts_as_taggable
-  acts_as_taggable_on :teams
+  acts_as_taggable_on :tags, :teams
 
   validates :name, presence: true, length: { maximum: 255 }
   # validates :user_id, presence: true
+
+  enum priority: { low: 0, normal: 1, high: 2, very_high: 3 }
 
   def to_param
     "#{id}-#{name.parameterize}"
@@ -152,9 +154,17 @@ class Topic < ActiveRecord::Base
     self.save
   end
 
-  def self.bulk_assign(post_attributes, assigned_to)
+  def self.bulk_agent_assign(post_attributes, assigned_to)
     Post.bulk_insert values: post_attributes
     self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+  end
+
+  def self.bulk_group_assign(post_attributes, assigned_group)
+    Post.bulk_insert values: post_attributes
+    all.each do |t|
+      t.team_list = assigned_group
+      t.save
+    end
   end
 
   # DEPRECATED updates the last post date, called when a post is made
@@ -179,6 +189,25 @@ class Topic < ActiveRecord::Base
 
     unless self.user #User not found, lets build it
       self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
+    end
+    self.user.persisted? && self.save
+  end
+
+  def create_topic_with_webhook_user(params)
+    self.user = User.find_by_email(params['customer']['emailAddress'])
+    unless self.user #User not found, lets craete it from olark params
+      @token, enc = Devise.token_generator.generate(User, :reset_password_token)
+
+      @user = self.build_user
+      @user.reset_password_token = enc
+      @user.reset_password_sent_at = Time.now.utc
+
+      @user.name = params['customer']['fullName']
+      @user.login = params['customer']['emailAddress'].split("@")[0]
+      @user.email = params['customer']['emailAddress']
+      # @user.home_phone = params[:topic][:user][:home_phone]
+      @user.password = User.create_password
+      @user.save
     end
     self.user.persisted? && self.save
   end
@@ -224,6 +253,18 @@ class Topic < ActiveRecord::Base
       end
 
       return @topic
+    end
+  end
+
+  def from_email_address
+    system_from_email = %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>)
+    return system_from_email if self.team_list.blank?
+
+    team = ActsAsTaggableOn::Tag.where('lower(name) = ?', self.team_list.first.downcase).first
+    if team.email_address.present?
+      %("#{team.email_name}" <#{team.email_address}>)
+    else
+      system_from_email
     end
   end
 

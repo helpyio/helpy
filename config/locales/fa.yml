@@ -83,10 +83,10 @@ fa:
   version: "نسخه:"
 
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: نشان برای بررسی
+  flag_post_for_review: نشان پست برای بررسی
+  flag_post_placeholder: دلیل نشان دار کردن این پست بنویسید
+  flag: نشان
 
   # devise/sessions/new
   login: ورود
@@ -132,8 +132,8 @@ fa:
   private: خصوصی
   public: عمومی
   save_changes: ذخیره تغییرات
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  merge: ادغام
+  merge_confirm: آیا مطمئن هستید این تیکت‌ها را می‌خواهید ادغام کنید؟
 
   # Discussion controls
   change_status: تغییر وضعیت
@@ -143,6 +143,7 @@ fa:
   mark_spam: اسپم
   mark_new: جدیده
   assign_agent: بسپر به
+  # tag_with: Tag Ticket
   selected_messages:
     one: "۱ پیغام انتخاب شده"
     two: "۲ پیغام انتخاب شده"
@@ -153,10 +154,15 @@ fa:
   closed_message: "این تیکت توسط پشتیبانی بسته شد."
   trash_message: "این تیکت پاک شده."
   assigned_message: "این بحث منتقل شد به %{assigned_to}."
+  assigned_group: "این تیکت به گروه %{assigned_group} واگذار شده"
+  converted_to_ticket: "این گفتگو به تیکت تبدیل شده"
+  converted_to_topic: "این تیکت به بحث آزاد تبدیل شده و به انجمن %{forum_name} انتقال یافته."
+  tagged_with: "این تیکت با %{tagged_with} تگ شده"
+  notes_hidden: "%{hidden_notes} یادداشت مخفی برای این تیکت وجود دارد. برای دیدن آنها بر روی همین متن کلیک کنید!"
 
   # User Admin
   users: کاربران
-  # account: Account
+  account: حساب کاربری
   contact_info: تماس
   social_info: سوشال
   edit_user: ویرایش کاربر
@@ -165,11 +171,11 @@ fa:
   cell_phone: موبایل
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: انتخاب اولویت
+  vip_priority: VIP
+  high_priority: بالا
+  normal_priority: معمولی
+  low_priority: پایین
 
   # User search results
   users_found:
@@ -221,10 +227,10 @@ fa:
   content_status: "وضعیت محتوا"
   convert_content: 'تبدیل پست به محتوا'
   upload_image: 'بارگزاری عکس'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  new_discussion: 'یک گفتگو از این بسازید'
+  new_discussion_post: 'گفتگو #%{topic_id} از روی این ساخته شده'
+  new_discussion_topic_title: 'از #%{original_id}-%{original_name} جدا کنید}'
+  change_owner_note: 'نویسنده این بحث از %{old} به %{new} تغییر کرد'
 
   # Communities
   new_community: انجمن جدید بساز
@@ -263,6 +269,8 @@ fa:
   design: "طراحی"
   international: "زبان و تنظیمات محلی"
   widget: "کد قابل ادغام"
+  common_replies: "پاسخ های متداول"
+  integrations: "درونی‌سازی"
 
   # API Key Managmeent
   api_keys: "کلیدهای API"
@@ -295,6 +303,33 @@ fa:
   replies: "پاسخ ها"
   median_time: "متوسط زمان تا اولین پاسخ"
 
+  # Keyboard Shortcuts
+  shortcut_then: "بعد"
+  listing_views: "لیست نمایش‌ها"
+  keyboard_shortcuts: "میان‌بر های کیبرد"
+  show_new_tickets: "نمایش تیکت‌های جدید"
+  show_all_tickets: "نمایش همه تیکت ها"
+  show_open_tickets: "نمایش تیکت‌های باز"
+  show_tickets_assigned_to_you: "نمایش تیکت‌های واگذار شده به شما"
+  show_pending_tickets_assigned_to_you: "نمایش تیکت‌های منتظر شما"
+  show_closed_tickets: "نمایش تیکت‌های بسته شده"
+  search_for_tickets: "جستجو تیکت‌ها"
+  viewing_tickets: "نمایش تیکت‌ها"
+  select_previous_ticket: "انتخاب تیکت قبلی"
+  select_next_ticket: "انتخاب تیکت بعدی"
+  view_selected_ticket: "نمایش تیکت انتخاب شده"
+  jump_to_a_specific_ticket_number: "بپر به تیکت شماره"
+  ticket_actions: "عملیات‌های تیکت"
+  assign_the_ticket: "واگذاری تیکت"
+  move_the_ticket: "انتقال تیکت"
+  expand_the_ticket_thread: "باز کردن رشته گفتگو تیکت"
+  reply_to_the_ticket: "پاسخ به تیکت"
+  add_an_internal_note: "اضافه کردن نکته مخفی"
+  change_ticket_status: "تغییر وضعیت تیکت"
+  associate_with_a_group: "واگذار کردن به گروه"
+  ticket_status: "وضعیت تیکت"
+  mark_resolved: "تغییر وضع به حل شده"
+  reopen_ticket: "باز کردن مجدد تیکت"
 
   activerecord:
     attributes:

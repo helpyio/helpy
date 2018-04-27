@@ -1,0 +1,22 @@
+  <div class="settings-section group">
+    <%= f.input 'name', label: t(:tag_name, default: "Group Name"), placeholder: t(:tag_name, default: 'Group Name') %>
+    <%= f.input 'description', label: t('description', default: "Description") %>
+    <%= f.input 'color', inline_label: t('color', default: "Color"), input_html: { class: 'pick-a-color' } %>
+    <br/>
+    <%= f.input 'show_on_helpcenter', checked: @team.show_on_helpcenter, label: t('show_on_helpcenter', default: "Show on helpcenter"), label_html: { class: 'full-width' }, input_html: { class: 'bs-toggle', data: { size: 'mini' } } %>
+    <%= f.input 'show_on_admin', checked: @team.show_on_admin, label: t('show_on_admin', default: "Show on admin"), label_html: { class: 'full-width' }, input_html: { class: 'bs-toggle', data: { size: 'mini' } } %>
+    <%#= f.check_box 'show_on_dashboard', checked: @team.show_on_dashboard, label: t('show_on_dashboard', default: "Show on dashboard"), label_html: { class: 'full-width' }, input_html: { class: 'bs-toggle', data: { size: 'mini' } }%>
+
+    <br/>
+    <span class="tiny-header">Group Email (optional)</span><br/>
+    Any tickets in this group will appear to come from the following address:
+    <br/><br/><br/>
+    <!-- <p>Send email to this group using an alias on your main support address, ie. <%#= inbound_group_email(@team.name, AppSettings['email.from_email']) %></p> -->
+    <%= f.input 'email_address', label: t('email_address', default: "Email Address") %>
+    <%= f.input 'email_name', label: t('from_name', default: "From Name") %>
+
+
+  </div>
+  <div class="submit-section">
+    <%= f.button :submit, "Save Settings", class: 'btn btn-warning' %>
+  </div>

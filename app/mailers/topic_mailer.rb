@@ -12,7 +12,7 @@ class TopicMailer < ActionMailer::Base
       to: email_with_name,
       cc: @post.cc,
       bcc: @post.bcc,
-      from: %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>),
+      from: @topic.from_email_address,
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end

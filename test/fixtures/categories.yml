@@ -15,6 +15,7 @@
 #  section          :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  visibility       :string           default("all")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -24,6 +25,7 @@ one:
   active: true
   front_page: true
   rank: 10
+  visibility: 'all'
 
 two:
   id: 2
@@ -31,6 +33,7 @@ two:
   active: true
   front_page: false
   rank: 20
+  visibility: 'all'
 
 three:
   id: 3
@@ -38,6 +41,7 @@ three:
   active: false
   front_page: false
   rank: 30
+  visibility: 'all'
 
 four:
   id: 4
@@ -45,6 +49,23 @@ four:
   active: true
   front_page: true
   rank: 40
+  visibility: 'all'
+
+six:
+  id: 6
+  name: internal title
+  active: true
+  front_page: true
+  rank: 40
+  visibility: 'internal'
+
+seven:
+  id: 7
+  name: another internal title
+  active: true
+  front_page: true
+  rank: 40
+  visibility: 'internal'
 
 common_replies:
   id: 5
@@ -52,3 +73,4 @@ common_replies:
   active: true
   front_page: true
   rank: 0
+  visibility: 'internal'

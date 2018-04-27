@@ -77,30 +77,51 @@ module API
         end
 
         # CREATE A NEW PRIVATE TICKET
-        desc "Create a new ticket"
+        desc "Creates a new ticket." do
+          detail "You must provide a reference to the ticket creator
+          in one of two ways. Either with the `user_id` of an already instantiated user
+          object, or by supplying both an email address `user_email` along with a user name `user_name`."
+        end
         params do
           requires :name, type: String, desc: "The subject of the ticket"
           requires :body, type: String, desc: "The post body"
           optional :team_list, type: String, desc: "The group that this ticket is assigned to"
           optional :channel, type: String, desc: "The source channel the ticket was created from, Defaults to API if no value provided."
           optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
-          requires :user_id, type: Integer, desc: "the User ID"
+          optional :user_id, type: Integer, desc: "the User ID. Required if `user_email` and `user_name` are not supplied."
+          optional :user_email, type: String, desc: "The user who is creating a ticket. Can be either registered or non-registered. Required if `user_id` not supplied."
+          optional :user_name, type: String, desc: "The user name for register a non-registered user. Required if `user_id` is not supplied."
+          optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
         end
 
         post "", root: :topics do
+          error!('Required field not present. user_id or user_email and user_name is missing', 403) if params[:user_id].blank? && params[:user_email].blank?
+
+          user_id = params[:user_id] # initialize user_id with nil or params[:user_id]
+          if params[:user_email].present?
+            user = User.find_by("lower(email) = ?", params[:user_email].downcase)
+            if user.nil?
+              error!('User not registered. Insufficient access priviledges.', 401) if params[:user_name].blank?
+              user = User.register params[:user_email], params[:user_name]
+              error!("Ticket not created. User could not be registered: #{user.errors.full_messages.join('; ')}", 403) unless user.persisted?
+            end
+            user_id = user.id
+          end
+
           ticket = Topic.create!(
             forum_id: 1,
             name: params[:name],
-            user_id: params[:user_id],
+            user_id: user_id,
             current_status: 'new',
             private: true,
             team_list: params[:team_list],
+            tag_list: params[:tag_list],
             channel: params[:channel].present? ? params[:channel] : "api",
             kind: params[:kind].present? ? params[:kind] : 'ticket',
           )
           ticket.posts.create!(
             body: params[:body],
-            user_id: params[:user_id],
+            user_id: user_id,
             kind: 'first',
           )
           present ticket, with: Entity::Topic, posts: true
@@ -154,6 +175,28 @@ module API
               ticket.current_status = params[:status]
               ticket.save
             end
+            present ticket, with: Entity::Topic, posts: true
+          else
+            error!('Unauthorized. Insufficient access priviledges.', 401)
+          end
+        end
+
+        # UPDATE A TICKETS TAGS
+        desc "Update tags for this ticket"
+        params do
+          requires :id, type: Integer, desc: "The ticket ID to update"
+          requires :tag_list, type: String, desc: "A list of tags to apply to this ticket"
+        end
+
+        post "update_tags/:id", root: :topics do
+          if current_user.is_restricted?
+            ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
+          else
+            ticket = Topic.where(id: permitted_params[:id]).first
+          end
+          if ticket.present?
+            ticket.tag_list = params[:tag_list]
+            ticket.save
             present ticket, with: Entity::Topic, posts: true
           else
             error!('Unauthorized. Insufficient access priviledges.', 401)
@@ -267,7 +310,8 @@ module API
           requires :user_id, type: Integer, desc: "the User ID"
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
           optional :channel, type: String, desc: "The source channel the ticket was created from. Defaults to API."
-          optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
+          optional :kind, type: String, desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc."
+          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: [ 'low', 'normal', 'high', 'very_high' ]
         end
 
         post "", root: :topics do
@@ -277,7 +321,8 @@ module API
             user_id: permitted_params[:user_id],
             private: false,
             channel: params[:channel].present? ? params[:channel] : "api",
-            kind: params[:kind].present? ? params[:kind] : 'discussion'
+            kind: params[:kind].present? ? params[:kind] : 'discussion',
+            priority: permitted_params[:priority] || 'normal'
           )
           topic.posts.create!(
             body: permitted_params[:body],
@@ -295,6 +340,7 @@ module API
           optional :current_status, type: String, desc: "The status of the topic (New, Open, Pending, Resolved)"
           optional :private, type: Boolean, desc: "Whether or not the topic is marked private"
           optional :assigned_user_id, type: Integer, desc: "The assigned agent for this topic"
+          optional :priority, type: String, desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'", values: [ 'low', 'normal', 'high', 'very_high' ]
         end
 
         patch ":id", root: :topics do
@@ -303,7 +349,8 @@ module API
             forum_id: permitted_params[:forum_id],
             current_status: permitted_params[:current_status],
             private: permitted_params[:private],
-            assigned_user_id: permitted_params[:assigned_user_id]
+            assigned_user_id: permitted_params[:assigned_user_id],
+            priority: permitted_params[:priority] || 'normal'
           )
           present topic, with: Entity::Topic, posts: true
         end

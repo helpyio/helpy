@@ -1,0 +1,39 @@
+<% title "Activity Report" %>
+
+<%= render partial: 'admin/reports/report_header', locals:
+    {
+      report_name: t('group_report', site_name: AppSettings['settings.site_name'], default: "Group Report"),
+      report_path: "admin_group_reports_path"
+    } %>
+
+<div class="row">
+  <div class="col-md-2 reports-nav">
+    <%= render partial: 'admin/reports/reports_nav' %>
+  </div>
+  <div class="col-md-10">
+    <div class="row">
+      <div class="col-md-12">
+        <%= column_chart tickets_by_group(@scoped_stats) %>
+        <table width="100%" id="reports">
+          <col width="80%">
+          <col width="0%">
+          <col width="20%">
+          <thead>
+            <th>Group</th>
+            <th>
+            <th class="text-right">Tickets</th>
+          </thead>
+          <%
+          @teams.each do |team|
+          %>
+          <tr>
+            <td><span class="more-important"><%= team[0].capitalize %></span><br/><span class="less-important"></span></td>
+            <td></td>
+            <td><%= content_tag :h3, team[1], class: 'pull-right' %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

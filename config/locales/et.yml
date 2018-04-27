@@ -1,11 +1,11 @@
 # TRANSLATOR(s):
 
 et:
-  language_name: 'eesti'
+  language_name: 'Eesti keel'
   root: &root 'Kodu'
   how_can_we_help: "Kuidas saame aidata?"
   browse_topics: "Teemade sirvimine"
-  support_team: "Kasutajatoe tiim"
+  support_team: "Kasutajatoe meeskond"
   nothing_here: "Siin ei ole midagi, veel!"
 
   # Navigation
@@ -20,15 +20,15 @@ et:
   welcome_back: "Tere tulemast tagasi %{username}"
   your_profile: "Sinu profiil"
   your_tickets: "Sinu piletid"
-  # locale:
-  # change_your_locale:
+  locale: "Keel"
+  change_your_locale: "Vaheta keelt"
 
   # Voting widget
   did_this_help: "Kas said selle probleemi lahendatud?"
   yes_button: 'Jah'
   no_button: 'Ei'
-  # yes_helped: 'Great! Thanks for the feedback!'
-  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  yes_helped: 'Suurepärane! Täname tagasiside eest!'
+  no_helped: "Kahju, et me ei saanud abiks olla. Palun võtke meiega ühendust lisateabe jaoks!"
 
   # Search
   search_placeholder: "Sisesta märksõna, teema või küsimus"
@@ -59,31 +59,31 @@ et:
       other: "%{count} varjatud sõnumit"
 
   # Knowledgebase
-  written_by: "Written By"
-  last_edited: "Last Edited"
+  written_by: "Kirjutas"
+  last_edited: "Viimati muudetud"
   asked_before: "Kas teie küsimusele on vastatud enne? Me arvame, et need võivad olla sarnased"
 
   # Tickets
   tickets: "Piletid"
   no_tickets: "Sa ei ole loonud ühtegi piletit"
-  # ticket_number: "Ticket Number"
-  # assigned_to_label: "Assigned to"
-  # created_on: "Created on"
+  ticket_number: "Pileti number"
+  assigned_to_label: "Määratud"
+  created_on: "Loomisaeg"
 
   # Get Help
   get_help_header: "Vajad ikka abi?"
   get_help_button: "Algata arutelu meiega"
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on GitHub"
-  # version: "Version:"
+  powered_by: "Helpy. Avatud lähtekoodiga kasutajatoe tarkvara."
+  get_your_copy: "Haara oma koopia GitHub lehelt"
+  version: "Versioon:"
 
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: "Märgi ülevaatamiseks"
+  flag_post_for_review: "Märgi postitus ülevaatamiseks"
+  flag_post_placeholder: "Kirjelda oma põhjus selle postituse ülevaatamiseks"
+  flag: "Märgi"
 
   # Profile
   my_profile: 'Minu profiil'
@@ -112,28 +112,31 @@ et:
   discussions: Arutelud
   content: Sisu
   communities: Kommuunid
-  app_store: App Store
+  app_store: Rakenduste pood
   search: Otsing
 
   # Admin main/statuses
-  support_pipeline: Tugi Pipeline
+  support_pipeline: Kasutajatoe töövoog
   new: Uus
   active: Aktiivne
   open: Avatud
   mine: Minu
   pending: Ootel
   closed: Lahendatud
-  spam: Spam
+  spam: Spämm
   trash: Prügi
   discussion_managment: Arutelu haldus
   open_new_discussion: Uus arutelu
   assigned_to: "määratud %{agent}"
   unassigned: määramata
+  no_team_assigned: Määra rühma
+  assign_to: Grupp/Meeskond
+  unassign_from_team: Eemalda grupist
   private: privaatne
   public: avalik
   save_changes: Salvesta muudatused
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  merge: Liida kokku
+  merge_confirm: Kas oled kindel, et tahad liita kokku need piletid?
 
   # Discussion controls
   change_status: Muuda staatus
@@ -143,6 +146,7 @@ et:
   mark_spam: Märgi Spam
   mark_new: Märgi Uus
   assign_agent: Määra Agent
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 valitud sõnum"
     two: "2 valitud sõnumit"
@@ -153,23 +157,35 @@ et:
   closed_message: "See sõnum on suletud abipersonali poolt."
   trash_message: "See pilet on kustutatud."
   assigned_message: "Arutelu on edastatud %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
+  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
-  # users: Users
-  # account: Account
+  users: Kasutajad
+  account: Konto
   contact_info: Kontakt
   social_info: Sotsiaalne
-  edit_user:
-#  delete_user: Delete User
+  edit_user: Muuda kasutajat
   work_phone: töö
   cell_phone: telefon
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: Vali prioriteet
+  vip_priority: VIP
+  high_priority: Kõrge
+  normal_priority: Keskmine
+  low_priority: Madal
+
+  # Roles
+  select_role: Vali roll
+  admin_role: Administraator
+  agent_role: Agent
+  editor_role: Toimetaja
+  user_role: Kasutaja
+  add_more_agents: "Lisa rohkem kasutajaid"
 
   # User search results
   users_found:
@@ -177,13 +193,13 @@ et:
     other: "%{count} kasutajat leitud %{query}"
 
   # Invite users
-  # invite_users: "Invite New Users"
-  # invite_emails: "Email Addresses"
-  # invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
-  # invite_message: "Message"
-  # invite_message_placeholder: "An optional message that will be sent to the new users"
-  # invite_role: "Role for Invited Users"
-  # send_invite: "Send Invite"
+  invite_users: "Kutsu uusi kasutajaid"
+  invite_emails: "Email aadressid"
+  invite_emails_placeholder: "Kirjuta üks või rohkem email aadressi kuhu saata kutse"
+  invite_message: "Sõnum"
+  invite_message_placeholder: "Valikuline sõnum, mis saadetakse uutele kasutajatele"
+  invite_role: "Roll kutsutud kasutajatele"
+  send_invite: "Saada kutse"
 
   # Discussion View
   asked_a_question: "%{user_name} küsis küsimuse..."
@@ -193,6 +209,7 @@ et:
   select_common: Vali Korduma Kippuv Vastus
   reply: Vasta
   internal_note: Siseteatis
+  mark_as_resolved: Märgi lahendatud
   upvote:
     one: "Meeldib | %{count}"
     other: "Meeldib | %{count}"
@@ -209,39 +226,125 @@ et:
   view_and_edit: "Vaata ja Muuda sisu"
   delete_confirm: "Palun kinnita, et soovid seda kustutada!"
   select_icon_helptext: "Vali ikoon mida seostada selle kategooriaga (valikuline)"
-  translate: "Translate to a different language"
-  view_on_site: "View on Site"
-  written_on: "Written on %{date_written}"
-  content_last_updated: "Last Updated on %{date_updated}"
-  featured_content: "Featured"
-  draft_content: "Draft"
-  published_content: "Published"
-  additional_settings: "Additional Settings"
-  content_status: "Content Status"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  translate: "Tõlgi teises keeles"
+  view_on_site: "Kuva lehel"
+  written_on: "Kirjutatud %{date_written}"
+  content_last_updated: "Viimati uuendatud %{date_updated}"
+  featured_content: "Esiletoodud"
+  draft_content: "Mustand"
+  published_content: "Avaldatud"
+  additional_settings: "Täiendavad sätted"
+  content_status: "Sisu staatus"
+  convert_content: 'Muuda postitus sisuks'
+  upload_image: 'Lae pilt'
+  new_discussion: 'Loo sellest uus arutelu'
+  new_discussion_post: 'Sellest loodi arutelu #%{topic_id}'
+  new_discussion_topic_title: 'Poolitatud #%{original_id}-%{original_name}'
+  change_owner_note: 'Selle teema loojat on muudetud %{old} -> %{new}'
 
   # Communities
   new_community: Loo uus kommuun
   create_new_community: Loo uus kommuun
-  # layout_select: Select Format
-  # layout_table: Table
-  # layout_grid: Grid
-  # layout_qna: Q&A
+  layout_select: Select formaat
+  layout_table: Tabel
+  layout_grid: Joonestik
+  layout_qna: Küsimused ja vastused
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
-  hello: "Hello %{user_name}"
-  new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
-  account_generated: "An account has been generated for you. To sign in, please use this link:"
-  above_this_line: "Make sure your reply appears above this line"
-  message_id: "Message ID"
-  message_response: "The following message has been posted in response to your question:"
-  view_online: "View this online:"
+  new_user_subject: "Tere tulemast %{site_name}"
+  hello: "Tere %{user_name}"
+  new_user: "Täname, et võtsite meiega ühendust. Teie sõnum on edastatud meie kasutajatoele, vastame teile peatselt."
+  account_generated: "Konto on loodud sinu jaoks. Et sisse logida, kasutage seda linki:"
+  above_this_line: "Veenduge, et teie vastus ilmneks enne seda joont"
+  message_id: "Sõnumi ID"
+  message_response: "Järgnev sõnum on postitatud vastuseks teie küsimusele:"
+  view_online: "Vaata seda lehel:"
+
+  # Admin notifications
+  notify_new_private: "Uus pilet kliendilt %{user_name}:"
+  notify_new_public: "Uus avalik sõnum kliendilt %{user_name}:"
+  notify_new_reply: "Uus vastus kliendilt %{user_name}:"
+  to_reply: 'Vasta sellele sõnumile otse või internetis:'
+
+  # Notifications settings panel
+  notify_on_private: "Saada mulle sõnum kui uus pilet on loodud"
+  notify_on_public: "Saada mulle sõnum kui uus avalik küsimus on loodud"
+  notify_on_reply: "Saada mulle sõnum kui pilet on saanud uue vastuse"
+
+  # settings
+  agent_settings: "Agendi sätted"
+  notifications: "Teated"
+  settings: "Sätted"
+  general: "Üldine"
+  design: "Disain"
+  international: "Rahvusvaheline"
+  widget: "Manustav vidin"
+  # integrations: "Integrations"
+
+  # API Key Managmeent
+  api_keys: "API võtmed"
+  key_name: "Võtme nimi"
+  token: "Token"
+  add_key: "Lisa uus võti"
+  expire_token: "Aegu token"
+  expired: "Aegunud"
+  expire_confirm: "Kinnita, et tõesti soovid aeguda selle tokeni."
+  spec_note: "Te saate lugeda ja katsetada interaktiivset API-t siin: "
+
+  # Insights
+  team_insights: "Statistika %{site_name}"
+  filter_by_date: "Filtreeri kuupäev"
+  today: "Täna"
+  yesterday: "Eile"
+  this_week: "See nädal"
+  last_week: "Eelmine nädal"
+  this_month: "See kuu"
+  last_month: "Viimane kuu"
+  date_range: "Kuupäevavahemik"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> kasutajad avasid 1 uue pileti"
+    other: "<strong>%{period}</strong> kasutajad avasid <strong>%{count} uut piletit</strong>"
+  insights_blurb_two: "millest meeskond vastas <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "mediaan reaktsiooniaeg <strong>%{response_time}</strong>"
+  no_discussions: "Uusi pileteid ei avatud <strong>%{period}</strong>"
+  assigned_topics: "Määratud teemad"
+  responded: "Vastatud"
+  closed: "Suletud"
+  replies: "Vastuseid"
+  median_time: "Esimese vastuse keskmine aeg"
+
+
+
+  # Keyboard Shortcuts
+  # shortcut_then: "then"
+  # listing_views: "Listing views"
+  # keyboard_shortcuts: "Keyboard Shortcuts"
+  # show_new_tickets: "Show new tickets"
+  # show_all_tickets: "Show all tickets"
+  # show_open_tickets: "Show open tickets"
+  # show_tickets_assigned_to_you: "Show tickets assigned to you"
+  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
+  # show_closed_tickets: "Show closed tickets"
+  # search_for_tickets: "Search for tickets"
+  # viewing_tickets: "View tickets"
+  # select_previous_ticket: "Select previous ticket"
+  # select_next_ticket: "Select next ticket"
+  # view_selected_ticket: "View selected ticket"
+  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
+  # ticket_actions: "Ticket actions"
+  # assign_the_ticket: "Assign ticket"
+  # move_the_ticket: "Move ticket"
+  # expand_the_ticket_thread: "Expand ticket thread"
+  # reply_to_the_ticket: "Reply to the ticket"
+  # add_an_internal_note: "Add an internal note"
+  # change_ticket_status: "Change ticket status"
+  # associate_with_a_group: "Associate with a group"
+  # ticket_status: "Ticket status"
+  # mark_resolved: "Mark as resolved"
+  # reopen_ticket: "Reopen ticket"
+
+  # Settings
+  # common_replies: "Common Replies"
 
   activerecord:
     attributes:
@@ -251,10 +354,11 @@ et:
         name: Nimi
         company: Firma
         work_phone: Töö
+        home_phone: Kodu
         cell_phone: Telefon
         city: Linn
         state: Maakond
-        # signature: Signature
+        signature: Allkiri
       topic:
         name: Pealkiri
       post:
@@ -274,15 +378,14 @@ et:
         keywords: Võtmesõnad
         category_id: Kategooria
         active: Staatus
-        front_page: Featured on front page?
-        # allow_comments: Allow comments?
+        front_page: Esiletoodud esilehel?
       forum:
         name: Nimi
         description: Kirjeldus
-        private: Private
-        # layout: Layout
-        # allow_topic_voting: Allow topic voting?
-        # allow_post_voting: Allow post voting?
+        private: Privaatne
+        layout: Asetus
+        allow_topic_voting: Luba teema hääletamist?
+        allow_post_voting: Luba postituste hääletamist?
 
     helpers:
       submit:
@@ -309,19 +412,19 @@ et:
     result:
       root: *root
   helpers:
-    actions: "Actions"
+    actions: "Tegevused"
     links:
-      back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      back: "Tagasi"
+      cancel: "Tühista"
+      confirm: "Oled sa kindel?"
+      destroy: "Kustuta"
+      new: "Uus"
+      edit: "Muuda"
     titles:
-      edit: "Edit %{model}"
-      save: "Save %{model}"
-      new: "New %{model}"
-      delete: "Delete %{model}"
+      edit: "Muuda %{model}"
+      save: "Salvesta %{model}"
+      new: "Uus %{model}"
+      delete: "Kustuta %{model}"
 
   number:
     human:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128182239) do
+ActiveRecord::Schema.define(version: 20180122155725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,28 +44,16 @@ ActiveRecord::Schema.define(version: 20170128182239) do
 
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
-  create_table "audits", force: :cascade do |t|
-    t.integer  "auditable_id"
-    t.string   "auditable_type"
-    t.integer  "associated_id"
-    t.string   "associated_type"
+  create_table "backups", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "username"
-    t.string   "action"
-    t.text     "audited_changes"
-    t.integer  "version",         default: 0
-    t.string   "comment"
-    t.string   "remote_address"
-    t.string   "request_uuid"
-    t.datetime "created_at"
+    t.text     "csv"
+    t.string   "model"
+    t.string   "csv_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "audits", ["associated_id", "associated_type"], name: "associated_index", using: :btree
-  add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
-  add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
-  add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
-  add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
+  add_index "backups", ["user_id"], name: "index_backups_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -80,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170128182239) do
     t.string   "section"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "visibility",       default: "all"
   end
 
   create_table "category_translations", force: :cascade do |t|
@@ -164,6 +153,19 @@ ActiveRecord::Schema.define(version: 20170128182239) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "imports", force: :cascade do |t|
+    t.string   "status"
+    t.string   "notes"
+    t.string   "model"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.integer  "submited_record_count"
+    t.text     "imported_ids"
+    t.text     "error_log"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -223,7 +225,15 @@ ActiveRecord::Schema.define(version: 20170128182239) do
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.integer "taggings_count",     default: 0
+    t.boolean "show_on_helpcenter", default: false
+    t.boolean "show_on_admin",      default: false
+    t.boolean "show_on_dashboard",  default: false
+    t.text    "description"
+    t.string  "color"
+    t.boolean "active",             default: true
+    t.string  "email_address"
+    t.string  "email_name"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
@@ -250,9 +260,11 @@ ActiveRecord::Schema.define(version: 20170128182239) do
     t.integer  "doc_id",           default: 0
     t.string   "channel",          default: "email"
     t.string   "kind",             default: "ticket"
+    t.integer  "priority",         default: 1
   end
 
   add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree
+  add_index "topics", ["priority"], name: "index_topics_on_priority", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"

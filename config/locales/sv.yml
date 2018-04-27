@@ -139,6 +139,7 @@ sv:
   mark_spam: 'Markera som spam'
   mark_new: 'Markera som nyinkommet'
   assign_agent: 'Tilldela till agent'
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 markerat meddelande"
     two: "2 markerade meddelanden"
@@ -149,6 +150,11 @@ sv:
   close_message: "Det här ärendet har avslutats av supportpersonalen."
   trash_message: "Det här ärendet har raderats."
   assigned_message: "Ärendet har tilldelats %{assigned_to}."
+  # assigned_group: "This ticket has been assigned to %{assigned_group}."
+  # converted_to_ticket: "This discussion was converted to a private ticket."
+  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  # tagged_with: "This ticket was tagged with %{tagged_with}"
+  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
   # users: Users
@@ -233,6 +239,36 @@ sv:
   design: "Design"
   international: "Internationellt"
   widget: "Inbäddningsbar Widget"
+  # common_replies: "Common Replies"
+  # integrations: "Integrations"
+
+  # Keyboard Shortcuts
+  # shortcut_then: "then"
+  # listing_views: "Listing views"
+  # keyboard_shortcuts: "Keyboard Shortcuts"
+  # show_new_tickets: "Show new tickets"
+  # show_all_tickets: "Show all tickets"
+  # show_open_tickets: "Show open tickets"
+  # show_tickets_assigned_to_you: "Show tickets assigned to you"
+  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
+  # show_closed_tickets: "Show closed tickets"
+  # search_for_tickets: "Search for tickets"
+  # viewing_tickets: "View tickets"
+  # select_previous_ticket: "Select previous ticket"
+  # select_next_ticket: "Select next ticket"
+  # view_selected_ticket: "View selected ticket"
+  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
+  # ticket_actions: "Ticket actions"
+  # assign_the_ticket: "Assign ticket"
+  # move_the_ticket: "Move ticket"
+  # expand_the_ticket_thread: "Expand ticket thread"
+  # reply_to_the_ticket: "Reply to the ticket"
+  # add_an_internal_note: "Add an internal note"
+  # change_ticket_status: "Change ticket status"
+  # associate_with_a_group: "Associate with a group"
+  # ticket_status: "Ticket status"
+  # mark_resolved: "Mark as resolved"
+  # reopen_ticket: "Reopen ticket"
 
   activerecord:
     attributes:

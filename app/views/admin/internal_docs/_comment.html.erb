@@ -1,0 +1,48 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<!-- comment topic: <%= comment.topic.id %> post: <%= comment.id %>-->
+<!-- <div id="post-<%= comment.id %>" class="media post-container <%= "kind-#{comment.kind}" %><%= comment.topic.forum.allow_post_voting? ? "" : " disallow-post-voting" %><%= " inactive" unless comment.active? %>"> -->
+<div id="post-<%= comment.id %>" class="media post-container kind-first <%= comment.topic.forum.allow_post_voting? ? "" : " disallow-post-voting" %><%= " inactive" unless comment.active? %>">
+	<div class="pull-left">
+		<%= avatar_image(comment.user, size=40) %>
+	</div>
+	<div class="media-body media-right">
+		<span class="hidden-sm hidden-md hidden-lg"><%= comment.kind == "first" ? last_active_time(comment.created_at) : "#{distance_of_time_in_words(comment.created_at,comment.topic.created_at)} later" %><br/></span>
+		<span id="row-<%= comment.id %>"  class="post-menu post-menu-<%= comment.id %> btn-group">
+			<%=
+			content_tag(:span, class: 'more-important') do
+        comment.user.name.titleize
+      end
+			%>
+		</span>
+
+		<span class="last-active posted-at less-important pull-right">
+			<span class="hidden-xs">
+			<%= comment.kind == "first" ? last_active_time(comment.created_at) : "#{distance_of_time_in_words(comment.created_at,comment.topic.created_at)} later" %>
+			</span>
+		</span>
+
+		<div id="post-body-<%= comment.id %>" class="post-body less-important text-left">
+			<%= simple_format(comment.body) -%>
+			<% if comment.topic.forum.allow_post_voting == true %>
+			<div id="post-vote-<%= comment.id %>" class="btn btn-default">
+				<% if comment.kind == 'first' %>
+				<%= link_to t(:upvote, count: comment.topic.points), up_vote_path(comment.topic.id), method: :post, remote: true, class: 'topic-vote', data: {voted: comment.topic.to_param} %>
+				<% else %>
+				<%= link_to t(:upvote, count: comment.points), post_vote_path(comment.id), method: :post, remote: true, class: 'post-vote', data: {voted: comment.id} %>
+				<% end %>
+			</div>
+			<% end %>
+			<%= render partial: 'posts/thumbnail', locals: { :model_name => comment } %>
+			<%= render partial: 'posts/attachment', locals: { :model_name => comment } %>
+	  </div>
+
+	</div>
+</div>

@@ -1,7 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
-  before_action :verify_admin, except: ['index', 'notifications','update_notifications', 'profile']
-  before_action :verify_agent, only: ['index', 'notifications', 'update_notifications']
+  before_action :verify_admin, except: ['index', 'profile']
+  before_action :verify_agent, only: ['index']
   skip_before_action :verify_authenticity_token
 
   def index
@@ -35,23 +35,15 @@ class Admin::SettingsController < Admin::BaseController
   end
 
   def integration
+    # Set the webhook key if its blank
+    AppSettings["webhook.form_key"] = SecureRandom.hex if AppSettings["webhook.form_key"].blank?
     render layout: 'admin-settings'
   end
 
   def profile
-    @user = User.find(current_user)
+    @user = User.find(current_user.id)
     tracker("Agent: #{current_user.name}", "Editing User Profile", @user.name)
     render layout: 'admin-settings'
-  end
-
-  # Show notification settings for current agent/admin
-  def notifications
-    render layout: 'admin-settings'
-  end
-
-  # Save notification preference for current agent/admin
-  def update_notifications
-    redirect_to :back # admin_settings_path
   end
 
   def preview
@@ -73,7 +65,13 @@ class Admin::SettingsController < Admin::BaseController
     @logo.file = params['uploader.design.header_logo']
     @logo.save
 
-    flash[:success] = "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}"
+    @thumb = Logo.new
+    @thumb.file = params['uploader.design.favicon']
+    @thumb.save
+
+    flash[:success] = t(:settings_changes_saved,
+                        site_url: AppSettings['settings.site_url'],
+                        default: "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}")
     respond_to do |format|
       format.html {
         redirect_to admin_settings_path

@@ -18,13 +18,25 @@
     <div class="user-section">
       <%= f.text_field :name %>
       <%= f.text_field :company %>
-      <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %>
+      <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %> <%= f.text_field :zip, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
       <%= f.select(:role, [[t('select_role'),''],[t('admin_role'),'admin'],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
-      <%= f.text_field :team_list, value: @user.team_list.to_s, class: 'selectize form-control', label: "Group Membership" if AppSettings['settings.teams'] && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
+      <%= f.select 'team_list', options_for_select(@all_teams.map {|t| [t, t.downcase]}, @user.team_list.map {|g| g.downcase}),
+          { label: t(:assign_to, default: "Assign to group:") }, { class: "selectpicker", multiple: true } if teams? && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
       <%= f.select(:priority, [[t('select_priority'),'Select Priority'],[t('low_priority'),'low'],[t('normal_priority'),'normal'],[t('high_priority'),'high'],[t('vip_priority'),'vip']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.check_box :active if current_user.is_admin? && params[:controller] != 'admin/settings' %>
+      <%= f.time_zone_select :time_zone, nil, include_blank: true if current_user.is_admin? %>
     </div>
+    <% if current_user.id == @user.id %>
+    <div class="user-section">
+      <div class="tiny-header"><%= t('devise.passwords.edit.change_your_password') %></div>
+      <br/>
+      <span class="password-fields">
+        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off"  %>
+      </span>
+    </div>
+    <% end %>
     <div class="user-section">
       <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
       <%= f.text_field :work_phone %>
@@ -36,7 +48,11 @@
       <%= f.text_field :twitter %>
       <%= f.text_field :linkedin %>
     </div>
-    <% if current_user.is_admin? && @user.is_agent? %>
+    <div class="user-section">
+      <div class="tiny-header"><%= t(:signature, default: "Signature") %>:</div>
+      <%= f.text_area :signature, skip_label: true, rows: 10 %>
+    </div>
+    <% if current_user.is_admin? && @user.is_agent? || @user == current_user %>
     <div class="user-section">
       <div class="tiny-header"><%= t(:notifications, default: "Notifications") %>:</div>
       <%= f.check_box 'notify_on_private', { checked: @user.notify_on_private?, label: t('notify_on_private', default: "Email me when a private customer question has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>

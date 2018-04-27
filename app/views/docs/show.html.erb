@@ -7,7 +7,7 @@
 ################################################################################
 %>
 
-<% title "#{AppSettings['settings.site_name']}: #{@custom_title}" %>
+<% title "#{AppSettings['settings.site_name']}: #{renderize_doc_title(@doc.title_tag, @doc.title)}" %>
 <% meta_tag :description, "#{@doc.meta_description}" %>
 <% meta_tag :keywords, "#{@doc.keywords}" %>
 
@@ -22,7 +22,6 @@
 </script>
 
 <style>
-/* Added style to handle new h1 header in trix.js */
 .text-content h1 {
   font-size: 160%;
   background-color: transparent;
@@ -48,7 +47,7 @@
     </div>
   </div>
     <div class="col-md-9 text-content">
-    <%= @doc.content.html_safe %>
+    <%= sanitize_doc_content(@doc.content) %>
   </div>
 </div>
 

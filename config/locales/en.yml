@@ -77,6 +77,9 @@ en:
   # Profile
   my_profile: 'My Profile'
 
+  # Locales
+  select_locale: "Change your Locale"
+
   # footer
   powered_by: "Powered by Helpy. An Open Source Helpdesk."
   get_your_copy: "Grab your copy on GitHub"
@@ -114,6 +117,9 @@ en:
   communities: Communities
   app_store: App Store
   search: Search
+  internal_content: Internal Content
+  new_ticket: New Ticket
+  reports: Reports
 
   # Admin main/statuses
   support_pipeline: Support Pipeline
@@ -146,6 +152,7 @@ en:
   mark_spam: Mark Spam
   mark_new: Mark New
   assign_agent: Assign Agent
+  tag_with: Tag Ticket
   selected_messages:
     one: "1 selected message"
     two: "2 selected messages"
@@ -155,7 +162,12 @@ en:
   reopen_message: "This message has been reopened by the support staff"
   closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
-  assigned_message: "Discussion has been transferred to %{assigned_to}."
+  assigned_message: "This ticket has been transferred to %{assigned_to}."
+  assigned_group: "This ticket has been assigned to %{assigned_group}."
+  converted_to_ticket: "This discussion was converted to a private ticket."
+  converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
+  tagged_with: "This ticket was tagged with %{tagged_with}"
+  notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
   users: Users
@@ -166,6 +178,7 @@ en:
   delete_user: Delete User
   work_phone: work
   cell_phone: cell
+  last_seen: "Last Seen"
 
   # Priorities
   select_priority: Select Priority
@@ -179,8 +192,53 @@ en:
   admin_role: Admin
   agent_role: Agent
   editor_role: Editor
-  user_role: User
+  user_role: Customer
   add_more_agents: "Add more users"
+
+  # Groups
+  groups: "Groups"
+  add_new_group: "New Group"
+  group: "Group"
+  tag_group: ""
+  tag_name: "Group Name"
+  description: "Description"
+  color: "Color"
+  show_on_helpcenter: "Show on Helpcenter"
+  show_on_admin: "Show on Admin"
+  email_address: "Email Address"
+  from_name: "From Name"
+
+  # Keyboard Shortcuts
+  shortcut_then: "then"
+  listing_views: "Listing views"
+  keyboard_shortcuts: "Keyboard Shortcuts"
+  show_new_tickets: "Show new tickets"
+  show_all_tickets: "Show all tickets"
+  show_open_tickets: "Show open tickets"
+  show_tickets_assigned_to_you: "Show tickets assigned to you"
+  show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
+  show_closed_tickets: "Show closed tickets"
+  search_for_tickets: "Search for tickets"
+  viewing_tickets: "View tickets"
+  select_previous_ticket: "Select previous ticket"
+  select_next_ticket: "Select next ticket"
+  view_selected_ticket: "View selected ticket"
+  jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
+  ticket_actions: "Ticket actions"
+  assign_the_ticket: "Assign ticket"
+  move_the_ticket: "Move ticket"
+  expand_the_ticket_thread: "Expand ticket thread"
+  reply_to_the_ticket: "Reply to the ticket"
+  add_an_internal_note: "Add an internal note"
+  change_ticket_status: "Change ticket status"
+  associate_with_a_group: "Associate with a group"
+  ticket_status: "Ticket status"
+  mark_resolved: "Mark as resolved"
+  reopen_ticket: "Reopen ticket"
+  set_to_new: "Mark as new"
+  mark_as_spam: "Mark as spam"
+  move_to_trash: "Move to trash"
+  ticket_number: "ticket number"
 
   # User search results
   users_found:
@@ -237,6 +295,10 @@ en:
   new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
   change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
+  # Internal Content
+  no_internal_content_title: "There's no internal documentation written yet!"
+  no_internal_content_text: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!"
+
   # Communities
   new_community: Create New Community
   create_new_community: Create New Community
@@ -271,9 +333,78 @@ en:
   notifications: "Notifications"
   settings: "Settings"
   general: "General"
+  general_description: "Manage general system settings like your Helpy name, what company to link back to."
   design: "Design"
+  design_description: "Control the logos and colors and other design aspects of your Helpy"
   international: "International"
+  international_description:
   widget: "Embeddable Widget"
+  widget_description:
+  common_replies: "Common Replies"
+  common_replies_description:
+  integrations: "Integrations"
+  integrations_description:
+  theme:
+  theme_description:
+  email: "Email"
+  email_description:
+  customers:
+  users_description:
+  team:
+  users_description:
+  team_group:
+  group_description:
+
+  # General
+  site_name:
+  site_url:
+  parent_site:
+  parent_company:
+  site_tagline:
+  enable_forums:
+  enable_knowledgebase:
+  enable_tickets:
+  enable_teams:
+  enable_welcome_email:
+
+  # Design
+  header_logo:
+  search_background:
+  top_bar:
+  link_color:
+  form_background:
+  still_need_help:
+
+  # Locales
+  supported_locales:
+  default_locale:
+
+  # Widget
+  show_widget:
+  widget_background:
+  button_color:
+  button_text_color:
+
+  # Integrations
+  enable_webhook_url:
+  enable_google_analytics:
+  enable_recaptcha:
+  recaptcha_site_key:
+  recaptcha_api_key:
+  enable_cloudinary:
+
+  # Email
+  mail_service:
+  send_email:
+  boolean_no:
+  boolean_yes:
+  admin_email:
+  from_email:
+  smtp_mail_username:
+  smtp_mail_password:
+  mail_smtp:
+  mail_port:
+  mail_domain:
 
   # API Key Managmeent
   api_keys: "API Keys"
@@ -286,7 +417,8 @@ en:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
-  team_insights: "Insights for %{site_name}"
+  activity_report:
+  team_insights: "Team Insights"
   filter_by_date: "Filter by date"
   today: "Today"
   yesterday: "Yesterday"
@@ -295,6 +427,9 @@ en:
   this_month: "This month"
   last_month: "Last month"
   date_range: "Date Range"
+  insight_start_range: "Start date:"
+  insight_end_range: "End date:"
+  insight_filter: "Filter"
   insights_blurb_one:
     one: "<strong>%{period}</strong> your users opened 1 new ticket"
     other: "<strong>%{period}</strong> your users opened <strong>%{count} new tickets</strong>"
@@ -305,9 +440,25 @@ en:
   responded: "Responded"
   closed: "Closed"
   replies: "Replies"
-  median_time: "Median time to frst response"
+  median_time: "Median time to first response"
 
-
+  # IMPORT/EXPORT
+  import: 'Import CSV'
+  new_import: 'New Import'
+  export: 'Export CSV'
+  what_to_export: 'Select what you would like to export'
+  what_to_import: 'Select what you would like to import'
+  imports: 'Imports'
+  exports: 'Exports'
+  past_imports: 'Previous Imports'
+  run_time: 'Run Time'
+  clear_all: 'Remove All'
+  error_details: 'Error Details'
+  row_number: 'Row Number'
+  error_message: 'Error Message'
+  object: 'Object'
+  import_details: '#%{id} Import Details'
+  select_for_export: 'Export %{model} to .csv'
 
   activerecord:
     attributes:
@@ -322,10 +473,13 @@ en:
         city: City
         state: State
         signature: Signature
+        title:
+        time_zone:
       topic:
         name: Question
       post:
-        kind: Genre
+        kind: Type
+        body: Message
       category:
         name: Name
         icon: Icon
@@ -334,6 +488,11 @@ en:
         meta_description: Meta Description
         front_page: Front Page
         active: Active
+        visibility: Visibility
+        visibility_label:
+          all: All
+          public: Public
+          internal: Internal
       doc:
         title: Title
         meta_description: Meta Description
@@ -374,6 +533,13 @@ en:
       root: *root
     result:
       root: *root
+    registrations:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
   helpers:
     actions: "Actions"
     links:

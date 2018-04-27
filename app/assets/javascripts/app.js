@@ -4,7 +4,13 @@ var Helpy = Helpy || {};
 
 Helpy.ready = function(){
 
+  $('.selectpicker').selectpicker({});
+
   $(".best_in_place").best_in_place();
+
+  $('.edit-topic-name-menu').on('click', function(){
+    $('.best_in_place').click();
+  });
 
   $('.profile').initial();
 
@@ -16,6 +22,14 @@ Helpy.ready = function(){
   });
 
   $('.submit-loader').off('submit', Helpy.loader).on('submit', Helpy.loader);
+
+  $('.new-ticket-loader').off('submit', Helpy.loader).on('submit', function(){
+    var $form = $('form.new-ticket-loader');
+    $(document.body).append($form);
+    $form.addClass('hidden');
+    Helpy.loader();
+  });
+
   $('.click-loader').off('click').on('click', Helpy.loader);
   $('ul.pagination li a').off('click').on('click', Helpy.loader);
 
@@ -194,11 +208,19 @@ Helpy.ready = function(){
   $("ul.breadcrumb li:last-child").html("");
 
   // compress thread if there are more than 4 messages
-  var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting');
+  var $threadAll = $('.post-container');
+
+  // add kind first to first post if it is missing
+  if (!$threadAll.first().hasClass('kind-first')) {
+    $threadAll.first().removeClass('kind-reply').addClass('kind-first');
+  }
+  var $thread = $('.post-container.kind-reply.disallow-post-voting');
+
+
+
   if ($thread.size() >= 2) {
 
     // insert expand thread message
-//    var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + ($thread.size()-1) + " collapsed messages </span></div>";
     var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + Helpy.messages + " </span></div>";
 
     // check to see if we are already collapsed
@@ -215,6 +237,9 @@ Helpy.ready = function(){
     // hide thread, except for most recent message
     $thread.hide().last().show();
   }
+
+
+
 
   // Use or append common reply
   $('#post_reply_id').on('change', function(){
@@ -384,6 +409,15 @@ Helpy.ready = function(){
   // Add this in css.  There is probably a better way to do this?
   $("abbr[title='required']").hide();
 
+  // Add hoversort icon
+  $('.hoversort').off().on('mouseover', function(){
+    $(this).prepend('<span class="fa fa-arrows-v" style="color:#666; margin-right: 0;"></span>');
+    $(this).css("cursor","move");
+
+    $(this).on('mouseout', function(){
+      $(this).find('span.fa-arrows-v').remove();
+    });
+  });
 };
 
 $.attachinary.config.template = '\
@@ -454,13 +488,9 @@ $(document).on('page:change', function () {
     lessAni: ""
   });
 
-  // Allows image insertion into quill editor
+  // Allows image insertion into editor
   $('.doc-form-files .cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-    var element = document.querySelector("trix-editor");
-    var thisImage = "<img src='" + $.cloudinary.image(data.result.public_id).attr('src') + "'>";
-    element.editor.insertHTML(thisImage);
-
-    $('.image_public_id').val(data.result.public_id);
+    $('#doc_body').summernote('editor.insertImage', $.cloudinary.image(data.result.public_id).attr('src'));
     return true;
   });
 

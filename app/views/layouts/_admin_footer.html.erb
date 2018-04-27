@@ -1,0 +1,30 @@
+<div id="footer-wrapper">
+	<div class="container-fluid">
+		<div id="footer">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 col-xs-12 text-left">
+					<%= image_tag "logo.png", width: 20 %> <%= link_to t(:powered_by), 'http://helpy.io/' %>
+				</div>
+				<div class="col-md-6 col-sm-4 text-right hidden-xs">
+					<%= link_to t(:get_your_copy), "http://github.com/helpyio/helpy" %>.<br/>
+		      <%= "#{t(:version)} #{APP_VERSION}" %>
+				</div>
+			<div>
+		</div>
+	</div>
+</div>
+
+<div id="login-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title"><%= t('devise.sessions.new.sign_in') %></h3>
+      </div>
+
+      <div class="modal-body row">
+				<%= render 'layouts/login' %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

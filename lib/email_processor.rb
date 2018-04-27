@@ -2,7 +2,7 @@ class EmailProcessor
 
   def initialize(email)
     @email = email
-    @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id'])
+    @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id']) if google_analytics_enabled?
   end
 
   def process
@@ -14,7 +14,7 @@ class EmailProcessor
     return if @email.from[:email].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
 
     # scan users DB for sender email
-    @user = User.where(email: @email.from[:email]).first
+    @user = User.where("lower(email) = ?", @email.from[:email].downcase).first
     if @user.nil?
       create_user
     end
@@ -22,6 +22,7 @@ class EmailProcessor
     sitename = AppSettings["settings.site_name"]
     message = @email.body.nil? ? "" : @email.body
     raw = @email.raw_body.nil? ? "" : @email.raw_body
+    cc = @email.cc ? @email.cc.map { |e| e[:full] }.join(", ") : nil
 
     subject = @email.subject
     attachments = @email.attachments
@@ -35,18 +36,20 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
-        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
+        :body => encode_entity(message),
+        :raw_email => encode_entity(raw),
         :user_id => @user.id,
+        :cc => cc,
         :kind => "reply"
       )
 
       # Push array of attachments and send to Cloudinary
       handle_attachments(@email, post)
 
-      @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
-      @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
-
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
+        @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
+      end
     elsif subject.include?("Fwd: ") # this is a forwarded message DOES NOT WORK CURRENTLY
 
       #clean message
@@ -62,9 +65,10 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create!(
-        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
-        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
+        :body => encode_entity(message),
+        :raw_email => encode_entity(raw),
         :user_id => @user.id,
+        :cc => cc,
         kind: 'first'
       )
 
@@ -72,9 +76,10 @@ class EmailProcessor
       handle_attachments(@email, post)
 
       # Call to GA
-      @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
-
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
+      end
     else # this is a new direct message
 
       topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
@@ -92,9 +97,10 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
-        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
+        :body => encode_entity(message),
+        :raw_email => encode_entity(raw),
         :user_id => @user.id,
+        :cc => cc,
         :kind => "first"
       )
 
@@ -102,13 +108,18 @@ class EmailProcessor
       handle_attachments(@email, post)
 
       # Call to GA
-      @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
-
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
+      end
     end
 
   # rescue
   #   render status: 200
+  end
+
+  def encode_entity(entity)
+    !entity.nil? ? entity.encode('utf-8', invalid: :replace, replace: '?') : entity
   end
 
   def handle_attachments(email, post)
@@ -130,6 +141,10 @@ class EmailProcessor
 
   def cloudinary_enabled?
     AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
+  end
+
+  def google_analytics_enabled?
+    AppSettings['settings.google_analytics_enabled'] == '1'
   end
 
   def create_user
