@@ -177,4 +177,15 @@ class API::V1::UsersTest < ActiveSupport::TestCase
 
     assert_equal 204, last_response.status
   end
+
+  test "an API user can anonymize users" do
+    user = User.create!(name: "foo", email: "foo@bar.com", password: "password")
+    post "/api/v1/users/anonymize/#{user.id}.json", @default_params
+
+    object = JSON.parse(last_response.body)
+
+    assert_equal "Anonymous User", object['name']
+    assert_equal "anon", object['login']
+    assert_nil object['city']
+  end
 end

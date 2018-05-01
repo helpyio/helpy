@@ -1,0 +1,6 @@
+$('#user-<%= @user.id %>').replaceWith('<%= j render partial: "user", object: @user %>');
+
+// jQuery hook
+Helpy.ready();
+Helpy.track();
+Helpy.logHistory();

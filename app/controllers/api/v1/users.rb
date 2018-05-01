@@ -182,6 +182,17 @@ module API
           body false
         end
 
+        # ANONYMIZE A USER
+        desc "Anonymize a user"
+        params do
+          requires :id, type: Integer, desc: "User ID"
+        end
+        post "anonymize/:id", root: :users do
+          user = User.find(permitted_params[:id])
+          user.anonymize
+          present user, with: Entity::User
+        end
+
         # INVITE USER
         desc "Invite one or more users to create an account"
         params do
