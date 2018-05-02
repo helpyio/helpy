@@ -15,9 +15,6 @@
     <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
     </small>
   </p>
-  <p>
-    <%= t('hello', user_name: @topic.user.name) if @topic.user.name.present? %>,
-  </p>
 
   <p>
     <%= simple_format(@post.body) %>
