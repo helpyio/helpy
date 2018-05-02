@@ -53,7 +53,6 @@ class Admin::TopicsController < Admin::BaseController
       # end
       get_all_teams
       @posts = @topic.posts.chronologic.includes(:user)
-      new_topic_post
       tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
       fetch_counts
       @include_tickets = false
@@ -114,11 +113,8 @@ class Admin::TopicsController < Admin::BaseController
           bcc: params[:topic][:post][:bcc]
         )
 
-        # Send welcome email
-        UserMailer.new_user(@user.id, @token).deliver_later
-
-        # Send copy of message to user if selected
-        TopicMailer.new_ticket(@topic.id).deliver_later if params[:topic][:email_new_ticket] == "1"
+        # Send copy of message to user
+        PostMailer.new_post(@post .id).deliver_later
 
         # track event in GA
         tracker('Request', 'Post', 'New Topic')
@@ -212,6 +208,8 @@ class Admin::TopicsController < Admin::BaseController
 
     @user.save
 
+    # Send welcome email
+    UserMailer.new_user(@user.id, @token).deliver_later
   end
 
   # Updates discussion status
@@ -259,7 +257,6 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
-    new_topic_post
     respond_to do |format|
       format.js {
         if params[:topic_ids].count > 1
@@ -304,8 +301,6 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
-    new_topic_post
-
     flash[:notice] = I18n.t(:assigned_message, assigned_to: assigned_user.name)
 
     respond_to do |format|
@@ -351,7 +346,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
-    new_topic_post
+
 
     # respond_to do |format|
     #   format.js {
@@ -390,7 +385,7 @@ class Admin::TopicsController < Admin::BaseController
       fetch_counts
       get_all_teams
       get_tickets_by_status
-      new_topic_post
+
 
       @topic.posts.create(
         body: t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list),
@@ -440,7 +435,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
-    new_topic_post
+
 
     respond_to do |format|
       format.html #render action: 'ticket', id: @topic.id
@@ -471,7 +466,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
-    new_topic_post
+
 
     render 'update_ticket', id: @topic.id
   end
@@ -510,7 +505,7 @@ class Admin::TopicsController < Admin::BaseController
     fetch_counts
     get_all_teams
     get_tickets_by_status
-    new_topic_post
+
 
     respond_to do |format|
       format.html { redirect_to admin_topic_path(@topic) }
@@ -524,7 +519,7 @@ class Admin::TopicsController < Admin::BaseController
     @posts = @topic.posts.chronologic
     fetch_counts
     get_all_teams
-    new_topic_post
+
 
     respond_to do |format|
       format.js { render 'show', id: @topic }
@@ -570,15 +565,4 @@ class Admin::TopicsController < Admin::BaseController
     )
   end
 
-  def new_topic_post
-    return if @topic.nil?
-    if @topic.posts.blank?
-      @post = @topic.posts.new
-    else
-      @post = @topic.posts.new(
-        cc: @topic.posts.chronologic.last.cc,
-        bcc: @topic.posts.chronologic.last.bcc
-      )
-    end
-  end
 end

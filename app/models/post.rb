@@ -50,6 +50,17 @@ class Post < ActiveRecord::Base
   scope :by_votes, -> { order('points DESC')}
   scope :notes, -> { where(kind: 'note') }
 
+  def self.new_with_cc(topic)
+    if topic.posts.count == 0
+      topic.posts.new
+    else
+      topic.posts.new(
+        cc: topic.posts.chronologic.last.cc,
+        bcc: topic.posts.chronologic.last.bcc
+      )
+    end
+  end
+
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache
   def update_waiting_on_cache

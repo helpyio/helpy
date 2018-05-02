@@ -214,7 +214,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
-            assert_difference "ActionMailer::Base.deliveries.size", 2 do
+            assert_difference "ActionMailer::Base.deliveries.size", 3 do
               xhr :post, :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
             end
           end
@@ -227,7 +227,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
-            assert_difference "ActionMailer::Base.deliveries.size", 2 do
+            assert_difference "ActionMailer::Base.deliveries.size", 3 do
               xhr :post, :create, topic: { user: { name: "a user", email: "Anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
             end
           end
