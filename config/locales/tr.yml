@@ -166,6 +166,7 @@ tr:
   contact_info: İletişim
   social_info: Sosyal
   edit_user: Kullanıcıyı Düzenle
+#  delete_user: Delete User
   work_phone: İş
   cell_phone: Cep
 

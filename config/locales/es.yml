@@ -166,6 +166,7 @@ es:
   contact_info: Contacto
   social_info: Social
   edit_user:
+#  delete_user: Delete User
   work_phone: trabajo
   cell_phone: móvil
 

@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true
-  has_many :votes, :as => :voteable
+  has_many :votes, :as => :voteable, dependent: :delete_all
   has_attachments :screenshots, accept: [:jpg, :png, :gif, :pdf]
   has_many :flags
   mount_uploaders :attachments, AttachmentUploader

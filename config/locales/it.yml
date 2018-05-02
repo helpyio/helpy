@@ -166,6 +166,7 @@ it:
   contact_info: Contacto
   social_info: Medie Sociale
   edit_user: Modifica utente
+#  delete_user: Delete User
   work_phone: Telefono (Business)
   cell_phone: telefonine
 
