@@ -142,7 +142,10 @@ ul.settings-menu {
   border: 1px solid #ddd;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-radius: 7px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
 }
 
 .col-md-12.main-panel {
