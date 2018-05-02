@@ -533,6 +533,7 @@ ul.dropdown-menu {
   vertical-align: text-bottom;
 }
 
+.inactive,
 .grayout{
   filter:alpha(opacity=50); //* IE */
   opacity: 0.5; //* Safari, Opera */

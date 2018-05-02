@@ -71,7 +71,7 @@ class Admin::PostsController < Admin::BaseController
     @posts = @topic.posts.chronologic
 
     if @post.update_attributes(post_params)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
       respond_to do |format|
         format.js {}
       end
@@ -121,7 +121,7 @@ class Admin::PostsController < Admin::BaseController
 
     # assign user
     if @user.save && @post.update(user: @user)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
       flash[:notice] = I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}")
     end
 
@@ -145,6 +145,7 @@ class Admin::PostsController < Admin::BaseController
       :cc,
       :bcc,
       :user_id,
+      :active
     )
   end
 

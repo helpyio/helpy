@@ -166,6 +166,7 @@ pt:
   contact_info: "Contacto"
   social_info: "Social"
   edit_user: "Editar Utilizador"
+#  delete_user: Delete User
   work_phone: "trabalho"
   cell_phone: "telemóvel"
 

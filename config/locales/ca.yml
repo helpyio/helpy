@@ -167,6 +167,7 @@ ca:
   contact_info: Contacte
   social_info: Social
   edit_user:
+#  delete_user: Delete User
   work_phone: feina
   cell_phone: mòbil
 

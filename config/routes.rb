@@ -147,6 +147,7 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy]
     resources :forums# , except: [:index, :show]
     resources :users
+    post 'users/:id/scrub' => 'users#scrub', as: :scrub_user
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
       resources :groups

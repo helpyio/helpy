@@ -162,6 +162,7 @@ sv:
   contact_info: Kontakt
   social_info: Sociala medier
   edit_user: Redigera användarkonto
+#  delete_user: Delete User
   work_phone: arbete
   cell_phone: mobil
 

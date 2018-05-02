@@ -176,7 +176,6 @@ gem 'roo'
 
 group :development do
   gem "better_errors"
-  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'

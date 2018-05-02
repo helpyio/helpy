@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true
-  has_many :votes, :as => :voteable
+  has_many :votes, :as => :voteable, dependent: :delete_all
   has_attachments :screenshots, accept: [:jpg, :png, :gif, :pdf]
   has_many :flags
   mount_uploaders :attachments, AttachmentUploader
@@ -127,12 +127,16 @@ class Post < ActiveRecord::Base
   end
 
   def email_locale
-    return I18n.locale if self.kind == 'first'
+    return I18n.locale if self.first?
     self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
   end
 
   def importing?
     self.importing || false
+  end
+
+  def first?
+    self.topic.posts.first == self
   end
 
   private

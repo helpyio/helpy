@@ -32,7 +32,7 @@
 pending:
   id: 1
   forum_id: 1
-  user_id: 2
+  user_id: 9
   assigned_user_id: 1
   name: "Private topic"
   current_status: open #because the user posted, we replied and now its open to a user response.
@@ -43,7 +43,7 @@ pending:
 open:
   id: 2
   forum_id: 1
-  user_id: 2
+  user_id: 9
   assigned_user_id: 1
   name: "Open private topic"
   current_status: pending
@@ -54,7 +54,7 @@ open:
 closed:
   id: 3
   forum_id: 1
-  user_id: 2
+  user_id: 9
   name: "Closed private topic"
   current_status: closed
   private: true
@@ -83,7 +83,7 @@ new:
 private:
   id: 6
   forum_id: 1
-  user_id: 2
+  user_id: 9
   name: "New Private topic"
   current_status: new
   private: true
@@ -94,7 +94,7 @@ private:
 qna_post:
   id: 7
   forum_id: 5
-  user_id: 2
+  user_id: 9
   name: "New Question"
   current_status: new
   private: false
@@ -104,7 +104,7 @@ qna_post:
 grid_post:
   id: 8
   forum_id: 4
-  user_id: 2
+  user_id: 9
   name: "New Idea"
   current_status: new
   private: false
@@ -114,7 +114,7 @@ grid_post:
 article:
   id: 9
   forum_id: 6
-  user_id: 2
+  user_id: 9
   name: "Sample topic for doc"
   doc_id: 7
   current_status: new
