@@ -105,7 +105,7 @@ class Admin::TopicsController < Admin::BaseController
       if (@user.save || !@user.nil?) && @topic.save
         @post = @topic.posts.create(
           body: params[:topic][:post][:body],
-          user_id: @user.id,
+          user_id: current_user.id,
           kind: 'first',
           screenshots: params[:topic][:screenshots],
           attachments: params[:topic][:post][:attachments],

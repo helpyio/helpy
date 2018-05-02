@@ -122,7 +122,6 @@ class Admin::PostsController < Admin::BaseController
     # assign user
     if @user.save && @post.update(user: @user)
       update_topic_owner(old_user, @post) if @post.first?
-      flash[:notice] = I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}")
     end
 
     # re render topic
