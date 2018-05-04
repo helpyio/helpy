@@ -23,7 +23,7 @@
 				<div id="main-body" >
 					<div id="main-content">
 						<div class="settings-panel row">
-						  <div class="col-md-2 col-sm-4 col-xs-2">
+						  <div class="col-lg-2 col-md-3 col-sm-3 hidden-xs">
 								<% if current_user.is_agent? %>
 								<ul class="nav-items list-unstyled" data-hook="admin_profile_menu">
 									<%= settings_menu_item('glyphicon glyphicon-user', t('your_profile', default: "Your Profile"), admin_profile_settings_path(mode: 'settings')) %>
@@ -60,7 +60,7 @@
 								<% end %>
 						  </div>
 
-						  <div class="col-md-10 col-sm-8 col-xs-10 main-panel">
+						  <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main-panel">
 								<%= yield :settings %>
 						  </div>
 						</div>
