@@ -91,12 +91,12 @@ class User < ActiveRecord::Base
 
   # Relationships
 
-  has_many :topics, dependent: :delete_all
-  has_many :posts, dependent: :delete_all
-  has_many :votes, dependent: :delete_all
+  has_many :topics, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :docs
   has_many :backups, dependent: :delete_all
-  has_many :api_keys, dependent: :delete_all
+  has_many :api_keys, dependent: :destroy
 
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
@@ -136,21 +136,7 @@ class User < ActiveRecord::Base
     return if self.is_admin?
     return if self.id == 2 #prevent the system user from being destroyed
 
-    topic_posts = Post.where(topic_id: Topic.where(user_id: self.id))
-
-    # move any authored docs to system user
-    Doc.where(user_id: self.id).update_all(user_id: 2)
-
-    # unassign from any topics assigned to
-    self.unassign_all
-
-    # Remove all posts in threads created by destroyed user
-    topic_posts.destroy_all
-
-    # Remove PII from any backups or import errors
-
-
-    self.destroy
+    DeleteUserJob.perform_later(self.id)
   end
 
   # Removes or anonymizes associated records
