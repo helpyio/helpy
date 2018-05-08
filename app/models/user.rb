@@ -186,7 +186,7 @@ class User < ActiveRecord::Base
     )
 
     # anonymize cached attributes (topics)
-    self.topics.where.not(forum_id: 1).update_all(user_name: 'Anonymized User')
+    self.topics.update_all(user_name: 'Anonymized User')
 
     # rebuild index
   end
