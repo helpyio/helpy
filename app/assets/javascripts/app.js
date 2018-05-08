@@ -247,6 +247,7 @@ Helpy.ready = function(){
 
     // set value of summernote with existing value + common reply
     $('#post_body').summernote('code', $('#post_body').summernote('code') + common_reply.val());
+    $('#topic_post_body').summernote('code', $('#topic_post_body').summernote('code') + common_reply.val());
     $('.disableable').attr('disabled', false);
   });
 

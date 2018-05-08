@@ -22,6 +22,8 @@
     <%= i.input :bcc, label: false, placeholder: 'bcc:' %>
     </span>
     <%= i.input :body, as: :summernote, label: false, class: 'disable-empty' %>
+    <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
+    <%= f.select_tag 'post[reply_id]', grouped_options_for_select(i18n_reply_grouped_options, nil, prompt: ''), class: 'form-control', id: 'post_reply_id' %>
 
     <% if !cloudinary_enabled? %>
       <%= i.file_field :attachments, multiple: true %>
