@@ -6,12 +6,11 @@
 
   <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'general'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section">
-      <%= f.check_box 'settings.enforce_ssl', { checked: AppSettings["settings.enforce_ssl"] == "1", label: t('enforce_ssl', default: "Enforce SSL"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
 
       <h4>Admin Branding</h4>
       <div class="settings-section design">
-        <%= f.text_field 'branding.ticketing_color', value: AppSettings['branding.ticketing_color'], label: t('ticketing_branding', default: "Admin Branding Color"), class: 'pick-a-color' %>
         <%= f.check_box 'branding.display_branding', { checked: display_branding?, label: t('display_branding', default: "Display Branding in Admin"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+        <%= f.text_field 'branding.ticketing_color', value: AppSettings['branding.ticketing_color'], label: t('ticketing_branding', default: "Admin Branding Color"), class: 'pick-a-color' %>
       </div>
 
       <h4 class="settings-subsection">Self Service Site</h4>
