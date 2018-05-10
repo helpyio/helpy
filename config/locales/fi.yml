@@ -172,6 +172,10 @@ fi:
   edit_user: Muokkaa käyttäjää
   work_phone: työpuhelin
   cell_phone: matkapuhelin
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
   select_priority: Valitse prioriteetti

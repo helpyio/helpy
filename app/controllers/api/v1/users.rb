@@ -178,7 +178,7 @@ module API
         end
         delete ":id", root: :users do
           user = User.find(permitted_params[:id])
-          user.destroy
+          user.permanently_destroy
           body false
         end
 
@@ -189,7 +189,7 @@ module API
         end
         post "anonymize/:id", root: :users do
           user = User.find(permitted_params[:id])
-          user.anonymize
+          user.scrub
           present user, with: Entity::User
         end
 

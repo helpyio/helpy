@@ -60,7 +60,16 @@
       <%= f.check_box 'notify_on_reply', { checked: @user.notify_on_reply?, label: t('notify_on_reply', default: "Email me when a new reply to a private discussion has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
     </div>
     <% end %>
-    <%= f.submit "Save", class: 'btn btn-warning' %>
+    <ul class="list-inline">
+      <li><%= f.submit "Save", class: 'btn btn-warning' %></li>
+      <li></li>
+      <li><%= link_to t(:scrub_user, default: 'Anonymize User'), admin_scrub_user_path(@user), remote: false,
+                      method: :post,
+                      data: { confirm: t(:anonymize_user_warning, default: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts.", user_name: @user.name) } if current_user.is_admin? && @user.can_scrub_and_delete? %></li>
+      <li><%= link_to t(:delete_user, default: 'Delete User'), admin_user_path(@user), remote: false,
+                      method: :delete,
+                      data: { confirm: t(:delete_user_warning, default: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics.", user_name: @user.name) } if current_user.is_admin? && @user.can_scrub_and_delete? %></li>
+    </ul>
   </div>
 <% end %>
 <script type="text/javascript">
