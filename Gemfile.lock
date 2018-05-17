@@ -124,6 +124,7 @@ GEM
     chartkick (2.2.2)
     childprocess (0.6.2)
       ffi (~> 1.0, >= 1.0.11)
+    choice (0.2.0)
     client_side_validations (4.2.3)
       jquery-rails (>= 3.1.2, < 5.0.0)
       js_regex (~> 1.0, >= 1.0.9)
@@ -417,6 +418,11 @@ GEM
       activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-erd (1.5.2)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     rails-i18n (4.0.8)
@@ -471,6 +477,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-graphviz (1.2.3)
     ruby-progressbar (1.9.0)
     ruby2ruby (2.3.0)
       ruby_parser (~> 3.1)
@@ -666,6 +673,7 @@ DEPENDENCIES
   pry-byebug
   rack-cors
   rails (= 4.2.10)
+  rails-erd
   rails-i18n (~> 4.0.0)
   rails-settings-cached (~> 0.5)
   rails-timeago
