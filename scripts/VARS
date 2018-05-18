@@ -1,8 +1,0 @@
-#!/bin/bash
-LIVE_SERVER="help.achi.tech"
-LIVE_DATABASE="helpy_production"
-LIVE_USERNAME='helpy'
-DEV_SERVER='127.0.0.1'
-DEV_DATABASE="helpy_development"
-DEV_PASSWORD='password'
-DEV_USERNAME="helpy"
