@@ -32,7 +32,7 @@ function refresh_db() {
   if [ $VERBOSE ]; then
     printf "Done\n\t- Restore Local Database $DEV_DATABASE..."
   fi
-  PGPASSWORD=$DEV_PASSWORD psql -U $DEV_USERNAME $DEV_DATABASE -h $DEV_SERVER -f production.dump
+  PGPASSWORD=$DEV_PASSWORD psql -U $DEV_USERNAME $DEV_DATABASE -h $DEV_SERVER -f production.dump >/dev/null 2>&1
 }
 
 function start_server() {
