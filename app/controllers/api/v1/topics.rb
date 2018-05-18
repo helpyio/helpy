@@ -17,6 +17,34 @@ module API
 
         paginate per_page: 20
 
+        desc "List all PRIVATE tickets", {
+          entity: Entity::Topic,
+          notes: "List all open tickets (private topics)"
+        }
+        get "private", root: :topics do
+          if current_user.is_restricted?
+            topics = Forum.find(1).topics.all.tagged_with(current_user.team_list)
+          else
+            topics = Forum.find(1).topics
+          end
+          present paginate(topics), with: Entity::Topic
+        end
+
+        desc "List all OPEN PRIVATE tickets", {
+          entity: Entity::Topic,
+          notes: "List all open tickets (private topics)"
+        }
+        get "private/open", root: :topics do
+          if current_user.is_restricted?
+            topics = Forum.find(1).topics.where.not(
+              current_status: 'Closed'
+            ).tagged_with(current_user.team_list)
+          else
+            topics = Forum.find(1).topics.where.not(current_status: 'Closed')
+          end
+          present paginate(topics), with: Entity::Topic
+        end
+
         # LIST BY STATUS
         desc "List all PRIVATE tickets by status", {
           entity: Entity::Topic,
