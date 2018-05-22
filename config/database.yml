@@ -21,4 +21,5 @@ production:
   <<: *default
   database: helpy_production
   username: helpy
-  password: <%= ENV['helpy_DATABASE_PASSWORD'] %>
+  password: helpy
+# <%= ENV['helpy_DATABASE_PASSWORD'] %>
