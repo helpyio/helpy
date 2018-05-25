@@ -113,6 +113,9 @@ class Admin::UsersController < Admin::BaseController
         format.js {
           render 'admin/users/show'
         }
+        format.json {
+          respond_with_bip(@user)
+        }
       end
     else
       render :profile
