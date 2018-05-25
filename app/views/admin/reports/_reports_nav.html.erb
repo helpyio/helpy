@@ -1,12 +1,13 @@
-<div class="reports-nav hidden-sm hidden-xs" data-hook="reports-left-nav">
-<%= content_tag :div, class: "ticket-nav-header" do %>
+<div class="reports-nav" data-hook="reports-left-nav">
+<%= content_tag :div, class: "left-nav-header" do %>
   <%= content_tag :span, "Ticketing Reports", class: 'tiny-header' %>
+  <%= hide_responsive_nav %>
 <% end %>
 <%= content_tag :ul, class: "list-unstyled nav-items" do %>
   <%= content_tag :li, link_to("Activity Report", admin_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link nav-item' %>
   <%= content_tag :li, link_to("Group Report", admin_group_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link nav-item' %>
 <% end %>
-<%= content_tag :div, class: "ticket-nav-header" do %>
+<%= content_tag :div, class: "left-nav-header" do %>
   <%= content_tag :span, "Team Reports", class: 'tiny-header' %>
 <% end %>
 <%= content_tag :ul, class: "list-unstyled nav-items" do %>

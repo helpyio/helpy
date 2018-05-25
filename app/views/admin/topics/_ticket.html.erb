@@ -8,7 +8,7 @@
 
     <h3 class="topic-number-name">
 
-      <small><span class="fa fa-toggle-down btn show-ticket-menu hidden-lg hidden-md"></span></small>
+      <%= show_responsive_nav %>
       <span class="topic-number">#<%= @topic.id %></span>-
       <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
 

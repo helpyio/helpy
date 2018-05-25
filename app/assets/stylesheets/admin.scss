@@ -57,9 +57,15 @@ ul.settings-menu {
 }
 
 #ticket-nav,
-#user-nav {
+#user-nav,
+#admin-left-nav {
   background-color: #f4f4f4;
   height: 100%;
+}
+
+#admin-left-nav.open {
+  padding-top: 30px;
+  opacity: 0.97;
 }
 
 .submit-section,
@@ -100,7 +106,7 @@ ul.settings-menu {
   }
 }
 
-.ticket-nav-header {
+.left-nav-header {
   padding: 5px;
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;

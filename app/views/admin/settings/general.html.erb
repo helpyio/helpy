@@ -1,8 +1,6 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h3><%= "#{t(:settings, default: "Settings")}: #{t(:general, default: "General")}" %></h3>
-  </div>
+  <%= settings_header('general') %>
 
   <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'general'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section">

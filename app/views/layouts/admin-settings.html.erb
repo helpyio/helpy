@@ -23,7 +23,8 @@
 				<div id="main-body" >
 					<div id="main-content">
 						<div class="settings-panel row">
-						  <div class="col-lg-2 col-md-3 col-sm-3 hidden-xs">
+						  <div id="admin-left-nav" class="col-lg-2 col-md-3 hidden-sm hidden-xs">
+								<%= hide_responsive_nav %>
 								<% if current_user.is_agent? %>
 								<ul class="nav-items list-unstyled" data-hook="admin_profile_menu">
 									<%= settings_menu_item('glyphicon glyphicon-user', t('your_profile', default: "Your Profile"), admin_profile_settings_path(mode: 'settings')) %>
@@ -33,6 +34,7 @@
 								<% end %>
 								<% if current_user.is_admin? %>
 								<div class="settings-nav-header"><span class="tiny-header">General Settings</span></div>
+
 								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_general_settings_menu" style="margin-top:10px;">
 						      <%= settings_menu_item('glyphicon glyphicon-cog', 'general', admin_general_settings_path) %>
 						      <%= settings_menu_item('glyphicon glyphicon-globe', 'international', admin_i18n_settings_path) %>
@@ -60,7 +62,7 @@
 								<% end %>
 						  </div>
 
-						  <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 main-panel">
+						  <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12 main-panel">
 								<%= yield :settings %>
 						  </div>
 						</div>

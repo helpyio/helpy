@@ -1,8 +1,6 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h3><%= "#{t(:settings, default: "Settings")}: #{t(:widget, default: "Widget")}" %></h3>
-  </div>
+  <%= settings_header('widget') %>
 
   <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'widget'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section widget" data-hook="admin_settings_widget">

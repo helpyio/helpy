@@ -112,7 +112,7 @@ module AdminHelper
     content_tag(:li, class: 'nav-item') do
       link_to(link, class: "#{settings_link(link)} #{'active-settings-link' if current_page?(link)}", "data-target" => title) do
         # concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
-        concat content_tag(:span, t(title, default: title.capitalize), class: 'hidden-xs')
+        concat content_tag(:span, t(title, default: title.capitalize))
       end
     end
   end
