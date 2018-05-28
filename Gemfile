@@ -205,3 +205,6 @@ end
 
 ruby '2.3.6'
 gem 'therubyracer'
+
+# for the Android APP
+gem 'rqrcode'
