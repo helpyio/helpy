@@ -139,6 +139,14 @@ class Post < ActiveRecord::Base
     self.topic.posts.first == self
   end
 
+  def html_formatted_body
+    "#{ActionController::Base.helpers.sanitize(body.gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: %w(strong em a p br b img), attributes: %w(src class style width height))}".html_safe
+  end
+
+  def text_formatted_body
+    "#{ActionView::Base.full_sanitizer.sanitize(body)}".html_safe
+  end
+
   private
 
     def truncate_body

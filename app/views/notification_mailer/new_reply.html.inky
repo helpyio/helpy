@@ -10,7 +10,7 @@
       <spacer size="16"></spacer>
 
       <p>
-        <%= simple_format(@topic.posts.last.body) %>
+        <%= simple_format(@topic.posts.last.html_formatted_body) %>
       </p>
 
       <spacer size="16"></spacer>
