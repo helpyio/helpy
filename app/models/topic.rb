@@ -268,6 +268,10 @@ class Topic < ActiveRecord::Base
     end
   end
 
+  def posts_in_last_minute
+    self.posts.where(created_at: Time.now-1.minutes..Time.now, kind: 'reply').count
+  end
+
   private
 
   def cache_user_name
