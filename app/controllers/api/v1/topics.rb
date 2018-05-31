@@ -23,9 +23,9 @@ module API
         }
         get "private", root: :topics do
           if current_user.is_restricted?
-            topics = Forum.find(1).topics.all.tagged_with(current_user.team_list)
+            topics = Forum.find(1).topics.all.tagged_with(current_user.team_list).order(:current_status)
           else
-            topics = Forum.find(1).topics
+            topics = Forum.find(1).topics.order(:current_status)
           end
           present paginate(topics), with: Entity::Topic
         end
@@ -38,9 +38,9 @@ module API
           if current_user.is_restricted?
             topics = Forum.find(1).topics.where.not(
               current_status: 'Closed'
-            ).tagged_with(current_user.team_list)
+            ).tagged_with(current_user.team_list).order(:current_status)
           else
-            topics = Forum.find(1).topics.where.not(current_status: 'Closed')
+            topics = Forum.find(1).topics.where.not(current_status: 'Closed').order(:current_status)
           end
           present paginate(topics), with: Entity::Topic
         end

@@ -22,11 +22,13 @@ class ApiKey < ActiveRecord::Base
   end
 
   def qrcode(endpoint)
+      # xff = request.headers['HTTP_X_FORWARDED_FOR']
+      # url = xff.nil? ? base_url : xff
     code_content = {
       url: endpoint,
-      api_key: access_token
+      key: access_token
     }
-    RQRCode::QRCode.new( code_content.to_json, :size => 8, :level => :h ).as_html
+    RQRCode::QRCode.new( code_content.to_json, :size => 9, :level => :h ).as_html
   end
 
   private
