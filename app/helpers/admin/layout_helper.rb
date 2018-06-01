@@ -13,13 +13,13 @@ module Admin::LayoutHelper
 
   def show_responsive_nav
     content_tag :small do
-      content_tag :span, nil, class: 'fa fa-toggle-down btn show-ticket-menu hidden-lg hidden-md'
+      content_tag :span, nil, class: 'fas fa-caret-square-left btn show-ticket-menu hidden-lg hidden-md'
     end
   end
 
   def hide_responsive_nav
     content_tag :div, class: "pull-right hidden-lg hidden-md" do
-      content_tag :span, nil, class: "fa fa-close btn show-ticket-menu close-ticket-menu"
+      content_tag :span, nil, class: "fas fa-times btn show-ticket-menu close-ticket-menu"
     end
   end
 

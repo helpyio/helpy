@@ -13,7 +13,7 @@ module AdminHelper
     "[Helpy Admin]"
   end
 
-  def upper_nav_item(label, path, controllers, actions)
+  def upper_nav_item(label, path, controllers, actions, icon="")
     # classname = controller_name == controller ? 'navbar-active' : ''
     if controllers.include?(controller_name) && actions.include?(action_name)
       classname = 'navbar-active'
@@ -21,7 +21,11 @@ module AdminHelper
       classname = ''
     end
 
-    content_tag(:li, link_to(label, path), class: classname)
+    content_tag(:li, class: classname) do
+      link_to path, class: 'text-center' do
+        "#{content_tag(:span, nil, class: "#{icon}")}<br/>#{label}".html_safe
+      end
+    end
   end
 
   def i18n_reply_grouped_options
@@ -149,8 +153,8 @@ module AdminHelper
   end
 
   def helpcenter_link
-    link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
-      concat t(:helpcenter, default: 'Helpcenter')
+    link_to '#', class: 'dropdown-toggle text-center', data: { toggle: 'dropdown' }, role: 'button' do
+      concat "#{content_tag :span, nil, class: 'fa fa-book'}<br/>#{t(:helpcenter, default: 'Helpcenter')}".html_safe
       concat content_tag(:span, '', class: 'caret')
     end
   end
@@ -197,19 +201,19 @@ module AdminHelper
     extension = filename.split(".").last.downcase
     case extension
       when 'pdf'
-        return 'fa fa-file-pdf-o'
+        return 'far fa-file-pdf'
       when 'doc', 'docx'
-        return "fa fa-file-word-o"
+        return "far fa-file-word"
       when 'xls', 'xlsx'
-        "fa fa-file-excel-o"
+        "far fa-file-excel"
       when 'zip', 'tar'
-        "fa fa-file-archive-o"
+        "far fa-file-archive"
       when 'ppt', 'pptx'
-        "fa fa-file-powerpoint-o"
+        "far fa-file-powerpoint"
       when 'html', 'htm'
-        "fa fa-file-code-o"
+        "far fa-file-code"
       else
-        "fa fa-file-o"
+        "far fa-file"
     end
   end
 
