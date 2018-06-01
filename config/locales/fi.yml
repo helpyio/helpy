@@ -77,6 +77,9 @@ fi:
   # Profile
   my_profile: 'Oma profiili'
 
+  # Locales
+  select_locale: "Vaihda kieltä"
+
   # footer
   powered_by: "Voimanlähteenä Helpy. Avoimen lähdekoodin tukipalveluohjelmisto."
   get_your_copy: "Hanki omasi GitHubista"
@@ -115,6 +118,8 @@ fi:
   app_store: Ohjelmistokauppa
   search: Haku
   internal_content: Yrityksen sisäinen sisältö
+  new_ticket: Uusi palvelupyyntö
+  reports: Raportit
 
   # Admin main/statuses
   support_pipeline: Tukikeskus
@@ -170,12 +175,13 @@ fi:
   contact_info: Yhteystiedot
   social_info: Sosiaalinen media
   edit_user: Muokkaa käyttäjää
+  delete_user: Poista Käyttäjä
   work_phone: työpuhelin
   cell_phone: matkapuhelin
-  # delete_user: "Delete User"
-  # scrub_user: "Anonymize User"
-  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
-  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
+  last_seen: "Viimeksi Nähty"
+  scrub_user: "Tee käyttäjästä anonyymi"
+  anonymize_user_warning: "Haluatko varmasti tehdä käyttäjästä %{user_name} anonyymin? Tämä poistaa kaikki käyttäjän henkilötiedot pysyvästi, mutta säilyttää kaikki heidän palvelupyyntönsä ja julkaisunsa."
+  delete_user_warning: "Haluatko varmasti poistaa käyttäjän %{user_name}? Tämä poistaa pysyvästi käyttäjän sekä kaikki kyseisen käyttäjän palvelupyynnöt, julkaisut, vastaukset sekä keskustelut."
 
   # Priorities
   select_priority: Valitse prioriteetti
@@ -191,6 +197,19 @@ fi:
   editor_role: Muokkaaja
   user_role: Asiakas
   add_more_agents: "Lisää käyttäjiä"
+
+  # Groups
+  groups: "Ryhmät"
+  add_new_group: "Uusi Ryhmä"
+  group: "Ryhmä"
+  tag_group: ""
+  tag_name: "Ryhmän Nimi"
+  description: "Kuvaus"
+  color: "Väri"
+  show_on_helpcenter: "Show on helpcenter"
+  show_on_admin: "Näytä hallintapaneelissa"
+  email_address: "Sähköposti"
+  from_name: "Lähettäjä"
 
   # Keyboard Shortcuts
   shortcut_then: "sitten"
@@ -317,11 +336,78 @@ fi:
   notifications: "Ilmoitukset"
   settings: "Asetukset"
   general: "Yleinen"
+  general_description: "Hallitse järjestelmän yleisiä asetuksia, kuten Helpy nimeäsi ja linkattua yritystäsi."
   design: "Malli"
+  design_description: "Muokkaa Helpysi ulkoasua, kuten logoa ja värejä"
   international: "Kansainvälinen"
+  international_description: 
   widget: "Upotettava liitännäinen"
+  widget_description:
   common_replies: "Yleiset vastaukset"
+  common_replies_description:
   integrations: "Integraatiot"
+  integrations_description:
+  theme:
+  theme_description:
+  email: "Sähköposti"
+  email_description:
+  customers:
+  users_description:
+  team:
+  users_description:
+  team_group:
+  group_description:
+
+  # General
+  site_name:
+  site_url:
+  parent_site:
+  parent_company:
+  site_tagline:
+  enable_forums:
+  enable_knowledgebase:
+  enable_tickets:
+  enable_teams:
+  enable_welcome_email:
+
+  # Design
+  header_logo:
+  search_background:
+  top_bar:
+  link_color:
+  form_background:
+  still_need_help:
+
+  # Locales
+  supported_locales:
+  default_locale:
+
+  # Widget
+  show_widget:
+  widget_background:
+  button_color:
+  button_text_color:
+
+  # Integrations
+  enable_webhook_url:
+  enable_google_analytics:
+  enable_recaptcha:
+  recaptcha_site_key:
+  recaptcha_api_key:
+  enable_cloudinary:
+
+  # Email
+  mail_service:
+  send_email:
+  boolean_no:
+  boolean_yes:
+  admin_email:
+  from_email:
+  smtp_mail_username:
+  smtp_mail_password:
+  mail_smtp:
+  mail_port:
+  mail_domain:
 
   # API Key Managmeent
   api_keys: "API-avaimet"
@@ -334,6 +420,7 @@ fi:
   spec_note: "Voit lukea ja testata interaktiivisia API-ominaisuuksia täällä: "
 
   # Insights
+  activity_report:
   team_insights: "Tiimin oivallukset"
   filter_by_date: "Suodata päivämäärällä"
   today: "Tänään"
@@ -358,7 +445,23 @@ fi:
   replies: "Vastaukset"
   median_time: "Keskimääräinen aika ensimmäiseen vastaukseen"
 
-
+  # IMPORT/EXPORT
+  import: 'Tuo CSV'
+  new_import: 'Uusi Tuonti'
+  export: 'Vie CSV'
+  what_to_export: 'Valitse mitä haluat viedä'
+  what_to_import: 'Valitse mitä haluat tuoda'
+  imports: 'Tuonnit'
+  exports: 'Viennit'
+  past_imports: 'Aiemmat tuonnit'
+  run_time: 'Kesto'
+  clear_all: 'Tyhjennä Kaikki'
+  error_details: 'Virheen Tiedot'
+  row_number: 'Rivi Numero'
+  error_message: 'Virhe Viesti'
+  object: 'Object'
+  import_details: '#%{id} Tuo Tiedot'
+  select_for_export: 'Vie %{model} muotoon .csv'
 
   activerecord:
     attributes:
@@ -373,10 +476,13 @@ fi:
         city: Kaupunki
         state: Kunta
         signature: Allekirjoitus
+        title:
+        time_zone:
       topic:
         name: Kysymys
       post:
         kind: Tyyppi
+        body: Viesti
       category:
         name: Nimi
         icon: Ikoni
@@ -429,6 +535,8 @@ fi:
     posts:
       root: *root
     result:
+      root: *root
+    registrations:
       root: *root
     admin:
       internal_categories:
