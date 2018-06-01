@@ -21,6 +21,19 @@
         <button>
         <%= link_to "View Online", admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>
         </button>
-      </center>    </columns>
+      </center>
+
+      <spacer size="16"></spacer>
+      <% @posts.each do |post| %>
+        <hr/>
+        <p style="color: #666;">
+          <%= content_tag :strong, post_message(post,true) %><br/><br/>
+          <%= post.html_formatted_body %>
+          <%= simple_format(post.user.signature) if post.user.signature.present? %>
+        </p>
+        <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } %>
+      <% end %>
+
+    </columns>
   </row>
 </container>

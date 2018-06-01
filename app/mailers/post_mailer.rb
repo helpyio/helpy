@@ -1,12 +1,14 @@
 class PostMailer < ActionMailer::Base
 
-  MAXIMUM_EMAIL_POSTS_PER_MINUTE = 10
+  MAXIMUM_EMAIL_POSTS_PER_MINUTE = 5
 
   add_template_helper(ApplicationHelper)
+  add_template_helper(PostsHelper)
 
   def new_post(post_id)
     @post = Post.find(post_id)
     @topic = @post.topic
+    @posts = @post.topic.posts.where.not(id: @post.id).reverse
 
     # Do not send if internal
     return if @topic.kind == 'internal'

@@ -2,7 +2,7 @@
 class PostMailerPreview < ActionMailer::Preview
 
   def new_post
-    PostMailer.new_post(1)
+    PostMailer.new_post(Post.last.id)
   end
-  
+
 end

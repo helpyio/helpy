@@ -2,7 +2,7 @@
 class UserMailerPreview < ActionMailer::Preview
 
   def new_user
-    UserMailer.new_user(3,'xyz')
+    UserMailer.new_user(User.last,'xyz')
   end
 
 end

@@ -1,6 +1,8 @@
 class NotificationMailer < ApplicationMailer
   layout 'notification'
 
+  add_template_helper(PostsHelper)
+
   def new_private(topic_id)
     new_notification(topic_id, User.notifiable_on_private)
   end
@@ -20,6 +22,7 @@ class NotificationMailer < ApplicationMailer
     return if notifiable_users.count == 0
 
     @topic = Topic.find(topic_id)
+    @posts = @topic.posts.where.not(id: @topic.posts.last.id).reverse
     @user = @topic.user
     @recipient = notifiable_users.first
     @bcc = notifiable_users.last(notifiable_users.count-1).collect {|u| u.email}

@@ -22,6 +22,8 @@
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @post } %>
 
+
+  <%= render partial: 'mailer_shared/post', collection: @posts %>
   <br/>
   <p style="color: #666;">
     <small>
