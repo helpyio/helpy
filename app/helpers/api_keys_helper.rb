@@ -18,9 +18,9 @@ module ApiKeysHelper
 
     content_tag(:div, class: 'qr') do
       content_tag(:div) do
-        content_tag(:span, key.access_token).html_safe
+        content_tag(:span, key.access_token + ' ').html_safe +
+        content_tag(:button, '', class: ['btn', 'btn-primary', 'glyphicon', 'glyphicon-qrcode'], data: { toggle: 'modal', target: '#' + target_div }, type: 'button')
       end.html_safe +
-      content_tag(:button, '', class: ['btn', 'btn-primary', 'glyphicon', 'glyphicon-qrcode'], data: { toggle: 'modal', target: '#' + target_div }, type: 'button') +
       content_tag(:div, class: ['modal', 'fade'], id: target_div, tabindex: -1, role: 'dialog', aria: { labelledby: target_div + '_label'}) do
         content_tag(:div, class: 'modal-dialog', role: 'document') do
           content_tag(:div, class: 'modal-content') do
