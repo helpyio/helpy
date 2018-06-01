@@ -1,4 +1,6 @@
 <style>
+#footer-wrapper,
+#footer,
 .nav-bg-color {
   background-color: <%= AppSettings['branding.ticketing_color'] %>;
 }
@@ -7,13 +9,20 @@
   border-radius: 5px;
 
 }
+#footer,
+#footer a,
 .nav-color {
   color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
 }
 .brand-color: {
   color: <%= AppSettings['branding.ticketing_color'] %>;
 }
-
+.topic-search-container {
+  background-color: <%= darken_color(AppSettings['branding.ticketing_bg_color'], 0.9) %>;
+}
+body {
+  background-color: <%= AppSettings['branding.ticketing_bg_color'] %>;
+}
 #upper-wrapper {
   background-color: <%= AppSettings['branding.ticketing_color'] %>;
 }
@@ -22,6 +31,14 @@
 .navbar.navbar-default,
 .nav {
   background-color: transparent;
+}
+
+.nav-active {
+  background-color: <%= darken_color(AppSettings['branding.ticketing_bg_color'], 0.95) %>;
+}
+
+li.nav-over {
+  background-color: <%= darken_color(AppSettings['branding.ticketing_bg_color'], 0.97) %> !important;
 }
 
 #header-wrapper > nav > div > ul > li > a {

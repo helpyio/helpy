@@ -41,6 +41,10 @@ td > img {
     margin-bottom: 20px;
 }
 
+#main-content {
+  background-color: transparent;
+}
+
 // === LEFT NAV ===
 
 ul.settings-menu {
@@ -59,13 +63,13 @@ ul.settings-menu {
 #ticket-nav,
 #user-nav,
 #admin-left-nav {
-  background-color: #f4f4f4;
   height: 100%;
 }
 
 #admin-left-nav.open {
   padding-top: 30px;
   opacity: 0.97;
+  background-color: #f4f4f4;
 }
 
 .submit-section,
@@ -121,7 +125,6 @@ ul.settings-menu {
 
 .nav-active {
   font-weight: bold;
-  background-color: #eee;
 }
 
 .left-dropdown {
@@ -170,7 +173,6 @@ ul.settings-menu {
 }
 
 #main-content {
-  background-color: #f4f4f4;
   margin-top: 40px;
   padding-right: 20px;
 }
@@ -788,7 +790,6 @@ ul.dropdown-menu {
         width: 10px;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 10px;
       padding-right: 10px;
       padding-left: 20px;
@@ -836,7 +837,6 @@ ul.dropdown-menu {
         margin-top: 45px;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 20px;
       padding-right: 20px;
       padding-left: 20px;
@@ -879,7 +879,6 @@ ul.dropdown-menu {
         font-size: 200%;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 20px;
       padding-right: 20px;
       padding-left: 5px;
@@ -919,7 +918,6 @@ ul.dropdown-menu {
         font-size: 220%;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 20px;
       padding-right: 20px;
       padding-left: 5px;
