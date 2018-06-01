@@ -10,6 +10,14 @@ module Admin::TopicsHelper
 
   end
 
+  def topic_added_from
+    # <span class="less-important" style="font-size: 12px;"><%= "#{@topic.kind} added from #{@topic.channel}" %><%= " on #{link_to(@doc.title, edit_admin_category_doc_path(@doc.category_id, @doc.id, lang: I18n.locale))}".html_safe if @doc.present? %></span>
+    content_tag :small, class: 'less-important' do
+      concat t(:topic_added_from, kind: @topic.kind, channel: @topic.channel)
+      concat ": #{link_to(@doc.title, edit_admin_category_doc_path(@doc.category_id, @doc.id, lang: I18n.locale))}".html_safe if @doc.present?
+    end
+  end
+
   def ticket_status_label
     content_tag :span, class: "label #{status_class(@status)}", style: 'text-transform: uppercase' do
       status_label(@status)
