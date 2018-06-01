@@ -16,7 +16,7 @@ module ApiKeysHelper
   def qrmodal(key, endpoint)
     target_div = 'modal' + key.name;
 
-    content_tag(:div, class: 'qr_wrapper') do
+    content_tag(:div, class: 'qr') do
       content_tag(:div) do
         content_tag(:span, key.access_token).html_safe
       end.html_safe +
@@ -24,7 +24,8 @@ module ApiKeysHelper
       content_tag(:div, class: ['modal', 'fade'], id: target_div, tabindex: -1, role: 'dialog', aria: { labelledby: target_div + '_label'}) do
         content_tag(:div, class: 'modal-dialog', role: 'document') do
           content_tag(:div, class: 'modal-content') do
-            concat(modal_header(key.name, target_div)) +
+            mh = modal_header(key.name, target_div)
+            concat(mh) +
             concat(modal_body(key.qrcode(endpoint))) +
             concat(modal_footer)
           end.html_safe
