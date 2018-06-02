@@ -10,6 +10,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :set_time_zone, if: :current_user
 
+  # prevents locale from getting carried over- see https://github.com/plataformatec/devise/issues/3569
+  after_action :reset_locale
+
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
   end
@@ -126,6 +129,10 @@ class ApplicationController < ActionController::Base
     else
       I18n.locale = @browser_locale
     end
+  end
+
+  def reset_locale
+    I18n.locale = AppSettings['i18n.default_locale']
   end
 
   def set_vars
