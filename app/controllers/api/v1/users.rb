@@ -205,6 +205,11 @@ module API
           present params[:emails]
         end
 
+        # INSPECT SELF
+        desc "Get your own users details"
+        post "self", root: :users do
+          present current_user, with: Entity::User
+        end
       end
     end
   end
