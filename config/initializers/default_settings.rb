@@ -1,7 +1,7 @@
 # General Settings:
 
-AppSettings.defaults["branding.ticketing_color"] = "#444444"
-AppSettings.defaults["branding.ticketing_bg_color"] = "#f4f4f4"
+AppSettings.defaults["branding.ticketing_color"] = "#245566"
+AppSettings.defaults["branding.ticketing_bg_color"] = "#f6f7e8"
 AppSettings.defaults["branding.ticketing_bg_image"] = ""
 AppSettings.defaults["branding.display_branding"] = "1"
 
@@ -49,7 +49,7 @@ AppSettings.defaults["css.form_color"] = ""
 
 # Theme:
 
-AppSettings.defaults["theme.active"] = "light"
+AppSettings.defaults["theme.active"] = "singular"
 
 # i18n:
 

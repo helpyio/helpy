@@ -1,0 +1,10 @@
+<div>
+    <span>
+      <%= render_breadcrumbs('') %>
+    </span>
+    <% if @page_title.present? %>
+    <h1><%= @page_title %></h1>
+    <% else %>
+    <%= yield :page_title %>
+    <% end %>
+</div>

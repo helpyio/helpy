@@ -1,0 +1,81 @@
+// Overrides for Twitter Bootstrap Variables
+// See: https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+// Note: Only configure variables here if changed from the defaults linked above.
+// This helps identify which Bootstrap variables we've actually overridden.
+
+// Colours: Brand Defaults
+$brand-primary:         #3cceff;
+$brand-link:            #004084;
+$link-color:            #666;
+$table-border-color:    #fff;
+$breadcrumb-bg:         #eee;
+$body-bg:               #efefef;
+
+// Navbar links
+$navbar-default-link-color: #004084;
+$navbar-default-color:      #fff;
+$navbar-default-bg:         #fff;
+$navbar-default-border:     #fff;
+
+$navbar-default-link-color:                $brand-link;
+$navbar-default-link-active-color:         $brand-link;
+$navbar-default-link-active-bg:            #fff;
+
+// Typography
+$font-family-sans-serif:  "Roboto", sans-serif;
+$font-family-serif:       'Roboto', serif;
+
+// Theme Specific Colors
+$header-bg:               #eee;
+$header-link-color:       #666;
+$font-size-base:          16px;
+$main-panel-bg:           #eee;
+$main-panel-font-color:   #333;
+$main-panel-breadcrumb-color: $main-panel-font-color;
+$icon-color:              $main-panel-bg;
+$icon-bg-color:           #eee;
+
+
+// LEGACY LESS CODE FOLLOWS:
+// TODO: Replace as necessary with SCSS equivalents
+
+// // Set the correct sprite paths
+// @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+// @iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+
+// // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// //@fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
+// //@fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
+// //@fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
+// //@fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
+// //@fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
+
+// // Font Awesome
+// //@import "fontawesome/font-awesome";
+// //@fa-font-path: "/assets";
+// //@import "font-awesome-sprockets";
+// //@import "font-awesome";
+
+// // Glyphicons
+
+// // Glyphicons are not required by default, uncomment the following lines to enable them.
+// @glyphiconsEotPath: font-url("glyphicons-halflings-regular.eot");
+// @glyphiconsEotPath_iefix: font-url("glyphicons-halflings-regular.eot?#iefix");
+// @glyphiconsWoffPath: font-url("glyphicons-halflings-regular.woff");
+// @glyphiconsTtfPath: font-url("glyphicons-halflings-regular.ttf");
+// @glyphiconsSvgPath: font-url("glyphicons-halflings-regular.svg#glyphicons_halflingsregular");
+
+// @import "twitter/bootstrap/glyphicons.less";
+
+// //** Load fonts from this directory.
+// @icon-font-path:          "../fonts/";
+// //** File name for all font files.
+// @icon-font-name:          "glyphicons-halflings-regular";
+// //** Element ID within SVG icon file.
+// @icon-font-svg-id:        "glyphicons_halflingsregular";
+
+// @font-face {
+//     font-family: 'Glyphicons Halflings';
+//     src: url('/assets/glyphicons-halflings-regular.eot');
+//     src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+// }

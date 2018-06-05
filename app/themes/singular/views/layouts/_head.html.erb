@@ -1,0 +1,31 @@
+<!-- <title><%= @title_tag || AppSettings['settings.site_name'] %></title> -->
+<title><%= content_for(:title) ? content_for(:title) : AppSettings['settings.site_name'] %></title>
+
+<meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="distribution" content="all" />
+<meta name="robots" content="all" />
+<meta name="description" content="<%= yield_meta_tag(:description, '') %>" />
+<meta name="keywords" content="<%= yield_meta_tag(:keywords, '') %>" />
+<meta name="resource-type" content="document" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%#= stylesheet_link_tag 'application', "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag 'singular/all', "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "singular/all", "data-turbolinks-track" => true %>
+<%= timeago_script_tag %>
+
+<%= @feed_link.html_safe if @feed_link %>
+<link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<%= csrf_meta_tags %>
+<%= favicon_link_tag "#{AppSettings['design.favicon']}" %>
+<%= cloudinary_js_config %>
+
+<%= render 'layouts/google_analytics' %>
+
+<script>
+Helpy.domain = '<%= "//" + request.host_with_port %>';
+</script>
