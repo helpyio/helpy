@@ -1,7 +1,7 @@
 <% qr_pixel_width = 3 %>
 <tr class="api_key_<%= api_key.id %> <%= 'less-important' if api_key.expired? %>">
   <td><%= api_key.name %></td>
-  <td><%= qrmodal(api_key, @endpoint) %></td>
+  <td><%= api_key_qr_modal(api_key, @endpoint) %></td>
   <% if api_key.expired? %>
     <td class="pull-right"><%= t("expired", default: "Expired") %></td>
   <% else %>

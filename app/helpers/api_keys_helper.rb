@@ -13,7 +13,7 @@
 
 module ApiKeysHelper
 
-  def qrmodal(key, endpoint)
+  def api_key_qr_modal(key, endpoint)
     target_div = 'modal' + key.name;
 
     content_tag(:div, class: 'qr') do
