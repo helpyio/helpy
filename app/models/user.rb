@@ -90,12 +90,14 @@ class User < ActiveRecord::Base
   paginates_per 15
 
   # Relationships
-  has_and_belongs_to_many :roles
-  has_many :topics
-  has_many :posts
-  has_many :votes
+
+  has_many :topics, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :docs
-  has_many :api_keys
+  has_many :backups, dependent: :delete_all
+  has_many :api_keys, dependent: :destroy
+
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
 
@@ -109,6 +111,7 @@ class User < ActiveRecord::Base
   # TODO: Will want to refactor this using .or when upgrading to Rails 5
   scope :admins, -> { where('admin = ? OR role = ?',true,'admin').order('name asc') }
   scope :agents, -> { where('admin = ? OR role = ? OR role = ?',true,'admin','agent').order('name asc') }
+  scope :customers, -> { where('admin = ? and role = ?',false,'user').where.not(role: ['agent','admin','editor']).where.not(id: 2).order('name asc') }
   scope :team, -> { where('admin = ? OR role = ? OR role = ? OR role = ?',true,'admin','agent','editor').order('name asc') }
   scope :active, -> { where(active: true)}
   scope :by_role, -> (role) { where(role: role) }
@@ -125,6 +128,78 @@ class User < ActiveRecord::Base
       self.notify_on_public = true
       self.notify_on_reply = true
     end
+  end
+
+  # Permanently destroy a user along with all owned records
+  # change doc ownership
+  def permanently_destroy
+    return if self.is_admin?
+    return if self.id == 2 #prevent the system user from being destroyed
+
+    DeleteUserJob.perform_later(self.id)
+  end
+
+  # Removes or anonymizes associated records
+  def scrub
+    return if self.is_admin?
+    return if self.id == 2 #prevent the system user from anonymized
+
+    # unassign from any topics assigned to
+    self.unassign_all
+
+    # "forget user"
+    self.anonymize
+  end
+
+  # anonymizes a users attributes
+  def anonymize
+    return if self.is_admin?
+
+    # anonymize own attributes
+    self.update!(
+      login: 'anon',
+      name: 'Anonymous User',
+      role: 'user',
+      signature: nil,
+      home_phone: nil,
+      work_phone: nil,
+      cell_phone: nil,
+      company: nil,
+      street: nil,
+      city: nil,
+      state: nil,
+      zip: nil,
+      title: nil,
+      twitter: nil,
+      linkedin: nil,
+      bio: nil,
+      thumbnail: nil,
+      medium_image: nil,
+      large_image: nil,
+      profile_image: nil,
+      current_sign_in_ip: nil,
+      last_sign_in_ip: nil,
+      encrypted_password: SecureRandom.hex(24),
+      account_number: nil,
+      active: false,
+      email: 'change@me-' + SecureRandom.hex(5) + '.anonymous'
+    )
+
+    # anonymize cached attributes (topics)
+    self.topics.update_all(user_name: 'Anonymized User')
+
+    # rebuild index
+  end
+
+  # Unassign from all tickets
+  def unassign_all
+    Topic.where(assigned_user_id: self.id).update_all(assigned_user_id: nil)
+  end
+
+  # Can this user be deleted? Protects admins/system user from accidental delete
+  def can_scrub_and_delete?
+    return false if self.id == 2 || self.is_admin?
+    true
   end
 
   def self.notifiable_on_public
@@ -203,6 +278,10 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  # evaluates to true if they are a priority (high/vip) user
+  def priority?
+    self.priority == 'high' || self.priority == 'vip'
+  end
 
   # NOTE: Could have user AR Enumerables for this, but the field was already in the database as a string
   # and changing it could be painful for upgrading installed users. These are three

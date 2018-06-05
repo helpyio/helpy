@@ -1,0 +1,2 @@
+ko:
+  sign_in_with_omniauth_provider: "%{provider}로 로그인"

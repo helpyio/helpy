@@ -8,6 +8,10 @@ Helpy.ready = function(){
 
   $(".best_in_place").best_in_place();
 
+  $('.edit-topic-name-menu').on('click', function(){
+    $('.best_in_place').click();
+  });
+
   $('.profile').initial();
 
   $('.attachinary-input').attachinary();
@@ -204,12 +208,19 @@ Helpy.ready = function(){
   $("ul.breadcrumb li:last-child").html("");
 
   // compress thread if there are more than 4 messages
-  // var $thread = $('.post-container.kind-reply.disallow-post-voting, .post-container.kind-note.disallow-post-voting');
+  var $threadAll = $('.post-container');
+
+  // add kind first to first post if it is missing
+  if (!$threadAll.first().hasClass('kind-first')) {
+    $threadAll.first().removeClass('kind-reply').addClass('kind-first');
+  }
   var $thread = $('.post-container.kind-reply.disallow-post-voting');
+
+
+
   if ($thread.size() >= 2) {
 
     // insert expand thread message
-//    var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + ($thread.size()-1) + " collapsed messages </span></div>";
     var $hider = "<div class='collapsed-posts text-center'><span class='label label-collapsed'>" + Helpy.messages + " </span></div>";
 
     // check to see if we are already collapsed

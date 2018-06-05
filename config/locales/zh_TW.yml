@@ -143,6 +143,7 @@ zh-tw:
   mark_spam: 標記為垃圾訊息
   mark_new: 標記為新訊息
   assign_agent: 委託代理
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1個已選訊息"
     two: "2個已選訊息"
@@ -165,8 +166,12 @@ zh-tw:
   contact_info: 聯絡
   social_info: 社交網站
   edit_user: 修改使用者
+#  delete_user: Delete User
   work_phone: 公司
   cell_phone: 行動電話
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
   # select_priority: Select Priority

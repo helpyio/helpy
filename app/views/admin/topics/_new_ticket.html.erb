@@ -25,9 +25,10 @@
   <% end %>
   <%= hidden_field_tag :client_id %>
   <div class="add-screenshots">
-  <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
+    <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
   </div>
   <%= f.input :tag_list %>
+  <%= f.input :priority, collection: Topic.priorities.keys.map { |priority| [priority.titleize, priority] } , as: :select, include_blank: false, selected: 'normal' %>
   <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: true %>
 <% end -%>
 </div>

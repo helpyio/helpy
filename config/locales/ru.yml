@@ -146,6 +146,7 @@ ru:
   mark_spam: Отметить как спам
   mark_new: Отметить как новое
   assign_agent: Назначить агента
+  # tag_with: Tag Ticket
   selected_messages:
     zero: "Нет выбранных сообщений"
     one: "1 выбранное сообщение"
@@ -169,8 +170,12 @@ ru:
   contact_info: Контакт
   social_info: Социальные сети
   edit_user: Редактировать пользователя
+#  delete_user: Delete User
   work_phone: номер рабочего телефона
   cell_phone: номер мобильного телефона
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
   # select_priority: Select Priority

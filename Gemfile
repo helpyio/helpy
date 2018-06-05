@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.8'
+gem 'rails', '4.2.10'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -147,6 +147,9 @@ gem "recaptcha", require: "recaptcha/rails"
 
 gem 'best_in_place', '~> 3.0.1'
 
+# Add onboarding component
+gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
@@ -162,10 +165,10 @@ group :development, :test do
 end
 
 gem 'bulk_insert'
+gem 'roo'
 
 group :development do
   gem "better_errors"
-  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'

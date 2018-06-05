@@ -15,6 +15,7 @@
 #  section          :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  visibility       :string           default("all")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -53,6 +54,14 @@ four:
 six:
   id: 6
   name: internal title
+  active: true
+  front_page: true
+  rank: 40
+  visibility: 'internal'
+
+seven:
+  id: 7
+  name: another internal title
   active: true
   front_page: true
   rank: 40

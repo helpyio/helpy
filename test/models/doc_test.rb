@@ -57,4 +57,24 @@ class DocTest < ActiveSupport::TestCase
     assert_equal title.sentence_case, doc.title
   end
 
+  test "deleting a doc should remove it from search" do
+    seed
+    assert_difference 'PgSearch.multisearch("test doc").count', -1 do
+      @doc.destroy!
+    end
+  end
+
+  test "a draft doc should not be in search" do
+    seed
+    assert_difference 'PgSearch.multisearch("test doc").count', -1 do
+      @doc.update(active: false)
+    end
+  end
+
+  def seed
+    @category = Category.create!(name: "test title", active: true, visibility: 'all')
+    Doc.create!(title: "test doc one", body: "some body text", category_id: @category.id)
+    @doc = Doc.create!(title: "test doc two", body: "some body text", category_id: @category.id)
+  end
+
 end

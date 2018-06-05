@@ -1,0 +1,461 @@
+ko:
+  language_name: '한국어' # The name of the translation file, in that language
+  root: &root '홈피'
+  how_can_we_help: "어떻게 도와 드릴까요?"
+  browse_topics: "기술 자료 찾아보기"
+  support_team: "지원팀"
+  nothing_here: "여기에는 아무것도 없다!"
+
+  # Navigation
+  knowledgebase: "기술 자료"
+  community: "커뮤니티"
+  ask_a_question: "티켓 열기"
+  home: "홈피"
+  login: "로그인"
+  logout: "로그 아웃"
+  register: "등록"
+  back_to: "돌아가다"
+  welcome_back: "환영, %{username}"
+  your_profile: "귀하의 프로필"
+  your_tickets: "티켓"
+  locale: "언어"
+  change_your_locale: "언어 변경"
+
+  # Voting widget
+  did_this_help: "이 도움말이 도움이 되었나요?"
+  yes_button: '예'
+  no_button: '아니요'
+  yes_helped: '의견을 보내 주셔서 감사합니다.'
+  no_helped: "죄송합니다. 자세한 내용은 문의하십시오."
+
+  # Search
+  search_placeholder: "키워드, 주제 또는 질문 입력"
+  no_results: "검색 결과가 없습니다. 다시 검색해보십시오."
+  results_found:
+    one: "검색어에 관한 총 1개의 검색 결과를 찾았습니다 : "
+    other: "검색어에 관한 총 %{count}개의 검색 결과를 찾았습니다 : "
+
+  # Community
+  forum_name: "주제"
+  subject: "제목"
+  last_activity: "마지막 활동"
+  topic: "토론"
+  replies: "답글"
+  last_post: "마지막 게시물"
+  started_by: "에 의해 시작 %{username}"
+  reply: "이 티켓에 답장하기"
+  submit_reply: "답장 게시"
+  posted: "게시 됨"
+  start_discussion: "토론 시작"
+  submit_start_discussion: "티켓 작성"
+  should_message_be_private: "이 메시지는 비공개 여야합니까?"
+  only_support_can_respond: "지원 팀 만 대답 할 수 있습니다. (비공개 메시지 작성)."
+  responses_can_come_from_everyone: "누구나 게시 할 수 (추천)."
+  collapsed_messages:
+      one: "축소된 메시지 (1)"
+      two: "축소된 메시지 (2)"
+      other: "축소된 메시지 (%{count})"
+
+  # Knowledgebase
+  written_by: "작성자"
+  last_edited: "마지막으로 수정 된 항목"
+  asked_before: "질문에 대한 답변이 있으십니까? 우리는이 질문들이 비슷하다고 생각합니다"
+
+  # Tickets
+  tickets: "티켓"
+  no_tickets: "아직 티켓을 만들지 않았습니다."
+  ticket_number: "티켓 번호"
+  assigned_to_label: "할당"
+  created_on: "발행일"
+
+  # Get Help
+  get_help_header: "아직도 도움이 필요 하신가요?"
+  get_help_button: "티켓을여십시오"
+
+  # Profile
+  my_profile: '내 프로필'
+
+  # footer
+  powered_by: "Powered by Helpy. An Open Source Helpdesk."
+  get_your_copy: "Grab your copy on GitHub"
+  version: "버전 :"
+
+  # flag
+  flag_for_review: "신고"
+  flag_post_for_review: "스팸 또는 악용사례 신고"
+  flag_post_placeholder: "신고 사유를 입력하십시오"
+  flag: "신고"
+
+  # devise/sessions/new
+  login: 로그인
+
+  # devise/shared/links
+  forgot_password: 비밀번호를 잊어 버렸습니까?
+
+  # devise/passwords/new
+  send_instructions: 나에게 지침 보내기
+
+  # devise/passwords/edit
+  change_password: 비밀번호 변경
+  new_password: 새 비밀번호
+  new_password_confirmation: 새 암호를 확인합니다
+
+  # devise/confirmations/new
+  resend: 나에게 확인 지시를 다시 보내라.
+
+  # devise/registrations/new
+  sign_up: 가입하기
+
+  # Admin menu
+  discussions: 티켓
+  content: 콘텐츠
+  communities: 커뮤니티
+  app_store: 앱 스토어
+  search: 검색
+  internal_content: 내부 콘텐츠
+
+  # Admin main/statuses
+  support_pipeline: 지원 파이프 라인
+  new: 신규
+  active: 활성
+  open: 열린
+  mine: 내 티켓
+  pending: 대기중
+  closed: 해결됨
+  spam: 스팸
+  trash: 휴지통
+  discussion_managment: 티켓 관리
+  open_new_discussion: 새 티켓
+  assigned_to: "%{agent}에게 배정 된"
+  unassigned: 할당되지 않은
+  no_team_assigned: 그룹에 지정
+  assign_to: 그룹 / 팀
+  unassign_from_team: 그룹에서 할당 취소
+  private: 비공개
+  public: 공개
+  save_changes: 변경 사항을 저장하다
+  merge: 병합
+  merge_confirm: 이 티켓을 병합 하시겠습니까?
+
+  # Discussion controls
+  change_status: 상태 변경
+  status: 상태
+  mark_closed: 해결 된 것으로 표시
+  reopen: 다시 열다
+  mark_spam: 스팸으로 표시
+  mark_new: 새 항목으로 표시
+  assign_agent: 에이전트 지정
+  tag_with: 티켓 태그
+  selected_messages:
+    one: "선택된 메시지 1개"
+    two: "선택된 메시지 2개"
+    other: "선택된 메시지 %{count}개"
+
+  # Discussion messages
+  reopen_message: "이 메시지는 지원팀에 의해 다시 열렸습니다."
+  closed_message: "이 티켓은 지원팀에 의해 폐쇄되었습니다."
+  trash_message: "이 티켓이 삭제되었습니다."
+  assigned_message: "이 티켓은 %{assigned_to}로 전송되었습니다."
+  assigned_group: "이 티켓은 %{assigned_group}에게 배정되었습니다."
+  converted_to_ticket: "이 토론은 비공개 티켓로 변환되었습니다."
+  converted_to_topic: "이 티켓은 공개 토론으로 변환되어 %{forum_name}로 옮겨졌습니다."
+  tagged_with: "이 티켓은 %{tagged_with}로 태그되었습니다."
+  notes_hidden: "이 티켓에는 내부 메모가 %{hidden_notes}개 있습니다. 이 메모를 클릭하여 볼 수 있습니다."
+
+  # User Admin
+  users: 사용자
+  account: 계정
+  contact_info: 연락처
+  social_info: 소셜
+  edit_user: 사용자 편집
+  work_phone: 직장
+  cell_phone: 핸드폰
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
+
+  # Priorities
+  select_priority: 우선 순위 선택
+  vip_priority: VIP
+  high_priority: 높음
+  normal_priority: 중간
+  low_priority: 낮음
+
+  # Roles
+  select_role: 역할 선택
+  admin_role: 관리자
+  agent_role: 에이전트
+  editor_role: 편집자
+  user_role: 고객
+  add_more_agents: "추가 사용자 추가"
+
+  # Keyboard Shortcuts
+  shortcut_then: "그때"
+  listing_views: "조회수 목록"
+  keyboard_shortcuts: "키보드 단축키"
+  show_new_tickets: "새 티켓 표시"
+  show_all_tickets: "모든 티켓 표시"
+  show_open_tickets: "열린 티켓 표시"
+  show_tickets_assigned_to_you: "나에게 할당 된 티켓 표시"
+  show_pending_tickets_assigned_to_you: "나에게 할당 된 대기중인 티켓 표시"
+  show_closed_tickets: "닫힌 티켓 표시"
+  search_for_tickets: "티켓 검색"
+  viewing_tickets: "티켓보기"
+  select_previous_ticket: "이전 티켓 선택"
+  select_next_ticket: "다음 티켓 선택"
+  view_selected_ticket: "선택한 티켓보기"
+  jump_to_a_specific_ticket_number: "특정 티켓 번호로 이동"
+  ticket_actions: "티켓 동작"
+  assign_the_ticket: "티켓 지정"
+  move_the_ticket: "티켓 이동"
+  expand_the_ticket_thread: "티켓 스레드 확장"
+  reply_to_the_ticket: "티켓에 회신"
+  add_an_internal_note: "내부 메모 추가"
+  change_ticket_status: "티켓 상태 변경"
+  associate_with_a_group: "그룹과 연결"
+  ticket_status: "티켓 상태"
+  mark_resolved: "해결 된 것으로 표시"
+  reopen_ticket: "티켓 다시 열다"
+  set_to_new: "새 항목으로 표시"
+  mark_as_spam: "스팸으로 표시"
+  move_to_trash: "휴지통으로 이동"
+  ticket_number: "티켓 번호"
+
+  # User search results
+  users_found:
+    one: "%{query}라는 사용자 1 명이 발견되었습니다."
+    other: "%{query}라는 사용자 %{count} 명이 발견되었습니다."
+
+  # Invite users
+  invite_users: "새 사용자 초대"
+  invite_emails: "이메일 주소"
+  invite_emails_placeholder: "하나 이상의 이메일 주소를 입력하여 초대장을 보냅니다"
+  invite_message: "메시지"
+  invite_message_placeholder: "새 사용자에게 보낼 선택적 메시지"
+  invite_role: "초대 된 사용자의 역할"
+  send_invite: "초대장 보내기"
+
+  # Discussion View
+  asked_a_question: "%{user_name}가 질문 ..."
+  replied: "%{user_name}가 대답했다 ..."
+  posted_note: "%{user_name}는 내부 메모를 올렸습니다 ..."
+  type_reply: 답을 입력하거나 아래의 일반적인 답을 선택하십시오
+  select_common: 일반적인 대답 선택
+  reply: 대답
+  internal_note: 내부 메모
+  mark_as_resolved: 해결 된 것으로 표시
+  upvote:
+    one: "투표 | %{count}"
+    other: "투표 | %{count}"
+
+  # Content
+  new_category: 새 카테고리
+  new_content: 새 콘텐츠
+  front_page_categories: 홈 페이지의 카테고리
+  other_categories: 다른 카테고리
+  edit: 편집
+  edit_category: 카테고리 편집
+  select_category: 카테고리 선택
+  delete: 삭제
+  view_and_edit: "콘텐츠보기 및 수정"
+  delete_confirm: "이것을 삭제 하시겠습니까?"
+  select_icon_helptext: "이 카테고리와 연결할 아이콘을 선택하십시오 (선택 사항)."
+  translate: "다른 언어로 번역"
+  view_on_site: "웹 사이트에서 보기"
+  written_on: "입력 : %{date_written}"
+  content_last_updated: "%{date_updated}에 최종 업데이트 됨"
+  featured_content: "추천"
+  draft_content: "초안"
+  published_content: "게시 됨"
+  additional_settings: "추가 설정"
+  content_status: "콘텐츠 상태"
+  convert_content: '기사 또는 일반적인 답장으로 저장'
+  upload_image: '이미지 업로드'
+  new_discussion: '이것으로 새로운 토론을 만드십시오'
+  new_discussion_post: '토론 #%{topic_id}가 만들어졌습니다'
+  new_discussion_topic_title: '#%{original_id}-%{original_name}에서 분할'
+  change_owner_note: '이 주제의 작성자가 %{old}에서 %{new}로 변경되었습니다.'
+
+  # Internal Content
+  no_internal_content_title: "아직 내부 문서가 없습니다."
+  no_internal_content_text: "걱정 마세요! 내부 자료를 제공하려면 도움말 센터 > 콘텐츠로 이동하십시오. 카테고리의 새로운 내부 유형을 추가 한 다음 팀과 지식을 공유하고 문서를 작성하십시오!"
+
+  # Communities
+  new_community: 새로운 커뮤니티 만들기
+  create_new_community: 새로운 커뮤니티 만들기
+  layout_select: 형식 선택
+  layout_table: 표
+  layout_grid: 그리드
+  layout_qna: 자주 묻는 질문
+
+  # Mail messages
+  new_user_subject: "%{site_name}에 오신 것을 환영합니다"
+  hello: "안녕하세요 %{user_name}"
+  new_user: "저희에게 연락해 줘서 고마워요. 지원팀에서 귀하의 메시지를 받았으며 곧 답변을 드리겠습니다."
+  account_generated: "계정이 생성되었습니다. 로그인하려면 다음 링크를 사용하십시오."
+  above_this_line: "답글이이 줄 위에 나타나는지 확인하십시오."
+  message_id: "메시지 ID"
+  message_response: "다음 메시지가 귀하의 질문에 대한 답변으로 게시되었습니다 :"
+  view_online: "온라인보기 :"
+
+  # Admin notifications
+  notify_new_private: "%{user_name}에서 새로운 고객 티켓을 받았습니다 :"
+  notify_new_public: "%{user_name}에서 새로운 공개 고객 메시지를 게시했습니다 :"
+  notify_new_reply: "%{user_name}에서 새로운 고객 응답을 받았습니다 :"
+  to_reply: '이 메시지에 직접 또는 온라인으로 회신 :'
+
+  # Notifications settings panel
+  notify_on_private: "새 티켓을 받으면 이메일을 보내십시오."
+  notify_on_public: "공개 고객 질문이 게시되면 이메일을 보내십시오."
+  notify_on_reply: "티켓에 대한 새 답장을 받으면 이메일을 보내십시오."
+
+  # settings
+  agent_settings: "에이전트 설정"
+  notifications: "알림"
+  settings: "설정"
+  general: "일반"
+  design: "디자인"
+  international: "국제"
+  widget: "삽입 가능한 위젯"
+  common_replies: "공통 답장"
+  integrations: "통합"
+
+  # API Key Managmeent
+  api_keys: "API 키"
+  key_name: "키 이름"
+  token: "토큰"
+  add_key: "새 키 추가"
+  expire_token: "토큰 만료"
+  expired: "만료 된"
+  expire_confirm: "이 토큰을 만료 시키시겠습니까?"
+  spec_note: "대화식 API 사양을 읽고 테스트 할 수 있습니다 :"
+
+  # Insights
+  team_insights: "팀 정보"
+  filter_by_date: "날짜순으로 필터링"
+  today: "오늘"
+  yesterday: "어제"
+  this_week: "이번 주"
+  last_week: "지난주"
+  this_month: "이번 달"
+  last_month: "지난 달"
+  date_range: "날짜 범위"
+  insight_start_range: "시작일 :"
+  insight_end_range: "종료일 :"
+  insight_filter: "필터"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong>에 사용자가 1 개의 새 티켓을 개설했습니다."
+    other: "<strong>%{period}</strong>에 사용자가 <strong>%{count}</strong> 개의 새 티켓을 개설했습니다."
+  insights_blurb_two: "팀이 <strong>%{number_replied} (%{percentage_replied})</strong>에 답변했습니다."
+  insights_blurb_three: "중간 응답 시간 : <strong>%{response_time}</strong>"
+  no_discussions: "<strong>%{period}</strong>에 새로운 티켓이 열리지 않았습니다."
+  assigned_topics: "할당 된 주제"
+  responded: "응답 됨"
+  closed: "닫은"
+  replies: "답글"
+  median_time: "첫 번째 응답까지의 중간 시간"
+
+
+
+  activerecord:
+    attributes:
+      user:
+        email: 이메일
+        password: 암호
+        name: 이름
+        company: 회사
+        work_phone: 직장
+        home_phone: 집
+        cell_phone: 핸드폰
+        city: 시티
+        state: 지방
+        signature: 서명
+      topic:
+        name: 제목
+      post:
+        kind: 종류
+      category:
+        name: 이름
+        icon: 아이콘
+        keywords: 키워드
+        title_tag: 제목 태그
+        meta_description: 메타 설명
+        front_page: 프론트 페이지
+        active: 활성
+        visibility: 시정
+        visibility_label:
+          all: 모든
+          public: 공개
+          internal: 내부의
+      doc:
+        title: 제목
+        meta_description: 메타 설명
+        title_tag: 제목 태그
+        keywords: 키워드
+        category_id: 카테고리
+        active: 상태
+        front_page: 홈페이지?
+      forum:
+        name: 이름
+        description: 설명
+        private: 비공개
+        layout: 레이아웃
+        allow_topic_voting: 주제에 투표를 허용 하시겠습니까?
+        allow_post_voting: 게시물에 투표를 허용 하시겠습니까?
+
+    helpers:
+      submit:
+        topic:
+          create: 새로운 토론 시작
+        post:
+          create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    locales:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
+  helpers:
+    actions: "동작"
+    links:
+      back: "돌아 가기"
+      cancel: "취소"
+      confirm: "확실합니까?"
+      destroy: "삭제"
+      new: "새로운"
+      edit: "편집"
+    titles:
+      edit: "%{model} 편집"
+      save: "%{model} 저장"
+      new: "새로운 %{model}"
+      delete: "%{model} 삭제"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: k
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

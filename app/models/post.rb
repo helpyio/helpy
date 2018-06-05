@@ -21,9 +21,14 @@ class Post < ActiveRecord::Base
 
   attr_accessor :reply_id
 
+  # This is used to skip the callbacks when importing (ie. we don't want to send
+  # emails to everyone while importing)
+  attr_accessor :importing
+  attr_accessor :resolved
+
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true
-  has_many :votes, :as => :voteable
+  has_many :votes, :as => :voteable, dependent: :delete_all
   has_attachments :screenshots, accept: [:jpg, :png, :gif, :pdf]
   has_many :flags
   mount_uploaders :attachments, AttachmentUploader
@@ -33,9 +38,9 @@ class Post < ActiveRecord::Base
   validates :kind, :user, :user_id, :body, presence: true
 
 
-  after_create  :update_waiting_on_cache
-  after_create  :assign_on_reply
-  after_commit  :notify, on: :create
+  after_create  :update_waiting_on_cache, unless: :importing
+  after_create  :assign_on_reply, unless: :importing
+  after_commit  :notify, on: :create, unless: :importing
   after_save  :update_topic_cache
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -45,8 +50,6 @@ class Post < ActiveRecord::Base
   scope :reverse, -> { order('created_at DESC') }
   scope :by_votes, -> { order('points DESC')}
   scope :notes, -> { where(kind: 'note') }
-
-  attr_accessor :resolved
 
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache
@@ -114,8 +117,16 @@ class Post < ActiveRecord::Base
   end
 
   def email_locale
-    return I18n.locale if self.kind == 'first'
+    return I18n.locale if self.first?
     self.topic.locale.nil? ? I18n.locale : self.topic.locale.to_sym
+  end
+
+  def importing?
+    self.importing || false
+  end
+
+  def first?
+    self.topic.posts.first == self
   end
 
   private

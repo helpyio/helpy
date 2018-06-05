@@ -175,6 +175,7 @@ pt-br:
   mark_spam: "Marcar Spam"
   mark_new: "Marcar Novo"
   assign_agent: "Associar Agente"
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 mensagem selecionada"
     two: "2 mensagens selecionadas"
@@ -187,11 +188,11 @@ pt-br:
   closed_message: "Esta mensagem foi fechada pelo suporte."
   trash_message: "Esta mensagem foi apagada pelo suporte."
   assigned_message: "A Discussão foi transferida para %{assigned_to}."
-  # assigned_group: "This ticket has been assigned to %{assigned_group}."
-  # converted_to_ticket: "This discussion was converted to a private ticket."
-  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
-  # tagged_with: "This ticket was tagged with %{tagged_with}"
-  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
+  assigned_group: "Esta Discussão foi atribuida para %{assigned_group}."
+  converted_to_ticket: "Esta Discussão foi convertida para uma discussão privada."
+  converted_to_topic: "Esta Dicussão foi convertida para uma discussão pública e movida para %{forum_name}."
+  tagged_with: "Esta Discussão foi marcada com %{tagged_with}"
+  notes_hidden: "Existem %{hidden_notes} notas internas para esta Discussão. Você pode visualiza-las clicando em qualquer lugar nesta nota!"
 
   # User Admin
   users: "Usuários"
@@ -199,8 +200,12 @@ pt-br:
   contact_info: "Contato"
   social_info: "Social"
   edit_user: "Editar Usuário"
+#  delete_user: Delete User
   work_phone: "trabalho"
   cell_phone: "celular"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
   select_priority: Selecionar prioridade

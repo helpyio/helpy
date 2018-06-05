@@ -1,5 +1,4 @@
 class ErrorsController < ApplicationController
-
   theme :theme_chosen
   layout 'errors'
 

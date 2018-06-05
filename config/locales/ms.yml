@@ -1,0 +1,461 @@
+ms:
+  language_name: 'Bahasa Melayu' # The name of the translation file, in that language
+  root: &root 'Laman Utama'
+  how_can_we_help: "Bolehkah kami membantu anda?"
+  browse_topics: "Cari pangkalan pengetahuan"
+  support_team: "Pasukan sokongan"
+  nothing_here: "Tiada Siaran lagi!"
+
+  # Navigation
+  knowledgebase: "Pangkalan pengetahuan"
+  community: "Komuniti"
+  ask_a_question: "Buka Tiket"
+  home: "Laman Utama"
+  login: "Log masuk"
+  logout: "Log keluar"
+  register: "Daftar"
+  back_to: "Kembali ke"
+  welcome_back: "Hello %{username}"
+  your_profile: "Profil anda"
+  your_tickets: "Tiket anda"
+  locale: "Bahasa"
+  change_your_locale: "Tukar bahasa anda"
+
+  # Voting widget
+  did_this_help: "Adakah ini menyelesaikan masalah anda?"
+  yes_button: 'Ya'
+  no_button: 'Tidak'
+  yes_helped: 'Baik! Terima kasih atas maklum balas anda!'
+  no_helped: "Maaf kita tidak boleh membantu lagi. Sila hubungi kami untuk bantuan lanjut!"
+
+  # Search
+  search_placeholder: "Masukkan kata kunci, topik, atau soalan"
+  no_results: "Tiada keputusan dijumpai, sila cuba cari lagi!"
+  results_found:
+    one: "Terdapat satu hasil carian anda "
+    other: "Terdapat %{count} hasil dari carian anda "
+
+  # Community
+  forum_name: "Topik"
+  subject: "Subjek"
+  last_activity: "Aktif terakhir"
+  topic: "Perbincangan"
+  replies: "Jawapan"
+  last_post: "Siaran terakhir"
+  started_by: "Dimulakan oleh %{username}"
+  reply: "Balas tiket ini"
+  submit_reply: "Hantar jawapan"
+  posted: "Dihantar"
+  start_discussion: "Mulakan perbincangan"
+  submit_start_discussion: "Buat Tiket"
+  should_message_be_private: "Adakah mesej ini bersifat peribadi?"
+  only_support_can_respond: "Hanya pasukan sokongan boleh membalas (membuat tiket peribadi)"
+  responses_can_come_from_everyone: "Maklum balas boleh datang dari pasukan sokongan atau komuniti (disyorkan)"
+  collapsed_messages:
+      one: "1 mesej tersembunyi"
+      two: "2 mesej tersembunyi"
+      other: "%{count} mesej tersembunyi"
+
+  # Knowledgebase
+  written_by: "Ditulis oleh"
+  last_edited: "Perubahan terakhir"
+  asked_before: "Adakah soalan anda telah dijawab sebelum ini? Mungkin ini sama"
+
+  # Tickets
+  tickets: "Tiket"
+  no_tickets: "Anda belum membuat sebarang tiket"
+  ticket_number: "Nombor tiket"
+  assigned_to_label: "Ditugaskan kepada"
+  created_on: "Dicipta pada"
+
+  # Get Help
+  get_help_header: "Masih Perlu Bantuan?"
+  get_help_button: "Buka tiket"
+
+  # Profile
+  my_profile: 'Profil saya'
+
+  # footer
+  powered_by: "Dikuasakan oleh Helpy. Sebuah Meja bantuan Sumber Terbuka."
+  get_your_copy: "Dapatkan salinan di GitHub"
+  version: "Versi:"
+
+  # flag
+  flag_for_review: "Tandakan untuk Semakan"
+  flag_post_for_review: "Tandakan Siaran untuk Semakan"
+  flag_post_placeholder: "Berikan sebab mengapa menandakan Siaran ini"
+  flag: "Tandakan"
+
+  # devise/sessions/new
+  login: Log masuk
+
+  # devise/shared/links
+  forgot_password: Lupa kata laluan anda?
+
+  # devise/passwords/new
+  send_instructions: Hantar arahan
+
+  # devise/passwords/edit
+  change_password: Tukar kata laluan
+  new_password: Kata laluan baharu
+  new_password_confirmation: Ulangi kata laluan baru
+
+  # devise/confirmations/new
+  resend: Hantar semula arahan pengesahan
+
+  # devise/registrations/new
+  sign_up: Daftar
+
+  # Admin menu
+  discussions: Tiket
+  content: Kandungan
+  communities: Komuniti
+  app_store: App Store
+  search: Carian
+  internal_content: Kandungan Dalaman
+
+  # Admin main/statuses
+  support_pipeline: Aliran Sokongan
+  new: Baru
+  active: Aktif
+  open: Buka
+  mine: Tiket saya
+  pending: Yang belum selesai
+  closed: Selesai
+  spam: Spam
+  trash: Sampah
+  discussion_managment: Pengurusan Tiket
+  open_new_discussion: Tiket Baru
+  assigned_to: "Ditugaskan kepada %{agent}"
+  unassigned: Tidak ditugaskan
+  no_team_assigned: Ditugaskan kepada kumpulan
+  assign_to: Kumpulan/Pasukan
+  unassign_from_team: Bebaskan tugas dari kumpulan
+  private: Peribadi
+  public: Awam
+  save_changes: Simpan Perubahan
+  merge: Gabungkan
+  merge_confirm: Adakah anda pasti mahu menggabungkan tiket ini?
+
+  # Discussion controls
+  change_status: Tukar Status
+  status: Status
+  mark_closed: Tandakan sebagai diselesaikan
+  reopen: Buka semula
+  mark_spam: Tandakan sebagai Spam
+  mark_new: Tandakan sebagai Baru
+  assign_agent: Tugaskan ejen
+  tag_with: Tag Tiket
+  selected_messages:
+    one: "1 mesej yang dipilih"
+    two: "2 mesej yang dipilih"
+    other: "%{count} mesej yang dipilih"
+
+  # Discussion messages
+  reopen_message: "Mesej ini dibuka semula oleh pasukan sokongan."
+  closed_message: "Tiket ini telah ditutup oleh pasukan sokongan."
+  trash_message: "Tiket ini telah dipadamkan."
+  assigned_message: "Tiket ini dipindahkan ke %{assigned_to}."
+  assigned_group: "Tiket ini diberikan kepada %{assigned_group}."
+  converted_to_ticket: "Perbincangan ini ditukar kepada tiket persendirian."
+  converted_to_topic: "Tiket ini ditukar kepada perbincangan terbuka dan berpindah ke %{forum_name}."
+  tagged_with: "Tiket ini ditandakan dengan %{tagged_with}"
+  notes_hidden: "Terdapat %{hidden_notes} nota dalaman untuk tiket ini. Anda boleh melihatnya dengan klik pada nota ini!"
+
+  # User Admin
+  users: Pengguna
+  account: Akaun
+  contact_info: Hubungi
+  social_info: Sosial
+  edit_user: Edit pengguna
+  work_phone: kerja
+  cell_phone: bimbit
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
+
+  # Priorities
+  select_priority: Pilih Keutamaan
+  vip_priority: VIP
+  high_priority: Tinggi
+  normal_priority: Normal
+  low_priority: Rendah
+
+  # Roles
+  select_role: Pilih Peranan
+  admin_role: Admin
+  agent_role: Ejen
+  editor_role: Editor
+  user_role: Pelanggan
+  add_more_agents: "Tambah pengguna sekali lagi"
+
+  # Keyboard Shortcuts
+  shortcut_then: "kemudian"
+  listing_views: "Senarai pandangan"
+  keyboard_shortcuts: "Pintasan Papan Kekunci"
+  show_new_tickets: "Tunjukkan tiket baru"
+  show_all_tickets: "Tunjukkan semua tiket"
+  show_open_tickets: "Tunjukkan tiket terbuka"
+  show_tickets_assigned_to_you: "Tunjukkan tiket yang diberikan kepada anda"
+  show_pending_tickets_assigned_to_you: "Tunjukkan tiket yang belum selesai yang diberikan kepada anda"
+  show_closed_tickets: "Tunjukkan tiket tertutup"
+  search_for_tickets: "Carian tiket"
+  viewing_tickets: "Lihat tiket"
+  select_previous_ticket: "Pilih tiket sebelumnya"
+  select_next_ticket: "Pilih tiket seterusnya"
+  view_selected_ticket: "Lihat tiket yang dipilih"
+  jump_to_a_specific_ticket_number: "Lompat ke nombor tiket tertentu"
+  ticket_actions: "Tindakan tiket"
+  assign_the_ticket: "Berikan tiket"
+  move_the_ticket: "Pindahkan tiket"
+  expand_the_ticket_thread: "Kembangkan Thread Tiket"
+  reply_to_the_ticket: "Balas tiket"
+  add_an_internal_note: "Tambah nota dalaman"
+  change_ticket_status: "Tukar status tiket"
+  associate_with_a_group: "Bersekutu dengan kumpulan"
+  ticket_status: "Status tiket"
+  mark_resolved: "Tandakan sebagai diselesaikan"
+  reopen_ticket: "Buka semula tiket"
+  set_to_new: "Tandakan sebagai baru"
+  mark_as_spam: "Tandakan sebagai spam"
+  move_to_trash: "Pindah ke Sampah"
+  ticket_number: "nombor tiket"
+
+  # User search results
+  users_found:
+    one: "1 pengguna dijumpai bernama %{query}"
+    other: "%{count} pengguna dijumpai bernama %{query}"
+
+  # Invite users
+  invite_users: "Jemput Pengguna Baru"
+  invite_emails: "Alamat e-mel"
+  invite_emails_placeholder: "Taipkan satu atau lebih alamat e-mel untuk menghantar jemputan ke"
+  invite_message: "Mesej"
+  invite_message_placeholder: "Mesej pilihan yang akan dihantar kepada pengguna baru"
+  invite_role: "Peranan untuk Pengguna yang Diundang"
+  send_invite: "Hantar Jemputan"
+
+  # Discussion View
+  asked_a_question: "%{user_name} bertanya soalan ..."
+  replied: "%{user_name} menjawab ..."
+  posted_note: "%{user_name} membuat nota dalaman ..."
+  type_reply: Taip jawapan anda, atau pilih daripada mesej umum di bawah
+  select_common: Pilih Jawapan Umum
+  reply: Balas
+  internal_note: Nota Dalaman
+  mark_as_resolved: Tandakan sebagai diselesaikan
+  upvote:
+    one: "Pengundian | %{count}"
+    other: "Pengundian | %{count}"
+
+  # Content
+  new_category: Kategori Baru
+  new_content: Kandungan Baru
+  front_page_categories: Kategori Halaman Depan
+  other_categories: Kategori Lain
+  edit: Edit
+  edit_category: Edit Kategori
+  select_category: Pilih Kategori
+  delete: Padam
+  view_and_edit: "Lihat dan Edit Kandungan"
+  delete_confirm: "Sila sahkan bahawa anda mahu memadamkannya!"
+  select_icon_helptext: "Pilih ikon yang dikaitkan dengan kategori ini (pilihan)"
+  translate: "Terjemah ke bahasa lain"
+  view_on_site: "Lihat di laman web"
+  written_on: "Ditulis pada %{date_written}"
+  content_last_updated: "Terakhir Dikemaskini pada %{date_updated}"
+  featured_content: "Dipaparkan"
+  draft_content: "Draf"
+  published_content: "Diterbitkan"
+  additional_settings: "Tetapan Tambahan"
+  content_status: "Status Kandungan"
+  convert_content: 'Simpan sebagai artikel atau jawapan biasa'
+  upload_image: 'Muat naik Imej'
+  new_discussion: 'Buat perbincangan baru dari ini'
+  new_discussion_post: 'Topik perbincangan #%{topic_id} telah dibuat dari ini'
+  new_discussion_topic_title: 'Berpisah dari #%{original_id}-%{original_name}'
+  change_owner_note: 'Pencipta topik ini diubah dari %{old} ke %{new}'
+
+  # Internal Content
+  no_internal_content_title: "Tidak ada dokumentasi dalaman yang ditulis!"
+  no_internal_content_text: "Jangan risau! Untuk menyumbang dengan dokumentasi dalaman, pergi ke Pusat bantuan > Kandungan. Dan tambah Kategori baru, kemudian bagikan pengetahuan anda dengan pasukan anda dengan menulis beberapa Dokumen!"
+
+  # Communities
+  new_community: Komuniti Baru
+  create_new_community: Buat Komuniti Baru
+  layout_select: Pilih Format
+  layout_table: Jadual
+  layout_grid: Grid
+  layout_qna: Soalan Lazim
+
+  # Mail messages
+  new_user_subject: "Selamat datang ke %{site_name}"
+  hello: "Hello %{user_name}"
+  new_user: "Terima kasih kerana menghubungi kami. Mesej anda telah diterima oleh pasukan sokongan kami dan kami akan bertindak balas tidak lama lagi."
+  account_generated: "Kami telah membuat akaun untuk anda. Anda boleh log masuk dengan menggunakan pautan ini:"
+  above_this_line: "Pastikan jawapan anda melebihi baris ini"
+  message_id: "ID mesej"
+  message_response: "Mesej berikut telah dibuat sebagai tindak balas kepada soalan anda:"
+  view_online: "Lihat dalam talian:"
+
+  # Admin notifications
+  notify_new_private: "Terdapat tiket pelanggan baru yang diterima dari %{user_name}:"
+  notify_new_public: "Terdapat mesej awam pelanggan baru yang dihantar oleh %{user_name}:"
+  notify_new_reply: "Terdapat jawapan pelanggan yang diterima daripada %{user_name}:"
+  to_reply: 'Balas mesej ini secara langsung atau dalam talian:'
+
+  # Notifications settings panel
+  notify_on_private: "Kirimkan saya e-mel jika tiket telah diterima"
+  notify_on_public: "Kirimkan saya e-mel jika soalan pelanggan awam telah dihantar"
+  notify_on_reply: "Kirimkan saya e-mel jika balasan baru ke tiket telah diterima"
+
+  # settings
+  agent_settings: "Tetapan Ejen"
+  notifications: "Pemberitahuan"
+  settings: "Tetapan"
+  general: "Umum"
+  design: "Reka bentuk"
+  international: "Antarabangsa"
+  widget: "Widget bersepadu"
+  common_replies: "Balas Umum"
+  integrations: "Integrasi"
+
+  # API Key Managmeent
+  api_keys: "Kunci API"
+  key_name: "Nama Kunci"
+  token: "Token"
+  add_key: "Tambah Kunci Baru"
+  expire_token: "Tamat Token"
+  expired: "Tamat tempoh"
+  expire_confirm: "Sila sahkan anda mahu tamat tempoh Token ini."
+  spec_note: "Anda boleh membaca dan menguji spec API interaktif di: "
+
+  # Insights
+  team_insights: "Maklumat pasukan"
+  filter_by_date: "Tapis mengikut tarikh"
+  today: "Hari ini"
+  yesterday: "Semalam"
+  this_week: "Minggu ini"
+  last_week: "Minggu lepas"
+  this_month: "Bulan ini"
+  last_month: "Bulan lepas"
+  date_range: "Julat Tarikh"
+  insight_start_range: "Tarikh mula:"
+  insight_end_range: "Tarikh akhir:"
+  insight_filter: "Penapis"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> pengguna anda membuka 1 tiket baru"
+    other: "<strong>%{period}</strong> pengguna anda membuka <strong>%{count} tiket baru</strong>"
+  insights_blurb_two: "di mana pasukan anda menjawab <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three: "dan masa tindak balas median adalah <strong>%{response_time}</strong>"
+  no_discussions: "Tiada tiket baru dibuka <strong>%{period}</strong>"
+  assigned_topics: "Topik yang diberikan"
+  responded: "Menjawab"
+  closed: "Tertutup"
+  replies: "Jawapan"
+  median_time: "Masa median pada jawapan pertama"
+
+
+
+  activerecord:
+    attributes:
+      user:
+        email: E-mel
+        password: Kata laluan
+        name: Nama
+        company: Syarikat
+        work_phone: Kerja
+        home_phone: Rumah
+        cell_phone: Bimbit
+        city: Bandar raya
+        state: Provinsi
+        signature: Tandatangan
+      topic:
+        name: Soalan
+      post:
+        kind: Jenis
+      category:
+        name: Nama
+        icon: Ikon
+        keywords: Keywords
+        title_tag: Title Tag
+        meta_description: Meta Description
+        front_page: Halaman muka
+        active: Aktif
+        visibility: Keterlihatan
+        visibility_label:
+          all: Semua
+          public: Awam
+          internal: Dalaman
+      doc:
+        title: Tajuk
+        meta_description: Meta Description
+        title_tag: Title Tag
+        keywords: Keywords
+        category_id: Kategori
+        active: Status
+        front_page: Ditunjukkan di halaman muka?
+      forum:
+        name: Nama
+        description: Penerangan
+        private: Peribadi
+        layout: Susun atur
+        allow_topic_voting: Benarkan pengundian topik?
+        allow_post_voting: Benarkan pengundian siaran?
+
+    helpers:
+      submit:
+        topic:
+          create: Mulakan Perbincangan Baru
+        post:
+          create:
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    locales:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
+  helpers:
+    actions: "Perintah"
+    links:
+      back: "Kembali"
+      cancel: "Batalkan"
+      confirm: "Adakah anda pasti?"
+      destroy: "Padam"
+      new: "Baru"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Simpan %{model}"
+      new: "Buat %{model}"
+      delete: "Padam %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: rb
+          million: jt
+          billion: B
+          trillion: T
+          quadrillion: Q

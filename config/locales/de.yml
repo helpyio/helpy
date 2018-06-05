@@ -146,6 +146,7 @@ de:
   mark_spam: Als Spam markieren
   mark_new: Als Neu markieren
   assign_agent: Agent zuordnen
+  # tag_with: Tag Ticket
   selected_messages:
     one: "1 markierte Nachricht"
     two: "2 markierte Nachrichten"
@@ -169,8 +170,12 @@ de:
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
+#  delete_user: Delete User
   work_phone: Arbeit
   cell_phone: Handy
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
   select_priority: Priorität auswählen

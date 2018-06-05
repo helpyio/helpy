@@ -143,6 +143,12 @@ td > img {
   min-height: 20px;
 }
 
+.topic-number-name {
+  .ticket-ellipsis {
+    font-size: 50%;
+  }
+}
+
 // === ADMIN STYLES ===
 
 .white-bg {
@@ -256,6 +262,10 @@ ul.dropdown-menu {
 .topic-checkbox {
     // scss-lint:disable ImportantRule
     margin-top: 13px !important;
+}
+
+.checkbox-section {
+  padding-left: 15px;
 }
 
 .topic span.label-count {
@@ -403,6 +413,7 @@ ul.settings-menu {
   vertical-align: text-bottom;
 }
 
+.inactive,
 .grayout{
   filter:alpha(opacity=50); //* IE */
   opacity: 0.5; //* Safari, Opera */
