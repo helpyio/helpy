@@ -8,7 +8,7 @@ class PostMailer < ActionMailer::Base
   def new_post(post_id)
     @post = Post.find(post_id)
     @topic = @post.topic
-    @posts = @post.topic.posts.where.not(id: @post.id).reverse
+    @posts = @topic.posts.where.not(id: @post.id).ispublic.active.reverse
 
     # Do not send if internal
     return if @topic.kind == 'internal'
