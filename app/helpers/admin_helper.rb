@@ -154,7 +154,7 @@ module AdminHelper
 
   def helpcenter_link
     link_to '#', class: 'dropdown-toggle text-center', data: { toggle: 'dropdown' }, role: 'button' do
-      concat "#{content_tag :span, nil, class: 'fa fa-book'}<br/>#{t(:helpcenter, default: 'Helpcenter')}".html_safe
+      concat "#{content_tag :span, nil, class: 'fas fa-book'}<br/>#{t(:helpcenter, default: 'Helpcenter')}".html_safe
       concat content_tag(:span, '', class: 'caret')
     end
   end

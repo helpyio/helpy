@@ -7,7 +7,6 @@
 
       <h4>Admin Branding</h4>
       <div class="settings-section design">
-        <%= f.check_box 'branding.display_branding', { checked: display_branding?, label: t('display_branding', default: "Display Branding in Admin"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
         <%= f.text_field 'branding.ticketing_color', value: AppSettings['branding.ticketing_color'], label: t('ticketing_branding', default: "Admin Branding Color"), class: 'pick-a-color' %>
         <%= f.text_field 'branding.ticketing_bg_color', value: AppSettings['branding.ticketing_bg_color'], label: t('ticketing_bg_branding', default: "Admin Background Color"), class: 'pick-a-color' %>
       </div>

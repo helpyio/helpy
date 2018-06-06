@@ -828,6 +828,16 @@ ul.dropdown-menu {
             height: 30px;
         }
     }
+    #header-wrapper > nav > div > ul > li > a {
+      text-align: left;
+
+      span {
+        display: none;
+      }
+      br {
+        display: none;
+      }
+    }
 }
 
 @media(min-width:768px){

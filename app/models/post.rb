@@ -32,8 +32,8 @@ class Post < ActiveRecord::Base
   has_many :flags
   mount_uploaders :attachments, AttachmentUploader
 
-  validates :body, length: { maximum: 10_000 }
-  before_validation :truncate_body
+  # validates :body, length: { maximum: 100_000 }
+  # before_validation :truncate_body
   validates :kind, :user, :user_id, :body, presence: true
 
 
