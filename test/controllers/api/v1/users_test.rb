@@ -188,4 +188,12 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     assert_equal "anon", object['login']
     assert_nil object['city']
   end
+
+  test "an API user can get their own data" do
+    get '/api/v1/users/self', @default_params
+
+    object = JSON.parse(last_response.body)
+    u = User.find(ApiKey.find_by(name: "Test Users Key").user_id)
+    assert_equal u.name, object['name']
+  end
 end
