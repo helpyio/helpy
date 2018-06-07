@@ -433,4 +433,73 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     assert_equal 404, last_response.status
   end
+
+  test "listing all private, open tickets shows all open, private tickets" do
+    Topic.destroy_all
+    to_close = []
+    private_forum = Forum.find(1)
+    public_forum = Forum.find(2)
+    options = {
+      forum: private_forum,
+      private: true
+    }
+    (1..10).each do |x|
+      to_close.push(Topic.create({
+        user: User.last,
+        name: "Test Ticket #{x}",
+        forum: private_forum,
+        private: true
+      }))
+
+      Topic.create!({
+        user: User.last,
+        name: "Test Ticket #{x}",
+        forum: public_forum,
+        private: false
+        })
+    end
+
+    # now close half the private tickets.
+    (1..(to_close.count / 2)).each do |t|
+      to_close[t].close
+    end
+
+    get '/api/v1/tickets/private/open', @default_params
+    tickets = JSON.parse(last_response.body)
+    assert_equal tickets.count, (to_close.count/2)
+    assert_equal 200, last_response.status
+    assert_equal 20, Topic.all.count
+  end
+
+  test "listing all private tickets shows all private tickets" do
+    Topic.destroy_all
+    private_forum = Forum.find(1)
+    public_forum = Forum.find(2)
+    options = {
+      forum: private_forum,
+      private: true
+    }
+    (1..10).each do |x|
+      Topic.create!({
+        user: User.last,
+        name: "Test Ticket #{x}",
+        forum: private_forum,
+        private: true
+      })
+
+      Topic.create!({
+        user: User.last,
+        name: "Test Ticket #{x}",
+        forum: public_forum,
+        private: false
+        })
+    end
+
+    get '/api/v1/tickets/private/open', @default_params
+
+    tickets = JSON.parse(last_response.body)
+    assert_equal tickets.count, 10
+    assert_equal 200, last_response.status
+    assert_equal 20, Topic.all.count  end
+
 end

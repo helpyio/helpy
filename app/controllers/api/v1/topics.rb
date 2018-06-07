@@ -37,7 +37,7 @@ module API
         get "private/open", root: :topics do
           if current_user.is_restricted?
             topics = Forum.find(1).topics.where.not(
-              current_status: 'Closed'
+              current_status: 'closed'
             ).tagged_with(current_user.team_list).order(:current_status)
           else
             topics = Forum.find(1).topics.where.not(current_status: 'Closed').order(:current_status)

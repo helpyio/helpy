@@ -3,6 +3,8 @@ SUCK_DB=true
 REFRESH_DB=true
 START_SERVER=true
 VERBOSE=false
+INSTALL_GEMS=true
+UPDATE_GEMS=false
 CLEANUP_AFTER=true
 
 PROJECT_NAME='helpy'
@@ -14,6 +16,22 @@ DEV_SERVER='127.0.0.1'
 DEV_DATABASE="helpy_development"
 DEV_PASSWORD='password'
 DEV_USERNAME="tmerritt"
+
+function install_gems() {
+  if [ $VERBOSE ]; then
+    bundle install
+  else
+    bundle install  2>&1 >/dev/null
+  fi
+}
+
+function update_gems() {
+  if [ $VERBOSE ]; then
+    bundle update
+  else
+    bundle update  2>&1 >/dev/null
+  fi
+}
 
 function suck_db() {
   if [ $VERBOSE ]; then
@@ -54,6 +72,15 @@ function cleanup_after() {
 
 clear
 printf "Launching $PROJECT_NAME"
+
+if [ $INSTALL_GEMS ]; then
+  install_gems
+fi
+
+if [ $UPDATE_GEMS ]; then
+  update_gems
+fi
+
 if [ $SUCK_DB ]; then
   suck_db
 fi
