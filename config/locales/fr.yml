@@ -64,7 +64,7 @@ fr:
   asked_before: "Est-ce que votre question a déjà été posée ? Nous pensons que celles-ci peuvent être similaires"
 
   # Tickets
-  tickets: "Tickets"
+  tickets: &tickets "Tickets"
   no_tickets: "Vous n'avez pas encore créé de tickets"
   ticket_number: "Numéro de ticket"
   assigned_to_label: "Assigné à"
@@ -112,7 +112,8 @@ fr:
   sign_up: S'inscrire
 
   # Admin menu
-  discussions: Discussions
+  inbox: Boîte de Messagerie
+  discussions: Tickets
   content: Contenu
   communities: "Communautés"
   app_store: App Store
@@ -128,11 +129,11 @@ fr:
   open: Ouverts
   mine: Mes tickets
   pending: En attente
-  closed: Résolus
+  closed: &closed Résolus
   spam: Spam
   trash: Corbeille
-  discussion_management: Gestion de Discussion
-  open_new_discussion: Nouvelle Discussion
+  discussion_management: Gestion de Ticket
+  open_new_discussion: Nouveau Ticket
   assigned_to: "assigné à %{agent}"
   unassigned: Non assigné
   no_team_assigned: Assigner à un groupe
@@ -444,6 +445,21 @@ fr:
   closed: "Fermés"
   replies: "Répondus"
   median_time: "Temps moyens de la 1ère réponse"
+
+  # Rapports
+  ticketing_reports: Rapports de Tickets
+  group_report: "Rapport de groupe"
+  team_reports: "Rapports d'équipe"
+  percent_resolved: Pourcentage résolu
+  average_resolution_time: Temps moyen de résolution
+  new_tickets: Nouveaux Tickets
+  new_tickets_explain: Le nombre de nouveaux tickets reçus par Helpy au cours de cette période.
+  tickets_per_day: Tickets par jour
+  tickets_per_day_explain: Le nombre de tickets que votre Helpy fait en moyenne par jour.
+  replies_explain: Le nombre de réponses que vos agents ont écrites durant cette période.
+  actions_explain: Le nombre total d'actions (réponses ou notes internes) dans cette période. Une bonne indication de l'activité de votre Helpy.
+  closed_explain: Le nombre de tickets fermés durant cette période. Devrait être proche du nombre de nouveaux billets pour les périodes antérieures.
+
 
   # IMPORT/EXPORT
   import: 'Import CSV'

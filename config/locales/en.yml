@@ -117,7 +117,8 @@ en:
   model_destroyed: "%{object_name} was deleted"
 
   # Admin menu
-  discussions: Inbox
+  inbox: Inbox
+  discussions: Tickets
   content: Content
   communities: Communities
   app_store: App Store
@@ -133,7 +134,7 @@ en:
   open: Open
   mine: Mine
   pending: Pending
-  closed: Closed
+  closed: &closed Closed
   spam: Spam
   trash: Trash
   discussion_managment: Ticket Management
@@ -428,7 +429,7 @@ en:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
-  activity_report:
+  activity_report: "Activity Report"
   team_insights: "Team Insights"
   filter_by_date: "Filter by date"
   today: "Today"
@@ -447,11 +448,25 @@ en:
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
   insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
   no_discussions: "No new tickets have been opened <strong>%{period}</strong>"
-  assigned_topics: "Assigned Topics"
+  assigned_topics: "Assigned Tickets"
   responded: "Responded"
   closed: "Closed"
   replies: "Replies"
   median_time: "Median time to first response"
+
+  # Reports
+  ticketing_reports: Ticketing Reports
+  group_report: "Group Report"
+  team_reports: "Team Reports"
+  percent_resolved: Percent Resolved
+  average_resolution_time: Average Resolution Time
+  new_tickets: New Tickets
+  new_tickets_explain: The number of new tickets your Helpy has received in this period.
+  tickets_per_day: Tickets per Day
+  tickets_per_day_explain: The number of tickets your Helpy averages per day.
+  replies_explain: The number of replies your agents have written in this period.
+  actions_explain: The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.
+  closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
 
   # IMPORT/EXPORT
   import: 'Import CSV'

@@ -1,4 +1,4 @@
-<% title "Activity Report" %>
+<% title t('group_report') %>
 
 <div class="row">
   <div id="admin-left-nav" class="col-md-3 hidden-xs hidden-sm">
@@ -18,9 +18,9 @@
           <col width="0%">
           <col width="20%">
           <thead>
-            <th>Group</th>
+            <th><%= t('group') %></th>
             <th>
-            <th class="text-right">Tickets</th>
+            <th class="text-right"><%= t('tickets') %></th>
           </thead>
           <%
           @teams.each do |team|
