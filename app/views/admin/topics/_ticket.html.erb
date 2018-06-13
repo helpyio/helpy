@@ -103,7 +103,22 @@ $('[data-provider="summernote"]').each(function(){
       lineWrapping: true,
       tabMode: 'indent'
     },
-    hint: {
+    hint: [{
+      mentions: <%= User.respond_to?(:mentionable) ? raw(User.mentionable) : '[]' %>,
+      match: /\B@(\w*)$/,
+      search: function (keyword, callback) {
+        callback($.grep(this.mentions, function (item) {
+          return item.name.indexOf(keyword) == 0;
+        }));
+      },
+      template: function (item) {
+          return item.name;
+      },
+      content: function (item) {
+        return '@' + item.short;
+      }
+    },
+    {
       match: /:([\-+\w]+)$/,
       search: function (keyword, callback) {
         callback($.grep(emojis, function (item) {
@@ -121,7 +136,7 @@ $('[data-provider="summernote"]').each(function(){
         }
         return '';
       }
-    }
+    }]
   });
 });
 $.ajax({
