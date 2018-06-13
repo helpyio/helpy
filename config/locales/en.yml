@@ -360,11 +360,11 @@ en:
   theme_description:
   email: "Email"
   email_description:
-  customers:
+  customers: "Customers"
   users_description:
-  team:
+  team: "Team"
   users_description:
-  team_group:
+  team_group: "Team Groups"
   group_description:
 
   # General
