@@ -406,11 +406,11 @@ Helpy.ready = function(){
 
   // Add hoversort icon
   $('.hoversort').off().on('mouseover', function(){
-    $(this).prepend('<span class="fa fa-arrows-v" style="color:#666; margin-right: 0;"></span>');
+    $(this).prepend('<span class="fas fa-arrows-alt-v" style="color:#666; margin-right: 0;"></span>');
     $(this).css("cursor","move");
 
     $(this).on('mouseout', function(){
-      $(this).find('span.fa-arrows-v').remove();
+      $(this).find('span.fa-arrows-alt-v').remove();
     });
   });
 };
@@ -464,7 +464,7 @@ Helpy.showGroup = function() {
 };
 
 Helpy.loader = function(){
-  $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
+  $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fas fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
 };
 
 $(document).ready(Helpy.ready);

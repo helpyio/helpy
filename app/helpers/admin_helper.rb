@@ -197,7 +197,7 @@ module AdminHelper
   end
 
   def attachment_icon(filename)
-    return 'fa fa-file-text-o' unless filename.include?('.')
+    return 'far fa-file-text' unless filename.include?('.')
     extension = filename.split(".").last.downcase
     case extension
       when 'pdf'
@@ -277,7 +277,7 @@ module AdminHelper
 
   def add_tag_link
     content_tag :li do
-      content_tag(:span, '', class: 'fa fa-tag add-tag-link')
+      content_tag(:span, '', class: 'fas fa-tag add-tag-link')
     end
   end
 

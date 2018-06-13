@@ -78,7 +78,7 @@ a.navbar-brand {
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right pull-right hidden-xs" data-hook='admin-nav-right'>
                 <%= content_tag(:li, '' , class: "visible-lg visible-md visible-sm hidden-xs click-loader new-discussion #{new_active_class}") do %>
-                  <%= navbar_expanding_link(new_admin_topic_path, "fa fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')) %>
+                  <%= navbar_expanding_link(new_admin_topic_path, "fas fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')) %>
                 <% end if current_user.is_agent? %>
                 <%= help_menu %>
                 <%= admin_avatar_menu %>

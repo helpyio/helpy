@@ -38,7 +38,7 @@
 								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_general_settings_menu" style="margin-top:10px;">
 						      <%= settings_menu_item('glyphicon glyphicon-cog', 'general', admin_general_settings_path) %>
 						      <%= settings_menu_item('glyphicon glyphicon-globe', 'international', admin_i18n_settings_path) %>
-						      <%= settings_menu_item('fa fa-cogs', 'integrations', admin_integration_settings_path) %>
+						      <%= settings_menu_item('fas fa-cogs', 'integrations', admin_integration_settings_path) %>
 						    </ul>
 
 								<div class="settings-nav-header"><span class="tiny-header">Ticketing Settings</span></div>
@@ -51,13 +51,13 @@
 								<div class="settings-nav-header"><span class="tiny-header">Helpcenter Settings</span></div>
 						    <ul class="nav-items settings-menu list-unstyled" data-hook="admin_helpcenter_settings_menu" style="margin-top:10px;"``>
 									<%= settings_menu_item('glyphicon glyphicon-pencil', 'design', admin_design_settings_path) %>
-									<%= settings_menu_item('fa fa-clone', 'theme', admin_theme_settings_path) %>
+									<%= settings_menu_item('fas fa-clone', 'theme', admin_theme_settings_path) %>
 									<%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget', admin_widget_settings_path) %>
 						    </ul>
 								<div class="settings-nav-header"><span class="tiny-header">Data</span></div>
 								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_data_menu" style="margin-top:10px;">
-									<%= settings_menu_item('fa fa-download',"export", admin_backups_path) %>
-									<%= settings_menu_item('fa fa-upload',"import", admin_imports_path) %>
+									<%= settings_menu_item('fas fa-download',"export", admin_backups_path) %>
+									<%= settings_menu_item('fas fa-upload',"import", admin_imports_path) %>
 								</ul>
 								<% end %>
 						  </div>
