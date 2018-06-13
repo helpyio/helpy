@@ -130,8 +130,10 @@ pt-br:
   setup_complete: "Seu Helpy está pronto!"
   setup_complete_message: "Seu Helpy está pronto para uso! Você pode customizar ainda mais seu Helpy no painel de configurações. Fique ligado em nossas mídias sociais para ficar por dentro das últimas notícias, e também sobre novas features, correções de bugs, e atualizações de segurança."
   get_started: "Vamos começar!"
+
   # Admin menu
-  discussions: "Discussões"
+  inbox: Inbox  
+  discussions: "Tickets"
   content: "Conteúdo"
   team: "Equipe"
   communities: "Comunidades"

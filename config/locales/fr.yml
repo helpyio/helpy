@@ -111,6 +111,11 @@ fr:
   # devise/registrations/new
   sign_up: S'inscrire
 
+  # flash messages
+  model_created: "%{object_name} was saved"
+  model_updated: "%{object_name} was updated"
+  model_destroyed: "%{object_name} was deleted"
+
   # Admin menu
   inbox: Boîte de Messagerie
   discussions: Tickets
@@ -160,6 +165,8 @@ fr:
     other: "%{count} messages sélectionnés"
 
   # Discussion messages
+  # new_message: "This ticket has been marked new by the support staff"
+  # spam_message: "This ticket has been marked spam by the support staff"
   reopen_message: "Ce message a été réouvert par le support."
   closed_message: "Ce message a été fermé par le support."
   trash_message: "Ce ticket a été supprimé."
@@ -169,6 +176,7 @@ fr:
   converted_to_topic: "Ce ticket a été converti en discussion publique et déplacé dans %{forum_name}."
   tagged_with: "Ce ticket a été taggé avec %{tagged_with}"
   notes_hidden: "Il y a %{hidden_notes} notes internes pour ce ticket. Vous pouvez les voir en cliquant n'importe où dans cette note!"
+  # topic_added_from: "%{kind} added from %{channel}"
 
   # User Admin
   users: Utilisateurs
@@ -390,12 +398,24 @@ fr:
   button_text_color: "Couleur du texte du bouton"
 
   # Integrations
+  # incoming_webhook: Incoming Webhook
+  # incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
   enable_webhook_url: "Activer les webhooks entrants"
+  # google_analytics: Google Analytics
+  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
   enable_google_analytics: "Activer Google Analytics"
+  # google_analytics_id: Google Analytics ID
+  # recaptcha_integration: Recaptcha
+  # recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
   enable_recaptcha: "Activer Recaptcha"
   recaptcha_site_key: "Clé du site"
   recaptcha_api_key: "Clé secrète"
+  # cloudinary_integration: Cloudinary
+  # cloudinary_description: Cloudinary offers image hosting and transformation services.
   enable_cloudinary: "Activer Cloudinary"
+  # cloudinary_cloud_name: Cloudinary Cloud Name
+  # cloudinary_api_key: Cloudinary API Key
+  # cloudinary_api_secret: Cloudinary API Secret
 
   # Email
   mail_service: "Fournisseur de service pour les emails entrants"
@@ -420,7 +440,7 @@ fr:
   expire_confirm: "Veuillez confirmer que vous voulez vraiment expirer ce jeton."
   spec_note: "Vous pouvez lire et tester les spécifications de l'API interactive sur :"
 
-  # Reports
+  # Insights
   activity_report: "Rapport d'activité"
   team_insights: "Insights Équipe"
   filter_by_date: "Filtrer par date"
@@ -459,8 +479,7 @@ fr:
   replies_explain: Le nombre de réponses que vos agents ont écrites durant cette période.
   actions_explain: Le nombre total d'actions (réponses ou notes internes) dans cette période. Une bonne indication de l'activité de votre Helpy.
   closed_explain: Le nombre de tickets fermés durant cette période. Devrait être proche du nombre de nouveaux billets pour les périodes antérieures.
-
-
+  
   # IMPORT/EXPORT
   import: 'Import CSV'
   new_import: 'Nouvel Import'

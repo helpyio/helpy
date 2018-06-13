@@ -36,7 +36,7 @@ module Admin::UsersHelper
   end
 
   def priority_collection
-    [[t('low_priority'),'low'],[t('normal_priority'),'normal'],[t('high_priority'),'high'],[t('vip_priority'),'vip']]
+    [[t('low_priority', default: 'Low'),'low'],[t('normal_priority', default: 'Normal'),'normal'],[t('high_priority', default: 'High'),'high'],[t('vip_priority', default: 'VIP'),'vip']]
   end
 
 end

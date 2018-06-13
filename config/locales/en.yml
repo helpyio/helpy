@@ -368,55 +368,67 @@ en:
   group_description:
 
   # General
-  site_name:
-  site_url:
-  parent_site:
-  parent_company:
-  site_tagline:
-  enable_forums:
-  enable_knowledgebase:
-  enable_tickets:
-  enable_teams:
-  enable_welcome_email:
+  site_name: Site Name
+  site_url: Site URL
+  parent_site: Parent Site
+  parent_company: Parent Company
+  site_tagline: Site Tagline
+  enable_forums: Enable Community Forums
+  enable_knowledgebase: Enable Knowledgebase
+  enable_tickets: Enable Private Tickets
+  enable_teams: Enable Teams
+  enable_welcome_email: Send a welcome email to new users
 
   # Design
-  header_logo:
-  search_background:
-  top_bar:
-  link_color:
-  form_background:
+  header_logo: Header Logo
+  search_background: Search Background Color
+  top_bar: Header Accent Color
+  link_color: Link Color
+  form_background: Form Background Color
   still_need_help:
 
   # Locales
-  supported_locales:
-  default_locale:
+  supported_locales: Supported Locales
+  default_locale: Default Locale
 
   # Widget
-  show_widget:
-  widget_background:
-  button_color:
-  button_text_color:
+  show_widget: Show widget on support site
+  widget_background: Widget Background Color
+  button_color: Widget Button Color
+  button_text_color: Widget Text Color
 
   # Integrations
-  enable_webhook_url:
-  enable_google_analytics:
-  enable_recaptcha:
-  recaptcha_site_key:
-  recaptcha_api_key:
-  enable_cloudinary:
+  incoming_webhook: Incoming Webhook
+  incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
+  enable_webhook_url: Enable Incoming Webhooks
+  google_analytics: Google Analytics
+  google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
+  enable_google_analytics: Enable Google Analytics
+  google_analytics_id: Google Analytics ID
+  recaptcha_integration: Recaptcha
+  recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
+  enable_recaptcha: Enable Recaptcha
+  recaptcha_site_key: Recaptcha Site Key
+  recaptcha_api_key: Recaptcha API Key
+  cloudinary_integration: Cloudinary
+  cloudinary_description: Cloudinary offers image hosting and transformation services.
+  enable_cloudinary: Enable Cloudinary
+  cloudinary_cloud_name: Cloudinary Cloud Name
+  cloudinary_api_key: Cloudinary API Key
+  cloudinary_api_secret: Cloudinary API Secret
 
   # Email
-  mail_service:
-  send_email:
-  boolean_no:
-  boolean_yes:
-  admin_email:
-  from_email:
-  smtp_mail_username:
-  smtp_mail_password:
-  mail_smtp:
-  mail_port:
-  mail_domain:
+  mail_service: Inbound Mail Service Provider
+  send_email: Enable Outbound (SMTP) Email
+  boolean_no: No
+  boolean_yes: Yes
+  admin_email: Admin Email
+  from_email: From Email
+  smtp_mail_username: SMTP Username
+  smtp_mail_password: SMTP Password
+  mail_smtp: SMTP Server
+  mail_port: SMTP Port
+  mail_domain: SMTP Domain
 
   # API Key Managmeent
   api_keys: "API Keys"
