@@ -175,7 +175,7 @@ class TopicTest < ActiveSupport::TestCase
         body: 'this is the body'
       )
     end
-    assert_equal 51, topic.posts_in_last_minute
+    assert_equal 50, topic.posts_in_last_minute
   end
 
   test "Should be able to merge two topics and copy posts" do
