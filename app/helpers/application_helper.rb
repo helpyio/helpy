@@ -97,7 +97,7 @@ module ApplicationHelper
   def login_with(with, redirect_to = "/#{I18n.locale}")
     provider = (with == "google_oauth2") ? "google" : with
     link_to(user_omniauth_authorize_path(with.to_sym, origin: redirect_to), class: ["btn","btn-block","btn-social","oauth","btn-#{provider}"], style: "color:white;", data: {provider: "#{provider}"}) do
-      content_tag(:span, '', {class: ["fa", "fa-#{provider}"]}).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
+      content_tag(:span, '', {class: ["fab", "fa-#{provider}"]}).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
     end
   end
 
