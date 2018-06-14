@@ -1,6 +1,5 @@
 class NotificationMailer < ApplicationMailer
   layout 'notification'
-
   add_template_helper(PostsHelper)
 
   def new_private(topic_id)
