@@ -402,7 +402,7 @@ de:
   # incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
   # enable_webhook_url: Enable Incoming Webhooks
   # google_analytics: Google Analytics
-  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.  
+  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
   # enable_google_analytics: Enable Google Analytics
   # google_analytics_id: Google Analytics ID
   # recaptcha_integration: Recaptcha
@@ -481,6 +481,13 @@ de:
   # closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
 
   # IMPORT/EXPORT
+  # file_type: Type
+  # file_users: Users
+  # file_tickets: Tickets
+  # file_replies: Replies
+  # file_docs: Docs
+  # file_categories: Categories
+  # file_forums: Forums
   # import: 'Import CSV'
   # new_import: 'New Import'
   # export: 'Export CSV'
@@ -497,6 +504,13 @@ de:
   # object: 'Object'
   # import_details: '#%{id} Import Details'
   # select_for_export: 'Export %{model} to .csv'
+  # file_date_created: Date Created
+  # import_total_submitted: Total Submitted Records
+  # import_total_created: Total Created Records
+  # file_name: File Name
+  # file_download: Download
+  # file_delete: Delete
+  # file_delete_confirm: "Are you sure you want to delete this csv?"
 
   activerecord:
     attributes:

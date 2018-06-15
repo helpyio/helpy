@@ -64,7 +64,7 @@ en:
   asked_before: "Has your question been answered before? We think these may be similar"
 
   # Tickets
-  tickets: "Tickets"
+  tickets: &tickets "Tickets"
   no_tickets: "You have not created any tickets yet"
   ticket_number: "Ticket Number"
   assigned_to_label: "Assigned to"
@@ -179,7 +179,7 @@ en:
   topic_added_from: "%{kind} added from %{channel}"
 
   # User Admin
-  users: Users
+  users: &users Users
   account: Account
   contact_info: Contact
   social_info: Social
@@ -481,6 +481,13 @@ en:
   closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
 
   # IMPORT/EXPORT
+  file_type: Type
+  file_users: Users
+  file_tickets: Tickets
+  file_replies: Replies
+  file_docs: Docs
+  file_categories: Categories
+  file_forums: Forums
   import: 'Import CSV'
   new_import: 'New Import'
   export: 'Export CSV'
@@ -497,6 +504,13 @@ en:
   object: 'Object'
   import_details: '#%{id} Import Details'
   select_for_export: 'Export %{model} to .csv'
+  file_date_created: Date Created
+  import_total_submitted: Total Submitted Records
+  import_total_created: Total Created Records
+  file_name: File Name
+  file_download: Download
+  file_delete: Delete
+  file_delete_confirm: "Are you sure you want to delete this csv?"
 
   activerecord:
     attributes:

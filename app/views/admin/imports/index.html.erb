@@ -11,7 +11,7 @@
         <br/>
         <%= form_tag admin_import_restore_path, multipart: true, html: { class: 'form-vertical submit-loader' } do %>
           <label>
-            <%= select_tag "type", options_for_select([ ["Users","User"], ["Tickets","Topic"], ["Replies","Post"], ["Docs","Doc"], ["Categories","Category"], ["Forums", "Forum"] ], "User"), class: "form-control" %>
+            <%= select_tag "type", options_for_select(importable_models_collection, "User"), class: "form-control" %>
           </label>
           <label>
             <%= file_field_tag :file, class: "btn-file" %>

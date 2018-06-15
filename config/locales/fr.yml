@@ -479,8 +479,15 @@ fr:
   replies_explain: Le nombre de réponses que vos agents ont écrites durant cette période.
   actions_explain: Le nombre total d'actions (réponses ou notes internes) dans cette période. Une bonne indication de l'activité de votre Helpy.
   closed_explain: Le nombre de tickets fermés durant cette période. Devrait être proche du nombre de nouveaux billets pour les périodes antérieures.
-  
+
   # IMPORT/EXPORT
+  file_type: Type
+  file_users: Utilisateurs
+  file_tickets: Tickets
+  file_replies: Réponses
+  file_docs: Docs
+  file_categories: Catégories
+  file_forums: Communautés
   import: 'Import CSV'
   new_import: 'Nouvel Import'
   export: 'Export CSV'
@@ -497,6 +504,13 @@ fr:
   object: 'Objet'
   import_details: '#%{id} Détails Import'
   select_for_export: 'Exporter %{model} en .csv'
+  file_date_created: Date de création
+  import_total_submitted: Total des enregistrements soumis
+  import_total_created: Nombre total d'enregistrements créés
+  file_name: Nom du fichier
+  file_download: Télécharger
+  file_delete: Effacer
+  file_delete_confirm: "Voulez-vous vraiment supprimer ce fichier"
 
   activerecord:
     attributes:
