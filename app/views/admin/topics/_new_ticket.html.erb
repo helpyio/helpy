@@ -51,7 +51,7 @@
 </div>
 <% end -%>
 </div>
-<script src="/assets/summernote/lang/summernote-<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>.js"></script>
+<%= summernote_lang_js %>
 <script>
 $('[data-provider="summernote"]').each(function(){
   $(this).summernote({

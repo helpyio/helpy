@@ -132,4 +132,9 @@ module ApplicationHelper
     screenshot.format == "pdf" ? "#{screenshot.public_id}.png" : screenshot.path
   end
 
+  def summernote_lang_js
+    return if I18n.locale == 'en'
+    "<script src=\"/assets/summernote/lang/summernote-#{I18n.locale.downcase}-#{I18n.locale.upcase}.js\"></script>".html_safe
+  end
+
 end
