@@ -91,6 +91,7 @@
   <%= hidden_field_tag :obj_id, '' %>
   <br/><br/>
   <%= f.submit t('save_changes', default: "Save Changes"), class: 'btn btn-warning' %>
+  <script src="/assets/summernote/lang/summernote-<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>.js"></script>
   <script type="text/javascript">
     $('.selectize').selectize({
       delimiter: ',',
@@ -113,6 +114,7 @@
 
       $('[data-provider="summernote"]').each(function(){
         $(this).summernote({
+          lang: '<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>',
           height: 500,
           prettifyHtml: true,
           codemirror: {

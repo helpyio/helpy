@@ -4,12 +4,12 @@
 <div class="row">
   <div class="col-md-8">
 
-    <%= f.input :kind, collection: [["Customer Conversation", 'ticket'],["Internal Ticket", 'internal']], class: 'disable-empty', autofocus: true, include_blank: false, label: "Type of Ticket" -%>
+    <%= f.input :kind, collection: ticket_types_collection, class: 'disable-empty', autofocus: true, include_blank: false -%>
     <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
 
     <%= f.simple_fields_for @user do |u| %>
       <%= u.input :name, class: 'disable-empty' %>
-      <%= u.input :home_phone, class: 'disable-empty', label: "Phone" %>
+      <%= u.input :home_phone, class: 'disable-empty' %>
       <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
 
       <%= u.input :email, class: 'disable-empty', label: "Email (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
@@ -38,12 +38,12 @@
     <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable' %>
   </div>
   <div class="col-md-4">
-    <%= f.input :channel, collection: [[t('activerecord.attributes.user.email'), 'email'],[t('activerecord.attributes.user.home_phone'), 'phone'],[t(:channel_in_person, default: 'In Person'), 'person']], as: :select, include_blank: false, item_wrapper_class: 'channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
+    <%= f.input :channel, collection: channels_collection, as: :select, include_blank: false, item_wrapper_class: 'channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
     <% if teams = admin_teams %>
       <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
     <% end %>
-    <%= f.input :priority, collection: Topic.priorities.keys.map { |priority| [priority.titleize, priority] } , as: :select, include_blank: true, selected: 'normal' %>
-    <%= f.input :current_status, collection: statuses_for_select, as: :select, include_blank: false, selected: 'new' %>
+    <%= f.input :priority, collection: ticket_priority_collection , as: :select, include_blank: true, selected: 'normal' %>
+    <%= f.input :current_status, collection: statuses_collection, as: :select, include_blank: false, selected: 'new' %>
     <%= f.input :assigned_user_id, collection: agents_for_select, as: :select, include_blank: true, selected: current_user.id %>
     <%= f.input :tag_list %>
 
@@ -51,10 +51,11 @@
 </div>
 <% end -%>
 </div>
-
+<script src="/assets/summernote/lang/summernote-<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>.js"></script>
 <script>
 $('[data-provider="summernote"]').each(function(){
   $(this).summernote({
+    lang: '<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>',
     height: 150,
     prettifyHtml: true,
     toolbar: [
