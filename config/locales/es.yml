@@ -147,17 +147,19 @@ es:
   private: privado
   public: publico
   save_changes: Guardar cambios
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  # merge: Merge
+  # merge_confirm: Are you sure you want to merge these tickets?
+  # customer_conversation: Customer Conversation
+  # internal_ticket: Internal Ticket
 
   # Discussion controls
   change_status: Cambiar estado
-  status: Estado
+  status: &status Estado
   mark_closed: Marcar como resuelto
   reopen: Reabrir
   mark_spam: Marcar como spam
   mark_new: Marcar como nuevo
-  assign_agent: Asignar agente
+  assign_agent: &assign_agent Asignar agente
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 mensaje seleccionado"
@@ -520,7 +522,7 @@ es:
         name: Nombre
         company: Empresa
         work_phone: Trabajo
-        # home_phone: Phone        
+        # home_phone: Phone
         cell_phone: Móvil
         city: Ciudad
         state: Estado o provincia
@@ -529,9 +531,19 @@ es:
         # time_zone:
       topic:
         name: Asunto
+        # kind: Type de ticket
+        # channel: Canal
+        # team_list: Équipe
+        # priority: Priorité
+        current_status: *status
+        assigned_user_id: *assign_agent
+        # tag_list: Liste des tags
       post:
         kind: Género
         # body: Message
+        # cc: CC
+        # bcc: BCC
+        # attachments: Attachement
       category:
         name: Nombre
         icon: Icono
@@ -592,7 +604,6 @@ es:
     #     root: *root
     #   internal_docs:
     #     root: *root
-
   helpers:
     actions: "Acciones"
     links:

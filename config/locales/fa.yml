@@ -137,12 +137,12 @@ fa:
 
   # Discussion controls
   change_status: تغییر وضعیت
-  status: وضعیت
+  status: &status وضعیت
   mark_closed: حل شد
   reopen: دوباره باز کن
   mark_spam: اسپم
   mark_new: جدیده
-  assign_agent: بسپر به
+  assign_agent: &assign_agent بسپر به
   # tag_with: Tag Ticket
   selected_messages:
     one: "۱ پیغام انتخاب شده"

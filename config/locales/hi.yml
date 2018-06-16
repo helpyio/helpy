@@ -137,12 +137,12 @@ hi:
 
   # Discussion controls
   change_status: स्टेटस बदलो
-  status: स्टेटस
+  status: &status स्टेटस
   mark_closed: बंद करें
   reopen: फिर से खोलें
   mark_spam: स्पैम मार्क करो
   mark_new: नया  मार्क करो
-  assign_agent: एजेंट नियुक्त करना
+  assign_agent: &assign_agent एजेंट नियुक्त करना
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 चुने हुए संदेश"

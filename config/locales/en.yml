@@ -149,15 +149,17 @@ en:
   save_changes: Save Changes
   merge: Merge
   merge_confirm: Are you sure you want to merge these tickets?
+  customer_conversation: Customer Conversation
+  internal_ticket: Internal Ticket
 
   # Discussion controls
   change_status: Change Status
-  status: Status
+  status: &status Status
   mark_closed: Mark Closed/Resolved
   reopen: Reopen
   mark_spam: Mark Spam
   mark_new: Mark New
-  assign_agent: Assign Agent
+  assign_agent: &assign_agent Assign Agent
   tag_with: Tag Ticket
   selected_messages:
     one: "1 selected message"
@@ -528,10 +530,20 @@ en:
         title:
         time_zone:
       topic:
+        kind: Type of Ticket
         name: Subject
+        channel: Channel
+        team_list: Team
+        priority: Priority
+        current_status: Status
+        assigned_user_id: *assign_agent
+        tag_list: Tag List
       post:
         kind: Type
         body: Message
+        cc: CC
+        bcc: BCC
+        attachments: Attachments
       category:
         name: Name
         icon: Icon

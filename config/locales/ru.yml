@@ -140,12 +140,12 @@ ru:
 
   # Discussion controls
   change_status: Изменить статус
-  status: Статус
+  status: &status Статус
   mark_closed: Отметить как решённое
   reopen: Открыть снова
   mark_spam: Отметить как спам
   mark_new: Отметить как новое
-  assign_agent: Назначить агента
+  assign_agent: &assign_agent Назначить агента
   # tag_with: Tag Ticket
   selected_messages:
     zero: "Нет выбранных сообщений"

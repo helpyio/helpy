@@ -45,11 +45,31 @@ module Admin::TopicsHelper
     User.agents.all.map { |user| [user.name, user.id] }
   end
 
-  def statuses_for_select
+  def channels_collection
+    [
+      [t('activerecord.attributes.user.email'), 'email'],
+      [t('activerecord.attributes.user.home_phone'), 'phone'],
+      [t(:channel_in_person, default: 'In Person'), 'person']
+    ]
+  end
+
+  def statuses_collection
     statuses = []
     ['new','open','pending','closed'].each do |s|
-      statuses << ["#{t(s)}", s]
+      statuses << [t(s.to_sym), s]
     end
+    statuses
+  end
+
+  def ticket_types_collection
+    [
+      [t('customer_conversation', default: "Customer Conversation"), 'ticket'],
+      [t('internal_ticket', default: "Internal Ticket"), 'internal']
+    ]
+  end
+
+  def ticket_priority_collection
+    Topic.priorities.keys.map { |priority| [t("#{priority}_priority"), priority] }
   end
 
 end

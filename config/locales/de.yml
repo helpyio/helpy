@@ -147,17 +147,19 @@ de:
   private: privat
   public: öffentlich
   save_changes: Änderungen speichern
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  # merge: Merge
+  # merge_confirm: Are you sure you want to merge these tickets?
+  customer_conversation: Customer Conversation
+  internal_ticket: Internal Ticket
 
   # Discussion controls
   change_status: Status ändern
-  status: Status
+  status: &status Status
   mark_closed: Als gelöst markieren
   reopen: Erneut öffnen
   mark_spam: Als Spam markieren
   mark_new: Als Neu markieren
-  assign_agent: Agent zuordnen
+  assign_agent: &assign_agent Agent zuordnen
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 markierte Nachricht"
@@ -528,9 +530,20 @@ de:
         title:
         time_zone:
       topic:
+        # kind: Type of Ticket
         name: Betreff
+        # channel: Channel
+        # team_list: Team
+        # priority: Priority
+        current_status: *status
+        assigned_user_id: *assign_agent
+        # tag_list: Tag List
       post:
         kind: Art
+        # body: Message
+        # cc: CC
+        # bcc: BCC
+        # attachments: Attachments
       category:
         name: Name
         icon: Symbol
@@ -584,6 +597,13 @@ de:
       root: *root
     result:
       root: *root
+    registrations:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
   helpers:
     actions: "Aktionen"
     links:

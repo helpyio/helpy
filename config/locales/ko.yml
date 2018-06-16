@@ -139,12 +139,12 @@ ko:
 
   # Discussion controls
   change_status: 상태 변경
-  status: 상태
+  status: &status 상태
   mark_closed: 해결 된 것으로 표시
   reopen: 다시 열다
   mark_spam: 스팸으로 표시
   mark_new: 새 항목으로 표시
-  assign_agent: 에이전트 지정
+  assign_agent: &assign_agent 에이전트 지정
   tag_with: 티켓 태그
   selected_messages:
     one: "선택된 메시지 1개"

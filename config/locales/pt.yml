@@ -137,12 +137,12 @@ pt:
 
   # Discussion controls
   change_status: "Alterar Estado"
-  status: "Estado"
+  status: &status "Estado"
   mark_closed: "Marcar como Resolvido"
   reopen: "Reabrir"
   mark_spam: "Marcar Spam"
   mark_new: "Marcar Novo"
-  assign_agent: "Associar Agente"
+  assign_agent: &assign_agent "Associar Agente"
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 mensagem selecionada"

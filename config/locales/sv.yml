@@ -133,12 +133,12 @@ sv:
 
   # Discussion controls
   change_status: 'Ändra Status'
-  status: 'Status'
+  status: &status 'Status'
   mark_closed: 'Markera som färdighanterat'
   reopen: 'Öppna igen'
   mark_spam: 'Markera som spam'
   mark_new: 'Markera som nyinkommet'
-  assign_agent: 'Tilldela till agent'
+  assign_agent: &assign_agent 'Tilldela till agent'
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 markerat meddelande"

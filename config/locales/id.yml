@@ -141,12 +141,12 @@ id:
 
   # Discussion controls
   change_status: Ubah Status
-  status: Status
+  status: &status Status
   mark_closed: Tandai Sudah Selesai
   reopen: Buka Ulang
   mark_spam: Tandai Spam
   mark_new: Tandai Baru
-  assign_agent: Tugaskan Staf
+  assign_agent: &assign_agent Tugaskan Staf
   tag_with: Tag Tiket
   selected_messages:
     one: "1 pesan terpilih"

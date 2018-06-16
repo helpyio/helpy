@@ -149,15 +149,17 @@ fr:
   save_changes: Enregistrer les modifications
   merge: Fusionner
   merge_confirm: Etes vous sûr de vouloir fusionner ces tickets?
+  customer_conversation: Conversation client
+  internal_ticket: Ticket interne
 
   # Multiple Discussion controls
   change_status: Changer le statut
-  status: Statut
+  status: &status Statut
   mark_closed: Marquer comme résolu
   reopen: Réouvrir
   mark_spam: Marquer comme Spam
   mark_new: Marquer comme Nouveau
-  assign_agent: Assigner un Agent
+  assign_agent: &assign_agent Assigner un Agent
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 message sélectionné"
@@ -528,10 +530,20 @@ fr:
         title: Titre
         time_zone: Fuseau horaire
       topic:
+        kind: Type de ticket
         name: Sujet
+        channel: Canal
+        team_list: Équipe
+        priority: Priorité
+        current_status: *status
+        assigned_user_id: *assign_agent
+        tag_list: Liste des tags
       post:
         kind: Type
         body: Message
+        cc: CC
+        bcc: BCC
+        attachments: Attachement
       category:
         name: Nom
         icon: Icône

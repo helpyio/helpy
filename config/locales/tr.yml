@@ -137,12 +137,12 @@ tr:
 
   # Discussion controls
   change_status: Durumu Değiştir
-  status: Durum
+  status: &status Durum
   mark_closed: Çözüldü olarak İşaretle
   reopen: Tekrar aç
   mark_spam: İstanmeyen olarak İşaretle
   mark_new: Yeni olarak İşaretle
-  assign_agent: Personel Ata
+  assign_agent: &assign_agent Personel Ata
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 mesaj seçildi"

@@ -137,12 +137,12 @@ nl:
 
   # Discussion controls
   change_status: Status Wijzigen
-  status: Status
+  status: &status Status
   mark_closed: Als opgelost markeren
   reopen: Heropenen
   mark_spam: Als spam markeren
   mark_new: Als nieuw markeren
-  assign_agent: Aan medewerker toewijzen
+  assign_agent: &assign_agent Aan medewerker toewijzen
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 bericht geselecteerd"

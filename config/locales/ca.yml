@@ -137,12 +137,12 @@ ca:
 
   # Discussion controls
   change_status: Canviar estat
-  status: Estat
+  status: &status Estat
   mark_closed: Marcar com resolt
   reopen: Reobrir
   mark_spam: Marcar com spam
   mark_new: Marcar com nou
-  assign_agent: Assignar agent
+  assign_agent: &assign_agent Assignar agent
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 missatge seleccionat"

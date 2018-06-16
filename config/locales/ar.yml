@@ -139,12 +139,12 @@ ar:
 
   # Discussion controls
   change_status: تغيير الحالة
-  status: حالة
+  status: &status حالة
   mark_closed: حل
   reopen: إعادة فتح
   mark_spam: بريد المزعج
   mark_new: جديد
-  assign_agent: تعيين الوكيل
+  assign_agent: &assign_agent تعيين الوكيل
   tag_with: ضع علامة على التذكرة
   selected_messages:
     one: "رسالة مختارة (١)"

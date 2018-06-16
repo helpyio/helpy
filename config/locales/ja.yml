@@ -137,12 +137,12 @@ ja:
 
   # Discussion controls
   change_status: "状態を変更する"
-  status: "状態"
+  status: &status "状態"
   mark_closed: "解決済みにする"
   reopen: "再開"
   mark_spam: "迷惑メールにする"
   mark_new: "新着にする"
-  assign_agent: "委託するエージェント"
+  assign_agent: &assign_agent "委託するエージェント"
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 つの選択されたメッセージ"

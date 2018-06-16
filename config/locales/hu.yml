@@ -140,12 +140,12 @@ hu:
 
   # Discussion controls
   change_status: Státusz Módosítása
-  status: Státusz
+  status: &status Státusz
   mark_closed: Megoldottnak jelölés
   reopen: Újranyitás
   mark_spam: Levélszemét
   mark_new: Újnak jelölés
-  assign_agent: Ügynökhöz rendelés
+  assign_agent: &assign_agent Ügynökhöz rendelés
   # tag_with: Tag Ticket
   selected_messages:
     one: "1 kiválasztott üzenet"

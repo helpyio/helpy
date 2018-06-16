@@ -139,12 +139,12 @@ ms:
 
   # Discussion controls
   change_status: Tukar Status
-  status: Status
+  status: &status Status
   mark_closed: Tandakan sebagai diselesaikan
   reopen: Buka semula
   mark_spam: Tandakan sebagai Spam
   mark_new: Tandakan sebagai Baru
-  assign_agent: Tugaskan ejen
+  assign_agent: &assign_agent Tugaskan ejen
   tag_with: Tag Tiket
   selected_messages:
     one: "1 mesej yang dipilih"
