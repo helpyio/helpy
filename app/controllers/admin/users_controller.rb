@@ -55,7 +55,7 @@ class Admin::UsersController < Admin::BaseController
   include ActionView::Helpers::TagHelper
 
   def index
-    @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+    @roles = [[t('team'), 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
     if params[:role].present?
       if params[:role] == 'team'
         @users = User.team.all.page params[:page]

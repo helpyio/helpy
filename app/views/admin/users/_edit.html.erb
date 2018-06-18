@@ -21,7 +21,7 @@
       <%= f.text_field :company %>
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %> <%= f.text_field :zip, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
-      <%= f.select(:role, [[t('select_role'),''],[t('admin_role'),'admin'],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
+      <%= f.select(:role, roles_collection, prompt: t('select_role')) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.select 'team_list', options_for_select(@all_teams.map {|t| [t, t.downcase]}, @user.team_list.map {|g| g.downcase}),
           { label: t(:assign_to, default: "Assign to group:") }, { class: "selectpicker", multiple: true } if teams? && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
       <%= f.select(:priority, priority_collection) if current_user.is_admin? && params[:controller] != 'admin/settings' %>

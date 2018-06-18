@@ -35,7 +35,7 @@ class Admin::SearchController < Admin::BaseController
       tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
     else
       @users = users.page params[:page]
-      @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+      @roles = [[t('team'), 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
       template = 'admin/users/index'
       tracker("Admin Search", "User Search", params[:q])
     end
