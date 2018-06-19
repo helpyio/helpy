@@ -24,7 +24,8 @@
         <td class="center" align="center" valign="top">
           <br/><br/>
           <center>
-            <%= email_image_tag('logo.png', width: 40, height: 40, style: 'width: 40px;') %>
+            <% # NOTE: suppress this for dev/test becuase it breaks mailcatcher %>
+            <%= email_image_tag('logo.png', width: 40, height: 40, style: 'width: 40px;') if Rails.env.production? %>
           </center>
           <br/>
         </td>
