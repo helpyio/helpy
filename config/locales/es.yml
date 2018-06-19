@@ -39,7 +39,7 @@ es:
 
   # Community
   forum_name: "Tema"
-  subject: "Asunto"
+  subject: &subject "Asunto"
   last_activity: "Activo por última vez"
   topic: "Debate"
   replies: "Respuestas"
@@ -160,7 +160,7 @@ es:
   mark_spam: Marcar como spam
   mark_new: Marcar como nuevo
   assign_agent: &assign_agent Asignar agente
-  # tag_with: Tag Ticket
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 mensaje seleccionado"
     two: "2 mensajes seleccionados"
@@ -195,8 +195,9 @@ es:
   # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  # select_priority: Select Priority
+  # select_priority: &priority Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low
@@ -514,6 +515,8 @@ es:
   # file_delete: Delete
   # file_delete_confirm: "Are you sure you want to delete this csv?"
 
+  kind_type: &kind Género
+
   activerecord:
     attributes:
       user:
@@ -530,16 +533,16 @@ es:
         # title:
         # time_zone:
       topic:
-        name: Asunto
-        # kind: Type de ticket
-        # channel: Canal
-        # team_list: Équipe
-        # priority: Priorité
+        kind: *kind
+        name: *subject
+        # channel: Channel
+        # team_list: Team
+        # priority: *priority
         current_status: *status
         assigned_user_id: *assign_agent
-        # tag_list: Liste des tags
+        # tag_list: *tag_with
       post:
-        kind: Género
+        kind: *kind
         # body: Message
         # cc: CC
         # bcc: BCC

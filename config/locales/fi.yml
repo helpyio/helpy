@@ -39,7 +39,7 @@ fi:
 
   # Community
   forum_name: "Aihe"
-  subject: "Otsikko"
+  subject: &subject "Otsikko"
   last_activity: "Viimeksi aktiivinen"
   topic: "Keskustelu"
   replies: "Vastaukset"
@@ -160,7 +160,7 @@ fi:
   mark_spam: Merkitse roskapostiksi
   mark_new: Merkitse uudeksi
   assign_agent: &assign_agent Osoita henkilölle
-  # tag_with: Tag Ticket
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 valittu viesti"
     two: "2 valittua viestiä"
@@ -195,8 +195,9 @@ fi:
   delete_user_warning: "Haluatko varmasti poistaa käyttäjän %{user_name}? Tämä poistaa pysyvästi käyttäjän sekä kaikki kyseisen käyttäjän palvelupyynnöt, julkaisut, vastaukset sekä keskustelut."
 
   # Priorities
-  select_priority: Valitse prioriteetti
+  select_priority: &priority Valitse prioriteetti
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: Korkea
   normal_priority: Normaali
   low_priority: Matala
@@ -514,6 +515,8 @@ fi:
   # file_delete: Delete
   # file_delete_confirm: "Are you sure you want to delete this csv?"
 
+  kind_type: &kind Tyyppi
+
   activerecord:
     attributes:
       user:
@@ -530,16 +533,16 @@ fi:
         title:
         time_zone:
       topic:
-        # kind: Type of Ticket
-        name: Kysymys
+        kind: *kind
+        name: *subject
         # channel: Channel
         # team_list: Team
-        # priority: Priority
+        priority: *priority
         current_status: *status
         assigned_user_id: *assign_agent
         # tag_list: Tag List
       post:
-        kind: Tyyppi
+        kind: *kind
         body: Viesti
         # cc: CC
         # bcc: BCC

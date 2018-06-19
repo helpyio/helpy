@@ -12,7 +12,7 @@
       <%= u.input :home_phone, class: 'disable-empty' %>
       <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
 
-      <%= u.input :email, class: 'disable-empty', label: "Email (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
+      <%= u.input :email, class: 'disable-empty', label: "#{t('activerecord.attributes.user.email')} (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
     <% end %>
   <%= f.simple_fields_for @topic.posts.new do |i| %>
     <%#= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>

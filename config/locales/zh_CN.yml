@@ -39,7 +39,7 @@ zh-cn:
 
   # Community
   forum_name: "主旨"
-  subject: "题目"
+  subject: &subject "题目"
   last_activity: "最後登录"
   topic: "讨论"
   replies: "回覆"
@@ -143,7 +143,7 @@ zh-cn:
   mark_spam: 标记为垃圾讯息
   mark_new: 标记为新讯息
   assign_agent: &assign_agent 委托代理
-  # tag_with: Tag Ticket
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1个已选讯息"
     two: "2个已选讯息"
@@ -176,6 +176,7 @@ zh-cn:
   # Priorities
   select_priority: "选择优先级"
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: "高"
   normal_priority: "正常"
   low_priority: "低"

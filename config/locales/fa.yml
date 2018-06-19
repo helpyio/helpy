@@ -39,7 +39,7 @@ fa:
 
   # Community
   forum_name: "موضوع"
-  subject: "عنوان"
+  subject: &subject "عنوان"
   last_activity: "آخرین فعالیت"
   topic: "بحث ها"
   replies: "پاسخ ها"
@@ -143,7 +143,7 @@ fa:
   mark_spam: اسپم
   mark_new: جدیده
   assign_agent: &assign_agent بسپر به
-  # tag_with: Tag Ticket
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "۱ پیغام انتخاب شده"
     two: "۲ پیغام انتخاب شده"
@@ -171,8 +171,9 @@ fa:
   cell_phone: موبایل
 
   # Priorities
-  select_priority: انتخاب اولویت
+  select_priority: &priority انتخاب اولویت
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: بالا
   normal_priority: معمولی
   low_priority: پایین

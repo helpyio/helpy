@@ -39,7 +39,7 @@ fr:
 
   # Community
   forum_name: "Sujet"
-  subject: "Sujet"
+  subject: &subject "Sujet"
   last_activity: "Dernière activité"
   topic: "Discussion"
   replies: "Réponses"
@@ -160,7 +160,7 @@ fr:
   mark_spam: Marquer comme Spam
   mark_new: Marquer comme Nouveau
   assign_agent: &assign_agent Assigner un Agent
-  # tag_with: Tag Ticket
+  tag_with: &tag_with Tag avec
   selected_messages:
     one: "1 message sélectionné"
     two: "2 messages sélectionnés"
@@ -195,8 +195,9 @@ fr:
   # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: Choisir une priorité
+  select_priority: &priority Choisir une priorité
   vip_priority: Important
+  very_high_priority: Très haut
   high_priority: Elevé
   normal_priority: Normal
   low_priority: Bas
@@ -514,6 +515,8 @@ fr:
   file_delete: Effacer
   file_delete_confirm: "Voulez-vous vraiment supprimer ce fichier"
 
+  kind_type: &kind Type
+
   activerecord:
     attributes:
       user:
@@ -530,16 +533,16 @@ fr:
         title: Titre
         time_zone: Fuseau horaire
       topic:
-        kind: Type de ticket
-        name: Sujet
+        kind: *kind
+        name: *subject
         channel: Canal
         team_list: Équipe
-        priority: Priorité
+        priority: *priority
         current_status: *status
         assigned_user_id: *assign_agent
-        tag_list: Liste des tags
+        tag_list: *tag_with
       post:
-        kind: Type
+        kind: *kind
         body: Message
         cc: CC
         bcc: BCC
