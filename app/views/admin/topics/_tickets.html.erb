@@ -3,7 +3,7 @@
 <%= content_tag :h3, class: 'view-header' do %>
   <%= show_responsive_nav %>
   <%#=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
-  <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
+  <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym, default: @status)) if @status.present?} " %>
   <div class="pull-right nav-new-button">
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
         remote: true, class: 'btn btn-primary' %>
