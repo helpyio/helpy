@@ -18,4 +18,11 @@ class Admin::InternalDocsControllerTest < ActionController::TestCase
     assert_nil assigns(:doc)
     assert_response :redirect
   end
+
+  test "showing doc when there isn't any forum" do
+    Forum.destroy_all
+    get :show, internal_category_id: 1, id: 1
+    assert_equal "Article 1", assigns(:page_title)
+    assert_response :success
+  end
 end

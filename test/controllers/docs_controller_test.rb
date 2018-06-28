@@ -65,4 +65,9 @@ class DocsControllerTest < ActionController::TestCase
     end
   end
 
+  test "a browsing user should be able to show a document when there isn't any forum" do
+    Forum.destroy_all
+    get :show, id: 1, locale: "en"
+    assert_response :success
+  end
 end
