@@ -26,7 +26,7 @@ class Admin::InternalDocsController < Admin::BaseController
 
   def define_forum_for_docs
     @forum = Forum.for_docs.first
-    @comment = @forum.topics.new
+    @comment = @forum.topics.new unless @forum.nil?
   end
 
   def define_topic_for_doc
