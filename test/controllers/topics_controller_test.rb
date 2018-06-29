@@ -111,7 +111,8 @@ class TopicsControllerTest < ActionController::TestCase
       end
     end
 
-    assert_equal Topic.last.tag_list, ["active and featured", "Feedback"]
+    assert_equal Topic.tagged_with("active and featured").count, 1
+    assert_equal Topic.tagged_with("Feedback").count, 1
   end
 
   test 'a browsing user should not be able to vote' do
