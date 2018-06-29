@@ -67,6 +67,7 @@ class Doc < ActiveRecord::Base
   scope :publicly, -> { joins(:category).where(categories: { visibility: %w[all public] }) }
 
   def to_param
+    return "#{id}-missing-title" if title.nil?  
     "#{id}-#{title.parameterize}"
   end
 
