@@ -460,6 +460,7 @@ div.admin-tools {
 }
 
 div.note-hint-item.active {
+  // scss-lint:disable ImportantRule
   background-color: #444 !important;
 }
 

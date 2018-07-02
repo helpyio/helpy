@@ -214,7 +214,7 @@ Helpy.ticketMenu = function() {
     $ticketNav.removeClass('open');
     $ticketNav.addClass('hidden-xs');
   });
-}
+};
 
 Helpy.showPanel = function(panel) {
   var currentPanel = panel-1;

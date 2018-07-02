@@ -41,10 +41,6 @@ td > img {
     margin-bottom: 20px;
 }
 
-#main-content {
-  background-color: transparent;
-}
-
 // === LEFT NAV ===
 
 ul.settings-menu {
@@ -175,6 +171,7 @@ ul.settings-menu {
 #main-content {
   margin-top: 40px;
   padding-right: 20px;
+  background-color: transparent;
 }
 
 #upper-wrapper {
