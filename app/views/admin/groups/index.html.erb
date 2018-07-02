@@ -9,12 +9,13 @@
   </style>
 
   <div class="admin-header">
-    <h2 id="setting-header">
+    <h3 id="setting-header">
+      <%= show_responsive_nav %>
       <%= t('groups', default: 'Groups') %>
-      <span class="pull-right">
+      <div class="pull-right nav-new-button">
   	    <%= link_to t(:add_new_group, default: "Add New Group"), new_admin_group_path, remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
-  	  </span>
-    </h2>
+  	  </div>
+    </h3>
   </div>
 
   <div class="settings-section">

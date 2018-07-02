@@ -45,7 +45,7 @@ Helpy.initShortcuts = function() {
     $('.pipeline-closed').click();
   });
   Mousetrap.bind('n', function() {
-    $('.new-discussion').click();
+    $('.new-discussion a').click();
   });
   Mousetrap.bind('f', function() {
     $('.topic-search').show();
@@ -136,12 +136,20 @@ Helpy.initShortcuts = function() {
 
   Mousetrap.bind('.', function() {
     var $currentSelected = $('.selected');
+    // startTopic is where the list selector starts out- either first or the selected one
+    var $startingTopic;
+    if ($('.tiny-topic-active').length > 0) {
+      $startingTopic = $('.tiny-topic-active').first();
+    } else {
+      $startingTopic = $('.topic').first();
+    }
 
     if ($('.selected').size() === 0) {
-      $('.topic').first().addClass('selected');
+      $startingTopic.addClass('selected');
+      // $('.topic').first().addClass('selected');
       pressEnter($('.topic').first().find('a.topic-link'));
     } else {
-      var $nowSelected = $('.selected').next('tr.topic');
+      var $nowSelected = $('.selected').next('.topic');
 
       $nowSelected.addClass('selected');
       $currentSelected.removeClass('selected');
@@ -151,12 +159,19 @@ Helpy.initShortcuts = function() {
 
   Mousetrap.bind(',', function() {
     var $currentSelected = $('.selected');
+    // startTopic is where the list selector starts out- either first or the selected one
+    var $startingTopic;
+    if ($('.tiny-topic-active').length > 0) {
+      $startingTopic = $('.tiny-topic-active').first();
+    } else {
+      $startingTopic = $('.topic').last();
+    }
 
     if ($('.selected').size() === 0) {
-      $('.topic').last().addClass('selected');
+      $startingTopic.addClass('selected');
       pressEnter($('.topic').last().find('a.topic-link'));
     } else {
-      var $nowSelected = $('.selected').prev('tr.topic');
+      var $nowSelected = $('.selected').prev('.topic');
       $nowSelected.addClass('selected');
       $currentSelected.removeClass('selected');
       pressEnter($nowSelected.find('a.topic-link'));

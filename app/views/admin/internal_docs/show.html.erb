@@ -1,12 +1,3 @@
-<%
-################################################################################
-# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
-# of your Helpy, that you create a custom theme instead.  This will allow
-# you to override any views or styles you wish to, without compromising your
-# ability to upgrade in the future
-################################################################################
-%>
-
 <% title "#{AppSettings['settings.site_name']}: #{@custom_title}" %>
 <% meta_tag :description, "#{@doc.meta_description}" %>
 <% meta_tag :keywords, "#{@doc.keywords}" %>
@@ -18,50 +9,55 @@
 }
 </style>
 
-<%= render 'layouts/internal_knowledgebase_page_title' %>
 <div class="row content-row">
-  <div class="col-md-3 hidden-xs hidden-sm">
-    <div id="written-by" class="doc-meta">
-      <div class="more-important meta-header"><%= I18n.t("written_by", default: "Written By") %>:</div>
-      <div class="less-important">
-        <%= avatar_image(@doc.user, size=40) %>
-        <%= @doc.user.name.titleize %>
+  <%= render 'layouts/internal_knowledgebase_page_title' %>
+  <div class="row">
+    <div class="col-md-8 text-content col-md-offset-2">
+      <div class="row hidden-xs hidden-sm">
+        <div id="written-by" class="doc-meta col-md-4">
+          <div class="more-important meta-header"><%= I18n.t("written_by", default: "Written By") %>:</div>
+          <div class="less-important">
+            <%= avatar_image(@doc.user, size=40) %>
+            <%= @doc.user.name.titleize %>
+          </div>
+        </div>
+        <div id="doc-last-edit" class="doc-meta col-md-4">
+          <div class="more-important meta-header"><%= I18n.t("last_edited", default: "Last Edited") %>:</div>
+          <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
+        </div>
+        <div id="doc-tags" class="doc-meta col-md-4">
+          <div class="more-important meta-header"><%= I18n.t("Tagged", default: "Tagged") %>:</div>
+          <div class="more-important meta-header"><% tag_listing(@doc.tag_list, "doc") %></div>
+        </div>
       </div>
-    </div>
-    <div id="doc-last-edit" class="doc-meta">
-      <div class="more-important meta-header"><%= I18n.t("last_edited", default: "Last Edited") %>:</div>
-      <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
-    </div>
-    <div id="doc-tags" class="doc-meta">
-      <div class="more-important meta-header"><%= I18n.t("Tagged", default: "Tagged") %>:</div>
-      <div class="more-important meta-header"><% tag_listing(@doc.tag_list, "doc") %></div>
+
     </div>
   </div>
-    <div class="col-md-9 text-content">
+
+  <div class="col-md-10 text-content col-md-offset-1 main-panel">
+    <br/>
     <%= sanitize_doc_content(@doc.content) %>
+
+    <% if @doc.allow_comments && forums? %>
+      <div class="row">
+        <div class="col-md-12">
+          <hr/>
+          <h4><%= @posts.blank? ? "" : t(:topic) %></h4>
+        </div>
+
+      	<div class="col-md-12">
+      		<script>
+      			Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) unless @posts.nil? %>';
+      		</script>
+
+      		<table id="posts">
+      			<%= render :partial => 'comment', :collection => @posts %>
+      		</table>
+
+          <%= render partial: 'admin/internal_docs/comment_form', locals: {post: @post} %>
+
+      	</div>
+      </div>
+    <% end %>
   </div>
 </div>
-
-<% if @doc.allow_comments && forums? %>
-  <div class="row">
-    <div class="col-md-3 hidden-xs hidden-sm"></div>
-    <div class="col-md-9">
-      <hr/>
-      <h4><%= @posts.blank? ? "" : t(:topic) %></h4>
-    </div>
-
-    <div class="col-md-3 hidden-xs hidden-sm"></div>
-  	<div class="col-md-9">
-  		<script>
-  			Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) unless @posts.nil? %>';
-  		</script>
-
-  		<table id="posts">
-  			<%= render :partial => 'comment', :collection => @posts %>
-  		</table>
-
-      <%= render partial: 'admin/internal_docs/comment_form', locals: {post: @post} %>
-
-  	</div>
-  </div>
-<% end %>

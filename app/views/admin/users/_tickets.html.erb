@@ -1,0 +1,123 @@
+<div id="user-info">
+</div>
+<div class="pull-right" style="margin-top: 15px;">
+  <span class="btn-group left-col-dropdown">
+    <%= link_to content_tag(:small, '', class: 'fas fa-ellipsis-v ticket-ellipsis btn'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }%>
+    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+      <li><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: '' %></li>
+      <li><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: false %></li>
+      <li><%= link_to t(:scrub_user, default: 'Anonymize User'), admin_scrub_user_path(@user), remote: true,
+                      method: :post,
+                      data: { confirm: "Are you sure you want to anonymize #{@user.name}? This will anonymize the user and retain all of their public discussions." } if current_user.is_admin? && @user.can_scrub_and_delete? %></li>
+      <li><%= link_to t(:delete_user, default: 'Delete User'), admin_user_path(@user), remote: true,
+                      method: :delete,
+                      data: { confirm: "Are you sure you want to delete #{@user.name}? This will remove the user an any tickets or forum topics the user has created." } if current_user.is_admin? && @user.can_scrub_and_delete? %></li>
+    </ul>
+  </span>
+</div>
+<%= content_tag :h3, class: 'view-header' do %>
+  <%= "#{t(:discussions, default: "Discussions")}: #{@user.name.titleize} " %>
+<% end %>
+
+<% if @topics.present? %>
+
+<table id="topics" class="forum table-hover">
+
+  <col width="80px" class="checkbox-col">
+  <col>
+  <col width="20%" class="hidden-xs">
+
+  <tr>
+    <th><%= check_box_tag 'check-all' %></th>
+    <th><%= t(:subject, default: "Subject") %></th>
+    <th class="text-right hidden-xs"><%= t(:last_activity, default: "Last Active") %></th>
+  </tr>
+  <tbody id="topic-listing">
+  <%= render partial: 'admin/topics/topic', collection: @topics.includes(:assigned_user) %>
+
+  <script>
+    <% @topics.each_with_index do |topic,i| %>
+    Mousetrap.bind('g <%= topic.id.to_s.split('').join(" ") %>', function() {
+      $('.topic-link-<%= topic.id %>').click();
+    });
+    <% end %>
+  </script>
+
+  </tbody>
+  <tbody id="multiple-edit" style="display:none;">
+    <tr>
+
+      <td colspan="3">
+        <span class="selected-message tiny-header hidden-xs"></span>
+          <span>
+          <span class="btn btn-group left-col-dropdown">
+            <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
+              <%= t(:change_status, default: 'Change Status') %> <span class='caret'></span>
+            </span>
+            <ul class="dropdown-menu ticket-controls" role="menu">
+              <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(change_status: 'closed', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(change_status: 'reopen', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(change_status: 'new', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:mark_spam, default: 'Mark Spam'), admin_update_topic_path(change_status: 'spam', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:trash, default: 'Trash'), admin_update_topic_path(change_status: 'trash', status: params[:status]), :remote => true, class:'multiple-update' %></li>
+            </ul>
+          </span>
+
+          <span class="btn btn-group left-col-dropdown">
+            <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
+              <%= t(:assign_agent, default: 'Assign Agent') %> <span class='caret'></span>
+            </span>
+            <ul class="dropdown-menu ticket-controls" role="menu">
+              <% @admins.each do |admin| %>
+              <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(assigned_user_id: admin.id, status: params[:status]), :remote => true, class: 'multiple-update' %></li>
+              <% end %>
+            </ul>
+          </span>
+
+          <% if teams? and @all_teams.count > 0 %>
+          <span class="btn btn-group left-col-dropdown">
+            <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
+              <%= t(:no_team_assigned, default: 'Assign to group') %> <span class='caret'></span>
+            </span>
+            <ul class="dropdown-menu ticket-controls" role="menu">
+              <% @all_teams.to_a.each do |team| %>
+              <li class='team-item'>
+                <%= link_to("#{content_tag(:div, '', style: badge_color_from_tag(team), class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(assign_team: team, status: params[:status]), :remote => true, class: 'multiple-update') %>
+              </li>
+              <% end %>
+              <!-- <li class="new-tag">
+                <%= form_tag '#', class: 'new-group-form', remote: true do %>
+                <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control multiple' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+                <% end %>
+              </li> -->
+              <li><%= link_to "Unassign from group", admin_assign_team_path(team: ''), remote: true, class: 'multiple-update' %></li>
+
+            </ul>
+          </span>
+          <% end %>
+
+        </span>
+        <span class="merge-span" style="display: none;"><%= link_to t(:merge, default: "Merge"), admin_merge_tickets_path(merge: ''), remote: true, class: 'multiple-update ticket-control tiny-header', method: :post, data: { confirm: t(:merge_confirm, default: "Are you sure you want to merge these tickets?") } %></span>
+      </td>
+    </tr>
+  </tbody>
+  <script>
+    Helpy.selected = {
+      1:'<%= t(:selected_messages, count: 1) %>',
+      2:'<%= t(:selected_messages, count: 2) %>',
+      3:'<%= t(:selected_messages, count: 9) %>'
+    }
+  </script>
+</table>
+<div class="text-center">
+  <%= paginate @topics, remote: true %>
+</div>
+<% else %>
+
+<div id="topics" class="row">
+  <div class="col-md-12 text-center no-tickets">
+    <span><i class="fas fa-inbox"></i><br/><%= t('nothing_here')  %></span>
+  </div>
+</div>
+
+<% end %>

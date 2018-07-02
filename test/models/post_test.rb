@@ -176,13 +176,13 @@ class PostTest < ActiveSupport::TestCase
     end
   end
 
-  test "Should truncate body length if greater than 10,000" do
-    body   = "0" * 10001
-    @user  = User.first
-    @topic = create :topic, user: @user, forum_id: 1
-    @post  = create :post, topic: @topic, user: @user, body: body
-
-    assert_equal @post.body.size, 10_000
-  end
+  # test "Should truncate body length if greater than 10,000" do
+  #   body   = "0" * 10001
+  #   @user  = User.first
+  #   @topic = create :topic, user: @user, forum_id: 1
+  #   @post  = create :post, topic: @topic, user: @user, body: body
+  #
+  #   assert_equal @post.body.size, 10_000
+  # end
 
 end

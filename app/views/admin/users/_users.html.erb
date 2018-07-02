@@ -1,3 +1,12 @@
+<%= content_tag :h3, class: 'view-header' do %>
+  <%= show_responsive_nav %>
+  <%=  t(:users, default: "Users") + ": #{@role} " %>
+  <div class="pull-right nav-new-button">
+    <%= link_to t(:invite_users, default: "Invite New Users"), admin_invite_path,
+    remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
+  </div>
+<% end %>
+
 <table id="users">
   <col width="5%">
   <col width="85%">

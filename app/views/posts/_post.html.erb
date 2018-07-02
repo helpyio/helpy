@@ -25,7 +25,7 @@
 		</span>
 
 		<div id="post-body-<%= post.id %>" class="post-body less-important text-left text-content">
-			<%= simple_format(post.body) -%>
+			<%= sanitize((post.body), tags: %w(strong em a p br b img), attributes: %w(src class style)) -%>
 			<% if post.topic.forum.allow_post_voting == true %>
 			<div id="post-vote-<%= post.id %>" class="btn btn-default">
 				<% if post.kind == 'first' %>

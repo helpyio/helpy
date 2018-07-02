@@ -1,28 +1,28 @@
 <div id= "import-detail">
   <table style="width:100%">
     <tr>
-      <th>Date Created:</th>
+      <th><%= t('import_date_created', default: "Date Created") %></th>
       <td><%= @import.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
     </tr>
     <tr>
-      <th>Total Submited records:</th>
+      <th><%= t('import_total_submitted', default: "Total Submitted Records") %></th>
       <td><%= @import.submited_record_count %></td>
     </tr>
     <tr>
-      <th>Total created records:</th>
+      <th><%= t('import_total_created', default: "Total Created Records") %></th>
       <td><%= @import.imported_ids.count %></td>
     </tr>
     <tr>
-      <th>Run Time:</th>
+      <th><%= t('run_time', default: "Run Time") %></th>
       <td><%= distance_of_time_in_words(@import.started_at, @import.completed_at) if @import.completed_at.present? && @import.started_at.present? %></td>
     </tr>
     <tr>
-      <th>Status</th>
+      <th><%= t('status') %></th>
       <td><%= @import.status %></td>
     </tr>
     <tr>
-      <th>Type:</th>
-      <td><%= @import.model %></td>
+      <th><%= t('file_type') %></th>
+      <td><%= t('file_' + @import.model + 's') %></td>
     </tr>
   </table>
 </div>

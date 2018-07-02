@@ -1,0 +1,5 @@
+<li id="category-<%= cat_nav_item.id %>" class="vcenter nav-item <%= 'more-important nav-active' if @category && @category.id == cat_nav_item.id %>" data-obj='category'>
+  <div class="<%= 'grayout' unless cat_nav_item.active? %>">
+    <%= content_tag :span, link_to(cat_nav_item.name, admin_category_path(cat_nav_item.id)), class: 'less-important' %>
+  </div>
+</li>

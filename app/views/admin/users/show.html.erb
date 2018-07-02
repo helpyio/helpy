@@ -4,12 +4,13 @@
 <%#= render partial: 'admin/shared/pipeline' %>
 <% end %>
 
-<%= user_header %>
-<div id="user-info">
-  <%= render 'admin/users/user_info_horizontal' %>
-</div>
+<%#= user_header %>
+
 <div class="row">
-  <div class="col-md-12" id="tickets">
-    <%= render 'admin/topics/tickets' %>
+  <div id="user-info" class="col-md-3">
+    <%= render partial: 'admin/topics/ticket_stats', locals: { include_tickets: false } %>
+  </div>
+  <div class="col-md-9 main-panel" id="tickets">
+    <%= render 'admin/users/tickets' %>
   </div>
 </div>

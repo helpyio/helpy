@@ -1,0 +1,5 @@
+<p><%= I18n.t('devise.mailer.confirmation_instructions.greeting', recipient: @email) %></p> # @email
+
+<p><%= I18n.t('devise.mailer.confirmation_instructions.instruction') %></p>
+
+<p><%= link_to I18n.t('devise.mailer.confirmation_instructions.action'), confirmation_url(@resource, host: AppSettings['settings.site_url'], confirmation_token: @token) %></p>

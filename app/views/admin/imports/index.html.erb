@@ -1,27 +1,30 @@
 <% content_for :settings do %>
   <h3>
+    <%= show_responsive_nav %>
     <%= t('imports', default: 'Imports') %>
   </h3>
 
-  <div class="settings-panel row add-form">
+  <div class="settings-panel row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="more-important"><%= t('what_to_import', default: 'New Import') %>:</div>
-      <br/>
-      <%= form_tag admin_import_restore_path, multipart: true, html: { class: 'form-vertical submit-loader' } do %>
-        <label>
-          <%= select_tag "type", options_for_select([ ["Users","User"], ["Tickets","Topic"], ["Replies","Post"], ["Docs","Doc"], ["Categories","Category"], ["Forums", "Forum"] ], "User"), class: "form-control" %>
-        </label>
-        <label>
-          <%= file_field_tag :file, class: "btn-file" %>
-        </label>
-        <br/><br/>
-        <%= submit_tag t("import", default: 'Import'), class: "btn btn-default" %>
-      <% end %>
+      <div class="add-form">
+        <div class="more-important"><%= t('what_to_import', default: 'New Import') %>:</div>
+        <br/>
+        <%= form_tag admin_import_restore_path, multipart: true, html: { class: 'form-vertical submit-loader' } do %>
+          <label>
+            <%= select_tag "type", options_for_select(importable_models_collection, "User"), class: "form-control" %>
+          </label>
+          <label>
+            <%= file_field_tag :file, class: "btn-file" %>
+          </label>
+          <br/><br/>
+          <%= submit_tag t("import", default: 'Import'), class: "btn btn-default" %>
+        <% end %>
+      </div>
     </div>
   </div>
   <br/><br/>
-  <div class="imports-container main-panel">
-    <div class="row vcenter border-bottom item-header">
+  <div class="imports-container">
+    <div class="row vcenter item-header border-bottom">
       <div class="tiny-header col-md-3">
         <%= t('import', default: 'import') %>
       </div>

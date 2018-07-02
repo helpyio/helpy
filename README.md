@@ -1,14 +1,20 @@
-Helpy: A Modern Helpdesk Alternative
+Helpy: A Modern Helpdesk Platform for the Web
 ====================================
 
-Helpy is a modern, "mobile first" helpdesk solution written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to provide a full featured open source helpdesk platform.
+Helpy is a modern omnichannel helpdesk platform written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.  
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
 ![](http://helpy.io/images/HelpyBrowser.png)
 
+Sponsor/Support Helpy
+========
 
-Features
+Helpy is licensed under the MIT license, and is an open-core project. This means that the core functionality is 100% open source and fully hackable or even re-sellable under the MIT license.  See the features comparison below to understand what is included.  
+
+Helpy is a large system and cannot exist purely as a hobby project. If you use it in a money generating capacity, it makes good sense to support the project financially or by becoming an official sponsor.
+
+Open Source Features
 ========
 
 Helpy is an integrated support solution- combining and leveraging synergies between support ticketing, Knowledgebase and a public community.  Each feature is optional however, and can be easily disabled.
@@ -23,10 +29,47 @@ Helpy is an integrated support solution- combining and leveraging synergies betw
 - **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for 19 languages and is easy to translate.
 - **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
 
-Hosting
+What is new in Version 2.0
+=========
+Version 2 includes a number of awesome improvements in the open source edition, and even more in the pro and cloud hosted versions:
+
+- Refreshed Admin UI
+- New Helpcenter theme: Singular
+- HTML support when responding to tickets
+- Nicer HTML alert emails
+- Nicer HTML responses to customers
+- HTML emails now include the full ticket history
+- UI for replying to tickets re-imagined
+- Inline customer editing
+- Channel and source reporting
+- New support for emoji's in ticket replies
+- Customize the colors of the admin UI
+- Ability to email customers from the create ticket dialogue
+- New internal ticket type
+- Set all ticket params from admin create ticket UI
+- Font Awesome 5 iconography
+- Improved support for CC and BCC recipients
+- Import/Export data in CSV
+- Comply with GDPR by deleting or anonymizing users
+
+Cloud Version
 =========
 
-We offer a hosted version of Helpy that includes a variety of additional features for businesses that don't want to worry about self installing and maintaining their Helpy.  You can get an instant free trial of the hosted version to see if Helpy is right for you: [Test it Out for Free](https://goo.gl/Jbrx0m)
+We also offer a hosted version with additional features designed to make your helpcenter even more awesome. This is a turn-key SaaS and does not require any effort on your part to get it up and running. Proceeds go directly towards supporting the continued development of the project. Some of the things found in the hosted version:
+
+- Triggers: Insert events at any point in the ticket lifecycle. This includes an outbound JSON API.
+- Notifications: Browser notifications when new tickets are received, you are assigned to a ticket, etc.
+- Real time UI: When tickets arrive, they are automatically added to the UI
+- Custom Views: Add additional Ticketing queues to highlight just the tickets you need to see
+- Advanced reporting: A suite of additional reports on the performance of your ticketing and helpcenter knowledgebase
+- Advanced search: Easily filter and find tickets or customers when you have thousands
+- Customizable Request Forms: Easily Add questions to the ticket creation forms
+- AI Support Chatbot: Create a chatbot for your website to answer up 90% of tier one questions autonomously
+
+On-Premise and Dedicated Cloud
+=========
+
+You may prefer to run Helpy locally or in-country.  You can still get access to the full cloud feature set with either an on-premise installation of the cloud hosted features, or a dedicated AWS instance in a regional data-center.  
 
 Live Demo
 =========
@@ -114,6 +157,6 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 License
 =======
 
-Copyright 2017, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2016-2018, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)

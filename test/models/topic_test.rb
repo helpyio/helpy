@@ -166,6 +166,18 @@ class TopicTest < ActiveSupport::TestCase
     end
   end
 
+  test "#posts_in_last_minute should return the number of tickets created" do
+    topic = Topic.find(1)
+    50.times do
+      topic.posts.create(
+        kind: 'reply',
+        user_id: 1,
+        body: 'this is the body'
+      )
+    end
+    assert_equal 50, topic.posts_in_last_minute
+  end
+
   test "Should be able to merge two topics and copy posts" do
     topica = Topic.create(name: "message A", user_id: 1, forum_id: 1, private: true)
     topica.posts.create(kind: 'first', body: 'message A first', user_id: 1)

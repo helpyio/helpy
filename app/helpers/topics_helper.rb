@@ -37,6 +37,10 @@ module TopicsHelper
     content_tag(:span, t(:private, default: 'PRIVATE'), class: 'hidden-xs pull-right status-label label label-private')
   end
 
+  def badge_for_public
+    content_tag(:span, t(:public, default: 'PUBLIC'), class: 'hidden-xs pull-right status-label label label-public')
+  end
+
   def control_for_status(status)
     content_tag(:span, "#{status_label(status)} <span class='caret'></span> ".html_safe, class: "change-status btn status-label-button label #{status_class(status)}")
   end

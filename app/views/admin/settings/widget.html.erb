@@ -1,10 +1,8 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h2><%= "#{t(:settings, default: "Settings")}: #{t(:widget, default: "Widget")}" %></h2>
-  </div>
+  <%= settings_header('widget') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'widget'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section widget" data-hook="admin_settings_widget">
       <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: t('show_widget', default: "Show Widget on Support Site"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
       <%= f.text_field 'widget.background_color', value: AppSettings['widget.background_color'], label: t('widget_background', default: "Widget Background"), class: 'pick-a-color' %>

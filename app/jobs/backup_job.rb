@@ -1,4 +1,4 @@
-class BackupJob < ActiveJob::Base
+class BackupJob < ApplicationJob
   queue_as :default
 
   def perform(params, user_id)
@@ -13,7 +13,7 @@ class BackupJob < ActiveJob::Base
       else
         logger.info("backup error: #{backup.errors}")
       end
-    end  
+    end
   end
 
   def to_csv(records, options = {})

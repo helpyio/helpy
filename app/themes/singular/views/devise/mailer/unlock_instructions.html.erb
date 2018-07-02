@@ -1,0 +1,6 @@
+<p><%= I18n.t('devise.mailer.unlock_instructions.greeting', recipient: @resource.email) %></p>
+
+<p><%= I18n.t('devise.mailer.unlock_instructions.message') %></p>
+
+<p><%= I18n.t('devise.mailer.unlock_instructions.instruction') %></p>
+<p><%= link_to I18n.t('devise.mailer.unlock_instructions.action'), unlock_url(@resource, host: AppSettings['settings.site_url'], unlock_token: @token) %></p>

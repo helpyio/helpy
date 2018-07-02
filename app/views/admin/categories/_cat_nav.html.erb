@@ -1,0 +1,14 @@
+<div class="left-nav-header"><span class="tiny-header"><%= t(:front_page_categories, default: 'Front Page Categories') %></span></div>
+<ul class="list-unstyled nav-items">
+  <%= render partial: 'admin/categories/cat_nav_item', collection: @public_categories %>
+</ul>
+
+<div class="left-nav-header"><span class="tiny-header"><%= t(:other_categories, default: 'Other Categories') %></span></div>
+<ul class="list-unstyled nav-items">
+  <%= render partial: 'admin/categories/cat_nav_item', collection: @public_nonfeatured_categories %>
+</ul>
+
+<div class="left-nav-header"><span class="tiny-header"><%= t(:internal_categories, default: 'Private/Internal Categories') %></span></div>
+<ul class="list-unstyled nav-items">
+  <%= render partial: 'admin/categories/cat_nav_item', collection: @internal_categories %>
+</ul>

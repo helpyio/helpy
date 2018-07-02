@@ -9,7 +9,15 @@
       "line": 51,
       "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
       "code": "Doc.where(:id => params[:id], :category_id => Category.publicly).active.first.content",
-      "render_path": [{"type":"controller","class":"DocsController","method":"show","line":38,"file":"app/controllers/docs_controller.rb"}],
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "DocsController",
+          "method": "show",
+          "line": 38,
+          "file": "app/controllers/docs_controller.rb"
+        }
+      ],
       "location": {
         "type": "template",
         "template": "docs/show"
@@ -37,12 +45,30 @@
       "note": ""
     },
     {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "925adb63da2f346f5d43a340fd35b0306c567ee4d72cac4a5d2032100fb1c48a",
+      "message": "Unescaped model attribute",
+      "file": "app/themes/singular/views/layouts/singular.html.erb",
+      "line": 24,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "AppSettings[\"design.header_js\"]",
+      "render_path": null,
+      "location": {
+        "type": "template",
+        "template": "layouts/singular"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
       "warning_type": "File Access",
       "warning_code": 16,
       "fingerprint": "c6fb122f62bf327dfd3817ae58e788d2a30839d35d0ec7af830c981e5b302368",
       "message": "Model attribute used in file name",
       "file": "app/controllers/admin/settings_controller.rb",
-      "line": 28,
+      "line": 51,
       "link": "http://brakemanscanner.org/docs/warning_types/file_access/",
       "code": "send_file(File.join(Theme.find(params[:theme]).path, Theme.find(params[:theme]).thumbnail), :type => \"image/png\", :disposition => \"inline\", :stream => false)",
       "render_path": null,
@@ -94,10 +120,28 @@
     {
       "warning_type": "Cross Site Scripting",
       "warning_code": 2,
+      "fingerprint": "de4faa81bffd2afbb8ee6e71a1419535c722da167d644b1fe718193686c697cf",
+      "message": "Unescaped model attribute",
+      "file": "app/themes/singular/views/layouts/singular.html.erb",
+      "line": 175,
+      "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "AppSettings[\"design.footer_js\"]",
+      "render_path": null,
+      "location": {
+        "type": "template",
+        "template": "layouts/singular"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross Site Scripting",
+      "warning_code": 2,
       "fingerprint": "e17030e70ed23dfd5f7aae7eaad4247c400cc77f8b7635a1d7c66a743c84284e",
       "message": "Unescaped model attribute",
       "file": "app/themes/flat/views/layouts/flat.html.erb",
-      "line": 114,
+      "line": 124,
       "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
       "code": "AppSettings[\"design.footer_js\"]",
       "render_path": null,
@@ -133,7 +177,7 @@
       "fingerprint": "eaaba6314a917f1c96a0d6d87868f542d3007e52e5d96ea288965d92ff1232c0",
       "message": "Unescaped model attribute",
       "file": "app/themes/light/views/layouts/light.html.erb",
-      "line": 114,
+      "line": 124,
       "link": "http://brakemanscanner.org/docs/warning_types/cross_site_scripting",
       "code": "AppSettings[\"design.footer_js\"]",
       "render_path": null,
@@ -172,6 +216,6 @@
       "note": "Doc.content should only ever be entered by an admin, significantly mitigating the exposure."
     }
   ],
-  "updated": "2017-01-20 16:54:46 -0700",
+  "updated": "2018-07-02 14:02:06 -0600",
   "brakeman_version": "3.2.1"
 }

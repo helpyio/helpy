@@ -1,3 +1,64 @@
+<style>
+#footer-wrapper,
+#footer,
+.nav-bg-color {
+  background-color: <%= AppSettings['branding.ticketing_color'] %>;
+}
+.navbar-active {
+  background-color: <%= lighten_color(AppSettings['branding.ticketing_color'], 0.05) %>;
+  border-radius: 5px;
+
+}
+#footer,
+#footer a,
+.nav-color {
+  color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
+}
+.brand-color: {
+  color: <%= AppSettings['branding.ticketing_color'] %>;
+}
+.topic-search-container {
+  background-color: <%= darken_color(AppSettings['branding.ticketing_bg_color'], 0.9) %>;
+}
+body {
+  background-color: <%= AppSettings['branding.ticketing_bg_color'] %>;
+}
+#upper-wrapper {
+  background-color: <%= AppSettings['branding.ticketing_color'] %>;
+}
+
+#header-wrapper > nav > div > ul > li.open > a,
+.navbar.navbar-default,
+.nav {
+  background-color: transparent;
+}
+
+.nav-active {
+  background-color: <%= darken_color(AppSettings['branding.ticketing_bg_color'], 0.95) %>;
+}
+
+li.nav-over {
+  background-color: <%= darken_color(AppSettings['branding.ticketing_bg_color'], 0.97) %> !important;
+}
+
+#header-wrapper > nav > div > ul > li > a {
+  color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
+}
+
+<% if !display_branding? %>
+a.navbar-brand {
+  display: none;
+}
+#header-wrapper > nav > div.navbar-collapse.collapse {
+  margin-left: -10px;
+}
+<% else %>
+#header-wrapper > nav > div.navbar-collapse.collapse {
+  margin-left: -15px;
+}
+<% end %>
+</style>
+<%= content_tag :div, bootstrap_flash, class: 'flash-wrapper' %>
 <div id="upper-wrapper" class="jumbotron">
   <div class="container-fluid">
     <div class="row">
@@ -13,23 +74,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <%= link_to root_path, class: 'navbar-brand' do
-                image_tag('logo.png', width: '40', alt: 'Logo', class: 'pull-left logo') + content_tag(:span, "Helpy Support", class:'hidden-sm')
-              end %>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right pull-right hidden-xs" data-hook='admin-nav-right'>
-                <%= content_tag(:li, navbar_expanding_link(new_admin_topic_path, "fa fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')), class: 'visible-lg visible-md visible-sm hidden-xs click-loader new-discussion') if current_user.is_agent? %>
+                <%= content_tag(:li, '' , class: "visible-lg visible-md visible-sm hidden-xs click-loader new-discussion #{new_active_class}") do %>
+                  <%= navbar_expanding_link(new_admin_topic_path, "fas fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')) %>
+                <% end if current_user.is_agent? %>
                 <%= help_menu %>
                 <%= admin_avatar_menu %>
               </ul>
               <ul class="nav navbar-nav navbar-left" data-hook='admin-nav-left'>
-                <%= content_tag(:li, link_to(t(:discussions, default: "Discussions"), admin_topics_path)) if (forums? || tickets?) && current_user.is_agent? %>
-                <%= content_tag(:li, link_to(t(:reports, default: 'Reports'), admin_reports_path(interval: 7))) if tickets? && current_user.is_admin? %>
-                <%= content_tag(:li, link_to(t(:users, default: 'Customers'), admin_users_path(role: 'user'))) if current_user.is_admin? %>
+                <%= upper_nav_item(t(:inbox, default: "Inbox"), admin_topics_path,["topics"], ['index','show'], "fas fa-inbox") if (forums? || tickets?) && current_user.is_agent? %>
+                <%= upper_nav_item(t(:reports, default: 'Reports'), admin_reports_path(interval: 7), ["reports"], ['index', 'groups', 'team'], "fas fa-chart-bar") if tickets? && current_user.is_admin? %>
+                <%= upper_nav_item(t(:users, default: 'Customers'), admin_users_path(role: 'user'), ["users"], ["index","show","edit","update"], "fas fa-users") if current_user.is_admin? %>
                 <%= helpcenter_menu if (knowledgebase? || forums?) && current_user.is_agent? %>
                 <%= content_tag(:li, link_to(t(:content, default: "Content"), admin_categories_path), class:'kblink') if knowledgebase? && current_user.role == 'editor' %>
-                <%= content_tag(:li, link_to(t(:app_store, default: "App Store"), "http://helpy.io/store/"), class: "hidden-sm hidden-xs") if current_user.is_agent? %>
+                <%#= content_tag(:li, link_to(t(:app_store, default: "App Store"), "http://helpy.io/store/"), class: "hidden-sm hidden-xs") if current_user.is_agent? %>
                 <%= content_tag(:li, link_to(t(:open_new_discussion, default: "New Ticket"), new_admin_topic_path), class: 'visible-xs hidden-lg hidden-md hidden-sm') if current_user.is_agent? %>
                 <%= content_tag(:li, link_to(t(:settings, default: "Settings"), admin_settings_path), class: 'visible-xs hidden-lg hidden-md hidden-sm') if current_user.is_admin? %>
                 <%= content_tag(:li, link_to(t(:get_help, default: "Get Help"), "http://support.helpy.io/"), class: 'visible-xs hidden-lg hidden-md hidden-sm', target: 'blank') %>

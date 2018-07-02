@@ -39,7 +39,7 @@ zh-tw:
 
   # Community
   forum_name: "主旨"
-  subject: "題目"
+  subject: &subject "題目"
   last_activity: "最後上線"
   topic: "討論"
   replies: "回覆"
@@ -137,13 +137,13 @@ zh-tw:
 
   # Discussion controls
   change_status: 修改狀態
-  status: 狀態
+  status: &status 狀態
   mark_closed: 標記為已解決
   reopen: 重啟
   mark_spam: 標記為垃圾訊息
   mark_new: 標記為新訊息
-  assign_agent: 委託代理
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent 委託代理
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1個已選訊息"
     two: "2個已選訊息"
@@ -176,6 +176,7 @@ zh-tw:
   # Priorities
   # select_priority: Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low

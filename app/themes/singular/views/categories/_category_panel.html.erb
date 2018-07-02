@@ -1,0 +1,14 @@
+<% category = category_panel %>
+<div class="category category-panel col-md-12 vcenter">
+  <div class="col-md-2 text-center">
+    <%= content_tag :i, nil, class: "glyphicon glyphicon-#{category.icon} home-icon" %>
+  </div>
+  <div class="col-md-10">
+    <h4><%= link_to category.name, category_path(category), id: "category-#{category.id}" %></h4>
+    <p>
+      <% category.docs.with_translations(I18n.locale).ordered.active.limit(5).each_with_index do |doc| -%>
+        <%= link_to doc.title, doc_path(doc) %>
+      <% end %>
+    </p>
+  </div>
+</div>

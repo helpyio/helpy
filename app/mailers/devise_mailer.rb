@@ -1,8 +1,10 @@
 class DeviseMailer < Devise::Mailer
+  add_template_helper(EmailHelper)
 
   helper :application # gives access to all helpers defined within `application_helper`.
   include Devise::Controllers::UrlHelpers # Optional. eg. `confirmation_url`
-  default template_path: 'devise/mailer' # to make sure that your mailer uses the devise
+  # default template_path: 'devise/mailer' # to make sure that your mailer uses the devise
+  layout 'mailer'
 
   def confirmation_instructions(record, token, opts={})
     # code to be added here later

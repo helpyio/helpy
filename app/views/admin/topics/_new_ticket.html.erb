@@ -1,34 +1,101 @@
-<div class="add-form">
+<div>
+<%= content_tag :h3, "#{t(:open_new_discussion, default: 'New Ticket')}", class: 'view-header' %>
 <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post' }) do |f| -%>
-  <div class="channel-wrapper">
-    <div><label class="control-label"> <%= t(:channel_source, default: 'Source') %> </label></div>
-    <%= f.collection_radio_buttons :channel, [['email', t('activerecord.attributes.user.email')],['phone', t('activerecord.attributes.user.home_phone')],['person', t(:channel_in_person, default: 'In Person')]], :first, :last, selected: 'email', item_label_class: 'radio-label', item_wrapper_class: 'radio-inline channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
-  </div>
-  <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
+<div class="row">
+  <div class="col-md-8">
 
-  <%= f.simple_fields_for @user do |u| %>
-    <%= u.input :name, class: 'disable-empty' %>
-    <%= u.input :home_phone, class: 'disable-empty', label: "Phone" %>
-    <%= u.input :email, class: 'disable-empty', label: "Email (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
-  <% end %>
+    <%= f.input :kind, collection: ticket_types_collection, class: 'disable-empty', autofocus: true, include_blank: false -%>
+    <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
 
-  <% if teams = admin_teams %>
-    <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
-  <% end %>
+    <%= f.simple_fields_for @user do |u| %>
+      <%= u.input :name, class: 'disable-empty' %>
+      <%= u.input :home_phone, class: 'disable-empty' %>
+      <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
+
+      <%= u.input :email, class: 'disable-empty', label: "#{t('activerecord.attributes.user.email')} (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
+    <% end %>
   <%= f.simple_fields_for @topic.posts.new do |i| %>
-    <%= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
+    <%#= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
+
+    <span class="cc-bcc hidden">
+    <%= i.input :cc, label: false, placeholder: 'cc:' %>
+    <%= i.input :bcc, label: false, placeholder: 'bcc:' %>
+    </span>
+    <%= i.input :body, as: :summernote, label: false, class: 'disable-empty' %>
+    <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
+    <%= f.select_tag 'post[reply_id]', grouped_options_for_select(i18n_reply_grouped_options, nil, prompt: ''), class: 'form-control', id: 'post_reply_id' %>
+
     <% if !cloudinary_enabled? %>
       <%= i.file_field :attachments, multiple: true %>
       <ul class="list-inline" id="attachments">
       </ul>
     <% end %>
+    <%= hidden_field_tag :client_id %>
+    <div class="add-screenshots">
+      <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
+    </div>
   <% end %>
-  <%= hidden_field_tag :client_id %>
-  <div class="add-screenshots">
-    <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
+    <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable' %>
   </div>
-  <%= f.input :tag_list %>
-  <%= f.input :priority, collection: Topic.priorities.keys.map { |priority| [priority.titleize, priority] } , as: :select, include_blank: false, selected: 'normal' %>
-  <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: true %>
+  <div class="col-md-4">
+    <%= f.input :channel, collection: channels_collection, as: :select, include_blank: false, item_wrapper_class: 'channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
+    <% if teams = admin_teams %>
+      <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
+    <% end %>
+    <%= f.input :priority, collection: ticket_priority_collection , as: :select, include_blank: true, selected: 'normal' %>
+    <%= f.input :current_status, collection: statuses_collection, as: :select, include_blank: false, selected: 'new' %>
+    <%= f.input :assigned_user_id, collection: agents_for_select, as: :select, include_blank: true, selected: current_user.id %>
+    <%= f.input :tag_list %>
+
+  </div>
+</div>
 <% end -%>
 </div>
+<%= summernote_lang_js %>
+<script>
+$('[data-provider="summernote"]').each(function(){
+  $(this).summernote({
+    lang: '<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>',
+    height: 150,
+    prettifyHtml: true,
+    toolbar: [
+      ['style', ['bold', 'italic', 'underline', 'clear']]
+    ],
+    codemirror: {
+      theme: 'monokai',
+      mode: "htmlmixed",
+      tabsize: 2,
+      smartIndent: true,
+      lineNumbers: true,
+      lineWrapping: true,
+      tabMode: 'indent'
+    },
+    hint: {
+      match: /:([\-+\w]+)$/,
+      search: function (keyword, callback) {
+        callback($.grep(emojis, function (item) {
+          return item.indexOf(keyword)  === 0;
+        }));
+      },
+      template: function (item) {
+        var content = emojiUrls[item];
+        return '<img src="' + content + '" width="20" /> :' + item + ':';
+      },
+      content: function (item) {
+        var url = emojiUrls[item];
+        if (url) {
+          return $('<img />').attr('src', url).css('width', 20)[0];
+        }
+        return '';
+      }
+    }
+  });
+});
+$.ajax({
+  url: 'https://api.github.com/emojis',
+  async: false
+}).then(function(data) {
+  window.emojis = Object.keys(data);
+  window.emojiUrls = data;
+});
+</script>

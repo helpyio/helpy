@@ -243,16 +243,11 @@ Helpy.ready = function(){
 
   // Use or append common reply
   $('#post_reply_id').on('change', function(){
-    var post_body = $('#post_body');
     var common_reply = $('#post_reply_id option:selected');
 
-    // append new line if some text already exists
-    if( post_body.val() && common_reply.val() ) {
-      post_body.val(post_body.val() + "\n\n");
-    }
-
-    // add content of selected reply
-    post_body.val( post_body.val() + common_reply.val() );
+    // set value of summernote with existing value + common reply
+    $('#post_body').summernote('code', $('#post_body').summernote('code') + common_reply.val());
+    $('#topic_post_body').summernote('code', $('#topic_post_body').summernote('code') + common_reply.val());
     $('.disableable').attr('disabled', false);
   });
 
@@ -411,11 +406,11 @@ Helpy.ready = function(){
 
   // Add hoversort icon
   $('.hoversort').off().on('mouseover', function(){
-    $(this).prepend('<span class="fa fa-arrows-v" style="color:#666; margin-right: 0;"></span>');
+    $(this).prepend('<span class="fas fa-arrows-alt-v" style="color:#666; margin-right: 0;"></span>');
     $(this).css("cursor","move");
 
     $(this).on('mouseout', function(){
-      $(this).find('span.fa-arrows-v').remove();
+      $(this).find('span.fa-arrows-alt-v').remove();
     });
   });
 };
@@ -469,7 +464,7 @@ Helpy.showGroup = function() {
 };
 
 Helpy.loader = function(){
-  $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
+  $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fas fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
 };
 
 $(document).ready(Helpy.ready);

@@ -1,13 +1,17 @@
 <% title "#{admin_title} #{t(:new_content, default: 'New Content')}" %>
 
 <div class="row">
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <%= render partial: 'admin/categories/cat_nav' %>
+  </div>
+
+  <div class="col-md-9 col-sm-12 main-panel">
   <%= simple_form_for([:admin, @doc], validate: true, multipart: true ) do |f| %>
-  <div class="col-md-12">
-    <h2 class="form-subhead"><%= t(:new_content, default: 'New Content') %></h2>
+    <h3 class="form-subhead view-header"><%= t(:new_content, default: 'New Content') %></h2>
       <%= render 'shared/error_messages', object: f.object %>
       <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
-  </div>
   <% end %>
+  </div>
 </div>
 
 <script>

@@ -1,13 +1,20 @@
-<div class="admin-header">
 
-  <h2><%= "#{@category.name}" %>
 
-  <div class="admin-options text-right pull-right">
-    <%= link_to t(:new_category, default: "New Category"), new_admin_category_path(lang: I18n.locale), class: 'btn btn-primary' if knowledgebase? %>
-    <%= link_to t(:new_content, default: "New Content"), new_admin_category_doc_path(category_id: @category.id, lang: I18n.locale), class: 'btn btn-primary' %>
-  </div></h2>
-</div>
+<div class="row">
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <%= render partial: 'admin/categories/cat_nav' %>
+  </div>
+  <div class="col-md-9 col-sm-12 main-panel">
+    <div class="admin-header">
+      <h3><%= "#{@category.name}" %>
 
-<div class="sortable">
-  <%= render partial: 'doc', collection: @docs %>
+      <div class="admin-options pull-right nav-new-button">
+        <%= link_to t(:new_content, default: "New Content"), new_admin_doc_path(lang: I18n.locale), class: 'btn btn-primary' %>
+      </div></h3>
+    </div>
+
+    <div class="sortable">
+      <%= render partial: 'doc', collection: @docs %>
+    </div>
+  </div>
 </div>

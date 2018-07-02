@@ -282,6 +282,20 @@ div.admin-tools {
 	border-radius: .25em;
 }
 
+.label-public {
+	border: 2px dashed #666;
+	color: #666;
+  	display: inline;
+  	padding: .2em .6em .3em;
+  	font-size: 75%;
+  	font-weight: bold;
+  	line-height: 1;
+  	text-align: center;
+  	white-space: nowrap;
+  	vertical-align: baseline;
+  	border-radius: .25em;
+}
+
 .label-team {
 	border: 2px dashed gray;
 	color: #666;
@@ -443,6 +457,11 @@ div.admin-tools {
 .active {
   // scss-lint:disable ImportantRule
 	background-color: #fff !important;
+}
+
+div.note-hint-item.active {
+  // scss-lint:disable ImportantRule
+  background-color: #444 !important;
 }
 
 .author {

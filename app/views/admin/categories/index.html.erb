@@ -12,44 +12,50 @@ $(document).ready(function(){
 });
 </script>
 
-<div class="admin-header">
-  <h2><%= t(:content, default: 'Content') %>
-    <span class="admin-options text-right pull-right">
-    <%= link_to t(:new_category, default: "New Category"), new_admin_category_path(lang: I18n.locale), class: 'btn btn-primary' %>
-    <%= link_to t(:new_content, default: "New Content"), new_admin_doc_path(lang: I18n.locale), class: 'btn btn-primary' %>
-    </span>
-  </h2>
-</div>
 
-<div class="settings-section">
-  <div class="row group-header vcenter border-bottom">
-    <div class="pull-left tiny-header col-md-12">
-      <%= t(:front_page_categories, default: 'Front Page Categories') %>
-    </div>
-  </div>
-  <div class="sortable">
-    <%= render partial: 'cat', collection: @public_categories %>
-  </div>
-</div>
 
-<div class="settings-section">
-  <div class="row group-header vcenter border-bottom">
-    <div class="pull-left tiny-header col-md-12">
-      <%= t(:other_categories, default: 'Other Categories') %>
-    </div>
-  </div>
-  <div class="sortable">
-    <%= render partial: 'cat', collection: @public_nonfeatured_categories %>
-  </div>
-</div>
+<div class="row">
+  <div class="col-md-12 main-panel">
 
-<div class="settings-section">
-  <div class="row group-header vcenter border-bottom">
-    <div class="pull-left tiny-header col-md-12">
-      <%= t(:internal_categories, default: 'Private/Internal Categories') %>
+    <div class="admin-header">
+      <h3 class="view-header"><%= t(:content, default: 'Content') %>
+        <div class="pull-right nav-new-button">
+          <%= link_to t(:new_category, default: "New Category"), new_admin_category_path(lang: I18n.locale), class: 'btn btn-primary' %>
+        </div>
+      </h3>
     </div>
-  </div>
-  <div class="sortable">
-    <%= render partial: 'cat', collection: @internal_categories %>
+
+    <div class="settings-section">
+      <div class="row group-header vcenter border-bottom">
+        <div class="pull-left tiny-header col-md-12">
+          <%= t(:front_page_categories, default: 'Front Page Categories') %>
+        </div>
+      </div>
+      <div class="sortable">
+        <%= render partial: 'cat', collection: @public_categories %>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="row group-header vcenter border-bottom">
+        <div class="pull-left tiny-header col-md-12">
+          <%= t(:other_categories, default: 'Other Categories') %>
+        </div>
+      </div>
+      <div class="sortable">
+        <%= render partial: 'cat', collection: @public_nonfeatured_categories %>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="row group-header vcenter border-bottom">
+        <div class="pull-left tiny-header col-md-12">
+          <%= t(:internal_categories, default: 'Private/Internal Categories') %>
+        </div>
+      </div>
+      <div class="sortable">
+        <%= render partial: 'cat', collection: @internal_categories %>
+      </div>
+    </div>
   </div>
 </div>
