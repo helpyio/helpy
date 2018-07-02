@@ -97,25 +97,72 @@ topic = Forum.first.topics.create(
   private: true,
   assigned_user_id: user_admin.id,
   user_id: user_scott.id,
-  current_status: 'pending'
+  current_status: 'pending',
+  channel: 'install'
 )
 
 topic.posts.create(
-  body: 'I am the creator of Helpy, and I wanted to take a moment to welcome you to the system.  I am very interested in your feedback, so please visit http://support.helpy.io/ and leave your thoughts there.',
+  body: '
+  Thanks for installing Helpy and giving it a try  <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f31f.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f525.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width:20px;">
+
+  As the founding creator of Helpy, I am excited you decided to give it a look
+  and I really hope you use it in your business. I have heard from a lot of you
+  that Helpy is the best open source customer support solution out there, and is
+  better than even most commercial choices, so thanks for that if you are included
+  in this group.   <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4af.png?v8" style="width:20px;">
+
+  <b>What is Helpy?</b>
+
+  Helpy is a software platform that provides everything you need to run an awesome
+  ticketing helpdesk and self   service helpcenter website. You can even run a support
+  forum where customers can help each   other.&nbsp; The best part is Helpy is 100%
+  open source
+
+  <b>License, Open Core</b>
+
+  Helpy is licensed under the MIT license, which means you can do, well, pretty
+  much anything you want with it, other than removing the copyright/credits. Helpy
+  is an open core application, which means the core functionality is open source,
+  but there is additional functionality you can get if you become a supporter, sponsor,
+  or a commercial customer.
+
+  The proceeds from supporters, sponsors and paying customers goes right back into
+  further platform development. &nbsp;Supporting the project in some way makes good
+  sense if you use Helpy in your business.
+
+  <a href="https://www.patreon.com/helpyio" target="_blank" class="btn btn-default">Become a Supporter <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width: 20px;"></a>
+
+  <b>Why Sponsor? What do Supporters get?</b>
+
+  A whole lot of awesome!&nbsp; What you get depends on what type of supporter
+  you are, and you can see the full lineup on our Patreon page. Briefly,
+
+  Sponsors: as a sponsor supporter, your business gets valuable visibility in
+  front of a large audience of developers, open source users, startups and
+  CIO/CTO types.
+
+  Users: As a user supporter, what you get depends on the tier of support you
+  choose, but by far the most popular is $99 per month, which gets you access
+  to our private gem server and a license to use all of the cloud tier addons
+  which are not open source and add amazing capabilities to your Helpy like:
+
+  <ul>
+    <li>In App Notifications</li>
+    <li>Realtime UI</li>
+    <li>Advanced Reporting</li>
+    <li>Advanced Search</li>
+    <li>Triggers</li>
+    <li>Custom Views</li>
+    <li>LDAP</li>
+    <li>Protected Helpcenter</li>
+    <li>Carin the Customer Service Chatbot</li>
+    <li>Helpy Chat (coming soon)</li>
+  </ul>
+
+  A full, current comparison on Helpy options is available here: <a href="https://helpy.io/open-source-helpdesk/">Comparison</a>
+
+  <a href="https://www.patreon.com/helpyio" target="_blank" class="btn btn-default">Become a Supporter <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width: 20px;"></a>
+  ',
   user_id: user_scott.id,
   kind: 'first'
-)
-
-topic.posts.create(
-  body: 'Helpy is largely a project of passion, and represents many hours of time spent coding, researching, developing ideas, documenting features, writing translations and helping to spread the word. This is all contributed for free by a community devoted to building a great customer support helpdesk, and viable alternative to commericial options like Zendesk and Desk.com.
-
-Despite all the gains thus far, we still need YOUR help. If you can do one of the following, please do so to help support the cause. The bigger we can grow the community, the better it will become:
-
-1. Help Spread the Word: If you like what we are doing, please SHARE, TWEET, POST, BLOG and tell all your friends about Helpy. Seriously, this is still a fairly young and little known project. Helping us spread the word is our number one request!
-
-2. Help with I18n: We have had some great translations contributed already. If you translate Helpy to you language and we don’t have it yet, please please please send us a pull request or gist of the yml file.
-
-Thanks in advance for helping us out!',
-  user_id: user_scott.id,
-  kind: 'reply'
 )

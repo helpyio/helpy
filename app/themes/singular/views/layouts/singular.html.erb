@@ -5,16 +5,24 @@
 		<%= render partial: 'layouts/head' %>
 		<link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css">
 		<%= theme_css %>
-		<%= css_injector %>
-		<%= "#{AppSettings['design.header_js']}".html_safe %>
 		<style>
 			#upper-wrapper a {
 				color: white;
 			}
 			#body-wrapper a {
-				color: <%= AppSettings['css.main_color']%>;
+				color: <%= AppSettings['css.main_color'] %>;
+			}
+			header {
+				background-color:  <%= AppSettings['css.accent_color'].blank? ? '#245566' : AppSettings['css.accent_color'] %>;
+			}
+			#home-search,
+			.flat-main-panel {
+				background-color:  <%= AppSettings['css.main_color'].blank? ? '#245566' : AppSettings['css.main_color'] %>;
 			}
 		</style>
+		<%= css_injector %>
+		<%= "#{AppSettings['design.header_js']}".html_safe %>
+
 	</head>
 <body class="<%#= (request.fullpath.gsub("/#{I18n.locale}/","").gsub("/","-")) %><%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
 	<script>
