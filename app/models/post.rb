@@ -25,6 +25,10 @@ class Post < ActiveRecord::Base
   attr_accessor :resolved
   attr_accessor :reply_id
 
+  # Whitelist tags and attributes that are allowed in posts
+  ALLOWED_TAGS = %w(strong em a p br b img ul li)
+  ALLOWED_ATTRIBUTES = %w(href src class style width height target)
+
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true
   has_many :votes, :as => :voteable, dependent: :delete_all
@@ -140,7 +144,7 @@ class Post < ActiveRecord::Base
   end
 
   def html_formatted_body
-    "#{ActionController::Base.helpers.sanitize(body.gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: %w(strong em a p br b img), attributes: %w(src class style width height))}".html_safe
+    "#{ActionController::Base.helpers.sanitize(body.gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)}".html_safe
   end
 
   def text_formatted_body
