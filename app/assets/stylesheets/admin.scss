@@ -18,6 +18,11 @@ h2 {
     margin-top: 0px;
 }
 
+h3 {
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
 table {
     margin-top: 20px;
 }
@@ -52,14 +57,19 @@ ul.settings-menu {
 }
 
 #ticket-nav,
-#user-nav {
-  background-color: #f4f4f4;
+#user-nav,
+#admin-left-nav {
   height: 100%;
+}
+
+#admin-left-nav.open {
+  padding-top: 30px;
+  opacity: 0.97;
+  background-color: #f4f4f4;
 }
 
 .submit-section,
 .nav-new-button {
-  padding-bottom: 20px;
   margin-left: 10px;
 
   a {
@@ -96,7 +106,7 @@ ul.settings-menu {
   }
 }
 
-.ticket-nav-header {
+.left-nav-header {
   padding: 5px;
   margin-bottom: 20px;
   border-bottom: 1px solid #ddd;
@@ -111,7 +121,6 @@ ul.settings-menu {
 
 .nav-active {
   font-weight: bold;
-  background-color: #eee;
 }
 
 .left-dropdown {
@@ -141,8 +150,14 @@ ul.settings-menu {
   background-color: white;
   border: 1px solid #ddd;
   margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
   padding-bottom: 20px;
-  border-radius: 7px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
 }
 
 .col-md-12.main-panel {
@@ -154,9 +169,9 @@ ul.settings-menu {
 }
 
 #main-content {
-  background-color: #f4f4f4;
   margin-top: 40px;
   padding-right: 20px;
+  background-color: transparent;
 }
 
 #upper-wrapper {
@@ -342,6 +357,7 @@ ul.dropdown-menu {
 .navbar-default .navbar-brand {
     color: white;
     font-weight: normal;
+    margin-top: 10px;
 }
 
 .navbar-brand {
@@ -351,7 +367,9 @@ ul.dropdown-menu {
 
 .navbar-right {
     margin-right: -28px;
+    margin-top: 10px;
 }
+
 
 .mailbox {
     padding-right: 10px;
@@ -530,6 +548,7 @@ ul.dropdown-menu {
   vertical-align: text-bottom;
 }
 
+.inactive,
 .grayout{
   filter:alpha(opacity=50); //* IE */
   opacity: 0.5; //* Safari, Opera */
@@ -771,7 +790,6 @@ ul.dropdown-menu {
         width: 10px;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 10px;
       padding-right: 10px;
       padding-left: 20px;
@@ -807,6 +825,16 @@ ul.dropdown-menu {
             height: 30px;
         }
     }
+    #header-wrapper > nav > div > ul > li > a {
+      text-align: left;
+
+      span {
+        display: none;
+      }
+      br {
+        display: none;
+      }
+    }
 }
 
 @media(min-width:768px){
@@ -819,7 +847,6 @@ ul.dropdown-menu {
         margin-top: 45px;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 20px;
       padding-right: 20px;
       padding-left: 20px;
@@ -862,7 +889,6 @@ ul.dropdown-menu {
         font-size: 200%;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 20px;
       padding-right: 20px;
       padding-left: 5px;
@@ -902,7 +928,6 @@ ul.dropdown-menu {
         font-size: 220%;
     }
     #main-content {
-      background-color: #f4f4f4;
       margin-top: 20px;
       padding-right: 20px;
       padding-left: 5px;

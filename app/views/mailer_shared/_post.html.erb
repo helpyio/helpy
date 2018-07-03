@@ -1,0 +1,6 @@
+<hr/>
+<p style="color: #666;">
+  <%= content_tag :strong, post_message(post,true) %><br/><br/>
+  <%= post.html_formatted_body %>
+  <%= simple_format(post.user.signature) if post.user.signature.present? %>
+</p>

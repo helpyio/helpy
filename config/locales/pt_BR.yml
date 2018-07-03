@@ -45,7 +45,7 @@ pt-br:
 
   # Community
   forum_name: "Tópico"
-  subject: "Assunto"
+  subject: &subject "Assunto"
   last_activity: "Última Atividade"
   topic: "Discussão"
   replies: "Respostas"
@@ -130,8 +130,10 @@ pt-br:
   setup_complete: "Seu Helpy está pronto!"
   setup_complete_message: "Seu Helpy está pronto para uso! Você pode customizar ainda mais seu Helpy no painel de configurações. Fique ligado em nossas mídias sociais para ficar por dentro das últimas notícias, e também sobre novas features, correções de bugs, e atualizações de segurança."
   get_started: "Vamos começar!"
+
   # Admin menu
-  discussions: "Discussões"
+  inbox: Inbox
+  discussions: "Tickets"
   content: "Conteúdo"
   team: "Equipe"
   communities: "Comunidades"
@@ -169,13 +171,13 @@ pt-br:
 
   # Discussion controls
   change_status: "Alterar Estado"
-  status: "Estado"
+  status: &status "Estado"
   mark_closed: "Marcar como Resolvido"
   reopen: "Reabrir"
   mark_spam: "Marcar Spam"
   mark_new: "Marcar Novo"
-  assign_agent: "Associar Agente"
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent "Associar Agente"
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 mensagem selecionada"
     two: "2 mensagens selecionadas"
@@ -200,12 +202,17 @@ pt-br:
   contact_info: "Contato"
   social_info: "Social"
   edit_user: "Editar Usuário"
+#  delete_user: Delete User
   work_phone: "trabalho"
   cell_phone: "celular"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: Selecionar prioridade
+  select_priority: &priority Selecionar prioridade
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: Alta
   normal_priority: Normal
   low_priority: Baixa
@@ -417,6 +424,8 @@ pt-br:
   mail_port: "Porta SMTP"
   mail_domain: "Domínio SMTP"
 
+  kind_type: &kind Sexo
+
   activerecord:
     attributes:
       user:
@@ -432,9 +441,16 @@ pt-br:
         state: "Estado"
         signature: Assinatura
       topic:
-        name: "Assunto"
+        kind: *kind
+        name: *subject
+        # channel: Channel
+        # team_list: Team
+        priority: *priority
+        current_status: *status
+        assigned_user_id: *assign_agent
+        # tag_list: Tag List
       post:
-        kind: "Sexo"
+        kind: *kind
       category:
         name: "Nome"
         icon: "Ícone"

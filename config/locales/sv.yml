@@ -37,7 +37,7 @@ sv:
 
   # Community
   forum_name: "Kategori"
-  subject: "Ämne"
+  subject: &subject "Ämne"
   last_activity: "Senaste aktiva"
   topic: "Inlägg"
   replies: "Svar"
@@ -133,13 +133,13 @@ sv:
 
   # Discussion controls
   change_status: 'Ändra Status'
-  status: 'Status'
+  status: &status 'Status'
   mark_closed: 'Markera som färdighanterat'
   reopen: 'Öppna igen'
   mark_spam: 'Markera som spam'
   mark_new: 'Markera som nyinkommet'
-  assign_agent: 'Tilldela till agent'
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent 'Tilldela till agent'
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 markerat meddelande"
     two: "2 markerade meddelanden"
@@ -162,12 +162,17 @@ sv:
   contact_info: Kontakt
   social_info: Sociala medier
   edit_user: Redigera användarkonto
+#  delete_user: Delete User
   work_phone: arbete
   cell_phone: mobil
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
   # select_priority: Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low

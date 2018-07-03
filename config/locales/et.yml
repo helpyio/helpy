@@ -39,7 +39,7 @@ et:
 
   # Community
   forum_name: "Teema"
-  subject: "Pealkiri"
+  subject: &subject "Pealkiri"
   last_activity: "Viimane aktiivne"
   topic: "Teema"
   replies: "Vastuseid"
@@ -140,13 +140,13 @@ et:
 
   # Discussion controls
   change_status: Muuda staatus
-  status: Staatus
+  status: &status Staatus
   mark_closed: Märgi lahendatuks
   reopen: Tee lahti
   mark_spam: Märgi Spam
   mark_new: Märgi Uus
-  assign_agent: Määra Agent
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent Määra Agent
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 valitud sõnum"
     two: "2 valitud sõnumit"
@@ -171,10 +171,15 @@ et:
   edit_user: Muuda kasutajat
   work_phone: töö
   cell_phone: telefon
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: Vali prioriteet
+  select_priority: &priority Vali prioriteet
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: Kõrge
   normal_priority: Keskmine
   low_priority: Madal
@@ -346,6 +351,8 @@ et:
   # Settings
   # common_replies: "Common Replies"
 
+  kind_type: &kind Žanr
+
   activerecord:
     attributes:
       user:
@@ -360,9 +367,16 @@ et:
         state: Maakond
         signature: Allkiri
       topic:
-        name: Pealkiri
+        kind: *kind
+        name: *subject
+        # channel: Channel
+        # team_list: Team
+        priority: *priority
+        current_status: *status
+        assigned_user_id: *assign_agent
+        tag_list: Tag List
       post:
-        kind: Žanr
+        kind: *kind
       category:
         name: Nimi
         icon: Ikoon

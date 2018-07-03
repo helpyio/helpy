@@ -171,6 +171,28 @@ module API
           present user, with: Entity::User
         end
 
+        # DELETE A USER
+        desc "Delete a user"
+        params do
+          requires :id, type: Integer, desc: "User ID"
+        end
+        delete ":id", root: :users do
+          user = User.find(permitted_params[:id])
+          user.permanently_destroy
+          body false
+        end
+
+        # ANONYMIZE A USER
+        desc "Anonymize a user"
+        params do
+          requires :id, type: Integer, desc: "User ID"
+        end
+        post "anonymize/:id", root: :users do
+          user = User.find(permitted_params[:id])
+          user.scrub
+          present user, with: Entity::User
+        end
+
         # INVITE USER
         desc "Invite one or more users to create an account"
         params do

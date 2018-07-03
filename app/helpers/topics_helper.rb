@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 module TopicsHelper
@@ -34,6 +35,10 @@ module TopicsHelper
 
   def badge_for_private
     content_tag(:span, t(:private, default: 'PRIVATE'), class: 'hidden-xs pull-right status-label label label-private')
+  end
+
+  def badge_for_public
+    content_tag(:span, t(:public, default: 'PUBLIC'), class: 'hidden-xs pull-right status-label label label-public')
   end
 
   def control_for_status(status)

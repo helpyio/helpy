@@ -37,7 +37,7 @@ ko:
 
   # Community
   forum_name: "주제"
-  subject: "제목"
+  subject: &subject "제목"
   last_activity: "마지막 활동"
   topic: "토론"
   replies: "답글"
@@ -139,13 +139,13 @@ ko:
 
   # Discussion controls
   change_status: 상태 변경
-  status: 상태
+  status: &status 상태
   mark_closed: 해결 된 것으로 표시
   reopen: 다시 열다
   mark_spam: 스팸으로 표시
   mark_new: 새 항목으로 표시
-  assign_agent: 에이전트 지정
-  tag_with: 티켓 태그
+  assign_agent: &assign_agent 에이전트 지정
+  tag_with: &tag_with 티켓 태그
   selected_messages:
     one: "선택된 메시지 1개"
     two: "선택된 메시지 2개"
@@ -170,10 +170,15 @@ ko:
   edit_user: 사용자 편집
   work_phone: 직장
   cell_phone: 핸드폰
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: 우선 순위 선택
+  select_priority: &priority 우선 순위 선택
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: 높음
   normal_priority: 중간
   low_priority: 낮음

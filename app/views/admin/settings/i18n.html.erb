@@ -1,8 +1,6 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h3><%= "#{t(:settings, default: "Settings")}: #{t(:international, default: "International")}" %></h3>
-  </div>
+  <%= settings_header('international') %>
 
   <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'i18n'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section international" data-hook="admin_settings_international">

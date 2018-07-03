@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 class Topic < ApplicationRecord
@@ -35,7 +36,7 @@ class Topic < ApplicationRecord
   belongs_to :doc, counter_cache: true, touch: true
   belongs_to :assigned_user, class_name: 'User'
 
-  has_many :posts, :dependent => :delete_all
+  has_many :posts, dependent: :delete_all
   accepts_nested_attributes_for :posts
 
   has_many :votes, :as => :voteable
@@ -84,6 +85,8 @@ class Topic < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   # validates :user_id, presence: true
+
+  enum priority: { low: 0, normal: 1, high: 2, very_high: 3 }
 
   def to_param
     "#{id}-#{name.parameterize}"
@@ -263,6 +266,10 @@ class Topic < ApplicationRecord
     else
       system_from_email
     end
+  end
+
+  def posts_in_last_minute
+    self.posts.where(created_at: Time.now-1.minutes..Time.now, kind: 'reply').count
   end
 
   private

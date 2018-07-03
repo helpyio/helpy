@@ -170,4 +170,22 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     # Ensure the invited user has a token
     assert_not_equal invited_user.invitation_token, nil
   end
+
+  test "an API user can delete users" do
+    user = User.create!(name: "foo", email: "foo@bar.com", password: "password")
+    delete "/api/v1/users/#{user.id}.json", @default_params
+
+    assert_equal 204, last_response.status
+  end
+
+  test "an API user can anonymize users" do
+    user = User.create!(name: "foo", email: "foo@bar.com", password: "password")
+    post "/api/v1/users/anonymize/#{user.id}.json", @default_params
+
+    object = JSON.parse(last_response.body)
+
+    assert_equal "Anonymous User", object['name']
+    assert_equal "anon", object['login']
+    assert_nil object['city']
+  end
 end

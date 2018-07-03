@@ -16,9 +16,9 @@
 
     <div class="text-center">
       <ul class="list-inline social-icons">
-        <li><a href="https://github.com/helpyio/helpy" target="_blank"><span class="fa fa-github"></span></a></li>
-        <li><a href="https://www.linkedin.com/grp/home?gid=7001784" target="_blank"><span class="fa fa-linkedin"></span></a></li>
-        <li><a href="https://twitter.com/helpyapp" target="_blank"><span class="fa fa-twitter"></span></a></li>
+        <li><a href="https://github.com/helpyio/helpy" target="_blank"><span class="fab fa-github"></span></a></li>
+        <li><a href="https://www.linkedin.com/grp/home?gid=7001784" target="_blank"><span class="fab fa-linkedin"></span></a></li>
+        <li><a href="https://twitter.com/helpyapp" target="_blank"><span class="fab fa-twitter"></span></a></li>
       </ul>
     </div>
 
@@ -27,6 +27,9 @@
     </div>
   </div>
 </div>
+<link rel="stylesheet" href="/assets/hopscotch.css"></link>
+<script src="/assets/hopscotch.min.js"></script>
+
 <script>
     $(document).ready(function(){
       // Progress bar
@@ -37,6 +40,75 @@
 
       // Add listener to close modal
       $('.get-started').on('click', function(){
+
+        // Define the tour!
+        var tour = {
+          id: "tickets-index-tour",
+          steps: [
+            {
+              title: "Inbox",
+              content: "The inbox is where all new tickets arrive.",
+              target: parent.document.getElementsByClassName('ticket-stats')[0],
+              placement: "bottom"
+            },
+            {
+              title: "Current tickets",
+              content: "Click on a ticket to see the conversation and details on the customer.  Click next to see the ticket!",
+              target: parent.document.getElementsByClassName('topic')[0],
+              placement: "top",
+              onNext: function() {
+                  parent.$('a.topic-link-1').click();
+                }
+            },
+            {
+              title: "The ticket view",
+              content: "The ticket view shows the full history of a ticket, including information on the customer.",
+              target: parent.document.getElementsByClassName('main-panel')[0],
+              placement: "bottom"
+            },
+            {
+              title: "Ticket Controls",
+              content: "Use these dropdowns to set the ticket status, assign an agent, group or ticket privacy.",
+              target: parent.document.getElementById("ticket-controls"),
+              placement: "top",
+              onNext: function() {
+                  parent.$('a.post_dropdown :first').click();
+                }
+            },
+            {
+              title: "Advanced options",
+              content: "Access advanced ticket options with this dropdown to split a ticket, change the author or create a common reply.",
+              target: parent.document.getElementsByClassName('post-dropdown')[0],
+              placement: "left"
+            },
+            {
+              title: "Reply to tickets here",
+              content: "Use this to reply to a ticket or write an internal note. You can also select from your 'common replies'",
+              target: parent.document.getElementById('new_post'),
+              placement: "top"
+            },
+            {
+              title: "Add a new ticket",
+              content: "Helpy supports multiple channels like email, phone, and chat.  To add a new ticket click here.",
+              target: parent.document.getElementsByClassName('new-discussion')[0],
+              placement: "left"
+            },
+            {
+              title: "Your Profile and Settings",
+              content: "Click here to customize your profile, add your company logo and access all the other options in the settings panel.",
+              target: parent.document.getElementsByClassName('admin-avatar')[0],
+              placement: "left"
+            },
+            {
+              title: "Universal Search",
+              content: "Locate tickets by ID, subject or content, or search for users.",
+              target: parent.document.getElementById("q"),
+              placement: "bottom"
+            }
+          ]
+        };
+
+        parent.hopscotch.startTour(tour);
         parent.closeModal();
       });
     });

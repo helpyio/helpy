@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 require 'test_helper'
@@ -163,6 +164,18 @@ class TopicTest < ActiveSupport::TestCase
     assert_difference 'Topic.count', +1 do
       Topic.create_comment_thread(1, 1)
     end
+  end
+
+  test "#posts_in_last_minute should return the number of tickets created" do
+    topic = Topic.find(1)
+    50.times do
+      topic.posts.create(
+        kind: 'reply',
+        user_id: 1,
+        body: 'this is the body'
+      )
+    end
+    assert_equal 50, topic.posts_in_last_minute
   end
 
   test "Should be able to merge two topics and copy posts" do

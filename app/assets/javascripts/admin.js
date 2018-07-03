@@ -88,15 +88,15 @@ Helpy.admin = function(){
     theme: 'bootstrap'
   });
 
-  $('.reports-menu-toggle').off().on('click', function(){
-    var $reports_nav = $('.reports-nav');
-    if ($reports_nav.is(":visible")) {
-      $reports_nav.addClass('hidden-xs').addClass('hidden-sm');
-    } else {
-      $reports_nav.removeClass('hidden-xs').removeClass('hidden-sm');
-    }
-
-  });
+  // $('.reports-menu-toggle').off().on('click', function(){
+  //   var $reports_nav = $('.reports-nav');
+  //   if ($reports_nav.is(":visible")) {
+  //     $reports_nav.addClass('hidden-xs').addClass('hidden-sm');
+  //   } else {
+  //     $reports_nav.removeClass('hidden-xs').removeClass('hidden-sm');
+  //   }
+  //
+  // });
 
   $('.bs-toggle').bootstrapSwitch();
 
@@ -191,22 +191,6 @@ Helpy.admin = function(){
     $this.removeClass('nav-over');
   });
 
-  // // Show/hide ticket menu
-  // $('.show-ticket-menu').on('click', function(){
-  //   var $ticketNav = $('#ticket-nav');
-  //   if ($ticketNav.hasClass('open')) {
-  //     $ticketNav.removeClass('open').addClass('hidden-xs').addClass('hidden-sm').removeClass('left-dropdown');
-  //   } else {
-  //     $ticketNav.addClass('open');
-  //     $ticketNav.removeClass('hidden-xs').removeClass('hidden-sm').addClass('left-dropdown');
-  //   }
-  // });
-  //
-  // $('.show-ticket-menu.open').on('click', function(){
-  //   $('#ticket-nav').removeClass('open');
-  //   $('#ticket-nav').addClass('hidden-xs');
-  // });
-
   Helpy.ticketMenu();
 
 };
@@ -214,7 +198,8 @@ Helpy.admin = function(){
 Helpy.ticketMenu = function() {
   // Show/hide ticket menu
   $('.show-ticket-menu').on('click', function(){
-    var $ticketNav = $('#ticket-nav');
+    var $ticketNav = $('#admin-left-nav');
+
     if ($ticketNav.hasClass('open')) {
       $ticketNav.removeClass('open').addClass('hidden-xs').addClass('hidden-sm').removeClass('left-dropdown');
     } else {
@@ -224,10 +209,12 @@ Helpy.ticketMenu = function() {
   });
 
   $('.show-ticket-menu.open').on('click', function(){
-    $('#ticket-nav').removeClass('open');
-    $('#ticket-nav').addClass('hidden-xs');
+    var $ticketNav = $('#admin-left-nav');
+
+    $ticketNav.removeClass('open');
+    $ticketNav.addClass('hidden-xs');
   });
-}
+};
 
 Helpy.showPanel = function(panel) {
   var currentPanel = panel-1;

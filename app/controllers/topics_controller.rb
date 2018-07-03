@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 class TopicsController < ApplicationController
@@ -97,6 +98,8 @@ class TopicsController < ApplicationController
       team_list: params[:topic][:team_list],
       channel: 'web')
 
+    associate_with_doc
+
     if recaptcha_enabled? && !user_signed_in?
       unless verify_recaptcha(model: @topic)
         initialize_new_ticket_form_vars
@@ -150,6 +153,14 @@ class TopicsController < ApplicationController
 
   def tag
     @topics = Topic.ispublic.tag_counts_on(:tags)
+  end
+
+  protected
+
+  def associate_with_doc
+    return unless params[:topic][:doc_id].present?
+    doc = Doc.find(params[:topic][:doc_id])
+    @topic.tag_list = "Feedback, #{doc.category.name}" if doc.present? && doc.category.present?
   end
 
   private

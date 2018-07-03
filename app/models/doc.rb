@@ -40,7 +40,7 @@ class Doc < ApplicationRecord
 
   include PgSearch
   multisearchable against: [:title, :body, :keywords],
-    :if => lambda { |record| record.category.publicly_viewable? && record.active && record.category.active? }
+    :if => lambda { |record| record.category.present? && record.category.publicly_viewable? && record.active && record.category.active? }
 
   has_paper_trail
 
@@ -67,6 +67,7 @@ class Doc < ApplicationRecord
   scope :publicly, -> { joins(:category).where(categories: { visibility: %w[all public] }) }
 
   def to_param
+    return "#{id}-missing-title" if title.nil?  
     "#{id}-#{title.parameterize}"
   end
 

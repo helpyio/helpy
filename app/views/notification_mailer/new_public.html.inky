@@ -1,0 +1,27 @@
+<container>
+  <row>
+    <columns class="callout panel">
+      <spacer size="16"></spacer>
+      <p>
+        <%= content_tag :span,
+        t('notify_new_public', user_name: "#{@user.name} (#{@user.email})", default: "A new public customer message has been posted by %{user_name}:"),
+        class: 'intro' %>
+      </p>
+      <spacer size="16"></spacer>
+
+      <p>
+        <%= simple_format(@topic.posts.last.body) %>
+      </p>
+
+      <spacer size="16"></spacer>
+      <center>
+        <p>
+          <%= content_tag :small, t('to_reply', default: 'Reply directly to this email or view this online:') %>
+        </p>
+        <button>
+        <%= link_to "View Online", admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>
+        </button>
+      </center>
+    </columns>
+  </row>
+</container>

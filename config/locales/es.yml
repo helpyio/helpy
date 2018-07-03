@@ -39,7 +39,7 @@ es:
 
   # Community
   forum_name: "Tema"
-  subject: "Asunto"
+  subject: &subject "Asunto"
   last_activity: "Activo por última vez"
   topic: "Debate"
   replies: "Respuestas"
@@ -77,6 +77,9 @@ es:
   # Profile
   my_profile: 'Mi perfil'
 
+  # Locales
+  # select_locale: "Change your Locale"
+
   # footer
   powered_by: "Provisto por Helpy. Un software libre para soporte tecnico"
   get_your_copy: "Obtén tu copia en GitHub"
@@ -108,12 +111,21 @@ es:
   # devise/registrations/new
   sign_up: Registrarse
 
+  # flash messages
+  model_created: "%{object_name} was saved"
+  model_updated: "%{object_name} was updated"
+  model_destroyed: "%{object_name} was deleted"
+
   # Admin menu
+  # inbox: Inbox
   discussions: Discusiones
   content: Contenido
   communities: Comunidades
   app_store: App Store
   search: Búsqueda
+  # internal_content: Internal Content
+  # new_ticket: New Ticket
+  # reports: Reports
 
   # Admin main/statuses
   support_pipeline: Flujo de trabajo de atención al cliente
@@ -129,27 +141,34 @@ es:
   open_new_discussion: Abrir discusión
   assigned_to: "asignado a %{agent}"
   unassigned: no asignado
+  # no_team_assigned: Assign to group
+  # assign_to: Group/Team
+  # unassign_from_team: Unassign from group
   private: privado
   public: publico
   save_changes: Guardar cambios
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  # merge: Merge
+  # merge_confirm: Are you sure you want to merge these tickets?
+  # customer_conversation: Customer Conversation
+  # internal_ticket: Internal Ticket
 
   # Discussion controls
   change_status: Cambiar estado
-  status: Estado
+  status: &status Estado
   mark_closed: Marcar como resuelto
   reopen: Reabrir
   mark_spam: Marcar como spam
   mark_new: Marcar como nuevo
-  assign_agent: Asignar agente
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent Asignar agente
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 mensaje seleccionado"
     two: "2 mensajes seleccionados"
     other: "%{count} mensajes seleccionados"
 
   # Discussion messages
+  # new_message: "This ticket has been marked new by the support staff"
+  # spam_message: "This ticket has been marked spam by the support staff"
   reopen_message: "Este mensaje ha sido reabierto por el equipo de atención al cliente"
   closed_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
   trash_message: "Este mensaje ha sido eliminado."
@@ -159,6 +178,7 @@ es:
   # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
   # tagged_with: "This ticket was tagged with %{tagged_with}"
   # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
+  # topic_added_from: "%{kind} added from %{channel}"
 
   # User Admin
   users: Usuarios
@@ -166,15 +186,74 @@ es:
   contact_info: Contacto
   social_info: Social
   edit_user:
+#  delete_user: Delete User
   work_phone: trabajo
   cell_phone: móvil
+  # last_seen: "Last Seen"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  # select_priority: Select Priority
+  # select_priority: &priority Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low
+
+  # Roles
+  # select_role: Select Role
+  # admin_role: Administrator
+  # agent_role: Agent
+  # editor_role: Editor
+  # user_role: Customer
+  # add_more_agents: "Add more users"
+
+  # Groups
+  # groups: "Groups"
+  # add_new_group: "New Group"
+  # group: "Group"
+  # tag_group: ""
+  # tag_name: "Group Name"
+  # description: "Description"
+  # color: "Color"
+  # show_on_helpcenter: "Show on Helpcenter"
+  # show_on_admin: "Show on Admin"
+  # email_address: "Email Address"
+  # from_name: "From Name"
+
+  # Keyboard Shortcuts
+  # shortcut_then: "then"
+  # listing_views: "Listing views"
+  # keyboard_shortcuts: "Keyboard Shortcuts"
+  # show_new_tickets: "Show new tickets"
+  # show_all_tickets: "Show all tickets"
+  # show_open_tickets: "Show open tickets"
+  # show_tickets_assigned_to_you: "Show tickets assigned to you"
+  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
+  # show_closed_tickets: "Show closed tickets"
+  # search_for_tickets: "Search for tickets"
+  # viewing_tickets: "View tickets"
+  # select_previous_ticket: "Select previous ticket"
+  # select_next_ticket: "Select next ticket"
+  # view_selected_ticket: "View selected ticket"
+  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
+  # ticket_actions: "Ticket actions"
+  # assign_the_ticket: "Assign ticket"
+  # move_the_ticket: "Move ticket"
+  # expand_the_ticket_thread: "Expand ticket thread"
+  # reply_to_the_ticket: "Reply to the ticket"
+  # add_an_internal_note: "Add an internal note"
+  # change_ticket_status: "Change ticket status"
+  # associate_with_a_group: "Associate with a group"
+  # ticket_status: "Ticket status"
+  # mark_resolved: "Close Ticket"
+  # reopen_ticket: "Reopen ticket"
+  # set_to_new: "Mark as new"
+  # mark_as_spam: "Mark as spam"
+  # move_to_trash: "Move to trash"
+  # ticket_number: "ticket number"
 
   # User search results
   users_found:
@@ -231,6 +310,10 @@ es:
   # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
   # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
 
+  # Internal Content
+  # no_internal_content_title: "There's no internal documentation written yet!"
+  # no_internal_content_text: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!"
+
   # Communities
   new_community: Crea una nueva comunidad
   create_new_community: Crea una nueva comunidad
@@ -249,42 +332,190 @@ es:
   message_response: "El siguiente mensaje ha sido publicado en respuesta a tu pregunta:"
   view_online: "Ver en línea:"
 
+  # Admin notifications
+  # notify_new_private: "A new customer ticket has been received from %{user_name}:"
+  # notify_new_public: "A new public customer message has been posted by %{user_name}:"
+  # notify_new_reply: "A new customer reply has been received from %{user_name}:"
+  # to_reply: 'Reply to this message directly or online:'
+
+  # Notifications settings panel
+  # notify_on_private: "When a new ticket has been received"
+  # notify_on_public: "When a public customer question has been posted"
+  # notify_on_reply: "When a new reply to a ticket has been received"
+
   # settings
+  # agent_settings: "Agent Settings"
+  # notifications: "Notifications"
   settings: "Configuración"
   general: "General"
+  # general_description: "Manage general system settings like your Helpy name, what company to link back to."
   design: "Diseño"
+  # design_description: "Control the logos and colors and other design aspects of your Helpy"
   international: "Internacional"
+  international_description:
   widget: "Incrustar widget"
+  widget_description:
   # common_replies: "Common Replies"
   # integrations: "Integrations"
+  # common_replies_description:
+  # integrations: "Integrations"
+  # integrations_description:
+  # theme:
+  # theme_description:
+  # email: "Email"
+  # email_description:
+  # customers: "Customers"
+  # users_description:
+  # team: "Team"
+  # users_description:
+  # team_group: "Team Groups"
 
-  # Keyboard Shortcuts
-  # shortcut_then: "then"
-  # listing_views: "Listing views"
-  # keyboard_shortcuts: "Keyboard Shortcuts"
-  # show_new_tickets: "Show new tickets"
-  # show_all_tickets: "Show all tickets"
-  # show_open_tickets: "Show open tickets"
-  # show_tickets_assigned_to_you: "Show tickets assigned to you"
-  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
-  # show_closed_tickets: "Show closed tickets"
-  # search_for_tickets: "Search for tickets"
-  # viewing_tickets: "View tickets"
-  # select_previous_ticket: "Select previous ticket"
-  # select_next_ticket: "Select next ticket"
-  # view_selected_ticket: "View selected ticket"
-  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
-  # ticket_actions: "Ticket actions"
-  # assign_the_ticket: "Assign ticket"
-  # move_the_ticket: "Move ticket"
-  # expand_the_ticket_thread: "Expand ticket thread"
-  # reply_to_the_ticket: "Reply to the ticket"
-  # add_an_internal_note: "Add an internal note"
-  # change_ticket_status: "Change ticket status"
-  # associate_with_a_group: "Associate with a group"
-  # ticket_status: "Ticket status"
-  # mark_resolved: "Mark as resolved"
-  # reopen_ticket: "Reopen ticket"
+  # General
+  # site_name: Site Name
+  # site_url: Site URL
+  # parent_site: Parent Site
+  # parent_company: Parent Company
+  # site_tagline: Site Tagline
+  # enable_forums: Enable Community Forums
+  # enable_knowledgebase: Enable Knowledgebase
+  # enable_tickets: Enable Private Tickets
+  # enable_teams: Enable Teams
+  # enable_welcome_email: Send a welcome email to new users
+
+  # Design
+  # header_logo: Header Logo
+  # search_background: Search Background Color
+  # top_bar: Header Accent Color
+  # link_color: Link Color
+  # form_background: Form Background Color
+  # still_need_help:
+
+  # Locales
+  # supported_locales: Supported Locales
+  # default_locale: Default Locale
+
+  # Widget
+  # show_widget: Show widget on support site
+  # widget_background: Widget Background Color
+  # button_color: Widget Button Color
+  # button_text_color: Widget Text Color
+
+  # Integrations
+  # incoming_webhook: Incoming Webhook
+  # incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
+  # enable_webhook_url: Enable Incoming Webhooks
+  # google_analytics: Google Analytics
+  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
+  # enable_google_analytics: Enable Google Analytics
+  # google_analytics_id: Google Analytics ID
+  # recaptcha_integration: Recaptcha
+  # recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
+  # enable_recaptcha: Enable Recaptcha
+  # recaptcha_site_key: Recaptcha Site Key
+  # recaptcha_api_key: Recaptcha API Key
+  # cloudinary_integration: Cloudinary
+  # cloudinary_description: Cloudinary offers image hosting and transformation services.
+  # enable_cloudinary: Enable Cloudinary
+  # cloudinary_cloud_name: Cloudinary Cloud Name
+  # cloudinary_api_key: Cloudinary API Key
+  # cloudinary_api_secret: Cloudinary API Secret
+
+  # Email
+  # mail_service: Inbound Mail Service Provider
+  # send_email: Enable Outbound (SMTP) Email
+  # boolean_no: No
+  # boolean_yes: Yes
+  # admin_email: Admin Email
+  # from_email: From Email
+  # smtp_mail_username: SMTP Username
+  # smtp_mail_password: SMTP Password
+  # mail_smtp: SMTP Server
+  # mail_port: SMTP Port
+  # mail_domain: SMTP Domain
+
+  # API Key Managmeent
+  # api_keys: "API Keys"
+  # key_name: "Key Name"
+  # token: "Token"
+  # add_key: "Add a New Key"
+  # expire_token: "Expire Token"
+  # expired: "Expired"
+  # expire_confirm: "Please confirm your really want to expire this token."
+  # spec_note: "You can read and test out an interactive API spec at: "
+
+  # Insights
+  # activity_report: "Activity Report"
+  # team_insights: "Team Insights"
+  # filter_by_date: "Filter by date"
+  # today: "Today"
+  # yesterday: "Yesterday"
+  # this_week: "This week"
+  # last_week: "Last week"
+  # this_month: "This month"
+  # last_month: "Last month"
+  # date_range: "Date Range"
+  # insight_start_range: "Start date:"
+  # insight_end_range: "End date:"
+  # insight_filter: "Filter"
+  # insights_blurb_one:
+  #   one: "<strong>%{period}</strong> your users opened 1 new ticket"
+  #   other: "<strong>%{period}</strong> your users opened <strong>%{count} new tickets</strong>"
+  # insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
+  # insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+  # no_discussions: "No new tickets have been opened <strong>%{period}</strong>"
+  # assigned_topics: "Assigned Tickets"
+  # responded: "Responded"
+  # closed: "Closed"
+  # replies: "Replies"
+  # median_time: "Median time to first response"
+
+  # Reports
+  # ticketing_reports: Ticketing Reports
+  # group_report: "Group Report"
+  # team_reports: "Team Reports"
+  # percent_resolved: Percent Resolved
+  # average_resolution_time: Average Resolution Time
+  # new_tickets: New Tickets
+  # new_tickets_explain: The number of new tickets your Helpy has received in this period.
+  # tickets_per_day: Tickets per Day
+  # tickets_per_day_explain: The number of tickets your Helpy averages per day.
+  # replies_explain: The number of replies your agents have written in this period.
+  # actions_explain: The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.
+  # closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
+
+  # IMPORT/EXPORT
+  # file_type: Type
+  # file_users: Users
+  # file_tickets: Tickets
+  # file_replies: Replies
+  # file_docs: Docs
+  # file_categories: Categories
+  # file_forums: Forums
+  # import: 'Import CSV'
+  # new_import: 'New Import'
+  # export: 'Export CSV'
+  # what_to_export: 'Select what you would like to export'
+  # what_to_import: 'Select what you would like to import'
+  # imports: 'Imports'
+  # exports: 'Exports'
+  # past_imports: 'Previous Imports'
+  # run_time: 'Run Time'
+  # clear_all: 'Remove All'
+  # error_details: 'Error Details'
+  # row_number: 'Row Number'
+  # error_message: 'Error Message'
+  # object: 'Object'
+  # import_details: '#%{id} Import Details'
+  # select_for_export: 'Export %{model} to .csv'
+  # file_date_created: Date Created
+  # import_total_submitted: Total Submitted Records
+  # import_total_created: Total Created Records
+  # file_name: File Name
+  # file_download: Download
+  # file_delete: Delete
+  # file_delete_confirm: "Are you sure you want to delete this csv?"
+
+  kind_type: &kind Género
 
   activerecord:
     attributes:
@@ -294,14 +525,28 @@ es:
         name: Nombre
         company: Empresa
         work_phone: Trabajo
+        # home_phone: Phone
         cell_phone: Móvil
         city: Ciudad
         state: Estado o provincia
         signature: Firma
+        # title:
+        # time_zone:
       topic:
-        name: Asunto
+        kind: *kind
+        name: *subject
+        # channel: Channel
+        # team_list: Team
+        # priority: *priority
+        current_status: *status
+        assigned_user_id: *assign_agent
+        # tag_list: *tag_with
       post:
-        kind: Género
+        kind: *kind
+        # body: Message
+        # cc: CC
+        # bcc: BCC
+        # attachments: Attachement
       category:
         name: Nombre
         icon: Icono
@@ -310,6 +555,11 @@ es:
         meta_description: Meta descripción
         front_page: Página principal
         active: Activo
+        # visibility: Visibility
+        # visibility_label:
+        #   all: All
+        #   public: Public
+        #   internal: Internal
       doc:
         title: Título
         meta_description: Meta descripción
@@ -350,6 +600,13 @@ es:
       root: *root
     result:
       root: *root
+    # registrations:
+    #   root: *root
+    # admin:
+    #   internal_categories:
+    #     root: *root
+    #   internal_docs:
+    #     root: *root
   helpers:
     actions: "Acciones"
     links:

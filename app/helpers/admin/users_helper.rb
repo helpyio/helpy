@@ -35,4 +35,17 @@ module Admin::UsersHelper
     end
   end
 
+  def priority_collection
+    [[t('low_priority', default: 'Low'),'low'],[t('normal_priority', default: 'Normal'),'normal'],[t('high_priority', default: 'High'),'high'],[t('vip_priority', default: 'VIP'),'vip']]
+  end
+
+  def roles_collection
+    [
+      [t('admin_role'),'admin'],
+      [t('agent_role'),'agent'],
+      [t('editor_role'),'editor'],
+      [t('user_role'),'user']
+    ]
+  end
+
 end

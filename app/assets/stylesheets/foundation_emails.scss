@@ -1,0 +1,16 @@
+@import 'settings';
+@import "foundation-emails";
+
+p {
+  line-height: 1.6;
+  color: $dark-gray;
+}
+
+.panel {
+  border: 1px solid $light-gray;
+}
+
+.intro {
+  color: $dark-gray;
+  font-weight: bold;
+}

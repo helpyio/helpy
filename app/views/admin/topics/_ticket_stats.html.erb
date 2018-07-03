@@ -1,9 +1,7 @@
 
-<div class="ticket-nav-header">
-  <span class="tiny-header">Ticket Views</span>
-  <div class="pull-right hidden-lg hidden-md">
-    <span class="fa fa-close btn show-ticket-menu close-ticket-menu"></span>
-  </div>
+<div class="left-nav-header">
+  <span class="tiny-header"><%= t('inbox')%></span>
+  <%= hide_responsive_nav %>
 </div>
 <ul class="list-unstyled nav-items"  data-hook="ticket-stats">
   <%= render partial: 'admin/topics/nav_item', locals: { status: 'active', label: t(:active), count: @active } %>

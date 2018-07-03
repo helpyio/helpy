@@ -39,7 +39,7 @@ ja:
 
   # Community
   forum_name: "トピック"
-  subject: "題名"
+  subject: &subject "題名"
   last_activity: "最終ログイン"
   topic: "掲示板"
   replies: "返信"
@@ -137,13 +137,13 @@ ja:
 
   # Discussion controls
   change_status: "状態を変更する"
-  status: "状態"
+  status: &status "状態"
   mark_closed: "解決済みにする"
   reopen: "再開"
   mark_spam: "迷惑メールにする"
   mark_new: "新着にする"
-  assign_agent: "委託するエージェント"
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent "委託するエージェント"
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 つの選択されたメッセージ"
     two: "2 つの選択されたメッセージ"
@@ -168,10 +168,15 @@ ja:
   edit_user: "ユーザの編集"
   work_phone: "職場の電話番号"
   cell_phone: "携帯電話番号"
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: "優先度の選択"
+  select_priority: &priority "優先度の選択"
   vip_priority: "最重要"
+  # very_high_priority: Very High
   high_priority: "高"
   normal_priority: "通常"
   low_priority: "低"

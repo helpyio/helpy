@@ -1,5 +1,5 @@
 <% if show_onboarding? %>
-<div id='modal' class="modal" tabindex="-1" role="dialog" data-backdrop="static">
+<div id='modal' class="modal" tabindex="-1" role="dialog" data-backdrop="static" style="z-index: 9999999999;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <iframe src="/admin/onboarding/index" width="100%" frameborder="no" scrolling="no" style="min-height:680px;"></iframe>
@@ -10,4 +10,6 @@
 // Fire the onboarding modal if needed
 $('#modal').modal('toggle');
 </script>
+<link rel="stylesheet" href="/assets/hopscotch/dist/css/hopscotch.css"></link>
+<script src="/assets/hopscotch/dist/js/hopscotch.min.js"></script>
 <% end %>

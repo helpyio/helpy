@@ -1,29 +1,30 @@
 <%= bootstrap_form_for(@user, url: admin_user_path(@user), remote: (params[:mode] != 'settings'), method: 'patch') do |f| %>
 
-  <div class='col-md-12 col-sm-12 col-xs-12 text-center' id='user-info-image'>
+  <div class='text-center' id='user-info-image'>
     <%= avatar_image(@user, size=150) %>
-  </div>
-  <% if params[:mode] == 'settings' %>
-  <div class='col-md-2 col-md-offset-5'>
-    <div class="select-image text-center">
-    <% if @user.provider.nil? %>
-      <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
-    <% end %>
-    <%= f.file_field :profile_image, skip_label: true unless cloudinary_enabled? %>
+    <% if params[:mode] == 'settings' %>
+    <div>
+      <div class="select-image text-center">
+      <% if @user.provider.nil? %>
+        <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
+      <% end %>
+      <%= f.file_field :profile_image, skip_label: true unless cloudinary_enabled? %>
+      </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 
-  <div id="user-contact-info" class="col-md-12 col-sm-12 col-xs-12 user-info">
+
+  <div id="user-contact-info" class="user-info">
     <div class="user-section">
       <%= f.text_field :name %>
       <%= f.text_field :company %>
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %> <%= f.text_field :zip, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
-      <%= f.select(:role, [[t('select_role'),''],[t('admin_role'),'admin'],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
+      <%= f.select(:role, roles_collection, prompt: t('select_role')) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.select 'team_list', options_for_select(@all_teams.map {|t| [t, t.downcase]}, @user.team_list.map {|g| g.downcase}),
           { label: t(:assign_to, default: "Assign to group:") }, { class: "selectpicker", multiple: true } if teams? && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
-      <%= f.select(:priority, [[t('select_priority'),'Select Priority'],[t('low_priority'),'low'],[t('normal_priority'),'normal'],[t('high_priority'),'high'],[t('vip_priority'),'vip']]) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
+      <%= f.select(:priority, priority_collection) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.check_box :active if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.time_zone_select :time_zone, nil, include_blank: true if current_user.is_admin? %>
     </div>
@@ -53,14 +54,23 @@
       <%= f.text_area :signature, skip_label: true, rows: 10 %>
     </div>
     <% if current_user.is_admin? && @user.is_agent? || @user == current_user %>
-    <div class="user-section">
+    <div class="user-section user-notifications">
       <div class="tiny-header"><%= t(:notifications, default: "Notifications") %>:</div>
       <%= f.check_box 'notify_on_private', { checked: @user.notify_on_private?, label: t('notify_on_private', default: "Email me when a private customer question has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
       <%= f.check_box 'notify_on_public', { checked: @user.notify_on_public?, label: t('notify_on_public', default: "Email me when a public customer question has been posted"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
       <%= f.check_box 'notify_on_reply', { checked: @user.notify_on_reply?, label: t('notify_on_reply', default: "Email me when a new reply to a private discussion has been received"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
     </div>
     <% end %>
-    <%= f.submit "Save", class: 'btn btn-warning' %>
+    <ul class="list-inline">
+      <li><%= f.submit "Save", class: 'btn btn-warning' %></li>
+      <li></li>
+      <li><%= link_to t(:scrub_user, default: 'Anonymize User'), admin_scrub_user_path(@user), remote: false,
+                      method: :post,
+                      data: { confirm: t(:anonymize_user_warning, default: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts.", user_name: @user.name) } if current_user.is_admin? && @user.can_scrub_and_delete? %></li>
+      <li><%= link_to t(:delete_user, default: 'Delete User'), admin_user_path(@user), remote: false,
+                      method: :delete,
+                      data: { confirm: t(:delete_user_warning, default: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics.", user_name: @user.name) } if current_user.is_admin? && @user.can_scrub_and_delete? %></li>
+    </ul>
   </div>
 <% end %>
 <script type="text/javascript">

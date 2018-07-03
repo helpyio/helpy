@@ -15,7 +15,11 @@ class Admin::BackupsController < Admin::BaseController
   def download
     file = Backup.find params[:file_id]
     respond_to do |format|
-      format.csv { send_data file.csv, :filename => file.csv_name }
+      format.csv {
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=#{file.csv_name}"
+        send_data file.csv, :filename => file.csv_name
+      }
     end
   end
 

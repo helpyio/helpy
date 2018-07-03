@@ -47,7 +47,7 @@
 class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :verify_admin, only: ['invite','invite_users']
+  before_action :verify_admin, only: ['invite','invite_users','scrub','destroy']
   before_action :fetch_counts, :only => ['show']
   before_action :get_all_teams
   respond_to :html, :js
@@ -55,7 +55,7 @@ class Admin::UsersController < Admin::BaseController
   include ActionView::Helpers::TagHelper
 
   def index
-    @roles = [['Team', 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+    @roles = [[t('team'), 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
     if params[:role].present?
       if params[:role] == 'team'
         @users = User.team.all.page params[:page]
@@ -113,9 +113,32 @@ class Admin::UsersController < Admin::BaseController
         format.js {
           render 'admin/users/show'
         }
+        format.json {
+          respond_with_bip(@user)
+        }
       end
     else
       render :profile
+    end
+  end
+
+  def scrub
+    @user = User.find(params[:id])
+    @user.scrub
+
+    respond_to do |format|
+      format.html { redirect_to admin_users_path }
+      format.js { }
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.permanently_destroy
+
+    respond_to do |format|
+      format.html { redirect_to admin_users_path }
+      format.js { }
     end
   end
 

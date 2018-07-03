@@ -1,9 +1,9 @@
 <div id="user-info">
 </div>
 <%= content_tag :h3, class: 'view-header' do %>
-  <small><span class="fa fa-toggle-down btn show-ticket-menu hidden-lg hidden-md"></span></small>
+  <%= show_responsive_nav %>
   <%#=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
-  <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
+  <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym, default: @status)) if @status.present?} " %>
   <div class="pull-right nav-new-button">
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
         remote: true, class: 'btn btn-primary' %>
@@ -106,7 +106,7 @@
 
 <div id="topics" class="row">
   <div class="col-md-12 text-center no-tickets">
-    <span><i class="fa fa-inbox"></i><br/><%= t('nothing_here')  %></span>
+    <span><i class="fas fa-inbox"></i><br/><%= t('nothing_here')  %></span>
   </div>
 </div>
 
