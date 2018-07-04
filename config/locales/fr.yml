@@ -39,7 +39,7 @@ fr:
 
   # Community
   forum_name: "Sujet"
-  subject: "Sujet"
+  subject: &subject "Sujet"
   last_activity: "Dernière activité"
   topic: "Discussion"
   replies: "Réponses"
@@ -64,7 +64,7 @@ fr:
   asked_before: "Est-ce que votre question a déjà été posée ? Nous pensons que celles-ci peuvent être similaires"
 
   # Tickets
-  tickets: "Tickets"
+  tickets: &tickets "Tickets"
   no_tickets: "Vous n'avez pas encore créé de tickets"
   ticket_number: "Numéro de ticket"
   assigned_to_label: "Assigné à"
@@ -111,8 +111,14 @@ fr:
   # devise/registrations/new
   sign_up: S'inscrire
 
+  # flash messages
+  model_created: "%{object_name} was saved"
+  model_updated: "%{object_name} was updated"
+  model_destroyed: "%{object_name} was deleted"
+
   # Admin menu
-  discussions: Discussions
+  inbox: Boîte de Messagerie
+  discussions: Tickets
   content: Contenu
   communities: "Communautés"
   app_store: App Store
@@ -128,11 +134,11 @@ fr:
   open: Ouverts
   mine: Mes tickets
   pending: En attente
-  closed: Résolus
+  closed: &closed Résolus
   spam: Spam
   trash: Corbeille
-  discussion_management: Gestion de Discussion
-  open_new_discussion: Nouvelle Discussion
+  discussion_management: Gestion de Ticket
+  open_new_discussion: Nouveau Ticket
   assigned_to: "assigné à %{agent}"
   unassigned: Non assigné
   no_team_assigned: Assigner à un groupe
@@ -143,22 +149,26 @@ fr:
   save_changes: Enregistrer les modifications
   merge: Fusionner
   merge_confirm: Etes vous sûr de vouloir fusionner ces tickets?
+  customer_conversation: Conversation client
+  internal_ticket: Ticket interne
 
   # Multiple Discussion controls
   change_status: Changer le statut
-  status: Statut
+  status: &status Statut
   mark_closed: Marquer comme résolu
   reopen: Réouvrir
   mark_spam: Marquer comme Spam
   mark_new: Marquer comme Nouveau
-  assign_agent: Assigner un Agent
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent Assigner un Agent
+  tag_with: &tag_with Tag avec
   selected_messages:
     one: "1 message sélectionné"
     two: "2 messages sélectionnés"
     other: "%{count} messages sélectionnés"
 
   # Discussion messages
+  # new_message: "This ticket has been marked new by the support staff"
+  # spam_message: "This ticket has been marked spam by the support staff"
   reopen_message: "Ce message a été réouvert par le support."
   closed_message: "Ce message a été fermé par le support."
   trash_message: "Ce ticket a été supprimé."
@@ -168,6 +178,7 @@ fr:
   converted_to_topic: "Ce ticket a été converti en discussion publique et déplacé dans %{forum_name}."
   tagged_with: "Ce ticket a été taggé avec %{tagged_with}"
   notes_hidden: "Il y a %{hidden_notes} notes internes pour ce ticket. Vous pouvez les voir en cliquant n'importe où dans cette note!"
+  # topic_added_from: "%{kind} added from %{channel}"
 
   # User Admin
   users: Utilisateurs
@@ -184,8 +195,9 @@ fr:
   # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: Choisir une priorité
+  select_priority: &priority Choisir une priorité
   vip_priority: Important
+  very_high_priority: Très haut
   high_priority: Elevé
   normal_priority: Normal
   low_priority: Bas
@@ -389,12 +401,24 @@ fr:
   button_text_color: "Couleur du texte du bouton"
 
   # Integrations
+  # incoming_webhook: Incoming Webhook
+  # incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
   enable_webhook_url: "Activer les webhooks entrants"
+  # google_analytics: Google Analytics
+  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
   enable_google_analytics: "Activer Google Analytics"
+  # google_analytics_id: Google Analytics ID
+  # recaptcha_integration: Recaptcha
+  # recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
   enable_recaptcha: "Activer Recaptcha"
   recaptcha_site_key: "Clé du site"
   recaptcha_api_key: "Clé secrète"
+  # cloudinary_integration: Cloudinary
+  # cloudinary_description: Cloudinary offers image hosting and transformation services.
   enable_cloudinary: "Activer Cloudinary"
+  # cloudinary_cloud_name: Cloudinary Cloud Name
+  # cloudinary_api_key: Cloudinary API Key
+  # cloudinary_api_secret: Cloudinary API Secret
 
   # Email
   mail_service: "Fournisseur de service pour les emails entrants"
@@ -419,7 +443,7 @@ fr:
   expire_confirm: "Veuillez confirmer que vous voulez vraiment expirer ce jeton."
   spec_note: "Vous pouvez lire et tester les spécifications de l'API interactive sur :"
 
-  # Reports
+  # Insights
   activity_report: "Rapport d'activité"
   team_insights: "Insights Équipe"
   filter_by_date: "Filtrer par date"
@@ -445,7 +469,28 @@ fr:
   replies: "Répondus"
   median_time: "Temps moyens de la 1ère réponse"
 
+  # Rapports
+  ticketing_reports: Rapports de Tickets
+  group_report: "Rapport de groupe"
+  team_reports: "Rapports d'équipe"
+  percent_resolved: Pourcentage résolu
+  average_resolution_time: Temps moyen de résolution
+  new_tickets: Nouveaux Tickets
+  new_tickets_explain: Le nombre de nouveaux tickets reçus par Helpy au cours de cette période.
+  tickets_per_day: Tickets par jour
+  tickets_per_day_explain: Le nombre de tickets que votre Helpy fait en moyenne par jour.
+  replies_explain: Le nombre de réponses que vos agents ont écrites durant cette période.
+  actions_explain: Le nombre total d'actions (réponses ou notes internes) dans cette période. Une bonne indication de l'activité de votre Helpy.
+  closed_explain: Le nombre de tickets fermés durant cette période. Devrait être proche du nombre de nouveaux billets pour les périodes antérieures.
+
   # IMPORT/EXPORT
+  file_type: Type
+  file_users: Utilisateurs
+  file_tickets: Tickets
+  file_replies: Réponses
+  file_docs: Docs
+  file_categories: Catégories
+  file_forums: Communautés
   import: 'Import CSV'
   new_import: 'Nouvel Import'
   export: 'Export CSV'
@@ -462,6 +507,15 @@ fr:
   object: 'Objet'
   import_details: '#%{id} Détails Import'
   select_for_export: 'Exporter %{model} en .csv'
+  file_date_created: Date de création
+  import_total_submitted: Total des enregistrements soumis
+  import_total_created: Nombre total d'enregistrements créés
+  file_name: Nom du fichier
+  file_download: Télécharger
+  file_delete: Effacer
+  file_delete_confirm: "Voulez-vous vraiment supprimer ce fichier"
+
+  kind_type: &kind Type
 
   activerecord:
     attributes:
@@ -479,10 +533,20 @@ fr:
         title: Titre
         time_zone: Fuseau horaire
       topic:
-        name: Sujet
+        kind: *kind
+        name: *subject
+        channel: Canal
+        team_list: Équipe
+        priority: *priority
+        current_status: *status
+        assigned_user_id: *assign_agent
+        tag_list: *tag_with
       post:
-        kind: Type
+        kind: *kind
         body: Message
+        cc: CC
+        bcc: BCC
+        attachments: Attachement
       category:
         name: Nom
         icon: Icône

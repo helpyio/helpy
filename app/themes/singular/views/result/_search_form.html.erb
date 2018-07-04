@@ -1,0 +1,14 @@
+<div class="form-group has-feedback right-inner-addon">
+  <%= form_tag result_path, method: :get, id: 'search-form', remote: (params[:controller] == 'result') do %>
+    <div class="input-group">
+      <%= text_field_tag('q', nil, placeholder: t('how_can_we_help'), id: 'search-field', class: 'form-control ui-autocomplete-input autosearch', value: params[:q]) %>
+      <div class="search-result-box">
+      </div>
+      <div class="input-group-btn">
+        <button type="submit" class="btn btn-default" aria-label="Search" style="height: 60px; filter: opacity(0.8);">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </div>
+    </div>
+  <% end # form %>
+</div>

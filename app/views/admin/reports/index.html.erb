@@ -1,34 +1,34 @@
-<% title "Activity Report" %>
-
-<%= render partial: 'admin/reports/report_header', locals:
-    {
-      report_name: t('activity_report', site_name: AppSettings['settings.site_name'], default: "Activity Report"),
-      report_path: "admin_reports_path"
-    } %>
-
+<% title t('activity_report') %>
 <div class="row">
-  <div class="col-md-2">
+  <div id="admin-left-nav" class="col-md-3 hidden-xs hidden-sm">
     <%= render partial: 'admin/reports/reports_nav' %>
   </div>
-  <div class="col-md-10">
+  <div class="col-md-9 main-panel">
+    <%= render partial: 'admin/reports/report_header', locals:
+        {
+          report_name: t('activity_report', site_name: AppSettings['settings.site_name'], default: "Activity Report"),
+          report_path: "admin_reports_path"
+        } %>
+
+
     <div class="row">
       <div class="big-stats">
         <div class="col-md-6 col-xs-6 text-right">
           <h2><%= percent_resolved(@total_closed, @total_tickets) %></h2>
-          <span class="tiny-header">Percent Resolved</span>
+          <span class="tiny-header"><%= t('percent_resolved', default: "Percent Resolved")%></span>
         </div>
         <div class="col-md-6 col-xs-6 text-left">
           <h2><%= @median_close_time.nil? ? distance_of_time_in_words(0) : distance_of_time_in_words(@median_close_time) %></h2>
-            <span class="tiny-header">Average Resolution Time</span>
+            <span class="tiny-header"><%= t('average_resolution_time', default: 'Average Resolution Time') %></span>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <%= area_chart [
-          { name: 'Tickets', data: @tickets },
-          { name: 'Closed', data: @closed },
-          { name: 'Actions', data: @actions },
+          { name: t('tickets'), data: @tickets },
+          { name: t('closed'), data: @closed },
+          { name: t('helpers.actions'), data: @actions },
           ],
           legend: "bottom",
           # title: "Tickets Received",
@@ -47,27 +47,29 @@
           <col width="20%">
 
           <tr>
-            <td><span class="more-important">New Tickets</span><br/><span class="less-important">The number of new tickets your Helpy has received in this period.</span></td>
+            <td><span class="more-important"><%= t('new_tickets', default: "New Tickets") %></span><br/>
+              <span class="less-important"><%= t('new_tickets_explain', default: 'The number of new tickets your Helpy has received in this period.') %></span></td>
             <td></td>
             <td><%= content_tag :h3, @total_tickets, class: 'pull-right' %></td>
           </tr>
           <tr>
-            <td><span class="more-important">Tickets per day</span><br/><span class="less-important">The number of tickets your Helpy averages per day.</span></td>
+            <td><span class="more-important"><%= t('tickets_per_day', default: "Tickets per Day") %></span><br/>
+              <span class="less-important"><%= t('tickets_per_day_explain', default: "The number of tickets your Helpy averages per day.") %></span></td>
             <td></td>
             <td><%= content_tag :h3, per_day(@total_tickets, @number_of_days), class: 'pull-right' %></td>
           </tr>
           <tr>
-            <td><span class="more-important">Replies</span><br/><span class="less-important">The number of replies your agents have written in this period.</span></td>
+            <td><span class="more-important"><%= t('replies', default: 'Replies') %></span><br/><span class="less-important"><%= t('replies_explain', default: 'The number of replies your agents have written in this period.') %></span></td>
             <td></td>
             <td><%= content_tag :h3, @total_replies, class: 'pull-right' %></td>
           </tr>
           <tr>
-            <td><span class="more-important">Total Actions</span><br/><span class="less-important">The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.</span></td>
+            <td><span class="more-important"><%= t('ticket_actions') %></span><br/><span class="less-important"><%= t('actions_explain', default: 'The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.') %></span></td>
             <td></td>
             <td><%= content_tag :h3, @total_activities, class: 'pull-right' %></td>
           </tr>
           <tr>
-            <td><span class="more-important">Tickets Closed</span><br/><span class="less-important">The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.</span></td>
+            <td><span class="more-important"><%= t('closed') %></span><br/><span class="less-important"><%= t('closed_explain', default: 'The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.') %></span></td>
             <td></td>
             <td><%= content_tag :h3, @total_closed, class: 'pull-right' %></td>
           </tr>

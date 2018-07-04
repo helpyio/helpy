@@ -2,39 +2,35 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-
-    <script>
-    .list-inline {
-    	padding-left: 0;
-    	list-style: none;
-    }
-    </script>
-
   </head>
   <body <%= 'dir=rtl' if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(@topic.locale) %>>
-  <p>
+  <style>
+  .list-inline {
+    padding-left: 0;
+    list-style: none;
+  }
+  </style>
+  <p style="color: #666;">
+    <small>
     <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
-    =================================================================<br/>
-    <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %></br>
+    </small>
   </p>
+
   <p>
-    <%= t('hello', user_name: @topic.user.login) %>,
-  </p>
-  <p>
-    <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
-  </p>
-  <p>
-    <%= simple_format(@post.body) %>
+    <%= @post.html_formatted_body %>
     <%= simple_format(@post.user.signature) if @post.user.signature.present? %>
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @post } %>
-  <p>
-    <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
-  </p>
+
+
+  <%= render partial: 'mailer_shared/post', collection: @posts %>
   <br/>
-  <p>
+  <p style="color: #666;">
+    <small>
     <strong>Powered by Helpy</strong><br/>
-    Get a Free Helpy Support System for your Site at http://helpy.io/
+    Get a Free Helpy Support System for your Site at http://helpy.io/<br/>
+    <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
+    </small>
   </p>
   </body>
 </html>

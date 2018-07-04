@@ -39,7 +39,7 @@ tr:
 
   # Community
   forum_name: "Konu"
-  subject: "Konu Başlığı"
+  subject: &subject "Konu Başlığı"
   last_activity: "Son Aktivite"
   topic: "Tartışma"
   replies: "Yanıtlar"
@@ -137,13 +137,13 @@ tr:
 
   # Discussion controls
   change_status: Durumu Değiştir
-  status: Durum
+  status: &status Durum
   mark_closed: Çözüldü olarak İşaretle
   reopen: Tekrar aç
   mark_spam: İstanmeyen olarak İşaretle
   mark_new: Yeni olarak İşaretle
-  assign_agent: Personel Ata
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent Personel Ata
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 mesaj seçildi"
     two: "2 mesaj seçildi"
@@ -176,6 +176,7 @@ tr:
   # Priorities
   # select_priority: Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low

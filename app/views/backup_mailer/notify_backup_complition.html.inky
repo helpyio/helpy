@@ -1,0 +1,21 @@
+<container>
+  <row>
+    <columns class="callout panel">
+      <spacer size="16"></spacer>
+      <p>
+        <%= t('hello', user_name: @user.name) %>,
+      </p>
+
+      <p>
+        <%= t('backup_generated', default: 'Your export has been completed, please use this link to download CSV file') %>
+      </p>
+
+      <spacer size="16"></spacer>
+      <center>
+        <button>
+          <%= link_to t('link_to_download', default: 'Download'), admin_backups_url %></p>
+        </button>
+      </center>
+    </columns>
+  </row>
+</container>

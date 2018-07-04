@@ -1,6 +1,8 @@
-$('#tickets').html("<%= escape_javascript(render 'admin/topics/tickets') %>");
+$('#tickets').html("<%= escape_javascript(render 'admin/users/tickets') %>");
 //$('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
-$('#user-info').html("<%= j render 'admin/users/user_info_horizontal' if @user %>");
+$('.ticket-stats').html("<%= j render partial: 'admin/users/user_info', locals: { include_tickets: false } %>");
+$('#user-nav').html("<%= j render 'admin/users/user_info' if @user %>");
+// $('#user-info').html("<%= j render 'admin/users/user_info_horizontal' if @user %>");
 $('#ticket-page-title').show().html("<%= j user_header %>");
 
 // TODO: replace this hack with a better direct link or modal slide over

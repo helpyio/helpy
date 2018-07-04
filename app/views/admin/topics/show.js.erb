@@ -1,5 +1,5 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/ticket') %>");
-$('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
+$('.ticket-stats').html("<%= j render partial: 'admin/topics/tiny' %>");
 $('#ticket-page-title').html("").hide();
 $(document).prop('title', "<%= admin_title %> <%= t(:discussions, default: 'Discussions') %>: #<%= @topic.id %> <%= @topic.name.titleize %>");
 
@@ -16,6 +16,7 @@ ga('send', 'pageview');
 Helpy.ready();
 Helpy.track();
 Helpy.logHistory();
+Helpy.ticketMenu();
 
 // Escape from reply field
 newpost = document.getElementById('new_post');

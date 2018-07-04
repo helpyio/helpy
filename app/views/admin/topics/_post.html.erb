@@ -24,32 +24,32 @@
 		<%= content_tag :div, post.cc.present? ? "cc: #{post.cc}" : "", class: 'post-cc post-cc-style' %>
 		<%= content_tag :div, post.bcc.present? ? "bcc: #{post.bcc}" : "", class: 'post-bcc post-cc-style' %>
 		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
-			<%= simple_format(post.body) -%>
+			<%= post.html_formatted_body -%>
       <%= render partial: 'posts/thumbnail', locals: { :model_name => post } %>
 			<%= render partial: 'posts/attachment', locals: { :model_name => post } %>
 		</div>
 
 	</div>
-
-  <div id="change-user-modal-<%= post.id %>" class="modal fade change-user-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title"><%= t('change_owner', default: 'Change author') %></h4>
-        </div>
-
-        <div class="modal-body row">
-          <div class="col-md-12">
-            <%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true, html: { class: 'search_form' } do |f| -%>
-              <%= hidden_field_tag 'post_id', post.id %>
-              <%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off, onkeyup: "search_user(#{post.id})" -%>
-            <% end -%>
-            <div class="search-results">
-            </div>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
 </div>
+
+<div id="change-user-modal-<%= post.id %>" class="modal fade change-user-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title"><%= t('change_owner', default: 'Change author') %></h4>
+			</div>
+
+			<div class="modal-body row">
+				<div class="col-md-12">
+					<%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true, html: { class: 'search_form' } do |f| -%>
+						<%= hidden_field_tag 'post_id', post.id %>
+						<%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off, onkeyup: "search_user(#{post.id})" -%>
+					<% end -%>
+					<div class="search-results">
+					</div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

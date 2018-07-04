@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<%= render partial: 'layouts/head' %>
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css">
+		<%= theme_css %>
+		<style>
+			#upper-wrapper a {
+				color: white;
+			}
+			#body-wrapper a {
+				color: <%= AppSettings['css.main_color'] %>;
+			}
+			header {
+				background-color:  <%= AppSettings['css.accent_color'].blank? ? '#245566' : AppSettings['css.accent_color'] %>;
+			}
+			#home-search,
+			.flat-main-panel {
+				background-color:  <%= AppSettings['css.main_color'].blank? ? '#245566' : AppSettings['css.main_color'] %>;
+			}
+		</style>
+		<%= css_injector %>
+		<%= "#{AppSettings['design.header_js']}".html_safe %>
+
+	</head>
+<body class="<%#= (request.fullpath.gsub("/#{I18n.locale}/","").gsub("/","-")) %><%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
+	<script>
+	  ga('set', 'location', location.href.split('#')[0]);
+	  ga('send', 'pageview', { "title": document.title });
+	</script>
+
+	<% cache [params[:locale], current_user] do %>
+	<nav id="menu" class="hidden">
+		<ul class="nav" data-hook="header-main-nav" >
+			<% if user_signed_in? %>
+			<%= content_tag :li, link_to(avatar_image(current_user, 40) + "  #{current_user.name.titleize}", edit_user_registration_path) %>
+			<br/>
+			<%= content_tag :li, link_to(t(:your_tickets), tickets_path), data: { hook: 'tickets-nav' } if tickets? %>
+			<%= content_tag :li, link_to(t(:your_profile), edit_user_registration_path) %>
+			<%= content_tag :li, link_to('Admin', admin_root_path) if current_user.is_editor? %>
+			<%= content_tag :li, link_to(t(:logout), destroy_user_session_path) %>
+			<br/>
+			<% else %>
+			<%= content_tag :li, link_to(t(:login), new_user_session_path) %>
+			<% end %>
+
+			<%= content_tag :li, link_to(t(:knowledgebase), categories_path, class:'kblink') if knowledgebase? %>
+			<%= content_tag :li, link_to(t(:community), forums_path) if forums? %>
+			<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' } if forums? || tickets? %>
+			<%#= content_tag :li, link_to("#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'] %>
+			<%= content_tag :li, link_to(t(:locale), select_locale_path) %>
+			<li class="search-li">
+				<div class="form-group has-feedback right-inner-addon">
+				  <%= form_tag result_path, method: :get, id: 'search-form', remote: (params[:controller] == 'result') do %>
+				    <div class="input-group">
+				      <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
+				      <div class="input-group-btn">
+				        <button type="submit" class="btn btn-default search-btn" aria-label="Search">
+				          <span class="glyphicon glyphicon-search"></span>
+				        </button>
+				      </div>
+				    </div>
+				  <% end # form %>
+				</div>
+			</li>
+		</ul>
+	</nav>
+	<% end %>
+
+	<main id="panel">
+
+		<div id="upper-wrapper">
+			<header>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 text-left">
+									<%= link_to image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand', responsive: true %>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2 text-right">
+									<ul class="list-inline" data-hook="header-mini-nav">
+										<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs'  if forums? || tickets? %>
+										<% if user_signed_in? %>
+										<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
+										<% else %>
+										<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), new_user_session_path, class: 'login-link hidden-xs') %>
+										<% end %>
+										<li data-no-turbolink><a href="#right-menu" id="right-menu"><h2 class="fas fa-bars"></h2></a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<div class="jumbotron flat-main-panel">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+								<div id="home-search">
+								  <div class="text-center">
+								    <%= render 'result/search_form' if knowledgebase? %>
+								  </div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<article class="content">
+			<div id="body-wrapper">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<% unless params[:controller] == 'home' %>
+								<span>
+									<style>
+										ul.breadcrumb { background-color: transparent; }
+										#body-wrapper ul.breadcrumb li a { color: #666; }
+									</style>
+						      <%= render_breadcrumbs('') %>
+						    </span>
+						    <% if @page_title.present? %>
+						    <h3><%= @page_title %></h3>
+						    <% else %>
+						    <%= yield :page_title %>
+						    <% end %>
+							<% end %>
+							<%= content_tag :h3, AppSettings['settings.site_tagline'] if params[:controller] == 'home' %>
+
+							<%= bootstrap_flash %>
+							<%= yield %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+
+	</main>
+
+	<footer>
+		<div id="footer-wrapper">
+			<div class="container">
+				<%= render :partial => 'layouts/footer' %>
+			</div>
+		</div>
+	</footer>
+
+<script>
+$('#right-menu').sidr({
+  name: 'nav',
+  side: 'right',
+	source: '#menu',
+  onOpen: function(){
+    // Re-name font Icons to correct classnames
+    $("[class*='sidr-class-glyphicon'], [class*='sidr-class-btn']").attr('class',
+      function( i, c ) {
+        c = c.replace(/sidr-class-/g, '');
+        return c;
+      }
+    );
+  }
+});
+
+// Close menu on click
+$('ul.nav').off().on('click', function(){
+ $.sidr('close', 'nav');
+});
+</script>
+<%= "<script src='/assets/widget.v1.js'></script>".html_safe if AppSettings['widget.show_on_support_site'] == '1' %>
+<%= "#{AppSettings['design.footer_js']}".html_safe %>
+
+
+</body>
+</html>

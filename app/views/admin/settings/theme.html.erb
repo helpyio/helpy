@@ -1,10 +1,8 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h2><%= "#{t(:settings, default: "Settings")}: #{t(:theme, default: "Theme")}" %></h2>
-  </div>
+  <%= settings_header('theme') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'theme'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section theme">
       <div class="row">
         <% @themes.each do |theme| %>

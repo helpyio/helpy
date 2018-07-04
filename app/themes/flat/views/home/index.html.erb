@@ -45,7 +45,7 @@
     <div class="col-md-4 col-sm-4 main-option-container">
       <div class="jumbotron text-center main-option">
         <%= link_to(new_topic_path) do %>
-          <i class="fa fa-plus-circle main-icon"></i>
+          <i class="fas fa-plus-circle main-icon"></i>
           <%= content_tag :h3, "#{t(:new_ticket, default: 'New ticket')}" %>
           <button class="btn btn-default"><%= "#{t(:open_ticket, default: 'Open a new ticket')}" %></button>
         <% end %>
@@ -55,7 +55,7 @@
     <div class="col-md-4 col-sm-4 main-option-container">
       <div class="jumbotron text-center main-option">
         <%= link_to(tickets_path) do %>
-          <i class="fa fa-ticket main-icon"></i>
+          <i class="fas fa-ticket-alt main-icon"></i>
           <%= content_tag :h3, "#{t(:your_tickets, default: 'Your tickets')}" %>
           <button class="btn btn-default"><%= "#{t(:your_tickets, default: 'Your Tickets')}" %></button>
         <% end %>

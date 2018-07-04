@@ -72,14 +72,33 @@ class Admin::SettingsController < Admin::BaseController
     flash[:success] = t(:settings_changes_saved,
                         site_url: AppSettings['settings.site_url'],
                         default: "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}")
+
+    case params[:return_to]
+    when "design"
+      url = admin_design_settings_path
+    when "general"
+      url = admin_general_settings_path
+    when "email"
+      url = admin_email_settings_path
+    when "theme"
+      url = admin_theme_settings_path
+    when "i18n"
+      url = admin_i18n_settings_path
+    when "integration"
+      url = admin_integration_settings_path
+    when "widget"
+      url = admin_widget_settings_path
+    else
+      url = admin_general_settings_path
+    end
+
     respond_to do |format|
       format.html {
-        redirect_to admin_settings_path
+        redirect_to url
       }
       format.js {
       }
     end
   end
-
 
 end

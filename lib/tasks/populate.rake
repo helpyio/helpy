@@ -110,7 +110,7 @@ namespace :db do
   # Create 10-50 Docs per category
   Category.all.each do |category|
     number_docs.times do
-      title = Faker::Lorem.sentence
+      title = build_kb_title
       doc = category.docs.create!(
         title_tag: title,
         title: title,
@@ -271,6 +271,19 @@ namespace :db do
       "Need Help!",
       "Setting up #{q}",
       "#{q} initial questions"
+    ].sample
+  end
+
+  def build_kb_title
+    [
+      "Working with a #{Faker::Hacker.noun}",
+      "How to use a #{Faker::Hacker.noun}",
+      "#{Faker::Hacker.noun} Frequent Questions",
+      "Integrating the #{Faker::Hacker.noun}",
+      "Complete list of features",
+      "Error: #{Faker::Hacker.noun} Exception",
+      "How to manage a #{Faker::Hacker.noun}",
+      "#{Faker::Hacker.noun} Setup"
     ].sample
   end
 

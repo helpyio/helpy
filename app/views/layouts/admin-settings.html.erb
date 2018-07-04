@@ -17,43 +17,52 @@
 	</script>
 	<%= render partial: 'layouts/admin_header' %>
 
-	<div id="body-wrapper" class="container">
+	<div id="body-wrapper" class="container-fluid">
 		<div class="row white-bg">
 			<div class="col-md-12">
 				<div id="main-body" >
 					<div id="main-content">
 						<div class="settings-panel row">
-						  <div class="col-md-3 col-sm-4 col-xs-2">
+						  <div id="admin-left-nav" class="col-lg-2 col-md-3 hidden-sm hidden-xs">
+								<%= hide_responsive_nav %>
 								<% if current_user.is_agent? %>
-								<ul class="settings-menu list-unstyled" data-hook="admin_profile_menu">
+								<ul class="nav-items list-unstyled" data-hook="admin_profile_menu">
 									<%= settings_menu_item('glyphicon glyphicon-user', t('your_profile', default: "Your Profile"), admin_profile_settings_path(mode: 'settings')) %>
 									<%#= settings_menu_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), admin_notifications_path) %>
 					        <%= settings_menu_item('glyphicon glyphicon-cloud', t('api_keys', default: "API Keys"), admin_api_keys_path) %>
 						    </ul>
 								<% end %>
 								<% if current_user.is_admin? %>
-						    <ul class="settings-menu list-unstyled" data-hook="admin_settings_menu">
+								<div class="settings-nav-header"><span class="tiny-header">General Settings</span></div>
+
+								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_general_settings_menu" style="margin-top:10px;">
 						      <%= settings_menu_item('glyphicon glyphicon-cog', 'general', admin_general_settings_path) %>
-						      <%= settings_menu_item('glyphicon glyphicon-pencil', 'design', admin_design_settings_path) %>
-						      <%= settings_menu_item('fa fa-clone', 'theme', admin_theme_settings_path) %>
 						      <%= settings_menu_item('glyphicon glyphicon-globe', 'international', admin_i18n_settings_path) %>
-						      <%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget', admin_widget_settings_path) %>
-						      <%= settings_menu_item('glyphicon glyphicon-envelope', 'email', admin_email_settings_path) %>
-						      <%= settings_menu_item('fa fa-cogs', 'integrations', admin_integration_settings_path) %>
-						      <%#= settings_menu_item('glyphicon glyphicon-user', 'users', admin_users_path) %>
-									<%= settings_menu_item('fa fa-users', "customers", admin_users_path(role: 'user')) %>
-					        <%= settings_menu_item('fa fa-briefcase', "team", admin_users_path(role: 'team')) %>
-
-						      <%= settings_menu_item('glyphicon glyphicon-tags', 'groups', admin_groups_path) %>
-                  <%= settings_menu_item('glyphicon glyphicon-share-alt', 'common replies', admin_category_path(1)) %>
-									<%= settings_menu_item('fa fa-download',"export", admin_backups_path) %>
-									<%= settings_menu_item('fa fa-upload',"import", admin_imports_path) %>
-
+						      <%= settings_menu_item('fas fa-cogs', 'integrations', admin_integration_settings_path) %>
 						    </ul>
+
+								<div class="settings-nav-header"><span class="tiny-header">Ticketing Settings</span></div>
+								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_settings_menu" style="margin-top:10px;">
+									<%= settings_menu_item('glyphicon glyphicon-envelope', 'email', admin_email_settings_path) %>
+									<%= settings_menu_item('glyphicon glyphicon-tags', 'groups', admin_groups_path) %>
+                  <%= settings_menu_item('glyphicon glyphicon-share-alt', 'common replies', admin_category_path(1)) %>
+						    </ul>
+
+								<div class="settings-nav-header"><span class="tiny-header">Helpcenter Settings</span></div>
+						    <ul class="nav-items settings-menu list-unstyled" data-hook="admin_helpcenter_settings_menu" style="margin-top:10px;"``>
+									<%= settings_menu_item('glyphicon glyphicon-pencil', 'design', admin_design_settings_path) %>
+									<%= settings_menu_item('fas fa-clone', 'theme', admin_theme_settings_path) %>
+									<%= settings_menu_item('glyphicon glyphicon-modal-window', 'widget', admin_widget_settings_path) %>
+						    </ul>
+								<div class="settings-nav-header"><span class="tiny-header">Data</span></div>
+								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_data_menu" style="margin-top:10px;">
+									<%= settings_menu_item('fas fa-download',"export", admin_backups_path) %>
+									<%= settings_menu_item('fas fa-upload',"import", admin_imports_path) %>
+								</ul>
 								<% end %>
 						  </div>
 
-						  <div class="col-md-9 col-sm-8 col-xs-10">
+						  <div class="col-lg-10 col-md-9 col-sm-12 col-xs-12 main-panel">
 								<%= yield :settings %>
 						  </div>
 						</div>

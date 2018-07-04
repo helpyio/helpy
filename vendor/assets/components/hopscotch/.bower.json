@@ -1,0 +1,34 @@
+{
+  "name": "hopscotch",
+  "authors": [],
+  "description": "A framework to make it easy for developers to add product tours to their pages.",
+  "main": [
+    "./dist/js/hopscotch.js",
+    "./dist/css/hopscotch.css"
+  ],
+  "keywords": [
+    "tour",
+    "linkedin"
+  ],
+  "license": "Apache License",
+  "homepage": "https://github.com/linkedin/hopscotch",
+  "ignore": [
+    "**/.*",
+    "archives",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "0.2.7",
+  "_release": "0.2.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.7",
+    "commit": "e69f618c1a239baffa22ec685f4f6c0381b89584"
+  },
+  "_source": "https://github.com/linkedin/hopscotch.git",
+  "_target": "^0.2.7",
+  "_originalSource": "hopscotch",
+  "_direct": true
+}

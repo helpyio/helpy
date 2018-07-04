@@ -1,16 +1,10 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
-<% content_for :pipeline do %>
-<%= render partial: 'admin/shared/pipeline' %>
-<% end %>
-
-<h2 id="ticket-page-title">
-  <%= t(:results_found, count: number_to_human(@topics.total_count)) %>
-  <span class='more-important'>"<%= params[:q] %>"</span>
-</h2>
-
 <div class="row">
-  <div class="col-md-12" id="tickets">
+  <div id="admin-left-nav" class="hidden-xs col-md-3 hidden-sm ticket-stats">
+    <%= render 'admin/topics/ticket_stats' %>
+  </div>
+  <div class="col-md-9 main-panel" id="tickets">
     <%= render 'admin/topics/tickets' %>
   </div>
 </div>

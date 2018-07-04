@@ -29,6 +29,12 @@ $font-family-serif:       'Droid Sans', serif;
 
 $font-size-base:          13px;
 
+// Override button styles
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
+$btn-border-radius-base:         5px !default;
+
 // LEGACY LESS CODE FOLLOWS:
 // TODO: Replace as necessary with SCSS equivalents
 

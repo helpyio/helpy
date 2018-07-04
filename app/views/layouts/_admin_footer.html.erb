@@ -3,7 +3,8 @@
 		<div id="footer">
 			<div class="row">
 				<div class="col-md-6 col-sm-8 col-xs-12 text-left">
-					<%= image_tag "logo.png", width: 20 %> <%= link_to t(:powered_by), 'http://helpy.io/' %>
+					<%= image_tag "logo.png", width: 20 %> <%= link_to t(:powered_by), 'http://helpy.io/' %> | <%= link_to "Sponsors", "https://helpy.io/sponsors", target: 'blank' %> <br/>
+					Copyright (c) <%= Time.now.year %> Helpy.io, LLC, and Contributors.
 				</div>
 				<div class="col-md-6 col-sm-4 text-right hidden-xs">
 					<%= link_to t(:get_your_copy), "http://github.com/helpyio/helpy" %>.<br/>

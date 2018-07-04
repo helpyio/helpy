@@ -39,7 +39,7 @@ id:
 
   # Community
   forum_name: "Topik"
-  subject: "Subyek"
+  subject: &subject "Subyek"
   last_activity: "Terakhir Aktif"
   topic: "Diskusi"
   replies: "Balasan"
@@ -141,13 +141,13 @@ id:
 
   # Discussion controls
   change_status: Ubah Status
-  status: Status
+  status: &status Status
   mark_closed: Tandai Sudah Selesai
   reopen: Buka Ulang
   mark_spam: Tandai Spam
   mark_new: Tandai Baru
-  assign_agent: Tugaskan Staf
-  tag_with: Tag Tiket
+  assign_agent: &assign_agent Tugaskan Staf
+  tag_with: &tag_with Tag Tiket
   selected_messages:
     one: "1 pesan terpilih"
     two: "2 pesan terpilih"
@@ -178,8 +178,9 @@ id:
   # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: Pilih Prioritas
+  select_priority: &priority Pilih Prioritas
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: Tinggi
   normal_priority: Normal
   low_priority: Rendah

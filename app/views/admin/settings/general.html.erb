@@ -1,11 +1,16 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h2><%= "#{t(:settings, default: "Settings")}: #{t(:general, default: "General")}" %></h2>
-  </div>
+  <%= settings_header('general') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'general'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section">
+
+      <h4>Admin Branding</h4>
+      <div class="settings-section design">
+        <%= f.text_field 'branding.ticketing_color', value: AppSettings['branding.ticketing_color'], label: t('ticketing_branding', default: "Admin Branding Color"), class: 'pick-a-color' %>
+        <%= f.text_field 'branding.ticketing_bg_color', value: AppSettings['branding.ticketing_bg_color'], label: t('ticketing_bg_branding', default: "Admin Background Color"), class: 'pick-a-color' %>
+      </div>
+
       <h4 class="settings-subsection">Self Service Site</h4>
       <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: t('site_name', default: "Site Name") %>
       <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: t('site_url', default: "Site URL") %>
@@ -18,7 +23,7 @@
       <%= f.check_box 'settings.forums', { checked: forums?, label: t('enable_forums', default: "Enable Community Forums"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
       <%= f.check_box 'settings.knowledgebase', { checked: knowledgebase?, label: t('enable_knowledgebase', default: "Enable Knowledgebase"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
       <%= f.check_box 'settings.tickets', { checked: tickets?, label: t('enable_tickets', default: "Enable Private Tickets"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
-      <%= f.check_box 'settings.teams', { checked: teams?, label: t('enable_teams', default: "Enable Team Groups"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%#= f.check_box 'settings.teams', { checked: teams?, label: t('enable_teams', default: "Enable Team Groups"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
       <%= f.check_box 'settings.welcome_email', { checked: welcome_email?, label: t('enable_welcome_email', default: "Send a welcome email to new users"), label_class: 'full-width subitem', class: 'bs-toggle', data: { size: 'mini' } } %>
 
     </div>

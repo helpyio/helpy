@@ -1,0 +1,35 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+
+<% if knowledgebase? %>
+  <div class="row">
+    <% @categories.each do |category| %>
+      <%# if category.docs.all.with_translations(I18n.locale).count > 0 %>
+        <%= render partial: 'categories/category_panel', object: category %>
+      <%# end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-4 col-sm-4 main-option-container">
+      <div class="jumbotron text-center main-option">
+        <%= link_to(new_topic_path) do %>
+          <i class="fas fa-plus-circle main-icon"></i>
+          <%= content_tag :h3, "#{t(:new_ticket, default: 'New ticket')}" %>
+          <button class="btn btn-default"><%= "#{t(:open_ticket, default: 'Open a new ticket')}" %></button>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-4 col-sm-4 main-option-container">
+      <div class="jumbotron text-center main-option">
+        <%= link_to(tickets_path) do %>
+          <i class="fas fa-ticket-alt main-icon"></i>
+          <%= content_tag :h3, "#{t(:your_tickets, default: 'Your tickets')}" %>
+          <button class="btn btn-default"><%= "#{t(:your_tickets, default: 'Your Tickets')}" %></button>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1"></div>
+  </div>
+<% end %>

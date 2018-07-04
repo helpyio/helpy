@@ -6,8 +6,8 @@
     <col width="20%" class="hidden-xs">
 
     <tr>
-      <th><%= t(:type, default: "Type") %></th>
-      <th><%= t(:created_at, default: "Created_at") %></th>
+      <th><%= t(:file_type, default: "Type") %></th>
+      <th><%= t(:file_date_created, default: "Created at") %></th>
       <th><%= t(:file_name, default: "File Name") %></th>
       <th class="text-right hidden-xs"><%= t(:download, default: "Download") %></th>
       <th class="text-right hidden-xs"><%= t(:delete, default: "Delete") %></th>
@@ -20,4 +20,3 @@
     <%= paginate @files, remote: true %>
   </div>
 </div>
-

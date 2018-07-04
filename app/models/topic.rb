@@ -42,7 +42,7 @@ class Topic < ActiveRecord::Base
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
-  paginates_per 25
+  paginates_per 15
 
   include PgSearch
   multisearchable :against => [:id, :name, :post_cache],
@@ -67,7 +67,7 @@ class Topic < ActiveRecord::Base
   scope :chronologic, -> { order('updated_at DESC') }
   scope :reverse, -> { order('updated_at ASC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where(current_status: %w(open pending)) }
+  scope :active, -> { where(current_status: %w(new open pending)) }
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
   scope :for_doc, -> { where("doc_id= ?", doc)}
@@ -266,6 +266,10 @@ class Topic < ActiveRecord::Base
     else
       system_from_email
     end
+  end
+
+  def posts_in_last_minute
+    self.posts.where(created_at: Time.now-1.minutes..Time.now, kind: 'reply').count
   end
 
   private

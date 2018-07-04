@@ -1,13 +1,13 @@
-<%= render 'layouts/internal_knowledgebase_page_title' %>
 <div class="row content-row">
+  <%= render 'layouts/internal_knowledgebase_page_title' %>
 
-  <div class="col-md-12">
+  <div class="col-md-10 col-md-offset-1">
     <div class="row">
       <table id="forums" class='table-hover'>
         <col>
         <tbody id="categories">
           <% @docs.each do |doc| %>
-              <tr class="item">
+              <tr class="item main-panel" style="margin-bottom: 5px;">
                 <td>
                   <span class="more-important">
                     <%= link_to doc.title, admin_internal_category_internal_doc_path(doc.category, doc) %>

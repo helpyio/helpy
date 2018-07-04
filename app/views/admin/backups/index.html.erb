@@ -1,32 +1,40 @@
 <% content_for :settings do %>
-  <h3>
-    <%= t('exports', default: 'Exports') %>
-  </h3>
+  <div class="admin-header">
+    <h3 id="setting-header">
+      <%= show_responsive_nav %>
+      <%= t('exports', default: 'Exports') %>
+    </h3>
+  </div>
+  <div class="settings-section">
 
-  <div class="settings-panel row add-form">
-    <div class="col-md-9 col-sm-8 col-xs-10">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="add-form">
+
       <%= content_tag :span, t('what_to_export', default: 'Select what you would like to export'),
           class: 'more-important' %>
       </br>
       <%= bootstrap_form_tag url: admin_export_backup_path, method: 'get', format: :csv do |f| %>
         <div class="settings-section widget checkbox-section">
-          <%= f.check_box 'User', {label: t('select_for_export', model: 'users') } %>
-          <%= f.check_box 'Topic', {label: t('select_for_export', model: 'tickets') } %>
-          <%= f.check_box 'Post', {label: t('select_for_export', model: 'posts') } %>
-          <%= f.check_box 'Doc', {label: t('select_for_export', model: 'docs') } %>
-          <%= f.check_box 'Category', {label: t('select_for_export', model: 'categories') } %>
-          <%= f.check_box 'Forum', {label: t('select_for_export', model: 'forums') } %>
+          <%= f.check_box 'User', {label: t('select_for_export', model: t('users')) } %>
+          <%= f.check_box 'Topic', {label: t('select_for_export', model: t('tickets')) } %>
+          <%= f.check_box 'Post', {label: t('select_for_export', model: t('file_replies')) } %>
+          <%= f.check_box 'Doc', {label: t('select_for_export', model: t('file_docs')) } %>
+          <%= f.check_box 'Category', {label: t('select_for_export', model: t('file_categories')) } %>
+          <%= f.check_box 'Forum', {label: t('select_for_export', model: t('file_forums')) } %>
         </div>
         <div class="submit-section">
           <%= f.submit t('export_csv', default: "Export CSV"), class: 'btn btn-default' %>
         </div>
       <% end %>
+      </div>
     </div>
   </div>
 
-  <div class="row main-panel">
+  <div class="row">
     <div class="col-md-12" id="backups">
       <%= render 'admin/backups/backedup_files' %>
     </div>
   </div>
+</div>
 <% end %>

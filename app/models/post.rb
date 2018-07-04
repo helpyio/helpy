@@ -19,12 +19,15 @@
 
 class Post < ActiveRecord::Base
 
-  attr_accessor :reply_id
-
   # This is used to skip the callbacks when importing (ie. we don't want to send
   # emails to everyone while importing)
   attr_accessor :importing
   attr_accessor :resolved
+  attr_accessor :reply_id
+
+  # Whitelist tags and attributes that are allowed in posts
+  ALLOWED_TAGS = %w(strong em a p br b img ul li)
+  ALLOWED_ATTRIBUTES = %w(href src class style width height target)
 
   belongs_to :topic, counter_cache: true, touch: true
   belongs_to :user, touch: true
@@ -33,8 +36,8 @@ class Post < ActiveRecord::Base
   has_many :flags
   mount_uploaders :attachments, AttachmentUploader
 
-  validates :body, length: { maximum: 10_000 }
-  before_validation :truncate_body
+  # validates :body, length: { maximum: 100_000 }
+  # before_validation :truncate_body
   validates :kind, :user, :user_id, :body, presence: true
 
 
@@ -50,6 +53,17 @@ class Post < ActiveRecord::Base
   scope :reverse, -> { order('created_at DESC') }
   scope :by_votes, -> { order('points DESC')}
   scope :notes, -> { where(kind: 'note') }
+
+  def self.new_with_cc(topic)
+    if topic.posts.count == 0
+      topic.posts.new
+    else
+      topic.posts.new(
+        cc: topic.posts.chronologic.last.cc,
+        bcc: topic.posts.chronologic.last.bcc
+      )
+    end
+  end
 
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache
@@ -127,6 +141,14 @@ class Post < ActiveRecord::Base
 
   def first?
     self.topic.posts.first == self
+  end
+
+  def html_formatted_body
+    "#{ActionController::Base.helpers.sanitize(body.gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)}".html_safe
+  end
+
+  def text_formatted_body
+    "#{ActionView::Base.full_sanitizer.sanitize(body)}".html_safe
   end
 
   private

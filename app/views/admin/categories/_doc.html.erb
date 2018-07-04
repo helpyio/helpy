@@ -20,7 +20,7 @@
   </div>
 
   <div class="text-right col-md-1 col-sm-1 col-xs-2">
-    <span id="row-<%= doc.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle glyphicon glyphicon-align-justify'></span>
+    <span id="row-<%= doc.id %>" data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle fas fa-ellipsis-v'></span>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
       <li><%= link_to t(:edit, default: 'Edit'), edit_admin_category_doc_path(doc.category.id, doc.id, lang: I18n.locale) %></li>
       <li><%= link_to t(:delete, default: 'Delete'), admin_doc_path(doc.id), data: {confirm: t(:delete_confirm, default: 'Please confirm you really want to DELETE this')}, method: :delete, remote: true, class: 'less-important' %></li>

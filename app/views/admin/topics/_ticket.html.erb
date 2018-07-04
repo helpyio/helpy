@@ -1,35 +1,11 @@
 <div id="ticket-info" class="no-side-pad row">
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="left-col-user-info">
-    <%= render partial: 'admin/users/user_info' %>
+  <div class="col-md-3 col-lg-3 hidden-xs hidden-sm" id="left-col-user-info">
+    <%= render partial: 'admin/users/user_info_with_tickets' %>
   </div>
 
-  <div id="ticket-controls" class="col-md-9 col-xs-12 col-lg-8">
+  <div id="ticket-controls" class="col-md-9 col-xs-12 col-lg-9">
     <div class="topic-tags hidden-lg hidden-md hidden-sm"><%= formatted_tags(@topic) %></div>
 
-    <h2 class="topic-number-name">
-
-      <%= render 'admin/topics/ticket_nav_dropdown' %>
-      <span class="topic-number">#<%= @topic.id %></span>-
-      <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
-
-      <div class="pull-right">
-        <span class="btn-group left-col-dropdown">
-          <%= link_to content_tag(:span, '', class: 'fa fa-ellipsis-v ticket-ellipsis'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }%>
-          <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{@topic.posts.first.id}" } if @topic.posts.present? %></li>
-            <li><%= link_to t('tag_with', default: 'Tag ticket'), '#', class: 'add-tag-link' %></li>
-          </ul>
-        </span>
-      </div>
-    </h2>
-
-    <div class="topic-tag-form" style="display: none;">
-      <%= simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id), remote: true, html: { class: 'form-inline' } do |f| %>
-        <%= f.input_field :tag_list, value: @topic.tag_list.to_s, class: 'selectize form-control', style: 'width: 80%;'%>
-        <%= f.submit "Save", class: 'form-control' %>
-      <% end %>
-    </div>
     <div id="topic-options">
       <%= render :partial => 'admin/topics/topic_options' %>
 
@@ -39,6 +15,21 @@
         </span>
       </div>
     </div>
+    <h3 class="topic-number-name">
+
+      <%= show_responsive_nav %>
+      <span class="topic-number">#<%= @topic.id %></span>-
+      <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
+      <%= topic_added_from %>
+
+    </h3>
+    <div class="topic-tag-form" style="display: none;">
+      <%= simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id, status: params[:status]), remote: true, html: { class: 'form-inline' } do |f| %>
+        <%= f.input_field :tag_list, value: @topic.tag_list.to_s, class: 'selectize form-control', style: 'width: 80%;'%>
+        <%= f.submit "Save", class: 'form-control' %>
+      <% end %>
+    </div>
+
     <% if @posts  %>
       <script>
         Helpy.messages = '<%= j t(:collapsed_messages, count: (@posts.count-@topic.posts.notes.count)-2) %>';
@@ -51,39 +42,115 @@
     <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.count > 0 %>
 
     <div class="add-form">
-      <h4><%= t(:reply_to_this_topic, default: 'Reply to this Topic') %>:</h4>
-
-      <%= bootstrap_form_for @topic.posts.new, url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
+      <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>
+      <%= simple_form_for Post.new_with_cc(@topic), url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
 
-        <%= f.form_group :kind  do %>
-          <%= f.radio_button :kind, 'reply', label: t(:reply, default: "Reply"), checked: true, inline: true %>
-          <%= f.radio_button :kind, 'note', label: t(:internal_note, default: "Internal Note"), inline: true %>
-          <%= content_tag(:span, '', class: 'fa fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
+        <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
+        <div class="form-group">
+        <%= collection_radio_buttons :post, :kind, [
+            ['reply', t(:reply_option, default: "Reply")],
+            ['note', t(:internal_note, default: "Internal Note")] ], :first, :last, checked: 'reply' do |button| %>
+            <%= button.label(class: 'radio-inline') { button.radio_button + button.text } %>
         <% end %>
-        <span class="cc-bcc hidden">
-        <%= f.text_field :cc, hide_label: true, placeholder: 'cc:' %>
-        <%= f.text_field :bcc, hide_label: true, placeholder: 'bcc:' %>
+        </div>
+
+        <span class="cc-bcc <%= 'hidden' if @topic.posts.last.cc.blank? && @topic.posts.last.bcc.blank? %>">
+        <%= f.input :cc, label: false, placeholder: 'cc:' %>
+        <%= f.input :bcc, label: false, placeholder: 'bcc:' %>
         </span>
 
         <%= hidden_field_tag :client_id %>
         <%= hidden_field_tag :from, 'admin' %>
-        <%= f.text_area :body, :rows => 8, :cols => 160, hide_label: true, placeholder: t(:type_reply, default: "Type your reply, or select from a common message below"), class: 'disable-empty' %>
+        <%= hidden_field_tag :status, params[:status] %>
+        <%= f.input :body, as: :summernote, label: false, class: 'disable-empty' %>
 
         <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
         <%= f.select_tag 'post[reply_id]', grouped_options_for_select(i18n_reply_grouped_options, nil, prompt: ''), class: 'form-control', id: 'post_reply_id' %>
         <br/>
-        <%= f.attachinary_file_field :screenshots if cloudinary_enabled? %>
-        <%= f.file_field :attachments, multiple: true unless cloudinary_enabled? %>
-        <%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: true -%>
-        <%= f.check_box :resolved, label: t(:mark_as_resolved, default: "Mark as resolved"), inline: true unless @topic.current_status == 'closed' %>
+
+        <div class="form-group">
+          <%= f.attachinary_file_field :screenshots if cloudinary_enabled? %>
+          <%= f.file_field :attachments, multiple: true unless cloudinary_enabled? %>
+        </div>
+
+        <%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: false -%>
+        <label class="checkbox-inline" for "post_resolved">
+          <%= f.check_box :resolved, inline: true unless @topic.current_status == 'closed' %>
+          <%= t(:mark_as_resolved, default: "Mark as resolved") %>
+        </label>
       <% end -%>
 
     </div>
   </div>
 
-
 </div>
+<%= summernote_lang_js %>
+<script>
+$('[data-provider="summernote"]').each(function(){
+  $(this).summernote({
+    lang: '<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>',
+    height: 150,
+    prettifyHtml: true,
+    toolbar: [
+      ['style', ['bold', 'italic', 'underline', 'clear']]
+    ],
+    placeholder: "<%= t(:type_reply, default: 'Type your reply, or select from a common message below') %>",
+    codemirror: {
+      theme: 'monokai',
+      mode: "htmlmixed",
+      tabsize: 2,
+      smartIndent: true,
+      lineNumbers: true,
+      lineWrapping: true,
+      tabMode: 'indent'
+    },
+    hint: [{
+      mentions: <%= User.respond_to?(:mentionable) ? raw(User.mentionable) : '[]' %>,
+      match: /\B@(\w*)$/,
+      search: function (keyword, callback) {
+        callback($.grep(this.mentions, function (item) {
+          return item.name.indexOf(keyword) == 0;
+        }));
+      },
+      template: function (item) {
+          return item.name;
+      },
+      content: function (item) {
+        return '@' + item.short;
+      }
+    },
+    {
+      match: /:([\-+\w]+)$/,
+      search: function (keyword, callback) {
+        callback($.grep(emojis, function (item) {
+          return item.indexOf(keyword)  === 0;
+        }));
+      },
+      template: function (item) {
+        var content = emojiUrls[item];
+        return '<img src="' + content + '" width="20" /> :' + item + ':';
+      },
+      content: function (item) {
+        var url = emojiUrls[item];
+        if (url) {
+          return $('<img />').attr('src', url).css('width', 20)[0];
+        }
+        return '';
+      }
+    }]
+  });
+});
+$.ajax({
+  url: 'https://api.github.com/emojis',
+  async: false
+}).then(function(data) {
+  window.emojis = Object.keys(data);
+  window.emojiUrls = data;
+});
+</script>
+
+
 <script type="text/javascript">
 Helpy.showhidenotes = function(){
   $('.show-hide-notes').off().on('click', function(){
