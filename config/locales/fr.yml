@@ -167,8 +167,8 @@ fr:
     other: "%{count} messages sélectionnés"
 
   # Discussion messages
-  # new_message: "This ticket has been marked new by the support staff"
-  # spam_message: "This ticket has been marked spam by the support staff"
+  new_message: "Ce ticket a été marqué nouveau par le personnel de support"
+  spam_message: "Ce ticket a été marqué comme spam par le personnel de support"
   reopen_message: "Ce message a été réouvert par le support."
   closed_message: "Ce message a été fermé par le support."
   trash_message: "Ce ticket a été supprimé."
@@ -178,7 +178,7 @@ fr:
   converted_to_topic: "Ce ticket a été converti en discussion publique et déplacé dans %{forum_name}."
   tagged_with: "Ce ticket a été taggé avec %{tagged_with}"
   notes_hidden: "Il y a %{hidden_notes} notes internes pour ce ticket. Vous pouvez les voir en cliquant n'importe où dans cette note!"
-  # topic_added_from: "%{kind} added from %{channel}"
+  topic_added_from: "%{kind} ajouté à partir de% {channel}"
 
   # User Admin
   users: Utilisateurs
@@ -189,10 +189,10 @@ fr:
   work_phone: téléphone professionnel
   cell_phone: portable
   last_seen: "Dernière activité :"
-  # delete_user: "Delete User"
-  # scrub_user: "Anonymize User"
-  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
-  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
+  delete_user: "Supprimer l'utilisateur"
+  scrub_user: "Utilisateur anonyme"
+  anonymize_user_warning: "Êtes-vous certain de vouloir anonymiser %{user_name}? Cela anonymera en permanence les données personnelles de l'utilisateur, mais conservera tous ses tickets et messages publics."
+  delete_user_warning: "Etes-vous sûr de vouloir supprimer %{user_name}? Cela supprimera définitivement l'utilisateur et tous ses tickets, messages, réponses et sujets de forum."
 
   # Priorities
   select_priority: &priority Choisir une priorité
@@ -401,24 +401,24 @@ fr:
   button_text_color: "Couleur du texte du bouton"
 
   # Integrations
-  # incoming_webhook: Incoming Webhook
-  # incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
+  incoming_webhook: "Webhook entrant"
+  incoming_webhook_description: "Créez des tickets à partir de formulaires Web existants en les envoyant à une adresse URL JSON. Votre URL secrète est"
   enable_webhook_url: "Activer les webhooks entrants"
-  # google_analytics: Google Analytics
-  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
+  google_analytics: Google Analytics
+  google_analytics_description: Envoyer des statistiques d'utilisation de Helpdesk dans Google Analytics pour la création de rapports et la visualisation.
   enable_google_analytics: "Activer Google Analytics"
-  # google_analytics_id: Google Analytics ID
-  # recaptcha_integration: Recaptcha
-  # recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
+  google_analytics_id: Google Analytics ID
+  recaptcha_integration: Recaptcha
+  recaptcha_description: Recaptcha aide à protéger votre service d'assistance en libre-service contre le spam.
   enable_recaptcha: "Activer Recaptcha"
   recaptcha_site_key: "Clé du site"
   recaptcha_api_key: "Clé secrète"
-  # cloudinary_integration: Cloudinary
-  # cloudinary_description: Cloudinary offers image hosting and transformation services.
+  cloudinary_integration: Cloudinary
+  cloudinary_description: Cloudinary offre des services d'hébergement et de transformation d'images.
   enable_cloudinary: "Activer Cloudinary"
-  # cloudinary_cloud_name: Cloudinary Cloud Name
-  # cloudinary_api_key: Cloudinary API Key
-  # cloudinary_api_secret: Cloudinary API Secret
+  cloud_cloud_name: Nom du cloud
+  cloudinary_api_key: Clé de l'API Cloudinary
+  cloudinary_api_secret: Secret de l'API Cloudinary
 
   # Email
   mail_service: "Fournisseur de service pour les emails entrants"
