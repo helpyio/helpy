@@ -48,4 +48,12 @@ module Admin::UsersHelper
     ]
   end
 
+  def role_label(param)
+    if param == 'team'
+      t(((params[:role])).to_sym, default: params[:role].titleize).html_safe
+    else
+      t(((params[:role]) + '_role').to_sym, default: params[:role].titleize).html_safe
+    end
+  end
+
 end
