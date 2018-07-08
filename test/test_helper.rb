@@ -2,6 +2,9 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
+require "minitest/reporters"
+Minitest::Reporters.use!
+
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
 ENV['RAILS_ENV'] ||= 'test'

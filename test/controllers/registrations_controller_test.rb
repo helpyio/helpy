@@ -17,7 +17,7 @@ class RegistrationsControllerTest < ActionController::TestCase
   test "a logged in user should be able to update their user profile" do
     @user = users(:user)
     sign_in @user
-    assert_difference "User.find(2).name.length", -3 do
+    assert_difference "User.find(9).name.length", -3 do
       patch :update, params: { id: @user.id, user: {name: "something", current_password: "12345678"}, locale: :en }
       assert User.find(9).name == "something", "name does not update"
     end
