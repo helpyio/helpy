@@ -165,6 +165,8 @@ en:
     one: "1 selected message"
     two: "2 selected messages"
     other: "%{count} selected messages"
+  mark_as: "Mark"
+  move_to: "Move"
 
   # Discussion messages
   new_message: "This ticket has been marked new by the support staff"
@@ -346,6 +348,7 @@ en:
   # settings
   agent_settings: "Agent Settings"
   notifications: "Notifications"
+  notifications_description:
   settings: "Settings"
   general: "General"
   general_description: "Manage general system settings like your Helpy name, what company to link back to."
@@ -393,6 +396,7 @@ en:
   # Locales
   supported_locales: Supported Locales
   default_locale: Default Locale
+  select_default_locale: "Select Default Locale..."
 
   # Widget
   show_widget: Show widget on support site
