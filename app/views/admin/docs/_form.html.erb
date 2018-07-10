@@ -66,18 +66,16 @@
   <% end %>
   <hr/>
   <h4 class="form-subhead"><%= t('additional_settings', default: 'Additional Settings') %>:</h4>
-  <% if @doc.category_id != 1 %>
-    <div class= "form_group no-translate">
-      <label class="control-label" for="tag_list"><%= t('tags', default: 'Tags') %>: </label>
-      <%= f.text_field :tag_list, value: @doc.tag_list.to_s, class: 'selectize form-control' %>
-    </div>
+  <div class= "form_group no-translate">
+    <label class="control-label" for="tag_list"><%= t('tags', default: 'Tags') %>: </label>
+    <%= f.text_field :tag_list, value: @doc.tag_list.to_s, class: 'selectize form-control' %>
+  </div>
 
-    <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale), value: @doc.read_translated_attribute(:meta_description)  %>
-    <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale), value: @doc.read_translated_attribute(:title_tag)  %>
-    <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale), value: @doc.read_translated_attribute(:keywords)  %>
-    <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %>
-    <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{I18n.locale}"  %>
-  <% end %>
+  <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: I18n.locale), value: @doc.read_translated_attribute(:meta_description)  %>
+  <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: I18n.locale), value: @doc.read_translated_attribute(:title_tag)  %>
+  <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: I18n.locale), value: @doc.read_translated_attribute(:keywords)  %>
+  <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: I18n.locale, default: "Feature on front page?")) if params[:lang] == "#{I18n.locale}"  %>
+  <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: I18n.locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{I18n.locale}"  %>
 
   <%#= f.text_field :rank %>
   <hr/>
