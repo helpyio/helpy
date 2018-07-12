@@ -37,7 +37,6 @@ module API
           else
             topics = Forum.find(1).topics.order(:current_status)
           end
-          byebug
           present paginate(topics), with: Entity::Topic
         end
 
