@@ -61,6 +61,7 @@ fr:
   # Knowledgebase
   written_by: "Écrit par"
   last_edited: "Dernière mise à jour"
+  tagged: "Tags"
   asked_before: "Est-ce que votre question a déjà été posée ? Nous pensons que celles-ci peuvent être similaires"
 
   # Tickets
