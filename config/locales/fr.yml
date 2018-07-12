@@ -16,7 +16,7 @@ fr:
   login: "Connexion"
   logout: "Déconnexion"
   register: "S'inscrire"
-  back_to: "Retour à"
+  back_to: "Retourner sur"
   welcome_back: "Bienvenue à nouveau %{username}"
   your_profile: "Votre profil"
   your_tickets: "Vos tickets"
@@ -59,7 +59,7 @@ fr:
       other: "%{count} messages cachés"
 
   # Knowledgebase
-  written_by: "écrit par"
+  written_by: "Écrit par"
   last_edited: "Dernière mise à jour"
   asked_before: "Est-ce que votre question a déjà été posée ? Nous pensons que celles-ci peuvent être similaires"
 
