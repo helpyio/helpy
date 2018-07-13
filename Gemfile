@@ -204,3 +204,6 @@ group :production do
 end
 
 ruby '>= 2.2', '< 3.0'
+
+# for the Android APP
+gem 'rqrcode'
