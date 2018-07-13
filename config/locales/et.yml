@@ -109,11 +109,21 @@ et:
   sign_up: Registreeri
 
   # Admin menu
+  # inbox: Inbox
   discussions: Arutelud
   content: Sisu
   communities: Kommuunid
   app_store: Rakenduste pood
   search: Otsing
+  # internal_content: Internal Content
+  # new_ticket: New Ticket
+  # reports: Reports
+  # helpcenter: "Helpcenter"
+  # get_help: "Help"
+  # report_bug: "Report Bug"
+  # suggest_feature: "Suggest Feature"
+  # shortcuts: "Keyboard Shortcuts"
+  # sponsors: "Sponsors"
 
   # Admin main/statuses
   support_pipeline: Kasutajatoe töövoog
