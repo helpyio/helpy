@@ -126,6 +126,12 @@ fi:
   internal_content: Yrityksen sisäinen sisältö
   new_ticket: Uusi palvelupyyntö
   reports: Raportit
+  # helpcenter: "Helpcenter"
+  # get_help: "Help"
+  # report_bug: "Report Bug"
+  # suggest_feature: "Suggest Feature"
+  # shortcuts: "Keyboard Shortcuts"
+  # sponsors: "Sponsors"
 
   # Admin main/statuses
   support_pipeline: Tukikeskus
