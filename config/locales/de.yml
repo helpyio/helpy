@@ -64,7 +64,7 @@ de:
   asked_before: "Wurde die Frage bereits beantwortet? Wir denken, dass diese ähnlich sein könnte."
 
   # Tickets
-  tickets: "Tickets"
+  tickets: &tickets "Tickets"
   no_tickets: "Sie haben noch keine Tickets erstellt"
   ticket_number: "Ticket Nummer"
   assigned_to_label: "Zugewiesen an"
@@ -134,7 +134,7 @@ de:
   open: Offen
   mine: Meine
   pending: In Bearbeitung
-  closed: Abgeschlossen
+  closed: &closed Abgeschlossen
   spam: Spam
   trash: Papierkorb
   discussion_managment: Diskussions Verwaltung
@@ -168,20 +168,20 @@ de:
 
   # Discussion messages
   new_message: "Dieses Ticket wurde vom Supportpersonal als neu markiert"
-  spam_message: "Dieses Ticket wurde vom Supportpersonal als Spam markiert."
+  spam_message: "Dieses Ticket wurde vom Supportpersonal als Spam markiert."
   reopen_message: "Dieses Ticket wurde erneut durch einen Support-Mitarbeiter geöffnet."
   closed_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
   trash_message: "Dieses Ticket wurde gelöscht."
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
   assigned_group: "Dieses Ticket wurde %{assigned_group} zugewiesen."
-  converted_to_ticket: "Diese Diskussion wurde in ein privates Ticket umgewandelt."
-  converted_to_topic: "Dieses Ticket wurde in eine offene Diskussion umgewandelt und nach %{forum_name} verschoben."
-  tagged_with: "Dieses Ticket wurde mit %{tagged_with} getaggt"
-  notes_hidden: "Es gibt %{hidden_notes} interne Notizen für dieses Ticket. Sie können sie anzeigen, indem Sie irgendwo in diese Notiz klicken!"
-  topic_added_from: "%{kind} hinzugefügt von %{channel}"
+  converted_to_ticket: "Diese Diskussion wurde in ein privates Ticket umgewandelt."
+  converted_to_topic: "Dieses Ticket wurde in eine offene Diskussion umgewandelt und nach %{forum_name} verschoben."
+  tagged_with: "Dieses Ticket wurde mit %{tagged_with} getaggt"
+  notes_hidden: "Es gibt %{hidden_notes} interne Notizen für dieses Ticket. Sie können sie anzeigen, indem Sie irgendwo in diese Notiz klicken!"
+  topic_added_from: "%{kind} hinzugefügt von %{channel}"
 
   # User Admin
-  users: Benutzer
+  users: &users Benutzer
   account: Benutzerkonto
   contact_info: Kontakt
   social_info: Soziales
@@ -225,35 +225,35 @@ de:
 
   # Keyboard Shortcuts
   shortcut_then: "dann"
-  listing_views: "Sichten auflisten"
-  keyboard_shortcuts: "Tastaturkürzel"
-  show_new_tickets: "Neue Tickets anzeigen"
-  show_all_tickets: "Alle Tickets anzeigen"
-  show_open_tickets: "Zeige offene Tickets"
-  show_tickets_assigned_to_you: "Tickets anzeigen, die Ihnen zugewiesen sind"
-  show_pending_tickets_assigned_to_you: "Ausstehende ausstehende Tickets anzeigen"
-  show_closed_tickets: "Geschlossene Tickets anzeigen"
-  search_for_tickets: "Nach Tickets suchen"
-  viewing_tickets: "Tickets anzeigen"
-  select_previous_ticket: "Vorheriges Ticket auswählen"
-  select_next_ticket: "Nächstes Ticket auswählen"
-  view_selected_ticket: "Ausgewähltes Ticket ansehen"
-  jump_to_a_specific_ticket_number: "Springe zu einer bestimmten Ticketnummer"
-  ticket_actions: "Ticketaktionen"
-  assign_the_ticket: "Ticket zuweisen"
-  move_the_ticket: "Ticket verschieben"
-  expand_the_ticket_thread: "Expand ticket thread"
-  reply_to_the_ticket: "Antwort auf das Ticket"
-  add_an_internal_note: "Eine interne Notiz hinzufügen"
-  change_ticket_status: "Ticketstatus ändern"
-  associate_with_a_group: "Assoziiere mit einer Gruppe"
-  ticket_status: "Ticketstatus"
-  mark_resolved: "Als gelöst markieren"
-  reopen_ticket: "Ticket erneut öffnen"
-  set_to_new: "Als neu markieren"
-  mark_as_spam: "Als Spam markieren"
-  move_to_trash: "In den Papierkorb verschieben"
-  Ticketnummer: "Ticketnummer"
+  listing_views: "Sichten auflisten"
+  keyboard_shortcuts: "Tastaturkürzel"
+  show_new_tickets: "Neue Tickets anzeigen"
+  show_all_tickets: "Alle Tickets anzeigen"
+  show_open_tickets: "Zeige offene Tickets"
+  show_tickets_assigned_to_you: "Tickets anzeigen, die Ihnen zugewiesen sind"
+  show_pending_tickets_assigned_to_you: "Ausstehende ausstehende Tickets anzeigen"
+  show_closed_tickets: "Geschlossene Tickets anzeigen"
+  search_for_tickets: "Nach Tickets suchen"
+  viewing_tickets: "Tickets anzeigen"
+  select_previous_ticket: "Vorheriges Ticket auswählen"
+  select_next_ticket: "Nächstes Ticket auswählen"
+  view_selected_ticket: "Ausgewähltes Ticket ansehen"
+  jump_to_a_specific_ticket_number: "Springe zu einer bestimmten Ticketnummer"
+  ticket_actions: "Ticketaktionen"
+  assign_the_ticket: "Ticket zuweisen"
+  move_the_ticket: "Ticket verschieben"
+  expand_the_ticket_thread: "Expand ticket thread"
+  reply_to_the_ticket: "Antwort auf das Ticket"
+  add_an_internal_note: "Eine interne Notiz hinzufügen"
+  change_ticket_status: "Ticketstatus ändern"
+  associate_with_a_group: "Assoziiere mit einer Gruppe"
+  ticket_status: "Ticketstatus"
+  mark_resolved: "Als gelöst markieren"
+  reopen_ticket: "Ticket erneut öffnen"
+  set_to_new: "Als neu markieren"
+  mark_as_spam: "Als Spam markieren"
+  move_to_trash: "In den Papierkorb verschieben"
+  Ticketnummer: "Ticketnummer"
 
   # User search results
   users_found:
@@ -471,49 +471,49 @@ de:
 
   # Reports
   ticketing_reports: Ticketing-Berichte
-  group_report: "Gruppenbericht"
-  team_reports: "Teamberichte"
-  percent_resolved: Prozent aufgelöst
-  average_resolution_time: Durchschnittliche Auflösungszeit
-  new_tickets: Neue Tickets
-  new_tickets_explain: Die Anzahl der neuen Tickets, die Ihr Helpy in diesem Zeitraum erhalten hat.
-  tickets_per_day: Tickets pro Tag
-  tickets_per_day_explain: Die Anzahl der Tickets, die Ihr Helpy durchschnittlich pro Tag berechnet.
-  replies_explain: Die Anzahl der Antworten, die Ihre Agenten in diesem Zeitraum geschrieben haben.
-  actions_explain: Die Gesamtzahl der Aktionen (Antworten oder interne Notizen) in diesem Zeitraum. Ein guter Hinweis darauf, wie beschäftigt dein Helpy insgesamt ist.
-  closed_explain: Die Anzahl der während dieses Zeitraums geschlossenen Tickets. Sollte in der Nähe der Anzahl der neuen Tickets für frühere Perioden sein.
+  group_report: "Gruppenbericht"
+  team_reports: "Teamberichte"
+  percent_resolved: Prozent aufgelöst
+  average_resolution_time: Durchschnittliche Auflösungszeit
+  new_tickets: Neue Tickets
+  new_tickets_explain: Die Anzahl der neuen Tickets, die Ihr Helpy in diesem Zeitraum erhalten hat.
+  tickets_per_day: Tickets pro Tag
+  tickets_per_day_explain: Die Anzahl der Tickets, die Ihr Helpy durchschnittlich pro Tag berechnet.
+  replies_explain: Die Anzahl der Antworten, die Ihre Agenten in diesem Zeitraum geschrieben haben.
+  actions_explain: Die Gesamtzahl der Aktionen (Antworten oder interne Notizen) in diesem Zeitraum. Ein guter Hinweis darauf, wie beschäftigt dein Helpy insgesamt ist.
+  closed_explain: Die Anzahl der während dieses Zeitraums geschlossenen Tickets. Sollte in der Nähe der Anzahl der neuen Tickets für frühere Perioden sein.
 
   # IMPORT/EXPORT
   file_type: Geben Sie ein
-  file_users: Benutzer
-  file_tickets: Tickets
-  file_replies: Antworten
-  file_docs: Dokumente
-  file_categories: Kategorien
-  file_forums: Foren
-  import: 'CSV importieren'
-  new_import: 'Neuer Import'
-  export: 'CSV exportieren'
-  what_to_export: 'Wählen Sie, was Sie exportieren möchten'
-  what_to_import: 'Wählen Sie, was Sie importieren möchten'
-  imports: "Einfuhren"
-  exports: 'Exporte'
-  past_imports: 'Vorherige Importe'
-  run_time: 'Laufzeit'
-  clear_all: 'Alles entfernen'
-  error_details: 'Fehlerdetails'
-  row_number: 'Zeilennummer'
-  error_message: 'Fehlermeldung'
-  object: 'Objekt'
-  import_details: '#%{id} Importdetails'
-  select_for_export: '%{model} in .csv exportieren'
-  file_date_created: Erstellungsdatum
-  import_total_submitted: Insgesamt übermittelte Datensätze
-  import_total_created: Gesamtzahl der erstellten Datensätze
-  file_name: Dateiname
-  file_download: Herunterladen
-  file_delete: Löschen
-  file_delete_confirm: "Sind Sie sicher, dass Sie diese CSV löschen möchten?"
+  file_users: Benutzer
+  file_tickets: Tickets
+  file_replies: Antworten
+  file_docs: Dokumente
+  file_categories: Kategorien
+  file_forums: Foren
+  import: 'CSV importieren'
+  new_import: 'Neuer Import'
+  export: 'CSV exportieren'
+  what_to_export: 'Wählen Sie, was Sie exportieren möchten'
+  what_to_import: 'Wählen Sie, was Sie importieren möchten'
+  imports: "Einfuhren"
+  exports: 'Exporte'
+  past_imports: 'Vorherige Importe'
+  run_time: 'Laufzeit'
+  clear_all: 'Alles entfernen'
+  error_details: 'Fehlerdetails'
+  row_number: 'Zeilennummer'
+  error_message: 'Fehlermeldung'
+  object: 'Objekt'
+  import_details: '#%{id} Importdetails'
+  select_for_export: '%{model} in .csv exportieren'
+  file_date_created: Erstellungsdatum
+  import_total_submitted: Insgesamt übermittelte Datensätze
+  import_total_created: Gesamtzahl der erstellten Datensätze
+  file_name: Dateiname
+  file_download: Herunterladen
+  file_delete: Löschen
+  file_delete_confirm: "Sind Sie sicher, dass Sie diese CSV löschen möchten?"
 
   kind_type: &kind Art
 
@@ -534,7 +534,7 @@ de:
         time_zone:
       topic:
         kind: *kind
-        name: Betreff
+        name: *subject
         channel: Kundensupport-Kanal
         team_list: Team
         priority: *priority
