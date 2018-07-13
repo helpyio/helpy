@@ -50,7 +50,7 @@ module API
               current_status: 'closed'
             ).tagged_with(current_user.team_list).order(:current_status)
           else
-            topics = Forum.find(1).topics.where.not(current_status: 'Closed').order(:current_status)
+            topics = Forum.find(1).topics.where.not(current_status: 'closed').order(:current_status)
           end
           present paginate(topics), with: Entity::Topic
         end
