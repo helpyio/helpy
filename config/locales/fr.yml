@@ -175,7 +175,7 @@ fr:
 
   # Discussion messages
   new_message: "Ce ticket a été marqué nouveau par le personnel de support"
-  spam_message: "Ce ticket a été marqué comme spam par le personnel de support"
+  spam_message: "Ce ticket a été marqué comme spam par le personnel de support"
   reopen_message: "Ce message a été réouvert par le support."
   closed_message: "Ce message a été fermé par le support."
   trash_message: "Ce ticket a été supprimé."
@@ -197,9 +197,9 @@ fr:
   cell_phone: portable
   last_seen: "Dernière activité :"
   delete_user: "Supprimer l'utilisateur"
-  scrub_user: "Utilisateur anonyme"
-  anonymize_user_warning: "Êtes-vous certain de vouloir anonymiser %{user_name}? Cela anonymera en permanence les données personnelles de l'utilisateur, mais conservera tous ses tickets et messages publics."
-  delete_user_warning: "Etes-vous sûr de vouloir supprimer %{user_name}? Cela supprimera définitivement l'utilisateur et tous ses tickets, messages, réponses et sujets de forum."
+  scrub_user: "Utilisateur anonyme"
+  anonymize_user_warning: "Êtes-vous certain de vouloir anonymiser %{user_name}? Cela anonymera en permanence les données personnelles de l'utilisateur, mais conservera tous ses tickets et messages publics."
+  delete_user_warning: "Etes-vous sûr de vouloir supprimer %{user_name}? Cela supprimera définitivement l'utilisateur et tous ses tickets, messages, réponses et sujets de forum."
 
   # Priorities
   select_priority: &priority Choisir une priorité
@@ -409,10 +409,10 @@ fr:
 
   # Integrations
   incoming_webhook: "Webhook entrant"
-  incoming_webhook_description: "Créez des tickets à partir de formulaires Web existants en les envoyant à une adresse URL JSON. Votre URL secrète est"
+  incoming_webhook_description: "Créez des tickets à partir de formulaires Web existants en les envoyant à une adresse URL JSON. Votre URL secrète est"
   enable_webhook_url: "Activer les webhooks entrants"
   google_analytics: Google Analytics
-  google_analytics_description: Envoyer des statistiques d'utilisation de Helpdesk dans Google Analytics pour la création de rapports et la visualisation.
+  google_analytics_description: Envoyer des statistiques d'utilisation de Helpdesk dans Google Analytics pour la création de rapports et la visualisation.
   enable_google_analytics: "Activer Google Analytics"
   google_analytics_id: Google Analytics ID
   recaptcha_integration: Recaptcha
@@ -424,8 +424,8 @@ fr:
   cloudinary_description: Cloudinary offre des services d'hébergement et de transformation d'images.
   enable_cloudinary: "Activer Cloudinary"
   cloud_cloud_name: Nom du cloud
-  cloudinary_api_key: Clé de l'API Cloudinary
-  cloudinary_api_secret: Secret de l'API Cloudinary
+  cloudinary_api_key: Clé de l'API Cloudinary
+  cloudinary_api_secret: Secret de l'API Cloudinary
 
   # Email
   mail_service: "Fournisseur de service pour les emails entrants"
