@@ -127,12 +127,12 @@ fr:
   internal_content: Contenu interne
   new_ticket: Nouveau ticket
   reports: Rapports
-  # helpcenter: "Helpcenter"
-  # get_help: "Help"
-  # report_bug: "Report Bug"
-  # suggest_feature: "Suggest Feature"
-  # shortcuts: "Keyboard Shortcuts"
-  # sponsors: "Sponsors"
+  helpcenter: "Centre d'aide"
+  get_help: "Help"
+  report_bug: "Signaler un bug"
+  suggest_feature: "Proposer une fonctionnalité"
+  shortcuts: "Raccourcis clavier"
+  sponsors: "Sponsors"
 
   # Admin main/statuses
   support_pipeline: Pipeline de support
