@@ -1,9 +1,38 @@
+<% qr_pixel_width = 3 %>
 <tr class="api_key_<%= api_key.id %> <%= 'less-important' if api_key.expired? %>">
   <td><%= api_key.name %></td>
-  <td><%= api_key.access_token %></td>
+  <td><%= api_key_qr_modal(api_key, @endpoint) %></td>
   <% if api_key.expired? %>
     <td class="pull-right"><%= t("expired", default: "Expired") %></td>
   <% else %>
     <td class="expire-link-<%= api_key.id %> pull-right"><%= link_to t('expire_token', default: "Expire"), admin_api_key_path(id: api_key.id), method: :delete, remote: true, data: {confirm: t('expire_confirm', default: 'Please confirm you really want to expire this token')} %></td>
   <% end %>
 </tr>
+<style>
+div.qr table {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+}
+
+div.qr tr {
+  height: 0px;
+  width: 0px;
+}
+
+div.qr td {
+  border-left: solid <%= qr_pixel_width %>px #000;
+  padding: 0;
+  margin: 0;
+  width: <%= qr_pixel_width %>px;
+  height: <%= qr_pixel_width %>px;
+}
+
+div.qr td.black { border-color: #000; }
+div.qr td.white { border-color: #fff; }
+
+td.inline {
+  display: block;
+}
+</style>
