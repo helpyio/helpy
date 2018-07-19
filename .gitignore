@@ -32,3 +32,6 @@ public/uploads
 # Docker stuff
 .env
 certs
+
+# Database dump
+production.dump

@@ -10,7 +10,6 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-
 class ApiKey < ActiveRecord::Base
   before_validation :generate_access_token, on: :create
 
@@ -18,9 +17,18 @@ class ApiKey < ActiveRecord::Base
   validates :access_token, uniqueness: true
   scope :active, -> { where(date_expired: nil) }
 
-
   def expired?
     self.date_expired.present?
+  end
+
+  def qrcode(endpoint)
+      # xff = request.headers['HTTP_X_FORWARDED_FOR']
+      # url = xff.nil? ? base_url : xff
+    code_content = {
+      url: endpoint,
+      key: access_token
+    }
+    RQRCode::QRCode.new( code_content.to_json, :size => 9, :level => :h ).as_html
   end
 
   private

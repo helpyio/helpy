@@ -49,8 +49,7 @@ module API
           )
           present post, with: Entity::Post
         end
-
-
+        
       end
     end
   end
