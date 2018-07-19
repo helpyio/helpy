@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.8'
+gem 'rails', '4.2.10'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -11,7 +11,7 @@ gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 
 # Explicitly include Nokogiri to control version
-gem 'nokogiri', '>= 1.7.1'
+gem 'nokogiri', '>= 1.8.4'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -108,6 +108,7 @@ gem 'selectize-rails'
 gem "bootstrap-switch-rails"
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
+gem 'gemoji'
 
 gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
 
@@ -123,6 +124,10 @@ gem 'griddler-mailgun'
 gem 'griddler-postmark'
 gem 'griddler-mailin'
 gem 'griddler-sparkpost'
+
+# html Email
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
 
 gem 'rails-timeago'
 
@@ -147,6 +152,9 @@ gem "recaptcha", require: "recaptcha/rails"
 
 gem 'best_in_place', '~> 3.0.1'
 
+# Add onboarding component
+gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
@@ -162,10 +170,10 @@ group :development, :test do
 end
 
 gem 'bulk_insert'
+gem 'roo'
 
 group :development do
   gem "better_errors"
-  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'

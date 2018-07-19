@@ -1,17 +1,17 @@
 <% title "#{admin_title} #{t('team_insights', site_name: AppSettings['settings.site_name'])}" %>
 
-
-<%= render partial: 'admin/reports/report_header', locals:
-    {
-      report_name: t('team_insights', site_name: AppSettings['settings.site_name']),
-      report_path: "admin_team_reports_path"
-    } %>
-    
 <div class="team-members row">
   <div class="col-md-2">
     <%= render partial: 'admin/reports/reports_nav' %>
   </div>
-  <div class="col-md-10">
+  <div class="col-md-10 main-panel">
+
+    <%= render partial: 'admin/reports/report_header', locals:
+        {
+          report_name: t('team_insights', site_name: AppSettings['settings.site_name']),
+          report_path: "admin_team_reports_path"
+        } %>
+
     <div class="insights-blurb">
       <h2 style="margin-top: 0;">
       <small>

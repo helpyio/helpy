@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
+    devise_for :users, skip: [:omniauth_callbacks], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords', invitations: 'invitations' }
 
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
@@ -111,20 +111,21 @@ Rails.application.routes.draw do
     get 'settings/integration' => 'settings#integration', as: :integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
 
-    get 'notifications' => 'settings#notifications', as: :notifications
-    put 'update_notifications' => 'settings#update_notifications', as: :update_notifications
-
-    # Onboarding Routes
-    get '/onboarding/index' => 'onboarding#index', as: :onboarding
-    patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
-    patch '/onboarding/update_settings' => 'onboarding#update_settings', as: :onboard_settings
-    get '/onboarding/complete' => 'onboarding#complete', as: :complete_onboard
-
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order
     get 'cancel_edit_post/:id/' => 'posts#cancel', as: :cancel_edit_post
     get 'users/invite' => 'users#invite', as: :invite
     put 'users/invite_users' => 'users#invite_users', as: :invite_users
+
+    # Export Routes
+    get 'backups' => 'backups#index', as: :backups
+    get 'backups/export' => "backups/export", as: :export_backup
+    get  'backups/download' => "backups/download", as: :download
+    delete 'backups/:id(.:format)', :to => 'backups#destroy', as: :delete_backup
+
+    # Import Routes
+    resources :imports, only: [:index, :show]
+    post 'imports/restore' => "importz/restore", as: :import_restore
 
     post 'posts/users' => 'posts#search', as: :user_search
     get  'posts/new_user' => 'posts#new_user', as: :new_user
@@ -146,6 +147,7 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy]
     resources :forums# , except: [:index, :show]
     resources :users
+    post 'users/:id/scrub' => 'users#scrub', as: :scrub_user
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
       resources :groups

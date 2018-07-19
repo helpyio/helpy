@@ -1,0 +1,49 @@
+<% content_for :page_title do %>
+<h3><%= t(:your_profile) %></h3>
+<% end %>
+
+<div class="row content-row">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, multipart: true, html: { method: :put }) do |f| %>
+
+  <div class="col-md-3 text-center">
+    <%= avatar_image(@user, size=150) %>
+    <div class="select-image text-center">
+    <% if @user.provider.nil? %>
+      <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
+    <% end %>
+    <%= f.file_field :profile_image unless cloudinary_enabled? %>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <%= devise_error_messages! %>
+    <span class="user-fields">
+      <%= f.input :email, autofocus: true %>
+      <%= f.input :name %>
+      <%= f.input :bio, input_html: {:rows => 4, :cols => 60} %>
+      <%= f.input :company %>
+      <%= f.input :title %>
+      <%= f.input :time_zone %>
+      <%= f.input :signature, input_html: {:rows => 4, :cols => 60} if current_user.is_admin? %>
+    </span>
+
+    <% if @user.provider.nil? %>
+    <%= f.input :current_password, autocomplete: "off" %>
+
+    <br/><br/>
+    <h4><%= t('devise.passwords.edit.change_your_password') %></h4>
+    <br/>
+    <span class="password-fields">
+      <%= f.input :password, autocomplete: "off" %>
+      <%= f.input :password_confirmation, autocomplete: "off"  %>
+    </span>
+    <% end %>
+
+    <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
+  </div>
+
+
+  <% end %>
+
+
+</div>

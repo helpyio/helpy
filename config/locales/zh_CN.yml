@@ -20,15 +20,15 @@ zh-cn:
   welcome_back: "欢迎 %{username}回来"
   your_profile: "个人档案"
   your_tickets: "已要求的协助"
-  # locale:
-  # change_your_locale:
+  locale: "本地化"
+  change_your_locale: "改变你的本地化语言"
 
   # Voting widget
   did_this_help: "你的问题是否已解决？"
   yes_button: "是"
   no_button: "否"
-  # yes_helped: 'Great! Thanks for the feedback!'
-  # no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+  yes_helped: '非常好！感谢你的反馈！'
+  no_helped: "我们非常抱歉并没有帮到你。请联系我们获取更多帮助!"
 
   # Search
   search_placeholder: "输入关键字, 主题, 或问题"
@@ -39,7 +39,7 @@ zh-cn:
 
   # Community
   forum_name: "主旨"
-  subject: "题目"
+  subject: &subject "题目"
   last_activity: "最後登录"
   topic: "讨论"
   replies: "回覆"
@@ -59,16 +59,16 @@ zh-cn:
     other: "%{count}个已摺叠讯息"
 
   # Knowledgebase
-  # written_by:
-  # last_edited:
+  written_by: "作者"
+  last_edited: "最后编辑"
   asked_before: "贵的问题被回答过了？我们认为，这些可能是类似"
 
   # Tickets
   tickets: "要求协助"
   no_tickets: "你还未要求协助"
-  ticket_number:
-  assigned_to_label:
-  created_on:
+  ticket_number: "工单号码"
+  assigned_to_label: "指派于"
+  created_on: "创建于"
 
   # Get Help
   get_help_header: "需要更多协助?"
@@ -132,17 +132,18 @@ zh-cn:
   private: 私人
   public: 公开
   save_changes: 保存修改
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  merge: "合并"
+  merge_confirm: "你确定要合并这些工单么？"
 
   # Discussion controls
   change_status: 修改状态
-  status: 状态
+  status: &status 状态
   mark_closed: 标记为已解决
   reopen: 重开
   mark_spam: 标记为垃圾讯息
   mark_new: 标记为新讯息
-  assign_agent: 委托代理
+  assign_agent: &assign_agent 委托代理
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1个已选讯息"
     two: "2个已选讯息"
@@ -160,20 +161,25 @@ zh-cn:
   # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
 
   # User Admin
-  # users: Users
-  # account: Account
+  users: "用户"
+  account: "账户"
   contact_info: 联络
   social_info: 社交网站
   edit_user: 修改使用者
+#  delete_user: Delete User
   work_phone: 公司
   cell_phone: 行动电话
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: "选择优先级"
+  vip_priority: VIP
+  # very_high_priority: Very High
+  high_priority: "高"
+  normal_priority: "正常"
+  low_priority: "低"
 
   # User search results
   users_found:

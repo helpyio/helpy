@@ -22,6 +22,7 @@ class EmailProcessor
     sitename = AppSettings["settings.site_name"]
     message = @email.body.nil? ? "" : @email.body
     raw = @email.raw_body.nil? ? "" : @email.raw_body
+    cc = @email.cc ? @email.cc.map { |e| e[:full] }.join(", ") : nil
 
     subject = @email.subject
     attachments = @email.attachments
@@ -35,9 +36,10 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
-        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
+        :body => encode_entity(message),
+        :raw_email => encode_entity(raw),
         :user_id => @user.id,
+        :cc => cc,
         :kind => "reply"
       )
 
@@ -63,9 +65,10 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create!(
-        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
-        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
+        :body => encode_entity(message),
+        :raw_email => encode_entity(raw),
         :user_id => @user.id,
+        :cc => cc,
         kind: 'first'
       )
 
@@ -94,9 +97,10 @@ class EmailProcessor
       #insert post to new topic
       message = "Attachments:" if @email.attachments.present? && @email.body.blank?
       post = topic.posts.create(
-        :body => message.encode('utf-8', invalid: :replace, replace: '?'),
-        :raw_email => raw.encode('utf-8', invalid: :replace, replace: '?'),
+        :body => encode_entity(message),
+        :raw_email => encode_entity(raw),
         :user_id => @user.id,
+        :cc => cc,
         :kind => "first"
       )
 
@@ -112,6 +116,10 @@ class EmailProcessor
 
   # rescue
   #   render status: 200
+  end
+
+  def encode_entity(entity)
+    !entity.nil? ? entity.encode('utf-8', invalid: :replace, replace: '?') : entity
   end
 
   def handle_attachments(email, post)

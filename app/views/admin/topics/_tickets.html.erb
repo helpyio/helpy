@@ -1,6 +1,16 @@
 <div id="user-info">
 </div>
+<%= content_tag :h3, class: 'view-header' do %>
+  <%= show_responsive_nav %>
+  <%#=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
+  <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym, default: @status)) if @status.present?} " %>
+  <div class="pull-right nav-new-button">
+    <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
+        remote: true, class: 'btn btn-primary' %>
+  </div>
+<% end %>
 <% if @topics.present? %>
+
 <table id="topics" class="forum table-hover">
 
   <col width="80px" class="checkbox-col">
@@ -12,7 +22,7 @@
     <th><%= t(:subject, default: "Subject") %></th>
     <th class="text-right hidden-xs"><%= t(:last_activity, default: "Last Active") %></th>
   </tr>
-  <tbody>
+  <tbody id="topic-listing">
   <%= render partial: 'admin/topics/topic', collection: @topics.includes(:assigned_user) %>
 
   <script>
@@ -62,7 +72,7 @@
             <ul class="dropdown-menu ticket-controls" role="menu">
               <% @all_teams.to_a.each do |team| %>
               <li class='team-item'>
-                <%= link_to("#{content_tag(:div, '', style: badge_color_from_tag(team), class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(team: team), :remote => true, class: 'multiple-update') %>
+                <%= link_to("#{content_tag(:div, '', style: badge_color_from_tag(team), class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(assign_team: team, status: params[:status]), :remote => true, class: 'multiple-update') %>
               </li>
               <% end %>
               <!-- <li class="new-tag">
@@ -96,7 +106,7 @@
 
 <div id="topics" class="row">
   <div class="col-md-12 text-center no-tickets">
-    <span><i class="fa fa-inbox"></i><br/><%= t('nothing_here')  %></span>
+    <span><i class="fas fa-inbox"></i><br/><%= t('nothing_here')  %></span>
   </div>
 </div>
 

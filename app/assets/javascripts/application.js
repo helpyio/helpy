@@ -11,11 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require best_in_place
 //= require jquery_ujs
-//= require jquery-ui/sortable
-//= require jquery-ui/effect-highlight
-//= require jquery-ui/autocomplete
 //= require jquery-fileupload
 //= require bootstrap-sprockets
 //= require turbolinks

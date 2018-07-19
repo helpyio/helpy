@@ -2,8 +2,8 @@
 =================================================================
 <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
 
-<%= t('notify_new_reply', user_name: @topic.user_name, default: "A new customer reply has been received from %{user_name}:") %>
+<%= t('notify_new_reply', user_name: "#{@user.name} (#{@user.email})", default: "A new customer reply has been received from %{user_name}:") %>
 
-<%= simple_format(@topic.posts.last.body) %>
+<%= strip_tags(@topic.posts.last.body) %>
 
 <%= t('to_reply', default: 'Reply directly to this email or view this online:') %> <%= admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>

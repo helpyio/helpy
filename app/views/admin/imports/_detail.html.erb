@@ -1,0 +1,62 @@
+<div id= "import-detail">
+  <table style="width:100%">
+    <tr>
+      <th><%= t('import_date_created', default: "Date Created") %></th>
+      <td><%= @import.created_at.strftime("%A, %d %b %Y %l:%M %p") %></td>
+    </tr>
+    <tr>
+      <th><%= t('import_total_submitted', default: "Total Submitted Records") %></th>
+      <td><%= @import.submited_record_count %></td>
+    </tr>
+    <tr>
+      <th><%= t('import_total_created', default: "Total Created Records") %></th>
+      <td><%= @import.imported_ids.count %></td>
+    </tr>
+    <tr>
+      <th><%= t('run_time', default: "Run Time") %></th>
+      <td><%= distance_of_time_in_words(@import.started_at, @import.completed_at) if @import.completed_at.present? && @import.started_at.present? %></td>
+    </tr>
+    <tr>
+      <th><%= t('status') %></th>
+      <td><%= @import.status %></td>
+    </tr>
+    <tr>
+      <th><%= t('file_type') %></th>
+      <td><%= t('file_' + @import.model + 's') %></td>
+    </tr>
+  </table>
+</div>
+<br/><br/>
+<% if @error_log.present? %>
+  <h3 id="import-page-title">
+    <%= t('error_details') %>
+  </h3>
+  <table id="topics" class="forum table-hover">
+
+    <col width="80px" class="checkbox-col">
+    <col>
+    <col width="80%" class="hidden-xs">
+
+    <tr>
+      <th><%= t(:row_number, default: "Row Number") %></th>
+      <th><%= t(:error_message, default: "Error Message") %></th>
+      <th><%= t(:object, default: "Object") %></th>
+    </tr>
+    <tbody>
+      <% @error_log.each do |error| %>
+        <tr class="error border-bottom link-row admin-discussion">
+          <td><%= error[:row_number] %></td>
+
+          <td><%= error[:error_message] %></td>
+
+          <td><%= error %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <%= paginate @error_log %>
+    </div>
+  </div>
+<% end %>

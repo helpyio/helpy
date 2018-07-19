@@ -1,9 +1,16 @@
-<ul class="list-unstyled reports-nav hidden-sm hidden-xs" data-hook="reports-left-nav">
-  <%= content_tag :li, "Ticketing Reports", class: 'tiny-header' %>
-  <%= content_tag :li, link_to("Activity Report", admin_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link' %>
-  <%= content_tag :li, link_to("Group Report", admin_group_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link' %>
-  <br/>
-  <br/>
-  <%= content_tag :li, "Team Reports", class: 'tiny-header' %>
-  <%= content_tag :li, link_to("Team Report", admin_team_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link' %>
-</ul>
+<div class="reports-nav" data-hook="reports-left-nav">
+<%= content_tag :div, class: "left-nav-header" do %>
+  <%= content_tag :span, t('ticketing_reports'), class: 'tiny-header' %>
+  <%= hide_responsive_nav %>
+<% end %>
+<%= content_tag :ul, class: "list-unstyled nav-items" do %>
+  <%= content_tag :li, link_to(t('activity_report'), admin_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link nav-item' %>
+  <%= content_tag :li, link_to(t('group_report'), admin_group_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link nav-item' %>
+<% end %>
+<%= content_tag :div, class: "left-nav-header" do %>
+  <%= content_tag :span, t('team_reports'), class: 'tiny-header' %>
+<% end %>
+<%= content_tag :ul, class: "list-unstyled nav-items" do %>
+  <%= content_tag :li, link_to(t('team_insights'), admin_team_reports_path(start_date: @start_date, end_date: @end_date, label: params[:label])), class: 'report-link nav-item' %>
+<% end %>
+</div>

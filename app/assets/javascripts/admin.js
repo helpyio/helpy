@@ -25,6 +25,10 @@ String.prototype.capitalize = function() {
 var Helpy = Helpy || {};
 Helpy.admin = function(){
 
+  $(".alert").delay(2000).slideUp(500, function(){
+      $(".alert").alert('close');
+  });
+
   $('div.sortable').sortable({
     items: '.item',
     axis: 'y',
@@ -84,15 +88,15 @@ Helpy.admin = function(){
     theme: 'bootstrap'
   });
 
-  $('.reports-menu-toggle').off().on('click', function(){
-    var $reports_nav = $('.reports-nav');
-    if ($reports_nav.is(":visible")) {
-      $reports_nav.addClass('hidden-xs').addClass('hidden-sm');
-    } else {
-      $reports_nav.removeClass('hidden-xs').removeClass('hidden-sm');
-    }
-
-  });
+  // $('.reports-menu-toggle').off().on('click', function(){
+  //   var $reports_nav = $('.reports-nav');
+  //   if ($reports_nav.is(":visible")) {
+  //     $reports_nav.addClass('hidden-xs').addClass('hidden-sm');
+  //   } else {
+  //     $reports_nav.removeClass('hidden-xs').removeClass('hidden-sm');
+  //   }
+  //
+  // });
 
   $('.bs-toggle').bootstrapSwitch();
 
@@ -169,6 +173,47 @@ Helpy.admin = function(){
     $('#user_search').focus();
   });
 
+  // Highlight the last clicked view
+  $('.nav-item').off().on('click', function(){
+    var $this = $(this);
+    $('.nav-item').removeClass('nav-active');
+    $this.addClass('nav-active');
+  });
+
+  // Highlight the last clicked view
+  $('.nav-item').on('mouseover', function(){
+    var $this = $(this);
+    $this.addClass('nav-over');
+  });
+  // Highlight the last clicked view
+  $('.nav-item').on('mouseout', function(){
+    var $this = $(this);
+    $this.removeClass('nav-over');
+  });
+
+  Helpy.ticketMenu();
+
+};
+
+Helpy.ticketMenu = function() {
+  // Show/hide ticket menu
+  $('.show-ticket-menu').on('click', function(){
+    var $ticketNav = $('#admin-left-nav');
+
+    if ($ticketNav.hasClass('open')) {
+      $ticketNav.removeClass('open').addClass('hidden-xs').addClass('hidden-sm').removeClass('left-dropdown');
+    } else {
+      $ticketNav.addClass('open');
+      $ticketNav.removeClass('hidden-xs').removeClass('hidden-sm').addClass('left-dropdown');
+    }
+  });
+
+  $('.show-ticket-menu.open').on('click', function(){
+    var $ticketNav = $('#admin-left-nav');
+
+    $ticketNav.removeClass('open');
+    $ticketNav.addClass('hidden-xs');
+  });
 };
 
 Helpy.showPanel = function(panel) {

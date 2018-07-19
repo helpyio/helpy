@@ -75,8 +75,21 @@ admin:
   notify_on_public: true
   notify_on_reply: true
 
-user:
+system:
   id: 2
+  login: system
+  identity_url: MyString
+  name: System
+  email: system@test.com
+  admin: false
+  role: user
+  encrypted_password: $2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK
+  notify_on_private: true
+  notify_on_public: true
+  notify_on_reply: true
+
+user:
+  id: 9
   login: scott
   identity_url: MyString
   name: Scott Miller
@@ -129,6 +142,22 @@ agent:
   notify_on_private: true
   notify_on_public: true
   notify_on_reply: true
+  bio: 'some bio'
+  signature: 'the signature'
+  work_phone: '999'
+  cell_phone: '888'
+  company: 'company'
+  street: '123 main'
+  city: 'akron'
+  state: 'oh'
+  zip: '45646'
+  title: 'title'
+  twitter: '@tweet'
+  linkedin: 'erge r'
+  language: 'en'
+  priority: normal
+  active: true
+  time_zone:
 
 editor:
   id: 7

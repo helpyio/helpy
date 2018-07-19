@@ -1,10 +1,8 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h2><%= "#{t(:settings, default: "Settings")}: #{t(:international, default: "International")}" %></h2>
-  </div>
+  <%= settings_header('international') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'i18n'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section international" data-hook="admin_settings_international">
       <%= t('supported_locales', default: 'Supported Locales:') %>
       <% I18n.available_locales.sort.each do |locale| %>

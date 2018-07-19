@@ -69,50 +69,127 @@ class Admin::UsersControllerTest < ActionController::TestCase
     )
   end
 
-  # admins
+  # admin only
+  test "an admin should be able to destroy a user" do
+    sign_in users(:admin)
+    assert_difference "User.count", -1 do
+      xhr :delete, :destroy, id: 3, locale: :en
+    end
+    assert_response :success
+  end
+
+  test "an admin should be able to anonymize a user" do
+    sign_in users(:admin)
+    xhr :post, :scrub, id: 3, locale: :en
+    assert_response :success
+    assert "Anonymous User", User.find(3).name
+  end
+
+  # admin/agents
 
   %w(admin agent).each do |admin|
 
     test "an #{admin} should be able to see a listing of users" do
       sign_in users(admin.to_sym)
       get :index
-      assert_equal 8, assigns(:users).count
+      assert_equal 9, assigns(:users).count
     end
 
     test "an #{admin} should be able to see a filtered of users" do
       sign_in users(admin.to_sym)
       get :index, { role: 'user' }
-      assert_equal 4, assigns(:users).count
+      assert_equal 5, assigns(:users).count
     end
 
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
-      assert_difference("User.find(2).name.length", -3) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller2@test.com", zip: '9999', team_list: 'something', priority: 'high'}, locale: :en}
-      end
-      u = User.find(2)
+      patch :update, {
+        id: 6, user: {
+          name: "something",
+          email:"scott.miller2@test.com",
+          zip: '9999',
+          team_list: 'something',
+          priority: 'high',
+          notify_on_private: false,
+          notify_on_public: false,
+          notify_on_reply: false,
+          password: '11223344',
+          password_confirmation: '11223344',
+        },
+        locale: :en }
+      u = User.find(6)
+
+      # assert values changed
       assert u.name == "something", "name does not update"
       assert_equal "9999", u.zip, "zip did not update"
       assert_equal ["something"], u.team_list, "groups did not update"
       assert_equal "high", u.priority, "priority did not update"
+      assert_equal false, u.notify_on_private, "notification did not update"
+      assert_equal false, u.notify_on_public, "notification did not update"
+      assert_equal false, u.notify_on_reply, "notification did not update"
+      assert_not_equal '$2a$10$NDaQ2l6.7dqkWTbqZGX6RuokqiUrfrcouiKc3YCGKIvz9KxhPt7uK' == u.encrypted_password, "password did not update"
+    end
+
+    test "an #{admin} should be able to update a user and unchanged attributes should not change" do
+      sign_in users(admin.to_sym)
+      user_before_update = User.find(6)
+      # assign to team
+      user_before_update.team_list = "one"
+      user_before_update.save
+
+      patch :update, {
+        id: 6, user: {
+          name: "something else"
+        },
+        locale: :en }
+
+      u = User.find(6)
+      assert u.name == "something else", "name does not update"
+      assert_equal user_before_update.zip, u.zip, "zip updated"
+      assert_equal user_before_update.team_list, u.team_list, "groups updates"
+      assert_equal user_before_update.priority, u.priority, "priority updated"
+      assert_equal user_before_update.role, u.role, "priority updated"
+      assert_equal true, u.notify_on_private, "notification updated"
+      assert_equal true, u.notify_on_public, "notification updated"
+      assert_equal true, u.notify_on_reply, "notification updated"
+      assert_equal user_before_update.encrypted_password, u.encrypted_password, "password updated"
     end
 
     test "an #{admin} should be able to see a user profile" do
-      xhr :get, :show, { id: 2 }, format: 'js'
-      # assert_response :success
+      sign_in users(admin.to_sym)
+      xhr :get, :show, { id: 9 }, format: 'js'
+      assert_response :success
       # assert_equal(6, assigns(:topics).count)
     end
 
     test "an #{admin} should be able to edit a user profile" do
-      xhr :get, :edit, { id: 2 }
-      # assert_response :success
+      sign_in users(admin.to_sym)
+
+      xhr :get, :edit, { id: 9 }
+      assert_response :success
+    end
+
+  end
+
+  %w(user editor agent).each do |unauthorized|
+    test "an #{unauthorized} should NOT be able to destroy a user" do
+      sign_in users(unauthorized.to_sym)
+      assert_difference("User.count", 0) do
+        xhr :delete, :destroy, id: 3, locale: :en
+      end
+    end
+
+    test "an #{unauthorized} should NOT be able to anonymize a user" do
+      sign_in users(unauthorized.to_sym)
+      xhr :post, :scrub, id: 3, locale: :en
+      assert_not_equal "Anonymous User", User.find(3).name
     end
   end
 
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
+      patch :update, {id: 9, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
     end
   end
 
@@ -131,7 +208,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.admins.count", 0) do
-        patch :update, {id: 2, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
+        patch :update, {id: 9, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
       end
     end
   end

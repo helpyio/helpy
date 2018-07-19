@@ -47,14 +47,34 @@ class DocTest < ActiveSupport::TestCase
 
   test "creating new lowercase title should be saved in sentence_case" do
     title = "something in lowercase"
-    doc = Doc.create!(title: title, category_id: 3, body: 'test test test')
-    assert_equal "Something in lowercase", doc.title
+    doc = create :doc, title: title
+    assert_equal title.sentence_case, doc.title
   end
 
   test "when creating a new doc, any other capitals should be saved as entered" do
     title = "something in lowercase and UPPERCASE"
-    doc = Doc.create!(title: title, category_id: 3, body: 'test test test')
-    assert_equal "Something in lowercase and UPPERCASE", doc.title
+    doc = create :doc, title: title
+    assert_equal title.sentence_case, doc.title
+  end
+
+  test "deleting a doc should remove it from search" do
+    seed
+    assert_difference 'PgSearch.multisearch("test doc").count', -1 do
+      @doc.destroy!
+    end
+  end
+
+  test "a draft doc should not be in search" do
+    seed
+    assert_difference 'PgSearch.multisearch("test doc").count', -1 do
+      @doc.update(active: false)
+    end
+  end
+
+  def seed
+    @category = Category.create!(name: "test title", active: true, visibility: 'all')
+    Doc.create!(title: "test doc one", body: "some body text", category_id: @category.id)
+    @doc = Doc.create!(title: "test doc two", body: "some body text", category_id: @category.id)
   end
 
 end

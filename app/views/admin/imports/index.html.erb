@@ -1,0 +1,47 @@
+<% content_for :settings do %>
+  <h3>
+    <%= show_responsive_nav %>
+    <%= t('imports', default: 'Imports') %>
+  </h3>
+
+  <div class="settings-panel row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="add-form">
+        <div class="more-important"><%= t('what_to_import', default: 'New Import') %>:</div>
+        <br/>
+        <%= form_tag admin_import_restore_path, multipart: true, html: { class: 'form-vertical submit-loader' } do %>
+          <label>
+            <%= select_tag "type", options_for_select(importable_models_collection, "User"), class: "form-control" %>
+          </label>
+          <label>
+            <%= file_field_tag :file, class: "btn-file" %>
+          </label>
+          <br/><br/>
+          <%= submit_tag t("import", default: 'Import'), class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+  <div class="imports-container">
+    <div class="row vcenter item-header border-bottom">
+      <div class="tiny-header col-md-3">
+        <%= t('import', default: 'import') %>
+      </div>
+      <div class="tiny-header col-md-3 hidden-xs hidden-sm">
+        <%= t('status', default: 'Status') %>
+      </div>
+      <div class="tiny-header col-md-3 hidden-xs hidden-sm text-right">
+        <%= t('run_time', default: 'Run Time') %>
+      </div>
+      <div class="tiny-header col-md-3 text-right">
+      </div>
+    </div>
+
+    <%= render partial: 'admin/imports/import', collection: @imports if @imports %>
+
+  </div>
+  <div class="text-center">
+    <%= paginate @imports %>
+  </div>
+<% end %>

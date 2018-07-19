@@ -86,7 +86,6 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     sign_in users(:admin)
     put :update_settings,
       'theme.active' => 'flat'
-    assert_redirected_to :admin_settings
     assert_equal 'flat', AppSettings['theme.active']
   end
 
@@ -169,5 +168,10 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_equal 'something', Cloudinary.config.api_secret
   end
 
+  test "an agent should be able to update their profile" do
+    sign_in users(:agent)
+    get :profile
+    assert :success
+  end
 
 end

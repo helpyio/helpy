@@ -1,16 +1,25 @@
 <script>
   Helpy.topicID = <%= @topic.id %>;
 </script>
+<div class="pull-right">
+  <span class="btn-group left-col-dropdown">
+    <%= link_to content_tag(:span, '', class: 'fas fa-ellipsis-v ticket-ellipsis btn'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }%>
+    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+      <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{@topic.posts.first.id}" } if @topic.posts.present? %></li>
+      <li><%= link_to t('tag_with', default: 'Tag ticket'), '#', class: 'add-tag-link' %></li>
+    </ul>
+  </span>
+</div>
 <span class="btn-group left-col-dropdown">
   <button class="status dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
     <%= control_for_status(@topic.current_status) %>
   </button>
   <ul class="dropdown-menu ticket-controls" role="menu">
-    <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'closed'), :remote => true, class: 'key-sr' unless @topic.current_status == "closed" %></li>
-    <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'reopen'), :remote => true, class: 'key-so' unless @topic.current_status == "open" %></li>
-    <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'new'), :remote => true, class: 'key-sn' unless @topic.current_status == "new" %></li>
-    <li><%= link_to t(:mark_spam, default: 'Mark Spam'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'spam'), :remote => true, class: 'key-ss' unless @topic.current_status == "spam" %></li>
-    <li><%= link_to t(:trash, default: 'Trash'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'trash'), :remote => true, class: 'key-st' unless @topic.current_status == "trash" %></li>
+    <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'closed', status: @status), :remote => true, class: 'key-sr' unless @topic.current_status == "closed" %></li>
+    <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'reopen', status: @status), :remote => true, class: 'key-so' unless @topic.current_status == "open" %></li>
+    <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'new', status: @status), :remote => true, class: 'key-sn' unless @topic.current_status == "new" %></li>
+    <li><%= link_to t(:mark_spam, default: 'Mark Spam'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'spam', status: @status), :remote => true, class: 'key-ss' unless @topic.current_status == "spam" %></li>
+    <li><%= link_to t(:trash, default: 'Trash'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'trash', status: @status), :remote => true, class: 'key-st' unless @topic.current_status == "trash" %></li>
   </ul>
 </span>
 
@@ -21,9 +30,9 @@
     </button>
     <ul class="dropdown-menu ticket-controls" role="menu">
       <% Forum.where(private: false).alpha.each do |forum| %>
-      <li><%= link_to "#{t(:move_to, default: "Move")}: #{forum.name}", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'false', forum_id: forum.id), :remote => true %></li>
+      <li><%= link_to "#{t(:move_to, default: "Move")}: #{forum.name}", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'false', forum_id: forum.id, status: @status), :remote => true %></li>
       <% end %>
-      <li><%= link_to "#{t(:mark_as, default: "Mark")}: Private", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 1), :remote => true %></li>
+      <li><%= link_to "#{t(:mark_as, default: "Mark")}: Private", admin_toggle_privacy_path(topic_ids: { "":@topic.id }, private: 'true', forum_id: 1, status: @status), :remote => true %></li>
     </ul>
   </span>
 <% end %>
@@ -33,40 +42,40 @@
     <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
       <%= content_tag :span, class: 'btn status-label-button label label-warning assign-to' do %>
         <%= @topic.assigned_user.try(:name).try(:upcase) || t(:unassigned, default: 'UNASSIGNED') %>
-        <%= icon('caret-down') + ' ' %>
+        <%= icon('fas', 'caret-down') + ' ' %>
       <% end %>
     </button>
     <ul class="dropdown-menu ticket-controls" role="menu">
-      <% @admins.each do |admin| %>
-      <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: admin.id), :remote => true unless @topic.current_status == "closed" %></li>
+      <li><%= link_to "#{current_user.name.titleize}", admin_assign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: current_user.id, status: @status), :remote => true unless @topic.current_status == "closed" %></li>
+      <li role="separator" class="divider"></li>
+      <% (@admins-[current_user]).each do |admin| %>
+      <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: admin.id, status: @status), :remote => true unless @topic.current_status == "closed" %></li>
       <% end %>
     </ul>
   </span>
 
-  <% if teams? %>
-    <span class="status btn-group left-col-dropdown">
-      <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
-        <%= content_tag(:span, style: badge_color_from_topic(@topic), class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
-          <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
-          <%= icon('caret-down') + ' ' %>
-        <% end %>
-      </button>
-      <ul class="dropdown-menu ticket-controls team-list" role="menu">
-        <% @all_teams.to_a.each do |team| %>
-          <li class='team-item'>
-            <% unless @topic.current_status == "closed" %>
-              <%= link_to(color_sample(team), admin_assign_team_path(topic_ids: { "":@topic.id }, team: team), :remote => true) %>
-            <% end %>
-          </li>
-        <% end %>
-        <li class="new-tag">
-          <%= form_tag '#', class: 'new-group-form' do %>
-          <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+  <span class="status btn-group left-col-dropdown">
+    <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
+      <%= content_tag(:span, style: badge_color_from_topic(@topic), class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
+        <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
+        <%= icon('fas', 'caret-down') + ' ' %>
+      <% end %>
+    </button>
+    <ul class="dropdown-menu ticket-controls team-list" role="menu">
+      <% @all_teams.to_a.each do |team| %>
+        <li class='team-item'>
+          <% unless @topic.current_status == "closed" %>
+            <%= link_to(color_sample(team), admin_assign_team_path(topic_ids: { "":@topic.id }, assign_team: team, status: @status), :remote => true) %>
           <% end %>
         </li>
-        <li><%= link_to "Unassign from group", admin_unassign_team_path(topic_ids: { "":@topic.id }, team: ''), :remote => true unless @topic.current_status == "closed" %></li>
+      <% end %>
+      <!-- <li class="new-tag">
+        <%= form_tag '#', class: 'new-group-form' do %>
+        <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+        <% end %>
+      </li> -->
+      <li><%= link_to "Unassign from group", admin_unassign_team_path(topic_ids: { "":@topic.id }, team: '', status: @status), :remote => true unless @topic.current_status == "closed" %></li>
 
-      </ul>
-    </span>
-  <% end %>
+    </ul>
+  </span>
 <% end %>

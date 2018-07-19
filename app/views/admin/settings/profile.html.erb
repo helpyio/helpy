@@ -1,10 +1,14 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
 <% content_for :settings do %>
-  <h2 id="ticket-page-title">
+
+  <h3 id="ticket-page-title">
+    <small><span class="fas fa-caret-square-left btn show-ticket-menu hidden-lg hidden-md"></span></small>
+
     <%= @user.name.titleize %>
     <%= "<br/>#{content_tag(:small, "Account: " + @user.account_number)}".html_safe if @user.account_number.present? %>
-  </h2>
+  </h3>
+
   <div id="user-info">
     <%= render 'admin/users/edit' %>
   </div>

@@ -1,22 +1,30 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h2><%= "#{t(:settings, default: "Settings")}: #{t(:widget, default: "Widget")}" %></h2>
-  </div>
+  <%= settings_header('widget') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'widget'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section widget" data-hook="admin_settings_widget">
-      <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: t('show_widget', default: "Show Widget on Support Site") } %>
-      <p><%= t('add_embed_widget_message', default: "Add the embed widget to your site using the following URL:") %><br/>
-        <code><%= "<script>" %></code><br/>
-        <code>&nbsp;&nbsp;<%= "var Helpy = Helpy || {};" %></code><br/>
-        <code>&nbsp;&nbsp;<%= "Helpy.domain = '#{AppSettings['settings.site_url']}';" %></code><br/>
-        <code><%= "</script>" %></code><br/>
-        <code><%= "<script src='//#{request.host_with_port}/assets/widget.v1.js'></script>" %></code><br/>
-      </p>
+      <%= f.check_box 'widget.show_on_support_site', { checked: AppSettings['widget.show_on_support_site'] == "1", label: t('show_widget', default: "Show Widget on Support Site"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+      <%= f.text_field 'widget.background_color', value: AppSettings['widget.background_color'], label: t('widget_background', default: "Widget Background"), class: 'pick-a-color' %>
+      <%= f.text_field 'widget.button_color', value: AppSettings['widget.button_color'], label: t('button_color', default: "Widget Button Color"), class: 'pick-a-color' %>
+      <%= f.text_field 'widget.button_text_color', value: AppSettings['widget.button_text_color'], label: t('button_text_color', default: "Widget Text Color"), class: 'pick-a-color' %>
     </div>
     <div class="submit-section">
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>
     </div>
   <% end %>
+  <br/><br/><br/>
+  <div class="code-snippet">
+    <h4>Code Snippet:</h4>
+    <p>Add this code snippet just before your closing </body> tag.</p>
+    <%= text_area_tag 'code_snippet', "<script>
+  var Helpy = Helpy || {};
+  Helpy.domain = '//#{request.host_with_port}';
+
+  // Note: you must use the widget.v2 code library to use these options:
+  //Helpy.widgetIcon = ''; //enter the URL of an alternate icon for your widget.  Icons should be 60x60.
+</script>
+<script src='//#{request.host_with_port}/assets/widget.v2.js'></script>
+", style: "height: 250px; color: #666; font-family: \"Lucida Console\", Monaco, monospace" %>
+  </div>
 <% end %>

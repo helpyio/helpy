@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 class TopicsController < ApplicationController
@@ -84,11 +85,7 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @page_title = t(:get_help_button, default: "Open a ticket")
-    @topic = Topic.new
-    @user = @topic.build_user unless user_signed_in?
-    @topic.posts.build
-    add_breadcrumb @page_title
+    initialize_new_ticket_form_vars
   end
 
   def create
@@ -101,8 +98,13 @@ class TopicsController < ApplicationController
       team_list: params[:topic][:team_list],
       channel: 'web')
 
-    if recaptcha_enabled?
-      render :new && return unless verify_recaptcha(model: @topic)
+    associate_with_doc
+
+    if recaptcha_enabled? && !user_signed_in?
+      unless verify_recaptcha(model: @topic)
+        initialize_new_ticket_form_vars
+        render :new && return
+      end
     end
 
     if @topic.create_topic_with_user(params, current_user)
@@ -153,7 +155,26 @@ class TopicsController < ApplicationController
     @topics = Topic.ispublic.tag_counts_on(:tags)
   end
 
+  protected
+
+  def associate_with_doc
+    return unless params[:topic][:doc_id].present?
+    doc = Doc.find(params[:topic][:doc_id])
+    @topic.tag_list = "Feedback, #{doc.category.name}" if doc.present? && doc.category.present?
+  end
+
   private
+
+  def initialize_new_ticket_form_vars
+    @topic = Topic.new #unless @topic
+    @user = @topic.build_user unless user_signed_in?
+    @topic.posts.build #unless @topic.posts
+    get_all_teams
+    get_public_forums
+
+    @page_title = t(:get_help_button, default: "Open a ticket")
+    add_breadcrumb @page_title
+  end
 
   def post_params
     params.require(:post).permit(

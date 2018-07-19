@@ -1,0 +1,39 @@
+<container>
+  <row>
+    <columns class="callout panel">
+      <spacer size="16"></spacer>
+      <p>
+        <%= content_tag :span,
+         t('notify_new_reply', user_name: "#{@user.name} (#{@user.email})", default: "A new customer reply has been received from %{user_name}:"),
+         class: 'intro' %>
+      </p>
+      <spacer size="16"></spacer>
+
+      <p>
+        <%= simple_format(@topic.posts.last.html_formatted_body) %>
+      </p>
+
+      <spacer size="16"></spacer>
+      <center>
+        <p>
+          <%= content_tag :small, t('to_reply', default: 'Reply directly to this email or view this online:') %>
+        </p>
+        <button>
+        <%= link_to "View Online", admin_topic_url(@topic, host: AppSettings['settings.site_url']) %>
+        </button>
+      </center>
+
+      <spacer size="16"></spacer>
+      <% @posts.each do |post| %>
+        <hr/>
+        <p style="color: #666;">
+          <%= content_tag :strong, post_message(post,true) %><br/><br/>
+          <%= post.html_formatted_body %>
+          <%= simple_format(post.user.signature) if post.user.signature.present? %>
+        </p>
+        <%= render :partial => 'posts/thumbnail', locals: { :model_name => post } %>
+      <% end %>
+
+    </columns>
+  </row>
+</container>

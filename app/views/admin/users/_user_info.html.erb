@@ -1,34 +1,29 @@
 <div id="user-info" class="row">
     <div class='col-md-12 text-center' id='user-info-image'>
-      <%= link_to avatar_image(@topic.user, size=90), admin_user_path(@topic.user), remote: true %>
+      <%= link_to avatar_image(@user, size=90), admin_user_path(@user), remote: true %>
     </div>
 </div>
 <div class="row">
   <div class='col-md-12' id='user-info-info'>
     <div id="user-contact-info" class="user-info">
-      <div class="tiny-header"><%= @topic.user_name? ? @topic.user_name.titleize : @topic.user.email %></div>
+      <div class="tiny-header"><%= best_in_place @user, :name, as: :input, url: admin_user_path(@user) %></div>
       <span class="small">
-        <%= "#{t(:account_number, default: 'Account:')} #{@topic.user.account_number}<br/>".html_safe if @topic.user.account_number.present? %>
-        <%= @topic.user.company.titleize unless @topic.user.company.nil? %><br/>
-        <%= @topic.user.city.titleize + ', ' unless @topic.user.city.nil? %> <%= @topic.user.state.titleize unless @topic.user.state.nil? %> <%= @topic.user.zip %>
+        <% if @user.account_number.present? %>
+          <%= t(:account_number, default: 'Account:') %>
+          <%= best_in_place @user, :account_number, as: :input, url: admin_user_path(@user) %>
+          <br/>
+        <% end %>
+        <%= best_in_place @user, :company, as: :input, url: admin_user_path(@user) unless @user.company.nil? %><br/>
+        <%= best_in_place @user, :city, as: :input, url: admin_user_path(@user) %><%= ', ' unless @user.city.nil? %>
+        <%= best_in_place @user, :state, as: :input, url: admin_user_path(@user) unless @user.state.nil? %>
+        <%= best_in_place @user, :zip, as: :input, url: admin_user_path(@user) %>
       </span>
     </div>
     <div id="user-contact-info" class="user-info">
       <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
-      <%= t(:work_phone, default: "work") %>: <%= @topic.user.work_phone %><br/>
-      <%= t(:cell_phone, default: "cell") %>: <%= @topic.user.cell_phone %><br/>
-      <%= @topic.user.email %><br/>
-    </div>
-
-
-    <div id="user-tickets" class="user-info">
-      <div class="tiny-header"><%= t(:discussions, default: "Discussions") %>:</div>
-      <ul class='list-unstyled'>
-      <% @topic.user.topics.recent.each do |ticket| %>
-        <li><%= link_to("##{ticket.id}- #{ticket.name}", admin_topic_path(ticket), remote: true) %></li>
-      <% end %>
-      <li><%= link_to("See more", admin_user_path(@topic.user), remote: true) if @topic.user.topics.count > 15 %></li>
-      </ul>
+      <%= t(:work_phone, default: "work") %>: <%= best_in_place @user, :work_phone, as: :input, url: admin_user_path(@user) %><br/>
+      <%= t(:cell_phone, default: "cell") %>: <%= best_in_place @user, :cell_phone, as: :input, url: admin_user_path(@user) %><br/>
+      <%= best_in_place @user, :email, as: :input, url: admin_user_path(@user) %><br/>
     </div>
   </div>
 </div>

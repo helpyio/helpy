@@ -1,10 +1,8 @@
 <% content_for :settings do %>
 
-  <div class="admin-header">
-    <h2><%= "#{t(:settings, default: "Settings")}: #{t(:email, default: "Email")}" %></h2>
-  </div>
+  <%= settings_header('email') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'email'), method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section email" data-hook="admin_settings_email">
       <%= f.select 'email.mail_service',
         options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']),

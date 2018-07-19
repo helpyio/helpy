@@ -1,0 +1,26 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+<% meta_tag :description, "Knowledgebase for #{AppSettings['settings.site_name']}" %>
+<% meta_tag :keywords, "Knowledgebase, Knowledge base, support, articles, documentation, how-to, faq, frequently asked questions" %>
+
+<div class="row content-row">
+	<% if @categories.count == 0 %>
+
+		<div class="nothing-in-locale col-md-12 text-center verticalness">
+			<%= t(:nothing_here) %>
+		</div>
+
+	<% else %>
+		<div class="row">
+	    <% @categories.each do |category| %>
+	      <%# if category.docs.all.with_translations(I18n.locale).count > 0 %>
+	        <%= render partial: 'categories/category_panel', object: category %>
+	      <%# end %>
+	    <% end %>
+	  </div>
+		<% if Doc.all.with_translations(I18n.locale).count == 0 %>
+			<div class="nothing-in-locale col-md-12 text-center verticalness">
+				<%= t(:nothing_here) %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

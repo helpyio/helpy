@@ -21,9 +21,6 @@
     <%= t('hello', user_name: @topic.user.login) %>,
   </p>
   <p>
-    <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
-  </p>
-  <p>
     <%= simple_format(@topic.posts.last.body) %>
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @topic.posts.last } %>

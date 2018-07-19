@@ -1,0 +1,15 @@
+<container>
+  <row>
+    <columns class="callout panel">
+      <spacer size="16"></spacer>
+      <p>
+        <%= t('hello', user_name: @user.name) %>,
+      </p>
+
+      <p>
+        <p><%= t('import_completed', default: 'Your Request for the import has been completed, Following is the status of import.') %>
+        <p>Note: <%= @notes %></p>
+      </p><br/>
+    </columns>
+  </row>
+</container>

@@ -15,15 +15,8 @@
 	  ga('set', 'location', location.href.split('#')[0]);
 	  ga('send', 'pageview', { "title": document.title });
 	</script>
-	<div id="upper-wrapper" class="jumbotron">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<%= render :partial => 'layouts/admin_header' %>
-				</div>
-			</div>
-		</div>
-	</div>
+	<%= render partial: 'layouts/admin_header' %>
+
 	<% if current_user.is_agent? %>
 	<div class="topic-search-container jumbotron">
 		<div class="container">
@@ -38,12 +31,11 @@
 	</div>
 	<% end %>
 	<%= yield :pipeline %>
-	<div id="body-wrapper" class="container">
+	<div id="body-wrapper" class="container-fluid">
 		<div class="row white-bg">
 			<div class="col-md-12">
 				<div id="main-body" >
 					<div id="main-content">
-						<%= bootstrap_flash %>
 						<%= yield %>
 					</div>
 				</div>
@@ -51,10 +43,6 @@
 		</div>
 	</div>
 
-	<div id="footer-wrapper">
-		<div class="container">
-				<%= render :partial => 'layouts/footer' %>
-		</div>
-	</div>
+	<%= render partial: 'layouts/admin_footer' %>
 </body>
 </html>

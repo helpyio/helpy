@@ -13,9 +13,9 @@
 #  active           :boolean          default(TRUE)
 #  permalink        :string
 #  section          :string
-#  visibility       :string           default('all')
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  visibility       :string           default("all")
 #
 
 class Category < ActiveRecord::Base
@@ -44,8 +44,7 @@ class Category < ActiveRecord::Base
   scope :internally, -> { where(visibility: INTERNAL_VIEWABLE) }
   scope :only_internally, -> { where(visibility: 'internal') }
   scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
-
-  before_destroy :non_deleteable?
+  after_commit :rebuild_search, only: [:update, :destroy]
 
   include RankedModel
   ranks :rank
@@ -60,8 +59,8 @@ class Category < ActiveRecord::Base
     globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
   end
 
-  def non_deleteable?
-    return false if name == "Common Replies"
+  def system_resource?
+    SYSTEM_RESOURCES.include?(name)
   end
 
   def publicly_viewable?
@@ -70,6 +69,10 @@ class Category < ActiveRecord::Base
 
   def internally_viewable?
     INTERNAL_VIEWABLE.include?(visibility)
+  end
+
+  def rebuild_search
+    RebuildSearchJob.perform_later
   end
 
 end

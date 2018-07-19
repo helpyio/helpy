@@ -1,0 +1,21 @@
+<tr id="file-<%= file.id %>" class="file border-bottom link-row admin-discussion">
+  <td>
+    <%= file.model %>
+  </td>
+
+  <td>
+    <%= file.created_at %>
+  </td>
+
+  <td>
+    <%= file.csv_name %>
+  </td>
+
+  <td class="last-active less-important text-right hidden-xs">
+    <%= link_to t('file_download'), admin_download_path(file_id: file, format: "csv") %>
+  </td>
+
+  <td class="last-active less-important text-right hidden-xs">
+    <%= link_to t('file_delete'), admin_delete_backup_path(file), method: :delete, data: {confirm: t('file_delete_confirm', default: "Are you sure you want to delete this csv?")} %>
+  </td>
+</tr>

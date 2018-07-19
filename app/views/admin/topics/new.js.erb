@@ -1,5 +1,5 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/topics/new_ticket') %>");
-$('#ticket-page-title').html("<%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>:").show();
+// $('#ticket-page-title').html("<%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>:").show();
 $(document).prop('title', "<%= admin_title %> <%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>");
 history.pushState(null, null, '<%= new_admin_topic_path %>');
 
@@ -19,6 +19,7 @@ ga('send', 'pageview');
 Helpy.ready();
 Helpy.track();
 Helpy.logHistory();
+Helpy.ticketMenu();
 
 // escape from fields
 newtopic = document.getElementById('new_topic');

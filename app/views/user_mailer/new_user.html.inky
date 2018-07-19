@@ -1,0 +1,27 @@
+<container>
+  <row>
+    <columns class="callout panel">
+      <spacer size="16"></spacer>
+
+      <div <%= 'dir=rtl' if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(@locale) %>>
+        <p>
+          <%= t('hello', user_name: @user.name) %>,
+        </p>
+        <p>
+          <%= t('new_user', default: 'Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response.') %>
+        </p>
+        <p>
+          <%= t('account_generated', default: 'An account has been generated for you. To sign in, please use this link:') %>
+        </p>
+
+        <spacer size="16"></spacer>
+
+        <center>
+          <button>
+            <%= link_to t('devise.sessions.new.sign_in'), edit_password_url(User, host: AppSettings['settings.site_url'], reset_password_token: @token, first: true) %>
+          </button>
+        </center>
+      </div>
+    </columns>
+  </row>
+</container>

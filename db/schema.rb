@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302162152) do
+ActiveRecord::Schema.define(version: 20180122155725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20170302162152) do
   end
 
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
+
+  create_table "backups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "csv"
+    t.string   "model"
+    t.string   "csv_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "backups", ["user_id"], name: "index_backups_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -142,6 +153,19 @@ ActiveRecord::Schema.define(version: 20170302162152) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "imports", force: :cascade do |t|
+    t.string   "status"
+    t.string   "notes"
+    t.string   "model"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.integer  "submited_record_count"
+    t.text     "imported_ids"
+    t.text     "error_log"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -208,6 +232,8 @@ ActiveRecord::Schema.define(version: 20170302162152) do
     t.text    "description"
     t.string  "color"
     t.boolean "active",             default: true
+    t.string  "email_address"
+    t.string  "email_name"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
@@ -234,9 +260,11 @@ ActiveRecord::Schema.define(version: 20170302162152) do
     t.integer  "doc_id",           default: 0
     t.string   "channel",          default: "email"
     t.string   "kind",             default: "ticket"
+    t.integer  "priority",         default: 1
   end
 
   add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree
+  add_index "topics", ["priority"], name: "index_topics_on_priority", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
