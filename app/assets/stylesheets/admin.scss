@@ -515,6 +515,20 @@ ul.dropdown-menu {
 .bootstrap-switch {
     float: right;
     margin-left: 20px;
+    border-radius: 50px;
+}
+
+.bootstrap-switch-label {
+  border-radius: 50px;
+}
+
+.bootstrap-switch-on {
+  background-color: #528BC5;
+  border: 1px solid #528BC5;
+}
+
+.bootstrap-switch-off {
+  background-color: #eee;
 }
 
 .full-width {

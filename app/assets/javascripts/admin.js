@@ -98,7 +98,10 @@ Helpy.admin = function(){
   //
   // });
 
-  $('.bs-toggle').bootstrapSwitch();
+  $('.bs-toggle').bootstrapSwitch({
+    onText: '&nbsp;&nbsp;&nbsp;&nbsp;',
+    offText: '&nbsp;&nbsp;&nbsp;&nbsp;'
+  });
 
   // Onboarding flow
   $('.panel-link').off().on('click', function(){

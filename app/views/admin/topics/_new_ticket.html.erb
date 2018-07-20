@@ -55,7 +55,7 @@
 <script>
 $('[data-provider="summernote"]').each(function(){
   $(this).summernote({
-    lang: '<%= I18n.locale.downcase %>-<%= I18n.locale.upcase %>',
+    lang: '<%= summernote_locale %>',
     height: 150,
     prettifyHtml: true,
     toolbar: [
