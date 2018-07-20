@@ -123,21 +123,15 @@ de:
   communities: Foren
   app_store: App Store
   search: Suche
-<<<<<<< HEAD
   internal_content: Interner Inhalt
   new_ticket: Neues Ticket
   reports: Berichte
-=======
-  # internal_content: Internal Content
-  # new_ticket: New Ticket
-  # reports: Reports
   # helpcenter: "Helpcenter"
   # get_help: "Help"
   # report_bug: "Report Bug"
   # suggest_feature: "Suggest Feature"
   # shortcuts: "Keyboard Shortcuts"
   # sponsors: "Sponsors"
->>>>>>> master
 
   # Admin main/statuses
   support_pipeline: Support Pipeline
