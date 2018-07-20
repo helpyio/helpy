@@ -19,3 +19,15 @@ send_usage_data: true
 
 admin_email: inbound.support@yourdomain.com
 from_email: inbound.support@yourdomain.com # This is the email that will be used for email replies (reply to)
+
+omniauth:
+  providers:
+    github:
+      id: testghid
+      secret: testghsecret
+    twitter:
+      id: testtwid
+      secret: testtwsecret
+    google_oauth2:
+      id: testgid
+      secret: testgsecret

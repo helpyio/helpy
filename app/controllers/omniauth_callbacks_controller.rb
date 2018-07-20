@@ -10,7 +10,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     handle_redirect('devise.twitter_uid', 'Twitter')
   end
 
-  def google
+  def google_oauth2
     handle_redirect('devise.google_uid', 'Google')
   end
 

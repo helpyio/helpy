@@ -109,11 +109,21 @@ pt:
   sign_up: "Registar"
 
   # Admin menu
+  # inbox: Inbox  
   discussions: "Discussões"
   content: "Conteúdo"
   communities: "Comunidades"
   app_store: App Store
   search: "Procurar"
+  # internal_content: Internal Content
+  # new_ticket: New Ticket
+  # reports: Reports
+  # helpcenter: "Helpcenter"
+  # get_help: "Help"
+  # report_bug: "Report Bug"
+  # suggest_feature: "Suggest Feature"
+  # shortcuts: "Keyboard Shortcuts"
+  # sponsors: "Sponsors"
 
   # Admin main/statuses
   support_pipeline: "Ciclo de Suporte"
