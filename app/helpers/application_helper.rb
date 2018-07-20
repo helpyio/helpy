@@ -134,7 +134,33 @@ module ApplicationHelper
 
   def summernote_lang_js
     if I18n.locale != :en
-      "<script src=\"/assets/summernote/lang/summernote-#{I18n.locale.downcase}-#{I18n.locale.upcase}.js\"></script>".html_safe
+      "<script src=\"/assets/summernote/lang/summernote-#{summernote_locale}.js\"></script>".html_safe
+    end
+  end
+
+  def summernote_locale
+    # binding.pry
+    case I18n.locale
+    when :ar, :de, :es, :et, :fi, :fr, :hu, :id, :it, :nl, :pt, :ru, :tr
+      "#{I18n.locale.downcase}-#{I18n.locale.upcase}"
+    when :"pt-br"
+      "pt-BR"
+    when :"zh-cn"
+      "zh-CN"
+    when :"zh-tw"
+      "zh_TW"
+    when :ja
+      "ja-JP"
+    when :ko
+      "ko-KR"
+    when :sv
+      "sv-SE"
+    when :fa
+      "fa-IR"
+    when :ca
+      "ca-ES"
+    else
+      "en_EN"
     end
   end
 
