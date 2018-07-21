@@ -182,10 +182,24 @@ ul.settings-menu {
   }
 }
 
+#user-info,
 #left-col-user-info {
     margin-top: 30px;
+    margin-bottom: 0;
     padding-right: 30px;
-    border-right: 1px solid #f4f4f4;
+}
+
+#user-info-info span.bip-placeholder {
+  text-transform: lowercase;
+  color: #888;
+}
+
+.right-border {
+  border-right: 1px solid #f4f4f4;
+}
+
+.user-info {
+  padding-top: 20px;
 }
 
 #pipeline-wrapper {
@@ -335,11 +349,6 @@ ul.dropdown-menu {
 #user-tickets ul li {
     margin-bottom: 7px;
     color: #666;
-}
-
-.user-info {
-    padding-top: 20px;
-    padding-bottom: 0px;
 }
 
 .edit-user {
@@ -569,7 +578,12 @@ ul.dropdown-menu {
   -moz-opacity:0.50; //* FireFox */
 }
 
-
+span.small-labels {
+  font-size: 60%;
+  span.label {
+    vertical-align: super;
+  }
+}
 
 // === PIPELINE STATS STYLES ===
 

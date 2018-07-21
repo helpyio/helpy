@@ -199,6 +199,7 @@ de:
   scrub_user: "Anonymisieren Sie den Benutzer"
   anonymize_user_warning: "Sind Sie sicher, dass Sie %{user_name} anonymisieren möchten? Dadurch werden die persönlichen Daten des Benutzers dauerhaft anonymisiert, aber alle ihre Tickets und öffentlichen Posts bleiben erhalten."
   delete_user_warning: "Sind Sie sicher, dass Sie %{user_name} löschen möchten? Dadurch werden der Benutzer und alle seine Tickets, Posts, Antworten und Forenthemen dauerhaft entfernt."
+  # click_to_edit: click to edit %{what}
 
   # Priorities
   select_priority: &priority Priorität auswählen
@@ -535,9 +536,12 @@ de:
         cell_phone: Handy
         city: Stadt
         state: Bundesland
+        # zip: Zip
         signature: Unterschrift
         title:
         time_zone:
+        # street: Street
+        # notes: Notes
       topic:
         kind: *kind
         name: *subject

@@ -2,10 +2,6 @@ module Admin::UsersHelper
 
   def user_header
     content_tag :h2, id: 'ticket-page-title' do
-      # concat render 'admin/topics/ticket_nav_dropdown'
-
-      # concat new_user_ticket_button
-      # concat edit_user_button
       concat user_name
       concat user_account_number
     end

@@ -199,6 +199,7 @@ fi:
   scrub_user: "Tee käyttäjästä anonyymi"
   anonymize_user_warning: "Haluatko varmasti tehdä käyttäjästä %{user_name} anonyymin? Tämä poistaa kaikki käyttäjän henkilötiedot pysyvästi, mutta säilyttää kaikki heidän palvelupyyntönsä ja julkaisunsa."
   delete_user_warning: "Haluatko varmasti poistaa käyttäjän %{user_name}? Tämä poistaa pysyvästi käyttäjän sekä kaikki kyseisen käyttäjän palvelupyynnöt, julkaisut, vastaukset sekä keskustelut."
+  #click_to_edit: click to edit %{what}
 
   # Priorities
   select_priority: &priority Valitse prioriteetti
@@ -535,9 +536,12 @@ fi:
         cell_phone: Matkapuhelin
         city: Kaupunki
         state: Kunta
+        # zip: zip
         signature: Allekirjoitus
-        title:
-        time_zone:
+        # title: Title
+        # time_zone: Time Zone
+        # street: Street
+        # notes: Notes
       topic:
         kind: *kind
         name: *subject

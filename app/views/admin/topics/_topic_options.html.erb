@@ -6,7 +6,12 @@
     <%= link_to content_tag(:span, '', class: 'fas fa-ellipsis-v ticket-ellipsis btn'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }%>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
       <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{@topic.posts.first.id}" } if @topic.posts.present? %></li>
-      <li><%= link_to t('tag_with', default: 'Tag ticket'), '#', class: 'add-tag-link' %></li>
+      <li><%= link_to t('tag_with', default: 'Tag Ticket'), '#', class: 'add-tag-link' %></li>
+      <hr/>
+      <li class="dropdown-header"><%= @topic.user.name %></li>
+      <li><%= link_to t(:tickets, default: 'Tickets'), remote: true %></li>
+      <li><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @topic.user.id), remote: true, class: '' %></li>
+      <li><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@topic.user), remote: false %></li>
     </ul>
   </span>
 </div>

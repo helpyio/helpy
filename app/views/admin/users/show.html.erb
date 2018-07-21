@@ -1,16 +1,10 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
-<% content_for :pipeline do %>
-<%#= render partial: 'admin/shared/pipeline' %>
-<% end %>
-
-<%#= user_header %>
-
 <div class="row">
-  <div id="user-info" class="col-md-3">
-    <%= render partial: 'admin/topics/ticket_stats', locals: { include_tickets: false } %>
+  <div id="user-info" class="col-md-3 col-lg-2">
+    <%= render partial: 'admin/users/user_filter' %>
   </div>
-  <div class="col-md-9 main-panel" id="tickets">
+  <div class="col-md-9 col-lg-10 main-panel" id="tickets">
     <%= render 'admin/users/tickets' %>
   </div>
 </div>

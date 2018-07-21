@@ -185,7 +185,7 @@ fr:
   converted_to_topic: "Ce ticket a été converti en discussion publique et déplacé dans %{forum_name}."
   tagged_with: "Ce ticket a été taggé avec %{tagged_with}"
   notes_hidden: "Il y a %{hidden_notes} notes internes pour ce ticket. Vous pouvez les voir en cliquant n'importe où dans cette note!"
-  topic_added_from: "%{kind} ajouté à partir de% {channel}"
+  topic_added_from: "%{kind} ajouté à partir de %{channel}"
 
   # User Admin
   users: Utilisateurs
@@ -200,6 +200,7 @@ fr:
   scrub_user: "Utilisateur anonyme"
   anonymize_user_warning: "Êtes-vous certain de vouloir anonymiser %{user_name}? Cela anonymera en permanence les données personnelles de l'utilisateur, mais conservera tous ses tickets et messages publics."
   delete_user_warning: "Etes-vous sûr de vouloir supprimer %{user_name}? Cela supprimera définitivement l'utilisateur et tous ses tickets, messages, réponses et sujets de forum."
+  click_to_edit: cliquez pour modifier %{what}
 
   # Priorities
   select_priority: &priority Choisir une priorité
@@ -536,9 +537,12 @@ fr:
         cell_phone: Portable
         city: Ville
         state: Région
+        zip: Code postal
         signature: Signature
         title: Titre
         time_zone: Fuseau horaire
+        street: Rue
+        notes: Remarques
       topic:
         kind: *kind
         name: *subject
