@@ -4,7 +4,26 @@
   ga('create', 'UA-50151-26', 'auto', 'installPinger');
   ga('installPinger.send', 'pageview', { 'title': 'Onboard Started: ' + Helpy.domain });
 </script>
+<style>
+.bootstrap-switch {
+    float: right;
+    margin-left: 20px;
+    border-radius: 50px;
+}
 
+.bootstrap-switch-label {
+  border-radius: 50px;
+}
+
+.bootstrap-switch-on {
+  background-color: #528BC5;
+  border: 1px solid #528BC5;
+}
+
+.bootstrap-switch-off {
+  background-color: #eee;
+}
+</style>
 <div id="panel-1" class="onboard-panel text-center">
   <div class="onboard-message">
     <h2><%= t(:welcome_to_helpy, default: "Welcome to Helpy!") %></h2>
