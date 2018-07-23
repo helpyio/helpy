@@ -1,9 +1,7 @@
 <!-- Admin post partial -->
 <div id="post-<%= post.id %>" class="media post-container disallow-post-voting <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %> overflow-visible" <%= 'style="display:none;"' if post.kind == 'note' %>>
-	<div class="pull-left">
-		<%= avatar_image(post.user, size=40) %>
-	</div>
-	<div class="media-body media-right overflow-visible">
+	<%= content_tag :div, avatar_image(post.user, size=40), class: 'pull-left' if post.kind != 'first' %>
+	<div class="media-body media-right overflow-visible no-side-pad">
 		<span class="hidden-sm hidden-md hidden-lg"><%= last_active_time(post.created_at) %><br/></span>
 		<span id="row-<%= post.id %>"  class="post-menu post-menu-<%= post.id %> btn-group">
 			<%= post_message(post,true) %>

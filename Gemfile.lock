@@ -71,7 +71,7 @@ GEM
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.11)
-    best_in_place (3.0.3)
+    best_in_place (3.1.1)
       actionpack (>= 3.2)
       railties (>= 3.2)
     better_errors (2.1.1)
@@ -601,7 +601,7 @@ DEPENDENCIES
   annotate
   attachinary
   awesome_print
-  best_in_place (~> 3.0.1)
+  best_in_place (~> 3.1)
   better_errors
   bootstrap-datepicker-rails
   bootstrap-sass

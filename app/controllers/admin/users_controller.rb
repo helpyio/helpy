@@ -58,12 +58,12 @@ class Admin::UsersController < Admin::BaseController
     @roles = [[t('team'), 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
     if params[:role].present?
       if params[:role] == 'team'
-        @users = User.team.all.page params[:page]
+        @users = User.team.alpha.all.page params[:page]
       else
-        @users = User.by_role(params[:role]).all.page params[:page]
+        @users = User.by_role(params[:role]).active_first.all.page params[:page]
       end
     else
-      @users = User.all.page params[:page]
+      @users = User.active_first.all.page params[:page]
     end
     @user = User.new
   end
