@@ -18,8 +18,21 @@ class RegistrationsControllerTest < ActionController::TestCase
     @user = users(:user)
     sign_in @user
     assert_difference "User.find(9).name.length", -3 do
-      patch :update, { id: @user.id, user: {name: "something", current_password: "12345678"}, locale: :en }
-      assert User.find(9).name == "something", "name does not update"
+      patch :update, { id: @user.id,
+        user: {
+          name: "something",
+          current_password: "12345678",
+          home_phone: '999-123-1234',
+          work_phone: '999-123-1234',
+          cell_phone: '999-123-1234',
+        },
+        locale: :en }
+
+      updated_user = User.find(9)
+      assert updated_user.name == "something", "name does not update"
+      assert updated_user.home_phone == "999-123-1234", "home_phone does not update"
+      assert updated_user.work_phone == "999-123-1234", "work_phone does not update"
+      assert updated_user.cell_phone == "999-123-1234", "cell_phone does not update"
     end
     assert_redirected_to root_path
   end

@@ -32,5 +32,6 @@ module Entity
     expose :team_list
     expose :account_number
     expose :priority
+    expose :notes
   end
 end
