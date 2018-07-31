@@ -61,7 +61,7 @@ class TopicsController < ApplicationController
   end
 
   def tickets
-    @topics = current_user.topics.isprivate.undeleted.chronologic.page params[:page]
+    @topics = current_user.topics.isprivate.undeleted.external.chronologic.page params[:page]
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
     respond_to do |format|
@@ -70,7 +70,7 @@ class TopicsController < ApplicationController
   end
 
   def ticket
-    @topic = current_user.topics.undeleted.where(id: params[:id]).first
+    @topic = current_user.topics.undeleted.external.where(id: params[:id]).first
     if @topic
       @posts = @topic.posts.ispublic.chronologic.active.all.includes(:topic, :user, :screenshot_files)
       @page_title = "##{@topic.id} #{@topic.name}"

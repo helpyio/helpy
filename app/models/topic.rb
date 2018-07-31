@@ -71,6 +71,7 @@ class Topic < ActiveRecord::Base
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
   scope :for_doc, -> { where("doc_id= ?", doc)}
+  scope :external, -> { where.not(kind: 'internal') }
 
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
