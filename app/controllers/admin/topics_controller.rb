@@ -464,7 +464,7 @@ class Admin::TopicsController < Admin::BaseController
   # Internal ticket is created by the agent.  Does not send messages to customer
   def create_internal_ticket
     @forum = Forum.find(1)
-    @user = current_user
+    @user = User.where("lower(email) = ?", params[:topic][:user][:email].downcase).first
 
     @topic = @forum.topics.new(
       name: params[:topic][:name],
@@ -484,7 +484,7 @@ class Admin::TopicsController < Admin::BaseController
       if (@user.save || !@user.nil?) && @topic.save
         @post = @topic.posts.create(
           body: params[:topic][:post][:body],
-          user_id: @user.id,
+          user_id: current_user.id,
           kind: 'first',
           screenshots: params[:topic][:screenshots],
           attachments: params[:topic][:post][:attachments]
