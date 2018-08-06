@@ -1,0 +1,4 @@
+[submodule "jenkins_tools"]
+	path = jenkins_tools
+	url = git@github.com:Superpedestrian/sp-jenkins-build-tools.git
+	branch = release
