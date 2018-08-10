@@ -4,8 +4,8 @@ services:
   frontend:
     image: webwurst/caddy
     volumes:
-      - ./docker/Caddyfile:/etc/caddy/Caddyfile
-      - ./certs:/etc/caddy/certs
+      - ./docker/Caddyfile
+      - ./certs
     volumes_from:
       - helpy:ro
     ports:

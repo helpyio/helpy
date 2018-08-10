@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: helpy
+  name: helpy
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: helpy
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: helpy_production
+        - name: POSTGRES_PASSWORD
+          value: some_secure_pg_password_change_in_production
+        - name: POSTGRES_USER
+          value: helpy
+        - name: SECRET_KEY_BASE
+          value: some_secret_key_base_change_in_production
+        image: vishalrao2911/helpy
+        name: helpy
+        resources: {}
+        volumeMounts:
+        - mountPath: /helpy/public
+          name: helpy-rails-assets
+      restartPolicy: Always
+      volumes:
+      - name: helpy-rails-assets
+        persistentVolumeClaim:
+          claimName: helpy-rails-assets
+status: {}
