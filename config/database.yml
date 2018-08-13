@@ -7,9 +7,9 @@ default: &default
 
 development:
   <<: *default
-  database: helpy_development
-  port: 5432
-  host: localhost
+  database: helpy_production
+  username: helpy
+  password: <%= ENV['helpy_DATABASE_PASSWORD'] %>
 
 test:
   <<: *default

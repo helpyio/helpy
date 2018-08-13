@@ -8,16 +8,15 @@ echo "waiting $SLEEPSECONDS seconds for postgres.."
 
 # sleep while postgres is initializing
 sleep $SLEEPSECONDS
-pg_isready -q -h postgres
-ISREADY=$?
-while [[ "$ISREADY" != 0 ]]; do
-  pg_isready -q -h postgres
-  let ISREADY=$?
-  echo "waiting $SLEEPSECONDS seconds for postgres.."
-  sleep $SLEEPSECONDS
+echo "before checking for postgres"
+until pg_isready
+do
+    echo "."
+    sleep 1
 done
+sleep 2
 
-echo "postgres is now avaliable"
+echo "postgres is now available"
 
 RUN_PREPARE=${DO_NOT_PREPARE:-false}
 

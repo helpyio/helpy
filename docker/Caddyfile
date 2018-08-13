@@ -11,6 +11,7 @@
   header /uploads
 
   proxy / helpy:8080/ {
+    tls off
     except /assets
     except /uploads
     header_upstream Host {host}

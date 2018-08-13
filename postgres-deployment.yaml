@@ -1,12 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.16.0 (0c01309)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: postgres
   name: postgres
 spec:
   replicas: 1
@@ -14,9 +8,8 @@ spec:
     type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: postgres
+        app: postgres
     spec:
       containers:
       - env:
@@ -29,17 +22,15 @@ spec:
         - name: SECRET_KEY_BASE
           value: some_secret_key_base_change_in_production
         image: postgres:9.4
+        name: postgres
         ports:
         - containerPort: 5432
           name: postgres
-        name: postgres
-        resources: {}
         volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: postgres-claim0
+        - name: postgres-claim0
+          mountPath: /var/lib/postgresql/data
       restartPolicy: Always
       volumes:
       - name: postgres-claim0
         persistentVolumeClaim:
           claimName: postgres-claim0
-status: {}
