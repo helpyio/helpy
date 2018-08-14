@@ -7,7 +7,7 @@ metadata:
   name: frontend-claim1
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 100Mi
