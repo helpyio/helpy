@@ -5,14 +5,17 @@ Helpy is a modern omnichannel helpdesk platform written in Ruby on Rails 4.2 and
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
-![](http://helpy.io/images/HelpyBrowser.png)
+![](https://helpy.io/images/github-main-image.png)
+
 
 Sponsor/Support Helpy
 ========
 
 Helpy is licensed under the MIT license, and is an open-core project. This means that the core functionality is 100% open source and fully hackable or even re-sellable under the MIT license.  See the features comparison below to understand what is included.  
 
-Helpy is a large system and cannot exist purely as a hobby project. If you use it in a money generating capacity, it makes good sense to support the project financially or by becoming an official sponsor.
+Helpy is a large system and cannot exist purely as a hobby project. If you use it in a money generating capacity, it makes good sense to support the project financially or by becoming an official sponsor or supporter.
+
+https://www.patreon.com/helpyio
 
 Open Source Features
 ========
