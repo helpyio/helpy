@@ -268,7 +268,7 @@ class Admin::TopicsController < Admin::BaseController
           redirect_to admin_topic_path(@topic)
         }
         format.js {
-          render 'update_ticket', id: @topic.id, status: params[:status]
+          render 'update_ticket', id: @topic.id
         }
       end
     else
