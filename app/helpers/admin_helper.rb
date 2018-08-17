@@ -188,7 +188,7 @@ module AdminHelper
       concat content_tag(:li, link_to(t(:settings, default: 'Settings'), admin_general_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
 
 
-      concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
+      concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
       concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs')
     end
   end
