@@ -15,9 +15,8 @@ class Admin::ApiKeysController < Admin::BaseController
 
   before_action :set_user
 
-  # Restrict API token generation to admin and agents only for now
-  before_action :verify_agent
-
+  # Restrict API token generation to admin
+  before_action :verify_admin
   layout 'admin-settings'
 
   def index
