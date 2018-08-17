@@ -2,7 +2,7 @@
 
   <%= settings_header('general') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'general'), method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_general_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section">
 
       <h4>Admin Branding</h4>
