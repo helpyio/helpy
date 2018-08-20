@@ -13,8 +13,8 @@
         <%= f.radio_button 'email.send_email', true, label: t('boolean_yes', default: "Yes"), checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
       <% end %>
       <div class="smtp-settings <%= "hidden" if "#{AppSettings['email.send_email']}" == 'false' %>">
-        <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: t('admin_email', default: "Admin Email") %>
-        <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: t('from_email', default: "From Email") %>
+        <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: t('admin_email', default: "Admin Email"), validate: { presence: true } %>
+        <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: t('from_email', default: "From Email"), type: 'email' %>
         <%= f.text_field 'email.smtp_mail_username', value: AppSettings['email.smtp_mail_username'], label: t('smtp_mail_username', default: "SMTP Username") %>
         <%= f.password_field 'email.smtp_mail_password', value: AppSettings['email.smtp_mail_password'], label: t('smtp_mail_password', default: "SMTP Password") %>
         <%= f.text_field 'email.mail_smtp', value: AppSettings['email.mail_smtp'], label: t('mail_smtp', default: "SMTP Server") %>

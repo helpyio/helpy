@@ -116,7 +116,7 @@ Rails.application.routes.draw do
     put 'settings/i18n' => 'settings#update_i18n', as: :update_i18n_settings
     put 'settings/email' => 'settings#update_email', as: :update_email_settings
     put 'settings/integration' => 'settings#update_integration', as: :update_integration_settings
-    get 'settings/profile' => 'settings#update_profile', as: :profile_settings
+    get 'settings/profile' => 'settings#profile', as: :profile_settings
 
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order

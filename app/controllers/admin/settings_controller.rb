@@ -1,7 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
-  before_action :verify_admin, except: ['index', 'profile']
-  before_action :verify_agent, only: ['index']
+  before_action :verify_admin, except: ['profile']
+  #before_action :verify_agent, only: ['index']
   skip_before_action :verify_authenticity_token
 
   def index
@@ -137,7 +137,6 @@ class Admin::SettingsController < Admin::BaseController
                         default: "The changes you have been saved.  Some changes are only visible on your helpcenter site: #{AppSettings['settings.site_url']}")
 
     TestMailer.new_test(current_user.email).deliver_later if params[:send_test] == "1"
-
     redirect_to admin_email_settings_path
   end
 
