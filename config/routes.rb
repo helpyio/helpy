@@ -109,6 +109,13 @@ Rails.application.routes.draw do
     get 'settings/i18n' => 'settings#i18n', as: :i18n_settings
     get 'settings/email' => 'settings#email', as: :email_settings
     get 'settings/integration' => 'settings#integration', as: :integration_settings
+    put 'settings/general' => 'settings#update_general', as: :update_general_settings
+    put 'settings/design' => 'settings#update_design', as: :update_design_settings
+    put 'settings/theme' => 'settings#update_theme', as: :update_theme_settings
+    put 'settings/widget' => 'settings#update_widget', as: :update_widget_settings
+    put 'settings/i18n' => 'settings#update_i18n', as: :update_i18n_settings
+    put 'settings/email' => 'settings#update_email', as: :update_email_settings
+    put 'settings/integration' => 'settings#update_integration', as: :update_integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
 
     # Misc Routes

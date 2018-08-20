@@ -57,31 +57,31 @@ class Admin::CategoriesControllerTest < ActionController::TestCase
   test "a signed in user should be able to load get new" do
     sign_in users(:user)
     get :new, locale: :en
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load edit" do
     sign_in users(:user)
     get :edit, { id: 1, locale: :en }
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load create" do
     sign_in users(:user)
     post :create, category: {name: "some name"}, locale: :en
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load update" do
     sign_in users(:user)
     patch :update, { id: 1, category: { name: "some name" }, locale: :en }
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load destroy" do
     sign_in users(:user)
     delete :destroy, { id: 1, locale: :en}
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   # admin logged in, should get these pages
