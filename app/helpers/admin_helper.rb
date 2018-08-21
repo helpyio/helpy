@@ -219,25 +219,6 @@ module AdminHelper
     end
   end
 
-  def user_page_title_text(role)
-    case role
-      when 'user'
-        "#{t(:user_role).pluralize(2)}"
-      when 'agent'
-        "#{t(:agent_role).pluralize(2)}"
-      when 'editor'
-        "#{t(:editor_role).pluralize(2)}"
-      when 'admin'
-        "#{t(:admin_role).pluralize(2)}"
-      when 'team'
-        "Team"
-      else
-        "#{t(:users)}"
-    end
-
-  end
-
-
   def user_filter
     content_tag :span, class: 'btn-group' do
       concat user_filter_select
