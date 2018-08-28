@@ -2,7 +2,7 @@
 
   <%= settings_header('design') %>
 
-  <%= bootstrap_form_tag url: admin_update_settings_path(return_to: 'design'), method: 'put', multipart: true, authenticity_token: true do |f| %>
+  <%= bootstrap_form_tag url: admin_update_design_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section design">
         <div class="row">
           <div class="col-md-1 col-sm-2 col-xs-2">
@@ -13,14 +13,6 @@
             <%= f.text_field 'design.header_logo', class: "hidden-header-logo", value: AppSettings['design.header_logo'], hide_label: true %>
           </div>
         </div>
-        <!-- <div class="row">
-          <div class="col-md-1 col-sm-2 col-xs-2">
-            <%= image_tag(AppSettings['design.footer_mini_logo'], width: 20, class: 'pull-left') %>
-          </div>
-          <div class="col-md-11 col-sm-10 col-xs-10">
-            <%= f.file_field 'design.footer_mini_logo', value: AppSettings['design.footer_mini_logo'], label: t('footer_logo', default: "Footer Logo") %>
-          </div>
-        </div> -->
         <div class="row">
           <div class="col-md-1 col-sm-2 col-xs-2">
             <%= image_tag(AppSettings['design.favicon'], width: 32, class: 'pull-left') %>
