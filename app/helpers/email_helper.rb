@@ -9,7 +9,8 @@ module EmailHelper
     text.gsub('%ticket_link%', "#{t('view_online', default: 'View this online:')} #{ticket_url(@topic, host: AppSettings['settings.site_url'])}")
   end
 
-  def body_tokens(text, user)
-    text.gsub('%customer_name%', user.name)
+  def body_tokens(text, topic)
+    text.gsub('%customer_name%', topic.user.name)
+    text.gsub('%customer_email_address', topic.user.email)
   end
 end

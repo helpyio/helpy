@@ -34,5 +34,4 @@ class PostMailer < ActionMailer::Base
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end
-
 end
