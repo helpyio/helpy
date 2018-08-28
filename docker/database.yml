@@ -7,10 +7,9 @@ default: &default
 
 development:
   <<: *default
-  host: postgres
-  database: <%= ENV['POSTGRES_DB'] %>
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: helpy_development
+  port: 5432
+  host: localhost
 
 test:
   <<: *default

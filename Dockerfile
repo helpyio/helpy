@@ -24,6 +24,8 @@ RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/helpyio/helpy
 # use `test` for sh compatibility, also use only one `=`. also for sh compatibility
 RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
 
+RUN bundle config gems.helpy.io $HELPY_USERNAME:$HELPY_PASSWORD
+
 RUN bundle install
 
 RUN touch /helpy/log/production.log && chmod 0664 /helpy/log/production.log

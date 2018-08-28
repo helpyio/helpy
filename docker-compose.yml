@@ -4,8 +4,8 @@ services:
   frontend:
     image: webwurst/caddy
     volumes:
-      - ./docker/Caddyfile
-      - ./certs
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile
+      - ./certs:/etc/caddy/certs
     volumes_from:
       - helpy:ro
     ports:
@@ -17,7 +17,7 @@ services:
     depends_on:
       - helpy
   helpy:
-    image: helpy/helpy
+    image: helpy/helpy:latest
     restart: always
     networks:
       - front
