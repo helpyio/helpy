@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     app: helpy
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 80
     targetPort: 8080

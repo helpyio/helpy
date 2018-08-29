@@ -1,5 +1,8 @@
 FROM ruby:2.4
 
+ARG HELPY_USERNAME
+ARG HELPY_PASSWORD
+
 ENV HELPY_VERSION=master \
     RAILS_ENV=production \
     HELPY_HOME=/helpy \
@@ -18,7 +21,7 @@ WORKDIR $HELPY_HOME
 
 USER $HELPY_USER
 
-RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/helpyio/helpy.git .
+RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/Superpedestrian/helpy.git .
 
 # add the slack integration gem to the Gemfile if the HELPY_SLACK_INTEGRATION_ENABLED is true
 # use `test` for sh compatibility, also use only one `=`. also for sh compatibility

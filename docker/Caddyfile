@@ -10,7 +10,7 @@
 
   header /uploads
 
-  proxy / helpy:8080/ {
+  proxy / helpy:80/ {
     except /assets
     except /uploads
     header_upstream Host {host}
@@ -18,4 +18,5 @@
     header_upstream X-Forwarded-Proto {scheme}
   }
   log stdout
+  errors stdout
 }
