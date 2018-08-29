@@ -80,4 +80,17 @@ class PostMailerTest < ActionMailer::TestCase
       assert_equal true, email.html_part.body.to_s.include?(topic.user.name)
     end
   end
+
+  test 'Should still send of header and footer missing' do
+    Doc.where(title: 'Customer_header').destroy_all
+    Doc.where(title: 'Customer_footer').destroy_all
+
+    topic = Topic.first
+    post = topic.posts.create(body: "a response to %customer_name%", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
+    email = PostMailer.new_post(post.id)
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+  end
 end
