@@ -12,6 +12,8 @@ class PostMailer < ActionMailer::Base
 
     # Do not send if internal
     return if @topic.kind == 'internal'
+    # Do not send if note
+    return if @post.kind == 'note'
     # block autoresponder loops
     return if @topic.posts_in_last_minute > MAXIMUM_EMAIL_POSTS_PER_MINUTE
     # Do not send to temp email addresses

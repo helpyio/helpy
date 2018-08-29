@@ -215,7 +215,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
             assert_difference "ActionMailer::Base.deliveries.size", 3 do
-              xhr :post, :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
+              xhr :post, :create, topic: { user: { name: "a user", email: "anon@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new' }
             end
           end
         end
@@ -228,7 +228,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
             assert_difference "ActionMailer::Base.deliveries.size", 3 do
-              xhr :post, :create, topic: { user: { name: "a user", email: "Anon@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
+              xhr :post, :create, topic: { user: { name: "a user", email: "Anon@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new' }
             end
           end
         end
@@ -240,7 +240,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       existing_user = users(:user)
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
-          xhr :post, :create, topic: { user: { name: "scott", email: "scott.miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
+          xhr :post, :create, topic: { user: { name: "scott", email: "scott.miller@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new' }
         end
       end
     end
@@ -250,7 +250,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       existing_user = users(:user)
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
-          xhr :post, :create, topic: { user: { name: "scott", email: "Scott.Miller@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
+          xhr :post, :create, topic: { user: { name: "scott", email: "Scott.Miller@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new' }
         end
       end
     end
@@ -260,7 +260,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
-            xhr :post, :create, topic: { user: { name: "a user", home_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
+            xhr :post, :create, topic: { user: { name: "a user", home_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new' }
           end
         end
       end
@@ -273,7 +273,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
-            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body" }, channel: "phone", forum_id: 1, current_status: 'new'}
+            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, channel: "phone", forum_id: 1, current_status: 'new'}
           end
         end
       end
@@ -286,7 +286,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_difference "Topic.count", 1 do
         assert_difference "Post.count", 1 do
           assert_difference "User.count", 1 do
-            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body" }, channel: "phone", forum_id: 1, current_status: 'new', assigned_user_id: 1}
+            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, channel: "phone", forum_id: 1, current_status: 'new', assigned_user_id: 1}
           end
         end
       end
@@ -300,7 +300,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
         assert_difference "Post.count", 1 do
           assert_no_difference "User.count" do
             assert_difference "ActionMailer::Base.deliveries.size", 2 do
-              xhr :post, :create, topic: { user: { name: "Scott Smith", email: "scott.smith@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new' }
+              xhr :post, :create, topic: { user: { name: "Scott Smith", email: "scott.smith@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new' }
             end
           end
         end
@@ -313,7 +313,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
         assert_difference "Post.count", 1 do
           assert_no_difference "User.count" do
             assert_difference "ActionMailer::Base.deliveries.size", 1 do
-              xhr :post, :create, topic: { user: { name: "Scott Smith", email: "scott.smith@test.com" }, name: "some new private topic", post: { body: "this is the body" }, forum_id: 1, current_status: 'new', kind: 'internal' }
+              xhr :post, :create, topic: { user: { name: "Scott Smith", email: "scott.smith@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new', kind: 'internal' }
             end
           end
         end

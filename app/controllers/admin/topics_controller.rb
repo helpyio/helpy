@@ -427,7 +427,7 @@ class Admin::TopicsController < Admin::BaseController
         @post = @topic.posts.create(
           body: params[:topic][:post][:body],
           user_id: current_user.id,
-          kind: 'first',
+          kind: params[:topic][:post][:kind],
           screenshots: params[:topic][:screenshots],
           attachments: params[:topic][:post][:attachments],
           cc: params[:topic][:post][:cc],
@@ -485,7 +485,7 @@ class Admin::TopicsController < Admin::BaseController
         @post = @topic.posts.create(
           body: params[:topic][:post][:body],
           user_id: current_user.id,
-          kind: 'first',
+          kind: params[:topic][:post][:kind],
           screenshots: params[:topic][:screenshots],
           attachments: params[:topic][:post][:attachments]
         )

@@ -1,55 +1,56 @@
 <div>
-<%= content_tag :h3, "#{t(:open_new_discussion, default: 'New Ticket')}", class: 'view-header' %>
-<%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post' }) do |f| -%>
-<div class="row">
-  <div class="col-md-8">
+  <%= content_tag :h3, "#{t(:open_new_discussion, default: 'New Ticket')}", class: 'view-header' %>
+  <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post' }) do |f| -%>
+  <div class="row">
+    <div class="col-md-8">
 
-    <%= f.input :kind, collection: ticket_types_collection, class: 'disable-empty', autofocus: true, include_blank: false -%>
-    <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
+      <%= f.input :kind, collection: ticket_types_collection, class: 'disable-empty', autofocus: true, include_blank: false -%>
+      <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
 
-    <%= f.simple_fields_for @user do |u| %>
-      <%= u.input :name, class: 'disable-empty' %>
-      <%= u.input :home_phone, class: 'disable-empty' %>
-      <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
+      <%= f.simple_fields_for @user do |u| %>
+        <%= u.input :name, class: 'disable-empty' %>
+        <%= u.input :home_phone, class: 'disable-empty' %>
+        <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
 
-      <%= u.input :email, class: 'disable-empty', label: "#{t('activerecord.attributes.user.email')} (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
+        <%= u.input :email, class: 'disable-empty', label: "#{t('activerecord.attributes.user.email')} (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
+      <% end %>
+    <%= f.simple_fields_for @topic.posts.new do |i| %>
+      <%#= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
+      <%= i.input :kind, as: :hidden, input_html: { value: 'first' } %>
+      <span class="cc-bcc hidden">
+      <%= i.input :cc, label: false, placeholder: 'cc:' %>
+      <%= i.input :bcc, label: false, placeholder: 'bcc:' %>
+      </span>
+      <%= i.input :body, as: :summernote, label: false, class: 'disable-empty' %>
+      <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
+      <%= f.select_tag 'post[reply_id]', grouped_options_for_select(i18n_reply_grouped_options, nil, prompt: ''), class: 'form-control', id: 'post_reply_id' %>
+      <br/>
+      <% if !cloudinary_enabled? %>
+        <%= i.file_field :attachments, multiple: true %>
+        <ul class="list-inline" id="attachments">
+        </ul>
+      <% end %>
+      <%= hidden_field_tag :client_id %>
+      <div class="add-screenshots">
+        <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
+      </div>
     <% end %>
-  <%= f.simple_fields_for @topic.posts.new do |i| %>
-    <%#= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
-
-    <span class="cc-bcc hidden">
-    <%= i.input :cc, label: false, placeholder: 'cc:' %>
-    <%= i.input :bcc, label: false, placeholder: 'bcc:' %>
-    </span>
-    <%= i.input :body, as: :summernote, label: false, class: 'disable-empty' %>
-    <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
-    <%= f.select_tag 'post[reply_id]', grouped_options_for_select(i18n_reply_grouped_options, nil, prompt: ''), class: 'form-control', id: 'post_reply_id' %>
-
-    <% if !cloudinary_enabled? %>
-      <%= i.file_field :attachments, multiple: true %>
-      <ul class="list-inline" id="attachments">
-      </ul>
-    <% end %>
-    <%= hidden_field_tag :client_id %>
-    <div class="add-screenshots">
-      <%= attachinary_file_field_tag 'topic[screenshots]', @topic, :screenshots if cloudinary_enabled? %>
+    <br/>
+      <%= f.button :submit, t(:submit_start_discussion, default: 'Create Ticket'), class: 'btn btn-warning disableable submit-ticket' %>
+      <%= f.button :submit, t(:submit_start_note, default: 'Create Note'), class: 'btn btn-default disableable submit-note' %>
     </div>
-  <% end %>
-    <%= f.button :submit, t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable' %>
+    <div class="col-md-4">
+      <%= f.input :channel, collection: channels_collection, as: :select, include_blank: false, item_wrapper_class: 'channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
+      <% if teams = admin_teams %>
+        <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
+      <% end %>
+      <%= f.input :priority, collection: ticket_priority_collection , as: :select, include_blank: true, selected: 'normal' %>
+      <%= f.input :current_status, collection: statuses_collection, as: :select, include_blank: false, selected: 'new' %>
+      <%= f.input :assigned_user_id, collection: agents_for_select, as: :select, include_blank: true, selected: current_user.id %>
+      <%= f.input :tag_list %>
+    </div>
   </div>
-  <div class="col-md-4">
-    <%= f.input :channel, collection: channels_collection, as: :select, include_blank: false, item_wrapper_class: 'channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
-    <% if teams = admin_teams %>
-      <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
-    <% end %>
-    <%= f.input :priority, collection: ticket_priority_collection , as: :select, include_blank: true, selected: 'normal' %>
-    <%= f.input :current_status, collection: statuses_collection, as: :select, include_blank: false, selected: 'new' %>
-    <%= f.input :assigned_user_id, collection: agents_for_select, as: :select, include_blank: true, selected: current_user.id %>
-    <%= f.input :tag_list %>
-
-  </div>
-</div>
-<% end -%>
+  <% end -%>
 </div>
 <%= summernote_lang_js %>
 <script>
@@ -98,4 +99,12 @@ $.ajax({
   window.emojis = Object.keys(data);
   window.emojiUrls = data;
 });
+</script>
+<script>
+  $('.submit-note').off('click').on('click', function(){
+    $('#topic_post_kind').val('note');
+  });
+  $('.submit-ticket').off('click').on('click', function(){
+    $('#topic_post_kind').val('first');
+  });
 </script>
