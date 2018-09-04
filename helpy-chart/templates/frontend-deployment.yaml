@@ -16,7 +16,7 @@ spec:
         io.kompose.service: frontend
     spec:
       containers:
-      - image: vishalrao2911/caddy:latest
+      - image: superpedestrian/caddy:latest
         name: frontend
         terminationMessagePath: "/tmp/my-log"
         ports:

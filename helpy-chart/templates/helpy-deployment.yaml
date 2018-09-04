@@ -13,6 +13,8 @@ spec:
       labels:
         app: helpy
     spec:
+      imagePullSecrets:
+      - name: dockercred
       containers:
       - env:
         - name: POSTGRES_DB
@@ -23,7 +25,7 @@ spec:
           value: helpy
         - name: SECRET_KEY_BASE
           value: some_secret_key_base_change_in_production
-        image: helpy/helpy:latest
+        image: superpedestrian/helpy:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
