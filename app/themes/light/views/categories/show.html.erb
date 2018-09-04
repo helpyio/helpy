@@ -23,7 +23,15 @@
   <div id="category-col" class="col-md-9 col-sm-12 col-xs-12">
     <ul class='list-unstyled'>
       <% @docs.each do |doc| %>
-          <%= render ("docs/doc"), doc: doc %>
+      <li class="article less-important">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <%= link_to doc.title, category_doc_path(doc.category, doc) %>
+
+        <% doc_tag_listing(doc.tag_list, "doc") %>
+        <% if doc.posts.count > 0 %>
+          <i class="glyphicon glyphicon-comment" style="font-size:11px;color:#eee;" title="<%= doc.posts.count %>"></i>
+        <% end %>
+      </li>
       <% end %>
       <% if @docs.count == 0 %>
 
