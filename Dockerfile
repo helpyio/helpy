@@ -3,7 +3,7 @@ FROM ruby:2.4
 ARG HELPY_USERNAME
 ARG HELPY_PASSWORD
 
-ENV HELPY_VERSION=master \
+ENV HELPY_VERSION=feature/add-jenkins \
     RAILS_ENV=production \
     HELPY_HOME=/helpy \
     HELPY_USER=helpyuser \
@@ -43,6 +43,12 @@ RUN mkdir -p $HELPY_HOME/public/assets && chown $HELPY_USER $HELPY_HOME/public/a
 VOLUME $HELPY_HOME/public
 
 COPY docker/database.yml $HELPY_HOME/config/database.yml
-COPY docker/run.sh $HELPY_HOME/run.sh
 
-CMD ["./run.sh"]
+# Asset Precompile
+RUN bundle exec rake assets:precompile
+
+# Install helpy_cloud
+RUN rails g helpy_cloud:install
+
+# Run the server
+RUN bundle exec unicorn -E production -c config/unicorn.rb

@@ -159,6 +159,9 @@ source 'https://gems.helpy.io/' do
   gem 'helpy_cloud', '~> 1'
 end
 
+# NULLDB for asset precompilation
+gem 'activerecord-nulldb-adapter'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
