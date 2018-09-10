@@ -88,7 +88,7 @@ any linux based system.  There is a full guide to installing Helpy in the wiki: 
 
 Requirements are:
 
-- Ruby 2.2+
+- Ruby 2.3+
 - Rails 4.2.x
 - Postgres
 - A server like Unicorn, Puma or Passenger
