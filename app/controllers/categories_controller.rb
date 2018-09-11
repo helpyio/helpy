@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
   theme :theme_chosen
 
   def index
-    @categories = Category.publicly.active.ordered.with_translations(I18n.locale)
+    @categories = Category.publicly.active.ordered.with_translations(I18n.locale).includes(docs: :tags )
     @page_title = I18n.t :knowledgebase, default: "Knowledgebase"
     add_breadcrumb @page_title, categories_path
   end
@@ -35,11 +35,10 @@ class CategoriesController < ApplicationController
     @category = Category.publicly.active.where(id: params[:id]).first
     if @category
       if I18n.available_locales.count > 1
-        @docs = @category.docs.ordered.active.with_translations(I18n.locale).page params[:page]
+        @docs = @category.docs.ordered.active.with_translations(I18n.locale).page(params[:page]).includes(tags: :taggings)
       else
-        @docs = @category.docs.ordered.active.page params[:page]
+        @docs = @category.docs.ordered.active.page(params[:page]).includes(:tags)
       end
-
       @categories = Category.publicly.active.ordered.with_translations(I18n.locale)
       @related = Doc.in_category(@doc.category_id) if @doc
 

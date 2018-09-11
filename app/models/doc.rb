@@ -67,7 +67,7 @@ class Doc < ActiveRecord::Base
   scope :publicly, -> { joins(:category).where(categories: { visibility: %w[all public] }) }
 
   def to_param
-    return "#{id}-missing-title" if title.nil?  
+    return "#{id}-missing-title" if title.nil?
     "#{id}-#{title.parameterize}"
   end
 
@@ -82,6 +82,10 @@ class Doc < ActiveRecord::Base
   def content
     c = RDiscount.new(self.body)
     c.to_html
+  end
+
+  def tag_list
+    @tag_list ||= ActsAsTaggableOn::TagList.new tags.collect(&:name)
   end
 
 end
