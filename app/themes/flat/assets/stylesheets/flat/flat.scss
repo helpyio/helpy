@@ -823,9 +823,14 @@ h1#how-help {
   background-color: $main-panel-bg;
   color: $main-panel-font-color;
 
-  a {
+  .breadcrumb a {
     color: $main-panel-breadcrumb-color;
   }
+
+  li.ui-menu div.ui-menu-item a  {
+    color: #333;
+  }
+
 }
 
 #home-search {
