@@ -2,7 +2,7 @@ require 'integration_test_helper'
 
 include Warden::Test::Helpers
 
-class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
+class FeatureDisableTest < ActionDispatch::IntegrationTest
   def setup
     Warden.test_mode!
     set_default_settings
