@@ -95,7 +95,7 @@ class ApplicationController < ActionController::Base
   helper_method :display_branding?
 
   def forums_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless forums?
+    redirect_to root_path unless forums?
   end
 
   def knowledgebase_enabled?
