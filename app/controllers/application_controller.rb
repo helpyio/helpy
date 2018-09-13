@@ -99,15 +99,15 @@ class ApplicationController < ActionController::Base
   end
 
   def knowledgebase_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless knowledgebase?
+    redirect_to root_path unless knowledgebase?
   end
 
   def tickets_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets?
+    redirect_to root_path unless tickets?
   end
 
   def topic_creation_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
+    redirect_to root_path unless tickets? || forums?
   end
 
   protected
