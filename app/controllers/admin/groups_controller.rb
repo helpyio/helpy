@@ -39,11 +39,13 @@ class Admin::GroupsController < Admin::BaseController
   end
 
   def create
-    tag = ActsAsTaggableOn::Tag.create(group_params)
-    if ActsAsTaggableOn::Tagging.create(tag_id: tag.id, context: "teams")
-      redirect_to admin_groups_path
-    else
-      render new_admin_group_path
+    @team = ActsAsTaggableOn::Tag.create(group_params)
+    if ActsAsTaggableOn::Tagging.create(tag_id: @team.id, context: "teams")
+      if @team.save
+        redirect_to admin_groups_path
+      else
+        render :new
+      end
     end
   end
 
