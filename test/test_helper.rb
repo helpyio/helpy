@@ -22,6 +22,10 @@ class ActiveSupport::TestCase
   # Settings.send_email = false
 end
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
 class ActionController::TestCase
   include Devise::TestHelpers
 end
