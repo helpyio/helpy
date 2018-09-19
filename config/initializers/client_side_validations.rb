@@ -37,10 +37,10 @@ module ClientSideValidations
               end
 
             option_hash.each_key do |attr|
-              # due to value of option_hash return 'Symbol', meanwhile value of validation_hash return 'String' 
-              # =>validation_hash[attr.to_sym]
-              if validation_hash[attr.to_sym]
-                validator_hash.merge!(object_opts[1][attr][:name] => validation_hash[attr.to_sym])
+              # attr is String type which is different type of validation_hash's keys
+              validation_hash = validation_hash.with_indifferent_access
+              if validation_hash[attr]
+                validator_hash.merge!(object_opts[1][attr][:name] => validation_hash[attr])
               end
             end
           end
