@@ -1,20 +1,28 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: {{ template "frontend.fullname" . }}
   labels:
-    io.kompose.service: frontend
-  name: frontend
+    app: {{ template "frontend.name" . }}
+    chart: {{ template "frontend.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "frontend.name" . }}
+      release: {{ .Release.Name }}
   strategy:
     type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: frontend
+        app: {{ template "frontend.name" . }}
+        release: {{ .Release.Name }}
     spec:
+      imagePullSecrets:
+        - name: dockercred
       containers:
       - image: superpedestrian/caddy:latest
         name: frontend
@@ -31,4 +39,17 @@ spec:
       - name: helpy-rails-assets
         persistentVolumeClaim:
           claimName: helpy-rails-assets
-status: {}
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+

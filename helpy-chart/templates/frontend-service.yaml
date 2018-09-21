@@ -1,23 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.16.0 (0c01309)
-  creationTimestamp: null
+  name: {{ template "frontend.fullname" . }}
   labels:
-    io.kompose.service: frontend
-  name: frontend
+    app: {{ template "frontend.name" . }}
+    chart: {{ template "frontend.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   ports:
-  - name: "80"
-    port: 80
-    targetPort: 80
-  - name: "443"
-    port: 443
-    targetPort: 443
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
   selector:
-    io.kompose.service: frontend
-status:
-  loadBalancer: {}
+    app: {{ template "frontend.name" . }}
+    release: {{ .Release.Name }}
