@@ -75,12 +75,11 @@
         </li>
       <% end %>
       <!-- <li class="new-tag">
-        <%= form_tag '#', class: 'new-group-form' do %>
-        <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
-        <% end %>
+        <#%= form_tag '#', class: 'new-group-form' do %>
+        <#%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+        <#% end %>
       </li> -->
       <li><%= link_to "Unassign from group", admin_unassign_team_path(topic_ids: { "":@topic.id }, team: '', status: @status), :remote => true unless @topic.current_status == "closed" %></li>
-
     </ul>
   </span>
 <% end %>
