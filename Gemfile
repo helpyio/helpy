@@ -174,6 +174,7 @@ gem 'bulk_insert'
 gem 'roo'
 
 group :development do
+  gem 'letter_opener'
   gem "better_errors"
 
   # Check Eager Loading / N+1 query problems
@@ -193,7 +194,7 @@ group :test do
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
-
+  gem 'm'
   # remove this for Rails 5 because the function is already included
   gem 'test_after_commit'
 end

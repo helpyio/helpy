@@ -17,7 +17,6 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.default_url_options = { host: Settings.site_url }
-  config.action_mailer.delivery_method = :smtp
 #  config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger.
@@ -54,6 +53,8 @@ Rails.application.configure do
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
   config.active_job.queue_adapter = :inline
 
   config.after_initialize do

@@ -310,6 +310,8 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
+    letter_opener (1.6.0)
+      launchy (~> 2.2)
     listen (2.10.1)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
@@ -317,6 +319,9 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
+    m (1.5.1)
+      method_source (>= 0.6.7)
+      rake (>= 0.9.2.2)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     mail_extract (0.1.4)
@@ -658,6 +663,8 @@ DEPENDENCIES
   kaminari-grape
   kaminari-i18n
   launchy
+  letter_opener
+  m
   mail_extract
   mailman
   mini_magick
