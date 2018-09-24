@@ -90,7 +90,7 @@ gem 'globalize-accessors'
 gem 'gravtastic'
 
 # File handling
-gem 'cloudinary', '1.1.2'
+gem 'cloudinary', '1.1.7'
 gem 'attachinary'
 
 gem 'carrierwave', '~> 1.0.0'
