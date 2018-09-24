@@ -60,7 +60,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
 # i18n gems
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n', '~> 4.0.9'
 gem 'i18n-country-translations'
 gem 'route_translator'
 gem 'http_accept_language'
