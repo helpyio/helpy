@@ -541,7 +541,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    staccato (0.4.5)
+    staccato (0.5.1)
     sucker_punch (2.0.1)
       concurrent-ruby (~> 1.0.0)
     summernote-rails (0.8.10.0)
