@@ -555,7 +555,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.2)
-    timecop (0.8.1)
+    timecop (0.9.1)
     timers (4.0.4)
       hitimes
     turbolinks (2.5.3)
