@@ -494,7 +494,7 @@ GEM
     rubyzip (1.2.2)
     safe_yaml (1.0.4)
     sass (3.4.25)
-    sass-rails (5.0.6)
+    sass-rails (5.0.7)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
@@ -554,7 +554,7 @@ GEM
       rails (>= 3.2)
     thor (0.20.0)
     thread_safe (0.3.6)
-    tilt (2.0.2)
+    tilt (2.0.8)
     timecop (0.9.1)
     timers (4.0.4)
       hitimes
@@ -692,7 +692,7 @@ DEPENDENCIES
   roo
   route_translator
   rubocop
-  sass-rails (~> 5.0.6)
+  sass-rails (~> 5.0.7)
   scss-lint
   sdoc (~> 0.4.0)
   selectize-rails
