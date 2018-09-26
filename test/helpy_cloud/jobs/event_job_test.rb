@@ -29,14 +29,23 @@ require 'test_helper'
 
 class EventJobTest < ActiveJob::TestCase
 
-  def create_ticket
-    @topic = Topic.create(
+  def create_ticket(post=false)
+    @topic = Topic.create!(
       name: 'This is the topic',
       forum_id: 1,
       private: true,
       user_id: 1,
       post_cache: 'this is the cache'
     )
+    if post
+      @topic.posts.create!(
+        kind: 'first',
+        body: 'blah blah blah',
+        user_id: 1,
+        cc: 'someone@test.com',
+        bcc: 'someone2@test.com'
+      )
+    end
   end
 
   test "should assign to a specific agent" do
@@ -122,7 +131,7 @@ class EventJobTest < ActiveJob::TestCase
   end
 
   test "should add a reply" do
-    create_ticket
+    create_ticket(true)
 
     # Create a trigger that assigns agent on a new topic
     trigger = Trigger.create(
@@ -198,7 +207,7 @@ class EventJobTest < ActiveJob::TestCase
       conditions: [','],
       event: 'ticket_created'
     )
-
+# binding.pry
     EventJob.perform_now(trigger.id, @topic.id)
     @topic.reload
 

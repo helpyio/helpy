@@ -65,7 +65,78 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
       # assert_select "span.label.label-d", "default box"
     end
+    # Testing sending an auto response email by trigger, including CC and BCC
+    test "a #{admin} creating a new ticket should cause the triggers to send an autoresponse" do
+      AppSettings['settings.tickets'] = "1"
 
+      sign_in users(admin.to_sym)
+      create_auto_respond_trigger
+
+      get :new, locale: :en
+      assert_response :success
+      assert_difference "ActionMailer::Base.deliveries.size", 1 do
+        xhr :post, :create,
+          topic: {
+            user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" },
+            name: "some new private topic",
+            post: { body: "this is the body", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'first' },
+            channel: "phone",
+            forum_id: 1,
+            current_status: 'new',
+            assigned_user_id: 1
+          }
+      end
+      assert_equal 2, Topic.last.posts.count
+      assert_equal "Thanks for contacting us!", Post.last.body
+      assert_equal "cc@test.com", Post.last.cc
+      assert_equal "bcc@test.com", Post.last.bcc
+    end
+
+    # Test presence of extra fields on the new ticket form
+    test "#{admin} should be shown extra fields on the admin create ticket form" do
+      sign_in users(admin.to_sym)
+
+      # Add extra fields
+      field = TopicField.create!(name: 'blah', label: 'Favorite Food', field_type: "text", display_on_admin: true)
+      # load form and assert their presence
+      get :new, locale: :en
+      assert_select "#topic_#{field.name}"
+    end
+
+    # Test presence of extra fields on the new ticket form
+    test "#{admin} submitting extra fields should be stored as kv attributes for the topic" do
+      sign_in users(admin.to_sym)
+
+      # Add extra fields
+      field = TopicField.create!(name: 'blah', label: 'Favorite Food', field_type: "text", display_on_admin: true)
+
+      # load form and assert their presence
+      assert_difference 'KeyValue.count', 1, "Attribute was not stored" do
+        assert_difference 'Topic.count', 1, "A topic should have been created" do
+          # assert_difference 'Post.count', 2, "A post should have been created" do
+
+          xhr :post, :create,
+            topic: {
+              user: { name: "a user", email: "anon@test.com" },
+              name: "some new private topic",
+              blah: "something",
+              post: { body: "this is the body", kind: 'first' },
+              forum_id: 1,
+              current_status: 'new'
+            }
+        end
+      end
+
+      assert_equal "something", KeyValue.last.value
+    end
   end
 
+  def create_auto_respond_trigger
+    Trigger.create!(
+      event: 'ticket_created',
+      conditions: [],
+      actions: ['post_reply,Thanks for contacting us!'],
+      mode: 'and'
+    )
+  end
 end

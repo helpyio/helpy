@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180720173011) do
+ActiveRecord::Schema.define(version: 20180913150764) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,6 @@ ActiveRecord::Schema.define(version: 20180720173011) do
 
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
-
-  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
-    t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "attachinary_files", force: :cascade do |t|
     t.integer  "attachinariable_id"
@@ -50,6 +44,29 @@ ActiveRecord::Schema.define(version: 20180720173011) do
 
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
+  create_table "audits", force: :cascade do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         default: 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.string   "request_uuid"
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["associated_id", "associated_type"], name: "associated_index", using: :btree
+  add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
+  add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
+  add_index "audits", ["request_uuid"], name: "index_audits_on_request_uuid", using: :btree
+  add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
+
   create_table "backups", force: :cascade do |t|
     t.integer  "user_id"
     t.text     "csv"
@@ -60,6 +77,17 @@ ActiveRecord::Schema.define(version: 20180720173011) do
   end
 
   add_index "backups", ["user_id"], name: "index_backups_on_user_id", using: :btree
+
+  create_table "boxes", force: :cascade do |t|
+    t.string   "label"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "rank"
+    t.text     "query"
+    t.boolean  "default"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -106,6 +134,23 @@ ActiveRecord::Schema.define(version: 20180720173011) do
   add_index "doc_translations", ["doc_id"], name: "index_doc_translations_on_doc_id", using: :btree
   add_index "doc_translations", ["locale"], name: "index_doc_translations_on_locale", using: :btree
 
+  create_table "doc_views", force: :cascade do |t|
+    t.string   "collector_action", default: "view"
+    t.integer  "user_id"
+    t.string   "session_id"
+    t.integer  "doc_id"
+    t.string   "doc_title"
+    t.integer  "category_id"
+    t.string   "doc_category"
+    t.string   "search_used"
+    t.text     "referrer"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "results_found",    default: 0
+  end
+
+  add_index "doc_views", ["doc_id"], name: "index_doc_views_on_doc_id", using: :btree
+
   create_table "docs", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -126,6 +171,7 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.integer  "topics_count",     default: 0
     t.boolean  "allow_comments",   default: true
     t.string   "attachments",      default: [],                 array: true
+    t.integer  "doc_views_count",  default: 0
   end
 
   create_table "flags", force: :cascade do |t|
@@ -135,6 +181,16 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "followers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "followers", ["topic_id"], name: "index_followers_on_topic_id", using: :btree
+  add_index "followers", ["user_id"], name: "index_followers_on_user_id", using: :btree
 
   create_table "forums", force: :cascade do |t|
     t.string   "name"
@@ -172,6 +228,34 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.datetime "updated_at",            null: false
   end
 
+  create_table "key_values", force: :cascade do |t|
+    t.string   "key"
+    t.text     "value"
+    t.integer  "kvable_id"
+    t.string   "kvable_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "key_values", ["kvable_id", "kvable_type"], name: "kvable_index", using: :btree
+  add_index "key_values", ["value"], name: "kv_value_index", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "recipient_id"
+    t.integer  "actor_id"
+    t.datetime "read_at"
+    t.boolean  "send_email",      default: false
+    t.datetime "sent_at"
+    t.string   "action"
+    t.string   "title"
+    t.text     "message"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.datetime "alerted_at"
+  end
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -195,6 +279,18 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.text     "raw_email"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "score"
+    t.text     "comments"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ratings", ["topic_id"], name: "index_ratings_on_topic_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
+
   create_table "searches", force: :cascade do |t|
     t.string   "name"
     t.text     "body"
@@ -216,6 +312,60 @@ ActiveRecord::Schema.define(version: 20180720173011) do
 
   add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
+  create_table "sla_schedules", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "sla_id"
+    t.integer  "post_id"
+    t.datetime "wait_until"
+    t.datetime "job_run"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "slas", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "event"
+    t.string   "priority"
+    t.integer  "time"
+    t.integer  "time_units",                 default: 60
+    t.integer  "minutes"
+    t.string   "tags"
+    t.string   "group"
+    t.integer  "assigned_user_id"
+    t.text     "note"
+    t.string   "notify_users",                                            array: true
+    t.boolean  "active",                     default: true
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "selected_groups",                                         array: true
+    t.string   "selected_ticket_priorities",                              array: true
+    t.string   "selected_user_priorities",                                array: true
+    t.boolean  "set_hours",                  default: false
+    t.boolean  "monday_active",              default: false
+    t.integer  "monday_start",               default: 9
+    t.integer  "monday_end",                 default: 18
+    t.boolean  "tuesday_active",             default: false
+    t.integer  "tuesday_start",              default: 9
+    t.integer  "tuesday_end",                default: 18
+    t.boolean  "wednesday_active",           default: false
+    t.integer  "wednesday_start",            default: 9
+    t.integer  "wednesday_end",              default: 18
+    t.boolean  "thursday_active",            default: false
+    t.integer  "thursday_start",             default: 9
+    t.integer  "thursday_end",               default: 18
+    t.boolean  "friday_active",              default: false
+    t.integer  "friday_start",               default: 9
+    t.integer  "friday_end",                 default: 18
+    t.boolean  "saturday_active",            default: false
+    t.integer  "saturday_start",             default: 9
+    t.integer  "saturday_end",               default: 18
+    t.boolean  "sunday_active",              default: false
+    t.integer  "sunday_start",               default: 9
+    t.integer  "sunday_end",                 default: 18
+    t.string   "time_zone",                  default: "UTC"
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -226,15 +376,8 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["context"], name: "index_taggings_on_context", using: :btree
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
-  add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
-  add_index "taggings", ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
-  add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
-  add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
@@ -250,6 +393,23 @@ ActiveRecord::Schema.define(version: 20180720173011) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+
+  create_table "topic_fields", force: :cascade do |t|
+    t.string   "name"
+    t.string   "label"
+    t.string   "field_type"
+    t.string   "select_options"
+    t.boolean  "required"
+    t.string   "class_names"
+    t.integer  "rank"
+    t.string   "group"
+    t.string   "toggle_target"
+    t.boolean  "display_on_helpcenter"
+    t.boolean  "display_on_admin"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "valid_value"
+  end
 
   create_table "topics", force: :cascade do |t|
     t.integer  "forum_id"
@@ -274,10 +434,34 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.string   "channel",          default: "email"
     t.string   "kind",             default: "ticket"
     t.integer  "priority",         default: 1
+    t.string   "condition",        default: "green"
+    t.string   "sentiment"
+    t.datetime "last"
   end
 
   add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree
   add_index "topics", ["priority"], name: "index_topics_on_priority", using: :btree
+
+  create_table "trigger_runs", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "trigger_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "triggers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "mode",          default: "and"
+    t.text     "actions"
+    t.text     "conditions"
+    t.string   "url"
+    t.string   "event"
+    t.string   "slack_channel"
+    t.boolean  "active",        default: true
+    t.integer  "rank"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
@@ -336,6 +520,8 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.string   "account_number"
     t.string   "priority",               default: "normal"
     t.text     "notes"
+    t.boolean  "notify_on_assignment",   default: true
+    t.boolean  "notify_on_mention",      default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -359,6 +545,14 @@ ActiveRecord::Schema.define(version: 20180720173011) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "violations", force: :cascade do |t|
+    t.integer  "topic_id"
+    t.integer  "sla_id"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "votes", force: :cascade do |t|
     t.integer  "points",        default: 1

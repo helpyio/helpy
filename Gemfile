@@ -156,7 +156,7 @@ gem 'best_in_place', '~> 3.1'
 gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
 
 source 'https://gems.helpy.io/' do
-  gem 'helpy_cloud', '~> 1'
+  gem 'helpy_cloud', '~> 1.5.1.2'
 end
 
 # NULLDB for asset precompilation

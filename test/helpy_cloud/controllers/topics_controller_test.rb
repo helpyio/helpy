@@ -68,9 +68,51 @@ class TopicsControllerTest < ActionController::TestCase
             locale: :en
       end
     end
-    # binding.pry
     assert_not_nil Topic.last.assigned_user_id
     assert_redirected_to topic_thanks_path, "Did not redirect to thanks view"
+  end
+
+  # Test presence of extra fields on the new ticket form
+  test "extra fields should be shown on the create ticket form" do
+    # Add extra fields
+    field = TopicField.create!(name: 'blah', label: 'Favorite Food', field_type: "text", display_on_helpcenter: true)
+    # load form and assert their presence
+    get :new, locale: :en
+    assert_select "#topic_#{field.name}"
+  end
+
+  # Test presence of extra fields on the new ticket form
+  test "extra fields should be stored as kv attributes for the topic" do
+    # Add extra fields
+    field = TopicField.create!(name: 'blah', label: 'Favorite Food', field_type: "text", display_on_helpcenter: true)
+
+    # load form and assert their presence
+    assert_difference 'KeyValue.count', 1, "Attribute was not stored" do
+      assert_difference 'Topic.count', 1, "A topic should have been created" do
+        # assert_difference 'Post.count', 2, "A post should have been created" do
+
+        post :create,
+          topic: {
+            user: {
+              name: 'a user',
+              email: 'anon@test.com'
+            },
+            name: "some new public topic",
+            blah: "something",
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+                body: "this is the body"
+              }
+            }
+          },
+          locale: :en
+        # end
+      end
+    end
+
+    assert_equal "something", KeyValue.last.value
   end
 
   def create_triggers

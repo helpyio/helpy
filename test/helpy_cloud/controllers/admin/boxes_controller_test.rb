@@ -14,7 +14,7 @@ class Admin::BoxesControllerTest < ActionController::TestCase
   test "a signed in user should not be able to load the boxes page" do
     sign_in users(:user)
     get :index, locale: :en
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "an admin should be able to load the boxes page" do
