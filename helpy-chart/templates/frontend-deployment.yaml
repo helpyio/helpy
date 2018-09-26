@@ -24,21 +24,13 @@ spec:
       imagePullSecrets:
         - name: dockercred
       containers:
-      - image: superpedestrian/caddy:latest
-        name: frontend
-        terminationMessagePath: "/tmp/my-log"
-        ports:
-        - containerPort: 80
-        - containerPort: 443
-        resources: {}
-        volumeMounts:
-        - mountPath: /helpy/public
-          name: helpy-rails-assets
-      restartPolicy: Always
-      volumes:
-      - name: helpy-rails-assets
-        persistentVolumeClaim:
-          claimName: helpy-rails-assets
+        - name: frontend
+          image: superpedestrian/caddy:latest
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
       nodeSelector:

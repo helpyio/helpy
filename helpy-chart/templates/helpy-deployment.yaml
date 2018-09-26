@@ -33,12 +33,5 @@ spec:
           protocol: TCP
         name: helpy
         resources: {}
-        volumeMounts:
-        - mountPath: /helpy/public
-          name: helpy-rails-assets
       restartPolicy: Always
-      volumes:
-      - name: helpy-rails-assets
-        persistentVolumeClaim:
-          claimName: helpy-rails-assets
 status: {}

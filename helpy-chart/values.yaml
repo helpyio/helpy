@@ -4,11 +4,6 @@
 
 replicaCount: 1
 
-image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
-
 service:
   type: NodePort
   port: 80
