@@ -15,7 +15,14 @@ class NotificationMailerTest < ActionMailer::TestCase
     end
   end
 
-  
+  #set data for test email include attachment
+  def data_for_attachment_test
+    disable_all_notifications
+    @user = User.agents.first
+    @user_1 = User.create(email: "test@example.com", name: "tester", password: '12345678')
+    @topic_1 = Topic.create(name: 'topic-test', user_id: @user_1.id, forum_id: 5)
+    @post_1 = Post.create(body: 'body-test', user_id: @user_1.id, kind: 'everything', topic_id: @topic_1.id)
+  end
 
   # This test makes sure no notification is sent if notifications are turned off
   # for everyone
@@ -103,7 +110,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal notification.bcc, User.notifiable_on_reply.last(2).collect {|u| u.email}
   end
 
-
   # These tests check to make sure it works if there is only one agent with a notification
   test 'Should send one private message notification if there is one agent with notifications on' do
     disable_all_notifications
@@ -150,15 +156,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal notification.bcc, []
   end
 
-  #set data for test email include attachment
-  def data_for_attachment_test
-    disable_all_notifications
-    @user = User.agents.first
-    @user_1 = User.create(email: "test@example.com", name: "tester", password: '12345678')
-    @topic_1 = Topic.create(name: 'topic-test', user_id: @user_1.id, forum_id: 5)
-    @post_1 = Post.create(body: 'body-test', user_id: @user_1.id, kind: 'everything', topic_id: @topic_1.id)
-  end
-
 # These tests check the notification email will include attachment with new_private method
   def notification_email_for_private_test
     @private_notification = NotificationMailer.new_private(@topic_1.id)
@@ -170,6 +167,12 @@ class NotificationMailerTest < ActionMailer::TestCase
   def notify_on_private_true
     data_for_attachment_test
     @user.notify_on_private = true
+    @user.save!
+  end
+
+  def notify_on_private_false
+    data_for_attachment_test
+    @user.notify_on_private = false
     @user.save!
   end
   
@@ -187,6 +190,11 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal @private_notification.attachments, []
   end
 
+  test "Should not sent to user with notify_on_private is false " do
+    notify_on_private_false
+    assert_nil @private_notification
+  end
+
 # These tests check the notification email will include attachment with new_public method
   def notification_email_for_public_test
     @public_notification = NotificationMailer.new_public(@topic_1.id)
@@ -198,6 +206,12 @@ class NotificationMailerTest < ActionMailer::TestCase
   def notify_on_public_true
     data_for_attachment_test
     @user.notify_on_public = true
+    @user.save!
+  end
+
+   def notify_on_public_false
+    data_for_attachment_test
+    @user.notify_on_public = false
     @user.save!
   end
 
@@ -215,6 +229,11 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal @public_notification.attachments, []
   end
 
+  test "Should not sent to user with notify_on_public is false" do
+    notify_on_public_false
+    assert_nil @public_notification
+  end
+
 # These tests check the notification email will include attachment with new_reply method
   def notification_email_for_reply_test
     @reply_notification = NotificationMailer.new_reply(@topic_1.id)
@@ -226,6 +245,12 @@ class NotificationMailerTest < ActionMailer::TestCase
   def notify_on_reply_true
     data_for_attachment_test
     @user.notify_on_reply = true
+    @user.save!
+  end
+
+  def notify_on_reply_false
+    data_for_attachment_test
+    @user.notify_on_reply = false
     @user.save!
   end
 
@@ -241,6 +266,11 @@ class NotificationMailerTest < ActionMailer::TestCase
     notify_on_reply_true
     notification_email_for_reply_test
     assert_equal @reply_notification.attachments, []
+  end
+
+  test "Should not sent to user with notify_on_reply is false " do
+    notify_on_reply_false
+    assert_nil @reply_notification
   end
 end
 
