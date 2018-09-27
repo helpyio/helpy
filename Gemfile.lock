@@ -241,7 +241,7 @@ GEM
       griddler
     griddler-sendgrid (0.0.1)
       griddler
-    griddler-sparkpost (0.0.1)
+    griddler-sparkpost (0.0.3)
       griddler
       mail
     groupdate (3.2.0)
@@ -338,7 +338,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
     mini_magick (4.2.10)
-    mini_mime (1.0.0)
+    mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     minitest-reporters (1.1.8)
