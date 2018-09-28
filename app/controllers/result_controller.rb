@@ -30,12 +30,21 @@ class ResultController < ApplicationController
       else
         serialized_result << {
           name: result.searchable.title,
-          content: result.searchable.body.nil? ? nil : result.searchable.body.truncate_words(20),
+          content: result.searchable.meta_description.present? ? meta_content(result) : sanitized_content(result),
           link: category_doc_path(result.searchable.category_id, Doc.find(result.searchable_id))
         }
       end
     end
     serialized_result
+  end
+
+  def sanitized_content(result)
+    return nil if result.searchable.body.nil?
+    ActionView::Base.full_sanitizer.sanitize(result.searchable.body).truncate_words(20)
+  end
+
+  def meta_content(result)
+    result.searchable.meta_description
   end
 
 end

@@ -6,7 +6,7 @@ gem 'rails', '4.2.10'
 gem 'pg'
 gem 'pg_search'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails', '~> 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -60,7 +60,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
 # i18n gems
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n', '~> 4.0.9'
 gem 'i18n-country-translations'
 gem 'route_translator'
 gem 'http_accept_language'
@@ -71,8 +71,9 @@ gem 'grape-swagger'
 gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
-gem 'grape-attack'
+# gem 'grape-attack' #uncomment for rate limiting
 gem 'grape-kaminari'
+gem 'kaminari-grape'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'permalink_fu'
@@ -89,7 +90,7 @@ gem 'globalize-accessors'
 gem 'gravtastic'
 
 # File handling
-gem 'cloudinary', '1.1.2'
+gem 'cloudinary', '1.1.7'
 gem 'attachinary'
 
 gem 'carrierwave', '~> 1.0.0'
@@ -110,7 +111,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
 
-gem 'config', '~> 1.1.0', git: 'https://github.com/railsconfig/config.git'
+gem 'config', '~> 1.1.0'
 
 # Email/Mail Handling
 gem 'daemons'
@@ -189,6 +190,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false

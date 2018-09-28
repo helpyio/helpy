@@ -360,6 +360,7 @@ div.admin-tools {
   margin-left: 2px;
   margin-right: 2px;
   text-transform: uppercase;
+  display: inline-block;  
 }
 
 .label-tag {
@@ -859,6 +860,11 @@ div#results-found {
 	margin-top: 15px;
 	margin-bottom: 30px;
 }
+
+// #home-search div #search-form div div li.ui-menu div.ui-menu-item a {
+//   color: #333 !important;
+// }
+
 
 //  === HEADER STYLES ===
 
