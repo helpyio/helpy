@@ -93,6 +93,21 @@ class API::V1::KeyValuesTest < ActiveSupport::TestCase
     assert_equal params[:value], object['value']
   end
 
+  test "should be able to update multiple values a json object" do
+    key_value = KeyValue.first
+    params = {
+      kvable_id: Topic.first.id,
+      kvable_type: 'Topic',
+      json: '{"test":"tested"}'
+    }
+
+    patch "/api/v1/key_values.json", @default_params.merge(params)
+
+    object = JSON.parse(last_response.body)[0]
+    assert_equal "test", object['key']
+    assert_equal "tested", object['value']
+  end
+
   test "an API user should be able to delete a key_value" do
     key_value = KeyValue.first
     delete "/api/v1/key_values/#{key_value.id}.json", @default_params

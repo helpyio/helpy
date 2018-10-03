@@ -267,7 +267,7 @@ GEM
       tilt
     hashids (1.0.4)
     hashie (3.5.7)
-    helpy_cloud (1.5.1.2)
+    helpy_cloud (1.5.4)
       audited
       deface
       devise_ldap_authenticatable
@@ -682,7 +682,7 @@ DEPENDENCIES
   griddler-sendgrid
   griddler-sparkpost
   groupdate
-  helpy_cloud (~> 1.5.1.2)!
+  helpy_cloud (~> 1.5.4)!
   helpy_onboarding!
   http_accept_language
   i18n-country-translations
