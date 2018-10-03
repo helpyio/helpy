@@ -16,6 +16,8 @@
 //= require codemirror/modes/slim
 //= require codemirror/modes/php
 //= require summernote
+//= require helpy_cloud
+
 
 // Gives us a capitalize method
 String.prototype.capitalize = function() {

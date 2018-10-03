@@ -155,6 +155,13 @@ gem 'best_in_place', '~> 3.1'
 # Add onboarding component
 gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
 
+source 'https://gems.helpy.io/' do
+  gem 'helpy_cloud', '~> 1.5.1.2'
+end
+
+# NULLDB for asset precompilation
+gem 'activerecord-nulldb-adapter'
+
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false

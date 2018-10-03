@@ -1,6 +1,9 @@
 FROM ruby:2.4
 
-ENV HELPY_VERSION=master \
+ARG HELPY_USERNAME
+ARG HELPY_PASSWORD
+
+ENV HELPY_VERSION=feature/add-jenkins \
     RAILS_ENV=production \
     HELPY_HOME=/helpy \
     HELPY_USER=helpyuser \
@@ -18,11 +21,13 @@ WORKDIR $HELPY_HOME
 
 USER $HELPY_USER
 
-RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/helpyio/helpy.git .
+RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/Superpedestrian/helpy.git .
 
 # add the slack integration gem to the Gemfile if the HELPY_SLACK_INTEGRATION_ENABLED is true
 # use `test` for sh compatibility, also use only one `=`. also for sh compatibility
 RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
+
+RUN bundle config gems.helpy.io $HELPY_USERNAME:$HELPY_PASSWORD
 
 RUN bundle install
 
@@ -38,6 +43,12 @@ RUN mkdir -p $HELPY_HOME/public/assets && chown $HELPY_USER $HELPY_HOME/public/a
 VOLUME $HELPY_HOME/public
 
 COPY docker/database.yml $HELPY_HOME/config/database.yml
-COPY docker/run.sh $HELPY_HOME/run.sh
 
-CMD ["./run.sh"]
+# Asset Precompile
+RUN bundle exec rake assets:precompile
+
+# Install helpy_cloud
+RUN rails g helpy_cloud:install
+
+# Run the server
+RUN bundle exec unicorn -E production -c config/unicorn.rb

@@ -2,7 +2,7 @@ version: '2'
 
 services:
   frontend:
-    image: webwurst/caddy
+    image: superpedestrian/caddy
     volumes:
       - ./docker/Caddyfile:/etc/caddy/Caddyfile
       - ./certs:/etc/caddy/certs
@@ -17,7 +17,7 @@ services:
     depends_on:
       - helpy
   helpy:
-    image: helpy/helpy
+    image: superpedestrian/helpy:latest
     restart: always
     networks:
       - front

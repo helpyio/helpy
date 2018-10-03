@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      initContainers:
+      - name: "remove-lost-found"
+        image: "busybox:1.25.0" 
+        command: 
+        - "rm"
+        - "-fr"
+        - "/var/lib/postgres/lost+found"
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgres
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: helpy_production
+        - name: POSTGRES_PASSWORD
+          value: some_secure_pg_password_change_in_production
+        - name: POSTGRES_USER
+          value: helpy
+        - name: SECRET_KEY_BASE
+          value: some_secret_key_base_change_in_production
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        image: postgres:9.6.2
+        name: postgres
+        ports:
+        - containerPort: 5432
+          name: postgres
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data/pgdata
+          name: data
+      subPath: postgresql-db
+      restartPolicy: Always
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: postgres-claim0
