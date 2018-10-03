@@ -3,7 +3,7 @@ FROM ruby:2.4
 ARG HELPY_USERNAME
 ARG HELPY_PASSWORD
 
-ENV HELPY_VERSION=feature/add-jenkins \
+ENV HELPY_VERSION=master \
     RAILS_ENV=production \
     HELPY_HOME=/helpy \
     HELPY_USER=helpyuser \
@@ -45,7 +45,7 @@ VOLUME $HELPY_HOME/public
 COPY docker/database.yml $HELPY_HOME/config/database.yml
 
 # Asset Precompile
-RUN bundle exec rake assets:precompile
+RUN DB_ADAPTER=nulldb bundle exec rake assets:precompile
 
 # Install helpy_cloud
 RUN rails g helpy_cloud:install

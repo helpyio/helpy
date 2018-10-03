@@ -1,5 +1,5 @@
 default: &default
-  adapter: postgresql
+  adapter: adapter: <%= ENV['DB_ADAPTER'] ||= 'postgresql' %>
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
