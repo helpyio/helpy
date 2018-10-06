@@ -330,7 +330,7 @@ class User < ActiveRecord::Base
 
   # message to the user that is not allowed to login
   def inactive_message
-    "You are not allowed to log in!"
+    "You are not allowed to sign in!"
   end
 
   def self.register email, user_name
