@@ -47,8 +47,5 @@ COPY docker/database.yml $HELPY_HOME/config/database.yml
 # Asset Precompile
 RUN DB_ADAPTER=nulldb bundle exec rake assets:precompile
 
-# Install helpy_cloud
-RUN rails g helpy_cloud:install
-
 # Run the server
-RUN bundle exec unicorn -E production -c config/unicorn.rb
+CMD bundle exec unicorn -E production -c config/unicorn.rb
