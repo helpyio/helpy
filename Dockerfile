@@ -3,8 +3,7 @@ FROM ruby:2.4
 ARG HELPY_USERNAME
 ARG HELPY_PASSWORD
 
-ENV HELPY_VERSION=master \
-    RAILS_ENV=production \
+ENV RAILS_ENV=production \
     HELPY_HOME=/helpy \
     HELPY_USER=helpyuser \
     HELPY_SLACK_INTEGRATION_ENABLED=true
@@ -19,17 +18,20 @@ RUN apt-get update \
 
 WORKDIR $HELPY_HOME
 
-USER $HELPY_USER
-
-RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/Superpedestrian/helpy.git .
+ADD Gemfile /$HELPY_HOME/Gemfile
+ADD Gemfile.lock /$HELPY_HOME/Gemfile.lock
+ADD vendor /$HELPY_HOME/vendor
 
 # add the slack integration gem to the Gemfile if the HELPY_SLACK_INTEGRATION_ENABLED is true
 # use `test` for sh compatibility, also use only one `=`. also for sh compatibility
 RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
 
+# install rails dependencies
 RUN bundle config gems.helpy.io $HELPY_USERNAME:$HELPY_PASSWORD
-
 RUN bundle install
+
+# add local files
+COPY . /$HELPY_HOME
 
 RUN touch /helpy/log/production.log && chmod 0664 /helpy/log/production.log
 
@@ -42,10 +44,15 @@ RUN mkdir -p $HELPY_HOME/public/assets && chown $HELPY_USER $HELPY_HOME/public/a
 
 VOLUME $HELPY_HOME/public
 
-COPY docker/database.yml $HELPY_HOME/config/database.yml
 
 # Asset Precompile
 RUN DB_ADAPTER=nulldb bundle exec rake assets:precompile
 
+# Adjust permissions
+RUN chown -R $HELPY_USER:$HELPY_USER /$HELPY_HOME
+
 # Run the server
 CMD bundle exec unicorn -E production -c config/unicorn.rb
+
+# Enter the right user
+USER $HELPY_USER
