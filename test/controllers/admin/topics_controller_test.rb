@@ -320,6 +320,13 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       end
     end
 
+    test "an #{admin} should be able to create an internal ticket and create a new user" do
+      sign_in users(admin.to_sym)
+      assert_difference "User.count", 1 do
+        xhr :post, :create, topic: { user: { name: "Joe Smith", email: "joe.smith34@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new', kind: 'internal' }
+      end
+    end
+
     ### test assign_team and unassign_team
 
     test "an #{admin} should be able to assign_team of a topic" do
