@@ -330,7 +330,7 @@ class UserTest < ActiveSupport::TestCase
     assert_nil u.thumbnail
     assert_nil u.medium_image
     assert_nil u.large_image
-    assert_equal FALSE, u.active
+    assert_equal false, u.active
     assert_equal "change", u.email.split('@')[0]
     assert_nil u.current_sign_in_ip
     assert_nil u.last_sign_in_ip
