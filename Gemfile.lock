@@ -228,7 +228,7 @@ GEM
     grape-swagger-rails (0.3.0)
       railties (>= 3.2.12)
     gravtastic (3.2.6)
-    griddler (1.3.1)
+    griddler (1.5.2)
       htmlentities
       rails (>= 3.2.0)
     griddler-mailgun (1.0.2)
@@ -323,7 +323,7 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
     mail_extract (0.1.4)
     maildir (2.2.1)
