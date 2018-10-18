@@ -340,4 +340,22 @@ class UserTest < ActiveSupport::TestCase
 
   end
 
+  test "can be edited should be true if the current user is an admin and the user is admin" do
+    current_user = User.find(1)
+    user = User.find(5)
+    assert_equal true, user.can_be_edited?(current_user)
+  end
+
+  test "can be edited should be false if the current user is an agent and the user is admin" do
+    current_user = User.find(6)
+    user = User.find(1)
+    assert_equal false, user.can_be_edited?(current_user)
+  end
+
+  test "can be edited should be true if the current user is an agent and the user is user" do
+    current_user = User.find(6)
+    user = User.find(2)
+    assert_equal true, user.can_be_edited?(current_user)
+  end
+
 end

@@ -86,7 +86,7 @@ a.navbar-brand {
               <ul class="nav navbar-nav navbar-left" data-hook='admin-nav-left'>
                 <%= upper_nav_item(t(:inbox, default: "Inbox"), admin_topics_path,["topics"], ['index','show'], "fas fa-inbox") if (forums? || tickets?) && current_user.is_agent? %>
                 <%= upper_nav_item(t(:reports, default: 'Reports'), admin_reports_path(interval: 7), ["reports"], ['index', 'groups', 'team'], "fas fa-chart-bar") if tickets? && current_user.is_admin? %>
-                <%= upper_nav_item(t(:users, default: 'Customers'), admin_users_path(role: 'user'), ["users"], ["index","show","edit","update"], "fas fa-users") if current_user.is_admin? %>
+                <%= upper_nav_item(t(:users, default: 'Customers'), admin_users_path(role: 'user'), ["users"], ["index","show","edit","update"], "fas fa-users") if current_user.is_agent? %>
                 <%= helpcenter_menu if (knowledgebase? || forums?) && current_user.is_agent? %>
                 <%= content_tag(:li, link_to(t(:content, default: "Content"), admin_categories_path), class:'kblink') if knowledgebase? && current_user.role == 'editor' %>
                 <%#= content_tag(:li, link_to(t(:app_store, default: "App Store"), "http://helpy.io/store/"), class: "hidden-sm hidden-xs") if current_user.is_agent? %>
