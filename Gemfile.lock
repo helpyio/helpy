@@ -101,7 +101,7 @@ GEM
     bundler-audit (0.5.0)
       bundler (~> 1.2)
       thor (~> 0.18)
-    byebug (8.2.4)
+    byebug (8.2.5)
     capybara (2.7.0)
       addressable
       mime-types (>= 1.16)
