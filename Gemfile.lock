@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/helpyio/helpy_imap
+  revision: 85f944a0d79325662c6f7e47e1a037640875f88d
+  branch: master
+  specs:
+    helpy_imap (1.0)
+      deface
+      mail
+      mailman
+      rails (~> 4.2.10)
+
 PATH
   remote: vendor/helpy_onboarding
   specs:
@@ -651,6 +662,7 @@ DEPENDENCIES
   griddler-sendgrid
   griddler-sparkpost
   groupdate
+  helpy_imap!
   helpy_onboarding!
   http_accept_language
   i18n-country-translations
