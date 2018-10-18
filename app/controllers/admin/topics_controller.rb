@@ -519,8 +519,12 @@ class Admin::TopicsController < Admin::BaseController
       assigned_user_id: params[:topic][:assigned_user_id],
       kind: 'internal'
     )
-    @topic.user_id = @user.id
-
+    if @user.nil?
+      create_ticket_user
+    else
+      @topic.user_id = @user.id
+    end
+    
     fetch_counts
     respond_to do |format|
       if (@user.save || !@user.nil?) && @topic.save
