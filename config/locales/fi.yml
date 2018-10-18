@@ -157,6 +157,7 @@ fi:
   merge_confirm: Oletko varma, että haluat yhdistää nämä palvelupyynnöt?
   customer_conversation: Asiakaskeskustelu
   internal_ticket: Sisäiset palvelupyynnöt
+  unassign_agent: Poista agentti
 
   # Discussion controls
   change_status: Vaihda tila
@@ -179,6 +180,7 @@ fi:
   closed_message: "Tämä palvelupyyntö on suljettu tuen toimesta."
   trash_message: "Tämä palvelupyyntö on poistettu."
   assigned_message: "Tämä palvelupyyntö on osoitettu henkilölle %{assigned_to}."
+  # unassigned_message: "This ticket has been unassigned."
   assigned_group: "Tämä palvelupyyntö on osoitettu ryhmälle %{assigned_group}."
   converted_to_ticket: "Tämä keskustelu on muutettu yksityiseksi."
   converted_to_topic: "Tämä keskustelu on muutettu julkiseksi ja siirretty keskusteluosioon %{forum_name}."

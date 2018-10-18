@@ -160,6 +160,7 @@ pt-br:
   merge: Mesclar
   merge_confirm: Você tem certeza que deseja mesclar estes tickets?
   settings_changes_saved: "Suas mudanças foram salvas. Algumas mudanças são visíveis somente diretamente no helpcenter: %{site_url}"
+  unassign_agent: Desatribuir agente
 
   helpcenter: "Central de ajuda"
   new_ticket: "Novo Ticket"
@@ -440,7 +441,7 @@ pt-br:
         cell_phone: "Celular"
         city: "Cidade"
         state: "Estado"
-        # zip: Zip        
+        # zip: Zip
         signature: Assinatura
         # title:
         # time_zone:

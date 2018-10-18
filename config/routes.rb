@@ -88,6 +88,7 @@ Rails.application.routes.draw do
     patch 'topics/update_tags' => 'topics#update_tags', as: :update_topic_tags
     get 'topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
     get 'topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
+    get 'topics/unassign_agent' => 'topics#unassign_agent', as: :unassign_agent
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team

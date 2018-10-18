@@ -56,6 +56,8 @@
       <% (@admins-[current_user]).each do |admin| %>
       <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: admin.id, status: @status), :remote => true unless @topic.current_status == "closed" %></li>
       <% end %>
+      <hr/>
+      <li><%= link_to t(:unassign_agent, default: "Unassign Agent"), admin_unassign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: '', status: @status), :remote => true %></li>
     </ul>
   </span>
 
@@ -74,12 +76,8 @@
           <% end %>
         </li>
       <% end %>
-      <!-- <li class="new-tag">
-        <%= form_tag '#', class: 'new-group-form' do %>
-        <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
-        <% end %>
-      </li> -->
-      <li><%= link_to "Unassign from group", admin_unassign_team_path(topic_ids: { "":@topic.id }, team: '', status: @status), :remote => true unless @topic.current_status == "closed" %></li>
+      <hr/>
+      <li><%= link_to t(:unassign_from_team, default: "Unassign from group"), admin_unassign_team_path(topic_ids: { "":@topic.id }, team: '', status: @status), :remote => true unless @topic.current_status == "closed" %></li>
 
     </ul>
   </span>
