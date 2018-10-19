@@ -263,7 +263,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    http_accept_language (2.0.5)
+    http_accept_language (2.1.1)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     i18n-country-translations (1.2.3)
