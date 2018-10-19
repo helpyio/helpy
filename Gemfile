@@ -111,7 +111,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
 
-gem 'config', '~> 1.1.0'
+gem 'config', '~> 1.7.0'
 
 # Email/Mail Handling
 gem 'daemons'
