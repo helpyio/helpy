@@ -142,7 +142,7 @@ GEM
     cloudinary (1.1.7)
       aws_cf_signer
       rest-client
-    codeclimate-test-reporter (1.0.8)
+    codeclimate-test-reporter (1.0.9)
       simplecov (<= 0.13)
     codemirror-rails (5.16.0)
       railties (>= 3.0, < 6.0)
