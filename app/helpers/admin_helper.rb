@@ -147,7 +147,21 @@ module AdminHelper
     end
   end
 
-  def helpcenter_menu
+  def helpcenter_menu_or_item
+    is_knowledgebase_and_editor = knowledgebase? && current_user.is_editor?
+    is_forum_and_agent = forums? && current_user.is_agent?
+    icon = "fas fa-book"
+
+    if is_knowledgebase_and_editor && is_forum_and_agent
+      helpcenter_dropdown
+    elsif is_knowledgebase_and_editor
+      upper_nav_item(t(:content, default: "Content"), admin_categories_path, ["categories"], ["index","show","edit","new"], icon)
+    elsif is_forum_and_agent
+      upper_nav_item(t(:communities, default: "Communities"), admin_forums_path, ["forums"], ["index","edit","new"], icon)
+    end
+  end
+
+  def helpcenter_dropdown
     content_tag :li, class: 'dropdown' do
       concat helpcenter_link
       concat helpcenter_items
