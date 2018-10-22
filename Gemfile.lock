@@ -581,7 +581,7 @@ GEM
     twitter-bootstrap-rails-confirm (1.0.5)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.15)
+    uglifier (4.1.19)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
