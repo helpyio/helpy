@@ -1,7 +1,6 @@
 FROM ruby:2.4
 
-ENV HELPY_VERSION=master \
-    RAILS_ENV=production \
+ENV RAILS_ENV=production \
     HELPY_HOME=/helpy \
     HELPY_USER=helpyuser \
     HELPY_SLACK_INTEGRATION_ENABLED=true
