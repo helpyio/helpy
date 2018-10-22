@@ -31,8 +31,6 @@ RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
 
 RUN bundle install
 
-RUN touch /helpy/log/production.log && chmod 0664 /helpy/log/production.log
-
 # Due to a weird issue with one of the gems, execute this permissions change:
 RUN chmod +r /usr/local/bundle/gems/griddler-mandrill-1.1.4/lib/griddler/mandrill/adapter.rb
 
