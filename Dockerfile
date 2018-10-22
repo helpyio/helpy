@@ -49,6 +49,5 @@ RUN chown -R $HELPY_USER $HELPY_HOME
 USER $HELPY_USER
 
 COPY docker/database.yml $HELPY_HOME/config/database.yml
-COPY docker/run.sh $HELPY_HOME/run.sh
 
-CMD ["./run.sh"]
+CMD ["/bin/bash", "/helpy/docker/run.sh"]
