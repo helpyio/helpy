@@ -15,9 +15,12 @@ RUN apt-get update \
 
 WORKDIR $HELPY_HOME
 
+COPY Gemfile Gemfile.lock $HELPY_HOME/
+COPY vendor $HELPY_HOME/vendor
+RUN chown -R $HELPY_USER $HELPY_HOME
+
 USER $HELPY_USER
 
-RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/helpyio/helpy.git .
 
 # add the slack integration gem to the Gemfile if the HELPY_SLACK_INTEGRATION_ENABLED is true
 # use `test` for sh compatibility, also use only one `=`. also for sh compatibility
@@ -37,6 +40,11 @@ RUN mkdir -p $HELPY_HOME/public/assets \
     && chown $HELPY_USER $HELPY_HOME/public/assets
 
 VOLUME $HELPY_HOME/public
+
+USER root
+COPY . $HELPY_HOME/
+RUN chown -R $HELPY_USER $HELPY_HOME
+USER $HELPY_USER
 
 COPY docker/database.yml $HELPY_HOME/config/database.yml
 COPY docker/run.sh $HELPY_HOME/run.sh
