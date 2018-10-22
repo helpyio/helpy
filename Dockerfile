@@ -8,6 +8,7 @@ ENV RAILS_ENV=production \
 RUN apt-get update \
   && apt-get upgrade -y \
   && apt-get install -y nodejs postgresql-client imagemagick --no-install-recommends \
+  && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
 RUN useradd --no-create-home $HELPY_USER \
