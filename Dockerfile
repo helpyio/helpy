@@ -3,7 +3,8 @@ FROM ruby:2.4
 ENV RAILS_ENV=production \
     HELPY_HOME=/helpy \
     HELPY_USER=helpyuser \
-    HELPY_SLACK_INTEGRATION_ENABLED=true
+    HELPY_SLACK_INTEGRATION_ENABLED=true \
+    BUNDLE_PATH=/opt/helpy-bundle
 
 RUN apt-get update \
   && apt-get upgrade -y \
@@ -12,8 +13,8 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 RUN useradd --no-create-home $HELPY_USER \
-  && mkdir -p $HELPY_HOME \
-  && chown -R $HELPY_USER:$HELPY_USER $HELPY_HOME /usr/local/lib/ruby /usr/local/bundle
+  && mkdir -p $HELPY_HOME $BUNDLE_PATH \
+  && chown -R $HELPY_USER:$HELPY_USER $HELPY_HOME $BUNDLE_PATH
 
 WORKDIR $HELPY_HOME
 
@@ -30,9 +31,6 @@ RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
     && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
 
 RUN bundle install
-
-# Due to a weird issue with one of the gems, execute this permissions change:
-RUN chmod +r /usr/local/bundle/gems/griddler-mandrill-1.1.4/lib/griddler/mandrill/adapter.rb
 
 # manually create the /helpy/public/assets folder and give the helpy user rights to it
 # this ensures that helpy can write precompiled assets to it
