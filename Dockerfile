@@ -22,7 +22,8 @@ RUN git clone --branch $HELPY_VERSION --depth=1 https://github.com/helpyio/helpy
 
 # add the slack integration gem to the Gemfile if the HELPY_SLACK_INTEGRATION_ENABLED is true
 # use `test` for sh compatibility, also use only one `=`. also for sh compatibility
-RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
+RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
+    && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
 
 RUN bundle install
 
@@ -33,7 +34,8 @@ RUN chmod +r /usr/local/bundle/gems/griddler-mandrill-1.1.4/lib/griddler/mandril
 
 # manually create the /helpy/public/assets folder and give the helpy user rights to it
 # this ensures that helpy can write precompiled assets to it
-RUN mkdir -p $HELPY_HOME/public/assets && chown $HELPY_USER $HELPY_HOME/public/assets
+RUN mkdir -p $HELPY_HOME/public/assets \
+    && chown $HELPY_USER $HELPY_HOME/public/assets
 
 VOLUME $HELPY_HOME/public
 
