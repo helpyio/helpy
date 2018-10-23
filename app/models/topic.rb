@@ -273,6 +273,11 @@ class Topic < ActiveRecord::Base
     self.posts.where(created_at: Time.now-1.minutes..Time.now, kind: 'reply').count
   end
 
+  # opening or first post in the topic
+  def first_post
+    self.posts.order(created_at: :asc).first
+  end
+
   private
 
   def cache_user_name
