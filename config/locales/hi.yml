@@ -40,6 +40,7 @@ hi:
   # Community
   forum_name: "प्रसंग"
   subject: &subject "समस्या"
+  message: "संदेश"
   last_activity: "पिछली बार"
   topic: "विषय"
   replies: "जवाबें"

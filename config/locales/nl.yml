@@ -40,6 +40,7 @@ nl:
   # Community
   forum_name: "Forum"
   subject: &subject "Onderwerp"
+  message: "Bericht"
   last_activity: "Laatst actief"
   topic: "Discussie"
   replies: "Antwoorden"

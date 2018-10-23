@@ -40,6 +40,7 @@ fr:
   # Community
   forum_name: "Sujet"
   subject: &subject "Sujet"
+  message: "Message"
   last_activity: "Dernière activité"
   topic: "Discussion"
   replies: "Réponses"

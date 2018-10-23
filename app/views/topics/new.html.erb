@@ -59,9 +59,9 @@
       <div class="suggestion-results">
       </div>
     </div>
-
+    
     <%= f.simple_fields_for :posts do |p| %>
-      <%= p.input :body, input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
+      <%= p.input :body, label: I18n.t(:message), input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
       <% unless cloudinary_enabled? %>
         <%= p.file_field :attachments, multiple: true %>
         <ul class="list-inline" id="attachments">

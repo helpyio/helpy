@@ -38,6 +38,7 @@ ar:
   # Community
   forum_name: "موضوع"
   subject: &subject "عنوان"
+  message: "رسالة"
   last_activity: "آخر نشاط"
   topic: "مناقشات"
   replies: "ردود"

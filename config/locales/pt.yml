@@ -40,6 +40,7 @@ pt:
   # Community
   forum_name: "Tópico"
   subject: &subject "Assunto"
+  message: "Mensagem"
   last_activity: "Última Atividade"
   topic: "Discussão"
   replies: "Respostas"

@@ -42,6 +42,7 @@ ru:
   # Community
   forum_name: "Топик"
   subject: &subject "Тема"
+  message: "Cообщение"
   last_activity: "Последняя активность"
   topic: "Обсуждение"
   replies: "ответы"

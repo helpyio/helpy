@@ -38,6 +38,7 @@ ko:
   # Community
   forum_name: "주제"
   subject: &subject "제목"
+  message: "메시지"
   last_activity: "마지막 활동"
   topic: "토론"
   replies: "답글"

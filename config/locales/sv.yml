@@ -38,6 +38,7 @@ sv:
   # Community
   forum_name: "Kategori"
   subject: &subject "Ämne"
+  message: "Meddelande"
   last_activity: "Senaste aktiva"
   topic: "Inlägg"
   replies: "Svar"

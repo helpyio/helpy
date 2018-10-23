@@ -40,6 +40,7 @@ ja:
   # Community
   forum_name: "トピック"
   subject: &subject "題名"
+  message: "メッセージ"
   last_activity: "最終ログイン"
   topic: "掲示板"
   replies: "返信"

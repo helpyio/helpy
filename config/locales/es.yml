@@ -40,6 +40,7 @@ es:
   # Community
   forum_name: "Tema"
   subject: &subject "Asunto"
+  message: "Mensaje"
   last_activity: "Activo por última vez"
   topic: "Debate"
   replies: "Respuestas"
