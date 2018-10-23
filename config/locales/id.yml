@@ -295,6 +295,7 @@ id:
   # Mail messages
   new_user_subject: "Selamat datang di %{site_name}"
   hello: "Halo %{user_name}"
+  thank_you: "Terima!"
   new_user: "Terima kasih sudah menghubungi kami. Pesan Anda sudah diterima oleh tim support kami dan kami akan segera menanggapinya."
   account_generated: "Kami sudah membuatkan akun untuk Anda. Anda bisa masuk dengan menggunakan tautan ini:"
   above_this_line: "Pastikan balasan Anda di atas garis ini"

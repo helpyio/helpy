@@ -334,6 +334,7 @@ de:
   # Mail messages
   new_user_subject: "Willkommen bei %{site_name}"
   hello: "Hallo %{user_name}"
+  thank_you: "Vielen Dank!"
   new_user: "Vielen Dank, dass Sie uns kontaktieren. Ihre Nachricht wurde von unserem Support Team empfangen und wir werden uns in Kürze mit einer Antwort bei Ihnen melden."
   account_generated: "Ein Benutzerkonto zur Einsicht der Kommunikation wurde für Sie erstellt. Um sich Anzumelden, benutzen Sie bitte diesen Link:"
   above_this_line: "Bitte antworten Sie ausschliesslich oberhalb dieser Zeile."

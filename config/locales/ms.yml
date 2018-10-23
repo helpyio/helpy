@@ -293,6 +293,7 @@ ms:
   # Mail messages
   new_user_subject: "Selamat datang ke %{site_name}"
   hello: "Hello %{user_name}"
+  thank_you: "Terima kasih!"
   new_user: "Terima kasih kerana menghubungi kami. Mesej anda telah diterima oleh pasukan sokongan kami dan kami akan bertindak balas tidak lama lagi."
   account_generated: "Kami telah membuat akaun untuk anda. Anda boleh log masuk dengan menggunakan pautan ini:"
   above_this_line: "Pastikan jawapan anda melebihi baris ini"
