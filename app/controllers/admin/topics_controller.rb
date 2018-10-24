@@ -524,7 +524,7 @@ class Admin::TopicsController < Admin::BaseController
     else
       @topic.user_id = @user.id
     end
-    
+
     fetch_counts
     respond_to do |format|
       if (@user.save || !@user.nil?) && @topic.save
