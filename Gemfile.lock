@@ -472,8 +472,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     rdiscount (2.2.0.1)
-    rdoc (4.2.2)
-      json (~> 1.4)
+    rdoc (6.0.4)
     recaptcha (2.0.0)
       json
     regexp_parser (0.3.3)
@@ -520,9 +519,8 @@ GEM
     scss-lint (0.38.0)
       rainbow (~> 2.0)
       sass (~> 3.4.1)
-    sdoc (0.4.1)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
+    sdoc (1.0.0)
+      rdoc (>= 5.0)
     selectize-rails (0.12.5)
     selenium-webdriver (3.14.1)
       childprocess (~> 0.5)
@@ -707,7 +705,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0.7)
   scss-lint
-  sdoc (~> 0.4.0)
+  sdoc (~> 1.0.0)
   selectize-rails
   selenium-webdriver
   shoulda
