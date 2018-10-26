@@ -42,7 +42,7 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached", '~> 0.5'
+gem "rails-settings-cached", '~> 0.7'
 gem 'sucker_punch', '~> 2.0'
 
 # Charting
