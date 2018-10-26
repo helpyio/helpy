@@ -79,7 +79,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'permalink_fu'
 gem 'paper_trail'
 
-gem 'acts-as-taggable-on', '~>3.5'
+gem 'acts-as-taggable-on', '~>5.0'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
