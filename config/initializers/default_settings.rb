@@ -8,6 +8,7 @@ AppSettings.defaults["branding.display_branding"] = "1"
 AppSettings.defaults["settings.enforce_ssl"] = "0"
 AppSettings.defaults["settings.parent_site"] = Settings.parent_site
 AppSettings.defaults["settings.parent_company"] = Settings.parent_company
+raise 'Invalid Site URL on Settings' unless Settings.site_url =~ URI::regexp
 AppSettings.defaults["settings.site_url"] = Settings.site_url
 AppSettings.defaults["settings.site_name"] = Settings.site_name
 AppSettings.defaults["settings.site_tagline"] = Settings.site_tagline
