@@ -182,7 +182,8 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'shoulda'
+  gem 'shoulda', '3.5'
+  gem 'shoulda-matchers', '~> 2.0'  
   gem 'factory_bot_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
