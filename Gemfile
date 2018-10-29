@@ -108,7 +108,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 gem 'selectize-rails'
-gem "bootstrap-switch-rails"
+gem "bootstrap-switch-rails", '3.3.3'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
