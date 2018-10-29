@@ -23,7 +23,7 @@ class ActiveSupport::TestCase
 end
 
 class ActionController::TestCase
-  include Devise::Test::ControllerHelpers
+  include Devise::TestHelpers
 end
 
 def file
