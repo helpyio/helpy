@@ -159,8 +159,8 @@ class NotificationMailerTest < ActionMailer::TestCase
 # These tests check the notification email will include attachment with new_private method
   def notification_email_for_private_test
     @private_notification = NotificationMailer.new_private(@topic_1.id)
-    @private_notification.deliver_now
-    assert_equal @private_notification.subject, "[Helpy Support] ##{@user_1.id}-Topic-test"
+    @private_notification.deliver_now!
+    assert_equal @private_notification.subject, "[Helpy Support] ##{@topic_1.id}-Topic-test"
     assert_equal @private_notification.to, ["guy@test.com"]
   end
 
@@ -198,8 +198,8 @@ class NotificationMailerTest < ActionMailer::TestCase
 # These tests check the notification email will include attachment with new_public method
   def notification_email_for_public_test
     @public_notification = NotificationMailer.new_public(@topic_1.id)
-    @public_notification.deliver_now
-    assert_equal @public_notification.subject, "[Helpy Support] ##{@user_1.id}-Topic-test"
+    @public_notification.deliver_now!
+    assert_equal @public_notification.subject, "[Helpy Support] ##{@topic_1.id}-Topic-test"
     assert_equal @public_notification.to, ["guy@test.com"]
   end
 
@@ -237,8 +237,8 @@ class NotificationMailerTest < ActionMailer::TestCase
 # These tests check the notification email will include attachment with new_reply method
   def notification_email_for_reply_test
     @reply_notification = NotificationMailer.new_reply(@topic_1.id)
-    @reply_notification.deliver_now
-    assert_equal @reply_notification.subject, "[Helpy Support] ##{@user_1.id}-Topic-test"
+    @reply_notification.deliver_now!
+    assert_equal @reply_notification.subject, "[Helpy Support] ##{@topic_1.id}-Topic-test"
     assert_equal @reply_notification.to, ["guy@test.com"]
   end
 
