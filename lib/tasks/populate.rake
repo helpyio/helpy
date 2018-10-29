@@ -4,11 +4,12 @@ namespace :db do
   require 'faker'
 
   # How many fake objects to create
-  number_support_team = 3
-  number_users = 10
-  number_docs = rand(5..10)
-  number_threads = rand(5..15)
-  number_tickets = rand(20..50)
+  number_support_team = 2
+  number_users = 5
+  number_docs = 3
+  number_doc_comments = 0
+  number_threads = 0
+  number_tickets = 15
 
   groups = [[0, 'billing'],[1, 'shipping'],[2, 'returns'],[3, '']]
 
@@ -109,13 +110,13 @@ namespace :db do
   # Create 10-50 Docs per category
   Category.all.each do |category|
     number_docs.times do
-      title = Faker::Lorem.sentence
+      title = build_kb_title
       doc = category.docs.create!(
         title_tag: title,
         title: title,
-        body: Faker::Lorem.paragraphs(rand(1..5)).join('<br/><br/>'),
+        body: paragraphs(rand(2..4)),
         meta_description: Faker::Lorem.sentences(1),
-        user_id: rand(1..5)
+        user_id: User.team.sample.id
       )
       puts "Created Doc: #{doc.title}"
     end
@@ -130,14 +131,14 @@ namespace :db do
   Doc.all.each do |doc|
 
     f = Forum.where(name: 'Doc comments').first
-    rand(0..2).times do
+    number_doc_comments.times do
       topic = f.topics.create!(
         name: build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun),
-        user_id: User.where(admin: false).sample.id,
+        user_id: User.customers.sample.id,
         doc_id: doc.id
       )
       post = topic.posts.create!(
-        body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
+        body: paragraphs(rand(2..4)),
         user_id: topic.user_id,
         kind: 'first'
       )
@@ -148,8 +149,8 @@ namespace :db do
       # create posts about this doc
       rand(0..5).times do
         post = topic.posts.create!(
-          body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
-          user_id: rand(4..14),
+          body: paragraphs(rand(2..4)),
+          user_id: User.customers.sample.id,
           kind: 'reply'
         )
         puts "Post added to doc"
@@ -169,7 +170,7 @@ namespace :db do
     f = Forum.find(rand(3..6))
     topic = f.topics.new
     topic.name = build_question(Faker::Hacker.ingverb + " " + Faker::Hacker.noun)
-    topic.user_id = User.where(admin: false).sample.id
+    topic.user_id = User.customers.sample.id
     if f.private?
       topic.private = true
       puts "Private Ticket Created!"
@@ -185,7 +186,7 @@ namespace :db do
 
     # create first post in thread
     post = topic.posts.create!(
-      body: Faker::Lorem.paragraphs(rand(4..8)).join('<br/><br/>'),
+      body: paragraphs(rand(2..4)),
       user_id: topic.user_id,
       kind: 'first'
     )
@@ -195,8 +196,8 @@ namespace :db do
 
     rand(2..5).times do
       post = topic.posts.create!(
-        body: Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>'),
-        user_id: rand(3..12),
+        body: paragraphs(rand(2..4)),
+        user_id: User.customers.sample.id,
         kind: 'reply'
       )
       puts "Post added to topic"
@@ -218,24 +219,25 @@ namespace :db do
 
       topic = f.topics.create!(
         name: ticket_issue.split("|")[0],
-        user_id: User.where(admin: false).sample.id,
+        user_id: User.customers.sample.id,
         private: true,
-        assigned_user_id: User.where(admin: true).sample.id,
-        team_list: ticket_issue.split("|")[1]
+        assigned_user_id: User.agents.sample.id,
+        team_list: ticket_issue.split("|")[1],
+        kind: 'internal'
       )
 
       # create first post in thread
       post = topic.posts.create!(
-        body: Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>'),
+        body: paragraphs(3),
         user_id: topic.user_id,
-        kind: 'first'
+        kind: ['first','first','note'].sample
       )
       puts "Post added to topic"
 
       Timecop.scale(120000)
       rand(0..5).times do |i|
         post = topic.posts.new
-        post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
+        post.body = paragraphs(rand(2..4))
         post.kind = 'reply'
         if i.even?
           post.user_id = topic.assigned_user_id
@@ -263,6 +265,23 @@ namespace :db do
     puts 'All done'
   end
 
+  def paragraphs(number)
+    t = ""
+    number.times do
+      t += (paragraph + " <br/><br/>")
+    end
+    return t
+
+  end
+
+  def paragraph
+    p = ""
+    rand(3..5).times do
+      p += Faker::Lorem.sentence(rand(3..9)) + ".  "
+    end
+    return p
+  end
+
   def build_question(q="something")
     [
       "How do I use #{q}?",
@@ -270,6 +289,19 @@ namespace :db do
       "Need Help!",
       "Setting up #{q}",
       "#{q} initial questions"
+    ].sample
+  end
+
+  def build_kb_title
+    [
+      "Working with a #{Faker::Hacker.noun}",
+      "How to use a #{Faker::Hacker.noun}",
+      "#{Faker::Hacker.noun} Frequent Questions",
+      "Integrating the #{Faker::Hacker.noun}",
+      "Complete list of features",
+      "Error: #{Faker::Hacker.noun} Exception",
+      "How to manage a #{Faker::Hacker.noun}",
+      "#{Faker::Hacker.noun} Setup"
     ].sample
   end
 

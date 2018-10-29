@@ -1,7 +1,7 @@
 $('#tickets').html("<%= escape_javascript(render 'admin/users/users') %>");
 $('.ticket-stats').html("<%= j render 'admin/topics/ticket_stats' %>");
 $('#user-info').html("<%= j render 'admin/users/user_info_horizontal' if @user %>");
-$('#ticket-page-title').html("<%= t(:users_found, count: @users.size, query: params[:q].titleize, default: 'Search Results') unless params[:q] == 'users'%> <%= status_label(@status) if @status %> <span class='hidden-xs pull-right'><%= j link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path, remote: true, class: 'btn btn-primary' %></span><%= escape_javascript(render 'admin/topics/ticket_nav_dropdown') %>");
+$('#ticket-page-title').html("<%= t(:users_found, count: @users.size, query: params[:q].titleize, default: 'Search Results') unless params[:q] == 'users'%> <%= status_label(@status) if @status %> <span class='hidden-xs pull-right'><%= j link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path, remote: true, class: 'btn btn-primary' %></span><%#= escape_javascript(render 'admin/topics/ticket_nav_dropdown') %>");
 $(document).prop('title', "<%= admin_title %> : <%= t(:users_found, count: @users.size, query: params[:q].titleize, default: 'Search Results') unless params[:q] == 'users'%>");
 
 // Empty ticket search field

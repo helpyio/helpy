@@ -39,7 +39,7 @@ it:
 
   # Community
   forum_name: "Community"
-  subject: "Sezione"
+  subject: &subject "Sezione"
   last_activity: "Ultima attività"
   topic: "Ogetto"
   replies: "Messaggi"
@@ -137,13 +137,13 @@ it:
 
   # Discussion controls
   change_status: Cambiare stato
-  status: Status
+  status: &status Status
   mark_closed: segnare come chiuso
   reopen: Riaprire
   mark_spam: Segnare come spam
   mark_new: Segnare come nuovo
-  assign_agent: Assegnare a
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent Assegnare a
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 messaggio selezionato"
     two: "2 messaggi selezionati"
@@ -166,12 +166,18 @@ it:
   contact_info: Contacto
   social_info: Medie Sociale
   edit_user: Modifica utente
+#  delete_user: Delete User
   work_phone: Telefono (Business)
   cell_phone: telefonine
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  # select_priority: Select Priority
+  # select_priority: &priority Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low

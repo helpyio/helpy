@@ -1,3 +1,11 @@
-$('#doc-#{@doc.id}').fadeOut();
+$('#doc-<%= @doc.id %>').fadeOut();
 Helpy.ready();
 Helpy.track();
+
+// Update bootstrap_flash
+$('.flash-wrapper').html("<%= j bootstrap_flash %>");
+// Autoclose alert messages in admin
+$(".alert").delay(5000).slideUp(500, function(){
+    $(".alert").alert('close');
+});
+<% flash[:notice] = '' %>

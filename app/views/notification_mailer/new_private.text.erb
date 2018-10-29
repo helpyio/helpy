@@ -2,7 +2,7 @@
 =================================================================
 <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
 
-<%= t('notify_new_private', user_name: @topic.user_name, default: 'A new private customer message has been received from %{user_name}:') %>
+<%= t('notify_new_private', user_name: "#{@user.name} (#{@user.email})", default: 'A new private customer message has been received from %{user_name}:') %>
 
 <%= simple_format(@topic.posts.last.body) %>
 

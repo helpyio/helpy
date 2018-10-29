@@ -1,14 +1,11 @@
 <% title "#{admin_title} #{t(:discussions, default: 'Discussions')}: #{@topic.id} #{@topic.name.titleize}" %>
 
-<% content_for :pipeline do %>
-<%= render partial: 'admin/shared/pipeline' %>
-<% end %>
-
-<h2 id="ticket-page-title">
-</h2>
-
 <div class="row">
-  <div id="tickets" class="col-md-12">
+  <div id="admin-left-nav" class="hidden-xs hidden-sm col-md-3 ticket-stats">
+    <%= render partial: 'admin/topics/tiny' %>
+  </div>
+
+  <div id="tickets" class="col-md-9 main-panel">
     <%= render 'ticket' %>
   </div>
 </div>

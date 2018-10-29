@@ -4,8 +4,10 @@ class Admin::CategoriesController < Admin::BaseController
   respond_to :js, only: ['destroy']
 
   # Make the instance vars available for when the create action fails
-  before_action :set_categories_and_non_featured, only: [:index, :create]
+  before_action :set_categories_and_non_featured#, only: [:index, :show, :create]
   before_action :verify_editor
+
+  layout 'admin-content'
 
   def index
   end
@@ -26,6 +28,7 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     if @category.save
+      flash[:notice] = t(:model_created, default: "%{object_name} was saved", object_name: @category.name)
       redirect_to(admin_categories_path)
     else
       render :new
@@ -36,6 +39,7 @@ class Admin::CategoriesController < Admin::BaseController
     I18n.locale = params['lang']
     @category = Category.find(params[:id])
     if @category.update(category_params)
+      flash[:notice] = t(:model_updated, default: "%{object_name} was updated", object_name: @category.name)
       redirect_to admin_categories_path
     else
       render :edit
@@ -45,6 +49,7 @@ class Admin::CategoriesController < Admin::BaseController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
+    flash[:notice] = t(:model_destroyed, default: "%{object_name} was deleted", object_name: @category.name)
   end
 
   private
@@ -64,12 +69,5 @@ class Admin::CategoriesController < Admin::BaseController
     :visibility
   )
   end
-
-  def set_categories_and_non_featured
-    @public_categories = Category.publicly.featured.ordered
-    @public_nonfeatured_categories = Category.publicly.unfeatured.alpha
-    @internal_categories = Category.only_internally.ordered
-  end
-
 
 end

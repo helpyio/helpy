@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 class TopicsController < ApplicationController
@@ -60,7 +61,7 @@ class TopicsController < ApplicationController
   end
 
   def tickets
-    @topics = current_user.topics.isprivate.undeleted.chronologic.page params[:page]
+    @topics = current_user.topics.isprivate.undeleted.external.chronologic.page params[:page]
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
     respond_to do |format|
@@ -69,7 +70,7 @@ class TopicsController < ApplicationController
   end
 
   def ticket
-    @topic = current_user.topics.undeleted.where(id: params[:id]).first
+    @topic = current_user.topics.undeleted.external.where(id: params[:id]).first
     if @topic
       @posts = @topic.posts.ispublic.chronologic.active.all.includes(:topic, :user, :screenshot_files)
       @page_title = "##{@topic.id} #{@topic.name}"
@@ -96,6 +97,8 @@ class TopicsController < ApplicationController
       doc_id: params[:topic][:doc_id],
       team_list: params[:topic][:team_list],
       channel: 'web')
+
+    associate_with_doc
 
     if recaptcha_enabled? && !user_signed_in?
       unless verify_recaptcha(model: @topic)
@@ -150,6 +153,14 @@ class TopicsController < ApplicationController
 
   def tag
     @topics = Topic.ispublic.tag_counts_on(:tags)
+  end
+
+  protected
+
+  def associate_with_doc
+    return unless params[:topic][:doc_id].present?
+    doc = Doc.find(params[:topic][:doc_id])
+    @topic.tag_list = "Feedback, #{doc.category.name}" if doc.present? && doc.category.present?
   end
 
   private

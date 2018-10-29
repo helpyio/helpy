@@ -39,7 +39,7 @@ hu:
 
   # Community
   forum_name: "Téma"
-  subject: "Tárgy"
+  subject: &subject "Tárgy"
   last_activity: "Utolsó Aktivitás"
   topic: "Beszélgetés"
   replies: "Válaszok"
@@ -140,13 +140,13 @@ hu:
 
   # Discussion controls
   change_status: Státusz Módosítása
-  status: Státusz
+  status: &status Státusz
   mark_closed: Megoldottnak jelölés
   reopen: Újranyitás
   mark_spam: Levélszemét
   mark_new: Újnak jelölés
-  assign_agent: Ügynökhöz rendelés
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent Ügynökhöz rendelés
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 kiválasztott üzenet"
     two: "2 kiválasztott üzenet"
@@ -169,12 +169,17 @@ hu:
   contact_info: Kapcsolat
   social_info: Social
   edit_user: Felhasználó szerkesztés
+#  delete_user: Delete User
   work_phone: munka
   cell_phone: mobil
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  # select_priority: Select Priority
+  # select_priority: &priority Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low

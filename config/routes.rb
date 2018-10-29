@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     #    }
 
     match 'users/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-    devise_for :users, skip: [:omniauth_callbacks, :invitations], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords' }
+    devise_for :users, skip: [:omniauth_callbacks], controllers: { registrations: 'registrations', sessions: 'sessions', passwords: 'passwords', invitations: 'invitations' }
 
     as :user do
       get "/users/invitation/accept" => "devise/invitations#edit", as: :accept_user_invitation
@@ -88,6 +88,7 @@ Rails.application.routes.draw do
     patch 'topics/update_tags' => 'topics#update_tags', as: :update_topic_tags
     get 'topics/update_multiple' => 'topics#update_multiple_tickets', as: :update_multiple_tickets
     get 'topics/assign_agent' => 'topics#assign_agent', as: :assign_agent
+    get 'topics/unassign_agent' => 'topics#unassign_agent', as: :unassign_agent
     get 'topics/toggle_privacy' => 'topics#toggle_privacy', as: :toggle_privacy
     get 'topics/:id/toggle' => 'topics#toggle_post', as: :toggle_post
     get 'topics/assign_team' => 'topics#assign_team', as: :assign_team
@@ -109,6 +110,13 @@ Rails.application.routes.draw do
     get 'settings/i18n' => 'settings#i18n', as: :i18n_settings
     get 'settings/email' => 'settings#email', as: :email_settings
     get 'settings/integration' => 'settings#integration', as: :integration_settings
+    put 'settings/general' => 'settings#update_general', as: :update_general_settings
+    put 'settings/design' => 'settings#update_design', as: :update_design_settings
+    put 'settings/theme' => 'settings#update_theme', as: :update_theme_settings
+    put 'settings/widget' => 'settings#update_widget', as: :update_widget_settings
+    put 'settings/i18n' => 'settings#update_i18n', as: :update_i18n_settings
+    put 'settings/email' => 'settings#update_email', as: :update_email_settings
+    put 'settings/integration' => 'settings#update_integration', as: :update_integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
 
     # Misc Routes
@@ -147,6 +155,7 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy]
     resources :forums# , except: [:index, :show]
     resources :users
+    post 'users/:id/scrub' => 'users#scrub', as: :scrub_user
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
       resources :groups

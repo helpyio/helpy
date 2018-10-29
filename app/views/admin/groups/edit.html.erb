@@ -2,9 +2,10 @@
 
 <% content_for :settings do %>
   <div class="admin-header">
-    <h2 id="setting-header">
+    <h3 id="setting-header">
+      <%= show_responsive_nav %>
       <%= "#{@team.name} #{t('tag_group', default: 'Group')}" %>
-    </h2>
+    </h3>
   </div>
   <div class="settings-panel row">
     <div class="col-md-12 col-sm-12 col-xs-12">

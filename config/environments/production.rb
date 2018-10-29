@@ -71,8 +71,7 @@ Rails.application.configure do
   # the I18n.default_locale when a translation cannot be found).
   # This can be managed through the settings panel inside Helpy.  It is probably best you leave
   # all locales enabled.  If you write a new locale, you need to add it here!
-
-  config.i18n.available_locales = [:en, :es, :de, :fr, :it, :et, :ca, :sv, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br', :fa, :fi, :id, :ar, :ko, :ms]
+  config.i18n.available_locales = [:en, :es, :de, :fr, :it, :et, :ca, :sv, :hu, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br', :fa, :fi, :id, :ar, :ko, :ms]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 

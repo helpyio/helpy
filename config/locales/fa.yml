@@ -39,7 +39,7 @@ fa:
 
   # Community
   forum_name: "موضوع"
-  subject: "عنوان"
+  subject: &subject "عنوان"
   last_activity: "آخرین فعالیت"
   topic: "بحث ها"
   replies: "پاسخ ها"
@@ -137,13 +137,13 @@ fa:
 
   # Discussion controls
   change_status: تغییر وضعیت
-  status: وضعیت
+  status: &status وضعیت
   mark_closed: حل شد
   reopen: دوباره باز کن
   mark_spam: اسپم
   mark_new: جدیده
-  assign_agent: بسپر به
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent بسپر به
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "۱ پیغام انتخاب شده"
     two: "۲ پیغام انتخاب شده"
@@ -166,12 +166,14 @@ fa:
   contact_info: تماس
   social_info: سوشال
   edit_user: ویرایش کاربر
+#  delete_user: Delete User
   work_phone: تلفن دفتر
   cell_phone: موبایل
 
   # Priorities
-  select_priority: انتخاب اولویت
+  select_priority: &priority انتخاب اولویت
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: بالا
   normal_priority: معمولی
   low_priority: پایین
@@ -189,6 +191,10 @@ fa:
   invite_message_placeholder: "پیغام اختیاری که برای کاربران فرستاده میشود"
   invite_role: "نقش کاربران دعوت شده"
   send_invite: "ارسال دعوت نامه"
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Discussion View
   asked_a_question: "%{user_name} یک سوال پرسیده..."

@@ -37,7 +37,7 @@ ms:
 
   # Community
   forum_name: "Topik"
-  subject: "Subjek"
+  subject: &subject "Subjek"
   last_activity: "Aktif terakhir"
   topic: "Perbincangan"
   replies: "Jawapan"
@@ -139,13 +139,13 @@ ms:
 
   # Discussion controls
   change_status: Tukar Status
-  status: Status
+  status: &status Status
   mark_closed: Tandakan sebagai diselesaikan
   reopen: Buka semula
   mark_spam: Tandakan sebagai Spam
   mark_new: Tandakan sebagai Baru
-  assign_agent: Tugaskan ejen
-  tag_with: Tag Tiket
+  assign_agent: &assign_agent Tugaskan ejen
+  tag_with: &tag_with Tag Tiket
   selected_messages:
     one: "1 mesej yang dipilih"
     two: "2 mesej yang dipilih"
@@ -170,10 +170,15 @@ ms:
   edit_user: Edit pengguna
   work_phone: kerja
   cell_phone: bimbit
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: Pilih Keutamaan
+  select_priority: &priority Pilih Keutamaan
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: Tinggi
   normal_priority: Normal
   low_priority: Rendah

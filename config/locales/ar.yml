@@ -37,7 +37,7 @@ ar:
 
   # Community
   forum_name: "موضوع"
-  subject: "عنوان"
+  subject: &subject "عنوان"
   last_activity: "آخر نشاط"
   topic: "مناقشات"
   replies: "ردود"
@@ -139,13 +139,13 @@ ar:
 
   # Discussion controls
   change_status: تغيير الحالة
-  status: حالة
+  status: &status حالة
   mark_closed: حل
   reopen: إعادة فتح
   mark_spam: بريد المزعج
   mark_new: جديد
-  assign_agent: تعيين الوكيل
-  tag_with: ضع علامة على التذكرة
+  assign_agent: &assign_agent تعيين الوكيل
+  tag_with: &tag_with ضع علامة على التذكرة
   selected_messages:
     one: "رسالة مختارة (١)"
     two: "رسائل المحددة (٢)"
@@ -170,10 +170,15 @@ ar:
   edit_user: تعديل المستخدم
   work_phone: هاتف المكتب
   cell_phone: هاتف الخلوي
+  # scrub_user: "Anonymize User"
+  # delete_user: "Delete User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: حدد الأولوية
+  select_priority: &priority حدد الأولوية
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: "مرتفعة"
   normal_priority: متوسطة
   low_priority: منخفضة

@@ -1,0 +1,3 @@
+<li class="text-left nav-item <%= 'nav-active' if params[:role] == role %>">
+  <%= link_to label, admin_users_path(:role => role), :remote => false %>
+</li>

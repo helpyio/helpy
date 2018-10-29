@@ -11,7 +11,7 @@
 
   <td class="last_post less-important text-right">
     <div class="btn btn-group">
-      <span id="row-<%= forum.id %>" data-toggle="dropdown" aria-expanded="false" class='dropdown-toggle glyphicon glyphicon-align-justify'></span>
+      <span id="row-<%= forum.id %>" data-toggle="dropdown" aria-expanded="false" class='dropdown-toggle fas fa-ellipsis-v'></span>
       <ul class="dropdown-menu dropdown-menu-right" role="menu">
         <li><%= link_to t(:edit, default:'Edit'), edit_admin_forum_path(forum) %></li>
         <li><%= link_to t(:delete, default:'Delete'), admin_forum_path(forum), data: {confirm: 'Please confirm you really want to DELETE this forum and all discussions'}, method: :delete, remote: true, class: 'less-important' %></li>

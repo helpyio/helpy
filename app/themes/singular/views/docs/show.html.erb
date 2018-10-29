@@ -1,0 +1,90 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<% title "#{AppSettings['settings.site_name']}: #{renderize_doc_title(@doc.title_tag, @doc.title)}" %>
+<% meta_tag :description, "#{@doc.meta_description}" %>
+<% meta_tag :keywords, "#{@doc.keywords}" %>
+
+
+<script>
+  Helpy.yesHelped = '<%= j t(:yes_helped) %>';
+  Helpy.noHelped = '<%= j t(:no_helped) %>';
+  <% if tickets? %>
+    Helpy.contactUs = '<a href="<%= new_topic_path(doc_id: @doc.id) %>" class="btn btn-primary btn-lg get-help-button"><%= j t(:start_discussion) %></a>';
+  <% else %>
+    Helpy.contactUs = '';
+  <% end %>
+</script>
+
+<style>
+.text-content h1 {
+  font-size: 160%;
+  background-color: transparent;
+}
+</style>
+
+  <div class="row content-row doc-panel doc-show-panel">
+    <div class="col-md-12 text-content">
+      <%= sanitize_doc_content(@doc.content) %>
+    </div>
+    <hr/>
+    <div class="doc-meta hidden-xs">
+      <div id="written-by" class="doc-meta col-md-4 col-sm-4 col-xs-12 text-center">
+        <div class="more-important meta-header"><%= I18n.t("written_by", default: "Written By") %>:</div>
+        <div class="less-important">
+          <%= avatar_image(@doc.user, size=40) %>
+          <%= @doc.user.name.titleize %>
+        </div>
+      </div>
+      <div id="doc-last-edit" class="doc-meta col-md-4 col-sm-4 col-xs-12 text-center">
+        <div class="more-important meta-header"><%= I18n.t("last_edited", default: "Last Edited") %>:</div>
+        <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
+      </div>
+      <div id="doc-tags" class="doc-meta col-md-4 col-sm-4 col-xs-12 text-center">
+        <div class="more-important meta-header"><%= I18n.t("tagged", default: "Tagged") %>:</div>
+        <div class="more-important meta-header"><% tag_listing(@doc.tag_list, "doc") %></div>
+      </div>
+    </div>
+  </div>
+
+
+<% if @doc.allow_comments && forums? %>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <hr/>
+      <h4><%= @posts.blank? ? "" : t(:topic) %></h4>
+    </div>
+
+  	<div class="col-md-10 col-md-offset-1">
+  		<script>
+  			Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) unless @posts.nil? %>';
+  		</script>
+
+  		<table id="posts">
+  			<%= render :partial => 'comment', :collection => @posts %>
+  		</table>
+
+  		<% if user_signed_in? # show a form to reply or start discussion %>
+        <%= render partial: 'docs/comment_form', locals: {post: @post} %>
+  		<% else # show a button to reply or start the discussion %>
+        <div>
+          <% if @posts.blank? %>
+          <span class="hidden-xs pull-right"><%= link_to t(:start_discussion, default: "Start Discussion"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+          <% else %>
+          <span class="hidden-xs pull-right"><%= link_to t(:reply, default: "Reply"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+          <% end %>
+        </div>
+      <% end %>
+  	</div>
+  </div>
+<% end %>
+
+<div class="col-md-10 col-md-offset-1">
+  <%= render 'layouts/did_this_help' %>
+</div>

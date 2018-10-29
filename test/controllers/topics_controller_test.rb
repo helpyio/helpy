@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 require 'test_helper'
@@ -84,6 +85,34 @@ class TopicsControllerTest < ActionController::TestCase
       end
     end
 
+  end
+
+  test "a browsing user creating feedback on an article should be autotagged" do
+    assert_difference 'Topic.count', 1, 'A topic should have been created' do
+      assert_difference 'Post.count', 1, 'A post should have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a user',
+              email: 'anon@test.com'
+              },
+            name: 'some new feedback',
+            body: 'some body text',
+            forum_id: 1,
+            doc_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body"
+              }
+            }
+          },
+          locale: :en
+      end
+    end
+
+    assert_equal Topic.tagged_with("active and featured").count, 1
+    assert_equal Topic.tagged_with("Feedback").count, 1
   end
 
   test 'a browsing user should not be able to vote' do

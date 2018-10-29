@@ -1,0 +1,11 @@
+<% if @topics.present? %>
+<div class="hidden-sm hidden-xs">
+  <div class="left-nav-header">
+    <span class="tiny-header">Other tickets in "<%= @status %>"</span>
+  </div>
+  <ul class="list-unstyled nav-items" data-hook="ticket-stats">
+    <%= render partial: 'admin/topics/tiny_topic', collection: @topics %>
+  </ul>
+</div>
+<% end %>
+<%= render partial: 'admin/topics/ticket_stats' %>

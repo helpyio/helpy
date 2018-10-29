@@ -6,9 +6,17 @@
   });
 </script>
 
-<h2><%= t(:new_category, default: 'New Category') %></h2>
+<div class="row">
+  <div class="col-md-3 hidden-sm hidden-xs">
+    <%= render partial: 'admin/categories/cat_nav' %>
+  </div>
 
-<%= simple_form_for [:admin, @category], validate: true, label_errors: true, method: 'post' do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
-<% end %>
+  <div class="col-md-9 col-sm-12 main-panel">
+    <h3 class="view-header"><%= t(:new_category, default: 'New Category') %></h3>
+
+    <%= simple_form_for [:admin, @category], validate: true, label_errors: true, method: 'post' do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
+    <% end %>
+  </div>
+</div>

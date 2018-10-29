@@ -2,7 +2,7 @@
 =================================================================
 <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
 
-<%= t('notify_new_public', user_name: @topic.user_name, default: "A new public customer message has been posted by %{user_name}:") %>
+<%= t('notify_new_public', user_name: "#{@user.name} (#{@user.email})", default: "A new public customer message has been posted by %{user_name}:") %>
 
 <%= simple_format(@topic.posts.last.body) %>
 

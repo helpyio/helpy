@@ -88,16 +88,24 @@ module ApplicationHelper
   end
 
   def tag_listing(tags, tagging_type = "message")
-    return unless teams? || tagging_type == "doc"
+    return unless tagging_type == "doc"
     tags.each do |tag|
-      concat content_tag(:span, tag, style: badge_color_from_tag(tag),class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
+      # concat content_tag(:span, tag, style: badge_color_from_tag(tag),class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
+      concat content_tag(:span, tag, class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
+    end
+  end
+
+  def doc_tag_listing(tags, tagging_type = "message")
+    return unless tagging_type == "doc"
+    tags.each do |tag|
+      concat content_tag(:span, tag, class: "label label-#{tagging_type}-tagging label-#{tag.first.downcase} #{'pull-right' if tagging_type == 'message'}")
     end
   end
 
   def login_with(with, redirect_to = "/#{I18n.locale}")
     provider = (with == "google_oauth2") ? "google" : with
     link_to(user_omniauth_authorize_path(with.to_sym, origin: redirect_to), class: ["btn","btn-block","btn-social","oauth","btn-#{provider}"], style: "color:white;", data: {provider: "#{provider}"}) do
-      content_tag(:span, '', {class: ["fa", "fa-#{provider}"]}).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
+      content_tag(:span, '', {class: ["fab", "fa-#{provider}"]}).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
     end
   end
 
@@ -131,4 +139,37 @@ module ApplicationHelper
   def get_path(screenshot)
     screenshot.format == "pdf" ? "#{screenshot.public_id}.png" : screenshot.path
   end
+
+  def summernote_lang_js
+    if I18n.locale != :en
+      "<script src=\"/assets/summernote/lang/summernote-#{summernote_locale}.js\"></script>".html_safe
+    end
+  end
+
+  def summernote_locale
+    # binding.pry
+    case I18n.locale
+    when :ar, :de, :es, :et, :fi, :fr, :hu, :id, :it, :nl, :pt, :ru, :tr
+      "#{I18n.locale.downcase}-#{I18n.locale.upcase}"
+    when :"pt-br"
+      "pt-BR"
+    when :"zh-cn"
+      "zh-CN"
+    when :"zh-tw"
+      "zh_TW"
+    when :ja
+      "ja-JP"
+    when :ko
+      "ko-KR"
+    when :sv
+      "sv-SE"
+    when :fa
+      "fa-IR"
+    when :ca
+      "ca-ES"
+    else
+      "en_EN"
+    end
+  end
+
 end

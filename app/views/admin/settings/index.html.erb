@@ -1,9 +1,9 @@
 <% title "#{admin_title} #{t('settings', default: 'System Settings')}" %>
 <% if current_user.is_admin? %>
 <div class="admin-header">
-  <h2 id="setting-header">
+  <h3 id="setting-header">
     <%= t('settings', default: 'System Settings') %>
-  </h2>
+  </h3>
 </div>
 
 <div class="settings-grid">
@@ -13,18 +13,18 @@
       <div class="row" data-hook="admin_settings_grid">
         <%= settings_item('glyphicon glyphicon-cog', "general", t('general_description', default: "Manage general system settings like your Helpy name, what company to link back to."), admin_general_settings_path) %>
         <%= settings_item('glyphicon glyphicon-pencil', "design", t('design_description', default: "Control the logos and colors and other design aspects of your Helpy"), admin_design_settings_path) %>
-        <%= settings_item('fa fa-clone', "theme", t('theme_description', default: "Select a theme for your Helpy"), admin_theme_settings_path) %>
+        <%= settings_item('fas fa-clone', "theme", t('theme_description', default: "Select a theme for your Helpy"), admin_theme_settings_path) %>
         <%= settings_item('glyphicon glyphicon-globe', "international", t('international_description', default: "Select what languages your Helpy will speak be able to speak."), admin_i18n_settings_path) %>
         <%= settings_item('glyphicon glyphicon-modal-window', "widget", t('widget_description', default: "Find out how to deploy the Helpy widget on your site."), admin_widget_settings_path) %>
         <%= settings_item('glyphicon glyphicon-envelope', "email", t('email_description', default: "Set up SMTP and Inbound email for your Helpy."), admin_email_settings_path) %>
-        <%= settings_item('fa fa-cogs', "integrations", t('integrations_description', default: "Configure integrations with external services."), admin_integration_settings_path) %>
-        <%= settings_item('fa fa-users', "customers", t('users_description', default: "See and invite your customers"), admin_users_path(role: 'user')) %>
-        <%= settings_item('fa fa-briefcase', "team", t('users_description', default: "View and edit your support team"), admin_users_path(role: 'team')) %>
+        <%= settings_item('fas fa-cogs', "integrations", t('integrations_description', default: "Configure integrations with external services."), admin_integration_settings_path) %>
+        <%= settings_item('fas fa-users', "customers", t('users_description', default: "See and invite your customers"), admin_users_path(role: 'user')) %>
+        <%= settings_item('fas fa-briefcase', "team", t('users_description', default: "View and edit your support team"), admin_users_path(role: 'team')) %>
         <%= settings_item('glyphicon glyphicon-tags', t('team_group', default: "Groups"),
           t('group_description', default: "Edit, Delete, Create team list."), admin_groups_path) %>
-        <%= settings_item('fa fa-reply', t('common_replies', default: "Common Replies"), t('common_replies_description', default: "View Common Replies"), admin_category_path(1)) %>
-        <%= settings_item('fa fa-download',t("export", default: 'Export'), "Export tickets, users, knowledgebase in CSV.", admin_backups_path) %>
-        <%= settings_item('fa fa-upload',t("import", default: 'Import'), "Import tickets, users, knowledgebase in CSV.", admin_imports_path) %>
+        <%= settings_item('fas fa-reply', t('common_replies', default: "Common Replies"), t('common_replies_description', default: "View Common Replies"), admin_category_path(1)) %>
+        <%= settings_item('fas fa-download',t("export", default: 'Export'), "Export tickets, users, knowledgebase in CSV.", admin_backups_path) %>
+        <%= settings_item('fas fa-upload',t("import", default: 'Import'), "Import tickets, users, knowledgebase in CSV.", admin_imports_path) %>
 
       </div>
     </div>

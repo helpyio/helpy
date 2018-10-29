@@ -5,21 +5,30 @@
       $(".icon-picker").iconPicker();
   });
 </script>
-<h2><%= t(:edit_category, default: 'Edit Category') %>: <%- @category.name %></h2>
 
-<%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
+<div class="row">
+  <div class="col-md-3 hidden-xs hidden-sm">
+    <%= render partial: 'admin/categories/cat_nav' %>
+  </div>
 
-<%= simple_form_for @category, validate: true, url: admin_category_path(id: @category.id), label_errors: true, method: 'patch' do |f| %>
-  <% Globalize.with_locale(params['lang']) do %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
+  <div class="col-md-9 col-sm-12 main-panel">
+  <h3 class="view-header"><%= t(:edit_category, default: 'Edit Category') %>: <%- @category.name %></h3>
+
+  <%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
+
+  <%= simple_form_for @category, validate: true, url: admin_category_path(id: @category.id), label_errors: true, method: 'patch' do |f| %>
+    <% Globalize.with_locale(params['lang']) do %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
+    <% end %>
   <% end %>
-<% end %>
 
-<% unless params[:lang].nil? %>
-<script>
-//$(function(){
-//  $('.no-translate').attr("disabled", true);
-//});
-</script>
-<% end %>
+  <% unless params[:lang].nil? %>
+  <script>
+  //$(function(){
+  //  $('.no-translate').attr("disabled", true);
+  //});
+  </script>
+  <% end %>
+  </div>
+</div>

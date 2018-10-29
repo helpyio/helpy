@@ -1,19 +1,15 @@
 <div class="report-header row">
   <div class="col-md-12 clearfix">
-    <h2>
+    <h3>
+      <%= show_responsive_nav %>
       <%= report_name %>:
-      <%= content_tag :span, class: "dropdown" do %>
+      <%= content_tag :span, class: "dropdown pull-right" do %>
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <%= @interval.sentence_case %>
           <span class="caret"></span>
         </button>
         <%= render partial: 'admin/reports/date_selector', locals: { path: report_path } %>
       <% end %>
-      <div class="dropdown pull-right">
-        <button class="btn btn-default less-important reports-menu-toggle hidden-lg hidden-md" type="button">
-          <span class="fa fa-ellipsis-h"></span>
-        </button>
-      </div>
-    </h2>
+    </h3>
   </div>
 </div>

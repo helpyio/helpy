@@ -126,12 +126,12 @@ en:
 
     # Discussion controls
     change_status: Change Status
-    status: Status
+    status: &status Status
     mark_closed: Mark Resolved
     reopen: Reopen
     mark_spam: Mark Spam
     mark_new: Mark New
-    assign_agent: Assign Agent
+    assign_agent: &assign_agent Assign Agent
     selected_messages:
       one: "1 selected message"
       two: "2 selected messages"

@@ -349,6 +349,7 @@ div.admin-tools {
   margin-left: 2px;
   margin-right: 2px;
   text-transform: uppercase;
+  display: inline-block;  
 }
 
 // Tag background colors
@@ -432,6 +433,20 @@ div.admin-tools {
 }
 
 .label-private {
+	border: 2px dashed #666;
+	color: #666;
+  	display: inline;
+  	padding: .2em .6em .3em;
+  	font-size: 75%;
+  	font-weight: bold;
+  	line-height: 1;
+  	text-align: center;
+  	white-space: nowrap;
+  	vertical-align: baseline;
+  	border-radius: .25em;
+}
+
+.label-public {
 	border: 2px dashed #666;
 	color: #666;
   	display: inline;
@@ -680,6 +695,14 @@ header {
   margin-top: 20px;
 }
 
+.search-btn {
+  width: 100%;
+
+  span {
+    color: #333 !important;
+  }
+}
+
 .nav {
   padding-top: 30px;
 
@@ -801,9 +824,14 @@ h1#how-help {
   background-color: $main-panel-bg;
   color: $main-panel-font-color;
 
-  a {
+  .breadcrumb a {
     color: $main-panel-breadcrumb-color;
   }
+
+  li.ui-menu div.ui-menu-item a  {
+    color: #333;
+  }
+
 }
 
 #home-search {

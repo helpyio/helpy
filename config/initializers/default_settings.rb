@@ -1,5 +1,11 @@
 # General Settings:
 
+AppSettings.defaults["branding.ticketing_color"] = "#245566"
+AppSettings.defaults["branding.ticketing_bg_color"] = "#f6f7e8"
+AppSettings.defaults["branding.ticketing_bg_image"] = ""
+AppSettings.defaults["branding.display_branding"] = "1"
+
+AppSettings.defaults["settings.enforce_ssl"] = "0"
 AppSettings.defaults["settings.parent_site"] = Settings.parent_site
 AppSettings.defaults["settings.parent_company"] = Settings.parent_company
 AppSettings.defaults["settings.site_url"] = Settings.site_url
@@ -32,23 +38,23 @@ AppSettings.defaults["design.footer_mini_logo"] = Settings.app_large_logo
 AppSettings.defaults["design.css"] = ""
 AppSettings.defaults["design.header_js"] = ""
 AppSettings.defaults["design.footer_js"] = ""
-AppSettings.defaults["css.search_background"] = "feffe9"
-AppSettings.defaults["css.top_bar"] = "3cceff"
-AppSettings.defaults["css.link_color"] = "004084"
-AppSettings.defaults["css.form_background"] = "F0FFF0"
-AppSettings.defaults["css.still_need_help"] = "ffdf91"
+AppSettings.defaults["css.search_background"] = ""
+AppSettings.defaults["css.top_bar"] = ""
+AppSettings.defaults["css.link_color"] = ""
+AppSettings.defaults["css.form_background"] = ""
+AppSettings.defaults["css.still_need_help"] = ""
 AppSettings.defaults["css.main_color"] = ""
 AppSettings.defaults["css.accent_color"] = ""
 AppSettings.defaults["css.form_color"] = ""
 
 # Theme:
 
-AppSettings.defaults["theme.active"] = "light"
+AppSettings.defaults["theme.active"] = "singular"
 
 # i18n:
 
 AppSettings.defaults["i18n.default_locale"] = "en"
-AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de"]
+AppSettings.defaults["i18n.available_locales"] = ["en","es","fr","de","fi"]
 
 # Widget:
 

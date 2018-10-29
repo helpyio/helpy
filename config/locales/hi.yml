@@ -39,7 +39,7 @@ hi:
 
   # Community
   forum_name: "प्रसंग"
-  subject: "समस्या"
+  subject: &subject "समस्या"
   last_activity: "पिछली बार"
   topic: "विषय"
   replies: "जवाबें"
@@ -137,13 +137,13 @@ hi:
 
   # Discussion controls
   change_status: स्टेटस बदलो
-  status: स्टेटस
+  status: &status स्टेटस
   mark_closed: बंद करें
   reopen: फिर से खोलें
   mark_spam: स्पैम मार्क करो
   mark_new: नया  मार्क करो
-  assign_agent: एजेंट नियुक्त करना
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent एजेंट नियुक्त करना
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 चुने हुए संदेश"
     two: "2 चुने हुए संदेश"
@@ -166,12 +166,18 @@ hi:
   contact_info: संपर्क करें
   social_info: सोशियल
   edit_user: Edit User
+#  delete_user: Delete User
   work_phone: काम
   cell_phone: मोबाइल
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  # select_priority: Select Priority
+  # select_priority: &priority Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low

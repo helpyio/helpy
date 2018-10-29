@@ -282,6 +282,20 @@ div.admin-tools {
 	border-radius: .25em;
 }
 
+.label-public {
+	border: 2px dashed #666;
+	color: #666;
+  	display: inline;
+  	padding: .2em .6em .3em;
+  	font-size: 75%;
+  	font-weight: bold;
+  	line-height: 1;
+  	text-align: center;
+  	white-space: nowrap;
+  	vertical-align: baseline;
+  	border-radius: .25em;
+}
+
 .label-team {
 	border: 2px dashed gray;
 	color: #666;
@@ -346,6 +360,7 @@ div.admin-tools {
   margin-left: 2px;
   margin-right: 2px;
   text-transform: uppercase;
+  display: inline-block;  
 }
 
 .label-tag {
@@ -443,6 +458,11 @@ div.admin-tools {
 .active {
   // scss-lint:disable ImportantRule
 	background-color: #fff !important;
+}
+
+div.note-hint-item.active {
+  // scss-lint:disable ImportantRule
+  background-color: #444 !important;
 }
 
 .author {
@@ -841,6 +861,11 @@ div#results-found {
 	margin-bottom: 30px;
 }
 
+// #home-search div #search-form div div li.ui-menu div.ui-menu-item a {
+//   color: #333 !important;
+// }
+
+
 //  === HEADER STYLES ===
 
 #above-header {
@@ -907,6 +932,10 @@ table#users {
 .kind-reply,
 .kind-note {
   margin-left: 50px;
+}
+
+.kind-first.kind-note {
+  margin-left: 0px;
 }
 
 .kind-note {

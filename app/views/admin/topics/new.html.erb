@@ -1,15 +1,19 @@
 <% title "#{admin_title} #{t(:open_new_discussion, default: 'New Discussion')}" %>
 
 <% content_for :pipeline do %>
-<%= render partial: 'admin/shared/pipeline' %>
+<%#= render partial: 'admin/shared/pipeline' %>
 <% end %>
 
-<h2 id="ticket-page-title">
-  <%= "#{t(:open_new_discussion, default: 'New Discussion')}" %>:
-</h2>
+<!-- <h2 id="ticket-page-title">
+  <%#= "#{t(:open_new_discussion, default: 'New Discussion')}" %>:
+</h2> -->
 
 <div class="row">
-  <div class="col-md-12" id="tickets">
-  <%= render partial: 'admin/topics/new_ticket' %>
+  <div id="admin-left-nav" class="hidden-xs col-md-3 hidden-sm ticket-stats">
+    <%= render 'admin/topics/ticket_stats' %>
+  </div>
+
+  <div class="col-md-9 col-sm-12 main-panel" id="tickets">
+    <%= render partial: 'admin/topics/new_ticket' %>
   </div>
 </div>

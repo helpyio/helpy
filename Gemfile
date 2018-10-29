@@ -6,12 +6,12 @@ gem 'rails', '4.2.10'
 gem 'pg', '< 1.0.0'
 gem 'pg_search'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails', '~> 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Explicitly include Nokogiri to control version
-gem 'nokogiri', '>= 1.8.1'
+gem 'nokogiri', '>= 1.8.4'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -29,7 +29,7 @@ gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 2.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 1.0.0', group: :doc
 
 # Summernote is the wysiwyg editor
 gem 'jquery-minicolors-rails'
@@ -61,7 +61,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
 # i18n gems
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n', '~> 4.0.9'
 gem 'i18n-country-translations'
 gem 'route_translator'
 gem 'http_accept_language'
@@ -71,10 +71,10 @@ gem 'grape'
 gem 'grape-swagger'
 gem 'grape-entity', '~> 0.6.0'
 gem 'grape-swagger-rails'
-gem 'grape-swagger-entity', '= 0.1.5'
-gem 'grape-attack'
-gem 'kaminari-grape'
+gem 'grape-swagger-entity'
+# gem 'grape-attack' #uncomment for rate limiting
 gem 'grape-kaminari'
+gem 'kaminari-grape'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'permalink_fu'
@@ -92,10 +92,10 @@ gem 'globalize-accessors'
 gem 'gravtastic'
 
 # File handling
-gem 'cloudinary', '1.1.2'
+gem 'cloudinary', '1.1.7'
 gem 'attachinary'
 
-gem 'carrierwave', '~> 1.0.0'
+gem 'carrierwave', '~> 1.2.3'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
@@ -111,6 +111,7 @@ gem 'selectize-rails'
 gem "bootstrap-switch-rails"
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
+gem 'gemoji'
 
 gem 'config', '~> 1.1.0'
 
@@ -126,6 +127,10 @@ gem 'griddler-mailgun'
 gem 'griddler-postmark'
 gem 'griddler-mailin'
 gem 'griddler-sparkpost'
+
+# html Email
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
 
 gem 'rails-timeago'
 
@@ -146,10 +151,11 @@ gem 'timecop' #used to populate
 gem 'themes_on_rails'
 gem "recaptcha", require: "recaptcha/rails"
 
-gem 'best_in_place', '~> 3.0.1'
+gem 'best_in_place', '~> 3.1'
 
 # Add onboarding component
 gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
@@ -170,13 +176,12 @@ gem 'roo'
 
 group :development do
   gem "better_errors"
-  gem 'mailcatcher'
 
   # Check Eager Loading / N+1 query problems
   gem 'bullet'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.3'
 end
 
 group :test do
@@ -187,6 +192,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false

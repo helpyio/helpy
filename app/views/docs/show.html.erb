@@ -42,7 +42,7 @@
       <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
     </div>
     <div id="doc-tags" class="doc-meta">
-      <div class="more-important meta-header"><%= I18n.t("Tagged", default: "Tagged") %>:</div>
+      <div class="more-important meta-header"><%= I18n.t("tagged", default: "Tagged") %>:</div>
       <div class="more-important meta-header"><% tag_listing(@doc.tag_list, "doc") %></div>
     </div>
   </div>

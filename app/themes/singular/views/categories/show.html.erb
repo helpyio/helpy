@@ -1,0 +1,23 @@
+<% title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+<% meta_tag :description, "#{@category.meta_description}" %>
+<% meta_tag :keywords, "#{@category.keywords}" %>
+
+<div class="row">
+  <% @docs.each do |doc| %>
+    <%= render "docs/doc_panel", doc: doc %>
+  <% end %>
+  <% if @docs.count == 0 %>
+
+    <div class="text-center verticalness">
+      <%= t(:nothing_here) %>
+    </div>
+
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12 text-left">
+      <%= paginate @docs %>
+    </div>
+  </div>
+
+</div>

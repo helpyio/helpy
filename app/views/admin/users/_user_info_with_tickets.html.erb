@@ -1,0 +1,58 @@
+<% user = @user if user.nil? %>
+
+<div class="right-border">
+  <div id="user-info" class="row">
+      <div class='col-md-12 text-center' id='user-info-image'>
+        <%= link_to(avatar_image(user, size=90), admin_user_path(user), remote: true) %>
+      </div>
+  </div>
+  <div class="row">
+    <div class='col-md-12' id='user-info-info'>
+
+      <div id="user-contact-info" class="user-info">
+        <div class="tiny-header">
+          <%= best_in_place_if !user.is_agent?, user, :name, as: :input, url: admin_user_path(user) %>
+        </div>
+        <span class="small">
+          <% if user.account_number.present? %>
+            <%= t(:account_number, default: 'Account:') %>
+            <%= best_in_place_if !user.is_agent?, user, :account_number, as: :input, url: admin_user_path(user),
+            place_holder: t('activerecord.attributes.user.account_number', default: 'Account Number') if user.account_number.present? %>
+            <br/>
+          <% end %>
+          <%= best_in_place_if !user.is_agent?, user, :company, as: :input, url: admin_user_path(user),
+          place_holder: t('click_to_edit', what: t('activerecord.attributes.user.company'), default: 'click to edit %{what}') %><br/>
+          <%= best_in_place_if !user.is_agent?, user, :email, as: :input, url: admin_user_path(user) %><br/>
+
+        </span>
+      </div>
+      <div id="user-contact-info" class="user-info">
+        <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
+        <%= best_in_place_if !user.is_agent?, user, :street, as: :input, url: admin_user_path(user),
+        place_holder: t('click_to_edit', what: t('activerecord.attributes.user.street'), default: 'click to edit %{what}') %><br/>
+        <%= best_in_place_if !user.is_agent?, user, :city, as: :input, url: admin_user_path(user),
+        place_holder: t('click_to_edit', what: t('activerecord.attributes.user.city'), default: 'click to edit %{what}') %>
+        <br/>
+        <%= best_in_place_if !user.is_agent?, user, :state, as: :input, url: admin_user_path(user),
+        place_holder: t('click_to_edit', what: t('activerecord.attributes.user.state'), default: 'click to edit %{what}') %>
+        <%= best_in_place_if !user.is_agent?, user, :zip, as: :input, url: admin_user_path(user),
+        place_holder: t('click_to_edit', what: t('activerecord.attributes.user.zip'), default: 'click to edit %{what}') %><br/>
+      </div>
+      <div id="user-contact-info" class="user-info">
+        <div class="tiny-header"><%= t(:phone, default: "Phone") %>:</div>
+        <%= t(:work_phone, default: "work") %>: <%= best_in_place_if !user.is_agent?, user, :work_phone,
+        as: :input, url: admin_user_path(user), place_holder: t('click_to_edit', what: '', default: 'click to edit %{what}') %><br/>
+        <%= t(:home_home, default: "home") %>: <%= best_in_place_if !user.is_agent?, user, :home_phone,
+        as: :input, url: admin_user_path(user), place_holder: t('click_to_edit', what: '', default: 'click to edit %{what}') %><br/>
+        <%= t(:cell_phone, default: "cell") %>: <%= best_in_place_if !user.is_agent?, user, :cell_phone,
+        as: :input, url: admin_user_path(user), place_holder: t('click_to_edit', what: '', default: 'click to edit %{what}') %><br/>
+      </div>
+      <div id="user-contact-info" class="user-info">
+        <div class="tiny-header"><%= t(:notes, default: "Notes") %>:</div>
+        <%= best_in_place_if !user.is_agent?, user, :notes, as: :textarea, url: admin_user_path(user),
+        place_holder: t('click_to_edit', what: 'notes', default: 'click to edit %{what}'),
+        confirm: true %><br/>
+      </div>
+    </div>
+  </div>
+</div>

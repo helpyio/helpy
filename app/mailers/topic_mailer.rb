@@ -1,4 +1,4 @@
-class TopicMailer < ActionMailer::Base
+class TopicMailer < ApplicationMailer
   add_template_helper(ApplicationHelper)
 
   def new_ticket(topic_id)
