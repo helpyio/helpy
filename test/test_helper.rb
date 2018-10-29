@@ -1,6 +1,8 @@
 # Simplecov to give a report of the test coverage on local development environment
 require 'simplecov'
 SimpleCov.start 'rails'
+require 'minitest/reporters'
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
