@@ -63,7 +63,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     best_in_place (3.0.3)
       actionpack (>= 3.2)
       railties (>= 3.2)
@@ -137,7 +137,7 @@ GEM
     config (1.1.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
-    crass (1.0.3)
+    crass (1.0.4)
     daemons (1.2.6)
     debug_inspector (0.0.3)
     deep_merge (1.0.1)
@@ -148,18 +148,19 @@ GEM
       rainbow (>= 2.1.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.4.1)
+    devise (3.5.10)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.2)
+      railties (>= 3.2.6, < 5)
       responders
+      thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-bootstrap-views (0.0.11)
     devise-i18n (1.5.1)
       devise (>= 3.4)
-    devise_invitable (1.7.2)
-      actionmailer (>= 4.1.0)
-      devise (>= 4.0.0)
+    devise_invitable (1.6.1)
+      actionmailer (>= 3.2.6)
+      devise (>= 3.2.0)
     docile (1.1.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
@@ -243,7 +244,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_accept_language (2.1.1)
-    i18n (0.9.3)
+    i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     i18n-country-translations (1.3.0)
       i18n (~> 0.9.3)
@@ -305,7 +306,7 @@ GEM
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    loofah (2.1.1)
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -346,7 +347,7 @@ GEM
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
     netrc (0.11.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     oauth (0.5.4)
     oauth2 (1.4.0)
@@ -399,7 +400,7 @@ GEM
       byebug (~> 9.1)
       pry (~> 0.10)
     public_suffix (3.0.1)
-    rack (1.6.8)
+    rack (1.6.10)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-cors (1.0.2)
@@ -424,8 +425,8 @@ GEM
       activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails-i18n (4.0.9)
       i18n (~> 0.7)
       railties (~> 4.0)
@@ -442,7 +443,7 @@ GEM
     rainbow (2.2.2)
       rake
     raindrops (0.19.0)
-    rake (12.3.0)
+    rake (12.3.1)
     ranked-model (0.4.0)
       activerecord (>= 3.1.12)
     rb-fsevent (0.10.2)
@@ -554,7 +555,7 @@ GEM
       less-rails (>= 2.5.0)
       railties (>= 3.1)
     twitter-bootstrap-rails-confirm (1.0.7)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.5)
       execjs (>= 0.3.0, < 3)
@@ -611,10 +612,10 @@ DEPENDENCIES
   codemirror-rails
   config (~> 1.1.0)
   daemons
-  devise
+  devise (< 4.0)
   devise-bootstrap-views
   devise-i18n
-  devise_invitable (~> 1.6)
+  devise_invitable (< 1.7)
   factory_bot_rails
   faker
   font-awesome-sass
@@ -705,4 +706,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.1
+   1.16.4

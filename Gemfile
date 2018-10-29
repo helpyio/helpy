@@ -50,9 +50,10 @@ gem "groupdate"
 gem "chartkick"
 
 # Auth Gems
-gem 'devise'
+gem 'devise', '< 4.0' # TODO: Keep at version 3 until we can resolve url helper issue introduced in Devise 4
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'devise_invitable', '< 1.7' # TODO: Maintain compatibility with Devise 3
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
@@ -127,8 +128,6 @@ gem 'griddler-mailin'
 gem 'griddler-sparkpost'
 
 gem 'rails-timeago'
-
-gem 'devise_invitable', '~> 1.6'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
