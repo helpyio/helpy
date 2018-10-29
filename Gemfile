@@ -190,7 +190,7 @@ group :test do
   gem 'shoulda', '3.5'
   gem 'shoulda-matchers', '~> 2.0'  
   gem 'factory_bot_rails'
-  gem 'capybara'
+  gem 'capybara', '< 3.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'launchy'
