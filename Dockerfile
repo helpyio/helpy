@@ -33,7 +33,7 @@ RUN bundle install
 # add local files
 COPY . /$HELPY_HOME
 
-RUN touch /helpy/log/production.log && chmod 0664 /helpy/log/production.log
+RUN touch /helpy/log/$RAILS_ENV.log && chmod 0664 /helpy/log/$RAILS_ENV.log
 
 # Due to a weird issue with one of the gems, execute this permissions change:
 RUN chmod +r /usr/local/bundle/gems/griddler-mandrill-1.1.3/lib/griddler/mandrill/adapter.rb
@@ -52,7 +52,7 @@ RUN DB_ADAPTER=nulldb bundle exec rake assets:precompile
 RUN chown -R $HELPY_USER:$HELPY_USER /$HELPY_HOME
 
 # Run the server
-CMD bundle exec unicorn -E production -c config/unicorn.rb
+CMD bundle exec unicorn -E $RAILS_ENV -c config/unicorn.rb
 
 # Enter the right user
 USER $HELPY_USER

@@ -7,19 +7,7 @@ replicaCount: 1
 service:
   type: NodePort
   port: 80
-
-ingress:
-  enabled: true
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - helpy.dev.eks-staging.superpedestrian.com
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  configMapName: helpy-config
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

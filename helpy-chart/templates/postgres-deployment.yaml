@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: postgres
+  name: postgres-helpy
 spec:
   replicas: 1
   strategy:
@@ -9,7 +9,7 @@ spec:
   template:
     metadata:
       labels:
-        app: postgres
+        app: postgres-helpy
     spec:
       initContainers:
       - name: "remove-lost-found"
@@ -22,25 +22,17 @@ spec:
         - name: data
           mountPath: /var/lib/postgres
       containers:
-      - env:
-        - name: POSTGRES_DB
-          value: helpy_production
-        - name: POSTGRES_PASSWORD
-          value: some_secure_pg_password_change_in_production
-        - name: POSTGRES_USER
-          value: helpy
-        - name: SECRET_KEY_BASE
-          value: some_secret_key_base_change_in_production
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
-        image: postgres:9.6.2
-        name: postgres
-        ports:
-        - containerPort: 5432
-          name: postgres
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data/pgdata
-          name: data
+        - name: postgres-helpy
+          image: postgres:9.6.2
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.service.configMapName }}
+          ports:
+            - name: postgres-helpy
+              containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data/pgdata   
       subPath: postgresql-db
       restartPolicy: Always
       volumes:

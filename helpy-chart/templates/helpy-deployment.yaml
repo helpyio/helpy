@@ -16,22 +16,14 @@ spec:
       imagePullSecrets:
       - name: dockercred
       containers:
-      - env:
-        - name: POSTGRES_DB
-          value: helpy_production
-        - name: POSTGRES_PASSWORD
-          value: some_secure_pg_password_change_in_production
-        - name: POSTGRES_USER
-          value: helpy
-        - name: SECRET_KEY_BASE
-          value: some_secret_key_base_change_in_production
-        image: superpedestrian/helpy:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
-          name: helpy-http
-          protocol: TCP
-        name: helpy
-        resources: {}
-      restartPolicy: Always
-status: {}
+        - name: helpy
+          image: superpedestrian/helpy:latest
+          imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.service.configMapName }}
+          ports:
+            - name: helpy-http
+              containerPort: 8080
+              protocol: TCP
+          resources: {}
