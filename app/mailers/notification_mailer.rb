@@ -25,6 +25,11 @@ class NotificationMailer < ApplicationMailer
     @user = @topic.user
     @recipient = notifiable_users.first
     @bcc = notifiable_users.last(notifiable_users.count-1).collect {|u| u.email}
+    # attachments for notification email.
+    @attachments = @topic.posts.first.attachments
+    if @attachments.present?
+      mail.attachments[@attachments.first.file.filename] = File.read(@attachments.first.path)
+    end
     mail(
       to: @recipient.email,
       bcc: @bcc,
@@ -32,4 +37,6 @@ class NotificationMailer < ApplicationMailer
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
   end
+
 end
+
