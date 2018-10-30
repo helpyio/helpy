@@ -198,7 +198,6 @@ group :test do
 
   # remove this for Rails 5 because the function is already included
   gem 'test_after_commit'
-  gem 'm'
 end
 
 group :production do
