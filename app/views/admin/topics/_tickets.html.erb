@@ -61,6 +61,9 @@
               <% @admins.each do |admin| %>
               <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(assigned_user_id: admin.id, status: params[:status]), :remote => true, class: 'multiple-update' %></li>
               <% end %>
+              <hr/>
+              <li><%= link_to t(:unassign_agent, default: "Unassign Agent"), admin_unassign_agent_path(assigned_user_id: nil), remote: true, class: 'multiple-update' %></li>
+
             </ul>
           </span>
 
@@ -80,7 +83,8 @@
                 <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control multiple' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
                 <% end %>
               </li> -->
-              <li><%= link_to "Unassign from group", admin_assign_team_path(team: ''), remote: true, class: 'multiple-update' %></li>
+              <hr/>
+              <li><%= link_to t(:unassign_from_team, default: "Unassign from group"), admin_assign_team_path(team: ''), remote: true, class: 'multiple-update' %></li>
 
             </ul>
           </span>

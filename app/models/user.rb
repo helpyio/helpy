@@ -204,6 +204,12 @@ class User < ActiveRecord::Base
     true
   end
 
+  # Is this user editable by the current logged in agent?
+  def can_be_edited? current_user
+    return true if current_user.is_admin?
+    !self.is_agent?
+  end
+
   def self.notifiable_on_public
     agents.where(notify_on_public: true).reorder('id asc')
   end

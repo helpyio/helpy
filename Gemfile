@@ -29,7 +29,7 @@ gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 2.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 1.0.0', group: :doc
 
 # Summernote is the wysiwyg editor
 gem 'jquery-minicolors-rails'
@@ -93,7 +93,7 @@ gem 'gravtastic'
 gem 'cloudinary', '1.1.7'
 gem 'attachinary'
 
-gem 'carrierwave', '~> 1.0.0'
+gem 'carrierwave', '~> 1.2.3'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
@@ -155,6 +155,7 @@ gem 'best_in_place', '~> 3.1'
 
 # Add onboarding component
 gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
@@ -180,7 +181,7 @@ group :development do
   gem 'bullet'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.3'
 end
 
 group :test do
