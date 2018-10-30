@@ -137,6 +137,19 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "an #{admin} should be able to unassign an agent" do
+      sign_in users(admin.to_sym)
+      topic = Topic.find(1)
+      topic.assigned_user_id = 1
+      topic.save!
+      assert_difference "Post.count", 1 do
+        xhr :get, :unassign_agent, { assigned_user_id: nil, topic_ids: [1] }
+      end
+      assert_response :success
+      topic.reload
+      assert_nil topic.assigned_user_id, "assigned user should be nil"
+    end
+
     ### tests of changing status
 
     test "an #{admin} posting an internal note should not change status on its own" do
@@ -317,6 +330,13 @@ class Admin::TopicsControllerTest < ActionController::TestCase
             end
           end
         end
+      end
+    end
+
+    test "an #{admin} should be able to create an internal ticket and create a new user" do
+      sign_in users(admin.to_sym)
+      assert_difference "User.count", 1 do
+        xhr :post, :create, topic: { user: { name: "Joe Smith", email: "joe.smith34@test.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, forum_id: 1, current_status: 'new', kind: 'internal' }
       end
     end
 

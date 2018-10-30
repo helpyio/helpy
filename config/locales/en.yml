@@ -148,9 +148,9 @@ en:
   open_new_discussion: New Ticket
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
-  no_team_assigned: Assign to group
+  no_team_assigned: Assign to Team
   assign_to: Group/Team
-  unassign_from_team: Unassign from group
+  unassign_from_team: Unassign Team
   private: private
   public: public
   save_changes: Save Changes
@@ -158,6 +158,7 @@ en:
   merge_confirm: Are you sure you want to merge these tickets?
   customer_conversation: Customer Conversation
   internal_ticket: Internal Ticket
+  unassign_agent: Unassign Agent
 
   # Discussion controls
   change_status: Change Status
@@ -181,6 +182,7 @@ en:
   closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
   assigned_message: "This ticket has been transferred to %{assigned_to}."
+  unassigned_message: "This ticket has been unassigned."
   assigned_group: "This ticket has been assigned to %{assigned_group}."
   converted_to_ticket: "This discussion was converted to a private ticket."
   converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."

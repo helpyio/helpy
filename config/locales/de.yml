@@ -157,6 +157,7 @@ de:
   merge_confirm: Möchten Sie diese Tickets wirklich zusammenführen?
   customer_conversation: Kundengespräch
   internal_ticket: Internes Ticket
+  unassign_agent: Zuweisung des Agenten aufheben
 
   # Discussion controls
   change_status: Status ändern
@@ -179,6 +180,7 @@ de:
   closed_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
   trash_message: "Dieses Ticket wurde gelöscht."
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
+  unassigned_message: "Dieses Ticket wurde nicht zugewiesen."
   assigned_group: "Dieses Ticket wurde %{assigned_group} zugewiesen."
   converted_to_ticket: "Diese Diskussion wurde in ein privates Ticket umgewandelt."
   converted_to_topic: "Dieses Ticket wurde in eine offene Diskussion umgewandelt und nach %{forum_name} verschoben."

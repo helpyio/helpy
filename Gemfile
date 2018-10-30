@@ -6,7 +6,7 @@ gem 'rails', '4.2.10'
 gem 'pg'
 gem 'pg_search'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails', '~> 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -29,7 +29,7 @@ gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'jbuilder', '~> 2.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 1.0.0', group: :doc
 
 # Summernote is the wysiwyg editor
 gem 'jquery-minicolors-rails'
@@ -60,7 +60,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
 # i18n gems
-gem 'rails-i18n', '~> 4.0.0'
+gem 'rails-i18n', '~> 4.0.9'
 gem 'i18n-country-translations'
 gem 'route_translator'
 gem 'http_accept_language'
@@ -90,10 +90,10 @@ gem 'globalize-accessors'
 gem 'gravtastic'
 
 # File handling
-gem 'cloudinary', '1.1.2'
+gem 'cloudinary', '1.1.7'
 gem 'attachinary'
 
-gem 'carrierwave', '~> 1.0.0'
+gem 'carrierwave', '~> 1.2.3'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
@@ -155,6 +155,7 @@ gem 'best_in_place', '~> 3.1'
 
 # Add onboarding component
 gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
@@ -181,7 +182,7 @@ group :development do
   gem 'bullet'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.3'
 end
 
 group :test do
@@ -191,6 +192,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
