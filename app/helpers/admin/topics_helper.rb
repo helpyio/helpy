@@ -75,7 +75,7 @@ module Admin::TopicsHelper
   # id of opening or first post in the topic
   def first_post_id(topic)
     return '' if topic.posts.blank?
-    topic.posts.order(created_at: :asc).first
+    topic.posts.order(created_at: :asc).first.id
   end
 
 end
