@@ -463,7 +463,7 @@ GEM
       ffi (>= 0.5.0, < 2)
     rdiscount (2.2.0.1)
     rdoc (6.0.4)
-    recaptcha (4.12.0)
+    recaptcha (2.3.0)
       json
     regexp_parser (0.5.0)
     request_store (1.4.1)
@@ -678,7 +678,7 @@ DEPENDENCIES
   rails-timeago
   ranked-model
   rdiscount
-  recaptcha
+  recaptcha (< 3)
   roo
   route_translator
   rubocop
