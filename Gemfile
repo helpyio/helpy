@@ -108,7 +108,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 gem 'selectize-rails'
-gem "bootstrap-switch-rails", '3.3.3' # NOTE: IOS style switches broke with 3.3.4
+gem "bootstrap-switch-rails", '3.3.4' # NOTE: IOS style switches broke with 3.3.4
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
