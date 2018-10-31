@@ -69,7 +69,7 @@ gem 'http_accept_language'
 # API gems
 gem 'grape'
 gem 'grape-swagger'
-gem 'grape-entity', '~> 0.6.0'
+gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
 # gem 'grape-attack' #uncomment for rate limiting
@@ -108,7 +108,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 gem 'selectize-rails'
-gem "bootstrap-switch-rails", '3.3.3'
+gem "bootstrap-switch-rails", '3.3.3' # NOTE: IOS style switches broke with 3.3.4
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
@@ -187,8 +187,8 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'shoulda', '3.5'
-  gem 'shoulda-matchers', '~> 2.0'  
+  gem 'shoulda', '3.5' # Required for minitest
+  gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
   gem 'factory_bot_rails'
   gem 'capybara', '< 3.0'
   gem 'selenium-webdriver'
