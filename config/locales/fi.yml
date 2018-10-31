@@ -470,7 +470,7 @@ fi:
     one: "<strong>%{period}</strong> käyttäjäsi avasi yhden uuden palvelupyynnön"
     other: "<strong>%{period}</strong> käyttäjäsi avasi <strong>%{count} uutta palvelupyyntöä</strong>"
   insights_blurb_two: "josta tiiminne on vastannut <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
   no_discussions: "Yhtään uutta palvelupyyntöä ei avattu ajanjaksolla <strong>%{period}</strong>"
   assigned_topics: "Osoitetut aiheet"
   responded: "Vastattu"

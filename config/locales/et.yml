@@ -320,7 +320,7 @@ et:
     one: "<strong>%{period}</strong> kasutajad avasid 1 uue pileti"
     other: "<strong>%{period}</strong> kasutajad avasid <strong>%{count} uut piletit</strong>"
   insights_blurb_two: "millest meeskond vastas <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "mediaan reaktsiooniaeg <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "mediaan reaktsiooniaeg <strong>%{response_time}</strong>"
   no_discussions: "Uusi pileteid ei avatud <strong>%{period}</strong>"
   assigned_topics: "Määratud teemad"
   responded: "Vastatud"

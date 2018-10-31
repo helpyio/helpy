@@ -309,7 +309,7 @@ pt-br:
     one: "<strong>%{period}</strong> seus usuários iniciaram 1 nova interação"
     other: "<strong>%{period}</strong> seus usuários iniciaram <strong>%{count} novas interações</strong>"
   insights_blurb_two: "do modo em que seu time respondeu <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "com uma média de tempo de resposta de <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "com uma média de tempo de resposta de <strong>%{response_time}</strong>"
   no_discussions: "Não há novas interações iniciadas <strong>%{period}</strong>"
   assigned_topics: "Tópicos assinados"
   responded: "Respondido"

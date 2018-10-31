@@ -351,7 +351,7 @@ id:
     one: "<strong>%{period}</strong> user Anda membuka 1 tiket baru"
     other: "<strong>%{period}</strong> user Anda membuka <strong>%{count} tiket baru</strong>"
   insights_blurb_two: "dimana tim Anda membalas <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "dengan waktu balasan median adalah <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "dengan waktu balasan median adalah <strong>%{response_time}</strong>"
   no_discussions: "Tidak ada tiket baru yang dibuka <strong>%{period}</strong>"
   assigned_topics: "Topik yang Ditugaskan"
   responded: "Dibalas"

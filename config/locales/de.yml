@@ -470,7 +470,7 @@ de:
     one: "<strong>%{period}</strong> begannen Ihre Benutzer 1 neue Konversation"
     other: "<strong>%{period}</strong> begannen Ihre Benutzer <strong>%{count} neue Konversationen</strong>"
   insights_blurb_two: "von welchen Ihr Team auf <strong>%{number_replied} (%{percentage_replied})</strong> antwortete"
-  insights_blurb_three: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
   no_discussions: "<strong>%{period}</strong> wurden keine neuen Konversationen gestarted"
   assigned_topics: "Zugewiesene Themen"
   responded: "Beantworted"

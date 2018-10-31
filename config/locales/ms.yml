@@ -349,7 +349,7 @@ ms:
     one: "<strong>%{period}</strong> pengguna anda membuka 1 tiket baru"
     other: "<strong>%{period}</strong> pengguna anda membuka <strong>%{count} tiket baru</strong>"
   insights_blurb_two: "di mana pasukan anda menjawab <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "dan masa tindak balas median adalah <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "dan masa tindak balas median adalah <strong>%{response_time}</strong>"
   no_discussions: "Tiada tiket baru dibuka <strong>%{period}</strong>"
   assigned_topics: "Topik yang diberikan"
   responded: "Menjawab"

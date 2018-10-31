@@ -4,7 +4,7 @@ class ImportJobTest < ActiveSupport::TestCase
 
 	#user import
   test "it should import all new records from valid csv" do
-  	admin = FactoryGirl.create(:admin)
+  	admin = FactoryBot.create(:admin)
   	files_detail = {}
   	file = File.join(Rails.root, 'test', 'fixtures', 'files', 'user_import.csv')
     files_detail[:user] = {path: file, name: 'user_import.csv'}
@@ -14,7 +14,7 @@ class ImportJobTest < ActiveSupport::TestCase
   end
 
   test "it should save error_log for all unsaved records" do
-  	admin = FactoryGirl.create(:admin)
+  	admin = FactoryBot.create(:admin)
   	files_detail = {}
   	file = File.join(Rails.root, 'test', 'fixtures', 'files', 'user_import.csv')
     files_detail[:user] = {path: file, name: 'user_import.csv'}
@@ -27,7 +27,7 @@ class ImportJobTest < ActiveSupport::TestCase
   end
 
   test "it should update record if record is already present." do
-  	admin = FactoryGirl.create(:admin)
+  	admin = FactoryBot.create(:admin)
   	user = User.find(8)
 
   	files_detail = {}
@@ -43,7 +43,7 @@ class ImportJobTest < ActiveSupport::TestCase
 
   #Topic import
   test "it should import topic record from csv" do
-    admin = FactoryGirl.create(:admin)
+    admin = FactoryBot.create(:admin)
 
     files_detail = {}
     file = File.join(Rails.root, 'test', 'fixtures', 'files', 'topics_import.csv')
@@ -58,7 +58,7 @@ class ImportJobTest < ActiveSupport::TestCase
 
   #post import
   test "it should import post record from csv" do
-    admin = FactoryGirl.create(:admin)
+    admin = FactoryBot.create(:admin)
 
     files_detail = {}
     file = File.join(Rails.root, 'test', 'fixtures', 'files', 'post_import.csv')

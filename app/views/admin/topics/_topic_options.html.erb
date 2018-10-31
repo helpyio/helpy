@@ -47,7 +47,7 @@
     <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
       <%= content_tag :span, class: 'btn status-label-button label label-warning assign-to' do %>
         <%= @topic.assigned_user.try(:name).try(:upcase) || t(:unassigned, default: 'UNASSIGNED') %>
-        <%= icon('fas', 'caret-down') + ' ' %>
+        <%= content_tag(:i, nil, class: 'caret') + ' ' %>
       <% end %>
     </button>
     <ul class="dropdown-menu ticket-controls" role="menu">
@@ -65,7 +65,7 @@
     <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
       <%= content_tag(:span, style: badge_color_from_topic(@topic), class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
         <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
-        <%= icon('fas', 'caret-down') + ' ' %>
+        <%= content_tag(:i, nil, class: 'caret') + ' ' %>
       <% end %>
     </button>
     <ul class="dropdown-menu ticket-controls team-list" role="menu">

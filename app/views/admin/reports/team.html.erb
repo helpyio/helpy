@@ -18,7 +18,7 @@
         <% if @topic_count > 0 %>
           <%= t('insights_blurb_one', count: @topic_count, period: h(@interval.sentence_case)).html_safe %>
           <%= t('insights_blurb_two', number_replied: @responded_topics.count, percentage_replied: number_to_percentage(@responded_topics.count.to_f / @topic_count.to_f * 100.00, precision: 1)).html_safe %>
-          <%= t('insights_blurb_three', response_time: distance_of_time_in_words(@median_first_response_time)).html_safe if @responded_topics.count > 0 %>
+          <%= t('insights_blurb_three_html', response_time: distance_of_time_in_words(@median_first_response_time)) if @responded_topics.count > 0 %>
         <% else %>
           <%= t('no_discussions', period: h(@interval)).html_safe %>
         <% end %>

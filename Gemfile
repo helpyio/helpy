@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.10'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '< 1.0.0'
 gem 'pg_search'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.7'
@@ -42,7 +42,7 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached", '~> 0.5'
+gem "rails-settings-cached", '~> 0.5.0'
 gem 'sucker_punch', '~> 2.0'
 
 # Charting
@@ -50,9 +50,10 @@ gem "groupdate"
 gem "chartkick"
 
 # Auth Gems
-gem 'devise'
+gem 'devise', '< 4.0' # TODO: Keep at version 3 until we can resolve url helper issue introduced in Devise 4
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'devise_invitable', '< 1.7' # TODO: Maintain compatibility with Devise 3
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
@@ -84,6 +85,7 @@ gem 'acts-as-taggable-on', '~>3.5'
 gem 'kaminari'
 gem 'kaminari-i18n'
 
+gem 'globalize', '= 5.0.1'
 gem 'globalize-versioning'
 gem 'globalize-accessors'
 
@@ -106,7 +108,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 gem 'selectize-rails'
-gem "bootstrap-switch-rails"
+gem "bootstrap-switch-rails", '3.3.3' # NOTE: IOS style switches broke with 3.3.4
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
@@ -132,8 +134,6 @@ gem 'premailer-rails'
 
 gem 'rails-timeago'
 
-gem 'devise_invitable', '~> 1.6'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -149,7 +149,7 @@ gem 'faker'
 gem 'timecop' #used to populate
 
 gem 'themes_on_rails'
-gem "recaptcha", require: "recaptcha/rails"
+gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 
 gem 'best_in_place', '~> 3.1'
 
@@ -187,9 +187,10 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'shoulda'
-  gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'shoulda', '3.5' # Required for minitest
+  gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
+  gem 'factory_bot_rails'
+  gem 'capybara', '< 3.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'launchy'

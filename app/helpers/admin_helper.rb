@@ -248,7 +248,7 @@ module AdminHelper
   def user_filter_select
     content_tag :button, class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
       content_tag :span, class: 'btn' do
-        ("Filter " + icon('caret-down')).html_safe
+        ("Filter " + glyph('caret-down')).html_safe
       end
     end
   end

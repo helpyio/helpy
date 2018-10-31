@@ -349,7 +349,7 @@ ko:
     one: "<strong>%{period}</strong>에 사용자가 1 개의 새 티켓을 개설했습니다."
     other: "<strong>%{period}</strong>에 사용자가 <strong>%{count}</strong> 개의 새 티켓을 개설했습니다."
   insights_blurb_two: "팀이 <strong>%{number_replied} (%{percentage_replied})</strong>에 답변했습니다."
-  insights_blurb_three: "중간 응답 시간 : <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "중간 응답 시간 : <strong>%{response_time}</strong>"
   no_discussions: "<strong>%{period}</strong>에 새로운 티켓이 열리지 않았습니다."
   assigned_topics: "할당 된 주제"
   responded: "응답 됨"

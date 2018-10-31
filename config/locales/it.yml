@@ -300,7 +300,7 @@ it:
     one: "<strong>%{period}</strong> your users started 1 new conversation"
     other: "<strong>%{period}</strong> your users started <strong>%{count} new conversations</strong>"
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "with a median response time of <strong>%{response_time}</strong>"
   no_discussions: "No new conversations have been started <strong>%{period}</strong>"
   assigned_topics: "Assigned Topics"
   responded: "Responded"
