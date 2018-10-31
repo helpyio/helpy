@@ -22,7 +22,7 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 2.5.3'
+gem 'turbolinks', '~> 5.2.0'
 gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
