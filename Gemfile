@@ -50,7 +50,7 @@ gem "groupdate"
 gem "chartkick"
 
 # Auth Gems
-gem 'devise', '< 4.0' # TODO: Keep at version 3 until we can resolve url helper issue introduced in Devise 4
+gem 'devise', '< 5.0' # TODO: Keep at version 3 until we can resolve url helper issue introduced in Devise 4
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'devise_invitable', '< 1.7' # TODO: Maintain compatibility with Devise 3
