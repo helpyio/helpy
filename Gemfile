@@ -163,7 +163,7 @@ group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem 'pry-byebug'
-  gem 'spring', '~> 1.4.0'
+  gem 'spring', '~> 2.0.2'
   gem 'annotate'
   gem 'brakeman', require: false
   gem 'rubocop'
