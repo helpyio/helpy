@@ -149,7 +149,7 @@ gem 'faker'
 gem 'timecop' #used to populate
 
 gem 'themes_on_rails'
-gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
+gem "recaptcha", '< 5', require: "recaptcha/rails" # TODO: Update
 
 gem 'best_in_place', '~> 3.1'
 
