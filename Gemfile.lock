@@ -147,7 +147,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
-    concurrent-ruby (1.1.0)
+    concurrent-ruby (1.1.1)
     config (1.1.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
@@ -267,7 +267,7 @@ GEM
       nokogiri
     io-like (0.3.0)
     jaro_winkler (1.5.1)
-    jbuilder (2.7.0)
+    jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     jquery-fileupload-rails (0.4.7)
@@ -643,7 +643,7 @@ DEPENDENCIES
   http_accept_language
   i18n-country-translations
   inky-rb
-  jbuilder (~> 2.0)
+  jbuilder (~> 2.8)
   jquery-fileupload-rails
   jquery-minicolors-rails
   jquery-rails
