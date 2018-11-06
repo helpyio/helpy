@@ -147,7 +147,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
-    concurrent-ruby (1.1.0)
+    concurrent-ruby (1.1.1)
     config (1.1.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
@@ -414,7 +414,7 @@ GEM
       byebug (~> 10.0)
       pry (~> 0.10)
     public_suffix (3.0.3)
-    rack (1.6.10)
+    rack (1.6.11)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-cors (1.0.2)
