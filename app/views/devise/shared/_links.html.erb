@@ -1,7 +1,7 @@
 <div id="devise-links" class="col-md-12 text-right">
 
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <%= link_to t('devise.sessions.new.sign_in'), new_session_path(resource_name) %><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>

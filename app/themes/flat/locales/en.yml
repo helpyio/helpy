@@ -80,7 +80,7 @@ en:
     get_your_copy: "Grab your copy on GitHub"
 
     # devise/sessions/new
-    login: Log in
+    login: Sign in
 
     # devise/shared/links
     forgot_password: Forgot your password?
