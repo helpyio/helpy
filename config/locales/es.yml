@@ -40,6 +40,7 @@ es:
   # Community
   forum_name: "Tema"
   subject: &subject "Asunto"
+  message: "Mensaje"
   last_activity: "Activo por última vez"
   topic: "Debate"
   replies: "Respuestas"
@@ -334,6 +335,7 @@ es:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Hola %{user_name}"
+  thank_you: "Gracias!"
   new_user: "Gracias por contactarnos. Tu mensaje ha sido recibido por nuestro equipo de soporte y pronto se pondrán en contacto."
   account_generated: "Se te ha creado una cuenta. Para iniciar sesión, usa el siguiente enlace:"
   above_this_line: "Asegurate que tu respuesta aparece arriba de esta línea"

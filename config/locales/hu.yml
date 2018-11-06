@@ -40,6 +40,7 @@ hu:
   # Community
   forum_name: "Téma"
   subject: &subject "Tárgy"
+  message: "Üzenet"
   last_activity: "Utolsó Aktivitás"
   topic: "Beszélgetés"
   replies: "Válaszok"
@@ -250,6 +251,7 @@ hu:
   # Mail messages
   new_user_subject: "A(z) %{site_name} üdvözöl Téged"
   hello: "Helló %{user_name}"
+  thank_you: "Köszönjük!"
   new_user: "Köszönjük, hogy felkerestél minket.  Ügyfélszolgálatunk megkapta üzeneted, válaszunkkal rövidesen jelentezünk."
   account_generated: "Létrehoztunk egy felhasználói fiókot Neked. Bejelentkezéshez használd ezt a linket:"
   above_this_line: "Kérjük, ügyelj rá, hogy válaszodat a vonal felett írd meg"

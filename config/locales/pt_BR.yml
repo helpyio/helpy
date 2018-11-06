@@ -46,6 +46,7 @@ pt-br:
   # Community
   forum_name: "Tópico"
   subject: &subject "Assunto"
+  message: "Mensagem"
   last_activity: "Última Atividade"
   topic: "Discussão"
   replies: "Respostas"
@@ -285,6 +286,7 @@ pt-br:
   # Mail messages
   new_user_subject: "Bem vindo ao %{site_name}"
   hello: "Olá %{user_name}"
+  thank_you: "Obrigado!"
   new_user: "Obrigado pelo seu contato. A sua mensagem foi recebida pela nossa equipe de suporte e iremos entrar em contato o mais rapidamente possível."
   account_generated: "Foi criada uma nova conta para voce. Para fazer login, use este link:"
   above_this_line: "Escreva a sua resposta acima desta linha"
