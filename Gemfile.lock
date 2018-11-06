@@ -194,7 +194,7 @@ GEM
     faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
-    font-awesome-sass (5.4.1)
+    font-awesome-sass (5.5.0)
       sassc (>= 1.11)
     foundation_emails (2.2.1.0)
     gemoji (3.0.0)
