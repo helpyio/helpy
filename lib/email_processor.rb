@@ -24,7 +24,7 @@ class EmailProcessor
     raw = @email.raw_body.nil? ? "" : @email.raw_body
     cc = @email.cc ? @email.cc.map { |e| e[:full] }.join(", ") : nil
 
-    subject = @email.subject
+    subject = check_subject(@email.subject)
     attachments = @email.attachments
 
     if subject.include?("[#{sitename}]") # this is a reply to an existing topic
@@ -116,6 +116,11 @@ class EmailProcessor
 
   # rescue
   #   render status: 200
+  end
+
+  # Insert a default subject if subject is missing
+  def check_subject(subject)
+    subject.blank? ? "(No Subject)" : subject
   end
 
   def encode_entity(entity)
