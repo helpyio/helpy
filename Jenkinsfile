@@ -18,6 +18,7 @@ pipeline {
   environment {
       branch_ns = branchFunction(env.BRANCH_NAME)
       chart_name = "helpy"
+      prod_chart_name = "helpy-prod"
       chart_folder = "helpy-chart"
       staging_ns = "staging"
       production_ns = "production"
@@ -104,7 +105,7 @@ pipeline {
       steps {
           sh 'docker tag $docker_image:$branch_ns $docker_image:$buildVersion'
           sh 'docker push $docker_image:$buildVersion'
-          sh 'helm upgrade $chart_name ./$chart_folder --install --wait --version $buildVersion --namespace $production_ns --set=image.tag=$buildVersion'
+          sh 'helm upgrade $prod_chart_name ./$chart_folder --install --wait --version $buildVersion --namespace $production_ns --set=image.tag=$buildVersion'
       }
     }
   }
