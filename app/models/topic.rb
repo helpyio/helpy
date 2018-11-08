@@ -276,6 +276,7 @@ class Topic < ActiveRecord::Base
   private
 
   def cache_user_name
+    return if self.user.nil?
     if self.user.name.present?
       self.user_name = self.user.name
     else
@@ -286,4 +287,5 @@ class Topic < ActiveRecord::Base
   def add_locale
     self.locale = I18n.locale
   end
+
 end
