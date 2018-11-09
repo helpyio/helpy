@@ -8,6 +8,15 @@ FactoryBot.define do
     body { 'Hello!' }
   end
 
+  factory :email_forwarded, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: '' }) }
+    subject { 'Fwd: email subject' }
+    header {}
+    raw_body { '---------- Forwarded message ---------\nFrom: Happy Forwarder <happyfwd@test.com> \nDate: Wed, Nov 7, 2018 at 5:05 AM\nSubject: Re: Test forward\nTo: to_user\n\nThis is the body here!' }
+    body { '---------- Forwarded message ---------\nFrom: Happy Forwarder <happyfwd@test.com> \nDate: Wed, Nov 7, 2018 at 5:05 AM\nSubject: Re: Test forward\nTo: to_user\n\nThis is the body here!' }
+  end
+
   factory :email_from_unknown_invalid_utf8, class: OpenStruct do
     to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
     from { ({ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' }) }

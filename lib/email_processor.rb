@@ -26,10 +26,9 @@ class EmailProcessor
     attachments = @email.attachments
     number_of_attachments = attachments.present? ? attachments.size : 0
 
-
     if subject.include?("[#{sitename}]") # this is a reply to an existing topic
       EmailProcessor.create_reply_from_email(@email, email_address, email_name, subject, raw, message, token, to, sitename, cc, number_of_attachments)
-    elsif subject.include?("Fwd: ") # this is a forwarded message DOES NOT WORK CURRENTLY
+    elsif subject.include?("Fwd: ") # this is a forwarded message TODO: Expand this to handle foreign email formatting
       EmailProcessor.create_forwarded_message_from_email(@email, subject, raw, message, token, to, cc, number_of_attachments)
     else # this is a new direct message
       EmailProcessor.create_new_ticket_from_email(@email, email_address, email_name, subject, raw, message, token, to, cc, number_of_attachments)
@@ -81,32 +80,36 @@ class EmailProcessor
       @user = EmailProcessor.create_user_for_email(email_address, token, email_name)
     end
 
-    topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
-
-    if token.include?("+")
-      topic.team_list.add(token.split('+')[1])
-      topic.save
-      topic.team_list.add(token)
-      topic.save
-    end
-
-    #insert post to new topic
-    message = "-" if message.blank? && number_of_attachments > 0
-    post = topic.posts.create(
-      body: message,
-      raw_email: raw,
+    topic = Forum.first.topics.new(
+      name: subject, 
       user_id: @user.id,
-      kind: "first",
-      cc: cc
+      private: true
     )
 
-    # Push array of attachments and send to Cloudinary
-    EmailProcessor.handle_attachments(email, post)
+    if topic.save
+      if token.include?("+")
+        topic.team_list.add(token.split('+')[1])
+        topic.save
+        topic.team_list.add(token)
+        topic.save
+      end
+      #insert post to new topic
+      message = "-" if message.blank? && number_of_attachments > 0
+      post = topic.posts.create(
+        body: message,
+        raw_email: raw,
+        user_id: @user.id,
+        kind: "first",
+        cc: cc
+      )
+      # Push array of attachments and send to Cloudinary
+      EmailProcessor.handle_attachments(email, post)
 
-    # Call to GA
-    if @tracker
-      @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
+      # Call to GA
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
+      end
     end
   end
 
@@ -126,29 +129,31 @@ class EmailProcessor
     #clean message
     message = MailExtract.new(raw).body
 
-    topic = Forum.first.topics.create!(
+    topic = Forum.first.topics.new(
       name: subject,
       user_id: @user.id,
       private: true
     )
 
-    #insert post to new topic
-    message = "-" if message.blank? && number_of_attachments > 0
-    post = topic.posts.create!(
-      body: raw,
-      raw_email: raw,
-      user_id: @user.id,
-      kind: 'first',
-      cc: cc
-    )
+    if topic.save
+      #insert post to new topic
+      message = "-" if message.blank? && number_of_attachments > 0
+      post = topic.posts.create!(
+        body: raw,
+        raw_email: raw,
+        user_id: @user.id,
+        kind: 'first',
+        cc: cc
+      )
 
-    # Push array of attachments and send to Cloudinary
-    EmailProcessor.handle_attachments(email, post)
+      # Push array of attachments and send to Cloudinary
+      EmailProcessor.handle_attachments(email, post)
 
-    # Call to GA
-    if @tracker
-      @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
-      @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
+      # Call to GA
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
+      end
     end
   end
 
@@ -163,22 +168,24 @@ class EmailProcessor
     ticket_number = complete_subject.split("-")[0].split("#")[1].strip
     topic = Topic.find(ticket_number)
 
-    # insert post to new topic
-    message = "-" if message.blank? && number_of_attachments > 0
-    post = topic.posts.create(
-      body: message,
-      raw_email: raw,
-      user_id: @user.id,
-      kind: "reply",
-      cc: cc
-    )
+    if topic.present?
+      # insert post to new topic
+      message = "-" if message.blank? && number_of_attachments > 0
+      post = topic.posts.create(
+        body: message,
+        raw_email: raw,
+        user_id: @user.id,
+        kind: "reply",
+        cc: cc
+      )
 
-    # Push array of attachments and send to Cloudinary
-    EmailProcessor.handle_attachments(email, post)
+      # Push array of attachments and send to Cloudinary
+      EmailProcessor.handle_attachments(email, post)
 
-    if @tracker
-      @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
-      @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
+        @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
+      end
     end
   end
 
@@ -196,6 +203,8 @@ class EmailProcessor
 
     if @user.save
       UserMailer.new_user(@user.id, @token).deliver_later if @user.save
+    else
+      @user = User.find(2) # just in case new user not saved, default to system user  
     end
     return @user
   end
