@@ -130,6 +130,15 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
+  test 'an email with a blank subject should create topic and post' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        EmailProcessor.new(build(:email_with_no_subject)).process
+      end
+    end
+    assert_equal "(No Subject)", Topic.last.name
+  end
+
   test 'an email with cc should create post containing same cc' do
     email = build(:email_with_cc)
     EmailProcessor.new(email).process
