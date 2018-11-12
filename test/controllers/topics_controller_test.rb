@@ -43,9 +43,9 @@ class TopicsControllerTest < ActionController::TestCase
 
   test "a browsing user should not index of topics if forums are not enabled" do
     AppSettings['settings.forums'] = "0"
-    assert_raises(ActionController::RoutingError) do
       get :index, forum_id: 3, locale: :en
-    end
+      assert_response :redirect 
+      assert_equal(response.redirect_url, root_url)
   end
 
   test 'a browsing user should not get index of topics in a private forum' do
@@ -373,9 +373,9 @@ class TopicsControllerTest < ActionController::TestCase
     AppSettings['settings.forums'] = "0"
 
     sign_in users(:user)
-    assert_raises(ActionController::RoutingError) do
       get :new, locale: :en
-    end
+      assert_response :redirect 
+      assert_equal(response.redirect_url, root_url)
   end
 
 end
