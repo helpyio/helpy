@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
   after_create  :update_waiting_on_cache, unless: :importing
   after_create  :assign_on_reply, unless: :importing
   after_commit  :notify, on: :create, unless: :importing
+  before_save :reject_admin_email_from_cc
   after_save  :update_topic_cache
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -157,4 +158,8 @@ class Post < ActiveRecord::Base
       self.body = body.truncate(10_000) unless body.blank?
     end
 
+  def reject_admin_email_from_cc
+    return if self.cc.nil?
+    self.cc = self.cc.split(",").delete_if { |c| c.include?(AppSettings['email.admin_email'])}.join(",")
+  end
 end
