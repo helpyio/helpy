@@ -139,6 +139,24 @@ class EmailProcessorTest < ActiveSupport::TestCase
     assert_equal "(No Subject)", Topic.last.name
   end
 
+  test 'an email with a from with numbers should create' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        EmailProcessor.new(build(:email_from_includes_numbers)).process
+      end
+    end
+  end
+
+  test 'a forwarded email should create' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        EmailProcessor.new(build(:email_forwarded)).process
+      end
+    end
+    assert_equal 'happyfwd@test.com', User.last.email
+    assert_equal 'happyfwd', User.last.name
+  end
+
   test 'an email with cc should create post containing same cc' do
     email = build(:email_with_cc)
     EmailProcessor.new(email).process

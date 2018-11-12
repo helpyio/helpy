@@ -117,15 +117,16 @@ class UserTest < ActiveSupport::TestCase
 
   end
 
-  test "should not accept names with numbers" do
+  test "should remove numbers in the name" do
     names = [
       "Vasiya2",
-      "123123"
+      "123123Tim"
     ]
 
     names.each do |name|
       user = build :user, name: name
-      assert_equal user.valid?, false
+      assert_equal user.valid?, true
+      assert_not_equal names, user.name
     end
   end
 
