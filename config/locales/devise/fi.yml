@@ -2,13 +2,13 @@ fi:
   activerecord:
     attributes:
       user:
-        current_password: 
-        email: 
-        password: 
-        password_confirmation: 
-        remember_me: 
+        current_password: Nykyinen salasana
+        email: Sähköposti
+        password: Salasana
+        password_confirmation: Salasanan vahvistaminen
+        remember_me: Muista minut
     models:
-      user: 
+      user: Käyttäjä
   devise:
     confirmations:
       confirmed: Tunnuksesi on nyt vahvistettu.
@@ -20,7 +20,7 @@ fi:
       already_authenticated: Olet jo kirjautunut sisään.
       inactive: Tunnustasi ei ole vielä aktivoitu.
       invalid: Epäkelpo sähköpostiosoite tai salasana.
-      last_attempt: 
+      last_attempt: Sinulla on vielä yksi yritys jäljellä, ennen kuin tilisi lukitaan.
       locked: Tunnuksesi on lukittu.
       not_found_in_database: Epäkelpo sähköpostiosoite tai salasana.
       timeout: Istuntosi on vanhentunut, ole hyvä ja kirjaudu sisään jatkaaksesi.
@@ -50,10 +50,10 @@ fi:
       success: Onnistuneesti valtuutettu käyttäen palvelua %{kind}.
     passwords:
       edit:
-        change_my_password: 
-        change_your_password: 
-        confirm_new_password: 
-        new_password: 
+        change_my_password: Vaihda salasanani
+        change_your_password: Vaihda salasanasi
+        confirm_new_password: Vahvista uusi salasana
+        new_password: Uusi salasana
       new:
         forgot_your_password: Unohditko salasanasi?
         send_me_reset_password_instructions: Lähetä minulle salasanan vaihto-ohjeet
@@ -67,11 +67,11 @@ fi:
       edit:
         are_you_sure: Oletko varma?
         cancel_my_account: Poista tilini
-        currently_waiting_confirmation_for_email: 
+        currently_waiting_confirmation_for_email: "Odotetaan vahvistusta: %{email}"
         leave_blank_if_you_don_t_want_to_change_it: jätä tämä tyhjäksi, mikäli et halua vaihtaa
         title: Muokkaa %{resource}
-        unhappy: 
-        update: 
+        unhappy: Tyytymätön
+        update: Päivitä
         we_need_your_current_password_to_confirm_your_changes: syötä nykyinen salasanasi
       new:
         sign_up: Rekisteröidy
@@ -89,7 +89,7 @@ fi:
       signed_out: Uloskirjautuminen onnistui.
     shared:
       links:
-        back: 
+        back: Takaisin
         didn_t_receive_confirmation_instructions: Vahvistusviesti ei saapunut perille?
         didn_t_receive_unlock_instructions: Salasanan vaihto -ohjeet eivät saapuneet perille?
         forgot_your_password: Unohditko salasanasi?
