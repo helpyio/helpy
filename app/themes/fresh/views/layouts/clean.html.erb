@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<%= render partial: 'layouts/head' %>
+	</head>
+<body>
+<script>
+  ga('set', 'location', location.href.split('#')[0]);
+  ga('send', 'pageview', { "title": document.title });
+</script>
+
+<nav id="menu">
+	<ul class="nav" data-hook="header-main-nav">
+		<% if user_signed_in? %>
+		<%= content_tag :li, link_to(avatar_image(current_user, 40) + "  #{current_user.name.titleize}", edit_user_registration_path) %>
+		<br/>
+		<%= content_tag :li, link_to(t(:your_tickets), tickets_path), data: { hook: 'tickets-nav' } if tickets? %>
+		<%= content_tag :li, link_to(t(:your_profile), edit_user_registration_path) %>
+		<%= content_tag :li, link_to('Admin', admin_root_path) if current_user.is_editor? %>
+		<%= content_tag :li, link_to(t(:logout), destroy_user_session_path) %>
+		<br/>
+		<% else %>
+		<%= content_tag :li, link_to(t(:login), new_user_session_path) %>
+		<% end %>
+
+		<%= content_tag :li, link_to(t(:knowledgebase), categories_path, class:'kblink') if knowledgebase? %>
+		<%= content_tag :li, link_to(t(:community), forums_path) if forums? %>
+		<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' } if tickets? || forums? %>
+		<%#= content_tag :li, link_to("#{t(:back_to).titleize} #{AppSettings['settings.parent_company']}", AppSettings['settings.parent_site'] %>
+		<%= content_tag :li, link_to(t(:locale), select_locale_path) %>
+		<li class="search-li">
+			<div class="form-group has-feedback right-inner-addon">
+			  <%= form_tag result_path, method: :get, id: 'search-form', remote: (params[:controller] == 'result') do %>
+			    <div class="input-group">
+			      <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
+			      <div class="input-group-btn">
+			        <button type="submit" class="btn btn-default" aria-label="Search">
+			          <span class="glyphicon glyphicon-search"></span>
+			        </button>
+			      </div>
+			    </div>
+			  <% end # form %>
+			</div>
+		</li>
+
+	</ul>
+</nav>
+
+<main id="panel">
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-8 text-left">
+					<%= link_to image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand', responsive: true %>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-4 text-right">
+					<ul class="list-inline" data-hook="header-mini-nav">
+						<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs'  if forums? || tickets? %>
+						<% if user_signed_in? %>
+						<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
+						<% else %>
+						<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: { toggle: "modal", target: "#login-modal" }, class: 'hidden-xs') %>
+						<% end %>
+						<li><h2 class="toggle-button fas fa-bars"></h2></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<article>
+		<div class="jumbotron flat-main-panel">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<%= yield :home %>
+						<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="white">
+			<div id="body-wrapper" class="content container">
+				<%= bootstrap_flash %>
+				<%= yield %>
+			</div>
+		</div>
+	</article>
+
+</main>
+
+	<div id="footer-wrapper">
+		<div class="container">
+			<%= render :partial => 'layouts/footer' %>
+		</div>
+	</div>
+
+<script>
+  var slideout = new Slideout({
+    'panel': document.getElementById('panel'),
+    'menu': document.getElementById('menu'),
+    'padding': 256,
+    'tolerance': 70,
+		'side': 'right'
+  });
+
+	// Make sure we are starting with it closed
+	$(document).on("page:load", function(){
+	  $("html").removeClass("slideout-open");
+	});
+
+	// Toggle button
+	document.querySelector('.toggle-button').addEventListener('click', function() {
+		slideout.toggle();
+	});
+</script>
+
+</body>
+</html>
