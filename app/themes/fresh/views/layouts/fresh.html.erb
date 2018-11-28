@@ -79,6 +79,7 @@
 						<div class="col-md-12">
 							<%= yield :home %>
 							<%= render 'layouts/page_title' unless params[:controller] == 'home' %>
+							<%= render 'result/search_form' if knowledgebase? unless params[:controller] == 'home' %>
 						</div>
 					</div>
 				</div>
