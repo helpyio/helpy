@@ -1,5 +1,5 @@
 en:
-  fresh:
+  nordic:
     language_name: 'English' # The name of the translation file, in that language
     root: &root 'Home'
     how_can_we_help: "Search our Knowledgebase"
