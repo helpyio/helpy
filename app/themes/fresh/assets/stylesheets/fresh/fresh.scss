@@ -703,6 +703,16 @@ header {
   }
 }
 
+.select-locale .btn {
+  color: $main-panel-font-color;
+  font-weight: normal;
+}
+
+.select-locale .btn:hover {
+  color: $main-panel-font-color;
+  font-weight: bold;
+}
+
 .nav {
   padding-top: 30px;
 
