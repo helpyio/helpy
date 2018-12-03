@@ -25,7 +25,7 @@
       <% @docs.each do |doc| %>
       <li class="article less-important">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <%= link_to doc.title, category_doc_path(doc.category, doc) %>
+        <%= link_to doc.title, doc_path(doc) %>
 
         <% doc_tag_listing(doc.tag_list, "doc") %>
         <% if doc.posts.count > 0 %>
