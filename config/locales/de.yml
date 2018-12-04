@@ -40,7 +40,7 @@ de:
   # Community
   forum_name: "Foren"
   subject: &subject "Betreff"
-  message: "Botschaft"
+  message: "Nachricht"
   last_activity: "Zuletzt aktiv"
   topic: "Thema"
   replies: "Antworten"
