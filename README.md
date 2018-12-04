@@ -1,7 +1,7 @@
 Helpy: A Modern Helpdesk Platform for the Web
 ====================================
 
-Helpy is a modern omnichannel helpdesk platform written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.  
+Helpy is a modern multichannel helpdesk platform written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.  
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
@@ -156,6 +156,11 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 - You also must expose functionality to the API.  We use Grape.  API methods should be tested as well.
 - If your feature/bug fix/enhancement adds or changes text in the project, please create i18n strings in `en.yml` and any other locales you can.
 - We are hugely concerned with user experience, and a nice UI.  Oftentimes that means we may take what you have contributed and “dress it up” or ask you to do the same.
+
+Security Issues
+===============
+
+If you have found a vulnerability or other security problem in Helpy, please *do not open an issue* on GitHub. Instead, contact [hello@helpy.io](mailto: hello@helpy.io) directly by email.  See the [SECURITY](/SECURITY.md) guide to learn more and see a hall of fame of security reporters. 
 
 License
 =======
