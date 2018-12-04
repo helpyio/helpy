@@ -270,10 +270,10 @@ GEM
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
-    jquery-fileupload-rails (0.4.7)
+    jquery-fileupload-rails (1.0.0)
       actionpack (>= 3.1)
       railties (>= 3.1)
-      sass (>= 3.2)
+      sassc
     jquery-minicolors-rails (2.2.6.1)
       jquery-rails
       rails (>= 3.2.8)
