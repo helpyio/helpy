@@ -12,4 +12,4 @@ reproduce the issue and any ideas on how best to mitigate will also be helpful!
 This section is reserved for individuals and organizations who have reported security issues. When
 you report a verified security problem, you will have the option of being listed here for all to thank!
 
-- Juan Bono (@juanbono)
+- Juan Bono (@joanbono)
