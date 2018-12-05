@@ -448,4 +448,22 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     end
   end
 
+  test 'toggle_privacy clear pg search document for private topic' do
+    sign_in users(:agent)
+    topic = create(:topic, private: false)
+    refute_nil topic.pg_search_document
+    xhr :get, :toggle_privacy, { topic_ids: [topic.id], private: true, forum_id: 1}
+    assert_equal topic.reload.private, true
+    assert_nil topic.pg_search_document
+  end
+
+  test 'toggle_privacy create pg search document for public topic' do
+    sign_in users(:agent)
+    topic = create(:topic, private: true)
+    topic.reload
+    assert_nil topic.pg_search_document
+    xhr :get, :toggle_privacy, { topic_ids: [topic.id], private: false, forum_id: 4}
+    assert_equal topic.reload.private, false
+    refute_nil topic.pg_search_document
+  end
 end
