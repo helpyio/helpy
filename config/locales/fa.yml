@@ -300,7 +300,7 @@ fa:
     one: "در <strong>%{period}</strong> کاربران شما یک بحث شروع کردند"
     other: "در <strong>%{period}</strong> کاربران شما <strong>%{count} بحث شروع کردند</strong>"
   insights_blurb_two: "که تیم شما به <strong>%{number_replied} (%{percentage_replied}) پاسخ داده</strong>"
-  insights_blurb_three: "با متوسط زمان پاسخ <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "با متوسط زمان پاسخ <strong>%{response_time}</strong>"
   no_discussions: "هیچ بحث جدیدی در <strong>%{period}</strong> شروع نشده"
   assigned_topics: "موضوع های واگذار شده"
   responded: "پاسخ داده"

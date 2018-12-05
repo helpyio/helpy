@@ -40,6 +40,7 @@ tr:
   # Community
   forum_name: "Konu"
   subject: &subject "Konu Başlığı"
+  message: "Mesaj"
   last_activity: "Son Aktivite"
   topic: "Tartışma"
   replies: "Yanıtlar"
@@ -247,6 +248,7 @@ tr:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Merhaba %{user_name}"
+  thank_you: "Teşekkür ederim!"
   new_user: "Bizimle iletişime geçtiğiniz için teşekkür ederiz. Mesajınız destek ekibimiz tarafından alındı, sizinle en kısa zamanda iletişime geçeceğiz."
   account_generated: "Sizin için bir hesap oluşturuldu. Giriş yapmak için lütfen bu bağlantıyı kullanın:"
   above_this_line: "Yanıtınızın bu çizginin üzerinde görünür olduğundan emin olun"

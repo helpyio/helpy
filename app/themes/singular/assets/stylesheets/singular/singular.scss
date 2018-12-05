@@ -30,6 +30,9 @@ select {
   min-height: 60px;
 }
 
+input#user_remember_me{
+  min-height: auto;
+}
 a {
 	color: $link-color;
 	text-decoration: none;

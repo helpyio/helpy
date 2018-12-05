@@ -165,6 +165,7 @@ class Admin::UsersController < Admin::BaseController
       :name,
       :bio,
       :signature,
+      :home_phone,
       :work_phone,
       :cell_phone,
       :email,

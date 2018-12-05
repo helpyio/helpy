@@ -95,19 +95,19 @@ class ApplicationController < ActionController::Base
   helper_method :display_branding?
 
   def forums_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless forums?
+    redirect_to root_path unless forums?
   end
 
   def knowledgebase_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless knowledgebase?
+    redirect_to root_path unless knowledgebase?
   end
 
   def tickets_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets?
+    redirect_to root_path unless tickets?
   end
 
   def topic_creation_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
+    redirect_to root_path unless tickets? || forums?
   end
 
   protected

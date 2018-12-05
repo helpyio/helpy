@@ -46,6 +46,7 @@ pt-br:
   # Community
   forum_name: "Tópico"
   subject: &subject "Assunto"
+  message: "Mensagem"
   last_activity: "Última Atividade"
   topic: "Discussão"
   replies: "Respostas"
@@ -285,6 +286,7 @@ pt-br:
   # Mail messages
   new_user_subject: "Bem vindo ao %{site_name}"
   hello: "Olá %{user_name}"
+  thank_you: "Obrigado!"
   new_user: "Obrigado pelo seu contato. A sua mensagem foi recebida pela nossa equipe de suporte e iremos entrar em contato o mais rapidamente possível."
   account_generated: "Foi criada uma nova conta para voce. Para fazer login, use este link:"
   above_this_line: "Escreva a sua resposta acima desta linha"
@@ -309,7 +311,7 @@ pt-br:
     one: "<strong>%{period}</strong> seus usuários iniciaram 1 nova interação"
     other: "<strong>%{period}</strong> seus usuários iniciaram <strong>%{count} novas interações</strong>"
   insights_blurb_two: "do modo em que seu time respondeu <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "com uma média de tempo de resposta de <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "com uma média de tempo de resposta de <strong>%{response_time}</strong>"
   no_discussions: "Não há novas interações iniciadas <strong>%{period}</strong>"
   assigned_topics: "Tópicos assinados"
   responded: "Respondido"

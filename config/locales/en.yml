@@ -40,6 +40,7 @@ en:
   # Community
   forum_name: "Topic"
   subject: &subject "Subject"
+  message: "Message"
   last_activity: "Last Active"
   topic: "Discussion"
   replies: "Replies"
@@ -93,7 +94,7 @@ en:
   flag: "Flag"
 
   # devise/sessions/new
-  login: Log in
+  login: Sign in
 
   # devise/shared/links
   forgot_password: Forgot your password?
@@ -336,6 +337,7 @@ en:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
+  thank_you: "Thank you!"
   new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   account_generated: "An account has been generated for you. To sign in, please use this link:"
   above_this_line: "Make sure your reply appears above this line"
@@ -472,7 +474,7 @@ en:
     one: "<strong>%{period}</strong> your users opened 1 new ticket"
     other: "<strong>%{period}</strong> your users opened <strong>%{count} new tickets</strong>"
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+  insights_blurb_three_html_html: "with a median response time of <strong>%{response_time}</strong>"
   no_discussions: "No new tickets have been opened <strong>%{period}</strong>"
   assigned_topics: "Assigned Tickets"
   responded: "Responded"

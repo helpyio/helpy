@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
-  INVALID_NAME_CHARACTERS = /\A('|")|('|")\z/
+  INVALID_NAME_CHARACTERS = /\A('|")|\d|('|")\z/
 
   # Add preferences to user model
   include RailsSettings::Extend
@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :opt_in
 
-  validates :name, presence: true, format: { with: /\A\D+\z/ }
+  validates :name, presence: true
   validates :email, presence: true
 
 
@@ -336,7 +336,7 @@ class User < ActiveRecord::Base
 
   # message to the user that is not allowed to login
   def inactive_message
-    "You are not allowed to log in!"
+    "You are not allowed to sign in!"
   end
 
   def self.register email, user_name

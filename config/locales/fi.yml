@@ -334,6 +334,7 @@ fi:
   # Mail messages
   new_user_subject: "Tervetuloa sivulle %{site_name}"
   hello: "Moro %{user_name}"
+  thank_you: "Kiitos!"
   new_user: "Kiitos yhteydenotosta. Viestisi on vastaanotettu ja tukitiimimme on teihin yhteydessä tuota pikaa."
   account_generated: "Tilisi on nyt luotu. Kirjautuaksesi sisään, käytä seuraavaa osoitetta:"
   above_this_line: "Pidäthän huolen, että vastaus ilmestyy tämän viivan yläpuolelle"
@@ -470,7 +471,7 @@ fi:
     one: "<strong>%{period}</strong> käyttäjäsi avasi yhden uuden palvelupyynnön"
     other: "<strong>%{period}</strong> käyttäjäsi avasi <strong>%{count} uutta palvelupyyntöä</strong>"
   insights_blurb_two: "josta tiiminne on vastannut <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
   no_discussions: "Yhtään uutta palvelupyyntöä ei avattu ajanjaksolla <strong>%{period}</strong>"
   assigned_topics: "Osoitetut aiheet"
   responded: "Vastattu"
