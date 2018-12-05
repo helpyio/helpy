@@ -6,10 +6,6 @@ module Admin::TopicsHelper
     concat j ticket_nav_dropdown
   end
 
-  def user_page_title
-
-  end
-
   def topic_added_from
     # <span class="less-important" style="font-size: 12px;"><%= "#{@topic.kind} added from #{@topic.channel}" %><%= " on #{link_to(@doc.title, edit_admin_category_doc_path(@doc.category_id, @doc.id, lang: I18n.locale))}".html_safe if @doc.present? %></span>
     content_tag :small, class: 'less-important' do
