@@ -12,7 +12,7 @@
         <% if @user.provider.nil? %>
           <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
         <% end %>
-        <%= f.file_field :profile_image unless cloudinary_enabled? %>
+        <%= f.file_field :profile_image, class: 'user-avatar', 'data-content' => I18n.t('devise.registrations.choose_avatar') unless cloudinary_enabled? %>
       </div>
     </div>
 

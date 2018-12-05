@@ -62,9 +62,9 @@
   }
 }
 // Decorate Choose file btn => "Choose Avatar"
-  .user-avatar {color: transparent;}
-  .user-avatar::-webkit-file-upload-button {visibility: hidden;}
-  .user-avatar::before {
+.user-avatar {color: transparent;}
+.user-avatar::-webkit-file-upload-button {visibility: hidden;}
+.user-avatar::before {
   content: attr(data-content);
   color: #666;
   display: inline-block;
@@ -81,6 +81,6 @@
   line-height: 1.42857143;
   font-family: "Roboto", sans-serif;
   }
-  .user-avatar:active::before {background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);}
-  input.user-avatar{outline: none;}
-  body{padding: 20px;}
+.user-avatar:active::before {background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);}
+:focus {outline: 0;}
+
