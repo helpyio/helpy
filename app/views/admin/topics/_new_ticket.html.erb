@@ -7,14 +7,14 @@
       <%= f.input :kind, collection: ticket_types_collection, class: 'disable-empty', autofocus: true, include_blank: false -%>
       <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
 
-      <%= f.simple_fields_for @user do |u| %>
+      <%= f.simple_fields_for @user, validate: true do |u| %>
         <%= u.input :name, class: 'disable-empty' %>
         <%= u.input :home_phone, class: 'disable-empty' %>
         <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
 
         <%= u.input :email, class: 'disable-empty', label: "#{t('activerecord.attributes.user.email')} (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
       <% end %>
-    <%= f.simple_fields_for @topic.posts.new do |i| %>
+    <%= f.simple_fields_for @topic.posts.new, validate: true do |i| %>
       <%#= i.input :body, input_html: { rows: 8, cols: 60, class: 'disable-empty form-control' }, label: false, validate: { presence: true } -%>
       <%= i.input :kind, as: :hidden, input_html: { value: 'first' } %>
       <span class="cc-bcc hidden">
