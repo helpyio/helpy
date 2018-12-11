@@ -21,6 +21,8 @@ class NotificationMailer < ApplicationMailer
     return if notifiable_users.count == 0
 
     @topic = Topic.find(topic_id)
+    return if @topic.user.nil?
+    
     @posts = @topic.posts.where.not(id: @topic.posts.last.id).reverse
     @user = @topic.user
     @recipient = notifiable_users.first
