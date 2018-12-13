@@ -12,12 +12,6 @@
   <% end %>
 </script>
 
-<style>
-.text-content h1 {
-  font-size: 160%;
-  background-color: transparent;
-}
-</style>
 <div class="row content-row">
 <p><% @categories.inspect %></p>
   <%
@@ -40,8 +34,8 @@
   <% end
 =end
 %>
-  <div class="col-md-10 col-xs-12 col-sm-12">
-    <div class="col-md-2 hidden-xs hidden-sm">
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="col-md-3 hidden-xs hidden-sm">
       <div id="written-by" class="doc-meta">
         <div class="more-important meta-header"><%= I18n.t("written_by", default: "Written By") %>:</div>
         <div class="less-important">
@@ -58,7 +52,7 @@
         <div class="more-important meta-header"><% tag_listing(@doc.tag_list, "doc") %></div>
       </div>
     </div>
-    <div class="col-md-8 text-content">
+    <div class="col-md-9 text-content">
     <%= sanitize_doc_content(@doc.content) %>
     </div>
   </div>
