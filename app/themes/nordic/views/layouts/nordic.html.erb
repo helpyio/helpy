@@ -59,16 +59,15 @@
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2 text-right">
 						<ul class="list-inline" data-hook="header-mini-nav">
-							<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs' if forums? || tickets? %>
+							<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'btn hidden-xs' if forums? || tickets? %>
 							<% if user_signed_in? %>
-							<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
+							<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'btn hidden-xs' %>
 							<% else %>
-							<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), '#', class: 'login-link hidden-xs', data: { toggle: "modal", target: "#login-modal" }) %>
+							<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), '#', class: 'btn login-link hidden-xs', data: { toggle: "modal", target: "#login-modal" }) %>
 							<% end %>
 							<% if AppSettings['i18n.available_locales'].count > 1 %>
-							  |
-							<span class="btn-group select-locale">
-							  <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
+							<li class="btn-group select-locale hidden-xs">
+							  <span data-toggle="dropdown" aria-expanded="false" class='btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
 							  <ul class="dropdown-menu dropdown-menu-right" role="menu">
 								<% AppSettings['i18n.available_locales'].each do |l| %>
 								<% local_url = request.fullpath.split("/") %>
@@ -76,7 +75,7 @@
 								<li><%= link_to I18n.translate("language_name", locale: l).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (l == I18n.locale) ? 'strong' : '' %></li>
 								<% end %>
 							  </ul>
-							</span>
+							</li>
 							<% end %>
 							<li data-no-turbolink><a href="#right-menu" id="right-menu"><h2 class="fas fa-bars"></h2></a></li>
 						</ul>
