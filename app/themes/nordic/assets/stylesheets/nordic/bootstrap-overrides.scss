@@ -4,12 +4,12 @@
 // This helps identify which Bootstrap variables we've actually overridden.
 
 // Colours: Brand Defaults
-$brand-primary:         #3cceff;
+$brand-primary:         #47AEDC;
 $brand-link:            #004084;
 $link-color:            #666;
 $table-border-color:    #fff;
 $breadcrumb-bg:         #fff;
-$body-bg:               #eee;
+$body-bg:               #fefefe;
 
 // Navbar links
 $navbar-default-link-color: #004084;
@@ -22,17 +22,17 @@ $navbar-default-link-active-color:         $brand-link;
 $navbar-default-link-active-bg:            #fff;
 
 // Typography
-$font-family-sans-serif:  "Raleway", sans-serif;
-$font-family-serif:       'Raleway', serif;
+$font-family-sans-serif:  'Libre Franklin', sans-serif;
+$font-family-monospace:   Inconsolata, monospace;
 
 // Theme Specific Colors
-$header-bg:               #666;
+$header-bg:               #47AEDC;
 $header-link-color:       #fff;
-$font-size-base:          14px;
-$main-panel-bg:           #666;
+$font-size-base:          18px;
+$main-panel-bg:           #47AEDC;
 $main-panel-font-color:   #fff;
 $main-panel-breadcrumb-color: $main-panel-font-color;
-$icon-color:              $main-panel-bg;
+$icon-color:              $brand-primary;
 $icon-bg-color:           #eee;
 
 

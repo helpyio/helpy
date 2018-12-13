@@ -6,6 +6,7 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
+  line-height: 1.5em;
 }
 
 body {
@@ -13,6 +14,7 @@ body {
   min-height: 100%;
   position: relative;
   background-color: $body-bg;
+	font-family: $font-family-sans-serif;
 }
 
 .content {
@@ -32,7 +34,7 @@ a {
 
   &:hover {
     color: $link-color;
-    font-weight: bold;
+    text-decoration: underline;
   }
 
   &.list-group-item {
@@ -79,7 +81,6 @@ tbody {
 }
 
 h1 {
-	font-family: $font-family-sans-serif;
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 5px;
@@ -92,13 +93,19 @@ i.circle-icon {
   color: $icon-color;
 }
 
+code {
+  background-color: #f5f5f5; 
+  color: #333;
+  font-family: $font-family-monospace;
+}
+
 @media(max-width:767px){
 	.jumbotron h1, h1 {
-		font-size: 200%;
+		font-size: 36px;
 	}
 
-  h2 {
-		font-size: 150%;
+  h2, .text-content h1 {
+		font-size: 24px;
 	}
 
   .article-block {
@@ -107,7 +114,7 @@ i.circle-icon {
   i.circle-icon {
     display: inline-block;
     border-radius: 60px;
-    box-shadow: 0px 0px 2px #888;
+    box-shadow: 0px 0px 8px #47AEDC;
     font-size: 24px;
     padding: 20px;
     margin-bottom: 20px;
@@ -124,13 +131,17 @@ i.circle-icon {
 
 @media(min-width:768px){
 	.jumbotron h1, h1 {
-		font-size: 200%;
+		font-size: 36px;
+	}
+
+  h2, .text-content h1 {
+		font-size: 24px;
 	}
 
   i.circle-icon {
     display: inline-block;
     border-radius: 60px;
-    box-shadow: 0px 0px 2px #888;
+    box-shadow: 0px 0px 8px #47AEDC;
     font-size: 34px;
     padding: 25px;
     margin-bottom: 20px;
@@ -146,9 +157,6 @@ i.circle-icon {
 }
 
 @media(min-width:992px){
-	.jumbotron h1, h1 {
-		font-size: 300%;
-	}
   .article-block {
     min-height: 250px;
   }
@@ -156,7 +164,7 @@ i.circle-icon {
   i.circle-icon {
     display: inline-block;
     border-radius: 60px;
-    box-shadow: 0px 0px 2px #888;
+    box-shadow: 0px 0px 8px #47AEDC;
     font-size: 34px;
     padding: 25px;
     margin-bottom: 20px;
@@ -167,9 +175,6 @@ i.circle-icon {
 }
 
 @media(min-width:1200px){
-	.jumbotron h1, h1 {
-		font-size: 300%;
-	}
   .article-block {
     min-height: 250px;
   }
@@ -177,7 +182,7 @@ i.circle-icon {
   i.circle-icon {
     display: inline-block;
     border-radius: 60px;
-    box-shadow: 0px 0px 2px #888;
+    box-shadow: 0px 0px 8px #47AEDC;
     font-size: 44px;
     padding: 30px;
     margin-bottom: 20px;
@@ -188,16 +193,15 @@ i.circle-icon {
 }
 
 textarea {
-  width:98%;
-  height:175px;
-  padding:5px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size:12px;
-  color:#333;
-  line-height:1.5;
-  border:1px solid #c4c4c4;
-  border-right:1px solid #e9e9e9;
-  border-bottom:1px solid #e9e9e9;
+  width: 98%;
+  height: 175px;
+  padding: 5px;
+  font-family: $font-family-sans-serif, sans-serif;
+  font-size: 1em;
+  color: #333;
+  border: 1px solid #c4c4c4;
+  border-right: 1px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
 }
 
 //  === GLOBAL STYLES ===
@@ -219,7 +223,6 @@ textarea {
 	padding-top: 30px;
 	padding-bottom: 10px;
 	margin-bottom: 15px;
-  max-height: 150px;
 
   h2 {
     margin-top: 0;
@@ -307,7 +310,7 @@ div.admin-tools {
 }
 
 .tiny-header {
-	font-size: 100%;
+	font-size: 1em;
 	color: #666;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -322,16 +325,16 @@ div.admin-tools {
 }
 
 .label {
-  	display: inline;
-  	padding: .4em .6em .5em;
-    font-size: 75%;
-  	font-weight: bold;
-  	line-height: 1;
-  	color: #ffffff;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
+  display: inline;
+  padding: .4em .6em .5em;
+  font-size: .8em;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }
 
 .label-message-tagging {
@@ -435,29 +438,29 @@ div.admin-tools {
 .label-private {
 	border: 2px dashed #666;
 	color: #666;
-  	display: inline;
-  	padding: .2em .6em .3em;
-  	font-size: 75%;
-  	font-weight: bold;
-  	line-height: 1;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }
 
 .label-public {
 	border: 2px dashed #666;
 	color: #666;
-  	display: inline;
-  	padding: .2em .6em .3em;
-  	font-size: 75%;
-  	font-weight: bold;
-  	line-height: 1;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
+ 	display: inline;
+ 	padding: .2em .6em .3em;
+ 	font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }
 
 .label-collapsed {
@@ -466,16 +469,16 @@ div.admin-tools {
 	border: 1px solid #eee;
 	background-color: #fff;
 	color: #999;
-  	display: inline;
-  	padding: .2em .6em .3em;
-  	font-size: 100%;
-  	font-weight: normal;
-  	line-height: 1;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
-  	cursor: pointer;
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  cursor: pointer;
 }
 
 .label-count {
@@ -484,14 +487,14 @@ div.admin-tools {
 	border: 1px solid #999;
 	background-color: #fff;
 	color: #999;
-  	display: inline;
-  	font-size: 100%;
-  	font-weight: normal;
-  	line-height: 1;
-  	text-align: center;
-  	white-space: nowrap;
-  	vertical-align: baseline;
-  	border-radius: .25em;
+  display: inline;
+  font-size: 100%;
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
 }
 
 .active {
@@ -501,32 +504,23 @@ div.admin-tools {
 
 .author {
 	font-weight: normal;
-	font-size: 85%;
+	font-size: .9em;
 }
 
 .more-important {
 	font-weight: bold;
-	font-size: 105%;
-}
-
-span.more-important a {
-	font-weight: bold;
-	font-size: 105%;
-}
-
-span.more-important a:link {
-	font-weight: bold;
-	font-size: 105%;
+	font-size: .8em;
 }
 
 .less-important {
-	color: #666;
+	color: #333;
+	font-size: .9em;
 }
 
 span.category-icon {
 	color: #666;
 	margin-bottom: 15px;
-	font-size: 120%;
+	font-size: 1.2em;
 }
 
 .user-thumbnail {
@@ -565,7 +559,7 @@ span.category-icon {
 }
 
 ul.dropdown-menu li a.strong {
-  font-weight: bolder;
+  font-weight: bold;
 }
 
 .active-item-shadow {
@@ -622,7 +616,7 @@ header {
 
     &:hover {
       color: $header-link-color;
-      font-weight: bold;
+      text-decoration: underline;
     }
 
   }
@@ -641,7 +635,7 @@ header {
 	list-style-image: none;
 
   li {
-    font-size: 120%;
+    font-size: 1.4em;
     background-color: #fff;
     list-style-image: none;
     display: block;
@@ -659,7 +653,7 @@ header {
 
       &:hover {
         font-weight: normal;
-        text-decoration: none;
+        text-decoration: underline;
         display: block;
         background-color: #eee;
         padding:  8px;
@@ -668,7 +662,7 @@ header {
 
       &.current {
         font-weight: normal;
-        text-decoration: none;
+        text-decoration: underline;
         display: block;
         margin-right: 5px;
         padding: 8px;
@@ -687,6 +681,7 @@ header {
   margin-top: 80px;
 
   h3 {
+    font-size: 1.8em;
     margin-top: 20px;
   }
 }
@@ -703,14 +698,21 @@ header {
   }
 }
 
-.select-locale .btn {
+.btn, .btn a {
   color: $main-panel-font-color;
   font-weight: normal;
+  font-size: 15px;
 }
 
-.select-locale .btn:hover {
+.btn:hover, .btn a:hover {
   color: $main-panel-font-color;
+  text-decoration: none;
   font-weight: bold;
+}
+
+.input-group-btn button {
+  color: #999;
+  font-size: 17.5px;
 }
 
 .nav {
@@ -743,10 +745,10 @@ header {
 
 .navbar-brand {
 	color: $header-link-color;
-	font-family: 'Raleway', sans-serif;
+	font-family: $font-family-sans-serif;
 	padding:0px;
-	font-size:120%;
-  line-height: 50px;
+	font-size:1em;
+  line-height: 55px;
   font-weight: bold;
 
   a {
@@ -770,7 +772,8 @@ header {
   padding-bottom: 0;
 }
 
-.navbar-form .input-group .form-control {
+.form-control {
+  font-size: 15px;
 }
 
 .navbar-right {
@@ -836,6 +839,7 @@ h1#how-help {
 
   .breadcrumb a {
     color: $main-panel-breadcrumb-color;
+    font-size: 15px;
   }
 
   li.ui-menu div.ui-menu-item a  {
@@ -919,7 +923,7 @@ li.article {
 	padding-top: 5px;
 
   > span {
-    font-size: 70%;
+    font-size: .7em;
   }
 }
 
@@ -928,7 +932,7 @@ li.article-more {
 }
 
 h5.category-header {
-  font-size: 110%;
+  font-size: 1.1em;
   font-weight: 600;
 
   > a {
@@ -946,7 +950,7 @@ h5.category-header {
 
 .text-content {
   a {
-    color: #004084;
+    color: #47AEDC;
   }
   img {
     max-width: 90%;
@@ -1077,6 +1081,7 @@ table#users {
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 10px;
+  font-size: 15px;
 
   a {
     color: #888;
@@ -1121,9 +1126,9 @@ table#users {
   font-weight: normal;
 }
 
-div.asked-question span.more-important {
+div.asked-question  {
   font-weight: normal;
-  font-size: 100%;
+  font-size: 1em;
 }
 
 h4.qna {
