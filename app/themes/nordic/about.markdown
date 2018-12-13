@@ -1,1 +1,1 @@
-Nordic is a simple, minimalist theme that puts your knowledge base way out front.
+Nordic is a theme with focus on legibility and support for multiple languages in the frontend.
