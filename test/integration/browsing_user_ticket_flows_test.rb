@@ -29,8 +29,8 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
     # a new user should be created
     assert_difference('User.count', 1) do
       assert_difference('Topic.count',1) do
-        fill_in('topic_user_email', with: 'test@test.com')
-        fill_in('topic[user][name]', with: 'John Smith')
+        fill_in('topic_user_email', with: Faker::Internet.email)
+        fill_in('topic[user][name]', with: Faker::Name.name)
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
         click_on('Create Ticket')
@@ -76,8 +76,8 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
     # a new user should be created
     # assert_difference('User.count', 1) do
       assert_difference('Topic.count',1) do
-        fill_in('topic_user_email', with: 'test@test.com')
-        fill_in('topic[user][name]', with: 'John Smith')
+        fill_in('topic_user_email', with: Faker::Internet.email)
+        fill_in('topic[user][name]', with: Faker::Name.name)
         fill_in('topic[name]', with: 'I got problems')
         fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
         click_on('Create Ticket')
@@ -138,8 +138,8 @@ class BrowsingUserTicketFlowsTest < ActionDispatch::IntegrationTest
     visit '/widget'
 
     assert_difference('Post.count', 1) do
-      fill_in('topic_user_email', with: 'joe@test.com')
-      fill_in('topic_user_name', with: 'Joe Guy')
+      fill_in('topic_user_email', with: Faker::Internet.email)
+      fill_in('topic_user_name', with: Faker::Name.name)
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
       click_on('Create Ticket')
