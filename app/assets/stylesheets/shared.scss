@@ -32,7 +32,7 @@
 }
 
 .select-image {
-  margin-top: 15px;
+  margin-top: 37px;
   margin-bottom: 30px;
 }
 
@@ -61,3 +61,26 @@
     top: 0;
   }
 }
+// Decorate Choose file btn => "Choose Avatar"
+.user-avatar {color: transparent;}
+.user-avatar::-webkit-file-upload-button {visibility: hidden;}
+.user-avatar::before {
+  content: attr(data-content);
+  color: #666;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12pt;
+  line-height: 1.42857143;
+  font-family: "Roboto", sans-serif;
+  }
+.user-avatar:active::before {background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);}
+:focus {outline: 0;}
+
