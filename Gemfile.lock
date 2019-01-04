@@ -481,7 +481,7 @@ GEM
     route_translator (4.4.1)
       actionpack (>= 3.2, < 5.0)
       activesupport (>= 3.2, < 5.0)
-    rubocop (0.61.1)
+    rubocop (0.62.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5, != 2.5.1.1)
@@ -563,7 +563,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    unicode-display_width (1.4.0)
+    unicode-display_width (1.4.1)
     unicorn (5.4.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
