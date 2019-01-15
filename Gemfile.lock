@@ -388,7 +388,7 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (~> 0.7)
-    grape (1.2.1)
+    grape (1.2.2)
       activesupport
       builder
       mustermann-grape (~> 1.0.0)
