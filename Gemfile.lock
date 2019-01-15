@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/helpyio/helpy_imap
-  revision: 85f944a0d79325662c6f7e47e1a037640875f88d
+  revision: 16fe681c2e2053ad015ee70a1d60c4f135ecbe25
   branch: master
   specs:
     helpy_imap (1.0)
@@ -459,8 +459,8 @@ GEM
     ranked-model (0.4.2)
       activerecord (>= 4.1.16)
     rb-fsevent (0.10.3)
-    rb-inotify (0.9.10)
-      ffi (>= 0.5.0, < 2)
+    rb-inotify (0.10.0)
+      ffi (~> 1.0)
     rdiscount (2.2.0.1)
     rdoc (6.0.4)
     recaptcha (2.3.0)
