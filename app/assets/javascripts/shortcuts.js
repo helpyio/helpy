@@ -1,6 +1,6 @@
 Helpy.showShortcuts = function() {
   if ($('#shortcutmodal').size() === 0) {
-    $('body').append("<div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"static\">" +
+    $('body').append("<div id='shortcutmodal' class=\"modal\" tabindex=\"-1\" role=\"dialog\" data-backdrop=\"true\">" +
         "<div class=\"modal-dialog modal-lg\">" +
         "	<div class=\"modal-content\">" +
         "		<iframe src=\"/admin/shortcuts\" width=\"100%\" height=\"900\" frameborder=\"no\" scrolling=\"auto\"></iframe>" +
