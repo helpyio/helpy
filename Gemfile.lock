@@ -654,7 +654,7 @@ GEM
       nokogiri (~> 1.5)
       trollop (~> 2.1)
     rdiscount (2.2.0.1)
-    rdoc (6.0.4)
+    rdoc (6.1.1)
     recaptcha (2.3.0)
       json
     regexp_parser (0.5.0)
