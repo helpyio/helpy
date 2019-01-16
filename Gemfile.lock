@@ -361,7 +361,7 @@ GEM
     formatador (0.2.5)
     foundation_emails (2.2.1.0)
     gemoji (3.0.0)
-    globalid (0.4.1)
+    globalid (0.4.2)
       activesupport (>= 4.2.0)
     globalize (5.0.1)
       activemodel (>= 4.2.0, < 4.3)
@@ -412,7 +412,7 @@ GEM
     griddler (1.5.2)
       htmlentities
       rails (>= 3.2.0)
-    griddler-mailgun (1.0.3)
+    griddler-mailgun (1.1.1)
       griddler
     griddler-mailin (0.0.1)
       griddler
