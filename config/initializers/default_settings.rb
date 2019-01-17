@@ -23,6 +23,7 @@ AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 AppSettings.defaults["settings.teams"] = Settings.teams
 AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
+AppSettings.defaults["settings.anonymous_access"] = "1"
 
 # Webhook Integrations
 

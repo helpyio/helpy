@@ -149,7 +149,7 @@ gem 'rails-timeago'
 gem 'faker'
 
 gem 'timecop' #used to populate
-
+gem "hashid-rails", "~> 1.0"
 gem 'themes_on_rails'
 gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 

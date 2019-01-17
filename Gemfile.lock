@@ -428,6 +428,10 @@ GEM
       mail
     groupdate (4.1.1)
       activesupport (>= 4.2)
+    hashid-rails (1.2.2)
+      activerecord (>= 4.0)
+      hashids (~> 1.0)
+    hashids (1.0.5)
     hashie (3.6.0)
     hitimes (1.3.0)
     htmlentities (4.3.4)
@@ -847,6 +851,7 @@ DEPENDENCIES
   griddler-sendgrid
   griddler-sparkpost
   groupdate
+  hashid-rails (~> 1.0)
   helpy_imap!
   helpy_onboarding!
   http_accept_language
