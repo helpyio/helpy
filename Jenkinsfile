@@ -7,14 +7,14 @@ def String rbVersion(text) {
   matcher ? matcher[0][1] : null
 }
 
-node('EKS-Node') {
+node('EKS-Druid') {
   stage 'Clean and Checkout'
   checkout scm
   sh 'git submodule init && git submodule update --recursive'
 }
 
 pipeline {
-  agent { label 'EKS-Node' }
+  agent { label 'EKS-Druid' }
   environment {
       branch_ns = branchFunction(env.BRANCH_NAME)
       chart_name = "helpy"
@@ -27,7 +27,7 @@ pipeline {
   }
   stages {
     stage('Build Image') {
-      agent { label 'EKS-Node' }
+      agent { label 'EKS-Druid' }
       environment {
         DOCKERHUB_CREDS     = credentials('dockerhub_cred')
         HELPY_USERNAME      = credentials('helpy_username')
@@ -39,19 +39,19 @@ pipeline {
       }
     }    
     stage('Test k8s') {
-      agent { label 'EKS-Node' }
+      agent { label 'EKS-Druid' }
       steps {
           sh 'kubectl get all'
         }
     }
     stage('Test Helm') {
-      agent { label 'EKS-Node' }
+      agent { label 'EKS-Druid' }
       steps {
           sh 'helm list'
       }
     }
     stage('Make Namespace') {
-      agent { label 'EKS-Node' }
+      agent { label 'EKS-Druid' }
       environment {
         DOCKERHUB_CREDS     = credentials('dockerhub_cred')
     }
@@ -62,21 +62,21 @@ pipeline {
       }
     }
     stage('Run Pods') {
-        agent { label 'EKS-Node' }
+        agent { label 'EKS-Druid' }
         steps {
             sh 'kubectl run postgres --namespace=$branch_ns --image=postgres:9.6.2 --port=5432 --expose=true'
             sh 'kubectl run $branch_ns --namespace=$branch_ns --image=$docker_image:$branch_ns --image-pull-policy=Always --port=8088 --env="DATABASE_URL=postgres://postgres@postgres:5432/postgres" --env="RAILS_ENV=test"'
         }
     }
 /*    stage('Test') {
-        agent { label 'EKS-Node' }
+        agent { label 'EKS-Druid' }
         steps {
             sleep 120
             sh 'kubectl exec -it `kubectl get pods --namespace=$branch_ns | grep $branch_ns | cut -d " " -f1` --namespace=$branch_ns /helpy/test.sh'
         }
     }*/
     stage('Build Caddy') {
-      agent { label 'EKS-Node' }
+      agent { label 'EKS-Druid' }
       when {
         branch 'master'
       }
@@ -86,7 +86,7 @@ pipeline {
       }
     }
     stage('Deploy CI') {
-      agent { label 'EKS-Node' }
+      agent { label 'EKS-Druid' }
       when {
         branch 'master'
       }
@@ -98,7 +98,7 @@ pipeline {
       }
     }
     stage('Deploy Release') {
-      agent { label 'EKS-Node' }
+      agent { label 'EKS-Druid' }
       when {
         branch 'release'
       }
@@ -111,7 +111,7 @@ pipeline {
   }
   post {
     always {
-      node('EKS-Node') {
+      node('EKS-Druid') {
         sh 'kubectl delete ns $branch_ns || true'
       }
     }
