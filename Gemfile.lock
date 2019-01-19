@@ -446,7 +446,7 @@ GEM
       nokogiri
     io-like (0.3.0)
     ipaddress (0.8.3)
-    jaro_winkler (1.5.1)
+    jaro_winkler (1.5.2)
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
