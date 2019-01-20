@@ -412,7 +412,7 @@ GEM
     griddler (1.5.2)
       htmlentities
       rails (>= 3.2.0)
-    griddler-mailgun (1.0.3)
+    griddler-mailgun (1.1.1)
       griddler
     griddler-mailin (0.0.1)
       griddler
