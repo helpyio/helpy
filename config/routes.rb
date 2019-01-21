@@ -60,7 +60,6 @@ Rails.application.routes.draw do
     get 'search' => 'result#search', as: :search
     get 'tickets' => 'topics#tickets', as: :tickets
     get 'ticket/:id/' => 'topics#ticket', as: :ticket
-    get 'show_ticket/:hashid' => 'topics#show_ticket', as: :show_ticket
     get 'locales/select' => 'locales#select', as: :select_locale
   end
 

@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
   before_action :topic_creation_enabled?, only: ['new', 'create']
   before_action :get_all_teams, only: 'new'
   before_action :get_public_forums, only: ['new', 'create']
-  before_action :check_anonymous_ticket_access, only: :show_ticket
+  before_action :check_anonymous_ticket_access, only: :show
 
   layout "clean", only: [:new, :index, :thanks]
   theme :theme_chosen
@@ -86,9 +86,9 @@ class TopicsController < ApplicationController
     end
   end
 
-  def show_ticket
-    @topic = Topic.undeleted.external.find_by_hashid(params[:hashid])
-    if @topic
+  def show
+    @topic = Topic.undeleted.external.find_by_hashid(params[:id])
+    if @topic.present?
       @posts = @topic.posts.ispublic.chronologic.active.all.includes(:topic, :user, :screenshot_files)
       @page_title = "##{@topic.id} #{@topic.name}"
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
@@ -206,7 +206,7 @@ class TopicsController < ApplicationController
   end
 
   def check_anonymous_ticket_access
-    unless AppSettings['anonymous_access'] == '1'
+    unless AppSettings['settings.anonymous_access'] == '1'
       redirect_to root_path
     end
   end
