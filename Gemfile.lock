@@ -672,7 +672,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     retriable (3.1.2)
-    roo (2.8.0)
+    roo (2.8.1)
       nokogiri (~> 1)
       rubyzip (>= 1.2.1, < 2.0.0)
     route_translator (4.4.1)
