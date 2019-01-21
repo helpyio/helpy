@@ -421,7 +421,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal(4, object['posts'].count, "Should be 4 posts")
     assert_equal("MERGED: Message A", object['name'], "New topic title is wrong")
     assert_equal("ticket", object['kind'], "New topic kind is wrong")
-    assert_equal('note', object['posts'].last['kind'], "The last post should be a note")
+    assert_equal(true, object['posts'].any? {|p| p['kind'] == "note"}, "The last post should be a note")
   end
 
   test "attempting to split a non existent post 404s (Not Found)" do
