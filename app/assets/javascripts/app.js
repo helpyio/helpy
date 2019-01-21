@@ -198,7 +198,10 @@ Helpy.ready = function(){
   // Generate temp email address on demand, in case the user does not have an email
   $('.generate-temp').off().on('click', function(){
     if ($('#topic_user_email').val() === '') {
-      $('#topic_user_email').val("change@me-" + $("#topic_user_home_phone").val() + '-' + $("#topic_user_name").val().replace(" ","-") + '.com');
+      var placeholder = Math.random().toString(36).substring(7);
+      $('#topic_user_email').val("change@me-" + placeholder + '.com');
+      $('#topic_user_email').trigger('change');
+      $('#topic_user_email').trigger('focusout');
       return false;
     }
   });

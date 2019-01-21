@@ -42,6 +42,7 @@ ru:
   # Community
   forum_name: "Топик"
   subject: &subject "Тема"
+  message: "Cообщение"
   last_activity: "Последняя активность"
   topic: "Обсуждение"
   replies: "ответы"
@@ -255,6 +256,7 @@ ru:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Привет %{user_name}"
+  thank_you: "Благодарим!"
   new_user: "Благодарим Вас за обращение к нам. Ваше сообщение было получено нашей службой поддержки, и мы ответим Вам ближайшее время."
   account_generated: "Учетная запись была создана для вас. Чтобы войти в систему, пожалуйста, используйте эту ссылку:"
   above_this_line: "Убедитесь, что ваш ответ появится выше этой линии"

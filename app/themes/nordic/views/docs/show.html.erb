@@ -1,0 +1,97 @@
+<% title "#{AppSettings['settings.site_name']}: #{renderize_doc_title(@doc.title_tag, @doc.title)}" %>
+<% meta_tag :description, "#{@doc.meta_description}" %>
+<% meta_tag :keywords, "#{@doc.keywords}" %>
+
+<script>
+  Helpy.yesHelped = '<%= j t(:yes_helped) %>';
+  Helpy.noHelped = '<%= j t(:no_helped) %>';
+  <% if tickets? %>
+    Helpy.contactUs = '<a href="<%= new_topic_path(doc_id: @doc.id) %>" class="btn btn-primary btn-lg get-help-button"><%= j t(:start_discussion) %></a>';
+  <% else %>
+    Helpy.contactUs = '';
+  <% end %>
+</script>
+
+<div class="row content-row">
+<p><% @categories.inspect %></p>
+  <%
+=begin
+
+  if @categories.count > 0 && Doc.all.with_translations(I18n.locale).count > 0 %>
+  <div class="col-md-2 hidden-xs hidden-sm">
+  <ul>
+  <%
+    <% @categories.each do |category| %>
+    <li>
+      <%= link_to category_path(category), id: "category-#{category.id}" do %>
+        <i class="circle-icon glyphicon glyphicon-<%= category.icon %>"></i><br/>
+        <%= category.name %>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+  </div>
+  <% end
+=end
+%>
+  <div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="col-md-3 hidden-xs hidden-sm">
+      <div id="written-by" class="doc-meta">
+        <div class="more-important meta-header"><%= I18n.t("written_by", default: "Written By") %>:</div>
+        <div class="less-important">
+          <%= avatar_image(@doc.user, size=40) %>
+          <%= @doc.user.name.titleize %>
+        </div>
+      </div>
+      <div id="doc-last-edit" class="doc-meta">
+        <div class="more-important meta-header"><%= I18n.t("last_edited", default: "Last Edited") %>:</div>
+        <div class="less-important"><%= last_active_time(@doc.updated_at) %></div>
+      </div>
+      <div id="doc-tags" class="doc-meta">
+        <div class="more-important meta-header"><%= I18n.t("tagged", default: "Tagged") %>:</div>
+        <div class="more-important meta-header"><% tag_listing(@doc.tag_list, "doc") %></div>
+      </div>
+    </div>
+    <div class="col-md-9 text-content">
+    <%= sanitize_doc_content(@doc.content) %>
+    </div>
+  </div>
+</div>
+
+<% if @doc.allow_comments && forums? %>
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm"></div>
+    <div class="col-md-9">
+      <hr/>
+      <h4><%= @posts.blank? ? "" : t(:topic) %></h4>
+    </div>
+
+    <div class="col-md-3 hidden-xs hidden-sm"></div>
+  	<div class="col-md-9">
+  		<script>
+  			Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) unless @posts.nil? %>';
+  		</script>
+
+  		<table id="posts">
+  			<%= render :partial => 'comment', :collection => @posts %>
+  		</table>
+
+  		<% if user_signed_in? # show a form to reply or start discussion %>
+        <%= render partial: 'docs/comment_form', locals: {post: @post} %>
+  		<% else # show a button to reply or start the discussion %>
+        <div>
+          <% if @posts.blank? %>
+          <span class="hidden-xs pull-right"><%= link_to t(:start_discussion, default: "Start Discussion"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+          <% else %>
+          <span class="hidden-xs pull-right"><%= link_to t(:reply, default: "Reply"), '#', data: {toggle: "modal", target: "#login-modal"}, class: 'btn btn-primary' %></span>
+          <% end %>
+        </div>
+      <% end %>
+  	</div>
+  </div>
+<% end %>
+
+<div class="col-md-3 hidden-xs hidden-sm"></div>
+<div class="col-md-9">
+  <%= render 'layouts/did_this_help' %>
+</div>

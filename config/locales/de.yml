@@ -40,6 +40,7 @@ de:
   # Community
   forum_name: "Foren"
   subject: &subject "Betreff"
+  message: "Nachricht"
   last_activity: "Zuletzt aktiv"
   topic: "Thema"
   replies: "Antworten"
@@ -64,7 +65,7 @@ de:
   asked_before: "Wurde die Frage bereits beantwortet? Wir denken, dass diese ähnlich sein könnte."
 
   # Tickets
-  tickets: "Tickets"
+  tickets: &tickets "Tickets"
   no_tickets: "Sie haben noch keine Tickets erstellt"
   ticket_number: "Ticket Nummer"
   assigned_to_label: "Zugewiesen an"
@@ -123,9 +124,9 @@ de:
   communities: Foren
   app_store: App Store
   search: Suche
-  # internal_content: Internal Content
-  # new_ticket: New Ticket
-  # reports: Reports
+  internal_content: Interner Inhalt
+  new_ticket: Neues Ticket
+  reports: Berichte
   # helpcenter: "Helpcenter"
   # get_help: "Help"
   # report_bug: "Report Bug"
@@ -140,7 +141,7 @@ de:
   open: Offen
   mine: Meine
   pending: In Bearbeitung
-  closed: Abgeschlossen
+  closed: &closed Abgeschlossen
   spam: Spam
   trash: Papierkorb
   discussion_managment: Diskussions Verwaltung
@@ -153,10 +154,11 @@ de:
   private: privat
   public: öffentlich
   save_changes: Änderungen speichern
-  # merge: Merge
-  # merge_confirm: Are you sure you want to merge these tickets?
-  customer_conversation: Customer Conversation
-  internal_ticket: Internal Ticket
+  merge: Verschmelzen
+  merge_confirm: Möchten Sie diese Tickets wirklich zusammenführen?
+  customer_conversation: Kundengespräch
+  internal_ticket: Internes Ticket
+  unassign_agent: Zuweisung des Agenten aufheben
 
   # Discussion controls
   change_status: Status ändern
@@ -166,39 +168,41 @@ de:
   mark_spam: Als Spam markieren
   mark_new: Als Neu markieren
   assign_agent: &assign_agent Agent zuordnen
-  # tag_with: &tag_with Tag Ticket
+  tag_with: &tag_with Etikett Ticket
   selected_messages:
     one: "1 markierte Nachricht"
     two: "2 markierte Nachrichten"
     other: "%{count} markierte Nachrichten"
 
   # Discussion messages
-  # new_message: "This ticket has been marked new by the support staff"
-  # spam_message: "This ticket has been marked spam by the support staff"
+  new_message: "Dieses Ticket wurde vom Supportpersonal als neu markiert"
+  spam_message: "Dieses Ticket wurde vom Supportpersonal als Spam markiert."
   reopen_message: "Dieses Ticket wurde erneut durch einen Support-Mitarbeiter geöffnet."
   closed_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
   trash_message: "Dieses Ticket wurde gelöscht."
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
-  # assigned_group: "This ticket has been assigned to %{assigned_group}."
-  # converted_to_ticket: "This discussion was converted to a private ticket."
-  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
-  # tagged_with: "This ticket was tagged with %{tagged_with}"
-  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
-  # topic_added_from: "%{kind} added from %{channel}"
+  unassigned_message: "Dieses Ticket wurde nicht zugewiesen."
+  assigned_group: "Dieses Ticket wurde %{assigned_group} zugewiesen."
+  converted_to_ticket: "Diese Diskussion wurde in ein privates Ticket umgewandelt."
+  converted_to_topic: "Dieses Ticket wurde in eine offene Diskussion umgewandelt und nach %{forum_name} verschoben."
+  tagged_with: "Dieses Ticket wurde mit %{tagged_with} getaggt"
+  notes_hidden: "Es gibt %{hidden_notes} interne Notizen für dieses Ticket. Sie können sie anzeigen, indem Sie irgendwo in diese Notiz klicken!"
+  topic_added_from: "%{kind} hinzugefügt von %{channel}"
 
   # User Admin
-  users: Benutzer
+  users: &users Benutzer
   account: Benutzerkonto
   contact_info: Kontakt
   social_info: Soziales
   edit_user: Benutzer bearbeiten
-  # delete_user: Delete User
+  delete_user: Benutzer löschen
   work_phone: Arbeit
   cell_phone: Handy
-  # last_seen: "Last Seen"
-  # scrub_user: "Anonymize User"
-  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
-  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
+  last_seen: "Zuletzt gesehen"
+  scrub_user: "Anonymisieren Sie den Benutzer"
+  anonymize_user_warning: "Sind Sie sicher, dass Sie %{user_name} anonymisieren möchten? Dadurch werden die persönlichen Daten des Benutzers dauerhaft anonymisiert, aber alle ihre Tickets und öffentlichen Posts bleiben erhalten."
+  delete_user_warning: "Sind Sie sicher, dass Sie %{user_name} löschen möchten? Dadurch werden der Benutzer und alle seine Tickets, Posts, Antworten und Forenthemen dauerhaft entfernt."
+  # click_to_edit: click to edit %{what}
 
   # Priorities
   select_priority: &priority Priorität auswählen
@@ -217,49 +221,49 @@ de:
   add_more_agents: "Benutzer hinzufügen"
 
   # Groups
-  # groups: "Groups"
-  # add_new_group: "New Group"
-  # group: "Group"
-  # tag_group: ""
-  # tag_name: "Group Name"
-  # description: "Description"
-  # color: "Color"
-  # show_on_helpcenter: "Show on Helpcenter"
-  # show_on_admin: "Show on Admin"
-  # email_address: "Email Address"
-  # from_name: "From Name"
+  groups: "Gruppen"
+  add_new_group: "Neue Gruppe"
+  group: "Gruppe"
+  tag_group: ""
+  tag_name: "Gruppenname"
+  description: "Beschreibung"
+  color: "Farbe"
+  show_on_helpcenter: "Im Hilfe-Center anzeigen"
+  show_on_admin: "Anzeige auf Admin"
+  email_address: "E-Mail-Addresse"
+  from_name: "von Namen"
 
   # Keyboard Shortcuts
-  # shortcut_then: "then"
-  # listing_views: "Listing views"
-  # keyboard_shortcuts: "Keyboard Shortcuts"
-  # show_new_tickets: "Show new tickets"
-  # show_all_tickets: "Show all tickets"
-  # show_open_tickets: "Show open tickets"
-  # show_tickets_assigned_to_you: "Show tickets assigned to you"
-  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
-  # show_closed_tickets: "Show closed tickets"
-  # search_for_tickets: "Search for tickets"
-  # viewing_tickets: "View tickets"
-  # select_previous_ticket: "Select previous ticket"
-  # select_next_ticket: "Select next ticket"
-  # view_selected_ticket: "View selected ticket"
-  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
-  # ticket_actions: "Ticket actions"
-  # assign_the_ticket: "Assign ticket"
-  # move_the_ticket: "Move ticket"
-  # expand_the_ticket_thread: "Expand ticket thread"
-  # reply_to_the_ticket: "Reply to the ticket"
-  # add_an_internal_note: "Add an internal note"
-  # change_ticket_status: "Change ticket status"
-  # associate_with_a_group: "Associate with a group"
-  # ticket_status: "Ticket status"
-  # mark_resolved: "Mark as resolved"
-  # reopen_ticket: "Reopen ticket"
-  # set_to_new: "Mark as new"
-  # mark_as_spam: "Mark as spam"
-  # move_to_trash: "Move to trash"
-  # ticket_number: "ticket number"
+  shortcut_then: "dann"
+  listing_views: "Sichten auflisten"
+  keyboard_shortcuts: "Tastaturkürzel"
+  show_new_tickets: "Neue Tickets anzeigen"
+  show_all_tickets: "Alle Tickets anzeigen"
+  show_open_tickets: "Zeige offene Tickets"
+  show_tickets_assigned_to_you: "Tickets anzeigen, die Ihnen zugewiesen sind"
+  show_pending_tickets_assigned_to_you: "Ausstehende ausstehende Tickets anzeigen"
+  show_closed_tickets: "Geschlossene Tickets anzeigen"
+  search_for_tickets: "Nach Tickets suchen"
+  viewing_tickets: "Tickets anzeigen"
+  select_previous_ticket: "Vorheriges Ticket auswählen"
+  select_next_ticket: "Nächstes Ticket auswählen"
+  view_selected_ticket: "Ausgewähltes Ticket ansehen"
+  jump_to_a_specific_ticket_number: "Springe zu einer bestimmten Ticketnummer"
+  ticket_actions: "Ticketaktionen"
+  assign_the_ticket: "Ticket zuweisen"
+  move_the_ticket: "Ticket verschieben"
+  expand_the_ticket_thread: "Expand ticket thread"
+  reply_to_the_ticket: "Antwort auf das Ticket"
+  add_an_internal_note: "Eine interne Notiz hinzufügen"
+  change_ticket_status: "Ticketstatus ändern"
+  associate_with_a_group: "Assoziiere mit einer Gruppe"
+  ticket_status: "Ticketstatus"
+  mark_resolved: "Als gelöst markieren"
+  reopen_ticket: "Ticket erneut öffnen"
+  set_to_new: "Als neu markieren"
+  mark_as_spam: "Als Spam markieren"
+  move_to_trash: "In den Papierkorb verschieben"
+  Ticketnummer: "Ticketnummer"
 
   # User search results
   users_found:
@@ -311,9 +315,9 @@ de:
   content_status: "Inhalts Status"
   convert_content: 'Konvertiere Post in Inhalt'
   upload_image: 'Foto hochladen'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
+  new_discussion: 'Erstelle daraus ein neues Ticket'
+  new_discussion_post: 'Ticket #%{topic_id} wurde von diesem erstellt'
+  new_discussion_topic_title: 'Von #%{original_id}-%{original_name} trennen'
   change_owner_note: 'Der Ersteller dieser Diskussion wurde geändert von %{old} nach %{new}'
 
   # Internal Content
@@ -331,6 +335,7 @@ de:
   # Mail messages
   new_user_subject: "Willkommen bei %{site_name}"
   hello: "Hallo %{user_name}"
+  thank_you: "Vielen Dank!"
   new_user: "Vielen Dank, dass Sie uns kontaktieren. Ihre Nachricht wurde von unserem Support Team empfangen und wir werden uns in Kürze mit einer Antwort bei Ihnen melden."
   account_generated: "Ein Benutzerkonto zur Einsicht der Kommunikation wurde für Sie erstellt. Um sich Anzumelden, benutzen Sie bitte diesen Link:"
   above_this_line: "Bitte antworten Sie ausschliesslich oberhalb dieser Zeile."
@@ -467,7 +472,7 @@ de:
     one: "<strong>%{period}</strong> begannen Ihre Benutzer 1 neue Konversation"
     other: "<strong>%{period}</strong> begannen Ihre Benutzer <strong>%{count} neue Konversationen</strong>"
   insights_blurb_two: "von welchen Ihr Team auf <strong>%{number_replied} (%{percentage_replied})</strong> antwortete"
-  insights_blurb_three: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
   no_discussions: "<strong>%{period}</strong> wurden keine neuen Konversationen gestarted"
   assigned_topics: "Zugewiesene Themen"
   responded: "Beantworted"
@@ -476,50 +481,50 @@ de:
   median_time: "Durschnittliche Zeit bis zur ersten Antwort"
 
   # Reports
-  # ticketing_reports: Ticketing Reports
-  # group_report: "Group Report"
-  # team_reports: "Team Reports"
-  # percent_resolved: Percent Resolved
-  # average_resolution_time: Average Resolution Time
-  # new_tickets: New Tickets
-  # new_tickets_explain: The number of new tickets your Helpy has received in this period.
-  # tickets_per_day: Tickets per Day
-  # tickets_per_day_explain: The number of tickets your Helpy averages per day.
-  # replies_explain: The number of replies your agents have written in this period.
-  # actions_explain: The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.
-  # closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
+  ticketing_reports: Ticketing-Berichte
+  group_report: "Gruppenbericht"
+  team_reports: "Teamberichte"
+  percent_resolved: Prozent aufgelöst
+  average_resolution_time: Durchschnittliche Auflösungszeit
+  new_tickets: Neue Tickets
+  new_tickets_explain: Die Anzahl der neuen Tickets, die Ihr Helpy in diesem Zeitraum erhalten hat.
+  tickets_per_day: Tickets pro Tag
+  tickets_per_day_explain: Die Anzahl der Tickets, die Ihr Helpy durchschnittlich pro Tag berechnet.
+  replies_explain: Die Anzahl der Antworten, die Ihre Agenten in diesem Zeitraum geschrieben haben.
+  actions_explain: Die Gesamtzahl der Aktionen (Antworten oder interne Notizen) in diesem Zeitraum. Ein guter Hinweis darauf, wie beschäftigt dein Helpy insgesamt ist.
+  closed_explain: Die Anzahl der während dieses Zeitraums geschlossenen Tickets. Sollte in der Nähe der Anzahl der neuen Tickets für frühere Perioden sein.
 
   # IMPORT/EXPORT
-  # file_type: Type
-  # file_users: Users
-  # file_tickets: Tickets
-  # file_replies: Replies
-  # file_docs: Docs
-  # file_categories: Categories
-  # file_forums: Forums
-  # import: 'Import CSV'
-  # new_import: 'New Import'
-  # export: 'Export CSV'
-  # what_to_export: 'Select what you would like to export'
-  # what_to_import: 'Select what you would like to import'
-  # imports: 'Imports'
-  # exports: 'Exports'
-  # past_imports: 'Previous Imports'
-  # run_time: 'Run Time'
-  # clear_all: 'Remove All'
-  # error_details: 'Error Details'
-  # row_number: 'Row Number'
-  # error_message: 'Error Message'
-  # object: 'Object'
-  # import_details: '#%{id} Import Details'
-  # select_for_export: 'Export %{model} to .csv'
-  # file_date_created: Date Created
-  # import_total_submitted: Total Submitted Records
-  # import_total_created: Total Created Records
-  # file_name: File Name
-  # file_download: Download
-  # file_delete: Delete
-  # file_delete_confirm: "Are you sure you want to delete this csv?"
+  file_type: Geben Sie ein
+  file_users: Benutzer
+  file_tickets: Tickets
+  file_replies: Antworten
+  file_docs: Dokumente
+  file_categories: Kategorien
+  file_forums: Foren
+  import: 'CSV importieren'
+  new_import: 'Neuer Import'
+  export: 'CSV exportieren'
+  what_to_export: 'Wählen Sie, was Sie exportieren möchten'
+  what_to_import: 'Wählen Sie, was Sie importieren möchten'
+  imports: "Einfuhren"
+  exports: 'Exporte'
+  past_imports: 'Vorherige Importe'
+  run_time: 'Laufzeit'
+  clear_all: 'Alles entfernen'
+  error_details: 'Fehlerdetails'
+  row_number: 'Zeilennummer'
+  error_message: 'Fehlermeldung'
+  object: 'Objekt'
+  import_details: '#%{id} Importdetails'
+  select_for_export: '%{model} in .csv exportieren'
+  file_date_created: Erstellungsdatum
+  import_total_submitted: Insgesamt übermittelte Datensätze
+  import_total_created: Gesamtzahl der erstellten Datensätze
+  file_name: Dateiname
+  file_download: Herunterladen
+  file_delete: Löschen
+  file_delete_confirm: "Sind Sie sicher, dass Sie diese CSV löschen möchten?"
 
   kind_type: &kind Art
 
@@ -535,24 +540,27 @@ de:
         cell_phone: Handy
         city: Stadt
         state: Bundesland
+        # zip: Zip
         signature: Unterschrift
         title:
         time_zone:
+        # street: Street
+        # notes: Notes
       topic:
         kind: *kind
-        name: Betreff
-        # channel: Channel
-        # team_list: Team
+        name: *subject
+        channel: Kundensupport-Kanal
+        team_list: Team
         priority: *priority
         current_status: *status
         assigned_user_id: *assign_agent
-        # tag_list: Tag List
+        tag_list: Tag-Liste
       post:
         kind: *kind
-        # body: Message
-        # cc: CC
-        # bcc: BCC
-        # attachments: Attachments
+        body: Nachrichtentext
+        cc: CC
+        bcc: BCC
+        attachments: Dateianlagen
       category:
         name: Name
         icon: Symbol

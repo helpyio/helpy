@@ -118,7 +118,13 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     params = {
       name: "Tom Brady",
       email: "tom@test.com",
-      password: "12345678"
+      password: "12345678",
+      home_phone: '999-123-1234',
+      street: '123 Main street',
+      city: 'New York',
+      state: 'NY',
+      zip: '10001',
+      notes: "These are the notes"
     }
 
     post '/api/v1/users.json', @default_params.merge(params)
@@ -126,6 +132,12 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     object = JSON.parse(last_response.body)
 
     assert_equal params[:name], object['name']
+    assert_equal params[:home_phone], object['home_phone']
+    assert_equal params[:street], object['street']
+    assert_equal params[:city], object['city']
+    assert_equal params[:state], object['state']
+    assert_equal params[:zip], object['zip']
+    assert_equal params[:notes], object['notes']
   end
 
   test "an API user should not be able to create an invalid user" do
@@ -145,7 +157,13 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     params = {
       name: user.name,
       email: "newaddress@me.com",
-      password: "12345678"
+      password: "12345678",
+      home_phone: '999-123-1234',
+      street: '123 Main street',
+      city: 'New York',
+      state: 'NY',
+      zip: '10001',
+      notes: "These are the notes"
     }
 
     patch "/api/v1/users/#{user.id}.json", @default_params.merge(params)
@@ -154,6 +172,12 @@ class API::V1::UsersTest < ActiveSupport::TestCase
 
     assert_equal params[:name], object['name']
     assert_equal params[:email], object['email']
+    assert_equal params[:home_phone], object['home_phone']
+    assert_equal params[:street], object['street']
+    assert_equal params[:city], object['city']
+    assert_equal params[:state], object['state']
+    assert_equal params[:zip], object['zip']
+    assert_equal params[:notes], object['notes']
   end
 
   test "an API user should be able to invite one or more users to be agents" do

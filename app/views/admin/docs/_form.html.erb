@@ -46,7 +46,7 @@
 
   <%= f.input :title, label: I18n.translate("activerecord.attributes.doc.title", locale: I18n.locale), value: @doc.read_translated_attribute(:title) %>
   <% if params[:lang] == "#{I18n.locale}" %>
-    <%= f.input("category_id", collection: Category.all.collect {|c| [ c.name, c.id ] }, prompt: t(:select_category, default: 'Select Category'), label: I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale), :input_html => { class: 'no-translate' })  %>
+    <%= f.input("category_id", collection: categories_collection, prompt: t(:select_category, default: 'Select Category'), label: I18n.translate("activerecord.attributes.doc.category_id", locale: I18n.locale), :input_html => { class: 'no-translate' })  %>
   <% else %>
     <%= f.hidden_field("category_id", value: @doc.category_id) %>
   <% end %>
@@ -66,7 +66,7 @@
   <% end %>
   <hr/>
   <h4 class="form-subhead"><%= t('additional_settings', default: 'Additional Settings') %>:</h4>
-  <% if @doc.category_id != 1 %>
+  <% if ![1,2].include?(@doc.category_id)  %>
     <div class= "form_group no-translate">
       <label class="control-label" for="tag_list"><%= t('tags', default: 'Tags') %>: </label>
       <%= f.text_field :tag_list, value: @doc.tag_list.to_s, class: 'selectize form-control' %>

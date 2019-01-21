@@ -71,6 +71,7 @@ class Topic < ActiveRecord::Base
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
   scope :for_doc, -> { where("doc_id= ?", doc)}
+  scope :external, -> { where.not(kind: 'internal') }
 
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
@@ -275,6 +276,7 @@ class Topic < ActiveRecord::Base
   private
 
   def cache_user_name
+    return if self.user.nil?
     if self.user.name.present?
       self.user_name = self.user.name
     else
@@ -285,4 +287,5 @@ class Topic < ActiveRecord::Base
   def add_locale
     self.locale = I18n.locale
   end
+
 end

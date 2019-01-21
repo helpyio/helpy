@@ -38,15 +38,15 @@ class Admin::BaseController < ApplicationController
   # agent is next and admin has access to everything:
 
   def verify_editor
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_editor?)
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(admin_root_path) unless current_user.is_editor?)
   end
 
   def verify_agent
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_agent?)
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(admin_root_path) unless current_user.is_agent?)
   end
 
   def verify_admin
-    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.is_admin?)
+    (current_user.nil?) ? redirect_to(root_path) : (redirect_to(admin_root_path) unless current_user.is_admin?)
   end
 
   def remote_search

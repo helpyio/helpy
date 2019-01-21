@@ -63,16 +63,16 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "a browsing user should not be able to load the index if KB features are not enabled" do
     AppSettings['settings.knowledgebase'] = "0"
-    assert_raises(ActionController::RoutingError) do
       get :index, locale: :en
-    end
+      assert_response :redirect 
+      assert_equal(response.redirect_url, root_url)
   end
 
   test "a browsing user should not be able to see a category page if KB features are not enabled" do
     AppSettings['settings.knowledgebase'] = "0"
-    assert_raises(ActionController::RoutingError) do
       get :show, id: 1, locale: :en
-    end
+      assert_response :redirect 
+      assert_equal(response.redirect_url, root_url)
   end
 
   test "a browsing user should NOT be able to see the common replies category page" do
