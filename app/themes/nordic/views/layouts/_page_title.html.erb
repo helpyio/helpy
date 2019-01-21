@@ -1,0 +1,16 @@
+<div id="page-title">
+    <span>
+      <%= render_breadcrumbs('') %>
+    </span>
+    <% if @page_title.present? %>
+    <h1><%= @page_title %></h1>
+    <% else %>
+    <%= yield :page_title %>
+    <% end %>
+    <% if @doc && current_user && current_user.is_editor? %>
+    <div class="edit-row">
+      <div id="doc-edit"><%= link_to I18n.t("edit", default: "Edit"), edit_admin_category_doc_path(@doc.category.id, @doc.id, lang: I18n.locale) %>
+      </div>
+    </div>
+    <% end %>
+</div>

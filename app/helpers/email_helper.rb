@@ -10,6 +10,7 @@ module EmailHelper
   end
 
   def body_tokens(text, topic)
+    return text if topic.user.nil?
     text = text.gsub('%customer_name%', topic.user.name)
     text = text.gsub('%customer_email_address', topic.user.email)
     return text
