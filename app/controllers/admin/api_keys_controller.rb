@@ -22,6 +22,7 @@ class Admin::ApiKeysController < Admin::BaseController
   def index
     @api_keys = @user.api_keys.all.order(date_expired: :desc)
     @api_key = ApiKey.new
+    @endpoint = request.base_url
   end
 
   def create

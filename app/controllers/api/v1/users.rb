@@ -25,6 +25,15 @@ module API
           present users, with: Entity::User
         end
 
+        # INSPECT SELF
+        desc "Get your own users details", {
+          entity: Entity::User,
+          notes: "List your own user"
+        }
+        get "self", root: :users do
+          present current_user, with: Entity::User
+        end
+
         # SEARCH USERS
         desc "Search users by name, email, account number, phone, etc.", {
           entity: Entity::User,
@@ -208,7 +217,6 @@ module API
           User.bulk_invite(permitted_params["emails"], permitted_params["message"], permitted_params["role"])
           present params[:emails]
         end
-
       end
     end
   end

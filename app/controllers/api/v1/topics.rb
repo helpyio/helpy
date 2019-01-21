@@ -11,11 +11,49 @@ module API
       include Grape::Kaminari
 
       # throttle max: 200, per: 1.minute
-
       # PRIVATE TICKET ENDPOINTS
       resource :tickets, desc: "Create and Manage private discussions" do
 
         paginate per_page: 20
+
+        # List Posts for Ticket
+        desc "Get posts for a specific ticket"
+        params do
+          requires :id, type: Integer, desc: "Ticket ID"
+        end
+        get ":id/posts", root: :topics do
+          posts = Post.where(topic_id: permitted_params[:id])
+          present paginate(posts), with: Entity::Post
+        end
+
+
+        desc "List all PRIVATE tickets", {
+          entity: Entity::Topic,
+          notes: "List all open tickets (private topics)"
+        }
+        get "private", root: :topics do
+          if current_user.is_restricted?
+            topics = Forum.find(1).topics.all.tagged_with(current_user.team_list).order(:current_status)
+          else
+            topics = Forum.find(1).topics.order(:current_status)
+          end
+          present paginate(topics), with: Entity::Topic
+        end
+
+        desc "List all OPEN PRIVATE tickets", {
+          entity: Entity::Topic,
+          notes: "List all open tickets (private topics)"
+        }
+        get "private/open", root: :topics do
+          if current_user.is_restricted?
+            topics = Forum.find(1).topics.where.not(
+              current_status: 'closed'
+            ).tagged_with(current_user.team_list).order(:current_status)
+          else
+            topics = Forum.find(1).topics.where.not(current_status: 'closed').order(:current_status)
+          end
+          present paginate(topics), with: Entity::Topic
+        end
 
         # LIST BY STATUS
         desc "List all PRIVATE tickets by status", {

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.6'
 
 gem 'rails', '4.2.11'
 
@@ -184,6 +185,9 @@ group :development do
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.3'
+  # ERD
+
+  gem 'rails-erd'
 end
 
 group :test do
@@ -205,8 +209,12 @@ end
 
 group :production do
   # Uncomment this gem for Heroku:
-  # gem 'rails_12factor'
+  gem 'rails_12factor'
   gem 'unicorn'
 end
 
-ruby '>= 2.2', '< 3.0'
+ruby '2.3.6'
+gem 'therubyracer'
+
+# for the Android APP
+gem 'rqrcode'

@@ -9,7 +9,8 @@ module Admin::ReportsHelper
   end
 
   def tickets_by_group(scoped_stats)
-    @teams = @all_teams.sort_by!{ |e| ActiveSupport::Inflector.transliterate(e.downcase) }.map { |name| [name, scoped_stats.tagged_with(name).count] }
+  @all_teams = [] if @all_teams.nil?
+  @teams = @all_teams.sort_by!{ |e| ActiveSupport::Inflector.transliterate(e.downcase) }.map { |name| [name, scoped_stats.tagged_with(name).count] }
   end
 
   def percent_resolved(fraction, total, default=0)
