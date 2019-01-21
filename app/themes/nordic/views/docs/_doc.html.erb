@@ -1,0 +1,18 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<li class="article less-important">
+  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  <%= link_to doc.title, doc_path(doc) %>
+
+  <% doc_tag_listing(doc.tag_list, "doc") %>
+  <% if doc.topics_count > 0 %>
+    <i class="glyphicon glyphicon-comment" style="font-size:11px;color:#eee;" title="<%= doc.posts.count %>"></i>
+  <% end %>
+</li>

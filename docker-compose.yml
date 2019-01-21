@@ -17,7 +17,7 @@ services:
     depends_on:
       - helpy
   helpy:
-    image: helpy/helpy
+    build: .
     restart: always
     networks:
       - front
@@ -25,8 +25,6 @@ services:
     volumes:
       - rails-assets:/helpy/public
     env_file: docker/.env
-    #environment:
-    #  - DO_NOT_PREPARE=true
     depends_on:
       - postgres
   postgres:

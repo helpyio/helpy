@@ -65,9 +65,9 @@ class ImportJobTest < ActiveSupport::TestCase
     files_detail[:post] = {path: file, name: 'post_import.csv'}
     import = Import.create(model: 'post', status: "In Progress", submited_record_count: 1)
     ImportJob.perform_now(files_detail, admin, import)
-    post = Post.last
+    post = Post.find_by_body('test of the body')
 
-    assert_equal post.body, 'test of the body'
+    assert_not_nil post
     assert_equal post.kind, 'first'
     assert_equal post.active, true
   end

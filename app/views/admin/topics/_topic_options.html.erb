@@ -8,10 +8,12 @@
       <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{first_post_id(@topic)}" } if @topic.posts.present? %></li>
       <li><%= link_to t('tag_with', default: 'Tag Ticket'), '#', class: 'add-tag-link' %></li>
       <hr/>
+      <% if @topic.user.present? %>
       <li class="dropdown-header"><%= @topic.user.name %></li>
       <li><%= link_to t(:tickets, default: 'Tickets'), remote: true %></li>
       <li><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @topic.user.id), remote: true, class: '' %></li>
       <li><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@topic.user), remote: false if @topic.user.can_be_edited? current_user %></li>
+      <% end %>
     </ul>
   </span>
 </div>
