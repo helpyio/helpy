@@ -60,6 +60,13 @@ class TopicsControllerTest < ActionController::TestCase
     assert_response :success, 'Did not get the new topic page'
   end
 
+  test 'the new topic should be set to private if enabled' do
+    AppSettings['settings.default_private'] = '1'
+    get :new, locale: :en
+    assert_equal true, assigns(:topic).private
+    assert_response :success, 'Did not get the new topic page'
+  end
+
   test 'a browsing user should be able to create a new public topic without signing in' do
     get :new, locale: :en
     assert_response :success

@@ -66,7 +66,7 @@ class Admin::TopicsController < Admin::BaseController
   def new
     fetch_counts
 
-    @topic = Topic.new
+    @topic = Topic.new(channel: AppSettings['settings.default_channel'])
     @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
 

@@ -21,8 +21,8 @@
         <% end %>
       <% end %>
 
-      <% if (user_signed_in? && !@widget) || (!user_signed_in? && recaptcha_enabled? && !@widget) %>
-        <% if forums? and tickets? %>
+      <% if (user_signed_in?) || (!user_signed_in? && recaptcha_enabled?) %>
+        <% if forums? && tickets? %>
           <label class="control-label" for="doc_active"> <%= t(:should_message_be_private) %> </label>
           <%= f.collection_radio_buttons :private, [[true, t(:only_support_can_respond)] ,[false, t(:responses_can_come_from_everyone)]], :first, :last, item_wrapper_class: 'radio', item_label_class: 'radio-label', collection_wrapper_tag: :div %>
           <%= f.input(:forum_id, collection: @forums, :label => t(:forum_name), locale: I18n.locale, prompt: nil) %>

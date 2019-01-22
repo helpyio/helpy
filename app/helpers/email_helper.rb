@@ -15,4 +15,19 @@ module EmailHelper
     text = text.gsub('%customer_email_address', topic.user.email)
     return text
   end
+
+  # include the ticket history in email
+  def include_history?
+    AppSettings['settings.include_ticket_history'] == "1"
+  end
+
+  # include the ticket body or just a link?
+  def include_body?
+    AppSettings['settings.include_ticket_body'] == "1"
+  end
+
+  def link_to_topic
+    t('response_added', default: 'A response has been added to your ticket. Click here to see it: %{ticket_link}', 
+      ticket_link: ticket_url(@topic, host: AppSettings['settings.site_url']))
+  end
 end
