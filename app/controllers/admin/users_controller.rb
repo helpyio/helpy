@@ -137,7 +137,8 @@ class Admin::UsersController < Admin::BaseController
     @user.permanently_destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_users_path }
+      format.html { redirect_to admin_users_path,
+        :flash => { :success => "User #{@user.name} was scheduled for permanent deletion." }}
       format.js { }
     end
   end
