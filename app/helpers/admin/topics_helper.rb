@@ -24,6 +24,16 @@ module Admin::TopicsHelper
     end
   end
 
+  def topic_anonymous_link
+    content_tag :div, class: 'pull-right' do
+      content_tag :small, class: 'less-important anonymous-link' do
+        link_to topic_path(id: @topic.hashid), target: 'blank' do
+          content_tag :i, nil, class: 'fas fa-link' 
+        end
+      end 
+    end if AppSettings['settings.anonymous_access'] == "1"
+  end
+
   def ticket_status_label
     content_tag :span, class: "label #{status_class(@status)}", style: 'text-transform: uppercase' do
       status_label(@status)

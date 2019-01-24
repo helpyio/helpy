@@ -20,7 +20,7 @@
       <%= show_responsive_nav %>
       <span class="topic-number">#<%= @topic.id %></span>-
       <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
-      <%= topic_added_from %>
+      <%= topic_added_from %><%= topic_anonymous_link %>
 
     </h3>
     <div class="topic-tag-form" style="display: none;">

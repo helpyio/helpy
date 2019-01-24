@@ -28,7 +28,7 @@ AppSettings.defaults['settings.default_channel'] = 'email'
 AppSettings.defaults['settings.include_ticket_history'] = '1'
 AppSettings.defaults['settings.include_ticket_body'] = '1'
 AppSettings.defaults['settings.default_private'] = '0'
-AppSettings.defaults["settings.anonymous_access"] = "0"
+AppSettings.defaults['settings.anonymous_access'] = '0'
 
 # Webhook Integrations
 

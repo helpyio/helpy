@@ -88,16 +88,13 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.undeleted.external.find_by_hashid(params[:id])
+    redirect_to root_path unless @topic
+
     if @topic.present?
       @posts = @topic.posts.ispublic.chronologic.active.all.includes(:topic, :user, :screenshot_files)
       @page_title = "##{@topic.id} #{@topic.name}"
       add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
       add_breadcrumb @page_title
-    end
-    respond_to do |format|
-      format.html {
-        redirect_to root_path unless @topic
-      }
     end
   end
 
