@@ -1,6 +1,6 @@
 <div>
   <%= content_tag :h3, "#{t(:open_new_discussion, default: 'New Ticket')}", class: 'view-header' %>
-  <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post' }) do |f| -%>
+  <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post', data: { persist: 'garlic'} }) do |f| -%>
   <div class="row">
     <div class="col-md-8">
 
@@ -89,6 +89,11 @@ $('[data-provider="summernote"]').each(function(){
         }
         return '';
       }
+    },
+    callbacks: {
+      onInit: function (e) {
+        $("#topic_post_body").summernote("code", localStorage.getItem("new_ticket_draft"));
+      }
     }
   });
 });
@@ -107,4 +112,24 @@ $.ajax({
   $('.submit-ticket').off('click').on('click', function(){
     $('#topic_post_kind').val('first');
   });
+
+  $("#new_topic").sisyphus();
+  $(document).off('keyup').on('keyup', '.note-editable', function () {
+    localStorage.setItem("new_ticket_draft", $("#topic_post_body").summernote("code"));
+  });
+  $('#new_post').on('submit', function () {
+    localStorage.removeItem("new_ticket_draft");
+  });
+
+  //$(function () {
+  //  $("#new_topic").sisyphus();
+  //  setInterval(function () {
+  //    localStorage.setItem("new_ticket", $("#topic_post_body").summernote("code"));
+  //  }, 3000); // every 5 second interval
+
+  //  $('#new_topic').on('new_ticket', function(){
+  //    localStorage.removeItem("summernotedata").
+  //  });
+  //});
+
 </script>
