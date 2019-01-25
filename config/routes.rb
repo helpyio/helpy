@@ -159,11 +159,13 @@ Rails.application.routes.draw do
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
       resources :groups
+      resources :tags
     end
     resources :topics, except: [:delete, :edit] do
       resources :posts
     end
     resources :posts
+    
     get '/posts/:id/raw' => 'posts#raw', as: :post_raw
     get '/dashboard' => 'dashboard#index', as: :dashboard
     get '/reports/team' => 'reports#team', as: :team_reports

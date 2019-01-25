@@ -1,0 +1,9 @@
+  <div class="settings-section tag">
+    <%= f.input 'name', label: t(:tag, default: "Tag"), placeholder: t(:tag, default: 'Tag Name') %>
+    <%= f.input 'description', label: t('description', default: "Description") %>
+    <%= f.input 'color', inline_label: t('color', default: "Color"), input_html: { class: 'pick-a-color' } %>
+
+  </div>
+  <div class="submit-section">
+    <%= f.button :submit, "Save Settings", class: 'btn btn-warning' %>
+  </div>

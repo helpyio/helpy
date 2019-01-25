@@ -78,6 +78,10 @@ module Admin::TopicsHelper
     Topic.priorities.keys.map { |priority| [t("#{priority}_priority"), priority] }
   end
 
+  def ticket_tag_collection
+    ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: 'Topic').includes(:tag).map{|tagging| tagging.tag.name }.uniq
+  end
+
   # id of opening or first post in the topic
   def first_post_id(topic)
     first_post = topic.posts.order(created_at: :asc).first

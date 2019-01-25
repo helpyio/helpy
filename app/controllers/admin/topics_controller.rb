@@ -290,8 +290,9 @@ class Admin::TopicsController < Admin::BaseController
 
   def update_tags
     @topic = Topic.find(params[:id])
-
-    if @topic.update_attributes(topic_params)
+    @topic.tag_list = params[:topic][:tag_list]
+    if @topic.save
+    # if @topic.update(tag_list: params[:tag][:tag_list])
       @posts = @topic.posts.chronologic
 
       fetch_counts
