@@ -236,7 +236,7 @@ GEM
       fog-xml (~> 0.1.1)
       ipaddress (~> 0.5)
       json (~> 2.0)
-    fog-aliyun (0.3.2)
+    fog-aliyun (0.3.3)
       fog-core
       fog-json
       ipaddress (~> 0.8)
