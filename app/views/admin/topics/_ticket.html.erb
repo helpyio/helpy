@@ -1,6 +1,6 @@
 <div id="ticket-info" class="no-side-pad row">
   <div class="col-md-3 col-lg-3 hidden-xs hidden-sm" id="left-col-user-info">
-    <%= render partial: 'admin/users/user_info_with_tickets', locals: { user: @topic.user } if @topic.user.present? %>
+    <%= render partial: 'admin/users/user_info_with_tickets', locals: { user: @user } if @user.present? %>
   </div>
 
   <div id="ticket-controls" class="col-md-9 col-xs-12 col-lg-9">
@@ -32,14 +32,14 @@
 
     <% if @posts  %>
       <script>
-        Helpy.messages = '<%= j t(:collapsed_messages, count: (@posts.count-@topic.posts.notes.count)-2) %>';
+        Helpy.messages = '<%= j t(:collapsed_messages, count: (@posts.size-@topic.posts.notes.size)-2) %>';
       </script>
     <% end %>
     <div id="posts">
     <%= render :partial => 'admin/topics/post', :collection => @posts %>
     </div>
 
-    <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.count > 0 %>
+    <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.size > 0 %>
 
     <div class="add-form">
       <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>

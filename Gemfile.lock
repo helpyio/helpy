@@ -97,9 +97,6 @@ GEM
     builder (3.2.3)
     bulk_insert (1.7.0)
       activerecord (>= 3.2.0)
-    bullet (5.9.0)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     bundler-audit (0.6.0)
       bundler (~> 1.2)
       thor (~> 0.18)
@@ -698,6 +695,7 @@ GEM
     sassc (2.0.0)
       ffi (~> 1.9.6)
       rake
+    scout_apm (2.4.21)
     scss-lint (0.38.0)
       rainbow (~> 2.0)
       sass (~> 3.4.1)
@@ -771,7 +769,6 @@ GEM
     unicorn (5.4.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    uniform_notifier (1.12.1)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -805,7 +802,6 @@ DEPENDENCIES
   bootstrap_form
   brakeman
   bulk_insert
-  bullet
   bundler-audit
   byebug
   capybara (< 3.0)
@@ -892,6 +888,7 @@ DEPENDENCIES
   route_translator
   rubocop
   sass-rails (~> 5.0.7)
+  scout_apm
   scss-lint
   sdoc (~> 1.0.0)
   selectize-rails

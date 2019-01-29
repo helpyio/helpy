@@ -26,7 +26,7 @@
   </div>
   <div class="col-md-9 col-sm-9">
     <%#= content_tag :h4, t(:discussions, default: "Discussions") %>
-    <% if @topics.present? %>
+    <% if @topics.exists? %>
     <table id="topics" class="forum table-hover">
 
       <col width="80px" class="checkbox-col">
