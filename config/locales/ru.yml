@@ -1,525 +1,522 @@
-# TRANSLATOR(s): Anna Prosvirova, Dmitry Zuev, Oleg Bovykin
+# TRANSLATOR(s): Anna Prosvirova, Dmitry Zuev, Oleg Bovykin, Vladimir Lopin
 
 ru:
   language_name: 'Русский' # The name of the translation file, in that language
-  root: &root 'Главная'
-  how_can_we_help: "Чем мы можем помочь?"
-  browse_topics: "Выбор темы"
-  support_team: "Группа поддержки"
-  nothing_here: "Здесь еще ничего нет"
+  root: &root Главная
+  how_can_we_help: 'Чем мы можем помочь?'
+  browse_topics: 'Выбор темы'
+  support_team: 'Группа поддержки'
+  nothing_here: 'Здесь еще ничего нет'
 
   # Navigation
-  knowledgebase: "База знаний"
-  community: "Сообщество"
-  ask_a_question: "Задайте вопрос"
-  home: "Главная"
-  login: "Войти"
-  logout: "Выйти"
-  register: "Зарегистрироваться"
-  back_to: "Назад"
-  welcome_back: "Добро пожаловать снова, %{username}"
-  your_profile: "Ваши данные"
-  your_tickets: "Ваши заявки"
-  locale: "Язык"
-  change_your_locale: "Изменить язык"
+  knowledgebase: 'База знаний'
+  community: 'Сообщество'
+  ask_a_question: 'Задайте вопрос'
+  home: 'Главная'
+  login: 'Войти'
+  logout: 'Выйти'
+  register: 'Зарегистрироваться'
+  back_to: 'Назад'
+  welcome_back: 'Добро пожаловать снова, %{username}'
+  your_profile: 'Ваши данные'
+  your_tickets: 'Ваши заявки'
+  locale: 'Язык'
+  change_your_locale: 'Изменить язык'
 
   # Voting widget
-  did_this_help: "Ваша проблема решена?"
+  did_this_help: 'Ваша проблема решена?'
   yes_button: 'Да'
   no_button: 'Нет'
   yes_helped: 'Отлично! Спасибо за помощь!'
-  no_helped: "К сожалению это не помогло.  Пожалуйста свяжитесь со мной для подробной информации!"
+  no_helped: 'К сожалению это не помогло.  Пожалуйста свяжитесь со мной для подробной информации!'
 
   # Search
-  search_placeholder: "Введите ключевое слово, тему или вопрос"
-  no_results: "Ничего не найдено. Пожалуйста, попробуйте еще раз!"
+  search_placeholder: 'Введите ключевое слово, тему или вопрос'
+  no_results: 'Ничего не найдено. Пожалуйста, попробуйте еще раз!'
   results_found:
-    zero: "Ничего не найдено по запросу "
-    one: "один элемент найден по запросу "
-    few: "%{count} элемента найдено по запросу "
-    many: "%{count} элементов найдено по запросу "
+    zero: 'Ничего не найдено по запросу'
+    one: 'Один элемент найден по запросу'
+    few: '%{count} элемента найдено по запросу'
+    many: '%{count} элементов найдено по запросу'
 
   # Community
-  forum_name: "Топик"
-  subject: &subject "Тема"
-  message: "Cообщение"
-  last_activity: "Последняя активность"
-  topic: "Обсуждение"
-  replies: "ответы"
-  last_post: "Последний пост"
-  started_by: "Автор %{username}"
-  reply: "Ответить на этот топик"
-  submit_reply: "Ответьте"
-  posted: "Опубликовано"
-  start_discussion: "Начать новое обсуждение"
-  submit_start_discussion: "Начать обсуждение"
-  should_message_be_private: "Это сообщение должно быть приватным?"
-  only_support_can_respond: "Только поддержка может ответить (создается приватная заявка)"
-  responses_can_come_from_everyone: "Ответить может как поддержка, так и сообщество (рекомендуется)"
+  forum_name: 'Топик'
+  subject: &subject Тема
+  message: 'Cообщение'
+  last_activity: 'Последняя активность'
+  topic: 'Обсуждение'
+  replies: 'Ответы'
+  last_post: 'Последний пост'
+  started_by: 'Автор %{username}'
+  reply: 'Ответить на этот топик'
+  submit_reply: 'Ответьте'
+  posted: 'Опубликовано'
+  start_discussion: 'Начать новое обсуждение'
+  submit_start_discussion: 'Начать обсуждение'
+  should_message_be_private: 'Это сообщение должно быть приватным?'
+  only_support_can_respond: 'Только поддержка может ответить (создается приватная заявка)'
+  responses_can_come_from_everyone: 'Ответить может как поддержка, так и сообщество (рекомендуется)'
   collapsed_messages:
-    zero: ''
-    one: "1 свернутое сообщение"
-    few: "%{count} свернутых сообщения"
-    many: "%{count} свернутых сообщений"
+    zero: 'нет свернутых сообщений'
+    one: '1 свернутое сообщение'
+    few: '%{count} свернутых сообщения'
+    many: '%{count} свернутых сообщений'
 
   # Knowledgebase
-  written_by: "Автор"
-  last_edited: "Последняя редакция"
-  tagged: "Помечено"
-  asked_before: "Был ваш вопрос был дан ответ раньше? Мы считаем, что они могут быть похожи"
+  written_by: 'Автор'
+  last_edited: 'Последняя редакция'
+  tagged: 'Помечено'
+  asked_before: 'Был ваш вопрос был дан ответ раньше? Мы считаем, что они могут быть похожи'
 
   # Tickets
-  tickets: "Заявки"
-  no_tickets: "Вы пока не создавали заявок"
-  ticket_number: "№ заявки"
-  assigned_to_label: "Назначено на"
-  created_on: "Создано"
+  tickets: 'Заявки'
+  no_tickets: 'Вы пока не создавали заявок'
+  ticket_number: '№ заявки'
+  assigned_to_label: 'Назначено на'
+  created_on: 'Создано'
 
   # Get Help
-  get_help_header: "Всё ещё требуется помощь?"
-  get_help_button: "Начните обсуждение с нами"
+  get_help_header: 'Всё ещё требуется помощь?'
+  get_help_button: 'Начните обсуждение с нами'
 
   # Profile
   my_profile: 'Мой профиль'
 
   # Locales
-  select_locale: "Выбрать язык"
+  select_locale: 'Выбрать язык'
 
   # footer
-  powered_by: "Создано с помощью Helpy. Сервис поддержки с открытым исходным кодом."
-  get_your_copy: "Получите свою копию на GitHub"
-  # version: "Version:"
+  powered_by: 'Создано с помощью Helpy. Сервис поддержки с открытым исходным кодом.'
+  get_your_copy: 'Получите свою копию на GitHub'
+  version: 'Версия:'
 
   # flag
-  flag_for_review: "Пометить для обзора"
-  flag_post_for_review: "Пометить сообщение для обзора"
-  flag_post_placeholder: "Опишите причину установки метки на это сообщение"
-  flag: "Метка"
+  flag_for_review: 'Пометить для обзора'
+  flag_post_for_review: 'Пометить сообщение для обзора'
+  flag_post_placeholder: 'Опишите причину установки метки на это сообщение'
+  flag: 'Метка'
 
 
   # devise/sessions/new
-  login: "Войти"
+  login: 'Войти'
 
   # devise/shared/links
-  forgot_password: Забыли пароль?
+  forgot_password: 'Забыли пароль?'
 
   # devise/passwords/new
-  send_instructions: "Отправьте мне инструкции"
+  send_instructions: 'Отправьте мне инструкции'
 
   # devise/passwords/edit
-  change_password: Изменить пароль
-  new_password: Новый пароль
-  new_password_confirmation: Подтвердите новый пароль
+  change_password: 'Изменить пароль'
+  new_password: 'Новый пароль'
+  new_password_confirmation: 'Подтвердите новый пароль'
 
   # devise/confirmations/new
-  resend: Отправить еще раз инструкции подтверждения
+  resend: 'Отправить еще раз инструкции подтверждения'
 
   # devise/registrations/new
-  sign_up: Регистрация
+  sign_up: 'Регистрация'
 
   # flash messages
-  model_created: "%{object_name} сохранено"
-  model_updated: "%{object_name} обновлено"
-  model_destroyed: "%{object_name} удалено"
+  model_created: '%{object_name} сохранено'
+  model_updated: '%{object_name} обновлено'
+  model_destroyed: '%{object_name} удалено'
 
   # Admin menu
-  inbox: Входящие
-  discussions: Заявки
-  content: Статьи
-  communities: Сообщества
-  app_store: Приложения
-  search: Поиск
-  internal_content: Внутренние статьи
-  new_ticket: Новая заявка
-  reports: Отчеты
-  helpcenter: "Центр помощи"
-  get_help: "Поддержка"
-  report_bug: "Сообщить об ошибке"
-  suggest_feature: "Предложить изменения"
-  shortcuts: "Горячие клавиши"
-  sponsors: "Спонсоры"
+  inbox: 'Входящие'
+  discussions: 'Заявки'
+  content: 'Статьи'
+  communities: 'Сообщества'
+  app_store: 'Приложения'
+  search: 'Поиск'
+  internal_content: 'Внутренние статьи'
+  new_ticket: 'Новая заявка'
+  reports: 'Отчеты'
+  helpcenter: 'Центр помощи'
+  get_help: 'Поддержка'
+  report_bug: 'Сообщить об ошибке'
+  suggest_feature: 'Предложить изменения'
+  shortcuts: 'Горячие клавиши'
+  sponsors: 'Спонсоры'
 
 
   # Admin main/statuses
-  support_pipeline: Support Pipeline
-  new: Новая
-  active: Активная
-  open: Открыта
-  mine: Моя
-  pending: На рассмотрении
-  closed: Решена
-  spam: Спам
-  trash: Корзина
-  discussion_managment: Управление обсуждениями
-  open_new_discussion: Новое обсуждение
-  assigned_to: "назначено на %{agent}"
-  unassigned: Не назначено
-  no_team_assigned: Назначено на команду
-  assign_to: Группа/Команда
-  unassign_from_team: Снять назначение с команды
-  private: Приватный
-  public: Публичный
-  save_changes: Сохранить изменения
-  merge: Объединить
-  merge_confirm: Вы уверены что хотите объединить заявки?
-  customer_conversation: Переписка с клиентом
-  internal_ticket: Внутренняя Заявка
-  unassign_agent: Снять назначение с исполнителя
+  support_pipeline: 'Support Pipeline'
+  new: 'Новые'
+  active: 'Активные'
+  open: 'Открытые'
+  mine: 'Мои'
+  pending: 'На рассмотрении'
+  closed: 'Решеные'
+  spam: 'Спам'
+  trash: 'Корзина'
+  discussion_managment: 'Управление обсуждениями'
+  open_new_discussion: 'Новое обсуждение'
+  assigned_to: 'назначено на %{agent}'
+  unassigned: 'Не назначено'
+  no_team_assigned: 'Назначено на команду'
+  assign_to: 'Группа/Команда'
+  unassign_from_team: 'Снять назначение с команды'
+  private: 'Приватный'
+  public: 'Публичный'
+  save_changes: 'Сохранить изменения'
+  merge: 'Объединить'
+  merge_confirm: 'Вы уверены что хотите объединить заявки?'
+  customer_conversation: 'Переписка с клиентом'
+  internal_ticket: 'Внутренняя Заявка'
+  unassign_agent: 'Снять назначение с исполнителя'
 
   # Discussion controls
-  change_status: Изменить статус
+  change_status: 'Изменить статус'
   status: &status Статус
-  mark_closed: Отметить как решённое
-  reopen: Открыть снова
-  mark_spam: Отметить как спам
-  mark_new: Отметить как новое
+  mark_closed: 'Отметить как решённое'
+  reopen: 'Открыть снова'
+  mark_spam: 'Отметить как спам'
+  mark_new: 'Отметить как новое'
   assign_agent: &assign_agent Назначить агента
   tag_with: &tag_with Установить тег на заявку
   selected_messages:
-    zero: "Нет выбранных сообщений"
-    one: "1 выбранное сообщение"
-    few: "%{count} выбранных сообщения"
-    many: "%{count} выбранных сообщений"
-  mark_as: "Пометить"
-  move_to: "Переместить"
-  users_history: "%{role} - полная история"
+    zero: 'Нет выбранных сообщений'
+    one: '1 выбранное сообщение'
+    few: '%{count} выбранных сообщения'
+    many: '%{count} выбранных сообщений'
+  mark_as: 'Пометить'
+  move_to: 'Переместить'
+  users_history: '%{role} - полная история'
 
   # Discussion messages
-  new_message: "Эта заметка отмечена как новая службой поддержки"
-  spam_message: "Эта заявка перенесена в спам службой поддержки"
-  reopen_message: "Это сообщение было снова открыто службой поддержки."
-  closed_message: "Эта заявка была закрыта службой поддержки."
-  trash_message: "Эта заявка была удалёна."
-  assigned_message: "Обсуждение было перенесено в %{assigned_to}."
-  unassigned_message: "С заявки снято назначение исполнителя."
-  assigned_group: "Заявка была назначена на %{assigned_group}."
-  converted_to_ticket: "Это обсуждение было переведено в приватную заявку."
-  converted_to_topic: "Эта заявка была переведена в открытое обсуждение и перенесена в %{forum_name}."
-  tagged_with: "Эта заявка была помечена тегами %{tagged_with}"
-  notes_hidden: "%{hidden_notes} скрытых заметок к этой заявке. Вы можете увидеть их нажав в любом месте этой заявки!"
-  topic_added_from: "%{kind} добавлено из %{channel}"
-
+  new_message: 'Эта заметка отмечена как новая службой поддержки'
+  spam_message: 'Эта заявка перенесена в спам службой поддержки'
+  reopen_message: 'Это сообщение было снова открыто службой поддержки.'
+  closed_message: 'Эта заявка была закрыта службой поддержки.'
+  trash_message: 'Эта заявка была удалёна.'
+  assigned_message: 'Обсуждение было перенесено в %{assigned_to}.'
+  unassigned_message: 'С заявки снято назначение исполнителя.'
+  assigned_group: 'Заявка была назначена на %{assigned_group}.'
+  converted_to_ticket: 'Это обсуждение было переведено в приватную заявку.'
+  converted_to_topic: 'Эта заявка была переведена в открытое обсуждение и перенесена в %{forum_name}.'
+  tagged_with: 'Эта заявка была помечена тегами %{tagged_with}'
+  notes_hidden: '%{hidden_notes} скрытых заметок к этой заявке. Вы можете увидеть их нажав в любом месте этой заявки!'
+  topic_added_from: '%{kind} добавлено из %{channel}'
 
   # User Admin
-  users: Пользователи
-  account: Аккаунт
-  contact_info: Контакт
-  social_info: Социальные сети
-  edit_user: Редактировать пользователя
-  delete_user: Удалить пользователя
-  work_phone: номер рабочего телефона
-  cell_phone: номер мобильного телефона
-  last_seen: "Был онлайн"
-  scrub_user: "Сделать анонимным"
-  anonymize_user_warning: "Вы уверены что хотите сделать анонимным %{user_name}? Это навсегда скроет личные данные пользователя, но сохранит все его заявки и публичные сообщения."
-  delete_user_warning: "Вы уверены что хотите удалить %{user_name}? Это навсегда удалит пользователя и все его заявки, сообщения, ответы и темы форума."
-  click_to_edit: нажмите для редактирования %{what}
+  users: 'Пользователи'
+  account: 'Аккаунт'
+  contact_info: 'Контакт'
+  social_info: 'Социальные сети'
+  edit_user: 'Редактировать пользователя'
+  delete_user: 'Удалить пользователя'
+  work_phone: 'номер рабочего телефона'
+  cell_phone: 'номер мобильного телефона'
+  last_seen: 'Был онлайн'
+  scrub_user: 'Сделать анонимным'
+  anonymize_user_warning: 'Вы уверены что хотите сделать анонимным %{user_name}? Это навсегда скроет личные данные пользователя, но сохранит все его заявки и публичные сообщения.'
+  delete_user_warning: 'Вы уверены что хотите удалить %{user_name}? Это навсегда удалит пользователя и все его заявки, сообщения, ответы и темы форума.'
+  click_to_edit: 'нажмите для редактирования %{what}'
 
   # Priorities
   select_priority: &priority Выбрать приоритет
-  vip_priority: VIP
-  very_high_priority: Экстренный
-  high_priority: Высокий
-  normal_priority: Нормальный
-  low_priority: Низкий
+  vip_priority: 'VIP'
+  very_high_priority: 'Экстренный'
+  high_priority: 'Высокий'
+  normal_priority: 'Нормальный'
+  low_priority: 'Низкий'
 
   # Roles
-  select_role: Выбрать роль
-  admin_role: Администратор
-  agent_role: Агент
-  editor_role: Редактор
-  user_role: Клиент
-  add_more_agents: "Добавить еще пользователей"
+  select_role: 'Выбрать роль'
+  admin_role: 'Администратор'
+  agent_role: 'Агент'
+  editor_role: 'Редактор'
+  user_role: 'Клиент'
+  add_more_agents: 'Добавить еще пользователей'
 
   # Groups
-  groups: "Группы"
-  add_new_group: "Новая Группа"
-  group: "Группа"
-  tag_group: ""
-  tag_name: "Имя Группы"
-  description: "Описание"
-  color: "Цвет"
-  show_on_helpcenter: "Отображать в Центре помощи"
-  show_on_admin: "Отображать в Админ панели"
-  email_address: "Email адрес"
-  from_name: "От кого"
+  groups: 'Группы'
+  add_new_group: 'Новая Группа'
+  group: 'Группа'
+  tag_group: ''
+  tag_name: 'Имя Группы'
+  description: 'Описание'
+  color: 'Цвет'
+  show_on_helpcenter: 'Отображать в Центре помощи'
+  show_on_admin: 'Отображать в Админ панели'
+  email_address: 'Email адрес'
+  from_name: 'От кого'
 
   # Keyboard Shortcuts
-  shortcut_then: "Далее"
-  listing_views: "Список просмотров"
-  keyboard_shortcuts: "Горячие клавиши"
-  show_new_tickets: "Показать новые заявки"
-  show_all_tickets: "Показать все заявки"
-  show_open_tickets: "Показать открытые заявки"
-  show_tickets_assigned_to_you: "Показать назначенные на меня заявки"
-  show_pending_tickets_assigned_to_you: "Показать ожидающие мои заявки"
-  show_closed_tickets: "Отобразить закрытые заявки"
-  search_for_tickets: "Искать заявку"
-  viewing_tickets: "Посмотреть заявки"
-  select_previous_ticket: "Выбрать предыдущую заявку"
-  select_next_ticket: "Выбрать следующую заявку"
-  view_selected_ticket: "Просмотреть выбранную заявку"
-  jump_to_a_specific_ticket_number: "Перейти к номеру заявки"
-  ticket_actions: "Действия по заявке"
-  assign_the_ticket: "Назначить заявку"
-  move_the_ticket: "Переместить заявку"
-  expand_the_ticket_thread: "Расширить заявку до обсуждение"
-  reply_to_the_ticket: "Ответить на заявку"
-  add_an_internal_note: "Добавить внутреннюю заметку"
-  change_ticket_status: "Сменить статус заявки"
-  associate_with_a_group: "Назначить на группу"
-  ticket_status: "Статус заявки"
-  mark_resolved: "Закрыть заявку"
-  reopen_ticket: "Переоткрыть заявку"
-  set_to_new: "Пометить как новый"
-  mark_as_spam: "Пометить как спам"
-  move_to_trash: "Переместить в корзину"
-  ticket_number: "номер заявки"
+  shortcut_then: 'Далее'
+  listing_views: 'Список просмотров'
+  keyboard_shortcuts: 'Горячие клавиши'
+  show_new_tickets: 'Показать новые заявки'
+  show_all_tickets: 'Показать все заявки'
+  show_open_tickets: 'Показать открытые заявки'
+  show_tickets_assigned_to_you: 'Показать назначенные на меня заявки'
+  show_pending_tickets_assigned_to_you: 'Показать ожидающие мои заявки'
+  show_closed_tickets: 'Отобразить закрытые заявки'
+  search_for_tickets: 'Искать заявку'
+  viewing_tickets: 'Посмотреть заявки'
+  select_previous_ticket: 'Выбрать предыдущую заявку'
+  select_next_ticket: 'Выбрать следующую заявку'
+  view_selected_ticket: 'Просмотреть выбранную заявку'
+  jump_to_a_specific_ticket_number: 'Перейти к номеру заявки'
+  ticket_actions: 'Действия по заявке'
+  assign_the_ticket: 'Назначить заявку'
+  move_the_ticket: 'Переместить заявку'
+  expand_the_ticket_thread: 'Расширить заявку до обсуждение'
+  reply_to_the_ticket: 'Ответить на заявку'
+  add_an_internal_note: 'Добавить внутреннюю заметку'
+  change_ticket_status: 'Сменить статус заявки'
+  associate_with_a_group: 'Назначить на группу'
+  ticket_status: 'Статус заявки'
+  mark_resolved: 'Закрыть заявку'
+  reopen_ticket: 'Переоткрыть заявку'
+  set_to_new: 'Пометить как новый'
+  mark_as_spam: 'Пометить как спам'
+  move_to_trash: 'Переместить в корзину'
+  ticket_number: 'номер заявки'
 
   # User search results
   users_found:
     zero: 'Пользователей не найдено'
-    one: "1 пользователь найден по запросу %{query}"
-    few: "%{count} пользователя найдено по запросу %{query}"
-    many: "%{count} пользователей найдено по запросу %{query}"
+    one: '1 пользователь найден по запросу %{query}'
+    few: '%{count} пользователя найдено по запросу %{query}'
+    many: '%{count} пользователей найдено по запросу %{query}'
 
   # Invite users
-  invite_users: "Пригласить новых пользователей"
-  invite_emails: "Email адреса"
-  invite_emails_placeholder: "Введите один или более email, чтобы выслать приглашение"
-  invite_message: "Сообщение"
-  invite_message_placeholder: "Дополнительное сообщение, которое будет выслано новым пользователям"
-  invite_role: "Роль для приглашаемых пользователей"
-  send_invite: "Выслать приглашение"
+  invite_users: 'Пригласить новых пользователей'
+  invite_emails: 'Email адреса'
+  invite_emails_placeholder: 'Введите один или более email, чтобы выслать приглашение'
+  invite_message: 'Сообщение'
+  invite_message_placeholder: 'Дополнительное сообщение, которое будет выслано новым пользователям'
+  invite_role: 'Роль для приглашаемых пользователей'
+  send_invite: 'Выслать приглашение'
 
   # Discussion View
-  asked_a_question: "%{user_name} задал вопрос..."
-  replied: "%{user_name} ответил..."
-  posted_note: "%{user_name} опубликовал внутреннюю заметку..."
-  type_reply: Введите ответ или выберите из общего сообщения ниже
-  select_common: Выберите Общий Ответ
-  reply: Ответьте
-  internal_note: Внутренняя заметка
-  mark_as_resolved: Пометить как решенное
+  asked_a_question: '%{user_name} задал вопрос...'
+  replied: '%{user_name} ответил...'
+  posted_note: '%{user_name} отредактировал внутреннюю заметку...'
+  type_reply: 'Введите ответ или выберите из общего сообщения ниже'
+  select_common: 'Выберите Общий Ответ'
+  reply: 'Ответьте'
+  internal_note: 'Внутренняя заметка'
+  mark_as_resolved: 'Пометить как решенное'
   upvote:
-    zero: "Голосовать | %{count}"
-    one: "Голосовать | %{count}"
-    few: "Голосовать | %{count}"
-    many: "Голосовать | %{count}"
+    one: 'Голосовать | %{count}'
+    other: 'Голосовать | %{count}'
 
   # Content
-  new_category: Новая раздел
-  new_content: Новый статья
-  front_page_categories: Разделы на главной
-  other_categories: Другие разделы
-  edit: Редактировать
-  edit_category: Редактировать раздел
-  select_category: Выбрать раздел
-  delete: Удалить
-  view_and_edit: "Просмотр и редактирование статьи"
-  delete_confirm: "Вы уверены, что хотите удалить?"
-  select_icon_helptext: "Выберите иконку для этого раздела (опционально)"
-  translate: "Переведите на другой язык"
-  view_on_site: "Посмотреть на сайте"
-  written_on: "Написано %{date_written}"
-  content_last_updated: "Обновлено %{date_updated}"
-  featured_content: "Рекомендовано"
-  draft_content: "Черновик"
-  published_content: "Опубликовано"
-  additional_settings: "Дополнительные настройки"
-  content_status: "Статус статьи"
-  convert_content: "Создать статью из этого сообщения"
-  upload_image: "Загрузить Изображение"
-  new_discussion: "Создать новое обсуждение"
-  new_discussion_post: "Обсуждение #%{topic_id} было создано из этого'
+  new_category: 'Новая раздел'
+  new_content: 'Новый статья'
+  front_page_categories: 'Разделы на главной'
+  other_categories: 'Другие разделы'
+  edit: 'Редактировать'
+  edit_category: 'Редактировать раздел'
+  select_category: 'Выбрать раздел'
+  delete: 'Удалить'
+  view_and_edit: 'Просмотр и редактирование статьи'
+  delete_confirm: 'Вы уверены, что хотите удалить?'
+  select_icon_helptext: 'Выберите иконку для этого раздела (опционально)'
+  translate: 'Переведите на другой язык'
+  view_on_site: 'Посмотреть на сайте'
+  written_on: 'Написано %{date_written}'
+  content_last_updated: 'Обновлено %{date_updated}'
+  featured_content: 'Рекомендовано'
+  draft_content: 'Черновик'
+  published_content: 'Опубликовано'
+  additional_settings: 'Дополнительные настройки'
+  content_status: 'Статус статьи'
+  convert_content: 'Создать статью из этого сообщения'
+  upload_image: 'Загрузить Изображение'
+  new_discussion: 'Создать новое обсуждение'
+  new_discussion_post: 'Обсуждение #%{topic_id} было создано из этого'
   new_discussion_topic_title: 'Выделено из #%{original_id}-%{original_name}'
   change_owner_note: 'Автор изменен с %{old} на %{new}'
 
   # Internal Content
-  no_internal_content_title: "Здесь пока нет внутренней документации!"
-  no_internal_content_text: "Не беспокойтесь! Чтобы наполнить раздел внутренней документации, перейдите в Центр помощи > Статьи. Затем создайте документ во Внутреннем Разделе, и можете поделиться своими знаниями с вашей командой написав несколько статей!"
+  no_internal_content_title: 'Здесь пока нет внутренней документации!'
+  no_internal_content_text: 'Не беспокойтесь! Чтобы наполнить раздел внутренней документации, перейдите в Центр помощи > Статьи. Затем создайте документ во Внутреннем Разделе, и можете поделиться своими знаниями с вашей командой написав несколько статей!'
 
   # Communities
-  new_community: Создать сообщество
-  create_new_community: Создать сообщество
-  layout_select: Выбрать формат
-  layout_table: Таблица
-  layout_grid: Сетка
-  layout_qna: Вопрос-ответ
-
+  new_community: 'Создать сообщество'
+  create_new_community: 'Создать сообщество'
+  layout_select: 'Выбрать формат'
+  layout_table: 'Таблица'
+  layout_grid: 'Сетка'
+  layout_qna: 'Вопрос-ответ'
+  
   # Mail messages
-  new_user_subject: "Добро пожаловать на %{site_name}"
-  hello: "Привет %{user_name}"
-  thank_you: "Благодарим!"
-  new_user: "Благодарим Вас за обращение к нам. Ваше сообщение было получено нашей службой поддержки, и мы ответим Вам ближайшее время."
-  account_generated: "Учетная запись была создана для вас. Чтобы войти в систему, пожалуйста, используйте эту ссылку:"
-  above_this_line: "Убедитесь, что ваш ответ появится выше этой линии"
-  message_id: "№ заявки"
-  message_response: "Следующее сообщение было размещено в ответ на ваш вопрос:"
-  view_online: "Посмотреть это онлайн:"
+  new_user_subject: 'Добро пожаловать на %{site_name}'
+  hello: 'Привет %{user_name}'
+  thank_you: 'Благодарим!'
+  new_user: 'Благодарим Вас за обращение к нам. Ваше сообщение было получено нашей службой поддержки, и мы ответим Вам ближайшее время.'
+  account_generated: 'Учетная запись была создана для вас. Чтобы войти в систему, пожалуйста, используйте эту ссылку:'
+  above_this_line: 'Убедитесь, что ваш ответ появится выше этой линии'
+  message_id: '№ заявки'
+  message_response: 'Следующее сообщение было размещено в ответ на ваш вопрос:'
+  view_online: 'Посмотреть это онлайн:'
 
   # Admin notifications
-  notify_new_private: "Новая клиентская заявка получена от %{user_name}:"
-  notify_new_public: "Новое публичное сообщение было опубликовано %{user_name}:"
-  notify_new_reply: "Новый ответ клиента был получен от %{user_name}:"
+  notify_new_private: 'Новая клиентская заявка получена от %{user_name}:'
+  notify_new_public: 'Новое публичное сообщение было опубликовано %{user_name}:'
+  notify_new_reply: 'Новый ответ клиента был получен от %{user_name}:'
   to_reply: 'Ответить на это сообщение непосредственно или онлайн:'
 
   # Notifications settings panel
-  notify_on_private: "Когда была получена новая заявка"
-  notify_on_public: "Когда было опубликовано новое публичное сообщение"
-  notify_on_reply: "Когда был получен новый ответ на заявку"
+  notify_on_private: 'О получении новой заявки'
+  notify_on_public: 'О создании нового публичного сообщения'
+  notify_on_reply: 'О получении нового ответа в заявке'
 
   # settings
-  agent_settings: "Настройки Агента"
-  notifications: "Уведомления"
-  notifications_description:
-  settings: "Настройки"
-  general: "Основные"
-  general_description: "Настройка основных параметров системы Helpy"
-  design: "Дизайн"
-  design_description: "Управление цветами, логотипами и другими элементами дизайна вашего Helpy"
-  international: "Мультиязычность"
-  international_description: "Позволяет выбрать используемые в ваших заявках языки"
-  widget: "Встраиваемые Виджеты"
-  widget_description:
-  common_replies: "Основные Ответы"
-  common_replies_description:
-  integrations: "Интеграция"
-  integrations_description:
-  theme:
-  theme_description:
-  email: "Email"
-  email_description:
-  customers: "Клиенты"
-  users_description:
-  team: "Команды"
-  users_description:
-  team_group: "Группы команд"
-  group_description:
+  agent_settings: 'Настройки Агента'
+  notifications: 'Уведомления'
+  notifications_description: 'Описание уведомлений'
+  settings: 'Настройки'
+  general: 'Основные'
+  general_description: 'Настройка основных параметров системы Helpy'
+  design: 'Дизайн'
+  design_description: 'Управление цветами, логотипами и другими элементами дизайна вашего Helpy'
+  international: 'Мультиязычность'
+  international_description: 'Позволяет выбрать используемые в ваших заявках языки'
+  widget: 'Встраиваемые Виджеты'
+  widget_description: 'Описание Виджетов'
+  common_replies: 'Основные Ответы'
+  common_replies_description: 'Описание основных ответов'
+  integrations: 'Интеграция'
+  integrations_description: 'Описание интеграции'
+  theme: 'Тема'
+  theme_description: 'Описание темы'
+  email: 'Email'
+  email_description: 'Описание Email'
+  customers: 'Клиенты'
+  customers_description: 'Описание пользователей'
+  team: 'Команды'
+  team_description: 'Описание команд'
+  team_group: 'Группы команд'
+  group_description: 'Описание групп'
 
   # General
-  site_name: Название сайта
-  site_url: URL сайта
-  parent_site: Родительский сайт
-  parent_company: Родительская компания
-  site_tagline: Site Tagline
-  enable_forums: Включить Форумы сообщества
-  enable_knowledgebase: Включить Базу знаний
-  enable_tickets: Включить Приватные заявки
-  enable_teams: Включить Команды
-  enable_welcome_email: Отправлять приветственное сообщение новым пользователям
+  site_name: 'Название сайта'
+  site_url: 'URL сайта'
+  parent_site: 'Родительский сайт'
+  parent_company: 'Родительская компания'
+  site_tagline: 'Site Tagline'
+  enable_forums: 'Включить Форумы сообщества'
+  enable_knowledgebase: 'Включить Базу знаний'
+  enable_tickets: 'Включить Приватные заявки'
+  enable_teams: 'Включить Команды'
+  enable_welcome_email: 'Отправлять приветственное сообщение новым пользователям'
 
   # Design
-  header_logo: Логотип в заголовке
-  search_background: Выбрать цвет фона
-  top_bar: Цвет заголовка
-  link_color: Цвет гиперссылки
-  form_background: Фоновый цвет формы
-  still_need_help:
+  header_logo: 'Логотип в заголовке'
+  search_background: 'Выбрать цвет фона'
+  top_bar: 'Цвет заголовка'
+  link_color: 'Цвет гиперссылки'
+  form_background: 'Фоновый цвет формы'
+  still_need_help: 'Всё еще нужна помощь'
 
   # Locales
-  supported_locales: Используемые языки
-  default_locale: Язык по-умолчанию
-  select_default_locale: "Выбрать язык по-умолчанию..."
+  supported_locales: 'Используемые языки'
+  default_locale: 'Язык по-умолчанию'
+  select_default_locale: 'Выбрать язык по-умолчанию...'
 
   # Widget
-  show_widget: Отображать виджеты на сайте службы поддержки
-  widget_background: Фоновый цвет виджета
-  button_color: Цвет кнопки виджета
-  button_text_color: Цвет текста виджета
+  show_widget: 'Отображать виджеты на сайте службы поддержки'
+  widget_background: 'Фоновый цвет виджета'
+  button_color: 'Цвет кнопки виджета'
+  button_text_color: 'Цвет текста виджета'
 
   # Integrations
-  incoming_webhook: Incoming Webhook
-  incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
-  enable_webhook_url: Enable Incoming Webhooks
-  google_analytics: Google Analytics
-  google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
-  enable_google_analytics: Enable Google Analytics
-  google_analytics_id: Google Analytics ID
-  recaptcha_integration: Recaptcha
-  recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
-  enable_recaptcha: Enable Recaptcha
-  recaptcha_site_key: Recaptcha Site Key
-  recaptcha_api_key: Recaptcha API Key
-  cloudinary_integration: Cloudinary
-  cloudinary_description: Cloudinary offers image hosting and transformation services.
-  enable_cloudinary: Enable Cloudinary
-  cloudinary_cloud_name: Cloudinary Cloud Name
-  cloudinary_api_key: Cloudinary API Key
-  cloudinary_api_secret: Cloudinary API Secret
+  incoming_webhook: 'Incoming Webhook'
+  incoming_webhook_description: 'Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is'
+  enable_webhook_url: 'Enable Incoming Webhooks'
+  google_analytics: 'Google Analytics'
+  google_analytics_description: 'Send Helpdesk usage statistics into Google Analytics for reporting and visualization.'
+  enable_google_analytics: 'Enable Google Analytics'
+  google_analytics_id: 'Google Analytics ID'
+  recaptcha_integration: 'Recaptcha'
+  recaptcha_description: 'Recaptcha helps protect your self service helpdesk from spam.'
+  enable_recaptcha: 'Enable Recaptcha'
+  recaptcha_site_key: 'Recaptcha Site Key'
+  recaptcha_api_key: 'Recaptcha API Key'
+  cloudinary_integration: 'Cloudinary'
+  cloudinary_description: 'Cloudinary offers image hosting and transformation services.'
+  enable_cloudinary: 'Enable Cloudinary'
+  cloudinary_cloud_name: 'Cloudinary Cloud Name'
+  cloudinary_api_key: 'Cloudinary API Key'
+  cloudinary_api_secret: 'Cloudinary API Secret'
 
   # Email
-  mail_service: Inbound Mail Service Provider
-  send_email: Enable Outbound (SMTP) Email
-  boolean_no: No
-  boolean_yes: Yes
-  admin_email: Admin Email
-  from_email: From Email
-  smtp_mail_username: SMTP Username
-  smtp_mail_password: SMTP Password
-  mail_smtp: SMTP Server
-  mail_port: SMTP Port
-  mail_domain: SMTP Domain
+  mail_service: 'Inbound Mail Service Provider'
+  send_email: 'Enable Outbound (SMTP) Email'
+  boolean_no: 'No'
+  boolean_yes: 'Yes'
+  admin_email: 'Admin Email'
+  from_email: 'From Email'
+  smtp_mail_username: 'SMTP Username'
+  smtp_mail_password: 'SMTP Password'
+  mail_smtp: 'SMTP Server'
+  mail_port: 'SMTP Port'
+  mail_domain: 'SMTP Domain'
 
   # API Key Managmeent
-  api_keys: "API Keys"
-  key_name: "Key Name"
-  token: "Token"
-  add_key: "Add a New Key"
-  expire_token: "Expire Token"
-  expired: "Expired"
-  expire_confirm: "Please confirm your really want to expire this token."
-  spec_note: "You can read and test out an interactive API spec at: "
+  api_keys: 'API Keys'
+  key_name: 'Key Name'
+  token: 'Token'
+  add_key: 'Add a New Key'
+  expire_token: 'Expire Token'
+  expired: 'Expired'
+  expire_confirm: 'Please confirm your really want to expire this token.'
+  spec_note: 'You can read and test out an interactive API spec at:'
 
   # Insights
-  activity_report: "Отчет активности"
-  team_insights: "Показатели команд"
-  filter_by_date: "Фильтровать по дате"
-  today: "Сегодня"
-  yesterday: "Вчера"
-  this_week: "На этой неделе"
-  last_week: "На прошлой неделе"
-  this_month: "В этом месяце"
-  last_month: "В прошлом месяце"
-  date_range: "Диапазон дат"
-  insight_start_range: "Начальная дата:"
-  insight_end_range: "Конечная дата:"
-  insight_filter: "Фильтр"
+  activity_report: 'Отчет активности'
+  team_insights: 'Показатели команд'
+  filter_by_date: 'Фильтровать по дате'
+  today: 'Сегодня'
+  yesterday: 'Вчера'
+  this_week: 'На этой неделе'
+  last_week: 'На прошлой неделе'
+  this_month: 'В этом месяце'
+  last_month: 'В прошлом месяце'
+  date_range: 'Диапазон дат'
+  insight_start_range: 'Начальная дата:'
+  insight_end_range: 'Конечная дата:'
+  insight_filter: 'Фильтр'
   insights_blurb_one:
-    one: "<strong>%{period}</strong> ваши пользователи открыли 1 новую заявку"
-    few: "<strong>%{period}</strong> ваши пользователи открыли <strong>%{count} новые заявки</strong>"
-    many: "<strong>%{period}</strong> ваши пользователи открыли <strong>%{count} новых заявок</strong>"
-  insights_blurb_two: "на которые ответила ваша команда <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three_html_html: "среднее время ответа <strong>%{response_time}</strong>"
-  no_discussions: "Новые заявки не заводились <strong>%{period}</strong>"
-  assigned_topics: "Назначенные Заявки"
-  responded: "Отреагировали"
-  closed: "Закрыли"
-  replies: "Ответили"
-  median_time: "Среднее время первого ответа"
+    one: '<strong>%{period}</strong> ваши пользователи открыли 1 новую заявку'
+    few: '<strong>%{period}</strong> ваши пользователи открыли <strong>%{count} новые заявки</strong>'
+    many: '<strong>%{period}</strong> ваши пользователи открыли <strong>%{count} новых заявок</strong>'
+  insights_blurb_two: 'на которые ответила ваша команда <strong>%{number_replied} (%{percentage_replied})</strong>'
+  insights_blurb_three_html_html: 'среднее время ответа <strong>%{response_time}</strong>'
+  no_discussions: 'Новые заявки не заводились <strong>%{period}</strong>'
+  assigned_topics: 'Назначенные Заявки'
+  responded: 'Отреагировали'
+  closed: 'Закрыли'
+  replies: 'Ответили'
+  median_time: 'Среднее время первого ответа'
 
   # Reports
-  ticketing_reports: Отчеты по Заявкам
-  group_report: "Отчет по Группе"
-  team_reports: "Отчет по Команде"
-  percent_resolved: Процент решенных заявок
-  average_resolution_time: Среднее время на решение
-  new_tickets: Новые Заявки
-  new_tickets_explain: Число заявков которые получены вами за период.
-  tickets_per_day: Заявок за День
-  tickets_per_day_explain: Среднее число заявок в День.
-  replies_explain: Число ответов вашими агентами за период.
-  actions_explain: Общее число действий (ответы и внтуренние заметки) за этот период. Хороший индикатор насколько используется ваш Helpy.
-  closed_explain: Число заявок закрытых за этот период. Должно быть близко к количеству новых заявок за предыдущие периоды.
+  ticketing_reports: 'Отчеты по Заявкам'
+  group_report: 'Отчет по Группе'
+  team_reports: 'Отчет по Команде'
+  percent_resolved: 'Процент решенных заявок'
+  average_resolution_time: 'Среднее время на решение'
+  new_tickets: 'Новые Заявки'
+  new_tickets_explain: 'Число заявок которые получены вами за период.'
+  tickets_per_day: 'Заявок за День'
+  tickets_per_day_explain: 'Среднее число заявок в День.'
+  replies_explain: 'Число ответов вашими агентами за период.'
+  actions_explain: 'Общее число действий (ответы и внтуренние заметки) за этот период. Хороший индикатор насколько используется ваш Helpy.'
+  closed_explain: 'Число заявок закрытых за этот период. Должно быть близко к количеству новых заявок за предыдущие периоды.'
 
   # IMPORT/EXPORT
-  file_type: Тип
-  file_users: Пользователи
-  file_tickets: Заявки
-  file_replies: Ответы
-  file_docs: Документы
-  file_categories: Разделы
-  file_forums: Форумы
+  file_type: 'Тип'
+  file_users: 'Пользователи'
+  file_tickets: 'Заявки'
+  file_replies: 'Ответы'
+  file_docs: 'Документы'
+  file_categories: 'Разделы'
+  file_forums: 'Форумы'
   import: 'Импорт CSV'
   new_import: 'Новый Импорт'
   export: 'Экспорт CSV'
@@ -536,85 +533,82 @@ ru:
   object: 'Объект'
   import_details: '#%{id} Подробности Импорта'
   select_for_export: 'Экспортировать %{model} to .csv'
-  file_date_created: Дата Создания
-  import_total_submitted: Общее количество отправленных записей
-  import_total_created: Общее количество созданных записей
-  file_name: Имя Файла
-  file_download: Скачать
-  file_delete: Удалить
-  file_delete_confirm: "Вы уверены что хотите удалить этот .csv?"
+  file_date_created: 'Дата Создания'
+  import_total_submitted: 'Общее количество отправленных записей'
+  import_total_created: 'Общее количество созданных записей'
+  file_name: 'Имя Файла'
+  file_download: 'Скачать'
+  file_delete: 'Удалить'
+  file_delete_confirm: 'Вы уверены что хотите удалить этот .csv?'
 
   kind_type: &kind Жанр
 
- activerecord:
+  activerecord:
     attributes:
       user:
-        email: почта
-        password: пароль
-        name: Имя
-        company: Компания
-        work_phone: номер рабочего телефона
-        cell_phone: номер мобильного телефона
-        city: Город
-        state: Область
-        zip: Индекс
-        signature: Подпись
-        title: Заголовок
-        time_zone: Часовой пояс
-        street: Улица
-        notes: Заметки
+        email: 'Почта'
+        password: 'Пароль'
+        name: 'Имя'
+        company: 'Компания'
+        work_phone: 'номер рабочего телефона'
+        cell_phone: 'номер мобильного телефона'
+        city: 'Город'
+        state: 'Область'
+        zip: 'Индекс'
+        signature: 'Подпись'
+        title: 'Заголовок'
+        time_zone: 'Часовой пояс'
+        street: 'Улица'
+        notes: 'Заметки'
       topic:
         kind: *kind
         name: *subject
-        channel: Канал
-        team_list: Команда
+        channel: 'Канал'
+        team_list: 'Команда'
         priority: *priority
         current_status: *status
         assigned_user_id: *assign_agent
-        tag_list: Список тэгов
+        tag_list: 'Список тэгов'
       post:
         kind: *kind
-        body: Сообщение
-        cc: CC
-        bcc: BCC
-        attachments: Вложения
-
+        body: 'Сообщение'
+        cc: 'CC'
+        bcc: 'BCC'
+        attachments: 'Вложения'
       category:
-        name: Имя
-        icon: Иконка
-        keywords: Ключевые слова
-        title_tag: Название тегов
-        meta_description: Мета Описание
-        front_page: Главная страница
-        active: Активный
-        visibility: Видимость
+        name: 'Имя'
+        icon: 'Иконка'
+        keywords: 'Ключевые слова'
+        title_tag: 'Название тегов'
+        meta_description: 'Мета Описание'
+        front_page: 'Главная страница'
+        active: 'Активный'
+        visibility: 'Видимость'
         visibility_label:
-          all: Все
-          public: Открытые
-          internal: Внутренние
+          all: 'Все'
+          public: 'Открытые'
+          internal: 'Внутренние'
       doc:
-        title: Название
-        meta_description: Мета Описание
-        title_tag: Название тегов
-        keywords: Ключевые слова
-        category_id: Категория
-        active: Статус
-        front_page: Популярное на первой странице?
+        title: 'Название'
+        meta_description: 'Мета Описание'
+        title_tag: 'Название тегов'
+        keywords: 'Ключевые слова'
+        category_id: 'Категория'
+        active: 'Статус'
+        front_page: 'Популярное на первой странице?'
       forum:
-        name: Имя
-        description: Описание
-        private: Приватный
-        layout: Макет
-        allow_topic_voting: Разрешить голосование за обсуждение?
-        allow_post_voting: Разрешить голосование за сообщение?
-
-    # helpers:
+        name: 'Имя'
+        description: 'Описание'
+        private: 'Приватный'
+        layout: 'Макет'
+        allow_topic_voting: 'Разрешить голосование за обсуждение?'
+        allow_post_voting: 'Разрешить голосование за сообщение?'
+    helpers:
       submit:
         topic:
-          create: Начать новое обсуждение
+          create: 'Начать новое обсуждение'
         post:
-          create:
-
+          create: ''
   breadcrumbs:
     application:
       root: *root
@@ -632,37 +626,37 @@ ru:
       root: *root
     result:
       root: *root
-  registrations:
+    registrations:
       root: *root
-  admin:
+    admin:
       internal_categories:
         root: *root
       internal_docs:
         root: *root
 
   helpers:
-    actions: "Действия"
+    actions: 'Действия'
     links:
-      back: "Назад"
-      cancel: "Отмена"
-      confirm: "Вы уверены?"
-      destroy: "Удалить"
-      new: "Новый"
-      edit: "Редактировать"
+      back: 'Назад'
+      cancel: 'Отмена'
+      confirm: 'Вы уверены?'
+      destroy: 'Удалить'
+      new: 'Новый'
+      edit: 'Редактировать'
     titles:
-      edit: "Редактировать %{model}"
-      save: "Сохранить %{model}"
-      new: "Новый %{model}"
-      delete: "Удалить %{model}"
+      edit: 'Редактировать %{model}'
+      save: 'Сохранить %{model}'
+      new: 'Новый %{model}'
+      delete: 'Удалить %{model}'
 
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: '%n%u'
         units:
-          unit: ""
-          thousand: тыс.
-          million: млн.
-          billion: B
-          trillion: T
-          quadrillion: Q
+          unit: ''
+          thousand: 'тыс.'
+          million: 'млн.'
+          billion: 'B'
+          trillion: 'T'
+          quadrillion: 'Q'
