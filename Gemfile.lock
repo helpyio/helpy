@@ -56,7 +56,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (3.5.0)
       activerecord (>= 3.2, < 5)
-    addressable (2.5.2)
+    addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     annotate (2.7.4)
       activerecord (>= 3.2, < 6.0)
@@ -278,9 +278,9 @@ GEM
     fog-ecloud (0.3.0)
       fog-core
       fog-xml
-    fog-google (1.8.1)
+    fog-google (1.8.2)
       fog-core (<= 2.1.0)
-      fog-json (~> 1.2.0)
+      fog-json (~> 1.2)
       fog-xml (~> 0.1.0)
       google-api-client (~> 0.23.0)
     fog-internet-archive (0.0.1)
