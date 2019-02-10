@@ -80,7 +80,7 @@ class PostMailerTest < ActionMailer::TestCase
     end
   end
 
-  test 'Should still send of header and footer missing' do
+  test 'Should still send if header and footer missing' do
     Doc.where(title: 'Customer_header').destroy_all
     Doc.where(title: 'Customer_footer').destroy_all
 
