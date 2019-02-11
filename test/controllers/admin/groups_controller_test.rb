@@ -18,13 +18,13 @@ class Admin::GroupsControllerTest < ActionController::TestCase
   test "a signed out user should not be able to load the group page" do
     sign_in users(:user)
     get :index, locale: :en
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load the group page" do
     sign_in users(:user)
     get :index, locale: :en
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "an admin should be able to load the group page" do

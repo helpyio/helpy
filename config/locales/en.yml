@@ -40,6 +40,7 @@ en:
   # Community
   forum_name: "Topic"
   subject: &subject "Subject"
+  message: "Message"
   last_activity: "Last Active"
   topic: "Discussion"
   replies: "Replies"
@@ -93,7 +94,7 @@ en:
   flag: "Flag"
 
   # devise/sessions/new
-  login: Log in
+  login: Sign in
 
   # devise/shared/links
   forgot_password: Forgot your password?
@@ -148,9 +149,9 @@ en:
   open_new_discussion: New Ticket
   assigned_to: "assigned to %{agent}"
   unassigned: unassigned
-  no_team_assigned: Assign to group
+  no_team_assigned: Assign to Team
   assign_to: Group/Team
-  unassign_from_team: Unassign from group
+  unassign_from_team: Unassign Team
   private: private
   public: public
   save_changes: Save Changes
@@ -158,6 +159,7 @@ en:
   merge_confirm: Are you sure you want to merge these tickets?
   customer_conversation: Customer Conversation
   internal_ticket: Internal Ticket
+  unassign_agent: Unassign Agent
 
   # Discussion controls
   change_status: Change Status
@@ -172,6 +174,8 @@ en:
     one: "1 selected message"
     two: "2 selected messages"
     other: "%{count} selected messages"
+  mark_as: "Mark"
+  move_to: "Move"
   users_history: "%{role}'s full history"
 
   # Discussion messages
@@ -181,6 +185,7 @@ en:
   closed_message: "This ticket has been closed by the support staff."
   trash_message: "This ticket has been deleted."
   assigned_message: "This ticket has been transferred to %{assigned_to}."
+  unassigned_message: "This ticket has been unassigned."
   assigned_group: "This ticket has been assigned to %{assigned_group}."
   converted_to_ticket: "This discussion was converted to a private ticket."
   converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
@@ -334,6 +339,7 @@ en:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
+  thank_you: "Thank you!"
   new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   account_generated: "An account has been generated for you. To sign in, please use this link:"
   above_this_line: "Make sure your reply appears above this line"
@@ -355,6 +361,7 @@ en:
   # settings
   agent_settings: "Agent Settings"
   notifications: "Notifications"
+  notifications_description:
   settings: "Settings"
   general: "General"
   general_description: "Manage general system settings like your Helpy name, what company to link back to."
@@ -402,6 +409,7 @@ en:
   # Locales
   supported_locales: Supported Locales
   default_locale: Default Locale
+  select_default_locale: "Select Default Locale..."
 
   # Widget
   show_widget: Show widget on support site
@@ -470,7 +478,7 @@ en:
     one: "<strong>%{period}</strong> your users opened 1 new ticket"
     other: "<strong>%{period}</strong> your users opened <strong>%{count} new tickets</strong>"
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+  insights_blurb_three_html_html: "with a median response time of <strong>%{response_time}</strong>"
   no_discussions: "No new tickets have been opened <strong>%{period}</strong>"
   assigned_topics: "Assigned Tickets"
   responded: "Responded"

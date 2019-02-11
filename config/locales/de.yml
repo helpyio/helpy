@@ -40,6 +40,7 @@ de:
   # Community
   forum_name: "Foren"
   subject: &subject "Betreff"
+  message: "Nachricht"
   last_activity: "Zuletzt aktiv"
   topic: "Thema"
   replies: "Antworten"
@@ -157,6 +158,7 @@ de:
   merge_confirm: Möchten Sie diese Tickets wirklich zusammenführen?
   customer_conversation: Kundengespräch
   internal_ticket: Internes Ticket
+  unassign_agent: Zuweisung des Agenten aufheben
 
   # Discussion controls
   change_status: Status ändern
@@ -179,6 +181,7 @@ de:
   closed_message: "Dieses Ticket wurde durch einen Support-Mitarbeiter geschlossen."
   trash_message: "Dieses Ticket wurde gelöscht."
   assigned_message: "Dieses Ticket wurde %{assigned_to} zugeordnet."
+  unassigned_message: "Dieses Ticket wurde nicht zugewiesen."
   assigned_group: "Dieses Ticket wurde %{assigned_group} zugewiesen."
   converted_to_ticket: "Diese Diskussion wurde in ein privates Ticket umgewandelt."
   converted_to_topic: "Dieses Ticket wurde in eine offene Diskussion umgewandelt und nach %{forum_name} verschoben."
@@ -332,6 +335,7 @@ de:
   # Mail messages
   new_user_subject: "Willkommen bei %{site_name}"
   hello: "Hallo %{user_name}"
+  thank_you: "Vielen Dank!"
   new_user: "Vielen Dank, dass Sie uns kontaktieren. Ihre Nachricht wurde von unserem Support Team empfangen und wir werden uns in Kürze mit einer Antwort bei Ihnen melden."
   account_generated: "Ein Benutzerkonto zur Einsicht der Kommunikation wurde für Sie erstellt. Um sich Anzumelden, benutzen Sie bitte diesen Link:"
   above_this_line: "Bitte antworten Sie ausschliesslich oberhalb dieser Zeile."
@@ -468,7 +472,7 @@ de:
     one: "<strong>%{period}</strong> begannen Ihre Benutzer 1 neue Konversation"
     other: "<strong>%{period}</strong> begannen Ihre Benutzer <strong>%{count} neue Konversationen</strong>"
   insights_blurb_two: "von welchen Ihr Team auf <strong>%{number_replied} (%{percentage_replied})</strong> antwortete"
-  insights_blurb_three: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "mit einer durchschnittlichen Antwortzeit von <strong>%{response_time}</strong>"
   no_discussions: "<strong>%{period}</strong> wurden keine neuen Konversationen gestarted"
   assigned_topics: "Zugewiesene Themen"
   responded: "Beantworted"

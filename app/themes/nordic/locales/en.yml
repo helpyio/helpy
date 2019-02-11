@@ -1,0 +1,283 @@
+en:
+  nordic:
+    language_name: 'English' # The name of the translation file, in that language
+    root: &root 'Home'
+    how_can_we_help: "Search our Knowledgebase"
+    browse_topics: "Browse Topics"
+    support_team: "Support Team"
+    nothing_here: "Nothing here yet!"
+
+    # Navigation
+    knowledgebase: "Knowledgebase"
+    community: "Community"
+    ask_a_question: "Ask a Question"
+    home: "Home"
+    login: "Login"
+    logout: "Logout"
+    register: "Register"
+    back_to: "Back to"
+    welcome_back: "Welcome Back %{username}"
+    your_profile: "Your Profile"
+    your_tickets: "Your Tickets"
+    locale: "Locale"
+    change_your_locale: "Change your Locale"
+
+    # Voting widget
+    did_this_help: "Did this solve your problem?"
+    yes_button: 'Yes'
+    no_button: 'No'
+    yes_helped: 'Great!! Thanks for the feedback!'
+    no_helped: "We're sorry this didn't help you.  Please contact us for more help!"
+
+    # Search
+    search_placeholder: "Enter a keyword, topic, or question"
+    no_results: "No Results Found, Please try your search again!"
+    results_found:
+      one: "one result found for your search "
+      other: "%{count} results found for your search "
+
+    # Community
+    forum_name: "Topic"
+    subject: "Subject"
+    last_activity: "Last Active"
+    topic: "Discussion"
+    replies: "Replies"
+    last_post: "Last Post"
+    started_by: "Started by %{username}"
+    reply: "Reply to this topic"
+    submit_reply: "Post Reply"
+    posted: "Posted"
+    start_discussion: "Start a New Discussion"
+    submit_start_discussion: "Start Discussion"
+    should_message_be_private: "Should this message be private?"
+    only_support_can_respond: "Only support can respond (creates a private ticket)"
+    responses_can_come_from_everyone: "Responses can come from support or the community (recommended)"
+    collapsed_messages:
+        one: "1 collapsed message"
+        two: "2 collapsed messages"
+        other: "%{count} collapsed messages"
+
+    # Knowledgebase
+    written_by: "Written By"
+    last_edited: "Last Edited"
+
+    # Tickets
+    tickets: "Tickets"
+    no_tickets: "You have not created any tickets yet"
+    ticket_number: "Ticket Number"
+    assigned_to_label: "Assigned to"
+    created_on: "Created on"
+
+    # Get Help
+    get_help_header: "Still Need Help?"
+    get_help_button: "Start a Discussion with Us"
+
+    # Profile
+    my_profile: 'My Profile'
+
+    # footer
+    powered_by: "Powered by Helpy. An Open Source Helpdesk."
+    get_your_copy: "Grab your copy on GitHub"
+
+    # devise/sessions/new
+    login: Sign in
+
+    # devise/shared/links
+    forgot_password: Forgot your password?
+
+    # devise/passwords/new
+    send_instructions: Send me instructions
+
+    # devise/passwords/edit
+    change_password: Change password
+    new_password: New password
+    new_password_confirmation: Confirm new password
+
+    # devise/confirmations/new
+    resend: Resend confirmation instructions
+
+    # devise/registrations/new
+    sign_up: Sign Up
+
+    # Admin menu
+    discussions: Discussions
+    content: Content
+    communities: Communities
+    app_store: App Store
+    search: Search
+
+    # Admin main/statuses
+    support_pipeline: Support Pipeline
+    new: New
+    active: Active
+    open: Open
+    mine: Mine
+    pending: Pending
+    closed: Resolved
+    spam: Spam
+    trash: Trash
+    discussion_managment: Discussion Management
+    open_new_discussion: New Discussion
+    assigned_to: "assigned to %{agent}"
+    unassigned: unassigned
+    private: private
+    public: public
+    save_changes: Save Changes
+
+    # Discussion controls
+    change_status: Change Status
+    status: &status Status
+    mark_closed: Mark Resolved
+    reopen: Reopen
+    mark_spam: Mark Spam
+    mark_new: Mark New
+    assign_agent: &assign_agent Assign Agent
+    selected_messages:
+      one: "1 selected message"
+      two: "2 selected messages"
+      other: "%{count} selected messages"
+
+    # Discussion messages
+    reopen_message: "This message has been reopened by the support staff"
+    closed_message: "This ticket has been closed by the support staff."
+    trash_message: "This ticket has been deleted."
+    assigned_message: "Discussion has been transferred to %{assigned_to}."
+
+    # User Admin
+    contact_info: Contact
+    social_info: Social
+    edit_user: Edit User
+    work_phone: work
+    cell_phone: cell
+
+    # User search results
+    users_found:
+      one: "1 user was found named %{query}"
+      other: "%{count} users were found named %{query}"
+
+    # Discussion View
+    asked_a_question: "%{user_name} asked a question..."
+    replied: "%{user_name} replied..."
+    posted_note: "%{user_name} posted an internal note..."
+    type_reply: Type your reply, or select from a common message below
+    select_common: Select Common Reply
+    reply: Reply
+    internal_note: Internal Note
+    upvote:
+      one: "Upvote | %{count}"
+      other: "Upvote | %{count}"
+
+    # Content
+    new_category: New Category
+    new_content: New Content
+    front_page_categories: Front Page Categories
+    other_categories: Other Categories
+    edit: Edit
+    edit_category: Edit Category
+    select_category: Select Category
+    delete: Delete
+    view_and_edit: "View and Edit Content"
+    delete_confirm: "Please confirm you want to DELETE this!"
+    select_icon_helptext: "Select an icon to associate with this category (optional)"
+    translate: "Translate to a different language"
+    view_on_site: "View on Site"
+    written_on: "Written on %{date_written}"
+    content_last_updated: "Last Updated on %{date_updated}"
+    featured_content: "Featured"
+    draft_content: "Draft"
+    published_content: "Published"
+    additional_settings: "Additional Settings"
+    content_status: "Content Status"
+
+    # Communities
+    new_community: Create New Community
+    create_new_community: Create New Community
+
+    # Mail messages
+    hello: "Hello %{user_name}"
+    new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
+    account_generated: "An account has been generated for you. To sign in, please use this link:"
+    above_this_line: "Make sure your reply appears above this line"
+    message_id: "Message ID"
+    message_response: "The following message has been posted in response to your question:"
+    view_online: "View this online:"
+
+    # settings
+    settings: "Settings"
+    general: "General"
+    design: "Design"
+    international: "International"
+    widget: "Embeddable Widget"
+
+    activerecord:
+      attributes:
+        user:
+          email: Email
+          password: Password
+          name: Name
+          company: Company
+          work_phone: Work
+          cell_phone: Cell
+          city: City
+          state: State
+        topic:
+          name: Subject
+        post:
+          kind: Genre
+        category:
+          name: Name
+          icon: Icon
+          keywords: Keywords
+          title_tag: Title Tag
+          meta_description: Meta Description
+          front_page: Front Page
+          active: Active
+        doc:
+          title: Title
+          meta_description: Meta Description
+          title_tag: Title Tag
+          keywords: Keywords
+          category_id: Category
+          active: Status
+          front_page: Featured on front page?
+        forum:
+          name: Name
+          description: Description
+          private: Private
+
+      helpers:
+        submit:
+          topic:
+            create: Start New Discussion
+          post:
+            create:
+
+    breadcrumbs:
+      application:
+        root: *root
+      categories:
+        root: *root
+      docs:
+        root: *root
+      forums:
+        root: *root
+      topics:
+        root: *root
+      posts:
+        root: *root
+      result:
+        root: *root
+    helpers:
+      actions: "Actions"
+      links:
+        back: "Back"
+        cancel: "Cancel"
+        confirm: "Are you sure?"
+        destroy: "Delete"
+        new: "New"
+        edit: "Edit"
+      titles:
+        edit: "Edit %{model}"
+        save: "Save %{model}"
+        new: "New %{model}"
+        delete: "Delete %{model}"

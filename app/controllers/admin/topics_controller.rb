@@ -185,12 +185,55 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
+  def unassign_agent
+    @topics = Topic.where(id: params[:topic_ids])
+    bulk_post_attributes = []
+    unless @topics.count == 0
+      #handle array of topics
+      @topics.each do |topic|
+        bulk_post_attributes << {body: I18n.t(:unassigned_message, default: "This ticket has been unassigned."), kind: 'note', user_id: current_user.id, topic_id: topic.id}
+
+        # Calls to GA
+        tracker("Agent: #{current_user.name}", I18n.t(:unassigned_message, default: "This ticket has been unassigned."), @topic.to_param, 0)
+      end
+
+      @topics.bulk_agent_assign(bulk_post_attributes, nil) if bulk_post_attributes.present?
+
+    end
+
+    if params[:topic_ids].count > 1
+      get_tickets_by_status
+    else
+      @topic = Topic.find(@topics.first.id)
+      @posts = @topic.posts.chronologic
+    end
+
+    fetch_counts
+    get_all_teams
+    get_tickets_by_status
+    flash[:notice] = I18n.t(:unassigned_message, default: "This ticket has been unassigned.")
+
+    respond_to do |format|
+      format.html #render action: 'ticket', id: @topic.id
+      format.js {
+        if params[:topic_ids].count > 1
+          get_tickets_by_status
+          render 'index'
+        else
+          render 'update_ticket', id: @topic.id
+        end
+      }
+    end
+
+  end
+
   # Toggle privacy of a topic
   def toggle_privacy
 
     #handle array of topics
     @topics = Topic.where(id: params[:topic_ids])
     @topics.update_all(private: params[:private], forum_id: params[:forum_id])
+    @topics.each{|topic| topic.update_pg_search_document}
     bulk_post_attributes = []
 
     @topics.each do |topic|
@@ -268,7 +311,7 @@ class Admin::TopicsController < Admin::BaseController
           redirect_to admin_topic_path(@topic)
         }
         format.js {
-          render 'update_ticket', id: @topic.id, status: params[:status]
+          render 'update_ticket', id: @topic.id
         }
       end
     else
@@ -427,7 +470,7 @@ class Admin::TopicsController < Admin::BaseController
         @post = @topic.posts.create(
           body: params[:topic][:post][:body],
           user_id: current_user.id,
-          kind: 'first',
+          kind: params[:topic][:post][:kind],
           screenshots: params[:topic][:screenshots],
           attachments: params[:topic][:post][:attachments],
           cc: params[:topic][:post][:cc],
@@ -477,7 +520,11 @@ class Admin::TopicsController < Admin::BaseController
       assigned_user_id: params[:topic][:assigned_user_id],
       kind: 'internal'
     )
-    @topic.user_id = @user.id
+    if @user.nil?
+      create_ticket_user
+    else
+      @topic.user_id = @user.id
+    end
 
     fetch_counts
     respond_to do |format|
@@ -485,7 +532,7 @@ class Admin::TopicsController < Admin::BaseController
         @post = @topic.posts.create(
           body: params[:topic][:post][:body],
           user_id: current_user.id,
-          kind: 'first',
+          kind: params[:topic][:post][:kind],
           screenshots: params[:topic][:screenshots],
           attachments: params[:topic][:post][:attachments]
         )

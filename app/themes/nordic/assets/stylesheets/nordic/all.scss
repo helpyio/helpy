@@ -1,0 +1,32 @@
+// Import Helpy variables and boostrap overrides
+@import "bootstrap-overrides";
+
+// Import Bootstrap
+// Note: "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// Import font-awesome
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// Import other dependencies
+@import "bootstrap-icon-chooser/css/icon-picker";
+@import "magnific-popup/dist/magnific-popup";
+@import "animate.css/animate.min";
+
+// Note: need to specify .scss extension as there is also a .css file
+// scss-lint:disable ImportPath
+@import "bootstrap-social/bootstrap-social.scss";
+// scss-lint:enable ImportPath
+@import "jquery-ui";
+
+// Import all other custom Helpy stylesheets
+@import "shared";
+@import "nordic";
+
+// Note: admin.scss is included separately via `layouts/admin.html.erb`.
+@import "pick-a-color/build/1.2.3/css/pick-a-color-1.2.3.min";
+
+// Import css for autocomplete
+@import "autocomplete";

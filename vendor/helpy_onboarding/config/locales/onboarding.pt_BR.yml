@@ -1,0 +1,16 @@
+  # Onboarding
+  welcome_to_helpy: "Bem vindo ao Helpy"
+  around_the_globe: "Empresas por todo o mundo estão usando o Helpy para prover os melhores serviços de atendimento ao cliente. É muito bom ver você conosco! :)"
+  start_setup: "Vamos começar a configurar seu Helpy"
+  lets_customize: "Legal! Vamos começar a customizar seu Helpdesk"
+
+  site_name_placeholder: "Geralmente é o nome de sua empresa, ou do seu produto"
+  site_url_placeholder: "A URL do seu Helpy (suporte.seudominio.com)"
+  parent_site_placeholder: "Link de volta para seu site, a partir do Helpy"
+  parent_company_placeholder: "Nome da sua empresa"
+
+  login_setup: "Vamos customizar seu login!"
+
+  setup_complete: "Seu Helpy está pronto!"
+  setup_complete_message: "Seu Helpy está pronto para uso! Você pode customizar ainda mais seu Helpy no painel de configurações. Fique ligado em nossas mídias sociais para ficar por dentro das últimas notícias, e também sobre novas features, correções de bugs, e atualizações de segurança."
+  get_started: "Vamos começar!"

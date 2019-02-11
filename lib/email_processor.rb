@@ -13,123 +13,49 @@ class EmailProcessor
     # This error happened with invalid email addresses from PureChat
     return if @email.from[:email].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
 
-    # scan users DB for sender email
-    @user = User.where("lower(email) = ?", @email.from[:email].downcase).first
-    if @user.nil?
-      create_user
-    end
-
+    # Set attributes from email
     sitename = AppSettings["settings.site_name"]
-    message = @email.body.nil? ? "" : @email.body
-    raw = @email.raw_body.nil? ? "" : @email.raw_body
+    email_address = @email.from[:email].downcase
+    email_name = @email.from[:name].blank? ? @email.from[:token].gsub(/[^a-zA-Z]/, '') : @email.from[:name]
+    message = @email.body.nil? ? "" : encode_entity(@email.body)
+    raw = @email.raw_body.nil? ? "" : encode_entity(@email.raw_body)
+    to = @email.to.first[:email]
     cc = @email.cc ? @email.cc.map { |e| e[:full] }.join(", ") : nil
-
-    subject = @email.subject
+    token = @email.to.first[:token]
+    subject = check_subject(@email.subject)
     attachments = @email.attachments
+    number_of_attachments = attachments.present? ? attachments.size : 0
 
     if subject.include?("[#{sitename}]") # this is a reply to an existing topic
-
-      complete_subject = subject.split("[#{sitename}]")[1].strip
-      ticket_number = complete_subject.split("-")[0].split("#")[1].strip
-      topic = Topic.find(ticket_number)
-
-      #insert post to new topic
-      message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create(
-        :body => encode_entity(message),
-        :raw_email => encode_entity(raw),
-        :user_id => @user.id,
-        :cc => cc,
-        :kind => "reply"
-      )
-
-      # Push array of attachments and send to Cloudinary
-      handle_attachments(@email, post)
-
-      if @tracker
-        @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
-        @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
-      end
-    elsif subject.include?("Fwd: ") # this is a forwarded message DOES NOT WORK CURRENTLY
-
-      #clean message
-      # message = MailExtract.new(message).body
-
-      #parse_forwarded_message(message)
-      topic = Forum.first.topics.create!(
-        :name => subject,
-        :user_id => @user.id,
-        :private => true
-      )
-
-      #insert post to new topic
-      message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create!(
-        :body => encode_entity(message),
-        :raw_email => encode_entity(raw),
-        :user_id => @user.id,
-        :cc => cc,
-        kind: 'first'
-      )
-
-      # Push array of attachments and send to Cloudinary
-      handle_attachments(@email, post)
-
-      # Call to GA
-      if @tracker
-        @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
-        @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
-      end
+      EmailProcessor.create_reply_from_email(@email, email_address, email_name, subject, raw, message, token, to, sitename, cc, number_of_attachments)
+    elsif subject.include?("Fwd: ") # this is a forwarded message TODO: Expand this to handle foreign email formatting
+      EmailProcessor.create_forwarded_message_from_email(@email, subject, raw, message, token, to, cc, number_of_attachments)
     else # this is a new direct message
-
-      topic = Forum.first.topics.create(:name => subject, :user_id => @user.id, :private => true)
-      # if @email.header['X-Helpy-Teams'].present?
-      #   topic.team_list = @email.header['X-Helpy-Teams']
-
-      if @email.to[0][:token].include?("+")
-        topic.team_list.add(@email.to[0][:token].split('+')[1])
-        topic.save
-      elsif @email.to[0][:token] != 'support'
-        topic.team_list.add(@email.to[0][:token])
-        topic.save
-      end
-
-      #insert post to new topic
-      message = "Attachments:" if @email.attachments.present? && @email.body.blank?
-      post = topic.posts.create(
-        :body => encode_entity(message),
-        :raw_email => encode_entity(raw),
-        :user_id => @user.id,
-        :cc => cc,
-        :kind => "first"
-      )
-
-      # Push array of attachments and send to Cloudinary
-      handle_attachments(@email, post)
-
-      # Call to GA
-      if @tracker
-        @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
-        @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
-      end
+      EmailProcessor.create_new_ticket_from_email(@email, email_address, email_name, subject, raw, message, token, to, cc, number_of_attachments)
     end
 
   # rescue
   #   render status: 200
   end
 
+  # Insert a default subject if subject is missing
+  def check_subject(subject)
+    subject.blank? ? "(No Subject)" : subject
+  end
+
   def encode_entity(entity)
     !entity.nil? ? entity.encode('utf-8', invalid: :replace, replace: '?') : entity
   end
 
-  def handle_attachments(email, post)
-    if email.attachments.present? && cloudinary_enabled?
+  def self.handle_attachments(email, post)
+    return unless email.attachments.present?
+    if AppSettings['cloudinary.cloud_name'].present? && AppSettings['cloudinary.api_key'].present? && AppSettings['cloudinary.api_secret'].present?
       array_of_files = []
       email.attachments.each do |attachment|
         array_of_files << File.open(attachment.tempfile.path, 'r')
       end
       post.screenshots = array_of_files
-    elsif email.attachments.present?
+    else
       post.update(
         attachments: email.attachments
       )
@@ -147,7 +73,123 @@ class EmailProcessor
     AppSettings['settings.google_analytics_enabled'] == '1'
   end
 
-  def create_user
+  # Creates a new ticket from an email
+  def self.create_new_ticket_from_email(email, email_address, email_name, subject, raw, message, token, to, cc, number_of_attachments)
+    @user = User.where("lower(email) = ?", email_address).first
+    if @user.nil?
+      @user = EmailProcessor.create_user_for_email(email_address, token, email_name)
+    end
+
+    topic = Forum.first.topics.new(
+      name: subject, 
+      user_id: @user.id,
+      private: true
+    )
+
+    if topic.save
+      if token.include?("+")
+        topic.team_list.add(token.split('+')[1])
+        topic.save
+        topic.team_list.add(token)
+        topic.save
+      end
+      #insert post to new topic
+      message = "-" if message.blank? && number_of_attachments > 0
+      post = topic.posts.create(
+        body: message,
+        raw_email: raw,
+        user_id: @user.id,
+        kind: "first",
+        cc: cc
+      )
+      # Push array of attachments and send to Cloudinary
+      EmailProcessor.handle_attachments(email, post)
+
+      # Call to GA
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "New", label: topic.to_param)
+      end
+    end
+  end
+
+  # Creates a ticket from a forwarded email
+  def self.create_forwarded_message_from_email(email, subject, raw, message, token, to, cc, number_of_attachments)
+
+    # Parse from out of the forwarded raw body
+    from = raw[/From: .*<(.*?)>/, 1]
+    from_token = from.split("@")[0]
+
+    # scan users DB for sender email
+    @user = User.where("lower(email) = ?", from).first
+    if @user.nil?
+      @user = EmailProcessor.create_user_for_email(from, from_token, "")
+    end
+
+    #clean message
+    message = MailExtract.new(raw).body
+
+    topic = Forum.first.topics.new(
+      name: subject,
+      user_id: @user.id,
+      private: true
+    )
+
+    if topic.save
+      #insert post to new topic
+      message = "-" if message.blank? && number_of_attachments > 0
+      post = topic.posts.create!(
+        body: raw,
+        raw_email: raw,
+        user_id: @user.id,
+        kind: 'first',
+        cc: cc
+      )
+
+      # Push array of attachments and send to Cloudinary
+      EmailProcessor.handle_attachments(email, post)
+
+      # Call to GA
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Forwarded New Topic", non_interactive: true)
+        @tracker.event(category: "Agent: Unassigned", action: "Forwarded New", label: topic.to_param)
+      end
+    end
+  end
+
+  # Adds a reply to an existing ticket thread from an email response.
+  def self.create_reply_from_email(email, email_address, email_name, subject, raw, message, token, to, sitename, cc, number_of_attachments)      
+    @user = User.where("lower(email) = ?", email_address).first
+    if @user.nil?
+      @user = EmailProcessor.create_user_for_email(email_address, token, email_name)
+    end
+
+    complete_subject = subject.split("[#{sitename}]")[1].strip
+    ticket_number = complete_subject.split("-")[0].split("#")[1].strip
+    topic = Topic.find(ticket_number)
+
+    if topic.present?
+      # insert post to new topic
+      message = "-" if message.blank? && number_of_attachments > 0
+      post = topic.posts.create(
+        body: message,
+        raw_email: raw,
+        user_id: @user.id,
+        kind: "reply",
+        cc: cc
+      )
+
+      # Push array of attachments and send to Cloudinary
+      EmailProcessor.handle_attachments(email, post)
+
+      if @tracker
+        @tracker.event(category: "Email", action: "Inbound", label: "Reply", non_interactive: true)
+        @tracker.event(category: "Agent: #{topic.assigned_user.name}", action: "User Replied by Email", label: topic.to_param) unless topic.assigned_user.nil?
+      end
+    end
+  end
+
+  def self.create_user_for_email(email_address, token, name)
     # create user
     @user = User.new
 
@@ -155,12 +197,16 @@ class EmailProcessor
     @user.reset_password_token = enc
     @user.reset_password_sent_at = Time.now.utc
 
-    @user.email = @email.from[:email]
-    @user.name = @email.from[:name].blank? ? @email.from[:token].gsub(/[^a-zA-Z]/, '') : @email.from[:name]
+    @user.email = email_address
+    @user.name = name.blank? ? token.gsub(/[^a-zA-Z]/, '') : name
     @user.password = User.create_password
-    if @user.save
-      UserMailer.new_user(@user.id, @token).deliver_later
-    end
 
+    if @user.save
+      UserMailer.new_user(@user.id, @token).deliver_later if @user.save
+    else
+      @user = User.find(2) # just in case new user not saved, default to system user  
+    end
+    return @user
   end
+
 end

@@ -6,6 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
+# and tmp bundle (local testing)
+/vendor/bundle
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -28,10 +30,11 @@ public/uploads
 /.ruby-version
 /.ruby-gemset
 /.rvmrc
+.vscode
 
 # Docker stuff
 .env
 certs
-
+/postgres
 # IDE
 .idea/

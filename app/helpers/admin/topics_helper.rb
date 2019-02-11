@@ -10,6 +10,12 @@ module Admin::TopicsHelper
 
   end
 
+  def started_by(topic)
+    return "Missing User" if topic.user.nil?
+    user_name = topic.user.name
+    link_to t(:started_by, username: user_name.titleize, default: "Started by #{user_name}"), admin_user_path(topic.user.id), remote: true
+  end
+
   def topic_added_from
     # <span class="less-important" style="font-size: 12px;"><%= "#{@topic.kind} added from #{@topic.channel}" %><%= " on #{link_to(@doc.title, edit_admin_category_doc_path(@doc.category_id, @doc.id, lang: I18n.locale))}".html_safe if @doc.present? %></span>
     content_tag :small, class: 'less-important' do
@@ -70,6 +76,12 @@ module Admin::TopicsHelper
 
   def ticket_priority_collection
     Topic.priorities.keys.map { |priority| [t("#{priority}_priority"), priority] }
+  end
+
+  # id of opening or first post in the topic
+  def first_post_id(topic)
+    first_post = topic.posts.order(created_at: :asc).first
+    first_post.present? ? first_post.id : nil
   end
 
 end
