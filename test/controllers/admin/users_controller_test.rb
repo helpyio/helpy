@@ -92,13 +92,13 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{admin} should be able to see a listing of users" do
       sign_in users(admin.to_sym)
       get :index
-      assert_equal 9, assigns(:users).count
+      assert_equal User.all.count, assigns(:users).count
     end
 
     test "an #{admin} should be able to see a filtered of users" do
       sign_in users(admin.to_sym)
       get :index, { role: 'user' }
-      assert_equal 5, assigns(:users).count
+      assert_equal User.where(role: 'user').count, assigns(:users).count
     end
 
     test "an #{admin} should be able to update a user" do

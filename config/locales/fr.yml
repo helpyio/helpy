@@ -40,6 +40,7 @@ fr:
   # Community
   forum_name: "Sujet"
   subject: &subject "Sujet"
+  message: "Message"
   last_activity: "Dernière activité"
   topic: "Discussion"
   replies: "Réponses"
@@ -158,6 +159,8 @@ fr:
   merge_confirm: Etes vous sûr de vouloir fusionner ces tickets?
   customer_conversation: Conversation client
   internal_ticket: Ticket interne
+  unassign_agent: Désassigner l'agent
+
 
   # Multiple Discussion controls
   change_status: Changer le statut
@@ -179,7 +182,8 @@ fr:
   reopen_message: "Ce message a été réouvert par le support."
   closed_message: "Ce message a été fermé par le support."
   trash_message: "Ce ticket a été supprimé."
-  assigned_message: "Cette discussion a été transférée à %{assigned_to}."
+  assigned_message: "Cette ticket a été transférée à %{assigned_to}."
+  unassigned_message: "Ce ticket n'a pas été attribué."
   assigned_group: "Ce ticket a été assigné au groupe %{assigned_group}."
   converted_to_ticket: "Cette discussion a été convertie en ticket privé."
   converted_to_topic: "Ce ticket a été converti en discussion publique et déplacé dans %{forum_name}."
@@ -333,6 +337,7 @@ fr:
   # Mail messages
   new_user_subject: "Bienvenue sur %{site_name}"
   hello: "Bonjour %{user_name}"
+  thank_you: "Merci!"
   new_user: "Merci de nous avoir contacté. Votre message a été reçu par notre équipe de support et nous allons revenir vers vous rapidement."
   account_generated: "Un compte a été créé pour vous. Pour vous inscrire, veuillez suivre ce lien :"
   above_this_line: "Assurez-vous de laisser votre réponse au dessus de cette ligne"

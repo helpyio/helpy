@@ -1,15 +1,14 @@
 language: ruby
 rvm:
-  - 2.2.5
-  - 2.3.3
-  - 2.4.1
+  - 2.3.7
+  - 2.4.4
 
 services:
   - postgresql
 
 before_install:
   # Install a current Bundler version
-  - gem install bundler
+  - gem install bundler -v '< 2'
 
 before_script:
   # Setup Test Database
@@ -38,3 +37,7 @@ cache: bundler
 addons:
     code_climate:
         repo_token: 8aed69acf532241f5281042dc5b1a5d89ea9206773d079ce2de838a28f0f5041
+    chrome: stable
+    apt:
+      packages:
+        - chromium-chromedriver

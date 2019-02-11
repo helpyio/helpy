@@ -40,6 +40,7 @@ es:
   # Community
   forum_name: "Tema"
   subject: &subject "Asunto"
+  message: "Mensaje"
   last_activity: "Activo por última vez"
   topic: "Debate"
   replies: "Respuestas"
@@ -157,6 +158,7 @@ es:
   # merge_confirm: Are you sure you want to merge these tickets?
   # customer_conversation: Customer Conversation
   # internal_ticket: Internal Ticket
+  unassign_agent: Agente no asignado
 
   # Discussion controls
   change_status: Cambiar estado
@@ -179,6 +181,7 @@ es:
   closed_message: "Este mensaje ha sido cerrado por el equipo de atención al cliente."
   trash_message: "Este mensaje ha sido eliminado."
   assigned_message: "La discusión ha sido transferida a %{assigned_to}."
+  unassigned_message: "Este ticket ha sido sin asignar."
   # assigned_group: "This ticket has been assigned to %{assigned_group}."
   # converted_to_ticket: "This discussion was converted to a private ticket."
   # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
@@ -332,6 +335,7 @@ es:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Hola %{user_name}"
+  thank_you: "Gracias!"
   new_user: "Gracias por contactarnos. Tu mensaje ha sido recibido por nuestro equipo de soporte y pronto se pondrán en contacto."
   account_generated: "Se te ha creado una cuenta. Para iniciar sesión, usa el siguiente enlace:"
   above_this_line: "Asegurate que tu respuesta aparece arriba de esta línea"
@@ -541,7 +545,7 @@ es:
         # title:
         # time_zone:
         # street: Street
-        # notes: Notes 
+        # notes: Notes
       topic:
         kind: *kind
         name: *subject

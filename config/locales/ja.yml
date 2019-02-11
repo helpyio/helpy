@@ -40,6 +40,7 @@ ja:
   # Community
   forum_name: "トピック"
   subject: &subject "題名"
+  message: "メッセージ"
   last_activity: "最終ログイン"
   topic: "掲示板"
   replies: "返信"
@@ -247,6 +248,7 @@ ja:
   # Mail messages
   new_user_subject: "ようこそ %{site_name} へ"
   hello: "こんにちは，%{user_name} 様"
+  thank_you: "ありがとうございました!"
   new_user: "お問い合わせありがとうございます。 頂いたメッセージはサポートチームが受信いたしました。速やかに応答できるよう努めます。"
   account_generated: "このアカウントはあなたによって作成されました。サインインするには，このリンクをご利用ください :"
   above_this_line: "作成なさった返信が上の行に現れていることをご確認ください"

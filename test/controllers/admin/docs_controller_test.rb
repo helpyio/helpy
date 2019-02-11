@@ -63,13 +63,13 @@ class Admin::DocsControllerTest < ActionController::TestCase
   test "a signed in user should not be able to load new" do
     sign_in users(:user)
     get :new, locale: :en
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load edit" do
     sign_in users(:user)
     get :edit, { id: 3, locale: :en}
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load create" do
@@ -77,13 +77,13 @@ class Admin::DocsControllerTest < ActionController::TestCase
     assert_difference "Doc.count", 0 do
       post :create, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en
     end
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load update" do
     sign_in users(:user)
     patch :update, { id: 1, doc: {title: "some name", body: "some body text", category_id: 1}, locale: :en }
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   test "a signed in user should not be able to load destroy" do
@@ -91,7 +91,7 @@ class Admin::DocsControllerTest < ActionController::TestCase
     assert_difference "Doc.count", 0 do
       delete :destroy, { id: 3, locale: :en }
     end
-    assert_redirected_to root_path
+    assert_redirected_to admin_root_path
   end
 
   # Admin actions

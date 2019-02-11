@@ -26,11 +26,10 @@
 						  <div id="admin-left-nav" class="col-lg-2 col-md-3 hidden-sm hidden-xs">
 								<%= hide_responsive_nav %>
 								<% if current_user.is_agent? %>
-								<ul class="nav-items list-unstyled" data-hook="admin_profile_menu">
-									<%= settings_menu_item('glyphicon glyphicon-user', t('your_profile', default: "Your Profile"), admin_profile_settings_path(mode: 'settings')) %>
+								<!-- <ul class="nav-items list-unstyled" data-hook="admin_profile_menu">
+									<%#= settings_menu_item('glyphicon glyphicon-user', t('your_profile', default: "Your Profile"), admin_profile_settings_path(mode: 'settings')) %>
 									<%#= settings_menu_item('glyphicon glyphicon-bell', t('notifications', default: "notifications"), admin_notifications_path) %>
-					        <%= settings_menu_item('glyphicon glyphicon-cloud', t('api_keys', default: "API Keys"), admin_api_keys_path) %>
-						    </ul>
+						    </ul> -->
 								<% end %>
 								<% if current_user.is_admin? %>
 								<div class="settings-nav-header"><span class="tiny-header">General Settings</span></div>
@@ -56,6 +55,7 @@
 						    </ul>
 								<div class="settings-nav-header"><span class="tiny-header">Data</span></div>
 								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_data_menu" style="margin-top:10px;">
+									<%= settings_menu_item('glyphicon glyphicon-cloud', t('api_keys', default: "API Keys"), admin_api_keys_path) %>
 									<%= settings_menu_item('fas fa-download',"export", admin_backups_path) %>
 									<%= settings_menu_item('fas fa-upload',"import", admin_imports_path) %>
 								</ul>

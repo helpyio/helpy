@@ -1,0 +1,22 @@
+<%= link_to t(:your_tickets), tickets_path, Settings.tickets if user_signed_in? %> |
+<%= link_to t(:knowledgebase), categories_path, class:'kblink' if Settings.knowledgebase %> |
+<%= link_to t(:community), forums_path if Settings.forums %> |
+<%= link_to t(:ask_a_question), new_topic_path %> |
+<% unless user_signed_in? %>
+   <%= link_to t('devise.sessions.new.sign_in'), '#', class: 'login-link', data: {toggle: "modal", target: "#login-modal"} %>
+<% else %>
+  <%= link_to t(:your_profile, :username => current_user.name), edit_user_registration_path %> | <%= link_to('Admin', admin_root_path) + " | " if current_user.admin? %><%= link_to t(:logout), destroy_user_session_path %>
+<% end %>
+<% if AppSettings['i18n.available_locales'].count > 1 %>
+  |
+<span class="btn-group select-locale">
+  <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
+  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+    <% AppSettings['i18n.available_locales'].each do |l| %>
+    <% local_url = request.fullpath.split("/") %>
+    <% local_url[1] = "#{l}" %>
+    <li><%= link_to I18n.translate("language_name", locale: l).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (l == I18n.locale) ? 'strong' : '' %></li>
+    <% end %>
+  </ul>
+</span>
+<% end %>
