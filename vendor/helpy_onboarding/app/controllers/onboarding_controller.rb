@@ -1,31 +1,35 @@
-class Admin::OnboardingController < Admin::BaseController
+class OnboardingController < ApplicationController
 
   layout 'onboard'
   before_action :allow_onboarding, except: 'complete'
 
   def index
-    @user = current_user
+    @user = User.first
     @user.name = ""
     @user.email = ""
     @user.password = ""
-    render layout: 'onboard'
   end
 
   def update_user
-    if current_user.admin?
-      @user = User.find(params[:id])
+    # if current_user.admin?
+      @user = User.first
       @user.admin = true
       @user.active = true
       @user.role = 'admin'
       @user.password = params[:user][:password]
-    else
-      @user = current_user
-    end
+    # else
+      # @user = current_user
+    # end
 
     @user.update(user_params)
-    if @user.save
-      sign_in(@user, bypass: true) if current_user.admin?
-      redirect_to admin_complete_onboard_path
+ 
+    if @user.save      
+      sign_in(@user, bypass: true) if @user.admin?
+      respond_to do |format|
+        format.js {
+            render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
+        }
+      end
     else
       logger.warn("Errors prevented saving the user")
       render :index
@@ -46,15 +50,25 @@ class Admin::OnboardingController < Admin::BaseController
       AppSettings[setting[0]] = params[setting[0].to_sym] unless params[setting[0].to_sym].nil?
     end
 
+    @logo = Logo.new
+    @logo.file = params['uploader.design.header_logo']
+    @logo.save
+
+    @thumb = Logo.new
+    @thumb.file = params['uploader.design.favicon']
+    @thumb.save
+
+
     respond_to do |format|
-      format.html { redirect_to(admin_settings_path) }
+      format.html { redirect_to(complete_onboard_path) }
       format.js {
-          render js: "Helpy.showPanel(3);$('#edit_user_1').enableClientSideValidations();"
+          render js: "Helpy.showPanel(#{params[:nextpanel]});$('#edit_user_1').enableClientSideValidations();"
       }
     end
   end
 
   def complete
+    AppSettings['onboarding.complete'] = '1'
     respond_to :html
   end
 
@@ -62,7 +76,7 @@ class Admin::OnboardingController < Admin::BaseController
 
   def allow_onboarding
     unless show_onboarding?
-      redirect_to admin_complete_onboard_path
+      redirect_to complete_onboard_path
     end
   end
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <%= render partial: 'layouts/head' %>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css">
+  <%= theme_css %>
+  <style>
+    #upper-wrapper a {
+      color: white;
+    }
+
+    #body-wrapper a {
+      color: <%=AppSettings['css.main_color'] %>;
+    }
+
+    header {
+      background-color: <%=AppSettings['css.accent_color'].blank? ? '#245566': AppSettings['css.accent_color'] %>;
+    }
+
+    #home-search,
+    .flat-main-panel {
+      background-color: <%=AppSettings['css.main_color'].blank? ? '#245566': AppSettings['css.main_color'] %>;
+    }
+
+    .search-result-box .ui-menu .ui-menu-item a {
+      color: #333 !important;
+    }
+  </style>
+  <%= css_injector %>
+  <%= "#{AppSettings['design.header_js']}".html_safe %>
+
+</head>
+
+<body class="<%#= (request.fullpath.gsub("/#{I18n.locale}/","").gsub("/","-")) %><%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
+  <script>
+    ga('set', 'location', location.href.split('#')[0]);
+    ga('send', 'pageview', { "title": document.title });
+  </script>
+
+  <main id="panel">
+
+    <div id="upper-wrapper">
+    </div>
+    <article class="content">
+      <div id="body-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <%= yield :leftcol %>
+            </div>
+            <div class="col-md-6">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+  </footer>
+</body>
+
+</html>

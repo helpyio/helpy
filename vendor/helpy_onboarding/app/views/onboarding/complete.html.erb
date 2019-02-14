@@ -4,7 +4,34 @@
   ga('create', 'UA-50151-26', 'auto', 'installPinger');
   ga('installPinger.send', 'pageview', { 'title': 'Onboard Completed: ' + Helpy.domain });
 </script>
+<style>
+  .bootstrap-switch {
+    float: right;
+    margin-left: 20px;
+    border-radius: 50px;
+  }
 
+  .bootstrap-switch-label {
+    border-radius: 50px;
+  }
+
+  .bootstrap-switch-on {
+    background-color: #528BC5;
+    border: 1px solid #528BC5;
+  }
+
+  .bootstrap-switch-off {
+    background-color: #eee;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+
+  h3 {
+    font-weight: bold;
+  }
+</style>
 <div id="panel-4" class="onboard-panel text-center">
   <div class="onboard-message">
     <h2><%= t(:setup_complete, default: "Your Helpy is ready!") %></h2>
@@ -23,7 +50,7 @@
     </div>
 
     <div class="onboard-submit-section text-center">
-      <%= link_to t(:get_started, default: "Get Started!"), '#', class: 'btn btn-primary get-started' %>
+      <%= link_to t(:get_started, default: "Get Started!"), root_path, class: 'btn btn-primary get-started' %>
     </div>
   </div>
 </div>
