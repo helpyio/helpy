@@ -77,9 +77,9 @@ Helpy leverages two external services to help out:
 Getting Started:
 ----------------
 
-**One-click install via Digital Ocean**
+**30 Second one-click install via Digital Ocean**
 
-DigitalOcean, one of the worlds top cloud hosting providers has a one-click install image.  This image provisions a Ubuntu 18.04 system running Helpy on Passenger.
+DigitalOcean, one of the worlds top cloud hosting providers, has a one-click install image.  This image provisions a Ubuntu 18.04 system running Helpy on Passenger in less than a minute.
 
 1) Create an account on [DigitalOcean: Sign up Here](https://m.do.co/c/1368cfa70df6) . Through a special partnership, you can get $100 in credit with DigitalOcean by using this link.
 2) Once created (around 30 seconds) you can log in to the new install.
