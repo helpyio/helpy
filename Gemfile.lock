@@ -153,7 +153,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
     crass (1.0.4)
-    css_parser (1.6.0)
+    css_parser (1.7.0)
       addressable
     daemons (1.2.6)
     debug_inspector (0.0.3)
