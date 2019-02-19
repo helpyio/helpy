@@ -406,7 +406,7 @@ GEM
     grape-swagger-entity (0.3.1)
       grape-entity (>= 0.5.0)
       grape-swagger (>= 0.31.0)
-    grape-swagger-rails (0.3.0)
+    grape-swagger-rails (0.3.1)
       railties (>= 3.2.12)
     gravtastic (3.2.6)
     griddler (1.5.2)
