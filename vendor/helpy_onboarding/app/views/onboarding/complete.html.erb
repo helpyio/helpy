@@ -5,6 +5,10 @@
   ga('installPinger.send', 'pageview', { 'title': 'Onboard Completed: ' + Helpy.domain });
 </script>
 <style>
+  a.btn {
+    padding-top: 20px;
+  }
+
   .bootstrap-switch {
     float: right;
     margin-left: 20px;
@@ -24,6 +28,16 @@
     background-color: #eee;
   }
 
+  .btn,
+  input,
+  select {
+    min-height: 60px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
   h2 {
     font-weight: bold;
   }
@@ -37,7 +51,7 @@
     <h2><%= t(:setup_complete, default: "Your Helpy is ready!") %></h2>
   </div>
   <div class="edit-admin text-left">
-    <%= t(:setup_complete_message,
+    <%= content_tag :p, t(:setup_complete_message,
       default: "Your Helpy is ready to go!  You can customize more in the settings area.
         Follow us on social media to stay up to date on important bug fixes, security patches and the latest news.") %>
 
@@ -52,6 +66,7 @@
     <div class="onboard-submit-section text-center">
       <%= link_to t(:get_started, default: "Get Started!"), root_path, class: 'btn btn-primary get-started' %>
     </div>
+
   </div>
 </div>
 <link rel="stylesheet" href="/assets/hopscotch.css"></link>

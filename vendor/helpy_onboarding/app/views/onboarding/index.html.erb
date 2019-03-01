@@ -1,5 +1,48 @@
 <% title "#{admin_title} #{t(:welcome_to_helpy, default: 'Welcome to Helpy!')}" %>
 
+<style>
+  a.btn {
+    padding-top: 20px;
+  }
+
+  .bootstrap-switch {
+    float: right;
+    margin-left: 20px;
+    border-radius: 50px;
+  }
+
+  .bootstrap-switch-label {
+    border-radius: 50px;
+  }
+
+  .bootstrap-switch-on {
+    background-color: #528BC5;
+    border: 1px solid #528BC5;
+  }
+
+  .bootstrap-switch-off {
+    background-color: #eee;
+  }
+
+  .btn,
+  input,
+  select {
+    min-height: 60px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+
+  h3 {
+    font-weight: bold;
+  }
+</style>
+
 <script>
   ga('create', 'UA-50151-26', 'auto', 'installPinger');
   ga('installPinger.send', 'pageview', { 'title': 'Onboard Started: ' + Helpy.domain });
@@ -9,14 +52,19 @@
 <div id="panel-1" class="onboard-panel text-center">
   <div class="onboard-message">
     <h2><%= t(:welcome_to_helpy, default: "Welcome to Helpy!") %></h2>
-    <h4><%= t(:around_the_globe, default: "All around the globe, companies like yours are using Helpy to provide better customer service and support. It's exciting to have you on board!") %></h4>
+    <%= content_tag :h4, "" %>
+    <h4><%#= t(:around_the_globe, default: "All around the globe, companies like yours are using Helpy to provide better customer service and support. It's exciting to have you on board!") %></h4>
   </div>
-  <div class="welcome-image">
-  <%= image_tag 'collage3.png', width: '70%' %><br/>
-  </div>
-  <div class="onboard-submit-section">
-    <%= link_to t(:start_setup, default: "Let's set up your Helpy"), '#', class: 'btn btn-primary panel-link', 
-        data: { panel: 2 }, onclick: "$('#edit_user_1').enableClientSideValidations();" %>
+  <%= image_tag 'collage3.png', width: '100%' %>
+  <hr/>
+  <div class="row">
+    <div class="what-is-it col-md-6 text-left">
+      <%= content_tag :p, "Helpy is a complete platform for managing your organizations customer support.  It includes a support ticketing helpdesk and customer facing helpcenter with knowlege base, FAQs and customer forums." %>
+    </div>
+    <div class="onboard-submit-section col-md-6">
+      <%= link_to t(:start_setup, default: "Let's set up your Helpy"), '#', class: 'btn btn-primary panel-link', 
+            data: { panel: 2 }, onclick: "$('#edit_user_1').enableClientSideValidations();" %>
+    </div>
   </div>
 </div>
 <%# end %>
@@ -35,7 +83,7 @@
     <%= f.input :password_confirmation, autocomplete: "off", validate: true  %>
     <%= f.hidden_field :admin, value: 'true' %>
     <div class="onboard-submit-section">
-      <%= f.submit t("save_changes"), class: 'btn btn-warning' %>&nbsp;<%= link_to t(:skip, default: "Skip for now"), '#', class: 'btn btn-default panel-link', data: { panel: 3 } %>
+      <%= f.submit t("save_changes"), class: 'btn btn-warning' %>&nbsp;<%= link_to t(:skip, default: "Skip for now"), '#', class: 'btn btn-default panel-link', data: { panel: 3, confirm: "If you skip this step, your default username will be admin@test.com and default password '12345678'." } %>
     </div>
     <% end %>
   </div>
@@ -62,7 +110,9 @@
 
 <div id="panel-4" class="onboard-panel text-center hidden">
   <%= bootstrap_form_tag url: onboard_settings_path, method: 'patch', remote: false do |f| %>
-  
+  <div class="onboard-message">
+    <h2><%= t(:configure_email, default: "Configure inbound and outbound email") %>!</h2>
+  </div>
   <div class="onboard-submit-section text-left">
     <div class="settings-section email" data-hook="admin_settings_email">
       <%= f.select 'email.mail_service',
