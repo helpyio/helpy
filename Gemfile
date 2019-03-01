@@ -121,6 +121,7 @@ gem 'config', '~> 1.1.0'
 gem 'daemons'
 gem 'mailman'#, require: false
 gem 'mail_extract'
+gem 'email_reply_trimmer'
 
 gem 'griddler'
 gem 'griddler-mandrill'
