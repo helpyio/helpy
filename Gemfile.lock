@@ -403,7 +403,7 @@ GEM
       kaminari
     grape-swagger (0.32.0)
       grape (>= 0.16.2)
-    grape-swagger-entity (0.3.1)
+    grape-swagger-entity (0.3.3)
       grape-entity (>= 0.5.0)
       grape-swagger (>= 0.31.0)
     grape-swagger-rails (0.3.1)
