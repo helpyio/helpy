@@ -116,20 +116,20 @@ topic = Forum.first.topics.create(
 
 topic.posts.create(
   body: '
-  Thanks for installing Helpy and giving it a try  <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f31f.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a5.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f525.png?v8" style="width:20px;"><img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width:20px;">
+  Thanks for installing Helpy and giving it a try  <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8" style="width:20px;"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png?v8" style="width:20px;"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a5.png?v8" style="width:20px;"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f525.png?v8" style="width:20px;"><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width:20px;">
 
   As the founding creator of Helpy, I am excited you decided to give it a look
   and I really hope you use it in your business. I have heard from a lot of you
   that Helpy is the best open source customer support solution out there, and is
   better than even most commercial choices, so thanks for that if you are included
-  in this group.   <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4af.png?v8" style="width:20px;">
+  in this group.   <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4af.png?v8" style="width:20px;">
 
   <b>What is Helpy?</b>
 
   Helpy is a software platform that provides everything you need to run an awesome
-  ticketing helpdesk and self   service helpcenter website. You can even run a support
-  forum where customers can help each   other.&nbsp; The best part is Helpy is 100%
-  open source
+  ticketing helpdesk and self service helpcenter website. You can even run a support
+  forum where customers can help each other.&nbsp; The best part is Helpy core is 100%
+  open source.
 
   <b>License, Open Core</b>
 
@@ -143,7 +143,7 @@ topic.posts.create(
   further platform development. &nbsp;Supporting the project in some way makes good
   sense if you use Helpy in your business.
 
-  <a href="https://www.patreon.com/helpyio" target="_blank" class="btn btn-default">Become a Supporter <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width: 20px;"></a>
+  <a href="https://www.patreon.com/helpyio" target="_blank" class="btn btn-default">Become a Supporter <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width: 20px;"></a>
 
   <b>Why Sponsor? What do Supporters get?</b>
 
@@ -174,7 +174,7 @@ topic.posts.create(
 
   A full, current comparison on Helpy options is available here: <a href="https://helpy.io/open-source-helpdesk/">Comparison</a>
 
-  <a href="https://www.patreon.com/helpyio" target="_blank" class="btn btn-default">Become a Supporter <img src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width: 20px;"></a>
+  <a href="https://www.patreon.com/helpyio" target="_blank" class="btn btn-default">Become a Supporter <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4aa.png?v8" style="width: 20px;"></a>
   ',
   user_id: user_scott.id,
   kind: 'first'
