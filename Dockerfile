@@ -32,10 +32,10 @@ RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
 
 RUN bundle install
 
-# manually create the /helpy/public/assets folder and give the helpy user rights to it
-# this ensures that helpy can write precompiled assets to it
-RUN mkdir -p $HELPY_HOME/public/assets \
-    && chown $HELPY_USER $HELPY_HOME/public/assets
+# manually create the /helpy/public/assets and uploads folders and give the helpy user rights to them
+# this ensures that helpy can write precompiled assets to it, and save uploaded files
+RUN mkdir -p $HELPY_HOME/public/assets $HELPY_HOME/public/uploads \
+    && chown $HELPY_USER $HELPY_HOME/public/assets $HELPY_HOME/public/uploads
 
 VOLUME $HELPY_HOME/public
 
