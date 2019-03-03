@@ -290,14 +290,10 @@ class Admin::TopicsController < Admin::BaseController
 
   def update_tags
     @topic = Topic.find(params[:id])
+    previous_tagging = @topic.tag_list
     @topic.tag_list = params[:topic][:tag_list]
-    if @topic.save
+    if @topic.save && previous_tagging != @topic.tag_list
     # if @topic.update(tag_list: params[:tag][:tag_list])
-      @posts = @topic.posts.chronologic
-
-      fetch_counts
-      get_all_teams
-      get_tickets_by_status
 
 
       @topic.posts.create(
@@ -307,16 +303,21 @@ class Admin::TopicsController < Admin::BaseController
       )
 
       flash[:notice] = t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list)
-      respond_to do |format|
-        format.html {
-          redirect_to admin_topic_path(@topic)
-        }
-        format.js {
-          render 'update_ticket', id: @topic.id
-        }
-      end
-    else
-      logger.info("error")
+    end
+
+    @posts = @topic.posts.chronologic
+
+    fetch_counts
+    get_all_teams
+    get_tickets_by_status
+
+    respond_to do |format|
+      format.html {
+        redirect_to admin_topic_path(@topic)
+      }
+      format.js {
+        render 'update_ticket', id: @topic.id
+      }
     end
   end
 
@@ -338,7 +339,8 @@ class Admin::TopicsController < Admin::BaseController
 
     flash[:notice] = I18n.t(:assigned_group, assigned_group: assigned_group)
 
-    if params[:topic_ids].count > 1
+    if params[:topic_ids].c
+      ount > 1
       get_tickets_by_status
     else
       @topic = Topic.find(@topics.first.id)
