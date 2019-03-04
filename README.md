@@ -24,36 +24,14 @@ Helpy is an integrated support solution- combining and leveraging synergies betw
 
 - **Multichannel ticketing:** Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you.
-- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing.
-- **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
-- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum.
-- **Voting**: Discussion topics and replies support voting.
+- **Mobile-friendly:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
+- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum, and vote both threads and replies up or down accordingly.
 - **Embed Widget:** Helpy Includes a lightweight javascript widget that allows your users to contact you from just about anywhere.
 - **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for 19 languages and is easy to translate.
 - **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
-
-What is new in Version 2.0
-=========
-Version 2 includes a number of awesome improvements in the open source edition, and even more in the pro and cloud hosted versions:
-
-- Refreshed Admin UI
-- New Helpcenter theme: Singular
-- HTML support when responding to tickets
-- Nicer HTML alert emails
-- Nicer HTML responses to customers
-- HTML emails now include the full ticket history
-- UI for replying to tickets re-imagined
-- Inline customer editing
-- Channel and source reporting
-- New support for emoji's in ticket replies
-- Customize the colors of the admin UI
-- Ability to email customers from the create ticket dialogue
-- New internal ticket type
-- Set all ticket params from admin create ticket UI
-- Font Awesome 5 iconography
-- Improved support for CC and BCC recipients
-- Import/Export data in CSV
-- Comply with GDPR by deleting or anonymizing users
+- **Sends HTML email:** Responses to customers can include html, emojis and attachments.
+- **Customizable:** Set colors to match your brand both on the helpcenter, and in the ticketing UI.
+- **GDPR Compliant:** Comply with GDPR right to be forgotten requests by deleting users and their history, or by anonymizing them.
 
 Cloud Version
 =========
@@ -68,9 +46,6 @@ We also offer a hosted version with additional features designed to make your he
 - Advanced search: Easily filter and find tickets or customers when you have thousands
 - Customizable Request Forms: Easily Add questions to the ticket creation forms
 - AI Support Chatbot: Create a chatbot for your website to answer up 90% of tier one questions autonomously
-
-On-Premise and Dedicated Cloud
-=========
 
 You may prefer to run Helpy locally or in-country.  You can still get access to the full cloud feature set with either an on-premise installation of the cloud hosted features, or a dedicated AWS instance in a regional data-center.  
 
@@ -102,11 +77,12 @@ Helpy leverages two external services to help out:
 Getting Started:
 ----------------
 
-**Install Helpy on your Local System**
+**30 Second one-click install via Digital Ocean**
 
-Although not required, installing locally is highly recommended and will make it easier for you to customize things like settings, colors and logos to match your site identity.  To begin, clone Helpy from the official repo to your local system:
+DigitalOcean, one of the worlds top cloud hosting providers, has a one-click install image.  This image provisions a Ubuntu 18.04 system running Helpy on Passenger in less than a minute.
 
-`git clone https://github.com/helpyio/helpy.git`
+1) Create an account on [DigitalOcean: Sign up Here](https://m.do.co/c/1368cfa70df6) . Through a special partnership, you can get $100 in credit with DigitalOcean by using this link.
+2) Once created (around 30 seconds) you can log in to the new install.
 
 **Install Helpy via Docker**
 
@@ -117,6 +93,12 @@ Docker is the recommended way to quickly test or run Helpy in production.
 3) Edit `docker/Caddyfile` to include your URL or turn on SSL
 4) Build Helpy from local git checkout `docker-compose build`
 5) Run `docker-compose up -d` to start all of the services
+
+**Install Helpy on your Local System**
+
+Although not required, installing locally is highly recommended and will make it easier for you to customize things like settings, colors and logos to match your site identity.  To begin, clone Helpy from the official repo to your local system:
+
+`git clone https://github.com/helpyio/helpy.git`
 
 **Configure Basic Settings**
 
