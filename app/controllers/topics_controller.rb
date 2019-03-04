@@ -206,6 +206,7 @@ class TopicsController < ApplicationController
     unless AppSettings['settings.anonymous_access'] == '1'
       redirect_to root_path
     end
+    Hashid::Rails.configuration.salt=AppSettings['settings.anonymous_salt']
   end
 
 end

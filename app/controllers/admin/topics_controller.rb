@@ -30,6 +30,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
   before_action :remote_search, only: ['index', 'show', 'update_topic']
   before_action :get_all_teams, except: ['shortcuts']
+  before_action :set_hash_id_salt
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -614,6 +615,10 @@ class Admin::TopicsController < Admin::BaseController
       :name,
       :tag_list
     )
+  end
+
+  def set_hash_id_salt
+    Hashid::Rails.configuration.salt=AppSettings['settings.anonymous_salt']
   end
 
 end
