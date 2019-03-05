@@ -181,7 +181,8 @@ group :development do
   gem "better_errors"
 
   # Check Eager Loading / N+1 query problems
-  gem 'bullet'
+  # gem 'bullet'
+  gem 'scout_apm'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.3'

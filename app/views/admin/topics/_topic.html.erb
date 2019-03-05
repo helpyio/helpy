@@ -11,7 +11,7 @@
         <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic, status: @status), remote: true, class: "click-loader topic-link topic-link-#{topic.id}" -%>
         <%= badge_for_status(topic.current_status) %>
         <%= badge_for_public if forums? and !topic.private? %>
-        <% tag_listing(topic.team_list) %>
+        <%# tag_listing(topic.team_list) %>
       </span>
     <span class="less-important user-link">
       <%= started_by(topic) %>

@@ -43,7 +43,8 @@ class Admin::TopicsController < Admin::BaseController
 
   def show
     get_tickets_by_status
-    @topic = Topic.where(id: params[:id]).first
+    @topic = Topic.find(params[:id])
+    @user = @topic.user
     @doc = Doc.find(@topic.doc_id) if @topic.doc_id.present? && @topic.doc_id != 0
 
     if check_current_user_is_allowed? @topic
@@ -53,7 +54,7 @@ class Admin::TopicsController < Admin::BaseController
       #   @topic.open
       # end
       get_all_teams
-      @posts = @topic.posts.chronologic.includes(:user)
+      @posts = @topic.posts.chronologic.includes(:user, :topic)
       tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
       fetch_counts
       @include_tickets = false
