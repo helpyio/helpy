@@ -10,9 +10,12 @@
       <%= render :partial => 'admin/topics/topic_options' %>
 
       <div class="topic-tags pull-right">
-        <span class="btn-group left-col-dropdown pull-right">
-          <%= content_tag :span, formatted_tags(@topic), class: ' hidden-xs' %>
-        </span>
+        <!-- <span class="btn-group left-col-dropdown pull-right">
+          <%#= content_tag :span, formatted_tags(@topic), class: ' hidden-xs' %>
+        </span> -->
+        <div class="topic-tag-form">
+          <%= topic_tag_form %>
+        </div>
       </div>
     </div>
     <h3 class="topic-number-name">
@@ -23,12 +26,7 @@
       <%= topic_added_from %>
 
     </h3>
-    <div class="topic-tag-form" style="display: none;">
-      <%= simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id, status: params[:status]), remote: true, html: { class: 'form-inline' } do |f| %>
-        <%= f.input_field :tag_list, value: @topic.tag_list.to_s, class: 'selectize form-control', style: 'width: 80%;'%>
-        <%= f.submit "Save", class: 'form-control' %>
-      <% end %>
-    </div>
+
 
     <% if @posts  %>
       <script>
@@ -182,20 +180,24 @@ Helpy.showhidenotes = function(){
 
 
 $(document).ready(function(){
-  $('.topic-tags li, .add-tag-link').on('click', function(){
-    $('.topic-tag-list').toggle();
-    $('.topic-tag-form').toggle();
-    $('.selectize').selectize({
-      delimiter: ',',
-      persist: false,
-      create: function(input) {
-          return {
-              value: input,
-              text: input
-              }
-          }
-    });
-    return false;
+//  $('.topic-tags li, .add-tag-link').on('click', function(){
+//    $('.topic-tag-list').toggle();
+//    $('.topic-tag-form').toggle();
+//    $('.selectize').selectize({
+//      delimiter: ',',
+//      persist: false,
+//      create: function(input) {
+//          return {
+//              value: input,
+//              text: input
+//              }
+//          }
+//    });
+//    return false;
+//  });
+
+  $('#topic_tag_list').off().on('hide.bs.select', function(){
+    $('.tag-form').submit();
   });
 
   if ($('.kind-note').size() > 3) {

@@ -47,7 +47,8 @@
       <%= f.input :priority, collection: ticket_priority_collection , as: :select, include_blank: true, selected: 'normal' %>
       <%= f.input :current_status, collection: statuses_collection, as: :select, include_blank: false, selected: 'new' %>
       <%= f.input :assigned_user_id, collection: agents_for_select, as: :select, include_blank: true, selected: current_user.id %>
-      <%= f.input :tag_list %>
+      <%= f.input :tag_list, collection: ticket_tag_collection, as: :select, include_blank: false,
+        input_html: { multiple: true, class: 'selectpicker', data: { 'none-selected-text': 'Any'} } unless ticket_tag_collection.blank? %>
     </div>
   </div>
   <% end -%>

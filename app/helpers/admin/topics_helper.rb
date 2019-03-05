@@ -78,10 +78,31 @@ module Admin::TopicsHelper
     Topic.priorities.keys.map { |priority| [t("#{priority}_priority"), priority] }
   end
 
+  def ticket_tag_collection
+    ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: 'Topic').includes(:tag).map{|tagging| tagging.tag.name }.uniq
+  end
+
   # id of opening or first post in the topic
   def first_post_id(topic)
     first_post = topic.posts.order(created_at: :asc).first
     first_post.present? ? first_post.id : nil
+  end
+
+  # show topic tag form
+  def topic_tag_form
+    return nil if ticket_tag_collection.blank?
+    simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id, status: params[:status]), remote: true, html: { class: 'form-inline tag-form' } do |f|
+      content_tag :div, class: 'row hidden-xs' do
+        content_tag :div, class: 'col-md-8', style: 'width: 0' do
+          f.input :tag_list, collection: ticket_tag_collection, 
+            as: :select, include_blank: false, label: false,
+            input_html: { multiple: true, class: 'selectpicker pull-right',
+            wrapper_html: { style: 'width: 0' }, 
+            data: { 'none-selected-text': t('tag_with', default: 'Tag Ticket'), 'live-search': false, 'width': '150px', dropdownAlignRight: false}, 
+            style: 'width: 100px;' }
+        end
+      end
+    end
   end
 
 end
