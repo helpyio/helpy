@@ -181,6 +181,7 @@ GEM
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     dry-inflector (0.1.2)
+    email_reply_trimmer (0.1.12)
     equalizer (0.0.11)
     erubi (1.8.0)
     erubis (2.7.0)
@@ -821,6 +822,7 @@ DEPENDENCIES
   devise-bootstrap-views
   devise-i18n
   devise_invitable (< 1.7)
+  email_reply_trimmer
   factory_bot_rails
   faker
   fog
