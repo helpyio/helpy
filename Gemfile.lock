@@ -640,8 +640,8 @@ GEM
       rake
     raindrops (0.19.0)
     rake (12.3.2)
-    ranked-model (0.4.3)
-      activerecord (>= 4.1.16)
+    ranked-model (0.4.1)
+      activerecord (>= 3.1.12)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
