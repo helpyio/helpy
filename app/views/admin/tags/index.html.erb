@@ -25,7 +25,17 @@
       </div>
     </div>
 
-    <%= render partial: 'admin/tags/tag', collection: @tags if @tags %>
+    <div class="tags">
+      <%= render partial: 'admin/tags/tag', collection: @tags if @tags %>
+    </div>
   </div>
+
+  <%= simple_form_for(@tag, url: admin_tags_path, validate: true, remote: true, :html => { role: 'form'}) do |f| %>
+  <span class="tag-fields">
+    <%= f.input 'name', label: false, placeholder: t(:tag, default: 'Tag Quick Add') %>
+  </span>
+  <%= f.button :submit, t("save_changes"), class: 'btn btn-warning' %>
+  <% end %>
+
 
 <% end %>
