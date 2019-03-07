@@ -8,7 +8,7 @@
       <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{first_post_id(@topic)}" } if @topic.posts.present? %></li>
       <hr/>
       <% if @topic.user.present? %>
-      <li class="dropdown-header"><%= @topic.user.name %></li>
+      <li class="dropdown-header more-important"><%= @topic.user.name %></li>
       <li><%= link_to t(:tickets, default: 'Tickets'), remote: true %></li>
       <li><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @topic.user.id), remote: true, class: '' %></li>
       <li><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@topic.user), remote: false if @topic.user.can_be_edited? current_user %></li>
@@ -80,6 +80,34 @@
       <hr/>
       <li><%= link_to t(:unassign_from_team, default: "Unassign from group"), admin_unassign_team_path(topic_ids: { "":@topic.id }, team: '', status: @status), :remote => true unless @topic.current_status == "closed" %></li>
 
+    </ul>
+  </span>
+
+  <span class="status btn-group left-col-dropdown">
+    <button class="dropdown-toggle ticket-control tag-toggle" aria-expanded="false">
+      <%= content_tag :span, class: 'btn label-light status-label-button label' do %>
+        <%= tags_button_label %>
+        <%= content_tag(:i, nil, class: 'caret') + ' ' %>
+      <% end %>
+    </button>
+    <ul class="dropdown-menu ticket-controls" role="menu">
+      <li class="dropdown mega-dropdown">
+        <div class="topic-tag-form">
+          <style>
+            .selectize-input {
+              border: 1px;
+              font-weight: normal;
+              text-transform: uppercase;
+            }
+        
+            .selectize-input .item {
+              background-color: #ddd;
+              color: #666;
+            }
+          </style>
+          <%= topic_tag_form %>
+        </div>
+      </li>
     </ul>
   </span>
 <% end %>
