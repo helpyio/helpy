@@ -31,7 +31,7 @@ class PostMailer < ActionMailer::Base
     mail(
       to: email_with_name,
       cc: @post.cc,
-      bcc: @post.bcc,
+      bcc: @post.bccs,
       from: @topic.from_email_address,
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )

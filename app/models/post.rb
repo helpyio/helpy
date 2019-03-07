@@ -152,7 +152,18 @@ class Post < ActiveRecord::Base
     trimmed_body = EmailReplyTrimmer.trim(body)
     "#{ActionView::Base.full_sanitizer.sanitize(ApplicationController.helpers.body_tokens(trimmed_body, topic))}".html_safe
   end
-  
+
+  def bccs
+    bccs = []
+    unless bcc.nil?
+      bccs += bcc&.split(',').collect{|b| b.strip}
+    end
+    unless AppSettings['settings.global_bcc'].nil? || AppSettings['settings.global_bcc'].blank?
+      bccs += AppSettings['settings.global_bcc']&.split(',').collect{|b| b.strip}
+    end
+    return bccs
+  end
+
   private
 
     def truncate_body

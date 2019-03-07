@@ -222,6 +222,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "an #{admin} should be able to open a new discussion with a set channel" do
+      AppSettings['settings.default_channel'] = 'phone'
+      sign_in users(admin.to_sym)
+      xhr :get, :new
+      assert_equal 'phone', assigns(:topic).channel
+      assert_response :success
+    end
+
     test "an #{admin} should be able to create a new private discussion for a new user with an email" do
       sign_in users(admin.to_sym)
       assert_difference "Topic.count", 1 do
