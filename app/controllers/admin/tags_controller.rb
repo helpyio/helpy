@@ -12,6 +12,7 @@ class Admin::TagsController < Admin::BaseController
   layout 'admin-settings'
 
   def index
+    @tag = ActsAsTaggableOn::Tag.new
     tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: "Topic").includes(:tag).map{|tagging| tagging.tag.id }.uniq
     @tags = ActsAsTaggableOn::Tag.where("id IN (?)", tag_ids)
   end
@@ -34,9 +35,14 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def create
-    tag = ActsAsTaggableOn::Tag.create(tag_params)
-    if ActsAsTaggableOn::Tagging.create(tag_id: tag.id, taggable_type: 'Topic', context: "tags")
-      redirect_to admin_tags_path
+    @tag = ActsAsTaggableOn::Tag.create(tag_params)
+    if ActsAsTaggableOn::Tagging.create(tag_id: @tag.id, taggable_type: 'Topic', context: "tags")
+      respond_to do |format|
+        format.html {
+          redirect_to admin_tags_path
+        }
+        format.js {}
+      end
     else
       render new_admin_tag_path
     end
@@ -46,7 +52,12 @@ class Admin::TagsController < Admin::BaseController
     @tag = ActsAsTaggableOn::Tag.find(params[:id])
     @tag.taggings.destroy_all if @tag.taggings.present?
     @tag.destroy
-    redirect_to admin_tags_path
+    respond_to do |format|
+      format.html {
+        redirect_to admin_tags_path
+      }
+      format.js {}
+    end
   end
 
   private

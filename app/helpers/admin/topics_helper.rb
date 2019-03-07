@@ -17,8 +17,7 @@ module Admin::TopicsHelper
   end
 
   def topic_added_from
-    # <span class="less-important" style="font-size: 12px;"><%= "#{@topic.kind} added from #{@topic.channel}" %><%= " on #{link_to(@doc.title, edit_admin_category_doc_path(@doc.category_id, @doc.id, lang: I18n.locale))}".html_safe if @doc.present? %></span>
-    content_tag :small, class: 'less-important' do
+    content_tag :small, class: 'less-important hidden-xs' do
       concat t(:topic_added_from, kind: @topic.kind, channel: @topic.channel)
       concat ": #{link_to(@doc.title, edit_admin_category_doc_path(@doc.category_id, @doc.id, lang: I18n.locale))}".html_safe if @doc.present?
     end
@@ -92,16 +91,26 @@ module Admin::TopicsHelper
   def topic_tag_form
     return nil if ticket_tag_collection.blank?
     simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id, status: params[:status]), remote: true, html: { class: 'form-inline tag-form' } do |f|
-      content_tag :div, class: 'row hidden-xs' do
-        content_tag :div, class: 'col-md-8', style: 'width: 0' do
+      content_tag :div, class: 'row' do
+        content_tag :div, class: 'col-md-8' do
           f.input :tag_list, collection: ticket_tag_collection, 
             as: :select, include_blank: false, label: false,
-            input_html: { multiple: true, class: 'selectpicker pull-right',
-            wrapper_html: { style: 'width: 0' }, 
-            data: { 'none-selected-text': t('tag_with', default: 'Tag Ticket'), 'live-search': false, 'width': '150px', dropdownAlignRight: false}, 
-            style: 'width: 100px;' }
+            input_html: { multiple: true, class: '', placeholder: 'click to add tags...' },
+            # wrapper_html: { style: 'width: 0' }, 
+            data: { 'none-selected-text': t('tag_with', default: 'Tag Ticket'), 'live-search': false, 'width': '150px', dropdownAlignRight: false },
+            style: 'width: 280px;'
+            
         end
       end
+    end
+  end
+
+  # tag button label
+  def tags_button_label
+    if @topic.tag_list.count > 0
+      pluralize @topic.tag_list.count, "Tag"
+    else
+      t(:tag_with, default: "Tag Ticket")
     end
   end
 

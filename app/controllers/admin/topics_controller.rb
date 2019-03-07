@@ -340,8 +340,7 @@ class Admin::TopicsController < Admin::BaseController
 
     flash[:notice] = I18n.t(:assigned_group, assigned_group: assigned_group)
 
-    if params[:topic_ids].c
-      ount > 1
+    if params[:topic_ids].count > 1
       get_tickets_by_status
     else
       @topic = Topic.find(@topics.first.id)

@@ -4,19 +4,8 @@
   </div>
 
   <div id="ticket-controls" class="col-md-9 col-xs-12 col-lg-9">
-    <div class="topic-tags hidden-lg hidden-md hidden-sm"><%= formatted_tags(@topic) %></div>
-
     <div id="topic-options">
       <%= render :partial => 'admin/topics/topic_options' %>
-
-      <div class="topic-tags pull-right">
-        <!-- <span class="btn-group left-col-dropdown pull-right">
-          <%#= content_tag :span, formatted_tags(@topic), class: ' hidden-xs' %>
-        </span> -->
-        <div class="topic-tag-form">
-          <%= topic_tag_form %>
-        </div>
-      </div>
     </div>
     <h3 class="topic-number-name">
 
@@ -24,9 +13,7 @@
       <span class="topic-number">#<%= @topic.id %></span>-
       <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
       <%= topic_added_from %>
-
     </h3>
-
 
     <% if @posts  %>
       <script>
@@ -178,26 +165,28 @@ Helpy.showhidenotes = function(){
   });
 }
 
-
 $(document).ready(function(){
-//  $('.topic-tags li, .add-tag-link').on('click', function(){
-//    $('.topic-tag-list').toggle();
-//    $('.topic-tag-form').toggle();
-//    $('.selectize').selectize({
-//      delimiter: ',',
-//      persist: false,
-//      create: function(input) {
-//          return {
-//              value: input,
-//              text: input
-//              }
-//          }
-//    });
-//    return false;
-//  });
 
-  $('#topic_tag_list').off().on('hide.bs.select', function(){
-    $('.tag-form').submit();
+  // Create selectize tag chooser
+  $('#topic_tag_list').selectize({
+    // plugins: ['remove_button'],
+    onBlur: function(){
+      $('.tag-form').submit();
+    }
+  });
+
+  // This opens and closes the tagging dropdown like a normal BS dropdown
+  $('.tag-toggle').on('click', function(e){
+    $(this).parent().toggleClass('open');
+  });
+
+  $('body').on('click', function (e) {
+    if (!$('span.left-col-dropdown').is(e.target)
+      && $('span.left-col-dropdown').has(e.target).length === 0
+      && $('.open').has(e.target).length === 0
+    ) {
+      $('span.left-col-dropdown').removeClass('open');
+    }
   });
 
   if ($('.kind-note').size() > 3) {
