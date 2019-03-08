@@ -35,8 +35,9 @@ class Admin::TagsController < Admin::BaseController
   end
 
   def create
-    @tag = ActsAsTaggableOn::Tag.create(tag_params)
-    if ActsAsTaggableOn::Tagging.create(tag_id: @tag.id, taggable_type: 'Topic', context: "tags")
+    @tag = ActsAsTaggableOn::Tag.new(tag_params)
+    if @tag.save && ActsAsTaggableOn::Tagging.create(tag_id: @tag.id, taggable_type: 'Topic', context: "tags")
+      flash[:notice] = "Tag Saved"
       respond_to do |format|
         format.html {
           redirect_to admin_tags_path
@@ -44,7 +45,13 @@ class Admin::TagsController < Admin::BaseController
         format.js {}
       end
     else
-      render new_admin_tag_path
+      respond_to do |format|
+        format.html {
+          render :new
+        }
+        format.js {
+        }
+      end      
     end
   end
 
@@ -52,6 +59,7 @@ class Admin::TagsController < Admin::BaseController
     @tag = ActsAsTaggableOn::Tag.find(params[:id])
     @tag.taggings.destroy_all if @tag.taggings.present?
     @tag.destroy
+    flash[:notice] = "Tag has been deleted"
     respond_to do |format|
       format.html {
         redirect_to admin_tags_path
