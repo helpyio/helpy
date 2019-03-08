@@ -6,6 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
+# and tmp bundle (local testing)
+/vendor/bundle
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -32,4 +34,5 @@ public/uploads
 
 # Docker stuff
 .env
-certs
+/certs
+/postgres

@@ -77,11 +77,12 @@ Helpy leverages two external services to help out:
 Getting Started:
 ----------------
 
-**Install Helpy on your Local System**
+**30 Second one-click install via Digital Ocean**
 
-Although not required, installing locally is highly recommended and will make it easier for you to customize things like settings, colors and logos to match your site identity.  To begin, clone Helpy from the official repo to your local system:
+DigitalOcean, one of the worlds top cloud hosting providers, has a one-click install image.  This image provisions a Ubuntu 18.04 system running Helpy on Passenger in less than a minute.
 
-`git clone https://github.com/helpyio/helpy.git`
+1) Create an account on [DigitalOcean: Sign up Here](https://m.do.co/c/1368cfa70df6) . Through a special partnership, you can get $100 in credit with DigitalOcean by using this link.
+2) Once created (around 30 seconds) you can log in to the new install.
 
 **Install Helpy via Docker**
 
@@ -92,6 +93,12 @@ Docker is the recommended way to quickly test or run Helpy in production.
 3) Edit `docker/Caddyfile` to include your URL or turn on SSL
 4) Build Helpy from local git checkout `docker-compose build`
 5) Run `docker-compose up -d` to start all of the services
+
+**Install Helpy on your Local System**
+
+Although not required, installing locally is highly recommended and will make it easier for you to customize things like settings, colors and logos to match your site identity.  To begin, clone Helpy from the official repo to your local system:
+
+`git clone https://github.com/helpyio/helpy.git`
 
 **Configure Basic Settings**
 
