@@ -157,7 +157,7 @@ gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 gem 'best_in_place', '~> 3.1'
 
 # Add onboarding component
-gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+gem 'helpy_onboarding', branch: 'master'
 gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
