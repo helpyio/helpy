@@ -45,7 +45,6 @@ class Admin::TopicsController < Admin::BaseController
   def show
     get_tickets_by_status
     @topic = Topic.find(params[:id])
-    @user = @topic.user
     @doc = Doc.find(@topic.doc_id) if @topic.doc_id.present? && @topic.doc_id != 0
 
     if check_current_user_is_allowed? @topic
