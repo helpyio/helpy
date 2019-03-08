@@ -76,8 +76,8 @@ module UsersHelper
     return if user.nil?
     if user.profile_image.present?
       image_tag(user.profile_image.url, width: "#{size}px", class: 'img-circle') 
-    elsif cloudinary_enabled?
-      image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle') if user.avatar.present?
+    elsif cloudinary_enabled? && user.avatar.present?
+      image_tag("https://res.cloudinary.com/#{Cloudinary.config.cloud_name}/image/upload/c_thumb,w_#{size},h_#{size}/#{user.avatar.path}", width: "#{size}px", class: 'img-circle')
     elsif user.thumbnail.present?
       image_tag(user.thumbnail, width: "#{size}px", class: 'img-circle')
     else
