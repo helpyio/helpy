@@ -162,4 +162,12 @@ class EmailProcessorTest < ActiveSupport::TestCase
     EmailProcessor.new(email).process
     assert_equal(Post.last.cc, email[:cc].map{|e| e[:full]}.join(", "))
   end
+
+  test 'an email with cc should not persist the cc is its the admin email' do
+    AppSettings['email.admin_email'] = 'support@mysite.com'
+    AppSettings['settings.site_name'] = 'Mysite Support'
+    email = build(:email_with_admin_cc)
+    EmailProcessor.new(email).process
+    assert_equal false, Post.last.cc.include?("support@mysite.com")
+  end
 end

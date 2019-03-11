@@ -180,6 +180,33 @@ class PostTest < ActiveSupport::TestCase
     end
   end
 
+  test "should not save admin email as cc" do
+    AppSettings['email.admin_email'] = "admin@test.com"
+    @topic = Topic.last
+    @topic.posts.create!(
+      user_id: 1,
+      body: "This is a reply from admin",
+      kind: "reply",
+      cc: "#{AppSettings['email.admin_email']}, another@test.com"
+    )
+
+    assert_equal false, Post.last.cc.include?(AppSettings['email.admin_email'])
+    assert_equal 1, Post.last.cc.split(",").size
+  end
+
+  test "should not save full admin email as cc" do
+    AppSettings['email.admin_email'] = "admin@test.com"
+    @topic = Topic.last
+    @topic.posts.create!(
+      user_id: 1,
+      body: "This is a reply from admin",
+      kind: "reply",
+      cc: "admin email <#{AppSettings['email.admin_email']}>, another@test.com"
+    )
+    assert_equal false, Post.last.cc.include?(AppSettings['email.admin_email'])
+    assert_equal 1, Post.last.cc.split(",").size
+  end
+
   # test "Should truncate body length if greater than 10,000" do
   #   body   = "0" * 10001
   #   @user  = User.first
