@@ -1,6 +1,23 @@
 # Simplecov to give a report of the test coverage on local development environment
 require 'simplecov'
 SimpleCov.start 'rails'
+require 'minitest/reporters'
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
+ActiveSupport::TestCase.test_order = :parallel
+
+require 'capybara/rails'
+require 'capybara/minitest'
+
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+  include Capybara::Minitest::Assertions
+  Capybara.server = :webrick
+
+  def teardown
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+end
 
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
@@ -99,5 +116,8 @@ def set_default_settings
     a.notify_on_reply = true
     a.save!
   end
+
+  ActionMailer::Base.delivery_method = :test
+  ActionMailer::Base.perform_deliveries = true
 
 end

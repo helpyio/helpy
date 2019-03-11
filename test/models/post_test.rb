@@ -30,6 +30,10 @@ class PostTest < ActiveSupport::TestCase
   should validate_presence_of(:kind)
   should validate_presence_of(:user)
 
+  def setup
+    set_default_settings
+  end
+
   # first post should be kind first
   # post belonging to a topic with multiple posts should be a reply
 

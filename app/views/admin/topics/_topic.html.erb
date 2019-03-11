@@ -2,7 +2,7 @@
   <td>
     <%= check_box_tag "topic_ids[]", topic.id, false, class: 'topic-checkbox pull-left' %>
     <span class="user-thumbnail pull-right hidden-xs">
-      <%= link_to avatar_image(topic.user, size=40), admin_user_path(topic.user.id), remote: true %>
+      <%= link_to avatar_image(topic.user, size=40), admin_user_path(topic.user.id), remote: true if topic.user.present? %>
     </span>
   </td>
 
@@ -14,8 +14,8 @@
         <% tag_listing(topic.team_list) %>
       </span>
     <span class="less-important user-link">
-      <%= link_to t(:started_by, username: topic.user.name.titleize, default: "Started by #{topic.user.name}"), admin_user_path(topic.user.id), remote: true %>
-      <%= user_priority(topic.user) %>
+      <%= started_by(topic) %>
+      <%= user_priority(topic.user) unless topic.user.nil? %>
       - <%= assigned_to(topic) %>
     </span>
   </td>

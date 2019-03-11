@@ -30,7 +30,9 @@ class ForumTest < ActiveSupport::TestCase
   should validate_length_of(:description).is_at_most(1000)
 
   test "should count number of posts" do
-    assert Forum.find(1).total_posts == 3
+    # For sum of array, see
+    # https://stackoverflow.com/questions/1538789/how-to-sum-array-of-numbers-in-ruby
+    assert Forum.find(1).total_posts == Forum.find(1).topics.collect{|t| t.posts.count}.inject(0, :+)
   end
 
   test "to_param" do

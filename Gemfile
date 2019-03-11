@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.10'
+gem 'rails', '4.2.11'
 
 # Use postgresql as the database for Active Record
-gem 'pg', '< 1.0.0'
+gem 'pg', '~> 0.20.0'
 gem 'pg_search'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.7'
@@ -95,7 +95,9 @@ gem 'gravtastic'
 gem 'cloudinary', '1.1.7'
 gem 'attachinary'
 
-gem 'carrierwave', '~> 1.2.3'
+gem 'carrierwave', '~> 1.3.1'
+gem 'fog'
+gem 'fog-aws'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
@@ -169,6 +171,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'scss-lint'
   gem 'awesome_print'
+  gem 'rb-readline'
 end
 
 gem 'bulk_insert'

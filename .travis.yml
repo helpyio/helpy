@@ -1,14 +1,14 @@
 language: ruby
 rvm:
-  - 2.3.7
-  - 2.4.4
+  - 2.3.8
+  - 2.4.5
 
 services:
   - postgresql
 
 before_install:
   # Install a current Bundler version
-  - gem install bundler
+  - gem install bundler -v '< 2'
 
 before_script:
   # Setup Test Database

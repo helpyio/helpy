@@ -233,6 +233,7 @@ class Admin::TopicsController < Admin::BaseController
     #handle array of topics
     @topics = Topic.where(id: params[:topic_ids])
     @topics.update_all(private: params[:private], forum_id: params[:forum_id])
+    @topics.each{|topic| topic.update_pg_search_document}
     bulk_post_attributes = []
 
     @topics.each do |topic|
