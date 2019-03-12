@@ -1,7 +1,7 @@
 Helpy: A Modern Helpdesk Platform for the Web
 ====================================
 
-Helpy is a modern multichannel helpdesk platform written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.  
+Helpy is a modern multichannel helpdesk platform written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
@@ -11,7 +11,7 @@ Helpy is a modern multichannel helpdesk platform written in Ruby on Rails 4.2 an
 Sponsor/Support Helpy
 ========
 
-Helpy is licensed under the MIT license, and is an open-core project. This means that the core functionality is 100% open source and fully hackable or even re-sellable under the MIT license.  See the features comparison below to understand what is included.  
+Helpy is licensed under the MIT license, and is an open-core project. This means that the core functionality is 100% open source and fully hackable or even re-sellable under the MIT license.  See the features comparison below to understand what is included.
 
 Helpy is a large system and cannot exist purely as a hobby project. If you use it in a money generating capacity, it makes good sense to support the project financially or by becoming an official sponsor or supporter.
 
@@ -47,7 +47,7 @@ We also offer a hosted version with additional features designed to make your he
 - Customizable Request Forms: Easily Add questions to the ticket creation forms
 - AI Support Chatbot: Create a chatbot for your website to answer up 90% of tier one questions autonomously
 
-You may prefer to run Helpy locally or in-country.  You can still get access to the full cloud feature set with either an on-premise installation of the cloud hosted features, or a dedicated AWS instance in a regional data-center.  
+You may prefer to run Helpy locally or in-country.  You can still get access to the full cloud feature set with either an on-premise installation of the cloud hosted features, or a dedicated AWS instance in a regional data-center.
 
 Live Demo
 =========
@@ -140,11 +140,11 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 Security Issues
 ===============
 
-If you have found a vulnerability or other security problem in Helpy, please *do not open an issue* on GitHub. Instead, contact [hello@helpy.io](mailto: hello@helpy.io) directly by email.  See the [SECURITY](/SECURITY.md) guide to learn more and see a hall of fame of security reporters. 
+If you have found a vulnerability or other security problem in Helpy, please *do not open an issue* on GitHub. Instead, contact [hello@helpy.io](mailto: hello@helpy.io) directly by email.  See the [SECURITY](/SECURITY.md) guide to learn more and see a hall of fame of security reporters.
 
 License
 =======
 
-Copyright 2016-2018, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2016-2019, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)
