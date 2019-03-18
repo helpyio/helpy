@@ -33,6 +33,7 @@ class Doc < ActiveRecord::Base
   has_many :votes, as: :voteable
   has_one :topic
   has_many :posts, through: :topic
+  has_many :doc_translations
 
   validates :title, presence: true
   validates :body, presence: true
@@ -41,6 +42,12 @@ class Doc < ActiveRecord::Base
   include PgSearch
   multisearchable against: [:title, :body, :keywords],
     :if => lambda { |record| record.category.present? && record.category.publicly_viewable? && record.active && record.category.active? }
+
+  pg_search_scope :agent_assist,
+              against: [:title, :body, :keywords],
+              associated_against: {
+                doc_translations: [:title, :body, :keywords]
+              }
 
   has_paper_trail
 
