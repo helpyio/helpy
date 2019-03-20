@@ -24,7 +24,7 @@ class Admin::OnboardingController < Admin::BaseController
 
     @user.update(user_params)
     if @user.save
-      sign_in(@user, bypass: true) if current_user.admin?
+      bypass_sign_in(@user) if current_user.admin?
       redirect_to admin_complete_onboard_path
     else
       logger.warn("Errors prevented saving the user")
