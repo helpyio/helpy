@@ -49,6 +49,7 @@
         <%= hidden_field_tag :client_id %>
         <%= hidden_field_tag :from, 'admin' %>
         <%= hidden_field_tag :status, params[:status] %>
+        <%= render partial: "admin/shared/assistant" %>
         <%= f.input :body, as: :summernote, label: false, class: 'disable-empty' %>
 
         <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>

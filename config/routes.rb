@@ -151,6 +151,7 @@ Rails.application.routes.draw do
     end
 
     resources :docs, except: [:index, :show]
+    get 'agent_assistant' => 'agent_assistant#index', as: :agent_assist
 
     resources :images, only: [:create, :destroy]
     resources :forums# , except: [:index, :show]
