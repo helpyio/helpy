@@ -93,12 +93,10 @@ class Admin::UsersController < Admin::BaseController
     @user.team_list = params[:user][:team_list] if params[:user][:team_list].present?
 
     if @user.update(user_params)
-
       # update role if admin only
       @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
       # update password if current user
-      @user.update_attribute(:password, params[:user][:password]) if (current_user.id == @user.id) && (params[:user][:password] == params[:user][:password_confirmation])
-
+      @user.update_attribute(:password, params[:user][:password]) if (current_user.id == @user.id) && (params[:user][:password] == params[:user][:password_confirmation]) && params[:user][:password].present?
       @topics = @user.topics.page params[:page]
       @topic = Topic.where(user_id: @user.id).first
       tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)

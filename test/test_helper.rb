@@ -45,7 +45,7 @@ Capybara.register_driver :chrome do |app|
 end
 
 class ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 end
 
 def file
