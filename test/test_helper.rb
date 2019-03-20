@@ -45,7 +45,7 @@ Capybara.register_driver :chrome do |app|
 end
 
 class ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 end
 
 def file
@@ -108,6 +108,7 @@ def set_default_settings
   AppSettings['cloudinary.api_key'] = ''
   AppSettings['cloudinary.api_secret'] = ''
   AppSettings['theme.active'] = 'helpy'
+  AppSettings['onboarding.complete'] = '1'
 
   # assign all agents to receive notifications
   User.agents.each do |a|

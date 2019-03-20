@@ -2,7 +2,7 @@
     <h3><%= t(:resend) %></h3>
 <% end %>
 <%= bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= f.error_notification %>
 
     <%= f.email_field :email, autofocus: true %>
     <%= f.submit "Resend confirmation instructions" %>

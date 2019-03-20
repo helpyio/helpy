@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.11'
+gem 'rails', '4.2.11.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.20.0'
@@ -50,10 +50,10 @@ gem "groupdate"
 gem "chartkick"
 
 # Auth Gems
-gem 'devise', '< 4.0' # TODO: Keep at version 3 until we can resolve url helper issue introduced in Devise 4
+gem 'devise', '<= 5.0.0'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
-gem 'devise_invitable', '< 1.7' # TODO: Maintain compatibility with Devise 3
+gem 'devise_invitable'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
@@ -157,7 +157,7 @@ gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 gem 'best_in_place', '~> 3.1'
 
 # Add onboarding component
-gem 'helpy_onboarding', branch: 'master'
+gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
 gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
