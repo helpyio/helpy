@@ -50,7 +50,7 @@ gem "groupdate"
 gem "chartkick"
 
 # Auth Gems
-gem 'devise', '~> 4.1'
+gem 'devise', '<= 5.0.0'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'devise_invitable'

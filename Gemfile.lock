@@ -820,7 +820,7 @@ DEPENDENCIES
   codemirror-rails
   config (~> 1.1.0)
   daemons
-  devise (~> 4.1)
+  devise (<= 5.0.0)
   devise-bootstrap-views
   devise-i18n
   devise_invitable
