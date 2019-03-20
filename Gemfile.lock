@@ -9,10 +9,12 @@ GIT
       mailman
       rails (~> 4.2.10)
 
-PATH
-  remote: vendor/helpy_onboarding
+GIT
+  remote: https://github.com/helpyio/helpy_onboarding
+  revision: cc742c8e48476003757ceda17c825c80e36ca694
+  branch: master
   specs:
-    helpy_onboarding (1.0)
+    helpy_onboarding (2.0)
       deface
       rails (~> 4.2.7)
 

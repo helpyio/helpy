@@ -1,32 +1,25 @@
 require 'test_helper'
 
-class Admin::OnboardingControllerTest < ActionController::TestCase
+class OnboardingControllerTest < ActionController::TestCase
 
   setup do
     set_default_settings
-  end
-
-  # Browsers should be prevented from accessing onboarding
-  test "a browser should not be able to view the onboarding process" do
-    get :index, locale: :en
-    assert_redirected_to '/en/users/sign_in'
+    AppSettings['onboarding.complete'] = '0'
   end
 
   # Admin tests
   test "a new admin should be able to view the onboarding process" do
-    sign_in users(:admin)
     get :index, locale: :en
     assert_response :success
   end
 
-  test "an admin with a changed email should not be able to view the onboarding process" do
-    sign_in users(:another_admin)
+  test "an admin who has already completed the onboard should not see the onboard process" do
+    AppSettings['onboarding.complete'] = '1'
     get :index
-    assert_redirected_to admin_complete_onboard_path
+    assert_redirected_to complete_onboard_path
   end
 
   test "a new admin should be able to update the name and domain of their helpy" do
-    sign_in users(:admin)
 
     xhr :patch, :update_settings,
       'settings.site_name' => 'Helpy Support 2',
@@ -42,10 +35,7 @@ class Admin::OnboardingControllerTest < ActionController::TestCase
   end
 
   test "a new admin should be able to update their email and password" do
-    sign_in users(:admin)
-
-    patch :update_user, {
-      id: 1,
+    xhr :patch, :update_user, {
       user: {
         name: "something",
         email: "something@test.com",
