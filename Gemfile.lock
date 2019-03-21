@@ -171,8 +171,8 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-bootstrap-views (1.1.0)
-    devise-i18n (1.5.1)
-      devise (>= 3.4)
+    devise-i18n (1.8.0)
+      devise (>= 4.6)
     devise_invitable (1.7.5)
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
