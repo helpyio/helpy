@@ -1,6 +1,6 @@
 Hashid::Rails.configure do |config|
   # The salt to use for generating hashid. Prepended with table name.
-  config.salt = AppSettings['settings.anonymous_salt']
+  config.salt = 'salt'
 
   # The minimum length of generated hashids
   config.min_hash_length = 12
