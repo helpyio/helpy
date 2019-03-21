@@ -18,7 +18,7 @@ class ChangeAuthorForTicketTest < ActionDispatch::IntegrationTest
 
   test 'change author who not email address for existing ticket, helpy will generate a temporary email placeholder from this modal. ' do
     visit '/admin/topics/'
-    find('#modal').native.send_keys(:escape)
+    #find('#modal').native.send_keys(:escape)
     click_link '#7- New Question'
     find('.fa-ellipsis-v').click
     within("ul.dropdown-menu") do

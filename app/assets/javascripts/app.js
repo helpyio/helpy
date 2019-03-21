@@ -459,6 +459,9 @@ Helpy.didthisHelp = function(yesno){
 Helpy.showGroup = function() {
   if ($('#topic_private_true').is(':checked')) {
     $('#topic_team_list').parent().removeClass('hidden');
+    $("#topic_forum_id").parent().hide();
+    $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>");
+    $('#topic_team_list').removeClass('hidden');
   } else if ($('#topic_private_false').is(':checked')) {
     $('#topic_team_list').parent().addClass('hidden');
   } else {

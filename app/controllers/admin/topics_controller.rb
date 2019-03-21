@@ -30,6 +30,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
   before_action :remote_search, only: ['index', 'show', 'update_topic']
   before_action :get_all_teams, except: ['shortcuts']
+  before_action :set_hash_id_salt
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -43,7 +44,7 @@ class Admin::TopicsController < Admin::BaseController
 
   def show
     get_tickets_by_status
-    @topic = Topic.where(id: params[:id]).first
+    @topic = Topic.find(params[:id])
     @doc = Doc.find(@topic.doc_id) if @topic.doc_id.present? && @topic.doc_id != 0
 
     if check_current_user_is_allowed? @topic
@@ -53,7 +54,7 @@ class Admin::TopicsController < Admin::BaseController
       #   @topic.open
       # end
       get_all_teams
-      @posts = @topic.posts.chronologic.includes(:user)
+      @posts = @topic.posts.chronologic.includes(:user, :topic)
       tracker("Agent: #{current_user.name}", "Viewed Ticket", @topic.to_param, @topic.id)
       fetch_counts
       @include_tickets = false
@@ -66,7 +67,7 @@ class Admin::TopicsController < Admin::BaseController
   def new
     fetch_counts
 
-    @topic = Topic.new
+    @topic = Topic.new(channel: AppSettings['settings.default_channel'])
     @user = params[:user_id].present? ? User.find(params[:user_id]) : User.new
   end
 
@@ -290,13 +291,10 @@ class Admin::TopicsController < Admin::BaseController
 
   def update_tags
     @topic = Topic.find(params[:id])
-
-    if @topic.update_attributes(topic_params)
-      @posts = @topic.posts.chronologic
-
-      fetch_counts
-      get_all_teams
-      get_tickets_by_status
+    previous_tagging = @topic.tag_list
+    @topic.tag_list = params[:topic][:tag_list]
+    if @topic.save && previous_tagging != @topic.tag_list
+    # if @topic.update(tag_list: params[:tag][:tag_list])
 
 
       @topic.posts.create(
@@ -306,16 +304,21 @@ class Admin::TopicsController < Admin::BaseController
       )
 
       flash[:notice] = t('tagged_with', topic_id: @topic.id, tagged_with: @topic.tag_list)
-      respond_to do |format|
-        format.html {
-          redirect_to admin_topic_path(@topic)
-        }
-        format.js {
-          render 'update_ticket', id: @topic.id
-        }
-      end
-    else
-      logger.info("error")
+    end
+
+    @posts = @topic.posts.chronologic
+
+    fetch_counts
+    get_all_teams
+    get_tickets_by_status
+
+    respond_to do |format|
+      format.html {
+        redirect_to admin_topic_path(@topic)
+      }
+      format.js {
+        render 'update_ticket', id: @topic.id
+      }
     end
   end
 
@@ -614,6 +617,10 @@ class Admin::TopicsController < Admin::BaseController
       :name,
       :tag_list
     )
+  end
+
+  def set_hash_id_salt
+    Hashid::Rails.configuration.salt=AppSettings['settings.anonymous_salt']
   end
 
 end

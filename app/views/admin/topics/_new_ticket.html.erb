@@ -1,6 +1,6 @@
 <div>
   <%= content_tag :h3, "#{t(:open_new_discussion, default: 'New Ticket')}", class: 'view-header' %>
-  <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post' }) do |f| -%>
+  <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post', data: { persist: 'garlic'} }) do |f| -%>
   <div class="row">
     <div class="col-md-8">
 
@@ -22,6 +22,7 @@
       <%= i.input :bcc, label: false, placeholder: 'bcc:' %>
       </span>
       <%= i.input :body, as: :summernote, label: false, class: 'disable-empty' %>
+      <%= render partial: "admin/shared/assistant" %>
       <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
       <%= f.select_tag 'post[reply_id]', grouped_options_for_select(i18n_reply_grouped_options, nil, prompt: ''), class: 'form-control', id: 'post_reply_id' %>
       <br/>
@@ -47,7 +48,8 @@
       <%= f.input :priority, collection: ticket_priority_collection , as: :select, include_blank: true, selected: 'normal' %>
       <%= f.input :current_status, collection: statuses_collection, as: :select, include_blank: false, selected: 'new' %>
       <%= f.input :assigned_user_id, collection: agents_for_select, as: :select, include_blank: true, selected: current_user.id %>
-      <%= f.input :tag_list %>
+      <%= f.input :tag_list, collection: ticket_tag_collection, as: :select, include_blank: false,
+        input_html: { multiple: true, class: 'selectpicker', data: { 'none-selected-text': 'Any'} } unless ticket_tag_collection.blank? %>
     </div>
   </div>
   <% end -%>
@@ -89,6 +91,11 @@ $('[data-provider="summernote"]').each(function(){
         }
         return '';
       }
+    },
+    callbacks: {
+      onInit: function (e) {
+        $("#topic_post_body").summernote("code", localStorage.getItem("new_ticket_draft"));
+      }
     }
   });
 });
@@ -107,4 +114,24 @@ $.ajax({
   $('.submit-ticket').off('click').on('click', function(){
     $('#topic_post_kind').val('first');
   });
+
+  $("#new_topic").sisyphus();
+  $(document).off('keyup').on('keyup', '.note-editable', function () {
+    localStorage.setItem("new_ticket_draft", $("#topic_post_body").summernote("code"));
+  });
+  $('#new_post').on('submit', function () {
+    localStorage.removeItem("new_ticket_draft");
+  });
+
+  //$(function () {
+  //  $("#new_topic").sisyphus();
+  //  setInterval(function () {
+  //    localStorage.setItem("new_ticket", $("#topic_post_body").summernote("code"));
+  //  }, 3000); // every 5 second interval
+
+  //  $('#new_topic').on('new_ticket', function(){
+  //    localStorage.removeItem("summernotedata").
+  //  });
+  //});
+
 </script>
