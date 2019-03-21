@@ -14,12 +14,13 @@ New features, improvements and fixes:
 - New: Tag picker on the agent ticket view
 - New: Quick KB search when creating or responding to tickets to add links to articles
 - New: Autosave for ticket replies and knowledgebase article editor
+- New: A number of new settings have been added to customize how Helpy works.
 - Fixed: support email addresses are now removed from the CC field automatically
 - Fixed: Flash wrapper width reduced @cr0vy
 - Fixed: Widget mixed content issue with Google Fonts @karser
 - Optimizations: A number of optimizations have been made to improve performance
 - Update: Email parsing has been improved, particularly for non English email
-- Update: Onboarding has been moved to the unlogged in state.
+- Update: Onboarding has been moved to the unlogged-in state.  This only affects new installs
 - Docker: Uploads folder made writable @sarke
 
 ## VERSION 2.3
