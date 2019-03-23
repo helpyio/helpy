@@ -14,7 +14,7 @@ class Admin::TagsController < Admin::BaseController
   def index
     @tag = ActsAsTaggableOn::Tag.new
     tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: "Topic").includes(:tag).map{|tagging| tagging.tag.id }.uniq
-    @tags = ActsAsTaggableOn::Tag.where("id IN (?)", tag_ids)
+    @tags = ActsAsTaggableOn::Tag.where("id IN (?)", tag_ids).order(:name)
   end
 
   def new
