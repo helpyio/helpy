@@ -315,7 +315,7 @@ Devise.setup do |config|
           :uid_attribute => provider[1].uid_attribute,
           :attribute_statements => provider[1].attribute_statements
       else
-        config.omniauth provider[0], provider[1].id, provider[1].secret, scope: 'user:email'
+        config.omniauth provider[0], provider[1].id, provider[1].secret#, scope: 'user:email'
       end
     end
   end
