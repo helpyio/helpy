@@ -411,7 +411,7 @@ GEM
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1)
-    parallel (1.14.0)
+    parallel (1.16.2)
     parser (2.6.2.0)
       ast (~> 2.4.0)
     permalink_fu (1.0.0)
