@@ -296,12 +296,33 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-#  config.omniauth :google_oauth2, 'APP_ID', 'APP_SECRET', scope: 'user:email'
+  # config.omniauth :google_oauth2, 'APP_ID', 'APP_SECRET', scope: 'user:email'
   unless Settings.omniauth.nil? || Settings.omniauth.providers.nil?
     Settings.omniauth.providers.each do |provider|
-      config.omniauth provider[0], provider[1].id, provider[1].secret#, scope: 'user:email'
+      if provider[0].eql?(:saml)
+        provider[1]
+
+        config.omniauth provider[0],
+          :assertion_consumer_service_url => provider[1].assertion_consumer_service_url,
+          :issuer => provider[1].issuer,
+          :single_logout_service_url => provider[1].single_logout_service_url,
+          :slo_default_relay_state => provider[1].slo_default_relay_state,
+          :idp_sso_target_url => provider[1].idp_sso_target_url,
+          :idp_slo_target_url => provider[1].idp_slo_target_url,
+          :idp_sso_target_url_runtime_params => {:original_request_param => :mapped_idp_param},
+          :idp_cert => provider[1].idp_cert,
+          :name_identifier_format => provider[1].name_identifier_format,
+          :uid_attribute => provider[1].uid_attribute,
+          :attribute_statements => provider[1].attribute_statements
+      else
+        config.omniauth provider[0], provider[1].id, provider[1].secret, scope: 'user:email'
+      end
     end
   end
+
+
+
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

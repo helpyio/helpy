@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.reload_classes_only_on_change = false
+
   #config.i18n.default_locale = :en
 
   # In the development environment your application's code is reloaded on

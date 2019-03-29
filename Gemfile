@@ -59,6 +59,7 @@ gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-saml'
 
 # i18n gems
 gem 'rails-i18n', '~> 4.0.9'
