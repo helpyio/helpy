@@ -88,7 +88,7 @@ module Admin::TopicsHelper
   end
 
   def ticket_tag_collection
-    ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: 'Topic').includes(:tag).map{|tagging| tagging.tag.name }.uniq
+    ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: 'Topic').includes(:tag).map{|tagging| tagging.tag.name }.uniq.sort
   end
 
   # id of opening or first post in the topic
