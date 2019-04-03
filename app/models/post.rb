@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
   after_create  :update_waiting_on_cache, unless: :importing
   after_create  :assign_on_reply, unless: :importing
   after_commit  :notify, on: :create, unless: :importing
+  before_save :reject_admin_email_from_cc
   after_save  :update_topic_cache
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -144,11 +145,24 @@ class Post < ActiveRecord::Base
   end
 
   def html_formatted_body
-    "#{ActionController::Base.helpers.sanitize(ApplicationController.helpers.body_tokens(body, topic).gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)}".html_safe
+    trimmed_body = EmailReplyTrimmer.trim(body)
+    "#{ActionController::Base.helpers.sanitize(ApplicationController.helpers.body_tokens(trimmed_body, topic).gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)}".html_safe
   end
 
   def text_formatted_body
-    "#{ActionView::Base.full_sanitizer.sanitize(ApplicationController.helpers.body_tokens(body, topic))}".html_safe
+    trimmed_body = EmailReplyTrimmer.trim(body)
+    "#{ActionView::Base.full_sanitizer.sanitize(ApplicationController.helpers.body_tokens(trimmed_body, topic))}".html_safe
+  end
+
+  def bccs
+    bccs = []
+    unless bcc.nil?
+      bccs += bcc&.split(',').collect{|b| b.strip}
+    end
+    unless AppSettings['settings.global_bcc'].nil? || AppSettings['settings.global_bcc'].blank?
+      bccs += AppSettings['settings.global_bcc']&.split(',').collect{|b| b.strip}
+    end
+    return bccs
   end
 
   private
@@ -157,4 +171,8 @@ class Post < ActiveRecord::Base
       self.body = body.truncate(10_000) unless body.blank?
     end
 
+  def reject_admin_email_from_cc
+    return if self.cc.nil?
+    self.cc = self.cc.split(",").delete_if { |c| c.include?(AppSettings['email.admin_email'])}.join(",")
+  end
 end

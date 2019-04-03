@@ -1,12 +1,14 @@
 <%= strip_tags(@header) %>
 
+<% if include_body? %>
 <%= t('above_this_line', default: "Make sure your reply appears above this line") %>
 =================================================================
 <%= t('message_id', default: 'Message ID') %>:<%= @topic.id %>
+<% end %>
 
 <%= t('message_response', default: 'The following message has been posted in response to your question:') %>
 
-<%= @post.text_formatted_body %>
+<%= @post.text_formatted_body if include_body? %>
 <%= strip_tags(@post.user.signature) if @post.user.signature.present? %>
 
 <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>

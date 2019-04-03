@@ -1,0 +1,40 @@
+<% title "#{admin_title} #{t('tags', default: "Tags")}" %>
+
+<% content_for :settings do %>
+
+  <style>
+    .tag {
+      height: 60px;
+    }
+  </style>
+
+  <div class="admin-header">
+    <h3 id="setting-header">
+      <%= show_responsive_nav %>
+      <%= t('tags', default: 'Tags') %>
+      <div class="pull-right nav-new-button">
+  	    <%= link_to t(:add_new_tag, default: "Add New Tag"), new_admin_tag_path, remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
+  	  </div>
+    </h3>
+  </div>
+
+  <div class="settings-section">
+    <div class="row tag-header vcenter border-bottom">
+      <div class="pull-left tiny-header col-md-12">
+        Tag
+      </div>
+    </div>
+
+    <div class="tags">
+      <%= render partial: 'admin/tags/tag', collection: @tags if @tags %>
+    </div>
+
+    <%= content_tag :div,  paginate(@tags, remote: false), class: 'text-center' %>
+
+  </div>
+  <div id="quick-add">
+    <%= render partial: 'quick_add' %>
+  </div>
+
+
+<% end %>

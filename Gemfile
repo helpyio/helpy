@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.11'
+gem 'rails', '4.2.11.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.20.0'
@@ -50,10 +50,10 @@ gem "groupdate"
 gem "chartkick"
 
 # Auth Gems
-gem 'devise', '< 4.0' # TODO: Keep at version 3 until we can resolve url helper issue introduced in Devise 4
+gem 'devise', '<= 5.0.0'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
-gem 'devise_invitable', '< 1.7' # TODO: Maintain compatibility with Devise 3
+gem 'devise_invitable'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
@@ -96,7 +96,6 @@ gem 'cloudinary', '1.1.7'
 gem 'attachinary'
 
 gem 'carrierwave', '~> 1.3.1'
-gem 'fog'
 gem 'fog-aws'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
@@ -121,6 +120,7 @@ gem 'config', '~> 1.1.0'
 gem 'daemons'
 gem 'mailman'#, require: false
 gem 'mail_extract'
+gem 'email_reply_trimmer'
 
 gem 'griddler'
 gem 'griddler-mandrill'
@@ -149,14 +149,14 @@ gem 'rails-timeago'
 gem 'faker'
 
 gem 'timecop' #used to populate
-
+gem "hashid-rails", "~> 1.0"
 gem 'themes_on_rails'
 gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 
 gem 'best_in_place', '~> 3.1'
 
 # Add onboarding component
-gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
 gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 source 'https://gems.helpy.io/' do
@@ -178,6 +178,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'scss-lint'
   gem 'awesome_print'
+  gem 'rb-readline'
 end
 
 gem 'bulk_insert'
@@ -187,7 +188,8 @@ group :development do
   gem "better_errors"
 
   # Check Eager Loading / N+1 query problems
-  gem 'bullet'
+  # gem 'bullet'
+  gem 'scout_apm'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.3'
@@ -200,6 +202,7 @@ group :test do
   gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
   gem 'factory_bot_rails'
   gem 'capybara', '< 3.0'
+  gem 'capybara-email'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'launchy'

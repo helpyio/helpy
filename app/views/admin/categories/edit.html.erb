@@ -12,7 +12,10 @@
   </div>
 
   <div class="col-md-9 col-sm-12 main-panel">
-  <h3 class="view-header"><%= t(:edit_category, default: 'Edit Category') %>: <%- @category.name %></h3>
+  <h3 class="view-header">
+    <%= t(:edit_category, default: 'Edit Category') %>: <%= @category.name %>
+    <%= render partial: 'admin/shared/kb_nav_widget', locals: { category: @category } %>
+  </h3>
 
   <%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
 

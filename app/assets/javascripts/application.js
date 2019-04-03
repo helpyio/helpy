@@ -44,6 +44,7 @@
 //= require bootstrap/dropdown
 //= require Chart.bundle
 //= require chartkick
+//= require sisyphus.min.js
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link

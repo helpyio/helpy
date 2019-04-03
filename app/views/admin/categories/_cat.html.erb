@@ -5,8 +5,8 @@
     <%= cat.meta_description %>
   </div>
   <div class="text-right col-md-4 col-sm-4 col-xs-4 hidden-xs hidden-sm <%= 'grayout' unless cat.active? %>">
-    <span class="label label-count pull-right"><%= cat.docs.count %></span>
-    <%= i18n_icons(cat) if AppSettings['i18n.available_locales'].count > 1 %>
+    <span class="label label-count pull-right"><%= cat.docs.size %></span>
+    <%#= i18n_icons(cat) if AppSettings['i18n.available_locales'].count > 1 %>
   </div>
   <div class="text-right col-md-1 col-sm-1 col-xs-2">
     <div class="btn-group">

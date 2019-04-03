@@ -180,6 +180,60 @@ class PostTest < ActiveSupport::TestCase
     end
   end
 
+  test "#bccs should include one of each global and bcc" do
+    AppSettings['settings.global_bcc'] = 'bcc@test.com'
+    create_ticket_thread('userone@test.com')
+    assert_equal ['userone@test.com', 'bcc@test.com'], @post.bccs
+    AppSettings['settings.global_bcc'] = nil
+  end
+
+  test "#bccs should include both global and post bccs" do
+    AppSettings['settings.global_bcc'] = 'bcc@test.com, bcc2@test.com'
+    @topic = create :topic, forum_id: 1, user_id: 2, name: "A test topic", private: true
+    create_ticket_thread('userone@test.com, usertwo@test.com')
+    assert_equal ['userone@test.com', 'usertwo@test.com', 'bcc@test.com', 'bcc2@test.com'], @post.bccs
+    AppSettings['settings.global_bcc'] = nil
+  end
+
+  test "#bccs should only include post bccs" do
+    create_ticket_thread('userone@test.com, usertwo@test.com')
+    assert_equal ['userone@test.com', 'usertwo@test.com'], @post.bccs
+  end
+
+  test "#bccs should only include global bcc" do
+    AppSettings['settings.global_bcc'] = 'bcc@test.com, bcc2@test.com'
+    create_ticket_thread
+    assert_equal ['bcc@test.com', 'bcc2@test.com'], @post.bccs
+    AppSettings['settings.global_bcc'] = nil
+  end
+  
+  test "should not save admin email as cc" do
+    AppSettings['email.admin_email'] = "admin@test.com"
+    @topic = Topic.last
+    @topic.posts.create!(
+      user_id: 1,
+      body: "This is a reply from admin",
+      kind: "reply",
+      cc: "#{AppSettings['email.admin_email']}, another@test.com"
+    )
+
+    assert_equal false, Post.last.cc.include?(AppSettings['email.admin_email'])
+    assert_equal 1, Post.last.cc.split(",").size
+  end
+
+  test "should not save full admin email as cc" do
+    AppSettings['email.admin_email'] = "admin@test.com"
+    @topic = Topic.last
+    @topic.posts.create!(
+      user_id: 1,
+      body: "This is a reply from admin",
+      kind: "reply",
+      cc: "admin email <#{AppSettings['email.admin_email']}>, another@test.com"
+    )
+    assert_equal false, Post.last.cc.include?(AppSettings['email.admin_email'])
+    assert_equal 1, Post.last.cc.split(",").size
+  end
+
   # test "Should truncate body length if greater than 10,000" do
   #   body   = "0" * 10001
   #   @user  = User.first
@@ -189,4 +243,18 @@ class PostTest < ActiveSupport::TestCase
   #   assert_equal @post.body.size, 10_000
   # end
 
+  def create_ticket_thread(bcc='')
+    @topic = create :topic, forum_id: 1, user_id: 2, name: "A test topic", private: true
+    @topic.posts.create!(
+      user_id: 2,
+      body: "This is the first message from the customer",
+      kind: "first"
+    )
+    @post = @topic.posts.create!(
+      user_id: 1,
+      body: "This is the first reply from admin",
+      kind: "reply",
+      bcc: bcc
+    )
+  end
 end

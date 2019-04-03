@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: topics
@@ -35,6 +36,7 @@ class TopicsController < ApplicationController
   before_action :topic_creation_enabled?, only: ['new', 'create']
   before_action :get_all_teams, only: 'new'
   before_action :get_public_forums, only: ['new', 'create']
+  before_action :check_anonymous_ticket_access, only: :show
 
   layout "clean", only: [:new, :index, :thanks]
   theme :theme_chosen
@@ -81,6 +83,18 @@ class TopicsController < ApplicationController
       format.html {
         redirect_to root_path unless @topic
       }
+    end
+  end
+
+  def show
+    @topic = Topic.undeleted.external.find_by_hashid(params[:id])
+    redirect_to root_path unless @topic
+
+    if @topic.present?
+      @posts = @topic.posts.ispublic.chronologic.active.all.includes(:topic, :user, :screenshot_files)
+      @page_title = "##{@topic.id} #{@topic.name}"
+      add_breadcrumb t(:tickets, default: 'Tickets'), tickets_path
+      add_breadcrumb @page_title
     end
   end
 
@@ -166,7 +180,7 @@ class TopicsController < ApplicationController
   private
 
   def initialize_new_ticket_form_vars
-    @topic = Topic.new #unless @topic
+    @topic = Topic.new(private: AppSettings['settings.default_private']) #unless @topic
     @user = @topic.build_user unless user_signed_in?
     @topic.posts.build #unless @topic.posts
     get_all_teams
@@ -186,6 +200,13 @@ class TopicsController < ApplicationController
 
   def get_public_forums
     @forums = Forum.ispublic.all
+  end
+
+  def check_anonymous_ticket_access
+    unless AppSettings['settings.anonymous_access'] == '1'
+      redirect_to root_path
+    end
+    Hashid::Rails.configuration.salt=AppSettings['settings.anonymous_salt']
   end
 
 end
