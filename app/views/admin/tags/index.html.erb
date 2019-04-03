@@ -28,8 +28,10 @@
     <div class="tags">
       <%= render partial: 'admin/tags/tag', collection: @tags if @tags %>
     </div>
-  </div>
 
+    <%= content_tag :div,  paginate(@tags, remote: false), class: 'text-center' %>
+
+  </div>
   <div id="quick-add">
     <%= render partial: 'quick_add' %>
   </div>
