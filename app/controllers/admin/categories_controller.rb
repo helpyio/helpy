@@ -1,7 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
 
   respond_to :html, only: ['index','show','new','edit','create']
-  respond_to :js, only: ['destroy']
 
   # Make the instance vars available for when the create action fails
   before_action :set_categories_and_non_featured#, only: [:index, :show, :create]
@@ -50,6 +49,12 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.find(params[:id])
     @category.destroy
     flash[:notice] = t(:model_destroyed, default: "%{object_name} was deleted", object_name: @category.name)
+    respond_to do |format|
+      format.js {}
+      format.html {
+        redirect_to admin_categories_path
+      }
+    end
   end
 
   private
