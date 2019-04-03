@@ -7,6 +7,7 @@ ActiveSupport::TestCase.test_order = :parallel
 
 require 'capybara/rails'
 require 'capybara/minitest'
+require 'capybara/email'
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
