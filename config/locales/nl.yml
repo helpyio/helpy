@@ -39,7 +39,8 @@ nl:
 
   # Community
   forum_name: "Forum"
-  subject: "Onderwerp"
+  subject: &subject "Onderwerp"
+  message: "Bericht"
   last_activity: "Laatst actief"
   topic: "Discussie"
   replies: "Antwoorden"
@@ -61,6 +62,7 @@ nl:
   # Knowledgebase
   written_by: "Geschreven door"
   last_edited: "Laatst bewerkt"
+  tagged: "Tags"
   asked_before: "Is uw vraag al eerder beantwoord? We denken dat deze kunnen gelijkaardig zijn"
 
   # Tickets
@@ -137,13 +139,13 @@ nl:
 
   # Discussion controls
   change_status: Status Wijzigen
-  status: Status
+  status: &status Status
   mark_closed: Als opgelost markeren
   reopen: Heropenen
   mark_spam: Als spam markeren
   mark_new: Als nieuw markeren
-  assign_agent: Aan medewerker toewijzen
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent Aan medewerker toewijzen
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1 bericht geselecteerd"
     two: "2 berichten geselecteerd"
@@ -166,12 +168,18 @@ nl:
   contact_info: Contact
   social_info: Social Media
   edit_user: Gebruiker bewerken
+#  delete_user: Delete User
   work_phone: Telefoon (zakelijk)
   cell_phone: Mobiel
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  # select_priority: Select Priority
+  # select_priority: &priority Select Priority
   # vip_priority: VIP
+  # very_high_priority: Very High
   # high_priority: High
   # normal_priority: Normal
   # low_priority: Low
@@ -242,6 +250,7 @@ nl:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Hallo %{user_name}"
+  thank_you: "Bedankt!"
   new_user: "Bedankt voor je bericht! We hebben je vraag ontvangen en onze helpdesk zal hier zo snel mogelijk op antwoorden."
   account_generated: "Er is een helpdesk account voor je aangemaakt. Gebruik de volgende link om in te loggen:"
   above_this_line: "Schrijf je antwoord boven deze lijn."

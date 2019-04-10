@@ -8,6 +8,9 @@ class Admin::SearchController < Admin::BaseController
 
   respond_to :html, :js
 
+  include ActionView::Helpers::NumberHelper
+  include ActionView::Helpers::TagHelper
+
   # simple search tickets by # and user
   def topic_search
 
@@ -32,9 +35,12 @@ class Admin::SearchController < Admin::BaseController
       tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
     else
       @users = users.page params[:page]
-      template = 'admin/users/users'
+      @roles = [[t('team'), 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
+      template = 'admin/users/index'
       tracker("Admin Search", "User Search", params[:q])
     end
+    result_count = @topics.present? && @topics.total_count > 0 ? @topics.total_count : 0
+    @header = "#{t(:results_found, count: result_count)} #{content_tag(:span, params[:q], class: 'more-important')}"
 
     render template
   end

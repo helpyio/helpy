@@ -6,11 +6,7 @@ else
   path = admin_topics_path(:status => box)
 end
 %>
-<div class="<%= class_name %> text-center pipeline-box">
-  <div class="dummy"></div>
-  <div class="stats">
-    <h2><%= number_to_human(stats) %></h2>
-    <%= link_to t(box.to_sym, default: box), path, :remote => true,
-    class: "tiny-header admin-discussion-nav pipeline-#{box}" %>
-  </div>
-</div>
+<li class="<%= class_name %> text-left nav-item">
+  <%= link_to label, path, :remote => true,
+      class: "pipeline-#{box}" %>
+</li>

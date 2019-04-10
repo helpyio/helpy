@@ -13,6 +13,21 @@ module AdminHelper
     "[Helpy Admin]"
   end
 
+  def upper_nav_item(label, path, controllers, actions, icon="")
+    # classname = controller_name == controller ? 'navbar-active' : ''
+    if controllers.include?(controller_name) && actions.include?(action_name)
+      classname = 'navbar-active'
+    else
+      classname = ''
+    end
+
+    content_tag(:li, class: classname) do
+      link_to path, class: 'text-center' do
+        "#{content_tag(:span, nil, class: "#{icon}")}<br/>#{label}".html_safe
+      end
+    end
+  end
+
   def i18n_reply_grouped_options
     grouped_options = {}
     AppSettings['i18n.available_locales'].each do |locale|
@@ -28,7 +43,7 @@ module AdminHelper
               end
         val = []
         Doc.replies.with_translations(locale).all.each do |doc|
-            body = (strip_tags(doc.body)).gsub(/\'/, '&#39;')
+            body = ((doc.body))#.gsub(/\'/, '&#39;')
             val.push([doc.title, body])
         end
         grouped_options[key] = val
@@ -41,7 +56,7 @@ module AdminHelper
     output = '<div class="locale-badges pull-right hidden-xs hidden-sm">'
     AppSettings['i18n.available_locales'].each do |locale|
       I18n.with_locale(locale) do
-        if object.translations.where(locale: locale).count > 0
+        if object.translations.where(locale: locale).size > 0
           output += "<span class='badge' title='#{I18n.t(:language_name)}'>#{locale}</span></a>"
         else
           output += "<span class='badge badge-light' title='#{I18n.t(:language_name)}'>#{locale}</span></a>"
@@ -50,6 +65,14 @@ module AdminHelper
     end
     output += '</div>'
     output.html_safe
+  end
+
+  def new_active_class
+    if controller_name == "topics" && action_name == "new"
+      'navbar-active'
+    else
+      ''
+    end
   end
 
   def default_locale_options
@@ -64,7 +87,9 @@ module AdminHelper
   end
 
   def navbar_expanding_link(url, icon, text, target="", remote=false)
-    link_to(content_tag(:span, '', class: "#{icon} hidden-lg hidden-md", title: text) + content_tag(:span, text, class: "hidden-sm hidden-xs"), url, remote: remote, target: target)
+    link_to url, remote: remote, target: target do
+      content_tag(:span, '', class: "#{icon} hidden-lg hidden-md", title: text) + content_tag(:span, text, class: "hidden-sm hidden-xs")
+    end
   end
 
   def settings_item(icon, title, description, link = "")
@@ -88,10 +113,10 @@ module AdminHelper
   end
 
   def settings_menu_item(icon, title, link='#')
-    content_tag(:li, class: 'settings-menu-item') do
+    content_tag(:li, class: 'nav-item') do
       link_to(link, class: "#{settings_link(link)} #{'active-settings-link' if current_page?(link)}", "data-target" => title) do
-        concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
-        concat content_tag(:span, t(title, default: title.capitalize), class: 'hidden-xs')
+        # concat content_tag(:span, '', class: "#{icon} settings-menu-icon")
+        concat content_tag(:span, t(title, default: title.capitalize))
       end
     end
   end
@@ -117,10 +142,26 @@ module AdminHelper
       concat content_tag(:li, link_to(t(:report_bug, default: "Report a Bug"), "http://github.com/helpyio/helpy/issues"), target: "blank")
       concat content_tag(:li, link_to(t(:suggest_feature, default: "Suggest a Feature"), "http://support.helpy.io/en/community/4-feature-requests/topics"), target: "blank")
       concat content_tag(:li, link_to(t(:shortcuts, default: "Keyboard Shortcuts"), "#", class: 'keyboard-shortcuts-link'), target: "blank") if current_user.is_agent?
+      concat content_tag :hr
+      concat content_tag(:li, link_to("Sponsors", "https://helpy.io/sponsors", target: 'blank'))
     end
   end
 
-  def helpcenter_menu
+  def helpcenter_menu_or_item
+    is_knowledgebase_and_editor = knowledgebase? && current_user.is_editor?
+    is_forum_and_agent = forums? && current_user.is_agent?
+    icon = "fas fa-book"
+
+    if is_knowledgebase_and_editor && is_forum_and_agent
+      helpcenter_dropdown
+    elsif is_knowledgebase_and_editor
+      upper_nav_item(t(:content, default: "Content"), admin_categories_path, ["categories"], ["index","show","edit","new"], icon)
+    elsif is_forum_and_agent
+      upper_nav_item(t(:communities, default: "Communities"), admin_forums_path, ["forums"], ["index","edit","new"], icon)
+    end
+  end
+
+  def helpcenter_dropdown
     content_tag :li, class: 'dropdown' do
       concat helpcenter_link
       concat helpcenter_items
@@ -128,8 +169,8 @@ module AdminHelper
   end
 
   def helpcenter_link
-    link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
-      concat t(:helpcenter, default: 'Helpcenter')
+    link_to '#', class: 'dropdown-toggle text-center', data: { toggle: 'dropdown' }, role: 'button' do
+      concat "#{content_tag :span, nil, class: 'fas fa-book'}<br/>#{t(:helpcenter, default: 'Helpcenter')}".html_safe
       concat content_tag(:span, '', class: 'caret')
     end
   end
@@ -158,10 +199,10 @@ module AdminHelper
   def admin_avatar_menu_items
     content_tag :ul, class: 'dropdown-menu' do
       concat content_tag(:li, link_to(t(:your_profile, default: 'Your Profile'), admin_profile_settings_path(mode: 'settings')), class: 'visible-lg visible-md visible-sm hidden-xs')
-      concat content_tag(:li, link_to(t(:settings, default: 'Settings'), admin_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
+      concat content_tag(:li, link_to(t(:settings, default: 'Settings'), admin_general_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
 
 
-      concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_agent?
+      concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
       concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs')
     end
   end
@@ -172,23 +213,23 @@ module AdminHelper
   end
 
   def attachment_icon(filename)
-    return 'fa fa-file-text-o' unless filename.include?('.')
+    return 'far fa-file-text' unless filename.include?('.')
     extension = filename.split(".").last.downcase
     case extension
       when 'pdf'
-        return 'fa fa-file-pdf-o'
+        return 'far fa-file-pdf'
       when 'doc', 'docx'
-        return "fa fa-file-word-o"
+        return "far fa-file-word"
       when 'xls', 'xlsx'
-        "fa fa-file-excel-o"
+        "far fa-file-excel"
       when 'zip', 'tar'
-        "fa fa-file-archive-o"
+        "far fa-file-archive"
       when 'ppt', 'pptx'
-        "fa fa-file-powerpoint-o"
+        "far fa-file-powerpoint"
       when 'html', 'htm'
-        "fa fa-file-code-o"
+        "far fa-file-code"
       else
-        "fa fa-file-o"
+        "far fa-file"
     end
   end
 
@@ -221,7 +262,7 @@ module AdminHelper
   def user_filter_select
     content_tag :button, class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } do
       content_tag :span, class: 'btn' do
-        ("Filter " + icon('caret-down')).html_safe
+        ("Filter " + glyph('caret-down')).html_safe
       end
     end
   end
@@ -252,7 +293,7 @@ module AdminHelper
 
   def add_tag_link
     content_tag :li do
-      content_tag(:span, '', class: 'fa fa-tag add-tag-link')
+      content_tag(:span, '', class: 'fas fa-tag add-tag-link')
     end
   end
 

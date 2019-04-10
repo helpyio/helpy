@@ -1,22 +1,15 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
-<% content_for :pipeline do %>
-<%= render partial: 'admin/shared/pipeline' %>
-<% end %>
+<div class="row white-bg">
+  <div id="admin-left-nav" class="hidden-xs col-md-3 hidden-sm ticket-stats">
+    <%= render 'admin/topics/ticket_stats' %>
+  </div>
 
-<h2 id="ticket-page-title">
-  <%= t(:discussions, default: "Discussions") %>:
-  <span class='label <%= status_class(@status) %>' style='text-transform: uppercase'>
-    <%= status_label(@status) if @status %>
-  </span>
-  <%= render 'admin/topics/ticket_nav_dropdown' %>
-  <span class="hidden-xs pull-right">
-    <%#= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path, remote: true, class: 'btn btn-primary' %>
-  </span>
-</h2>
-
-<div class="row">
-  <div class="col-md-12" id="tickets">
+  <div class="col-md-9 col-sm-12 main-panel" id="tickets">
     <%= render 'admin/topics/tickets' %>
+  </div>
+
+  <div class="" id="customer-info">
+
   </div>
 </div>

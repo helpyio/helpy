@@ -2,8 +2,20 @@
 <h3>Create new user</h3>
 <%= simple_form_for(@user, url: admin_new_user_path, remote: true, validate: true, authenticity_token: true, html: { class: 'form-vertical', method: 'post', id: 'new_user' }) do |f| -%>
   <%= hidden_field_tag 'post_id', post_id %>
-  <%= f.input :email, autofocus: true, input_html: { class: 'disable-empty' } %>
+  <%= f.input :email, class: 'disable-empty', label: "#{t('activerecord.attributes.user.email')} (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
+  <!-- <#%= f.input :email, autofocus: true, input_html: { class: 'disable-empty' } %> -->
   <%= f.input :name, input_html: { class: 'disable-empty' } %>
   <%= f.submit 'Create & Set owner', class: 'btn btn-warning' %>
 <% end %>
 </div>
+
+<script type="text/javascript">
+ // Generate temp email address on demand, in case the user does not have an email
+  $('.generate-temp').off().on('click', function(){ 
+      if ($('#user_email').val() === '') {
+        var placeholder = Math.random().toString(36).substring(7);
+        $('#user_email').val("change@me-" + placeholder + '.com');
+        return false;
+      }
+    });
+</script>

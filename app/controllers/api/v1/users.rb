@@ -22,7 +22,7 @@ module API
         }
         get "", root: :users do
           users = User.all
-          present users, with: Entity::User
+          present paginate users, with: Entity::User
         end
 
         # SEARCH USERS
@@ -35,7 +35,7 @@ module API
         end
         get "search", root: :users do
           users = User.user_search(params[:q])
-          present users, with: Entity::User
+          present paginate users, with: Entity::User
         end
 
         # SHOW USER
@@ -80,6 +80,7 @@ module API
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated", default: true
           optional :priority, type: String, desc: "Users Priority", values: ['low', 'normal', 'high', 'vip'], default: 'normal'
+          optional :notes, type: String, desc: "Notes about the user"
         end
         post "", root: :users do
           user = User.create!(
@@ -105,7 +106,8 @@ module API
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
             active: permitted_params[:active],
-            priority: permitted_params[:priority]
+            priority: permitted_params[:priority],
+            notes: permitted_params[:notes]
             )
           present user, with: Entity::User
         end
@@ -140,6 +142,7 @@ module API
           optional :language, type: String, desc: "Users prefered language"
           optional :active, type: Boolean, desc: "User active or deactivated"
           optional :priority, type: String, desc: "Users Priority- low, normal, high or vip", default: 'normal'
+          optional :notes, type: String, desc: "Notes about the user"
         end
         patch ":id", root: :users do
           user = User.where(id: permitted_params[:id]).first
@@ -166,8 +169,31 @@ module API
             linkedin: permitted_params[:linkedin],
             language: permitted_params[:language],
             active: permitted_params[:active],
-            priority: permitted_params[:priority]
+            priority: permitted_params[:priority],
+            notes: permitted_params[:notes]
             )
+          present user, with: Entity::User
+        end
+
+        # DELETE A USER
+        desc "Delete a user"
+        params do
+          requires :id, type: Integer, desc: "User ID"
+        end
+        delete ":id", root: :users do
+          user = User.find(permitted_params[:id])
+          user.permanently_destroy
+          body false
+        end
+
+        # ANONYMIZE A USER
+        desc "Anonymize a user"
+        params do
+          requires :id, type: Integer, desc: "User ID"
+        end
+        post "anonymize/:id", root: :users do
+          user = User.find(permitted_params[:id])
+          user.scrub
           present user, with: Entity::User
         end
 

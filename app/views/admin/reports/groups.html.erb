@@ -1,16 +1,15 @@
-<% title "Activity Report" %>
-
-<%= render partial: 'admin/reports/report_header', locals:
-    {
-      report_name: t('group_report', site_name: AppSettings['settings.site_name'], default: "Group Report"),
-      report_path: "admin_group_reports_path"
-    } %>
+<% title t('group_report') %>
 
 <div class="row">
-  <div class="col-md-2 reports-nav">
+  <div id="admin-left-nav" class="col-md-3 hidden-xs hidden-sm">
     <%= render partial: 'admin/reports/reports_nav' %>
   </div>
-  <div class="col-md-10">
+  <div class="col-md-9 main-panel">
+    <%= render partial: 'admin/reports/report_header', locals:
+        {
+          report_name: t('group_report', site_name: AppSettings['settings.site_name'], default: "Group Report"),
+          report_path: "admin_group_reports_path"
+        } %>
     <div class="row">
       <div class="col-md-12">
         <%= column_chart tickets_by_group(@scoped_stats) %>
@@ -19,9 +18,9 @@
           <col width="0%">
           <col width="20%">
           <thead>
-            <th>Group</th>
+            <th><%= t('group') %></th>
             <th>
-            <th class="text-right">Tickets</th>
+            <th class="text-right"><%= t('tickets') %></th>
           </thead>
           <%
           @teams.each do |team|

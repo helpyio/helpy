@@ -1,15 +1,11 @@
 
-<div id="discussion-flow" class="hidden-xs">
-  <div class="tiny-header"><%= t(:support_pipeline, default: "Support Pipeline") %>:</div>
-
-  <div id="admin-stats" class="row">
-    <div class="pipeline-row col-md-12">
-      <%= render partial: 'admin/topics/stat_box', locals: { box: 'new', stats: @new, class_name: 'has-arrow' } %>
-      <%#= render partial: 'admin/topics/stat_box', locals: { box: 'active', stats: @active, class_name: 'has-arrow' } %>
-      <%= render partial: 'admin/topics/stat_box', locals: { box: 'active', stats: @active, class_name: 'has-arrow' } %>
-      <%= render partial: 'admin/topics/stat_box', locals: { box: 'mine', stats: @mine, class_name: 'has-arrow' } %>
-      <%= render partial: 'admin/topics/stat_box', locals: { box: 'pending', stats: @pending, class_name: 'has-arrow'} %>
-      <%= render partial: 'admin/topics/stat_box', locals: { box: 'closed', stats: @closed, class_name: 'no-arrow'} %>
-    </div>
-  </div>
+<div class="left-nav-header">
+  <span class="tiny-header"><%= t('inbox')%></span>
+  <%= hide_responsive_nav %>
 </div>
+<ul class="list-unstyled nav-items"  data-hook="ticket-stats">
+  <%= render partial: 'admin/topics/nav_item', locals: { status: 'active', label: t(:active), count: @active } %>
+  <%= render partial: 'admin/topics/nav_item', locals: { status: 'new', label: t(:new), count: @new } %>
+  <%= render partial: 'admin/topics/nav_item', locals: { status: 'mine', label: t(:mine), count: @mine } %>
+  <%= render partial: 'admin/topics/nav_item', locals: { status: 'pending', label: t(:pending), count: @pending } %>
+</ul>

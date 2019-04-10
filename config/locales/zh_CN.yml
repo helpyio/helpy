@@ -39,7 +39,7 @@ zh-cn:
 
   # Community
   forum_name: "主旨"
-  subject: "题目"
+  subject: &subject "题目"
   last_activity: "最後登录"
   topic: "讨论"
   replies: "回覆"
@@ -137,13 +137,13 @@ zh-cn:
 
   # Discussion controls
   change_status: 修改状态
-  status: 状态
+  status: &status 状态
   mark_closed: 标记为已解决
   reopen: 重开
   mark_spam: 标记为垃圾讯息
   mark_new: 标记为新讯息
-  assign_agent: 委托代理
-  # tag_with: Tag Ticket
+  assign_agent: &assign_agent 委托代理
+  # tag_with: &tag_with Tag Ticket
   selected_messages:
     one: "1个已选讯息"
     two: "2个已选讯息"
@@ -166,12 +166,17 @@ zh-cn:
   contact_info: 联络
   social_info: 社交网站
   edit_user: 修改使用者
+#  delete_user: Delete User
   work_phone: 公司
   cell_phone: 行动电话
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
   select_priority: "选择优先级"
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: "高"
   normal_priority: "正常"
   low_priority: "低"

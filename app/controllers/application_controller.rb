@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :set_time_zone, if: :current_user
 
+  force_ssl if: :ssl_configured?
+
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
   end
@@ -48,6 +50,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ssl_configured?
+    AppSettings["settings.enforce_ssl"] == '1' && Rails.env.production?
+  end
+
   def google_analytics_enabled?
     AppSettings['settings.google_analytics_enabled'] == '1'
   end
@@ -80,24 +86,29 @@ class ApplicationController < ActionController::Base
   helper_method :tickets?
 
   def teams?
-    AppSettings['settings.teams'] == "1" || AppSettings['settings.teams'] == true
+    true
   end
   helper_method :teams?
 
+  def display_branding?
+    AppSettings['branding.display_branding'] == "1" || AppSettings['branding.display_branding'] == true
+  end
+  helper_method :display_branding?
+
   def forums_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless forums?
+    redirect_to root_path unless forums?
   end
 
   def knowledgebase_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless knowledgebase?
+    redirect_to root_path unless knowledgebase?
   end
 
   def tickets_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets?
+    redirect_to root_path unless tickets?
   end
 
   def topic_creation_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
+    redirect_to root_path unless tickets? || forums?
   end
 
   protected

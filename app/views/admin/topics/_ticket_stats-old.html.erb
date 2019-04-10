@@ -1,0 +1,15 @@
+
+<div id="discussion-flow" class="hidden-xs">
+  <div class="tiny-header"><%= t(:support_pipeline, default: "Support Pipeline") %>:</div>
+
+  <div id="admin-stats" class="row">
+    <div class="pipeline-row col-md-12">
+      <%= render partial: 'admin/topics/stat_box', locals: { box: 'new', stats: @new, class_name: 'has-arrow' } %>
+      <%#= render partial: 'admin/topics/stat_box', locals: { box: 'active', stats: @active, class_name: 'has-arrow' } %>
+      <%= render partial: 'admin/topics/stat_box', locals: { box: 'active', stats: @active, class_name: 'has-arrow' } %>
+      <%= render partial: 'admin/topics/stat_box', locals: { box: 'mine', stats: @mine, class_name: 'has-arrow' } %>
+      <%= render partial: 'admin/topics/stat_box', locals: { box: 'pending', stats: @pending, class_name: 'has-arrow'} %>
+      <%= render partial: 'admin/topics/stat_box', locals: { box: 'closed', stats: @closed, class_name: 'no-arrow'} %>
+    </div>
+  </div>
+</div>

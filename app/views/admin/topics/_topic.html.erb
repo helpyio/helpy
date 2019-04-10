@@ -2,20 +2,20 @@
   <td>
     <%= check_box_tag "topic_ids[]", topic.id, false, class: 'topic-checkbox pull-left' %>
     <span class="user-thumbnail pull-right hidden-xs">
-      <%= link_to avatar_image(topic.user, size=40), admin_user_path(topic.user.id), remote: true %>
+      <%= link_to avatar_image(topic.user, size=40), admin_user_path(topic.user.id), remote: true if topic.user.present? %>
     </span>
   </td>
 
   <td>
       <span class="more-important truncate-ellipsis">
-        <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic), remote: true, class: "click-loader topic-link topic-link-#{topic.id}" -%>
+        <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic, status: @status), remote: true, class: "click-loader topic-link topic-link-#{topic.id}" -%>
         <%= badge_for_status(topic.current_status) %>
-        <%= badge_for_private if forums? and topic.private? %>
-        <% tag_listing(topic.team_list) %>
+        <%= badge_for_public if forums? and !topic.private? %>
+        <%# tag_listing(topic.team_list) %>
       </span>
     <span class="less-important user-link">
-      <%= link_to t(:started_by, username: topic.user_name? ? topic.user_name.titleize : topic.user.email, default: "Started by #{topic.user_name? ? topic.user_name.titleize : topic.user.email}"), admin_user_path(topic.user.id), remote: true %>
-      <%= user_priority(topic.user) %>
+      <%= started_by(topic) %>
+      <%= user_priority(topic.user) unless topic.user.nil? %>
       - <%= assigned_to(topic) %>
     </span>
   </td>

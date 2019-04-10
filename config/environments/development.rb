@@ -60,20 +60,18 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # Raises error for missing translations
-  config.action_view.raise_on_missing_translations = true
+  config.action_view.raise_on_missing_translations = false
 
   config.i18n.available_locales = [:en, :es, :de, :fr, :it, :et, :ca, :sv, :hu, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br', :fa, :fi, :id, :ko, :ms]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
-  # Use an evented file watcher to asynchronously detect changes in source code,
-  # routes, locales, etc. This feature depends on the listen gem.
-  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.active_job.queue_adapter = :inline
 
   config.after_initialize do
     # Bullet Configuration / https://github.com/flyerhzm/bullet
-    Bullet.enable = true
-    Bullet.bullet_logger = true
-    Bullet.add_footer = true
+    # Bullet.enable = true
+    # Bullet.bullet_logger = true
+    # Bullet.add_footer = true
   end
 end

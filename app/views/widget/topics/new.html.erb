@@ -15,7 +15,7 @@
     <%#= f.alert_message "Please fix the errors below." %>
 
     <% unless user_signed_in? %>
-      <%= f.simple_fields_for @user do |u| %>
+      <%= f.simple_fields_for @user, validate: true do |u| %>
         <%= u.input :email, placeholder: I18n.t('activerecord.attributes.user.email'), autofocus: true, class: 'topic-placeholder' %>
         <%= u.input :name, placeholder: I18n.t('activerecord.attributes.user.name'), class: 'topic-placeholder' %>
       <% end %>
@@ -23,7 +23,7 @@
 
     <%= f.input :name, :size => 40,  placeholder: I18n.t(:subject), label: I18n.t(:subject), class: 'disable-empty topic-placeholder' %>
 
-    <%= f.simple_fields_for :posts do |p| %>
+    <%= f.simple_fields_for :posts, validate: true do |p| %>
       <%= p.input :body, input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
     <% end %>
 

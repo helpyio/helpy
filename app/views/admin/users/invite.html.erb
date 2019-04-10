@@ -1,3 +1,21 @@
 <% title "#{admin_title} #{t(:invite_users, default: "Invite New Users")}" %>
 
-<%= render partial: 'admin/users/invite' %>
+<div class="row white-bg">
+  <div id="user-nav" class="hidden-xs col-md-3 col-sm-2 ticket-stats">
+    <%= render 'admin/users/user_filter' %>
+  </div>
+
+  <div class="col-md-9 col-sm-10 main-panel" id="tickets">
+    <h3 id="ticket-page-title" class="view-header">
+      <%= t(:invite_users, default: "Invite New Users") %>:
+    </h3>
+
+    <%= bootstrap_form_tag url: admin_invite_users_path, method: 'put' do |f| %>
+      <%= f.text_area 'invite.emails', label: t(:invite_emails, default: "Email Addresses"), placeholder: t(:invite_emails_placeholder), rows: 10 %>
+      <%= f.text_area 'invite.message', label: t(:invite_message, default: "Message"), placeholder: t(:invite_message_placeholder) %>
+      <%= f.select(:role, [[t('select_role'),''],[t('agent_role'),'agent'],[t('editor_role'),'editor'],[t('user_role'),'user']]) if current_user.is_admin? %>
+
+      <%= f.submit t(:send_invite, default: "Send Invite"), class: 'btn btn-warning' %>
+    <% end %>
+  </div>
+</div>

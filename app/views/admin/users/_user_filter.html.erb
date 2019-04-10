@@ -1,0 +1,12 @@
+<div class="left-nav-header">
+  <%= hide_responsive_nav %>
+  <span class="tiny-header">User Role</span>
+</div>
+
+<ul class="list-unstyled nav-items">
+  <%= render partial: 'admin/users/user_nav_item', locals: { role: 'user', label: t(:user_role).pluralize } %>
+  <%= render partial: 'admin/users/user_nav_item', locals: { role: 'team', label: t(:team) } %>
+  <%= render partial: 'admin/users/user_nav_item', locals: { role: 'admin', label: t(:admin_role).pluralize } %>
+  <%= render partial: 'admin/users/user_nav_item', locals: { role: 'agent', label: t(:agent_role).pluralize } %>
+  <%= render partial: 'admin/users/user_nav_item', locals: { role: 'editor', label: t(:editor_role).pluralize } %>
+</ul>

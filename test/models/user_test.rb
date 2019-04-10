@@ -117,15 +117,16 @@ class UserTest < ActiveSupport::TestCase
 
   end
 
-  test "should not accept names with numbers" do
+  test "should remove numbers in the name" do
     names = [
       "Vasiya2",
-      "123123"
+      "123123Tim"
     ]
 
     names.each do |name|
       user = build :user, name: name
-      assert_equal user.valid?, false
+      assert_equal user.valid?, true
+      assert_not_equal names, user.name
     end
   end
 
@@ -259,6 +260,103 @@ class UserTest < ActiveSupport::TestCase
   test "Reject double quotes from user name" do
     u = (create :user, name: %["test agent"])
     assert_equal 'test agent', u.name
+  end
+
+  test "should not be able to delete an admin" do
+    u = User.admins.first
+    assert_equal false, u.can_scrub_and_delete?
+  end
+
+  test "should not be able to delete the system user" do
+    u = User.find(2)
+    assert_equal false, u.can_scrub_and_delete?
+  end
+
+  test "should not be able to anonymize an admin" do
+    u = User.admins.first
+    u.anonymize
+    assert_not_equal "Anonymous User", u.name
+  end
+
+  test "deleting an author of an article should reauthor the article to user 2" do
+    u = User.find(6) #gets an agent
+    @category = Category.create!(name: "test title", active: true, visibility: 'all')
+    @doc = Doc.create!(title: "test doc one", body: "some body text", category_id: @category.id, user_id: u.id)
+    u.permanently_destroy
+    assert_equal 2, Doc.find(@doc.id).user_id
+    assert_equal 0, Doc.where(user_id: 6).count
+  end
+
+  test "deleteing an agent should unassign them from all assigned tickets" do
+    u = User.agents.first
+    u.permanently_destroy
+    assert_equal 0, Topic.where(assigned_user_id: u.id).count
+  end
+
+  test "#unassign_all should unassign from all topics" do
+    u = User.admins.first
+    Topic.first.assign(2, u.id)
+    assert_equal 1, Topic.where(assigned_user_id: u.id).count
+    u.unassign_all
+    assert_equal 0, Topic.where(assigned_user_id: u.id).count
+  end
+
+  test "should be able to permanently destroy a customer record and all associated records" do
+    u = User.find(9)
+    u.permanently_destroy
+    assert_equal 0, u.topics.count
+    assert_equal 0, u.posts.count
+  end
+
+  test "anonymizing a customer should remove all personal data from their record" do
+    u = User.find(6)
+    u.anonymize
+
+    assert_equal "Anonymous User", u.name
+    assert_equal "anon", u.login
+    assert_equal false, u.admin
+    assert_nil u.bio
+    assert_nil u.signature
+    assert_equal "user", u.role
+    assert_nil u.home_phone
+    assert_nil u.cell_phone
+    assert_nil u.work_phone
+    assert_nil u.company
+    assert_nil u.street
+    assert_nil u.city
+    assert_nil u.zip
+    assert_nil u.title
+    assert_nil u.twitter
+    assert_nil u.linkedin
+    assert_nil u.thumbnail
+    assert_nil u.medium_image
+    assert_nil u.large_image
+    assert_equal false, u.active
+    assert_equal "change", u.email.split('@')[0]
+    assert_nil u.current_sign_in_ip
+    assert_nil u.last_sign_in_ip
+    assert_nil u.uid
+    assert_nil u.account_number
+    assert_equal "normal", u.priority
+
+  end
+
+  test "can be edited should be true if the current user is an admin and the user is admin" do
+    current_user = User.find(1)
+    user = User.find(5)
+    assert_equal true, user.can_be_edited?(current_user)
+  end
+
+  test "can be edited should be false if the current user is an agent and the user is admin" do
+    current_user = User.find(6)
+    user = User.find(1)
+    assert_equal false, user.can_be_edited?(current_user)
+  end
+
+  test "can be edited should be true if the current user is an agent and the user is user" do
+    current_user = User.find(6)
+    user = User.find(2)
+    assert_equal true, user.can_be_edited?(current_user)
   end
 
 end

@@ -37,7 +37,8 @@ ko:
 
   # Community
   forum_name: "주제"
-  subject: "제목"
+  subject: &subject "제목"
+  message: "메시지"
   last_activity: "마지막 활동"
   topic: "토론"
   replies: "답글"
@@ -139,13 +140,13 @@ ko:
 
   # Discussion controls
   change_status: 상태 변경
-  status: 상태
+  status: &status 상태
   mark_closed: 해결 된 것으로 표시
   reopen: 다시 열다
   mark_spam: 스팸으로 표시
   mark_new: 새 항목으로 표시
-  assign_agent: 에이전트 지정
-  tag_with: 티켓 태그
+  assign_agent: &assign_agent 에이전트 지정
+  tag_with: &tag_with 티켓 태그
   selected_messages:
     one: "선택된 메시지 1개"
     two: "선택된 메시지 2개"
@@ -170,10 +171,15 @@ ko:
   edit_user: 사용자 편집
   work_phone: 직장
   cell_phone: 핸드폰
+  # delete_user: "Delete User"
+  # scrub_user: "Anonymize User"
+  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
+  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Priorities
-  select_priority: 우선 순위 선택
+  select_priority: &priority 우선 순위 선택
   vip_priority: VIP
+  # very_high_priority: Very High
   high_priority: 높음
   normal_priority: 중간
   low_priority: 낮음
@@ -288,6 +294,7 @@ ko:
   # Mail messages
   new_user_subject: "%{site_name}에 오신 것을 환영합니다"
   hello: "안녕하세요 %{user_name}"
+  thank_you: "고맙습니다!"
   new_user: "저희에게 연락해 줘서 고마워요. 지원팀에서 귀하의 메시지를 받았으며 곧 답변을 드리겠습니다."
   account_generated: "계정이 생성되었습니다. 로그인하려면 다음 링크를 사용하십시오."
   above_this_line: "답글이이 줄 위에 나타나는지 확인하십시오."

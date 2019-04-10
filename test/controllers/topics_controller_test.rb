@@ -24,6 +24,7 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 require 'test_helper'
@@ -42,9 +43,9 @@ class TopicsControllerTest < ActionController::TestCase
 
   test "a browsing user should not index of topics if forums are not enabled" do
     AppSettings['settings.forums'] = "0"
-    assert_raises(ActionController::RoutingError) do
-      get :index, params: { forum_id: 3, locale: :en }
-    end
+    get :index, params: { forum_id: 3, locale: :en }
+    assert_response :redirect 
+    assert_equal(response.redirect_url, root_url)
   end
 
   test 'a browsing user should not get index of topics in a private forum' do
@@ -53,9 +54,28 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test 'a browsing user should be able to view a ticket if anonymous access turned on' do
+    AppSettings['settings.anonymous_access'] = '1'
+    get :show, id: Topic.last.hashid, locale: :en
+    assert_response :success
+  end
+
+  test 'browsing users should NOT be able to view a ticket if anonymous access is disabled' do
+    AppSettings['settings.anonymous_access'] = '0'
+    get :show, id: Topic.last.hashid, locale: :en
+    assert_redirected_to root_path
+  end
+
   test 'a browsing user should get the new topic page' do
     get :new, params: { locale: :en }
     assert_nil assigns(:topics)
+    assert_response :success, 'Did not get the new topic page'
+  end
+
+  test 'the new topic should be set to private if enabled' do
+    AppSettings['settings.default_private'] = '1'
+    get :new, locale: :en
+    assert_equal true, assigns(:topic).private
     assert_response :success, 'Did not get the new topic page'
   end
 
@@ -92,6 +112,34 @@ class TopicsControllerTest < ActionController::TestCase
       end
     end
 
+  end
+
+  test "a browsing user creating feedback on an article should be autotagged" do
+    assert_difference 'Topic.count', 1, 'A topic should have been created' do
+      assert_difference 'Post.count', 1, 'A post should have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a user',
+              email: 'anon@test.com'
+              },
+            name: 'some new feedback',
+            body: 'some body text',
+            forum_id: 1,
+            doc_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body"
+              }
+            }
+          },
+          locale: :en
+      end
+    end
+
+    assert_equal Topic.tagged_with("active and featured").count, 1
+    assert_equal Topic.tagged_with("Feedback").count, 1
   end
 
   test 'a browsing user should not be able to vote' do
@@ -375,9 +423,9 @@ class TopicsControllerTest < ActionController::TestCase
     AppSettings['settings.forums'] = "0"
 
     sign_in users(:user)
-    assert_raises(ActionController::RoutingError) do
-      get :new, params: { locale: :en }
-    end
+    get :new, params: { locale: :en }
+    assert_response :redirect 
+    assert_equal(response.redirect_url, root_url)
   end
 
 end

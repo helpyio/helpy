@@ -1,0 +1,23 @@
+<% content_for :page_title do %>
+  <h3><%= I18n.t('devise.registrations.new.sign_up') %></h3>
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :email, autofocus: true %>
+    <%= f.input :name %>
+    <div class="select-image text-center">
+      <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
+      <%= f.file_field :profile_image, label: "Avatar" unless cloudinary_enabled? %>
+    </div>
+    <%= f.input :company %>
+    <%= f.input :title %>
+    <% if @validatable %>
+    <!--<em>(<%= @minimum_password_length %> characters minimum)</em>-->
+    <% end %>
+    <%= f.input :password, autocomplete: "off" %>
+    <%= f.input :password_confirmation, autocomplete: "off" %>
+
+    <%= f.submit I18n.t('devise.registrations.new.sign_up'), class: 'btn btn-warning' %>
+<% end %>

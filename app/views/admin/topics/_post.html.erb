@@ -1,9 +1,7 @@
 <!-- Admin post partial -->
 <div id="post-<%= post.id %>" class="media post-container disallow-post-voting <%= "kind-#{post.kind}" %><%= " inactive" unless post.active? %> overflow-visible" <%= 'style="display:none;"' if post.kind == 'note' %>>
-	<div class="pull-left">
-		<%= avatar_image(post.user, size=40) %>
-	</div>
-	<div class="media-body media-right overflow-visible">
+	<%= content_tag :div, avatar_image(post.user, size=40), class: 'pull-left' if post.kind != 'first' %>
+	<div class="media-body media-right overflow-visible no-side-pad">
 		<span class="hidden-sm hidden-md hidden-lg"><%= last_active_time(post.created_at) %><br/></span>
 		<span id="row-<%= post.id %>"  class="post-menu post-menu-<%= post.id %> btn-group">
 			<%= post_message(post,true) %>
@@ -24,32 +22,32 @@
 		<%= content_tag :div, post.cc.present? ? "cc: #{post.cc}" : "", class: 'post-cc post-cc-style' %>
 		<%= content_tag :div, post.bcc.present? ? "bcc: #{post.bcc}" : "", class: 'post-bcc post-cc-style' %>
 		<div id="post-body-<%= post.id %>" class="post-body less-important text-left">
-			<%= simple_format(post.body) -%>
-      <%= render partial: 'posts/thumbnail', locals: { :model_name => post } %>
+			<%= post.html_formatted_body -%>
+      		<%= render partial: 'posts/thumbnail', locals: { :model_name => post } if cloudinary_enabled? %>
 			<%= render partial: 'posts/attachment', locals: { :model_name => post } %>
 		</div>
 
 	</div>
-
-  <div id="change-user-modal-<%= post.id %>" class="modal fade change-user-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title"><%= t('change_owner', default: 'Change author') %></h4>
-        </div>
-
-        <div class="modal-body row">
-          <div class="col-md-12">
-            <%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true, html: { class: 'search_form' } do |f| -%>
-              <%= hidden_field_tag 'post_id', post.id %>
-              <%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off, onkeyup: "search_user(#{post.id})" -%>
-            <% end -%>
-            <div class="search-results">
-            </div>
-          </div>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
 </div>
+
+<div id="change-user-modal-<%= post.id %>" class="modal fade change-user-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title"><%= t('change_owner', default: 'Change author') %></h4>
+			</div>
+
+			<div class="modal-body row">
+				<div class="col-md-12">
+					<%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true, html: { class: 'search_form' } do |f| -%>
+						<%= hidden_field_tag 'post_id', post.id %>
+						<%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off, onkeyup: "search_user(#{post.id})" -%>
+					<% end -%>
+					<div class="search-results">
+					</div>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

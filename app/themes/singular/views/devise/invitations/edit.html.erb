@@ -1,0 +1,14 @@
+<% content_for :page_title do %>
+    <h3><%= t 'devise.invitations.edit.header' %></h3>
+<% end %>
+
+<%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put } do |f| %>
+  <%= f.error_notification %>
+  <%= f.hidden_field :invitation_token %>
+
+  <%= f.input :name, input_html: { value: nil } %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+
+  <%= f.button :submit, t("devise.invitations.edit.submit_button") %>
+<% end %>

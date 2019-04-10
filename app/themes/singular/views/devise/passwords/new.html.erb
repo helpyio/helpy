@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <h3><%= t('devise.passwords.new.forgot_your_password') %></h3>
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :email, autofocus: true %>
+
+  <div class="actions">
+    <%= f.button :submit, t('devise.passwords.new.send_me_reset_password_instructions'), class: 'btn btn-warning' %>
+  </div>
+<% end %>

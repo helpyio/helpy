@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+    <h3><%= params[:first] == 'true' ? t('devise.sessions.new.sign_in') : t('devise.passwords.edit.change_my_password') %></h3>
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+  
+  <%= f.hidden_field :reset_password_token %>
+
+  <%= f.input :password, autofocus: true, autocomplete: "off", label:I18n.t('devise.passwords.edit.new_password') %>
+  <%= f.input :password_confirmation, autocomplete: "off", label: I18n.t('devise.passwords.edit.confirm_new_password') %>
+  <%= f.button :submit, I18n.t('devise.passwords.edit.change_my_password'), class: 'btn btn-warning' %>
+<% end %>

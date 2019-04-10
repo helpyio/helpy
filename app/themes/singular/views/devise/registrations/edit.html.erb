@@ -1,0 +1,56 @@
+<% content_for :page_title do %>
+<h3><%= t(:your_profile) %></h3>
+<% end %>
+
+<div class="row content-row">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true, multipart: true, html: { method: :put }) do |f| %>
+
+    <div class="col-md-3 text-center">
+      <%= avatar_image(@user, size=150) %>
+      <div class="select-image text-center">
+      <% if @user.provider.nil? %>
+        <%= f.attachinary_file_field :avatar if cloudinary_enabled? %>
+      <% end %>
+      <%= f.file_field :profile_image unless cloudinary_enabled? %>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <%= f.error_notification %>
+      <span class="user-fields">
+        <%= f.input :name, autofocus: true %>
+        <%= f.input :company %>
+        <%= f.input :title %>
+        <%= f.input :time_zone %>
+        <br/><br/>
+        <h4><%= t('contact_info', default: 'Contact Info') %></h4>
+        <br/>
+        <%= f.input :email %>
+        <%= f.input :home_phone %>
+        <%= f.input :cell_phone %>
+        <%= f.input :work_phone %>
+        <%= f.input :street %>
+        <%= f.input :city %>
+        <%= f.input :state %>
+        <%= f.input :zip %>
+        <br/></br/>
+      </span>
+
+      <% if @user.provider.nil? %>
+      <%= f.input :current_password, autocomplete: "off" %>
+
+      <br/><br/>
+      <h4><%= t('devise.passwords.edit.change_your_password') %></h4>
+      <br/>
+      <span class="password-fields">
+        <%= f.input :password, autocomplete: "off" %>
+        <%= f.input :password_confirmation, autocomplete: "off"  %>
+      </span>
+      <% end %>
+
+      <%= f.submit t("save_changes"), class: 'btn btn-warning' %>
+    </div>
+  <% end %>
+
+
+</div>

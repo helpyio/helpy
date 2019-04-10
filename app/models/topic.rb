@@ -24,24 +24,26 @@
 #  doc_id           :integer          default(0)
 #  channel          :string           default("email")
 #  kind             :string           default("ticket")
+#  priority         :integer          default(1)
 #
 
 class Topic < ApplicationRecord
 
   include SentenceCase
-
+  include Hashid::Rails
+  
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :doc, counter_cache: true, touch: true
   belongs_to :assigned_user, class_name: 'User'
 
-  has_many :posts, :dependent => :delete_all
+  has_many :posts, dependent: :delete_all
   accepts_nested_attributes_for :posts
 
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
-  paginates_per 25
+  paginates_per 15
 
   include PgSearch
   multisearchable :against => [:id, :name, :post_cache],
@@ -66,10 +68,11 @@ class Topic < ApplicationRecord
   scope :chronologic, -> { order('updated_at DESC') }
   scope :reverse, -> { order('updated_at ASC') }
   scope :by_popularity, -> { order('points DESC') }
-  scope :active, -> { where(current_status: %w(open pending)) }
+  scope :active, -> { where(current_status: %w(new open pending)) }
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
   scope :for_doc, -> { where("doc_id= ?", doc)}
+  scope :external, -> { where.not(kind: 'internal') }
 
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
@@ -84,6 +87,8 @@ class Topic < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   # validates :user_id, presence: true
+
+  enum priority: { low: 0, normal: 1, high: 2, very_high: 3 }
 
   def to_param
     "#{id}-#{name.parameterize}"
@@ -265,9 +270,14 @@ class Topic < ApplicationRecord
     end
   end
 
+  def posts_in_last_minute
+    self.posts.where(created_at: Time.now-1.minutes..Time.now, kind: 'reply').count
+  end
+
   private
 
   def cache_user_name
+    return if self.user.nil?
     if self.user.name.present?
       self.user_name = self.user.name
     else
@@ -278,4 +288,5 @@ class Topic < ApplicationRecord
   def add_locale
     self.locale = I18n.locale
   end
+
 end

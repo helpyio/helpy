@@ -69,20 +69,48 @@ class Admin::UsersControllerTest < ActionController::TestCase
     )
   end
 
-  # admins
+  # admin only
+  test "an admin should be able to destroy a user" do
+    sign_in users(:admin)
+    assert_difference "User.count", -1 do
+      xhr :delete, :destroy, id: 3, locale: :en
+    end
+    assert_response :success
+  end
+
+  test "an admin should see a message that a user was scheduled to be deleted" do
+    sign_in users(:admin)
+
+    user_name = User.find(3).name
+
+    delete :destroy, id: 3, locale: :en
+    assert_response :redirect
+    assert_equal "User #{user_name} was scheduled for permanent deletion.",
+      flash[:success]
+  end
+
+
+  test "an admin should be able to anonymize a user" do
+    sign_in users(:admin)
+    xhr :post, :scrub, id: 3, locale: :en
+    assert_response :success
+    assert "Anonymous User", User.find(3).name
+  end
+
+  # admin/agents
 
   %w(admin agent).each do |admin|
 
     test "an #{admin} should be able to see a listing of users" do
       sign_in users(admin.to_sym)
       get :index
-      assert_equal 8, assigns(:users).count
+      assert_equal User.all.count, assigns(:users).count
     end
 
     test "an #{admin} should be able to see a filtered of users" do
       sign_in users(admin.to_sym)
       get :index, params: { role: 'user' }
-      assert_equal 4, assigns(:users).count
+      assert_equal User.where(role: 'user').count, assigns(:users).count
     end
 
     test "an #{admin} should be able to update a user" do
@@ -141,7 +169,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a user profile" do
       sign_in users(admin.to_sym)
-      get :show, params: { id: 2 }, format: 'js', xhr: true
+      get :show, params: { id: 9 }, format: 'js', xhr: true
       assert_response :success
       # assert_equal(6, assigns(:topics).count)
     end
@@ -149,16 +177,31 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{admin} should be able to edit a user profile" do
       sign_in users(admin.to_sym)
 
-      get :edit, params: { id: 2 }, xhr: true
+      get :edit, params: { id: 9 }, xhr: true
       assert_response :success
     end
 
   end
 
+  %w(user editor agent).each do |unauthorized|
+    test "an #{unauthorized} should NOT be able to destroy a user" do
+      sign_in users(unauthorized.to_sym)
+      assert_difference("User.count", 0) do
+        xhr :delete, :destroy, id: 3, locale: :en
+      end
+    end
+
+    test "an #{unauthorized} should NOT be able to anonymize a user" do
+      sign_in users(unauthorized.to_sym)
+      xhr :post, :scrub, id: 3, locale: :en
+      assert_not_equal "Anonymous User", User.find(3).name
+    end
+  end
+
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, params: {id: 2, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
+      patch :update, params: {id: 9, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
     end
   end
 
@@ -178,7 +221,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.admins.count", 0) do
-        patch :update, params: {id: 2, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
+        patch :update, params: {id: 9, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
       end
     end
   end

@@ -22,8 +22,11 @@ class Admin::PostsController < Admin::BaseController
     @post = Post.new(post_params)
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
+
+    # refresh collections for UI
     get_all_teams
-    
+    get_tickets_by_status
+
     respond_to do |format|
       if @post.save
         format.html {
@@ -62,11 +65,13 @@ class Admin::PostsController < Admin::BaseController
 
     fetch_counts
     get_all_teams
+    get_tickets_by_status
+
     @topic = @post.topic
     @posts = @topic.posts.chronologic
 
     if @post.update_attributes(post_params)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
       respond_to do |format|
         format.js {}
       end
@@ -116,7 +121,7 @@ class Admin::PostsController < Admin::BaseController
 
     # assign user
     if @user.save && @post.update(user: @user)
-      update_topic_owner(old_user, @post) if @post.kind == 'first'
+      update_topic_owner(old_user, @post) if @post.first?
     end
 
     # re render topic
@@ -139,6 +144,7 @@ class Admin::PostsController < Admin::BaseController
       :cc,
       :bcc,
       :user_id,
+      :active
     )
   end
 
@@ -152,6 +158,5 @@ class Admin::PostsController < Admin::BaseController
         body: I18n.t('change_owner_note', old: old_owner.name, new: post.user.name, default: "The creator of this topic was changed from #{old_owner.name} to #{post.user.name}"),
         kind: "note",
       )
-
   end
 end

@@ -1,0 +1,6 @@
+<% topic = tiny_topic %>
+<li id="topic-<%= topic.id %>" class="tiny-topic topic link-row nav-item <%= 'more-important nav-active tiny-topic-active' if @topic.id == topic.id %>">
+    <span class="truncate-ellipsis">
+      <%= link_to "##{topic.id}- #{topic.name}", admin_topic_path(topic, status: @status), remote: true, class: "click-loader topic-link topic-link-#{topic.id}" -%>
+    </span>
+</li>

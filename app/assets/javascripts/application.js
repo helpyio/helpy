@@ -11,11 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require best_in_place
 //= require jquery_ujs
-//= require jquery-ui/sortable
-//= require jquery-ui/effect-highlight
-//= require jquery-ui/autocomplete
 //= require jquery-fileupload
 //= require bootstrap-sprockets
 //= require turbolinks
@@ -46,6 +44,7 @@
 //= require bootstrap/dropdown
 //= require Chart.bundle
 //= require chartkick
+//= require sisyphus.min.js
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link
