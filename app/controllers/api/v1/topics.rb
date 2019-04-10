@@ -35,7 +35,7 @@ module API
               current_status: permitted_params[:status]
             )
           end
-          present paginate(topics), with: Entity::Topic
+          present paginate topics, with: Entity::Topic
         end
 
         # LIST BY USER
@@ -54,7 +54,7 @@ module API
           else
             topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
           end
-          present paginate(topics), with: Entity::Topic
+          present paginate topics, with: Entity::Topic
         end
 
         # SHOW ONE TICKET AND ITS THREAD

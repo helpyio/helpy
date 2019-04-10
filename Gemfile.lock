@@ -249,7 +249,7 @@ GEM
       activerecord (>= 4.2.0, < 6)
       globalize (>= 5.1.0, < 6)
       paper_trail (>= 8, < 12)
-    grape (1.2.3)
+    grape (1.2.1)
       activesupport
       builder
       mustermann-grape (~> 1.0.0)
@@ -681,7 +681,7 @@ DEPENDENCIES
   globalize (~> 5.1.0)
   globalize-accessors
   globalize-versioning
-  grape
+  grape (= 1.2.1)
   grape-attack
   grape-entity
   grape-kaminari!

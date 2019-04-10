@@ -68,7 +68,7 @@ gem 'route_translator'
 gem 'http_accept_language'
 
 # API gems
-gem 'grape'
+gem 'grape', '1.2.1' # 1.2.3 does not work with grape-kaminari for some reason
 gem 'grape-swagger'
 gem 'grape-entity'
 gem 'grape-swagger-rails'

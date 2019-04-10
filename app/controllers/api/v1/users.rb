@@ -22,7 +22,7 @@ module API
         }
         get "", root: :users do
           users = User.all
-          present users, with: Entity::User
+          present paginate users, with: Entity::User
         end
 
         # SEARCH USERS
@@ -35,7 +35,7 @@ module API
         end
         get "search", root: :users do
           users = User.user_search(params[:q])
-          present users, with: Entity::User
+          present paginate users, with: Entity::User
         end
 
         # SHOW USER
