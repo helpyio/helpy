@@ -134,14 +134,13 @@ ul.settings-menu {
 
 .flash-wrapper {
   position: fixed;
-  width: 100%;
+  width: 50%;
+  margin-left: 25%;
   z-index: 999999999;
 
   div {
-    width: 50%;
+    width: 100%;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 5px;
   }
 }
@@ -182,10 +181,24 @@ ul.settings-menu {
   }
 }
 
+#user-info,
 #left-col-user-info {
     margin-top: 30px;
+    margin-bottom: 0;
     padding-right: 30px;
-    border-right: 1px solid #f4f4f4;
+}
+
+#user-info-info span.bip-placeholder {
+  text-transform: lowercase;
+  color: #888;
+}
+
+.right-border {
+  border-right: 1px solid #f4f4f4;
+}
+
+.user-info {
+  padding-top: 20px;
 }
 
 #pipeline-wrapper {
@@ -222,6 +235,11 @@ ul.settings-menu {
 #topic-options {
     margin-bottom: 30px;
     margin-top: 20px;
+}
+
+.label-light,
+.btn-light {
+  background-color: #aaaaaa;
 }
 
 #user-info-horizontal {
@@ -335,11 +353,6 @@ ul.dropdown-menu {
 #user-tickets ul li {
     margin-bottom: 7px;
     color: #666;
-}
-
-.user-info {
-    padding-top: 20px;
-    padding-bottom: 0px;
 }
 
 .edit-user {
@@ -515,6 +528,20 @@ ul.dropdown-menu {
 .bootstrap-switch {
     float: right;
     margin-left: 20px;
+    border-radius: 50px;
+}
+
+.bootstrap-switch-label {
+  border-radius: 50px;
+}
+
+.bootstrap-switch-on {
+  background-color: #528BC5;
+  border: 1px solid #528BC5;
+}
+
+.bootstrap-switch-off {
+  background-color: #eee;
 }
 
 .full-width {
@@ -555,7 +582,12 @@ ul.dropdown-menu {
   -moz-opacity:0.50; //* FireFox */
 }
 
-
+span.small-labels {
+  font-size: 60%;
+  span.label {
+    vertical-align: super;
+  }
+}
 
 // === PIPELINE STATS STYLES ===
 

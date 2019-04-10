@@ -10,27 +10,20 @@
     list-style: none;
   }
   </style>
+  <%= @header.html_safe %>
   <p style="color: #666;">
     <small>
-    <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
+    <%= t('above_this_line', default: "Make sure your reply appears above this line") if include_body? %><br/>
     </small>
   </p>
 
   <p>
-    <%= @post.html_formatted_body %>
+    <%= include_body? ? @post.html_formatted_body : link_to_topic %>
     <%= simple_format(@post.user.signature) if @post.user.signature.present? %>
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @post } %>
-
-
-  <%= render partial: 'mailer_shared/post', collection: @posts %>
+  <%= render partial: 'mailer_shared/post', collection: @posts if include_history? %>
   <br/>
-  <p style="color: #666;">
-    <small>
-    <strong>Powered by Helpy</strong><br/>
-    Get a Free Helpy Support System for your Site at http://helpy.io/<br/>
-    <%= t('view_online', default: 'View this online:') %> <%= ticket_url(@topic, host: AppSettings['settings.site_url']) %>
-    </small>
-  </p>
+  <%= footer_tokens(@footer).html_safe %>
   </body>
 </html>

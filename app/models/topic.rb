@@ -30,7 +30,8 @@
 class Topic < ApplicationRecord
 
   include SentenceCase
-
+  include Hashid::Rails
+  
   belongs_to :forum, counter_cache: true, touch: true
   belongs_to :user, counter_cache: true, touch: true
   belongs_to :doc, counter_cache: true, touch: true
@@ -71,6 +72,7 @@ class Topic < ApplicationRecord
   scope :undeleted, -> { where.not(current_status: 'trash') }
   scope :front, -> { limit(6) }
   scope :for_doc, -> { where("doc_id= ?", doc)}
+  scope :external, -> { where.not(kind: 'internal') }
 
   # provided both public and private instead of one method, for code readability
   scope :isprivate, -> { where.not(current_status: 'spam').where(private: true)}
@@ -275,6 +277,7 @@ class Topic < ApplicationRecord
   private
 
   def cache_user_name
+    return if self.user.nil?
     if self.user.name.present?
       self.user_name = self.user.name
     else
@@ -285,4 +288,5 @@ class Topic < ApplicationRecord
   def add_locale
     self.locale = I18n.locale
   end
+
 end

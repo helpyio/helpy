@@ -30,6 +30,9 @@ select {
   min-height: 60px;
 }
 
+input#user_remember_me{
+  min-height: auto;
+}
 a {
 	color: $link-color;
 	text-decoration: none;
@@ -358,6 +361,7 @@ div.admin-tools {
   margin-left: 2px;
   margin-right: 2px;
   text-transform: uppercase;
+  display: inline-block;
 }
 
 // Tag background colors

@@ -360,6 +360,7 @@ div.admin-tools {
   margin-left: 2px;
   margin-right: 2px;
   text-transform: uppercase;
+  display: inline-block;  
 }
 
 .label-tag {
@@ -860,6 +861,11 @@ div#results-found {
 	margin-bottom: 30px;
 }
 
+// #home-search div #search-form div div li.ui-menu div.ui-menu-item a {
+//   color: #333 !important;
+// }
+
+
 //  === HEADER STYLES ===
 
 #above-header {
@@ -926,6 +932,10 @@ table#users {
 .kind-reply,
 .kind-note {
   margin-left: 50px;
+}
+
+.kind-first.kind-note {
+  margin-left: 0px;
 }
 
 .kind-note {

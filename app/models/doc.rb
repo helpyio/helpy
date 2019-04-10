@@ -33,6 +33,7 @@ class Doc < ApplicationRecord
   has_many :votes, as: :voteable
   has_one :topic
   has_many :posts, through: :topic
+  has_many :doc_translations
 
   validates :title, presence: true
   validates :body, presence: true
@@ -41,6 +42,12 @@ class Doc < ApplicationRecord
   include PgSearch
   multisearchable against: [:title, :body, :keywords],
     :if => lambda { |record| record.category.present? && record.category.publicly_viewable? && record.active && record.category.active? }
+
+  pg_search_scope :agent_assist,
+              against: [:title, :body, :keywords],
+              associated_against: {
+                doc_translations: [:title, :body, :keywords]
+              }
 
   has_paper_trail
 
@@ -67,7 +74,7 @@ class Doc < ApplicationRecord
   scope :publicly, -> { joins(:category).where(categories: { visibility: %w[all public] }) }
 
   def to_param
-    return "#{id}-missing-title" if title.nil?  
+    return "#{id}-missing-title" if title.nil?
     "#{id}-#{title.parameterize}"
   end
 
@@ -82,6 +89,10 @@ class Doc < ApplicationRecord
   def content
     c = RDiscount.new(self.body)
     c.to_html
+  end
+
+  def tag_list
+    @tag_list ||= ActsAsTaggableOn::TagList.new tags.collect(&:name)
   end
 
 end

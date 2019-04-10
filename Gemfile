@@ -30,7 +30,7 @@ gem 'jquery-turbolinks', '~> 2.1.0'
 gem 'jbuilder'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 1.0.0', group: :doc
 
 # Summernote is the wysiwyg editor
 gem 'jquery-minicolors-rails'
@@ -51,9 +51,10 @@ gem "groupdate"
 gem "chartkick"
 
 # Auth Gems
-gem 'devise'
+gem 'devise', '<= 5.0.0'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
+gem 'devise_invitable'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-twitter'
@@ -84,7 +85,8 @@ gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem 'kaminari-i18n'
 
-# gem 'globalize-versioning', github: 'panyamin/globalize-versioning'
+gem 'globalize', '~> 5.1.0'
+gem 'globalize-versioning'
 gem 'globalize-accessors'
 
 gem 'gravtastic'
@@ -94,6 +96,7 @@ gem 'cloudinary'
 gem 'attachinary'
 
 gem 'carrierwave'
+gem 'fog-aws'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
 
@@ -106,7 +109,7 @@ gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
 gem 'rdiscount'
 gem 'selectize-rails'
-gem "bootstrap-switch-rails"
+gem "bootstrap-switch-rails", '3.3.3' # NOTE: IOS style switches broke with 3.3.4
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
@@ -117,6 +120,7 @@ gem 'config'
 gem 'daemons'
 gem 'mailman'#, require: false
 gem 'mail_extract'
+gem 'email_reply_trimmer'
 
 gem 'griddler'
 gem 'griddler-mandrill'
@@ -147,14 +151,15 @@ gem 'devise_invitable'
 gem 'faker'
 
 gem 'timecop' #used to populate
-
+gem "hashid-rails", "~> 1.0"
 gem 'themes_on_rails'
-gem "recaptcha", require: "recaptcha/rails"
+gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 
 gem 'best_in_place'
 
 # Add onboarding component
-gem 'helpy_onboarding', path: 'vendor/helpy_onboarding'
+# gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
+# gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
@@ -162,13 +167,14 @@ group :development, :test do
   gem 'byebug'
   gem 'pry'
   gem 'pry-byebug'
-  gem 'spring', '~> 1.4.0'
+  gem 'spring', '~> 2.0.2'
   gem 'annotate'
   gem 'brakeman', require: false
   gem 'rubocop'
   gem 'scss-lint'
   gem 'awesome_print'
   gem 'puma'
+  gem 'rb-readline'
 end
 
 gem 'bulk_insert', '~> 1.6'
@@ -178,18 +184,23 @@ group :development do
   gem "better_errors"
 
   # Check Eager Loading / N+1 query problems
-  gem 'bullet'
+  # gem 'bullet'
+  gem 'scout_apm'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.3'
 end
 
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
-  gem 'shoulda'
-  gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'shoulda', '3.5' # Required for minitest
+  gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
+  gem 'factory_bot_rails'
+  gem 'capybara', '< 3.0'
+  gem 'capybara-email'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false

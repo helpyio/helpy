@@ -67,7 +67,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
-  INVALID_NAME_CHARACTERS = /\A('|")|('|")\z/
+  INVALID_NAME_CHARACTERS = /\A('|")|\d|('|")\z/
 
   # Add preferences to user model
   include RailsSettings::Extend
@@ -76,7 +76,7 @@ class User < ApplicationRecord
 
   attr_accessor :opt_in
 
-  validates :name, presence: true, format: { with: /\A\D+\z/ }
+  validates :name, presence: true
   validates :email, presence: true
 
 
@@ -115,6 +115,8 @@ class User < ApplicationRecord
   scope :team, -> { where('admin = ? OR role = ? OR role = ? OR role = ?',true,'admin','agent','editor').order('name asc') }
   scope :active, -> { where(active: true)}
   scope :by_role, -> (role) { where(role: role) }
+  scope :active_first, -> { order('updated_at desc') }
+  scope :alpha, -> { order('name asc') }
 
   def set_role_on_invitation_accept
     self.role = self.role.presence || "agent"
@@ -200,6 +202,12 @@ class User < ApplicationRecord
   def can_scrub_and_delete?
     return false if self.id == 2 || self.is_admin?
     true
+  end
+
+  # Is this user editable by the current logged in agent?
+  def can_be_edited? current_user
+    return true if current_user.is_admin?
+    !self.is_agent?
   end
 
   def self.notifiable_on_public
@@ -328,7 +336,7 @@ class User < ApplicationRecord
 
   # message to the user that is not allowed to login
   def inactive_message
-    "You are not allowed to log in!"
+    "You are not allowed to sign in!"
   end
 
   def self.register email, user_name

@@ -198,7 +198,10 @@ Helpy.ready = function(){
   // Generate temp email address on demand, in case the user does not have an email
   $('.generate-temp').off().on('click', function(){
     if ($('#topic_user_email').val() === '') {
-      $('#topic_user_email').val("change@me-" + $("#topic_user_home_phone").val() + '-' + $("#topic_user_name").val().replace(" ","-") + '.com');
+      var placeholder = Math.random().toString(36).substring(7);
+      $('#topic_user_email').val("change@me-" + placeholder + '.com');
+      $('#topic_user_email').trigger('change');
+      $('#topic_user_email').trigger('focusout');
       return false;
     }
   });
@@ -456,6 +459,9 @@ Helpy.didthisHelp = function(yesno){
 Helpy.showGroup = function() {
   if ($('#topic_private_true').is(':checked')) {
     $('#topic_team_list').parent().removeClass('hidden');
+    $("#topic_forum_id").parent().hide();
+    $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>");
+    $('#topic_team_list').removeClass('hidden');
   } else if ($('#topic_private_false').is(':checked')) {
     $('#topic_team_list').parent().addClass('hidden');
   } else {

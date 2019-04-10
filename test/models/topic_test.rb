@@ -167,15 +167,16 @@ class TopicTest < ActiveSupport::TestCase
   end
 
   test "#posts_in_last_minute should return the number of tickets created" do
-    topic = Topic.find(1)
-    50.times do
+    topic = create :topic, team_list: 'something'
+    10.times do
       topic.posts.create(
         kind: 'reply',
         user_id: 1,
         body: 'this is the body'
       )
     end
-    assert_equal 50, topic.posts_in_last_minute
+    # binding.pry if topic.posts_in_last_minute == 51
+    assert_equal 10, topic.posts_in_last_minute
   end
 
   test "Should be able to merge two topics and copy posts" do
@@ -197,7 +198,7 @@ class TopicTest < ActiveSupport::TestCase
   # Tests of the from email address method that uses the team email address if present
   test "#from_email_address should return the system email address if no team associated with the ticket" do
     topic = create :topic
-    assert_equal "\"Helpy Support\" <inbound.support@yourdomain.com>", topic.from_email_address
+    assert_equal "\"#{AppSettings['settings.site_name']}\" <#{AppSettings['email.from_email']}>", topic.from_email_address
   end
 
   test "#from_email_address should return the team email address if ticket is assigned to group and group email present" do
@@ -229,7 +230,7 @@ class TopicTest < ActiveSupport::TestCase
     ActsAsTaggableOn::Tagging.create(tag_id: tag.id, context: "teams")
 
     topic = create :topic, name: name, user_id: 1, forum_id: 1, team_list: 'noemailteam'
-    assert_equal "\"Helpy Support\" <inbound.support@yourdomain.com>", topic.from_email_address
+    assert_equal "\"#{AppSettings['settings.site_name']}\" <#{AppSettings['email.from_email']}>", topic.from_email_address
   end
 
 end

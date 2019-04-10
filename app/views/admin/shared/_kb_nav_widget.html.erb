@@ -1,0 +1,17 @@
+<div class="btn-group pull-right">
+    <span id="row-<%= @category.id %>" data-toggle="dropdown" aria-expanded="false"
+        class='btn dropdown-toggle fas fa-ellipsis-v'></span>
+    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+        <li><%= link_to t(:content, default: 'Content'), admin_categories_path %></li>
+        <li><%= link_to t(:edit, default: 'Edit'), edit_admin_category_path(id: @category.id, lang: I18n.locale) %></li>
+        <li><%= link_to t(:delete, default: 'Delete'), admin_category_path(id: @category.id),
+                  data: {confirm: t(:delete_confirm,
+                  default: 'Please confirm you really want to DELETE this, and all articles')},
+                  method: :delete, remote: false, class: 'less-important' unless @category.system_resource? %>
+        </li>
+        <li><%= link_to t(:view_and_edit, default: "View and Edit content"),
+                admin_category_path(@category.id), class: 'less-important' %></li>
+        <li><%= link_to t(:new_content, default: 'New Content'),
+                new_admin_category_doc_path(category_id: @category.id, lang: I18n.locale) %></li>
+    </ul>
+</div>

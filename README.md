@@ -1,18 +1,21 @@
 Helpy: A Modern Helpdesk Platform for the Web
 ====================================
 
-Helpy is a modern omnichannel helpdesk platform written in Ruby on Rails 5 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.  
+Helpy is a modern multichannel helpdesk platform written in Ruby on Rails 5 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
-![](http://helpy.io/images/HelpyBrowser.png)
+![](https://helpy.io/images/github-main-image.png)
+
 
 Sponsor/Support Helpy
 ========
 
-Helpy is licensed under the MIT license, and is an open-core project. This means that the core functionality is 100% open source and fully hackable or even re-sellable under the MIT license.  See the features comparison below to understand what is included.  
+Helpy is licensed under the MIT license, and is an open-core project. This means that the core functionality is 100% open source and fully hackable or even re-sellable under the MIT license.  See the features comparison below to understand what is included.
 
-Helpy is a large system and cannot exist purely as a hobby project. If you use it in a money generating capacity, it makes good sense to support the project financially or by becoming an official sponsor.
+Helpy is a large system and cannot exist purely as a hobby project. If you use it in a money generating capacity, it makes good sense to support the project financially or by becoming an official sponsor or supporter.
+
+https://www.patreon.com/helpyio
 
 Open Source Features
 ========
@@ -21,36 +24,14 @@ Helpy is an integrated support solution- combining and leveraging synergies betw
 
 - **Multichannel ticketing:** Integrated with inbound email via Sendgrid, Mandrill, Mailgun, etc.
 - **Knowledgebase:** Full text searchable and SEO optimized to help users answer questions before they contact you.
-- **Pre-wired for Google Analytics:**  Using a combination of JS and Measurement Protocol tags, Helpy is prewired to track everything from article satisfaction to what your agents are doing.
-- **Mobile-first:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
-- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum.
-- **Voting**: Discussion topics and replies support voting.
+- **Mobile-friendly:** Support requests come at all times, and Helpy works on all devices out of the box so you can delight customers with prompt answers, from anywhere and at anytime!
+- **Community Support Forums:** Customers and Agents can both answer questions in a publicly accessible forum, and vote both threads and replies up or down accordingly.
 - **Embed Widget:** Helpy Includes a lightweight javascript widget that allows your users to contact you from just about anywhere.
 - **Multi-lingual:** Helpy is fully multi-lingual and can provide support in multiple languages at the same time.  Currently the app includes translations for 19 languages and is easy to translate.
 - **Themeable:** Customize the look and functionality of your Helpy without disturbing the underlying system that makes it all work. Helpy comes with two additional themes, and we hope to add more and get more from the community as time goes on.
-
-What is new in Version 2.0
-=========
-Version 2 includes a number of awesome improvements in the open source edition, and even more in the pro and cloud hosted versions:
-
-- Refreshed Admin UI
-- New Helpcenter theme: Singular
-- HTML support when responding to tickets
-- Nicer HTML alert emails
-- Nicer HTML responses to customers
-- HTML emails now include the full ticket history
-- UI for replying to tickets re-imagined
-- Inline customer editing
-- Channel and source reporting
-- New support for emoji's in ticket replies
-- Customize the colors of the admin UI
-- Ability to email customers from the create ticket dialogue
-- New internal ticket type
-- Set all ticket params from admin create ticket UI
-- Font Awesome 5 iconography
-- Improved support for CC and BCC recipients
-- Import/Export data in CSV
-- Comply with GDPR by deleting or anonymizing users
+- **Sends HTML email:** Responses to customers can include html, emojis and attachments.
+- **Customizable:** Set colors to match your brand both on the helpcenter, and in the ticketing UI.
+- **GDPR Compliant:** Comply with GDPR right to be forgotten requests by deleting users and their history, or by anonymizing them.
 
 Cloud Version
 =========
@@ -66,10 +47,7 @@ We also offer a hosted version with additional features designed to make your he
 - Customizable Request Forms: Easily Add questions to the ticket creation forms
 - AI Support Chatbot: Create a chatbot for your website to answer up 90% of tier one questions autonomously
 
-On-Premise and Dedicated Cloud
-=========
-
-You may prefer to run Helpy locally or in-country.  You can still get access to the full cloud feature set with either an on-premise installation of the cloud hosted features, or a dedicated AWS instance in a regional data-center.  
+You may prefer to run Helpy locally or in-country.  You can still get access to the full cloud feature set with either an on-premise installation of the cloud hosted features, or a dedicated AWS instance in a regional data-center.
 
 Live Demo
 =========
@@ -85,7 +63,7 @@ any linux based system.  There is a full guide to installing Helpy in the wiki: 
 
 Requirements are:
 
-- Ruby 2.3+
+- Ruby 2.4+
 - Rails 5.0.x
 - Postgres
 - A server like Unicorn, Puma or Passenger
@@ -99,23 +77,28 @@ Helpy leverages two external services to help out:
 Getting Started:
 ----------------
 
-**Install Helpy on your Local System**
+**30 Second one-click install via Digital Ocean**
 
-Although not required, installing locally is highly recommended and will make it easier for you to customize things like settings, colors and logos to match your site identity.  To begin, clone Helpy from the official repo to your local system:
+DigitalOcean, one of the worlds top cloud hosting providers, has a one-click install image.  This image provisions a Ubuntu 18.04 system running Helpy on Passenger in less than a minute.
 
-`git clone https://github.com/helpyio/helpy.git`
+1) Create an account on [DigitalOcean: Sign up Here](https://m.do.co/c/1368cfa70df6) . Through a special partnership, you can get $100 in credit with DigitalOcean by using this link.
+2) Once created (around 30 seconds) you can log in to the new install.
 
 **Install Helpy via Docker**
 
 Docker is the recommended way to quickly test or run Helpy in production.
 
 1) Install [Docker](https://get.docker.com/) and docker-compose
-2) Edit the `docker/.env` file with the neccessary information and passwords
+2) Create config file from template `cp docker/.env.sample docker/.env` and edit `docker/.env` to match your needs
 3) Edit `docker/Caddyfile` to include your URL or turn on SSL
-4) Run `docker-compose up -d` to start all of the services
+4) Build Helpy from local git checkout `docker-compose build`
+5) Run `docker-compose up -d` to start all of the services
 
-_Other notes_
-You can modify `docker/run.sh` and set `DO_NOT_PREPARE` to true, which will skip compiling the assets when the docker container loads. While this makes the container start faster, it is not reccommended because this is also the step where database migrations are run. If there's an update and the migrations don't run it could lead to issues with the website throwing a lot of errors.
+**Install Helpy on your Local System**
+
+Although not required, installing locally is highly recommended and will make it easier for you to customize things like settings, colors and logos to match your site identity.  To begin, clone Helpy from the official repo to your local system:
+
+`git clone https://github.com/helpyio/helpy.git`
 
 **Configure Basic Settings**
 
@@ -131,7 +114,7 @@ Helpy has the ability to receive email at your support email addresses and impor
 
 **Configure oAuth (optional)**
 
-Helpy supports Omniauth login capabilities.  This means you can allow your support users to sign in with a single click via any Omniauth provider- ie. Facebook, Twitter, Gmail, or many others. Read [Setting Up Oauth For Your Helpy](https://github.com/helpyio/helpy/wiki/Configuring-OAUTH) to see how.
+Helpy supports Omniauth login capabilities.  This means you can allow your support users to sign in with a single click via any Omniauth provider- ie. Facebook, Twitter, Gmail, or many others. Read [Setting Up Oauth For Your Helpy](https://github.com/helpyio/helpy/wiki/SSO--Configuring-OAUTH) to see how.
 
 Contributing
 ============
@@ -154,9 +137,14 @@ Welcome, and thanks for contributing to Helpy.  Together we are building the bes
 - If your feature/bug fix/enhancement adds or changes text in the project, please create i18n strings in `en.yml` and any other locales you can.
 - We are hugely concerned with user experience, and a nice UI.  Oftentimes that means we may take what you have contributed and “dress it up” or ask you to do the same.
 
+Security Issues
+===============
+
+If you have found a vulnerability or other security problem in Helpy, please *do not open an issue* on GitHub. Instead, contact [hello@helpy.io](mailto: hello@helpy.io) directly by email.  See the [SECURITY](/SECURITY.md) guide to learn more and see a hall of fame of security reporters.
+
 License
 =======
 
-Copyright 2018, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2016-2019, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)

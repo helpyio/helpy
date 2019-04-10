@@ -52,7 +52,6 @@ class PostMailerTest < ActionMailer::TestCase
     end
   end
 
-
   test 'Post with CC or BCC should actually send to mailer' do
     topic = Topic.first
     post = topic.posts.create(body: "a response", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
@@ -64,4 +63,64 @@ class PostMailerTest < ActionMailer::TestCase
       assert_equal('bcc@test.com', ActionMailer::Base.deliveries[0].bcc[0])
     end
   end
+
+  test 'Post mailer includes the header and footer' do
+    header = Doc.create(title: 'Customer_header', body: 'test header', category_id: 2)
+    footer = Doc.create(title: 'Customer_footer', body: '%ticket_link%', category_id: 2)
+
+    topic = Topic.first
+    post = topic.posts.create(body: "a response to %customer_name%", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
+    email = PostMailer.new_post(post.id)
+
+    assert_emails 1 do
+      email.deliver_now
+      assert_equal true, email.html_part.body.to_s.include?(header.body)
+      assert_equal true, email.html_part.body.to_s.include?(I18n.translate('view_online', default: 'View this online:'))
+      assert_equal true, email.html_part.body.to_s.include?(topic.user.name)
+    end
+  end
+
+  test 'Should still send if header and footer missing' do
+    Doc.where(title: 'Customer_header').destroy_all
+    Doc.where(title: 'Customer_footer').destroy_all
+
+    topic = Topic.first
+    post = topic.posts.create(body: "a response to %customer_name%", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
+    email = PostMailer.new_post(post.id)
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+  end
+
+  test 'Should not include history if disabled' do
+    AppSettings['settings.include_ticket_history'] = '0'
+
+    topic = Topic.first
+    post = topic.posts.create(body: "first question", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
+    post = topic.posts.create(body: "this is the body", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
+    email = PostMailer.new_post(post.id)
+
+    assert_emails 1 do
+      email.deliver_now
+      assert_equal true, email.html_part.body.to_s.include?("this is the body")
+      assert_equal false, email.html_part.body.to_s.include?("first question")
+    end
+  end
+
+  test 'Should not include body if disabled' do
+    AppSettings['settings.include_ticket_body'] = '0'
+
+    topic = Topic.first
+    post = topic.posts.create(body: "first question", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
+    post = topic.posts.create(body: "this is the body", cc: "cc@test.com", bcc: "bcc@test.com", kind: 'reply', user_id: '1')
+    email = PostMailer.new_post(post.id)
+
+    assert_emails 1 do
+      email.deliver_now
+      assert_equal false, email.html_part.body.to_s.include?("this is the body")
+    end
+  end
+
+
 end

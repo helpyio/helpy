@@ -11,8 +11,8 @@
   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
   <%= link_to doc.title, category_doc_path(doc.category, doc) %>
 
-  <% tag_listing(doc.tag_list, "doc") %>
-  <% if doc.posts.count > 0 %>
+  <% doc_tag_listing(doc.tag_list, "doc") %>
+  <% if doc.topics_count > 0 %>
     <i class="glyphicon glyphicon-comment" style="font-size:11px;color:#eee;" title="<%= doc.posts.count %>"></i>
   <% end %>
 </li>

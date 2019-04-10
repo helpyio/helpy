@@ -51,7 +51,7 @@
     </div>
     <div class="user-section">
       <div class="tiny-header"><%= t(:signature, default: "Signature") %>:</div>
-      <%= f.text_area :signature, skip_label: true, rows: 10 %>
+      <%= f.text_area :signature, data: { provider: 'summernote' }, skip_label: true, rows: 10 %>
     </div>
     <% if current_user.is_admin? && @user.is_agent? || @user == current_user %>
     <div class="user-section user-notifications">
@@ -73,6 +73,91 @@
     </ul>
   </div>
 <% end %>
+<%= summernote_lang_js %>
+<script type="text/javascript">
+  $('.selectize').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+            }
+        },
+    // onItemAdd: function(value, $item) {
+    //   char = $item.text().charAt(0);
+    //   alert(char);
+    //   //$item.parent().removeClass('selectize-input');
+    //   $item.addClass('label');
+    //   $item.addClass('label-doc-tagging');
+    //   $item.addClass('label-' + char);
+    // }
+  });
+
+    $('[data-provider="summernote"]').each(function(){
+      $(this).summernote({
+        lang: '<%= summernote_locale %>',
+        height: 150,
+        prettifyHtml: true,
+        toolbar: [
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['misc', ['codeview']]
+        ],
+        codemirror: {
+          theme: 'monokai',
+          mode: "htmlmixed",
+          tabsize: 2,
+          smartIndent: true,
+          lineNumbers: true,
+          lineWrapping: true,
+          tabMode: 'indent'
+        },
+        callbacks: {
+          onImageUpload: function(files) {
+            return Helpy.sendFile(files[0], $(this));
+          },
+          onMediaDelete: function(target, editor, editable) {
+            var image_id;
+            image_id = target[0].id;
+            if (!!image_id) {
+              Helpy.deleteFile(image_id);
+            }
+            return target.remove();
+          }
+        }
+
+        // hint: {
+        //   match: /:([\-+\w]+)$/,
+        //   search: function (keyword, callback) {
+        //     callback($.grep(emojis, function (item) {
+        //       return item.indexOf(keyword)  === 0;
+        //     }));
+        //   },
+        //   template: function (item) {
+        //     var content = emojiUrls[item];
+        //     return '<img src="' + content + '" width="20" /> :' + item + ':';
+        //   },
+        //   content: function (item) {
+        //     var url = emojiUrls[item];
+        //     if (url) {
+        //       return $('<img />').attr('src', url).css('width', 20)[0];
+        //     }
+        //     return '';
+        //   }
+        // }
+      });
+    });
+    $.ajax({
+      url: 'https://api.github.com/emojis',
+      async: false
+    }).then(function(data) {
+      window.emojis = Object.keys(data);
+      window.emojiUrls = data;
+    });
+</script>
+
 <script type="text/javascript">
   $('.selectize').selectize({
     delimiter: ',',

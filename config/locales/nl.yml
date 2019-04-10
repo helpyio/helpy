@@ -40,6 +40,7 @@ nl:
   # Community
   forum_name: "Forum"
   subject: &subject "Onderwerp"
+  message: "Bericht"
   last_activity: "Laatst actief"
   topic: "Discussie"
   replies: "Antwoorden"
@@ -61,6 +62,7 @@ nl:
   # Knowledgebase
   written_by: "Geschreven door"
   last_edited: "Laatst bewerkt"
+  tagged: "Tags"
   asked_before: "Is uw vraag al eerder beantwoord? We denken dat deze kunnen gelijkaardig zijn"
 
   # Tickets
@@ -248,6 +250,7 @@ nl:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Hallo %{user_name}"
+  thank_you: "Bedankt!"
   new_user: "Bedankt voor je bericht! We hebben je vraag ontvangen en onze helpdesk zal hier zo snel mogelijk op antwoorden."
   account_generated: "Er is een helpdesk account voor je aangemaakt. Gebruik de volgende link om in te loggen:"
   above_this_line: "Schrijf je antwoord boven deze lijn."
