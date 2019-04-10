@@ -77,9 +77,7 @@ gem 'grape-kaminari'
 gem 'kaminari-grape'
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'permalink_fu'
 gem 'paper_trail'
-
 gem 'acts-as-taggable-on', '~>3.5'
 
 gem 'kaminari'
