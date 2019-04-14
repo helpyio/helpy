@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-# gem 'rails', '4.2.10'
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.0.7'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.21.0'
@@ -136,8 +135,6 @@ gem 'premailer-rails'
 
 gem 'rails-timeago'
 
-gem 'devise_invitable'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -158,14 +155,13 @@ gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 gem 'best_in_place'
 
 # Add onboarding component
-# gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
-# gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
+gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
+gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
   gem 'bundler-audit', require: false
   gem 'byebug'
-  gem 'puma'
   gem 'pry'
   gem 'pry-byebug'
   gem 'spring', '~> 2.0.2'
