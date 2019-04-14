@@ -59,19 +59,6 @@ def file
   @file ||= File.open(File.expand_path('test/fixtures/files/logo.png'))
 end
 
-def uploaded_file_object(klass, attribute, file, content_type = 'image/png')
-
-  filename = File.basename(file.path)
-  klass_label = klass.to_s.underscore
-
-  ActionDispatch::Http::UploadedFile.new(
-    tempfile: file,
-    filename: filename,
-    head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},
-    content_type: content_type
-  )
-end
-
 def set_default_settings
   # Enable i18n locales in Rails
   I18n.available_locales = [:en, :es, :de, :fr, :et, :ca, :ru, :ja, 'zh-cn', 'zh-tw', 'pt', :nl]

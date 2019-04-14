@@ -56,19 +56,6 @@ class Admin::UsersControllerTest < ActionController::TestCase
     @file ||= File.open(File.expand_path( '../logo.png', __FILE__))
   end
 
-  def uploaded_file_object(klass, attribute, file, content_type = 'text/plain')
-
-    filename = File.basename(file.path)
-    klass_label = klass.to_s.underscore
-
-    Rack::Test::UploadedFile.new(
-      tempfile: file,
-      filename: filename,
-      head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},
-      content_type: content_type
-    )
-  end
-
   # admin only
   test "an admin should be able to destroy a user" do
     sign_in users(:admin)
