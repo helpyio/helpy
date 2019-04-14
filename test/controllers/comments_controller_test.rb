@@ -16,7 +16,7 @@ class CommentsControllerTest < ActionController::TestCase
           post: {
             body: "this is the body",
             kind: "first",
-            attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+            attachments: Array.wrap(Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png'))
           },
           request: {
             origin: 'public'
@@ -63,7 +63,7 @@ class CommentsControllerTest < ActionController::TestCase
           post: {
             body: "this is the body",
             kind: "reply",
-            attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+            attachments: Array.wrap(Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png'))
           },
           request: {
             origin: 'public'

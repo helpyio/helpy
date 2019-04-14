@@ -61,7 +61,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     filename = File.basename(file.path)
     klass_label = klass.to_s.underscore
 
-    ActionDispatch::Http::UploadedFile.new(
+    Rack::Test::UploadedFile.new(
       tempfile: file,
       filename: filename,
       head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},

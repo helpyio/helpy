@@ -104,7 +104,7 @@ class PostsControllerTest < ActionController::TestCase
             user_id: User.find(2).id,
             body: "new reply",
             kind: "reply",
-            attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+            attachments: Array.wrap(Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png'))
           }
         }
     end

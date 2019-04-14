@@ -37,7 +37,7 @@ class RegistrationsControllerTest < ActionController::TestCase
         id: @user.id,
         user: {
           name: "something",
-          profile_image: uploaded_file_object(User, :profile_image, file),
+          profile_image: Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png'),
           current_password: "12345678"
         },
         locale: :en }

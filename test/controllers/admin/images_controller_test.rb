@@ -12,7 +12,7 @@ class Admin::ImagesControllerTest < ActionController::TestCase
       post :create, params: {
         image: {
           name: name,
-          file: uploaded_file_object(Image, :file, file)
+          file: Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png')
         },
         format: 'json'
       }
