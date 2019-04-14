@@ -9,7 +9,7 @@ class OnboardingControllerTest < ActionController::TestCase
 
   # Admin tests
   test "a new admin should be able to view the onboarding process" do
-    get :index, locale: :en
+    get :index, params: { locale: :en }
     assert_response :success
   end
 
@@ -35,20 +35,17 @@ class OnboardingControllerTest < ActionController::TestCase
   end
 
   test "a new admin should be able to update their email and password" do
-    xhr :patch, :update_user, params: {
+    patch :update_user, params: {
       user: {
         name: "something",
         email: "something@test.com",
         company: "company",
         password: "12345678" }
-    }
+    }, xhr: true
 
     user = User.find(1)
     assert user.name == "something", "name does not update"
     assert user.email == "something@test.com", "email does not update"
     assert user.company == "company", "company does not update"
   end
-
-
-
 end
