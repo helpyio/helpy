@@ -198,7 +198,8 @@ group :test do
   gem 'shoulda', '3.5' # Required for minitest
   gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
   gem 'factory_bot_rails'
-  gem 'capybara', '< 3.0'
+  gem 'capybara'
+  gem 'minitest-rails-capybara'
   gem 'capybara-email'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
