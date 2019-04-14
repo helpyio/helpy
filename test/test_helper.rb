@@ -5,6 +5,9 @@ require 'minitest/reporters'
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 ActiveSupport::TestCase.test_order = :parallel
 
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
 require 'capybara/rails'
 require 'capybara/minitest'
 require 'capybara/email'

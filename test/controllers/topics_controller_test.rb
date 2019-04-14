@@ -56,13 +56,13 @@ class TopicsControllerTest < ActionController::TestCase
 
   test 'a browsing user should be able to view a ticket if anonymous access turned on' do
     AppSettings['settings.anonymous_access'] = '1'
-    get :show, id: Topic.last.hashid, locale: :en
+    get :show, params: { id: Topic.last.hashid, locale: :en }
     assert_response :success
   end
 
   test 'browsing users should NOT be able to view a ticket if anonymous access is disabled' do
     AppSettings['settings.anonymous_access'] = '0'
-    get :show, id: Topic.last.hashid, locale: :en
+    get :show, params: { id: Topic.last.hashid, locale: :en }
     assert_redirected_to root_path
   end
 
@@ -74,7 +74,7 @@ class TopicsControllerTest < ActionController::TestCase
 
   test 'the new topic should be set to private if enabled' do
     AppSettings['settings.default_private'] = '1'
-    get :new, locale: :en
+    get :new, params: { locale: :en }
     assert_equal true, assigns(:topic).private
     assert_response :success, 'Did not get the new topic page'
   end
@@ -117,7 +117,8 @@ class TopicsControllerTest < ActionController::TestCase
   test "a browsing user creating feedback on an article should be autotagged" do
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create,
+        post :create, params: 
+        {
           topic: {
             user: {
               name: 'a user',
@@ -134,7 +135,8 @@ class TopicsControllerTest < ActionController::TestCase
               }
             }
           },
-          locale: :en
+          locale: :en 
+        }
       end
     end
 
@@ -238,7 +240,7 @@ class TopicsControllerTest < ActionController::TestCase
             posts_attributes: {
               :"0" => {
               body: "this is the body",
-              attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+              attachments: Array.wrap(Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png'))
               }
             }
           },
