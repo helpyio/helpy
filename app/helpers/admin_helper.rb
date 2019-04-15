@@ -138,7 +138,6 @@ module AdminHelper
   def help_items
     content_tag :ul, class: 'dropdown-menu' do
       concat content_tag(:li, link_to(t(:get_help, default: "Get Help"), "http://support.helpy.io/"), target: "blank")
-      concat content_tag(:li, link_to(t(:internal_content, default: "Internal Content"), admin_internal_categories_path), class:'kblink') if knowledgebase?
       concat content_tag(:li, link_to(t(:report_bug, default: "Report a Bug"), "http://github.com/helpyio/helpy/issues"), target: "blank")
       concat content_tag(:li, link_to(t(:suggest_feature, default: "Suggest a Feature"), "http://support.helpy.io/en/community/4-feature-requests/topics"), target: "blank")
       concat content_tag(:li, link_to(t(:shortcuts, default: "Keyboard Shortcuts"), "#", class: 'keyboard-shortcuts-link'), target: "blank") if current_user.is_agent?
