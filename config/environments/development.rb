@@ -59,9 +59,6 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  # Set per form csrf tokens
-  config.action_controller.per_form_csrf_tokens = true
-
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = false
 
