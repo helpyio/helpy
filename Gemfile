@@ -125,7 +125,6 @@ gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
 gem 'griddler-mailgun'
 gem 'griddler-postmark'
-gem 'griddler-mailin'
 gem 'griddler-sparkpost'
 
 # html Email
