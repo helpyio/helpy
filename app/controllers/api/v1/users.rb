@@ -25,6 +25,15 @@ module API
           present users, with: Entity::User
         end
 
+        # LOAD YOUR OWN USER
+        desc "Load your own user", {
+          entity: Entity::User,
+          notes: "Returns the currently logged in user"
+        }
+        get "self", root: :users do
+          present current_user, with: Entity::User
+        end
+
         # SEARCH USERS
         desc "Search users by name, email, account number, phone, etc.", {
           entity: Entity::User,
