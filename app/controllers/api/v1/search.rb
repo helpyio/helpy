@@ -11,6 +11,16 @@ module API
 
         # throttle max: 200, per: 1.minute
 
+        # SEARCH FOR A POST
+        desc "Search for a Post"
+        params do
+          requires :q, type: String, desc: "Text to Search For"
+        end
+        get "/posts", root: :posts do
+          posts = Post.where("body like ?", "%#{params[:q]}%")
+          present posts, with: Entity::Post
+        end     
+
         ## SEARCH PUBLIC KNOWLEDGEBASE
         desc "Search the knowledgebase", {
           notes: "Search for docs, posts, and topics by query"
