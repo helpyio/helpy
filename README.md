@@ -4,6 +4,7 @@ Helpy: A Modern Helpdesk Platform for the Web
 Helpy is a modern multichannel helpdesk platform written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhelpyio%2Fhelpy.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhelpyio%2Fhelpy?ref=badge_shield)
 
 ![](https://helpy.io/images/github-main-image.png)
 
@@ -148,3 +149,7 @@ License
 Copyright 2016-2019, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhelpyio%2Fhelpy.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhelpyio%2Fhelpy?ref=badge_large)
