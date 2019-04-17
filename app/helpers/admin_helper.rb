@@ -28,30 +28,6 @@ module AdminHelper
     end
   end
 
-  def i18n_reply_grouped_options
-    grouped_options = {}
-    AppSettings['i18n.available_locales'].each do |locale|
-      Globalize.with_locale(locale) do
-        # TODO THIS IS A HACK because there appears to be no difference in language files for chinese simple and traditional
-        # This could be changed to display the language names in english fairly easily
-        # but in another language we are missing the translations
-
-        key = if ['zh-cn', 'zh-tw'].include? locale
-                I18n.translate("i18n_languages.zh")
-              else
-                I18n.translate("i18n_languages.#{locale}")
-              end
-        val = []
-        Doc.replies.with_translations(locale).all.each do |doc|
-            body = ((doc.body))#.gsub(/\'/, '&#39;')
-            val.push([doc.title, body])
-        end
-        grouped_options[key] = val
-      end
-    end
-    grouped_options
-  end
-
   def i18n_icons(object)
     output = '<div class="locale-badges pull-right hidden-xs hidden-sm">'
     AppSettings['i18n.available_locales'].each do |locale|
