@@ -13,7 +13,7 @@ class Admin::TagsController < Admin::BaseController
 
   def index
     @tag = ActsAsTaggableOn::Tag.new
-    tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: "Topic").includes(:tag).map{|tagging| tagging.tag.id }.uniq
+    tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: "Topic").includes(:tag).pluck('DISTINCT tags.id')
     @tags = ActsAsTaggableOn::Tag.where("id IN (?)", tag_ids).order(:name).page params[:page]
   end
 
