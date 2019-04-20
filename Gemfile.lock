@@ -419,7 +419,7 @@ GEM
       ast (~> 2.4.0)
     permalink_fu (1.0.0)
     pg (0.20.0)
-    pg_search (2.1.4)
+    pg_search (2.1.7)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
     polyglot (0.3.5)
