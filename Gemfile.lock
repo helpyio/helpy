@@ -256,8 +256,6 @@ GEM
       rails (>= 3.2.0)
     griddler-mailgun (1.0.3)
       griddler
-    griddler-mailin (0.0.1)
-      griddler
     griddler-mandrill (1.1.4)
       griddler (>= 1.2.1)
     griddler-postmark (1.0.0)
@@ -417,7 +415,6 @@ GEM
     parallel (1.17.0)
     parser (2.6.2.0)
       ast (~> 2.4.0)
-    permalink_fu (1.0.0)
     pg (0.20.0)
     pg_search (2.1.4)
       activerecord (>= 4.2)
@@ -660,7 +657,6 @@ DEPENDENCIES
   gravtastic
   griddler
   griddler-mailgun
-  griddler-mailin
   griddler-mandrill
   griddler-postmark
   griddler-sendgrid
@@ -694,7 +690,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-twitter
   paper_trail
-  permalink_fu
   pg (~> 0.20.0)
   pg_search
   premailer-rails
@@ -740,4 +735,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
