@@ -262,7 +262,7 @@ GEM
       griddler (>= 1.2.1)
     griddler-postmark (1.0.0)
       griddler
-    griddler-sendgrid (1.1.0)
+    griddler-sendgrid (1.2.0)
       griddler (>= 1.5.2)
       mail (>= 2.7.0)
     griddler-sparkpost (0.0.3)
