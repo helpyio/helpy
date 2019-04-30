@@ -159,6 +159,7 @@ Rails.application.routes.draw do
     post 'users/:id/scrub' => 'users#scrub', as: :scrub_user
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
+      get 'api_keys/:id/qrcode' => 'api_keys#qrcode', as: :qr_code
       resources :groups
       resources :tags
     end
