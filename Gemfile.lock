@@ -217,7 +217,7 @@ GEM
       sassc (>= 1.11)
     formatador (0.2.5)
     foundation_emails (2.2.1.0)
-    gemoji (3.0.0)
+    gemoji (3.0.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     globalize (5.0.1)
