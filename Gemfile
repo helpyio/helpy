@@ -77,9 +77,7 @@ gem 'grape-kaminari'
 gem 'kaminari-grape'
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'permalink_fu'
 gem 'paper_trail'
-
 gem 'acts-as-taggable-on', '~>3.5'
 
 gem 'kaminari'
@@ -127,7 +125,6 @@ gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
 gem 'griddler-mailgun'
 gem 'griddler-postmark'
-gem 'griddler-mailin'
 gem 'griddler-sparkpost'
 
 # html Email

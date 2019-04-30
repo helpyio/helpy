@@ -36,3 +36,5 @@ public/uploads
 .env
 /certs
 /postgres
+
+/.fossa.yml
