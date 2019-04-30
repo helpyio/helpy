@@ -12,6 +12,7 @@ module Entity
     expose :rank, documentation: {type: 'Integer', desc: 'The rank can be used to determine the ordering of categories'}
     expose :front_page, documentation: {type: 'Boolean', desc: 'Whether or not the category should appear on the front page'}
     expose :active, documentation: {type: 'Boolean', desc: 'Whether or not the category is live on the site'}
+    expose :visibility, documentation: {type: 'String', desc: 'The visibility of the category.  Can be all, internal or public.'}
     expose :created_at
     expose :updated_at
     expose :docs, using: Entity::Doc, if: { docs: true } do |category, options|
