@@ -11,12 +11,12 @@ GIT
 
 GIT
   remote: https://github.com/helpyio/helpy_onboarding
-  revision: cc742c8e48476003757ceda17c825c80e36ca694
+  revision: dd7c96a7b9638ce089f5fac2213e15ffde2ae67b
   branch: master
   specs:
-    helpy_onboarding (2.0)
+    helpy_onboarding (2.0.1)
       deface
-      rails (~> 4.2.7)
+      rails
 
 GEM
   remote: https://rubygems.org/
