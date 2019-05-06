@@ -1,4 +1,4 @@
-<IfModule mod_headers.c>
+<IfModule mod_env.c>
 
 	#SetEnv REMOTE_STORAGE true;
 	#SetEnv S3_KEY <<your-access-key>>
