@@ -1,0 +1,12 @@
+<IfModule mod_headers.c>
+
+	#SetEnv REMOTE_STORAGE true;
+	#SetEnv S3_KEY <<your-access-key>>
+	#SetEnv S3_SECRET <<your-secret-key>>
+	#SetEnv S3_REGION us-east-1;
+	#SetEnv S3_ENDPOINT https://www.example.com;
+	## SetEnv S3_SIG_VER 4;
+	#SetEnv S3_BUCKET_NAME helpy;
+	#SetEnv S3_PATH_STYLE true;
+
+</IfModule>
