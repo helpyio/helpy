@@ -1,11 +1,15 @@
 <div>
-  <%= content_tag :h3, "#{t(:open_new_discussion, default: 'New Ticket')}", class: 'view-header' %>
   <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post', data: { persist: 'garlic'} }) do |f| -%>
+  <%= content_tag :h3, class: 'view-header'  do %>
+    <%= "#{t(:open_new_discussion, default: 'New Ticket')}" %>
+    <small id="has-storage"></small>
+  <% end %>
+
   <div class="row">
     <div class="col-md-8">
 
       <%= f.input :kind, collection: ticket_types_collection, class: 'disable-empty', autofocus: true, include_blank: false -%>
-      <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true -%>
+      <%= f.input :name, :size => 40, class: 'disable-empty', autofocus: true, validate: false -%>
 
       <%= f.simple_fields_for @user, validate: true do |u| %>
         <%= u.input :name, class: 'disable-empty' %>
@@ -93,9 +97,11 @@ $('[data-provider="summernote"]').each(function(){
       }
     },
     callbacks: {
+    <% unless params[:user_id].present? %>
       onInit: function (e) {
         $("#topic_post_body").summernote("code", localStorage.getItem("new_ticket_draft"));
       }
+    <% end %>
     }
   });
 });
@@ -114,24 +120,25 @@ $.ajax({
   $('.submit-ticket').off('click').on('click', function(){
     $('#topic_post_kind').val('first');
   });
+  <% unless params[:user_id].present? %>
+    $("#new_topic").sisyphus();
 
-  $("#new_topic").sisyphus();
+    // Add clear saved draft option
+    if (localStorage.getItem("[id=new_topic][name=undefined][id=topic_current_status][name=topic[current_status]]") !== null) {
+      $('#has-storage').html('<input type="reset" name="commit" value="Clear autosaved draft" data-validate="false" class="btn btn-default clear-draft" style="margin-top: -10px; margin-left: 10px;">');
+    }
+    $('.clear-draft').on("click", function () {
+      localStorage.removeItem("new_ticket_draft");
+      $('[data-provider="summernote"]').summernote('code', '');
+      $('#has-storage').fadeOut();
+    });  
+  <% end %>
   $(document).off('keyup').on('keyup', '.note-editable', function () {
     localStorage.setItem("new_ticket_draft", $("#topic_post_body").summernote("code"));
   });
-  $('#new_post').on('submit', function () {
+  $('#new_topic').on('submit', function () {
     localStorage.removeItem("new_ticket_draft");
   });
 
-  //$(function () {
-  //  $("#new_topic").sisyphus();
-  //  setInterval(function () {
-  //    localStorage.setItem("new_ticket", $("#topic_post_body").summernote("code"));
-  //  }, 3000); // every 5 second interval
-
-  //  $('#new_topic').on('new_ticket', function(){
-  //    localStorage.removeItem("summernotedata").
-  //  });
-  //});
 
 </script>

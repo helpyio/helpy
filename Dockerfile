@@ -30,7 +30,7 @@ USER $HELPY_USER
 RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
     && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
 
-RUN bundle install
+RUN bundle install --without test development
 
 # manually create the /helpy/public/assets and uploads folders and give the helpy user rights to them
 # this ensures that helpy can write precompiled assets to it, and save uploaded files

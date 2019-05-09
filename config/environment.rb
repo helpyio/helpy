@@ -5,6 +5,6 @@ require_relative 'application'
 Rails.application.initialize!
 
 # Get the current tag version
-VERSION = '2.4.1'
+VERSION = '2.4.2'
 REVISION = `git log --pretty=format:'%h' -n 1`
 APP_VERSION = "#{VERSION}:#{REVISION}"

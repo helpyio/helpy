@@ -1,3 +1,23 @@
+## VERSION 2.4.2
+
+This release updates dependecies and fixes an issue with the docker container which prevented it from booting.
+
+- Dependencies updated
+- Critical security update for Nokogiri
+- Fixed: Docker container would not boot
+
+## VERSION 2.4.1
+
+This release fixes a couple thing from the last release, in addition to updating some dependencies. Specifically:
+
+- Resetting passwords works again- this was a regression with the update of Devise
+- Tags are now shown in alphabetical order- helpful if you have a large number
+- Tag management is now paginated- again helpful if you have a large number
+
+Also
+
+- Some additional navigation was added into the knowledgebase editor
+
 ## VERSION 2.4
 
 Version 2.4 is packed with some great new stuff to make your Helpy experience better than ever.  It also includes some important security updates

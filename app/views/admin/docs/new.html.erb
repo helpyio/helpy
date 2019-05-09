@@ -7,7 +7,10 @@
 
   <div class="col-md-9 col-sm-12 main-panel">
   <%= simple_form_for([:admin, @doc], validate: true, multipart: true ) do |f| %>
-    <h3 class="form-subhead view-header"><%= t(:new_content, default: 'New Content') %></h2>
+    <h3 class="form-subhead view-header">
+      <%= t(:new_content, default: 'New Content') %>
+      <small id="has-storage"></small>
+    </h3>
       <%= render 'shared/error_messages', object: f.object %>
       <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
   <% end %>
@@ -110,4 +113,13 @@ $('#summernote').summernote('code', '<%= @post.body unless @post.nil? %>');
   $('#new_doc').on('submit', function () {
     localStorage.removeItem("new_doc_draft");
   });
+
+  if (localStorage.getItem("[id=new_doc][name=undefined][id=doc_title][name=doc[title]]") !== null) {
+    $('#has-storage').html('<input type="reset" name="commit" value="Clear autosaved draft" data-validate="false" class="btn btn-default clear-draft" style="margin-top: -10px; margin-left: 10px;">');
+  }
+  $('.clear-draft').on("click", function () {
+    localStorage.removeItem("new_doc_draft");
+    $('[data-provider="summernote"]').summernote('code', '');
+    $('#has-storage').fadeOut();
+  }); 
 </script>
