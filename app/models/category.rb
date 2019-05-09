@@ -45,6 +45,8 @@ class Category < ActiveRecord::Base
   scope :internally, -> { where(visibility: INTERNAL_VIEWABLE) }
   scope :only_internally, -> { where(visibility: 'internal') }
   scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
+  scope :top, -> { where(parent_category_id: nil) }
+  scope :child_of, -> (parent_id) { where(parent_category_id: parent_id) } 
   after_commit :rebuild_search, only: [:update, :destroy]
 
   include RankedModel

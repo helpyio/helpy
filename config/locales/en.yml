@@ -571,6 +571,7 @@ en:
         attachments: Attachments
       category:
         name: Name
+        parent_category_id: Parent Category
         icon: Icon
         keywords: Keywords
         title_tag: Title Tag
