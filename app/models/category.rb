@@ -25,11 +25,14 @@ class Category < ActiveRecord::Base
 
   has_many :docs
   has_paper_trail
+  has_ancestry
 
   acts_as_taggable_on :teams
 
   translates :name, :keywords, :title_tag, :meta_description, versioning: :paper_trail
   globalize_accessors #:locales => I18n.available_locales, :attributes => [:name, :keywords, :title_tag, :meta_description]
+
+  # attr_accessor :parent_category_id
 
   PUBLIC_VIEWABLE   = %w[all public]
   INTERNAL_VIEWABLE = %w[all internal]

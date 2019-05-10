@@ -59,6 +59,8 @@ GEM
       activerecord (>= 3.2, < 5)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    ancestry (3.0.6)
+      activerecord (>= 3.2.0)
     annotate (2.7.5)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
@@ -607,6 +609,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 3.5)
+  ancestry
   annotate
   attachinary
   awesome_print
