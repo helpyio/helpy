@@ -40,12 +40,26 @@ class Post < ActiveRecord::Base
   # before_validation :truncate_body
   validates :kind, :user, :user_id, :body, presence: true
 
-
   after_create  :update_waiting_on_cache, unless: :importing
   after_create  :assign_on_reply, unless: :importing
   after_commit  :notify, on: :create, unless: :importing
   before_save :reject_admin_email_from_cc
   after_save  :update_topic_cache
+
+  paginates_per 15
+
+  include PgSearch
+  multisearchable against: [ :body ],
+    if: :public?
+
+  pg_search_scope :by_content_any,
+    against: [:id, :body, :topic_id ],
+    using: {
+      tsearch: {any_word: true}
+    }
+
+  pg_search_scope :by_content_all,
+    against: [:id, :body, :topic_id]
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
   scope :active, -> { where(active: true) }
@@ -56,7 +70,7 @@ class Post < ActiveRecord::Base
   scope :notes, -> { where(kind: 'note') }
 
   def self.new_with_cc(topic)
-    if topic.posts.count == 0
+    if topic.posts.count.zero?
       topic.posts.new
     else
       topic.posts.new(

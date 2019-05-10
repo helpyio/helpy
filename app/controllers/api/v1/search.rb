@@ -15,11 +15,15 @@ module API
         desc "Search for a Post"
         params do
           requires :q, type: String, desc: "Text to Search For"
+          optional :page, type: Integer, desc: "The current page", default: 1
+          optional :per_page, type: Integer, desc: "The number of results to return per page", default: 25
         end
         get "/posts", root: :posts do
-          posts = Post.where("body like ?", "%#{params[:q]}%")
+          posts = Post.by_content_any(params[:q])
+                    .page(permitted_params[:page])
+                    .per(permitted_params[:per_page])          
           present posts, with: Entity::Post
-        end     
+        end
 
         ## SEARCH PUBLIC KNOWLEDGEBASE
         desc "Search the knowledgebase", {
