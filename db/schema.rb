@@ -68,19 +68,17 @@ ActiveRecord::Schema.define(version: 20190509224748) do
     t.string   "title_tag"
     t.string   "meta_description"
     t.integer  "rank"
-    t.boolean  "front_page",         default: false
-    t.boolean  "active",             default: true
+    t.boolean  "front_page",       default: false
+    t.boolean  "active",           default: true
     t.string   "permalink"
     t.string   "section"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "visibility",         default: "all"
-    t.integer  "parent_category_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "visibility",       default: "all"
     t.string   "ancestry"
   end
 
   add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
-  add_index "categories", ["parent_category_id"], name: "index_categories_on_parent_category_id", using: :btree
 
   create_table "category_translations", force: :cascade do |t|
     t.integer  "category_id",      null: false
