@@ -445,6 +445,19 @@ class Admin::TopicsController < Admin::BaseController
     render layout: 'admin-plain'
   end
 
+  def empty_trash
+    EmptyTrashJob.perform_later
+
+    fetch_counts
+    get_all_teams
+    get_tickets_by_status
+    flash[:notice] = I18n.t(:trash_emptied, default: "The trash has been emptied.")
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   protected
 
   def create_customer_conversation

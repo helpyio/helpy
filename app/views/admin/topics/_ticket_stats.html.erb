@@ -8,4 +8,10 @@
   <%= render partial: 'admin/topics/nav_item', locals: { status: 'new', label: t(:new), count: @new } %>
   <%= render partial: 'admin/topics/nav_item', locals: { status: 'mine', label: t(:mine), count: @mine } %>
   <%= render partial: 'admin/topics/nav_item', locals: { status: 'pending', label: t(:pending), count: @pending } %>
+  <% if current_user.is_admin? %>
+    <li>&nbsp;</li>
+    <li>&nbsp;</li>
+    <%= render partial: 'admin/topics/nav_item', locals: { status: 'spam', label: t(:spam), count: @spam } %>
+    <%= render partial: 'admin/topics/nav_item', locals: { status: 'trash', label: t(:trash), count: @trash } %>
+  <% end %>
 </ul>
