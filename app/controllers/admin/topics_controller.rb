@@ -603,7 +603,6 @@ class Admin::TopicsController < Admin::BaseController
   def get_topics_cohort
     #  If affect is all, that means all matching tickets should be bulk updated
     if params[:affect].present? && params[:affect] == "all"
-      binding.pry
       if params[:status].present?
         @topics = Topic.where(current_status: params[:status]).all
       elsif params[:q].present?
@@ -612,7 +611,6 @@ class Admin::TopicsController < Admin::BaseController
 
     # Select topics from params
     else
-      binding.pry
       @topics = Topic.where(id: params[:topic_ids]).all
     end
     
