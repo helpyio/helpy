@@ -31,6 +31,7 @@ class Admin::TopicsController < Admin::BaseController
   before_action :remote_search, only: ['index', 'show', 'update_topic']
   before_action :get_all_teams, except: ['shortcuts']
   before_action :set_hash_id_salt
+  before_action :get_topics_cohort, only: ['update_topic', 'assign_agent', 'unassign_agent', 'toggle_privacy', 'assign_team', 'unassign_team']
 
   respond_to :js, :html, only: :show
   respond_to :js
@@ -82,13 +83,10 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
+
+
   # Updates discussion status
   def update_topic
-
-    logger.info("Starting update")
-
-    #handle array of topics
-    @topics = Topic.where(id: params[:topic_ids])
 
     bulk_post_attributes = []
 
@@ -129,10 +127,12 @@ class Admin::TopicsController < Admin::BaseController
     get_tickets_by_status
     respond_to do |format|
       format.js {
-        if params[:topic_ids].count > 1
+        if params[:topic_ids].present? && params[:topic_ids].count > 1
           render 'admin/topics/index'
-        else
+        elsif @topic.present?
           render 'admin/topics/update_ticket', id: @topic.id
+        else
+          render 'admin/topics/index'
         end
       }
     end
@@ -142,7 +142,7 @@ class Admin::TopicsController < Admin::BaseController
   # Assigns a discussion to another agent
   def assign_agent
     assigned_user = User.find(params[:assigned_user_id])
-    @topics = Topic.where(id: params[:topic_ids])
+    # @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless params[:assigned_user_id].blank?
       #handle array of topics
@@ -187,7 +187,7 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def unassign_agent
-    @topics = Topic.where(id: params[:topic_ids])
+    # @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless @topics.count == 0
       #handle array of topics
@@ -232,7 +232,7 @@ class Admin::TopicsController < Admin::BaseController
   def toggle_privacy
 
     #handle array of topics
-    @topics = Topic.where(id: params[:topic_ids])
+    # @topics = Topic.where(id: params[:topic_ids])
     @topics.update_all(private: params[:private], forum_id: params[:forum_id])
     @topics.each{|topic| topic.update_pg_search_document}
     bulk_post_attributes = []
@@ -324,7 +324,7 @@ class Admin::TopicsController < Admin::BaseController
 
   def assign_team
     assigned_group = params[:assign_team]
-    @topics = Topic.where(id: params[:topic_ids])
+    # @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless assigned_group.blank?
       #handle array of topics
@@ -585,6 +585,25 @@ class Admin::TopicsController < Admin::BaseController
 
 
   private
+
+  # Get a cohort of topics from various views and searches
+  def get_topics_cohort
+    #  If affect is all, that means all matching tickets should be bulk updated
+    if params[:affect].present? && params[:affect] == "all"
+      binding.pry
+      if params[:status].present?
+        @topics = Topic.where(current_status: params[:status]).all
+      elsif params[:q].present?
+        @topics = Topic.admin_search(params[:q])
+      end
+
+    # Select topics from params
+    else
+      binding.pry
+      @topics = Topic.where(id: params[:topic_ids]).all
+    end
+    
+  end
 
   def get_tickets
     if params[:status].nil?
