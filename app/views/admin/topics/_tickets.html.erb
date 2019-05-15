@@ -5,6 +5,9 @@
   <%#=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
   <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym, default: @status)) if @status.present?} " %>
   <div class="pull-right nav-new-button">
+    <%= link_to  "Empty Trash", admin_empty_trash_path, 
+        data: { confirm: t(:empty_trash_warning, default: "Are you sure you want to empty the trash? This will permanently delete all tickets in the trash.") },
+        class: 'btn btn-default', remote: true if params[:status] == 'trash' && current_user.is_admin? %>
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
         remote: true, class: 'btn btn-primary' %>
   </div>
