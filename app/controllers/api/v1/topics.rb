@@ -14,8 +14,6 @@ module API
       # PRIVATE TICKET ENDPOINTS
       resource :tickets, desc: "Create and Manage private discussions" do
 
-        paginate per_page: 20
-
         # List Posts for Ticket
         desc "Get posts for a specific ticket"
         params do

@@ -134,14 +134,13 @@ ul.settings-menu {
 
 .flash-wrapper {
   position: fixed;
-  width: 100%;
+  width: 50%;
+  margin-left: 25%;
   z-index: 999999999;
 
   div {
-    width: 50%;
+    width: 100%;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 5px;
   }
 }
@@ -236,6 +235,11 @@ ul.settings-menu {
 #topic-options {
     margin-bottom: 30px;
     margin-top: 20px;
+}
+
+.label-light,
+.btn-light {
+  background-color: #aaaaaa;
 }
 
 #user-info-horizontal {

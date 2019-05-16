@@ -58,9 +58,9 @@ class Admin::UsersController < Admin::BaseController
     @roles = [[t('team'), 'team'], [t(:admin_role), 'admin'], [t(:agent_role), 'agent'], [t(:editor_role), 'editor'], [t(:user_role), 'user']]
     if params[:role].present?
       if params[:role] == 'team'
-        @users = User.team.alpha.all.page params[:page]
+        @users = User.team.includes(:topics, :teams).alpha.all.page params[:page]
       else
-        @users = User.by_role(params[:role]).active_first.all.page params[:page]
+        @users = User.by_role(params[:role]).includes(:topics, teams: :tags).active_first.all.page params[:page]
       end
     else
       @users = User.active_first.all.page params[:page]
@@ -93,12 +93,10 @@ class Admin::UsersController < Admin::BaseController
     @user.team_list = params[:user][:team_list] if params[:user][:team_list].present?
 
     if @user.update(user_params)
-
       # update role if admin only
       @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
       # update password if current user
-      @user.update_attribute(:password, params[:user][:password]) if (current_user.id == @user.id) && (params[:user][:password] == params[:user][:password_confirmation])
-
+      @user.update_attribute(:password, params[:user][:password]) if (current_user.id == @user.id) && (params[:user][:password] == params[:user][:password_confirmation]) && params[:user][:password].present?
       @topics = @user.topics.page params[:page]
       @topic = Topic.where(user_id: @user.id).first
       tracker("Agent: #{current_user.name}", "Edited User Profile", @user.name)
@@ -137,7 +135,8 @@ class Admin::UsersController < Admin::BaseController
     @user.permanently_destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_users_path }
+      format.html { redirect_to admin_users_path,
+        :flash => { :success => "User #{@user.name} was scheduled for permanent deletion." }}
       format.js { }
     end
   end

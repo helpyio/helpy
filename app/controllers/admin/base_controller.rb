@@ -86,7 +86,9 @@ class Admin::BaseController < ApplicationController
     else
       topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
     end
-    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
+    
+    # Only include cloudinary files if enabled
+    topics_raw = cloudinary_enabled? ? topics_raw.includes(user: :avatar_files).chronologic : topics_raw.includes(:user).chronologic
 
     get_all_teams
 
@@ -125,9 +127,9 @@ class Admin::BaseController < ApplicationController
   end
 
   def set_categories_and_non_featured
-    @public_categories = Category.publicly.featured.ordered
-    @public_nonfeatured_categories = Category.publicly.unfeatured.alpha
-    @internal_categories = Category.only_internally.ordered
+    @public_categories = Category.publicly.featured.ordered.includes(:docs)
+    @public_nonfeatured_categories = Category.publicly.unfeatured.alpha.includes(:docs)
+    @internal_categories = Category.only_internally.ordered.includes(:docs)
   end
 
 end

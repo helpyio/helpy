@@ -1,0 +1,17 @@
+<% if @tag.persisted? %>
+  $('.tags').append('<%= j render partial: "tag", object: @tag %>');
+  $('#acts_as_taggable_on_tag_name').val('');
+  $('#acts_as_taggable_on_tag_name').focus();
+  $('#tag_errors').html('');
+<% else %>
+  $('.acts_as_taggable_on_tag_name').addClass('has-error');
+  $('#tag_errors').html('Tag is a duplicate or the same as a group name. Please choose a different name.');
+<% end %>
+
+// Update bootstrap_flash
+$('.flash-wrapper').html("<%= j bootstrap_flash %>");
+// Autoclose alert messages in admin
+$(".alert").delay(5000).slideUp(500, function(){
+    $(".alert").alert('close');
+});
+<% flash[:notice] = '' %>

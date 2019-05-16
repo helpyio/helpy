@@ -1,3 +1,4 @@
+
 <!-- Admin post partial -->
 <div id="post-" class="media post-container disallow-post-voting kind-note sticky-note show-hide-notes">
 	<div class="pull-left">
@@ -17,7 +18,7 @@
 			</span>
 		</span>
 		<div id="post-body-" class="post-body text-left">
-			<%= t(:notes_hidden, hidden_notes: @topic.posts.notes.count) %>
+			<%= t(:notes_hidden, hidden_notes: @topic.posts.notes.size) %>
 		</div>
 	</div>
 </div>

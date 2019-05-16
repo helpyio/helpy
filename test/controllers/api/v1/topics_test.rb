@@ -510,6 +510,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
       forum: private_forum,
       private: true
     }
+<<<<<<< HEAD
     (1..10).each do |x|
       to_close.push(Topic.create({
         user: User.last,
@@ -536,6 +537,17 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal tickets.count, (to_close.count/2)
     assert_equal 200, last_response.status
     assert_equal 20, Topic.all.count
+=======
+
+    post '/api/v1/tickets/merge.json', @default_params.merge(params)
+    object = JSON.parse(last_response.body)
+
+    assert_equal('email', object['channel'])
+    assert_equal(4, object['posts'].count, "Should be 4 posts")
+    assert_equal("MERGED: Message A", object['name'], "New topic title is wrong")
+    assert_equal("ticket", object['kind'], "New topic kind is wrong")
+    assert_equal(true, object['posts'].any? {|p| p['kind'] == "note"}, "The last post should be a note")
+>>>>>>> 5d66eacbc0ac12aa4ca3d361e9755a1637d2e7a6
   end
 
   test "listing all private tickets shows all private tickets" do

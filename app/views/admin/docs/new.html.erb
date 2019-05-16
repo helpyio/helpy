@@ -7,12 +7,96 @@
 
   <div class="col-md-9 col-sm-12 main-panel">
   <%= simple_form_for([:admin, @doc], validate: true, multipart: true ) do |f| %>
-    <h3 class="form-subhead view-header"><%= t(:new_content, default: 'New Content') %></h2>
+    <h3 class="form-subhead view-header">
+      <%= t(:new_content, default: 'New Content') %>
+      <small id="has-storage"></small>
+    </h3>
       <%= render 'shared/error_messages', object: f.object %>
       <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
   <% end %>
   </div>
 </div>
+<%= summernote_lang_js %>
+<script type="text/javascript">
+  $('.selectize').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function (input) {
+      return {
+        value: input,
+        text: input
+      }
+    },
+    // onItemAdd: function(value, $item) {
+    //   char = $item.text().charAt(0);
+    //   alert(char);
+    //   //$item.parent().removeClass('selectize-input');
+    //   $item.addClass('label');
+    //   $item.addClass('label-doc-tagging');
+    //   $item.addClass('label-' + char);
+    // }
+  });
+
+  $('[data-provider="summernote"]').each(function () {
+    $(this).summernote({
+      lang: '<%= summernote_locale %>',
+      height: 500,
+      prettifyHtml: true,
+      codemirror: {
+        theme: 'monokai',
+        mode: "htmlmixed",
+        tabsize: 2,
+        smartIndent: true,
+        lineNumbers: true,
+        lineWrapping: true,
+        tabMode: 'indent'
+      },
+      callbacks: {
+        onImageUpload: function (files) {
+          return Helpy.sendFile(files[0], $(this));
+        },
+        onMediaDelete: function (target, editor, editable) {
+          var image_id;
+          image_id = target[0].id;
+          if (!!image_id) {
+            Helpy.deleteFile(image_id);
+          }
+          return target.remove();
+        },
+        onInit: function (e) {
+          $("#doc_body").summernote("code", localStorage.getItem("new_doc_draft"));
+        }
+      }
+
+      // hint: {
+      //   match: /:([\-+\w]+)$/,
+      //   search: function (keyword, callback) {
+      //     callback($.grep(emojis, function (item) {
+      //       return item.indexOf(keyword)  === 0;
+      //     }));
+      //   },
+      //   template: function (item) {
+      //     var content = emojiUrls[item];
+      //     return '<img src="' + content + '" width="20" /> :' + item + ':';
+      //   },
+      //   content: function (item) {
+      //     var url = emojiUrls[item];
+      //     if (url) {
+      //       return $('<img />').attr('src', url).css('width', 20)[0];
+      //     }
+      //     return '';
+      //   }
+      // }
+    });
+  });
+  $.ajax({
+    url: 'https://api.github.com/emojis',
+    async: false
+  }).then(function (data) {
+    window.emojis = Object.keys(data);
+    window.emojiUrls = data;
+  });
+</script>
 
 <script>
 <% if @post.nil? %>
@@ -20,4 +104,22 @@ $('#summernote').summernote('code', '<%= @doc.body if @doc.body? %>');
 <% else %>
 $('#summernote').summernote('code', '<%= @post.body unless @post.nil? %>');
 <% end %>
+</script>
+<script>
+  $("#new_doc").sisyphus();
+  $(document).off('keyup').on('keyup', '.note-editable', function () {
+    localStorage.setItem("new_doc_draft", $("#doc_body").summernote("code"));
+  });
+  $('#new_doc').on('submit', function () {
+    localStorage.removeItem("new_doc_draft");
+  });
+
+  if (localStorage.getItem("[id=new_doc][name=undefined][id=doc_title][name=doc[title]]") !== null) {
+    $('#has-storage').html('<input type="reset" name="commit" value="Clear autosaved draft" data-validate="false" class="btn btn-default clear-draft" style="margin-top: -10px; margin-left: 10px;">');
+  }
+  $('.clear-draft').on("click", function () {
+    localStorage.removeItem("new_doc_draft");
+    $('[data-provider="summernote"]').summernote('code', '');
+    $('#has-storage').fadeOut();
+  }); 
 </script>

@@ -13,16 +13,16 @@
   <%= @header.html_safe %>
   <p style="color: #666;">
     <small>
-    <%= t('above_this_line', default: "Make sure your reply appears above this line") %><br/>
+    <%= t('above_this_line', default: "Make sure your reply appears above this line") if include_body? %><br/>
     </small>
   </p>
 
   <p>
-    <%= @post.html_formatted_body %>
+    <%= include_body? ? @post.html_formatted_body : link_to_topic %>
     <%= simple_format(@post.user.signature) if @post.user.signature.present? %>
   </p>
   <%= render :partial => 'posts/thumbnail', locals: { :model_name => @post } %>
-  <%= render partial: 'mailer_shared/post', collection: @posts %>
+  <%= render partial: 'mailer_shared/post', collection: @posts if include_history? %>
   <br/>
   <%= footer_tokens(@footer).html_safe %>
   </body>

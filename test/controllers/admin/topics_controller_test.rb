@@ -222,6 +222,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_response :success
     end
 
+    test "an #{admin} should be able to open a new discussion with a set channel" do
+      AppSettings['settings.default_channel'] = 'phone'
+      sign_in users(admin.to_sym)
+      xhr :get, :new
+      assert_equal 'phone', assigns(:topic).channel
+      assert_response :success
+    end
+
     test "an #{admin} should be able to create a new private discussion for a new user with an email" do
       sign_in users(admin.to_sym)
       assert_difference "Topic.count", 1 do
@@ -448,4 +456,22 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     end
   end
 
+  test 'toggle_privacy clear pg search document for private topic' do
+    sign_in users(:agent)
+    topic = create(:topic, private: false)
+    refute_nil topic.pg_search_document
+    xhr :get, :toggle_privacy, { topic_ids: [topic.id], private: true, forum_id: 1}
+    assert_equal topic.reload.private, true
+    assert_nil topic.pg_search_document
+  end
+
+  test 'toggle_privacy create pg search document for public topic' do
+    sign_in users(:agent)
+    topic = create(:topic, private: true)
+    topic.reload
+    assert_nil topic.pg_search_document
+    xhr :get, :toggle_privacy, { topic_ids: [topic.id], private: false, forum_id: 4}
+    assert_equal topic.reload.private, false
+    refute_nil topic.pg_search_document
+  end
 end

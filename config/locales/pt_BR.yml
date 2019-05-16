@@ -8,12 +8,6 @@ pt-br:
   support_team: "Equipe de Suporte"
   nothing_here: "A pasta está vazia!"
 
-  boolean_yes: "Sim"
-  boolean_no: "Não"
-  save_settings: "Salvar configurações"
-
-  last_seen: "Visto última vez:"
-
   # Navigation
   knowledgebase: "Base de Conhecimento"
   community: "Comunidade"
@@ -71,7 +65,7 @@ pt-br:
   asked_before: "A sua pergunta foi respondida antes? Achamos que estes podem ser semelhantes"
 
   # Tickets
-  tickets: "Tickets"
+  tickets: &tickets "Tickets"
   no_tickets: "Ainda não criou nenhum ticket"
   ticket_number: "Número do Ticket"
   assigned_to_label: "Atribuído a"
@@ -83,6 +77,9 @@ pt-br:
 
   # Profile
   my_profile: 'Meu Perfil'
+
+  # Locales
+  # select_locale: "Change your Locale"
 
   # footer
   powered_by: "Powered by Helpy. Um projeto de Helpdesk Open Source."
@@ -115,31 +112,27 @@ pt-br:
   # devise/registrations/new
   sign_up: "Registar"
 
-  # Onboarding
-  welcome_to_helpy: "Bem vindo ao Helpy"
-  around_the_globe: "Empresas por todo o mundo estão usando o Helpy para prover os melhores serviços de atendimento ao cliente. É muito bom ver você conosco! :)"
-  start_setup: "Vamos começar a configurar seu Helpy"
-  lets_customize: "Legal! Vamos começar a customizar seu Helpdesk"
-
-  site_name_placeholder: "Geralmente é o nome de sua empresa, ou do seu produto"
-  site_url_placeholder: "A URL do seu Helpy (suporte.seudominio.com)"
-  parent_site_placeholder: "Link de volta para seu site, a partir do Helpy"
-  parent_company_placeholder: "Nome da sua empresa"
-
-  login_setup: "Vamos customizar seu login!"
-
-  setup_complete: "Seu Helpy está pronto!"
-  setup_complete_message: "Seu Helpy está pronto para uso! Você pode customizar ainda mais seu Helpy no painel de configurações. Fique ligado em nossas mídias sociais para ficar por dentro das últimas notícias, e também sobre novas features, correções de bugs, e atualizações de segurança."
-  get_started: "Vamos começar!"
+  # flash messages
+  # model_created: "%{object_name} was saved"
+  # model_updated: "%{object_name} was updated"
+  # model_destroyed: "%{object_name} was deleted"
 
   # Admin menu
   inbox: Inbox
   discussions: "Tickets"
   content: "Conteúdo"
-  team: "Equipe"
   communities: "Comunidades"
   app_store: Loja do aplicativo
   search: "Procurar"
+  internal_content: "Conteúdo interno"
+  new_ticket: "Novo Ticket"
+  # reports: Reports
+  helpcenter: "Central de ajuda"
+  get_help: "Ajuda"
+  report_bug: "Reportar Bug"
+  suggest_feature: "Sugerir melhoria"
+  shortcuts: "Atalhos de teclado"
+  # sponsors: "Sponsors"
 
   # Admin main/statuses
   support_pipeline: "Fluxo de suporte"
@@ -148,28 +141,25 @@ pt-br:
   open: "Aberto"
   mine: "Meu"
   pending: "Pendente"
-  closed: "Resolvido"
+  closed: &closed "Resolvido"
   spam: Spam
   trash: Lixo
   discussion_managment: "Gestão de Discussões"
   open_new_discussion: "Nova Discussão"
   assigned_to: "associado a %{agent}"
   unassigned: "desassociado"
+  # no_team_assigned: Assign to group
+  # assign_to: Group/Team
+  # unassign_from_team: Unassign from group
   private: "privado"
   public: "público"
   save_changes: "Guardar Alterações"
   merge: Mesclar
   merge_confirm: Você tem certeza que deseja mesclar estes tickets?
+  # customer_conversation: Customer Conversation
+  # internal_ticket: Internal Ticket
   settings_changes_saved: "Suas mudanças foram salvas. Algumas mudanças são visíveis somente diretamente no helpcenter: %{site_url}"
   unassign_agent: Desatribuir agente
-
-  helpcenter: "Central de ajuda"
-  new_ticket: "Novo Ticket"
-  internal_content: "Conteúdo interno"
-  get_help: "Ajuda"
-  report_bug: "Reportar Bug"
-  suggest_feature: "Sugerir melhoria"
-  shortcuts: "Atalhos de teclado"
 
   # Discussion controls
   change_status: "Alterar Estado"
@@ -188,6 +178,8 @@ pt-br:
   move_to: "Mover para"
 
   # Discussion messages
+  # new_message: "This ticket has been marked new by the support staff"
+  # spam_message: "This ticket has been marked spam by the support staff"
   reopen_message: "Esta mensagem foi reaberta pelo suporte."
   closed_message: "Esta mensagem foi fechada pelo suporte."
   trash_message: "Esta mensagem foi apagada pelo suporte."
@@ -197,9 +189,10 @@ pt-br:
   converted_to_topic: "Esta Dicussão foi convertida para uma discussão pública e movida para %{forum_name}."
   tagged_with: "Esta Discussão foi marcada com %{tagged_with}"
   notes_hidden: "Existem %{hidden_notes} notas internas para esta Discussão. Você pode visualiza-las clicando em qualquer lugar nesta nota!"
+  # topic_added_from: "%{kind} added from %{channel}"
 
   # User Admin
-  users: "Usuários"
+  users: &users "Usuários"
   account: Conta
   contact_info: "Contato"
   social_info: "Social"
@@ -207,6 +200,7 @@ pt-br:
 #  delete_user: Delete User
   work_phone: "trabalho"
   cell_phone: "celular"
+  last_seen: "Visto última vez:"
   # scrub_user: "Anonymize User"
   # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
   # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
@@ -219,6 +213,59 @@ pt-br:
   high_priority: Alta
   normal_priority: Normal
   low_priority: Baixa
+
+  # Roles
+  # select_role: Select Role
+  # admin_role: Administrator
+  # agent_role: Agent
+  # editor_role: Editor
+  # user_role: Customer
+  add_more_agents: "Adicionar novos agentes"
+
+  # Groups
+  # groups: "Groups"
+  # add_new_group: "New Group"
+  # group: "Group"
+  # tag_group: ""
+  # tag_name: "Group Name"
+  # description: "Description"
+  # color: "Color"
+  # show_on_helpcenter: "Show on Helpcenter"
+  # show_on_admin: "Show on Admin"
+  # email_address: "Email Address"
+  # from_name: "From Name"
+
+  # Keyboard Shortcuts
+  shortcut_then: "então"
+  listing_views: "Listar ações de visualização"
+  keyboard_shortcuts: "Atalhos de teclado"
+  show_new_tickets: "Mostrar novos tickets"
+  show_all_tickets: "Mostrar todos os tickets"
+  show_open_tickets: "Mostrar tickets em aberto"
+  show_tickets_assigned_to_you: "Mostrar tickets vínculados a você"
+  show_pending_tickets_assigned_to_you: "Mostrar tickets pendentes vínculados a você"
+  show_closed_tickets: "Mostrar tickets encerrados"
+  search_for_tickets: "Procurar por tickets"
+  viewing_tickets: "Visualizar tickets"
+  select_previous_ticket: "Selecionar ticket anterior"
+  select_next_ticket: "Selecionar próximo ticket"
+  view_selected_ticket: "Visualizer ticket selecionado"
+  jump_to_a_specific_ticket_number: "Ir para ticket de número especifíco"
+  ticket_actions: "Ações de tickets"
+  assign_the_ticket: "Víncular ticket"
+  move_the_ticket: "Mover ticket"
+  expand_the_ticket_thread: "Expandir discussão do ticket"
+  reply_to_the_ticket: "Responder ao ticket"
+  add_an_internal_note: "Adicionar nota interna"
+  change_ticket_status: "Mudar status do ticket"
+  associate_with_a_group: "Associar à um grupo de agentes"
+  ticket_status: "Status do ticket"
+  mark_resolved: "Marcar como resolvido"
+  reopen_ticket: "Reabrir ticket"
+  set_to_new: "Marcar como novo"
+  mark_as_spam: "Marcar como spam"
+  move_to_trash: "Mover ao lixo"
+  ticket_number: "numero do ticket"
 
   # User search results
   users_found:
@@ -275,6 +322,10 @@ pt-br:
   new_discussion_topic_title: 'Originada de #%{original_id}-%{original_name}'
   change_owner_note: 'O criador deste tópico modificou o título de %{old} para %{new}'
 
+  # Internal Content
+  no_internal_content_title: "There's no internal documentation written yet!"
+  no_internal_content_text: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!"
+
   # Communities
   new_community: "Criar uma Nova Comunidade"
   create_new_community: "Criar uma Nova Comunidade"
@@ -294,6 +345,120 @@ pt-br:
   message_response: "A seguinte mensagem foi criada em resposta à sua questão:"
   view_online: "Ver isto online:"
 
+  # Admin notifications
+  notify_new_private: "A new customer ticket has been received from %{user_name}:"
+  notify_new_public: "A new public customer message has been posted by %{user_name}:"
+  notify_new_reply: "A new customer reply has been received from %{user_name}:"
+  to_reply: 'Reply to this message directly or online:'
+
+  # Notifications settings panel
+  notify_on_private: "Me envie um e-mail quando uma pergunta PRIVADA de cliente for recebida."
+  notify_on_public: "Me envie um e-mail quando uma pergunta PÚBLICA de cliente for postada."
+  notify_on_reply: "Me envie um e-mail quando uma resposta a uma pergunta PRIVADA for recebida."
+
+  # Settings
+  agent_settings: "Configurações dos agentes"
+  notifications: "Notificações"
+  notifications_description: "Escolha em que momento deseja ser notificado via e-mail"
+  settings: "Configurações"
+  general: "Geral"
+  general_description: "Gerencie de maneira geral seu sistema, elementos como o nome da aplicação Helpy, e links de retorno."
+  design: "Design"
+  design_description: "Gerencie o logo do site, cores e outros elementos referentes a beleza do seu Helpy!"
+  international: "Internacionalização"
+  international_description: "Selecione qual idioma seu Helpy será capaz de falar !"
+  widget: "Widget embarcado"
+  widget_description: "Descubra como acoplar o widget Helpy em seu site!"
+  # common_replies: "Common Replies"
+  # common_replies_description:
+  integrations: Integrações
+  integrations_description: "Configure integrações com aplicativos externos!"
+  theme: Tema
+  theme_description: "Selecione um tema para seu Helpy!"
+  email: "Email"
+  email_description:
+  customers: "Customers"
+  users_description:
+  team: "Equipe"
+  users_description:
+  team_group: "Team Groups"
+  group_description:
+
+  # General
+  site_name: "Nome do site"
+  site_url: "URL do site"
+  parent_site: "Site (pai) relacionado"
+  parent_company: "Nome da empresa relacionada"
+  site_tagline: "Frase do site"
+  # enable_forums: Enable Community Forums
+  # enable_knowledgebase: Enable Knowledgebase
+  # enable_tickets: Enable Private Tickets
+  # enable_teams: Enable Teams
+  # enable_welcome_email: Send a welcome email to new users
+
+  # Design
+  header_logo: "Logo do cabeçalho"
+  search_background: "Cor de fundo da pesquisa"
+  top_bar: "Cor da barra superior ao cabeçalho"
+  link_color: "Cor dos links"
+  form_background: "Cor de fundo dos formulários"
+  still_need_help: "Cor de fundo do \"Ainda precisa de ajuda?\""
+
+  # Locales
+  supported_locales: "Idiomas disponíveis:"
+  default_locale: "Idioma padrão"
+  select_default_locale: "Selecionar idioma padrão..."
+
+  # Widget Area
+  show_widget: "Habilitar uso do widget no site de suporte"
+  add_embed_widget_message: "Adicione o widget embarcado em seu site utilizado o seguinte script:"
+  # widget_background: Widget Background Color
+  # button_color: Widget Button Color
+  # button_text_color: Widget Text Color
+
+  # Integrations
+  # incoming_webhook: Incoming Webhook
+  # incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
+  # enable_webhook_url: Enable Incoming Webhooks
+  # google_analytics: Google Analytics
+  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
+  # enable_google_analytics: Enable Google Analytics
+  # google_analytics_id: Google Analytics ID
+  # recaptcha_integration: Recaptcha
+  # recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
+  # enable_recaptcha: Enable Recaptcha
+  recaptcha_site_key: "Chave Recaptcha do site"
+  recaptcha_api_key: "Chave da API Recaptcha"
+  cloudinary_integration: Cloudinary
+  cloudinary_description: "Configure o Cloudinary penable_forumsara que seu Helpy usufrua de um adorável sistema de hospedagem de arquivos."
+  # enable_cloudinary: Enable Cloudinary
+  # cloudinary_cloud_name: Cloudinary Cloud Name
+  # cloudinary_api_key: Cloudinary API Key
+  # cloudinary_api_secret: Cloudinary API Secret
+
+  # Email
+  mail_service: "Provedor do serviço de e-mail de entrada"
+  send_email: "Habilitar saída de e-mail (SMTP)"
+  boolean_yes: "Sim"
+  boolean_no: "Não"
+  admin_email: "E-mail administrativo"
+  from_email: From Email
+  smtp_mail_username: "Usuário SMTP"
+  smtp_mail_password: "Senha SMTP"
+  mail_smtp: "Servidor SMTP"
+  mail_port: "Porta SMTP"
+  mail_domain: "Domínio SMTP"
+
+  # API Keys
+  api_keys: "Chaves da API"
+  key_name: "Nomeação da chave"
+  # token: "Token"
+  add_key: "Adicionar uma nova chave"
+  expire_token: Expirar
+  expired: Expirada
+  expire_confirm: "Por favor confirme se tem certeza que deseja expirar esta chave de API."
+  spec_note: "Você pode ler a spec, e testar de forma interativa a API Helpy em"
+
   # Insights
   team_insights: "Percepções de desempenho da equipe do %{site_name}"
   filter_by_date: "Filtrar por data"
@@ -311,122 +476,59 @@ pt-br:
     one: "<strong>%{period}</strong> seus usuários iniciaram 1 nova interação"
     other: "<strong>%{period}</strong> seus usuários iniciaram <strong>%{count} novas interações</strong>"
   insights_blurb_two: "do modo em que seu time respondeu <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three_html: "com uma média de tempo de resposta de <strong>%{response_time}</strong>"
+  insights_blurb_three: "com uma média de tempo de resposta de <strong>%{response_time}</strong>"
   no_discussions: "Não há novas interações iniciadas <strong>%{period}</strong>"
   assigned_topics: "Tópicos assinados"
   responded: "Respondido"
   closed: "Fechado"
   replies: "Respostas"
   median_time: "Média de tempo para a primeira resposta"
-  add_more_agents: "Adicionar novos agentes"
 
-  # Keyboard Shortcuts
-  shortcut_then: "então"
-  listing_views: "Listar ações de visualização"
-  keyboard_shortcuts: "Atalhos de teclado"
-  show_new_tickets: "Mostrar novos tickets"
-  show_all_tickets: "Mostrar todos os tickets"
-  show_open_tickets: "Mostrar tickets em aberto"
-  show_tickets_assigned_to_you: "Mostrar tickets vínculados a você"
-  show_pending_tickets_assigned_to_you: "Mostrar tickets pendentes vínculados a você"
-  show_closed_tickets: "Mostrar tickets encerrados"
-  search_for_tickets: "Procurar por tickets"
-  viewing_tickets: "Visualizar tickets"
-  select_previous_ticket: "Selecionar ticket anterior"
-  select_next_ticket: "Selecionar próximo ticket"
-  view_selected_ticket: "Visualizer ticket selecionado"
-  jump_to_a_specific_ticket_number: "Ir para ticket de número especifíco"
-  ticket_actions: "Ações de tickets"
-  assign_the_ticket: "Víncular ticket"
-  move_the_ticket: "Mover ticket"
-  expand_the_ticket_thread: "Expandir discussão do ticket"
-  reply_to_the_ticket: "Responder ao ticket"
-  add_an_internal_note: "Adicionar nota interna"
-  change_ticket_status: "Mudar status do ticket"
-  associate_with_a_group: "Associar à um grupo de agentes"
-  ticket_status: "Status do ticket"
-  mark_resolved: "Marcar como resolvido"
-  reopen_ticket: "Reabrir ticket"
-  set_to_new: "Marcar como novo"
-  mark_as_spam: "Marcar como spam"
-  move_to_trash: "Mover ao lixo"
-  ticket_number: "numero do ticket"
+  # Reports
+  # ticketing_reports: Ticketing Reports
+  # group_report: "Group Report"
+  # team_reports: "Team Reports"
+  # percent_resolved: Percent Resolved
+  # average_resolution_time: Average Resolution Time
+  # new_tickets: New Tickets
+  # new_tickets_explain: The number of new tickets your Helpy has received in this period.
+  # tickets_per_day: Tickets per Day
+  # tickets_per_day_explain: The number of tickets your Helpy averages per day.
+  # replies_explain: The number of replies your agents have written in this period.
+  # actions_explain: The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.
+  # closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
 
-  # Settings
-  agent_settings: "Configurações dos agentes"
-  # common_replies: "Common Replies"
-
-  notifications: "Notificações"
-  api_keys: "Chaves da API"
-  settings: "Configurações"
-  theme: Tema
-  general: "Geral"
-  design: "Design"
-  international: "Internacionalização"
-  widget: "Widget embarcado"
-  integrations: Integrações
-
-  notifications_description: "Escolha em que momento deseja ser notificado via e-mail"
-  api_description: "Crie e gerencie suas chaves de acesso a API Helpy!"
-  general_description: "Gerencie de maneira geral seu sistema, elementos como o nome da aplicação Helpy, e links de retorno."
-  design_description: "Gerencie o logo do site, cores e outros elementos referentes a beleza do seu Helpy!"
-  theme_description: "Selecione um tema para seu Helpy!"
-  international_description: "Selecione qual idioma seu Helpy será capaz de falar !"
-  widget_description: "Descubra como acoplar o widget Helpy em seu site!"
-  email_description: "Configure o SMTP e a caixa de recebimento de e-mails para seu Helpy."
-  cloudinary_description: "Configure o Cloudinary para que seu Helpy usufrua de um adorável sistema de hospedagem de arquivos."
-  users_description: "Visualize e adicione novos usuários!"
-  integrations_description: "Configure integrações com aplicativos externos!"
-
-  # Notifications Area
-  notify_on_private: "Me envie um e-mail quando uma pergunta PRIVADA de cliente for recebida."
-  notify_on_public: "Me envie um e-mail quando uma pergunta PÚBLICA de cliente for postada."
-  notify_on_reply: "Me envie um e-mail quando uma resposta a uma pergunta PRIVADA for recebida."
-
-  # API Keys Area
-  expired: Expirada
-  expire: Expirar
-  expire_confirm: "Por favor confirme se tem certeza que deseja expirar esta chave de API."
-  key_name: "Nomeação da chave"
-  add_key: "Adicionar uma nova chave"
-  spec-note: "Você pode ler a spec, e testar de forma interativa a API Helpy em"
-
-  # General Area
-  site_name: "Nome do site"
-  site_url: "URL do site"
-  parent_site: "Site (pai) relacionado"
-  parent_company: "Nome da empresa relacionada"
-  site_tagline: "Frase do site"
-  recaptcha_site_key: "Chave Recaptcha do site"
-  recaptcha_api_key: "Chave da API Recaptcha"
-
-  # Design Area
-  header_logo: "Logo do cabeçalho"
-  footer_logo: "Logo do rodapé"
-  search_background: "Cor de fundo da pesquisa"
-  top_bar: "Cor da barra superior ao cabeçalho"
-  link_color: "Cor dos links"
-  form_background: "Cor de fundo dos formulários"
-  still_need_help: "Cor de fundo do \"Ainda precisa de ajuda?\""
-
-  # Widget Area
-  show_widget: "Habilitar uso do widget no site de suporte"
-  add_embed_widget_message: "Adicione o widget embarcado em seu site utilizado o seguinte script:"
-
-  # International Area
-  supported_locales: "Idiomas disponíveis:"
-  default_locale: "Idioma padrão"
-  select_default_locale: "Selecionar idioma padrão..."
-
-  # Email Area
-  mail_service: "Provedor do serviço de e-mail de entrada"
-  send_email: "Habilitar saída de e-mail (SMTP)"
-  admin_email: "E-mail administrativo"
-  smtp_mail_username: "Usuário SMTP"
-  smtp_mail_password: "Senha SMTP"
-  mail_smtp: "Servidor SMTP"
-  mail_port: "Porta SMTP"
-  mail_domain: "Domínio SMTP"
+  # IMPORT/EXPORT
+  # file_type: Type
+  # file_users: Users
+  # file_tickets: Tickets
+  # file_replies: Replies
+  # file_docs: Docs
+  # file_categories: Categories
+  # file_forums: Forums
+  # import: 'Import CSV'
+  # new_import: 'New Import'
+  # export: 'Export CSV'
+  # what_to_export: 'Select what you would like to export'
+  # what_to_import: 'Select what you would like to import'
+  # imports: 'Imports'
+  # exports: 'Exports'
+  # past_imports: 'Previous Imports'
+  # run_time: 'Run Time'
+  # clear_all: 'Remove All'
+  # error_details: 'Error Details'
+  # row_number: 'Row Number'
+  # error_message: 'Error Message'
+  # object: 'Object'
+  # import_details: '#%{id} Import Details'
+  # select_for_export: 'Export %{model} to .csv'
+  # file_date_created: Date Created
+  # import_total_submitted: Total Submitted Records
+  # import_total_created: Total Created Records
+  # file_name: File Name
+  # file_download: Download
+  # file_delete: Delete
+  # file_delete_confirm: "Are you sure you want to delete this .csv?"
 
   kind_type: &kind Sexo
 
@@ -438,14 +540,14 @@ pt-br:
         name: "Nome"
         company: "Empresa"
         bio: "Biografia"
-        title: "Título / Cargo"
         work_phone: "Trabalho"
         cell_phone: "Celular"
         city: "Cidade"
         state: "Estado"
         # zip: Zip
         signature: Assinatura
-        # title:
+        title: "Título / Cargo"
+        # time_zone:
         # time_zone:
         # street: Street
         # notes: Notes
@@ -460,6 +562,10 @@ pt-br:
         # tag_list: Tag List
       post:
         kind: *kind
+        body: Message
+        cc: CC
+        bcc: BCC
+        attachments: Attachments
       category:
         name: "Nome"
         icon: "Ícone"
@@ -468,7 +574,10 @@ pt-br:
         meta_description: "Meta Descrição"
         front_page: "Página Frontal"
         active: "Ativo"
-        public: "Acesso público"
+        visibility_label:
+          all: All
+          public: "Acesso público"
+          internal: Internal
       doc:
         title: "Título"
         meta_description: Meta Descrição
@@ -537,3 +646,19 @@ pt-br:
           billion: B
           trillion: T
           quadrillion: Q
+
+  save_settings: "Salvar configurações"
+
+
+  # footer_logo: "Logo do rodapé"
+
+  # settings_changes_saved: "Suas mudanças foram salvas. Algumas mudanças são visíveis somente diretamente no helpcenter: %{site_url}"
+  # helpcenter: "Central de ajuda"
+  # get_help: "Ajuda"
+  # report_bug: "Reportar Bug"
+  # suggest_feature: "Sugerir melhoria"
+  # shortcuts: "Atalhos de teclado"
+  #
+  # api_description: "Crie e gerencie suas chaves de acesso a API Helpy!"
+  # email_description: "Configure o SMTP e a caixa de recebimento de e-mails para seu Helpy."
+  # users_description: "Visualize e adicione novos usuários!"

@@ -24,7 +24,6 @@
 //= require twitter/bootstrap/rails/confirm
 //= require bootstrap-icon-chooser/js/iconPicker
 //= require rails-timeago-all
-// require quill/dist/quill
 //= require flare/dist/flare
 //= require cloudinary
 //= require attachinary
@@ -44,6 +43,7 @@
 //= require bootstrap/dropdown
 //= require Chart.bundle
 //= require chartkick
+//= require sisyphus.min.js
 
 // Jtruncate plugin, http://www.jeremymartin.name/projects.php?project=jTruncate
 // modified by Scott Miller- remove animation, newline for more link

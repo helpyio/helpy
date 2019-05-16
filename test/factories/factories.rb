@@ -132,6 +132,18 @@ FactoryBot.define do
     body { 'Hello!' }
   end
 
+  factory :email_with_admin_cc, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' }) }
+    cc { ([
+      { token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' },
+      { token: 'support', host: 'email.com', email: 'support@mysite.com', full: 'Mysite Support <support@mysite.com>', name: 'Mysite Support' }
+      ]) }
+    subject { 'email subject' }
+    header {}
+    body { 'Hello!' }
+  end
+
   factory :email_with_no_subject, class: OpenStruct do
     to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
     from { ({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' }) }
