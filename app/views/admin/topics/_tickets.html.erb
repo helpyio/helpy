@@ -5,6 +5,9 @@
   <%#=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
   <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym, default: @status)) if @status.present?} " %>
   <div class="pull-right nav-new-button">
+    <%= link_to  "Empty Trash", admin_empty_trash_path, 
+        data: { confirm: t(:empty_trash_warning, default: "Are you sure you want to empty the trash? This will permanently delete all tickets in the trash.") },
+        class: 'btn btn-default', remote: true if params[:status] == 'trash' && current_user.is_admin? %>
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
         remote: true, class: 'btn btn-primary' %>
   </div>
@@ -35,6 +38,11 @@
 
   </tbody>
   <tbody id="multiple-edit" style="display:none;">
+    <% if params[:q].present? %>
+    <tr>
+      <td colspan="3"><%= check_box_tag :select_all %> <span class="tiny-header">Select all <%= @topics.total_count %> matching tickets</span></td>
+    </tr>
+    <% end %>
     <tr>
 
       <td colspan="3">
@@ -45,11 +53,11 @@
               <%= t(:change_status, default: 'Change Status') %> <span class='caret'></span>
             </span>
             <ul class="dropdown-menu ticket-controls" role="menu">
-              <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(change_status: 'closed', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(change_status: 'reopen', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(change_status: 'new', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:mark_spam, default: 'Mark Spam'), admin_update_topic_path(change_status: 'spam', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:trash, default: 'Trash'), admin_update_topic_path(change_status: 'trash', status: params[:status]), :remote => true, class:'multiple-update' %></li>
+              <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(change_status: 'closed', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(change_status: 'reopen', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(change_status: 'new', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:mark_spam, default: 'Mark Spam'), admin_update_topic_path(change_status: 'spam', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:trash, default: 'Trash'), admin_update_topic_path(change_status: 'trash', status: params[:status], q: params[:q]), :remote => true, class:'multiple-update' %></li>
             </ul>
           </span>
 
