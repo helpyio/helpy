@@ -136,6 +136,9 @@ gem 'premailer-rails'
 
 gem 'rails-timeago'
 
+# Notifications
+gem 'fcm'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
