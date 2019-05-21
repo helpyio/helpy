@@ -196,7 +196,7 @@ GEM
       i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
-    ffi (1.10.0)
+    ffi (1.11.1)
     fog-aws (3.5.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
