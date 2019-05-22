@@ -23,6 +23,15 @@ class ApiKey < ActiveRecord::Base
     self.date_expired.present?
   end
 
+  def qrcode(apiBase)
+    payload = {
+      url: apiBase,
+      user: user_id,
+      key: access_token
+    }
+    RQRCode::QRCode.new(payload.to_json, size: 9, level: :h)
+  end
+
   private
 
     def generate_access_token

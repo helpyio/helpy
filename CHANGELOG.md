@@ -1,3 +1,12 @@
+## VERSION 2.4.3
+
+This release fixes a bug in the way autosaving was handled. 
+
+- Autosave functionality improved
+- Added a button to clear autosaved draft if present
+- Removed autosave from KB editor
+- Depenedencies updated
+
 ## VERSION 2.4.2
 
 This release updates dependecies and fixes an issue with the docker container which prevented it from booting.

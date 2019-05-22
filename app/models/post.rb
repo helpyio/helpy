@@ -47,6 +47,19 @@ class Post < ActiveRecord::Base
   before_save :reject_admin_email_from_cc
   after_save  :update_topic_cache
 
+  paginates_per 25
+
+  include PgSearch
+
+  pg_search_scope :admin_search,
+    against: [:id, :body],
+    using: {
+      tsearch: { any_word: true }
+    }
+
+  pg_search_scope :by_content_any,
+    against: [:id, :body]
+
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
   scope :active, -> { where(active: true) }
   scope :ispublic, -> { where.not(kind: 'note') }
@@ -84,7 +97,7 @@ class Post < ActiveRecord::Base
       else
         logger.info('waiting on admin')
         waiting_on = "admin"
-        status = "pending" unless self.topic.current_status == 'new'
+        status = "pending" unless ['new','trash','spam'].include? self.topic.current_status
       end
     end
 
