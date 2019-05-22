@@ -290,7 +290,7 @@ GEM
     io-like (0.3.0)
     ipaddress (0.8.3)
     jaro_winkler (1.5.2)
-    jbuilder (2.9.0)
+    jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     jquery-fileupload-rails (1.0.0)
       actionpack (>= 3.1)
