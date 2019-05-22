@@ -1,5 +1,7 @@
 class Admin::SearchController < Admin::BaseController
 
+  include SearchConcern
+
   before_action :verify_agent
   before_action :fetch_counts
   before_action :remote_search
@@ -40,35 +42,8 @@ class Admin::SearchController < Admin::BaseController
       tracker("Admin Search", "User Search", params[:q])
     end
     result_count = @topics.present? && @topics.total_count > 0 ? @topics.total_count : 0
-    @header = "#{t(:results_found, count: result_count)} #{content_tag(:span, params[:q], class: 'more-important')}"
+    @header = "#{t(:results_found, count: result_count)} \"#{content_tag(:span, params[:q], class: 'more-important')}\""
 
     render template
   end
-
-  protected
-
-  def search_topics
-    topics_to_search = Topic.where('created_at >= ?', @start_date).where('created_at <= ?', @end_date)
-    if current_user.is_restricted? && teams?
-      @topics = topics_to_search.admin_search(params[:q]).tagged_with(current_user.team_list, :any => true).page params[:page]
-    else
-      @topics = topics_to_search.admin_search(params[:q]).page params[:page]
-    end
-  end
-
-  def search_date_from_params
-    if params[:start_date].present?
-      @start_date = params[:start_date].to_datetime
-    else
-      @start_date = Time.zone.today-1.month
-    end
-
-    if params[:end_date].present?
-      @end_date = params[:end_date].to_datetime
-    else
-      @end_date = Time.zone.today.at_end_of_day
-    end
-  end
-
-
 end
