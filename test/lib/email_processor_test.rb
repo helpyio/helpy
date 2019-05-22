@@ -18,6 +18,31 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
+  test 'a spam email should be rejected and not create ticket, user, and should not send emails' do
+    assert_difference('Topic.where(current_status: "new").count', 0) do
+      assert_difference('Post.count', 0) do
+        assert_difference('User.count', 0) do
+          assert_difference('ActionMailer::Base.deliveries.size', 0) do
+            EmailProcessor.new(build(:spam_from_unknown)).process
+          end
+        end
+      end
+    end
+  end
+
+  test 'a spam email should be filtered and should not send emails' do
+    assert_difference('Topic.where(current_status: "spam").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 0) do
+            EmailProcessor.new(build(:spam_filter)).process
+          end
+        end
+      end
+    end
+    assert_equal 'spam', Topic.last.current_status
+  end
+
   test 'an email to the support address with no name should create a new user and topic with status new' do
     assert_difference('Topic.where(current_status: "new").count', 1) do
       assert_difference('Post.count', 1) do

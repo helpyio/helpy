@@ -11,6 +11,7 @@
 
     <%= simple_form_for @doc, validate: true, url: admin_category_doc_path(category_id: @category.id, id: @doc.id), 
     html: { method: :patch, id: :edit_doc, name: "edit_doc_#{@doc.id}" } do |f| %>
+    <small id="has-storage"></small>
       <% Globalize.with_locale(params['lang']) do %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
@@ -113,11 +114,21 @@
 
 
 <script>
-  $("#edit_doc").sisyphus();
-  $(document).off('keyup').on('keyup', '.note-editable', function () {
-    localStorage.setItem("edit_doc_<%= @doc.id %>_draft", $("#doc_body").summernote("code"));
-  });
-  $('#edit_doc').on('submit', function () {
-    localStorage.removeItem("edit_doc_<%= @doc.id %>_draft");
-  });
+//  $("#edit_doc").sisyphus();
+//  $(document).off('keyup').on('keyup', '.note-editable', function () {
+//    localStorage.setItem("edit_doc_<%= @doc.id %>_draft", $("#doc_body").summernote("code"));
+//  });
+//  $('#edit_doc').on('submit', function () {
+//    localStorage.removeItem("edit_doc_<%= @doc.id %>_draft");
+//  });
+//  if (localStorage.getItem("[id=edit_doc][name=edit_doc_<%= @doc.id %>][id=doc_title][name=doc[title]]") !== null) {
+//    $('#has-storage').html('<input type="button" value="Clear autosaved draft" data-validate="false" class="btn btn-default clear-draft" style="margin-top: -10px; margin-left: 10px;">');
+//  }
+  //  });
+//  $('.clear-draft').on("click", function () {
+//    localStorage.removeItem("edit_doc_<%= @doc.id %>_draft");
+//    $('[data-provider="summernote"]').summernote('code', '');
+//    $('#has-storage').fadeOut();
+//  });  
+ 
 </script>

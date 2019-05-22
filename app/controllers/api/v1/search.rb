@@ -56,6 +56,20 @@ module API
           }
           present :results, results, with: entity, category: true
         end
+
+        desc "Search for a Post"
+        params do
+          requires :q, type: String, desc: "Text to search for"
+          optional :page, type: Integer, desc: "The Current Page", default: 1
+          optional :per_page, type: Integer, desc: "The number of results to return per page", default: 25
+        end
+      
+        post "/posts", root: :posts do
+          posts = Post.by_content_any(params[:q])
+            .page(permitted_params[:page])
+            .per(permitted_params[:per_page])
+          present posts, with: Entity::Post
+        end
       end
     end
   end
