@@ -3,6 +3,6 @@ class DeleteTopicJob < ActiveJob::Base
 
   def perform(topic_id)
     topic = Topic.find(topic_id)
-    topic.destroy
+    topic.destroy unless topic.nil?
   end
 end

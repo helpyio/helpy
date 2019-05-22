@@ -26,6 +26,8 @@
 
 class Admin::TopicsController < Admin::BaseController
 
+  include SearchConcern
+
   before_action :verify_agent
   before_action :fetch_counts, only: ['index','show', 'update_topic', 'user_profile']
   before_action :remote_search, only: ['index', 'show', 'update_topic']
@@ -83,13 +85,10 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
-
-
   # Updates discussion status
   def update_topic
 
     bulk_post_attributes = []
-
     if params[:change_status].present?
       user_id = current_user.id || 2
       if ["closed", "reopen", "trash"].include?(params[:change_status])
@@ -117,32 +116,12 @@ class Admin::TopicsController < Admin::BaseController
 
     end
 
-    if params[:topic_ids].present?
-      @topic = Topic.find(params[:topic_ids].last)
-      @posts = @topic.posts.chronologic
-    end
-
-    fetch_counts
-    get_all_teams
-    get_tickets_by_status
-    respond_to do |format|
-      format.js {
-        if params[:topic_ids].present? && params[:topic_ids].count > 1
-          render 'admin/topics/index'
-        elsif @topic.present?
-          render 'admin/topics/update_ticket', id: @topic.id
-        else
-          render 'admin/topics/index'
-        end
-      }
-    end
-
+    ticketing_ui
   end
 
   # Assigns a discussion to another agent
   def assign_agent
     assigned_user = User.find(params[:assigned_user_id])
-    # @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless params[:assigned_user_id].blank?
       #handle array of topics
@@ -159,35 +138,10 @@ class Admin::TopicsController < Admin::BaseController
 
     @topics.bulk_agent_assign(bulk_post_attributes, assigned_user.id) if bulk_post_attributes.present?
 
-    if params[:topic_ids].count > 1
-      get_tickets_by_status
-    else
-      @topic = Topic.find(@topics.first.id)
-      @posts = @topic.posts.chronologic
-    end
-
-    logger.info("Count: #{params[:topic_ids].count}")
-
-    fetch_counts
-    get_all_teams
-    get_tickets_by_status
-    flash[:notice] = I18n.t(:assigned_message, assigned_to: assigned_user.name)
-
-    respond_to do |format|
-      format.html #render action: 'ticket', id: @topic.id
-      format.js {
-        if params[:topic_ids].count > 1
-          get_tickets_by_status
-          render 'index'
-        else
-          render 'update_ticket', id: @topic.id
-        end
-      }
-    end
+    ticketing_ui
   end
 
   def unassign_agent
-    # @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless @topics.count == 0
       #handle array of topics
@@ -202,30 +156,7 @@ class Admin::TopicsController < Admin::BaseController
 
     end
 
-    if params[:topic_ids].count > 1
-      get_tickets_by_status
-    else
-      @topic = Topic.find(@topics.first.id)
-      @posts = @topic.posts.chronologic
-    end
-
-    fetch_counts
-    get_all_teams
-    get_tickets_by_status
-    flash[:notice] = I18n.t(:unassigned_message, default: "This ticket has been unassigned.")
-
-    respond_to do |format|
-      format.html #render action: 'ticket', id: @topic.id
-      format.js {
-        if params[:topic_ids].count > 1
-          get_tickets_by_status
-          render 'index'
-        else
-          render 'update_ticket', id: @topic.id
-        end
-      }
-    end
-
+    ticketing_ui
   end
 
   # Toggle privacy of a topic
@@ -324,7 +255,6 @@ class Admin::TopicsController < Admin::BaseController
 
   def assign_team
     assigned_group = params[:assign_team]
-    # @topics = Topic.where(id: params[:topic_ids])
     bulk_post_attributes = []
     unless assigned_group.blank?
       #handle array of topics
@@ -340,50 +270,22 @@ class Admin::TopicsController < Admin::BaseController
 
     flash[:notice] = I18n.t(:assigned_group, assigned_group: assigned_group)
 
-    if params[:topic_ids].count > 1
-      get_tickets_by_status
-    else
-      @topic = Topic.find(@topics.first.id)
-      @posts = @topic.posts.chronologic
-    end
-
-    fetch_counts
-    get_all_teams
-    get_tickets_by_status
-
-
-    respond_to do |format|
-      format.html #render action: 'ticket', id: @topic.id
-      format.js {
-        if params[:topic_ids].count > 1
-          render 'index'
-        else
-          render 'update_ticket', id: @topic.id
-        end
-      }
-    end
+    ticketing_ui
   end
 
   def unassign_team
-    @topic = Topic.where(id: params[:topic_ids]).first
+    @topics.each do |topic|
+      topic.team_list = ""
+      topic.save
 
-    @topic.team_list = ""
-    @topic.save
+      topic.posts.create(
+        body: "This ticket was unassigned from all team groups",
+        user: current_user,
+        kind: 'note',
+      )
+    end
 
-    @topic.posts.create(
-      body: "This ticket was unassigned from all team groups",
-      user: current_user,
-      kind: 'note',
-    )
-
-    @posts = @topic.posts.chronologic
-
-    fetch_counts
-    get_all_teams
-    get_tickets_by_status
-
-
-    render 'update_ticket', id: @topic.id
+    ticketing_ui
   end
 
   def split_topic
@@ -446,6 +348,8 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   def empty_trash
+
+    Topic.trash.update_all(current_status: 'deleting')
     EmptyTrashJob.perform_later
 
     fetch_counts
@@ -459,6 +363,39 @@ class Admin::TopicsController < Admin::BaseController
   end
 
   protected
+
+  # renders out the ticketing UI, or that of a single ticket after 
+  # an operation is completed
+  def ticketing_ui
+    if params[:q].present?
+      search_date_from_params
+      search_topics
+    elsif (params[:topic_ids].present? && params[:topic_ids].count > 1) || params[:affect].present?
+      get_tickets_by_status
+    else
+      @topic = Topic.find(@topics.first.id)
+      @posts = @topic.posts.chronologic
+    end
+
+    fetch_counts
+    get_all_teams
+
+    respond_to do |format|
+      format.html #render action: 'ticket', id: @topic.id
+      format.js {
+        if params[:q].present?
+          render 'admin/search/search'
+        elsif params[:topic_ids].present? && params[:topic_ids].count > 1
+          render 'index'
+        elsif @topic.present?
+          render 'update_ticket', id: @topic.id
+        else
+          render 'admin/topics/index'
+        end
+      }
+    end
+
+  end
 
   def create_customer_conversation
     @forum = Forum.find(1)
@@ -518,7 +455,6 @@ class Admin::TopicsController < Admin::BaseController
     end
 
   end
-
 
   # Internal ticket is created by the agent.  Does not send messages to customer
   def create_internal_ticket
@@ -595,7 +531,6 @@ class Admin::TopicsController < Admin::BaseController
     # Send welcome email
     UserMailer.new_user(@user.id, @token).deliver_later
   end
-
 
   private
 
