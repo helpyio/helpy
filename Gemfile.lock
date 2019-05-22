@@ -554,7 +554,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     staccato (0.5.1)
-    sucker_punch (2.1.1)
+    sucker_punch (2.1.2)
       concurrent-ruby (~> 1.0)
     summernote-rails (0.8.10.0)
       railties (>= 3.1)
