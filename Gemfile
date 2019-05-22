@@ -111,6 +111,7 @@ gem "bootstrap-switch-rails", '3.3.3' # NOTE: IOS style switches broke with 3.3.
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
+gem 'rqrcode'
 
 gem 'config', '~> 1.1.0'
 
