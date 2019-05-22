@@ -24,5 +24,7 @@ module Entity
     expose :kind, documentation: { type: "String", desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc."}
     expose :priority, documentation: { type: "String", desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'" }
     expose :posts, using: Entity::Post, if: { posts: true }
+    expose :spam_score
+    expose :spam_report
   end
 end
