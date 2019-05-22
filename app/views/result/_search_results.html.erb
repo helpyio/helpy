@@ -14,6 +14,11 @@
     <span class="more-important"><%= link_to result.searchable.name, topic_posts_path(Topic.find(result.searchable_id)) %></span><br/>
     <span class="result-body less-important"><%= strip_tags result.searchable.post_cache.truncate_words(20) unless result.searchable.post_cache.nil? %></span><br/><br/>
   </li>
+  <% elsif result.searchable_type == "Post" %>
+  <li class="search-result">
+    <span class="more-important"><%= link_to result.searchable.topic.name, topic_posts_path(Topic.find(result.searchable_id)) %></span><br/>
+    <span class="result-body less-important"><%= strip_tags result.searchable.body.truncate_words(20) unless result.searchable.body.nil? %></span><br/><br/>
+  </li>
   <% else %>
   <li class="search-result">
     <span class="more-important"><%= link_to result.searchable.title, category_doc_path(result.searchable.category_id, Doc.find(result.searchable_id)) %></span><br/>
