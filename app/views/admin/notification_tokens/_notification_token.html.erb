@@ -1,0 +1,9 @@
+<tr class="api_key_<%= api_key.id %> <%= 'less-important' if api_key.expired? %>">
+  <td><%= api_key.name %></td>
+  <td><%= api_key.access_token %></td>
+  <% if api_key.expired? %>
+    <td class="pull-right"><%= t("expired", default: "Expired") %></td>
+  <% else %>
+    <td class="expire-link-<%= api_key.id %> pull-right"><%= link_to t('expire_token', default: "Expire"), admin_api_key_path(id: api_key.id), method: :delete, remote: true, data: {confirm: t('expire_confirm', default: 'Please confirm you really want to expire this token')} %></td>
+  <% end %>
+</tr>

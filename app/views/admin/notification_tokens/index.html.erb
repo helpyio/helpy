@@ -1,0 +1,37 @@
+<% title "#{admin_title} #{t('notification_token', default: "Notification Tokens")}" %>
+
+<% content_for :settings do %>
+
+<div class="admin-header">
+  <h3 id="setting-header">
+    <%= show_responsive_nav %>
+    <%= t('notification_token', default: "Notification Tokens") %>
+  </h3>
+</div>
+<div class="row content-row">
+
+  <div class="col-md-12">
+
+    <table id="forums" class="api_keys table-hover">
+      <col width="15%">
+      <col width="40%">
+      <col width="40%">
+      <col width="5%">
+      <thead>
+        <tr>
+          <td class="tiny-header"><%= t('key_name', default: 'Device Description') %></td>
+          <td class="tiny-header"><%= t('token', default: 'Token') %></td>
+        </tr>
+      </thead>
+      <%= render partial: 'api_key', collection: @api_keys %>
+    </table>
+
+    <br/>
+    <div>
+      <%= t('spec-note', default: "You can read and test out an interactive API spec at") %>:
+      <%= link_to("#{request.protocol + request.host_with_port}/api/v1/api_doc", "#{request.protocol + request.host_with_port}/api/v1/api_doc") %>
+    </div>
+  </div>
+</div>
+
+<% end %>

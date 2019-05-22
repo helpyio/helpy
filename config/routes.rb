@@ -159,6 +159,7 @@ Rails.application.routes.draw do
     post 'users/:id/scrub' => 'users#scrub', as: :scrub_user
     scope 'settings' do
       resources :api_keys, except: [:show, :edit, :update]
+      resources :notification_tokens, except: [:show, :edit, :update]
       resources :groups
       resources :tags
     end
