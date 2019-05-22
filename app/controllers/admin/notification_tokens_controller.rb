@@ -3,7 +3,7 @@
 # Table name: notification_tokens
 #
 #  id           :integer          not null, primary key
-#  device_key   :string
+#  device_token :string
 #  user_id      :integer
 #  enabled      :boolean
 #  device_desc  :string
@@ -18,7 +18,7 @@ class Admin::NotificationTokensController < Admin::BaseController
   layout 'admin-settings'
 
   def index
-    @notification_tokens = @user.notification_token.all.order(date_expired: :desc)
+    @notification_tokens = @user.notification_tokens.all.order(updated_at: :desc)
   end
 
   def create
@@ -30,7 +30,7 @@ class Admin::NotificationTokensController < Admin::BaseController
   end
 
   def destroy
-    @notification_token = @user.notification_token.where(id: params[:id]).first
+    @notification_token = @user.notification_tokens.where(id: params[:id]).first
     @notification_token.update! date_expired: Time.current
   end
 
@@ -55,6 +55,4 @@ class Admin::NotificationTokensController < Admin::BaseController
     :device_desc
   )
   end
-
-
 end

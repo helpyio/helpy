@@ -8,8 +8,9 @@ class AddNotificationToken < ActiveRecord::Migration
 
       t.timestamps null: false
 
-      add_index :notification_tokens, ["user_id"], name: "index_notification_tokens_on_user_id", unique: false
-      add_index :api_keys, ["device_token"], name: "index_notification_tokens_on_device_token", unique: true
     end
-  end
+    
+    add_index :notification_tokens, ["user_id"], name: "index_notification_tokens_on_user_id", unique: false
+    add_index :notification_tokens, ["device_token"], name: "index_notification_tokens_on_device_token", unique: true
+end
 end

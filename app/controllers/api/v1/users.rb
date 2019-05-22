@@ -33,6 +33,19 @@ module API
         get "self", root: :users do
           present current_user, with: Entity::User
         end
+
+        desc "Register a Notification Token to the current user", {
+          entity: Entity::User,
+          notes: "kljlkj"
+        }
+        params do
+          requires :token, type: String, desc: "New Token to Register"
+          requires :device_desc, type: String, desc: "Description of the Device."
+        end
+
+        post "token", root: :users do
+          present 
+        end
         
         # SEARCH USERS
         desc "Search users by name, email, account number, phone, etc.", {

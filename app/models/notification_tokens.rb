@@ -10,7 +10,8 @@
 
 class NotificationToken < ActiveRecord::Base
   belongs_to :user
-  validates :device_key, uniqueness: true
+  validates :device_token, uniqueness: true
+  validates :device_desc, null: false
   
   private
 end

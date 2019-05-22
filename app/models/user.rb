@@ -97,6 +97,7 @@ class User < ActiveRecord::Base
   has_many :docs
   has_many :backups, dependent: :delete_all
   has_many :api_keys, dependent: :destroy
+  has_many :notification_tokens, dependent: :destroy
 
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
