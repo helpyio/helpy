@@ -7,7 +7,7 @@ history.pushState(null, null, '<%= admin_topics_path(status: "active") %>');
 
 Helpy.current_status_view = '<%= @status %>';
 Helpy.current_page_view = '<%= params[:page] %>';
-Helpy.current_box_id = '<%= @box.present? ? @box.id : '' %>';
+Helpy.current_box_id = '<%= @box.present? ? @box.id : \' %>';
 
 // Empty ticket search field and show
 $('#q').val('');
@@ -25,7 +25,9 @@ Helpy.logHistory();
 Helpy.ticketMenu();
 
 // RTL changes?
+/* jshint ignore:start */
 <%= "Helpy.rtl();" if rtl? %>
+/* jshint ignore:end */
 
 // Update bootstrap_flash
 $('.flash-wrapper').html("<%= j bootstrap_flash %>");
@@ -33,4 +35,7 @@ $('.flash-wrapper').html("<%= j bootstrap_flash %>");
 $(".alert").delay(5000).slideUp(500, function(){
     $(".alert").alert('close');
 });
+
+/* jshint ignore:start */
 <% flash[:notice] = '' %>
+/* jshint ignore:end */
