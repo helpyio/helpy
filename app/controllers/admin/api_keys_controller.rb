@@ -39,7 +39,7 @@ class Admin::ApiKeysController < Admin::BaseController
 
   def qrcode
     key = ApiKey.find(params[:id])
-    send_data key.qrcode(request.host_with_port).as_png(size: 200), type: "image/png", disposition: 'inline'
+    send_data key.qrcode(request.protocol + request.host_with_port).as_png(size: 200), type: "image/png", disposition: 'inline'
   end
 
   protected
