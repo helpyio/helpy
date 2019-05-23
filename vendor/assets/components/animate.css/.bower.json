@@ -2,6 +2,7 @@
   "name": "animate.css",
   "version": "3.3.0",
   "main": "./animate.css",
+  "license": "MIT",  
   "ignore": [
     ".*",
     "src",

@@ -124,11 +124,14 @@ Helpy.admin = function(){
     var chosen = $(".settings-section.email select").val();
       $('.imap-settings').addClass('hidden');
       $('.pop3-settings').addClass('hidden');
+      $('.spam-protection').removeClass('hidden');
     if (chosen == 'pop3' ){
       $('.pop3-settings').removeClass('hidden');
+      $('.spam-protection').addClass('hidden');
     }
     if (chosen == 'imap' ){
       $('.imap-settings').removeClass('hidden');
+      $('.spam-protection').addClass('hidden');
     }
   });
 

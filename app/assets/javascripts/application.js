@@ -24,7 +24,6 @@
 //= require twitter/bootstrap/rails/confirm
 //= require bootstrap-icon-chooser/js/iconPicker
 //= require rails-timeago-all
-// require quill/dist/quill
 //= require flare/dist/flare
 //= require cloudinary
 //= require attachinary

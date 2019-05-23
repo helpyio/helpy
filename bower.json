@@ -1,12 +1,12 @@
 {
-  "name": "Helpy",
-  "version": "0.5.0",
-  "homepage": "http://helpy.io/",
+  "name": "helpy",
+  "version": "2.4.1",
+  "homepage": "https://helpy.io/",
   "authors": [
     "Scott Miller"
   ],
   "description": "Modern Helpdesk Application",
-  "license": "NA",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
