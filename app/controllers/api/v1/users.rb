@@ -41,10 +41,18 @@ module API
         params do
           requires :token, type: String, desc: "New Token to Register"
           requires :device_desc, type: String, desc: "Description of the Device."
+          requires :id, type: Integer, desc: "User ID"
         end
+        post ":id/token", root: :users do
+          newToken = NotificationToken.create({
+            device_token: params[:device_token],
+            user_id: params[:id],
+            device_description: params[:device_desc],
+            enabled: params[:enabled]
+          })
 
-        post "token", root: :users do
-          present 
+          present newToken, with: Entity::Token
+          # newToken.
         end
         
         # SEARCH USERS
