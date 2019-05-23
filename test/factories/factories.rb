@@ -6,7 +6,29 @@ FactoryBot.define do
     subject { 'email subject' }
     header {}
     body { 'Hello!' }
+    spam_score { '0.11' }
+    spam_report { '' }
   end
+
+  factory :spam_from_unknown, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'spam_user', host: 'email.com', email: 'spammer_email@email.com', full: 'spammer <spam_user@email.com>', name: 'Spam User' }) }
+    subject { 'spam email subject' }
+    header {}
+    body { 'Spam' }
+    spam_score { '6.0' }
+    spam_report { 'spam report' }
+  end
+
+  factory :spam_filter, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'spam_user', host: 'email.com', email: 'spammer_email@email.com', full: 'spammer <spam_user@email.com>', name: 'Spam User' }) }
+    subject { 'spam email subject' }
+    header {}
+    body { 'Spam' }
+    spam_score { '3.0' }
+    spam_report { 'spam report' }
+  end  
 
   factory :email_from_includes_numbers, class: OpenStruct do
     to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }

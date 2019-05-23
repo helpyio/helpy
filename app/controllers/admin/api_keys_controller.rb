@@ -37,6 +37,11 @@ class Admin::ApiKeysController < Admin::BaseController
     @api_key.update! date_expired: Time.current
   end
 
+  def qrcode
+    key = ApiKey.find(params[:id])
+    send_data key.qrcode(request.protocol + request.host_with_port).as_png(size: 200), type: "image/png", disposition: 'inline'
+  end
+
   protected
 
   def set_user
