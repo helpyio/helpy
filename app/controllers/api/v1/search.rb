@@ -7,17 +7,17 @@ module API
       end
 
       include API::V1::Defaults
-      resource :search, desc: "Search the KB or community discussions" do
+      resource :search, desc: "Search the KB or Public community discussions" do
 
         # throttle max: 200, per: 1.minute
 
         ## SEARCH PUBLIC KNOWLEDGEBASE
-        desc "Search the knowledgebase", {
-          notes: "Search for docs, posts, and topics by query"
+        desc "Search public docs or topics", {
+          notes: "This endpoint allows you to search public docs and topics in the public community."
         }
         params do
           requires :q, type: String, desc: "The query term to search for"
-          optional :type, type: String, desc: "The type of entity to search for"
+          optional :type, type: String, desc: "The type of entity to search for. Could be Topic or Doc"
           optional :page, type: Integer, desc: "The current page", default: 1
           optional :per_page, type: Integer, desc: "The number of results to return per page", default: 25
         end
