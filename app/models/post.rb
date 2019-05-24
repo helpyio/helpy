@@ -84,7 +84,7 @@ class Post < ApplicationRecord
       else
         logger.info('waiting on admin')
         waiting_on = "admin"
-        status = "pending" unless self.topic.current_status == 'new'
+        status = "pending" unless ['new','trash','spam'].include? self.topic.current_status
       end
     end
 

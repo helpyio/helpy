@@ -84,9 +84,11 @@ AppSettings.defaults["email.smtp_mail_password"] = Settings.smtp_mail_password
 AppSettings.defaults["email.mail_smtp"] = Settings.mail_smtp
 AppSettings.defaults["email.mail_port"] = Settings.mail_port
 AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
-#
-# # notifications
-#
+AppSettings.defaults["email.spam_assassin_reject"]= 4
+AppSettings.defaults["email.spam_assassin_filter"]= 2
+
+# notifications
+
 AppSettings.defaults["notify.on_private"] = "1"
 AppSettings.defaults["notify.on_public"] = "1"
 AppSettings.defaults["notify.on_reply"] = "1"

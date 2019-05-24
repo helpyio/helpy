@@ -3,15 +3,25 @@ class EmailProcessor
   def initialize(email)
     @email = email
     @tracker = Staccato.tracker(AppSettings['settings.google_analytics_id']) if google_analytics_enabled?
+    @spam_score = @email.spam_score.present? ? @email.spam_score.to_f : 0
   end
 
   def process
+
+
+
 
     # Guard clause to prevent ESPs like Sendgrid from posting over and over again
     # if the email presented is invalid and generates a 500.  Returns a 200
     # error as discussed on https://sendgrid.com/docs/API_Reference/Webhooks/parse.html
     # This error happened with invalid email addresses from PureChat
     return if @email.from[:email].match(/\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/).blank?
+
+    # Here we use a global spam score to system block spam, as well as a configurable
+    # spam score to set status to SPAM above the configured level.
+
+    # Outright reject spam from creating a ticket at all
+    return if (@spam_score > AppSettings["email.spam_assassin_reject"].to_f)
 
     # Set attributes from email
     sitename = AppSettings["settings.site_name"]
@@ -25,13 +35,14 @@ class EmailProcessor
     subject = check_subject(@email.subject)
     attachments = @email.attachments
     number_of_attachments = attachments.present? ? attachments.size : 0
+    spam_report = @email.spam_report
 
     if subject.include?("[#{sitename}]") # this is a reply to an existing topic
-      EmailProcessor.create_reply_from_email(@email, email_address, email_name, subject, raw, message, token, to, sitename, cc, number_of_attachments)
+      EmailProcessor.create_reply_from_email(@email, email_address, email_name, subject, raw, message, token, to, sitename, cc, number_of_attachments, @spam_score, spam_report)
     elsif subject.include?("Fwd: ") # this is a forwarded message TODO: Expand this to handle foreign email formatting
-      EmailProcessor.create_forwarded_message_from_email(@email, subject, raw, message, token, to, cc, number_of_attachments)
+      EmailProcessor.create_forwarded_message_from_email(@email, subject, raw, message, token, to, cc, number_of_attachments, @spam_score, spam_report)
     else # this is a new direct message
-      EmailProcessor.create_new_ticket_from_email(@email, email_address, email_name, subject, raw, message, token, to, cc, number_of_attachments)
+      EmailProcessor.create_new_ticket_from_email(@email, email_address, email_name, subject, raw, message, token, to, cc, number_of_attachments, @spam_score, spam_report)
     end
 
   # rescue
@@ -74,16 +85,23 @@ class EmailProcessor
   end
 
   # Creates a new ticket from an email
-  def self.create_new_ticket_from_email(email, email_address, email_name, subject, raw, message, token, to, cc, number_of_attachments)
+  def self.create_new_ticket_from_email(email, email_address, email_name, subject, raw, message, token, to, cc, number_of_attachments, spam_score, spam_report)
+
+    # flag as spam if below spam score threshold
+    ticket_status = (spam_score > AppSettings["email.spam_assassin_filter"].to_f) ? "spam" : "new"
+
     @user = User.where("lower(email) = ?", email_address).first
     if @user.nil?
-      @user = EmailProcessor.create_user_for_email(email_address, token, email_name)
+      @user = EmailProcessor.create_user_for_email(email_address, token, email_name, ticket_status)
     end
 
     topic = Forum.first.topics.new(
       name: subject, 
       user_id: @user.id,
-      private: true
+      private: true,
+      current_status: ticket_status,
+      spam_score: spam_score,
+      spam_report: spam_report
     )
 
     if topic.save
@@ -114,16 +132,19 @@ class EmailProcessor
   end
 
   # Creates a ticket from a forwarded email
-  def self.create_forwarded_message_from_email(email, subject, raw, message, token, to, cc, number_of_attachments)
+  def self.create_forwarded_message_from_email(email, subject, raw, message, token, to, cc, number_of_attachments, spam_score, spam_report)
 
     # Parse from out of the forwarded raw body
     from = raw[/From: .*<(.*?)>/, 1]
     from_token = from.split("@")[0]
 
+    # flag as spam if below spam score threshold
+    ticket_status = (spam_score > AppSettings["email.spam_assassin_filter"].to_f) ? "spam" : "new"
+
     # scan users DB for sender email
     @user = User.where("lower(email) = ?", from).first
     if @user.nil?
-      @user = EmailProcessor.create_user_for_email(from, from_token, "")
+      @user = EmailProcessor.create_user_for_email(from, from_token, "", ticket_status)
     end
 
     #clean message
@@ -132,7 +153,10 @@ class EmailProcessor
     topic = Forum.first.topics.new(
       name: subject,
       user_id: @user.id,
-      private: true
+      private: true,
+      current_status: ticket_status,
+      spam_score: spam_score,
+      spam_report: spam_report
     )
 
     if topic.save
@@ -158,10 +182,14 @@ class EmailProcessor
   end
 
   # Adds a reply to an existing ticket thread from an email response.
-  def self.create_reply_from_email(email, email_address, email_name, subject, raw, message, token, to, sitename, cc, number_of_attachments)      
+  def self.create_reply_from_email(email, email_address, email_name, subject, raw, message, token, to, sitename, cc, number_of_attachments, spam_score, spam_report)      
+    
+    # flag as spam if below spam score threshold
+    ticket_status = (spam_score > AppSettings["email.spam_assassin_filter"].to_f) ? "spam" : "new"
+        
     @user = User.where("lower(email) = ?", email_address).first
     if @user.nil?
-      @user = EmailProcessor.create_user_for_email(email_address, token, email_name)
+      @user = EmailProcessor.create_user_for_email(email_address, token, email_name, ticket_status)
     end
 
     complete_subject = subject.split("[#{sitename}]")[1].strip
@@ -189,7 +217,7 @@ class EmailProcessor
     end
   end
 
-  def self.create_user_for_email(email_address, token, name)
+  def self.create_user_for_email(email_address, token, name, ticket_status)
     # create user
     @user = User.new
 
@@ -202,7 +230,7 @@ class EmailProcessor
     @user.password = User.create_password
 
     if @user.save
-      UserMailer.new_user(@user.id, @token).deliver_later if @user.save
+      UserMailer.new_user(@user.id, @token).deliver_later if @user.save && ticket_status != "spam"
     else
       @user = User.find(2) # just in case new user not saved, default to system user  
     end

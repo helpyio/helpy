@@ -97,6 +97,7 @@ Rails.application.routes.draw do
     get 'topics/unassign_team' => 'topics#unassign_team', as: :unassign_team
     post 'topics/:topic_id/split/:post_id' => 'topics#split_topic', as: :split_topic
     get 'shortcuts' => 'topics#shortcuts', as: :shortcuts
+    get 'empty_trash' => 'topics#empty_trash', as: :empty_trash
 
     # SearchController Routes
     get 'search/topic_search' => 'search#topic_search', as: :topic_search
@@ -120,6 +121,7 @@ Rails.application.routes.draw do
     put 'settings/email' => 'settings#update_email', as: :update_email_settings
     put 'settings/integration' => 'settings#update_integration', as: :update_integration_settings
     get 'settings/profile' => 'settings#profile', as: :profile_settings
+    get 'settings/trash' => 'settings#trash', as: :trash_settings
 
     # Misc Routes
     post 'shared/update_order' => 'shared#update_order', as: :update_order

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180720173011) do
+ActiveRecord::Schema.define(version: 20190513145733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -259,6 +259,8 @@ ActiveRecord::Schema.define(version: 20180720173011) do
     t.string   "channel",          default: "email"
     t.string   "kind",             default: "ticket"
     t.integer  "priority",         default: 1
+    t.decimal  "spam_score",       default: 0.0
+    t.text     "spam_report",      default: ""
     t.index ["kind"], name: "index_topics_on_kind", using: :btree
     t.index ["priority"], name: "index_topics_on_priority", using: :btree
   end
