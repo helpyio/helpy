@@ -199,7 +199,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fcm (0.0.6)
       httparty (~> 0.10, >= 0.10.0)
-    ffi (1.10.1)
+    ffi (1.11.1)
     fog-aws (3.5.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
