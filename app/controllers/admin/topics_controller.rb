@@ -367,6 +367,7 @@ class Admin::TopicsController < Admin::BaseController
   # renders out the ticketing UI, or that of a single ticket after 
   # an operation is completed
   def ticketing_ui
+    @updated_topics = @topics 
     if params[:q].present?
       search_date_from_params
       search_topics

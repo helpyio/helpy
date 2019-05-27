@@ -19,7 +19,7 @@ class EmailProcessor
 
     # Here we use a global spam score to system block spam, as well as a configurable
     # spam score to set status to SPAM above the configured level.
-    puts "SPAM SCORE: #{@spam_score} (LIMIT: #{AppSettings["email.spam_assassin_reject"]})"
+
     # Outright reject spam from creating a ticket at all
     return if (@spam_score > AppSettings["email.spam_assassin_reject"].to_f)
 
