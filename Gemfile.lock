@@ -508,7 +508,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    ruby-progressbar (1.10.0)
+    ruby-progressbar (1.10.1)
     rubyzip (1.2.3)
     sass (3.4.25)
     sass-rails (5.0.7)
