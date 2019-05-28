@@ -101,7 +101,7 @@ gem 'mini_magick'
 # Bootstrap/UI Gems
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
-gem 'bootstrap_form'
+gem 'bootstrap_form', '~> 2.7' # NOTE: 2.7 maintains BS 3 compatibility
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'

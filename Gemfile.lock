@@ -105,9 +105,7 @@ GEM
       sassc (>= 2.0.0)
     bootstrap-select-rails (1.13.8)
     bootstrap-switch-rails (3.3.3)
-    bootstrap_form (4.2.0)
-      actionpack (>= 5.0)
-      activemodel (>= 5.0)
+    bootstrap_form (2.7.0)
     brakeman (4.5.0)
     builder (3.2.3)
     bulk_insert (1.7.0)
@@ -686,7 +684,7 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-select-rails
   bootstrap-switch-rails (= 3.3.3)
-  bootstrap_form
+  bootstrap_form (~> 2.7)
   brakeman
   bulk_insert (~> 1.6)
   bundler-audit
