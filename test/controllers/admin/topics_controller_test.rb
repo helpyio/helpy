@@ -519,7 +519,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     spam_topics = Topic.where(current_status: 'spam').all
     sign_in users(:agent)
     assert_difference("Topic.trash.size", spam_topics.size) do
-      xhr :get, :update_topic, { q: 'spam', change_status: "trash", affect: 'all' }
+      get :update_topic, params: { q: 'spam', change_status: "trash", affect: 'all' }, xhr: true
     end
     assert_response :success
   end
@@ -531,7 +531,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     spam_topics = Topic.where(current_status: 'spam').all
     sign_in users(:agent)
     assert_difference("Topic.where(assigned_user_id: 1).size", spam_topics.size) do
-      xhr :get, :assign_agent, { q: 'spam', assigned_user_id: 1, affect: 'all' }
+      get :assign_agent, params: { q: 'spam', assigned_user_id: 1, affect: 'all' }, xhr: true
     end
     assert_response :success
   end
@@ -543,7 +543,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     Topic.find(1).update(current_status: 'spam')
     spam_topics = Topic.where(current_status: 'spam').all
     sign_in users(:agent)
-    xhr :get, :unassign_agent, { q: 'spam', affect: 'all' }
+    get :unassign_agent, params: { q: 'spam', affect: 'all' }, xhr: true
     assert_equal 0, Topic.admin_search('spam').where(assigned_user_id: nil).size
     assert_response :success
   end
@@ -555,7 +555,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     spam_topics = Topic.where(current_status: 'spam').all
     sign_in users(:agent)
     assert_difference("Topic.tagged_with('test_team', context: 'teams').size", spam_topics.size) do
-      xhr :get, :assign_team, { q: 'spam', assign_team: "test_team", affect: 'all' }
+      get :assign_team, params: { q: 'spam', assign_team: "test_team", affect: 'all' }, xhr: true
     end
     assert_response :success
   end
@@ -566,7 +566,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       t.team_list = 'test_team'
       t.save!
     end
-    xhr :get, :unassign_team, { q: 'new', affect: 'all' }
+    get :unassign_team, params: { q: 'new', affect: 'all' }, xhr: true
     assert_equal 0, Topic.admin_search('new').tagged_with('test_team', context: 'teams').size
     assert_response :success
   end
