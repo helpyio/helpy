@@ -374,6 +374,7 @@ class Admin::TopicsController < Admin::BaseController
     elsif (params[:topic_ids].present? && params[:topic_ids].count > 1) || params[:affect].present?
       get_tickets_by_status
     else
+      get_tickets_by_status
       @topic = Topic.find(@topics.first.id)
       @posts = @topic.posts.chronologic
     end
