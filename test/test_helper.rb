@@ -5,6 +5,9 @@ require 'minitest/reporters'
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
 ActiveSupport::TestCase.test_order = :parallel
 
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
 require 'capybara/rails'
 require 'capybara/minitest'
 require 'capybara/email'
@@ -19,6 +22,9 @@ class ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 end
+
+require "minitest/reporters"
+Minitest::Reporters.use!
 
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
@@ -51,19 +57,6 @@ end
 
 def file
   @file ||= File.open(File.expand_path('test/fixtures/files/logo.png'))
-end
-
-def uploaded_file_object(klass, attribute, file, content_type = 'image/png')
-
-  filename = File.basename(file.path)
-  klass_label = klass.to_s.underscore
-
-  ActionDispatch::Http::UploadedFile.new(
-    tempfile: file,
-    filename: filename,
-    head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},
-    content_type: content_type
-  )
 end
 
 def set_default_settings

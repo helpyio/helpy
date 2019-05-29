@@ -1,8 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  #config.i18n.default_locale = :en
-
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -13,11 +11,25 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = false
+
+  # Enable/disable caching. By default caching is disabled.
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => 'public, max-age=172800'
+    }
+  else
+    config.action_controller.perform_caching = false
+
+    config.cache_store = :null_store
+  end
 
   # Don't care if the mailer can't send.
   config.action_mailer.default_url_options = { host: Settings.site_url }
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_caching = false
 #  config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger.
@@ -50,7 +62,7 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = false
 
-  config.i18n.available_locales = [:en, :es, :de, :fr, :it, :et, :ca, :sv, :hu, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br', :fa, :fi, :id, :ar, :ko, :ms]
+  config.i18n.available_locales = [:en, :es, :de, :fr, :it, :et, :ca, :sv, :hu, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br', :fa, :fi, :id, :ko, :ms]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
@@ -62,4 +74,8 @@ Rails.application.configure do
     # Bullet.bullet_logger = true
     # Bullet.add_footer = true
   end
+
+  # Use an evented file watcher to asynchronously detect changes in source code,
+  # routes, locales, etc. This feature depends on the listen gem.
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end

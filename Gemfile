@@ -1,32 +1,32 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.11.1'
+gem 'rails', '~> 5.0.7'
 
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.20.0'
+gem 'pg', '~> 0.21.0'
 gem 'pg_search'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.7'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Explicitly include Nokogiri to control version
-gem 'nokogiri', '>= 1.8.4'
+gem 'nokogiri'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 5.0'
 
 # Inline js validations
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
+gem 'client_side_validations', '~> 11.0'
+gem 'client_side_validations-simple_form', '~> 6.5'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks', '~> 2.5.3'
 gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.8'
+gem 'jbuilder'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 1.0.0', group: :doc
@@ -42,8 +42,8 @@ gem 'ranked-model'
 # Google Analytics Measurement Protocol
 gem 'staccato'
 
-gem "rails-settings-cached", '~> 0.5.0'
-gem 'sucker_punch', '~> 2.0'
+gem "rails-settings-cached", "0.5.6"
+gem 'sucker_punch'
 
 # Charting
 gem "groupdate"
@@ -61,39 +61,39 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 
 # i18n gems
-gem 'rails-i18n', '~> 4.0.9'
+gem 'rails-i18n'
 gem 'i18n-country-translations'
 gem 'route_translator'
 gem 'http_accept_language'
 
 # API gems
-gem 'grape'
+gem 'grape', '1.2.1' # 1.2.3 does not work with grape-kaminari for some reason
 gem 'grape-swagger'
 gem 'grape-entity'
 gem 'grape-swagger-rails'
 gem 'grape-swagger-entity'
-# gem 'grape-attack' #uncomment for rate limiting
-gem 'grape-kaminari'
-gem 'kaminari-grape'
+gem 'grape-attack'
+gem 'grape-kaminari', git: 'https://github.com/joshmn/grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'paper_trail'
-gem 'acts-as-taggable-on', '~>3.5'
+
+gem 'acts-as-taggable-on'
 
 gem 'kaminari'
 gem 'kaminari-i18n'
 
-gem 'globalize', '= 5.0.1'
+gem 'globalize', '~> 5.1.0'
 gem 'globalize-versioning'
 gem 'globalize-accessors'
 
 gem 'gravtastic'
 
 # File handling
-gem 'cloudinary', '1.1.7'
+gem 'cloudinary'
 gem 'attachinary'
 
-gem 'carrierwave', '~> 1.3.1'
+gem 'carrierwave'
 gem 'fog-aws'
 gem "jquery-fileupload-rails"
 gem 'mini_magick'
@@ -101,7 +101,7 @@ gem 'mini_magick'
 # Bootstrap/UI Gems
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
-gem 'bootstrap_form'
+gem 'bootstrap_form', '~> 2.7' # NOTE: 2.7 maintains BS 3 compatibility
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
@@ -112,7 +112,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
 
-gem 'config', '~> 1.1.0'
+gem 'config'
 
 # Email/Mail Handling
 gem 'daemons'
@@ -150,7 +150,7 @@ gem "hashid-rails", "~> 1.0"
 gem 'themes_on_rails'
 gem "recaptcha", '< 3', require: "recaptcha/rails" # TODO: Update
 
-gem 'best_in_place', '~> 3.1'
+gem 'best_in_place'
 
 # Add onboarding component
 gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
@@ -168,10 +168,11 @@ group :development, :test do
   gem 'rubocop'
   gem 'scss-lint'
   gem 'awesome_print'
+  gem 'puma'
   gem 'rb-readline'
 end
 
-gem 'bulk_insert'
+gem 'bulk_insert', '~> 1.6'
 gem 'roo'
 
 group :development do
@@ -191,16 +192,14 @@ group :test do
   gem 'shoulda', '3.5' # Required for minitest
   gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
   gem 'factory_bot_rails'
-  gem 'capybara', '< 3.0'
+  gem 'capybara'
   gem 'capybara-email'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
-
-  # remove this for Rails 5 because the function is already included
-  gem 'test_after_commit'
+  gem 'rails-controller-testing'
 end
 
 group :production do
@@ -209,4 +208,4 @@ group :production do
   gem 'unicorn'
 end
 
-ruby '>= 2.2', '< 3.0'
+ruby '>= 2.3', '< 3.0'

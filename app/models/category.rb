@@ -19,7 +19,7 @@
 #  visibility       :string           default("all")
 #
 
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
 
   include SentenceCase
 

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :recaptcha_enabled?
 
+  before_action :set_paper_trail_whodunnit
   before_action :add_root_breadcrumb
   before_action :set_locale
   before_action :set_vars
@@ -122,7 +123,7 @@ class ApplicationController < ActionController::Base
     if controller_namespace_origin == 'admin'
       add_breadcrumb :root, admin_root_url
     else
-      add_breadcrumb :root
+      add_breadcrumb :root, root_url(locale: I18n.locale)
     end
   end
 
@@ -197,7 +198,7 @@ class ApplicationController < ActionController::Base
 
   def get_all_teams
     return unless teams?
-    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').uniq.pluck(:name).map{|name| name}
+    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').pluck('DISTINCT name').map{|name| name}
   end
 
 end

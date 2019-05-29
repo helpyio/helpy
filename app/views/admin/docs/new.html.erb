@@ -100,7 +100,7 @@
 
 <script>
 <% if @post.nil? %>
-$('#summernote').summernote('code', '<%= @doc.body if @doc.body? %>');
+$('#summernote').summernote('code', '<%= @doc.body if @doc.body.present? %>');
 <% else %>
 $('#summernote').summernote('code', '<%= @post.body unless @post.nil? %>');
 <% end %>

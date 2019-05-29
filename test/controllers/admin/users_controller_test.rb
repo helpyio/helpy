@@ -56,24 +56,11 @@ class Admin::UsersControllerTest < ActionController::TestCase
     @file ||= File.open(File.expand_path( '../logo.png', __FILE__))
   end
 
-  def uploaded_file_object(klass, attribute, file, content_type = 'text/plain')
-
-    filename = File.basename(file.path)
-    klass_label = klass.to_s.underscore
-
-    ActionDispatch::Http::UploadedFile.new(
-      tempfile: file,
-      filename: filename,
-      head: %Q{Content-Disposition: form-data; name="#{klass_label}[#{attribute}]"; filename="#{filename}"},
-      content_type: content_type
-    )
-  end
-
   # admin only
   test "an admin should be able to destroy a user" do
     sign_in users(:admin)
     assert_difference "User.count", -1 do
-      xhr :delete, :destroy, id: 3, locale: :en
+      delete :destroy, params: { id: 3, locale: :en }, xhr: true
     end
     assert_response :success
   end
@@ -83,7 +70,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     user_name = User.find(3).name
 
-    delete :destroy, id: 3, locale: :en
+    delete :destroy, params: { id: 3, locale: :en }
     assert_response :redirect
     assert_equal "User #{user_name} was scheduled for permanent deletion.",
       flash[:success]
@@ -92,7 +79,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
   test "an admin should be able to anonymize a user" do
     sign_in users(:admin)
-    xhr :post, :scrub, id: 3, locale: :en
+    post :scrub, params: { id: 3, locale: :en }, xhr: true
     assert_response :success
     assert "Anonymous User", User.find(3).name
   end
@@ -109,13 +96,13 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a filtered of users" do
       sign_in users(admin.to_sym)
-      get :index, { role: 'user' }
+      get :index, params: { role: 'user' }
       assert_equal User.where(role: 'user').count, assigns(:users).count
     end
 
     test "an #{admin} should be able to update a user" do
       sign_in users(admin.to_sym)
-      patch :update, {
+      patch :update, params: {
         id: 6, user: {
           name: "something",
           email:"scott.miller2@test.com",
@@ -149,7 +136,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
       user_before_update.team_list = "one"
       user_before_update.save
 
-      patch :update, {
+      patch :update, params: {
         id: 6, user: {
           name: "something else"
         },
@@ -169,7 +156,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
     test "an #{admin} should be able to see a user profile" do
       sign_in users(admin.to_sym)
-      xhr :get, :show, { id: 9 }, format: 'js'
+      get :show, params: { id: 9 }, format: 'js', xhr: true
       assert_response :success
       # assert_equal(6, assigns(:topics).count)
     end
@@ -177,7 +164,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{admin} should be able to edit a user profile" do
       sign_in users(admin.to_sym)
 
-      xhr :get, :edit, { id: 9 }
+      get :edit, params: { id: 9 }, xhr: true
       assert_response :success
     end
 
@@ -187,13 +174,13 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to destroy a user" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.count", 0) do
-        xhr :delete, :destroy, id: 3, locale: :en
+         delete :destroy, params: { id: 3, locale: :en }, xhr: true
       end
     end
 
     test "an #{unauthorized} should NOT be able to anonymize a user" do
       sign_in users(unauthorized.to_sym)
-      xhr :post, :scrub, id: 3, locale: :en
+      post :scrub, params: { id: 3, locale: :en }, xhr: true
       assert_not_equal "Anonymous User", User.find(3).name
     end
   end
@@ -201,7 +188,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
   test "an admin should be able to update a user and make them an admin" do
     sign_in users(:admin)
     assert_difference("User.admins.count", 1) do
-      patch :update, {id: 9, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
+      patch :update, params: {id: 9, user: {name: "something", email:"scott.miller@test.com", role: 'admin'}, locale: :en}
     end
   end
 
@@ -209,9 +196,10 @@ class Admin::UsersControllerTest < ActionController::TestCase
     sign_in users(:admin)
     assert_difference "ActionMailer::Base.deliveries.size", 3 do
       assert_difference("User.count", 3) do
-        put :invite_users,
+        put :invite_users, params: {
           'invite.emails' => 'test1@mail.com, test2@mail.com, test3@mail.com',
           'invite.message' => "this is the test invitation message"
+        }
       end
     end
   end
@@ -220,7 +208,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     test "an #{unauthorized} should NOT be able to update a user and change their role" do
       sign_in users(unauthorized.to_sym)
       assert_difference("User.admins.count", 0) do
-        patch :update, {id: 9, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
+        patch :update, params: {id: 9, user: {name: "something", email:"scott.miller@test.com", role: "agent"}, locale: :en}
       end
     end
   end

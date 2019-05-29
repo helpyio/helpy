@@ -96,35 +96,20 @@ FactoryBot.define do
 
     trait :with_attachment do
       attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        })
+        Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png'),
       ]}
     end
 
     trait :with_invalid_attachment do
       attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'test.odt',
-          tempfile: File.new(Rails.root.join("test/fixtures/test.odt"))
-        })
+        Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/test.odt'), 'text/odt')
       ]}
     end
 
     trait :with_multiple_attachments do
       attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        }),
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        })
+        Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png'),
+        Rack::Test::UploadedFile.new(Rails.root.join('test/fixtures/files/logo.png'), 'image/png')
       ]}
     end
   end

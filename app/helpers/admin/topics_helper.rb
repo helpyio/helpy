@@ -56,41 +56,6 @@ module Admin::TopicsHelper
     end
   end
 
-  def agents_for_select
-    User.agents.all.map { |user| [user.name, user.id] }
-  end
-
-  def channels_collection
-    [
-      [t('activerecord.attributes.user.email'), 'email'],
-      [t('activerecord.attributes.user.home_phone'), 'phone'],
-      [t(:channel_in_person, default: 'In Person'), 'person']
-    ]
-  end
-
-  def statuses_collection
-    statuses = []
-    ['new','open','pending','closed'].each do |s|
-      statuses << [t(s.to_sym), s]
-    end
-    statuses
-  end
-
-  def ticket_types_collection
-    [
-      [t('customer_conversation', default: "Customer Conversation"), 'ticket'],
-      [t('internal_ticket', default: "Internal Ticket"), 'internal']
-    ]
-  end
-
-  def ticket_priority_collection
-    Topic.priorities.keys.map { |priority| [t("#{priority}_priority"), priority] }
-  end
-
-  def ticket_tag_collection
-    ActsAsTaggableOn::Tagging.all.where(context: "tags", taggable_type: 'Topic').includes(:tag).map{|tagging| tagging.tag.name }.uniq.sort
-  end
-
   # id of opening or first post in the topic
   def first_post_id(topic)
     first_post = topic.posts.order(created_at: :asc).first

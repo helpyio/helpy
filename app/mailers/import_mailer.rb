@@ -1,6 +1,6 @@
 class ImportMailer < ApplicationMailer
   layout 'mailer'
-  
+
   def notify_import_complition(user, model_name, notes)
   	@user = user
   	@notes = notes

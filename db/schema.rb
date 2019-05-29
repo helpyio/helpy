@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -23,15 +22,8 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.datetime "date_expired"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-  end
-
-  add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
-  add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
-
-  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
-    t.string   "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
+    t.index ["user_id"], name: "index_api_keys_on_user_id", using: :btree
   end
 
   create_table "attachinary_files", force: :cascade do |t|
@@ -46,9 +38,8 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "resource_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
-
-  add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
   create_table "backups", force: :cascade do |t|
     t.integer  "user_id"
@@ -57,9 +48,8 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "csv_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_backups_on_user_id", using: :btree
   end
-
-  add_index "backups", ["user_id"], name: "index_backups_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -86,10 +76,9 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "keywords"
     t.string   "title_tag"
     t.string   "meta_description"
+    t.index ["category_id"], name: "index_category_translations_on_category_id", using: :btree
+    t.index ["locale"], name: "index_category_translations_on_locale", using: :btree
   end
-
-  add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
-  add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
 
   create_table "doc_translations", force: :cascade do |t|
     t.integer  "doc_id",           null: false
@@ -101,10 +90,9 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "keywords"
     t.string   "title_tag"
     t.string   "meta_description"
+    t.index ["doc_id"], name: "index_doc_translations_on_doc_id", using: :btree
+    t.index ["locale"], name: "index_doc_translations_on_locale", using: :btree
   end
-
-  add_index "doc_translations", ["doc_id"], name: "index_doc_translations_on_doc_id", using: :btree
-  add_index "doc_translations", ["locale"], name: "index_doc_translations_on_locale", using: :btree
 
   create_table "docs", force: :cascade do |t|
     t.string   "title"
@@ -212,9 +200,8 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "thing_type", limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
   end
-
-  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -224,17 +211,16 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context", using: :btree
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
   end
-
-  add_index "taggings", ["context"], name: "index_taggings_on_context", using: :btree
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
-  add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
-  add_index "taggings", ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
-  add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
-  add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
@@ -247,9 +233,8 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.boolean "active",             default: true
     t.string  "email_address"
     t.string  "email_name"
+    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
-
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "topics", force: :cascade do |t|
     t.integer  "forum_id"
@@ -276,10 +261,9 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.integer  "priority",         default: 1
     t.decimal  "spam_score",       default: 0.0
     t.text     "spam_report",      default: ""
+    t.index ["kind"], name: "index_topics_on_kind", using: :btree
+    t.index ["priority"], name: "index_topics_on_priority", using: :btree
   end
-
-  add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree
-  add_index "topics", ["priority"], name: "index_topics_on_priority", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "login"
@@ -338,17 +322,16 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "account_number"
     t.string   "priority",               default: "normal"
     t.text     "notes"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+    t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+    t.index ["notify_on_private"], name: "index_users_on_notify_on_private", using: :btree
+    t.index ["notify_on_public"], name: "index_users_on_notify_on_public", using: :btree
+    t.index ["notify_on_reply"], name: "index_users_on_notify_on_reply", using: :btree
+    t.index ["priority"], name: "index_users_on_priority", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
-  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
-  add_index "users", ["notify_on_private"], name: "index_users_on_notify_on_private", using: :btree
-  add_index "users", ["notify_on_public"], name: "index_users_on_notify_on_public", using: :btree
-  add_index "users", ["notify_on_reply"], name: "index_users_on_notify_on_reply", using: :btree
-  add_index "users", ["priority"], name: "index_users_on_priority", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false
@@ -358,9 +341,8 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.text     "object"
     t.datetime "created_at"
     t.string   "locale"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "points",        default: 1

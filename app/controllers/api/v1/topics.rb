@@ -39,6 +39,8 @@ module API
         end
 
         # LIST BY USER
+        paginate per_page: 20
+
         desc "List all PRIVATE tickets for a user", {
           entity: Entity::Topic,
           notes: "List all tickets (private topics) for a given user"
