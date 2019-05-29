@@ -266,7 +266,7 @@ GEM
     griddler-sparkpost (0.0.3)
       griddler
       mail
-    groupdate (4.1.0)
+    groupdate (4.1.2)
       activesupport (>= 4.2)
     hashid-rails (1.2.2)
       activerecord (>= 4.0)
