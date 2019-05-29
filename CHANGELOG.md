@@ -1,3 +1,17 @@
+## VERSION 2.5.0
+
+This release adds important new functionality for managing incoming spam email tickets (particularly from parse webhook services such as Sendgrid or Mandrill). 
+Two new settings have been added that use the spam assassin score provided by these providers to either block tickets outright, or filter them to the spam
+folder. In addition, dependencies have been upgraded.
+
+- Expose trash and Spam tickets navigation in the left ticketing nav
+- Adds two settings to adjust how Helpy filters spam (when using Sendgrid, Mandrill, etc.)
+- Stores the spam score of incoming emails in the Topic table
+- Adds the ability to do bulk actions on *all* tickets matching a search
+- Adds the option to "empty the trash", permanently deleting all messages in the trash
+
+See UPDATING.md for details on how to update.
+
 ## VERSION 2.4.3
 
 This release fixes a bug in the way autosaving was handled. 
