@@ -195,7 +195,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-email'
   gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'webdrivers'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
