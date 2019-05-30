@@ -16,8 +16,8 @@ Whether you run the open source community edition or the cloud edition, start by
 `bundle install`
 
 3. Run any new migrations, and update the assets:
-`RAILS_ENV=production bundle exec rake db:migrate`
-`RAILS_ENV=production bundle exec rake assets:precompile`
+`RAILS_ENV=production bundle exec rails db:migrate`
+`RAILS_ENV=production bundle exec rails assets:precompile`
 
 4. Restart the webserver.
 
