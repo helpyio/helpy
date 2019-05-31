@@ -21,6 +21,7 @@ module API
           requires :kind, type: String, desc: "The kind of post, either 'reply' or 'note'"
           optional :cc, type: String, desc: "Comma separated list of emails to CC"
           optional :bcc, type: String, desc: "Comma separated list of emails to BCC"
+          optional :attachments, File, desc: "Attachment to attach to ticket"
         end
         post "", root: :posts do
           post = Post.create!(
@@ -29,7 +30,8 @@ module API
             user_id: permitted_params[:user_id],
             kind: permitted_params[:kind],
             cc: permitted_params[:cc],
-            bcc: permitted_params[:bcc]
+            bcc: permitted_params[:bcc],
+            attachments: permitted_params[:attachments]
           )
           present post, with: Entity::Post
         end
@@ -49,8 +51,6 @@ module API
           )
           present post, with: Entity::Post
         end
-
-
       end
     end
   end

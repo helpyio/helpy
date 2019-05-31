@@ -123,7 +123,9 @@ module API
             body: params[:body],
             user_id: user_id,
             kind: 'first',
-          )
+            screenshots: post.screenshots,
+            attachments: post.attachments,
+              )
           present ticket, with: Entity::Topic, posts: true, user: true
         end
 
