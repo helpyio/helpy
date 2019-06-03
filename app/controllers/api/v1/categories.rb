@@ -100,8 +100,6 @@ module API
           present category, with: Entity::Category
         end
 
-      end
-
     end
   end
 end
