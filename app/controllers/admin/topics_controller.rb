@@ -367,16 +367,18 @@ class Admin::TopicsController < Admin::BaseController
   # renders out the ticketing UI, or that of a single ticket after 
   # an operation is completed
   def ticketing_ui
-    @updated_topics = @topics 
+    @updated_topics = @topics
     if params[:q].present?
       search_date_from_params
       search_topics
     elsif (params[:topic_ids].present? && params[:topic_ids].count > 1) || params[:affect].present?
       get_tickets_by_status
     else
-      get_tickets_by_status
       @topic = Topic.find(@topics.first.id)
       @posts = @topic.posts.chronologic
+
+      # refresh topics for left menu
+      get_tickets_by_status
     end
 
     fetch_counts
