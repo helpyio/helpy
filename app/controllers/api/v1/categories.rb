@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -55,6 +54,7 @@ module API
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
         post "", root: :categories do
+          restrict_to_role %w(admin agent)
           category = Category.create!(
             name: permitted_params[:name],
             icon: permitted_params[:icon],
@@ -84,7 +84,8 @@ module API
           optional :front_page, type: Boolean, desc: "Whether or not the category should appear on the front page"
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
         end
-        patch ":id", root: :categories do
+        patch ":id", root: :categories 
+          restrict_to_role %w(admin agent)
           category = Category.find(permitted_params[:id])
           category.update!(
             name: permitted_params[:name],

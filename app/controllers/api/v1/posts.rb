@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -44,6 +43,7 @@ module API
           requires :active, type: Boolean, desc: "Whether the post is live or not"
         end
         patch ":id", root: :posts do
+          restrict_to_role %w(admin agent)
           post = Post.find(permitted_params[:id])
           post.update!(
             body: permitted_params[:body],

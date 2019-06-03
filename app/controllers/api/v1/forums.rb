@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -49,6 +48,7 @@ module API
           optional :layout, type: String, desc: "The layout used by the forum"
         end
         post "", root: :forums do
+          restrict_to_role %w(admin agent)
           forum = Forum.create!(
             name: permitted_params[:name],
             description: permitted_params[:description],
@@ -73,6 +73,7 @@ module API
           optional :layout, type: String, desc: "The layout used by the forum"
         end
         patch ":id", root: :forums do
+          restrict_to_role %w(admin agent)
           forum = Forum.find(permitted_params[:id])
           forum.update!(
             name: permitted_params[:name],

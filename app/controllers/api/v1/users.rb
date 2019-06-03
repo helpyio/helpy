@@ -4,7 +4,7 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
+        # restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -21,6 +21,7 @@ module API
           notes: "List all users"
         }
         get "", root: :users do
+          restrict_to_role %w(admin agent)
           users = User.all
           present users, with: Entity::User
         end
@@ -36,7 +37,7 @@ module API
 
         desc "Register a Notification Token to the current user", {
           entity: Entity::User,
-          notes: "kljlkj"
+          notes: "Returns the new token when generated"
         }
         params do
           requires :token, type: String, desc: "New Token to Register"
@@ -44,6 +45,11 @@ module API
           requires :id, type: Integer, desc: "User ID"
         end
         post ":id/token", root: :users do
+          puts "CU"
+          puts current_user.inspect
+          puts "PP"
+          puts permitted_params
+          sleep 10
           newToken = NotificationToken.create({
             device_token: params[:device_token],
             user_id: params[:id],
@@ -64,6 +70,7 @@ module API
           requires :q, type: String, desc: "User search query"
         end
         get "search", root: :users do
+          restrict_to_role %w(admin agent)
           users = User.user_search(params[:q])
           present users, with: Entity::User
         end
@@ -77,6 +84,7 @@ module API
           requires :id, type: Integer, desc: "User ID"
         end
         get ":id", root: :users do
+          restrict_to_role %w(admin agent) unless current_user.id === permitted_params[:id]
           user = User.where(id: permitted_params[:id])
           present user, with: Entity::User
         end
@@ -113,6 +121,7 @@ module API
           optional :notes, type: String, desc: "Notes about the user"
         end
         post "", root: :users do
+          restrict_to_role %w(admin agent)
           user = User.create!(
             login: permitted_params[:login],
             email: permitted_params[:email],
@@ -175,6 +184,7 @@ module API
           optional :notes, type: String, desc: "Notes about the user"
         end
         patch ":id", root: :users do
+          restrict_to_role %w(admin agent)
           user = User.where(id: permitted_params[:id]).first
           user.update!(
             login: permitted_params[:login],
@@ -211,6 +221,7 @@ module API
           requires :id, type: Integer, desc: "User ID"
         end
         delete ":id", root: :users do
+          restrict_to_role %w(admin agent)
           user = User.find(permitted_params[:id])
           user.permanently_destroy
           body false
@@ -222,6 +233,7 @@ module API
           requires :id, type: Integer, desc: "User ID"
         end
         post "anonymize/:id", root: :users do
+          restrict_to_role %w(admin agent)
           user = User.find(permitted_params[:id])
           user.scrub
           present user, with: Entity::User
@@ -235,10 +247,10 @@ module API
           requires :role, type: String, desc: "The role given to the new invited users (user, editor, agent, admin)"
         end
         post "invite", root: :users do
+          restrict_to_role %w(admin agent)
           User.bulk_invite(permitted_params["emails"], permitted_params["message"], permitted_params["role"])
           present params[:emails]
         end
-
       end
     end
   end

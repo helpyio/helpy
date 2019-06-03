@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -47,7 +46,7 @@ module API
           requires :user_id, type: Integer, desc: "ID of the user"
         end
         get "user/:user_id", root: :topics do
-          if current_user.is_restricted?
+          restrict_to_role %w(admin agent) unless permitted_params[:user_id] == current_user.id
             topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all.tagged_with(current_user.team_list)
           else
             topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
@@ -64,6 +63,7 @@ module API
           requires :id, type: Integer, desc: "Ticket ID"
         end
         get ":id", root: :topics do
+          restrict_to_role %w(admin agent) unless permitted_params[:user_id] == current_user.id
           if current_user.is_restricted?
             topic = Topic.includes(:posts).where(id: permitted_params[:id]).tagged_with(current_user.team_list)
           else
@@ -137,6 +137,7 @@ module API
         end
 
         post "assign/:id", root: :topics do
+          restrict_to_role %w(admin agent)
           if current_user.is_restricted?
             ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
           else
@@ -160,6 +161,7 @@ module API
         end
 
         post "update_status/:id", root: :topics do
+          restrict_to_role %w(admin agent)
           if current_user.is_restricted?
             ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
           else
@@ -191,6 +193,7 @@ module API
         end
 
         post "update_tags/:id", root: :topics do
+          restrict_to_role %w(admin agent)
           if current_user.is_restricted?
             ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
           else
@@ -213,6 +216,7 @@ module API
         end
 
         post "update_forum/:id", root: :topics do
+          restrict_to_role %w(admin agent)
           if current_user.is_restricted?
             ticket = Topic.where(id: permitted_params[:id]).all.tagged_with(current_user.team_list).first
           else
@@ -236,6 +240,7 @@ module API
         end
 
         post "split/:post_id", root: :topics do
+          restrict_to_role %w(admin agent)
           post = Post.where(id: permitted_params[:post_id]).first
 
           # Check that the post_id exists, and that it is private.
@@ -280,6 +285,7 @@ module API
         end
 
         post "merge", root: :topics do
+          restrict_to_role %w(admin agent)
           @ticket = Topic.merge_topics(params[:topic_ids], params[:user_id])
           if @ticket.present?
             present @ticket, with: Entity::Topic, posts: true, user: true
@@ -346,6 +352,7 @@ module API
         end
 
         patch ":id", root: :topics do
+          restrict_to_role %w(admin agent)
           topic = Topic.where(id: permitted_params[:id]).first
           topic.update!(
             forum_id: permitted_params[:forum_id],

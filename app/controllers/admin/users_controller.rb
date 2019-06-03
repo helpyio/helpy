@@ -46,7 +46,7 @@
 
 class Admin::UsersController < Admin::BaseController
 
-  
+  # TODO: fix this so it works on API.
   skip_before_action :verify_authenticity_token
 
   before_action :verify_agent

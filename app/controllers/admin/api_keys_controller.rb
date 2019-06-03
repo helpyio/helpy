@@ -10,7 +10,6 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-
 class Admin::ApiKeysController < Admin::BaseController
 
   before_action :set_user
@@ -39,7 +38,8 @@ class Admin::ApiKeysController < Admin::BaseController
 
   def qrcode
     key = ApiKey.find(params[:id])
-    send_data key.qrcode(request.protocol + request.host_with_port).as_png(size: 200), type: "image/png", disposition: 'inline'
+    conf = Rails.application.config.action_mailer
+    send_data key.qrcode(conf.default_url_options[:protocol] + '://' + conf.default_url_options[:host]).as_png(size: 200), type: "image/png", disposition: 'inline'
   end
 
   protected
@@ -61,6 +61,4 @@ class Admin::ApiKeysController < Admin::BaseController
     :user_id
   )
   end
-
-
 end
