@@ -39,6 +39,8 @@ class Admin::ApiKeysController < Admin::BaseController
   def qrcode
     key = ApiKey.find(params[:id])
     conf = Rails.application.config.action_mailer
+    puts conf.default_url_options[:protocol] + '://' + conf.default_url_options[:host]
+    sleep 10
     send_data key.qrcode(conf.default_url_options[:protocol] + '://' + conf.default_url_options[:host]).as_png(size: 200), type: "image/png", disposition: 'inline'
   end
 
