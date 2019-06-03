@@ -205,6 +205,10 @@ class User < ActiveRecord::Base
     true
   end
 
+  def can_generate_api_keys?
+    return is_admin?
+  end
+
   # Is this user editable by the current logged in agent?
   def can_be_edited? current_user
     return true if current_user.is_admin?

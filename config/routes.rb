@@ -158,6 +158,7 @@ Rails.application.routes.draw do
     resources :images, only: [:create, :destroy]
     resources :forums# , except: [:index, :show]
     resources :users
+    post 'users/:id/generate_apikey' => 'users#gen_apikey', as: :gen_apikey
     post 'users/:id/scrub' => 'users#scrub', as: :scrub_user
     scope 'settings' do
       get 'api_keys/:id/qrcode' => 'api_keys#qrcode', as: :qr_code
