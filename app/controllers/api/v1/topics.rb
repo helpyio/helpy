@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -47,6 +46,7 @@ module API
           requires :user_id, type: Integer, desc: "ID of the user"
         end
         get "user/:user_id", root: :topics do
+          restrict_to_role %w(admin agent) unless permitted_params[:user_id] == current_user.id
           if current_user.is_restricted?
             topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all.tagged_with(current_user.team_list)
           else
@@ -348,9 +348,7 @@ module API
           )
           present topic, with: Entity::Topic
         end
-
       end
-
     end
   end
 end

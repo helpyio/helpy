@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults

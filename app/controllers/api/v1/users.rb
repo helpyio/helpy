@@ -45,11 +45,6 @@ module API
           requires :id, type: Integer, desc: "User ID"
         end
         post ":id/token", root: :users do
-          puts "CU"
-          puts current_user.inspect
-          puts "PP"
-          puts permitted_params
-          sleep 10
           newToken = NotificationToken.create({
             device_token: params[:device_token],
             user_id: params[:id],
