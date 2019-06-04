@@ -118,7 +118,7 @@ GEM
       mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    chartkick (3.1.0)
+    chartkick (3.2.0)
     childprocess (1.0.1)
       rake (< 13.0)
     chromedriver-helper (2.1.1)
