@@ -1,3 +1,5 @@
+require 'byebug'
+
 module API
   module V1
     class Topics < Grape::API
@@ -86,6 +88,9 @@ module API
           optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
           requires :user_id, type: Integer, desc: "the User ID"
           optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
+          optional :attachments, type: Array do
+            requires :file, :type => Rack::Multipart::UploadedFile, :desc => "Attachment to attach to ticket"
+          end
         end
 
         post "", root: :topics do
@@ -100,11 +105,13 @@ module API
             channel: params[:channel].present? ? params[:channel] : "api",
             kind: params[:kind].present? ? params[:kind] : 'ticket',
           )
-          ticket.posts.create!(
+          newPost = ticket.posts.create!(
             body: params[:body],
             user_id: params[:user_id],
-            kind: 'first',
+            kind: 'first'
           )
+          newPost.attachments = params[:attachments].present? ? params[:attachments] : nil
+          newPost.save
           present ticket, with: Entity::Topic, posts: true
         end
 
@@ -292,6 +299,7 @@ module API
           requires :forum_id, type: Integer, desc: "The forum to add the topic to"
           optional :channel, type: String, desc: "The source channel the ticket was created from. Defaults to API."
           optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
+          optional :attachments, type: Array
         end
 
         post "", root: :topics do
@@ -308,6 +316,10 @@ module API
             user_id: permitted_params[:user_id],
             kind: 'first'
           )
+
+          post = topic.posts.first
+          post.attachments = permitted_params[:attachments]
+          post.save
           present topic, with: Entity::Topic, posts: true
         end
 
