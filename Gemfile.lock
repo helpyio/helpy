@@ -556,7 +556,7 @@ GEM
     staccato (0.5.1)
     sucker_punch (2.1.2)
       concurrent-ruby (~> 1.0)
-    summernote-rails (0.8.10.0)
+    summernote-rails (0.8.12.0)
       railties (>= 3.1)
     test_after_commit (1.2.2)
       activerecord (>= 3.2, < 5.0)
