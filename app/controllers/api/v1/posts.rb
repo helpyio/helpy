@@ -20,7 +20,7 @@ module API
           requires :kind, type: String, desc: "The kind of post, either 'reply' or 'note'"
           optional :cc, type: String, desc: "Comma separated list of emails to CC"
           optional :bcc, type: String, desc: "Comma separated list of emails to BCC"
-          optional :attachments, File, desc: "Attachment to attach to ticket"
+          optional :attachments, type: Array
         end
         post "", root: :posts do
           post = Post.create!(
