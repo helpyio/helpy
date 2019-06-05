@@ -30,8 +30,9 @@ module API
             kind: permitted_params[:kind],
             cc: permitted_params[:cc],
             bcc: permitted_params[:bcc],
-            attachments: permitted_params[:attachments]
           )
+          post.attachments = permitted_params[:attachments]
+          post.save
           present post, with: Entity::Post
         end
 

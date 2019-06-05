@@ -1,5 +1,3 @@
-require 'byebug'
-
 module API
   module V1
     class Topics < Grape::API
@@ -88,9 +86,7 @@ module API
           optional :kind, type: String, desc: "he kind of topic this is, can be 'ticket','discussion','chat', etc."
           requires :user_id, type: Integer, desc: "the User ID"
           optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
-          optional :attachments, type: Array do
-            requires :file, :type => Rack::Multipart::UploadedFile, :desc => "Attachment to attach to ticket"
-          end
+          optional :attachments, type: Array
         end
 
         post "", root: :topics do
