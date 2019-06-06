@@ -1,5 +1,5 @@
 module Entity
-  class Token < Base
+  class NotificationToken < Base
     expose :id, documentation: { type: "Integer" }
     expose :user_id, documentation: { type: "Integer", desc: "The User ID currently assigned to the token." }
     expose :device_token, documentation: { type: "String", desc: "The unique identifier for the device." }

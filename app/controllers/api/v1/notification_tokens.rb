@@ -5,7 +5,6 @@ module API
       before do
         authenticate!
       end
-
             
       include API::V1::Defaults
       include Grape::Kaminari
@@ -14,14 +13,15 @@ module API
         desc "Set a Notification Token"
         params do
           requires :notification_token, type: String, desc: "The Token to be saved"
-          requires :user_id, type: Integer, desc: "The ID of the User this matches"
+          requires :device_description, type: String, desc: "The generated description of the device."
         end
         post "", root: :flags do
-          nt = NotificationToken.find_first_or_create({token: params[:notification_token]})
-          nt.user_id = params[:user_id]
-          nt.save
-
-          present nt, with: Entity::NotificationToken
+          newToken = NotificationToken.find_or_create_by({device_token: params[:notification_token]})
+          newToken.user_id = current_user.id
+          newToken.device_description = params[:device_description]
+          newToken.enabled = true
+          newToken.save
+          present newToken, with: Entity::NotificationToken
         end
       end
     end
