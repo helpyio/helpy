@@ -33,5 +33,8 @@ class NotificationMailer < ApplicationMailer
       from: AppSettings['email.admin_email'],
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
+      
+      @recipient.send_firebase_notifications("New Change", @topic.posts.last.body.truncate(30))
+
   end
 end

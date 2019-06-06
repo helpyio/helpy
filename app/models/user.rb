@@ -1,3 +1,5 @@
+require 'fcm'
+SERVER_KEY = 'AAAA1geL4fA:APA91bF9KGWsdtrrZvzSkhyD2eVbl-2_I4frsVD1L-cxBMnn3RO8Zs72OnCB7Eh9lxO7TYLfIUxeijXGSMdxnvALisTNu97L7_TUK-NGRaBu0wVKhuoQeKbaeGlotDCw72eIIbCv70jR'
 # == Schema Information
 #
 # Table name: users
@@ -365,6 +367,24 @@ class User < ActiveRecord::Base
     end
 
     usr
+  end
+
+  def send_firebase_notifications(title, body)
+
+    fcm = FCM.new(SERVER_KEY)
+
+    options = {
+      "notification": {
+        "title": title,
+        "body": body
+      }
+    }
+
+    notification_tokens.each do |nt|
+      if (nt.enabled)
+        fcm.send_with_notification_key(nt.device_token, options)
+      end
+    end
   end
 
   private
