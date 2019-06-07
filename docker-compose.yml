@@ -34,7 +34,7 @@ services:
       - back
     env_file: docker/.env
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql
 
 volumes:
   rails-assets:
