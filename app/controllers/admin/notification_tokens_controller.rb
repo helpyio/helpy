@@ -31,7 +31,8 @@ class Admin::NotificationTokensController < Admin::BaseController
 
   def destroy
     @notification_token = @user.notification_tokens.where(id: params[:id]).first
-    @notification_token.update! date_expired: Time.current
+    @notification_token.destroy
+    redirect_to admin_notification_tokens_path
   end
 
   protected

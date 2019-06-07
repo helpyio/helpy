@@ -163,7 +163,7 @@ Rails.application.routes.draw do
     scope 'settings' do
       get 'api_keys/:id/qrcode' => 'api_keys#qrcode', as: :qr_code
       resources :api_keys, except: [:show, :edit, :update]
-      resources :notification_tokens, except: [:show, :edit, :update]
+      resources :notification_tokens, except: [:show, :update]
       resources :groups
       resources :tags
     end

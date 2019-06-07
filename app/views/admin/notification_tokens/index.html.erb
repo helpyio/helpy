@@ -12,15 +12,15 @@
 
   <div class="col-md-12">
 
-    <table id="forums" class="api_keys table-hover">
+    <table id="forums" class="notification_keys table-hover">
       <col width="15%">
       <col width="40%">
       <col width="40%">
       <col width="5%">
       <thead>
         <tr>
-          <td class="tiny-header"><%= t('key_name', default: 'Device Description') %></td>
-          <td class="tiny-header"><%= t('token', default: 'Token') %></td>
+          <td class="tiny-header"><%= t('device_description', default: 'Device Description') %></td>
+          <td class="tiny-header"><%= t('device_token', default: 'Token') %></td>
         </tr>
       </thead>
       <%= render partial: 'notification_token', collection: @notification_tokens %>
