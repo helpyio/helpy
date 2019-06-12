@@ -35,7 +35,7 @@ class PostMailer < ActionMailer::Base
       from: @topic.from_email_address,
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
-    @topic.user.send_firebase_notifications("Ticket Updated", @topic.posts.last.body.truncate(30))
+    @topic.user.send_firebase_notifications("Ticket Updated", @topic.posts.last.body.truncate(256))
 
   end
 end
