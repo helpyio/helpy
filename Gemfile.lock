@@ -520,7 +520,7 @@ GEM
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
-    scout_apm (2.4.24)
+    scout_apm (2.5.1)
     scss-lint (0.38.0)
       rainbow (~> 2.0)
       sass (~> 3.4.1)
