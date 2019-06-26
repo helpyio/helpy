@@ -289,7 +289,7 @@ GEM
       nokogiri
     io-like (0.3.0)
     ipaddress (0.8.3)
-    jaro_winkler (1.5.2)
+    jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
     jquery-fileupload-rails (1.0.0)
@@ -501,7 +501,7 @@ GEM
     route_translator (4.4.1)
       actionpack (>= 3.2, < 5.0)
       activesupport (>= 3.2, < 5.0)
-    rubocop (0.71.0)
+    rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
