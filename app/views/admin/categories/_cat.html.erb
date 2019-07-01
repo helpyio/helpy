@@ -26,3 +26,8 @@
     </div>
   </div>
 </div>
+  <% cat.children.each do |child| %>
+    <div style="margin-left: 20px;">
+      <%= render partial: 'admin/categories/cat', object: child %>
+    </div>
+  <% end %>
