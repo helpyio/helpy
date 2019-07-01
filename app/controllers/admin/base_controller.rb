@@ -116,14 +116,15 @@ class Admin::BaseController < ApplicationController
       topics = Topic.all
       @admins = User.agents.includes(:topics)
     end
-    @new = topics.unread.count
-    @unread = topics.unread.count
-    @pending = Topic.mine(current_user.id).pending.count
-    @open = topics.open.count
-    @active = topics.active.count
-    @mine = Topic.active.mine(current_user.id).count
+    @new = topics.unread.size
+    @unread = topics.unread.size
+    @pending = Topic.mine(current_user.id).pending.size
+    @open = topics.open.size
+    @active = topics.active.size
+    @mine = Topic.active.mine(current_user.id).size
     # @closed = topics.closed.count
-    # @spam = topics.spam.count
+    @spam = topics.spam.size
+    @trash = topics.trash.size
   end
 
   def set_categories_and_non_featured
