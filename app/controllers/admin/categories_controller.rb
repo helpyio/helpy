@@ -57,6 +57,25 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
+  def set_parent
+    @child = Category.find(params[:id])
+    if params[:parent_id].present?
+      @parent = Category.find(params[:parent_id]) || nil
+      @child.parent_id = @parent.id
+    else
+      @child.parent_id = nil
+    end
+
+    if @child.save
+      @public_categories = Category.roots.publicly.featured.ordered.includes(:docs)
+      respond_to do |format|
+        format.html {
+          render partial: 'cat', collection: @public_categories
+        }
+      end
+    end
+  end
+
   private
 
   def category_params

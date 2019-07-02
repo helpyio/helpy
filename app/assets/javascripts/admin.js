@@ -53,23 +53,48 @@ Helpy.admin = function(){
     }
   });
 
-  // $('.settings-link').off().on('click', function(){
-  //   // Clean up any select-styled links
-  //   $('.settings-link').removeClass('active-settings-link');
-  //
-  //   // Hide and show the grid/panels
-  //   $('.settings-grid').addClass('hidden');
-  //   $('.settings-panel').removeClass('hidden');
-  //
-  //   var $this = $(this);
-  //   var showthis = $this.data('target');
-  //   $('a[data-target=' + showthis + ']').addClass('active-settings-link');
-  //   $('.settings-section').addClass('hidden');
-  //   $('.settings-section.' + showthis).removeClass('hidden');
-  //   $('.agent-header').addClass('hidden');
-  //   $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
-  //   return false;
-  // });
+  $('div.adoptable').draggable({revert: 'invalid'});
+  $('div.adoptable').droppable({
+    classes: {
+      "ui-droppable-hover": "ui-state-hover"
+    },
+    drop: function (event, ui) {
+      var parentId = $(this).attr('id').split('-')[1];
+      var childId = ui.draggable.data('obj-id');
+      //var $parentRow = $(this).parent();
+      //var $childRow = ui.draggable.parent();
+      $.ajax({
+        type: 'PATCH',
+        url: '/admin/categories/' + childId + '/set_parent',
+        dataType: 'json',
+        data: { id: childId, parent_id: parentId, remote: true },
+        complete: function (data) {
+          $('.front-categories').html(data.responseText);
+          Helpy.ready();
+          Helpy.track();
+          Helpy.admin();
+        }
+      });
+    }
+  });
+
+  $('.settings-link').off().on('click', function(){
+    // Clean up any select-styled links
+    $('.settings-link').removeClass('active-settings-link');
+  
+    // Hide and show the grid/panels
+    $('.settings-grid').addClass('hidden');
+    $('.settings-panel').removeClass('hidden');
+  
+    var $this = $(this);
+    var showthis = $this.data('target');
+    $('a[data-target=' + showthis + ']').addClass('active-settings-link');
+    $('.settings-section').addClass('hidden');
+    $('.settings-section.' + showthis).removeClass('hidden');
+    $('.agent-header').addClass('hidden');
+    $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
+    return false;
+  });
 
   // You have to delegate this to the document or it does not work reliably
   // See http://stackoverflow.com/questions/18545941/jquery-on-submit-event

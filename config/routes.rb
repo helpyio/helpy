@@ -145,6 +145,7 @@ Rails.application.routes.draw do
 
     resources :categories do
       resources :docs, except: [:index, :show]
+      patch 'set_parent' => 'categories#set_parent', as: :set_parent
     end
 
 

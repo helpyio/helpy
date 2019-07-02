@@ -12,6 +12,11 @@ $(document).ready(function(){
 });
 </script>
 
+<style>
+.ui-droppable-hover, .ui-state-hover {
+  border: 1px solid #ccc;
+}
+</style>
 
 
 <div class="row">
@@ -31,9 +36,13 @@ $(document).ready(function(){
           <%= t(:front_page_categories, default: 'Front Page Categories') %>
         </div>
       </div>
-      <div class="sortable">
+      <div id="root-" style="margin-top: 40px; border: 2px dashed #eee; height: 40px;" class="make-root adoptable">
+      </div>
+
+      <div class="sortable front-categories">
         <%= render partial: 'cat', collection: @public_categories %>
       </div>
+
     </div>
 
     <div class="settings-section">
