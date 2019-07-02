@@ -183,7 +183,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     email_reply_trimmer (0.1.12)
     equalizer (0.0.11)
-    equatable (0.6.0)
+    equatable (0.6.1)
     erubi (1.8.0)
     erubis (2.7.0)
     excon (0.64.0)
