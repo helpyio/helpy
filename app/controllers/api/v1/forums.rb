@@ -33,7 +33,7 @@ module API
         end
         get ":id", root: "forum" do
           forum = Forum.where(id: permitted_params[:id]).first!
-          present forum, with: Entity::Forum, topics: true
+          present forum, with: Entity::Forum, topics: true, topics_limit: permitted_params[:topics_limit]
         end
 
         # CREATE NEW FORUM
