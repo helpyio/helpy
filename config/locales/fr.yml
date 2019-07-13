@@ -5,7 +5,7 @@ fr:
   root: &root "Accueil"
   how_can_we_help: "Comment pouvons-nous aider?"
   browse_topics: "Parcourir"
-  support_team: "Equipe Support"
+  support_team: "Equipe de support"
   nothing_here: "Rien à voir ici !"
 
   # Navigation
@@ -17,7 +17,7 @@ fr:
   logout: "Déconnexion"
   register: "S'inscrire"
   back_to: "Retourner sur"
-  welcome_back: "Bienvenue à nouveau %{username}"
+  welcome_back: "Re-bonjour %{username}"
   your_profile: "Votre profil"
   your_tickets: "Vos tickets"
   locale: "Langue"
@@ -50,7 +50,7 @@ fr:
   submit_reply: "Soumettre une réponse"
   posted: "Posté"
   start_discussion: "Démarrer une nouvelle discussion"
-  submit_start_discussion: "Lancer la discussion "
+  submit_start_discussion: "Lancer la discussion"
   should_message_be_private: "Ce message est-il privé?"
   only_support_can_respond: "Seul le support peut répondre (crée un ticket privé)"
   responses_can_come_from_everyone: "Les réponses peuvent venir du support ou de la communauté (recommandé)"
@@ -119,7 +119,7 @@ fr:
   model_destroyed: "%{object_name} was deleted"
 
   # Admin menu
-  inbox: Boîte de Messagerie
+  inbox: Boîte de réception
   discussions: Tickets
   content: Contenu
   communities: "Communautés"
