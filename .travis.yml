@@ -24,7 +24,7 @@ script:
   # Brakeman security scanner
   - bundle exec brakeman -z
   # Check vulnerable gems
-  - bundle exec bundle-audit check --update
+  - bundle exec bundle-audit check --update --ignore CVE-2015-9284
   # Rubocop static code analyzer
   - bundle exec rubocop
   # SCSS analyzer

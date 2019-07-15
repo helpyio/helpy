@@ -55,6 +55,7 @@ gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'devise_invitable'
 gem 'omniauth'
+gem "omniauth-rails_csrf_protection" # TODO: remove once https://github.com/omniauth/omniauth/pull/809 is resolved
 gem 'omniauth-github'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
