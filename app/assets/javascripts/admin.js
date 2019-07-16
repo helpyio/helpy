@@ -33,6 +33,7 @@ Helpy.admin = function(){
     items: '.item',
     axis: 'y',
     cursor: 'move',
+    //containment: ".front-categories" ,
     sort: function(event, ui) {
       ui.item.addClass('active-item-shadow');
     },
@@ -53,16 +54,17 @@ Helpy.admin = function(){
     }
   });
 
-  $('div.adoptable').draggable({revert: 'invalid'});
-  $('div.adoptable').droppable({
+  $('div.adoptable').sortable({
+    revert: true,
+  });
+  $('div.category-row').droppable({
     classes: {
-      "ui-droppable-hover": "ui-state-hover"
+      "ui-droppable-hover": "ui-state-active"
     },
+    tolerance: "intersect",
     drop: function (event, ui) {
-      var parentId = $(this).attr('id').split('-')[1];
+      var parentId = $(this).data('obj-id');
       var childId = ui.draggable.data('obj-id');
-      //var $parentRow = $(this).parent();
-      //var $childRow = ui.draggable.parent();
       $.ajax({
         type: 'PATCH',
         url: '/admin/categories/' + childId + '/set_parent',
@@ -77,6 +79,16 @@ Helpy.admin = function(){
       });
     }
   });
+
+  $('.adoptable').off().on('mousein', function(){
+    // $(this).next('.move-down').show();
+    // $('#root-').show();
+  });
+  $('.adoptable').off().on('mouseout', function(){
+    // $(this).next('.move-down').hide();
+    // $('#root-').hide();
+  });
+
 
   $('.settings-link').off().on('click', function(){
     // Clean up any select-styled links

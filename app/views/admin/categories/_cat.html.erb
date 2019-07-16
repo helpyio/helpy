@@ -1,5 +1,5 @@
-<div id="category-<%= cat.id %>" class="item clearfix adoptable" data-obj-id='<%= "#{cat.id}" %>' data-obj='category' style="padding-bottom: 0;">
-  <div class="row vcenter hoversort border-bottom" style="padding-bottom: 10px;">
+<div id="category-<%= cat.id %>" class="item category-item clearfix adoptable ui-state-default" data-obj-id='<%= "#{cat.id}" %>' data-obj='category' style="padding-bottom: 0;">
+  <div class="category-row row vcenter hoversort border-bottom" style="padding-bottom: 10px;" data-obj-id='<%= "#{cat.id}" %>'>
     <div class="text-left col-md-7 col-sm-11 col-xs-10 <%= 'grayout' unless cat.active? %>">
       <%= content_tag :span, class: 'more-important' do
           cat.ancestors.count.times do
@@ -45,8 +45,6 @@
   </div>
 
   <% cat.children.each do |child| %>
-    <!-- <div style="margin-left: 5px;" class="col-md-12"> -->
-      <%= render partial: 'admin/categories/cat', object: child %>
-    <!-- </div> -->
+    <%= render partial: 'admin/categories/cat', object: child %>
   <% end %>
 </div>

@@ -48,7 +48,7 @@ class Category < ActiveRecord::Base
   scope :internally, -> { where(visibility: INTERNAL_VIEWABLE) }
   scope :only_internally, -> { where(visibility: 'internal') }
   scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
-  after_commit :rebuild_search, only: [:update, :destroy]
+  # after_commit :rebuild_search, only: [:update, :destroy]
 
   include RankedModel
   ranks :rank

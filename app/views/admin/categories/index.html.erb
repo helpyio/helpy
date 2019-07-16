@@ -16,6 +16,9 @@ $(document).ready(function(){
 .ui-droppable-hover, .ui-state-hover {
   border: 1px solid #ccc;
 }
+.ui-state-active {
+  border: 2px solid black;
+}
 </style>
 
 
@@ -36,7 +39,7 @@ $(document).ready(function(){
           <%= t(:front_page_categories, default: 'Front Page Categories') %>
         </div>
       </div>
-      <div id="root-" style="margin-top: 40px; border: 2px dashed #eee; height: 40px;" class="make-root adoptable">
+      <div id="root-" style="margin-top: 40px; border: 2px dashed #eee; height: 40px;" class="make-root category-row">
       </div>
 
       <div class="sortable front-categories">
