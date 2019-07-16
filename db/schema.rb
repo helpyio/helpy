@@ -338,6 +338,7 @@ ActiveRecord::Schema.define(version: 20190513145733) do
     t.string   "account_number"
     t.string   "priority",               default: "normal"
     t.text     "notes"
+    t.string   "status",                 default: "available"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

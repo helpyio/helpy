@@ -117,6 +117,7 @@ class User < ActiveRecord::Base
   scope :by_role, -> (role) { where(role: role) }
   scope :active_first, -> { order('updated_at desc') }
   scope :alpha, -> { order('name asc') }
+  scope :available, -> { where(status: 'available') }
 
   def set_role_on_invitation_accept
     self.role = self.role.presence || "agent"
