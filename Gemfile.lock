@@ -426,8 +426,8 @@ GEM
       addressable
       css_parser (>= 1.6.0)
       htmlentities (>= 4.0.0)
-    premailer-rails (1.10.2)
-      actionmailer (>= 3, < 6)
+    premailer-rails (1.10.3)
+      actionmailer (>= 3)
       premailer (~> 1.7, >= 1.7.9)
     pry (0.12.2)
       coderay (~> 1.1.0)
