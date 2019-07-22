@@ -45,7 +45,7 @@ class Topic < ActiveRecord::Base
 
   paginates_per 15
 
-  include PgSearch
+  include PgSearch::Model
   multisearchable :against => [:id, :name, :post_cache],
                   :if => :public?
 
