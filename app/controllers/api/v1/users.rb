@@ -188,7 +188,7 @@ module API
           requires :id, type: Integer, desc: "User ID"
           requires :status, type: String, desc: "User/Agent status"
         end
-        patch "/status/:id/:status", root: :users do
+        patch "status/:id", root: :users do
           user = User.where(id: permitted_params[:id]).first
           user.update!(
             status: permitted_params[:status]
