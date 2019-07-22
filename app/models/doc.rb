@@ -39,7 +39,7 @@ class Doc < ActiveRecord::Base
   validates :body, presence: true
   validates :category_id, presence: true
 
-  include PgSearch
+  include PgSearch::Model
   multisearchable against: [:title, :body, :keywords],
     :if => lambda { |record| record.category.present? && record.category.publicly_viewable? && record.active && record.category.active? }
 

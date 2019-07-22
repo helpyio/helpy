@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
   include Gravtastic
   mount_uploader :profile_image, ProfileImageUploader
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :user_search,
                   against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
