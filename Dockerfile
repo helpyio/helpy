@@ -1,9 +1,9 @@
 FROM ruby:2.4
 
 ENV RAILS_ENV=production \
-    HELPY_HOME=/helpy \
+    HELPY_HOME=/app \
     HELPY_USER=helpyuser \
-    HELPY_SLACK_INTEGRATION_ENABLED=true \
+    HELPY_SLACK_INTEGRATION_ENABLED=false \
     BUNDLE_PATH=/opt/helpy-bundle
 
 RUN apt-get update \
@@ -46,4 +46,4 @@ USER $HELPY_USER
 
 COPY docker/database.yml $HELPY_HOME/config/database.yml
 
-CMD ["/bin/bash", "/helpy/docker/run.sh"]
+CMD ["/bin/bash", "/app/docker/run.sh"]
