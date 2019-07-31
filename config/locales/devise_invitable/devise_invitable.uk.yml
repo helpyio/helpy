@@ -1,4 +1,4 @@
-ua:
+uk:
   devise:
     invitations:
       send_instructions: 'Лист з запрошенням було відправлено на %{email}.'
