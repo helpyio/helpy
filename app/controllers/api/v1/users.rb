@@ -114,6 +114,7 @@ module API
           optional :active, type: Boolean, desc: "User active or deactivated", default: true
           optional :priority, type: String, desc: "Users Priority", values: ['low', 'normal', 'high', 'vip'], default: 'normal'
           optional :notes, type: String, desc: "Notes about the user"
+          optional :status, type: String, desc: "User/Agent status"
         end
         post "", root: :users do
           restrict_to_role %w(admin agent)
@@ -141,7 +142,8 @@ module API
             language: permitted_params[:language],
             active: permitted_params[:active],
             priority: permitted_params[:priority],
-            notes: permitted_params[:notes]
+            notes: permitted_params[:notes],
+            status: permitted_params[:status]
             )
           present user, with: Entity::User
         end
@@ -177,6 +179,7 @@ module API
           optional :active, type: Boolean, desc: "User active or deactivated"
           optional :priority, type: String, desc: "Users Priority- low, normal, high or vip", default: 'normal'
           optional :notes, type: String, desc: "Notes about the user"
+          optional :status, type: String, desc: "User/Agent status"
         end
         patch ":id", root: :users do
           restrict_to_role %w(admin agent)
@@ -205,7 +208,25 @@ module API
             language: permitted_params[:language],
             active: permitted_params[:active],
             priority: permitted_params[:priority],
-            notes: permitted_params[:notes]
+            notes: permitted_params[:notes],
+            status: permitted_params[:status]
+            )
+          present user, with: Entity::User
+        end
+
+        # UPDATE AGENT STATUS
+        desc "Update agents status", {
+          entity: Entity::User,
+          notes: "Update a user"
+        }
+        params do
+          requires :id, type: Integer, desc: "User ID"
+          requires :status, type: String, desc: "User/Agent status"
+        end
+        patch "status/:id", root: :users do
+          user = User.where(id: permitted_params[:id]).first
+          user.update!(
+            status: permitted_params[:status]
             )
           present user, with: Entity::User
         end

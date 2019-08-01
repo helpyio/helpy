@@ -33,5 +33,6 @@ module Entity
     expose :account_number
     expose :priority
     expose :notes
+    expose :status
   end
 end

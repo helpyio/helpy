@@ -62,7 +62,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   Devise.omniauth_providers.each do |provider|
     test "#{provider} login: is redirected to provider" do
-      get "/users/auth/#{provider}"
+      post "/users/auth/#{provider}"
       assert_response :redirect
     end
 
