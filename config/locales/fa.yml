@@ -342,6 +342,7 @@ fa:
   notify_new_private: "یک پیغام خصوصی از طرف مشتری %{user_name} دریافت شده:"
   notify_new_public: "یک پیغام عمومی از طرف مشتری %{user_name} دریافت شده:"
   notify_new_reply: "یک پاسخ از طرف مشتری %{user_name} دریافت شده:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'به این پیام با ایمیل یا از لینک مقابل پاسخ دهید:'
 
   # Notifications settings panel

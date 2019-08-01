@@ -136,7 +136,8 @@ class Admin::UsersController < Admin::BaseController
 
     respond_to do |format|
       format.html { redirect_to admin_users_path,
-        :flash => { :success => "User #{@user.name} was scheduled for permanent deletion." }}
+        flash: { success: I18n.t(:notify_user_delete, user_name: @user.name)}
+      }
       format.js { }
     end
   end

@@ -347,6 +347,7 @@ de:
   notify_new_private: "Eine neue private Kundennachricht wurde von %{user_name} empfangen:"
   notify_new_public: "Eine neue öffentliche Kundennachricht wurde von %{user_name} veröffentlicht:"
   notify_new_reply: "Eine neue Kundenantwort wurde von %{user_name} empfangen:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Antworte direkt oder online auf diese Nachricht:'
 
   # Notifications settings panel
