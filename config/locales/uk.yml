@@ -1,4 +1,4 @@
-# MAINTAINER: SERHII KOLESNIKOV
+# MAINTAINER: Serhii Kolesnikov
 
 uk:
   language_name: 'Українська' # The name of the translation file, in that language
@@ -105,7 +105,7 @@ uk:
   # devise/passwords/edit
   change_password: Змінити пароль
   new_password: Новий пароль
-  new_password_confirmation: Підтвердіт новий пароль
+  new_password_confirmation: Підтвердіть новий пароль
 
   # devise/confirmations/new
   resend: Надіслати інструкції підтвердження ще раз
@@ -151,15 +151,15 @@ uk:
   unassigned: відкріплено
   no_team_assigned: Закріплено за командою
   assign_to: Група/Команда
-  unassign_from_team: Unassign Team
+  unassign_from_team: Не закріплено за командою
   private: приватний
   public: публічний
   save_changes: Зберегти зміни
   merge: Об'єднати
   merge_confirm: Ви впевнені, що хочете об'єднати ці тікети?
   customer_conversation: Customer Conversation
-  internal_ticket: Internal Ticket
-  unassign_agent: Unassign Agent
+  internal_ticket: Внутрішні тікети
+  unassign_agent: Незакріплені агенти
 
   # Discussion controls
   change_status: Змінити статус
@@ -169,14 +169,14 @@ uk:
   mark_spam: Позначити як спам
   mark_new: Позначити як нову
   assign_agent: &assign_agent Закріпити агента
-  tag_with: &tag_with  Tag Ticket
+  tag_with: &tag_with  Тег тікета
   selected_messages:
     one: "1 вибране повідомлення"
     two: "2 вибраних повідомлень"
     other: "%{count} вибраних повідомлень"
   mark_as: "Позначити"
   move_to: "Перемістити до"
-  users_history: "%{role}'s full history"
+  users_history: "Повна історія %{role}"
 
   # Discussion messages
   new_message: "Це повідомлення позначено як нове співробітниками підтримки"
@@ -189,7 +189,7 @@ uk:
   assigned_group: "Це повідомлення прикріплене до %{assigned_group}."
   converted_to_ticket: "Це обговорення було переміщено до приватних."
   converted_to_topic: "Це повідомлення було переведено до відкритих обговорень і переміщено до %{forum_name}."
-  tagged_with: "This ticket was tagged with %{tagged_with}"
+  tagged_with: "Цей тікет притегований з %{tagged_with}"
   notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
   topic_added_from: "%{kind} added from %{channel}"
 
@@ -235,39 +235,39 @@ uk:
   show_on_helpcenter: "Показати в центрі підтримки"
   show_on_admin: "Показати в адмінів"
   email_address: "Електронна пошта"
-  from_name: "From Name"
+  from_name: "З назви"
 
   # Keyboard Shortcuts
-  shortcut_then: "then"
-  listing_views: "Listing views"
-  keyboard_shortcuts: "Keyboard Shortcuts"
-  show_new_tickets: "Show new tickets"
-  show_all_tickets: "Show all tickets"
-  show_open_tickets: "Show open tickets"
-  show_tickets_assigned_to_you: "Show tickets assigned to you"
-  show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
-  show_closed_tickets: "Show closed tickets"
-  search_for_tickets: "Search for tickets"
-  viewing_tickets: "View tickets"
-  select_previous_ticket: "Select previous ticket"
-  select_next_ticket: "Select next ticket"
-  view_selected_ticket: "View selected ticket"
-  jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
-  ticket_actions: "Ticket actions"
-  assign_the_ticket: "Assign ticket"
-  move_the_ticket: "Move ticket"
-  expand_the_ticket_thread: "Expand ticket thread"
-  reply_to_the_ticket: "Reply to the ticket"
-  add_an_internal_note: "Add an internal note"
-  change_ticket_status: "Change ticket status"
-  associate_with_a_group: "Associate with a group"
-  ticket_status: "Ticket status"
-  mark_resolved: "Close Ticket"
-  reopen_ticket: "Reopen ticket"
-  set_to_new: "Mark as new"
-  mark_as_spam: "Mark as spam"
-  move_to_trash: "Move to trash"
-  ticket_number: "ticket number"
+#  shortcut_then: "then"
+#  listing_views: "Listing views"
+#  keyboard_shortcuts: "Keyboard Shortcuts"
+#  show_new_tickets: "Show new tickets"
+#  show_all_tickets: "Show all tickets"
+#  show_open_tickets: "Show open tickets"
+#  show_tickets_assigned_to_you: "Show tickets assigned to you"
+#  show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
+#  show_closed_tickets: "Show closed tickets"
+#  search_for_tickets: "Search for tickets"
+#  viewing_tickets: "View tickets"
+#  select_previous_ticket: "Select previous ticket"
+#  select_next_ticket: "Select next ticket"
+#  view_selected_ticket: "View selected ticket"
+#  jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
+#  ticket_actions: "Ticket actions"
+#  assign_the_ticket: "Assign ticket"
+#  move_the_ticket: "Move ticket"
+#  expand_the_ticket_thread: "Expand ticket thread"
+#  reply_to_the_ticket: "Reply to the ticket"
+#  add_an_internal_note: "Add an internal note"
+#  change_ticket_status: "Change ticket status"
+#  associate_with_a_group: "Associate with a group"
+#  ticket_status: "Ticket status"
+#  mark_resolved: "Close Ticket"
+#  reopen_ticket: "Reopen ticket"
+#  set_to_new: "Mark as new"
+#  mark_as_spam: "Mark as spam"
+#  move_to_trash: "Move to trash"
+#  ticket_number: "ticket number"
 
   # User search results
   users_found:
@@ -326,7 +326,6 @@ uk:
 
   # Internal Content
   no_internal_content_title: "Ще немає внутрішньої документації!"
-#  no_internal_content_text: "Dont worry ! To contribute with the internal documentation, go to Helpcenter > Content. And add a new Internal type of Category, then share your knowledge with your team writing some Docs!"
   no_internal_content_text: "Не хвилюйтеся! Щоб внести свій внесок у внутрішню документацію, перейдіть до Helpcenter> Content. Додайте новий внутрішній тип Категорії, а потім поділіться своїми знаннями з командою, написавши деякі Документи!"
 
   # Communities
@@ -341,7 +340,7 @@ uk:
   new_user_subject: "Ласкаво просимо до %{site_name}"
   hello: "Привіт %{user_name}"
   thank_you: "Дякую!"
-  new_user: "Your message has been received by our support team and we will be in touch with you shortly with a response. Дякую, що зв'язались з нами. Ваше повідомлення отримано нашої командою підтримки і ми відповімо Вам найближчим часом"
+  new_user: "Дякую, що зв'язались з нами. Ваше повідомлення отримано нашої командою підтримки і ми відповімо Вам найближчим часом"
   account_generated: "Для Вас згенерований обліковий запис. Щоб увійти будь ласка використайте це посилання:"
   above_this_line: "Переконайтесь, щоб Ваша відповідь з'явиться вище цієї лінії"
   message_id: "ID повідомлення"
@@ -371,23 +370,23 @@ uk:
   design: "Зовнішній вигляд"
   design_description: "Керуйте логотипами, кольорами та іншими дизайнерськими аспектами Helpy"
   international: "Локалізація"
-#  international_description:
+  international_description:
   widget: "Інтегруємий віджет"
-#  widget_description:
+  widget_description:
   common_replies: "Загальні відповіді"
-#  common_replies_description:
+  common_replies_description:
   integrations: "Інтеграції"
-#  integrations_description:
-#  theme:
-#  theme_description:
+  integrations_description:
+  theme:
+  theme_description:
   email: "Email"
-#  email_description:
+  email_description:
   customers: "Клієнти"
-#  users_description:
+  users_description:
   team: "Команда"
-#  users_description:
+  users_description:
   team_group: "Групи команди"
-#  group_description:
+  group_description:
 
   # General
   site_name: Назва сайту
@@ -403,11 +402,11 @@ uk:
 
   # Design
   header_logo: Головний логотип
-  search_background: Search Background Color
-  top_bar: Header Accent Color
-  link_color: Link Color
-  form_background: Form Background Color
-#  still_need_help:
+  search_background: Колір фону пошуку
+  top_bar: Коліп верхньої панелі
+  link_color: Колір посилання
+  form_background: Колір фону форми
+  still_need_help:
 
   # Locales
   supported_locales: Мови, що підтримуються
@@ -421,8 +420,8 @@ uk:
   button_text_color: Віджет кольору тексту
 
   # Integrations
-  incoming_webhook: Вхідні webhook
-  incoming_webhook_description: Створити тікет з існуючої вебформи шляхом надсилання POST-запиту на JSON webhook URL. Ваш таємний URL 
+  incoming_webhook: Вхідний webhook
+  incoming_webhook_description: Створити тікет з існуючої вебформи шляхом надсилання POST-запиту на JSON webhook URL. Ваш таємний URL
   enable_webhook_url: Увімкнути вхідні Webhooks
   google_analytics: Google Analytics
   google_analytics_description: Надіслати статистику користування Helpdesk на Google Analytics для звітності та візуалізації.
@@ -434,18 +433,18 @@ uk:
   recaptcha_site_key: Recaptcha Site Key
   recaptcha_api_key: Recaptcha API Key
   cloudinary_integration: Cloudinary
-  cloudinary_description: Cloudinary offers image hosting and transformation services.
-  enable_cloudinary: Enable Cloudinary
+  cloudinary_description: Cloudinary пропонує послуги розміщення та трансформації сервісів.
+  enable_cloudinary: Увімкнути Cloudinary
   cloudinary_cloud_name: Cloudinary Cloud Name
   cloudinary_api_key: Cloudinary API Key
   cloudinary_api_secret: Cloudinary API Secret
 
   # Email
   mail_service: Inbound Mail Service Provider
-  send_email: Enable Outbound (SMTP) Email
+  send_email: Увімкнути Outbound (SMTP) Email
   boolean_no: Ні
   boolean_yes: Так
-  admin_email: Admin Email
+  admin_email: Email адміністратора
   from_email: З Email
   smtp_mail_username: SMTP Username
   smtp_mail_password: SMTP Password
@@ -464,9 +463,9 @@ uk:
   spec_note: "You can read and test out an interactive API spec at: "
 
   # Insights
-  activity_report: ""
-  team_insights: "Team Insights"
-  filter_by_date: "Filter by date"
+  activity_report: "Звіт про активність"
+  team_insights: "Інформація про команду"
+  filter_by_date: "Фільтрувати за датою"
   today: "Сьогодні"
   yesterday: "Вчора"
   this_week: "Цього тижня"
@@ -480,8 +479,8 @@ uk:
   insights_blurb_one:
     one: "<strong>%{period}</strong> ваші користувачі відкривали 1 новий тікет"
     other: "<strong>%{period}</strong> ваші користувачі відкривали <strong>%{count} новий тікетів</strong>"
-  insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three_html_html: "with a median response time of <strong>%{response_time}</strong>"
+  insights_blurb_two: "з яких відповіла ваша команда <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three_html_html: "з середнім часом на відповідь <strong>%{response_time}</strong>"
   no_discussions: "Не відкрито новий тікетів <strong>%{period}</strong>"
   assigned_topics: "Закріплені тікети"
   responded: "Відповів"
@@ -524,7 +523,7 @@ uk:
   error_details: 'Деталі помилки'
   row_number: 'Кількість рядків'
   error_message: 'Повідомлення про помилку'
-  object: 'Об'єкт'
+  object: 'Об`єкт'
   import_details: '#%{id} Деталів імпорту'
   select_for_export: 'Екпорт %{model} у .csv'
   file_date_created: Створена дата
@@ -551,19 +550,19 @@ uk:
         state: Область
         zip: Індекс
         signature: Підпис
- #       title:
+        title:
         time_zone:
         street: Вулиця
         notes: Примітка
       topic:
-        kind: *type
+        kind: *kind
         name: *subject
         channel: Канал
         team_list: Група
         priority: *priority
         current_status: *status
         assigned_user_id: *assign_agent
-        tag_list: Tag List
+        tag_list: Список тегів
       post:
         kind: *kind
         body: Повідомлення
@@ -603,8 +602,8 @@ uk:
       submit:
         topic:
           create: Розпочати нове обговорення
-#        post:
-#          create:
+        post:
+          create:
 
   breadcrumbs:
     application:
