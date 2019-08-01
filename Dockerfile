@@ -23,13 +23,6 @@ COPY vendor $HELPY_HOME/vendor
 RUN chown -R $HELPY_USER $HELPY_HOME
 
 USER $HELPY_USER
-
-
-# add the slack integration gem to the Gemfile if the HELPY_SLACK_INTEGRATION_ENABLED is true
-# use `test` for sh compatibility, also use only one `=`. also for sh compatibility
-RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
-    && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
-
 RUN bundle install --without test development
 
 # manually create the /helpy/public/assets and uploads folders and give the helpy user rights to them
