@@ -34,8 +34,10 @@ uk:
   search_placeholder: "Введіть ключове слово, тему, або питання"
   no_results: "Нічого не знайдено, будь ласка спробуйте іще!"
   results_found:
+    zero: "Нічого не знайдено по запиту "
     one: "один елемент знайдено по запиту "
-    other: "%{count} результатів знайдено по Вашому запиту "
+    few: "%{count} елемента знайдено по запиту"
+    many: "%{count} елементів знайдено по запиту "
 
   # Community
   forum_name: "Топік"
@@ -52,12 +54,13 @@ uk:
   start_discussion: "Розпочати нове обговорення"
   submit_start_discussion: "Створити обгаворення"
   should_message_be_private: "Це повідомлення має бути приватним?"
-  only_support_can_respond: "Тільки підтримка може відповісти (створюється приватний тікет)"
+  only_support_can_respond: "Тільки підтримка може відповісти (створюється приватна заявка)"
   responses_can_come_from_everyone: "Відповісти може як підтримка так і спільнота (рекомендовано)"
   collapsed_messages:
-      one: "1 згорнуте повідомлення"
-      two: "2 згорнутих повідомлень"
-      other: "%{count} згорнутих повідомлень"
+    zero: ''
+    one: "1 згорнуте повідомлення"
+    few: "%{count} згорнутих повідомлень"
+    many: "%{count} згорнутих повідомлень"
 
   # Knowledgebase
   written_by: "Автор"
@@ -66,15 +69,15 @@ uk:
   asked_before: "Раніше була відповідь на Ваше питання? Ми вважаємо, що вони схожі"
 
   # Tickets
-  tickets: &tickets "Тікети"
-  no_tickets: "Ви ще не створювали тікетів"
-  ticket_number: "Номер тікета"
+  tickets: &tickets "Заявки"
+  no_tickets: "Ви ще не створювали заявок"
+  ticket_number: "Номер заявки"
   assigned_to_label: "Закріплено за"
   created_on: "Створено"
 
   # Get Help
   get_help_header: "Все ще необхідна допомога?"
-  get_help_button: "Відкрити тікет"
+  get_help_button: "Відкрити заявку"
 
   # Profile
   my_profile: 'Мій профіль'
@@ -83,9 +86,9 @@ uk:
   select_locale: "Змінити мову"
 
   # footer
-  powered_by: "Powered by Helpy. An Open Source Helpdesk."
-  get_your_copy: "Grab your copy on GitHub"
-  version: "Version:"
+  powered_by: "Створено Helpy. Служба підтримки з відкритим кодом."
+  get_your_copy: "Візьміть Вашу копію на GitHub"
+  version: "Версія:"
 
   # flag
   flag_for_review: "Flag for Review"
@@ -120,34 +123,34 @@ uk:
 
   # Admin menu
   inbox: Вхідні
-  discussions: Тікети
+  discussions: Заявки
   content: Категорії
   communities: Спільнота
   app_store: Додатки
   search: Пошук
   internal_content: Внутрішні категорії
-  new_ticket: Новий тікет
+  new_ticket: Нова заявка
   reports: Звіти
   helpcenter: "Центр допомоги"
   get_help: "Допомога"
   report_bug: "Звіт про помилку"
   suggest_feature: "Запропонувати покращення"
-  shortcuts: "клавіатурні скорочення"
+  shortcuts: "Клавіатурні скорочення"
   sponsors: "Спонсори"
 
   # Admin main/statuses
-  support_pipeline: Support Pipeline
-  new: Новий
+  support_pipeline: Підтримка конвеєру
+  new: Нові
   active: Всі
-  open: Відкритий
-  mine: Мій
-  pending: Очікується
-  closed: &closed Закритий
+  open: Відкриті
+  mine: Мої
+  pending: Очікуються
+  closed: &closed Закриті
   spam: Спам
   trash: Смітник
-  discussion_managment: Управління тікетами
-  open_new_discussion: Новий тікет
-  assigned_to: "закріпити за %{agent}"
+  discussion_managment: Управління заявками
+  open_new_discussion: Нова заявка
+  assigned_to: "закріплено за %{agent}"
   unassigned: відкріплено
   no_team_assigned: Закріплено за командою
   assign_to: Група/Команда
@@ -156,9 +159,9 @@ uk:
   public: публічний
   save_changes: Зберегти зміни
   merge: Об'єднати
-  merge_confirm: Ви впевнені, що хочете об'єднати ці тікети?
-  customer_conversation: Customer Conversation
-  internal_ticket: Внутрішні тікети
+  merge_confirm: Ви впевнені, що хочете об'єднати ці заявки?
+  customer_conversation: Спілкування з клієнтами
+  internal_ticket: Внутрішні заявки
   unassign_agent: Незакріплені агенти
 
   # Discussion controls
@@ -169,11 +172,12 @@ uk:
   mark_spam: Позначити як спам
   mark_new: Позначити як нову
   assign_agent: &assign_agent Закріпити агента
-  tag_with: &tag_with  Тег тікета
+  tag_with: &tag_with  Тег заявки
   selected_messages:
     one: "1 вибране повідомлення"
     two: "2 вибраних повідомлень"
-    other: "%{count} вибраних повідомлень"
+    few: "%{count} вибраних повідомлень"
+    many: "%{count} вибраних повідомлень"
   mark_as: "Позначити"
   move_to: "Перемістити до"
   users_history: "Повна історія %{role}"
@@ -189,9 +193,9 @@ uk:
   assigned_group: "Це повідомлення прикріплене до %{assigned_group}."
   converted_to_ticket: "Це обговорення було переміщено до приватних."
   converted_to_topic: "Це повідомлення було переведено до відкритих обговорень і переміщено до %{forum_name}."
-  tagged_with: "Цей тікет притегований з %{tagged_with}"
-  notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
-  topic_added_from: "%{kind} added from %{channel}"
+  tagged_with: "Ця заявка притегована з %{tagged_with}"
+  notes_hidden: "Є %{hidden_notes} внутрішніх записів для цієї заявки. Ви можете переглянути їх натисненням будь-де у цьому записі!"
+  topic_added_from: "%{kind} доданий із %{channel}"
 
   # User Admin
   users: &users Користувачі
@@ -202,11 +206,11 @@ uk:
   delete_user: Видалити користувача
   work_phone: робочий номер
   cell_phone: стільниковий номер
-  last_seen: "Last Seen"
-  scrub_user: "Anonymize User"
-  anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
-  delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
-  click_to_edit: click to edit %{what}
+  last_seen: "Востаннє був"
+  scrub_user: "Анонімувати користувача"
+  anonymize_user_warning: "Ви впевнені, що хочете анонімувати користувача %{user_name}? Це дозволить назавжди анонімувати особисті дані користувача, але збереже всі його заявки та публічні пости."
+  delete_user_warning: "Ви впевнені, що хочете видалити користувача %{user_name}? Це назавжди видалить користувача та всі його заявки, публікації, відповіді та теми форуму."
+  click_to_edit: натисніть для редагування %{what}
 
   # Priorities
   select_priority: &priority Оберіть пріоритет
@@ -238,41 +242,43 @@ uk:
   from_name: "З назви"
 
   # Keyboard Shortcuts
-#  shortcut_then: "then"
-#  listing_views: "Listing views"
-#  keyboard_shortcuts: "Keyboard Shortcuts"
-#  show_new_tickets: "Show new tickets"
-#  show_all_tickets: "Show all tickets"
-#  show_open_tickets: "Show open tickets"
-#  show_tickets_assigned_to_you: "Show tickets assigned to you"
-#  show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
-#  show_closed_tickets: "Show closed tickets"
-#  search_for_tickets: "Search for tickets"
-#  viewing_tickets: "View tickets"
-#  select_previous_ticket: "Select previous ticket"
-#  select_next_ticket: "Select next ticket"
-#  view_selected_ticket: "View selected ticket"
-#  jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
-#  ticket_actions: "Ticket actions"
-#  assign_the_ticket: "Assign ticket"
-#  move_the_ticket: "Move ticket"
-#  expand_the_ticket_thread: "Expand ticket thread"
-#  reply_to_the_ticket: "Reply to the ticket"
-#  add_an_internal_note: "Add an internal note"
-#  change_ticket_status: "Change ticket status"
-#  associate_with_a_group: "Associate with a group"
-#  ticket_status: "Ticket status"
-#  mark_resolved: "Close Ticket"
-#  reopen_ticket: "Reopen ticket"
-#  set_to_new: "Mark as new"
-#  mark_as_spam: "Mark as spam"
-#  move_to_trash: "Move to trash"
-#  ticket_number: "ticket number"
+  shortcut_then: "та"
+  listing_views: "Огляд заявок"
+  keyboard_shortcuts: "Клавіатурні скорочення"
+  show_new_tickets: "Показати нові заявки"
+  show_all_tickets: "Показати всі заявки"
+  show_open_tickets: "Показати відкриті заявки"
+  show_tickets_assigned_to_you: "Показати заявки, які прикріплені до Вас"
+  show_pending_tickets_assigned_to_you: "Показати заявки, що очікуються і прикріплені до Вас"
+  show_closed_tickets: "Показати закриті заявки"
+  search_for_tickets: "Шукати заявки"
+  viewing_tickets: "Навгація по заявкам"
+  select_previous_ticket: "Обрати попередню заявку"
+  select_next_ticket: "Обрати наступну заявку"
+  view_selected_ticket: "Переглянути обрану заявку"
+  jump_to_a_specific_ticket_number: "Перейти до визначеного номеру заявки"
+  ticket_actions: "Дії з заявкою"
+  assign_the_ticket: "Прикріпити заявку"
+  move_the_ticket: "Перемістити заявку"
+  expand_the_ticket_thread: "Розгорнути дерево заявок"
+  reply_to_the_ticket: "Відповісти на заявку"
+  add_an_internal_note: "Додати внутрішній запис"
+  change_ticket_status: "Змінити статус заявки"
+  associate_with_a_group: "Асоціювати із групою"
+  ticket_status: "Статус заявки"
+  mark_resolved: "Закрити заявку"
+  reopen_ticket: "Відкрити знову заявку"
+  set_to_new: "Позначити як новий"
+  mark_as_spam: "Позначити як спам"
+  move_to_trash: "Перемістити до корзини"
+  ticket_number: "Номер заявки"
 
   # User search results
   users_found:
+    zero: 'Користувачів не знайдено'
     one: "1 користувач знайдений по запиту %{query}"
-    other: "%{count} користувачів знайдено по запиту %{query}"
+    few: "%{count} користувача знайдено по запиту %{query}"
+    many: "%{count} користувачів знайдено по запиту %{query}"
 
   # Invite users
   invite_users: "Запросити нового користувача"
@@ -286,15 +292,17 @@ uk:
   # Discussion View
   asked_a_question: "%{user_name} запитав..."
   replied: "%{user_name} відповів..."
-  posted_note: "%{user_name} опуьлікував внутрішню помітку..."
+  posted_note: "%{user_name} опублікував внутрішню помітку..."
   type_reply: Напишіть Вашу відповідь, або оберіть із загального повідомлення знизу
   select_common: Обрати загальну відповідь
   reply_option: Відповісти
   internal_note: Внутрішня помітка
   mark_as_resolved: Познатичи як вирішене
   upvote:
+    zero: "Голосувати | %{count}"
     one: "Голосувати | %{count}"
-    other: "Голосувати | %{count}"
+    few: "Голосувати | %{count}"
+    many: "Голосувати | %{count}"
 
   # Content
   new_category: Нова категорія
@@ -345,18 +353,18 @@ uk:
   above_this_line: "Переконайтесь, щоб Ваша відповідь з'явиться вище цієї лінії"
   message_id: "ID повідомлення"
   message_response: "Наступне повідомлення було розміщене як відповідь на Ваше запитання:"
-  ticket_added: "Ви отримали новий тікет. Натисніть, щоб побачити: %{ticket_link}"
-  response_added: "Відповідь було додана до вашого тікету. Натисніть, щоб побачити: %{ticket_link}"
+  ticket_added: "Ви отримали нову заявку. Натисніть, щоб побачити: %{ticket_link}"
+  response_added: "Відповідь було додана до вашої заявки. Натисніть, щоб побачити: %{ticket_link}"
   view_online: "Подивитись це онлайн:"
 
   # Admin notifications
-  notify_new_private: "Отриманий новий тікет від %{user_name}:"
+  notify_new_private: "Отримана нова заявка від %{user_name}:"
   notify_new_public: "Опубліковано нове повідомлення від %{user_name}:"
   notify_new_reply: "Отримана нова відповідь від %{user_name}:"
   to_reply: 'Відповісти на це повідомлення напряму або онлайн:'
 
   # Notifications settings panel
-  notify_on_private: "Коли отримано новий тікет"
+  notify_on_private: "Коли отримана нова заявка"
   notify_on_public: "Коли опубліковано публічне питання"
   notify_on_reply: "Коли отримана нова відповідь на питання"
 
@@ -377,9 +385,9 @@ uk:
   common_replies_description:
   integrations: "Інтеграції"
   integrations_description:
-  theme:
+  theme: "Тема"
   theme_description:
-  email: "Email"
+  email: "Пошта"
   email_description:
   customers: "Клієнти"
   users_description:
@@ -394,10 +402,10 @@ uk:
   parent_site: Батьківський сайт
   parent_company: Батьківська компанія
   site_tagline: Девіз сайту
-  enable_forums: Включити форум спільноти
-  enable_knowledgebase: Включити базу знань
-  enable_tickets: Включити приватні тікети
-  enable_teams: Включити групи
+  enable_forums: Увімкнути форум спільноти
+  enable_knowledgebase: Увімкнути базу знань
+  enable_tickets: Увімкнути приватні тікети
+  enable_teams: Увімкнути групи
   enable_welcome_email: Надсилати вітальні листи новим користувачам
 
   # Design
@@ -421,7 +429,7 @@ uk:
 
   # Integrations
   incoming_webhook: Вхідний webhook
-  incoming_webhook_description: Створити тікет з існуючої вебформи шляхом надсилання POST-запиту на JSON webhook URL. Ваш таємний URL
+  incoming_webhook_description: Створити заявку з існуючої вебформи шляхом надсилання POST-запиту на JSON webhook URL. Ваш таємний URL
   enable_webhook_url: Увімкнути вхідні Webhooks
   google_analytics: Google Analytics
   google_analytics_description: Надіслати статистику користування Helpdesk на Google Analytics для звітності та візуалізації.
@@ -444,13 +452,13 @@ uk:
   send_email: Увімкнути Outbound (SMTP) Email
   boolean_no: Ні
   boolean_yes: Так
-  admin_email: Email адміністратора
-  from_email: З Email
-  smtp_mail_username: SMTP Username
-  smtp_mail_password: SMTP Password
-  mail_smtp: SMTP Server
-  mail_port: SMTP Port
-  mail_domain: SMTP Domain
+  admin_email: Пошта адміністратора
+  from_email: З пошти
+  smtp_mail_username: SMTP ім`я користувача
+  smtp_mail_password: SMTP пароль
+  mail_smtp: SMTP сервер
+  mail_port: SMTP порт
+  mail_domain: SMTP домен
 
   # API Key Managmeent
   api_keys: "API ключі"
@@ -460,7 +468,7 @@ uk:
   expire_token: "Строк дії токену"
   expired: "Строк дії"
   expire_confirm: "Будь ласка підтвердіть, що Ви дійсно хочите закінчити строк дії цього токену"
-  spec_note: "You can read and test out an interactive API spec at: "
+  spec_note: "Ви можете прочитати та протестувати API: "
 
   # Insights
   activity_report: "Звіт про активність"
@@ -477,35 +485,35 @@ uk:
   insight_end_range: "Кінцева дата:"
   insight_filter: "Фільтр"
   insights_blurb_one:
-    one: "<strong>%{period}</strong> ваші користувачі відкривали 1 новий тікет"
-    other: "<strong>%{period}</strong> ваші користувачі відкривали <strong>%{count} новий тікетів</strong>"
+    one: "<strong>%{period}</strong> ваші користувачі відкривали 1 нова заявка"
+    other: "<strong>%{period}</strong> ваші користувачі відкривали <strong>%{count} нових заявок</strong>"
   insights_blurb_two: "з яких відповіла ваша команда <strong>%{number_replied} (%{percentage_replied})</strong>"
   insights_blurb_three_html_html: "з середнім часом на відповідь <strong>%{response_time}</strong>"
-  no_discussions: "Не відкрито новий тікетів <strong>%{period}</strong>"
-  assigned_topics: "Закріплені тікети"
+  no_discussions: "Не відкрито нових заявок <strong>%{period}</strong>"
+  assigned_topics: "Закріплені заявки"
   responded: "Відповів"
   closed: "Закриті"
   replies: "Переслані"
   median_time: "Середній час на першу відповідь"
 
   # Reports
-  ticketing_reports: Звіти по тікетах
+  ticketing_reports: Звіти по заявках
   group_report: "Звіти по групах"
   team_reports: "Звіти по командах"
   percent_resolved: Відсотків вирішено
   average_resolution_time: Середній час на вирішення
-  new_tickets: Нові тікети
-  new_tickets_explain: Число нових тікетів, які Ви отримали в цей період.
-  tickets_per_day: Тікетів за день
-  tickets_per_day_explain: Число тікетів, які Ви отримали в середньому за день.
+  new_tickets: Нові заявки
+  new_tickets_explain: Число нових заявок, які Ви отримали в цей період.
+  tickets_per_day: Заявок за день
+  tickets_per_day_explain: Число заявок, які Ви отримали в середньому за день.
   replies_explain: Число відповідей Ваших агентів, які були за цей період.
   actions_explain: Загальне число дій (відповідей чи внутрішніх записів) в цей період. Хороший показник на скільки зайнятий Ваш Helpy в цілому.
-  closed_explain: Число закритих тікетів в цей період. Повинна бути близька кількість нових тікетів на попередні періоди.
+  closed_explain: Число закритих заявок в цей період. Кількість повинна бути близькою до кількості нових заявок за попередні періоди.
 
   # IMPORT/EXPORT
   file_type: Тип
   file_users: Користувачі
-  file_tickets: Тікети
+  file_tickets: Заявки
   file_replies: Відповіді
   file_docs: Документи
   file_categories: Категорії
@@ -529,7 +537,7 @@ uk:
   file_date_created: Створена дата
   import_total_submitted: Загальна кількість поданих записів
   import_total_created: Загальна кількість створених записів
-  file_name: Ім'я файлу
+  file_name: Ім`я файлу
   file_download: Завантаження
   file_delete: Видалити
   file_delete_confirm: "Ви впевнені, що хочете видалити це .csv?"
@@ -539,19 +547,19 @@ uk:
   activerecord:
     attributes:
       user:
-        email: Email
+        email: Пошта
         password: Пароль
         name: Ім'я
         company: Компанія
         work_phone: Робочий
-        home_phone: Домашній
+        home_phone: Номер телефону
         cell_phone: Мобільний
         city: Місто
         state: Область
         zip: Індекс
         signature: Підпис
-        title:
-        time_zone:
+        title: Заголовок
+        time_zone: Часовий пояс
         street: Вулиця
         notes: Примітка
       topic:
@@ -603,7 +611,7 @@ uk:
         topic:
           create: Розпочати нове обговорення
         post:
-          create:
+          create: Створити новий пост
 
   breadcrumbs:
     application:
