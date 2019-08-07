@@ -180,6 +180,7 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
     assert_equal 'happyfwd@test.com', User.last.email
     assert_equal 'happyfwd', User.last.name
+    assert_equal 'From cc <cc@email.com>', Post.ispublic.order(:id).last.cc
   end
 
   test 'an email with cc should create post containing same cc' do
