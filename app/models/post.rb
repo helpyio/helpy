@@ -56,12 +56,12 @@ class Post < ActiveRecord::Base
   scope :notes, -> { where(kind: 'note') }
 
   def self.new_with_cc(topic)
-    if topic.posts.count == 0
+    if topic.posts.size == 0
       topic.posts.new
     else
       topic.posts.new(
-        cc: topic.posts.chronologic.last.cc,
-        bcc: topic.posts.chronologic.last.bcc
+        cc: topic.posts.ispublic.order(id: :asc).last&.cc,
+        bcc: topic.posts.ispublic.order(id: :asc).last&.bcc
       )
     end
   end
