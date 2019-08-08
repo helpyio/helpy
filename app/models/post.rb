@@ -103,6 +103,9 @@ class Post < ActiveRecord::Base
   # Assign the parent topic if not assigned and this is a reply by admin
   # or agents
   def assign_on_reply
+    # don't assign if this is the first post (indicates an admin created ticket)
+    return if self.topic.posts.size == 1
+    
     if self.topic.assigned_user_id.nil?
       self.topic.assigned_user_id = self.user.is_agent? ? self.user_id : nil
     end

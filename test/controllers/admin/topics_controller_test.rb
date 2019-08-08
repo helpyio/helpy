@@ -336,6 +336,19 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_equal 1, Topic.last.assigned_user_id
     end
 
+    test "an #{admin} created private discussion without assignment should be unassigned" do
+      sign_in users(admin.to_sym)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          assert_difference "User.count", 1 do
+            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, channel: "phone", forum_id: 1, current_status: 'new', assigned_user_id: nil}
+          end
+        end
+      end
+
+      assert_equal nil, Topic.last.assigned_user_id
+    end
+
     test "an #{admin} should be able to create a new private discussion for an existing user" do
       sign_in users(admin.to_sym)
       assert_difference "Topic.count", 1 do
