@@ -305,6 +305,7 @@ ms:
   notify_new_private: "Terdapat tiket pelanggan baru yang diterima dari %{user_name}:"
   notify_new_public: "Terdapat mesej awam pelanggan baru yang dihantar oleh %{user_name}:"
   notify_new_reply: "Terdapat jawapan pelanggan yang diterima daripada %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Balas mesej ini secara langsung atau dalam talian:'
 
   # Notifications settings panel
