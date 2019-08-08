@@ -150,6 +150,27 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_nil topic.assigned_user_id, "assigned user should be nil"
     end
 
+    test "an #{admin} should be able to assign a ticket and have the CC persisted" do
+      sign_in users(admin.to_sym)
+      topic = Topic.find(1)
+      post = topic.posts.where(kind: 'reply').last
+      post.cc = "test@test.com"
+      post.save!
+
+      assert_difference "Post.count", 1 do
+        xhr :get, :assign_agent, { topic_ids: [1], assigned_user_id: 1 }
+      end
+
+      post2 = Post.new_with_cc(topic)
+      post2.body = "test"
+      post2.kind = "reply"
+      post2.user_id = 1
+      post2.cc = topic.posts.ispublic.order(id: :asc).last&.cc
+      post2.save!
+
+      assert_equal "test@test.com", post2.cc
+    end
+
     ### tests of changing status
 
     test "an #{admin} posting an internal note should not change status on its own" do
