@@ -20,9 +20,11 @@ module API
         params do
           optional :docs, type: Boolean, desc: "Whether to include the documents in the response"
           optional :docs_limit, type: Integer, desc: "How many docs to return with the category"
+          optional :visibility, type: String, desc: "Lets you filter categories by visibility.", values: ['all', 'public', 'internal']
         end
         get "", root: :categories do
-          categories = Category.includes(:translations).active.publicly.ordered.all
+          visibility = params[:visibility] || %w[all public]
+          categories = Category.where(visibility: visibility).includes(:translations).active.ordered.all
           present categories, with: Entity::Category, docs: permitted_params[:docs], docs_limit: permitted_params[:docs_limit]
         end
 
@@ -53,6 +55,7 @@ module API
           optional :rank, type: Integer, desc: "The rank can be used to determine the ordering of categories"
           optional :front_page, type: Boolean, desc: "Whether or not the category should appear on the front page"
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
+          optional :visibility, type: String, desc: "Lets you filter categories by visibility.", values: ['all', 'public', 'internal']
         end
         post "", root: :categories do
           category = Category.create!(
@@ -63,7 +66,8 @@ module API
             meta_description: permitted_params[:meta_description],
             rank: permitted_params[:rank],
             front_page: permitted_params[:front_page],
-            active: permitted_params[:active]
+            active: permitted_params[:active],
+            visibility: permitted_params[:visibility] || 'all'
           )
           present category, with: Entity::Category
         end
@@ -83,6 +87,7 @@ module API
           optional :rank, type: Integer, desc: "The rank can be used to determine the ordering of categories"
           optional :front_page, type: Boolean, desc: "Whether or not the category should appear on the front page"
           optional :active, type: Boolean, desc: "Whether or not the category is live on the site"
+          optional :visibility, type: String, desc: "Lets you filter categories by visibility.", values: ['all', 'public', 'internal']
         end
         patch ":id", root: :categories do
           category = Category.find(permitted_params[:id])
@@ -94,7 +99,8 @@ module API
             meta_description: permitted_params[:meta_description],
             rank: permitted_params[:rank],
             front_page: permitted_params[:front_page],
-            active: permitted_params[:active]
+            active: permitted_params[:active],
+            visibility: permitted_params[:visibility]
           )
           present category, with: Entity::Category
         end
