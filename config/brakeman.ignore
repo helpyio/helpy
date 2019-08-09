@@ -5,12 +5,44 @@
       "warning_code": 4,
       "fingerprint": "0bfb69669fd64e67c3c4f3e3add77f2d4a45fd7518a55c0085c4d36f42b9d202",
       "check_name": "LinkToHref",
-      "message": "Potentially unsafe model attribute in link_to href",
+      "message": "Potentially unsafe model attribute in `link_to` href",
       "file": "app/views/posts/_attachment.html.erb",
       "line": 16,
       "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
       "code": "link_to(image_tag((Unresolved Model).new, :style => \"width: 125px; height: 125px\"), (Unresolved Model).new.url, :class => \"screenshot-link\", :target => \"blank\")",
-      "render_path": [{"type":"controller","class":"PostsController","method":"up_vote","line":80,"file":"app/controllers/posts_controller.rb"},{"type":"template","name":"posts/up_vote","line":2,"file":"app/views/posts/up_vote.js.erb"},{"type":"template","name":"posts/_post","line":42,"file":"app/views/posts/_post.html.erb"}],
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "PostsController",
+          "method": "up_vote",
+          "line": 80,
+          "file": "app/controllers/posts_controller.rb",
+          "rendered": {
+            "name": "posts/up_vote",
+            "file": "app/views/posts/up_vote.js.erb"
+          }
+        },
+        {
+          "type": "template",
+          "name": "posts/up_vote",
+          "line": 2,
+          "file": "app/views/posts/up_vote.js.erb",
+          "rendered": {
+            "name": "posts/_post",
+            "file": "app/views/posts/_post.html.erb"
+          }
+        },
+        {
+          "type": "template",
+          "name": "posts/_post",
+          "line": 42,
+          "file": "app/views/posts/_post.html.erb",
+          "rendered": {
+            "name": "posts/_attachment",
+            "file": "app/views/posts/_attachment.html.erb"
+          }
+        }
+      ],
       "location": {
         "type": "template",
         "template": "posts/_attachment"
@@ -56,6 +88,47 @@
       "user_input": null,
       "confidence": "Medium",
       "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "82925abaa4717dd2e9c4e7710c89d988fa5474a4e2bc6c1ddefd1b967ff4790c",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/admin/topics/_ticket.html.erb",
+      "line": 99,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "User.mentionable",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "Admin::PostsController",
+          "method": "change_owner_new_user",
+          "line": 128,
+          "file": "app/controllers/admin/posts_controller.rb",
+          "rendered": {
+            "name": "admin/posts/update",
+            "file": "app/views/admin/posts/update.js.erb"
+          }
+        },
+        {
+          "type": "template",
+          "name": "admin/posts/update",
+          "line": 7,
+          "file": "app/views/admin/posts/update.js.erb",
+          "rendered": {
+            "name": "admin/topics/_ticket",
+            "file": "app/views/admin/topics/_ticket.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "admin/topics/_ticket"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": "This is not a true attribute of the model. It is a method that returns some JSON in the Helpy Cloud gem."
     },
     {
       "warning_type": "Cross-Site Scripting",
@@ -230,6 +303,6 @@
       "note": ""
     }
   ],
-  "updated": "2018-12-17 21:19:56 +0200",
-  "brakeman_version": "4.3.1"
+  "updated": "2019-08-08 21:14:22 -0600",
+  "brakeman_version": "4.6.1"
 }
