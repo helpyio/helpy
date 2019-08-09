@@ -5,8 +5,8 @@ namespace :db do
 
   # How many fake objects to create
   number_support_team = 2
-  number_users = 5
-  number_docs = 3
+  number_users = 15
+  number_docs = 15
   number_doc_comments = 0
   number_threads = 0
   number_tickets = 15
@@ -60,7 +60,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
-      account_number: Faker::Number.number(10),
+      account_number: Faker::Number.number(digits: 10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
@@ -85,7 +85,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
-      account_number: Faker::Number.number(10),
+      account_number: Faker::Number.number(digits: 10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
@@ -115,7 +115,7 @@ namespace :db do
         title_tag: title,
         title: title,
         body: paragraphs(rand(2..4)),
-        meta_description: Faker::Lorem.sentences(1),
+        meta_description: Faker::Lorem.sentences(number: 1),
         user_id: User.team.sample.id
       )
       puts "Created Doc: #{doc.title}"
@@ -277,7 +277,7 @@ namespace :db do
   def paragraph
     p = ""
     rand(3..5).times do
-      p += Faker::Lorem.sentence(rand(3..9)) + ".  "
+      p += Faker::Lorem.sentence(word_count: rand(3..9)) + ".  "
     end
     return p
   end
@@ -329,7 +329,7 @@ namespace :db do
 
   def ticket_issue
     [
-      "Order ##{Faker::Number.number(8)} #{issue}",
+      "Order ##{Faker::Number.number(digits: 8)} #{issue}",
       "My order for a '#{Faker::Commerce.product_name}' #{issue}",
       "I ordered something from you guys and it #{issue}",
       "Late order|shipping",
