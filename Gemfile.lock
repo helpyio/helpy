@@ -254,7 +254,7 @@ GEM
     griddler (1.5.2)
       htmlentities
       rails (>= 3.2.0)
-    griddler-mailgun (1.0.3)
+    griddler-mailgun (1.1.1)
       griddler
     griddler-mandrill (1.1.4)
       griddler (>= 1.2.1)
