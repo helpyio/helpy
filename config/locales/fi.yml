@@ -346,6 +346,7 @@ fi:
   notify_new_private: "Uusi palvelupyyntö on saapunut käyttäjältä %{user_name}:"
   notify_new_public: "Uusi julkinen viesti on saapunut käyttäjältä %{user_name}:"
   notify_new_reply: "Uusi vastaus on saapunut käyttäjältä %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Vastaa tähän viestiin suoraan tai verkossa:'
 
   # Notifications settings panel

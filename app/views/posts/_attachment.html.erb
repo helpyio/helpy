@@ -15,7 +15,7 @@
         <% if %w(png jpg jpeg gif).include?(att.file.extension) %>
           <%= link_to image_tag(att, style: "width: 125px; height: 125px"), att.url, class: 'screenshot-link', target: 'blank' %>
         <% else %>
-          <%= link_to att.url, title: att.url, target: 'blank' do %>
+          <%= link_to "#{att.url}", title: "#{att.url}", target: 'blank' do %>
             <%= content_tag(:i, '', class: attachment_icon(att.url)) %>
           <% end %>
         <% end %>

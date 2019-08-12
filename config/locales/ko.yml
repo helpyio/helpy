@@ -306,6 +306,7 @@ ko:
   notify_new_private: "%{user_name}에서 새로운 고객 티켓을 받았습니다 :"
   notify_new_public: "%{user_name}에서 새로운 공개 고객 메시지를 게시했습니다 :"
   notify_new_reply: "%{user_name}에서 새로운 고객 응답을 받았습니다 :"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: '이 메시지에 직접 또는 온라인으로 회신 :'
 
   # Notifications settings panel

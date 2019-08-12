@@ -40,7 +40,7 @@ class Doc < ActiveRecord::Base
   validates :category_id, presence: true
 
   include PgSearch::Model
-  multisearchable against: [:title, :body, :keywords],
+  multisearchable against: [:title_with_translations, :body_with_translations, :keywords_with_translations],
     :if => lambda { |record| record.category.present? && record.category.publicly_viewable? && record.active && record.category.active? }
 
   pg_search_scope :agent_assist,
@@ -93,6 +93,21 @@ class Doc < ActiveRecord::Base
 
   def tag_list
     @tag_list ||= ActsAsTaggableOn::TagList.new tags.collect(&:name)
+  end
+
+  # These methods aggregate translations into the search table so articles
+  # are searchable by any of their available translations
+
+  def title_with_translations
+    self.doc_translations.collect { |doc| doc.title }.join(" ")
+  end
+
+  def body_with_translations
+    self.doc_translations.collect { |doc| doc.body }.join(" ")
+  end
+
+  def keywords_with_translations
+    self.doc_translations.collect { |doc| doc.keywords }.join(" ")
   end
 
 end
