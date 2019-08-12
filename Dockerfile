@@ -12,7 +12,7 @@ RUN apt-get update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-RUN useradd --no-create-home $HELPY_USER \
+RUN useradd -d $HELPY_HOME $HELPY_USER \
   && mkdir -p $HELPY_HOME $BUNDLE_PATH \
   && chown -R $HELPY_USER:$HELPY_USER $HELPY_HOME $BUNDLE_PATH
 
@@ -23,7 +23,7 @@ COPY vendor $HELPY_HOME/vendor
 RUN chown -R $HELPY_USER $HELPY_HOME
 
 USER $HELPY_USER
-RUN bundle install --without test development
+RUN gem install bundler -v 1.7.3 && bundle install --without test development
 
 # manually create the /helpy/public/assets and uploads folders and give the helpy user rights to them
 # this ensures that helpy can write precompiled assets to it, and save uploaded files
