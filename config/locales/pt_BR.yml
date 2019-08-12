@@ -349,6 +349,7 @@ pt-br:
   notify_new_private: "A new customer ticket has been received from %{user_name}:"
   notify_new_public: "A new public customer message has been posted by %{user_name}:"
   notify_new_reply: "A new customer reply has been received from %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Reply to this message directly or online:'
 
   # Notifications settings panel

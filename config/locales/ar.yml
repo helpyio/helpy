@@ -306,6 +306,7 @@ ar:
   notify_new_private: "تم استلام تذكرة عملاء جديدة من %{user_name}:"
   notify_new_public: "وقد نشر %{user_name} رسالة عامة جديدة:"
   notify_new_reply: "وورد رد جديد من %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'الرد على هذه الرسالة مباشرة أو عبر الإنترنت:'
 
   # Notifications settings panel

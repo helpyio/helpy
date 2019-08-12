@@ -1,0 +1,665 @@
+# MAINTAINER: Serhii Kolesnikov
+
+uk:
+  language_name: 'Українська' # The name of the translation file, in that language
+  root: &root 'Домівка'
+  how_can_we_help: "Як ми можемо допомогти?"
+  browse_topics: "Вибір теми"
+  support_team: "Група підтримки"
+  nothing_here: "Тут ще нічого немає!"
+
+  # Navigation
+  knowledgebase: "База знань"
+  community: "Спільнота"
+  ask_a_question: "Поставити питання"
+  home: "Домівка"
+  login: "Увійти"
+  logout: "Вийти"
+  register: "Зареєструватись"
+  back_to: "Назад"
+  welcome_back: "Ласкаво просимо %{username}"
+  your_profile: "Ваш профіль"
+  your_tickets: "Ваші заявки"
+  locale: "Мова"
+  change_your_locale: "Змінити мову"
+
+  # Voting widget
+  did_this_help: "Ваша проблема вирішена?"
+  yes_button: 'Так'
+  no_button: 'Ні'
+  yes_helped: 'Чудово! Дякую за відгук!'
+  no_helped: "Нам прикро, що ми не змогли допомогти Вам.  Будь ласка зв'яжіться з нами для допомоги!"
+
+  # Search
+  search_placeholder: "Введіть ключове слово, тему, або питання"
+  no_results: "Нічого не знайдено, будь ласка спробуйте іще!"
+  results_found:
+    zero: "Нічого не знайдено по запиту "
+    one: "один елемент знайдено по запиту "
+    few: "%{count} елемента знайдено по запиту"
+    many: "%{count} елементів знайдено по запиту "
+
+  # Community
+  forum_name: "Топік"
+  subject: &subject "Тема"
+  message: "Повідомлення"
+  last_activity: "Остання активність"
+  topic: "Обговорення"
+  replies: "Відповіді"
+  last_post: "Останній пост"
+  started_by: "Створено %{username}"
+  reply: "Відповісти на цей топік"
+  submit_reply: "Відповісти"
+  posted: "Опубліковано"
+  start_discussion: "Розпочати нове обговорення"
+  submit_start_discussion: "Створити обгаворення"
+  should_message_be_private: "Це повідомлення має бути приватним?"
+  only_support_can_respond: "Тільки підтримка може відповісти (створюється приватна заявка)"
+  responses_can_come_from_everyone: "Відповісти може як підтримка так і спільнота (рекомендовано)"
+  collapsed_messages:
+    zero: ''
+    one: "1 згорнуте повідомлення"
+    few: "%{count} згорнутих повідомлень"
+    many: "%{count} згорнутих повідомлень"
+
+  # Knowledgebase
+  written_by: "Автор"
+  last_edited: "Останнє редагування"
+  tagged: "Позначено"
+  asked_before: "Раніше була відповідь на Ваше питання? Ми вважаємо, що вони схожі"
+
+  # Tickets
+  tickets: &tickets "Заявки"
+  no_tickets: "Ви ще не створювали заявок"
+  ticket_number: "Номер заявки"
+  assigned_to_label: "Закріплено за"
+  created_on: "Створено"
+
+  # Get Help
+  get_help_header: "Все ще необхідна допомога?"
+  get_help_button: "Відкрити заявку"
+
+  # Profile
+  my_profile: 'Мій профіль'
+
+  # Locales
+  select_locale: "Змінити мову"
+
+  # footer
+  powered_by: "Створено Helpy. Служба підтримки з відкритим кодом."
+  get_your_copy: "Візьміть Вашу копію на GitHub"
+  version: "Версія:"
+
+  # flag
+  flag_for_review: "Flag for Review"
+  flag_post_for_review: "Flag Post for Review"
+  flag_post_placeholder: "Describe the reason for flagging this post"
+  flag: "Flag"
+
+  # devise/sessions/new
+  login: Увійти
+
+  # devise/shared/links
+  forgot_password: Забули пароль?
+
+  # devise/passwords/new
+  send_instructions: Надішліть мені інструкції
+
+  # devise/passwords/edit
+  change_password: Змінити пароль
+  new_password: Новий пароль
+  new_password_confirmation: Підтвердіть новий пароль
+
+  # devise/confirmations/new
+  resend: Надіслати інструкції підтвердження ще раз
+
+  # devise/registrations/new
+  sign_up: Реєстрація
+
+  # flash messages
+  model_created: "%{object_name} збережено"
+  model_updated: "%{object_name} оновлено"
+  model_destroyed: "%{object_name} видалено"
+
+  # Admin menu
+  inbox: Вхідні
+  discussions: Заявки
+  content: Категорії
+  communities: Спільнота
+  app_store: Додатки
+  search: Пошук
+  internal_content: Внутрішні категорії
+  new_ticket: Нова заявка
+  reports: Звіти
+  helpcenter: "Центр допомоги"
+  get_help: "Допомога"
+  report_bug: "Звіт про помилку"
+  suggest_feature: "Запропонувати покращення"
+  shortcuts: "Клавіатурні скорочення"
+  sponsors: "Спонсори"
+
+  # Admin main/statuses
+  support_pipeline: Підтримка конвеєру
+  new: Нові
+  active: Всі
+  open: Відкриті
+  mine: Мої
+  pending: Очікуються
+  closed: &closed Закриті
+  spam: Спам
+  trash: Смітник
+  discussion_managment: Управління заявками
+  open_new_discussion: Нова заявка
+  assigned_to: "закріплено за %{agent}"
+  unassigned: відкріплено
+  no_team_assigned: Закріплено за командою
+  assign_to: Група/Команда
+  unassign_from_team: Не закріплено за командою
+  private: приватний
+  public: публічний
+  save_changes: Зберегти зміни
+  merge: Об'єднати
+  merge_confirm: Ви впевнені, що хочете об'єднати ці заявки?
+  customer_conversation: Спілкування з клієнтами
+  internal_ticket: Внутрішні заявки
+  unassign_agent: Незакріплені агенти
+
+  # Discussion controls
+  change_status: Змінити статус
+  status: &status Статус
+  mark_closed: Позначити як закрита/вирішена
+  reopen: Відкрити знову
+  mark_spam: Позначити як спам
+  mark_new: Позначити як нову
+  assign_agent: &assign_agent Закріпити агента
+  tag_with: &tag_with  Тег заявки
+  selected_messages:
+    one: "1 вибране повідомлення"
+    two: "2 вибраних повідомлень"
+    few: "%{count} вибраних повідомлень"
+    many: "%{count} вибраних повідомлень"
+  mark_as: "Позначити"
+  move_to: "Перемістити до"
+  users_history: "Повна історія %{role}"
+
+  # Discussion messages
+  new_message: "Це повідомлення позначено як нове співробітниками підтримки"
+  spam_message: "Це повідомлення позначено як спам співробітниками підтримки"
+  reopen_message: "Це повідомлення відкрито знову співробітниками підтримки"
+  closed_message: "Це повідомлення закрите співробітниками підтримки."
+  trash_message: "Це повідомлення видалене."
+  assigned_message: "Це повідомлення переміщене до %{assigned_to}."
+  unassigned_message: "Це повідомлення відріплене."
+  assigned_group: "Це повідомлення прикріплене до %{assigned_group}."
+  converted_to_ticket: "Це обговорення було переміщено до приватних."
+  converted_to_topic: "Це повідомлення було переведено до відкритих обговорень і переміщено до %{forum_name}."
+  tagged_with: "Ця заявка притегована з %{tagged_with}"
+  notes_hidden: "Є %{hidden_notes} внутрішніх записів для цієї заявки. Ви можете переглянути їх натисненням будь-де у цьому записі!"
+  topic_added_from: "%{kind} доданий із %{channel}"
+
+  # User Admin
+  users: &users Користувачі
+  account: Обліковий запис
+  contact_info: Контакт
+  social_info: Соціальні мережі
+  edit_user: Редагувати користувача
+  delete_user: Видалити користувача
+  work_phone: робочий номер
+  cell_phone: стільниковий номер
+  last_seen: "Востаннє був"
+  scrub_user: "Анонімувати користувача"
+  anonymize_user_warning: "Ви впевнені, що хочете анонімувати користувача %{user_name}? Це дозволить назавжди анонімувати особисті дані користувача, але збереже всі його заявки та публічні пости."
+  delete_user_warning: "Ви впевнені, що хочете видалити користувача %{user_name}? Це назавжди видалить користувача та всі його заявки, публікації, відповіді та теми форуму."
+  click_to_edit: натисніть для редагування %{what}
+
+  # Priorities
+  select_priority: &priority Оберіть пріоритет
+  vip_priority: VIP
+  very_high_priority: Дуже високий
+  high_priority: Високий
+  normal_priority: Середній
+  low_priority: Низький
+
+  # Roles
+  select_role: Оберіть роль
+  admin_role: Адміністратор
+  agent_role: Агент
+  editor_role: Редактор
+  user_role: Користувач
+  add_more_agents: "Додати більше користувачів/агентів"
+
+  # Groups
+  groups: "Групи"
+  add_new_group: "Нова група"
+  group: "Група"
+  tag_group: "Тегова група"
+  tag_name: "Назва групи"
+  description: "Опис"
+  color: "Колір"
+  show_on_helpcenter: "Показати в центрі підтримки"
+  show_on_admin: "Показати в адмінів"
+  email_address: "Електронна пошта"
+  from_name: "З назви"
+
+  # Keyboard Shortcuts
+  shortcut_then: "та"
+  listing_views: "Огляд заявок"
+  keyboard_shortcuts: "Клавіатурні скорочення"
+  show_new_tickets: "Показати нові заявки"
+  show_all_tickets: "Показати всі заявки"
+  show_open_tickets: "Показати відкриті заявки"
+  show_tickets_assigned_to_you: "Показати заявки, які прикріплені до Вас"
+  show_pending_tickets_assigned_to_you: "Показати заявки, що очікуються і прикріплені до Вас"
+  show_closed_tickets: "Показати закриті заявки"
+  search_for_tickets: "Шукати заявки"
+  viewing_tickets: "Навгація по заявкам"
+  select_previous_ticket: "Обрати попередню заявку"
+  select_next_ticket: "Обрати наступну заявку"
+  view_selected_ticket: "Переглянути обрану заявку"
+  jump_to_a_specific_ticket_number: "Перейти до визначеного номеру заявки"
+  ticket_actions: "Дії з заявкою"
+  assign_the_ticket: "Прикріпити заявку"
+  move_the_ticket: "Перемістити заявку"
+  expand_the_ticket_thread: "Розгорнути дерево заявок"
+  reply_to_the_ticket: "Відповісти на заявку"
+  add_an_internal_note: "Додати внутрішній запис"
+  change_ticket_status: "Змінити статус заявки"
+  associate_with_a_group: "Асоціювати із групою"
+  ticket_status: "Статус заявки"
+  mark_resolved: "Закрити заявку"
+  reopen_ticket: "Відкрити знову заявку"
+  set_to_new: "Позначити як новий"
+  mark_as_spam: "Позначити як спам"
+  move_to_trash: "Перемістити до корзини"
+  ticket_number: "Номер заявки"
+
+  # User search results
+  users_found:
+    zero: 'Користувачів не знайдено'
+    one: "1 користувач знайдений по запиту %{query}"
+    few: "%{count} користувача знайдено по запиту %{query}"
+    many: "%{count} користувачів знайдено по запиту %{query}"
+
+  # Invite users
+  invite_users: "Запросити нового користувача"
+  invite_emails: "Електронні скриньки"
+  invite_emails_placeholder: "Напишіть одну або декілька електронних скриньок для надсилання запрошення"
+  invite_message: "Повідомлення"
+  invite_message_placeholder: "Додаткове повідомлення, яке буде надіслане новим користувачам"
+  invite_role: "Роль для запрошених користувачів"
+  send_invite: "Надіслати запрошення"
+
+  # Discussion View
+  asked_a_question: "%{user_name} запитав..."
+  replied: "%{user_name} відповів..."
+  posted_note: "%{user_name} опублікував внутрішню помітку..."
+  type_reply: Напишіть Вашу відповідь, або оберіть із загального повідомлення знизу
+  select_common: Обрати загальну відповідь
+  reply_option: Відповісти
+  internal_note: Внутрішня помітка
+  mark_as_resolved: Познатичи як вирішене
+  upvote:
+    zero: "Голосувати | %{count}"
+    one: "Голосувати | %{count}"
+    few: "Голосувати | %{count}"
+    many: "Голосувати | %{count}"
+
+  # Content
+  new_category: Нова категорія
+  new_content: Новий контент
+  front_page_categories: Перша сторінка категорій
+  other_categories: Інші категорії
+  edit: Редагувати
+  edit_category: Редагувати категорію
+  select_category: Обрати категорію
+  delete: Видалити
+  view_and_edit: "Переглянути та редагувати контент"
+  delete_confirm: "Буль ласка підтвердіть, що Ви хочете ВИДАТИТИ це!"
+  select_icon_helptext: "Оберіть зображення для цієї категорії (не обов'язково)"
+  translate: "Перекласти на іншу мову"
+  view_on_site: "Переглянути на сайті"
+  written_on: "Написано %{date_written}"
+  content_last_updated: "Востаннє оновлено %{date_updated}"
+  featured_content: "Рекомендовано"
+  draft_content: "Чорновий"
+  published_content: "Опубліковано"
+  additional_settings: "Додаткові налаштування"
+  content_status: "Статус контенту"
+  convert_content: 'Зберегти як заголовок чи поточну відповідь'
+  upload_image: 'Вивантажити зображення'
+  new_discussion: 'Створити нове обговорення для цього'
+  new_discussion_post: 'Обговорення #%{topic_id} було створене'
+  new_discussion_topic_title: 'Розділено #%{original_id}-%{original_name}'
+  change_owner_note: 'Власника повідомлення змінено із %{old} на %{new}'
+
+  # Internal Content
+  no_internal_content_title: "Ще немає внутрішньої документації!"
+  no_internal_content_text: "Не хвилюйтеся! Щоб внести свій внесок у внутрішню документацію, перейдіть до Helpcenter> Content. Додайте новий внутрішній тип Категорії, а потім поділіться своїми знаннями з командою, написавши деякі Документи!"
+
+  # Communities
+  new_community: Нова спільнота
+  create_new_community: Створити нову спільноту
+  layout_select: Обрати формат
+  layout_table: Таблиця
+  layout_grid: Сітка
+  layout_qna: ЧаПи
+
+  # Mail messages
+  new_user_subject: "Ласкаво просимо до %{site_name}"
+  hello: "Привіт %{user_name}"
+  thank_you: "Дякую!"
+  new_user: "Дякую, що зв'язались з нами. Ваше повідомлення отримано нашої командою підтримки і ми відповімо Вам найближчим часом"
+  account_generated: "Для Вас згенерований обліковий запис. Щоб увійти будь ласка використайте це посилання:"
+  above_this_line: "Переконайтесь, щоб Ваша відповідь з'явиться вище цієї лінії"
+  message_id: "ID повідомлення"
+  message_response: "Наступне повідомлення було розміщене як відповідь на Ваше запитання:"
+  ticket_added: "Ви отримали нову заявку. Натисніть, щоб побачити: %{ticket_link}"
+  response_added: "Відповідь було додана до вашої заявки. Натисніть, щоб побачити: %{ticket_link}"
+  view_online: "Подивитись це онлайн:"
+
+  # Admin notifications
+  notify_new_private: "Отримана нова заявка від %{user_name}:"
+  notify_new_public: "Опубліковано нове повідомлення від %{user_name}:"
+  notify_new_reply: "Отримана нова відповідь від %{user_name}:"
+  to_reply: 'Відповісти на це повідомлення напряму або онлайн:'
+
+  # Notifications settings panel
+  notify_on_private: "Коли отримана нова заявка"
+  notify_on_public: "Коли опубліковано публічне питання"
+  notify_on_reply: "Коли отримана нова відповідь на питання"
+
+  # settings
+  agent_settings: "Налаштування агента"
+  notifications: "Сповіщення"
+  notifications_description:
+  settings: "Налаштування"
+  general: "Основні"
+  general_description: "Керування основними налаштуваннями системи, такими як назва Helpy, посилання на сайт компанії"
+  design: "Зовнішній вигляд"
+  design_description: "Керуйте логотипами, кольорами та іншими дизайнерськими аспектами Helpy"
+  international: "Локалізація"
+  international_description:
+  widget: "Інтегруємий віджет"
+  widget_description:
+  common_replies: "Загальні відповіді"
+  common_replies_description:
+  integrations: "Інтеграції"
+  integrations_description:
+  theme: "Тема"
+  theme_description:
+  email: "Пошта"
+  email_description:
+  customers: "Клієнти"
+  users_description:
+  team: "Команда"
+  users_description:
+  team_group: "Групи команди"
+  group_description:
+
+  # General
+  site_name: Назва сайту
+  site_url: URL сайту
+  parent_site: Батьківський сайт
+  parent_company: Батьківська компанія
+  site_tagline: Девіз сайту
+  enable_forums: Увімкнути форум спільноти
+  enable_knowledgebase: Увімкнути базу знань
+  enable_tickets: Увімкнути приватні тікети
+  enable_teams: Увімкнути групи
+  enable_welcome_email: Надсилати вітальні листи новим користувачам
+
+  # Design
+  header_logo: Головний логотип
+  search_background: Колір фону пошуку
+  top_bar: Коліп верхньої панелі
+  link_color: Колір посилання
+  form_background: Колір фону форми
+  still_need_help:
+
+  # Locales
+  supported_locales: Мови, що підтримуються
+  default_locale: Мова за замовчуванням
+  select_default_locale: "Оберіть мову за замовчуванням..."
+
+  # Widget
+  show_widget: Показувати віджет на стороні підтримки
+  widget_background: Віджет кольору заднього фону
+  button_color: Віджет кольору кнопки
+  button_text_color: Віджет кольору тексту
+
+  # Integrations
+  incoming_webhook: Вхідний webhook
+  incoming_webhook_description: Створити заявку з існуючої вебформи шляхом надсилання POST-запиту на JSON webhook URL. Ваш таємний URL
+  enable_webhook_url: Увімкнути вхідні Webhooks
+  google_analytics: Google Analytics
+  google_analytics_description: Надіслати статистику користування Helpdesk на Google Analytics для звітності та візуалізації.
+  enable_google_analytics: Увімкнути Google Analytics
+  google_analytics_id: Google Analytics ID
+  recaptcha_integration: Recaptcha
+  recaptcha_description: Recsptcha захищає Ваш сервіс від спаму.
+  enable_recaptcha: Увімкнути Recaptcha
+  recaptcha_site_key: Recaptcha Site Key
+  recaptcha_api_key: Recaptcha API Key
+  cloudinary_integration: Cloudinary
+  cloudinary_description: Cloudinary пропонує послуги розміщення та трансформації сервісів.
+  enable_cloudinary: Увімкнути Cloudinary
+  cloudinary_cloud_name: Cloudinary Cloud Name
+  cloudinary_api_key: Cloudinary API Key
+  cloudinary_api_secret: Cloudinary API Secret
+
+  # Email
+  mail_service: Inbound Mail Service Provider
+  send_email: Увімкнути Outbound (SMTP) Email
+  boolean_no: Ні
+  boolean_yes: Так
+  admin_email: Пошта адміністратора
+  from_email: З пошти
+  smtp_mail_username: SMTP ім`я користувача
+  smtp_mail_password: SMTP пароль
+  mail_smtp: SMTP сервер
+  mail_port: SMTP порт
+  mail_domain: SMTP домен
+
+  # API Key Managmeent
+  api_keys: "API ключі"
+  key_name: "Ім'я ключа"
+  token: "Токен"
+  add_key: "Додати новий ключ"
+  expire_token: "Строк дії токену"
+  expired: "Строк дії"
+  expire_confirm: "Будь ласка підтвердіть, що Ви дійсно хочите закінчити строк дії цього токену"
+  spec_note: "Ви можете прочитати та протестувати API: "
+
+  # Insights
+  activity_report: "Звіт про активність"
+  team_insights: "Інформація про команду"
+  filter_by_date: "Фільтрувати за датою"
+  today: "Сьогодні"
+  yesterday: "Вчора"
+  this_week: "Цього тижня"
+  last_week: "Минулого тижня"
+  this_month: "Цього місяця"
+  last_month: "Минулого місяця"
+  date_range: "Діапазон дати"
+  insight_start_range: "Початкова дата:"
+  insight_end_range: "Кінцева дата:"
+  insight_filter: "Фільтр"
+  insights_blurb_one:
+    one: "<strong>%{period}</strong> ваші користувачі відкривали 1 нова заявка"
+    other: "<strong>%{period}</strong> ваші користувачі відкривали <strong>%{count} нових заявок</strong>"
+  insights_blurb_two: "з яких відповіла ваша команда <strong>%{number_replied} (%{percentage_replied})</strong>"
+  insights_blurb_three_html_html: "з середнім часом на відповідь <strong>%{response_time}</strong>"
+  no_discussions: "Не відкрито нових заявок <strong>%{period}</strong>"
+  assigned_topics: "Закріплені заявки"
+  responded: "Відповів"
+  closed: "Закриті"
+  replies: "Переслані"
+  median_time: "Середній час на першу відповідь"
+
+  # Reports
+  ticketing_reports: Звіти по заявках
+  group_report: "Звіти по групах"
+  team_reports: "Звіти по командах"
+  percent_resolved: Відсотків вирішено
+  average_resolution_time: Середній час на вирішення
+  new_tickets: Нові заявки
+  new_tickets_explain: Число нових заявок, які Ви отримали в цей період.
+  tickets_per_day: Заявок за день
+  tickets_per_day_explain: Число заявок, які Ви отримали в середньому за день.
+  replies_explain: Число відповідей Ваших агентів, які були за цей період.
+  actions_explain: Загальне число дій (відповідей чи внутрішніх записів) в цей період. Хороший показник на скільки зайнятий Ваш Helpy в цілому.
+  closed_explain: Число закритих заявок в цей період. Кількість повинна бути близькою до кількості нових заявок за попередні періоди.
+
+  # IMPORT/EXPORT
+  file_type: Тип
+  file_users: Користувачі
+  file_tickets: Заявки
+  file_replies: Відповіді
+  file_docs: Документи
+  file_categories: Категорії
+  file_forums: Форуми
+  import: 'Імпортувати CSV'
+  new_import: 'Нове імпортування'
+  export: 'Експортувати CSV'
+  what_to_export: 'Оберіть, що Ви хочете експортувати'
+  what_to_import: 'Оберіть, що Ви хочете імпортувати'
+  imports: 'Імпорти'
+  exports: 'Експорти'
+  past_imports: 'Попередні імпорти'
+  run_time: 'Час дії'
+  clear_all: 'Видалити всі'
+  error_details: 'Деталі помилки'
+  row_number: 'Кількість рядків'
+  error_message: 'Повідомлення про помилку'
+  object: 'Об`єкт'
+  import_details: '#%{id} Деталів імпорту'
+  select_for_export: 'Екпорт %{model} у .csv'
+  file_date_created: Створена дата
+  import_total_submitted: Загальна кількість поданих записів
+  import_total_created: Загальна кількість створених записів
+  file_name: Ім`я файлу
+  file_download: Завантаження
+  file_delete: Видалити
+  file_delete_confirm: "Ви впевнені, що хочете видалити це .csv?"
+
+  kind_type: &kind Тип
+
+  activerecord:
+    attributes:
+      user:
+        email: Пошта
+        password: Пароль
+        name: Ім'я
+        company: Компанія
+        work_phone: Робочий
+        home_phone: Номер телефону
+        cell_phone: Мобільний
+        city: Місто
+        state: Область
+        zip: Індекс
+        signature: Підпис
+        title: Заголовок
+        time_zone: Часовий пояс
+        street: Вулиця
+        notes: Примітка
+      topic:
+        kind: *kind
+        name: *subject
+        channel: Канал
+        team_list: Група
+        priority: *priority
+        current_status: *status
+        assigned_user_id: *assign_agent
+        tag_list: Список тегів
+      post:
+        kind: *kind
+        body: Повідомлення
+        cc: CC
+        bcc: BCC
+        attachments: Прикріплення
+      category:
+        name: Ім'я
+        icon: Зображення
+        keywords: Ключові слова
+        title_tag: Назва тегів
+        meta_description: Мета опис
+        front_page: Головна сторінка
+        active: Активний
+        visibility: Видимість
+        visibility_label:
+          all: Всі
+          public: Публічні
+          internal: Внутрішні
+      doc:
+        title: Назва
+        meta_description: Мета опис
+        title_tag: Назва тегів
+        keywords: Ключові слова
+        category_id: Категорія
+        active: Статус
+        front_page: Рекомендовані на першій сторінці?
+      forum:
+        name: Ім'я
+        description: Опис
+        private: Приватний
+        layout: Layout
+        allow_topic_voting: Дозволити голосування у статті?
+        allow_post_voting: Дозволити глосування у пості?
+
+    helpers:
+      submit:
+        topic:
+          create: Розпочати нове обговорення
+        post:
+          create: Створити новий пост
+
+  breadcrumbs:
+    application:
+      root: *root
+    categories:
+      root: *root
+    docs:
+      root: *root
+    forums:
+      root: *root
+    locales:
+      root: *root
+    topics:
+      root: *root
+    posts:
+      root: *root
+    result:
+      root: *root
+    registrations:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
+  helpers:
+    actions: "Дії"
+    links:
+      back: "Назад"
+      cancel: "Відмінити"
+      confirm: "Ви впевнені?"
+      destroy: "Видалити"
+      new: "Новий"
+      edit: "Редагувати"
+    titles:
+      edit: "Редагувати %{model}"
+      save: "Зберегти %{model}"
+      new: "Новий %{model}"
+      delete: "Видалити %{model}"
+
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: тис.
+          million: млн.
+          billion: млрд.
+          trillion: T
+          quadrillion: Q

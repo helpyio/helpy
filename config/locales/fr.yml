@@ -349,6 +349,7 @@ fr:
   notify_new_private: "Un nouveau ticket client a été reçu de la part de %{user_name} :"
   notify_new_public: "Un nouveau ticket client publique  a été posté par %{user_name} :"
   notify_new_reply: "Une nouvelle réponse d'un client a été reçue de la part de %{user_name} :"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Répondez à ce message directement ou en ligne :'
 
   # Notifications settings panel

@@ -263,6 +263,7 @@ hu:
   notify_new_private: "Egy új privát kérdés érekezett erről a címről: %{user_name}:"
   notify_new_public: "Egy új publikus kérdést fel %{user_name}:"
   notify_new_reply: "Egy új ügyfélválaszt kaptunk %{user_name} felhasználótól:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Válaszolj erre az üzenetre közvetlenül, vagy online:'
 
   # Notifications settings panel
