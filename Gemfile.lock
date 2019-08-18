@@ -376,7 +376,7 @@ GEM
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
     netrc (0.11.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     oauth (0.5.4)
     oauth2 (1.4.1)
@@ -683,7 +683,7 @@ DEPENDENCIES
   mini_magick
   minitest
   minitest-reporters
-  nokogiri (>= 1.8.4)
+  nokogiri (>= 1.10.4)
   omniauth
   omniauth-facebook
   omniauth-github
