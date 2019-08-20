@@ -280,6 +280,7 @@ et:
   notify_new_private: "Uus pilet kliendilt %{user_name}:"
   notify_new_public: "Uus avalik sõnum kliendilt %{user_name}:"
   notify_new_reply: "Uus vastus kliendilt %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Vasta sellele sõnumile otse või internetis:'
 
   # Notifications settings panel

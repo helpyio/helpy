@@ -56,12 +56,12 @@ class Post < ActiveRecord::Base
   scope :notes, -> { where(kind: 'note') }
 
   def self.new_with_cc(topic)
-    if topic.posts.count == 0
+    if topic.posts.size == 0
       topic.posts.new
     else
       topic.posts.new(
-        cc: topic.posts.chronologic.last.cc,
-        bcc: topic.posts.chronologic.last.bcc
+        cc: topic.posts.ispublic.order(id: :asc).last&.cc,
+        bcc: topic.posts.ispublic.order(id: :asc).last&.bcc
       )
     end
   end
@@ -103,6 +103,9 @@ class Post < ActiveRecord::Base
   # Assign the parent topic if not assigned and this is a reply by admin
   # or agents
   def assign_on_reply
+    # don't assign if this is the first post (indicates an admin created ticket)
+    return if self.topic.posts.size == 1
+    
     if self.topic.assigned_user_id.nil?
       self.topic.assigned_user_id = self.user.is_agent? ? self.user_id : nil
     end

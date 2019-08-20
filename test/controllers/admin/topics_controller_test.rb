@@ -150,6 +150,27 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_nil topic.assigned_user_id, "assigned user should be nil"
     end
 
+    test "an #{admin} should be able to assign a ticket and have the CC persisted" do
+      sign_in users(admin.to_sym)
+      topic = Topic.find(1)
+      post = topic.posts.where(kind: 'reply').last
+      post.cc = "test@test.com"
+      post.save!
+
+      assert_difference "Post.count", 1 do
+        xhr :get, :assign_agent, { topic_ids: [1], assigned_user_id: 1 }
+      end
+
+      post2 = Post.new_with_cc(topic)
+      post2.body = "test"
+      post2.kind = "reply"
+      post2.user_id = 1
+      post2.cc = topic.posts.ispublic.order(id: :asc).last&.cc
+      post2.save!
+
+      assert_equal "test@test.com", post2.cc
+    end
+
     ### tests of changing status
 
     test "an #{admin} posting an internal note should not change status on its own" do
@@ -313,6 +334,19 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       end
 
       assert_equal 1, Topic.last.assigned_user_id
+    end
+
+    test "an #{admin} created private discussion without assignment should be unassigned" do
+      sign_in users(admin.to_sym)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          assert_difference "User.count", 1 do
+            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, channel: "phone", forum_id: 1, current_status: 'new', assigned_user_id: nil}
+          end
+        end
+      end
+
+      assert_equal nil, Topic.last.assigned_user_id
     end
 
     test "an #{admin} should be able to create a new private discussion for an existing user" do
