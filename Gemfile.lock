@@ -485,7 +485,7 @@ GEM
       ffi (~> 1.0)
     rb-readline (0.5.5)
     rdiscount (2.2.0.1)
-    rdoc (6.0.4)
+    rdoc (6.1.1)
     recaptcha (2.3.0)
       json
     regexp_parser (0.5.0)
