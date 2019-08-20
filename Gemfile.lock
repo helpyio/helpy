@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/helpyio/helpy_imap
-  revision: 7b958c12535ce4a462206a8dccc59fc321ed983e
+  revision: f92b0287c55f6828896b13c9970199a727ddab0b
   branch: master
   specs:
     helpy_imap (1.0.1)
