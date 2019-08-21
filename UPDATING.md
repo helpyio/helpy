@@ -21,6 +21,15 @@ Whether you run the open source community edition or the cloud edition, start by
 
 4. Restart the webserver.
 
+### Helpy Pro Edition
+
+Helpy Pro is a packaged version, which greatly simplifies the process of updating. Note that updated versions typically are not avaiable to Pro until several days after the community edition release.  Update using the apt package manager:
+
+1. `sudo apt-get update`
+2. `sudo apt-get upgrade`
+3. `sudo helpy run db:migrate`
+4. `sudo helpy restart`
+
 ### Cloud Edition 
 
 If you are running the cloud edition, perform the following additional steps:
