@@ -18,8 +18,9 @@ test:
   <<: *default
   database: helpy_test
 
+
 production:
   <<: *default
-  database: helpy_production
-  username: rails
-  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %> #This is the environment variable created by our Dokku command earlier
+  encoding: unicode
+  pool: 5

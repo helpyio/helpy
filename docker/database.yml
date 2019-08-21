@@ -7,16 +7,18 @@ default: &default
 
 development:
   <<: *default
-  database: helpy_development
-  port: 5432
-  host: localhost
+  url: <%= ENV['DATABASE_URL'] %> #This is the environment variable created by our Dokku command earlier
+  encoding: unicode
+  pool: 5
 
 test:
   <<: *default
-  database: helpy_test
+  url: <%= ENV['DATABASE_URL'] %> #This is the environment variable created by our Dokku command earlier
+  encoding: unicode
+  pool: 5
 
-production:
-  <<: *default
+  production:
+  adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %> #This is the environment variable created by our Dokku command earlier
   encoding: unicode
   pool: 5
