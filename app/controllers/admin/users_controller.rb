@@ -60,7 +60,7 @@ class Admin::UsersController < Admin::BaseController
       if params[:role] == 'team'
         @users = User.team.includes(:topics, :teams).alpha.all.page params[:page]
       else
-        @users = User.by_role(params[:role]).includes(:topics, teams: :tags).active_first.all.page params[:page]
+        @users = User.by_role(params[:role]).includes(:topics).active_first.all.page params[:page]
       end
     else
       @users = User.active_first.all.page params[:page]
