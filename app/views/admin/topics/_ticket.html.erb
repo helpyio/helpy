@@ -36,7 +36,7 @@
         <div class="form-group">
         <%= collection_radio_buttons :post, :kind, [
             ['reply', t(:reply_option, default: "Reply")],
-            ['note', t(:internal_note, default: "Internal Note")] ], :first, :last, checked: 'reply' do |button| %>
+            ['note', t(:internal_note, default: "Internal Note")] ], :first, :last, checked: AppSettings['settings.default_reply_type'] do |button| %>
             <%= button.label(class: 'radio-inline') { button.radio_button + button.text } %>
         <% end %>
         </div>

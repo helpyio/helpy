@@ -30,6 +30,7 @@ AppSettings.defaults['settings.include_ticket_body'] = '1'
 AppSettings.defaults['settings.default_private'] = '0'
 AppSettings.defaults['settings.anonymous_access'] = '0'
 AppSettings.defaults['settings.anonymous_salt'] = 'salt'
+AppSettings.defaults['settings.default_reply_type'] = 'reply'
 
 # Webhook Integrations
 
