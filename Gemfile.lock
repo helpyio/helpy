@@ -524,7 +524,8 @@ GEM
       tilt (>= 1.1, < 3)
     sassc (2.2.0)
       ffi (~> 1.9)
-    scout_apm (2.5.2)
+    scout_apm (2.6.0)
+      parser
     scss-lint (0.38.0)
       rainbow (~> 2.0)
       sass (~> 3.4.1)
