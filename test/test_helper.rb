@@ -9,6 +9,9 @@ require 'capybara/rails'
 require 'capybara/minitest'
 require 'capybara/email'
 
+require 'minitest/retry'
+Minitest::Retry.use!
+
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Capybara::Minitest::Assertions
