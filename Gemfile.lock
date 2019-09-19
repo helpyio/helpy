@@ -369,6 +369,8 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    minitest-retry (0.1.9)
+      minitest (>= 5.0)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -682,6 +684,7 @@ DEPENDENCIES
   mini_magick
   minitest
   minitest-reporters
+  minitest-retry
   nokogiri (>= 1.8.4)
   omniauth
   omniauth-facebook
@@ -735,4 +738,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
