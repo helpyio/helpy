@@ -1,6 +1,7 @@
 class Admin::SettingsController < Admin::BaseController
 
   before_action :verify_admin, except: ['profile']
+  before_action :validate_site_url, only: :update_general
   #before_action :verify_agent, only: ['index']
   skip_before_action :verify_authenticity_token
 
@@ -198,4 +199,15 @@ class Admin::SettingsController < Admin::BaseController
     end
   end
 
+  private
+
+  def validate_site_url
+    return true if params['settings.site_url'].blank?
+
+    unless URI::regexp.match(params['settings.site_url'])
+      flash[:error] = 'The given url is invalid'
+      redirect_to admin_general_settings_path
+    end
+    true
+  end
 end
