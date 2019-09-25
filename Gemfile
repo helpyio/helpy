@@ -189,6 +189,7 @@ end
 group :test do
   gem 'minitest'
   gem 'minitest-reporters'
+  gem 'minitest-retry'
   gem 'shoulda', '3.5' # Required for minitest
   gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
   gem 'factory_bot_rails'

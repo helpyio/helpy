@@ -2,7 +2,7 @@ namespace :db do
   desc "Create placeholder data for DB"
   task :add_tickets => :environment do
     require 'faker'
-    number_tickets = 1000
+    number_tickets = 10
 
     # Create back and forth private threads with support staff
     f = Forum.find(1)
@@ -24,7 +24,7 @@ namespace :db do
 
       # create first post in thread
       post = topic.posts.create!(
-        body: Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>'),
+        body: Faker::Lorem.paragraphs(number: rand(2..5)).join('<br/><br/>'),
         user_id: topic.user_id,
         kind: 'first'
       )
@@ -33,7 +33,7 @@ namespace :db do
       Timecop.scale(120000)
       rand(0..5).times do |i|
         post = topic.posts.new
-        post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
+        post.body = Faker::Lorem.paragraphs(number: rand(2..5)).join('<br/><br/>')
         post.kind = 'reply'
         if i.even?
           post.user_id = topic.assigned_user_id
@@ -96,7 +96,7 @@ namespace :db do
 
   def ticket_issue
     [
-      "Order ##{Faker::Number.number(8)} #{issue}",
+      "Order ##{Faker::Number.number(digits: 8)} #{issue}",
       "My order for a '#{Faker::Commerce.product_name}' #{issue}",
       "I ordered something from you guys and it #{issue}",
       "Late order|shipping",
