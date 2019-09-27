@@ -54,41 +54,6 @@ Helpy.admin = function(){
     }
   });
 
-  $('div.adoptable').sortable({
-    revert: true,
-  });
-  $('div.category-row').droppable({
-    classes: {
-      "ui-droppable-hover": "ui-state-active"
-    },
-    tolerance: "intersect",
-    drop: function (event, ui) {
-      var parentId = $(this).data('obj-id');
-      var childId = ui.draggable.data('obj-id');
-      $.ajax({
-        type: 'PATCH',
-        url: '/admin/categories/' + childId + '/set_parent',
-        dataType: 'json',
-        data: { id: childId, parent_id: parentId, remote: true },
-        complete: function (data) {
-          $('.front-categories').html(data.responseText);
-          Helpy.ready();
-          Helpy.track();
-          Helpy.admin();
-        }
-      });
-    }
-  });
-
-  $('.adoptable').off().on('mousein', function(){
-    // $(this).next('.move-down').show();
-    // $('#root-').show();
-  });
-  $('.adoptable').off().on('mouseout', function(){
-    // $(this).next('.move-down').hide();
-    // $('#root-').hide();
-  });
-
 
   $('.settings-link').off().on('click', function(){
     // Clean up any select-styled links

@@ -143,9 +143,9 @@ Rails.application.routes.draw do
 
     get 'internal_docs/search' => 'internal_categories#search', as: :internal_docs_search
 
+    patch 'categories/reorganize' => 'categories#reorganize', as: :reorganize
     resources :categories do
       resources :docs, except: [:index, :show]
-      patch 'set_parent' => 'categories#set_parent', as: :set_parent
     end
 
 

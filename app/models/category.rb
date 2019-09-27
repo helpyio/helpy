@@ -79,4 +79,15 @@ class Category < ActiveRecord::Base
     RebuildSearchJob.perform_later
   end
 
+  def self.reorganize(structure, parent_id=nil, parent_rank=0)
+    logger.info structure
+    structure.each_with_index do |s,i|
+      category = Category.find(s[1]["id"])
+      category.rank = parent_rank+i+1
+      category.parent_id = parent_id
+      category.save!
+      Category.reorganize(s[1]["children"], category.id, category.rank*10) if s[1]["children"].present?
+    end
+  end
+
 end
