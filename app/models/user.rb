@@ -83,7 +83,7 @@ class User < ActiveRecord::Base
   include Gravtastic
   mount_uploader :profile_image, ProfileImageUploader
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :user_search,
                   against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
@@ -117,6 +117,7 @@ class User < ActiveRecord::Base
   scope :by_role, -> (role) { where(role: role) }
   scope :active_first, -> { order('updated_at desc') }
   scope :alpha, -> { order('name asc') }
+  scope :available, -> { where(status: 'available') }
 
   def set_role_on_invitation_accept
     self.role = self.role.presence || "agent"

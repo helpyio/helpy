@@ -104,14 +104,15 @@ class PostTest < ActiveSupport::TestCase
     assert_not_equal(1, topic.assigned_user_id, "Internal note should not set assignment")
   end
 
-  test "Should not AA when the reply is posted by a non admin" do
+  test "Should not AA when the reply is posted by a non agent" do
     topic = Topic.find(6) #unassigned topic
     post = create :post, topic: topic, kind: "reply", user_id: 2 #non admin user
     assert_not_equal(2, topic.assigned_user_id, "Topic assignment should not have changed")
   end
 
-  test "Should AA when a reply is posted by an admin" do
+  test "Should AA when a reply is posted by an agent" do
     topic = Topic.find(4) #unassigned topic
+    first = create :post, topic: topic, kind: "first", user_id: 5
     post = create :post, topic: topic, kind: "reply", user_id: 1
     assert_equal(1, topic.assigned_user_id, "Topic should be assigned to user 1")
   end

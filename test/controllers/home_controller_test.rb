@@ -30,7 +30,7 @@ class HomeControllerTest < ActionController::TestCase
 
   test "a browsing user should see the correct template when visiting the home page" do
     get :index, locale: :en
-    assert_template layout: "layouts/helpy"
+    assert_template layout: "layouts/#{AppSettings['theme.active']}"
   end
 
   # There are two categories in the test data, one is featured on home page

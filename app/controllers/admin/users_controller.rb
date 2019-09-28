@@ -60,7 +60,7 @@ class Admin::UsersController < Admin::BaseController
       if params[:role] == 'team'
         @users = User.team.includes(:topics, :teams).alpha.all.page params[:page]
       else
-        @users = User.by_role(params[:role]).includes(:topics, teams: :tags).active_first.all.page params[:page]
+        @users = User.by_role(params[:role]).includes(:topics).active_first.all.page params[:page]
       end
     else
       @users = User.active_first.all.page params[:page]
@@ -136,7 +136,8 @@ class Admin::UsersController < Admin::BaseController
 
     respond_to do |format|
       format.html { redirect_to admin_users_path,
-        :flash => { :success => "User #{@user.name} was scheduled for permanent deletion." }}
+        flash: { success: I18n.t(:notify_user_delete, user_name: @user.name)}
+      }
       format.js { }
     end
   end

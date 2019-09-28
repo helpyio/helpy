@@ -9,6 +9,9 @@ require 'capybara/rails'
 require 'capybara/minitest'
 require 'capybara/email'
 
+require 'minitest/retry'
+Minitest::Retry.use!
+
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
   include Capybara::Minitest::Assertions
@@ -108,7 +111,7 @@ def set_default_settings
   AppSettings['cloudinary.cloud_name'] = ''
   AppSettings['cloudinary.api_key'] = ''
   AppSettings['cloudinary.api_secret'] = ''
-  AppSettings['theme.active'] = 'helpy'
+  AppSettings['theme.active'] = ENV['HELPY_THEME'] || 'helpy'
   AppSettings['onboarding.complete'] = '1'
 
   # assign all agents to receive notifications

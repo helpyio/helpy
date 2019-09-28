@@ -35,6 +35,46 @@ class AdminSettingsFlowsTest < ActionDispatch::IntegrationTest
     # TODO: Figure out how to test the change of GA token
   end
 
+  test 'Should be able to put a valid URL' do
+    visit('/admin/settings/general')
+
+    current_value = 'http://www.domain.com/helpy'
+    fill_in('settings.site_url', with: current_value)
+    click_on 'Save Settings'
+
+    find("input[value='#{current_value}']")
+  end
+
+  test 'Should be able to put a URL with subdomain' do
+    visit('/admin/settings/general')
+
+    current_value = 'http://subdomain.domain.com/helpy'
+    fill_in('settings.site_url', with: current_value)
+    click_on 'Save Settings'
+
+    find("input[value='#{current_value}']")
+  end
+
+  test 'Should be able to put a URL with multiple subdomains' do
+    visit('/admin/settings/general')
+
+    current_value = 'http://subdomain1.subdomain2.domain.com/helpy'
+    fill_in('settings.site_url', with: current_value)
+    click_on 'Save Settings'
+
+    find("input[value='#{current_value}']")
+  end
+
+  test 'Should be able to put a URL with ip' do
+    visit('/admin/settings/general')
+
+    current_value = 'http://127.0.0.1/helpy'
+    fill_in('settings.site_url', with: current_value)
+    click_on 'Save Settings'
+
+    find("input[value='#{current_value}']")
+  end
+
   test 'an admin should be able to enable or disable i18n and be able to browse to those locales on the site' do
     visit('/admin/settings/i18n')
 
