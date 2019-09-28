@@ -301,8 +301,4 @@ module AdminHelper
     "#{from_email.split('@')[0]}+#{group}@#{from_email.split('@')[1]}" if group.present? && from_email.present?
   end
 
-  def category_spaces(arr)
-    arr.each {"&nbsp;"}
-  end
-
 end

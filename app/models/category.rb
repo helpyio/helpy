@@ -32,7 +32,6 @@ class Category < ActiveRecord::Base
   translates :name, :keywords, :title_tag, :meta_description, versioning: :paper_trail
   globalize_accessors #:locales => I18n.available_locales, :attributes => [:name, :keywords, :title_tag, :meta_description]
 
-  # attr_accessor :parent_category_id
 
   PUBLIC_VIEWABLE   = %w[all public]
   INTERNAL_VIEWABLE = %w[all internal]
@@ -48,7 +47,7 @@ class Category < ActiveRecord::Base
   scope :internally, -> { where(visibility: INTERNAL_VIEWABLE) }
   scope :only_internally, -> { where(visibility: 'internal') }
   scope :without_system_resource, -> { where.not(name: SYSTEM_RESOURCES)  }
-  # after_commit :rebuild_search, only: [:update, :destroy]
+  after_commit :rebuild_search, only: [:update, :destroy]
 
   include RankedModel
   ranks :rank
@@ -86,7 +85,7 @@ class Category < ActiveRecord::Base
       category.rank = parent_rank+i+1
       category.parent_id = parent_id
       category.save!
-      Category.reorganize(s[1]["children"], category.id, category.rank*10) if s[1]["children"].present?
+      Category.reorganize(s[1]["children"], category.id, category.rank+100000) if s[1]["children"].present?
     end
   end
 

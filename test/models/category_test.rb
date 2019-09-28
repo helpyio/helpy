@@ -65,6 +65,18 @@ class CategoryTest < ActiveSupport::TestCase
     end
   end
 
+  test '#reorganize should reorder' do
+    ranking = {"0"=>{"obj"=>"category", "id"=>"4"},"1"=>{"obj"=>"category", "id"=>"1"}}
+    Category.reorganize(ranking)
+    assert_equal 4, Category.featured.publicly.ordered.first.id
+  end
+
+  test '#reorganize should set parent' do
+    ranking = {"0"=>{"obj"=>"category", "id"=>"4", "children"=>{"0"=>{"obj"=>"category", "id"=>"1"}}}}
+    Category.reorganize(ranking)
+    assert_equal 4, Category.find(1).parent_id
+  end
+
   def seed
     @category = Category.create!(name: "test title", active: true, visibility: 'all')
     Doc.create!(title: "test doc one", body: "some body text", category_id: @category.id)
