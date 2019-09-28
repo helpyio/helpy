@@ -2,7 +2,7 @@
   <div class="category-row row vcenter hoversort border-bottom" style="padding-bottom: 10px;" data-obj-id='<%= "#{cat.id}" %>'>
     <div class="dd-handle text-left col-md-7 col-sm-11 col-xs-10 <%= 'grayout' unless cat.active? %>">
       <%= content_tag :span, class: 'more-important' do
-          link_to("#{cat.name} #{cat.rank}", admin_category_path(cat.id)) 
+          link_to("#{cat.name}", admin_category_path(cat.id)) 
         end
       %>
       <br/>
