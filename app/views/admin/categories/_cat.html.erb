@@ -36,7 +36,7 @@
 
   <% if cat.children.size > 0 %>
   <ol class="dd-list">
-    <% cat.children.ordered.each do |child| %>
+    <% cat.children.publicly.ordered.each do |child| %>
       <%= render partial: 'admin/categories/cat', object: child %>
     <% end %>
   </ol>
