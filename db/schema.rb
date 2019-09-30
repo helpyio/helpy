@@ -75,7 +75,10 @@ ActiveRecord::Schema.define(version: 20190716202013) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "visibility",       default: "all"
+    t.string   "ancestry"
   end
+
+  add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
 
   create_table "category_translations", force: :cascade do |t|
     t.integer  "category_id",      null: false

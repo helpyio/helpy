@@ -33,6 +33,7 @@ Helpy.admin = function(){
     items: '.item',
     axis: 'y',
     cursor: 'move',
+    //containment: ".front-categories" ,
     sort: function(event, ui) {
       ui.item.addClass('active-item-shadow');
     },
@@ -53,23 +54,24 @@ Helpy.admin = function(){
     }
   });
 
-  // $('.settings-link').off().on('click', function(){
-  //   // Clean up any select-styled links
-  //   $('.settings-link').removeClass('active-settings-link');
-  //
-  //   // Hide and show the grid/panels
-  //   $('.settings-grid').addClass('hidden');
-  //   $('.settings-panel').removeClass('hidden');
-  //
-  //   var $this = $(this);
-  //   var showthis = $this.data('target');
-  //   $('a[data-target=' + showthis + ']').addClass('active-settings-link');
-  //   $('.settings-section').addClass('hidden');
-  //   $('.settings-section.' + showthis).removeClass('hidden');
-  //   $('.agent-header').addClass('hidden');
-  //   $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
-  //   return false;
-  // });
+
+  $('.settings-link').off().on('click', function(){
+    // Clean up any select-styled links
+    $('.settings-link').removeClass('active-settings-link');
+  
+    // Hide and show the grid/panels
+    $('.settings-grid').addClass('hidden');
+    $('.settings-panel').removeClass('hidden');
+  
+    var $this = $(this);
+    var showthis = $this.data('target');
+    $('a[data-target=' + showthis + ']').addClass('active-settings-link');
+    $('.settings-section').addClass('hidden');
+    $('.settings-section.' + showthis).removeClass('hidden');
+    $('.agent-header').addClass('hidden');
+    $('h2#setting-header').text('Settings: ' + $this.text().capitalize());
+    return false;
+  });
 
   // You have to delegate this to the document or it does not work reliably
   // See http://stackoverflow.com/questions/18545941/jquery-on-submit-event

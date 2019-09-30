@@ -174,6 +174,7 @@ end
 
 gem 'bulk_insert'
 gem 'roo'
+gem 'ancestry'
 
 group :development do
   gem "better_errors"

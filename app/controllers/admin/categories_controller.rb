@@ -57,11 +57,17 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
+  def reorganize
+    Category.reorganize(params[:structure])
+    render nothing: true
+  end
+
   private
 
   def category_params
     params.require(:category).permit(
     :name,
+    :parent_id,
     :keywords,
     :title_tag,
     :icon,

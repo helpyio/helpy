@@ -6,8 +6,12 @@
   <div class="col-md-10">
     <h4><%= link_to category.name, category_path(category), id: "category-#{category.id}" %></h4>
     <p>
-      <% category.docs.with_translations(I18n.locale).ordered.active.limit(5).each_with_index do |doc| -%>
-        <%= link_to doc.title, doc_path(doc) %>
+      <% if category.meta_description.present? %>
+        <%= category.meta_description %>
+      <% else %>
+        <% category.docs.with_translations(I18n.locale).ordered.active.limit(5).each_with_index do |doc| -%>
+          <%= link_to doc.title, doc_path(doc) %>
+        <% end %>
       <% end %>
     </p>
   </div>

@@ -128,7 +128,7 @@ class Admin::BaseController < ApplicationController
   end
 
   def set_categories_and_non_featured
-    @public_categories = Category.publicly.featured.ordered.includes(:docs)
+    @public_categories = Category.roots.publicly.featured.ordered.includes(:docs)
     @public_nonfeatured_categories = Category.publicly.unfeatured.alpha.includes(:docs)
     @internal_categories = Category.only_internally.ordered.includes(:docs)
   end
