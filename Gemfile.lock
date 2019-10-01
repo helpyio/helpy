@@ -59,7 +59,7 @@ GEM
       activerecord (>= 3.2, < 5)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    ancestry (3.0.6)
+    ancestry (3.0.7)
       activerecord (>= 3.2.0)
     annotate (3.0.2)
       activerecord (>= 3.2, < 7.0)
