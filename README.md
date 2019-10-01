@@ -58,7 +58,7 @@ Admin User: `admin@test.com` and password: `12345678`
 Installation
 ============
 
-Helpy was designed to run on on modern cloud providers, although it should work on
+Helpy was designed to run on modern cloud providers, although it should work on
 any linux based system.  There is a full guide to installing Helpy in the wiki: https://github.com/helpyio/helpy/wiki
 
 Requirements are:
