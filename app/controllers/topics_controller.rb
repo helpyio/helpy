@@ -117,7 +117,7 @@ class TopicsController < ApplicationController
     if recaptcha_enabled? && !user_signed_in?
       unless verify_recaptcha(model: @topic)
         initialize_new_ticket_form_vars
-        render :new && return
+        return render :new
       end
     end
 
