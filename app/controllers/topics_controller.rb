@@ -114,6 +114,11 @@ class TopicsController < ApplicationController
 
     associate_with_doc
 
+    if params[:topic][:url].present?
+      initialize_new_ticket_form_vars
+      return render :new
+    end
+
     if recaptcha_enabled? && !user_signed_in?
       unless verify_recaptcha(model: @topic)
         initialize_new_ticket_form_vars

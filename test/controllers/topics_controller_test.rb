@@ -273,6 +273,22 @@ class TopicsControllerTest < ActionController::TestCase
     end
   end
 
+  test 'a browsing user should not be able to create a new public topic when they fall for the honeypot' do
+    get :new, locale: :en
+    assert_response :success
+
+    assert_difference 'User.count', 0, 'No user should have been created' do
+      assert_difference 'Topic.count', 0, 'No topic should have been created' do
+        assert_difference 'Post.count', 0, 'No new post should have been created' do
+          post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}, url: 'http://spamy.spam'}, locale: :en
+        end
+      end
+    end
+
+    assert_response :success
+    assert_select "#new_topic"
+  end
+
   test 'a browsing user should be able to create a new public topic without signing in when recaptcha enable' do
 
     # Make sure recaptcha site_key is set
