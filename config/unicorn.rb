@@ -9,7 +9,7 @@ preload_app true
 
 # Immediately restart any workers that
 # haven't responded within 30 seconds
-timeout 30
+timeout 90
 
 before_fork do |_server, _worker|
 
