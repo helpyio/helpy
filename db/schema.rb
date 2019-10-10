@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190716202013) do
+ActiveRecord::Schema.define(version: 20191005134018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,14 +188,15 @@ ActiveRecord::Schema.define(version: 20190716202013) do
     t.integer  "user_id"
     t.text     "body"
     t.string   "kind"
-    t.boolean  "active",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "points",      default: 0
-    t.string   "attachments", default: [],                array: true
+    t.boolean  "active",           default: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "points",           default: 0
+    t.string   "attachments",      default: [],                array: true
     t.string   "cc"
     t.string   "bcc"
     t.text     "raw_email"
+    t.string   "email_to_address", default: ""
   end
 
   create_table "searches", force: :cascade do |t|
