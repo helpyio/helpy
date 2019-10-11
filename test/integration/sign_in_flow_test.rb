@@ -46,6 +46,13 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
     sign_out
   end
 
+  test "a browser should be able to sign by modal in and be redirected to the last page requested" do
+    visit '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments'
+    sign_in_by_modal
+    assert_equal '/en/knowledgebase/1-active-and-featured/docs/6-allows-comments', current_path
+    sign_out
+  end
+
   test "a browser visiting an admin page should be redirected to login in their locale" do
     visit '/admin'
     assert_equal '/en/users/sign_in', current_path
