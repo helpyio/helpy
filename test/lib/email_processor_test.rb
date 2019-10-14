@@ -30,6 +30,13 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
+  test 'a ticket from a blacklisted email should be marked spam' do
+    AppSettings['email.email_blacklist'] = "blacklist@email.com, blacklisttwo@email.com"
+    assert_difference('Topic.where(current_status: "spam").count', 1) do
+      EmailProcessor.new(build(:blacklist_email)).process
+    end
+  end
+
   test 'a spam email should be filtered and should not send emails' do
     assert_difference('Topic.where(current_status: "spam").count', 1) do
       assert_difference('Post.count', 1) do

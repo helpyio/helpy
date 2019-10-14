@@ -10,6 +10,14 @@ FactoryBot.define do
     spam_report { '' }
   end
 
+  factory :blacklist_email, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'blacklist', host: 'email.com', email: 'blacklist@email.com', full: 'blacklist <blacklist@email.com>', name: 'blacklist User' }) }
+    subject { 'spam email subject' }
+    header {}
+    body { 'Spam' }
+  end
+
   factory :spam_from_unknown, class: OpenStruct do
     to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
     from { ({ token: 'spam_user', host: 'email.com', email: 'spammer_email@email.com', full: 'spammer <spam_user@email.com>', name: 'Spam User' }) }

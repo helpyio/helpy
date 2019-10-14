@@ -233,4 +233,21 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal "\"#{AppSettings['settings.site_name']}\" <#{AppSettings['email.from_email']}>", topic.from_email_address
   end
 
+  test "#reject_blacklisted should change new status to spam if match" do
+    AppSettings['email.email_blacklist'] = "blacklist@email.com, blacklisttwo@email.com"
+
+    user  = create :user, email: "blacklist@email.com"
+    topic = create :topic, user: user
+    assert_equal "spam", topic.current_status
+  end
+
+  test "#reject_blacklisted should change new status to spam if domain match" do
+    AppSettings['email.email_blacklist'] = "email.com"
+
+    user  = create :user, email: "blacklist@email.com"
+    topic = create :topic, user: user
+    assert_equal "spam", topic.current_status
+  end
+
+
 end
