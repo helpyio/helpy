@@ -298,7 +298,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       sassc
-    jquery-minicolors-rails (2.2.6.1)
+    jquery-minicolors-rails (2.2.6.2)
       jquery-rails
       rails (>= 3.2.8)
     jquery-rails (4.3.5)
