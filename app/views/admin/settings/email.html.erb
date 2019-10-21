@@ -24,8 +24,9 @@
       </div>
     </div>
     <div class="settings-section spam-protection" data-hook="spam_protection">
-      <%= f.text_field 'email.spam_assassin_reject', label: 'Reject incoming email SpamAssassin threshold', value: AppSettings['email.spam_assassin_reject'] %>
-      <%= f.text_field 'email.spam_assassin_filter', label: 'Filter to Spam incoming email SA threshold ', value: AppSettings['email.spam_assassin_filter'] %>
+      <%= f.text_field 'email.spam_assassin_reject', label: t('spam_assassin_reject'), value: AppSettings['email.spam_assassin_reject'] %>
+      <%= f.text_field 'email.spam_assassin_filter', label: t('spam_assassin_filter'), value: AppSettings['email.spam_assassin_filter'] %>
+      <%= f.text_area 'email.email_blacklist', label: t('email_blacklist'), value: AppSettings['email.email_blacklist'] %>
     </div>
     <div class="submit-section">
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>

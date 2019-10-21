@@ -444,7 +444,10 @@ es:
   # mail_smtp: SMTP Server
   # mail_port: SMTP Port
   # mail_domain: SMTP Domain
-
+  # spam_assassin_reject: SpamAssassin Threshold for rejecting incoming email tickets 
+  # spam_assassin_filter: SpamAssassin Threshold for marking incoming tickets spam
+  # email_blacklist: Automatically mark tickets from these addresses as spam (separate multiple with commas)
+ 
   # API Key Managmeent
   # api_keys: "API Keys"
   # key_name: "Key Name"
