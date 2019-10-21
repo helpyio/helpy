@@ -280,7 +280,7 @@ class Topic < ActiveRecord::Base
 
   # Send any tickets created by a blacklisted email to spam
   def reject_blacklisted_email_addresses
-    if AppSettings['email.email_blacklist'].split(",").find { |e| /#{self.user.email}/ =~ e}
+    if AppSettings['email.email_blacklist'].split(",").any? { |s| self.user.email.downcase.include?(s.downcase) }
        self.current_status = "spam"
     end
   end  
