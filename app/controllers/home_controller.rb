@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   respond_to :html
 
   def index
+    redirect_to new_user_session_path if !tickets? && !knowledgebase?
+
     @topics = Topic.by_popularity.ispublic.front
     @rss = Topic.chronologic.active
     @articles = Doc.all_public_popular.with_translations(I18n.locale).includes(:tags)
