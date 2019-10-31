@@ -269,7 +269,7 @@ GEM
       mail
     groupdate (4.1.2)
       activesupport (>= 4.2)
-    hashid-rails (1.2.2)
+    hashid-rails (1.4.0)
       activerecord (>= 4.0)
       hashids (~> 1.0)
     hashids (1.0.5)
