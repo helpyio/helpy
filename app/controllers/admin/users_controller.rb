@@ -46,6 +46,9 @@
 
 class Admin::UsersController < Admin::BaseController
 
+  # TODO: fix this so it works on API.
+  skip_before_action :verify_authenticity_token
+
   before_action :verify_agent
   before_action :verify_admin, only: ['invite','invite_users','scrub','destroy']
   before_action :fetch_counts, :only => ['show']
@@ -127,6 +130,21 @@ class Admin::UsersController < Admin::BaseController
     respond_to do |format|
       format.html { redirect_to admin_users_path }
       format.js { }
+    end
+  end
+
+  def gen_apikey
+    @user = User.find(params[:id])
+    d = DateTime.now
+    @api_key = ApiKey.new({
+      user_id: @user.id, 
+      name: 'Generated ' + d.strftime("%d/%m/%Y %H:%M")
+    })
+    if @api_key.save
+      respond_to do |format|
+        format.html { redirect_to admin_users_path }
+        format.js { }
+      end
     end
   end
 

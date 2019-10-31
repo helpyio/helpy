@@ -112,6 +112,7 @@ gem "bootstrap-switch-rails", '3.3.3' # NOTE: IOS style switches broke with 3.3.
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
+gem 'rqrcode'
 
 gem 'config', '~> 1.1.0'
 
@@ -133,6 +134,9 @@ gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 
 gem 'rails-timeago'
+
+# Notifications
+gem 'fcm'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -208,7 +212,7 @@ end
 
 group :production do
   # Uncomment this gem for Heroku:
-  # gem 'rails_12factor'
+  gem 'rails_12factor'
   gem 'unicorn'
 end
 

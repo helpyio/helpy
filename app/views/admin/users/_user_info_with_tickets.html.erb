@@ -53,6 +53,13 @@
         place_holder: t('click_to_edit', what: 'notes', default: 'click to edit %{what}'),
         confirm: true %><br/>
       </div>
+      <div id="user-contact-info" class="user-info">
+        <div class="tiny-header"><%= t(:api_keys, default: "API Keys") %>:</div>
+        <% user.api_keys.each do |key| %>
+          <%= image_tag(admin_qr_code_path(key)) %>
+          <%= link_to key.name, admin_qr_code_path(key.id) %>
+        <% end %>
+      </div>    
     </div>
   </div>
 </div>

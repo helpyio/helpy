@@ -9,5 +9,8 @@
     <li><%= link_to t(:delete_user, default: 'Delete User'), admin_user_path(user), remote: true,
                     method: :delete,
                     data: { confirm: "Are you sure you want to delete #{user.name}? This will remove the user an any tickets or forum topics the user has created." } if current_user.is_admin? && user.can_scrub_and_delete? %></li>
+    <li><%= link_to t(:add_apikey, default: 'Add API Key'), admin_gen_apikey_path(user), remote: true, 
+                    method: :post,
+                    data: { confirm: "Are you sure you want to provide #{user.name} with API access?" } if current_user.can_generate_api_keys? %></li>              
   </ul>
 </span>

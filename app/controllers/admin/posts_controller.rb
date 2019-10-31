@@ -28,6 +28,9 @@ class Admin::PostsController < Admin::BaseController
     get_tickets_by_status
 
     respond_to do |format|
+      puts @post.valid?
+      puts @post.errors
+      sleep 1
       if @post.save
         format.html {
           redirect_to admin_topic_path(@post.topic_id)

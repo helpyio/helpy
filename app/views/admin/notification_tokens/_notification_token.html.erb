@@ -1,0 +1,5 @@
+<tr class="notification_token_<%= notification_token.id %>">
+  <td><%= notification_token.device_description %></td>
+  <td><%= notification_token.device_token %></td>
+  <td><%= link_to "Destroy", admin_notification_token_path(notification_token), method: :delete, data: { confirm: 'Are your sure?' }, class: 'btn btn-primary' %></td>
+</tr>

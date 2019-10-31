@@ -8,6 +8,7 @@ class BackupMailer < ApplicationMailer
       from: %("#{AppSettings['settings.site_name']}" <#{AppSettings['email.admin_email']}>),
       subject: "[#{AppSettings['settings.site_name']}] ##{model_name} backup completed"
       )
+      @user.send_firebase_notifications("BACKUP COMPLETE", "Backup Complete!  Please see Online dashboard for details")
   end
 
 end

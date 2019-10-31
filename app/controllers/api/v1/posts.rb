@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -21,6 +20,7 @@ module API
           requires :kind, type: String, desc: "The kind of post, either 'reply' or 'note'"
           optional :cc, type: String, desc: "Comma separated list of emails to CC"
           optional :bcc, type: String, desc: "Comma separated list of emails to BCC"
+          optional :attachments, type: Array
         end
         post "", root: :posts do
           post = Post.create!(
@@ -29,8 +29,10 @@ module API
             user_id: permitted_params[:user_id],
             kind: permitted_params[:kind],
             cc: permitted_params[:cc],
-            bcc: permitted_params[:bcc]
+            bcc: permitted_params[:bcc],
           )
+          post.attachments = permitted_params[:attachments]
+          post.save
           present post, with: Entity::Post
         end
 
@@ -42,6 +44,7 @@ module API
           requires :active, type: Boolean, desc: "Whether the post is live or not"
         end
         patch ":id", root: :posts do
+          restrict_to_role %w(admin agent)
           post = Post.find(permitted_params[:id])
           post.update!(
             body: permitted_params[:body],
@@ -49,8 +52,6 @@ module API
           )
           present post, with: Entity::Post
         end
-
-
       end
     end
   end

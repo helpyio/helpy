@@ -1,3 +1,5 @@
+require 'fcm'
+SERVER_KEY = 'AAAA1geL4fA:APA91bF9KGWsdtrrZvzSkhyD2eVbl-2_I4frsVD1L-cxBMnn3RO8Zs72OnCB7Eh9lxO7TYLfIUxeijXGSMdxnvALisTNu97L7_TUK-NGRaBu0wVKhuoQeKbaeGlotDCw72eIIbCv70jR'
 # == Schema Information
 #
 # Table name: users
@@ -97,6 +99,7 @@ class User < ActiveRecord::Base
   has_many :docs
   has_many :backups, dependent: :delete_all
   has_many :api_keys, dependent: :destroy
+  has_many :notification_tokens, dependent: :destroy
 
   has_attachment  :avatar, accept: [:jpg, :png, :gif]
   is_gravtastic
@@ -203,6 +206,10 @@ class User < ActiveRecord::Base
   def can_scrub_and_delete?
     return false if self.id == 2 || self.is_admin?
     true
+  end
+
+  def can_generate_api_keys?
+    return is_admin?
   end
 
   # Is this user editable by the current logged in agent?
@@ -361,6 +368,24 @@ class User < ActiveRecord::Base
     end
 
     usr
+  end
+
+  def send_firebase_notifications(title, body)
+
+    fcm = FCM.new(SERVER_KEY)
+
+    options = {
+      "notification": {
+        "title": title,
+        "body": body
+      }
+    }
+
+    notification_tokens.each do |nt|
+      if (nt.enabled)
+        fcm.send_with_notification_key(nt.device_token, options)
+      end
+    end
   end
 
   private

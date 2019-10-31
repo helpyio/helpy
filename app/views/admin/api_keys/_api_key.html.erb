@@ -1,6 +1,7 @@
 <tr class="api_key_<%= api_key.id %> <%= 'less-important' if api_key.expired? %>">
   <td><%= api_key.name %></td>
   <td><%= api_key.access_token %></td>
+  <td class="qrcode"><%= image_tag(admin_qr_code_path(api_key), width: "200px", height: "200px") %></td>
   <% if api_key.expired? %>
     <td class="pull-right"><%= t("expired", default: "Expired") %></td>
   <% else %>

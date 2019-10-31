@@ -15,6 +15,8 @@ class TopicMailer < ApplicationMailer
       from: @topic.from_email_address,
       subject: "[#{AppSettings['settings.site_name']}] ##{@topic.id}-#{@topic.name}"
       )
-  end
+
+      @topic.user.send_firebase_notifications("Ticket Created", @topic.posts.last.body.truncate(256))
+    end
 
 end

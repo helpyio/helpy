@@ -22,8 +22,8 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
-
+  config.serve_static_files = true
+  
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Settings.site_url }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = Settings.send_email
-
+  config.action_mailer.smtp_settings = { address: '192.168.0.251', port: 25 }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   # This can be managed through the settings panel inside Helpy.  It is probably best you leave
@@ -83,5 +83,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { host: 'help.achi.tech', protocol: 'http' }
 
 end

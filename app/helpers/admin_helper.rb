@@ -201,7 +201,7 @@ module AdminHelper
       concat content_tag(:li, link_to(t(:your_profile, default: 'Your Profile'), admin_profile_settings_path(mode: 'settings')), class: 'visible-lg visible-md visible-sm hidden-xs')
       concat content_tag(:li, link_to(t(:settings, default: 'Settings'), admin_general_settings_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
 
-
+      concat content_tag(:li, link_to(t('notification_tokens', default: "Notification Tokens"), admin_notification_tokens_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
       concat content_tag(:li, link_to(t('api_keys', default: "API Keys"), admin_api_keys_path), class: 'visible-lg visible-md visible-sm hidden-xs') if current_user.is_admin?
       concat content_tag(:li, link_to(t(:logout, default: "Logout"), destroy_user_session_path), class: 'visible-lg visible-md visible-sm hidden-xs')
     end

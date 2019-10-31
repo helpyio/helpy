@@ -10,7 +10,6 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-
 class Admin::ApiKeysController < Admin::BaseController
 
   before_action :set_user
@@ -37,6 +36,12 @@ class Admin::ApiKeysController < Admin::BaseController
     @api_key.update! date_expired: Time.current
   end
 
+  def qrcode
+    key = ApiKey.find(params[:id])
+    conf = Rails.application.config.action_mailer
+    send_data key.qrcode(conf.default_url_options[:protocol] + '://' + conf.default_url_options[:host]).as_png(size: 200), type: "image/png", disposition: 'inline'
+  end
+
   protected
 
   def set_user
@@ -56,6 +61,4 @@ class Admin::ApiKeysController < Admin::BaseController
     :user_id
   )
   end
-
-
 end

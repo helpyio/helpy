@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   def new_user(user_id, token)
     return unless (AppSettings['settings.welcome_email'] == "1" || AppSettings['settings.welcome_email'] == true)
     @user = User.find(user_id)
-
+    
     # Do not send to temp email addresses
     return if @user.email.split("@")[0] == "change"
 

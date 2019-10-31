@@ -1,3 +1,14 @@
+## Trevor Extras
+
+Extas include:
+- QR Code support
+- Additional API functionality
+- API Access for non-admins
+- Android App Support
+
+
+** To Create an API key for a non-admin user, go to edit the user, then from the hamburger menu select "Add API Key"
+
 ## VERSION 2.5.0
 
 This release adds important new functionality for managing incoming spam email tickets (particularly from parse webhook services such as Sendgrid or Mandrill). 

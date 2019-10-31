@@ -4,7 +4,6 @@ module API
 
       before do
         authenticate!
-        restrict_to_role %w(admin agent)
       end
 
       include API::V1::Defaults
@@ -44,6 +43,7 @@ module API
           optional :active, type: Boolean, desc: "Whether or not the doc is live on the site"
         end
         post "", root: :docs do
+          restrict_to_role %w(admin agent)
           doc = Doc.create!(
             title: permitted_params[:title],
             category_id: permitted_params[:category_id],
@@ -78,6 +78,7 @@ module API
           optional :active, type: Boolean, desc: "Whether or not the doc is live on the site"
         end
         patch ":id", root: :docs do
+          restrict_to_role %w(admin agent)
           doc = Doc.find(permitted_params[:id])
           doc.update!(
             title: permitted_params[:title],
