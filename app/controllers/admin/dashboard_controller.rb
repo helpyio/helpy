@@ -11,8 +11,10 @@ class Admin::DashboardController < Admin::BaseController
       redirect_to admin_topics_path
     elsif current_user.is_editor? && knowledgebase?
       redirect_to admin_categories_path
+    elsif (current_user.is_admin? || current_user.is_agent?)
+      redirect_to admin_users_path
     else
-      redirect_to root_url
+      redirect_to admin_blank_dashboard_path
     end
   end
 
