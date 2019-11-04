@@ -79,7 +79,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
 
-
   include Gravtastic
   mount_uploader :profile_image, ProfileImageUploader
 

@@ -176,6 +176,8 @@ Rails.application.routes.draw do
     get '/reports/groups' => 'reports#groups', as: :group_reports
     get '/reports' => 'reports#index', as: :reports
 
+    get '/dashboard/blank' => 'dashboard#blank', as: :blank_dashboard
+
     root to: 'dashboard#index'
   end
 

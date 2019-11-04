@@ -13,5 +13,6 @@ module Entity
     expose :cc, documentation: { type: "String", desc: "Comma separated list of emails to CC" }
     expose :bcc, documentation: { type: "String", desc: "Comma separated list of emails to BCC" }
     expose :raw_email, documentation: { desc: "The original full raw email body" }
+    expose :email_to_address, documentation: { desc: "The address a ticket was sent to" }
   end
 end

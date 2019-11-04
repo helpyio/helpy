@@ -1,3 +1,47 @@
+## VERSION 2.7.0
+
+The 2.7 release of Helpy is here, with several great new features to help you b etter provide great customer support.
+
+New Features:
+
+- New nested categories feature lets you create sub categories with a drag and drop UI to group and administer them.
+- New API setting for default reply type
+- Site URL is now validated
+- New Anti-spam setting to filter any ticket from matching email addresses to spam
+- Address a ticket is sent to is now captured
+
+Bug Fixes:
+
+- Webhooks preference did not always save
+- Customers list view does not always load
+
+See UPDATING.md for details on how to update.
+
+## VERSION 2.6.0
+
+This release fixes several edge case bugs and adds a couple new API features and an all new Ukrainian language translation.  Specifically:
+
+- New Ukrainian locale #1378 @Serg2294 
+
+Bug Fixes:
+
+- Translated versions are now properly included in the search index #1375 
+- The CC address is now persisted if you change the assignment of a ticket while editing the reply #1387
+- Agents can now create an unassigned ticket #1317
+- A rare bug that docs unclickable on mobile has been resolved #1371 
+
+API:
+
+- A new endpoint has been added to get specifics of the currently logged in user #1242 @trevormerritt 
+- Categories can now be filtered by visibility (public/private/internal) #1269
+- Forum topics now respect a limit param #1357 @elguitar 
+- The User entity is now included with topics and posts #1318 
+
+Misc:
+
+- Can now specify a theme environment var when running test suite #1253 @azul 
+
+
 ## VERSION 2.5.0
 
 This release adds important new functionality for managing incoming spam email tickets (particularly from parse webhook services such as Sendgrid or Mandrill). 

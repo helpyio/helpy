@@ -82,6 +82,7 @@ class Topic < ActiveRecord::Base
   # may want to get rid of this filter:
   # before_save :check_for_private
   before_create :add_locale
+  before_create :reject_blacklisted_email_addresses
 
   before_save :cache_user_name
   acts_as_taggable_on :tags, :teams
@@ -276,6 +277,13 @@ class Topic < ActiveRecord::Base
   end
 
   private
+
+  # Send any tickets created by a blacklisted email to spam
+  def reject_blacklisted_email_addresses
+    if AppSettings['email.email_blacklist'].split(",").any? { |s| self.user.email.downcase.include?(s.downcase) }
+       self.current_status = "spam"
+    end
+  end  
 
   def cache_user_name
     return if self.user.nil?

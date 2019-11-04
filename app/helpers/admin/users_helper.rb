@@ -9,7 +9,7 @@ module Admin::UsersHelper
 
   def new_user_ticket_button
     content_tag :span, class: "hidden-xs pull-right" do
-      link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: 'btn btn-primary'
+      link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @user.id), remote: true, class: 'btn btn-primary' if tickets?
     end
   end
 

@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(_resource)
     # If the user is an agent, redirect to admin panel
-    redirect_url = current_user.is_agent? ? admin_root_url : root_url
-    oauth_url = current_user.is_agent? ? admin_root_url : request.env['omniauth.origin']
+    redirect_url = current_user.is_editor? ? admin_root_url : root_url
+    oauth_url = current_user.is_editor? ? admin_root_url : request.env['omniauth.origin']
     oauth_url || redirect_url
   end
 

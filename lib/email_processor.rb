@@ -118,7 +118,8 @@ class EmailProcessor
         raw_email: raw,
         user_id: @user.id,
         kind: "first",
-        cc: cc
+        cc: cc,
+        email_to_address: to
       )
       # Push array of attachments and send to Cloudinary
       EmailProcessor.handle_attachments(email, post)
@@ -167,7 +168,8 @@ class EmailProcessor
         raw_email: raw,
         user_id: @user.id,
         kind: 'first',
-        cc: cc
+        cc: cc,
+        email_to_address: to
       )
 
       # Push array of attachments and send to Cloudinary
@@ -204,7 +206,8 @@ class EmailProcessor
         raw_email: raw,
         user_id: @user.id,
         kind: "reply",
-        cc: cc
+        cc: cc,
+        email_to_address: to
       )
 
       # Push array of attachments and send to Cloudinary

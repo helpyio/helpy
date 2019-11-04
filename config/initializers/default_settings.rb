@@ -86,6 +86,7 @@ AppSettings.defaults["email.mail_port"] = Settings.mail_port
 AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
 AppSettings.defaults["email.spam_assassin_reject"]= 4
 AppSettings.defaults["email.spam_assassin_filter"]= 2
+AppSettings.defaults["email.email_blacklist"] = ""
 
 # notifications
 
