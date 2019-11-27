@@ -207,9 +207,13 @@ group :test do
 end
 
 group :production do
-  # Uncomment this gem for Heroku:
-  # gem 'rails_12factor'
-  gem 'unicorn'
+  gem 'rails_12factor'
 end
+
+# capture errors locally
+gem 'puma'
+gem 'puma_worker_killer'
+gem 'exception-track', '0.4.0'
+gem 'delayed_job_active_record'
 
 ruby '>= 2.2', '< 3.0'

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrate
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: helpyio/helpyk8s:v2.7
+          command: ['bundle exec rake']
+          args: ['db:migrate']
+          envFrom:
+          - configMapRef:
+              name: env

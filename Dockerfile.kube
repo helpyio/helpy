@@ -1,0 +1,34 @@
+FROM ruby:2.4
+
+ENV RAILS_ENV=production \
+    HELPY_HOME=/opt/helpy \
+    HELPY_USER=helpyuser \
+    HELPY_SLACK_INTEGRATION_ENABLED=true \
+    BUNDLE_PATH=/opt/helpy-bundle
+
+RUN apt-get update \
+  && apt-get upgrade -y \
+  && apt-get install -y nodejs postgresql-client imagemagick --no-install-recommends \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --no-create-home $HELPY_USER \
+  && mkdir -p $HELPY_HOME $BUNDLE_PATH \
+  && chown -R $HELPY_USER:$HELPY_USER $HELPY_HOME $BUNDLE_PATH
+
+WORKDIR $HELPY_HOME
+
+COPY Gemfile Gemfile.lock $HELPY_HOME/
+COPY vendor $HELPY_HOME/vendor
+RUN chown -R $HELPY_USER $HELPY_HOME
+
+RUN bundle install --without test development
+
+COPY . $HELPY_HOME/
+RUN rm -rf $HELPY_HOME/tmp 
+
+COPY docker/database.yml $HELPY_HOME/config/database.yml
+RUN chown -R $HELPY_USER $HELPY_HOME
+
+EXPOSE 3000
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
