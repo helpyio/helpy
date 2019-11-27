@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helpy
+spec:
+  replicas: 1
+  # strategy:
+  #   type: RollingUpdate
+  #   rollingUpdate:
+  #     maxSurge: 1
+  #     maxUnavailable: 0  
+  selector:
+    matchLabels:
+      app: helpy
+  template:
+    metadata:
+      labels:
+        app: helpy
+    spec:
+      containers:
+      - name: helpy
+        image: helpyio/helpyk8s:v2.7
+        ports:
+        - containerPort: 3000
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 3000
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 5
+        #   successThreshold: 1        
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: env

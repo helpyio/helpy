@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: background
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: background
+  template:
+    metadata:
+      labels:
+        app: background
+    spec:
+      containers:
+      - name: background
+        image: helpyio/helpyk8s:v2.7
+        envFrom:
+        - configMapRef:
+            name: env
+        #command: ["RAILS_ENV=production bin/delayed_job run"]
+        command: ["/bin/bash", "-l", "-c"]
+        args: ["RAILS_ENV=production bin/delayed_job run"]
