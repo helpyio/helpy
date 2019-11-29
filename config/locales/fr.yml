@@ -193,6 +193,7 @@ fr:
 
   # User Admin
   users: Utilisateurs
+  create_user: Créer un nouvel utilisateur
   account: Compte
   contact_info: Informations de contact
   social_info: Réseaux sociaux

@@ -191,6 +191,7 @@ es:
 
   # User Admin
   users: Usuarios
+  # create_user: Create New User
   # account: Account
   contact_info: Contacto
   social_info: Social

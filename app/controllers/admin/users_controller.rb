@@ -47,7 +47,7 @@
 class Admin::UsersController < Admin::BaseController
 
   before_action :verify_agent
-  before_action :verify_admin, only: ['invite','invite_users','scrub','destroy']
+  before_action :verify_admin, only: ['invite','invite_users','scrub','destroy','new','create']
   before_action :fetch_counts, :only => ['show']
   before_action :get_all_teams
   respond_to :html, :js
@@ -77,6 +77,35 @@ class Admin::UsersController < Admin::BaseController
     @topic = Topic.where(user_id: @user.id).first
     @header = content_tag :span, "#{@user.name.titleize}<small>#{view_context.user_priority(@user)}</small>".html_safe
     tracker("Agent: #{current_user.name}", "Viewed User Profile", @user.name)
+  end
+
+  def new
+    @user = User.new
+    @user.role = 'user'
+  end
+
+  def create
+    @user = User.new(user_params)
+    fetch_counts
+
+    # Set the password if it is not provided
+    @user.password = params[:user][:password].blank? ?  User.create_password : params[:user][:password]
+    @user.update_attribute(:role, params[:user][:role]) if params[:user][:role].present?
+
+    if @user.save
+      tracker("Agent: #{current_user.name}", "Created User Profile", @user.name)
+      flash[:notice] = "#{@user.name} has been saved"
+      @user.invite! if params[:user_invite]
+
+      respond_to do |format|
+        format.html {
+          redirect_to edit_admin_user_path(@user)
+        }
+      end
+    else
+      render :new
+    end
+
   end
 
   def edit

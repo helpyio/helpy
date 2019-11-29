@@ -193,6 +193,7 @@ pt-br:
 
   # User Admin
   users: &users "Usuários"
+  # create_user: Create New User
   account: Conta
   contact_info: "Contato"
   social_info: "Social"
