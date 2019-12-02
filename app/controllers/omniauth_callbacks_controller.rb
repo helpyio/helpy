@@ -14,6 +14,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     handle_redirect('devise.google_uid', 'Google')
   end
 
+  def saml
+    handle_redirect('devise.saml_uid', 'SAML')
+  end
+
   private
 
   def handle_redirect(_session_variable, _kind)

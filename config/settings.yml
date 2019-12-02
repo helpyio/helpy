@@ -56,3 +56,15 @@ omniauth:
 #    google_oauth2:
 #      id:
 #      secret:
+#    saml: # See more info about the settings at the omniauth-saml repo https://github.com/omniauth/omniauth-saml#options
+#      issuer: "<helpy_base_url>/users/auth/saml/metadata" # SP Entity ID, Recommended to set the URL where the SP metadata is published 
+#      assertion_consumer_service_url: "<helpy_base_url>/users/auth/saml/callback"  # SP Assertion Consumer Service Endpoint
+#      single_logout_service_url: "<helpy_base_url>/users/auth/saml/slo" # SP Single logout Service Endpoint
+#      slo_default_relay_state: "<helpy_base_url>"  # Where to redirect the user after login off
+#      idp_entity_id: # IdP Enity ID
+#      idp_sso_target_url: # IdP Single Sign On Service URL
+#      idp_slo_target_url: # IdP Single Logout Service URL
+#      idp_cert: # IdP x509 cert
+#      name_identifier_format: "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+#      uid_attribute: "User.email" # Attribute that uniquely identifies the user. If unset, the name identifier returned by the IdP is used.
+#      attribute_statements: {email: ['User.email'], uid: ['Username'], name: ['User.FirstName'], first_name: ['User.FirstName'], last_name: ['User.LastName']} # Used to map Attribute Names in a SAMLResponse to entries in the OmniAuth info hash
