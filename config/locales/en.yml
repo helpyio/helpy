@@ -392,6 +392,7 @@ en:
   # General
   site_name: Site Name
   site_url: Site URL
+  site_url_placeholder: The URL of your Helpy (https://support.yourdomain.com)
   parent_site: Parent Site
   parent_company: Parent Company
   site_tagline: Site Tagline
