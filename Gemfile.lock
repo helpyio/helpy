@@ -97,7 +97,7 @@ GEM
     bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.7.0)
     brakeman (4.7.2)
-    builder (3.2.3)
+    builder (3.2.4)
     bulk_insert (1.7.0)
       activerecord (>= 3.2.0)
     bundler-audit (0.6.1)
@@ -231,7 +231,7 @@ GEM
       activerecord (>= 3.2.0, < 5)
       globalize (>= 3.0.4, < 6)
       paper_trail (>= 3.0.0, < 5)
-    grape (1.2.1)
+    grape (1.2.5)
       activesupport
       builder
       mustermann-grape (~> 1.0.0)
