@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/helpyio/helpy_onboarding
-  revision: dd7c96a7b9638ce089f5fac2213e15ffde2ae67b
+  revision: bb75cec5a680fdc919115b8d162be6c7863f6394
   branch: master
   specs:
     helpy_onboarding (2.0.1)
