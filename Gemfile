@@ -207,9 +207,7 @@ group :test do
 end
 
 group :production do
-  # Uncomment this gem for Heroku:
   # gem 'rails_12factor'
-  gem 'unicorn'
 end
 
 ruby '>= 2.2', '< 3.0'

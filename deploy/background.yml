@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: background
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: background
+  template:
+    metadata:
+      labels:
+        app: background
+    spec:
+      containers:
+      - name: background
+        image: helpy/helpy:kubernetes
+        envFrom:
+        - configMapRef:
+            name: env
+        command: ["/bin/bash", "-l", "-c"]
+        args: ["RAILS_ENV=production bin/delayed_job run"]

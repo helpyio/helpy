@@ -38,3 +38,6 @@ public/uploads
 /postgres
 
 /.fossa.yml
+
+# K8s stuff
+deploy/env.yml 

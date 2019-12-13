@@ -21,8 +21,8 @@ module Helpy
     config.active_record.raise_in_transactional_callbacks = true
 
     # We are using active_job and currently the inline backend.  You may change this if
-    # you want a more robust solution. The queue is used for emails.
-    config.active_job.queue_adapter = :sucker_punch
+    # you want a more robust solution. The queue is used for emails and other background work.
+    config.active_job.queue_adapter = ENV['HELPY_JOB_ADAPTER'] || :sucker_punch
 
     config.to_prepare do
       Devise::Mailer.layout "mailer" # email.haml or email.erb

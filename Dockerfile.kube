@@ -1,0 +1,49 @@
+FROM ruby:2.5
+
+ENV RAILS_ENV=production \
+    HELPY_HOME=/opt/helpy \
+    HELPY_USER=helpyuser \
+    HELPY_SLACK_INTEGRATION_ENABLED=true \
+    BUNDLE_PATH=/opt/helpy-bundle
+
+RUN apt-get update \
+  && apt-get upgrade -y \
+  && apt-get install -y nodejs postgresql-client imagemagick --no-install-recommends \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --no-create-home $HELPY_USER \
+  && mkdir -p $HELPY_HOME $BUNDLE_PATH \
+  && chown -R $HELPY_USER:$HELPY_USER $HELPY_HOME $BUNDLE_PATH
+
+WORKDIR $HELPY_HOME
+
+# Install Helpy into container
+COPY . $HELPY_HOME/
+RUN rm -rf $HELPY_HOME/tmp 
+
+# COPY Gemfile Gemfile.lock $HELPY_HOME/
+# COPY vendor $HELPY_HOME/vendor
+RUN chown -R $HELPY_USER $HELPY_HOME
+
+# Add K8s gem requirements
+RUN echo "gem 'puma'" >> $HELPY_HOME/Gemfile \
+  && echo "gem 'puma_worker_killer'" >> $HELPY_HOME/Gemfile \
+  && echo "gem 'redis-rails', '~> 4'" >> $HELPY_HOME/Gemfile \
+  && echo "gem 'delayed_job_active_record'" >> $HELPY_HOME/Gemfile \
+  && echo "gem 'rails_12factor'" >> $HELPY_HOME/Gemfile \
+  && bundle install --without test development
+
+# Add reference to redis cache  
+RUN sed -i "3i\  config.cache_store = :redis_store, ENV['REDIS_URL'], { expires_in: 90.minutes }" $HELPY_HOME/config/environments/production.rb
+
+# COPY files into places
+COPY docker/database.yml $HELPY_HOME/config/database.yml
+RUN chown -R $HELPY_USER $HELPY_HOME
+COPY deploy/files/puma.rb $HELPY_HOME/config
+COPY deploy/files/delayed_mailer_plugin.rb $HELPY_HOME/config/initializers
+COPY deploy/files/20191114154900_create_delayed_jobs.rb $HELPY_HOME/db/migrate
+COPY deploy/files/delayed_job $HELPY_HOME/bin
+
+EXPOSE 3000
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

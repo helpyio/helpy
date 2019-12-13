@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helpy
+spec:
+  type: LoadBalancer
+  selector:
+    app: helpy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      name: http
+  externalTrafficPolicy: Local
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helpy
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0  
+  selector:
+    matchLabels:
+      app: helpy
+  template:
+    metadata:
+      labels:
+        app: helpy
+    spec:
+      containers:
+      - name: helpy
+        image: helpy/helpy:kubernetes
+        readinessProbe:
+          httpGet:
+            path: /en
+            port: 80
+          initialDelaySeconds: 120
+          periodSeconds: 5
+          successThreshold: 1        
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: env
+      - image: nginx:1.15
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 300m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+        volumeMounts:
+        - mountPath: /etc/nginx
+          name: conf
+      volumes:
+      - name: conf
+        configMap:
+          name: nginx        
