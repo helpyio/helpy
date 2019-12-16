@@ -68,7 +68,7 @@ gem 'route_translator'
 gem 'http_accept_language'
 
 # API gems
-gem 'grape'
+gem 'grape', '1.2.1'
 gem 'grape-swagger'
 gem 'grape-entity'
 gem 'grape-swagger-rails'
@@ -156,6 +156,13 @@ gem 'best_in_place', '~> 3.1'
 # Add onboarding component
 gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
 gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
+
+source 'https://gems.helpy.io/' do
+  gem 'helpy_cloud', '~> 1.5.4'
+end
+
+# NULLDB for asset precompilation
+gem 'activerecord-nulldb-adapter'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities

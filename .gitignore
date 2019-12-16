@@ -34,7 +34,8 @@ public/uploads
 
 # Docker stuff
 .env
-/certs
+certs
 /postgres
 
-/.fossa.yml
+/.fossa.yml# IDE
+.idea/

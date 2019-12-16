@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: helpy
+  name: helpy
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: helpy
+    spec:
+      imagePullSecrets:
+      - name: dockercred
+      containers:
+        - name: helpy
+          image: superpedestrian/helpy:latest
+          imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.service.configMapName }}
+          ports:
+            - name: helpy-http
+              containerPort: 8080
+              protocol: TCP
+          resources: {}

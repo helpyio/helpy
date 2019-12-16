@@ -1,0 +1,5 @@
+FROM webwurst/caddy
+
+COPY ./docker/Caddyfile /etc/caddy/Caddyfile
+
+CMD ["caddy", "-conf", "/etc/caddy/Caddyfile", "--log", "stdout"]

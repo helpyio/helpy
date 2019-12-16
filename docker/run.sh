@@ -8,16 +8,15 @@ echo "waiting $SLEEPSECONDS seconds for postgres.."
 
 # sleep while postgres is initializing
 sleep $SLEEPSECONDS
-pg_isready -q -h postgres
-ISREADY=$?
-while [[ "$ISREADY" != 0 ]]; do
-  pg_isready -q -h postgres
-  let ISREADY=$?
-  echo "waiting $SLEEPSECONDS seconds for postgres.."
-  sleep $SLEEPSECONDS
+echo "before checking for postgres"
+until pg_isready -q -h postgres
+do
+    echo "."
+    sleep 1
 done
+sleep 2
 
-echo "postgres is now avaliable"
+echo "postgres is now available"
 
 RUN_PREPARE=${DO_NOT_PREPARE:-false}
 
@@ -27,6 +26,7 @@ if [[ "$RUN_PREPARE" = "false" ]]
     bundle exec rake assets:precompile
     bundle exec rake db:migrate
     bundle exec rake db:seed || echo "db is already seeded"
+    rails g helpy_cloud:install
 fi
 
 echo "starting unicorn"

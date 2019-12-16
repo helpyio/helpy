@@ -20,6 +20,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://gems.helpy.io/
   specs:
     actionmailer (4.2.11.1)
       actionpack (= 4.2.11.1)
@@ -50,7 +51,9 @@ GEM
       activemodel (= 4.2.11.1)
       activesupport (= 4.2.11.1)
       arel (~> 6.0)
-    activesupport (4.2.11.1)
+    activerecord-nulldb-adapter (0.3.9)
+      activerecord (>= 2.0.0)
+    activesupport (4.2.11)
       i18n (~> 0.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
@@ -125,6 +128,7 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
+    chronic (0.10.2)
     client_side_validations (4.2.12)
       jquery-rails (>= 3.1.2, < 5.0.0)
       js_regex (~> 1.0, >= 1.0.19)
@@ -379,6 +383,7 @@ GEM
     mustermann (1.0.3)
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
+    net-ldap (0.16.1)
     netrc (0.11.0)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
@@ -567,6 +572,7 @@ GEM
       concurrent-ruby (~> 1.0)
     summernote-rails (0.8.12.0)
       railties (>= 3.1)
+    table_print (1.5.6)
     test_after_commit (1.2.2)
       activerecord (>= 3.2, < 5.0)
     themes_on_rails (0.4.0)
@@ -614,6 +620,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-nulldb-adapter
   acts-as-taggable-on (~> 3.5)
   ancestry
   annotate
@@ -655,7 +662,7 @@ DEPENDENCIES
   globalize (= 5.0.1)
   globalize-accessors
   globalize-versioning
-  grape
+  grape (= 1.2.1)
   grape-entity
   grape-kaminari
   grape-swagger
@@ -669,6 +676,7 @@ DEPENDENCIES
   griddler-sendgrid
   griddler-sparkpost
   groupdate
+  helpy_cloud (~> 1.5.4)!
   hashid-rails (~> 1.0)
   helpy_imap!
   helpy_onboarding!
