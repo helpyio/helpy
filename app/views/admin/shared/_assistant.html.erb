@@ -1,0 +1,39 @@
+<% if knowledgebase? %>
+<style>
+  .assistant {
+    margin-bottom: 10px;
+  }
+
+  .assist-results {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+
+  .ui-autocomplete {
+    text-align: left;
+    margin-left: 5px;
+    color: #666;
+    max-height: 300px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+
+  }
+
+  .ui-state-focus {
+    color: White;
+    background: #96B202;
+    outline: none;
+  }
+</style>
+
+<div class="assistant">
+  <%= text_field_tag 't', nil, class:'agent-assist form-control ui-autocomplete-input', placeholder: 'Search the knowledgebase for an article to link to...' %>
+  <div class="assist-results">
+  </div>
+</div>
+
+<%= javascript_include_tag "agent_assistant", "data-turbolinks-track" => true %>
+<% end %>

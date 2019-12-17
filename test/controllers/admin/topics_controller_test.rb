@@ -150,6 +150,27 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       assert_nil topic.assigned_user_id, "assigned user should be nil"
     end
 
+    test "an #{admin} should be able to assign a ticket and have the CC persisted" do
+      sign_in users(admin.to_sym)
+      topic = Topic.find(1)
+      post = topic.posts.where(kind: 'reply').last
+      post.cc = "test@test.com"
+      post.save!
+
+      assert_difference "Post.count", 1 do
+        xhr :get, :assign_agent, { topic_ids: [1], assigned_user_id: 1 }
+      end
+
+      post2 = Post.new_with_cc(topic)
+      post2.body = "test"
+      post2.kind = "reply"
+      post2.user_id = 1
+      post2.cc = topic.posts.ispublic.order(id: :asc).last&.cc
+      post2.save!
+
+      assert_equal "test@test.com", post2.cc
+    end
+
     ### tests of changing status
 
     test "an #{admin} posting an internal note should not change status on its own" do
@@ -219,6 +240,14 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to open a new discussion for a new user" do
       sign_in users(admin.to_sym)
       xhr :get, :new
+      assert_response :success
+    end
+
+    test "an #{admin} should be able to open a new discussion with a set channel" do
+      AppSettings['settings.default_channel'] = 'phone'
+      sign_in users(admin.to_sym)
+      xhr :get, :new
+      assert_equal 'phone', assigns(:topic).channel
       assert_response :success
     end
 
@@ -305,6 +334,19 @@ class Admin::TopicsControllerTest < ActionController::TestCase
       end
 
       assert_equal 1, Topic.last.assigned_user_id
+    end
+
+    test "an #{admin} created private discussion without assignment should be unassigned" do
+      sign_in users(admin.to_sym)
+      assert_difference "Topic.count", 1 do
+        assert_difference "Post.count", 1 do
+          assert_difference "User.count", 1 do
+            xhr :post, :create, topic: { user: { name: "a user", work_phone: '34526668', email: "change@me-34526668.com" }, name: "some new private topic", post: { body: "this is the body", kind: 'first' }, channel: "phone", forum_id: 1, current_status: 'new', assigned_user_id: nil}
+          end
+        end
+      end
+
+      assert_equal nil, Topic.last.assigned_user_id
     end
 
     test "an #{admin} should be able to create a new private discussion for an existing user" do
@@ -403,7 +445,6 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     topic.current_status = "open"
     topic.team_list = "aomething else"
     topic.save!
-
     get :index, { status: "open" }
     assert_equal 0, assigns(:topics).size
     assert_template "admin/topics/index"
@@ -466,4 +507,65 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     assert_equal topic.reload.private, false
     refute_nil topic.pg_search_document
   end
+
+  # Test of super bulk (all matching tickets) actions
+
+  test "should be able to move all matching tickets to trash" do
+    Topic.find(1).update(current_status: 'spam')
+    Topic.find(2).update(current_status: 'spam')
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    assert_difference("Topic.trash.size", spam_topics.size) do
+      xhr :get, :update_topic, { q: 'spam', change_status: "trash", affect: 'all' }
+    end
+    assert_response :success
+  end
+
+  test "should be able to assign all matching tickets to agent" do
+    Topic.find(1).update(current_status: 'spam')
+
+    Topic.where(assigned_user_id: 1).update_all(assigned_user_id: nil)
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    assert_difference("Topic.where(assigned_user_id: 1).size", spam_topics.size) do
+      xhr :get, :assign_agent, { q: 'spam', assigned_user_id: 1, affect: 'all' }
+    end
+    assert_response :success
+  end
+
+  test "should be able to unassign all matching tickets" do
+    Topic.find(1).update(current_status: 'spam')
+    Topic.find(2).update(current_status: 'spam')
+
+    Topic.find(1).update(current_status: 'spam')
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    xhr :get, :unassign_agent, { q: 'spam', affect: 'all' }
+    assert_equal 0, Topic.admin_search('spam').where(assigned_user_id: nil).size
+    assert_response :success
+  end
+
+  test "should be able to assign all matching tickets to group" do
+    Topic.find(1).update(current_status: 'spam')
+    Topic.find(2).update(current_status: 'spam')
+
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    assert_difference("Topic.tagged_with('test_team', context: 'teams').size", spam_topics.size) do
+      xhr :get, :assign_team, { q: 'spam', assign_team: "test_team", affect: 'all' }
+    end
+    assert_response :success
+  end
+  
+  test "should be able to unassign all matching tickets from group" do
+    sign_in users(:agent)
+    Topic.admin_search('new').each do |t|
+      t.team_list = 'test_team'
+      t.save!
+    end
+    xhr :get, :unassign_team, { q: 'new', affect: 'all' }
+    assert_equal 0, Topic.admin_search('new').tagged_with('test_team', context: 'teams').size
+    assert_response :success
+  end
+
 end

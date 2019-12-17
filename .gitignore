@@ -36,5 +36,6 @@ public/uploads
 .env
 certs
 /postgres
-# IDE
+
+/.fossa.yml# IDE
 .idea/

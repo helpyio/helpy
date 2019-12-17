@@ -44,6 +44,7 @@
 								<ul class="nav-items settings-menu list-unstyled" data-hook="admin_settings_menu" style="margin-top:10px;">
 									<%= settings_menu_item('glyphicon glyphicon-envelope', 'email', admin_email_settings_path) %>
 									<%= settings_menu_item('glyphicon glyphicon-tags', 'groups', admin_groups_path) %>
+									<%= settings_menu_item('glyphicon glyphicon-tags', 'tags', admin_tags_path) %>
                   <%= settings_menu_item('glyphicon glyphicon-share-alt', 'common replies', admin_category_path(1)) %>
 						    </ul>
 
@@ -66,7 +67,6 @@
 								<%= yield :settings %>
 						  </div>
 						</div>
-
 					</div>
 				</div>
 			</div>

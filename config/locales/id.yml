@@ -308,6 +308,7 @@ id:
   notify_new_private: "Ada tiket klien baru yang diterima dari %{user_name}:"
   notify_new_public: "Ada pesan publik klien baru yang dikirim oleh %{user_name}:"
   notify_new_reply: "Ada balasan klien yang diterima dari %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Balas pesan ini langsung atau secara online:'
 
   # Notifications settings panel

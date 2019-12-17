@@ -54,9 +54,28 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
+  test 'a browsing user should be able to view a ticket if anonymous access turned on' do
+    AppSettings['settings.anonymous_access'] = '1'
+    get :show, id: Topic.last.hashid, locale: :en
+    assert_response :success
+  end
+
+  test 'browsing users should NOT be able to view a ticket if anonymous access is disabled' do
+    AppSettings['settings.anonymous_access'] = '0'
+    get :show, id: Topic.last.hashid, locale: :en
+    assert_redirected_to root_path
+  end
+
   test 'a browsing user should get the new topic page' do
     get :new, locale: :en
     assert_nil assigns(:topics)
+    assert_response :success, 'Did not get the new topic page'
+  end
+
+  test 'the new topic should be set to private if enabled' do
+    AppSettings['settings.default_private'] = '1'
+    get :new, locale: :en
+    assert_equal true, assigns(:topic).private
     assert_response :success, 'Did not get the new topic page'
   end
 

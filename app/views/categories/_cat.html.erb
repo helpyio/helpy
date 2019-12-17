@@ -1,0 +1,21 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<li class="">
+  <% if cat.nil? %>
+  <%= link_to cat.name, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{cat.id}"  %>
+  <% else %>
+  <%= link_to cat.name, category_path(cat), class: 'autoscroll list-group-item', "data-target" => "#category-#{cat.id}"  %>
+  <% end %>
+</li>
+<% cat.children.publicly.active.each do |child| %>
+  <div style="margin-left: 10px;">
+    <%= render partial: 'categories/cat', object: child %>
+  </div>
+<% end %>

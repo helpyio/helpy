@@ -84,10 +84,10 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
     params = {
       name: Faker::Company.catch_phrase,
       icon: "clock",
-      keywords: Faker::Lorem.words(4).join(','),
+      keywords: Faker::Lorem.words(number: 4).join(','),
       title_tag: Faker::Company.catch_phrase,
       meta_description: Faker::Lorem.paragraph,
-      rank: Faker::Number.between(1, 10),
+      rank: Faker::Number.between(from: 1, to: 10),
       front_page: true,
       active: true
     }
@@ -103,10 +103,10 @@ class API::V1::CategoriesTest < ActiveSupport::TestCase
     params = {
       name: nil,
       icon: "clock",
-      keywords: Faker::Lorem.words(4).join(','),
+      keywords: Faker::Lorem.words(number: 4).join(','),
       title_tag: Faker::Company.catch_phrase,
       meta_description: Faker::Lorem.paragraph,
-      rank: Faker::Number.between(1, 10),
+      rank: Faker::Number.between(from: 1, to: 10),
       front_page: true,
       active: true
     }

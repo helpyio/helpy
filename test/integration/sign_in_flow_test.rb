@@ -42,7 +42,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   test "an editor should be able to sign in and be shown the categories page" do
     sign_in("editor@test.com")
-    assert_equal '/en', current_path
+    assert_equal '/admin/categories', current_path
     sign_out
   end
 
@@ -62,7 +62,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   Devise.omniauth_providers.each do |provider|
     test "#{provider} login: is redirected to provider" do
-      get user_omniauth_authorize_path(provider)
+      post "/users/auth/#{provider}"
       assert_response :redirect
     end
 
@@ -70,7 +70,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
       @auth_hash = {:uid => '12345', :info => {:name => "A #{provider} user", :email => 'joe@example.com'}}
       OmniAuth.config.add_mock(provider, @auth_hash)
 
-      post user_omniauth_callback_path(provider)
+      post "/users/auth/#{provider}/callback"
       assert_redirected_to root_path
     end
 
@@ -78,18 +78,18 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
       @auth_hash = {:uid => '12345', :info => {:name => "A #{provider} email-less user"}}
       OmniAuth.config.add_mock(provider, @auth_hash)
 
-      post user_omniauth_callback_path(provider)
+      post "/users/auth/#{provider}/callback"
       assert_redirected_to finish_signup_path
     end
   end
 
   test "Unknown provider leads to 404" do
-    assert_raise ActionController::UrlGenerationError do
-      get user_omniauth_authorize_path("unknown")
+    assert_raise ActionController::RoutingError do
+      get "/users/auth/unknown"
     end
 
-    assert_raise ActionController::UrlGenerationError do
-      post user_omniauth_callback_path("unknown")
+    assert_raise ActionController::RoutingError do
+      post "/users/auth/unknown/callback"
     end
   end
 

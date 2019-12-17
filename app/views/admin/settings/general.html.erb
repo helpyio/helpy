@@ -13,7 +13,7 @@
 
       <h4 class="settings-subsection">Self Service Site</h4>
       <%= f.text_field 'settings.site_name', value: AppSettings['settings.site_name'], label: t('site_name', default: "Site Name") %>
-      <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: t('site_url', default: "Site URL") %>
+      <%= f.text_field 'settings.site_url', value: AppSettings['settings.site_url'], label: t('site_url', default: "Site URL"), type: 'url', placeholder: t('site_url_placeholder', default: 'The URL of your Helpy (https://support.yourdomain.com)') %>
       <%= f.text_field 'settings.parent_site', value: AppSettings['settings.parent_site'], label: t('parent_site', default: "Parent Site") %>
       <%= f.text_field 'settings.parent_company', value: AppSettings['settings.parent_company'], label: t('parent_company', default: "Parent Company") %>
       <%= f.text_field 'settings.site_tagline', value: AppSettings['settings.site_tagline'], label: t('site_tagline', default: "Site Tagline") %>

@@ -86,7 +86,9 @@ class Admin::BaseController < ApplicationController
     else
       topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
     end
-    topics_raw = topics_raw.includes(user: :avatar_files).chronologic
+    
+    # Only include cloudinary files if enabled
+    topics_raw = cloudinary_enabled? ? topics_raw.includes(user: :avatar_files).chronologic : topics_raw.includes(:user).chronologic
 
     get_all_teams
 
@@ -109,25 +111,26 @@ class Admin::BaseController < ApplicationController
   def fetch_counts
     if current_user.is_restricted? && teams?
       topics = Topic.tagged_with(current_user.team_list, :any => true)
-      @admins = User.agents #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
+      @admins = User.agents.available #can_receive_ticket.tagged_with(current_user.team_list, :any => true)
     else
       topics = Topic.all
-      @admins = User.agents.includes(:topics)
+      @admins = User.agents.available.includes(:topics)
     end
-    @new = topics.unread.count
-    @unread = topics.unread.count
-    @pending = Topic.mine(current_user.id).pending.count
-    @open = topics.open.count
-    @active = topics.active.count
-    @mine = Topic.active.mine(current_user.id).count
+    @new = topics.unread.size
+    @unread = topics.unread.size
+    @pending = Topic.mine(current_user.id).pending.size
+    @open = topics.open.size
+    @active = topics.active.size
+    @mine = Topic.active.mine(current_user.id).size
     # @closed = topics.closed.count
-    # @spam = topics.spam.count
+    @spam = topics.spam.size
+    @trash = topics.trash.size
   end
 
   def set_categories_and_non_featured
-    @public_categories = Category.publicly.featured.ordered
-    @public_nonfeatured_categories = Category.publicly.unfeatured.alpha
-    @internal_categories = Category.only_internally.ordered
+    @public_categories = Category.roots.publicly.featured.ordered.includes(:docs)
+    @public_nonfeatured_categories = Category.roots.publicly.unfeatured.alpha.includes(:docs)
+    @internal_categories = Category.only_internally.ordered.includes(:docs)
   end
 
 end

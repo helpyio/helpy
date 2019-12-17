@@ -7,18 +7,8 @@
 ################################################################################
 %>
 
-<div id="left-col" class="col-md-3 hidden-sm hidden-xs affix affix-top">
+<div id="left-col" class="col-lg-3 col-md-3 hidden-sm hidden-xs affix affix-top">
   <ul class="list-unstyled border-right">
-  <% @categories.with_translations(I18n.locale).each do |category| %>
-      <% if category.docs.with_translations(I18n.locale).count > 0 %>
-        <li class="">
-          <% if @category.nil? %>
-          <%= link_to category.name, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
-          <% else %>
-          <%= link_to category.name, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
-          <% end %>
-        </li>
-      <% end %>
-  <% end %>
+      <%= render partial: 'categories/cat', collection: @categories.with_translations(I18n.locale) %>
   </ul>
 </div>

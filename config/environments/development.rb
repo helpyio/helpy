@@ -50,7 +50,7 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = false
 
-  config.i18n.available_locales = [:en, :es, :de, :fr, :it, :et, :ca, :sv, :hu, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br', :fa, :fi, :id, :ar, :ko, :ms]
+  config.i18n.available_locales = [:en, :es, :de, :fr, :it, :et, :ca, :sv, :hu, :ru, :ja, :hi, 'zh-cn', 'zh-tw', 'pt', :nl, 'tr', 'pt-br', :fa, :fi, :id, :ar, :ko, :ms, :uk]
   config.i18n.default_locale = :en
   config.i18n.fallbacks = true
 
@@ -58,8 +58,8 @@ Rails.application.configure do
 
   config.after_initialize do
     # Bullet Configuration / https://github.com/flyerhzm/bullet
-    Bullet.enable = true
-    Bullet.bullet_logger = true
-    Bullet.add_footer = true
+    # Bullet.enable = true
+    # Bullet.bullet_logger = true
+    # Bullet.add_footer = true
   end
 end

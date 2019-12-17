@@ -1,0 +1,57 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<%- title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
+
+<div id="ticket-info" class="row">
+  <div class="col-md-3 col-sm-3 hidden-xs" id="left-col-user-info">
+    <div class="doc-meta">
+      <div class="more-important meta-header">Ticket Number:</div>
+      <div class="less-important"><%= @topic.id %></div>
+    </div>
+    <div class="doc-meta">
+      <div class="more-important meta-header"><%= I18n.t('assigned_to_label', default: "Assigned To") %>:</div>
+      <div class="less-important">
+        <% unless @topic.assigned_user.nil? %>
+          <%= avatar_image(@topic.assigned_user, size=40) %>
+          <%= @topic.assigned_user.name.titleize %>
+        <% else %>
+          Unassigned
+        <% end %>
+      </div>
+    </div>
+    <div class="doc-meta">
+      <div class="more-important meta-header">Opened On:</div>
+      <div class="less-important"><%= @topic.created_at %></div>
+    </div>
+  </div>
+  <div id="ticket-controls" class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+    <script>
+      Helpy.messages = '<%= j t(:collapsed_messages, count: @posts.count-2) %>';
+    </script>
+    <div id="posts">
+      <%= render :partial => 'posts/post', :collection => @posts %>
+    </div>
+    <% if user_signed_in? %>
+      <div class="add-form">
+      <h4><%= I18n.t("reply", default: "Reply to this Topic") %></h4>
+      <%#= error_messages_for :post -%>
+      <%= bootstrap_form_for @topic.posts.new, :url => topic_posts_path(@topic), :remote => true do |f| -%>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+        <%= f.hidden_field 'kind', value: 'reply' %>
+        <%= hidden_field_tag :client_id %>
+        <%= f.text_area :body, :rows => 8, :cols => 160, skip_label: true, class: 'disable-empty' -%></p>
+        <%= f.attachinary_file_field :screenshots if cloudinary_enabled? %>
+        <%= f.file_field :attachments, multiple: true unless cloudinary_enabled? %>				
+        <%= f.submit I18n.t('submit_reply', default: 'Post Reply'), class: 'btn btn-warning disableable', disabled: 'disabled' -%>
+      <% end -%>
+      </div>
+    <% end -%>
+  </div>
+</div>

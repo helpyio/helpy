@@ -23,6 +23,13 @@ AppSettings.defaults["settings.tickets"] = Settings.tickets
 AppSettings.defaults["settings.knowledgebase"] = Settings.knowledgebase
 AppSettings.defaults["settings.teams"] = Settings.teams
 AppSettings.defaults["settings.welcome_email"] = Settings.welcome_email
+AppSettings.defaults['settings.global_bcc'] = []
+AppSettings.defaults['settings.default_channel'] = 'email'
+AppSettings.defaults['settings.include_ticket_history'] = '1'
+AppSettings.defaults['settings.include_ticket_body'] = '1'
+AppSettings.defaults['settings.default_private'] = '0'
+AppSettings.defaults['settings.anonymous_access'] = '0'
+AppSettings.defaults['settings.anonymous_salt'] = 'salt'
 
 # Webhook Integrations
 
@@ -77,6 +84,9 @@ AppSettings.defaults["email.smtp_mail_password"] = Settings.smtp_mail_password
 AppSettings.defaults["email.mail_smtp"] = Settings.mail_smtp
 AppSettings.defaults["email.mail_port"] = Settings.mail_port
 AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
+AppSettings.defaults["email.spam_assassin_reject"]= 4
+AppSettings.defaults["email.spam_assassin_filter"]= 2
+AppSettings.defaults["email.email_blacklist"] = ""
 
 # notifications
 

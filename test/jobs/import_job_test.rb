@@ -50,9 +50,9 @@ class ImportJobTest < ActiveSupport::TestCase
     files_detail[:topic] = {path: file, name: 'topics_import.csv'}
     import = Import.create(model: 'topic', status: "In Progress", submited_record_count: 1)
     ImportJob.perform_now(files_detail, admin, import)
-    topic = Topic.last
+    imported_topic = Topic.find(100)
 
-    assert_equal topic.name, 'Overriding bandwidth is not working!'
+    assert_equal imported_topic.name, 'Overriding bandwidth is not working!'
 
   end
 

@@ -311,19 +311,25 @@ Helpy.ready = function(){
   });
 
   $('.multiple-update').off().on('click', function(){
-    // collect array of all checked boxes
-    var topic_ids = {};
     var str = $(this).attr('href');
-    $('.topic-checkbox:checked').each(function(i){
-      topic_ids[i] = $(this).val();
-    });
-    // modify link to include array
-    $.each(topic_ids, function(i){
-      str = str + "&topic_ids[]=" + topic_ids[i];
-    });
-    $(this).attr('href', str);
+    if ($('#select_all').is(':checked')) {
+      str = str + "&affect=all";
+      $(this).attr('href', str);
+    } else {
+      // collect array of all checked boxes
+      var topic_ids = {};
+      $('.topic-checkbox:checked').each(function(i){
+        topic_ids[i] = $(this).val();
+      });
+      // modify link to include array
+      $.each(topic_ids, function(i){
+        str = str + "&topic_ids[]=" + topic_ids[i];
+      });
+      $(this).attr('href', str);
+    }
     // return true to follow the link
     return true;
+
   });
 
   // Topic voting widget animation
@@ -459,6 +465,9 @@ Helpy.didthisHelp = function(yesno){
 Helpy.showGroup = function() {
   if ($('#topic_private_true').is(':checked')) {
     $('#topic_team_list').parent().removeClass('hidden');
+    $("#topic_forum_id").parent().hide();
+    $('#new_topic').append("<input type='hidden' id='new_topic_forum_id' name='topic[forum_id]' value='1'/>");
+    $('#topic_team_list').removeClass('hidden');
   } else if ($('#topic_private_false').is(':checked')) {
     $('#topic_team_list').parent().addClass('hidden');
   } else {

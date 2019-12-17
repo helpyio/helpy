@@ -6,7 +6,37 @@ FactoryBot.define do
     subject { 'email subject' }
     header {}
     body { 'Hello!' }
+    spam_score { '0.11' }
+    spam_report { '' }
   end
+
+  factory :blacklist_email, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'blacklist', host: 'email.com', email: 'blacklist@email.com', full: 'blacklist <blacklist@email.com>', name: 'blacklist User' }) }
+    subject { 'spam email subject' }
+    header {}
+    body { 'Spam' }
+  end
+
+  factory :spam_from_unknown, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'spam_user', host: 'email.com', email: 'spammer_email@email.com', full: 'spammer <spam_user@email.com>', name: 'Spam User' }) }
+    subject { 'spam email subject' }
+    header {}
+    body { 'Spam' }
+    spam_score { '6.0' }
+    spam_report { 'spam report' }
+  end
+
+  factory :spam_filter, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'spam_user', host: 'email.com', email: 'spammer_email@email.com', full: 'spammer <spam_user@email.com>', name: 'Spam User' }) }
+    subject { 'spam email subject' }
+    header {}
+    body { 'Spam' }
+    spam_score { '3.0' }
+    spam_report { 'spam report' }
+  end  
 
   factory :email_from_includes_numbers, class: OpenStruct do
     to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
@@ -127,6 +157,18 @@ FactoryBot.define do
     to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
     from { ({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' }) }
     cc { ([{ token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' }]) }
+    subject { 'email subject' }
+    header {}
+    body { 'Hello!' }
+  end
+
+  factory :email_with_admin_cc, class: OpenStruct do
+    to { [{ full: 'to_user@email.com', email: 'to_user@email.com', token: 'to_user', host: 'email.com', name: nil }] }
+    from { ({ token: 'scott.miller', host: 'test.com', email: 'scott.miller@test.com', full: 'Scott Miller <scott.miller@test.com>', name: 'Scott Miller' }) }
+    cc { ([
+      { token: 'from_user', host: 'email.com', email: 'from_email@email.com', full: 'From User <from_user@email.com>', name: 'From User' },
+      { token: 'support', host: 'email.com', email: 'support@mysite.com', full: 'Mysite Support <support@mysite.com>', name: 'Mysite Support' }
+      ]) }
     subject { 'email subject' }
     header {}
     body { 'Hello!' }

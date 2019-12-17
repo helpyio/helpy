@@ -7,7 +7,6 @@
       <%= f.select 'email.mail_service',
         options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']),
         label: t('mail_service', default: "Inbound Mail Service Provider") %>
-
       <%= f.form_group 'email.send_email', label: { text: t('send_email', default: "Enable Outbound (SMTP) Email") }, class: 'send-email-toggle' do %>
         <%= f.radio_button 'email.send_email', false, label: t('boolean_no', default: "No"), checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
         <%= f.radio_button 'email.send_email', true, label: t('boolean_yes', default: "Yes"), checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
@@ -23,6 +22,11 @@
         <%= f.check_box 'send_test', { checked: true, label: t('send_test_email', default: "Send a test email to administrators"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
 
       </div>
+    </div>
+    <div class="settings-section spam-protection" data-hook="spam_protection">
+      <%= f.text_field 'email.spam_assassin_reject', label: t('spam_assassin_reject'), value: AppSettings['email.spam_assassin_reject'] %>
+      <%= f.text_field 'email.spam_assassin_filter', label: t('spam_assassin_filter'), value: AppSettings['email.spam_assassin_filter'] %>
+      <%= f.text_area 'email.email_blacklist', label: t('email_blacklist'), value: AppSettings['email.email_blacklist'] %>
     </div>
     <div class="submit-section">
       <%= f.submit "Save Settings", class: 'btn btn-warning' %>

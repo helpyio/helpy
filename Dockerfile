@@ -46,15 +46,12 @@ RUN mkdir -p $HELPY_HOME/public/assets $HELPY_HOME/public/uploads \
 
 VOLUME $HELPY_HOME/public
 
-
-# Asset Precompile
-RUN DB_ADAPTER=nulldb bundle exec rake assets:precompile
-
 # Adjust permissions
 RUN chown -R $HELPY_USER:$HELPY_USER /$HELPY_HOME
 
-# Run the server
-CMD bundle exec unicorn -E $RAILS_ENV -c config/unicorn.rb
-
 # Enter the right user
 USER $HELPY_USER
+
+COPY docker/database.yml $HELPY_HOME/config/database.yml
+
+CMD ["/bin/bash", "/helpy/docker/run.sh"]
