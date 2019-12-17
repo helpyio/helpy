@@ -33,6 +33,7 @@ RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
 # install rails dependencies
 RUN bundle config gems.helpy.io $HELPY_USERNAME:$HELPY_PASSWORD
 RUN bundle install
+RUN bundle install helpy_cloud
 
 # add local files
 COPY . /$HELPY_HOME
