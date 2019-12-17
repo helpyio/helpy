@@ -33,7 +33,6 @@ RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
 # install rails dependencies
 RUN bundle config gems.helpy.io $HELPY_USERNAME:$HELPY_PASSWORD
 RUN bundle install
-RUN bundle install helpy_cloud
 
 # add local files
 COPY . /$HELPY_HOME
@@ -47,15 +46,12 @@ RUN mkdir -p $HELPY_HOME/public/assets $HELPY_HOME/public/uploads \
 
 VOLUME $HELPY_HOME/public
 
-
-# Asset Precompile
-RUN DB_ADAPTER=nulldb bundle exec rake assets:precompile
-
 # Adjust permissions
 RUN chown -R $HELPY_USER:$HELPY_USER /$HELPY_HOME
 
-# Run the server
-CMD bundle exec unicorn -E $RAILS_ENV -c config/unicorn.rb
-
 # Enter the right user
 USER $HELPY_USER
+
+COPY docker/database.yml $HELPY_HOME/config/database.yml
+
+CMD ["/bin/bash", "/helpy/docker/run.sh"]
