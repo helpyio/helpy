@@ -9,7 +9,7 @@ echo "waiting $SLEEPSECONDS seconds for postgres.."
 # sleep while postgres is initializing
 sleep $SLEEPSECONDS
 echo "before checking for postgres"
-until pg_isready -q -h postgres
+until pg_isready -q -h postgres-helpy
 do
     echo "."
     sleep 1
