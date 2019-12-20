@@ -440,7 +440,7 @@ GEM
       byebug (~> 10.0)
       pry (~> 0.10)
     public_suffix (4.0.1)
-    rack (1.6.11)
+    rack (1.6.12)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rack-cors (1.0.6)
@@ -494,7 +494,7 @@ GEM
     recaptcha (2.3.0)
       json
     regexp_parser (0.5.0)
-    request_store (1.4.1)
+    request_store (1.5.0)
       rack (>= 1.4)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
