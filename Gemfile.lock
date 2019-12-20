@@ -1,21 +1,21 @@
 GIT
-  remote: https://github.com/helpyio/helpy_imap
-  revision: aafced9cfb7fb8f1ccf6efc20f6d4954f99c636f
-  branch: master
-  specs:
-    helpy_imap (1.0.1)
-      deface
-      mail
-      mailman
-      rails
-
-GIT
   remote: https://github.com/helpyio/helpy_onboarding
   revision: bb75cec5a680fdc919115b8d162be6c7863f6394
   branch: master
   specs:
     helpy_onboarding (2.0.1)
       deface
+      rails
+
+GIT
+  remote: https://github.com/superpedestrian/helpy_imap
+  revision: 930562ffd886b1347c39f797f2cb97988652077e
+  branch: master
+  specs:
+    helpy_imap (1.0.1)
+      deface
+      mail
+      mailman
       rails
 
 GEM
