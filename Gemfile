@@ -155,7 +155,7 @@ gem 'best_in_place', '~> 3.1'
 
 # Add onboarding component
 gem 'helpy_onboarding', git: 'https://github.com/helpyio/helpy_onboarding', branch: 'master'
-gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
+gem 'helpy_imap', git: 'https://github.com/superpedestrian/helpy_imap', branch: 'master'
 
 source 'https://gems.helpy.io/' do
   gem 'helpy_cloud', '~> 2.7.0'
