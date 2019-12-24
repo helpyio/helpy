@@ -141,7 +141,9 @@ class ApplicationController < ActionController::Base
 
   def set_vars
     # Configure griddler, mailer, cloudinary, recaptcha
-    Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
+    
+    # TODO: Re-enable once we have a real domain
+    # Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
 
     ActionMailer::Base.smtp_settings = {
         :address              => AppSettings["email.mail_smtp"],
