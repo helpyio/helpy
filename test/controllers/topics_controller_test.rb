@@ -273,13 +273,42 @@ class TopicsControllerTest < ActionController::TestCase
     end
   end
 
+  test 'a browsing user should not be able to create a new topic when failing the recaptcha test' do
+    begin
+      # Make sure recaptcha is set up
+      Recaptcha.configuration.skip_verify_env.delete("test")
+
+      AppSettings['settings.recaptcha_enabled'] = "1"
+      AppSettings['settings.recaptcha_site_key'] = "some-key"
+      AppSettings['settings.recaptcha_api_key'] = "some-key"
+
+      # Get new topics page
+      get :new, locale: :en
+      assert_response :success
+
+      $debugger = true
+      assert_difference 'User.count', 0, 'No user should have been created' do
+        assert_difference 'Topic.count', 0, 'No topic should have been created' do
+          assert_difference 'Post.count', 0, 'No new post should have been created' do
+            post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}}, locale: :en
+          end
+        end
+      end
+
+      assert_response :success
+      assert_select "#new_topic"
+
+    ensure
+      Recaptcha.configuration.skip_verify_env << "test"
+    end
+  end
+
   test 'a browsing user should be able to create a new public topic without signing in when recaptcha enable' do
 
     # Make sure recaptcha site_key is set
+    AppSettings['settings.recaptcha_enabled'] = "1"
     AppSettings['settings.recaptcha_site_key'] = "some-key"
     AppSettings['settings.recaptcha_api_key'] = "some-key"
-
-    #TopicsController.expects(:verify_recaptcha).returns(true)
 
     # Get new topics page
     get :new, locale: :en
