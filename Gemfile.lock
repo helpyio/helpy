@@ -186,7 +186,7 @@ GEM
     equalizer (0.0.11)
     erubi (1.9.0)
     erubis (2.7.0)
-    excon (0.70.0)
+    excon (0.71.1)
     execjs (2.7.0)
     factory_bot (5.1.1)
       activesupport (>= 4.2.0)
@@ -203,9 +203,9 @@ GEM
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
       ipaddress (~> 0.8)
-    fog-core (2.1.2)
+    fog-core (2.2.0)
       builder
-      excon (~> 0.58)
+      excon (~> 0.71)
       formatador (~> 0.2)
       mime-types
     fog-json (1.2.0)
