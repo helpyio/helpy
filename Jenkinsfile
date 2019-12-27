@@ -1,6 +1,9 @@
 def branchFunction(branchIn) {
-    branchOut = branchIn.replaceAll('/','-')
-    return branchOut
+  branchOut = branchIn.replaceAll('/','-')
+  branchOut = branchOut.replaceAll('_','-')
+  branchOut = branchOut.replaceAll('\\.','-')
+  branchOut = branchOut.toLowerCase()
+  return branchOut
 }
 def String rbVersion(text) {
   Object matcher = readFile(text) =~ 'VERSION\\s+=\\s+\'(.+)\''
@@ -87,15 +90,31 @@ pipeline {
           sh 'helm upgrade $chart_name ./$chart_folder --install --recreate-pods --version $buildVersion --namespace $staging_ns --set=.Values.image.tag=latest'
       }
     }
-    stage('Deploy Release') {
+    stage('Tag then Release') {
+      when {
+        branch '^release|link-release'
+      }
+      steps {
+          sh 'docker tag $docker_image:$branch_ns $docker_image:$buildVersion'
+          sh 'docker push $docker_image:$buildVersion'
+        }
+    }
+    stage('Deploy SP-Release') {
       agent { label 'EKS-Druid' }
       when {
         branch 'release'
       }
       steps {
-          sh 'docker tag $docker_image:$branch_ns $docker_image:$buildVersion'
-          sh 'docker push $docker_image:$buildVersion'
           sh 'helm upgrade $prod_chart_name ./$chart_folder --install --wait --version $buildVersion --namespace $production_ns --set=image.tag=$buildVersion'
+      }
+    }
+    stage('Deploy Link Release') {
+      agent { label 'eks-link' }
+      when {
+        branch 'link-release'
+      }
+      steps {
+        sh 'helm upgrade $prod_chart_name ./$chart_folder --install --version $buildVersion --namespace $production_ns --set=image.tag=$buildVersion'
       }
     }
   }
