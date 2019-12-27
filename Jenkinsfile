@@ -92,7 +92,7 @@ pipeline {
     }
     stage('Tag then Release') {
       when {
-        branch '^release|link-release'
+        branch '*release'
       }
       steps {
           sh 'docker tag $docker_image:$branch_ns $docker_image:$buildVersion'
