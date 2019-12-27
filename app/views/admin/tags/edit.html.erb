@@ -1,0 +1,17 @@
+<% title "#{admin_title} #{t('tag', default: "Tag")}" %>
+
+<% content_for :settings do %>
+  <div class="admin-header">
+    <h3 id="setting-header">
+      <%= show_responsive_nav %>
+      <%= "#{@tag.name} #{t('tag', default: 'Tag')}" %>
+    </h3>
+  </div>
+  <div class="settings-panel row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <%= simple_form_for @tag, url: admin_tag_path(@tag), method: 'put', validate: true, remote: false do |f| %>
+        <%= render "form", f: f  %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

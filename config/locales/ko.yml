@@ -38,6 +38,7 @@ ko:
   # Community
   forum_name: "주제"
   subject: &subject "제목"
+  message: "메시지"
   last_activity: "마지막 활동"
   topic: "토론"
   replies: "답글"
@@ -293,6 +294,7 @@ ko:
   # Mail messages
   new_user_subject: "%{site_name}에 오신 것을 환영합니다"
   hello: "안녕하세요 %{user_name}"
+  thank_you: "고맙습니다!"
   new_user: "저희에게 연락해 줘서 고마워요. 지원팀에서 귀하의 메시지를 받았으며 곧 답변을 드리겠습니다."
   account_generated: "계정이 생성되었습니다. 로그인하려면 다음 링크를 사용하십시오."
   above_this_line: "답글이이 줄 위에 나타나는지 확인하십시오."
@@ -304,6 +306,7 @@ ko:
   notify_new_private: "%{user_name}에서 새로운 고객 티켓을 받았습니다 :"
   notify_new_public: "%{user_name}에서 새로운 공개 고객 메시지를 게시했습니다 :"
   notify_new_reply: "%{user_name}에서 새로운 고객 응답을 받았습니다 :"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: '이 메시지에 직접 또는 온라인으로 회신 :'
 
   # Notifications settings panel
@@ -349,7 +352,7 @@ ko:
     one: "<strong>%{period}</strong>에 사용자가 1 개의 새 티켓을 개설했습니다."
     other: "<strong>%{period}</strong>에 사용자가 <strong>%{count}</strong> 개의 새 티켓을 개설했습니다."
   insights_blurb_two: "팀이 <strong>%{number_replied} (%{percentage_replied})</strong>에 답변했습니다."
-  insights_blurb_three: "중간 응답 시간 : <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "중간 응답 시간 : <strong>%{response_time}</strong>"
   no_discussions: "<strong>%{period}</strong>에 새로운 티켓이 열리지 않았습니다."
   assigned_topics: "할당 된 주제"
   responded: "응답 됨"

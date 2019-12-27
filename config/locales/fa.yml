@@ -35,7 +35,7 @@ fa:
   no_results: "چیزی پیدا نشد. دوباره جستجو کنید"
   results_found:
     one: "یک مورد پیدا شد برای"
-    other: "%{count} مورد پیردا شد برای"
+    other: "%{count} مورد پیدا شد برای"
 
   # Community
   forum_name: "موضوع"
@@ -75,7 +75,10 @@ fa:
   get_help_button: "سوال خود را بپرسید"
 
   # Profile
-  my_profile: 'پروفایل من'
+  my_profile: 'حساب کاربری من'
+
+  # Locales
+  select_locale: "زبان خود را عوض کنید"
 
   # footer
   powered_by: "نیرو گرفته از Helpy. سیستم پشتیبانی اوپن سورس."
@@ -108,32 +111,46 @@ fa:
   # devise/registrations/new
   sign_up: عضویت
 
+  # flash messages
+  model_created: "%{object_name} ذخیره شد"
+  model_updated: "%{object_name} به روز شد"
+  model_destroyed: "%{object_name} حذف شد"
+
   # Admin menu
-  discussions: بحث ها
+  inbox: ورودی
+  discussions: تیکت ها
   content: محتوا
-  communities: انجمن
+  communities: انجمن ها
   app_store: اپ استور
   search: جستجو
+  internal_content: محتوای داخلی
+  new_ticket: تیکت جدید
+  reports: گزارش ها
 
   # Admin main/statuses
-  support_pipeline: سف پشتیبانی
+  support_pipeline: صف پشتیبانی
   new: جدید
   active: فعال
   open: باز
   mine: من
   pending: منتظر
-  closed: حل شده
+  closed: &closed بسته شده
   spam: اسپم
-  trash: آشغال
-  discussion_managment: مدیریت بخث‌ها
-  open_new_discussion: بحث جدید
+  trash: حذف
+  discussion_managment: مدیریت تیکت ها
+  open_new_discussion: تیکت جدید
   assigned_to: "واگذار شده به %{agent}"
-  unassigned: بی صاحاب
+  unassigned: بی صاحب
+  no_team_assigned: واگذار کن به تیم
+  assign_to: گروه/تیم
+  unassign_from_team: گرفتن از گروه
   private: خصوصی
   public: عمومی
   save_changes: ذخیره تغییرات
   merge: ادغام
   merge_confirm: آیا مطمئن هستید این تیکت‌ها را می‌خواهید ادغام کنید؟
+  customer_conversation: صحبت های مشتری
+  internal_ticket: تیکت داخلی
 
   # Discussion controls
   change_status: تغییر وضعیت
@@ -143,13 +160,15 @@ fa:
   mark_spam: اسپم
   mark_new: جدیده
   assign_agent: &assign_agent بسپر به
-  # tag_with: &tag_with Tag Ticket
+  tag_with: &tag_with تگ تیکت
   selected_messages:
     one: "۱ پیغام انتخاب شده"
     two: "۲ پیغام انتخاب شده"
     other: "%{count} پیغام انتخاب شده"
 
   # Discussion messages
+  new_message: "این تیکت جدید تشخیص داده شده توسط تیم پشتیبانی"
+  spam_message: "این تیکت به عنوان اسپم تشخیص داده شده توسط تیم پشتیبانی"
   reopen_message: "این درخواست توسط پشتیبانی دوباره باز شد"
   closed_message: "این تیکت توسط پشتیبانی بسته شد."
   trash_message: "این تیکت پاک شده."
@@ -159,24 +178,84 @@ fa:
   converted_to_topic: "این تیکت به بحث آزاد تبدیل شده و به انجمن %{forum_name} انتقال یافته."
   tagged_with: "این تیکت با %{tagged_with} تگ شده"
   notes_hidden: "%{hidden_notes} یادداشت مخفی برای این تیکت وجود دارد. برای دیدن آنها بر روی همین متن کلیک کنید!"
+  topic_added_from: "%{kind} اضافه شده از %{channel}"
 
   # User Admin
   users: کاربران
   account: حساب کاربری
   contact_info: تماس
-  social_info: سوشال
+  social_info: شبکه اجتماعی
   edit_user: ویرایش کاربر
-#  delete_user: Delete User
+  delete_user: حذف کاربر
   work_phone: تلفن دفتر
   cell_phone: موبایل
+  last_seen: "آخرین بار دیده شده"
+  scrub_user: "کاربر ناشناس"
+  anonymize_user_warning: "آیا مطمعن هستید از ناشناس کردن کاربر %{user_name}؟ این کار برای همیشه اطلاعات کاربر را ناشناس می‌کند ولی تیکت ها و پست های عمومی کاربر باقی خواهد ماند."
+
+  delete_user_warning: "مطمعن هستید از حذف کاربر %{user_name}؟ این کار برای همیشه همه اطلاعات کاربر، تیکت ها، پست ها، پاسخ های آنها و پست های انجمن آنها پاک خواهد شد."
+
 
   # Priorities
   select_priority: &priority انتخاب اولویت
   vip_priority: VIP
-  # very_high_priority: Very High
-  high_priority: بالا
+  very_high_priority: خیلی زیاد
+  high_priority: مهم
   normal_priority: معمولی
-  low_priority: پایین
+  low_priority: کم
+
+  # Roles
+  select_role: انتخاب نقش
+  admin_role: ادمین
+  agent_role: پشتیبان
+  editor_role: نویسنده
+  user_role: کاربر
+  add_more_agents: "اضافه کردن کاربر"
+
+  # Groups
+  groups: "گروه ها"
+  add_new_group: "گروه جدید"
+  group: "گروه"
+  tag_group: ""
+  tag_name: "اسم گروه"
+  description: "توضیح"
+  color: "رنگ"
+  show_on_helpcenter: "در صفحه اصلی نشان بده"
+  show_on_admin: "در بخش مدیریت نشان بده"
+  email_address: "آدرس ایمیل"
+  from_name: "اسم فرستنده"
+
+  # Keyboard Shortcuts
+  shortcut_then: "then"
+  listing_views: "Listing views"
+  keyboard_shortcuts: "Keyboard Shortcuts"
+  show_new_tickets: "Show new tickets"
+  show_all_tickets: "Show all tickets"
+  show_open_tickets: "Show open tickets"
+  show_tickets_assigned_to_you: "Show tickets assigned to you"
+  show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
+  show_closed_tickets: "Show closed tickets"
+  search_for_tickets: "Search for tickets"
+  viewing_tickets: "View tickets"
+  select_previous_ticket: "Select previous ticket"
+  select_next_ticket: "Select next ticket"
+  view_selected_ticket: "View selected ticket"
+  jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
+  ticket_actions: "Ticket actions"
+  assign_the_ticket: "Assign ticket"
+  move_the_ticket: "Move ticket"
+  expand_the_ticket_thread: "Expand ticket thread"
+  reply_to_the_ticket: "Reply to the ticket"
+  add_an_internal_note: "Add an internal note"
+  change_ticket_status: "Change ticket status"
+  associate_with_a_group: "Associate with a group"
+  ticket_status: "Ticket status"
+  mark_resolved: "Close Ticket"
+  reopen_ticket: "Reopen ticket"
+  set_to_new: "Mark as new"
+  mark_as_spam: "Mark as spam"
+  move_to_trash: "Move to trash"
+  ticket_number: "ticket number"
 
   # User search results
   users_found:
@@ -237,6 +316,10 @@ fa:
   new_discussion_topic_title: 'از #%{original_id}-%{original_name} جدا کنید}'
   change_owner_note: 'نویسنده این بحث از %{old} به %{new} تغییر کرد'
 
+  # Internal Content
+  no_internal_content_title: "هنوز مستند داخلی نوشته نشده!"
+  no_internal_content_text: "نگران نباشید! برای مشارکت در مستندسازی داخلی به منو مرکز پشتیبانی < محتوا بروید و یک دسته بندی داخلی تعریف کنید. سپس مستندهای خود را با تیم به اشتراک بگذارید!"
+
   # Communities
   new_community: انجمن جدید بساز
   create_new_community: انجمن جدید بساز
@@ -250,7 +333,7 @@ fa:
   hello: "سلام %{user_name}"
   new_user: "مرسی از تماس شما. پیغام شما دریافت شد توسط تیم پشتیبانی و در اسرع وقت به شما پاسخ میدیم."
   account_generated: "یک حساب کاربر برای شما ساخته شد. برای ورود از این لینک استفاده کنید"
-  above_this_line: "مطمئن شوید پاسخ شما در بالا نوشته شده"
+  above_this_line: "مطمئن شوید پاسخ شما در بالا این متن می‌نویسید"
   message_id: "پیغام ID"
   message_response: "این پیغام در پاسخ به سوال شما نوشته شده:"
   view_online: "در سایت ببینید:"
@@ -259,7 +342,8 @@ fa:
   notify_new_private: "یک پیغام خصوصی از طرف مشتری %{user_name} دریافت شده:"
   notify_new_public: "یک پیغام عمومی از طرف مشتری %{user_name} دریافت شده:"
   notify_new_reply: "یک پاسخ از طرف مشتری %{user_name} دریافت شده:"
-  to_reply: 'به این پیغام متاسفیم با ایمیل یا آنلاین پاسخ دهید:'
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
+  to_reply: 'به این پیام با ایمیل یا از لینک مقابل پاسخ دهید:'
 
   # Notifications settings panel
   notify_on_private: "وقتی یک سوال خصوصی از طرف مشتری پرسیده شد، به من ایمیل بده"
@@ -271,11 +355,90 @@ fa:
   notifications: "اطلاع رسانی"
   settings: "تنظیمات"
   general: "عمومی"
+  general_description: "تنظیمات کلی اسم سایت، آدرس آن و غیره"
   design: "طراحی"
+  design_description: "تنظیمات رنگ، لوگو و ظاهر سایت"
   international: "زبان و تنظیمات محلی"
+  international_description:
   widget: "کد قابل ادغام"
+  widget_description:
   common_replies: "پاسخ های متداول"
+  common_replies_description:
   integrations: "درونی‌سازی"
+  integrations_description:
+  theme: "قالب"
+  theme_description:
+  email: "ایمیل"
+  email_description:
+  customers: "مشتری‌ها"
+  users_description:
+  team: "تیم"
+  users_description:
+  team_group: "گروه‌های تیم"
+  group_description:
+
+  # General
+  site_name: اسم سایت
+  site_url: آدرس سایت
+  parent_site: سایت مادر
+  parent_company: شرکت مادر
+  site_tagline: شعار سایت
+  enable_forums: فعال کردن انجمن ها
+  enable_knowledgebase: فعال کردن دانشنامه
+  enable_tickets: فعال کردن تیکت خصوصی
+  enable_teams: فعال کردن تیم ها
+  enable_welcome_email: فرستادن ایمیل خوش آمدگویی به کاربران جدید
+
+  # Design
+  header_logo: لوگو سرصفحه
+  search_background: رنگ پس زمینه جستجو
+  top_bar: رنگ اصلی سرصفحه
+  link_color: رنگ لینک
+  form_background: رنگ پس رمینه فرم
+  still_need_help: هنوز به کمک نیاز داری؟
+
+  # Locales
+  supported_locales: زبان های موجود
+  default_locale: زبان پیش فرض
+
+  # Widget
+  show_widget: ویچت توی سایت پشتیبانی نشان بده
+  widget_background: رنگ پس زمینه ویجت
+  button_color: رنگ دکمه ویجت
+  button_text_color: رنگ متن ویجت
+
+  # Integrations
+  incoming_webhook: Incoming Webhook
+  incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
+  enable_webhook_url: Enable Incoming Webhooks
+  google_analytics: Google Analytics
+  google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
+  enable_google_analytics: Enable Google Analytics
+  google_analytics_id: Google Analytics ID
+  recaptcha_integration: Recaptcha
+  recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
+  enable_recaptcha: Enable Recaptcha
+  recaptcha_site_key: Recaptcha Site Key
+  recaptcha_api_key: Recaptcha API Key
+  cloudinary_integration: Cloudinary
+  cloudinary_description: Cloudinary offers image hosting and transformation services.
+  enable_cloudinary: Enable Cloudinary
+  cloudinary_cloud_name: Cloudinary Cloud Name
+  cloudinary_api_key: Cloudinary API Key
+  cloudinary_api_secret: Cloudinary API Secret
+
+  # Email
+  mail_service: Inbound Mail Service Provider
+  send_email: Enable Outbound (SMTP) Email
+  boolean_no: No
+  boolean_yes: Yes
+  admin_email: Admin Email
+  from_email: From Email
+  smtp_mail_username: SMTP Username
+  smtp_mail_password: SMTP Password
+  mail_smtp: SMTP Server
+  mail_port: SMTP Port
+  mail_domain: SMTP Domain
 
   # API Key Managmeent
   api_keys: "کلیدهای API"
@@ -288,19 +451,24 @@ fa:
   spec_note: "میتوانید در مورد API و روش کار آن را اینجا بخوانید: "
 
   # Insights
-  team_insights: "کارکرد تیم برای %{site_name}"
+  activity_report: "گزارش فعالیت"
+  team_insights: "بازدهی تیم"
   filter_by_date: "فیلتر با تاریخ"
   today: "امروز"
   yesterday: "دیروز"
   this_week: "این هفته"
   last_week: "هفته قبل"
   this_month: "این ماه"
+  last_month: "ماه آخر"
   date_range: "بازه زمانی"
+  insight_start_range: "شروع:"
+  insight_end_range: "پایان:"
+  insight_filter: "فیلتر"
   insights_blurb_one:
     one: "در <strong>%{period}</strong> کاربران شما یک بحث شروع کردند"
     other: "در <strong>%{period}</strong> کاربران شما <strong>%{count} بحث شروع کردند</strong>"
   insights_blurb_two: "که تیم شما به <strong>%{number_replied} (%{percentage_replied}) پاسخ داده</strong>"
-  insights_blurb_three: "با متوسط زمان پاسخ <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "با متوسط زمان پاسخ <strong>%{response_time}</strong>"
   no_discussions: "هیچ بحث جدیدی در <strong>%{period}</strong> شروع نشده"
   assigned_topics: "موضوع های واگذار شده"
   responded: "پاسخ داده"
@@ -308,33 +476,53 @@ fa:
   replies: "پاسخ ها"
   median_time: "متوسط زمان تا اولین پاسخ"
 
-  # Keyboard Shortcuts
-  shortcut_then: "بعد"
-  listing_views: "لیست نمایش‌ها"
-  keyboard_shortcuts: "میان‌بر های کیبرد"
-  show_new_tickets: "نمایش تیکت‌های جدید"
-  show_all_tickets: "نمایش همه تیکت ها"
-  show_open_tickets: "نمایش تیکت‌های باز"
-  show_tickets_assigned_to_you: "نمایش تیکت‌های واگذار شده به شما"
-  show_pending_tickets_assigned_to_you: "نمایش تیکت‌های منتظر شما"
-  show_closed_tickets: "نمایش تیکت‌های بسته شده"
-  search_for_tickets: "جستجو تیکت‌ها"
-  viewing_tickets: "نمایش تیکت‌ها"
-  select_previous_ticket: "انتخاب تیکت قبلی"
-  select_next_ticket: "انتخاب تیکت بعدی"
-  view_selected_ticket: "نمایش تیکت انتخاب شده"
-  jump_to_a_specific_ticket_number: "بپر به تیکت شماره"
-  ticket_actions: "عملیات‌های تیکت"
-  assign_the_ticket: "واگذاری تیکت"
-  move_the_ticket: "انتقال تیکت"
-  expand_the_ticket_thread: "باز کردن رشته گفتگو تیکت"
-  reply_to_the_ticket: "پاسخ به تیکت"
-  add_an_internal_note: "اضافه کردن نکته مخفی"
-  change_ticket_status: "تغییر وضعیت تیکت"
-  associate_with_a_group: "واگذار کردن به گروه"
-  ticket_status: "وضعیت تیکت"
-  mark_resolved: "تغییر وضع به حل شده"
-  reopen_ticket: "باز کردن مجدد تیکت"
+  # Reports
+  ticketing_reports: Ticketing Reports
+  group_report: "Group Report"
+  team_reports: "Team Reports"
+  percent_resolved: Percent Resolved
+  average_resolution_time: Average Resolution Time
+  new_tickets: New Tickets
+  new_tickets_explain: The number of new tickets your Helpy has received in this period.
+  tickets_per_day: Tickets per Day
+  tickets_per_day_explain: The number of tickets your Helpy averages per day.
+  replies_explain: The number of replies your agents have written in this period.
+  actions_explain: The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.
+  closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
+
+  # IMPORT/EXPORT
+  file_type: Type
+  file_users: Users
+  file_tickets: Tickets
+  file_replies: Replies
+  file_docs: Docs
+  file_categories: Categories
+  file_forums: Forums
+  import: 'Import CSV'
+  new_import: 'New Import'
+  export: 'Export CSV'
+  what_to_export: 'Select what you would like to export'
+  what_to_import: 'Select what you would like to import'
+  imports: 'Imports'
+  exports: 'Exports'
+  past_imports: 'Previous Imports'
+  run_time: 'Run Time'
+  clear_all: 'Remove All'
+  error_details: 'Error Details'
+  row_number: 'Row Number'
+  error_message: 'Error Message'
+  object: 'Object'
+  import_details: '#%{id} Import Details'
+  select_for_export: 'Export %{model} to .csv'
+  file_date_created: Date Created
+  import_total_submitted: Total Submitted Records
+  import_total_created: Total Created Records
+  file_name: File Name
+  file_download: Download
+  file_delete: Delete
+  file_delete_confirm: "Are you sure you want to delete this .csv?"
+
+  kind_type: &kind Type
 
   activerecord:
     attributes:
@@ -344,37 +532,57 @@ fa:
         name: اسم
         company: شرکت
         work_phone: تلفن دفتر
+        home_phone: تلفن منزل
         cell_phone: موبایل
         city: شهر
         state: استان
-        signature: امضاء
+        zip: کد پستی
+        signature: "امضاء"
+        title: عنوان
+        time_zone: منطقه زمانی
       topic:
-        name: عنوان
+        kind: *kind
+        name: *subject
+        channel: کانال
+        team_list: تیم
+        priority: *priority
+        current_status: *status
+        assigned_user_id: *assign_agent
+        tag_list: لیست تگ‌ها
       post:
-        kind: جنسیت
+        kind: *kind
+        body: پیغام
+        cc: کپی
+        bcc: کپی مخفی
+        attachments: ضمیمه
       category:
         name: نام
         icon: آیکون
         keywords: کلمات کلیدی
-        title_tag: Title Tag
+        title_tag: نگ عنوان
         meta_description: Meta Description
         front_page: صفحه اصلی
         active: فعال
+        visibility: وضعیت دیده شدن
+        visibility_label:
+          all: همه
+          public: عمومی
+          internal: داخلی
       doc:
         title: عنوان
         meta_description: Meta Description
-        title_tag: Title Tag
-        keywords: Keywords
+        title_tag: نگ عنوان
+        keywords: کلمات کلیدی
         category_id: دسته بندی
         active: وضعیت
-        front_page: Featured on front page?
+        front_page: در صفحه اصلی بیاد؟
       forum:
         name: نام
         description: توضیحات
         private: خصوصی
         layout: طرح
-        allow_topic_voting: رای گیری برای موضوع؟
-        allow_post_voting: رای گیری برای پست؟
+        allow_topic_voting: اجازه رای گیری موضوع؟
+        allow_post_voting: اجازه رای گیری پست؟
 
     helpers:
       submit:
@@ -390,9 +598,9 @@ fa:
       root: *root
     docs:
       root: *root
-    locales:
-      root: *root
     forums:
+      root: *root
+    locales:
       root: *root
     topics:
       root: *root
@@ -400,10 +608,17 @@ fa:
       root: *root
     result:
       root: *root
+    registrations:
+      root: *root
+    admin:
+      internal_categories:
+        root: *root
+      internal_docs:
+        root: *root
   helpers:
     actions: "عملیات‌ها"
     links:
-      back: "برگشت"
+      back: "بازگشت"
       cancel: "انصراف"
       confirm: "مطمئنی؟"
       destroy: "حذف"
@@ -412,7 +627,7 @@ fa:
     titles:
       edit: "ویرایش %{model}"
       save: "ذخیره %{model}"
-      new: "%{model} جدید"
+      new: "جدید %{model}"
       delete: "حذف %{model}"
 
   number:

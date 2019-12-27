@@ -40,6 +40,7 @@ hu:
   # Community
   forum_name: "Téma"
   subject: &subject "Tárgy"
+  message: "Üzenet"
   last_activity: "Utolsó Aktivitás"
   topic: "Beszélgetés"
   replies: "Válaszok"
@@ -250,6 +251,7 @@ hu:
   # Mail messages
   new_user_subject: "A(z) %{site_name} üdvözöl Téged"
   hello: "Helló %{user_name}"
+  thank_you: "Köszönjük!"
   new_user: "Köszönjük, hogy felkerestél minket.  Ügyfélszolgálatunk megkapta üzeneted, válaszunkkal rövidesen jelentezünk."
   account_generated: "Létrehoztunk egy felhasználói fiókot Neked. Bejelentkezéshez használd ezt a linket:"
   above_this_line: "Kérjük, ügyelj rá, hogy válaszodat a vonal felett írd meg"
@@ -261,6 +263,7 @@ hu:
   notify_new_private: "Egy új privát kérdés érekezett erről a címről: %{user_name}:"
   notify_new_public: "Egy új publikus kérdést fel %{user_name}:"
   notify_new_reply: "Egy új ügyfélválaszt kaptunk %{user_name} felhasználótól:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Válaszolj erre az üzenetre közvetlenül, vagy online:'
 
   # Notifications settings panel
@@ -302,7 +305,7 @@ hu:
     one: "<strong>%{period}</strong> a felhasználók egy új beszélgetést kezdtek"
     other: "<strong>%{period}</strong> a felhasználók <strong>%{count} új beszélgetést kezdtek</strong>"
   insights_blurb_two: "melyből munkatársaid <strong>%{number_replied} (%{percentage_replied}) kérdést megválaszoltak</strong>"
-  insights_blurb_three: "a válaszidő mediánja <strong>%{response_time}</strong> volt"
+  insights_blurb_three_html: "a válaszidő mediánja <strong>%{response_time}</strong> volt"
   no_discussions: "Nincs új beszélgetés erre az időszakra: <strong>%{period}</strong>"
   assigned_topics: "Hozzárendelt Témák"
   responded: "Megválaszolt"

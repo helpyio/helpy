@@ -268,6 +268,7 @@ et:
   # Mail messages
   new_user_subject: "Tere tulemast %{site_name}"
   hello: "Tere %{user_name}"
+  thank_you: "Täname!"
   new_user: "Täname, et võtsite meiega ühendust. Teie sõnum on edastatud meie kasutajatoele, vastame teile peatselt."
   account_generated: "Konto on loodud sinu jaoks. Et sisse logida, kasutage seda linki:"
   above_this_line: "Veenduge, et teie vastus ilmneks enne seda joont"
@@ -279,6 +280,7 @@ et:
   notify_new_private: "Uus pilet kliendilt %{user_name}:"
   notify_new_public: "Uus avalik sõnum kliendilt %{user_name}:"
   notify_new_reply: "Uus vastus kliendilt %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Vasta sellele sõnumile otse või internetis:'
 
   # Notifications settings panel
@@ -320,7 +322,7 @@ et:
     one: "<strong>%{period}</strong> kasutajad avasid 1 uue pileti"
     other: "<strong>%{period}</strong> kasutajad avasid <strong>%{count} uut piletit</strong>"
   insights_blurb_two: "millest meeskond vastas <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "mediaan reaktsiooniaeg <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "mediaan reaktsiooniaeg <strong>%{response_time}</strong>"
   no_discussions: "Uusi pileteid ei avatud <strong>%{period}</strong>"
   assigned_topics: "Määratud teemad"
   responded: "Vastatud"

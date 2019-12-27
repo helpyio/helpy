@@ -1,6 +1,27 @@
 # Simplecov to give a report of the test coverage on local development environment
 require 'simplecov'
 SimpleCov.start 'rails'
+require 'minitest/reporters'
+Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(:color => true)]
+ActiveSupport::TestCase.test_order = :parallel
+
+require 'capybara/rails'
+require 'capybara/minitest'
+require 'capybara/email'
+
+require 'minitest/retry'
+Minitest::Retry.use!
+
+class ActionDispatch::IntegrationTest
+  include Capybara::DSL
+  include Capybara::Minitest::Assertions
+  Capybara.server = :webrick
+
+  def teardown
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+end
 
 #require 'codeclimate-test-reporter'
 #CodeClimate::TestReporter.start
@@ -14,7 +35,7 @@ require 'sucker_punch/testing/inline'
 require 'pry'
 
 class ActiveSupport::TestCase
-  include FactoryGirl::Syntax::Methods
+  include FactoryBot::Syntax::Methods
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
@@ -22,8 +43,13 @@ class ActiveSupport::TestCase
   # Settings.send_email = false
 end
 
+Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu --disable-dev-shm-usage])
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
 class ActionController::TestCase
-  include Devise::TestHelpers
+  include Devise::Test::ControllerHelpers
 end
 
 def file
@@ -85,7 +111,8 @@ def set_default_settings
   AppSettings['cloudinary.cloud_name'] = ''
   AppSettings['cloudinary.api_key'] = ''
   AppSettings['cloudinary.api_secret'] = ''
-  AppSettings['theme.active'] = 'helpy'
+  AppSettings['theme.active'] = ENV['HELPY_THEME'] || 'helpy'
+  AppSettings['onboarding.complete'] = '1'
 
   # assign all agents to receive notifications
   User.agents.each do |a|
@@ -94,5 +121,8 @@ def set_default_settings
     a.notify_on_reply = true
     a.save!
   end
+
+  ActionMailer::Base.delivery_method = :test
+  ActionMailer::Base.perform_deliveries = true
 
 end

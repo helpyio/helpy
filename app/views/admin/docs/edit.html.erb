@@ -9,12 +9,15 @@
     <h3 class="form-subhead view-header"><%= t(:edit, default:'Edit') %>: <%= @doc.title %></h3>
     <%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
 
-    <%= simple_form_for @doc, validate: true, url: admin_category_doc_path(category_id: @category.id, id: @doc.id), html: { method: :patch, id: :edit_doc } do |f| %>
+    <%= simple_form_for @doc, validate: true, url: admin_category_doc_path(category_id: @category.id, id: @doc.id), 
+    html: { method: :patch, id: :edit_doc, name: "edit_doc_#{@doc.id}" } do |f| %>
+    <small id="has-storage"></small>
       <% Globalize.with_locale(params['lang']) do %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= render :partial => 'form', :object => @doc, :locals => {:f => f} %>
       <% end %>
     <% end %>
+    
     <% unless params[:lang].nil? %>
     <script>
     //$(function(){
@@ -24,3 +27,108 @@
     <% end %>
   </div>
 </div>
+<%= summernote_lang_js %>
+<script type="text/javascript">
+  $('.selectize').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function (input) {
+      return {
+        value: input,
+        text: input
+      }
+    },
+    // onItemAdd: function(value, $item) {
+    //   char = $item.text().charAt(0);
+    //   alert(char);
+    //   //$item.parent().removeClass('selectize-input');
+    //   $item.addClass('label');
+    //   $item.addClass('label-doc-tagging');
+    //   $item.addClass('label-' + char);
+    // }
+  });
+
+  $('[data-provider="summernote"]').each(function () {
+    $(this).summernote({
+      lang: '<%= summernote_locale %>',
+      height: 500,
+      prettifyHtml: true,
+      codemirror: {
+        theme: 'monokai',
+        mode: "htmlmixed",
+        tabsize: 2,
+        smartIndent: true,
+        lineNumbers: true,
+        lineWrapping: true,
+        tabMode: 'indent'
+      },
+      callbacks: {
+        onImageUpload: function (files) {
+          return Helpy.sendFile(files[0], $(this));
+        },
+        onMediaDelete: function (target, editor, editable) {
+          var image_id;
+          image_id = target[0].id;
+          if (!!image_id) {
+            Helpy.deleteFile(image_id);
+          }
+          return target.remove();
+        },
+        onInit: function (e) {
+          var storedContent = localStorage.getItem("edit_doc_<%= @doc.id %>_draft");
+          if (storedContent.length > 0) {
+          $("#doc_body").summernote("code", storedContent);
+          }
+        }
+      }
+
+      // hint: {
+      //   match: /:([\-+\w]+)$/,
+      //   search: function (keyword, callback) {
+      //     callback($.grep(emojis, function (item) {
+      //       return item.indexOf(keyword)  === 0;
+      //     }));
+      //   },
+      //   template: function (item) {
+      //     var content = emojiUrls[item];
+      //     return '<img src="' + content + '" width="20" /> :' + item + ':';
+      //   },
+      //   content: function (item) {
+      //     var url = emojiUrls[item];
+      //     if (url) {
+      //       return $('<img />').attr('src', url).css('width', 20)[0];
+      //     }
+      //     return '';
+      //   }
+      // }
+    });
+  });
+  $.ajax({
+    url: 'https://api.github.com/emojis',
+    async: false
+  }).then(function (data) {
+    window.emojis = Object.keys(data);
+    window.emojiUrls = data;
+  });
+</script>
+
+
+<script>
+//  $("#edit_doc").sisyphus();
+//  $(document).off('keyup').on('keyup', '.note-editable', function () {
+//    localStorage.setItem("edit_doc_<%= @doc.id %>_draft", $("#doc_body").summernote("code"));
+//  });
+//  $('#edit_doc').on('submit', function () {
+//    localStorage.removeItem("edit_doc_<%= @doc.id %>_draft");
+//  });
+//  if (localStorage.getItem("[id=edit_doc][name=edit_doc_<%= @doc.id %>][id=doc_title][name=doc[title]]") !== null) {
+//    $('#has-storage').html('<input type="button" value="Clear autosaved draft" data-validate="false" class="btn btn-default clear-draft" style="margin-top: -10px; margin-left: 10px;">');
+//  }
+  //  });
+//  $('.clear-draft').on("click", function () {
+//    localStorage.removeItem("edit_doc_<%= @doc.id %>_draft");
+//    $('[data-provider="summernote"]').summernote('code', '');
+//    $('#has-storage').fadeOut();
+//  });  
+ 
+</script>

@@ -38,6 +38,7 @@ ar:
   # Community
   forum_name: "موضوع"
   subject: &subject "عنوان"
+  message: "رسالة"
   last_activity: "آخر نشاط"
   topic: "مناقشات"
   replies: "ردود"
@@ -293,6 +294,7 @@ ar:
   # Mail messages
   new_user_subject: "مرحبا %{site_name}"
   hello: "مرحبا %{user_name}"
+  thank_you: "أشكركم!"
   new_user: "أشكركم على الاتصال بنا. لقد تلقينا رسالتك، وسنرد عليها في أقرب وقت ممكن."
   account_generated: "تم إنشاء حساب لك. لتسجيل الدخول، يرجى استخدام هذا الرابط:"
   above_this_line: "تأكد من ظهور ردك فوق هذا السطر"
@@ -304,6 +306,7 @@ ar:
   notify_new_private: "تم استلام تذكرة عملاء جديدة من %{user_name}:"
   notify_new_public: "وقد نشر %{user_name} رسالة عامة جديدة:"
   notify_new_reply: "وورد رد جديد من %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'الرد على هذه الرسالة مباشرة أو عبر الإنترنت:'
 
   # Notifications settings panel

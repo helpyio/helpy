@@ -1,0 +1,44 @@
+<!-- <title><%= @title_tag || AppSettings['settings.site_name'] %></title> -->
+<title><%= content_for(:title) ? content_for(:title) : AppSettings['settings.site_name'] %></title>
+<!-- 
+HELPY VERSION: <%= APP_VERSION %>
+========================================
+Copyright (c) <%= Time.now.year %> Helpy.io, LLC, and Contributors.
+Full license at https://github.com/helpyio/helpy/blob/master/LICENSE
+
+Note: If this install is running Helpy Cloud, Bot, Pro, Chat or other 
+commercial or third party extensions those may be licensed differently. 
+See https://support.helpy.io for more information.
+
+REMOVAL OF THIS COPYRIGHT NOTICE IS EXPRESSLY PROHIBITED BY THE ABOVE
+REFERENCED LICENSE
+-->
+
+<meta http-equiv="content-type" content="text/xhtml; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="distribution" content="all" />
+<meta name="robots" content="all" />
+<meta name="description" content="<%= yield_meta_tag(:description, '') %>" />
+<meta name="keywords" content="<%= yield_meta_tag(:keywords, '') %>" />
+<meta name="resource-type" content="document" />
+<meta name="MSSmartTagsPreventParsing" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<%#= stylesheet_link_tag 'application', "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag 'nordic/all', "data-turbolinks-track" => true %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "nordic/all", "data-turbolinks-track" => true %>
+<%= timeago_script_tag %>
+
+<%= @feed_link.html_safe if @feed_link %>
+<link href="https://fonts.googleapis.com/css?family=Inconsolata|Libre+Franklin:300,300i,600,600i" rel="stylesheet">
+
+<%= csrf_meta_tags %>
+<%= favicon_link_tag "#{AppSettings['design.favicon']}" %>
+<%= cloudinary_js_config %>
+
+<%= render 'layouts/google_analytics' %>
+
+<script>
+Helpy.domain = '<%= "//" + request.host_with_port %>';
+</script>

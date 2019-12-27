@@ -1,15 +1,14 @@
 language: ruby
 rvm:
-  - 2.2.5
-  - 2.3.3
-  - 2.4.1
+  - 2.4.6
+  - 2.5.3
 
 services:
   - postgresql
 
 before_install:
   # Install a current Bundler version
-  - gem install bundler
+  - gem install bundler -v '< 2'
 
 before_script:
   # Setup Test Database
@@ -25,7 +24,7 @@ script:
   # Brakeman security scanner
   - bundle exec brakeman -z
   # Check vulnerable gems
-  - bundle exec bundle-audit check --update
+  - bundle exec bundle-audit check --update --ignore CVE-2015-9284 CVE-2019-16676
   # Rubocop static code analyzer
   - bundle exec rubocop
   # SCSS analyzer
@@ -38,3 +37,7 @@ cache: bundler
 addons:
     code_climate:
         repo_token: 8aed69acf532241f5281042dc5b1a5d89ea9206773d079ce2de838a28f0f5041
+    chrome: stable
+    apt:
+      packages:
+        - chromium-chromedriver

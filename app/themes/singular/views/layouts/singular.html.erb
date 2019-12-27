@@ -19,6 +19,10 @@
 			.flat-main-panel {
 				background-color:  <%= AppSettings['css.main_color'].blank? ? '#245566' : AppSettings['css.main_color'] %>;
 			}
+
+			.search-result-box .ui-menu .ui-menu-item a {
+			  color: #333 !important;
+			}
 		</style>
 		<%= css_injector %>
 		<%= "#{AppSettings['design.header_js']}".html_safe %>

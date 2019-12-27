@@ -4,27 +4,13 @@
 
 <div class="row content-row">
 
-  <div id="left-col" class="col-lg-3 col-md-3 hidden-sm hidden-xs affix affix-top">
-    <ul class="list-unstyled border-right">
-    <% @categories.with_translations(I18n.locale).each do |category| %>
-      <% if category.docs.with_translations(I18n.locale).count > 0 %>
-      <li class="">
-        <% if @category.nil? %>
-        <%= link_to category.name, '#', class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
-        <% else %>
-        <%= link_to category.name, category_path(category), class: 'autoscroll list-group-item', "data-target" => "#category-#{category.id}"  %>
-        <% end %>
-      </li>
-      <% end %>
-    <% end %>
-    </ul>
-  </div>
+	<%= render 'left_nav' %>
 
   <div id="category-col" class="col-md-9 col-sm-12 col-xs-12">
     <ul class='list-unstyled'>
-      <% @docs.each do |doc| %>
-          <%= render ("docs/doc"), doc: doc %>
-      <% end %>
+      <%= render partial: 'categories/category', collection: Category.children_of(@category).publicly.active.ordered.with_translations(I18n.locale).all
+ %>
+      <%= render partial: 'docs/doc', collection: @docs %>
       <% if @docs.count == 0 %>
 
         <div class="text-center verticalness">
@@ -34,13 +20,11 @@
       <% end %>
     </ul>
   </div>
-
-  <div class="row">
-    <div class="col-md-9 text-left">
-      <%= paginate @docs %>
-    </div>
-  </div>
-
-  </div>
-
 </div>
+
+<div class="row">
+  <div class="col-md-9 text-left">
+    <%= paginate @docs %>
+  </div>
+</div>
+

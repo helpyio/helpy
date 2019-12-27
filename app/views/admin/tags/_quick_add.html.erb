@@ -1,0 +1,7 @@
+<%= simple_form_for(ActsAsTaggableOn::Tag.new, url: admin_tags_path, validate: true, remote: true, :html => { role: 'form'}) do |f| %>
+  <span class="tag-fields">
+    <div id="tag_errors" style='color:#a94442'></div>
+    <%= f.input 'name', label: false, placeholder: t(:tag, default: 'Quick Add Tag') %>
+  </span>
+  <%= f.button :submit, t("save_changes"), class: 'btn btn-warning' %>
+<% end %>

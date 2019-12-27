@@ -1,0 +1,13 @@
+<%
+################################################################################
+# NOTE: It is STRONGLY suggested that if you wish to customize the look and feel
+# of your Helpy, that you create a custom theme instead.  This will allow
+# you to override any views or styles you wish to, without compromising your
+# ability to upgrade in the future
+################################################################################
+%>
+
+<li class="article less-important hidden-lg hidden-md">
+  <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+  <%= link_to category.name, category_path(category)  %>
+</li>

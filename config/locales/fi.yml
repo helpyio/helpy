@@ -92,46 +92,46 @@ fi:
   flag: "Tarkista"
 
   # devise/sessions/new
-  login: Kirjaudu sisään
+  login: "Kirjaudu sisään"
 
   # devise/shared/links
-  forgot_password: Unohditko salasanasi?
+  forgot_password: "Unohditko salasanasi?"
 
   # devise/passwords/new
-  send_instructions: Lähetä ohjeet
+  send_instructions: "Lähetä ohjeet"
 
   # devise/passwords/edit
-  change_password: Vaihda salasana
-  new_password: Uusi salasana
-  new_password_confirmation: Vahvista uusi salasana
+  change_password: "Vaihda salasana"
+  new_password: "Uusi salasana"
+  new_password_confirmation: "Vahvista uusi salasana"
 
   # devise/confirmations/new
-  resend: Lähetä uudestaan ohjeet vahvistamiseen
+  resend: "Lähetä uudestaan ohjeet vahvistamiseen"
 
   # devise/registrations/new
-  sign_up: Rekisteröidy
+  sign_up: "Rekisteröidy"
 
   # flash messages
-  # model_created: "%{object_name} was saved"
-  # model_updated: "%{object_name} was updated"
-  # model_destroyed: "%{object_name} was deleted"
+  model_created: "%{object_name} on tallennettu"
+  model_updated: "%{object_name} on päivitetty"
+  model_destroyed: "%{object_name} on poistettu"
 
   # Admin menu
-  # inbox: Inbox
-  discussions: Palvelupyynnöt
-  content: Sisältö
-  communities: Yhteisöt
-  app_store: Ohjelmistokauppa
-  search: Haku
-  internal_content: Yrityksen sisäinen sisältö
-  new_ticket: Uusi palvelupyyntö
-  reports: Raportit
-  # helpcenter: "Helpcenter"
-  # get_help: "Help"
-  # report_bug: "Report Bug"
-  # suggest_feature: "Suggest Feature"
-  # shortcuts: "Keyboard Shortcuts"
-  # sponsors: "Sponsors"
+  inbox: "Saapuneet"
+  discussions: "Palvelupyynnöt"
+  content: "Sisältö"
+  communities: "Yhteisöt"
+  app_store: "Ohjelmistokauppa"
+  search: "Haku"
+  internal_content: "Yrityksen sisäinen sisältö"
+  new_ticket: "Uusi palvelupyyntö"
+  reports: "Raportit"
+  helpcenter: "Käyttäjädokumentit"
+  get_help: "Apua"
+  report_bug: "Raportoi ohjelmistovirhe"
+  suggest_feature: "Ehdota ominaisuutta"
+  shortcuts: "Näppäinkomennot"
+  sponsors: "Tukijat"
 
   # Admin main/statuses
   support_pipeline: Tukikeskus
@@ -155,8 +155,9 @@ fi:
   save_changes: Tallenna muutokset
   merge: Yhdistä
   merge_confirm: Oletko varma, että haluat yhdistää nämä palvelupyynnöt?
-  # customer_conversation: Customer Conversation
-  # internal_ticket: Internal Ticket
+  customer_conversation: Asiakaskeskustelu
+  internal_ticket: Sisäiset palvelupyynnöt
+  unassign_agent: Poista agentti
 
   # Discussion controls
   change_status: Vaihda tila
@@ -166,25 +167,26 @@ fi:
   mark_spam: Merkitse roskapostiksi
   mark_new: Merkitse uudeksi
   assign_agent: &assign_agent Osoita henkilölle
-  # tag_with: &tag_with Tag Ticket
+  tag_with: &tag_with Merkitse palvelupyyntö
   selected_messages:
     one: "1 valittu viesti"
     two: "2 valittua viestiä"
     other: "%{count} valittua viestiä"
 
   # Discussion messages
-  # new_message: "This ticket has been marked new by the support staff"
-  # spam_message: "This ticket has been marked spam by the support staff"
+  new_message: "Tämä palvelupyyntö on merkitty uudesi tuen toimesta"
+  spam_message: "Tämä palvelupyyntö on merkitty roskapostiksi tuen toimesta"
   reopen_message: "Tämä palvelupyyntö on avattu uudelleen tuen toimesta."
   closed_message: "Tämä palvelupyyntö on suljettu tuen toimesta."
   trash_message: "Tämä palvelupyyntö on poistettu."
   assigned_message: "Tämä palvelupyyntö on osoitettu henkilölle %{assigned_to}."
+  # unassigned_message: "This ticket has been unassigned."
   assigned_group: "Tämä palvelupyyntö on osoitettu ryhmälle %{assigned_group}."
   converted_to_ticket: "Tämä keskustelu on muutettu yksityiseksi."
   converted_to_topic: "Tämä keskustelu on muutettu julkiseksi ja siirretty keskusteluosioon %{forum_name}."
   tagged_with: "Tämä palvelupyyntö on merkitty seuraavasti: %{tagged_with}"
   notes_hidden: "Palvelupyynnölle on %{hidden_notes} sisäisiä merkintöjä. Voit tarkastella niitä klikkaamalla tätä huomautusta!"
-  # topic_added_from: "%{kind} added from %{channel}"
+  topic_added_from: "%{kind} lisätty kanavalta %{channel}"
 
   # User Admin
   users: Käyttäjät
@@ -199,12 +201,12 @@ fi:
   scrub_user: "Tee käyttäjästä anonyymi"
   anonymize_user_warning: "Haluatko varmasti tehdä käyttäjästä %{user_name} anonyymin? Tämä poistaa kaikki käyttäjän henkilötiedot pysyvästi, mutta säilyttää kaikki heidän palvelupyyntönsä ja julkaisunsa."
   delete_user_warning: "Haluatko varmasti poistaa käyttäjän %{user_name}? Tämä poistaa pysyvästi käyttäjän sekä kaikki kyseisen käyttäjän palvelupyynnöt, julkaisut, vastaukset sekä keskustelut."
-  #click_to_edit: click to edit %{what}
+  # click_to_edit: Valitse muokattavaksi: %{what}
 
   # Priorities
   select_priority: &priority Valitse prioriteetti
   vip_priority: VIP
-  # very_high_priority: Very High
+  very_high_priority: Erittäin korkea
   high_priority: Korkea
   normal_priority: Normaali
   low_priority: Matala
@@ -225,7 +227,7 @@ fi:
   tag_name: "Ryhmän Nimi"
   description: "Kuvaus"
   color: "Väri"
-  show_on_helpcenter: "Show on helpcenter"
+  show_on_helpcenter: "Näytä käyttäjädokumenteissa"
   show_on_admin: "Näytä hallintapaneelissa"
   email_address: "Sähköposti"
   from_name: "Lähettäjä"
@@ -332,6 +334,7 @@ fi:
   # Mail messages
   new_user_subject: "Tervetuloa sivulle %{site_name}"
   hello: "Moro %{user_name}"
+  thank_you: "Kiitos!"
   new_user: "Kiitos yhteydenotosta. Viestisi on vastaanotettu ja tukitiimimme on teihin yhteydessä tuota pikaa."
   account_generated: "Tilisi on nyt luotu. Kirjautuaksesi sisään, käytä seuraavaa osoitetta:"
   above_this_line: "Pidäthän huolen, että vastaus ilmestyy tämän viivan yläpuolelle"
@@ -343,6 +346,7 @@ fi:
   notify_new_private: "Uusi palvelupyyntö on saapunut käyttäjältä %{user_name}:"
   notify_new_public: "Uusi julkinen viesti on saapunut käyttäjältä %{user_name}:"
   notify_new_reply: "Uusi vastaus on saapunut käyttäjältä %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Vastaa tähän viestiin suoraan tai verkossa:'
 
   # Notifications settings panel
@@ -378,67 +382,67 @@ fi:
   group_description:
 
   # General
-  # site_name: Site Name
-  # site_url: Site URL
-  # parent_site: Parent Site
-  # parent_company: Parent Company
-  # site_tagline: Site Tagline
-  # enable_forums: Enable Community Forums
-  # enable_knowledgebase: Enable Knowledgebase
-  # enable_tickets: Enable Private Tickets
-  # enable_teams: Enable Teams
-  # enable_welcome_email: Send a welcome email to new users
+  site_name: Sivuston nimi
+  site_url: Sivuston osoite
+  parent_site: Emosivusto
+  parent_company: Emoyhtiö
+  site_tagline: Sivuston iskulause
+  enable_forums: Ota keskustelualue käyttöön
+  enable_knowledgebase: Ota käyttäjädokumentit käyttöön
+  enable_tickets: Ota palvelupyynnöt käyttöön
+  enable_teams: Ota tiimit käyttöön
+  enable_welcome_email: Ota käyttöön tervetuliaisviesti uusille käyttäjille
 
   # Design
-  # header_logo: Header Logo
-  # search_background: Search Background Color
-  # top_bar: Header Accent Color
-  # link_color: Link Color
-  # form_background: Form Background Color
+  header_logo: Ylätunnisteen logo
+  search_background: Haun taustaväri
+  top_bar: Ylätunnisteen koristeväri
+  link_color: Linkin väri
+  form_background: Lomakkeen taustaväri
   # still_need_help:
 
   # Locales
-  # supported_locales: Supported Locales
-  # default_locale: Default Locale
+  supported_locales: Tuetut kielet
+  default_locale: Oletuskieli
 
   # Widget
-  # show_widget: Show widget on support site
-  # widget_background: Widget Background Color
-  # button_color: Widget Button Color
-  # button_text_color: Widget Text Color
+  show_widget: Näytä liitännäinen tukisivustolla
+  widget_background: Taustaväri
+  button_color: Nappulan väri
+  button_text_color: Tekstin väri
 
   # Integrations
-  # incoming_webhook: Incoming Webhook
-  # incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
-  # enable_webhook_url: Enable Incoming Webhooks
-  # google_analytics: Google Analytics
-  # google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
-  # enable_google_analytics: Enable Google Analytics
-  # google_analytics_id: Google Analytics ID
-  # recaptcha_integration: Recaptcha
-  # recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
-  # enable_recaptcha: Enable Recaptcha
-  # recaptcha_site_key: Recaptcha Site Key
-  # recaptcha_api_key: Recaptcha API Key
-  # cloudinary_integration: Cloudinary
-  # cloudinary_description: Cloudinary offers image hosting and transformation services.
-  # enable_cloudinary: Enable Cloudinary
-  # cloudinary_cloud_name: Cloudinary Cloud Name
-  # cloudinary_api_key: Cloudinary API Key
-  # cloudinary_api_secret: Cloudinary API Secret
+  incoming_webhook: Palvelupyyntö-webhook
+  incoming_webhook_description: Luo palvelupyyntöjä olemassa olevilla lomakkeillasi POSTaamalla JSON-webhook-URL:ia käyttäen. Salainen URL:si tähän tarkoitukseen on
+  enable_webhook_url: Käytä webhookeja
+  google_analytics: Google Analytics
+  google_analytics_description: Jaa tietoa käyttäjädokumenttien käytöstä Google Analyticsiin raportointia ja visualisointia varten.
+  enable_google_analytics: Ota Google Analytics käyttöön
+  google_analytics_id: Google Analytics -tunnus
+  recaptcha_integration: Recaptcha
+  recaptcha_description: Recaptchan avulla voit suojata palvelua roskapostilta.
+  enable_recaptcha: Ota Recaptcha käyttöön
+  recaptcha_site_key: Recaptcha-sivustoavain
+  recaptcha_api_key: Recaptchan API-avain
+  cloudinary_integration: Cloudinary
+  cloudinary_description: Cloudinary on vaihtoehtoinen palvelu kuvien tallentamiseen ja muokkaukseen.
+  enable_cloudinary: Ota Cloudinary käyttöön
+  cloudinary_cloud_name: Cloudinary -pilvinimi
+  cloudinary_api_key: Cloudinaryn API-avain
+  cloudinary_api_secret: Cloudinaryn API-salaisuus
 
   # Email
-  # mail_service: Inbound Mail Service Provider
-  # send_email: Enable Outbound (SMTP) Email
-  # boolean_no: No
-  # boolean_yes: Yes
-  # admin_email: Admin Email
-  # from_email: From Email
-  # smtp_mail_username: SMTP Username
-  # smtp_mail_password: SMTP Password
-  # mail_smtp: SMTP Server
-  # mail_port: SMTP Port
-  # mail_domain: SMTP Domain
+  mail_service: Saapuvan postin palvelu
+  send_email: Ota käyttöön lähtevä sähköposti (SMTP)
+  boolean_no: Ei
+  boolean_yes: Kyllä
+  admin_email: Ylläpidon osoite
+  from_email: Lähettäjän osoite
+  smtp_mail_username: SMTP-käyttäjä
+  smtp_mail_password: SMTP-salasana
+  mail_smtp: SMTP-palvelin
+  mail_port: SMTP-portti
+  mail_domain: SMTP-verkkotunnus
 
   # API Key Managmeent
   api_keys: "API-avaimet"
@@ -468,7 +472,7 @@ fi:
     one: "<strong>%{period}</strong> käyttäjäsi avasi yhden uuden palvelupyynnön"
     other: "<strong>%{period}</strong> käyttäjäsi avasi <strong>%{count} uutta palvelupyyntöä</strong>"
   insights_blurb_two: "josta tiiminne on vastannut <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "keskimääräisellä vastausajalla <strong>%{response_time}</strong>"
   no_discussions: "Yhtään uutta palvelupyyntöä ei avattu ajanjaksolla <strong>%{period}</strong>"
   assigned_topics: "Osoitetut aiheet"
   responded: "Vastattu"
@@ -477,29 +481,29 @@ fi:
   median_time: "Keskimääräinen aika ensimmäiseen vastaukseen"
 
   # Reports
-  # ticketing_reports: Ticketing Reports
-  # group_report: "Group Report"
-  # team_reports: "Team Reports"
-  # percent_resolved: Percent Resolved
-  # average_resolution_time: Average Resolution Time
-  # new_tickets: New Tickets
-  # new_tickets_explain: The number of new tickets your Helpy has received in this period.
-  # tickets_per_day: Tickets per Day
-  # tickets_per_day_explain: The number of tickets your Helpy averages per day.
-  # replies_explain: The number of replies your agents have written in this period.
-  # actions_explain: The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.
-  # closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
+  ticketing_reports: Palvelupyyntöraportit
+  group_report: "Ryhmäraportit"
+  team_reports: "Tiimiraportit"
+  percent_resolved: Ratkaistujen %-osuus
+  average_resolution_time: Keskim. ratkaisuaika
+  new_tickets: Uudet palvelupyynnöt
+  new_tickets_explain: Uusien palvelupyyntöjen määrä valitulla ajanjaksolla.
+  tickets_per_day: Palvelupyyntöjä päivässä
+  tickets_per_day_explain: Palvelupyyntöjä keskimäärin päivässä
+  replies_explain: Valitulla ajanjaksolla kirjoitettujen vastausten määrä.
+  actions_explain: Toimenpiteiden (vastauksia tai muistiinpanoja) kokonaismäärä valitulla ajanjaksolla. Hyvä mittari sille miten paljon järjestelmää kaikkiaan käytetään.
+  closed_explain: Suljettujen palvelupyyntöjen määrä valitulla ajanjaksolla. Tämän olisi syytä olla lähellä aiemmalla jaksolla avattujen pyyntöjen määrää.
 
   # IMPORT/EXPORT
-  # file_type: Type
-  # file_users: Users
-  # file_tickets: Tickets
-  # file_replies: Replies
-  # file_docs: Docs
-  # file_categories: Categories
-  # file_forums: Forums
+  file_type: Laji
+  file_users: Käyttäjät
+  file_tickets: Palvelupyynnöt
+  file_replies: Vastaukset
+  file_docs: Artikkelit
+  file_categories: kategoriat
+  file_forums: Keskustelualueet
   import: 'Tuo CSV'
-  new_import: 'Uusi Tuonti'
+  new_import: 'Uusi tuonti'
   export: 'Vie CSV'
   what_to_export: 'Valitse mitä haluat viedä'
   what_to_import: 'Valitse mitä haluat tuoda'
@@ -507,22 +511,22 @@ fi:
   exports: 'Viennit'
   past_imports: 'Aiemmat tuonnit'
   run_time: 'Kesto'
-  clear_all: 'Tyhjennä Kaikki'
-  error_details: 'Virheen Tiedot'
-  row_number: 'Rivi Numero'
-  error_message: 'Virhe Viesti'
+  clear_all: 'Tyhjennä kaikki'
+  error_details: 'Virheen tiedot'
+  row_number: 'Rivinumero'
+  error_message: 'Virheviesti'
   object: 'Object'
-  import_details: '#%{id} Tuo Tiedot'
+  import_details: '#%{id} Tuo tiedot'
   select_for_export: 'Vie %{model} muotoon .csv'
-  # file_date_created: Date Created
-  # import_total_submitted: Total Submitted Records
-  # import_total_created: Total Created Records
-  # file_name: File Name
-  # file_download: Download
-  # file_delete: Delete
-  # file_delete_confirm: "Are you sure you want to delete this csv?"
+  file_date_created: Luontipäivä
+  import_total_submitted: Kirjauksia toimitettu kaikkiaan
+  import_total_created: Kirjauksia luotu kaikkiaan
+  file_name: Tiedostonnimi
+  file_download: Lataa
+  file_delete: Poista
+  file_delete_confirm: "Oletko varma, että haluat poistaa tämän CSV-tiedoston?"
 
-  kind_type: &kind Tyyppi
+  kind_type: &kind Laji
 
   activerecord:
     attributes:
@@ -536,27 +540,27 @@ fi:
         cell_phone: Matkapuhelin
         city: Kaupunki
         state: Kunta
-        # zip: zip
+        zip: Postinro
         signature: Allekirjoitus
-        # title: Title
-        # time_zone: Time Zone
-        # street: Street
-        # notes: Notes
+        title: Nimike
+        time_zone: Aikavyöhyke
+        street: Katuosoite
+        notes: Muistiinpanot
       topic:
         kind: *kind
         name: *subject
-        # channel: Channel
-        # team_list: Team
+        channel: Kanava
+        team_list: Tiimi
         priority: *priority
         current_status: *status
         assigned_user_id: *assign_agent
-        # tag_list: Tag List
+        tag_list: Asiasanat
       post:
         kind: *kind
         body: Viesti
-        # cc: CC
-        # bcc: BCC
-        # attachments: Attachments
+        cc: Kopio
+        bcc: Piilokopio
+        attachments: Liitteet
       category:
         name: Nimi
         icon: Ikoni

@@ -52,7 +52,10 @@ class DocsController < ApplicationController
 
   def generate_page_breadcumbs
     add_breadcrumb t(:knowledgebase, default: "Knowledgebase"), categories_path
-    add_breadcrumb @doc.category.name, category_path(@doc.category) if @doc.category.name
+
+    @doc.category.path.each do |cat|
+      add_breadcrumb cat.name, category_path(cat) if cat.name
+    end
     add_breadcrumb @doc.title
     @page_title = @doc.title
   end

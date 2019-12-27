@@ -78,7 +78,7 @@ a.navbar-brand {
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right pull-right hidden-xs" data-hook='admin-nav-right'>
                 <%= content_tag(:li, '' , class: "visible-lg visible-md visible-sm hidden-xs click-loader new-discussion #{new_active_class}") do %>
-                  <%= navbar_expanding_link(new_admin_topic_path, "fas fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')) %>
+                  <%= navbar_expanding_link(new_admin_topic_path, "fas fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')) if tickets? %>
                 <% end if current_user.is_agent? %>
                 <%= help_menu %>
                 <%= admin_avatar_menu %>
@@ -86,11 +86,11 @@ a.navbar-brand {
               <ul class="nav navbar-nav navbar-left" data-hook='admin-nav-left'>
                 <%= upper_nav_item(t(:inbox, default: "Inbox"), admin_topics_path,["topics"], ['index','show'], "fas fa-inbox") if (forums? || tickets?) && current_user.is_agent? %>
                 <%= upper_nav_item(t(:reports, default: 'Reports'), admin_reports_path(interval: 7), ["reports"], ['index', 'groups', 'team'], "fas fa-chart-bar") if tickets? && current_user.is_admin? %>
-                <%= upper_nav_item(t(:users, default: 'Customers'), admin_users_path(role: 'user'), ["users"], ["index","show","edit","update"], "fas fa-users") if current_user.is_admin? %>
-                <%= helpcenter_menu if (knowledgebase? || forums?) && current_user.is_agent? %>
+                <%= upper_nav_item(t(:users, default: 'Customers'), admin_users_path(role: 'user'), ["users"], ["index","show","edit","update"], "fas fa-users") if current_user.is_agent? %>
+                <%= helpcenter_menu_or_item %>
                 <%= content_tag(:li, link_to(t(:content, default: "Content"), admin_categories_path), class:'kblink') if knowledgebase? && current_user.role == 'editor' %>
                 <%#= content_tag(:li, link_to(t(:app_store, default: "App Store"), "http://helpy.io/store/"), class: "hidden-sm hidden-xs") if current_user.is_agent? %>
-                <%= content_tag(:li, link_to(t(:open_new_discussion, default: "New Ticket"), new_admin_topic_path), class: 'visible-xs hidden-lg hidden-md hidden-sm') if current_user.is_agent? %>
+                <%= content_tag(:li, link_to(t(:open_new_discussion, default: "New Ticket"), new_admin_topic_path), class: 'visible-xs hidden-lg hidden-md hidden-sm') if current_user.is_agent? && tickets? %>
                 <%= content_tag(:li, link_to(t(:settings, default: "Settings"), admin_settings_path), class: 'visible-xs hidden-lg hidden-md hidden-sm') if current_user.is_admin? %>
                 <%= content_tag(:li, link_to(t(:get_help, default: "Get Help"), "http://support.helpy.io/"), class: 'visible-xs hidden-lg hidden-md hidden-sm', target: 'blank') %>
               </ul>

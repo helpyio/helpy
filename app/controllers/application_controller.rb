@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(_resource)
     # If the user is an agent, redirect to admin panel
-    redirect_url = current_user.is_agent? ? admin_root_url : root_url
-    oauth_url = current_user.is_agent? ? admin_root_url : request.env['omniauth.origin']
+    redirect_url = current_user.is_editor? ? admin_root_url : root_url
+    oauth_url = current_user.is_editor? ? admin_root_url : request.env['omniauth.origin']
     oauth_url || redirect_url
   end
 
@@ -95,25 +95,25 @@ class ApplicationController < ActionController::Base
   helper_method :display_branding?
 
   def forums_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless forums?
+    redirect_to root_path unless forums?
   end
 
   def knowledgebase_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless knowledgebase?
+    redirect_to root_path unless knowledgebase?
   end
 
   def tickets_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets?
+    redirect_to root_path unless tickets?
   end
 
   def topic_creation_enabled?
-    raise ActionController::RoutingError.new('Not Found') unless tickets? || forums?
+    redirect_to root_path unless tickets? || forums?
   end
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
   end
 
   private
@@ -141,7 +141,9 @@ class ApplicationController < ActionController::Base
 
   def set_vars
     # Configure griddler, mailer, cloudinary, recaptcha
-    Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
+    
+    # TODO: Re-enable once we have a real domain
+    # Griddler.configuration.email_service = AppSettings["email.mail_service"].present? ? AppSettings["email.mail_service"].to_sym : :sendgrid
 
     ActionMailer::Base.smtp_settings = {
         :address              => AppSettings["email.mail_smtp"],

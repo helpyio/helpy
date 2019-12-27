@@ -4,6 +4,7 @@ module Entity
     expose :forum_id, documentation: { type: "Integer", desc: "The Forum this topic belongs to." }
     expose :user_id, documentation: { type: "Integer", desc: "The ID representing the creator of the topic."  }
     expose :user_name
+    expose :user, using: Entity::User, if: { user: true }
     expose :name, documentation: { type: "String", desc: "The title or subject of the Topic thread." }
     expose :posts_count, documentation: { type: "Integer" }
     # expose :waiting_on, documentation: { type: "String", desc: "Maintained by system, currently unused" }
@@ -24,5 +25,7 @@ module Entity
     expose :kind, documentation: { type: "String", desc: "The kind of topic this is, can be 'ticket','discussion','chat', etc."}
     expose :priority, documentation: { type: "String", desc: "Priority of the topic, can be 'low', 'normal', 'high' or 'very_high'" }
     expose :posts, using: Entity::Post, if: { posts: true }
+    expose :spam_score
+    expose :spam_report
   end
 end

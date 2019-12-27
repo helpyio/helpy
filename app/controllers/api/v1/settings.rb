@@ -31,9 +31,7 @@ module API
           AppSettings[params[:key]] = params[:value]
           present AppSettings[params[:key]]
         end
-
       end
-
     end
   end
 end

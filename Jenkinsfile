@@ -75,16 +75,6 @@ pipeline {
             sh 'kubectl exec -it `kubectl get pods --namespace=$branch_ns | grep $branch_ns | cut -d " " -f1` --namespace=$branch_ns /helpy/test.sh'
         }
     }*/
-    stage('Build Caddy') {
-      agent { label 'EKS-Druid' }
-      when {
-        branch 'master'
-      }
-      steps {
-        sh 'docker build -t superpedestrian/caddy:latest -f Dockerfile-Caddy .'
-        sh 'docker push superpedestrian/caddy:latest'
-      }
-    }
     stage('Deploy CI') {
       agent { label 'EKS-Druid' }
       when {

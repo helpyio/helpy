@@ -44,6 +44,7 @@ class Post < ActiveRecord::Base
   after_create  :update_waiting_on_cache, unless: :importing
   after_create  :assign_on_reply, unless: :importing
   after_commit  :notify, on: :create, unless: :importing
+  before_save :reject_admin_email_from_cc
   after_save  :update_topic_cache
 
   scope :all_by_topic, -> (topic) { where("topic_id = ?", topic).order('updated_at ASC').include(user) }
@@ -55,12 +56,12 @@ class Post < ActiveRecord::Base
   scope :notes, -> { where(kind: 'note') }
 
   def self.new_with_cc(topic)
-    if topic.posts.count == 0
+    if topic.posts.size == 0
       topic.posts.new
     else
       topic.posts.new(
-        cc: topic.posts.chronologic.last.cc,
-        bcc: topic.posts.chronologic.last.bcc
+        cc: topic.posts.ispublic.order(id: :asc).last&.cc,
+        bcc: topic.posts.ispublic.order(id: :asc).last&.bcc
       )
     end
   end
@@ -83,7 +84,7 @@ class Post < ActiveRecord::Base
       else
         logger.info('waiting on admin')
         waiting_on = "admin"
-        status = "pending" unless self.topic.current_status == 'new'
+        status = "pending" unless ['new','trash','spam'].include? self.topic.current_status
       end
     end
 
@@ -102,6 +103,9 @@ class Post < ActiveRecord::Base
   # Assign the parent topic if not assigned and this is a reply by admin
   # or agents
   def assign_on_reply
+    # don't assign if this is the first post (indicates an admin created ticket)
+    return if self.topic.posts.size == 1
+    
     if self.topic.assigned_user_id.nil?
       self.topic.assigned_user_id = self.user.is_agent? ? self.user_id : nil
     end
@@ -144,11 +148,24 @@ class Post < ActiveRecord::Base
   end
 
   def html_formatted_body
-    "#{ActionController::Base.helpers.sanitize(body.gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)}".html_safe
+    trimmed_body = EmailReplyTrimmer.trim(body)
+    "#{ActionController::Base.helpers.sanitize(ApplicationController.helpers.body_tokens(trimmed_body, topic).gsub(/(?:\n\r?|\r\n?)/, '<br>'), tags: ALLOWED_TAGS, attributes: ALLOWED_ATTRIBUTES)}".html_safe
   end
 
   def text_formatted_body
-    "#{ActionView::Base.full_sanitizer.sanitize(body)}".html_safe
+    trimmed_body = EmailReplyTrimmer.trim(body)
+    "#{ActionView::Base.full_sanitizer.sanitize(ApplicationController.helpers.body_tokens(trimmed_body, topic))}".html_safe
+  end
+
+  def bccs
+    bccs = []
+    unless bcc.nil?
+      bccs += bcc&.split(',').collect{|b| b.strip}
+    end
+    unless AppSettings['settings.global_bcc'].nil? || AppSettings['settings.global_bcc'].blank?
+      bccs += AppSettings['settings.global_bcc']&.split(',').collect{|b| b.strip}
+    end
+    return bccs
   end
 
   private
@@ -157,4 +174,8 @@ class Post < ActiveRecord::Base
       self.body = body.truncate(10_000) unless body.blank?
     end
 
+  def reject_admin_email_from_cc
+    return if self.cc.nil?
+    self.cc = self.cc.split(",").delete_if { |c| c.include?(AppSettings['email.admin_email'])}.join(",")
+  end
 end

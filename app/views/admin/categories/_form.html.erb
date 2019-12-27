@@ -1,4 +1,5 @@
   <%= f.input :name, label: I18n.translate("activerecord.attributes.category.name", locale: I18n.locale), value: @category.read_translated_attribute(:name)  %>
+  <%= f.input :parent_id, collection: categories_collection %>
   <%= f.input :icon, placeholder: t(:select_icon_helptext, default: 'Select an icon to associate with this category (optional)'), label: I18n.translate("activerecord.attributes.category.icon", locale: I18n.locale), input_html: { class: 'icon-picker no-translate'} %>
   <%#= f.text_field :section %>
   <%= f.input :keywords, label: I18n.translate("activerecord.attributes.category.keywords", locale: I18n.locale), value: @category.read_translated_attribute(:keywords) %>

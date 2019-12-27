@@ -40,6 +40,7 @@ it:
   # Community
   forum_name: "Community"
   subject: &subject "Sezione"
+  message: "Messaggio"
   last_activity: "Ultima attività"
   topic: "Ogetto"
   replies: "Messaggi"
@@ -248,6 +249,7 @@ it:
   # Mail messages
   new_user_subject: "Welcome to %{site_name}"
   hello: "Hello %{user_name}"
+  thank_you: "Thank you!"
   new_user: "Thank you for contacting us.  Your message has been received by our support team and we will be in touch with you shortly with a response."
   account_generated: "An account has been generated for you. To sign in, please use this link:"
   above_this_line: "Make sure your reply appears above this line"
@@ -259,6 +261,7 @@ it:
   notify_new_private: "A new private customer message has been received from %{user_name}:"
   notify_new_public: "A new public customer message has been posted by %{user_name}:"
   notify_new_reply: "A new customer reply has been received from %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Reply to this message directly or online:'
 
   # Notifications settings panel
@@ -300,7 +303,7 @@ it:
     one: "<strong>%{period}</strong> your users started 1 new conversation"
     other: "<strong>%{period}</strong> your users started <strong>%{count} new conversations</strong>"
   insights_blurb_two: "of which your team replied to <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "with a median response time of <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "with a median response time of <strong>%{response_time}</strong>"
   no_discussions: "No new conversations have been started <strong>%{period}</strong>"
   assigned_topics: "Assigned Topics"
   responded: "Responded"

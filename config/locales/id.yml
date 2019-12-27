@@ -40,6 +40,7 @@ id:
   # Community
   forum_name: "Topik"
   subject: &subject "Subyek"
+  message: "Pesan"
   last_activity: "Terakhir Aktif"
   topic: "Diskusi"
   replies: "Balasan"
@@ -295,6 +296,7 @@ id:
   # Mail messages
   new_user_subject: "Selamat datang di %{site_name}"
   hello: "Halo %{user_name}"
+  thank_you: "Terima!"
   new_user: "Terima kasih sudah menghubungi kami. Pesan Anda sudah diterima oleh tim support kami dan kami akan segera menanggapinya."
   account_generated: "Kami sudah membuatkan akun untuk Anda. Anda bisa masuk dengan menggunakan tautan ini:"
   above_this_line: "Pastikan balasan Anda di atas garis ini"
@@ -306,6 +308,7 @@ id:
   notify_new_private: "Ada tiket klien baru yang diterima dari %{user_name}:"
   notify_new_public: "Ada pesan publik klien baru yang dikirim oleh %{user_name}:"
   notify_new_reply: "Ada balasan klien yang diterima dari %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Balas pesan ini langsung atau secara online:'
 
   # Notifications settings panel
@@ -351,7 +354,7 @@ id:
     one: "<strong>%{period}</strong> user Anda membuka 1 tiket baru"
     other: "<strong>%{period}</strong> user Anda membuka <strong>%{count} tiket baru</strong>"
   insights_blurb_two: "dimana tim Anda membalas <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "dengan waktu balasan median adalah <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "dengan waktu balasan median adalah <strong>%{response_time}</strong>"
   no_discussions: "Tidak ada tiket baru yang dibuka <strong>%{period}</strong>"
   assigned_topics: "Topik yang Ditugaskan"
   responded: "Dibalas"

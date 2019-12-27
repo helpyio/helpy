@@ -117,15 +117,16 @@ class UserTest < ActiveSupport::TestCase
 
   end
 
-  test "should not accept names with numbers" do
+  test "should remove numbers in the name" do
     names = [
       "Vasiya2",
-      "123123"
+      "123123Tim"
     ]
 
     names.each do |name|
       user = build :user, name: name
-      assert_equal user.valid?, false
+      assert_equal user.valid?, true
+      assert_not_equal names, user.name
     end
   end
 
@@ -330,7 +331,7 @@ class UserTest < ActiveSupport::TestCase
     assert_nil u.thumbnail
     assert_nil u.medium_image
     assert_nil u.large_image
-    assert_equal FALSE, u.active
+    assert_equal false, u.active
     assert_equal "change", u.email.split('@')[0]
     assert_nil u.current_sign_in_ip
     assert_nil u.last_sign_in_ip
@@ -338,6 +339,24 @@ class UserTest < ActiveSupport::TestCase
     assert_nil u.account_number
     assert_equal "normal", u.priority
 
+  end
+
+  test "can be edited should be true if the current user is an admin and the user is admin" do
+    current_user = User.find(1)
+    user = User.find(5)
+    assert_equal true, user.can_be_edited?(current_user)
+  end
+
+  test "can be edited should be false if the current user is an agent and the user is admin" do
+    current_user = User.find(6)
+    user = User.find(1)
+    assert_equal false, user.can_be_edited?(current_user)
+  end
+
+  test "can be edited should be true if the current user is an agent and the user is user" do
+    current_user = User.find(6)
+    user = User.find(2)
+    assert_equal true, user.can_be_edited?(current_user)
   end
 
 end

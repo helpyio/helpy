@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => Devise.omniauth_providers
 
-  INVALID_NAME_CHARACTERS = /\A('|")|('|")\z/
+  INVALID_NAME_CHARACTERS = /\A('|")|\d|('|")\z/
 
   # Add preferences to user model
   include RailsSettings::Extend
@@ -76,14 +76,13 @@ class User < ActiveRecord::Base
 
   attr_accessor :opt_in
 
-  validates :name, presence: true, format: { with: /\A\D+\z/ }
+  validates :name, presence: true
   validates :email, presence: true
-
 
   include Gravtastic
   mount_uploader :profile_image, ProfileImageUploader
 
-  include PgSearch
+  include PgSearch::Model
   pg_search_scope :user_search,
                   against: [:name, :login, :email, :company, :account_number, :home_phone, :work_phone, :cell_phone]
 
@@ -117,6 +116,7 @@ class User < ActiveRecord::Base
   scope :by_role, -> (role) { where(role: role) }
   scope :active_first, -> { order('updated_at desc') }
   scope :alpha, -> { order('name asc') }
+  scope :available, -> { where(status: 'available') }
 
   def set_role_on_invitation_accept
     self.role = self.role.presence || "agent"
@@ -202,6 +202,12 @@ class User < ActiveRecord::Base
   def can_scrub_and_delete?
     return false if self.id == 2 || self.is_admin?
     true
+  end
+
+  # Is this user editable by the current logged in agent?
+  def can_be_edited? current_user
+    return true if current_user.is_admin?
+    !self.is_agent?
   end
 
   def self.notifiable_on_public
@@ -330,7 +336,7 @@ class User < ActiveRecord::Base
 
   # message to the user that is not allowed to login
   def inactive_message
-    "You are not allowed to log in!"
+    "You are not allowed to sign in!"
   end
 
   def self.register email, user_name

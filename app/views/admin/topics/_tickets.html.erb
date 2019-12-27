@@ -5,8 +5,11 @@
   <%#=  t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym)) if @status.present?} " %>
   <%= @header.present? ? raw(@header) : t(:discussions, default: "Discussions") + ": #{strip_tags(t(@status.to_sym, default: @status)) if @status.present?} " %>
   <div class="pull-right nav-new-button">
+    <%= link_to  "Empty Trash", admin_empty_trash_path, 
+        data: { confirm: t(:empty_trash_warning, default: "Are you sure you want to empty the trash? This will permanently delete all tickets in the trash.") },
+        class: 'btn btn-default', remote: true if params[:status] == 'trash' && current_user.is_admin? %>
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
-        remote: true, class: 'btn btn-primary' %>
+        remote: true, class: 'btn btn-primary' if tickets? %>
   </div>
 <% end %>
 <% if @topics.present? %>
@@ -35,6 +38,7 @@
 
   </tbody>
   <tbody id="multiple-edit" style="display:none;">
+
     <tr>
 
       <td colspan="3">
@@ -45,11 +49,11 @@
               <%= t(:change_status, default: 'Change Status') %> <span class='caret'></span>
             </span>
             <ul class="dropdown-menu ticket-controls" role="menu">
-              <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(change_status: 'closed', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(change_status: 'reopen', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(change_status: 'new', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:mark_spam, default: 'Mark Spam'), admin_update_topic_path(change_status: 'spam', status: params[:status]), :remote => true, class: 'multiple-update'  %></li>
-              <li><%= link_to t(:trash, default: 'Trash'), admin_update_topic_path(change_status: 'trash', status: params[:status]), :remote => true, class:'multiple-update' %></li>
+              <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(change_status: 'closed', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(change_status: 'reopen', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(change_status: 'new', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:mark_spam, default: 'Mark Spam'), admin_update_topic_path(change_status: 'spam', status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update'  %></li>
+              <li><%= link_to t(:trash, default: 'Trash'), admin_update_topic_path(change_status: 'trash', status: params[:status], q: params[:q]), :remote => true, class:'multiple-update' %></li>
             </ul>
           </span>
 
@@ -59,12 +63,15 @@
             </span>
             <ul class="dropdown-menu ticket-controls" role="menu">
               <% @admins.each do |admin| %>
-              <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(assigned_user_id: admin.id, status: params[:status]), :remote => true, class: 'multiple-update' %></li>
+              <li><%= link_to "#{admin.name.titleize} (#{admin.active_assigned_count})", admin_assign_agent_path(assigned_user_id: admin.id, status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update' %></li>
               <% end %>
+              <hr/>
+              <li><%= link_to t(:unassign_agent, default: "Unassign Agent"), admin_unassign_agent_path(assigned_user_id: nil, status: params[:status], q: params[:q]), remote: true, class: 'multiple-update' %></li>
+
             </ul>
           </span>
 
-          <% if teams? and @all_teams.count > 0 %>
+          <% if teams? && @all_teams.count > 0 %>
           <span class="btn btn-group left-col-dropdown">
             <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
               <%= t(:no_team_assigned, default: 'Assign to group') %> <span class='caret'></span>
@@ -72,22 +79,21 @@
             <ul class="dropdown-menu ticket-controls" role="menu">
               <% @all_teams.to_a.each do |team| %>
               <li class='team-item'>
-                <%= link_to("#{content_tag(:div, '', style: badge_color_from_tag(team), class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(assign_team: team, status: params[:status]), :remote => true, class: 'multiple-update') %>
+                <%= link_to("#{content_tag(:div, '', style: badge_color_from_tag(team), class: 'color-sample label-' + team.first.downcase)} #{content_tag :div, team.try(:titleize)}".html_safe, admin_assign_team_path(assign_team: team, status: params[:status], q: params[:q]), :remote => true, class: 'multiple-update') %>
               </li>
               <% end %>
-              <!-- <li class="new-tag">
-                <%= form_tag '#', class: 'new-group-form', remote: true do %>
-                <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control multiple' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
-                <% end %>
-              </li> -->
-              <li><%= link_to "Unassign from group", admin_assign_team_path(team: ''), remote: true, class: 'multiple-update' %></li>
-
+              <hr/>
+              <li><%= link_to t(:unassign_from_team, default: "Unassign from group"), admin_unassign_team_path(team: '', status: params[:status], q: params[:q]), remote: true, class: 'multiple-update' %></li>
             </ul>
           </span>
           <% end %>
-
         </span>
         <span class="merge-span" style="display: none;"><%= link_to t(:merge, default: "Merge"), admin_merge_tickets_path(merge: ''), remote: true, class: 'multiple-update ticket-control tiny-header', method: :post, data: { confirm: t(:merge_confirm, default: "Are you sure you want to merge these tickets?") } %></span>
+        <% if params[:q].present? && current_user.is_admin? #&& @topics.total_count > 15 %>
+            <br/>
+            <%= check_box_tag :select_all %> 
+            <span class="tiny-header">Apply action to all <%= @topics.total_count %> matches</span>
+        <% end %>
       </td>
     </tr>
   </tbody>

@@ -3,3 +3,8 @@
     <%= content_tag :span, link_to(cat_nav_item.name, admin_category_path(cat_nav_item.id)), class: 'less-important' %>
   </div>
 </li>
+<% cat_nav_item.children.publicly.active.each do |child| %>
+  <div style="margin-left: 10px;">
+    <%= render partial: 'admin/categories/cat_nav_item', object: child %>
+  </div>
+<% end %>

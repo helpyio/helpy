@@ -5,8 +5,8 @@ namespace :db do
 
   # How many fake objects to create
   number_support_team = 2
-  number_users = 5
-  number_docs = 3
+  number_users = 15
+  number_docs = 15
   number_doc_comments = 0
   number_threads = 0
   number_tickets = 15
@@ -60,7 +60,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
-      account_number: Faker::Number.number(10),
+      account_number: Faker::Number.number(digits: 10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
@@ -85,7 +85,7 @@ namespace :db do
     u = User.create(
       name: "#{user['name']['first']} #{user['name']['last']}" ,
       email: user['email'],
-      account_number: Faker::Number.number(10),
+      account_number: Faker::Number.number(digits: 10),
       login: '',
       password: '12345678',
       company: "#{Faker::Company.name}, #{Faker::Company.suffix}",
@@ -114,8 +114,8 @@ namespace :db do
       doc = category.docs.create!(
         title_tag: title,
         title: title,
-        body: Faker::Lorem.paragraphs(rand(1..5)).join('<br/><br/>'),
-        meta_description: Faker::Lorem.sentences(1),
+        body: paragraphs(rand(2..4)),
+        meta_description: Faker::Lorem.sentences(number: 1),
         user_id: User.team.sample.id
       )
       puts "Created Doc: #{doc.title}"
@@ -138,7 +138,7 @@ namespace :db do
         doc_id: doc.id
       )
       post = topic.posts.create!(
-        body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
+        body: paragraphs(rand(2..4)),
         user_id: topic.user_id,
         kind: 'first'
       )
@@ -149,7 +149,7 @@ namespace :db do
       # create posts about this doc
       rand(0..5).times do
         post = topic.posts.create!(
-          body: Faker::Lorem.paragraphs(rand(1..2)).join('<br/><br/>'),
+          body: paragraphs(rand(2..4)),
           user_id: User.customers.sample.id,
           kind: 'reply'
         )
@@ -186,7 +186,7 @@ namespace :db do
 
     # create first post in thread
     post = topic.posts.create!(
-      body: Faker::Lorem.paragraphs(rand(4..8)).join('<br/><br/>'),
+      body: paragraphs(rand(2..4)),
       user_id: topic.user_id,
       kind: 'first'
     )
@@ -196,7 +196,7 @@ namespace :db do
 
     rand(2..5).times do
       post = topic.posts.create!(
-        body: Faker::Lorem.paragraphs(rand(1..3)).join('<br/><br/>'),
+        body: paragraphs(rand(2..4)),
         user_id: User.customers.sample.id,
         kind: 'reply'
       )
@@ -222,21 +222,22 @@ namespace :db do
         user_id: User.customers.sample.id,
         private: true,
         assigned_user_id: User.agents.sample.id,
-        team_list: ticket_issue.split("|")[1]
+        team_list: ticket_issue.split("|")[1],
+        kind: 'internal'
       )
 
       # create first post in thread
       post = topic.posts.create!(
-        body: Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>'),
+        body: paragraphs(3),
         user_id: topic.user_id,
-        kind: 'first'
+        kind: ['first','first','note'].sample
       )
       puts "Post added to topic"
 
       Timecop.scale(120000)
       rand(0..5).times do |i|
         post = topic.posts.new
-        post.body = Faker::Lorem.paragraphs(rand(2..5)).join('<br/><br/>')
+        post.body = paragraphs(rand(2..4))
         post.kind = 'reply'
         if i.even?
           post.user_id = topic.assigned_user_id
@@ -262,6 +263,23 @@ namespace :db do
     PgSearch::Multisearch.rebuild(Topic)
 
     puts 'All done'
+  end
+
+  def paragraphs(number)
+    t = ""
+    number.times do
+      t += (paragraph + " <br/><br/>")
+    end
+    return t
+
+  end
+
+  def paragraph
+    p = ""
+    rand(3..5).times do
+      p += Faker::Lorem.sentence(word_count: rand(3..9)) + ".  "
+    end
+    return p
   end
 
   def build_question(q="something")
@@ -311,7 +329,7 @@ namespace :db do
 
   def ticket_issue
     [
-      "Order ##{Faker::Number.number(8)} #{issue}",
+      "Order ##{Faker::Number.number(digits: 8)} #{issue}",
       "My order for a '#{Faker::Commerce.product_name}' #{issue}",
       "I ordered something from you guys and it #{issue}",
       "Late order|shipping",

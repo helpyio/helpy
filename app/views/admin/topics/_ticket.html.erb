@@ -1,45 +1,31 @@
 <div id="ticket-info" class="no-side-pad row">
   <div class="col-md-3 col-lg-3 hidden-xs hidden-sm" id="left-col-user-info">
-    <%= render partial: 'admin/users/user_info_with_tickets', locals: { user: @topic.user } %>
+    <%= render partial: 'admin/users/user_info_with_tickets', locals: { user: @topic.user } if @topic.user.present? %>
   </div>
 
   <div id="ticket-controls" class="col-md-9 col-xs-12 col-lg-9">
-    <div class="topic-tags hidden-lg hidden-md hidden-sm"><%= formatted_tags(@topic) %></div>
-
     <div id="topic-options">
       <%= render :partial => 'admin/topics/topic_options' %>
-
-      <div class="topic-tags pull-right">
-        <span class="btn-group left-col-dropdown pull-right">
-          <%= content_tag :span, formatted_tags(@topic), class: ' hidden-xs' %>
-        </span>
-      </div>
     </div>
     <h3 class="topic-number-name">
 
       <%= show_responsive_nav %>
       <span class="topic-number">#<%= @topic.id %></span>-
       <%= best_in_place @topic, :name, url: admin_topic_path(@topic), :class => "edit-topic-name" -%>&nbsp;
-      <%= topic_added_from %>
+      <%= topic_added_from %><%= topic_anonymous_link %>
 
     </h3>
-    <div class="topic-tag-form" style="display: none;">
-      <%= simple_form_for @topic, url: admin_update_topic_tags_path(id: @topic.id, status: params[:status]), remote: true, html: { class: 'form-inline' } do |f| %>
-        <%= f.input_field :tag_list, value: @topic.tag_list.to_s, class: 'selectize form-control', style: 'width: 80%;'%>
-        <%= f.submit "Save", class: 'form-control' %>
-      <% end %>
-    </div>
 
     <% if @posts  %>
       <script>
-        Helpy.messages = '<%= j t(:collapsed_messages, count: (@posts.count-@topic.posts.notes.count)-2) %>';
+        Helpy.messages = '<%= j t(:collapsed_messages, count: (@posts.size-@topic.posts.notes.size)-2) %>';
       </script>
     <% end %>
     <div id="posts">
     <%= render :partial => 'admin/topics/post', :collection => @posts %>
     </div>
 
-    <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.count > 0 %>
+    <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.size > 0 %>
 
     <div class="add-form">
       <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>
@@ -63,6 +49,7 @@
         <%= hidden_field_tag :client_id %>
         <%= hidden_field_tag :from, 'admin' %>
         <%= hidden_field_tag :status, params[:status] %>
+        <%= render partial: "admin/shared/assistant" %>
         <%= f.input :body, as: :summernote, label: false, class: 'disable-empty' %>
 
         <%= label_tag 'post_reply_id', "#{t(:select_common, default: 'Insert Common Reply')} (#{link_to(t(:edit, default: 'Edit'), admin_category_path(1), target: 'blank')})".html_safe, class: 'control-label' %>
@@ -90,6 +77,11 @@
 $('[data-provider="summernote"]').each(function(){
   $(this).summernote({
     lang: '<%= summernote_locale %>',
+    callbacks: {
+      onInit: function (e) {
+        $("#post_body").summernote("code", localStorage.getItem("topic_reply_draft_<%= @topic.id %>"));
+      }
+    },    
     height: 150,
     prettifyHtml: true,
     toolbar: [
@@ -149,7 +141,21 @@ $.ajax({
   window.emojiUrls = data;
 });
 </script>
+<script>
+$(function () {
+  $("#new_post").sisyphus();
+  $(document).off('keyup').on('keyup', '.note-editable', function(){
+    localStorage.setItem("topic_reply_draft_<%= @topic.id %>", $("#post_body").summernote("code"));
+  });
+  //setInterval(function () {
+  //  localStorage.setItem("topic_reply_draft_<%= @topic.id %>", $("#post_body").summernote("code"));
+  //}, 3000); // every 5 second interval
 
+  $('#new_post').on('submit', function () {
+    localStorage.removeItem("topic_reply_draft_<%= @topic.id %>");
+  });
+});
+</script>
 
 <script type="text/javascript">
 Helpy.showhidenotes = function(){
@@ -161,22 +167,28 @@ Helpy.showhidenotes = function(){
   });
 }
 
+//$(document).on('page:load', function(){
 
-$(document).ready(function(){
-  $('.topic-tags li, .add-tag-link').on('click', function(){
-    $('.topic-tag-list').toggle();
-    $('.topic-tag-form').toggle();
-    $('.selectize').selectize({
-      delimiter: ',',
-      persist: false,
-      create: function(input) {
-          return {
-              value: input,
-              text: input
-              }
-          }
-    });
-    return false;
+  // Create selectize tag chooser
+  $('#topic_tag_list').selectize({
+    // plugins: ['remove_button'],
+    onBlur: function(){
+      $('.tag-form').submit();
+    }
+  });
+
+  // This opens and closes the tagging dropdown like a normal BS dropdown
+  $('.tag-toggle').on('click', function(e){
+    $(this).parent().toggleClass('open');
+  });
+
+  $('body').on('click', function (e) {
+    if (!$('span.left-col-dropdown').is(e.target)
+      && $('span.left-col-dropdown').has(e.target).length === 0
+      && $('.open').has(e.target).length === 0
+    ) {
+      $('span.left-col-dropdown').removeClass('open');
+    }
   });
 
   if ($('.kind-note').size() > 3) {
@@ -188,5 +200,5 @@ $(document).ready(function(){
     $('.sticky-note').hide();
   }
 
-});
+//});
 </script>

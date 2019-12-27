@@ -251,7 +251,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal 2, object['tag_list'].count
   end
 
-  test "a non-registered API user should not be registered and should not create a ticket by email if provided name is invalid" do
+  test "creating a user by api with number in name should success and strip numbers" do
     params = {
       name: "Got a problem",
       body: "This is some really profound question",
@@ -264,11 +264,11 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
 
     post '/api/v1/tickets.json', @default_params.merge(params)
 
-    assert_nil User.find_by(email: params[:user_email])
+    assert_not_nil User.find_by(email: params[:user_email])
 
     object = JSON.parse(last_response.body)
-    assert_equal 403, last_response.status
-    assert object['error'].include?('Ticket not created. User could not be registered')
+    assert_equal 'User Nt Rgistrd', object['user_name']
+    assert_equal 201, last_response.status
   end
 
   test "an API user should be able to assign a ticket" do
@@ -421,7 +421,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     assert_equal(4, object['posts'].count, "Should be 4 posts")
     assert_equal("MERGED: Message A", object['name'], "New topic title is wrong")
     assert_equal("ticket", object['kind'], "New topic kind is wrong")
-    assert_equal('note', object['posts'].last['kind'], "The last post should be a note")
+    assert_equal(true, object['posts'].any? {|p| p['kind'] == "note"}, "The last post should be a note")
   end
 
   test "attempting to split a non existent post 404s (Not Found)" do

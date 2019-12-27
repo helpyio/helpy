@@ -1,7 +1,7 @@
 class Admin::InternalCategoriesController < Admin::BaseController
 
   def index
-    @categories = Category.internally.without_system_resource.ordered
+    @categories = Category.internally.without_system_resource.with_translations(I18n.locale).ordered
   end
 
   def show

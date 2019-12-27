@@ -293,6 +293,7 @@ ms:
   # Mail messages
   new_user_subject: "Selamat datang ke %{site_name}"
   hello: "Hello %{user_name}"
+  thank_you: "Terima kasih!"
   new_user: "Terima kasih kerana menghubungi kami. Mesej anda telah diterima oleh pasukan sokongan kami dan kami akan bertindak balas tidak lama lagi."
   account_generated: "Kami telah membuat akaun untuk anda. Anda boleh log masuk dengan menggunakan pautan ini:"
   above_this_line: "Pastikan jawapan anda melebihi baris ini"
@@ -304,6 +305,7 @@ ms:
   notify_new_private: "Terdapat tiket pelanggan baru yang diterima dari %{user_name}:"
   notify_new_public: "Terdapat mesej awam pelanggan baru yang dihantar oleh %{user_name}:"
   notify_new_reply: "Terdapat jawapan pelanggan yang diterima daripada %{user_name}:"
+  # notify_user_delete: "User %{user_name} was scheduled for permanent deletion."
   to_reply: 'Balas mesej ini secara langsung atau dalam talian:'
 
   # Notifications settings panel
@@ -349,7 +351,7 @@ ms:
     one: "<strong>%{period}</strong> pengguna anda membuka 1 tiket baru"
     other: "<strong>%{period}</strong> pengguna anda membuka <strong>%{count} tiket baru</strong>"
   insights_blurb_two: "di mana pasukan anda menjawab <strong>%{number_replied} (%{percentage_replied})</strong>"
-  insights_blurb_three: "dan masa tindak balas median adalah <strong>%{response_time}</strong>"
+  insights_blurb_three_html: "dan masa tindak balas median adalah <strong>%{response_time}</strong>"
   no_discussions: "Tiada tiket baru dibuka <strong>%{period}</strong>"
   assigned_topics: "Topik yang diberikan"
   responded: "Menjawab"

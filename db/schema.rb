@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180913150764) do
+ActiveRecord::Schema.define(version: 20191005134018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,7 +103,10 @@ ActiveRecord::Schema.define(version: 20180913150764) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "visibility",       default: "all"
+    t.string   "ancestry"
   end
+
+  add_index "categories", ["ancestry"], name: "index_categories_on_ancestry", using: :btree
 
   create_table "category_translations", force: :cascade do |t|
     t.integer  "category_id",      null: false
@@ -269,14 +272,15 @@ ActiveRecord::Schema.define(version: 20180913150764) do
     t.integer  "user_id"
     t.text     "body"
     t.string   "kind"
-    t.boolean  "active",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "points",      default: 0
-    t.string   "attachments", default: [],                array: true
+    t.boolean  "active",           default: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "points",           default: 0
+    t.string   "attachments",      default: [],                array: true
     t.string   "cc"
     t.string   "bcc"
     t.text     "raw_email"
+    t.string   "email_to_address", default: ""
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -437,6 +441,8 @@ ActiveRecord::Schema.define(version: 20180913150764) do
     t.string   "condition",        default: "green"
     t.string   "sentiment"
     t.datetime "last"
+    t.decimal  "spam_score",       default: 0.0
+    t.text     "spam_report",      default: ""
   end
 
   add_index "topics", ["kind"], name: "index_topics_on_kind", using: :btree
@@ -489,14 +495,14 @@ ActiveRecord::Schema.define(version: 20180913150764) do
     t.integer  "assigned_ticket_count",  default: 0
     t.integer  "topics_count",           default: 0
     t.boolean  "active",                 default: true
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "email",                  default: "",       null: false
-    t.string   "encrypted_password",     default: "",       null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.string   "email",                  default: "",          null: false
+    t.string   "encrypted_password",     default: "",          null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,        null: false
+    t.integer  "sign_in_count",          default: 0,           null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -522,6 +528,7 @@ ActiveRecord::Schema.define(version: 20180913150764) do
     t.text     "notes"
     t.boolean  "notify_on_assignment",   default: true
     t.boolean  "notify_on_mention",      default: true
+    t.string   "status",                 default: "available"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

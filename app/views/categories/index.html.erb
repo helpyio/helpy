@@ -29,7 +29,8 @@
 						<div class="col-md-9">
 							<h5 class="tiny-header"><%= link_to category.name, category_path(category), id: "category-#{category.id}", class:'tiny-header'  %></h5>
 							<ul class='list-unstyled articles'>
-								<% category.docs.with_translations(I18n.locale).ordered.active.limit(15).each_with_index do |doc| -%>
+								<%= render partial: 'categories/category', collection: Category.children_of(category).ordered.with_translations(I18n.locale).all %>
+								<% category.docs.with_translations(I18n.locale).ordered.active.includes(:tags).limit(15).each_with_index do |doc| -%>
 									<%= render ("docs/doc"), doc: doc -%>
 								<% end -%>
 								<li class="article article-more">

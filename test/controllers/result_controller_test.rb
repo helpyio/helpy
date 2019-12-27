@@ -17,6 +17,27 @@ class ResultControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should find doc translation when searching for translated text" do
+    get(:index, { q: "[fr]", locale: :fr })
+    assert_not_nil assigns(:results)
+    assert_equal(1, assigns(:results).total_count)
+    assert_response :success
+  end
+
+  test "should find doc translation when searching for translated title" do
+    get(:index, { q: "Premier article", locale: :fr })
+    assert_not_nil assigns(:results)
+    assert_equal(1, assigns(:results).total_count)
+    assert_response :success
+  end
+
+  test "should find doc translation when searching for translated keywords" do
+    get(:index, { q: "article mots-clés", locale: :fr })
+    assert_not_nil assigns(:results)
+    assert_equal(1, assigns(:results).total_count)
+    assert_response :success
+  end
+
   test "asearching for a doc should not return a result if its marked inactive" do
     category = Category.create(name: "test title", active: true)
     Doc.create(title: "test doc one", body: "some body text", category_id: category.id)

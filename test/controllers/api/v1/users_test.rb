@@ -212,4 +212,12 @@ class API::V1::UsersTest < ActiveSupport::TestCase
     assert_equal "anon", object['login']
     assert_nil object['city']
   end
+
+  test "API users should be able to set status of users" do
+    user = User.find(6)
+    patch "/api/v1/users/status/#{user.id}.json?status=vacation", @default_params
+
+    object = JSON.parse(last_response.body)
+    assert_equal "vacation", object['status']
+  end
 end
