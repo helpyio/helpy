@@ -1,0 +1,9 @@
+<%= simple_form_for(@topic.posts.new, url: topic_posts_path(@topic), validate: true, method: :post, remote: true) do |f| -%>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+  <%= f.input :body, label: I18n.t("reply", default: "Reply to this Topic"), input_html: {:rows => 8, :cols => 60, placeholder: 'Type your reply', label: I18n.t("reply", default: "Reply to this Topic"), class: 'disable-empty form-control topic-placeholder'} %>
+  <%= f.hidden_field 'kind', value: 'reply' %>
+  <%= hidden_field_tag :client_id %>
+  <%= f.attachinary_file_field :screenshots if cloudinary_enabled? %>
+  <%= f.file_field :attachments, multiple: true, onchange: 'Helpy.validateFiles(this, whitelist, blacklist);' unless cloudinary_enabled? %>				
+  <%= f.submit I18n.t('submit_reply', default: 'Post Reply'), class: 'btn btn-warning' -%>
+<% end %>

@@ -188,13 +188,14 @@ class Topic < ActiveRecord::Base
     forum_id >= 3 && !private?
   end
 
-  def create_topic_with_user(params, current_user)
+  def create_topic_with_user(params, current_user, post)
     self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email])
 
     unless self.user #User not found, lets build it
       self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
     end
-    self.user.persisted? && self.save
+    post.user = self.user
+    self.user.persisted? && self.save && post.save
   end
 
   def create_topic_with_webhook_user(params)
