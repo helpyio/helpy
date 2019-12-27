@@ -1,0 +1,3 @@
+source 'https://gems.helpy.io/' do
+  gem 'helpy_cloud', '~> 2.7.0'
+end
