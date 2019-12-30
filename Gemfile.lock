@@ -439,7 +439,7 @@ GEM
     pry-byebug (3.6.0)
       byebug (~> 10.0)
       pry (~> 0.10)
-    public_suffix (4.0.1)
+    public_suffix (4.0.2)
     rack (1.6.12)
     rack-accept (0.4.5)
       rack (>= 0.4)
