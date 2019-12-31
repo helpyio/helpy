@@ -119,6 +119,11 @@ $('#right-menu').sidr({
 $('ul.nav').off().on('click', function(){
  $.sidr('close', 'nav');
 });
+
+// Close menu before navigating so turbolinks does not cache menu open
+$(document).on('page:before-change', function () {
+  $.sidr('close', 'nav');
+});
 </script>
 <%= "<script src='/assets/widget.v1.js'></script>".html_safe if AppSettings['widget.show_on_support_site'] == '1' %>
 <%= "#{AppSettings['design.footer_js']}".html_safe %>
