@@ -92,6 +92,8 @@ module API
           optional :user_email, type: String, desc: "The user who is creating a ticket. Can be either registered or non-registered. Required if `user_id` not supplied."
           optional :user_name, type: String, desc: "The user name for register a non-registered user. Required if `user_id` is not supplied."
           optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
+          optional :cc, type: String, desc: "Comma separated list of emails to CC"
+          optional :bcc, type: String, desc: "Comma separated list of emails to BCC"
         end
 
         post "", root: :topics do
@@ -123,6 +125,8 @@ module API
             body: params[:body],
             user_id: user_id,
             kind: 'first',
+            cc: params[:cc],
+            bcc: params[:bcc]
           )
           present ticket, with: Entity::Topic, posts: true, user: true
         end
