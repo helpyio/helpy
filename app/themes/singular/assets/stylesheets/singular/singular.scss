@@ -25,7 +25,7 @@ main {
   background-color: $body-bg;
 }
 
-input,
+input:not([type=radio]),
 select {
   min-height: 60px;
 }
@@ -109,9 +109,6 @@ i.circle-icon {
 		font-size: 150%;
 	}
 
-  .article-block {
-  }
-
   i.circle-icon {
     display: inline-block;
     border-radius: 60px;
@@ -127,6 +124,11 @@ i.circle-icon {
 
   .article-icon {
     margin-bottom: 20px;
+  }
+
+  select,
+  input:not([type=radio]) {
+    min-height: 20px;
   }
 }
 
@@ -756,9 +758,6 @@ header {
 .navbar-form {
   padding-top: 0;
   padding-bottom: 0;
-}
-
-.navbar-form .input-group .form-control {
 }
 
 .navbar-right {
