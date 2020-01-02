@@ -28,7 +28,7 @@
     <% end %>
 
     <%= hidden_field_tag :client_id %>
-    <%= f.submit t(:submit_start_discussion, default: 'Create Ticket'), class: 'btn btn-warning disableable', disabled: 'disabled', style: "background-color: #{AppSettings['widget.button_color']}; color: #{AppSettings['widget.button_text_color']}; border: 0" %>
+    <%= f.submit t(:submit_start_discussion, default: 'Create Ticket'), class: 'btn btn-warning', style: "background-color: #{AppSettings['widget.button_color']}; color: #{AppSettings['widget.button_text_color']}; border: 0" %>
 
   <% end -%>
   </div>

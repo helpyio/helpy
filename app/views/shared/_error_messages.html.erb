@@ -1,6 +1,6 @@
 <% if object.present? and object.errors.any? %>
 	<div class="alert alert-danger">
-	  <p>Please fix the errors below.</p>
+	  <p>Please fix the errors below:</p><br/>
 	  <ul class="rails-bootstrap-forms-error-summary">
 	    <% object.errors.full_messages.each do |msg| %>
 		    <li><%= msg %></li>
