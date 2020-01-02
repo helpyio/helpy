@@ -110,7 +110,15 @@ class TopicsController < ApplicationController
       private: params[:topic][:private],
       doc_id: params[:topic][:doc_id],
       team_list: params[:topic][:team_list],
-      channel: 'web')
+      channel: 'web'
+    )
+
+    @post = @topic.posts.new(
+      body: params[:topic][:posts_attributes]["0"][:body],
+      kind: 'first',
+      screenshots: params[:topic][:screenshots],
+      attachments: params[:topic][:posts_attributes]["0"][:attachments]
+    )
 
     associate_with_doc
 
@@ -126,29 +134,24 @@ class TopicsController < ApplicationController
       end
     end
 
-    if @topic.create_topic_with_user(params, current_user)
+    if @topic.create_topic_with_user(params, current_user, @post)
       @user = @topic.user
-      @post = @topic.posts.create(
-        :body => params[:topic][:posts_attributes]["0"][:body],
-        :user_id => @user.id,
-        :kind => 'first',
-        :screenshots => params[:topic][:screenshots],
-        :attachments => params[:topic][:posts_attributes]["0"][:attachments])
-
-      if !user_signed_in?
-        UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later
-      end
+      @post.update_attribute(:user_id, @user.id)
 
       # track event in GA
       tracker('Request', 'Post', 'New Topic')
       tracker('Agent: Unassigned', 'New', @topic.to_param)
 
+      UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later if !user_signed_in?
+    
       if @topic.private?
         redirect_to topic_thanks_path
       else
         redirect_to topic_posts_path(@topic)
       end
+
     else
+      set_new_page_title
       render 'new'
     end
   end
@@ -190,7 +193,10 @@ class TopicsController < ApplicationController
     @topic.posts.build #unless @topic.posts
     get_all_teams
     get_public_forums
+    set_new_page_title
+  end
 
+  def set_new_page_title
     @page_title = t(:get_help_button, default: "Open a ticket")
     add_breadcrumb @page_title
   end

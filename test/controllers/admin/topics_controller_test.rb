@@ -346,7 +346,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
         end
       end
 
-      assert_equal nil, Topic.last.assigned_user_id
+      assert_nil Topic.last.assigned_user_id
     end
 
     test "an #{admin} should be able to create a new private discussion for an existing user" do
