@@ -17,11 +17,13 @@
 
   <div id="user-contact-info" class="user-info">
     <div class="user-section">
+      <%= f.select(:role, roles_collection, prompt: t('select_role')) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
+      <%= f.email_field :email %>
       <%= f.text_field :name %>
       <%= f.text_field :company %>
+      <%= f.text_field :street %>
       <%= f.text_field :city, inline: true %> <%= f.text_field :state, inline: true  %> <%= f.text_field :zip, inline: true  %>
       <%#= @topic.user.country.titleize unless @topic.user.country.nil? %>
-      <%= f.select(:role, roles_collection, prompt: t('select_role')) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
       <%= f.select 'team_list', options_for_select(@all_teams.map {|t| [t, t.downcase]}, @user.team_list.map {|g| g.downcase}),
           { label: t(:assign_to, default: "Assign to group:") }, { class: "selectpicker", multiple: true } if teams? && current_user.is_admin? && @user.is_agent? && params[:controller] != 'admin/settings' %>
       <%= f.select(:priority, priority_collection) if current_user.is_admin? && params[:controller] != 'admin/settings' %>
@@ -42,7 +44,6 @@
       <div class="tiny-header"><%= t(:contact_info, default: "Contact") %>:</div>
       <%= f.text_field :work_phone %>
       <%= f.text_field :cell_phone %>
-      <%= f.email_field :email %>
     </div>
     <div class="user-section">
       <div class="tiny-header"><%= t(:social_info, default: "Social") %>:</div>
