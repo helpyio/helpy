@@ -332,7 +332,7 @@ GEM
     kaminari-i18n (0.5.0)
       kaminari
       rails
-    kgio (2.11.2)
+    kgio (2.11.3)
     launchy (2.4.3)
       addressable (~> 2.3)
     less (2.6.0)
