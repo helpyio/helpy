@@ -25,8 +25,9 @@ if [[ "$RUN_PREPARE" = "false" ]]
     echo "DO_NOT_PREPARE is not set or is false, preparing.."
     bundle exec rake db:migrate
     bundle exec rake db:seed || echo "db is already seeded"
-    bundle exec rake helpy_cloud_engine:install:migrations
-    bundle exec rake db:migrate
+    # only necessary for first install
+    # bundle exec rake helpy_cloud_engine:install:migrations
+    # bundle exec rake db:migrate
     bundle exec rails g helpy_cloud:install
     bundle exec rake assets:precompile
     bundle exec rake helpy:mailman mail_interval=30 &
