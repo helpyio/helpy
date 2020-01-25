@@ -30,7 +30,7 @@ if [[ "$RUN_PREPARE" = "false" ]]
     # bundle exec rake db:migrate
     bundle exec rails g helpy_cloud:install
     bundle exec rake assets:precompile
-    bundle exec rake helpy:mailman mail_interval=30 &
+    nohup bundle exec rake helpy:mailman mail_interval=30 &
 fi
 
 echo "starting unicorn"
