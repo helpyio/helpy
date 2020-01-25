@@ -5,7 +5,7 @@ metadata:
     io.kompose.service: helpy
   name: helpy
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: Recreate
   template:
