@@ -46,9 +46,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = Logger.const_get(
-    ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'INFO'
-  )
+  config.log_level = :debug
   config.logger = Logger.new(STDOUT)
 
   # Prepend all log lines with the following tags.
