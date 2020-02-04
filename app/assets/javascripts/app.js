@@ -494,21 +494,21 @@ Helpy.validateFiles = function (inputFile, allowedExtension, blockedExtension) {
   var extError = false;
 
   $.each(inputFile.files, function () {
-    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) { sizeExceeded = true; };
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) { sizeExceeded = true; }
     extName = this.name.split('.').pop();
-    if (allowedExtension.length > 0 && $.inArray(extName, allowedExtension) == -1) { extError = true; };
-    if (blockedExtension.length > 0 && $.inArray(extName, blockedExtension) != -1) { extError = true; };
+    if (allowedExtension.length > 0 && $.inArray(extName, allowedExtension) == -1) { extError = true; }
+    if (blockedExtension.length > 0 && $.inArray(extName, blockedExtension) != -1) { extError = true; }
   });
   if (sizeExceeded) {
     window.alert(maxExceededMessage);
     $(inputFile).val('');
-  };
+  }
 
   if (extError) {
     window.alert(extErrorMessage);
     $(inputFile).val('');
-  };
-}
+  }
+};
 
 
 

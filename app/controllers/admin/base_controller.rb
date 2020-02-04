@@ -104,7 +104,7 @@ class Admin::BaseController < ApplicationController
     else
       topics_raw = topics_raw.where(current_status: @status)
     end
-    @topics = topics_raw.page params[:page]
+    @topics = topics_raw.page(params[:page]).per(15)
   end
 
 

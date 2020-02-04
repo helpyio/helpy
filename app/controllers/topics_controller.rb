@@ -47,9 +47,9 @@ class TopicsController < ApplicationController
     @forum = Forum.ispublic.where(id: params[:forum_id]).first
     if @forum
       if @forum.allow_topic_voting == true
-        @topics = @forum.topics.ispublic.by_popularity.page params[:page]
+        @topics = @forum.topics.ispublic.by_popularity.page(params[:page]).per(15)
       else
-        @topics = @forum.topics.ispublic.chronologic.page params[:page]
+        @topics = @forum.topics.ispublic.chronologic.page(params[:page]).per(15)
       end
       @page_title = @forum.name
       add_breadcrumb t(:community, default: "Community"), forums_path
@@ -63,7 +63,7 @@ class TopicsController < ApplicationController
   end
 
   def tickets
-    @topics = current_user.topics.isprivate.undeleted.external.chronologic.page params[:page]
+    @topics = current_user.topics.isprivate.undeleted.external.chronologic.page(params[:page]).per(15)
     @page_title = t(:tickets, default: 'Tickets')
     add_breadcrumb @page_title
     respond_to do |format|

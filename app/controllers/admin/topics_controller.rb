@@ -565,19 +565,19 @@ class Admin::TopicsController < Admin::BaseController
     case @status
 
     # when 'all'
-    #   @topics = Topic.all.page params[:page]
+    #   @topics = Topic.all.page(params[:page]).per(15)
     when 'new'
-      @topics = Topic.unread.page params[:page]
+      @topics = Topic.unread.page(params[:page]).per(15)
     when 'active'
-      @topics = Topic.active.page params[:page]
+      @topics = Topic.active.page(params[:page]).per(15)
     # when 'unread'
-    #   @topics = Topic.unread.all.page params[:page]
+    #   @topics = Topic.unread.all.page(params[:page]).per(15)
     when 'mine'
-      @topics = Topic.mine(current_user.id).page params[:page]
+      @topics = Topic.mine(current_user.id).page(params[:page]).per(15)
     when 'pending'
-      @topics = Topic.pending.mine(current_user.id).page params[:page]
+      @topics = Topic.pending.mine(current_user.id).page(params[:page]).per(15)
     else
-      @topics = Topic.where(current_status: @status).page params[:page]
+      @topics = Topic.where(current_status: @status).page(params[:page]).per(15)
     end
   end
 

@@ -15,8 +15,6 @@ module API
       # PRIVATE TICKET ENDPOINTS
       resource :tickets, desc: "Create and Manage private discussions" do
 
-        paginate per_page: 20
-
         # LIST BY STATUS
         desc "List all PRIVATE tickets by status", {
           entity: Entity::Topic,
