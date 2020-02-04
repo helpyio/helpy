@@ -84,6 +84,8 @@
         </div>
       <% end %>
 
+      <%= url_field 'topic', 'url', value: '', placeholder: 'http://', id: 'topic-url' %>
+
       <%= hidden_field_tag :client_id %>
       <%= f.hidden_field :doc_id, value: params[:doc_id] if params[:doc_id] %>
       <%= hidden_field_tag :from, 'widget' if params[:controller] == 'widget' || params[:from] == 'widget' %>

@@ -97,6 +97,43 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert "Anonymous User", User.find(3).name
   end
 
+  test "an admin should be able to add a new user without an invite" do
+    sign_in users(:admin)
+    get :new
+    assert_difference 'User.count', 1 do
+      assert_difference "ActionMailer::Base.deliveries.size", 0 do
+        post :create, {
+          user: {
+            name: 'some name',
+            email: 'some@email.test',
+            password: 'some_password',
+            role: 'agent'
+          },
+          locale: :en
+        }
+      end
+    end
+  end
+
+  test "an admin should be able to add a new user and send an invite" do
+    sign_in users(:admin)
+    get :new
+    assert_difference 'User.count', 1 do
+      assert_difference "ActionMailer::Base.deliveries.size", 1 do
+        post :create, {
+          user: {
+            name: 'some name',
+            email: 'some@email.test',
+            password: 'some_password',
+            role: 'agent'
+          },
+          locale: :en,
+          user_invite: true
+        }
+      end
+    end
+  end
+
   # admin/agents
 
   %w(admin agent).each do |admin|

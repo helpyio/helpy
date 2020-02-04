@@ -59,19 +59,6 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     assert_redirected_to admin_general_settings_path
   end
 
-  test 'the site url provided is invalid' do
-    sign_in users(:admin)
-    put :update_general,
-        'settings.site_name' => 'Helpy Support 2',
-        'settings.site_url' => 'invalid_url',
-        'settings.parent_site' => 'http://helpy.io/2',
-        'settings.parent_company' => 'Helpy 2',
-        'settings.site_tagline' => 'Support',
-        'settings.google_analytics_id' => 'UA-0000-21'
-    assert_equal 'The given url is invalid', flash[:error]
-    assert_redirected_to admin_general_settings_path
-  end
-
   test 'an admin should be able to modify design' do
     sign_in users(:admin)
     put :update_design,

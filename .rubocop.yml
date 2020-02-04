@@ -9,24 +9,24 @@ AllCops:
   TargetRubyVersion: 2.3
   DisabledByDefault: true
 
-Rails:
-  Enabled: true
+# Rails:
+#   Enabled: true
 
 # TODO: Resolve the following RuboCop violations
 
 # Offense count: 1
 # Configuration parameters: Include.
 # Include: app/models/**/*.rb
-Rails/HasAndBelongsToMany:
-  Exclude:
-    - 'app/models/user.rb'
+# Rails/HasAndBelongsToMany:
+#   Exclude:
+#     - 'app/models/user.rb'
 
 # Offense count: 2
 # Configuration parameters: Include.
 # Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
-Rails/Output:
-  Exclude:
-    - 'config/unicorn.rb'
+# Rails/Output:
+#   Exclude:
+#     - 'config/unicorn.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowSafeAssignment.
@@ -35,7 +35,7 @@ Lint/AssignmentInCondition:
     - 'bin/spring'
 
 # Offense count: 2
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Exclude:
     - 'bin/rails'
     - 'bin/rake'

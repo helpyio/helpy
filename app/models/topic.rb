@@ -43,8 +43,6 @@ class Topic < ActiveRecord::Base
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
-  paginates_per 15
-
   include PgSearch::Model
   multisearchable :against => [:id, :name, :post_cache],
                   :if => :public?

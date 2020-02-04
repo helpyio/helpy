@@ -191,6 +191,7 @@ de:
 
   # User Admin
   users: &users Benutzer
+  # create_user: Create New User
   account: Benutzerkonto
   contact_info: Kontakt
   social_info: Soziales

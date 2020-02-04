@@ -104,7 +104,7 @@ class Admin::BaseController < ApplicationController
     else
       topics_raw = topics_raw.where(current_status: @status)
     end
-    @topics = topics_raw.page params[:page]
+    @topics = topics_raw.page(params[:page]).per(15)
   end
 
 
@@ -129,7 +129,7 @@ class Admin::BaseController < ApplicationController
 
   def set_categories_and_non_featured
     @public_categories = Category.roots.publicly.featured.ordered.includes(:docs)
-    @public_nonfeatured_categories = Category.publicly.unfeatured.alpha.includes(:docs)
+    @public_nonfeatured_categories = Category.roots.publicly.unfeatured.alpha.includes(:docs)
     @internal_categories = Category.only_internally.ordered.includes(:docs)
   end
 
