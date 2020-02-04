@@ -2,13 +2,14 @@
 
 Version 2.8 contains important security updates and the following new featuers:
 
-- When creating tickets by API, you can now specify the CC and BCC for the new ticket
-- The whitelist of allowable file attachments has been significantly changed and made more flexible (see upgrade notes below).
-- A bug was fixed that displays the proper error message when a non supported file attachment is made in the web UI
+- NEW When creating tickets by API, you can now specify the CC and BCC for the new ticket
+- CHANGE The whitelist of allowable file attachments has been significantly changed and made more flexible (see upgrade notes below).
+- FIX A bug was fixed that displays the proper error message when a non supported file attachment is made in the web UI
 - FIX #1576 The right menu no longer gets stuck open when turbolinks is enabled
 - FIX #1581 Radio buttons are now properly aligned in the mobile responsive view of the Singular theme
-- A new API for viewing and editing taggings has been added (thanks @schmidt)
-- A honeypot (anti spam) feature was added to the new ticket form (thanks @schmidt)
+- NEW A new API for viewing and editing taggings has been added (thanks @schmidt)
+- NEW A honeypot (anti spam) feature was added to the new ticket form (thanks @schmidt)
+- CHANGE Assigning an agent no longer automatically marks the ticket as "pending".
 
 IMPORTANT UPGRADE NOTES:
 
