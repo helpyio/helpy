@@ -541,7 +541,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     spam_topics = Topic.where(current_status: 'spam').all
     sign_in users(:agent)
     xhr :get, :unassign_agent, { q: 'spam', affect: 'all' }
-    assert_equal 0, Topic.admin_search('spam').where(assigned_user_id: nil).size
+    assert_equal 2, Topic.admin_search('spam').where(assigned_user_id: nil).size
     assert_response :success
   end
 
