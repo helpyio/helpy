@@ -53,7 +53,7 @@ Getting Started:
 
 **Helpy Pro - 30 Second one-click install via AWS**
 
-You can take a 14 day free trial of the Pro version of Helpy on AWS.  This is a "one click" marketplace image and spins up a dedicated VM within 30 seconds, running Ubuntu.  ["Launch AWS Marketplace Image"](""https://aws.amazon.com/marketplace/pp/B07WCNQGZ3?ref=_ptnr_web_github")
+You can take a 14 day free trial of the Pro version of Helpy on AWS.  This is a "one click" marketplace image and spins up a dedicated VM within 30 seconds, running Ubuntu. [Launch AWS Marketplace Image](https://aws.amazon.com/marketplace/pp/B07WCNQGZ3?ref=_ptnr_web_github)
 
 **Install Helpy via Docker**
 
