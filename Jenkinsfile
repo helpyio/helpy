@@ -40,7 +40,7 @@ pipeline {
           sh 'docker build --build-arg HELPY_USERNAME=$HELPY_USERNAME --build-arg HELPY_PASSWORD=$HELPY_PASSWORD  -t $docker_image:$branch_ns .'
           sh 'docker push $docker_image:$branch_ns'
       }
-    }    
+    }
     stage('Test k8s') {
       agent { label 'EKS-Druid' }
       steps {
@@ -84,28 +84,21 @@ pipeline {
         branch 'master'
       }
       steps {
-        
+
           sh 'docker tag $docker_image:$branch_ns $docker_image:latest'
           sh 'docker push $docker_image:latest'
           sh 'helm upgrade $chart_name ./$chart_folder --install --recreate-pods --version $buildVersion --namespace $staging_ns --set=.Values.image.tag=latest'
       }
     }
-    stage('Tag then Release') {
-      when {
-        branch '*release'
-      }
-      steps {
-          sh 'docker tag $docker_image:$branch_ns $docker_image:$buildVersion'
-          sh 'docker push $docker_image:$buildVersion'
-        }
-    }
-    stage('Deploy SP-Release') {
+    stage('Deploy HQ Release') {
       agent { label 'EKS-Druid' }
       when {
-        branch 'release'
+        branch 'hq-release'
       }
       steps {
-          sh 'helm upgrade $prod_chart_name ./$chart_folder --install --wait --version $buildVersion --namespace $production_ns --set=image.tag=$buildVersion'
+        sh 'docker tag $docker_image:$branch_ns $docker_image:hq'
+        sh 'docker push $docker_image:hq'
+        sh 'helm upgrade $prod_chart_name ./$chart_folder --install --wait --version $buildVersion --namespace $production_ns --set=image.tag=hq'
       }
     }
     stage('Deploy Link Release') {
@@ -114,6 +107,8 @@ pipeline {
         branch 'link-release'
       }
       steps {
+        sh 'docker tag $docker_image:$branch_ns $docker_image:$buildVersion'
+        sh 'docker push $docker_image:$buildVersion'
         sh 'helm upgrade $prod_chart_name ./$chart_folder --install --version $buildVersion --namespace $production_ns --set=image.tag=$buildVersion'
       }
     }
