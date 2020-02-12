@@ -26,8 +26,8 @@ if [[ "$RUN_PREPARE" = "false" ]]
     bundle exec rake db:migrate
     bundle exec rake db:seed || echo "db is already seeded"
     # only necessary for first install
-    bundle exec rake helpy_cloud_engine:install:migrations
-    bundle exec rake db:migrate
+    # bundle exec rake helpy_cloud_engine:install:migrations
+    # bundle exec rake db:migrate
     bundle exec rails g helpy_cloud:install
     bundle exec rake assets:precompile
     nohup bundle exec rake helpy:mailman mail_interval=30 &
