@@ -5,7 +5,7 @@ metadata:
     io.kompose.service: helpy
   name: helpy
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: Recreate
   template:
@@ -16,9 +16,9 @@ spec:
       imagePullSecrets:
       - name: dockercred
       containers:
-        - name: helpy
-          image: superpedestrian/helpy:latest
-          imagePullPolicy: Always
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
           - configMapRef:
               name: {{ .Values.service.configMapName }}

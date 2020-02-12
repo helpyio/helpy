@@ -1,6 +1,9 @@
 def branchFunction(branchIn) {
-    branchOut = branchIn.replaceAll('/','-')
-    return branchOut
+  branchOut = branchIn.replaceAll('/','-')
+  branchOut = branchOut.replaceAll('_','-')
+  branchOut = branchOut.replaceAll('\\.','-')
+  branchOut = branchOut.toLowerCase()
+  return branchOut
 }
 def String rbVersion(text) {
   Object matcher = readFile(text) =~ 'VERSION\\s+=\\s+\'(.+)\''
