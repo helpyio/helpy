@@ -20,18 +20,28 @@ echo "postgres is now available"
 
 RUN_PREPARE=${DO_NOT_PREPARE:-false}
 
+SETUP_DB=${SETUP_DB:-false}
+
+if [[ "$SETUP_DB" = "true" ]]
+  then
+    bundle remove helpy_cloud
+    echo "Migrating"
+    bundle exec rake db:migrate
+    echo "Seeding"
+    bundle exec rake db:seed || echo "db is already seeded"
+    bundle install
+    echo "Installing Helpy Cloud"
+    bundle exec rake helpy_cloud_engine:install:migrations
+    echo "Migrating"
+    bundle exec rake db:migrate
+fi
+
 if [[ "$RUN_PREPARE" = "false" ]]
   then
     echo "DO_NOT_PREPARE is not set or is false, preparing.."
     # only necessary for first install
-    echo "Loading schema"
-    bundle exec rake db:schema:load
-    echo "Installing Helpy Cloud"
-    bundle exec rake helpy_cloud_engine:install:migrations
-    echo "Migrate again"
+    echo "Migrating"
     bundle exec rake db:migrate
-    echo "Seeding"
-    bundle exec rake db:seed || echo "db is already seeded"
     echo "Install Helpy Cloud assets"
     bundle exec rails g helpy_cloud:install
     echo "Precompilation"
