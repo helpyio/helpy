@@ -23,12 +23,18 @@ RUN_PREPARE=${DO_NOT_PREPARE:-false}
 if [[ "$RUN_PREPARE" = "false" ]]
   then
     echo "DO_NOT_PREPARE is not set or is false, preparing.."
+    echo "Migrating"
     bundle exec rake db:migrate
+    echo "Seeding"
     bundle exec rake db:seed || echo "db is already seeded"
     # only necessary for first install
+    echo "Installing Helpy Cloud"
     bundle exec rake helpy_cloud_engine:install:migrations
+    echo "Migrate again"
     bundle exec rake db:migrate
+    echo "Install Helpy Cloud assets"
     bundle exec rails g helpy_cloud:install
+    echo "Precompilation"
     bundle exec rake assets:precompile
     nohup bundle exec rake helpy:mailman mail_interval=30 &
 fi
