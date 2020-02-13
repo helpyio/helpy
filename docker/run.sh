@@ -24,6 +24,8 @@ if [[ "$RUN_PREPARE" = "false" ]]
   then
     echo "DO_NOT_PREPARE is not set or is false, preparing.."
     # only necessary for first install
+    echo "Loading schema"
+    bundle exec rake db:schema:load
     echo "Installing Helpy Cloud"
     bundle exec rake helpy_cloud_engine:install:migrations
     echo "Migrate again"
