@@ -30,6 +30,7 @@ if [[ "$SETUP_DB" = "true" ]]
     bundle exec rake db:migrate
     echo "Seeding"
     bundle exec rake db:seed || echo "db is already seeded"
+fi
 
 if [[ "$SETUP_HELPY_CLOUD" = "true" ]]
   then
