@@ -29,8 +29,10 @@ if [[ "$SETUP_DB" = "true" ]]
     bundle exec rake db:migrate
     echo "Seeding"
     bundle exec rake db:seed || echo "db is already seeded"
-    bundle install
     echo "Installing Helpy Cloud"
+    bundle install
+    sleep 2
+    bundle exec rake -T
     bundle exec rake helpy_cloud_engine:install:migrations
     echo "Migrating"
     bundle exec rake db:migrate
