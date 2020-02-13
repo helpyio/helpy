@@ -21,6 +21,7 @@ echo "postgres is now available"
 RUN_PREPARE=${DO_NOT_PREPARE:-false}
 
 SETUP_DB=${SETUP_DB:-false}
+SETUP_HELPY_CLOUD=${SETUP_HELPY_CLOUD:-false}
 
 if [[ "$SETUP_DB" = "true" ]]
   then
@@ -29,10 +30,10 @@ if [[ "$SETUP_DB" = "true" ]]
     bundle exec rake db:migrate
     echo "Seeding"
     bundle exec rake db:seed || echo "db is already seeded"
-    echo "Installing Helpy Cloud"
-    bundle install
-    sleep 2
-    bundle exec rake -T
+
+if [[ "$SETUP_HELPY_CLOUD" = "true" ]]
+  then
+    echo "Installing Helpy Cloud Migrations"
     bundle exec rake helpy_cloud_engine:install:migrations
     echo "Migrating"
     bundle exec rake db:migrate
