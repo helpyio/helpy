@@ -1,7 +1,7 @@
-Helpy: A Modern Helpdesk Platform for the Web
+Helpy: A Modern Helpdesk Platform
 ====================================
 
-Helpy is a modern multichannel helpdesk platform written in Ruby on Rails 4.2 and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.
+Helpy is a modern help desk platform written in Ruby on Rails and released under the MIT license.  The goal of Helpy is to power your support email and ticketing, integrate seamlessly with your app, and run an amazing customer helpcenter.
 
 [![Build Status](https://img.shields.io/travis/helpyio/helpy/master.svg)](https://travis-ci.org/helpyio/helpy) [![Code Climate](https://codeclimate.com/github/helpyio/helpy/badges/gpa.svg)](https://codeclimate.com/github/helpyio/helpy)
 
@@ -33,56 +33,27 @@ Helpy is an integrated support solution- combining and leveraging synergies betw
 - **Customizable:** Set colors to match your brand both on the helpcenter, and in the ticketing UI.
 - **GDPR Compliant:** Comply with GDPR right to be forgotten requests by deleting users and their history, or by anonymizing them.
 
-Cloud Version
+Pro Version
 =========
 
-We also offer a hosted version with additional features designed to make your helpcenter even more awesome. This is a turn-key SaaS and does not require any effort on your part to get it up and running. Proceeds go directly towards supporting the continued development of the project. Some of the things found in the hosted version:
+We also offer a pro version with additional features designed to make your helpcenter even more awesome. This is available as either a turn-key SaaS or AWS/Azure marketplace product.  Both spin up in seconds. Proceeds go directly towards supporting the continued development of the project. Some of the things found in the pro version:
 
-- Triggers: Insert events at any point in the ticket lifecycle. This includes an outbound JSON API.
-- Notifications: Browser notifications when new tickets are received, you are assigned to a ticket, etc.
-- Real time UI: When tickets arrive, they are automatically added to the UI
-- Custom Views: Add additional Ticketing queues to highlight just the tickets you need to see
-- Advanced reporting: A suite of additional reports on the performance of your ticketing and helpcenter knowledgebase
-- Advanced search: Easily filter and find tickets or customers when you have thousands
-- Customizable Request Forms: Easily Add questions to the ticket creation forms
-- AI Support Chatbot: Create a chatbot for your website to answer up 90% of tier one questions autonomously
-
-You may prefer to run Helpy locally or in-country.  You can still get access to the full cloud feature set with either an on-premise installation of the cloud hosted features, or a dedicated AWS instance in a regional data-center.
-
-Live Demo
-=========
-
-There is also a live demo with fake data available at [http://demo.helpy.io](http://demo.helpy.io)
-Admin User: `admin@test.com` and password: `12345678`
-
-Installation
-============
-
-Helpy was designed to run on modern cloud providers, although it should work on
-any linux based system.  There is a full guide to installing Helpy in the wiki: https://github.com/helpyio/helpy/wiki
-
-Requirements are:
-
-- Ruby 2.4+
-- Rails 4.2.x
-- Postgres
-- A server like Unicorn, Puma or Passenger
-
-Helpy leverages two external services to help out:
-
-- an email provider like Sendgrid
-- Google Analytics for stats (optional)
+- **Triggers:** Insert events at any point in the ticket lifecycle. This includes an outbound JSON API.
+- **Notifications:** Browser notifications when new tickets are received, you are assigned to a ticket, etc.
+- **Real time UI:** When tickets arrive, they are automatically added to the UI
+- **Custom Views:** Add additional Ticketing queues to highlight just the tickets you need to see
+- **Advanced reporting:** A suite of additional reports on the performance of your ticketing and helpcenter knowledgebase
+- **Advanced search:** Easily filter and find tickets or customers when you have thousands
+- **Customizable Request Forms:** Easily Add questions to the ticket creation forms
+- **AI Support Chatbot:** Create a chatbot for your website to answer up 90% of tier one questions autonomously
 
 
 Getting Started:
-----------------
+=========
 
-**30 Second one-click install via Digital Ocean**
+**Helpy Pro - 30 Second one-click install via AWS**
 
-DigitalOcean, one of the worlds top cloud hosting providers, has a one-click install image.  This image provisions a Ubuntu 18.04 system running Helpy on Passenger in less than a minute.
-
-1) Create an account on [DigitalOcean: Sign up Here](https://m.do.co/c/1368cfa70df6) . Through a special partnership, you can get $100 in credit with DigitalOcean by using this link.
-2) Once created (around 30 seconds) you can log in to the new install.
+You can take a 14 day free trial of the Pro version of Helpy on AWS.  This is a "one click" marketplace image and spins up a dedicated VM within 30 seconds, running Ubuntu. [Launch AWS Marketplace Image](https://aws.amazon.com/marketplace/pp/B07WCNQGZ3?ref=_ptnr_web_github)
 
 **Install Helpy via Docker**
 
@@ -116,6 +87,31 @@ Helpy has the ability to receive email at your support email addresses and impor
 
 Helpy supports Omniauth login capabilities.  This means you can allow your support users to sign in with a single click via any Omniauth provider- ie. Facebook, Twitter, Gmail, or many others. Read [Setting Up Oauth For Your Helpy](https://github.com/helpyio/helpy/wiki/SSO--Configuring-OAUTH) to see how.
 
+Live Demo
+=========
+
+There is also a live demo with fake data available at [http://demo.helpy.io](http://demo.helpy.io)
+Admin User: `admin@test.com` and password: `12345678`
+
+Installation
+============
+
+Helpy was designed to run on modern cloud providers, although it should work on
+any linux based system.  There is a full guide to installing Helpy in the wiki: https://github.com/helpyio/helpy/wiki
+
+Requirements are:
+
+- Ruby 2.4+
+- Rails 4.2.x
+- Postgres
+- A server like Unicorn, Puma or Passenger
+
+Helpy leverages two external services to help out:
+
+- an email provider like Sendgrid
+- Google Analytics for stats (optional)
+
+
 Contributing
 ============
 
@@ -145,6 +141,6 @@ If you have found a vulnerability or other security problem in Helpy, please *do
 License
 =======
 
-Copyright 2016-2019, Helpy.io, LLC, Scott Miller and Contributors. Helpy is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2016-2020, Helpy.io, LLC, Scott Miller and Contributors. Helpy Core is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)
