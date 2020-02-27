@@ -170,6 +170,8 @@ group :development, :test do
   gem 'scss-lint'
   gem 'awesome_print'
   gem 'rb-readline'
+  gem 'capybara'
+
 end
 
 gem 'bulk_insert'
@@ -194,10 +196,10 @@ group :test do
   gem 'shoulda', '3.5' # Required for minitest
   gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
   gem 'factory_bot_rails'
-  gem 'capybara', '< 3.0'
+  gem 'webdrivers'
   gem 'capybara-email'
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
+  gem 'selenium-webdriver', '3.141.0'
+  # gem 'chromedriver-helper'
   gem 'launchy'
   gem "codeclimate-test-reporter",require: nil
   gem 'simplecov', :require => false
