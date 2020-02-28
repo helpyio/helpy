@@ -152,13 +152,14 @@ class Topic < ActiveRecord::Base
   def assign(user_id=2, assigned_to)
     self.posts.create(body: I18n.t(:assigned_message, assigned_to: User.find(assigned_to).name), kind: 'note', user_id: user_id)
     self.assigned_user_id = assigned_to
-    self.current_status = 'pending'
+    # self.current_status = 'pending'
     self.save
   end
 
   def self.bulk_agent_assign(post_attributes, assigned_to)
     Post.bulk_insert values: post_attributes
-    self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+    #self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+    self.update_all(assigned_user_id: assigned_to)
   end
 
   def self.bulk_group_assign(post_attributes, assigned_group)
