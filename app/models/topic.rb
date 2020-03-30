@@ -43,8 +43,6 @@ class Topic < ActiveRecord::Base
   has_many :votes, :as => :voteable
   has_attachments  :screenshots, accept: [:jpg, :png, :gif, :pdf, :txt, :rtf, :doc, :docx, :ppt, :pptx, :xls, :xlsx, :zip]
 
-  paginates_per 15
-
   include PgSearch::Model
   multisearchable :against => [:id, :name, :post_cache],
                   :if => :public?
@@ -82,6 +80,7 @@ class Topic < ActiveRecord::Base
   # may want to get rid of this filter:
   # before_save :check_for_private
   before_create :add_locale
+  before_create :reject_blacklisted_email_addresses
 
   before_save :cache_user_name
   acts_as_taggable_on :tags, :teams
@@ -153,13 +152,14 @@ class Topic < ActiveRecord::Base
   def assign(user_id=2, assigned_to)
     self.posts.create(body: I18n.t(:assigned_message, assigned_to: User.find(assigned_to).name), kind: 'note', user_id: user_id)
     self.assigned_user_id = assigned_to
-    self.current_status = 'pending'
+    # self.current_status = 'pending'
     self.save
   end
 
   def self.bulk_agent_assign(post_attributes, assigned_to)
     Post.bulk_insert values: post_attributes
-    self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+    #self.update_all(assigned_user_id: assigned_to, current_status: 'pending')
+    self.update_all(assigned_user_id: assigned_to)
   end
 
   def self.bulk_group_assign(post_attributes, assigned_group)
@@ -187,13 +187,14 @@ class Topic < ActiveRecord::Base
     forum_id >= 3 && !private?
   end
 
-  def create_topic_with_user(params, current_user)
+  def create_topic_with_user(params, current_user, post)
     self.user = current_user ? current_user : User.find_by_email(params[:topic][:user][:email])
 
     unless self.user #User not found, lets build it
       self.build_user(params[:topic].require(:user).permit(:email, :name)).signup_guest
     end
-    self.user.persisted? && self.save
+    post.user = self.user
+    self.user.persisted? && self.save && post.save
   end
 
   def create_topic_with_webhook_user(params)
@@ -276,6 +277,13 @@ class Topic < ActiveRecord::Base
   end
 
   private
+
+  # Send any tickets created by a blacklisted email to spam
+  def reject_blacklisted_email_addresses
+    if AppSettings['email.email_blacklist'].split(",").any? { |s| self.user.email.downcase.include?(s.downcase) }
+       self.current_status = "spam"
+    end
+  end  
 
   def cache_user_name
     return if self.user.nil?

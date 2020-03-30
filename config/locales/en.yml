@@ -195,6 +195,7 @@ en:
 
   # User Admin
   users: &users Users
+  create_user: Create New User
   account: Account
   contact_info: Contact
   social_info: Social
@@ -275,7 +276,7 @@ en:
     other: "%{count} users were found named %{query}"
 
   # Invite users
-  invite_users: "Invite New Users"
+  invite_users: "Bulk Invite New Users"
   invite_emails: "Email Addresses"
   invite_emails_placeholder: "Type one or more email addresses to send an invitation to"
   invite_message: "Message"
@@ -392,6 +393,7 @@ en:
   # General
   site_name: Site Name
   site_url: Site URL
+  site_url_placeholder: The URL of your Helpy (https://support.yourdomain.com)
   parent_site: Parent Site
   parent_company: Parent Company
   site_tagline: Site Tagline
@@ -452,6 +454,9 @@ en:
   mail_smtp: SMTP Server
   mail_port: SMTP Port
   mail_domain: SMTP Domain
+  spam_assassin_reject: SpamAssassin Threshold for rejecting incoming email tickets 
+  spam_assassin_filter: SpamAssassin Threshold for marking incoming tickets spam
+  email_blacklist: Automatically mark tickets from these addresses as spam (separate multiple with commas)
 
   # API Key Managmeent
   api_keys: "API Keys"

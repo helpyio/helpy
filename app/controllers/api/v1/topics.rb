@@ -14,8 +14,6 @@ module API
       # PRIVATE TICKET ENDPOINTS
       resource :tickets, desc: "Create and Manage private discussions" do
 
-        paginate per_page: 20
-
         # LIST BY STATUS
         desc "List all PRIVATE tickets by status", {
           entity: Entity::Topic,
@@ -87,6 +85,8 @@ module API
           requires :user_id, type: Integer, desc: "the User ID"
           optional :tag_list, type: String, desc: "A list of tags to apply to this ticket"
           optional :attachments, type: Array
+          optional :cc, type: String, desc: "Comma separated list of emails to CC"
+          optional :bcc, type: String, desc: "Comma separated list of emails to BCC"
         end
 
         post "", root: :topics do
@@ -103,8 +103,10 @@ module API
           )
           newPost = ticket.posts.create!(
             body: params[:body],
-            user_id: params[:user_id],
-            kind: 'first'
+            user_id: user_id,
+            kind: 'first',
+            cc: params[:cc],
+            bcc: params[:bcc]
           )
           newPost.attachments = params[:attachments].present? ? params[:attachments] : nil
           newPost.save

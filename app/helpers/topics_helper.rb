@@ -109,4 +109,16 @@ module TopicsHelper
     content_tag(:div, '', style: badge_color_from_tag(tag_name), class: 'color-sample label-' + tag_name.first.downcase) + content_tag(:div, tag_name.try(:titleize))
   end
 
+  def extension_whitelist
+    return "" unless AppSettings['settings.extension_whitelist'].present?
+    
+    "'#{[AppSettings['settings.extension_whitelist'].split(',').map(&:strip)].join("', '")}'"
+  end
+
+  def extension_blacklist
+    return "" unless AppSettings['settings.extension_blacklist'].present?
+
+    "'#{[AppSettings['settings.extension_blacklist'].split(',').map(&:strip)].join("', '")}'".html_safe
+  end
+
 end

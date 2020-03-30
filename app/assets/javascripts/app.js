@@ -479,6 +479,39 @@ Helpy.loader = function(){
   $('#tickets').html("<div class=\"col-md-12 text-center no-tickets\"><i class=\"fas fa-spinner fa-pulse fa-3x fa-fw\"></i><span class=\"sr-only\"></span></div>");
 };
 
+// Provides attachment validation
+Helpy.validateFiles = function (inputFile, allowedExtension, blockedExtension) {
+  var extErrorMessage, maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  if (allowedExtension.length > 0) {
+    extErrorMessage = "The following file types are allowed: " + allowedExtension;
+  } else if (blockedExtension.length > 0) {
+    extErrorMessage = "A file you attempted to upload is not allowed";
+  }
+  
+  var extName;
+  var maxFileSize = $(inputFile).data('max-file-size');
+  var sizeExceeded = false;
+  var extError = false;
+
+  $.each(inputFile.files, function () {
+    if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) { sizeExceeded = true; }
+    extName = this.name.split('.').pop();
+    if (allowedExtension.length > 0 && $.inArray(extName, allowedExtension) == -1) { extError = true; }
+    if (blockedExtension.length > 0 && $.inArray(extName, blockedExtension) != -1) { extError = true; }
+  });
+  if (sizeExceeded) {
+    window.alert(maxExceededMessage);
+    $(inputFile).val('');
+  }
+
+  if (extError) {
+    window.alert(extErrorMessage);
+    $(inputFile).val('');
+  }
+};
+
+
+
 $(document).ready(Helpy.ready);
 $(document).on('page:load', Helpy.ready);
 

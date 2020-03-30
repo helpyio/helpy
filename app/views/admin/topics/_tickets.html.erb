@@ -9,7 +9,7 @@
         data: { confirm: t(:empty_trash_warning, default: "Are you sure you want to empty the trash? This will permanently delete all tickets in the trash.") },
         class: 'btn btn-default', remote: true if params[:status] == 'trash' && current_user.is_admin? %>
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
-        remote: true, class: 'btn btn-primary' %>
+        remote: true, class: 'btn btn-primary' if tickets? %>
   </div>
 <% end %>
 <% if @topics.present? %>

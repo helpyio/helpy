@@ -42,7 +42,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   test "an editor should be able to sign in and be shown the categories page" do
     sign_in("editor@test.com")
-    assert_equal '/en', current_path
+    assert_equal '/admin/categories', current_path
     sign_out
   end
 

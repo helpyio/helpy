@@ -30,6 +30,8 @@ AppSettings.defaults['settings.include_ticket_body'] = '1'
 AppSettings.defaults['settings.default_private'] = '0'
 AppSettings.defaults['settings.anonymous_access'] = '0'
 AppSettings.defaults['settings.anonymous_salt'] = 'salt'
+AppSettings.defaults['settings.extension_whitelist'] = ''
+AppSettings.defaults['settings.extension_blacklist'] = 'ade, adp, apk, appx, appxbundle, bat, cab, chm, cmd, com, cpl, dll, dmg, exe, hta, ins, isp, iso, jar, js, jse, lib, lnk, mde, msc, msi, msix, msixbundle, msp, mst, nsh, pif, ps1, scr, sct, .shb, sys, vb, vbe, vbs, vxd, wsc, wsf, wsh'
 
 # Webhook Integrations
 
@@ -86,6 +88,7 @@ AppSettings.defaults["email.mail_port"] = Settings.mail_port
 AppSettings.defaults["email.mail_domain"]= Settings.mail_domain
 AppSettings.defaults["email.spam_assassin_reject"]= 4
 AppSettings.defaults["email.spam_assassin_filter"]= 2
+AppSettings.defaults["email.email_blacklist"] = ""
 
 # notifications
 

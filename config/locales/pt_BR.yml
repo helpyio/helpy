@@ -193,6 +193,7 @@ pt-br:
 
   # User Admin
   users: &users "Usuários"
+  # create_user: Create New User
   account: Conta
   contact_info: "Contato"
   social_info: "Social"
@@ -449,6 +450,9 @@ pt-br:
   mail_smtp: "Servidor SMTP"
   mail_port: "Porta SMTP"
   mail_domain: "Domínio SMTP"
+  # spam_assassin_reject: SpamAssassin Threshold for rejecting incoming email tickets 
+  # spam_assassin_filter: SpamAssassin Threshold for marking incoming tickets spam
+  # email_blacklist: Automatically mark tickets from these addresses as spam (separate multiple with commas)
 
   # API Keys
   api_keys: "Chaves da API"

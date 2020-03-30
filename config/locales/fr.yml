@@ -193,6 +193,7 @@ fr:
 
   # User Admin
   users: Utilisateurs
+  create_user: Créer un nouvel utilisateur
   account: Compte
   contact_info: Informations de contact
   social_info: Réseaux sociaux
@@ -446,6 +447,9 @@ fr:
   mail_smtp: "Serveur SMTP"
   mail_port: "Port SMTP"
   mail_domain: "Nom de domaine SMTP"
+  # spam_assassin_reject: SpamAssassin Threshold for rejecting incoming email tickets 
+  # spam_assassin_filter: SpamAssassin Threshold for marking incoming tickets spam
+  # email_blacklist: Automatically mark tickets from these addresses as spam (separate multiple with commas)
 
   # API Key Managmeent
   api_keys: "Clés API"
