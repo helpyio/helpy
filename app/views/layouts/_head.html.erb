@@ -32,7 +32,7 @@ REFERENCED LICENSE
 <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700|Droid+Serif:400,700|Lobster' rel='stylesheet' type='text/css'>
 
 <%= csrf_meta_tags %>
-<%= favicon_link_tag "#{AppSettings.get_logo}" %>
+<%= favicon_link_tag AppSettings.get_favicon %>
 <%= cloudinary_js_config %>
 
 <%= render 'layouts/google_analytics' %>
