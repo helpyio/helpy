@@ -20,7 +20,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-  
+
   def extension_blacklist
     AppSettings['settings.extension_blacklist'].split(',').map(&:strip) if AppSettings['settings.extension_blacklist'].present?
   end
