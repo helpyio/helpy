@@ -124,7 +124,7 @@ class TopicTest < ActiveSupport::TestCase
     assert_equal t_posts_count + 1, topic.posts.count
   end
 
-  test "#assign_agent should set the current_status of the topic to pending, assigned_user_id to specified user_id, and should create a closed_message post belonging to that topic" do
+  test "#assign_agent should set assigned_user_id to specified user_id, and should create a closed_message post belonging to that topic" do
     topic = create :topic
     bulk_post_attributes = []
     t_posts_count = topic.posts.count
@@ -133,7 +133,6 @@ class TopicTest < ActiveSupport::TestCase
     topics.bulk_agent_assign(bulk_post_attributes, 1)
 
     topic = Topic.find(topic.id)
-    assert_equal 'pending', topic.current_status
     assert_equal 1, topic.assigned_user_id
     assert_equal t_posts_count + 1, topic.posts.count
   end
@@ -232,5 +231,22 @@ class TopicTest < ActiveSupport::TestCase
     topic = create :topic, name: name, user_id: 1, forum_id: 1, team_list: 'noemailteam'
     assert_equal "\"#{AppSettings['settings.site_name']}\" <#{AppSettings['email.from_email']}>", topic.from_email_address
   end
+
+  test "#reject_blacklisted should change new status to spam if match" do
+    AppSettings['email.email_blacklist'] = "blacklist@email.com, blacklisttwo@email.com"
+
+    user  = create :user, email: "blacklist@email.com"
+    topic = create :topic, user: user
+    assert_equal "spam", topic.current_status
+  end
+
+  test "#reject_blacklisted should change new status to spam if domain match" do
+    AppSettings['email.email_blacklist'] = "email.com"
+
+    user  = create :user, email: "blacklist@email.com"
+    topic = create :topic, user: user
+    assert_equal "spam", topic.current_status
+  end
+
 
 end

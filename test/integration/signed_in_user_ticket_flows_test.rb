@@ -27,7 +27,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       choose('Only support can respond (creates a private ticket)')
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Create Ticket', disabled: true)
+      click_on('Create Ticket')
     end
 
     visit '/en/tickets/'
@@ -50,7 +50,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
       select('Public Forum', from: "topic[forum_id]")
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Create Ticket', disabled: true)
+      click_on('Create Ticket')
     end
 
     visit '/en/community/3-public-forum/topics'
@@ -71,7 +71,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert current_path == '/en/ticket/1-private-topic'
     assert_difference('Post.count', 1) do
       fill_in "post_body", with: "This is my reply"
-      click_on "Post Reply", disabled: true
+      click_on "Post Reply"
     end
 
 #    assert page.has_content?('This is my reply'), "Reply not found"
@@ -143,7 +143,7 @@ class SignedInUserTicketFlowsTest < ActionDispatch::IntegrationTest
     assert_difference('Post.count', 1) do
       fill_in('topic[name]', with: 'I got problems')
       fill_in('topic[posts_attributes][0][body]', with: 'Please help me!!')
-      click_on('Create Ticket', disabled: true)
+      click_on('Create Ticket')
     end
 
     visit '/en/tickets/'

@@ -6,4 +6,6 @@ $('.profile').initial();
 // jQuery hook
 //Helpy.ready();
 //Helpy.track();
-$('#new_post')[0].reset();
+$('#post_form').html("<%= j render(partial: 'form') %>");
+$('#new_post').enableClientSideValidations();
+$("abbr[title='required']").hide();

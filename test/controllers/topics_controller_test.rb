@@ -35,6 +35,11 @@ class TopicsControllerTest < ActionController::TestCase
     set_default_settings
   end
 
+  teardown do
+    AppSettings['settings.extension_whitelist'] = ""
+    AppSettings['settings.extension_blacklist'] = ""
+  end
+
   test 'a browsing user should get index of topics in a public forum' do
     get :index, forum_id: 3, locale: :en
     assert_not_nil assigns(:topics)
@@ -233,6 +238,74 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
+  # A new user who is NOT signed in should be able to create a new private or public topic and attach a file
+  test 'a new user should be able to create a new private topic and attach a valid file' do
+    #sign_in users(:user)
+
+    get :new, locale: :en
+    assert_response :success
+
+    assert_difference 'Topic.count', 1, 'A topic should have been created' do
+      assert_difference 'Post.count', 1, 'A post should have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a new user',
+              email: 'anon_new@test.com'
+              },
+            name: 'some new topic',
+            body: 'some body text',
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body",
+              attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+              }
+            }
+          },
+          locale: :en
+      end
+    end
+
+    assert_equal "logo.png", Post.last.attachments.first.file.file.split("/").last
+    assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
+  end
+
+  # A new user who is NOT signed in should be able to create a new private or public topic and attach a file
+  test 'a new user should NOT be able to create a new private topic with an invalid file' do
+    #sign_in users(:user)
+    AppSettings['settings.extension_whitelist'] = "txt,doc,docx,pdf"
+
+    get :new, locale: :en
+    assert_response :success
+
+    assert_difference 'Topic.count', 0, 'A topic should NOT have been created' do
+      assert_difference 'Post.count', 0, 'A post should NOT have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a new user',
+              email: 'anon_new@test.com'
+              },
+            name: 'some new topic',
+            body: 'some body text',
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body",
+              attachments: Array.wrap(uploaded_file_object(Post, :attachments, file))
+              }
+            }
+          },
+          locale: :en
+      end
+    end
+
+    assert_response :success
+  end
+
 
   # A user who is registered, but not signed in currently should be able to create a new private
   # or public topic
@@ -271,6 +344,22 @@ class TopicsControllerTest < ActionController::TestCase
       get :index, forum_id: 3, locale: :en
       xhr :post, :up_vote, { id: 5 , locale: :en }
     end
+  end
+
+  test 'a browsing user should not be able to create a new public topic when they fall for the honeypot' do
+    get :new, locale: :en
+    assert_response :success
+
+    assert_difference 'User.count', 0, 'No user should have been created' do
+      assert_difference 'Topic.count', 0, 'No topic should have been created' do
+        assert_difference 'Post.count', 0, 'No new post should have been created' do
+          post :create, topic: { user: { name: 'a user', email: 'anon@test.com', private: false }, name: 'some new private topic', body: 'some body text', forum_id: 3, posts_attributes: {:"0" => {body: "this is the body"}}, url: 'http://spamy.spam'}, locale: :en
+        end
+      end
+    end
+
+    assert_response :success
+    assert_select "#new_topic"
   end
 
   test 'a browsing user should be able to create a new public topic without signing in when recaptcha enable' do

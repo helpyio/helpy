@@ -2,7 +2,7 @@
   <%= show_responsive_nav %>
   <%=  t(:users, default: "Users") %><%= ": " + role_label(params[:role]).html_safe if params[:role].present? %>
   <div class="pull-right nav-new-button">
-    <%= link_to t(:invite_users, default: "Invite New Users"), admin_invite_path,
+    <%= link_to t(:create_user, default: "Create New User"), new_admin_user_path,
     remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
   </div>
 <% end %>

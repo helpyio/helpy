@@ -43,7 +43,7 @@
       <% end %>
     </li>
     <li class="mailbox tiny-header">
-      <%= link_to t(:open_new_discussion, default: "Create New Ticket"), new_admin_topic_path, remote: true, class: 'btn btn-default' %>
+      <%= link_to t(:open_new_discussion, default: "Create New Ticket"), new_admin_topic_path, remote: true, class: 'btn btn-default' if tickets? %>
     </li>
   </ul>
 </div>

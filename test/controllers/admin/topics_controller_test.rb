@@ -346,7 +346,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
         end
       end
 
-      assert_equal nil, Topic.last.assigned_user_id
+      assert_nil Topic.last.assigned_user_id
     end
 
     test "an #{admin} should be able to create a new private discussion for an existing user" do
@@ -541,7 +541,7 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     spam_topics = Topic.where(current_status: 'spam').all
     sign_in users(:agent)
     xhr :get, :unassign_agent, { q: 'spam', affect: 'all' }
-    assert_equal 0, Topic.admin_search('spam').where(assigned_user_id: nil).size
+    assert_equal 2, Topic.admin_search('spam').where(assigned_user_id: nil).size
     assert_response :success
   end
 

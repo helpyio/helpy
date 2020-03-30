@@ -18,6 +18,19 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
+  test 'an email to the support address should store the to address in the post' do
+    assert_difference('Topic.where(current_status: "new").count', 1) do
+      assert_difference('Post.count', 1) do
+        assert_difference('User.count', 1) do
+          assert_difference('ActionMailer::Base.deliveries.size', 2) do
+            EmailProcessor.new(build(:email_from_unknown)).process
+          end
+        end
+      end
+    end
+    assert_equal "to_user@email.com", Post.last.email_to_address
+  end
+
   test 'a spam email should be rejected and not create ticket, user, and should not send emails' do
     assert_difference('Topic.where(current_status: "new").count', 0) do
       assert_difference('Post.count', 0) do
@@ -27,6 +40,13 @@ class EmailProcessorTest < ActiveSupport::TestCase
           end
         end
       end
+    end
+  end
+
+  test 'a ticket from a blacklisted email should be marked spam' do
+    AppSettings['email.email_blacklist'] = "blacklist@email.com, blacklisttwo@email.com"
+    assert_difference('Topic.where(current_status: "spam").count', 1) do
+      EmailProcessor.new(build(:blacklist_email)).process
     end
   end
 
@@ -127,6 +147,7 @@ class EmailProcessorTest < ActiveSupport::TestCase
         EmailProcessor.new(build(:reply)).process
       end
     end
+    assert_equal "to_user@email.com", Post.last.email_to_address
   end
 
   test 'a user should be able to reply to a ticket by email and the ticket status should change to pending' do

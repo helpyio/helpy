@@ -10,9 +10,9 @@
 <%- title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 
 <div class="add-form row">
-  <%= simple_form_for(@topic, validate: true) do |f| -%>
+  <%= simple_form_for(@topic, url: topics_path, validate: true, method: :post) do |f| -%>
     <div class="col-md-12">
-      <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'shared/error_messages', object: @topic %>
 
       <% unless user_signed_in? %>
         <%= f.simple_fields_for @user, validate: true do |u| %>
@@ -42,6 +42,8 @@
         $(document).ready(function(){
           Helpy.showGroup();
         });
+        var whitelist = [<%= extension_whitelist.html_safe %>];
+        var blacklist = [<%= extension_blacklist.html_safe %>];
       </script>
       <% end %>
       
@@ -61,7 +63,7 @@
       <%= f.simple_fields_for :posts, validate: true do |p| %>
         <%= p.input :body, label: I18n.t(:message), input_html: {:rows => 8, :cols => 60, placeholder: I18n.t(:how_can_we_help), label: 'Message', class: 'disable-empty form-control topic-placeholder'} %>
         <% unless cloudinary_enabled? %>
-          <%= p.file_field :attachments, multiple: true%>
+          <%= p.file_field :attachments, multiple: true, onchange: "Helpy.validateFiles(this, whitelist, blacklist);" %>
           <!-- <ul class="list-inline" id="attachments"> -->
             <%#= render partial: 'posts/attachment', locals: { :model_name => @post } %>
           <!-- </ul> -->
@@ -82,6 +84,8 @@
         </div>
       <% end %>
 
+      <%= url_field 'topic', 'url', value: '', placeholder: 'http://', id: 'topic-url' %>
+
       <%= hidden_field_tag :client_id %>
       <%= f.hidden_field :doc_id, value: params[:doc_id] if params[:doc_id] %>
       <%= hidden_field_tag :from, 'widget' if params[:controller] == 'widget' || params[:from] == 'widget' %>
@@ -89,9 +93,7 @@
       <!--<label>Tags:</label><br/>-->
       <%#= text_field_tag :tags %>
 
-      <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning disableable', disabled: 'disabled' %>
+      <%= f.submit t(:submit_start_discussion, default: 'Start Discussion'), class: 'btn btn-warning' %>
     </div>
   <% end -%>
 </div>
-
-

@@ -1,0 +1,58 @@
+<% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
+
+
+
+<div class="row">
+  <div id="ticket-stats" class="col-md-3 col-lg-2 hidden-sm hidden-xs">
+    <%= render 'admin/users/user_filter' %>
+  </div>
+  <div class="col-md-9 col-lg-10 col-xs-12 main-panel" id="tickets">
+    <%= content_tag :h3, class: 'view-header' do %>
+      <%=  t(:create_user, default: "Create New User") %>
+      <div class="pull-right nav-new-button">
+        <%= link_to t(:invite_users, default: "Bulk Invite New Users"), admin_invite_path,
+        remote: false, class: 'btn btn-primary' if current_user.is_admin? %>
+      </div>
+    <% end %>
+    <div id="user-info">
+
+        <% content_for :page_title do %>
+        <h1><%= I18n.t('devise.registrations.new.sign_up') %></h1>
+        <% end %>
+
+        <%= simple_form_for [:admin, @user], method: :post do |f| %>
+            <%= f.error_notification %>
+
+            <%= f.input :role, collection: roles_collection  %>
+            <%= f.input :email, input_html: { autocomplete: 'new-password', autofill: 'off' } %>
+            <%= f.input :name, input_html: { autocomplete: 'new-password', autofill: 'off' } %>
+
+            <div>
+              <%= check_box_tag 'user_invite', '1', true %> <%= t(:send_invite) %>
+              <br/>
+              <br/>
+            </div>
+            <div class="user_password_container" style="display: none;">
+              <%= f.input :password, input_html: { autocomplete: 'new-password', autofill: 'off' } %>
+            </div>
+
+            <br/>
+
+            <%= f.submit t(:save_changes), class: 'btn btn-warning' %>
+        <% end %>
+        <script>
+          $(document).ready(function(){
+            $('#user_invite').on('click', function(){
+              $invite = $('#user_invite');
+              if ($invite.is(':checked')) {
+                $('.user_password_container').hide();
+              } else {
+                $('.user_password_container').show();
+              }
+            });
+          });
+        </script>
+
+    </div>
+  </div>
+</div>

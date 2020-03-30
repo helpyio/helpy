@@ -115,6 +115,11 @@ $('#right-menu').sidr({
   }
 });
 
+// Close menu before navigating so turbolinks does not cache menu open
+$(document).on('page:before-change', function () {
+  $.sidr('close', 'nav');
+});
+
 // Close menu on click
 $('ul.nav').off().on('click', function(){
  $.sidr('close', 'nav');

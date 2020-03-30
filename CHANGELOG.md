@@ -1,13 +1,80 @@
-## Trevor Extras
+## VERSION 2.8.0
 
-Extas include:
-- QR Code support
-- Additional API functionality
-- API Access for non-admins
-- Android App Support
+Version 2.8 contains important security updates and the following new featuers:
+
+- NEW It is now possible create users one at a time, with or without inviting them.
+- NEW When creating tickets by API, you can now specify the CC and BCC for the new ticket.
+- NEW A new API for viewing and editing taggings has been added (thanks @schmidt)
+- NEW A honeypot (anti spam) feature was added to the new ticket form (thanks @schmidt)
+- CHANGE Assigning an agent no longer automatically marks the ticket as "pending".
+- CHANGE The whitelist of allowable file attachments has been significantly changed and made more flexible (see upgrade notes below).
+- FIX A bug was fixed that displays the proper error message when a non supported file attachment is made in the web UI
+- FIX #1576 The right menu no longer gets stuck open when turbolinks is enabled
+- FIX #1581 Radio buttons are now properly aligned in the mobile responsive view of the Singular theme
+
+IMPORTANT UPGRADE NOTES:
+
+This release of Helpy includes a change to the way file attachments are handled.  Previous
+versions used a default "whitelist" of file types where were allowed and was generally limited to
+the most common image and doc foramts.
+
+This version adds configuration settings which can be modified by API that allow you to set your own
+whitelist of filetypes which should be allowed, or a blacklist of filetypes that should be rejected.  In
+addition, the default whitelist has been removed, and Helpy now ships with a short blacklist of files that could be 
+considered "risky."  Files with these extensions are blacklisted by default:
+
+```
+ade, adp, apk, appx, appxbundle, bat, cab, chm, cmd, com, cpl, dll, dmg, exe, hta, ins, isp, iso, jar, js, jse, lib, 
+lnk, mde, msc, msi, msix, msixbundle, msp, mst, nsh, pif, ps1, scr, sct, .shb, sys, vb, vbe, vbs, vxd, wsc, wsf, wsh
+```
+
+NOTE:  Do not provide values for both blacklist and whitelist, as they will conflict and it will be impossible for
+customers to attach files.
 
 
-** To Create an API key for a non-admin user, go to edit the user, then from the hamburger menu select "Add API Key"
+## VERSION 2.7.0
+
+The 2.7 release of Helpy is here, with several great new features to help you better provide great customer support.
+
+New Features:
+
+- New nested categories feature lets you create sub categories with a drag and drop UI to group and administer them.
+- New API setting for default reply type
+- Site URL is now validated
+- New Anti-spam setting to filter any ticket from matching email addresses to spam
+- Address a ticket is sent to is now captured
+
+Bug Fixes:
+
+- Webhooks preference did not always save
+- Customers list view does not always load
+
+See UPDATING.md for details on how to update.
+
+## VERSION 2.6.0
+
+This release fixes several edge case bugs and adds a couple new API features and an all new Ukrainian language translation.  Specifically:
+
+- New Ukrainian locale #1378 @Serg2294 
+
+Bug Fixes:
+
+- Translated versions are now properly included in the search index #1375 
+- The CC address is now persisted if you change the assignment of a ticket while editing the reply #1387
+- Agents can now create an unassigned ticket #1317
+- A rare bug that docs unclickable on mobile has been resolved #1371 
+
+API:
+
+- A new endpoint has been added to get specifics of the currently logged in user #1242 @trevormerritt 
+- Categories can now be filtered by visibility (public/private/internal) #1269
+- Forum topics now respect a limit param #1357 @elguitar 
+- The User entity is now included with topics and posts #1318 
+
+Misc:
+
+- Can now specify a theme environment var when running test suite #1253 @azul 
+
 
 ## VERSION 2.5.0
 

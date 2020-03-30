@@ -3,7 +3,7 @@
     <columns class="callout panel">
       <spacer size="16"></spacer>
 
-      <p><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %></p>
+      <p><%= t("devise.mailer.invitation_instructions.hello", email: (@resource.name || @resource.email)) %></p>
 
       <p><%= t("devise.mailer.invitation_instructions.someone_invited_you", url: AppSettings['settings.site_name']) %></p>
 
