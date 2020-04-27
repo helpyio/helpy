@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/helpyio/helpy_imap
-  revision: aafced9cfb7fb8f1ccf6efc20f6d4954f99c636f
+  revision: 69ad6593dbf09ae7cb2ae1fe943ffbdbbd55aa7a
   branch: master
   specs:
     helpy_imap (1.0.1)
@@ -352,13 +352,13 @@ GEM
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    loofah (2.4.0)
+    loofah (2.5.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     mail_extract (0.1.4)
-    maildir (2.2.1)
+    maildir (2.2.2)
     mailman (0.7.3)
       activesupport (>= 2.3.4)
       i18n (>= 0.4.1)
@@ -595,7 +595,7 @@ GEM
       less-rails (>= 2.5.0)
       railties (>= 3.1)
     twitter-bootstrap-rails-confirm (2.0.1)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
