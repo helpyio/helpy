@@ -28,7 +28,7 @@
 		<%= "#{AppSettings['design.header_js']}".html_safe %>
 
 	</head>
-<body class="<%#= (request.fullpath.gsub("/#{I18n.locale}/","").gsub("/","-")) %><%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
+<body class="<%#= (request.fullpath.gsub("/#{I18n.locale}/","").gsub("/","-")) %><%= controller_name %>-<%= action_name %> <%= 'rtl' if rtl? %>" data-locale="<%= I18n.locale %>">
 	<script>
 	  ga('set', 'location', location.href.split('#')[0]);
 	  ga('send', 'pageview', { "title": document.title });
@@ -60,7 +60,7 @@
 				    <div class="input-group">
 				      <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control', value: params[:q]) %>
 				      <div class="input-group-btn">
-				        <button type="submit" class="btn btn-default search-btn" aria-label="Search">
+				        <button type="submit" class="btn btn-default <%= 'btn-rtl' if rtl? %> search-btn" aria-label="Search">
 				          <span class="glyphicon glyphicon-search"></span>
 				        </button>
 				      </div>
@@ -81,20 +81,39 @@
 						<div class="col-md-10 col-md-offset-1">
 
 							<div class="row">
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 text-left">
-									<%= link_to image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand', responsive: true %>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2 text-right">
-									<ul class="list-inline" data-hook="header-mini-nav">
-										<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs'  if forums? || tickets? %>
-										<% if user_signed_in? %>
-										<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
-										<% else %>
-										<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), new_user_session_path, class: 'login-link hidden-xs') %>
-										<% end %>
-										<li data-no-turbolink><a href="#right-menu" id="right-menu"><h2 class="fas fa-bars"></h2></a></li>
-									</ul>
-								</div>
+								<% if rtl? %>
+									<!-- RTL MODE -->
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2 text-left">
+										<ul class="list-inline" data-hook="header-mini-nav">
+											<li data-no-turbolink><a href="#right-menu" id="right-menu"><h2 class="fas fa-bars"></h2></a></li>
+											<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs'  if forums? || tickets? %>
+											<% if user_signed_in? %>
+											<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
+											<% else %>
+											<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), new_user_session_path, class: 'login-link hidden-xs') %>
+											<% end %>
+										</ul>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 text-right">
+										<%= link_to image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-right logo-rtl") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand pull-right', responsive: true %>
+									</div>
+								<% else %>
+									<!-- LTR MODE -->
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 text-left">
+										<%= link_to image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand', responsive: true %>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2 text-right">
+										<ul class="list-inline" data-hook="header-mini-nav">
+											<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs'  if forums? || tickets? %>
+											<% if user_signed_in? %>
+											<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
+											<% else %>
+											<%= content_tag :li, link_to(t('devise.sessions.new.sign_in'), new_user_session_path, class: 'login-link hidden-xs') %>
+											<% end %>
+											<li data-no-turbolink><a href="#right-menu" id="right-menu"><h2 class="fas fa-bars"></h2></a></li>
+										</ul>
+									</div>
+								<% end %>
 							</div>
 
 						</div>
@@ -106,7 +125,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-10 col-md-offset-1">
-								<div id="home-search">
+								<div id="home-search" class="<%= 'rtl' if rtl? %>">
 								  <div class="text-center">
 								    <%= render 'result/search_form' if knowledgebase? %>
 								  </div>

@@ -7,14 +7,14 @@
 ################################################################################
 %>
 
-<div class="form-group has-feedback right-inner-addon">
+<div class="form-group has-feedback right-inner-addon <%= 'rtl' if rtl? %>" >
   <%= form_tag result_path, method: :get, id: 'search-form', remote: (params[:controller] == 'result') do %>
     <div class="input-group">
       <%= text_field_tag('q', nil, placeholder: t(:search_placeholder, default: "Enter a keyword, topic, or question"), id: 'search-field', class: 'form-control ui-autocomplete-input autosearch', value: params[:q]) %>
       <div class="search-result-box">
       </div>
       <div class="input-group-btn">
-        <button type="submit" class="btn btn-default" aria-label="Search">
+        <button type="submit" class="btn btn-default <%= 'btn-rtl' if rtl? %>" aria-label="Search">
           <span class="glyphicon glyphicon-search"></span>
         </button>
       </div>

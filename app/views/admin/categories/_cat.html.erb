@@ -1,6 +1,6 @@
 <li id="category-<%= cat.id %>" class="dd-item category-item clearfix adoptable ui-state-default" data-id='<%= "#{cat.id}" %>' data-obj='category' style="padding-bottom: 0;">
   <div class="category-row row vcenter hoversort border-bottom" style="padding-bottom: 10px;" data-obj-id='<%= "#{cat.id}" %>'>
-    <div class="dd-handle text-left col-md-7 col-sm-11 col-xs-10 <%= 'grayout' unless cat.active? %>">
+    <div class="dd-handle <% puts rtl? ? 'text-right' : 'text-left' %> col-md-7 col-sm-11 col-xs-10 <%= 'grayout' unless cat.active? %>">
       <%= content_tag :span, class: 'more-important' do
           link_to("#{cat.name}", admin_category_path(cat.id)) 
         end

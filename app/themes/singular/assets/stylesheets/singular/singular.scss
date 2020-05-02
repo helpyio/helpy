@@ -335,6 +335,11 @@ div.admin-tools {
 	margin-top: 10px;
 }
 
+.logo-rtl {
+  padding-left: 5px;
+  margin-top: 10px;
+}
+
 .label {
   	display: inline;
   	padding: .4em .6em .5em;
@@ -1062,6 +1067,17 @@ table#users {
 	font-size: 110%;
 }
 
+.rtl {
+  direction:rtl;
+}
+
+.btn-rtl {
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 //  === FOOTER ===
 
 #get-help-wrapper {
@@ -1162,3 +1178,4 @@ h4.qna {
   margin-right: 10px;
   margin-bottom: 30px;
 }
+
