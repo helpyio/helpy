@@ -155,9 +155,9 @@ module AdminHelper
     if is_knowledgebase_and_editor && is_forum_and_agent
       helpcenter_dropdown
     elsif is_knowledgebase_and_editor
-      upper_nav_item(t(:content, default: "Content"), admin_categories_path, ["categories"], ["index","show","edit","new"], icon)
+      upper_nav_item(t(:content, default: "Content"), admin_categories_path, ["categories"], ["index","show","edit","new"], icon, 'content' )
     elsif is_forum_and_agent
-      upper_nav_item(t(:communities, default: "Communities"), admin_forums_path, ["forums"], ["index","edit","new"], icon)
+      upper_nav_item(t(:communities, default: "Communities"), admin_forums_path, ["forums"], ["index","edit","new"], icon, 'forum' )
     end
   end
 
@@ -177,8 +177,8 @@ module AdminHelper
 
   def helpcenter_items
     content_tag :ul, class: 'dropdown-menu' do
-      concat content_tag(:li, link_to(t(:content, default: "Content"), admin_categories_path), class:'kblink') if knowledgebase? && current_user.is_editor?
-      concat content_tag(:li, link_to(t(:communities, default: "Communities"), admin_forums_path)) if forums? && current_user.is_agent?
+      concat content_tag(:li, link_to(t(:content, default: "Content"), admin_categories_path), class:'kblink', data: { hook: 'content' }) if knowledgebase? && current_user.is_editor?
+      concat content_tag(:li, link_to(t(:communities, default: "Communities"), admin_forums_path), data: { hook: 'forums' }) if forums? && current_user.is_agent?
     end
   end
 

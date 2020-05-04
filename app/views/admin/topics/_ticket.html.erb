@@ -27,7 +27,7 @@
 
     <%= render partial: 'admin/topics/hidden_notes' if @topic.posts.notes.size > 0 %>
 
-    <div class="add-form">
+    <div class="add-form" data-hook="reply_ticket">
       <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>
       <%= simple_form_for Post.new_with_cc(@topic), url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>

@@ -9,7 +9,7 @@
         data: { confirm: t(:empty_trash_warning, default: "Are you sure you want to empty the trash? This will permanently delete all tickets in the trash.") },
         class: 'btn btn-default', remote: true if params[:status] == 'trash' && current_user.is_admin? %>
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path,
-        remote: true, class: 'btn btn-primary' if tickets? %>
+        remote: true, class: 'btn btn-primary', data: { hook: 'new_ticket' } if tickets? %>
   </div>
 <% end %>
 <% if @topics.present? %>
@@ -44,7 +44,7 @@
       <td colspan="3">
         <span class="selected-message tiny-header hidden-xs"></span>
           <span>
-          <span class="btn btn-group left-col-dropdown">
+          <span class="btn btn-group left-col-dropdown" data-hook="change_status">
             <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
               <%= t(:change_status, default: 'Change Status') %> <span class='caret'></span>
             </span>
@@ -57,7 +57,7 @@
             </ul>
           </span>
 
-          <span class="btn btn-group left-col-dropdown">
+          <span class="btn btn-group left-col-dropdown" data-hook="change_agent">
             <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
               <%= t(:assign_agent, default: 'Assign Agent') %> <span class='caret'></span>
             </span>
@@ -72,7 +72,7 @@
           </span>
 
           <% if teams? && @all_teams.count > 0 %>
-          <span class="btn btn-group left-col-dropdown">
+          <span class="btn btn-group left-col-dropdown" data-hook="change_group">
             <span class="dropdown-toggle ticket-control tiny-header" data-toggle="dropdown" aria-expanded="false">
               <%= t(:no_team_assigned, default: 'Assign to group') %> <span class='caret'></span>
             </span>

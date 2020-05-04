@@ -5,13 +5,13 @@
   <span class="btn-group left-col-dropdown">
     <%= link_to content_tag(:span, '', class: 'fas fa-ellipsis-v ticket-ellipsis btn'), '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }%>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-      <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{first_post_id(@topic)}" } if @topic.posts.present? %></li>
+      <li data-hook="change_author"><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{first_post_id(@topic)}" } if @topic.posts.present? %></li>
       <hr/>
       <% if @topic.user.present? %>
       <li class="dropdown-header"><%= @topic.user.name %></li>
       <li><%= link_to t(:tickets, default: 'Tickets'), remote: true %></li>
-      <li><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @topic.user.id), remote: true, class: '' if tickets? %></li>
-      <li><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@topic.user), remote: false if @topic.user.can_be_edited? current_user %></li>
+      <li data-hook="new_ticket"><%= link_to t(:open_new_discussion, default: 'Open Discussion'), new_admin_topic_path(user_id: @topic.user.id), remote: true, class: '' if tickets? %></li>
+      <li data-hook="edit_user"><%= link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@topic.user), remote: false if @topic.user.can_be_edited? current_user %></li>
       <% end %>
     </ul>
   </span>
@@ -20,7 +20,7 @@
   <button class="status dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
     <%= control_for_status(@topic.current_status) %>
   </button>
-  <ul class="dropdown-menu ticket-controls" role="menu">
+  <ul class="dropdown-menu ticket-controls" role="menu" data-hook="change_status">
     <li><%= link_to t(:mark_closed, default: 'Mark Closed'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'closed', status: @status), :remote => true, class: 'key-sr' unless @topic.current_status == "closed" %></li>
     <li><%= link_to t(:reopen, default: 'Reopen'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'reopen', status: @status), :remote => true, class: 'key-so' unless @topic.current_status == "open" %></li>
     <li><%= link_to t(:mark_new, default: 'Mark New'), admin_update_topic_path(topic_ids: { "":@topic.id }, change_status: 'new', status: @status), :remote => true, class: 'key-sn' unless @topic.current_status == "new" %></li>
@@ -48,10 +48,10 @@
     <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
       <%= content_tag :span, class: 'btn status-label-button label label-warning assign-to' do %>
         <%= @topic.assigned_user.try(:name).try(:upcase) || t(:unassigned, default: 'UNASSIGNED') %>
-        <%= content_tag(:i, nil, class: 'caret') + ' ' %>
+        <%= content_tag(:i, nil, class: 'caret', data: { hook: 'change_agent' }) + ' ' %>
       <% end %>
     </button>
-    <ul class="dropdown-menu ticket-controls" role="menu">
+    <ul class="dropdown-menu ticket-controls" role="menu" data-hook="change_agent">
       <li><%= link_to "#{current_user.name.titleize}", admin_assign_agent_path(topic_ids: { "":@topic.id }, assigned_user_id: current_user.id, status: @status), :remote => true unless @topic.current_status == "closed" %></li>
       <li role="separator" class="divider"></li>
       <% (@admins-[current_user]).each do |admin| %>
@@ -64,12 +64,13 @@
 
   <span class="status btn-group left-col-dropdown">
     <button class="dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
+      <%# binding.pry %>
       <%= content_tag(:span, style: badge_color_from_topic(@topic), class: "btn status-label-button group-to label label-#{@topic.team_list.present? ? @topic.team_list.first.first.downcase : 'default'}") do %>
-        <%= @topic.team_list.first.try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
-        <%= content_tag(:i, nil, class: 'caret') + ' ' %>
+        <%= @topic.team_list.try(:first).try(:upcase) || t(:no_team_assigned, default: 'Assign to group') %>
+        <%= content_tag(:i, nil, class: 'caret', data: { hook: 'change_group' }) + ' ' %>
       <% end %>
     </button>
-    <ul class="dropdown-menu ticket-controls team-list" role="menu">
+    <ul class="dropdown-menu ticket-controls team-list" role="menu" data-hook="change_group">
       <% @all_teams.to_a.each do |team| %>
         <li class='team-item'>
           <% unless @topic.current_status == "closed" %>
@@ -87,10 +88,10 @@
     <button class="dropdown-toggle ticket-control tag-toggle" aria-expanded="false">
       <%= content_tag :span, class: 'btn label-light status-label-button label' do %>
         <%= tags_button_label %>
-        <%= content_tag(:i, nil, class: 'caret') + ' ' %>
+        <%= content_tag(:i, nil, class: 'caret', data: { hook: 'change_tagging' }) + ' ' %>
       <% end %>
     </button>
-    <ul class="dropdown-menu ticket-controls" role="menu">
+    <ul class="dropdown-menu ticket-controls" role="menu" data-hook="change_tagging">
       <li class="dropdown mega-dropdown">
         <span class="topic-tag-form">
           <style>

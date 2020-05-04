@@ -14,7 +14,7 @@ module Admin::UsersHelper
   end
 
   def edit_user_button
-    content_tag :span, class: "edit-user hidden-xs pull-right" do
+    content_tag :span, class: "edit-user hidden-xs pull-right", data: { hook: 'edit_user' } do
       link_to t(:edit_user, default: 'Edit User'), edit_admin_user_path(@user), remote: true, class: 'btn btn-primary'
     end
   end

@@ -435,7 +435,7 @@ class Admin::TopicsController < Admin::BaseController
         )
 
         # Send copy of message to user
-        PostMailer.new_post(@post .id).deliver_later
+        PostMailer.new_post(@post.id).deliver_later
 
         # track event in GA
         tracker('Request', 'Post', 'New Topic')

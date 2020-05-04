@@ -4,7 +4,7 @@
   <div class="pull-right">
     <%= render partial: 'admin/users/user_context_menu', locals: { user: @user } %>
   </div>
-  <div class="pull-right nav-new-button" style="margin-top:18px;">
+  <div class="pull-right nav-new-button" style="margin-top:18px;" data-hook="new_ticket">
     <%= link_to t(:open_new_discussion, default: "Open Discussion"), new_admin_topic_path(user_id: @user.id),
         remote: true, class: 'btn btn-primary' if tickets? %>
   </div>
