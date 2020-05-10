@@ -1,17 +1,26 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     io.kompose.service: helpy
-  name: helpy
+    app: {{ template "helpy.name" . }}
+    chart: {{ template "helpy.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  name: {{ template "helpy.fullname" . }}
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: {{ template "helpy.name" . }}
+      release: {{ .Release.Name }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: helpy
+        app: {{ template "helpy.name" . }}
+        release: {{ .Release.Name }}
     spec:
       imagePullSecrets:
       - name: dockercred
