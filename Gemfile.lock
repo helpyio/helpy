@@ -372,7 +372,7 @@ GEM
     mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.0)
+    minitest (5.14.1)
     minitest-reporters (1.4.2)
       ansi
       builder
