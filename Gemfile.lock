@@ -358,7 +358,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     mail_extract (0.1.4)
-    maildir (2.2.1)
+    maildir (2.2.2)
     mailman (0.7.3)
       activesupport (>= 2.3.4)
       i18n (>= 0.4.1)
