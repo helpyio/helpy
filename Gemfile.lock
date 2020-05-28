@@ -340,8 +340,8 @@ GEM
       kaminari
       rails
     kgio (2.11.3)
-    launchy (2.4.3)
-      addressable (~> 2.3)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (4.0.0)
