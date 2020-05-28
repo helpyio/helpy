@@ -92,7 +92,7 @@ GEM
     bootstrap_form (2.7.0)
     brakeman (4.8.2)
     builder (3.2.4)
-    bulk_insert (1.7.0)
+    bulk_insert (1.8.1)
       activerecord (>= 3.2.0)
     bundler-audit (0.6.1)
       bundler (>= 1.2.0, < 3)
