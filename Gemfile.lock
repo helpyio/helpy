@@ -378,7 +378,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    minitest-retry (0.2.0)
+    minitest-retry (0.2.1)
       minitest (>= 5.0)
     multi_json (1.14.1)
     multi_xml (0.6.0)
