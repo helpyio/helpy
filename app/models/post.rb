@@ -68,6 +68,7 @@ class Post < ActiveRecord::Base
   #updates the last post date for both the forum and the topic
   #updates the waiting on cache
   def update_waiting_on_cache
+    return if kind == 'note'
 
     status = self.topic.current_status
     waiting_on = self.topic.waiting_on
