@@ -214,6 +214,7 @@ class Admin::UsersController < Admin::BaseController
       :notify_on_private,
       :notify_on_public,
       :notify_on_reply,
+      :notes
     )
   end
 
