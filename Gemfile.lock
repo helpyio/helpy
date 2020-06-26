@@ -425,7 +425,7 @@ GEM
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
       request_store (~> 1.1)
-    parallel (1.19.1)
+    parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
     pg (0.20.0)
