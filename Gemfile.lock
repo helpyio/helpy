@@ -433,7 +433,7 @@ GEM
       activerecord (>= 4.2)
       activesupport (>= 4.2)
     polyglot (0.3.5)
-    premailer (1.11.1)
+    premailer (1.12.0)
       addressable
       css_parser (>= 1.6.0)
       htmlentities (>= 4.0.0)
