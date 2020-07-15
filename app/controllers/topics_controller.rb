@@ -142,7 +142,7 @@ class TopicsController < ApplicationController
       tracker('Request', 'Post', 'New Topic')
       tracker('Agent: Unassigned', 'New', @topic.to_param)
 
-      UserMailer.new_user(@user.id, @user.reset_password_token).deliver_later if !user_signed_in?
+      UserMailer.new_user(@user.id, @user.token).deliver_later if !user_signed_in?
     
       if @topic.private?
         redirect_to topic_thanks_path

@@ -562,10 +562,10 @@ es:
         # tag_list: *tag_with
       post:
         kind: *kind
-        # body: Message
+        body: Mensaje
         # cc: CC
         # bcc: BCC
-        # attachments: Attachement
+        attachments: Archivos adjuntos
       category:
         name: Nombre
         icon: Icono
