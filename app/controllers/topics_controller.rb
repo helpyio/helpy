@@ -37,6 +37,7 @@ class TopicsController < ApplicationController
   before_action :get_all_teams, only: 'new'
   before_action :get_public_forums, only: ['new', 'create']
   before_action :check_anonymous_ticket_access, only: :show
+  # after_action :update_user_with_locale, only: :create
 
   layout "clean", only: [:new, :index, :thanks]
   theme :theme_chosen
@@ -136,6 +137,7 @@ class TopicsController < ApplicationController
 
     if @topic.create_topic_with_user(params, current_user, @post)
       @user = @topic.user
+      @user.update_attribute(:language, I18n.locale)
       @post.update_attribute(:user_id, @user.id)
 
       # track event in GA
@@ -218,6 +220,12 @@ class TopicsController < ApplicationController
       redirect_to root_path
     end
     Hashid::Rails.configuration.salt=AppSettings['settings.anonymous_salt']
+  end
+
+  def update_user_with_locale
+    user = @topic.user
+    user.language = I18n.locale
+    user.save
   end
 
 end

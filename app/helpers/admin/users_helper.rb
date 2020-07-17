@@ -52,4 +52,9 @@ module Admin::UsersHelper
     end
   end
 
+  def enabled_locales_collection
+    AppSettings['i18n.available_locales'].sort.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
+  end
+
+
 end

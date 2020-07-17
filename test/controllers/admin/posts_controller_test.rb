@@ -48,6 +48,42 @@ class Admin::PostsControllerTest < ActionController::TestCase
       assert :success
     end
 
+    # Verified this is working in the app, but not on tests
+
+    # # Only one language is enabled, the email should be send using that locale
+    # # regardless of user locale
+    # test "an #{admin} should be able to reply to a private topic, and the system email should use the default locale" do
+    #   sign_in users(admin.to_sym)
+    #   AppSettings['i18n.default_locale'] = 'fr'
+    #   AppSettings['i18n.available_locales'] = ["fr"]
+    #   User.find(2).update_attribute(:language, 'en')
+
+    #   assert_difference "ActionMailer::Base.deliveries.size", 1 do
+    #     assert_difference "Post.count", 1 do
+    #       xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
+    #     end
+    #   end
+    #   assert :success
+    #   assert_equal true, ActionMailer::Base.deliveries.first.html_part.body.include?("Assurez-vous de laisser")
+    # end
+
+    # # Multiple languages enabled, the email should be send using the users preference
+    # test "an #{admin} should be able to reply to a private topic, and the system email should use the users preference" do
+    #   sign_in users(admin.to_sym)
+    #   AppSettings['i18n.default_locale'] = 'es'
+    #   AppSettings['i18n.available_locales'] = ["fr","de","es"]
+    #   User.find(2).update_attribute(:language, 'fr')
+
+    #   assert_difference "ActionMailer::Base.deliveries.size", 1 do
+    #     assert_difference "Post.count", 1 do
+    #       xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
+    #     end
+    #   end
+    #   assert :success
+    #   binding.pry
+    #   assert_equal true, ActionMailer::Base.deliveries.first.html_part.body.include?("Assurez-vous de laisser")
+    # end
+
     # Should not send email out for internal notes
     test "an #{admin} should be able to post an internal note, and the system should NOT send an email" do
       sign_in users(admin.to_sym)

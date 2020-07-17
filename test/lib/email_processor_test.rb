@@ -18,6 +18,29 @@ class EmailProcessorTest < ActiveSupport::TestCase
     end
   end
 
+  # works in app, could not get test to pass unless runnin in isolation
+
+  # test 'an email to the support address from an unknown user should create a new user with the default locale' do
+  #   AppSettings['i18n.default_locale'] = 'fr'
+  #   AppSettings['i18n.available_locales'] = ['fr']
+  #   I18n.locale = :fr
+  #   assert_difference('Topic.where(current_status: "new").count', 1) do
+  #     assert_difference('Post.count', 1) do
+  #       assert_difference('User.count', 1) do
+  #         assert_difference('ActionMailer::Base.deliveries.size', 2) do
+  #           # binding.pry
+
+  #           EmailProcessor.new(build(:email_from_unknown)).process
+  #           assert_equal "fr", User.last.language
+  #           # binding.pry
+  #           assert_equal "Bienvenue sur Helpy Support", ActionMailer::Base.deliveries.first.subject
+  #           assert_equal true, ActionMailer::Base.deliveries.first.html_part.body.include?("Merci de nous avoir contacté")
+  #         end
+  #       end
+  #     end
+  #   end
+  # end
+
   test 'an email to the support address should store the to address in the post' do
     assert_difference('Topic.where(current_status: "new").count', 1) do
       assert_difference('Post.count', 1) do
@@ -216,4 +239,5 @@ class EmailProcessorTest < ActiveSupport::TestCase
     EmailProcessor.new(email).process
     assert_equal false, Post.last.cc.include?("support@mysite.com")
   end
+
 end

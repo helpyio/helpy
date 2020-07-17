@@ -8,9 +8,6 @@ class EmailProcessor
 
   def process
 
-
-
-
     # Guard clause to prevent ESPs like Sendgrid from posting over and over again
     # if the email presented is invalid and generates a 500.  Returns a 200
     # error as discussed on https://sendgrid.com/docs/API_Reference/Webhooks/parse.html
@@ -101,7 +98,8 @@ class EmailProcessor
       private: true,
       current_status: ticket_status,
       spam_score: spam_score,
-      spam_report: spam_report
+      spam_report: spam_report,
+      locale: @user.language
     )
 
     if topic.save
@@ -157,7 +155,8 @@ class EmailProcessor
       private: true,
       current_status: ticket_status,
       spam_score: spam_score,
-      spam_report: spam_report
+      spam_report: spam_report,
+      locale: @user.language
     )
 
     if topic.save
@@ -232,8 +231,14 @@ class EmailProcessor
     @user.name = name.blank? ? token.gsub(/[^a-zA-Z]/, '') : name
     @user.password = User.create_password
 
+    # TODO: Detect language of email and add here
+    @user.language = Locale.default
+
     if @user.save
-      UserMailer.new_user(@user.id, @token).deliver_later if @user.save && ticket_status != "spam"
+      # binding.pry
+      I18n.with_locale(@user.language) do
+        UserMailer.new_user(@user.id, @token).deliver_later if @user.save && ticket_status != "spam"
+      end
     else
       @user = User.find(2) # just in case new user not saved, default to system user  
     end

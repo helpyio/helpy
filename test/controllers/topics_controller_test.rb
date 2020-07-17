@@ -272,6 +272,78 @@ class TopicsControllerTest < ActionController::TestCase
     assert_redirected_to topic_thanks_path, 'Did not redirect to thanks view'
   end
 
+  # A new user who is NOT signed in should be able to create a new private ticket, and get the params i18n 
+  test 'a new user should have language set to param when creating new private ticket' do
+    #sign_in users(:user)
+
+    AppSettings['i18n.default_locale'] = 'es'
+    AppSettings['i18n.available_locales'] = ["fr","de","es"]
+  
+    get :new, locale: :fr
+    assert_response :success
+
+    assert_difference 'Topic.count', 1, 'A topic should have been created' do
+      assert_difference 'Post.count', 1, 'A post should have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a new user',
+              email: 'anon_new@test.com'
+              },
+            name: 'some new topic',
+            body: 'some body text',
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body",
+              }
+            }
+          },
+          locale: :fr
+      end
+    end
+
+    assert_equal 'fr', User.last.language
+    assert_redirected_to '/fr/thanks', 'Did not redirect to thanks view'
+  end
+
+  # A new user who is NOT signed in should be able to create a new private ticket, and get the params i18n 
+  test 'a new user should have language set to default when creating new private ticket' do
+    #sign_in users(:user)
+
+    AppSettings['i18n.default_locale'] = 'fr'
+    AppSettings['i18n.available_locales'] = ["fr"]
+  
+    get :new, locale: :fr
+    assert_response :success
+
+    assert_difference 'Topic.count', 1, 'A topic should have been created' do
+      assert_difference 'Post.count', 1, 'A post should have been created' do
+        post :create,
+          topic: {
+            user: {
+              name: 'a new user',
+              email: 'anon_new@test.com'
+              },
+            name: 'some new topic',
+            body: 'some body text',
+            forum_id: 1,
+            private: true,
+            posts_attributes: {
+              :"0" => {
+              body: "this is the body",
+              }
+            }
+          },
+          locale: :fr
+      end
+    end
+
+    assert_equal 'fr', User.last.language
+    assert_redirected_to '/fr/thanks', 'Did not redirect to thanks view'
+  end
+
   # A new user who is NOT signed in should be able to create a new private or public topic and attach a file
   test 'a new user should NOT be able to create a new private topic with an invalid file' do
     #sign_in users(:user)

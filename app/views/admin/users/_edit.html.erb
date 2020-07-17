@@ -30,6 +30,7 @@
         <%= f.input :priority, collection: priority_collection if current_user.is_admin? && params[:controller] != 'admin/settings' %>
         <%= f.input :active, as: :boolean if current_user.is_admin? && params[:controller] != 'admin/settings' %>
         <%= f.input :time_zone if current_user.is_admin? %>
+        <%= f.input :language, collection: enabled_locales_collection if current_user.is_admin? && Locale.number_enabled > 1 %>
     </div>
     <% if current_user.id == @user.id %>
     <div class="user-section">

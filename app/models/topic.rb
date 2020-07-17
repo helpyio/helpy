@@ -295,7 +295,7 @@ class Topic < ActiveRecord::Base
   end
 
   def add_locale
-    self.locale = I18n.locale
+    self.locale = self.user.language || AppSettings["i18n.default_locale"]
   end
 
 end

@@ -103,6 +103,7 @@ class User < ActiveRecord::Base
   after_invitation_accepted :set_role_on_invitation_accept
   after_create :enable_notifications_for_admin
   before_save :reject_invalid_characters_from_name
+  # before_save :add_locale
   acts_as_taggable_on :teams
 
   ROLES = %w[admin agent editor user]
@@ -366,6 +367,10 @@ class User < ActiveRecord::Base
 
   def reject_invalid_characters_from_name
     self.name = name.gsub(INVALID_NAME_CHARACTERS, '') if !!name.match(INVALID_NAME_CHARACTERS)
+  end
+
+  def add_locale
+    self.language = I18n.locale
   end
 
 end
