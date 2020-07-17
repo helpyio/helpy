@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
 
   TEMP_EMAIL_PREFIX = 'change@me'
 
-  attr_accessor :opt_in
+  attr_accessor :opt_in, :token
 
   validates :name, presence: true
   validates :email, presence: true
@@ -278,10 +278,11 @@ class User < ActiveRecord::Base
   end
 
   def signup_guest
-    enc = Devise.token_generator.generate(User, :reset_password_token)
+    token, enc = Devise.token_generator.generate(User, :reset_password_token)
     self.reset_password_token = enc
     self.reset_password_sent_at = Time.now.utc
-
+    self.token = token
+    
     self.login = self.email.split("@")[0]
     self.password = User.create_password
     self.save
