@@ -379,7 +379,7 @@ GEM
       ruby-progressbar
     minitest-retry (0.2.1)
       minitest (>= 5.0)
-    multi_json (1.14.1)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     mustermann (1.1.1)
