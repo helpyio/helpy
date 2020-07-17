@@ -192,7 +192,7 @@ GEM
       dry-equalizer (~> 0.3)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    email_reply_trimmer (0.1.12)
+    email_reply_trimmer (0.1.13)
     erubi (1.9.0)
     erubis (2.7.0)
     excon (0.75.0)
