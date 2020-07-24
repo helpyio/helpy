@@ -23,6 +23,11 @@ Helpy.ready = function(){
 
   $('.submit-loader').off('submit', Helpy.loader).on('submit', Helpy.loader);
 
+  $('.main-option-container').off('click').on('click', function(){
+    var href= $(this).find('a').attr('href');
+    window.location = href;
+  });
+
   $('.new-ticket-loader').off('submit', Helpy.loader).on('submit', function(){
     var $form = $('form.new-ticket-loader');
     $(document.body).append($form);
