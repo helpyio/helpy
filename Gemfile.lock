@@ -140,7 +140,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     config (1.1.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
