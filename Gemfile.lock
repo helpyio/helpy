@@ -140,7 +140,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     commonjs (0.2.7)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     config (1.1.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0.1)
@@ -181,7 +181,7 @@ GEM
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.3.0)
     dry-inflector (0.2.0)
-    dry-logic (1.0.6)
+    dry-logic (1.0.8)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
