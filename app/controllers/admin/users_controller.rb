@@ -90,8 +90,7 @@ class Admin::UsersController < Admin::BaseController
 
     # Set the password if it is not provided
     @user.password = params[:user][:password].blank? ?  User.create_password : params[:user][:password]
-    @user.update_attribute(:role, params[:user][:role]) if params[:user][:role].present?
-
+    @user.role = params[:user][:role]
     if @user.save
       tracker("Agent: #{current_user.name}", "Created User Profile", @user.name)
       flash[:notice] = "#{@user.name} has been saved"
@@ -120,7 +119,6 @@ class Admin::UsersController < Admin::BaseController
 
     # update team list if provided
     @user.team_list = params[:user][:team_list] if params[:user][:team_list].present?
-
     if @user.update(user_params)
       # update role if admin only
       @user.update_attribute(:role, params[:user][:role]) if current_user.is_admin? && params[:user][:role].present?
@@ -145,7 +143,7 @@ class Admin::UsersController < Admin::BaseController
         }
       end
     else
-      render :profile
+      render :edit
     end
   end
 
