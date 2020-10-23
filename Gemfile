@@ -162,7 +162,7 @@ group :development, :test do
   gem 'bundler-audit', require: false
   gem 'byebug'
   gem 'pry'
-  gem 'pry-byebug'
+  # gem 'pry-byebug'
   gem 'spring', '~> 2.0.2'
   gem 'annotate'
   gem 'brakeman', require: false
