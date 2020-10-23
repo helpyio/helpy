@@ -13,7 +13,7 @@ module AdminHelper
     "[Helpy Admin]"
   end
 
-  def upper_nav_item(label, path, controllers, actions, icon="")
+  def upper_nav_item(label, path, controllers, actions, icon="", hook="upper-nav")
     # classname = controller_name == controller ? 'navbar-active' : ''
     if controllers.include?(controller_name) && actions.include?(action_name)
       classname = 'navbar-active'
@@ -21,7 +21,7 @@ module AdminHelper
       classname = ''
     end
 
-    content_tag(:li, class: classname) do
+    content_tag(:li, class: classname, data: { hook: hook }) do
       link_to path, class: 'text-center' do
         "#{content_tag(:span, nil, class: "#{icon}")}<br/>#{label}".html_safe
       end
@@ -162,7 +162,7 @@ module AdminHelper
   end
 
   def helpcenter_dropdown
-    content_tag :li, class: 'dropdown' do
+    content_tag :li, class: 'dropdown', data: {hook: 'helpcenter'} do
       concat helpcenter_link
       concat helpcenter_items
     end
