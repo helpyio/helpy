@@ -204,8 +204,9 @@ GEM
       railties (>= 4.2.0)
     faker (2.2.1)
       i18n (>= 0.8)
-    faraday (1.0.1)
+    faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
+      ruby2_keywords
     ffi (1.13.1)
     fog-aws (3.6.7)
       fog-core (~> 2.1)
