@@ -87,7 +87,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    bootstrap-select-rails (1.12.4)
+    bootstrap-select-rails (1.13.8)
     bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.7.0)
     brakeman (4.10.0)
