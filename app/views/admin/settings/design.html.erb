@@ -6,7 +6,7 @@
     <div class="settings-section design">
         <div class="row">
           <div class="col-md-1 col-sm-2 col-xs-2">
-            <%= image_tag(AppSettings['design.header_logo'], width: 40, class: 'pull-left') %>
+            <%= image_tag(AppSettings.get_logo, width: 40, class: 'pull-left') %>
           </div>
           <div class="col-md-11 col-sm-10 col-xs-10">
             <%= f.file_field 'uploader.design.header_logo', class: "settings-uploader", label: t('header_logo', default: "Header Logo") %>
@@ -15,7 +15,7 @@
         </div>
         <div class="row">
           <div class="col-md-1 col-sm-2 col-xs-2">
-            <%= image_tag(AppSettings['design.favicon'], width: 32, class: 'pull-left') %>
+            <%= image_tag(AppSettings.get_favicon, width: 32, class: 'pull-left') %>
           </div>
           <div class="col-md-11 col-sm-10 col-xs-10">
             <%= f.file_field 'uploader.design.favicon', class: "favicon-uploader", label: "Favicon" %>

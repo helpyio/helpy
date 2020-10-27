@@ -55,7 +55,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 text-left">
-						<%= link_to image_tag("#{AppSettings['design.header_logo']}", width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand', responsive: true %>
+						<%= link_to image_tag(AppSettings.get_logo, width: 40, class: "pull-left logo") + "#{AppSettings['settings.product_name'] + " " if AppSettings['settings.product_name']}" "#{AppSettings['settings.site_name']}", root_path, class: 'navbar-brand', responsive: true %>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2 text-right">
 						<ul class="list-inline" data-hook="header-mini-nav">

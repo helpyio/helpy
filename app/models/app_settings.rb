@@ -13,4 +13,17 @@
 
 # RailsSettings Model
 class AppSettings < RailsSettings::CachedSettings
+
+  def self.get_logo
+    @logo = Logo.new
+    @logo.file.retrieve_from_store!(File.basename(AppSettings['design.header_logo']))
+    @logo.file
+  end
+
+  def self.get_favicon
+    @icon = Logo.new
+    @icon.file.retrieve_from_store!(File.basename(AppSettings['design.favicon']))
+    @icon.file
+  end
+
 end
