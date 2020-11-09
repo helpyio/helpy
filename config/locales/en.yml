@@ -142,6 +142,7 @@ en:
   open: Open
   mine: Mine
   pending: Pending
+  pending_all: Pending (All)
   closed: &closed Closed
   spam: Spam
   trash: Trash
