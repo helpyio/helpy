@@ -319,7 +319,7 @@ GEM
       railties (>= 3.2.16)
     js_regex (1.2.3)
       regexp_parser (>= 0.3.6, <= 0.5.0)
-    json (2.3.1)
+    json (2.4.1)
     jwt (2.2.2)
     kaminari (1.2.1)
       activesupport (>= 4.1.0)
