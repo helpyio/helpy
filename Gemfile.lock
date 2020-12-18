@@ -207,7 +207,7 @@ GEM
     faraday (1.1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    ffi (1.13.1)
+    ffi (1.14.0)
     fog-aws (3.6.7)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
