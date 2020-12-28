@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   around_action :set_time_zone, if: :current_user
 
   force_ssl if: :ssl_configured?
+  include RtlConcern
 
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
@@ -57,12 +58,6 @@ class ApplicationController < ActionController::Base
     AppSettings['settings.google_analytics_enabled'] == '1'
   end
   helper_method :google_analytics_enabled?
-
-  def rtl_locale?(locale)
-    return true if %w(ar dv he iw fa nqo ps sd ug ur yi).include?(locale)
-    return false
-  end
-  helper_method :rtl_locale?
 
   def welcome_email?
     AppSettings['settings.welcome_email'] == "1" || AppSettings['settings.welcome_email'] == true
@@ -131,11 +126,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    @browser_locale = http_accept_language.compatible_language_from(AppSettings['i18n.available_locales'])
-    unless params[:locale].blank?
-      I18n.locale = AppSettings['i18n.available_locales'].include?(params[:locale]) ? params[:locale] : AppSettings['i18n.default_locale']
+    browser_locale = http_accept_language.compatible_language_from(AppSettings['i18n.available_locales'])
+    if params[:locale].blank?
+      I18n.locale = browser_locale
     else
-      I18n.locale = @browser_locale
+      I18n.locale = AppSettings['i18n.available_locales'].include?(params[:locale]) ? params[:locale] : AppSettings['i18n.default_locale']
     end
   end
 
