@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   include ActsAsTaggableOn::TagsHelper
-
+  include RtlHelper
   # include TagsHelper
 
   # Sets the page title and outputs title if container is passed in.
@@ -53,16 +53,6 @@ module ApplicationHelper
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
-  end
-
-  def rtl_tags
-    stylesheet_link_tag('//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css', "data-turbolinks-track" => true) +
-    stylesheet_link_tag('rtl') +
-    javascript_include_tag('rtl', "data-turbolinks-track" => true)
-  end
-
-  def rtl?(locale_to_check = params[:locale])
-    rtl_locale?(locale_to_check || @browser_locale)
   end
 
   def locale_select
@@ -146,7 +136,6 @@ module ApplicationHelper
   end
 
   def summernote_locale
-    # binding.pry
     case I18n.locale
     when :ar, :de, :es, :et, :fi, :fr, :hu, :id, :it, :nl, :pt, :ru, :tr
       "#{I18n.locale.downcase}-#{I18n.locale.upcase}"
