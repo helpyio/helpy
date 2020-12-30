@@ -3,7 +3,8 @@ module RtlConcern
   include ApplicationHelper
 
   def render(*args)
-    super(*args) and return if !rtl? && !has_rtl_view?
+    super(*args) and return unless rtl?
+    super(*args) and return unless has_rtl_view?
 
     options = args.extract_options!
     options[:template] = "#{params[:controller]}/rtl/#{params[:action]}"
