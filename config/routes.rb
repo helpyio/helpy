@@ -79,7 +79,6 @@ Rails.application.routes.draw do
   end
 
   # Admin Routes
-  localized do
     namespace :admin do
 
       # Extra topic Routes
@@ -179,7 +178,6 @@ Rails.application.routes.draw do
       get '/dashboard/blank' => 'dashboard#blank', as: :blank_dashboard
 
       root to: 'dashboard#index'
-    end
   end
 
   mount API::Base, at: "/"
