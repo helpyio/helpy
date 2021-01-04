@@ -1,0 +1,21 @@
+.radio > .radio-label label {
+  padding-right: 20px;
+}
+
+table > thead > tr > th{
+  text-align: center;
+}
+
+.topics-tickets {
+  tbody {
+    tr td {
+      text-align: center;
+    }
+    td span {
+      float: none !important;
+    }
+    td div {
+      float: none !important;
+    }
+  }
+}
