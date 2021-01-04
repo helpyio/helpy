@@ -135,6 +135,10 @@ module ApplicationHelper
     end
   end
 
+  def locale
+    I18n.locale
+  end
+
   def summernote_locale
     case I18n.locale
     when :ar, :de, :es, :et, :fi, :fr, :hu, :id, :it, :nl, :pt, :ru, :tr
