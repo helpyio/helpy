@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
   around_action :set_time_zone, if: :current_user
 
   force_ssl if: :ssl_configured?
-  include RtlConcern
 
   def url_options
     { locale: I18n.locale, theme: params[:theme] }.merge(super)
