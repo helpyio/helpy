@@ -59,12 +59,12 @@ module ApplicationHelper
     # options = I18n.available_locales.collect{ |l| [I18n.translate("i18n_languages.#{l}"),l] }
 
     tag = "<select name='lang' class='form-control' id='lang'>"
-    tag += "<option value='#{I18n.locale}'>#{t('translate', default: 'Translate to a different language')}...</option>"
+    tag += "<option value='#{selected_locale}'>#{t('translate', default: 'Translate to a different language')}...</option>"
 
     AppSettings['i18n.available_locales'].sort.each do |locale|
       selected = "selected" if "#{locale}" == params[:lang]
       I18n.with_locale(locale) do
-        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize}</option>" #unless locale == I18n.locale
+        tag += "<option value='#{locale}' #{selected}>#{I18n.translate("language_name").mb_chars.capitalize}</option>" #unless locale == selected_locale
       end
     end
     tag += "</select>"
@@ -91,7 +91,7 @@ module ApplicationHelper
     end
   end
 
-  def login_with(with, redirect_to = "/#{I18n.locale}")
+  def login_with(with, redirect_to = "/#{selected_locale}")
     provider = (with == "google_oauth2") ? "google" : with
     link_to(omniauth_authorize_path(:user, with.to_sym, origin: redirect_to), class: ["btn","btn-block","btn-social","oauth","btn-#{provider}"], style: "color:white;", data: {provider: "#{provider}"}, method: :post) do
       content_tag(:span, '', {class: ["fab", "fa-#{provider}"]}).html_safe + I18n.t("devise.shared.links.sign_in_with_provider", provider: provider.titleize)
@@ -130,19 +130,19 @@ module ApplicationHelper
   end
 
   def summernote_lang_js
-    if I18n.locale != :en
+    if selected_locale != :en
       "<script src=\"/assets/summernote/lang/summernote-#{summernote_locale}.js\"></script>".html_safe
     end
   end
 
-  def locale
+  def selected_locale
     I18n.locale
   end
 
   def summernote_locale
-    case I18n.locale
+    case selected_locale
     when :ar, :de, :es, :et, :fi, :fr, :hu, :id, :it, :nl, :pt, :ru, :tr
-      "#{I18n.locale.downcase}-#{I18n.locale.upcase}"
+      "#{selected_locale.downcase}-#{selected_locale.upcase}"
     when :"pt-br"
       "pt-BR"
     when :"zh-cn"
