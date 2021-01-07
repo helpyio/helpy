@@ -44,14 +44,14 @@
   </script>
   <% end %>
 
-  <%= f.input :title, label: I18n.translate("activerecord.attributes.doc.title", locale: locale), value: @doc.read_translated_attribute(:title) %>
+  <%= f.input :title, label: I18n.translate("activerecord.attributes.doc.title", locale: selected_locale), value: @doc.read_translated_attribute(:title) %>
   <% if params[:lang] == "#{locale}" %>
-    <%= f.input("category_id", collection: categories_collection, prompt: t(:select_category, default: 'Select Category'), label: I18n.translate("activerecord.attributes.doc.category_id", locale: locale), :input_html => { class: 'no-translate' })  %>
+    <%= f.input("category_id", collection: categories_collection, prompt: t(:select_category, default: 'Select Category'), label: I18n.translate("activerecord.attributes.doc.category_id", locale: selected_locale), :input_html => { class: 'no-translate' })  %>
   <% else %>
     <%= f.hidden_field("category_id", value: @doc.category_id) %>
   <% end %>
   <%= f.input :body, as: :summernote %>
-  <% unless params[:lang] == "#{locale}" || @doc.translations.where(locale: locale).count > 0 %>
+  <% unless params[:lang] == "#{selected_locale}" || @doc.translations.where(locale: selected_locale).count > 0 %>
   <script>
     $('.panel-body').html('');
   </script>
@@ -72,11 +72,11 @@
       <%= f.text_field :tag_list, value: @doc.tag_list.to_s, class: 'selectize form-control' %>
     </div>
 
-    <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: locale), value: @doc.read_translated_attribute(:meta_description)  %>
-    <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: locale), value: @doc.read_translated_attribute(:title_tag)  %>
-    <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: locale), value: @doc.read_translated_attribute(:keywords)  %>
-    <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: locale, default: "Feature on front page?")) if params[:lang] == "#{locale}"  %>
-    <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{locale}"  %>
+    <%= f.input :meta_description, label: I18n.translate("activerecord.attributes.doc.meta_description", locale: selected_locale), value: @doc.read_translated_attribute(:meta_description)  %>
+    <%= f.input :title_tag, label: I18n.translate("activerecord.attributes.doc.title_tag", locale: selected_locale), value: @doc.read_translated_attribute(:title_tag)  %>
+    <%= f.input :keywords, label: I18n.translate("activerecord.attributes.doc.keywords", locale: selected_locale), value: @doc.read_translated_attribute(:keywords)  %>
+    <%= f.input(:front_page, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.front_page", locale: selected_locale, default: "Feature on front page?")) if params[:lang] == "#{selected_locale}"  %>
+    <%= f.input(:allow_comments, class:'no-translate', inline: true, :label => I18n.translate("activerecord.attributes.doc.allow_comments", locale: selected_locale, default: "Allow Commenting")) if forums? and params[:lang] == "#{selected_locale}"  %>
   <% end %>
 
   <%#= f.text_field :rank %>

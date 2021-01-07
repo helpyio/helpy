@@ -48,7 +48,7 @@
     <div class="col-md-4">
       <%= f.input :channel, collection: channels_collection, as: :select, include_blank: false, item_wrapper_class: 'channel-item', item_wrapper_tag: :div, class: 'channel-toggle' %>
       <% if teams = admin_teams %>
-        <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
+        <%= f.input(:team_list, collection: teams, :label => t(:assign_to), locale: selected_locale, prompt: "", style: "display:none;") if teams? and teams.count > 0 %>
       <% end %>
       <%= f.input :priority, collection: ticket_priority_collection , as: :select, include_blank: true, selected: 'normal' %>
       <%= f.input :current_status, collection: statuses_collection, as: :select, include_blank: false, selected: 'new' %>

@@ -7,12 +7,12 @@
 <% if AppSettings['i18n.available_locales'].count > 1 %>
   |
 <span class="btn-group select-locale">
-  <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
+  <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{selected_locale.upcase}" %></span>
   <ul class="dropdown-menu dropdown-menu-right" role="menu">
     <% AppSettings['i18n.available_locales'].each do |locale| %>
     <% local_url = request.fullpath.split("/") %>
     <% local_url[1] = "#{locale}" %>
-    <li><%= link_to I18n.translate("language_name", locale: locale).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (locale == I18n.locale) ? 'strong' : '' %></li>
+    <li><%= link_to I18n.translate("language_name", locale: locale).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (locale == selected_locale) ? 'strong' : '' %></li>
     <% end %>
   </ul>
 </span>

@@ -12,6 +12,6 @@
         <li><%= link_to t(:view_and_edit, default: "View and Edit content"),
                 admin_category_path(@category.id), class: 'less-important' %></li>
         <li><%= link_to t(:new_content, default: 'New Content'),
-                new_admin_category_doc_path(category_id: @category.id, lang: I18n.locale) %></li>
+                new_admin_category_doc_path(category_id: @category.id, lang: selected_locale) %></li>
     </ul>
 </div>
