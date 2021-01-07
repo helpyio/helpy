@@ -21,7 +21,7 @@
 			<br/>
 			<%= content_tag :li, link_to(t(:your_tickets), tickets_path), data: { hook: 'tickets-nav' } if tickets? %>
 			<%= content_tag :li, link_to(t(:your_profile), edit_user_registration_path) if tickets? %>
-			<%= content_tag :li, link_to('Admin', admin_root_path) if current_user.is_editor? %>
+			<%= content_tag :li, link_to('Admin', admin_root_path(locale: selected_locale)) if current_user.is_editor? %>
 			<%= content_tag :li, link_to(t(:logout), destroy_user_session_path) %>
 			<br/>
 			<% else %>
