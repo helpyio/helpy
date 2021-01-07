@@ -9,10 +9,10 @@
 <span class="btn-group select-locale">
   <span data-toggle="dropdown" aria-expanded="false" class='more-important btn dropdown-toggle'><%= "#{I18n.locale.upcase}" %></span>
   <ul class="dropdown-menu dropdown-menu-right" role="menu">
-    <% AppSettings['i18n.available_locales'].each do |l| %>
+    <% AppSettings['i18n.available_locales'].each do |locale| %>
     <% local_url = request.fullpath.split("/") %>
-    <% local_url[1] = "#{l}" %>
-    <li><%= link_to I18n.translate("language_name", locale: l).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (l == I18n.locale) ? 'strong' : '' %></li>
+    <% local_url[1] = "#{locale}" %>
+    <li><%= link_to I18n.translate("language_name", locale: locale).mb_chars.capitalize.to_s, "#{local_url.join("/")}", class: (locale == I18n.locale) ? 'strong' : '' %></li>
     <% end %>
   </ul>
 </span>
