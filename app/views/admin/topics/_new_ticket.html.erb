@@ -1,6 +1,7 @@
 <div>
   <%= simple_form_for(@topic, url: admin_topics_path, remote: true, validate: true, multipart: true, authenticity_token: true, html: { class: 'form-vertical new-ticket-loader', method: 'post', data: { persist: 'garlic'} }) do |f| -%>
-  <%= content_tag :h3, class: 'view-header'  do %>
+    <%= f.hidden_field 'locale', value: selected_locale %>
+    <%= content_tag :h3, class: 'view-header'  do %>
     <%= "#{t(:open_new_discussion, default: 'New Ticket')}" %>
     <small id="has-storage"></small>
   <% end %>

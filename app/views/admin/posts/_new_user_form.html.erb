@@ -2,6 +2,7 @@
 <h3>Create new user</h3>
 <%= simple_form_for(@user, url: admin_new_user_path, remote: true, validate: true, authenticity_token: true, html: { class: 'form-vertical', method: 'post', id: 'new_user' }) do |f| -%>
   <%= hidden_field_tag 'post_id', post_id %>
+  <%= f.hidden_field 'locale', value: selected_locale %>
   <%= f.input :email, class: 'disable-empty', label: "#{t('activerecord.attributes.user.email')} (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
   <!-- <#%= f.input :email, autofocus: true, input_html: { class: 'disable-empty' } %> -->
   <%= f.input :name, input_html: { class: 'disable-empty' } %>

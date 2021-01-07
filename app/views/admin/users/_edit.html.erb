@@ -1,5 +1,5 @@
 <%= bootstrap_form_for(@user, url: admin_user_path(@user), remote: (params[:mode] != 'settings'), method: 'patch') do |f| %>
-
+  <%= f.hidden_field 'locale', value: selected_locale %>
   <div class='text-center' id='user-info-image'>
     <%= avatar_image(@user, size=150) %>
     <% if params[:mode] == 'settings' %>
