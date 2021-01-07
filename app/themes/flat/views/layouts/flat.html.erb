@@ -8,7 +8,7 @@
 		<%= css_injector %>
 		<%= "#{AppSettings['design.header_js']}".html_safe %>
 	</head>
-	<body class="<%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
+	<body class="<%= controller_name %>-<%= action_name %> <%= 'rtl' if rtl? %>" data-locale="<%= selected_locale %>">
 	<script>
 	  ga('set', 'location', location.href.split('#')[0]);
 	  ga('send', 'pageview', { "title": document.title });
