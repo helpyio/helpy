@@ -30,7 +30,7 @@
 module TopicsHelper
 
   def badge_for_status(status)
-    content_tag(:span, status_label(status), class: "hidden-xs pull-right status-label label #{status_class(status)}")
+    content_tag(:span, status_label(status), class: "hidden-xs status-label label #{status_class(status)}")
   end
 
   def badge_for_private
