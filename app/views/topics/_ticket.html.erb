@@ -9,9 +9,9 @@
 
 <tr>
   <td> <%= link_to "##{ticket.id}- #{ticket.name.capitalize}", ticket_path(ticket) -%> </td>
-  <td> <%= badge_for_status(ticket.current_status) %> </td>
-  <td>
-    <div class="label label-count hidden-xs pull-left"><%= ticket.posts_count %></div>
+  <td class="text-center"> <%= badge_for_status(ticket.current_status) %> </td>
+  <td class="text-center">
+    <div class="label label-count hidden-xs"><%= ticket.posts_count %></div>
   </td>
   <td> <%= last_active_time(ticket.updated_at) %> </td>
 </tr>
