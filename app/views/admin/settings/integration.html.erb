@@ -3,6 +3,7 @@
   <%= settings_header('integration') %>
 
   <%= bootstrap_form_tag url: admin_update_integration_settings_path(return_to: 'integration'), method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <%= f.hidden_field 'locale', value: selected_locale %>
     <div class="settings-section integrations" data-hook="admin_settings_integrations">
       <div class="row integration-item vcenter">
         <div class="col-md-6">

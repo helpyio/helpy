@@ -20,6 +20,7 @@
   <%= locale_select if AppSettings['i18n.available_locales'].count > 1 %>
 
   <%= simple_form_for @category, validate: true, url: admin_category_path(id: @category.id), label_errors: true, method: 'patch' do |f| %>
+      <%= f.hidden_field 'locale', value: selected_locale %>
     <% Globalize.with_locale(params['lang']) do %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>

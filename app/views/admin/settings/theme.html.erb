@@ -3,6 +3,7 @@
   <%= settings_header('theme') %>
 
   <%= bootstrap_form_tag url: admin_update_theme_settings_path(return_to: 'theme'), method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <%= f.hidden_field 'locale', value: selected_locale %>
     <div class="settings-section theme">
       <div class="row">
         <% @themes.each do |theme| %>

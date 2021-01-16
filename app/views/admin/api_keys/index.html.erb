@@ -29,6 +29,7 @@
     <div class="add-form">
     <h4><%= t('add_key', default: 'Add a New Key') %></h4>
     <%= simple_form_for(@api_key, url: admin_api_keys_path, validate: true, remote: true, :html => { role: 'form'}) do |f| %>
+        <%= f.hidden_field 'locale', value: selected_locale %>
       <span class="api_key-fields">
         <%= f.input :name %>
         <%= f.input :user_id, input_html: { value: @user.id }, as: :hidden %>

@@ -9,6 +9,6 @@
 
 <div id="left-col" class="col-lg-3 col-md-3 hidden-sm hidden-xs affix affix-top">
   <ul class="list-unstyled border-right">
-      <%= render partial: 'categories/cat', collection: @categories.with_translations(I18n.locale) %>
+      <%= render partial: 'categories/cat', collection: @categories.with_translations(selected_locale) %>
   </ul>
 </div>

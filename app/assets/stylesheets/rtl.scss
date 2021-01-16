@@ -26,3 +26,16 @@ textarea.form-control {
 input.form-control {
     direction:rtl;
 }
+.datepicker {
+  right: auto !important;
+}
+ul .dropdown-menu{
+  right: auto !important;
+  left: 10px !important;
+  min-width: 130px !important;
+  width: auto !important;
+}
+
+.navbar-collapse ul.navbar-nav{
+  margin-top: revert;
+}
