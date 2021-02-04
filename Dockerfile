@@ -1,4 +1,4 @@
-FROM ruby:2.4
+FROM ruby:2.5
 
 ENV RAILS_ENV=production \
     HELPY_HOME=/helpy \
