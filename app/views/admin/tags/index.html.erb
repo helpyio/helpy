@@ -25,10 +25,12 @@
       </div>
     </div>
 
-    <div class="tags">
-      <%= render partial: 'admin/tags/tag', collection: @tags if @tags %>
-    </div>
 
+    <table class="table table-responsive tag-table">
+      <tbody>
+      <%= render partial: 'admin/tags/tag', collection: @tags if @tags %>
+      </tbody>
+    </table>
     <%= content_tag :div,  paginate(@tags, remote: false), class: 'text-center' %>
 
   </div>
