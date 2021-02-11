@@ -83,7 +83,11 @@ module UsersHelper
     else
       image_tag('', data: { name: "#{user.name}", width: "#{size}", height: "#{size}", 'font-size' => font, 'char-count' => 2}, class: 'profile img-circle')
     end
-
   end
 
+  def label_pluralize(label)
+    return label if rtl?
+
+    label.pluralize
+  end
 end

@@ -48,6 +48,7 @@ gem 'sucker_punch', '~> 2.0'
 # Charting
 gem "groupdate"
 gem "chartkick"
+gem 'bigdecimal', '1.3.5'
 
 # Auth Gems
 gem 'devise', '<= 5.0.0'
