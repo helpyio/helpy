@@ -10,8 +10,6 @@ development:
   database: helpy_development
   port: 5432
   host: localhost
-  username: postgres
-  password: root
 
 test:
   <<: *default
