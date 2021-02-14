@@ -236,19 +236,22 @@ module AdminHelper
   def user_page_title_text(role)
     case role
       when 'user'
-        "#{t(:user_role).pluralize(2)}"
+        "#{t(:user_role).pluralize(2)}" unless rtl?
+        t(:user_role) if rtl?
       when 'agent'
-        "#{t(:agent_role).pluralize(2)}"
+        "#{t(:agent_role).pluralize(2)}" unless rtl?
+        t(:agent_role) if rtl?
       when 'editor'
-        "#{t(:editor_role).pluralize(2)}"
+        "#{t(:editor_role).pluralize(2)}" unless rtl?
+        t(:editor_role) if rtl?
       when 'admin'
-        "#{t(:admin_role).pluralize(2)}"
+        "#{t(:admin_role).pluralize(2)}" unless rtl?
+        t(:admin_role) if rtl?
       when 'team'
         "Team"
       else
         "#{t(:users)}"
     end
-
   end
 
 
