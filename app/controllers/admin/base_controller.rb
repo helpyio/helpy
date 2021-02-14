@@ -1,6 +1,7 @@
 class Admin::BaseController < ApplicationController
 
   layout 'admin'
+  before_action :set_locale
   before_action :authenticate_user!
 
   def convert_to_brightness_value(background_hex_color)
@@ -133,4 +134,9 @@ class Admin::BaseController < ApplicationController
     @internal_categories = Category.only_internally.ordered.includes(:docs)
   end
 
+  private
+
+  def default_url_options
+    { locale: I18n.locale }
+  end
 end

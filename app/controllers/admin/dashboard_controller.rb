@@ -8,13 +8,13 @@ class Admin::DashboardController < Admin::BaseController
     #@topics = Topic.mine(current_user.id).pending.page params[:page]
 
     if (current_user.is_admin? || current_user.is_agent?) && (forums? || tickets?)
-      redirect_to admin_topics_path
+      redirect_to admin_topics_path(locale: I18n.locale)
     elsif current_user.is_editor? && knowledgebase?
-      redirect_to admin_categories_path
+      redirect_to admin_categories_path(locale: I18n.locale)
     elsif (current_user.is_admin? || current_user.is_agent?)
-      redirect_to admin_users_path
+      redirect_to admin_users_path(locale: I18n.locale)
     else
-      redirect_to admin_blank_dashboard_path
+      redirect_to admin_blank_dashboard_path(locale: I18n.locale)
     end
   end
 

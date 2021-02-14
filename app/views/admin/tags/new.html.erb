@@ -10,6 +10,7 @@
   <div class="settings-panel row">
     <div class="col-md-12 col-sm-12 col-xs-12">
       <%= simple_form_for @tag, url: admin_tags_path, method: 'post', validate: true, remote: false do |f| %>
+        <%= f.hidden_field 'locale', value: selected_locale %>
         <%= render "form", f: f  %>
       <% end %>
     </div>

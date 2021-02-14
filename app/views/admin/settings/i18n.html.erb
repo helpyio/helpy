@@ -3,6 +3,7 @@
   <%= settings_header('international') %>
 
   <%= bootstrap_form_tag url: admin_update_i18n_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <%= f.hidden_field 'locale', value: selected_locale %>
     <div class="settings-section international" data-hook="admin_settings_international">
       <%= t('supported_locales', default: 'Supported Locales:') %>
       <% I18n.available_locales.sort.each do |locale| %>

@@ -11,6 +11,7 @@
 
     <%= simple_form_for @doc, validate: true, url: admin_category_doc_path(category_id: @category.id, id: @doc.id), 
     html: { method: :patch, id: :edit_doc, name: "edit_doc_#{@doc.id}" } do |f| %>
+      <%= f.hidden_field 'locale', value: selected_locale %>
     <small id="has-storage"></small>
       <% Globalize.with_locale(params['lang']) do %>
         <%= render 'shared/error_messages', object: f.object %>

@@ -15,6 +15,7 @@
     <h3 class="view-header"><%= t(:new_category, default: 'New Category') %></h3>
 
     <%= simple_form_for [:admin, @category], validate: true, label_errors: true, method: 'post' do |f| %>
+      <%= f.hidden_field 'locale', value: selected_locale %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= render :partial => 'form', :object => @category, :locals => {:f => f} %>
     <% end %>

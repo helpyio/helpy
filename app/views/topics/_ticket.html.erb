@@ -7,20 +7,11 @@
 ################################################################################
 %>
 
-<div class="ticket border-bottom row vcenter">
-  <div class="col-md-8 text-left">
-    <span class="truncate-ellipsis">
-      <%= link_to "##{ticket.id}- #{ticket.name.capitalize}", ticket_path(ticket) -%>
-    </span>
-  </div>
-  <div class="col-md-1">
-    <%= badge_for_status(ticket.current_status) %>
-  </div>
-  <div class="col-md-1">
-    <div class="label label-count hidden-xs pull-left"><%= ticket.posts_count %></div>
-  </div>
-  <div class="last-active less-important col-md-2 text-right">
-
-    <%= last_active_time(ticket.updated_at) %>
-  </div>
-</div>
+<tr>
+  <td> <%= link_to "##{ticket.id}- #{ticket.name.capitalize}", ticket_path(ticket) -%> </td>
+  <td class="text-center"> <%= badge_for_status(ticket.current_status) %> </td>
+  <td class="text-center">
+    <div class="label label-count hidden-xs"><%= ticket.posts_count %></div>
+  </td>
+  <td> <%= last_active_time(ticket.updated_at) %> </td>
+</tr>

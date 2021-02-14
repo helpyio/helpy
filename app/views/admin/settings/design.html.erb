@@ -3,6 +3,7 @@
   <%= settings_header('design') %>
 
   <%= bootstrap_form_tag url: admin_update_design_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
+    <%= f.hidden_field 'locale', value: selected_locale %>
     <div class="settings-section design">
         <div class="row">
           <div class="col-md-1 col-sm-2 col-xs-2">

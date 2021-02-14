@@ -1,4 +1,5 @@
 <%= simple_form_for(ActsAsTaggableOn::Tag.new, url: admin_tags_path, validate: true, remote: true, :html => { role: 'form'}) do |f| %>
+  <%= f.hidden_field 'locale', value: selected_locale %>
   <span class="tag-fields">
     <div id="tag_errors" style='color:#a94442'></div>
     <%= f.input 'name', label: false, placeholder: t(:tag, default: 'Quick Add Tag') %>

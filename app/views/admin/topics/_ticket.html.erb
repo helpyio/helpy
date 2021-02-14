@@ -30,6 +30,7 @@
     <div class="add-form">
       <h4><%= t(:reply, default: 'Reply to this Topic') %>:</h4>
       <%= simple_form_for Post.new_with_cc(@topic), url: admin_topic_posts_path(@topic), remote: true, multipart: true do |f| %>
+        <%= f.hidden_field 'locale', value: selected_locale %>
         <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
 
         <%= content_tag(:div, '', class: 'fas fa-angle-down pull-right cc-bcc-toggle', role: 'button') %>
@@ -62,7 +63,7 @@
         </div>
 
         <%= f.submit t(:submit_reply), class: 'btn btn-warning disableable', disabled: false -%>
-        <label class="checkbox-inline" for "post_resolved">
+        <label class="checkbox-inline" for="post_resolved">
           <%= f.check_box :resolved, inline: true unless @topic.current_status == 'closed' %>
           <%= t(:mark_as_resolved, default: "Mark as resolved") %>
         </label>

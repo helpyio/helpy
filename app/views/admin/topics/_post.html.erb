@@ -7,7 +7,7 @@
 			<%= post_message(post,true) %>
 			<ul class="dropdown-menu dropdown-menu-left" role="menu">
 				<li><%= link_to t('edit', default: "Edit"), edit_admin_post_path(post), remote: true %></li>
-				<li><%= link_to t('convert_content', default: 'Turn post into content'), new_admin_doc_path(post_id: post.id, lang: I18n.locale) %></li>
+				<li><%= link_to t('convert_content', default: 'Turn post into content'), new_admin_doc_path(post_id: post.id, lang: selected_locale) %></li>
         <li><%= link_to t('new_discussion', default: 'Create new discussion from this'), admin_split_topic_path(topic_id: post.topic_id, post_id: post.id), method: :post, remote: true %></li>
         <li><%= link_to t('change_owner', default: 'Change author'), '#', data: { toggle: "modal", target: "#change-user-modal-#{post.id}" } %></li>
         <%= content_tag :li, link_to(t('Show Raw Email', default: 'Raw Email'), admin_post_raw_path(post), target: 'blank') if post.raw_email.present? %>
@@ -41,7 +41,8 @@
 			<div class="modal-body row">
 				<div class="col-md-12">
 					<%= bootstrap_form_tag url: admin_user_search_path, method: 'post', remote: true, html: { class: 'search_form' } do |f| -%>
-						<%= hidden_field_tag 'post_id', post.id %>
+            <%= f.hidden_field 'locale', value: selected_locale %>
+            <%= hidden_field_tag 'post_id', post.id %>
 						<%= f.text_field :user_search, skip_label: true, placeholder: 'Type users name or email', autocomplete: :off, onkeyup: "search_user(#{post.id})" -%>
 					<% end -%>
 					<div class="search-results">

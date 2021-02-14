@@ -1,6 +1,7 @@
 <div class="add-form">
   <h4><%= @posts.blank? ? t(:start_discussion) : t(:reply) %></h4>
   <%= bootstrap_form_for :post, :url => doc_comments_path(@doc) do |f| -%>
+    <%= f.hidden_field 'locale', value: selected_locale %>
     <%= f.text_area :body, rows: 8, cols: 160, skip_label: true, class: 'disable-empty' %></p>
     <%= f.hidden_field 'kind', value: 'reply' %>
 

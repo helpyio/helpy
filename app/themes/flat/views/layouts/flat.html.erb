@@ -8,7 +8,7 @@
 		<%= css_injector %>
 		<%= "#{AppSettings['design.header_js']}".html_safe %>
 	</head>
-	<body class="<%= controller_name %>-<%= action_name %>" data-locale="<%= I18n.locale %>">
+	<body class="<%= controller_name %>-<%= action_name %> <%= 'rtl' if rtl? %>" data-locale="<%= selected_locale %>">
 	<script>
 	  ga('set', 'location', location.href.split('#')[0]);
 	  ga('send', 'pageview', { "title": document.title });
@@ -21,7 +21,7 @@
 			<br/>
 			<%= content_tag :li, link_to(t(:your_tickets), tickets_path), data: { hook: 'tickets-nav' } if tickets? %>
 			<%= content_tag :li, link_to(t(:your_profile), edit_user_registration_path) if tickets? %>
-			<%= content_tag :li, link_to('Admin', admin_root_path) if current_user.is_editor? %>
+			<%= content_tag :li, link_to('Admin', admin_root_path(locale: selected_locale)) if current_user.is_editor? %>
 			<%= content_tag :li, link_to(t(:logout), destroy_user_session_path) %>
 			<br/>
 			<% else %>

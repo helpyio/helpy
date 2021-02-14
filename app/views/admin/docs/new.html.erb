@@ -7,6 +7,7 @@
 
   <div class="col-md-9 col-sm-12 main-panel">
   <%= simple_form_for([:admin, @doc], validate: true, multipart: true ) do |f| %>
+      <%= f.hidden_field 'locale', value: selected_locale %>
     <h3 class="form-subhead view-header">
       <%= t(:new_content, default: 'New Content') %>
       <small id="has-storage"></small>

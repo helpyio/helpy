@@ -1,4 +1,5 @@
 <%= form_tag admin_topic_search_path, method: :get, remote: params[:controller] == 'topics', class: 'admin-search submit-loader form-inline form-horizontal', id: 'search-form' do %>
+  <%= hidden_field_tag :locale, selected_locale %>
   <div class="form-group">
     <div class="col-xs-8 col-sm-7 col-md-7">
       <%= text_field_tag('q', nil, placeholder: t(:search, default: 'Search'), value: params[:q], class: 'form-control search-field', style: "width: 100%;" )%>

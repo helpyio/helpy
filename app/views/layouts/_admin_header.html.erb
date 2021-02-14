@@ -14,7 +14,7 @@
 .nav-color {
   color: <%= contrasting_text_color(AppSettings['branding.ticketing_color'].split('#')[1]) %>;
 }
-.brand-color: {
+.brand-color {
   color: <%= AppSettings['branding.ticketing_color'] %>;
 }
 .topic-search-container {
@@ -76,14 +76,14 @@ a.navbar-brand {
               </button>
             </div>
             <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav navbar-right pull-right hidden-xs" data-hook='admin-nav-right'>
+              <ul class="nav navbar-nav <%= rtl? ? 'navbar-left pull-left' : 'navbar-right pull-right' %> hidden-xs" data-hook='admin-nav-right'>
                 <%= content_tag(:li, '' , class: "visible-lg visible-md visible-sm hidden-xs click-loader new-discussion #{new_active_class}") do %>
                   <%= navbar_expanding_link(new_admin_topic_path, "fas fa-plus", t(:new_ticket, default: "New Ticket"), "", (params[:controller] == 'admin/topics')) if tickets? %>
                 <% end if current_user.is_agent? %>
                 <%= help_menu %>
                 <%= admin_avatar_menu %>
               </ul>
-              <ul class="nav navbar-nav navbar-left" data-hook='admin-nav-left'>
+              <ul class="nav navbar-nav <%= rtl? ? 'navbar-right' : 'navbar-left' %>" data-hook='admin-nav-left'>
                 <%= upper_nav_item(t(:inbox, default: "Inbox"), admin_topics_path,["topics"], ['index','show'], "fas fa-inbox") if (forums? || tickets?) && current_user.is_agent? %>
                 <%= upper_nav_item(t(:reports, default: 'Reports'), admin_reports_path(interval: 7), ["reports"], ['index', 'groups', 'team'], "fas fa-chart-bar") if tickets? && current_user.is_admin? %>
                 <%= upper_nav_item(t(:users, default: 'Customers'), admin_users_path(role: 'user'), ["users"], ["index","show","edit","update"], "fas fa-users") if current_user.is_agent? %>

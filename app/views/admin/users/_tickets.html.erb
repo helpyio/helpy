@@ -93,7 +93,8 @@
                   <% end %>
                   <!-- <li class="new-tag">
                     <%= form_tag '#', class: 'new-group-form', remote: true do %>
-                    <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control multiple' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
+                      <%= hidden_field_tag :locale, selected_locale %>
+                      <%= text_field_tag "new_group", '', placeholder: "Add a new group", class: 'form-control multiple' %><%#= link_to "Add", '#', class: 'btn btn-default pull-right add-new-group' %>
                     <% end %>
                   </li> -->
                   <li><%= link_to "Unassign from group", admin_assign_team_path(team: ''), remote: true, class: 'multiple-update' %></li>

@@ -25,7 +25,11 @@
       </div>
     </div>
 
-    <%= render partial: 'admin/groups/group', collection: @teams if @teams %>
+    <table class="table table-responsive tag-table">
+      <tbody>
+      <%= render partial: 'admin/groups/group', collection: @teams if @teams %>
+      </tbody>
+    </table>
   </div>
 
 <% end %>
