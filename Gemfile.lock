@@ -195,7 +195,7 @@ GEM
     email_reply_trimmer (0.1.13)
     erubi (1.9.0)
     erubis (2.7.0)
-    excon (0.78.0)
+    excon (0.80.0)
     execjs (2.7.0)
     factory_bot (5.2.0)
       activesupport (>= 4.2.0)
