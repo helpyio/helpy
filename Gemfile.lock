@@ -70,8 +70,8 @@ GEM
     attachinary (1.3.1)
       cloudinary (~> 1.1.0)
       rails (>= 3.2)
-    autoprefixer-rails (10.0.1.0)
-      execjs
+    autoprefixer-rails (10.2.5.0)
+      execjs (< 2.8.0)
     awesome_print (1.8.0)
     aws_cf_signer (0.1.3)
     bcrypt (3.1.16)
