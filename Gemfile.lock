@@ -287,7 +287,7 @@ GEM
     hitimes (2.0.0)
     htmlentities (4.3.4)
     http-accept (1.7.0)
-    http-cookie (1.0.3)
+    http-cookie (1.0.4)
       domain_name (~> 0.5)
     http_accept_language (2.1.1)
     i18n (0.9.5)
