@@ -90,7 +90,7 @@ GEM
     bootstrap-select-rails (1.12.4)
     bootstrap-switch-rails (3.3.3)
     bootstrap_form (2.7.0)
-    brakeman (4.10.0)
+    brakeman (5.0.4)
     builder (3.2.4)
     bulk_insert (1.8.1)
       activerecord (>= 3.2.0)
