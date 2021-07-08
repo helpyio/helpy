@@ -16,9 +16,11 @@ CarrierWave.configure do |config|
         provider:              'AWS',
         aws_access_key_id:     ENV['S3_KEY'],
         aws_secret_access_key: ENV['S3_SECRET'],
+        aws_signature_version: ENV['S3_SIG_VER'],
         region:                ENV['S3_REGION'],
-        # host:                's3.example.com',
-        endpoint:            ENV['S3_ENDPOINT']
+        # host:                's3.amazon.com',
+        endpoint:              ENV['S3_ENDPOINT'],
+        path_style:            ENV['S3_PATH_STYLE'],
       }
       config.fog_directory  = ENV['S3_BUCKET_NAME']
       config.fog_public     = true
