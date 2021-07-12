@@ -490,7 +490,7 @@ GEM
     rainbow (2.2.2)
       rake
     raindrops (0.19.1)
-    rake (13.0.1)
+    rake (13.0.6)
     ranked-model (0.4.1)
       activerecord (>= 3.1.12)
     rb-fsevent (0.10.4)
