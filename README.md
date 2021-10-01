@@ -51,9 +51,9 @@ We also offer a pro version with additional features designed to make your helpc
 Getting Started:
 =========
 
-**Helpy Pro - 30 Second one-click install via AWS**
+**Helpy Pro - 30 Second one-click install via DigitalOcean**
 
-You can take a 14 day free trial of the Pro version of Helpy on AWS.  This is a "one click" marketplace image and spins up a dedicated VM within 30 seconds, running Ubuntu. [Launch AWS Marketplace Image](https://aws.amazon.com/marketplace/pp/B07WCNQGZ3?ref=_ptnr_web_github)
+You can launch the free tier of Helpy Pro using the DigitalOcean Marketplace.  This "one click" marketplace image spins up a dedicated VM within 30 seconds, running Ubuntu. [Launch DigitalOcean Marketplace Image](https://marketplace.digitalocean.com/apps/helpy-pro?refcode=1368cfa70df6).  Use of all features requires either a trial or paid license code, available here: [Helpy License Center](https://support.helpy.io/orders)
 
 **Install Helpy via Docker**
 
@@ -141,6 +141,6 @@ If you have found a vulnerability or other security problem in Helpy, please *do
 License
 =======
 
-Copyright 2016-2020, Helpy.io, LLC, Scott Miller and Contributors. Helpy Core is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
+Copyright 2016-2021, Helpy.io, LLC, Scott Miller and Contributors. Helpy Core is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)
