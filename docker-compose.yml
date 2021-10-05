@@ -2,20 +2,16 @@ version: '2'
 
 services:
   frontend:
-    image: webwurst/caddy
+    image: nginx:1.15
+    container_name: nginx
     volumes:
-      - ./docker/Caddyfile:/etc/caddy/Caddyfile
-      - ./certs:/etc/caddy/certs
-    volumes_from:
-      - helpy:ro
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     networks:
       - front
     restart: always
-    depends_on:
-      - helpy
   helpy:
     build: .
     restart: always
@@ -27,6 +23,8 @@ services:
     env_file: docker/.env
     depends_on:
       - postgres
+    ports: 
+      - "3000:3000"
   postgres:
     image: postgres:9.4
     restart: always

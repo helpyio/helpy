@@ -29,8 +29,8 @@ if [[ "$RUN_PREPARE" = "false" ]]
     bundle exec rake db:seed || echo "db is already seeded"
 fi
 
-echo "starting unicorn"
+echo "starting puma"
 mkdir -p log
 touch log/production.log
 
-exec bundle exec unicorn -E production -c config/unicorn.rb
+exec bundle exec puma -C config/puma.rb
