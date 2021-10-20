@@ -46,4 +46,6 @@ USER $HELPY_USER
 
 COPY docker/database.yml $HELPY_HOME/config/database.yml
 
+EXPOSE 3000
+
 CMD ["/bin/bash", "/helpy/docker/run.sh"]
