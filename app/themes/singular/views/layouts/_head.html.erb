@@ -1,13 +1,13 @@
 <!-- <title><%= @title_tag || AppSettings['settings.site_name'] %></title> -->
 <title><%= content_for(:title) ? content_for(:title) : AppSettings['settings.site_name'] %></title>
-<!-- 
+<!--
 HELPY VERSION: <%= APP_VERSION %>
 ========================================
 Copyright (c) <%= Time.now.year %> Helpy.io, LLC, and Contributors.
 Full license at https://github.com/helpyio/helpy/blob/master/LICENSE
 
-Note: If this install is running Helpy Cloud, Bot, Pro, Chat or other 
-commercial or third party extensions those may be licensed differently. 
+Note: If this install is running Helpy Cloud, Bot, Pro, Chat or other
+commercial or third party extensions those may be licensed differently.
 See https://support.helpy.io for more information.
 
 REMOVAL OF THIS COPYRIGHT NOTICE IS EXPRESSLY PROHIBITED BY THE ABOVE
@@ -34,7 +34,7 @@ REFERENCED LICENSE
 <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
 <%= csrf_meta_tags %>
-<%= favicon_link_tag "#{AppSettings['design.favicon']}" %>
+<%= favicon_link_tag AppSettings.get_favicon %>
 <%= cloudinary_js_config %>
 
 <%= render 'layouts/google_analytics' %>
