@@ -86,7 +86,7 @@ class Admin::BaseController < ApplicationController
     else
       topics_raw = params[:team].present? ? Topic.all.tagged_with(params[:team], any: true) : Topic
     end
-    
+
     # Only include cloudinary files if enabled
     topics_raw = cloudinary_enabled? ? topics_raw.includes(user: :avatar_files).chronologic : topics_raw.includes(:user).chronologic
 
@@ -101,6 +101,10 @@ class Admin::BaseController < ApplicationController
       topics_raw = Topic.active.mine(current_user.id).chronologic
     when 'pending'
       topics_raw = Topic.pending.mine(current_user.id).chronologic
+    when 'pending_all'
+      topics_raw = Topic.pending.chronologic if current_user.is_admin?
+    when 'closed'
+      topics_raw = Topic.closed.chronologic if current_user.is_admin?
     else
       topics_raw = topics_raw.where(current_status: @status)
     end
@@ -119,10 +123,11 @@ class Admin::BaseController < ApplicationController
     @new = topics.unread.size
     @unread = topics.unread.size
     @pending = Topic.mine(current_user.id).pending.size
+    @pending_all = topics.pending.size
     @open = topics.open.size
     @active = topics.active.size
     @mine = Topic.active.mine(current_user.id).size
-    # @closed = topics.closed.count
+    @closed = topics.closed.size
     @spam = topics.spam.size
     @trash = topics.trash.size
   end
