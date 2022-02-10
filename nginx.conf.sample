@@ -1,0 +1,35 @@
+#
+server {
+
+	listen 80;
+	listen [::]:80;
+
+	root /var/www/helpy/public;
+
+	server_name _;
+
+	add_header Strict-Transport-Security "max-age=31536000" always;
+
+	passenger_enabled on;
+	rails_env production;
+
+	# Configure ENV vars to turn on remote filestore (optional)
+	# REQUIRES HELPY 2.3+
+	#passenger_env_var REMOTE_STORAGE true;
+	#passenger_env_var S3_KEY <<your-access-key>>;
+	#passenger_env_var S3_SECRET <<your-secret-key>>;
+	#passenger_env_var S3_REGION us-east-1;
+	#passenger_env_var S3_ENDPOINT https://www.example.com;
+	## passenger_env_var S3_SIG_VER 4;
+	#passenger_env_var S3_BUCKET_NAME helpy;
+	#passenger_env_var S3_PATH_STYLE true;
+
+	location ~ ^/(assets|images|javascripts|stylesheets|system)/ {
+		expires max;
+		add_header Cache-Control public;
+	}
+
+	location ~ /\.ht {
+		deny all;
+	}
+}
