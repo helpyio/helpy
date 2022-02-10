@@ -26,3 +26,57 @@ textarea.form-control {
 input.form-control {
     direction:rtl;
 }
+.datepicker {
+  right: auto !important;
+}
+ul .dropdown-menu{
+  right: auto !important;
+  left: 10px !important;
+  min-width: 130px !important;
+  width: auto !important;
+}
+
+.dropdown-menu-right{
+  right: -100px !important;
+  min-width: auto !important;
+  width: auto !important;
+}
+
+.navbar-collapse ul.navbar-nav{
+  margin-top: revert;
+}
+
+.posts, .post-body{
+  direction: rtl;
+}
+
+.post-body{
+  text-align: right;
+}
+
+.cc-bcc-toggle{
+  float: left !important;
+}
+
+.report-header span.dropdown{
+  float: left !important;
+}
+
+ul.dropdown-menu{
+  right: inherit !important;
+  left: 0px !important;
+  padding: 8px;
+}
+
+.tag-table tr td:last-child {
+  text-align: left !important;
+}
+
+.post-menu{
+  float: left;
+  padding-bottom: 15px;
+}
+
+.post-body{
+  padding-top: 20px;
+}

@@ -11,13 +11,15 @@
   <td class="name">
     <div class="more-important">
       <%= link_to h(forum.name), forum_topics_path(:forum_id => forum) -%> <%= '(private)' if forum.private? %>
-
-      <span class="label label-count pull-right"><%= forum.topics.count %></span>
     </div>
 
     <div class="less-important">
       <%= h(forum.description) -%>
     </div>
+  </td>
+
+  <td>
+    <span class="label label-count pull-right"><%= forum.topics.count %></span>
   </td>
 
   <td class="last-active last_post less-important text-right">

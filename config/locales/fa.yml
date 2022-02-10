@@ -40,6 +40,7 @@ fa:
   # Community
   forum_name: "موضوع"
   subject: &subject "عنوان"
+  message: "متن"
   last_activity: "آخرین فعالیت"
   topic: "بحث ها"
   replies: "پاسخ ها"
@@ -61,6 +62,7 @@ fa:
   # Knowledgebase
   written_by: "نوشته"
   last_edited: "آخرین ویرایش"
+  tagged: "تگ دار"
   asked_before: "سوال خود را قبل از پاسخ داده شده است؟ ما فکر می کنیم این ممکن است شبیه"
 
   # Tickets
@@ -126,6 +128,12 @@ fa:
   internal_content: محتوای داخلی
   new_ticket: تیکت جدید
   reports: گزارش ها
+  helpcenter: "مرکز پشتیبانی"
+  get_help: "کمک بگیر"
+  report_bug: "گزارش باگ"
+  suggest_feature: "پیشنهاد قابلیت"
+  shortcuts: "Keyboard Shortcuts"
+  sponsors: "اسپانسرها"
 
   # Admin main/statuses
   support_pipeline: صف پشتیبانی
@@ -151,6 +159,7 @@ fa:
   merge_confirm: آیا مطمئن هستید این تیکت‌ها را می‌خواهید ادغام کنید؟
   customer_conversation: صحبت های مشتری
   internal_ticket: تیکت داخلی
+  unassign_agent: گرفتن از پشتیبان
 
   # Discussion controls
   change_status: تغییر وضعیت
@@ -165,6 +174,9 @@ fa:
     one: "۱ پیغام انتخاب شده"
     two: "۲ پیغام انتخاب شده"
     other: "%{count} پیغام انتخاب شده"
+  mark_as: "علامت گذاری"
+  move_to: "انتقال به"
+  users_history: "سوابق کامل %{role}"
 
   # Discussion messages
   new_message: "این تیکت جدید تشخیص داده شده توسط تیم پشتیبانی"
@@ -172,7 +184,8 @@ fa:
   reopen_message: "این درخواست توسط پشتیبانی دوباره باز شد"
   closed_message: "این تیکت توسط پشتیبانی بسته شد."
   trash_message: "این تیکت پاک شده."
-  assigned_message: "این بحث منتقل شد به %{assigned_to}."
+  assigned_message: "این تیکت منتقل شد به %{assigned_to}."
+  unassigned_message: "این تیکت به کسی واگذار نشده."
   assigned_group: "این تیکت به گروه %{assigned_group} واگذار شده"
   converted_to_ticket: "این گفتگو به تیکت تبدیل شده"
   converted_to_topic: "این تیکت به بحث آزاد تبدیل شده و به انجمن %{forum_name} انتقال یافته."
@@ -270,10 +283,6 @@ fa:
   invite_message_placeholder: "پیغام اختیاری که برای کاربران فرستاده میشود"
   invite_role: "نقش کاربران دعوت شده"
   send_invite: "ارسال دعوت نامه"
-  # delete_user: "Delete User"
-  # scrub_user: "Anonymize User"
-  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
-  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
 
   # Discussion View
   asked_a_question: "%{user_name} یک سوال پرسیده..."
@@ -331,11 +340,14 @@ fa:
   # Mail messages
   new_user_subject: "خوش آمدی به %{site_name}"
   hello: "سلام %{user_name}"
+  thank_you: "مرسی!"
   new_user: "مرسی از تماس شما. پیغام شما دریافت شد توسط تیم پشتیبانی و در اسرع وقت به شما پاسخ میدیم."
   account_generated: "یک حساب کاربر برای شما ساخته شد. برای ورود از این لینک استفاده کنید"
   above_this_line: "مطمئن شوید پاسخ شما در بالا این متن می‌نویسید"
   message_id: "پیغام ID"
   message_response: "این پیغام در پاسخ به سوال شما نوشته شده:"
+  ticket_added: "شما یک تیکت جدید دریافت کردید. برای دیدن تیکت این لینک را کلیک کنید: %{ticket_link}"
+  response_added: "یک پاسخ برای تیکت شما نوشته شده. برای دیدن آن این لینک کلیک کنید: %{ticket_link}"
   view_online: "در سایت ببینید:"
 
   # Admin notifications
@@ -353,6 +365,7 @@ fa:
   # settings
   agent_settings: "تنظیمات پشتیبان"
   notifications: "اطلاع رسانی"
+  notifications_description:
   settings: "تنظیمات"
   general: "عمومی"
   general_description: "تنظیمات کلی اسم سایت، آدرس آن و غیره"
@@ -380,6 +393,7 @@ fa:
   # General
   site_name: اسم سایت
   site_url: آدرس سایت
+  site_url_placeholder: آدرس Helpy شما (https://support.yourdomain.com)
   parent_site: سایت مادر
   parent_company: شرکت مادر
   site_tagline: شعار سایت
@@ -400,6 +414,7 @@ fa:
   # Locales
   supported_locales: زبان های موجود
   default_locale: زبان پیش فرض
+  select_default_locale: "Select Default Locale..."
 
   # Widget
   show_widget: ویچت توی سایت پشتیبانی نشان بده
@@ -439,6 +454,9 @@ fa:
   mail_smtp: SMTP Server
   mail_port: SMTP Port
   mail_domain: SMTP Domain
+  spam_assassin_reject: SpamAssassin Threshold for rejecting incoming email tickets 
+  spam_assassin_filter: SpamAssassin Threshold for marking incoming tickets spam
+  email_blacklist: Automatically mark tickets from these addresses as spam (separate multiple with commas)
 
   # API Key Managmeent
   api_keys: "کلیدهای API"
@@ -477,50 +495,50 @@ fa:
   median_time: "متوسط زمان تا اولین پاسخ"
 
   # Reports
-  ticketing_reports: Ticketing Reports
-  group_report: "Group Report"
-  team_reports: "Team Reports"
-  percent_resolved: Percent Resolved
-  average_resolution_time: Average Resolution Time
-  new_tickets: New Tickets
-  new_tickets_explain: The number of new tickets your Helpy has received in this period.
-  tickets_per_day: Tickets per Day
-  tickets_per_day_explain: The number of tickets your Helpy averages per day.
-  replies_explain: The number of replies your agents have written in this period.
-  actions_explain: The total number of actions (replies or internal notes) in this period. A good indication of how busy your Helpy is overall.
-  closed_explain: The number of tickets closed during this period. Should be close to the number of new tickets for prior periods.
+  ticketing_reports: گزارش‌های تیکت ها
+  group_report: "گزارش گروه"
+  team_reports: "گزارش‌های تیم"
+  percent_resolved: درصد حل‌ شده
+  average_resolution_time: متوسط زمان حل شدن
+  new_tickets: تیکت‌های جدید
+  new_tickets_explain: تعداد تیکت‌های جدیدی که در این مدت در این Helpy دریافت شده.
+  tickets_per_day: تهداد تیکت در روز
+  tickets_per_day_explain: متوسط تعداد تیکت‌هایی که در روز در این Helpy گرفتید.
+  replies_explain: تعداد پاسخ‌هایی که پشتیبان‌های شما در این بازه زمانی نوشتند.
+  actions_explain: تعداد کل اقداماتی (پاسخ ها یا توضیحات داخلی) که در این بازه انجام شده است. چوب خط خوبی برای اینکه ببینید Helpy شما چقدر شلوغ هست.
+  closed_explain: تعداد تیکت‌هایی که در این بازه بسته شده است. باید تعدادش نزدیک تعداد تیکت‌های جدید باشد.
 
   # IMPORT/EXPORT
   file_type: Type
-  file_users: Users
-  file_tickets: Tickets
-  file_replies: Replies
+  file_users: کاربران
+  file_tickets: تیکت‌ها
+  file_replies: پاسخ‌ها
   file_docs: Docs
-  file_categories: Categories
-  file_forums: Forums
+  file_categories: دسته بندی‌ها
+  file_forums: انجمن ها
   import: 'Import CSV'
   new_import: 'New Import'
   export: 'Export CSV'
-  what_to_export: 'Select what you would like to export'
-  what_to_import: 'Select what you would like to import'
+  what_to_export: 'چیزهایی که می‌خواهید export بگیرید انتخاب کنید'
+  what_to_import: 'چیزهایی که می‌خواهید import بگیرید انتخاب کنید'
   imports: 'Imports'
   exports: 'Exports'
   past_imports: 'Previous Imports'
   run_time: 'Run Time'
   clear_all: 'Remove All'
-  error_details: 'Error Details'
-  row_number: 'Row Number'
-  error_message: 'Error Message'
+  error_details: 'جزییات ارور'
+  row_number: 'شماره ردیف'
+  error_message: 'پیغام خطا'
   object: 'Object'
-  import_details: '#%{id} Import Details'
+  import_details: '#%{id} Import جزییات'
   select_for_export: 'Export %{model} to .csv'
-  file_date_created: Date Created
+  file_date_created: تاریخ ساخت
   import_total_submitted: Total Submitted Records
   import_total_created: Total Created Records
-  file_name: File Name
-  file_download: Download
-  file_delete: Delete
-  file_delete_confirm: "Are you sure you want to delete this .csv?"
+  file_name: نام فایل
+  file_download: دانلود
+  file_delete: پاک کنید
+  file_delete_confirm: "مطمئنی هستید این فایل .csv پاک کنید؟"
 
   kind_type: &kind Type
 
@@ -540,6 +558,8 @@ fa:
         signature: "امضاء"
         title: عنوان
         time_zone: منطقه زمانی
+        street: خیابان
+        notes: توضیحات
       topic:
         kind: *kind
         name: *subject
@@ -557,6 +577,7 @@ fa:
         attachments: ضمیمه
       category:
         name: نام
+        parent_id: دسته بندی مادر
         icon: آیکون
         keywords: کلمات کلیدی
         title_tag: نگ عنوان

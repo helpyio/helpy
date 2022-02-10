@@ -26,6 +26,7 @@ REFERENCED LICENSE
 
 <%#= stylesheet_link_tag 'application', "data-turbolinks-track" => true %>
 <%= stylesheet_link_tag 'nordic/all', "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag "nordic/rtl", "data-turbolinks-track" => true if rtl? %>
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "nordic/all", "data-turbolinks-track" => true %>
 <%= timeago_script_tag %>
