@@ -33,6 +33,8 @@ module API
               current_status: permitted_params[:status]
             )
           end
+          #binding.pry
+          params[:per_page]=1
           present paginate(topics), with: Entity::Topic
         end
 
@@ -50,6 +52,7 @@ module API
           else
             topics = Forum.find(1).topics.where(user_id: permitted_params[:user_id]).all
           end
+          params[:per_page]=1
           present paginate(topics), with: Entity::Topic
         end
 

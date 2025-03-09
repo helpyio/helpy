@@ -1,9 +1,9 @@
-FROM ruby:2.5
+FROM ruby:2.6.10
 
 ENV RAILS_ENV=production \
     HELPY_HOME=/helpy \
     HELPY_USER=helpyuser \
-    HELPY_SLACK_INTEGRATION_ENABLED=true \
+    HELPY_SLACK_INTEGRATION_ENABLED=false \
     BUNDLE_PATH=/opt/helpy-bundle
 
 RUN apt-get update \
@@ -16,6 +16,10 @@ RUN useradd --no-create-home $HELPY_USER \
   && mkdir -p $HELPY_HOME $BUNDLE_PATH \
   && chown -R $HELPY_USER:$HELPY_USER $HELPY_HOME $BUNDLE_PATH
 
+RUN gem update --system 3.3.22 
+RUN gem install ffi -v 1.17.1
+RUN gem install bundler -v 2.4.22
+
 WORKDIR $HELPY_HOME
 
 COPY Gemfile Gemfile.lock $HELPY_HOME/
@@ -27,8 +31,8 @@ USER $HELPY_USER
 
 # add the slack integration gem to the Gemfile if the HELPY_SLACK_INTEGRATION_ENABLED is true
 # use `test` for sh compatibility, also use only one `=`. also for sh compatibility
-RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
-    && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
+# RUN test "$HELPY_SLACK_INTEGRATION_ENABLED" = "true" \
+#    && sed -i '128i\gem "helpy_slack", git: "https://github.com/helpyio/helpy_slack.git", branch: "master"' $HELPY_HOME/Gemfile
 
 RUN bundle install --without test development
 

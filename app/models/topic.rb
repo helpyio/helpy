@@ -27,7 +27,7 @@
 #  priority         :integer          default(1)
 #
 
-class Topic < ActiveRecord::Base
+class Topic < ApplicationRecord
 
   include SentenceCase
   include Hashid::Rails

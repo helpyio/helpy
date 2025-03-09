@@ -9,8 +9,8 @@
 
 <%- title "#{AppSettings['settings.site_name']}: #{@page_title}" %>
 <script>
-  var whitelist = [<%= extension_whitelist.html_safe %>];
-  var blacklist = [<%= extension_blacklist.html_safe %>];
+  var whitelist = [<%= extension_allowlist.html_safe %>];
+  var blacklist = [<%= extension_denylist.html_safe %>];
 </script>
 <div id="ticket-info" class="row">
   <div class="col-md-3 col-sm-3 hidden-xs" id="left-col-user-info">

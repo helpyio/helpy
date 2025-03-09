@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "locales#redirect_on_locale"
 
   devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
@@ -14,6 +13,12 @@ Rails.application.routes.draw do
 
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
+
+  # Onboarding Routes
+  get '/onboarding/index' => 'onboarding#index', as: :onboarding
+  patch '/onboarding/update_user' => 'onboarding#update_user', as: :onboard_user
+  patch '/onboarding/update_settings' => 'onboarding#update_settings', as: :onboard_settings
+  get '/onboarding/complete' => 'onboarding#complete', as: :complete_onboard
 
   localized do
 
@@ -169,6 +174,7 @@ Rails.application.routes.draw do
       resources :posts
     end
     resources :posts
+
     
     get '/posts/:id/raw' => 'posts#raw', as: :post_raw
     get '/dashboard' => 'dashboard#index', as: :dashboard

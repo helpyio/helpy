@@ -60,7 +60,7 @@
 #  priority               :string           default("normal")
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable
   devise :invitable, :database_authenticatable, :registerable,

@@ -12,7 +12,7 @@
 #   ### Topic Views
 #
 #   test 'an admin should be able to see a list of topics via standard request' do
-#     get :tickets, { status: 'open' }
+#     get :tickets, params: { status: 'open' }
 #     assert_not_nil assigns(:topics)
 #     assert_template 'tickets'
 #     assert_response :success
@@ -27,7 +27,7 @@
 #
 #   test 'an admin should be able to see a specific topic of each type via standard request' do
 #     [3,7].each do |topic_id|
-#       get :ticket, { id: topic_id }
+#       get :ticket, params: { id: topic_id }
 #       assert_not_nil assigns(:topic)
 #       assert_template 'ticket'
 #       assert_response :success

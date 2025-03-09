@@ -69,13 +69,13 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should not be able to load the finish_signup page" do
-    get :finish_signup, id: 3, locale: :en
+    get :finish_signup, params: { id: 3, locale: "en" }
     assert_redirected_to new_user_session_path
   end
 
   test "a signed in user should not be able to load the finish_signup page for another user" do
     sign_in users(:user)
-    get :finish_signup, id: 3, locale: :en
+    get :finish_signup, params: { id: 3, locale: "en" }
     assert_redirected_to new_user_session_path
   end
 
@@ -92,7 +92,7 @@ class UsersControllerTest < ActionController::TestCase
       provider: 'twitter'
     )
 
-    get :finish_signup, locale: :en
+    get :finish_signup, params: { locale: "en" }
     assert_response :success
   end
 
@@ -109,7 +109,7 @@ class UsersControllerTest < ActionController::TestCase
       provider: 'twitter'
     )
 
-    patch :finish_signup, { user: { email: "new@email.com", name: "test user" }, locale: :en }
+    patch :finish_signup, params: { user: { email: "new@email.com", name: "test user" }, locale: "en" }
 
     # Reload the user to pick up the changes
     u.reload

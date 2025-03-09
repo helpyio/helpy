@@ -62,7 +62,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
 
   Devise.omniauth_providers.each do |provider|
     test "#{provider} login: is redirected to provider" do
-      post "/users/auth/#{provider}"
+      post "/users/auth/#{provider}", params: {}
       assert_response :redirect
     end
 
@@ -70,7 +70,7 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
       @auth_hash = {:uid => '12345', :info => {:name => "A #{provider} user", :email => 'joe@example.com'}}
       OmniAuth.config.add_mock(provider, @auth_hash)
 
-      post "/users/auth/#{provider}/callback"
+      post "/users/auth/#{provider}/callback", params: {}
       assert_redirected_to root_path
     end
 
@@ -78,18 +78,18 @@ class SignInFlowTest < ActionDispatch::IntegrationTest
       @auth_hash = {:uid => '12345', :info => {:name => "A #{provider} email-less user"}}
       OmniAuth.config.add_mock(provider, @auth_hash)
 
-      post "/users/auth/#{provider}/callback"
+      post "/users/auth/#{provider}/callback", params: {}
       assert_redirected_to finish_signup_path
     end
   end
 
   test "Unknown provider leads to 404" do
     assert_raise ActionController::RoutingError do
-      get "/users/auth/unknown"
+      get "/users/auth/unknown", params: {}
     end
 
     assert_raise ActionController::RoutingError do
-      post "/users/auth/unknown/callback"
+      post "/users/auth/unknown/callback", params: {}
     end
   end
 

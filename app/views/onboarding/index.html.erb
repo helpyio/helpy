@@ -1,0 +1,153 @@
+<% title "#{admin_title} #{t(:welcome_to_helpy, default: 'Welcome to Helpy!')}" %>
+
+<style>
+  a.btn {
+    padding-top: 20px;
+  }
+
+  .bootstrap-switch {
+    float: right;
+    margin-left: 20px;
+    border-radius: 50px;
+  }
+
+  .bootstrap-switch-label {
+    border-radius: 50px;
+  }
+
+  .bootstrap-switch-on {
+    background-color: #528BC5;
+    border: 1px solid #528BC5;
+  }
+
+  .bootstrap-switch-off {
+    background-color: #eee;
+  }
+
+  .btn,
+  input,
+  select {
+    min-height: 60px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+
+  h3 {
+    font-weight: bold;
+  }
+</style>
+
+<script>
+  ga('create', 'UA-50151-26', 'auto', 'installPinger');
+  ga('installPinger.send', 'pageview', { 'title': 'Onboard Started: ' + Helpy.domain });
+</script>
+
+<%# content_for :leftcol do %>
+<div id="panel-1" class="onboard-panel text-center">
+  <div class="onboard-message">
+    <h2><%= t(:welcome_to_helpy, default: "Welcome to Helpy!") %></h2>
+    <%= content_tag :h4, "" %>
+    <h4><%#= t(:around_the_globe, default: "All around the globe, companies like yours are using Helpy to provide better customer service and support. It's exciting to have you on board!") %></h4>
+  </div>
+  <%= image_tag 'collage3.png', width: '100%' %>
+  <hr/>
+  <div class="row">
+    <div class="what-is-it col-md-6 text-left">
+      <%= content_tag :p, "Helpy is a complete platform for managing your organizations customer support.  It includes a support ticketing helpdesk and customer facing helpcenter with knowlege base, FAQs and customer forums." %>
+    </div>
+    <div class="onboard-submit-section col-md-6">
+      <%= link_to t(:start_setup, default: "Let's set up your Helpy"), '#', class: 'btn btn-primary panel-link', 
+            data: { panel: 2 }, onclick: "$('#edit_user_1').enableClientSideValidations();" %>
+    </div>
+  </div>
+</div>
+<%# end %>
+
+<div id="panel-2" class="onboard-panel hidden text-center">
+  <div class="onboard-message">
+    <h2><%= t(:login_setup, default: "Create your administrator account")%></h2>
+    <p>Enter your email address, name and password for your first administrator.</p>
+  </div>
+  <div class="edit-admin text-left">
+    <%= simple_form_for(@user, url: onboard_user_path(id: @user.id), method: 'patch', validate: true, remote: true) do |f| %>
+    <%= f.input :email, value: nil, validate: true %>
+    <%= f.input :name, value: '' %>
+    <%= f.input :company, value: '' %>
+    <%= f.input :password, value: '', validate: true %>
+    <%= f.input :password_confirmation, autocomplete: "off", validate: true  %>
+    <%= f.hidden_field :admin, value: 'true' %>
+    <div class="onboard-submit-section">
+      <%= f.submit t("save_changes"), class: 'btn btn-warning' %>&nbsp;<%= link_to t(:skip, default: "Skip for now"), '#', class: 'btn btn-default panel-link', data: { panel: 3, confirm: "If you skip this step, your default username will be admin@test.com and default password '12345678'." } %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="panel-3" class="onboard-panel text-center hidden">
+  <div class="onboard-message">
+    <h2><%= t(:lets_customize, default: "Great! Lets Customize your Helpdesk") %>!</h2>
+  </div>
+  <div class="text-left settings-section">
+  <%= bootstrap_form_tag url: onboard_settings_path, method: 'patch', remote: true do |f| %>
+    <%= f.text_field 'settings.site_name', label: t('site_name', default: "Site Name"), placeholder: t(:site_name_placeholder, default: 'Typically your product name and support.') %>
+    <%= f.text_field 'settings.site_url', label: t('site_url', default: "Site URL"), placeholder: t(:site_url_placeholder, default: 'The URL of your Helpy (https://support.yourdomain.com)', type: 'url') %>
+    <%= f.text_field 'settings.parent_site', label: t('parent_site', default: "Parent Site"), placeholder: t(:parent_site_placeholder, default: 'This is your main website. Helpy will link back to it.') %>
+    <%= f.text_field 'settings.parent_company', label: t('parent_company', default: "Parent Company"), placeholder: t(:parent_company_placeholder, default: 'This is your main company.') %>
+
+    <%= hidden_field_tag 'nextpanel', 4 %>
+    <div class="onboard-submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>&nbsp;<%= link_to t(:skip, default: "Skip for now"), '#', class: 'btn btn-default panel-link', data: { panel: 4 } %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<div id="panel-4" class="onboard-panel text-center hidden">
+  <%= bootstrap_form_tag url: onboard_settings_path, method: 'patch', remote: false do |f| %>
+  <div class="onboard-message">
+    <h2><%= t(:configure_email, default: "Configure inbound and outbound email") %>!</h2>
+  </div>
+  <div class="onboard-submit-section text-left">
+    <div class="settings-section email" data-hook="admin_settings_email">
+      <%= f.select 'email.mail_service',
+            options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']),
+            label: t('mail_service', default: "Inbound Mail Service Provider") %>
+    
+      <%= f.form_group 'email.send_email', label: { text: t('send_email', default: "Enable Outbound (SMTP) Email") }, class: 'send-email-toggle' do %>
+      <%= f.radio_button 'email.send_email', false, label: t('boolean_no', default: "No"), checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
+      <%= f.radio_button 'email.send_email', true, label: t('boolean_yes', default: "Yes"), checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
+      <% end %>
+      <div class="smtp-settings <%= "hidden" if "#{AppSettings['email.send_email']}" == 'false' %>">
+        <%= f.text_field 'email.admin_email', value: AppSettings['email.admin_email'], label: t('admin_email', default: "Admin Email"), validate: { presence: true } %>
+        <%= f.text_field 'email.from_email', value: AppSettings['email.from_email'], label: t('from_email', default: "From Email"), type: 'email' %>
+        <%= f.text_field 'email.smtp_mail_username', value: AppSettings['email.smtp_mail_username'], label: t('smtp_mail_username', default: "SMTP Username") %>
+        <%= f.password_field 'email.smtp_mail_password', value: AppSettings['email.smtp_mail_password'], label: t('smtp_mail_password', default: "SMTP Password") %>
+        <%= f.text_field 'email.mail_smtp', value: AppSettings['email.mail_smtp'], label: t('mail_smtp', default: "SMTP Server") %>
+        <%= f.text_field 'email.mail_port', value: AppSettings['email.mail_port'], label: t('mail_port', default: "SMTP Port") %>
+        <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: t('mail_domain', default: "SMTP Domain") %>
+        <%= f.check_box 'send_test', { checked: true, label: t('send_test_email', default: "Send a test email to administrators"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
+    
+      </div>
+    </div>
+    <div class="submit-section">
+      <%= f.submit "Save Settings", class: 'btn btn-warning' %>&nbsp;<%= link_to t(:skip, default: "Skip for now"), complete_onboard_path, class: 'btn btn-default' %>
+
+    </div>
+
+  </div>
+  <% end %>
+
+</div>
+
+<script>
+$(document).ready(function(){
+  $('#edit_user_1').enableClientSideValidations();
+});
+</script>
+

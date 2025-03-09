@@ -42,8 +42,8 @@
         $(document).ready(function(){
           Helpy.showGroup();
         });
-        var whitelist = [<%= extension_whitelist.html_safe %>];
-        var blacklist = [<%= extension_blacklist.html_safe %>];
+        var whitelist = [<%= extension_allowlist.html_safe %>];
+        var blacklist = [<%= extension_denylist.html_safe %>];
       </script>
       <% end %>
       

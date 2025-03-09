@@ -9,24 +9,24 @@ class OnboardingControllerTest < ActionController::TestCase
 
   # Admin tests
   test "a new admin should be able to view the onboarding process" do
-    get :index, locale: :en
+    get :index, params: { locale: "en" }
     assert_response :success
   end
 
   test "an admin who has already completed the onboard should not see the onboard process" do
     AppSettings['onboarding.complete'] = '1'
-    get :index
+    get :index, params: {}
     assert_redirected_to complete_onboard_path
   end
 
   test "a new admin should be able to update the name and domain of their helpy" do
 
-    xhr :patch, :update_settings,
+    patch :update_settings, params: {
       'settings.site_name' => 'Helpy Support 2',
       'settings.site_url' => 'http://support.site.com',
       'settings.parent_site' => 'http://helpy.io/2',
       'settings.parent_company' => 'Helpy 2'
-
+    }, xhr: true
     assert_response :success
     assert_equal 'Helpy Support 2', AppSettings['settings.site_name']
     assert_equal 'http://support.site.com', AppSettings['settings.site_url']
@@ -35,13 +35,13 @@ class OnboardingControllerTest < ActionController::TestCase
   end
 
   test "a new admin should be able to update their email and password" do
-    xhr :patch, :update_user, {
+    patch :update_user, params: {
       user: {
         name: "something",
         email: "something@test.com",
         company: "company",
         password: "12345678" }
-    }
+    }, xhr: true
 
     user = User.find(1)
     assert user.name == "something", "name does not update"

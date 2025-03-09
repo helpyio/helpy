@@ -26,9 +26,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # their email address and then returned to the home page
 
     @user = user
-    if !env['omniauth.auth'].email.present? && @user.email == @user.temp_email(env['omniauth.auth'])
+    if !request.env['omniauth.auth'].email.present? && @user.email == @user.temp_email(request.env['omniauth.auth'])
       # @user = user
-      session['omniauth_uid'] = env['omniauth.auth'].uid
+      session['omniauth_uid'] = request.env['omniauth.auth'].uid
 
       @page_title = "Please complete your signup"
       # render "users/finish_signup"
@@ -39,7 +39,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def user
-    User.find_for_oauth(env['omniauth.auth'])
+    User.find_for_oauth(request.env['omniauth.auth'])
   end
 
 

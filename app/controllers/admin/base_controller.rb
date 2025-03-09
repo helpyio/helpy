@@ -32,7 +32,8 @@ class Admin::BaseController < ApplicationController
   end
   helper_method :darken_color
 
-  protected
+  # FIX ME: Seems that with Rails 5 having these method marked as protected is causing failures.
+  #protected
 
   # These 3 methods provide feature authorization for admins. Editor is the most restricted,
   # agent is next and admin has access to everything:

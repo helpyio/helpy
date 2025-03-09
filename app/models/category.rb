@@ -19,7 +19,7 @@
 #  visibility       :string           default("all")
 #
 
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
 
   include SentenceCase
 
@@ -57,6 +57,7 @@ class Category < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}" unless name.nil?
   end
+ 
 
   def read_translated_attribute(name)
     globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)

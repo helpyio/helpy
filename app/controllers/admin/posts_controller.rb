@@ -69,7 +69,7 @@ class Admin::PostsController < Admin::BaseController
 
     @topic = @post.topic
     @posts = @topic.posts.chronologic
-
+#binding.pry
     if @post.update_attributes(post_params)
       update_topic_owner(old_user, @post) if @post.first?
       respond_to do |format|

@@ -30,8 +30,8 @@ AppSettings.defaults['settings.include_ticket_body'] = '1'
 AppSettings.defaults['settings.default_private'] = '0'
 AppSettings.defaults['settings.anonymous_access'] = '0'
 AppSettings.defaults['settings.anonymous_salt'] = 'salt'
-AppSettings.defaults['settings.extension_whitelist'] = ''
-AppSettings.defaults['settings.extension_blacklist'] = 'ade, adp, apk, appx, appxbundle, bat, cab, chm, cmd, com, cpl, dll, dmg, exe, hta, ins, isp, iso, jar, js, jse, lib, lnk, mde, msc, msi, msix, msixbundle, msp, mst, nsh, pif, ps1, scr, sct, .shb, sys, vb, vbe, vbs, vxd, wsc, wsf, wsh'
+AppSettings.defaults['settings.extension_allowlist'] = ''
+AppSettings.defaults['settings.extension_denylist'] = 'ade, adp, apk, appx, appxbundle, bat, cab, chm, cmd, com, cpl, dll, dmg, exe, hta, ins, isp, iso, jar, js, jse, lib, lnk, mde, msc, msi, msix, msixbundle, msp, mst, nsh, pif, ps1, scr, sct, .shb, sys, vb, vbe, vbs, vxd, wsc, wsf, wsh'
 
 # Webhook Integrations
 
@@ -102,3 +102,19 @@ AppSettings.defaults['cloudinary.enabled'] = '0'
 AppSettings.defaults['cloudinary.cloud_name'] = ''
 AppSettings.defaults['cloudinary.api_key'] = ''
 AppSettings.defaults['cloudinary.api_secret'] = ''
+
+# Onboarding 
+AppSettings.defaults["onboarding.complete"] = "0"
+
+# IMAP
+AppSettings.defaults["email.imap_server"] = Settings.imap_server
+AppSettings.defaults["email.imap_username"] = Settings.imap_username
+AppSettings.defaults["email.imap_password"]= Settings.imap_password
+AppSettings.defaults["email.imap_security"]= Settings.imap_security
+AppSettings.defaults["email.imap_port"]= Settings.imap_port
+
+AppSettings.defaults["email.pop3_server"] = Settings.pop3_server
+AppSettings.defaults["email.pop3_username"] = Settings.pop3_username
+AppSettings.defaults["email.pop3_password"] = Settings.pop3_password
+AppSettings.defaults["email.pop3_security"]= Settings.pop3_security
+AppSettings.defaults["email.pop3_port"]= Settings.pop3_port

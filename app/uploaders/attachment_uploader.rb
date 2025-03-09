@@ -21,12 +21,12 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
   
-  def extension_blacklist
-    AppSettings['settings.extension_blacklist'].split(',').map(&:strip) if AppSettings['settings.extension_blacklist'].present?
+  def extension_denylist
+    AppSettings['settings.extension_denylist'].split(',').map(&:strip) if AppSettings['settings.extension_denylist'].present?
   end
 
-  def extension_whitelist
-    AppSettings['settings.extension_whitelist'].split(',').map(&:strip) if AppSettings['settings.extension_whitelist'].present?
+  def extension_allowlist
+    AppSettings['settings.extension_allowlist'].split(',').map(&:strip) if AppSettings['settings.extension_allowlist'].present?
   end
 
 end

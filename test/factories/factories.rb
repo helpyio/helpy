@@ -104,35 +104,43 @@ FactoryBot.define do
 
     trait :with_attachment do
       attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        })
+        # https://stackoverflow.com/questions/50324715/error-no-implicit-conversion-of-hash-into-string-on-using-racktestuploadedf
+        Rack::Test::UploadedFile.new(File.new( Rails.root.join("test/fixtures/files/logo.png")), 'logo.png')
+        # Rack::Test::UploadedFile.new({
+        #   filename: 'logo.png',
+        #   type: 'image/png',
+        #   tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
+        # })
       ]}
     end
 
     trait :with_invalid_attachment do
       attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'test.odt',
-          tempfile: File.new(Rails.root.join("test/fixtures/test.odt"))
-        })
+        # https://stackoverflow.com/questions/50324715/error-no-implicit-conversion-of-hash-into-string-on-using-racktestuploadedf
+        Rack::Test::UploadedFile.new(File.new(Rails.root.join("test/fixtures/test.odt")), 'test.odt')
+        # Rack::Test::UploadedFile.new({
+        #   filename: 'test.odt',
+        #   tempfile: File.new(Rails.root.join("test/fixtures/test.odt"))
+        # })
       ]}
     end
 
     trait :with_multiple_attachments do
       attachments {[
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        }),
-        ActionDispatch::Http::UploadedFile.new({
-          filename: 'logo.png',
-          type: 'image/png',
-          tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
-        })
+        # https://stackoverflow.com/questions/50324715/error-no-implicit-conversion-of-hash-into-string-on-using-racktestuploadedf
+        Rack::Test::UploadedFile.new(File.new( Rails.root.join("test/fixtures/files/logo.png")), 'logo.png'),
+        # Rack::Test::UploadedFile.new({
+        #   filename: 'logo.png',
+        #   type: 'image/png',
+        #   tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
+        # }),
+        # https://stackoverflow.com/questions/50324715/error-no-implicit-conversion-of-hash-into-string-on-using-racktestuploadedf
+        Rack::Test::UploadedFile.new(File.new( Rails.root.join("test/fixtures/files/logo.png")), 'logo.png'),
+        # Rack::Test::UploadedFile.new({
+        #   filename: 'logo.png',
+        #   type: 'image/png',
+        #   tempfile: File.new( Rails.root.join("test/fixtures/files/logo.png"))
+        # })
       ]}
     end
   end

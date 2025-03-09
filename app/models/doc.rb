@@ -24,7 +24,7 @@
 #  attachments      :string           default([]), is an Array
 #
 
-class Doc < ActiveRecord::Base
+class Doc < ApplicationRecord
 
   include SentenceCase
 
@@ -77,6 +77,7 @@ class Doc < ActiveRecord::Base
     return "#{id}-missing-title" if title.nil?
     "#{id}-#{title.parameterize}"
   end
+
 
   def read_translated_attribute(name)
     if globalize.stash.contains?(Globalize.locale, name)

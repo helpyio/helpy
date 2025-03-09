@@ -36,7 +36,7 @@ class ResetPasswordTest < ActionDispatch::IntegrationTest
 
     # check to ensure mailer sends reset password email
     assert_difference('ActionMailer::Base.deliveries.count', 1) do
-      post user_password_path, user: {email: @user.email}
+      post user_password_path, params: { user: {email: @user.email} }
       assert_redirected_to new_user_session_path
     end
 

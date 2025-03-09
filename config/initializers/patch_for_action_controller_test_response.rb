@@ -9,6 +9,6 @@ if RUBY_VERSION>='2.6.0'
       end
     end
   else
-    logger.info("Monkeypatch for ActionController::TestResponse no longer needed. Remove from config/initializers")
+    Rails.logger.info("Monkeypatch for ActionController::TestResponse no longer needed. Remove from config/initializers")
   end
 end

@@ -10,6 +10,6 @@
 #  updated_at         :datetime         not null
 #
 
-class Flag < ActiveRecord::Base
+class Flag < ApplicationRecord
   belongs_to :post
 end

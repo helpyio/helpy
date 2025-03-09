@@ -4,9 +4,23 @@
 
   <%= bootstrap_form_tag url: admin_update_email_settings_path, method: 'put', multipart: true, authenticity_token: true do |f| %>
     <div class="settings-section email" data-hook="admin_settings_email">
-      <%= f.select 'email.mail_service',
-        options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost']], AppSettings['email.mail_service']),
-        label: t('mail_service', default: "Inbound Mail Service Provider") %>
+      <%= f.select 'email.mail_service', options_for_select([['Mailgun', 'mailgun'],['Sendgrid', 'sendgrid'],['Mandrill','mandrill'],['Postmark','postmark'],['Sparkpost','sparkpost'],['POP3','pop3'], ['IMAP','imap']], AppSettings['email.mail_service']), label: "Inbound Mail Service Provider" %>
+      <div class="pop3-settings <%= "hidden" if "#{AppSettings['email.mail_service']}" != 'pop3' %>">
+        <p>POP3 will require run 'rake helpy:mailman'. Also changes will require a restart of the rake task</p>
+        <%= f.text_field 'email.pop3_server', value: AppSettings['email.pop3_server'], label: "POP3 Host" %>
+        <%= f.text_field 'email.pop3_username', value: AppSettings['email.pop3_username'], label: "POP3 Login" %>
+        <%= f.password_field 'email.pop3_password', value: AppSettings['email.pop3_password'], label: "POP3 Password" %>
+        <%= f.select 'email.pop3_security', options_for_select([['None', ''],['SSL', 'ssl'],['StartTLS','starttls']], AppSettings['email.pop3_security']), label: "POP3 Security" %>
+        <%= f.text_field 'email.pop3_port', value: AppSettings['email.pop3_port'], label: "POP3 Port (if empty use default port)" %>
+      </div>
+      <div class="imap-settings <%= "hidden" if "#{AppSettings['email.mail_service']}" != 'imap' %>">
+        <p>IMAP will require run 'rake helpy:mailman'. Also changes will require a restart of the rake task</p>
+        <%= f.text_field 'email.imap_server', value: AppSettings['email.imap_server'], label: "IMAP Host" %>
+        <%= f.text_field 'email.imap_username', value: AppSettings['email.imap_username'], label: "IMAP Login" %>
+        <%= f.password_field 'email.imap_password', value: AppSettings['email.imap_password'], label: "IMAP Password" %>
+        <%= f.select 'email.imap_security', options_for_select([['None', ''],['SSL', 'ssl'],['StartTLS','starttls']], AppSettings['email.imap_security']), label: "IMAP Security" %>
+        <%= f.text_field 'email.imap_port', value: AppSettings['email.imap_port'], label: "IMAP Port (if empty use default port)" %>
+      </div>
       <%= f.form_group 'email.send_email', label: { text: t('send_email', default: "Enable Outbound (SMTP) Email") }, class: 'send-email-toggle' do %>
         <%= f.radio_button 'email.send_email', false, label: t('boolean_no', default: "No"), checked: "#{AppSettings['email.send_email']}" == 'false', class: 'send-email' %>
         <%= f.radio_button 'email.send_email', true, label: t('boolean_yes', default: "Yes"), checked: "#{AppSettings['email.send_email']}" == 'true', class: 'send-email' %>
@@ -20,7 +34,6 @@
         <%= f.text_field 'email.mail_port', value: AppSettings['email.mail_port'], label: t('mail_port', default: "SMTP Port") %>
         <%= f.text_field 'email.mail_domain', value: AppSettings['email.mail_domain'], label: t('mail_domain', default: "SMTP Domain") %>
         <%= f.check_box 'send_test', { checked: true, label: t('send_test_email', default: "Send a test email to administrators"), label_class: 'full-width', class: 'bs-toggle', data: { size: 'mini' } } %>
-
       </div>
     </div>
     <div class="settings-section spam-protection" data-hook="spam_protection">

@@ -17,7 +17,7 @@
 #  raw_email   :text
 #
 
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
 
   # This is used to skip the callbacks when importing (ie. we don't want to send
   # emails to everyone while importing)

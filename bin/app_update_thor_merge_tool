@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Gotten from
+# https://davidrunger.com/blog/using-vs-code-as-a-rails-app-update-merge-tool
+#
+# To use, run the following when doing rails app:update
+# THOR_MERGE=/workspaces/helpy/bin/app_update_thor_merge_tool bin/rails app:update
+
+RAILS_DEFAULT_CONFIG=$1
+APP_CURRENT_CONFIG=$2
+
+mkdir -p /tmp/rails-app-update
+PATH2=$(mktemp "/tmp/rails-app-update/current_XXXX.rb")
+BASE=$(mktemp "/tmp/rails-app-update/base_XXXX.rb")
+
+cp "$APP_CURRENT_CONFIG" "$PATH2"
+cp "$APP_CURRENT_CONFIG" "$BASE"
+
+code --merge "$RAILS_DEFAULT_CONFIG" "$PATH2" "$BASE" "$APP_CURRENT_CONFIG" --wait
+rm "$RAILS_DEFAULT_CONFIG"
+
+bash 'THOR_MERGE=/workspaces/helpy/bin/app_update_thor_merge_tool bin/rails app:update'

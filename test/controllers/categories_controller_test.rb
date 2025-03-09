@@ -27,7 +27,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "a browsing user in the default locale should be able to load the index and see categories" do
-    get :index, locale: :en
+    get :index, params: { locale: "en" }
     assert_response :success
 
     # Should see at least once category
@@ -38,7 +38,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "a browsing user should not be able to load the index and see common replies" do
-    get :index, locale: :en
+    get :index, params: { locale: "en" }
     assert_response :success
 
     # Should see at least once category
@@ -46,7 +46,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "a browsing user in a locale without translations should be able to load the index and should see no categories" do
-    get :index, locale: :fr
+    get :index, params: { locale: "fr" }
     assert_response :success
 
     # Make sure nothing here message shown
@@ -54,7 +54,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
 
   test "a browsing user in the default locale should be able to see a category page" do
-    get :show, id: 1, locale: :en
+    get :show, params: { id: 1, locale: "en" }
     assert_response :success
 
     # should be able to see Documents
@@ -63,20 +63,20 @@ class CategoriesControllerTest < ActionController::TestCase
 
   test "a browsing user should not be able to load the index if KB features are not enabled" do
     AppSettings['settings.knowledgebase'] = "0"
-      get :index, locale: :en
+      get :index, params: { locale: "en" }
       assert_response :redirect 
       assert_equal(response.redirect_url, root_url)
   end
 
   test "a browsing user should not be able to see a category page if KB features are not enabled" do
     AppSettings['settings.knowledgebase'] = "0"
-      get :show, id: 1, locale: :en
+      get :show, params: { id: 1, locale: "en" }
       assert_response :redirect 
       assert_equal(response.redirect_url, root_url)
   end
 
   test "a browsing user should NOT be able to see the common replies category page" do
-    get :show, id: 5, locale: "en"
+    get :show, params: { id: 5, locale: "en" }
     assert_response :redirect
   end
 

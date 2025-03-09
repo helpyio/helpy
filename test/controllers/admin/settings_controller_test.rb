@@ -10,7 +10,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to load the settings' do
     sign_in users(:admin)
-    get :index
+    get :index, params: {}
     assert_response :success
   end
 
@@ -21,12 +21,13 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
     test "an #{unauthorized} should NOT be able to modify the settings" do
       sign_in users(unauthorized.to_sym)
-      put :update_general,
+      put :update_general, params: {
         'settings.site_name' => 'Helpy Support 2',
         'settings.parent_site' => 'http://helpy.io/2',
         'settings.parent_company' => 'Helpy 2',
         'settings.site_tagline' => 'Support',
         'settings.google_analytics_id' => 'UA-0000-21'
+      }
       assert_not_equal 'Helpy Support 2', AppSettings['settings.site_name']
       assert_not_equal 'http://helpy.io/2', AppSettings['settings.parent_site']
       assert_not_equal 'Helpy 2', AppSettings['settings.parent_company']
@@ -38,19 +39,20 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
     test "an #{unauthorized} should NOT be able to load the settings" do
       sign_in users(unauthorized.to_sym)
-      get :index
+      get :index, params: {}
       assert_redirected_to admin_root_path
     end
   end
 
   test 'an admin should be able to modify settings' do
     sign_in users(:admin)
-    put :update_general,
+    put :update_general, params: {
       'settings.site_name' => 'Helpy Support 2',
       'settings.parent_site' => 'http://helpy.io/2',
       'settings.parent_company' => 'Helpy 2',
       'settings.site_tagline' => 'Support',
       'settings.google_analytics_id' => 'UA-0000-21'
+    }
     assert_equal 'Helpy Support 2', AppSettings['settings.site_name']
     assert_equal 'http://helpy.io/2', AppSettings['settings.parent_site']
     assert_equal 'Helpy 2', AppSettings['settings.parent_company']
@@ -61,7 +63,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'an admin should be able to modify design' do
     sign_in users(:admin)
-    put :update_design,
+    put :update_design, params: {
       'design.header_logo' => 'logo2.png',
       'design.footer_mini_logo' => 'logo2.png',
       'design.favicon' => 'favicon2.ico',
@@ -70,6 +72,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'css.link_color' => '000000',
       'css.form_background' => '000000',
       'css.still_need_help' => '000000'
+    }
     assert_equal 'logo2.png', AppSettings['design.header_logo']
     assert_equal 'logo2.png', AppSettings['design.footer_mini_logo']
     assert_equal 'favicon2.ico', AppSettings['design.favicon']
@@ -85,8 +88,9 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     AppSettings['theme.active'] = ''
 
     sign_in users(:admin)
-    put :update_theme,
+    put :update_theme, params: {
       'theme.active' => 'flat'
+    }
     assert_equal 'flat', AppSettings['theme.active']
   end
 
@@ -95,8 +99,9 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     # first, toggle off all locales
     AppSettings['i18n.available_locales'] = ''
 
-    xhr :put, :update_i18n,
+    put :update_i18n, params: {
       'i18n.available_locales' => ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl']
+    }
 
     assert_equal ['en', 'es', 'de', 'fr', 'et', 'ca', 'ru', 'ja', 'zh-cn', 'zh-tw', 'pt', 'nl'], AppSettings['i18n.available_locales']
     assert_redirected_to admin_i18n_settings_path
@@ -106,24 +111,25 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     sign_in users(:admin)
     # toggle it off
     AppSettings['widget.show_on_support_site'] = 0
-    xhr :put, :update_widget, 'widget.show_on_support_site' => '1'
+    put :update_widget, params: { 'widget.show_on_support_site' => '1' }
     assert_equal '1', AppSettings['widget.show_on_support_site']
     assert_redirected_to admin_widget_settings_path
   end
 
   test 'an admin should be able to turn email delivery on and off' do
-    put :update_email,
+    put :update_email, params: {
       'email.send_email' => 'false'
+    }
 
     # TODO: Refactor this into an integration test
     # assert_no_difference 'ActionMailer::Base.deliveries.size' do
-    #   xhr :post, create_admin_topic_path, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new private topic', post: { body: 'this is the body' }, forum_id: 1 }
+    #   post, create_admin_topic_path, topic: { user: { name: 'a user', email: 'anon@test.com' }, name: 'some new private topic', post: { body: 'this is the body' }, forum_id: 1 }
     # end
   end
 
   test 'an admin should be able to add mail settings' do
     sign_in users(:admin)
-    put :update_email,
+    put :update_email, params: {
       'email.admin_email' => 'test@test.com',
       'email.from_email' => 'test@test.com',
       'email.mail_service' => 'mailgun',
@@ -132,6 +138,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
       'email.smtp_mail_password' => '1234',
       'email.mail_port' => '587',
       'email.mail_domain' => 'something.com'
+    }
     assert_equal 'test@test.com', AppSettings['email.admin_email']
     assert_equal 'test@test.com', AppSettings['email.from_email']
     assert_equal 'mailgun', AppSettings['email.mail_service']
@@ -147,7 +154,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
     sign_in users(:admin)
 
     assert_difference "ActionMailer::Base.deliveries.size", 1 do
-      put :update_email,
+      put :update_email, params: {
         'email.admin_email' => 'test@test.com',
         'email.from_email' => 'test@test.com',
         'email.mail_service' => 'mailgun',
@@ -157,15 +164,17 @@ class Admin::SettingsControllerTest < ActionController::TestCase
         'email.mail_port' => '587',
         'email.mail_domain' => 'something.com',
         'send_test' => '1'
+      }
     end
   end
 
   test 'an admin should be able to add a cloudinary key' do
     sign_in users(:admin)
-    put :update_integration,
+    put :update_integration, params: {
       'cloudinary.cloud_name' => 'something',
       'cloudinary.api_key' => 'something',
       'cloudinary.api_secret' => 'something'
+    }
     assert_equal 'something', AppSettings['cloudinary.cloud_name']
     assert_equal 'something', AppSettings['cloudinary.api_key']
     assert_equal 'something', AppSettings['cloudinary.api_secret']
@@ -174,11 +183,12 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test 'the updated cloudinary keys should be persisted into the api object' do
     sign_in users(:admin)
-    put :update_integration,
+    put :update_integration, params: {
       'cloudinary.cloud_name' => 'something',
       'cloudinary.api_key' => 'something',
       'cloudinary.api_secret' => 'something'
-    get :index
+    }
+    get :index, params: {}
     assert_equal 'something', Cloudinary.config.cloud_name
     assert_equal 'something', Cloudinary.config.api_key
     assert_equal 'something', Cloudinary.config.api_secret
@@ -186,7 +196,7 @@ class Admin::SettingsControllerTest < ActionController::TestCase
 
   test "an agent should be able to update their profile" do
     sign_in users(:agent)
-    get :profile
+    get :profile, params: {}
     assert :success
   end
 

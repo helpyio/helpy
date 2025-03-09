@@ -69,7 +69,9 @@ class UserTest < ActiveSupport::TestCase
   should have_many(:docs)
   should validate_presence_of(:name)
   should validate_presence_of(:email)
-  should validate_uniqueness_of(:email)
+  # https://github.com/thoughtbot/shoulda-matchers/issues/935
+  # https://github.com/thoughtbot/shoulda-matchers/blob/main/lib/shoulda/matchers/active_record/validate_uniqueness_of_matcher.rb
+  should validate_uniqueness_of(:email).ignoring_case_sensitivity
 
   test "should count number of assigned topics" do
     @user = User.find(1)

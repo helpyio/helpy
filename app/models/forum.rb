@@ -16,7 +16,7 @@
 #  layout             :string           default("table")
 #
 
-class Forum < ActiveRecord::Base
+class Forum < ApplicationRecord
 
   include SentenceCase
 

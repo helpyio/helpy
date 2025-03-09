@@ -4,12 +4,15 @@ default: &default
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
+  host: <%= ENV["DB_HOST"] %>
+  username: postgres
+  password: postgres
 
 development:
   <<: *default
   database: helpy_development
   port: 5432
-  host: localhost
+
 
 test:
   <<: *default

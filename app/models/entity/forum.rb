@@ -13,7 +13,7 @@ module Entity
     expose :allow_post_voting, documentation: {type: 'Boolean', desc: 'Whether or not to allow voting of reply posts'}
     expose :layout, documentation: {type: 'String', desc: 'The layout the forum uses. Can be Table, Grid, or Q&A'}
     expose :topics, using: Entity::Topic, if: { topics: true } do |forum, options|
-      forum.topics.reverse.limit(options[:topics_limit])
+      forum.topics.order(id: :desc).limit(options[:topics_limit])
     end
 
   end

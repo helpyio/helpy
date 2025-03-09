@@ -12,7 +12,7 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: 1, locale: :en,
+        post :create, params: { doc_id: 1, locale: "en",
           post: {
             body: "this is the body",
             kind: "first",
@@ -34,7 +34,7 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 1, 'A topic should have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: 1, locale: :en,
+        post :create, params: { doc_id: 1, locale: "en",
           post: {
             body: "this is the body",
             kind: "first"
@@ -58,7 +58,7 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 0, 'A topic should NOT have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: doc.id, locale: :en,
+        post :create, params: { doc_id: doc.id, locale: "en",
           post: {
             body: "this is the body",
             kind: "reply",
@@ -84,7 +84,7 @@ class CommentsControllerTest < ActionController::TestCase
 
     assert_difference 'Topic.count', 0, 'A topic should NOT have been created' do
       assert_difference 'Post.count', 1, 'A post should have been created' do
-        post :create, { doc_id: doc.id, locale: :en,
+        post :create, params: { doc_id: doc.id, locale: "en",
           post: {
             body: "this is the body",
             kind: "reply"

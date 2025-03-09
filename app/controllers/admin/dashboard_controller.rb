@@ -1,7 +1,7 @@
 class Admin::DashboardController < Admin::BaseController
 
-  skip_before_action :verify_agent
   before_action :get_all_teams
+  skip_before_action :verify_agent, raise: false
 
   # Routes to different views depending on role of user
   def index

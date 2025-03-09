@@ -25,7 +25,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     test "a #{unauthorized} should NOT be able to edit a post" do
       sign_in users(unauthorized.to_sym)
       original_post = Post.find(1)
-      xhr :patch, :update, { id: 1, post: { body: "this has changed" }, locale: :en}
+      patch :update, params: { id: 1, post: { body: "this has changed" }, locale: "en"}
       assert original_post.body == Post.find(1).body
       assert :success
     end
@@ -42,7 +42,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
 
       assert_difference "ActionMailer::Base.deliveries.size", 1 do
         assert_difference "Post.count", 1 do
-          xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
+          post :create, params: { topic_id: 1, locale: "en", post: { user_id: User.find(2).id, body: "new reply", kind: "reply" } }
         end
       end
       assert :success
@@ -54,7 +54,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
 
       assert_difference "ActionMailer::Base.deliveries.size", 0 do
         assert_difference "Post.count", 1 do
-          xhr :post, :create, topic_id: 1, locale: :en, post: { user_id: User.find(2).id, body: "new internal note", kind: "note" }
+          post :create, params: { topic_id: 1, locale: "en", post: { user_id: User.find(2).id, body: "new internal note", kind: "note" } }
         end
       end
       assert :success
@@ -65,7 +65,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
 
       assert_difference "ActionMailer::Base.deliveries.size", 0 do
         assert_difference "Post.count", 1 do
-          xhr :post, :create, topic_id: 4, locale: :en, post: { user_id: User.find(2).id, body: "new reply", kind: "reply" }
+          post :create, params: {  topic_id: 4, locale: "en", post: { user_id: User.find(2).id, body: "new reply", kind: "reply" } }
         end
       end
       assert :success
@@ -74,7 +74,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to edit a post" do
       sign_in users(admin.to_sym)
       old = Post.find(1).body
-      xhr :patch, :update, {id: 1, locale: :en, post: { body: "this has changed" }  }
+      patch :update, params: { id: 1, locale: "en", post: { body: "this has changed" } }, xhr: true
       assert old != Post.find(1).body
       assert :success
     end
@@ -82,14 +82,14 @@ class Admin::PostsControllerTest < ActionController::TestCase
     test "an #{admin} should be able to post a reply to a pending ticket, and the topic status should change to open" do
       sign_in users(admin.to_sym)
       assert_difference "Topic.where(current_status: 'open').count", 1 do
-        xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: "new reply", kind: "reply" }
+        post :create, params: { topic_id: 2, locale: "en", post: { user_id: User.find(1).id, body: "new reply", kind: "reply" } }
       end
     end
 
     test "an #{admin} should be able to post a reply with resolve flag which should change topic status to closed" do
       sign_in users(admin.to_sym)
       old_post_count = Post.count
-      xhr :post, :create, topic_id: 2, locale: :en, post: { user_id: User.find(1).id, body: "new reply", kind: "reply", resolved: "1" }
+      post :create, params: {  topic_id: 2, locale: "en", post: { user_id: User.find(1).id, body: "new reply", kind: "reply", resolved: "1" } }, xhr: true
       assert old_post_count < Post.count
       assert old_post_count == (Post.count - 2) # two post created one for "new reply" one for "closing" internel note
       assert Topic.find(2).current_status == "closed"
@@ -97,20 +97,20 @@ class Admin::PostsControllerTest < ActionController::TestCase
 
     test "an #{admin} can change the owner of a post" do
       sign_in users(admin.to_sym)
-      xhr :patch, :update, id: 4, post: { user_id: 1 }
+      patch :update, params: { id: 4, post: { user_id: 1 } }, xhr: true
       assert_equal Post.find(4).user_id, 1
     end
 
     test "an #{admin} can changing the owner of a post of kind 'first' should also update the topic owner" do
       sign_in users(admin.to_sym)
       post = Post.find(3)
-      xhr :patch, :update, id: post, post: { user_id: 1 }
+      patch :update, params: { id: post, post: { user_id: 1 } }, xhr: true
       assert_equal Post.find(3).topic.user_id, 1
     end
 
     test "an #{admin} should be able to search for Users" do
       sign_in users(admin.to_sym)
-      xhr :post, :search,  user_search: 'scott', post_id: 1
+      post :search, params: { user_search: 'scott', post_id: 1 }, xhr: true
       assert_equal assigns['users'].count, 3
     end
 
@@ -119,7 +119,7 @@ class Admin::PostsControllerTest < ActionController::TestCase
       sign_in user
       post = Post.find(7)
       new_user = User.find(4)
-      xhr :patch, :update, id: post, post: { user_id: new_user.id }
+      patch :update, params: { id: post, post: { user_id: new_user.id } }, xhr: true
       updated_post = Post.find(7)
       note = post.topic.posts.last
 

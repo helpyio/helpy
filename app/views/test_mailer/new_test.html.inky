@@ -2,8 +2,7 @@
   <row>
     <columns class="callout panel">
       <spacer size="16"></spacer>
-        Your email configuration appears to work :)
-      </p><br/>
+        <p>Your email configuration appears to work :)</p><br/>
     </columns>
   </row>
 </container>

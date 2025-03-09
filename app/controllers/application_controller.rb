@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, prepend: true
   helper_method :recaptcha_enabled?
 
   before_action :add_root_breadcrumb
@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
   before_action :set_vars
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :set_time_zone, if: :current_user
-
+  
   force_ssl if: :ssl_configured?
 
-  def url_options
-    { locale: I18n.locale, theme: params[:theme] }.merge(super)
+  def default_url_options(options = {})
+    { theme: params[:theme] }.merge(options)
   end
 
   def after_sign_in_path_for(_resource)
@@ -137,6 +137,7 @@ class ApplicationController < ActionController::Base
     else
       I18n.locale = @browser_locale
     end
+    request.params[:locale] = I18n.locale.to_s
   end
 
   def set_vars
@@ -197,7 +198,7 @@ class ApplicationController < ActionController::Base
 
   def get_all_teams
     return unless teams?
-    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').uniq.pluck(:name).map{|name| name}
+    @all_teams = ActsAsTaggableOn::Tagging.includes(:tag).where(context: 'teams').distinct.pluck(:name).map{|name| name}
   end
 
 end

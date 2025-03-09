@@ -20,9 +20,10 @@ class ForumsController < ApplicationController
 
   # Make sure forums are enabled
   before_action :forums_enabled?, only: ['index','show']
-
+  
   respond_to :html
   theme :theme_chosen
+
 
   def index
     @page_title = t(:community, default: "Community")

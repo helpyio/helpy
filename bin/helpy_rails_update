@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+system 'THOR_MERGE=/workspaces/helpy/bin/app_update_thor_merge_tool bin/rails app:update'

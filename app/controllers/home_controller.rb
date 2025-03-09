@@ -2,6 +2,7 @@ class HomeController < ApplicationController
 
   theme :theme_chosen
   respond_to :html
+  
 
   def index
     redirect_to new_user_session_path if !tickets? && !knowledgebase?

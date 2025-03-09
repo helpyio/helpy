@@ -22,9 +22,10 @@ class PostsController < ApplicationController
   # Make sure forums are enabled
   before_action :forums_enabled?, only: ['index','show']
 
-  respond_to :js, only: [:up_vote]
   layout "clean", only: :index
   theme :theme_chosen
+  respond_to :html, only: [:up_vote]
+  
 
   def index
     @topic = Topic.undeleted.ispublic.where(id: params[:topic_id]).first#.includes(:forum)
@@ -46,6 +47,7 @@ class PostsController < ApplicationController
     @post.topic_id = @topic.id
     @post.user_id = current_user.id
     @post.screenshots = params[:post][:screenshots]
+    #binding.pry
 
     respond_to do |format|
       if @post.save
@@ -84,12 +86,16 @@ class PostsController < ApplicationController
     end
   end
 
+  private
+
   def post_params
-    params.require(:post).permit(
-      :body,
-      :kind,
-      {attachments: []}
-    )
+    #binding.pry
+    # params.require(:post).permit(
+    #   :body,
+    #   :kind,
+    #   attachments: []
+    # )
+    params.require(:post).permit!
   end
 
 end

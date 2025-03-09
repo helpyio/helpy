@@ -1,2 +1,2 @@
-class DocTranslation < ActiveRecord::Base
+class DocTranslation < ApplicationRecord
 end
