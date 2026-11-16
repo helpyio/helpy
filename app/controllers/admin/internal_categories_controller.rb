@@ -1,5 +1,7 @@
 class Admin::InternalCategoriesController < Admin::BaseController
 
+  before_action :verify_editor
+
   def index
     @categories = Category.internally.without_system_resource.with_translations(I18n.locale).ordered
   end
